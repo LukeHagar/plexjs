@@ -2,10 +2,10 @@
   "name": "plexjs",
   "version": "0.0.1",
   "description": "Community Made Plex JS/TS Module",
-  "author": "LLuke Hagar",
+  "author": "Luke Hagar",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sailpoint-oss/typescript-sdk.git"
+    "url": "https://github.com/lukehagar/plexjs.git"
   },
   "keywords": [
     "axios",

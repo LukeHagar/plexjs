@@ -1,0 +1,87 @@
+name: "Update Typescript SDK Version"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version to bump to
+
+jobs:
+  update_typescript_version:
+    name: Update Typescript Version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+    
+      - name: Checkout API Specs Repo
+        uses: actions/checkout@v3
+        with:
+          repository: lukehagar/plex-api-spec
+          path: api-specs
+          ref: main
+      
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      # Install yq for working with yaml files
+      - name: Set up yq
+        uses: frenck/action-setup-yq@v1
+
+      # Check input version is greater than the current tag
+      - name: Check valid version
+        run: |
+          function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo $LATEST_TAG
+          if [ $(ver $LATEST_TAG) -lt $(ver ${{ github.event.inputs.version}}) ]
+          then
+            echo "Input version ${{ github.event.inputs.version }} valid"
+          else
+            echo "Current tagged version $LATEST_TAG is greater than input version ${{ github.event.inputs.version }}"
+            exit 1
+          fi
+
+      ## Update configuration files to new version
+      - name: Update config files with new version
+        id: updateVersion
+        run: |
+          yq -i '.npmVersion = "${{ github.event.inputs.version }}"' config.yaml
+
+      ## Update package.json file with new version
+      - name: Update package.json version
+        id: updatePackageJsonVersion
+        if: steps.updateVersion.outcome == 'success'
+        run: |
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+          cd sdk-output
+          jq '.version = "${{ github.event.inputs.version }}"' package.json > package.json.tmp && mv package.json.tmp package.json
+
+      - name: Build TS SDK
+        id: buildTS
+        run: |
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.3.0/openapi-generator-cli-6.3.0.jar -O openapi-generator-cli.jar
+          rm -rf sdk-output/
+          java -jar openapi-generator-cli.jar generate -i api-specs/referenced/plex-api-spec.yaml -g typescript-axios -o sdk-output/ --global-property skipFormModel=false --config config.yaml
+          
+      - name: After SDK Build
+        id: buildSDK
+        if: steps.buildTS.outcome == 'success'
+        run: |
+          npm install
+          npm run build
+        
+      - name: Commit changes and create new version tag
+        if: steps.buildSDK.outcome == 'success'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Bump version to ${{ github.event.inputs.version }}
+          tagging_message: ${{ github.event.inputs.version }}
