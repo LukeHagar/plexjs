@@ -5,5 +5,5 @@ files:
     destinationFilename: package.json
 npmName: plexjs
 npmRepository: lukehagar
-npmVersion: 0.0.1
+npmVersion: 0.0.2
 useSingleRequestParameter: true
