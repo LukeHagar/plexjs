@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Configuration } from "../configuration";
+import { Configuration } from "./configuration";
 import { RequestArgs } from "./base";
 import { AxiosInstance, AxiosResponse } from 'axios';
 /**
@@ -28,21 +28,6 @@ export declare const assertParamExists: (functionName: string, paramName: string
  * @export
  */
 export declare const setApiKeyToObject: (object: any, keyParamName: string, configuration?: Configuration) => Promise<void>;
-/**
- *
- * @export
- */
-export declare const setBasicAuthToObject: (object: any, configuration?: Configuration) => void;
-/**
- *
- * @export
- */
-export declare const setBearerAuthToObject: (object: any, configuration?: Configuration) => Promise<void>;
-/**
- *
- * @export
- */
-export declare const setOAuthToObject: (object: any, name: string, scopes: string[], configuration?: Configuration) => Promise<void>;
 /**
  *
  * @export

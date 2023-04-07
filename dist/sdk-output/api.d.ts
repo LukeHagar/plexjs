@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Configuration } from '../configuration';
+import { Configuration } from './configuration';
 import { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { RequestArgs, BaseAPI } from './base';
 /**

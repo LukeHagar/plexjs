@@ -13,7 +13,7 @@
  */
 
 
-import { Configuration } from '../configuration';
+import { Configuration } from './configuration';
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -409,6 +409,9 @@ export const ActivitiesApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -438,6 +441,9 @@ export const ActivitiesApiAxiosParamCreator = function (configuration?: Configur
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
 
     
@@ -588,6 +594,9 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -617,6 +626,9 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
 
     
@@ -652,6 +664,9 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -681,6 +696,9 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
 
     
@@ -904,6 +922,9 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -943,6 +964,9 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
@@ -1124,6 +1148,9 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -1153,6 +1180,9 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1192,6 +1222,9 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
             if (level !== undefined) {
                 localVarQueryParameter['level'] = level;
@@ -1401,6 +1434,9 @@ export const SecurityApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
             if (source !== undefined) {
                 localVarQueryParameter['source'] = source;
             }
@@ -1440,6 +1476,9 @@ export const SecurityApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
@@ -1620,6 +1659,9 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -1720,6 +1762,9 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
             if (tonight !== undefined) {
                 localVarQueryParameter['tonight'] = tonight;
             }
@@ -1759,6 +1804,9 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
             if (download !== undefined) {
                 localVarQueryParameter['download'] = download;
             }
@@ -1792,6 +1840,9 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
 
     

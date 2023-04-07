@@ -13,7 +13,7 @@
  */
 
 
-import { Configuration } from "../configuration";
+import { Configuration } from "./configuration";
 import { RequiredError, RequestArgs } from "./base";
 import { AxiosInstance, AxiosResponse } from 'axios';
 import axiosRetry from "axios-retry";
@@ -48,41 +48,6 @@ export const setApiKeyToObject = async function (object: any, keyParamName: stri
     }
 }
 
-/**
- *
- * @export
- */
-export const setBasicAuthToObject = function (object: any, configuration?: Configuration) {
-    if (configuration && (configuration.username || configuration.password)) {
-        object["auth"] = { username: configuration.username, password: configuration.password };
-    }
-}
-
-/**
- *
- * @export
- */
-export const setBearerAuthToObject = async function (object: any, configuration?: Configuration) {
-    if (configuration && configuration.accessToken) {
-        const accessToken = typeof configuration.accessToken === 'function'
-            ? await configuration.accessToken()
-            : await configuration.accessToken;
-        object["Authorization"] = "Bearer " + accessToken;
-    }
-}
-
-/**
- *
- * @export
- */
-export const setOAuthToObject = async function (object: any, name: string, scopes: string[], configuration?: Configuration) {
-    if (configuration && configuration.accessToken) {
-        const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-            ? await configuration.accessToken(name, scopes)
-            : await configuration.accessToken;
-        object["Authorization"] = "Bearer " + localVarAccessTokenValue;
-    }
-}
 
 /**
  *
@@ -134,8 +99,7 @@ export const toPathString = function (url: URL) {
 export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxios: AxiosInstance, BASE_PATH: string, configuration?: Configuration) {
     return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
         axiosRetry(globalAxios, configuration.retriesConfig)
-        axiosArgs.axiosOptions.headers['X-SailPoint-SDK'] = 'typescript-0.0.1'
-        const axiosRequestArgs = {...axiosArgs.axiosOptions, url: (configuration?.basePathV3 || basePath) + axiosArgs.url};
+        const axiosRequestArgs = {...axiosArgs.axiosOptions, url: (configuration?.basePath || basePath) + axiosArgs.url};
         return axios.request<T, R>(axiosRequestArgs);
     };
 }

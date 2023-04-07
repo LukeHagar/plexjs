@@ -60,7 +60,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createRequestFunction = exports.toPathString = exports.serializeDataIfNeeded = exports.setSearchParams = exports.setOAuthToObject = exports.setBearerAuthToObject = exports.setBasicAuthToObject = exports.setApiKeyToObject = exports.assertParamExists = exports.DUMMY_BASE_URL = void 0;
+exports.createRequestFunction = exports.toPathString = exports.serializeDataIfNeeded = exports.setSearchParams = exports.setApiKeyToObject = exports.assertParamExists = exports.DUMMY_BASE_URL = void 0;
 var base_1 = require("./base");
 var axios_retry_1 = require("axios-retry");
 /**
@@ -109,76 +109,6 @@ var setApiKeyToObject = function (object, keyParamName, configuration) {
     });
 };
 exports.setApiKeyToObject = setApiKeyToObject;
-/**
- *
- * @export
- */
-var setBasicAuthToObject = function (object, configuration) {
-    if (configuration && (configuration.username || configuration.password)) {
-        object["auth"] = { username: configuration.username, password: configuration.password };
-    }
-};
-exports.setBasicAuthToObject = setBasicAuthToObject;
-/**
- *
- * @export
- */
-var setBearerAuthToObject = function (object, configuration) {
-    return __awaiter(this, void 0, void 0, function () {
-        var accessToken, _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    if (!(configuration && configuration.accessToken)) return [3 /*break*/, 5];
-                    if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 2];
-                    return [4 /*yield*/, configuration.accessToken()];
-                case 1:
-                    _a = _b.sent();
-                    return [3 /*break*/, 4];
-                case 2: return [4 /*yield*/, configuration.accessToken];
-                case 3:
-                    _a = _b.sent();
-                    _b.label = 4;
-                case 4:
-                    accessToken = _a;
-                    object["Authorization"] = "Bearer " + accessToken;
-                    _b.label = 5;
-                case 5: return [2 /*return*/];
-            }
-        });
-    });
-};
-exports.setBearerAuthToObject = setBearerAuthToObject;
-/**
- *
- * @export
- */
-var setOAuthToObject = function (object, name, scopes, configuration) {
-    return __awaiter(this, void 0, void 0, function () {
-        var localVarAccessTokenValue, _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    if (!(configuration && configuration.accessToken)) return [3 /*break*/, 5];
-                    if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 2];
-                    return [4 /*yield*/, configuration.accessToken(name, scopes)];
-                case 1:
-                    _a = _b.sent();
-                    return [3 /*break*/, 4];
-                case 2: return [4 /*yield*/, configuration.accessToken];
-                case 3:
-                    _a = _b.sent();
-                    _b.label = 4;
-                case 4:
-                    localVarAccessTokenValue = _a;
-                    object["Authorization"] = "Bearer " + localVarAccessTokenValue;
-                    _b.label = 5;
-                case 5: return [2 /*return*/];
-            }
-        });
-    });
-};
-exports.setOAuthToObject = setOAuthToObject;
 /**
  *
  * @export
@@ -238,8 +168,7 @@ var createRequestFunction = function (axiosArgs, globalAxios, BASE_PATH, configu
         if (axios === void 0) { axios = globalAxios; }
         if (basePath === void 0) { basePath = BASE_PATH; }
         (0, axios_retry_1.default)(globalAxios, configuration.retriesConfig);
-        axiosArgs.axiosOptions.headers['X-SailPoint-SDK'] = 'typescript-0.0.1';
-        var axiosRequestArgs = __assign(__assign({}, axiosArgs.axiosOptions), { url: ((configuration === null || configuration === void 0 ? void 0 : configuration.basePathV3) || basePath) + axiosArgs.url });
+        var axiosRequestArgs = __assign(__assign({}, axiosArgs.axiosOptions), { url: ((configuration === null || configuration === void 0 ? void 0 : configuration.basePath) || basePath) + axiosArgs.url });
         return axios.request(axiosRequestArgs);
     };
 };

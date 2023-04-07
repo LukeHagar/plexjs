@@ -13,7 +13,7 @@
  */
 
 
-import { Configuration } from "../configuration";
+import { Configuration } from "./configuration";
 // Some imports not used depending on template conditions
 // @ts-ignore
 import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
@@ -52,7 +52,7 @@ export class BaseAPI {
     constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected axios: AxiosInstance = globalAxios) {
         if (configuration) {
             this.configuration = configuration;
-            this.basePath = configuration.basePathV3 || this.basePath;
+            this.basePath = configuration.basePath || this.basePath;
         }
     }
 };

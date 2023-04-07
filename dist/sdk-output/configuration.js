@@ -18,12 +18,7 @@ var Configuration = /** @class */ (function () {
     function Configuration(param) {
         if (param === void 0) { param = {}; }
         this.apiKey = param.apiKey;
-        this.username = param.username;
-        this.password = param.password;
-        this.accessToken = param.accessToken;
         this.basePath = param.basePath;
-        this.baseOptions = param.baseOptions;
-        this.formDataCtor = param.formDataCtor;
     }
     /**
      * Check if the given MIME is a JSON MIME.

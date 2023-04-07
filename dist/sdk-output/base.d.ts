@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Configuration } from "../configuration";
+import { Configuration } from "./configuration";
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 export declare const BASE_PATH: string;
 /**

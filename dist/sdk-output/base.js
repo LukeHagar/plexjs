@@ -56,7 +56,7 @@ var BaseAPI = /** @class */ (function () {
         this.axios = axios;
         if (configuration) {
             this.configuration = configuration;
-            this.basePath = configuration.basePathV3 || this.basePath;
+            this.basePath = configuration.basePath || this.basePath;
         }
     }
     return BaseAPI;

@@ -101,24 +101,32 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    // verify required parameter 'activityUUID' is not null or undefined
-                    (0, common_1.assertParamExists)('cancelServerActivities', 'activityUUID', activityUUID);
-                    localVarPath = "/activities/{activityUUID}"
-                        .replace("{".concat("activityUUID", "}"), encodeURIComponent(String(activityUUID)));
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'activityUUID' is not null or undefined
+                            (0, common_1.assertParamExists)('cancelServerActivities', 'activityUUID', activityUUID);
+                            localVarPath = "/activities/{activityUUID}"
+                                .replace("{".concat("activityUUID", "}"), encodeURIComponent(String(activityUUID)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -133,21 +141,29 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/activities";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/activities";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -288,24 +304,32 @@ var ButlerApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    // verify required parameter 'taskName' is not null or undefined
-                    (0, common_1.assertParamExists)('startAButlerTasks', 'taskName', taskName);
-                    localVarPath = "/butler/{taskName}"
-                        .replace("{".concat("taskName", "}"), encodeURIComponent(String(taskName)));
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'taskName' is not null or undefined
+                            (0, common_1.assertParamExists)('startAButlerTasks', 'taskName', taskName);
+                            localVarPath = "/butler/{taskName}"
+                                .replace("{".concat("taskName", "}"), encodeURIComponent(String(taskName)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -320,21 +344,29 @@ var ButlerApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/butler";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/butler";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -350,24 +382,32 @@ var ButlerApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    // verify required parameter 'taskName' is not null or undefined
-                    (0, common_1.assertParamExists)('stopAButlerTasks', 'taskName', taskName);
-                    localVarPath = "/butler/{taskName}"
-                        .replace("{".concat("taskName", "}"), encodeURIComponent(String(taskName)));
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'taskName' is not null or undefined
+                            (0, common_1.assertParamExists)('stopAButlerTasks', 'taskName', taskName);
+                            localVarPath = "/butler/{taskName}"
+                                .replace("{".concat("taskName", "}"), encodeURIComponent(String(taskName)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -382,21 +422,29 @@ var ButlerApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/butler";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/butler";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -617,21 +665,29 @@ var LibraryApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/library/sections";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/library/sections";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -650,33 +706,41 @@ var LibraryApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    // verify required parameter 'sectionId' is not null or undefined
-                    (0, common_1.assertParamExists)('getLibraryItems', 'sectionId', sectionId);
-                    // verify required parameter 'category' is not null or undefined
-                    (0, common_1.assertParamExists)('getLibraryItems', 'category', category);
-                    localVarPath = "/library/sections/{sectionId}/{category}"
-                        .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)))
-                        .replace("{".concat("category", "}"), encodeURIComponent(String(category)));
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'sectionId' is not null or undefined
+                            (0, common_1.assertParamExists)('getLibraryItems', 'sectionId', sectionId);
+                            // verify required parameter 'category' is not null or undefined
+                            (0, common_1.assertParamExists)('getLibraryItems', 'category', category);
+                            localVarPath = "/library/sections/{sectionId}/{category}"
+                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)))
+                                .replace("{".concat("category", "}"), encodeURIComponent(String(category)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            if (filter !== undefined) {
+                                localVarQueryParameter['filter'] = filter;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    if (type !== undefined) {
-                        localVarQueryParameter['type'] = type;
-                    }
-                    if (filter !== undefined) {
-                        localVarQueryParameter['filter'] = filter;
-                    }
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -822,21 +886,29 @@ var LogApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/log/networked";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/log/networked";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -851,21 +923,29 @@ var LogApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/log";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/log";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -883,36 +963,44 @@ var LogApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    // verify required parameter 'level' is not null or undefined
-                    (0, common_1.assertParamExists)('logaLine', 'level', level);
-                    // verify required parameter 'message' is not null or undefined
-                    (0, common_1.assertParamExists)('logaLine', 'message', message);
-                    // verify required parameter 'source' is not null or undefined
-                    (0, common_1.assertParamExists)('logaLine', 'source', source);
-                    localVarPath = "/log";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'level' is not null or undefined
+                            (0, common_1.assertParamExists)('logaLine', 'level', level);
+                            // verify required parameter 'message' is not null or undefined
+                            (0, common_1.assertParamExists)('logaLine', 'message', message);
+                            // verify required parameter 'source' is not null or undefined
+                            (0, common_1.assertParamExists)('logaLine', 'source', source);
+                            localVarPath = "/log";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (level !== undefined) {
+                                localVarQueryParameter['level'] = level;
+                            }
+                            if (message !== undefined) {
+                                localVarQueryParameter['message'] = message;
+                            }
+                            if (source !== undefined) {
+                                localVarQueryParameter['source'] = source;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    if (level !== undefined) {
-                        localVarQueryParameter['level'] = level;
-                    }
-                    if (message !== undefined) {
-                        localVarQueryParameter['message'] = message;
-                    }
-                    if (source !== undefined) {
-                        localVarQueryParameter['source'] = source;
-                    }
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -1096,26 +1184,34 @@ var SecurityApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    // verify required parameter 'source' is not null or undefined
-                    (0, common_1.assertParamExists)('getConnectionInformation', 'source', source);
-                    localVarPath = "/security/resources";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'source' is not null or undefined
+                            (0, common_1.assertParamExists)('getConnectionInformation', 'source', source);
+                            localVarPath = "/security/resources";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (source !== undefined) {
+                                localVarQueryParameter['source'] = source;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    if (source !== undefined) {
-                        localVarQueryParameter['source'] = source;
-                    }
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -1132,31 +1228,39 @@ var SecurityApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    // verify required parameter 'type' is not null or undefined
-                    (0, common_1.assertParamExists)('getTransientToken', 'type', type);
-                    // verify required parameter 'scope' is not null or undefined
-                    (0, common_1.assertParamExists)('getTransientToken', 'scope', scope);
-                    localVarPath = "/security/token";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'type' is not null or undefined
+                            (0, common_1.assertParamExists)('getTransientToken', 'type', type);
+                            // verify required parameter 'scope' is not null or undefined
+                            (0, common_1.assertParamExists)('getTransientToken', 'scope', scope);
+                            localVarPath = "/security/token";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            if (scope !== undefined) {
+                                localVarQueryParameter['scope'] = scope;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    if (type !== undefined) {
-                        localVarQueryParameter['type'] = type;
-                    }
-                    if (scope !== undefined) {
-                        localVarQueryParameter['scope'] = scope;
-                    }
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -1301,21 +1405,29 @@ var ServerApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -1415,27 +1527,35 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/updater/apply";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/updater/apply";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (tonight !== undefined) {
+                                localVarQueryParameter['tonight'] = tonight;
+                            }
+                            if (skip !== undefined) {
+                                localVarQueryParameter['skip'] = skip;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    if (tonight !== undefined) {
-                        localVarQueryParameter['tonight'] = tonight;
-                    }
-                    if (skip !== undefined) {
-                        localVarQueryParameter['skip'] = skip;
-                    }
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -1451,24 +1571,32 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/updater/check";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/updater/check";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (download !== undefined) {
+                                localVarQueryParameter['download'] = download;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    if (download !== undefined) {
-                        localVarQueryParameter['download'] = download;
-                    }
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
@@ -1483,21 +1611,29 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/updater/status";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/updater/status";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
