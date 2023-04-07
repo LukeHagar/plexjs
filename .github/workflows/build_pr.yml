@@ -1,11 +1,11 @@
-name: "Build and Push Plex TypeScript SDK"
+name: "Build TypeScript SDK"
 
 on:
   workflow_dispatch:
 
 jobs:
   push_spec_workflow:
-    name: Build and push typescript SDK
+    name: Build TypeScript SDK
     runs-on: ubuntu-latest
     steps:
       # Checkout the master branch request to run rsync
