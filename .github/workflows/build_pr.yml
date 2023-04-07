@@ -18,7 +18,7 @@ jobs:
       - name: Checkout API Specs Repo
         uses: actions/checkout@v3
         with:
-          repository: lukehagar/plex-api-specs
+          repository: lukehagar/plex-api-spec
           path: api-specs
           ref: main
 
