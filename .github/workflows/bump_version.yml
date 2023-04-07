@@ -62,7 +62,6 @@ jobs:
         if: steps.updateVersion.outcome == 'success'
         run: |
           LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-          cd sdk-output
           jq '.version = "${{ github.event.inputs.version }}"' package.json > package.json.tmp && mv package.json.tmp package.json
 
       - name: Build TS SDK
