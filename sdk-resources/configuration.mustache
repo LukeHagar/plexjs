@@ -3,7 +3,7 @@
 {{>licenseInfo}}
 
 export interface ConfigurationParameters {
-    
+
     apiKey?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
     basePath?: string;
 
@@ -41,6 +41,14 @@ export class Configuration {
      * @type {new () => FormData}
      */
     formDataCtor?: new () => any;
+
+    /**
+     * axios retry configuration
+     *
+     * @type {IAxiosRetryConfig}
+     * @memberof Configuration
+     */
+    retriesConfig?: IAxiosRetryConfig
 
     constructor(param: ConfigurationParameters = {}) {
 
