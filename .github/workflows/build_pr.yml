@@ -1,0 +1,42 @@
+name: "Build and Push Plex TypeScript SDK"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  push_spec_workflow:
+    name: Build and push typescript SDK
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the master branch request to run rsync
+      - name: Checkout PR branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      # Checkout the main branch of api-specs
+      - name: Checkout API Specs Repo
+        uses: actions/checkout@v3
+        with:
+          repository: lukehagar/plex-api-specs
+          path: api-specs
+          ref: main
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      
+      - name: Build TS SDK
+        id: buildTS
+        run: |
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.3.0/openapi-generator-cli-6.3.0.jar -O openapi-generator-cli.jar
+          rm -rf sdk-output/
+          java -jar openapi-generator-cli.jar generate -i api-specs/referenced/plex-api-spec.yaml -g typescript-axios -o sdk-output/ --global-property skipFormModel=false --config config.yaml
+          
+      - name: Run npm install and build Typescript SDK
+        id: buildSDK
+        if: steps.buildTS.outcome == 'success'
+        run: |
+          npm install
+          npm run build
