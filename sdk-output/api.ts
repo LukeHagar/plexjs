@@ -1104,11 +1104,11 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Get Available Clients
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1179,11 +1179,11 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Get Devices
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1264,11 +1264,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @summary Get Available Clients
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1282,11 +1282,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @summary Get Devices
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1310,11 +1310,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @summary Get Available Clients
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1327,11 +1327,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @summary Get Devices
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1363,35 +1363,35 @@ export interface DevicesApiGetAvailableClientsRequest {
     readonly xPlexDeviceName?: any
 
     /**
-     * Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
+     * Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @type {any}
      * @memberof DevicesApiGetAvailableClients
      */
     readonly xPlexDevice?: any
 
     /**
-     * Operating system version, eg 4.3.1, 10.6.7, 3.2
+     * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
      * @type {any}
      * @memberof DevicesApiGetAvailableClients
      */
     readonly xPlexPlatformVersion?: any
 
     /**
-     * Platform name, eg iOS, MacOSX, Android, LG, etc
+     * Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
      * @type {any}
      * @memberof DevicesApiGetAvailableClients
      */
     readonly xPlexPlatform?: any
 
     /**
-     * Plex application name, eg Laika, Plex Media Server, Media Link
+     * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @type {any}
      * @memberof DevicesApiGetAvailableClients
      */
     readonly xPlexProduct?: any
 
     /**
-     * One or more of [player, controller, server]
+     * One or more of &#x60;[player, controller, server]&#x60;
      * @type {any}
      * @memberof DevicesApiGetAvailableClients
      */
@@ -1426,35 +1426,35 @@ export interface DevicesApiGetDevicesRequest {
     readonly xPlexDeviceName?: any
 
     /**
-     * Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
+     * Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
     readonly xPlexDevice?: any
 
     /**
-     * Operating system version, eg 4.3.1, 10.6.7, 3.2
+     * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
     readonly xPlexPlatformVersion?: any
 
     /**
-     * Platform name, eg iOS, MacOSX, Android, LG, etc
+     * Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
     readonly xPlexPlatform?: any
 
     /**
-     * Plex application name, eg Laika, Plex Media Server, Media Link
+     * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
     readonly xPlexProduct?: any
 
     /**
-     * One or more of [player, controller, server]
+     * One or more of &#x60;[player, controller, server]&#x60;
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
@@ -4914,11 +4914,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Get Logged in User
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -4999,11 +4999,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @summary Get Logged in User
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -5027,11 +5027,11 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @summary Get Logged in User
          * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg 4.3.1, 10.6.7, 3.2
-         * @param {any} [xPlexPlatform] Platform name, eg iOS, MacOSX, Android, LG, etc
-         * @param {any} [xPlexProduct] Plex application name, eg Laika, Plex Media Server, Media Link
-         * @param {any} [xPlexProvides] One or more of [player, controller, server]
+         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -5063,35 +5063,35 @@ export interface UserApiGetCurrentUserDetailsRequest {
     readonly xPlexDeviceName?: any
 
     /**
-     * Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
+     * Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
     readonly xPlexDevice?: any
 
     /**
-     * Operating system version, eg 4.3.1, 10.6.7, 3.2
+     * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
     readonly xPlexPlatformVersion?: any
 
     /**
-     * Platform name, eg iOS, MacOSX, Android, LG, etc
+     * Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
     readonly xPlexPlatform?: any
 
     /**
-     * Plex application name, eg Laika, Plex Media Server, Media Link
+     * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
     readonly xPlexProduct?: any
 
     /**
-     * One or more of [player, controller, server]
+     * One or more of &#x60;[player, controller, server]&#x60;
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
