@@ -115,17 +115,10 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -159,17 +152,10 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -332,17 +318,10 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -376,17 +355,10 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -424,17 +396,10 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -468,17 +433,10 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -718,17 +676,10 @@ var DevicesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -772,17 +723,10 @@ var DevicesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (xPlexClientIdentifier !== undefined && xPlexClientIdentifier !== null) {
                                 localVarHeaderParameter['X-Plex-Client-Identifier'] = String(JSON.stringify(xPlexClientIdentifier));
@@ -983,17 +927,10 @@ var HashesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (url !== undefined) {
                                 localVarQueryParameter['url'] = url;
@@ -1123,17 +1060,10 @@ var HubsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (count !== undefined) {
                                 localVarQueryParameter['count'] = count;
@@ -1179,17 +1109,10 @@ var HubsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (count !== undefined) {
                                 localVarQueryParameter['count'] = count;
@@ -1370,17 +1293,10 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
                                 localVarQueryParameter['type'] = type;
@@ -1428,17 +1344,10 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
                                 localVarQueryParameter['type'] = type;
@@ -1486,17 +1395,10 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
                                 localVarQueryParameter['type'] = type;
@@ -1536,17 +1438,10 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1585,17 +1480,10 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (includeDetails !== undefined) {
                                 localVarQueryParameter['includeDetails'] = includeDetails;
@@ -1632,17 +1520,10 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1680,17 +1561,10 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2070,17 +1944,10 @@ var LogApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2114,17 +1981,10 @@ var LogApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2167,17 +2027,10 @@ var LogApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (level !== undefined) {
                                 localVarQueryParameter['level'] = level;
@@ -2398,17 +2251,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (uri !== undefined) {
                                 localVarQueryParameter['uri'] = uri;
@@ -2452,17 +2298,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2507,17 +2346,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (title !== undefined) {
                                 localVarQueryParameter['title'] = title;
@@ -2570,17 +2402,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2616,17 +2441,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (playlistType !== undefined) {
                                 localVarQueryParameter['playlistType'] = playlistType;
@@ -2670,17 +2488,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2721,17 +2532,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
                                 localVarQueryParameter['type'] = type;
@@ -2772,17 +2576,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2822,17 +2619,10 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (path !== undefined) {
                                 localVarQueryParameter['path'] = path;
@@ -3318,17 +3108,10 @@ var SearchApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (query !== undefined) {
                                 localVarQueryParameter['query'] = query;
@@ -3376,17 +3159,10 @@ var SearchApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (query !== undefined) {
                                 localVarQueryParameter['query'] = query;
@@ -3568,17 +3344,10 @@ var SecurityApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (source !== undefined) {
                                 localVarQueryParameter['source'] = source;
@@ -3621,17 +3390,10 @@ var SecurityApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
                                 localVarQueryParameter['type'] = type;
@@ -3801,17 +3563,10 @@ var ServerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -3845,17 +3600,10 @@ var ServerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -4011,17 +3759,10 @@ var SessionsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -4055,17 +3796,10 @@ var SessionsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -4223,17 +3957,10 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (tonight !== undefined) {
                                 localVarQueryParameter['tonight'] = tonight;
@@ -4274,17 +4001,10 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (download !== undefined) {
                                 localVarQueryParameter['download'] = download;
@@ -4321,17 +4041,10 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -4546,17 +4259,10 @@ var UserApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
-                            // authentication PlexToken-Header required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)
-                                // authentication PlexToken-Query required
-                            ];
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
                         case 1:
-                            // authentication PlexToken-Header required
-                            _a.sent();
-                            // authentication PlexToken-Query required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarQueryParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken-Query required
+                            // authentication PlexToken required
                             _a.sent();
                             if (xPlexClientIdentifier !== undefined && xPlexClientIdentifier !== null) {
                                 localVarHeaderParameter['X-Plex-Client-Identifier'] = String(JSON.stringify(xPlexClientIdentifier));
