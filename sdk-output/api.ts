@@ -919,20 +919,10 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get Available Clients
          * @summary Get Available Clients
-         * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
-         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
-         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
-         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-         * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableClients: async (xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'xPlexClientIdentifier' is not null or undefined
-            assertParamExists('getAvailableClients', 'xPlexClientIdentifier', xPlexClientIdentifier)
+        getAvailableClients: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/clients`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -947,38 +937,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication PlexToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            if (xPlexClientIdentifier !== undefined && xPlexClientIdentifier !== null) {
-                localVarHeaderParameter['X-Plex-Client-Identifier'] = String(JSON.stringify(xPlexClientIdentifier));
-            }
-
-            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
-                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
-            }
-
-            if (xPlexDevice !== undefined && xPlexDevice !== null) {
-                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
-            }
-
-            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
-                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
-            }
-
-            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
-                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
-            }
-
-            if (xPlexProduct !== undefined && xPlexProduct !== null) {
-                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
-            }
-
-            if (xPlexProvides !== undefined && xPlexProvides !== null) {
-                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
-            }
-
-            if (xPlexVersion !== undefined && xPlexVersion !== null) {
-                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
-            }
 
 
     
@@ -1079,19 +1037,11 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         /**
          * Get Available Clients
          * @summary Get Available Clients
-         * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
-         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
-         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
-         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-         * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async getAvailableClients(xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableClients(xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions);
+        async getAvailableClients(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableClients(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1125,19 +1075,11 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         /**
          * Get Available Clients
          * @summary Get Available Clients
-         * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
-         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-         * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
-         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
-         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
-         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-         * @param {any} [xPlexVersion] Plex application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableClients(xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<any> {
-            return localVarFp.getAvailableClients(xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then((request) => request(axios, basePath));
+        getAvailableClients(axiosOptions?: any): AxiosPromise<any> {
+            return localVarFp.getAvailableClients(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Get Devices
@@ -1158,69 +1100,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
     };
 };
-
-/**
- * Request parameters for getAvailableClients operation in DevicesApi.
- * @export
- * @interface DevicesApiGetAvailableClientsRequest
- */
-export interface DevicesApiGetAvailableClientsRequest {
-    /**
-     * UUID, serial number, or other number unique per device
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexClientIdentifier: any
-
-    /**
-     * Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexDeviceName?: any
-
-    /**
-     * Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexDevice?: any
-
-    /**
-     * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexPlatformVersion?: any
-
-    /**
-     * Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexPlatform?: any
-
-    /**
-     * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexProduct?: any
-
-    /**
-     * One or more of &#x60;[player, controller, server]&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexProvides?: any
-
-    /**
-     * Plex application version number
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexVersion?: any
-}
 
 /**
  * Request parameters for getDevices operation in DevicesApi.
@@ -1295,13 +1174,12 @@ export class DevicesApi extends BaseAPI {
     /**
      * Get Available Clients
      * @summary Get Available Clients
-     * @param {DevicesApiGetAvailableClientsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public getAvailableClients(requestParameters: DevicesApiGetAvailableClientsRequest, axiosOptions?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).getAvailableClients(requestParameters.xPlexClientIdentifier, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public getAvailableClients(axiosOptions?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).getAvailableClients(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1335,8 +1213,7 @@ export const HashesApiAxiosParamCreator = function (configuration?: Configuratio
         getFileHash: async (url: any, type?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'url' is not null or undefined
             assertParamExists('getFileHash', 'url', url)
-            const localVarPath = `/library/hashes`
-                .replace(`{${"url"}}`, encodeURIComponent(String(url)));
+            const localVarPath = `/library/hashes`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1350,6 +1227,10 @@ export const HashesApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication PlexToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
+            }
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;

@@ -668,18 +668,10 @@ export declare const DevicesApiAxiosParamCreator: (configuration?: Configuration
     /**
      * Get Available Clients
      * @summary Get Available Clients
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
-     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
-     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
-     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
-     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getAvailableClients: (xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getAvailableClients: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Get Devices
      * @summary Get Devices
@@ -704,18 +696,10 @@ export declare const DevicesApiFp: (configuration?: Configuration) => {
     /**
      * Get Available Clients
      * @summary Get Available Clients
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
-     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
-     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
-     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
-     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getAvailableClients(xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
+    getAvailableClients(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
     /**
      * Get Devices
      * @summary Get Devices
@@ -740,18 +724,10 @@ export declare const DevicesApiFactory: (configuration?: Configuration, basePath
     /**
      * Get Available Clients
      * @summary Get Available Clients
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
-     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
-     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
-     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
-     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getAvailableClients(xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<any>;
+    getAvailableClients(axiosOptions?: any): AxiosPromise<any>;
     /**
      * Get Devices
      * @summary Get Devices
@@ -768,61 +744,6 @@ export declare const DevicesApiFactory: (configuration?: Configuration, basePath
      */
     getDevices(xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<any>;
 };
-/**
- * Request parameters for getAvailableClients operation in DevicesApi.
- * @export
- * @interface DevicesApiGetAvailableClientsRequest
- */
-export interface DevicesApiGetAvailableClientsRequest {
-    /**
-     * UUID, serial number, or other number unique per device
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexClientIdentifier: any;
-    /**
-     * Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexDeviceName?: any;
-    /**
-     * Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexDevice?: any;
-    /**
-     * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexPlatformVersion?: any;
-    /**
-     * Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexPlatform?: any;
-    /**
-     * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexProduct?: any;
-    /**
-     * One or more of &#x60;[player, controller, server]&#x60;
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexProvides?: any;
-    /**
-     * Plex application version number
-     * @type {any}
-     * @memberof DevicesApiGetAvailableClients
-     */
-    readonly xPlexVersion?: any;
-}
 /**
  * Request parameters for getDevices operation in DevicesApi.
  * @export
@@ -888,12 +809,11 @@ export declare class DevicesApi extends BaseAPI {
     /**
      * Get Available Clients
      * @summary Get Available Clients
-     * @param {DevicesApiGetAvailableClientsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    getAvailableClients(requestParameters: DevicesApiGetAvailableClientsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    getAvailableClients(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      * Get Devices
      * @summary Get Devices
