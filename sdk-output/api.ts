@@ -773,9 +773,6 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication PlexToken required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
             if (strong !== undefined) {
                 localVarQueryParameter['strong'] = strong;
             }
