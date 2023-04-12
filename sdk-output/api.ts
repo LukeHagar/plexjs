@@ -37,358 +37,358 @@ export interface GetAvailableClients401Response {
 /**
  * 
  * @export
- * @interface ServerActivities200Response
+ * @interface GetServerActivities200Response
  */
-export interface ServerActivities200Response {
+export interface GetServerActivities200Response {
     /**
      * 
-     * @type {ServerActivities200ResponseMediaContainer}
-     * @memberof ServerActivities200Response
+     * @type {GetServerActivities200ResponseMediaContainer}
+     * @memberof GetServerActivities200Response
      */
-    'MediaContainer'?: ServerActivities200ResponseMediaContainer;
+    'MediaContainer'?: GetServerActivities200ResponseMediaContainer;
 }
 /**
  * 
  * @export
- * @interface ServerActivities200ResponseMediaContainer
+ * @interface GetServerActivities200ResponseMediaContainer
  */
-export interface ServerActivities200ResponseMediaContainer {
+export interface GetServerActivities200ResponseMediaContainer {
     /**
      * 
      * @type {any}
-     * @memberof ServerActivities200ResponseMediaContainer
+     * @memberof GetServerActivities200ResponseMediaContainer
      */
     'size'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerActivities200ResponseMediaContainer
+     * @memberof GetServerActivities200ResponseMediaContainer
      */
     'Activity'?: any;
 }
 /**
  * 
  * @export
- * @interface ServerCapabilities200Response
+ * @interface GetServerCapabilities200Response
  */
-export interface ServerCapabilities200Response {
+export interface GetServerCapabilities200Response {
     /**
      * 
-     * @type {ServerCapabilities200ResponseMediaContainer}
-     * @memberof ServerCapabilities200Response
+     * @type {GetServerCapabilities200ResponseMediaContainer}
+     * @memberof GetServerCapabilities200Response
      */
-    'MediaContainer'?: ServerCapabilities200ResponseMediaContainer;
+    'MediaContainer'?: GetServerCapabilities200ResponseMediaContainer;
 }
 /**
  * 
  * @export
- * @interface ServerCapabilities200ResponseMediaContainer
+ * @interface GetServerCapabilities200ResponseMediaContainer
  */
-export interface ServerCapabilities200ResponseMediaContainer {
+export interface GetServerCapabilities200ResponseMediaContainer {
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'size'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'allowCameraUpload'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'allowChannelAccess'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'allowMediaDeletion'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'allowSharing'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'allowSync'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'allowTuners'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'backgroundProcessing'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'certificate'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'companionProxy'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'countryCode'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'diagnostics'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'eventStream'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'friendlyName'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'hubSearch'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'itemClusters'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'livetv'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'machineIdentifier'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'mediaProviders'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'multiuser'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'musicAnalysis'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'myPlex'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'myPlexMappingState'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'myPlexSigninState'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'myPlexSubscription'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'myPlexUsername'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'offlineTranscode'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'ownerFeatures'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'photoAutoTag'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'platform'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'platformVersion'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'pluginHost'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'pushNotifications'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'readOnlyLibraries'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'streamingBrainABRVersion'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'streamingBrainVersion'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'sync'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderActiveVideoSessions'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderAudio'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderLyrics'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderPhoto'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderSubtitles'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderVideo'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderVideoBitrates'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderVideoQualities'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'transcoderVideoResolutions'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'updatedAt'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'updater'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'version'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'voiceSearch'?: any;
     /**
      * 
      * @type {any}
-     * @memberof ServerCapabilities200ResponseMediaContainer
+     * @memberof GetServerCapabilities200ResponseMediaContainer
      */
     'Directory'?: any;
 }
@@ -442,7 +442,7 @@ export const ActivitiesApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        serverActivities: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getServerActivities: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/activities`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -496,8 +496,8 @@ export const ActivitiesApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async serverActivities(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ServerActivities200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.serverActivities(axiosOptions);
+        async getServerActivities(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetServerActivities200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getServerActivities(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -526,8 +526,8 @@ export const ActivitiesApiFactory = function (configuration?: Configuration, bas
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        serverActivities(axiosOptions?: any): AxiosPromise<ServerActivities200Response> {
-            return localVarFp.serverActivities(axiosOptions).then((request) => request(axios, basePath));
+        getServerActivities(axiosOptions?: any): AxiosPromise<GetServerActivities200Response> {
+            return localVarFp.getServerActivities(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
@@ -572,8 +572,8 @@ export class ActivitiesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ActivitiesApi
      */
-    public serverActivities(axiosOptions?: AxiosRequestConfig) {
-        return ActivitiesApiFp(this.configuration).serverActivities(axiosOptions).then((request) => request(this.axios, this.basePath));
+    public getServerActivities(axiosOptions?: AxiosRequestConfig) {
+        return ActivitiesApiFp(this.configuration).getServerActivities(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -585,49 +585,12 @@ export class ActivitiesApi extends BaseAPI {
 export const ButlerApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
-         * @summary Start a single Butler task
-         * @param {any} taskName the name of the task to be started.
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        startAButlerTasks: async (taskName: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'taskName' is not null or undefined
-            assertParamExists('startAButlerTasks', 'taskName', taskName)
-            const localVarPath = `/butler/{taskName}`
-                .replace(`{${"taskName"}}`, encodeURIComponent(String(taskName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication PlexToken required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-        /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
          * @summary Start all Butler tasks
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllButlerTasks: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        startAllTasks: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/butler`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -655,17 +618,50 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint. 
-         * @summary Stop a single Butler task
-         * @param {any} taskName The name of the task to be started.
+         * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
+         * @summary Start a single Butler task
+         * @param {any} taskName the name of the task to be started.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAButlerTasks: async (taskName: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        startTask: async (taskName: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'taskName' is not null or undefined
-            assertParamExists('stopAButlerTasks', 'taskName', taskName)
+            assertParamExists('startTask', 'taskName', taskName)
             const localVarPath = `/butler/{taskName}`
                 .replace(`{${"taskName"}}`, encodeURIComponent(String(taskName)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue. 
+         * @summary Stop all Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        stopAllTasks: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/butler`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -692,13 +688,17 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue. 
-         * @summary Stop all Butler tasks
+         * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint. 
+         * @summary Stop a single Butler task
+         * @param {any} taskName The name of the task to be started.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAllButlerTasks: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/butler`;
+        stopTask: async (taskName: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'taskName' is not null or undefined
+            assertParamExists('stopTask', 'taskName', taskName)
+            const localVarPath = `/butler/{taskName}`
+                .replace(`{${"taskName"}}`, encodeURIComponent(String(taskName)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -735,24 +735,34 @@ export const ButlerApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ButlerApiAxiosParamCreator(configuration)
     return {
         /**
+         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
+         * @summary Start all Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async startAllTasks(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.startAllTasks(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
          * @summary Start a single Butler task
          * @param {any} taskName the name of the task to be started.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async startAButlerTasks(taskName: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.startAButlerTasks(taskName, axiosOptions);
+        async startTask(taskName: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.startTask(taskName, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
-         * @summary Start all Butler tasks
+         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue. 
+         * @summary Stop all Butler tasks
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async startAllButlerTasks(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.startAllButlerTasks(axiosOptions);
+        async stopAllTasks(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.stopAllTasks(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -762,18 +772,8 @@ export const ButlerApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async stopAButlerTasks(taskName: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.stopAButlerTasks(taskName, axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue. 
-         * @summary Stop all Butler tasks
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async stopAllButlerTasks(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.stopAllButlerTasks(axiosOptions);
+        async stopTask(taskName: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.stopTask(taskName, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -787,23 +787,32 @@ export const ButlerApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = ButlerApiFp(configuration)
     return {
         /**
+         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
+         * @summary Start all Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        startAllTasks(axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.startAllTasks(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
          * @summary Start a single Butler task
          * @param {any} taskName the name of the task to be started.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAButlerTasks(taskName: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.startAButlerTasks(taskName, axiosOptions).then((request) => request(axios, basePath));
+        startTask(taskName: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.startTask(taskName, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
-         * @summary Start all Butler tasks
+         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue. 
+         * @summary Stop all Butler tasks
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllButlerTasks(axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.startAllButlerTasks(axiosOptions).then((request) => request(axios, basePath));
+        stopAllTasks(axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.stopAllTasks(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint. 
@@ -812,45 +821,36 @@ export const ButlerApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAButlerTasks(taskName: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.stopAButlerTasks(taskName, axiosOptions).then((request) => request(axios, basePath));
-        },
-        /**
-         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue. 
-         * @summary Stop all Butler tasks
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        stopAllButlerTasks(axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.stopAllButlerTasks(axiosOptions).then((request) => request(axios, basePath));
+        stopTask(taskName: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.stopTask(taskName, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * Request parameters for startAButlerTasks operation in ButlerApi.
+ * Request parameters for startTask operation in ButlerApi.
  * @export
- * @interface ButlerApiStartAButlerTasksRequest
+ * @interface ButlerApiStartTaskRequest
  */
-export interface ButlerApiStartAButlerTasksRequest {
+export interface ButlerApiStartTaskRequest {
     /**
      * the name of the task to be started.
      * @type {any}
-     * @memberof ButlerApiStartAButlerTasks
+     * @memberof ButlerApiStartTask
      */
     readonly taskName: any
 }
 
 /**
- * Request parameters for stopAButlerTasks operation in ButlerApi.
+ * Request parameters for stopTask operation in ButlerApi.
  * @export
- * @interface ButlerApiStopAButlerTasksRequest
+ * @interface ButlerApiStopTaskRequest
  */
-export interface ButlerApiStopAButlerTasksRequest {
+export interface ButlerApiStopTaskRequest {
     /**
      * The name of the task to be started.
      * @type {any}
-     * @memberof ButlerApiStopAButlerTasks
+     * @memberof ButlerApiStopTask
      */
     readonly taskName: any
 }
@@ -863,38 +863,26 @@ export interface ButlerApiStopAButlerTasksRequest {
  */
 export class ButlerApi extends BaseAPI {
     /**
-     * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
-     * @summary Start a single Butler task
-     * @param {ButlerApiStartAButlerTasksRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ButlerApi
-     */
-    public startAButlerTasks(requestParameters: ButlerApiStartAButlerTasksRequest, axiosOptions?: AxiosRequestConfig) {
-        return ButlerApiFp(this.configuration).startAButlerTasks(requestParameters.taskName, axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
      * @summary Start all Butler tasks
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    public startAllButlerTasks(axiosOptions?: AxiosRequestConfig) {
-        return ButlerApiFp(this.configuration).startAllButlerTasks(axiosOptions).then((request) => request(this.axios, this.basePath));
+    public startAllTasks(axiosOptions?: AxiosRequestConfig) {
+        return ButlerApiFp(this.configuration).startAllTasks(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint. 
-     * @summary Stop a single Butler task
-     * @param {ButlerApiStopAButlerTasksRequest} requestParameters Request parameters.
+     * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
+     * @summary Start a single Butler task
+     * @param {ButlerApiStartTaskRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    public stopAButlerTasks(requestParameters: ButlerApiStopAButlerTasksRequest, axiosOptions?: AxiosRequestConfig) {
-        return ButlerApiFp(this.configuration).stopAButlerTasks(requestParameters.taskName, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public startTask(requestParameters: ButlerApiStartTaskRequest, axiosOptions?: AxiosRequestConfig) {
+        return ButlerApiFp(this.configuration).startTask(requestParameters.taskName, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -904,8 +892,20 @@ export class ButlerApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    public stopAllButlerTasks(axiosOptions?: AxiosRequestConfig) {
-        return ButlerApiFp(this.configuration).stopAllButlerTasks(axiosOptions).then((request) => request(this.axios, this.basePath));
+    public stopAllTasks(axiosOptions?: AxiosRequestConfig) {
+        return ButlerApiFp(this.configuration).stopAllTasks(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint. 
+     * @summary Stop a single Butler task
+     * @param {ButlerApiStopTaskRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ButlerApi
+     */
+    public stopTask(requestParameters: ButlerApiStopTaskRequest, axiosOptions?: AxiosRequestConfig) {
+        return ButlerApiFp(this.configuration).stopTask(requestParameters.taskName, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1591,53 +1591,6 @@ export class HubsApi extends BaseAPI {
 export const LibraryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This endpoint will return a list of all library items filtered by the filter and type provided 
-         * @summary Get All Library Items
-         * @param {any} sectionId the Id of the library to query
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllLibraryItems: async (sectionId: any, type?: any, filter?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'sectionId' is not null or undefined
-            assertParamExists('getAllLibraryItems', 'sectionId', sectionId)
-            const localVarPath = `/library/sections/{sectionId}/all`
-                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication PlexToken required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
-            }
-
-            if (filter !== undefined) {
-                localVarQueryParameter['filter'] = filter;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter 
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -1736,7 +1689,7 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year). 
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year). 
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1797,6 +1750,53 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
 
             if (includeDetails !== undefined) {
                 localVarQueryParameter['includeDetails'] = includeDetails;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint will return a list of library items filtered by the filter and type provided 
+         * @summary Get Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItems: async (sectionId: any, type?: any, filter?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sectionId' is not null or undefined
+            assertParamExists('getLibraryItems', 'sectionId', sectionId)
+            const localVarPath = `/library/sections/{sectionId}/all`
+                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (filter !== undefined) {
+                localVarQueryParameter['filter'] = filter;
             }
 
 
@@ -1891,19 +1891,6 @@ export const LibraryApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = LibraryApiAxiosParamCreator(configuration)
     return {
         /**
-         * This endpoint will return a list of all library items filtered by the filter and type provided 
-         * @summary Get All Library Items
-         * @param {any} sectionId the Id of the library to query
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getAllLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllLibraryItems(sectionId, type, filter, axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter 
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -1930,7 +1917,7 @@ export const LibraryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year). 
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year). 
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1949,6 +1936,19 @@ export const LibraryApiFp = function(configuration?: Configuration) {
          */
         async getLibraryDetails(sectionId: any, includeDetails?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLibraryDetails(sectionId, includeDetails, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This endpoint will return a list of library items filtered by the filter and type provided 
+         * @summary Get Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLibraryItems(sectionId, type, filter, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1983,18 +1983,6 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = LibraryApiFp(configuration)
     return {
         /**
-         * This endpoint will return a list of all library items filtered by the filter and type provided 
-         * @summary Get All Library Items
-         * @param {any} sectionId the Id of the library to query
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.getAllLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
-        },
-        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter 
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -2019,7 +2007,7 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getLatestLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
-         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year). 
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year). 
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -2037,6 +2025,18 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
          */
         getLibraryDetails(sectionId: any, includeDetails?: any, axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.getLibraryDetails(sectionId, includeDetails, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint will return a list of library items filtered by the filter and type provided 
+         * @summary Get Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return the on deck content. 
@@ -2059,34 +2059,6 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
         },
     };
 };
-
-/**
- * Request parameters for getAllLibraryItems operation in LibraryApi.
- * @export
- * @interface LibraryApiGetAllLibraryItemsRequest
- */
-export interface LibraryApiGetAllLibraryItemsRequest {
-    /**
-     * the Id of the library to query
-     * @type {any}
-     * @memberof LibraryApiGetAllLibraryItems
-     */
-    readonly sectionId: any
-
-    /**
-     * item type
-     * @type {any}
-     * @memberof LibraryApiGetAllLibraryItems
-     */
-    readonly type?: any
-
-    /**
-     * the filter parameter
-     * @type {any}
-     * @memberof LibraryApiGetAllLibraryItems
-     */
-    readonly filter?: any
-}
 
 /**
  * Request parameters for getCommonLibraryItems operation in LibraryApi.
@@ -2166,6 +2138,34 @@ export interface LibraryApiGetLibraryDetailsRequest {
 }
 
 /**
+ * Request parameters for getLibraryItems operation in LibraryApi.
+ * @export
+ * @interface LibraryApiGetLibraryItemsRequest
+ */
+export interface LibraryApiGetLibraryItemsRequest {
+    /**
+     * the Id of the library to query
+     * @type {any}
+     * @memberof LibraryApiGetLibraryItems
+     */
+    readonly sectionId: any
+
+    /**
+     * item type
+     * @type {any}
+     * @memberof LibraryApiGetLibraryItems
+     */
+    readonly type?: any
+
+    /**
+     * the filter parameter
+     * @type {any}
+     * @memberof LibraryApiGetLibraryItems
+     */
+    readonly filter?: any
+}
+
+/**
  * Request parameters for refreshLibrary operation in LibraryApi.
  * @export
  * @interface LibraryApiRefreshLibraryRequest
@@ -2186,18 +2186,6 @@ export interface LibraryApiRefreshLibraryRequest {
  * @extends {BaseAPI}
  */
 export class LibraryApi extends BaseAPI {
-    /**
-     * This endpoint will return a list of all library items filtered by the filter and type provided 
-     * @summary Get All Library Items
-     * @param {LibraryApiGetAllLibraryItemsRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LibraryApi
-     */
-    public getAllLibraryItems(requestParameters: LibraryApiGetAllLibraryItemsRequest, axiosOptions?: AxiosRequestConfig) {
-        return LibraryApiFp(this.configuration).getAllLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-
     /**
      * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter 
      * @summary Get Common Library Items
@@ -2223,7 +2211,7 @@ export class LibraryApi extends BaseAPI {
     }
 
     /**
-     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year). 
+     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year). 
      * @summary Get All Libraries
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
@@ -2243,6 +2231,18 @@ export class LibraryApi extends BaseAPI {
      */
     public getLibraryDetails(requestParameters: LibraryApiGetLibraryDetailsRequest, axiosOptions?: AxiosRequestConfig) {
         return LibraryApiFp(this.configuration).getLibraryDetails(requestParameters.sectionId, requestParameters.includeDetails, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint will return a list of library items filtered by the filter and type provided 
+     * @summary Get Library Items
+     * @param {LibraryApiGetLibraryItemsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    public getLibraryItems(requestParameters: LibraryApiGetLibraryItemsRequest, axiosOptions?: AxiosRequestConfig) {
+        return LibraryApiFp(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2310,39 +2310,6 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
             };
         },
         /**
-         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above. 
-         * @summary Logging a multi-line message
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        logMultipleLines: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/log`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication PlexToken required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-        /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log. 
          * @summary Logging a single line message.
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose 
@@ -2351,13 +2318,13 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logaLine: async (level: any, message: any, source: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        logLine: async (level: any, message: any, source: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'level' is not null or undefined
-            assertParamExists('logaLine', 'level', level)
+            assertParamExists('logLine', 'level', level)
             // verify required parameter 'message' is not null or undefined
-            assertParamExists('logaLine', 'message', message)
+            assertParamExists('logLine', 'message', message)
             // verify required parameter 'source' is not null or undefined
-            assertParamExists('logaLine', 'source', source)
+            assertParamExists('logLine', 'source', source)
             const localVarPath = `/log`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2396,6 +2363,39 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
                 axiosOptions: localVarRequestOptions,
             };
         },
+        /**
+         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above. 
+         * @summary Logging a multi-line message
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        logMultiLine: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/log`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2417,16 +2417,6 @@ export const LogApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above. 
-         * @summary Logging a multi-line message
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async logMultipleLines(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.logMultipleLines(axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log. 
          * @summary Logging a single line message.
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose 
@@ -2435,8 +2425,18 @@ export const LogApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async logaLine(level: any, message: any, source: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.logaLine(level, message, source, axiosOptions);
+        async logLine(level: any, message: any, source: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.logLine(level, message, source, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above. 
+         * @summary Logging a multi-line message
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async logMultiLine(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.logMultiLine(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -2459,15 +2459,6 @@ export const LogApiFactory = function (configuration?: Configuration, basePath?:
             return localVarFp.enablePaperTrail(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above. 
-         * @summary Logging a multi-line message
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        logMultipleLines(axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.logMultipleLines(axiosOptions).then((request) => request(axios, basePath));
-        },
-        /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log. 
          * @summary Logging a single line message.
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose 
@@ -2476,36 +2467,45 @@ export const LogApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logaLine(level: any, message: any, source: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.logaLine(level, message, source, axiosOptions).then((request) => request(axios, basePath));
+        logLine(level: any, message: any, source: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.logLine(level, message, source, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above. 
+         * @summary Logging a multi-line message
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        logMultiLine(axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.logMultiLine(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * Request parameters for logaLine operation in LogApi.
+ * Request parameters for logLine operation in LogApi.
  * @export
- * @interface LogApiLogaLineRequest
+ * @interface LogApiLogLineRequest
  */
-export interface LogApiLogaLineRequest {
+export interface LogApiLogLineRequest {
     /**
      * An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose 
      * @type {any}
-     * @memberof LogApiLogaLine
+     * @memberof LogApiLogLine
      */
     readonly level: any
 
     /**
      * The text of the message to write to the log.
      * @type {any}
-     * @memberof LogApiLogaLine
+     * @memberof LogApiLogLine
      */
     readonly message: any
 
     /**
      * a string indicating the source of the message.
      * @type {any}
-     * @memberof LogApiLogaLine
+     * @memberof LogApiLogLine
      */
     readonly source: any
 }
@@ -2529,26 +2529,26 @@ export class LogApi extends BaseAPI {
     }
 
     /**
+     * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log. 
+     * @summary Logging a single line message.
+     * @param {LogApiLogLineRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LogApi
+     */
+    public logLine(requestParameters: LogApiLogLineRequest, axiosOptions?: AxiosRequestConfig) {
+        return LogApiFp(this.configuration).logLine(requestParameters.level, requestParameters.message, requestParameters.source, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above. 
      * @summary Logging a multi-line message
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LogApi
      */
-    public logMultipleLines(axiosOptions?: AxiosRequestConfig) {
-        return LogApiFp(this.configuration).logMultipleLines(axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log. 
-     * @summary Logging a single line message.
-     * @param {LogApiLogaLineRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LogApi
-     */
-    public logaLine(requestParameters: LogApiLogaLineRequest, axiosOptions?: AxiosRequestConfig) {
-        return LogApiFp(this.configuration).logaLine(requestParameters.level, requestParameters.message, requestParameters.source, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public logMultiLine(axiosOptions?: AxiosRequestConfig) {
+        return LogApiFp(this.configuration).logMultiLine(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2568,13 +2568,13 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContent: async (playlistID: any, uri: any, playQueueID: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addPlaylistContents: async (playlistID: any, uri: any, playQueueID: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'playlistID' is not null or undefined
-            assertParamExists('addPlaylistContent', 'playlistID', playlistID)
+            assertParamExists('addPlaylistContents', 'playlistID', playlistID)
             // verify required parameter 'uri' is not null or undefined
-            assertParamExists('addPlaylistContent', 'uri', uri)
+            assertParamExists('addPlaylistContents', 'uri', uri)
             // verify required parameter 'playQueueID' is not null or undefined
-            assertParamExists('addPlaylistContent', 'playQueueID', playQueueID)
+            assertParamExists('addPlaylistContents', 'playQueueID', playQueueID)
             const localVarPath = `/playlists/{playlistID}/items`
                 .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2617,9 +2617,9 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContent: async (playlistID: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        clearPlaylistContents: async (playlistID: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'playlistID' is not null or undefined
-            assertParamExists('clearPlaylistContent', 'playlistID', playlistID)
+            assertParamExists('clearPlaylistContents', 'playlistID', playlistID)
             const localVarPath = `/playlists/{playlistID}/items`
                 .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2658,13 +2658,13 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createAPlaylist: async (title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createPlaylist: async (title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'title' is not null or undefined
-            assertParamExists('createAPlaylist', 'title', title)
+            assertParamExists('createPlaylist', 'title', title)
             // verify required parameter 'type' is not null or undefined
-            assertParamExists('createAPlaylist', 'type', type)
+            assertParamExists('createPlaylist', 'type', type)
             // verify required parameter 'smart' is not null or undefined
-            assertParamExists('createAPlaylist', 'smart', smart)
+            assertParamExists('createPlaylist', 'smart', smart)
             const localVarPath = `/playlists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2749,49 +2749,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * 
-         * @summary Get All Playlists
-         * @param {any} [playlistType] limit to a type of playlist.
-         * @param {any} [smart] type of playlists to return (default is all).
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllPlaylists: async (playlistType?: any, smart?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/playlists/all`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication PlexToken required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            if (playlistType !== undefined) {
-                localVarQueryParameter['playlistType'] = playlistType;
-            }
-
-            if (smart !== undefined) {
-                localVarQueryParameter['smart'] = smart;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-        /**
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing. 
          * @summary Retrieve Playlist
          * @param {any} playlistID the ID of the playlist
@@ -2836,11 +2793,11 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContent: async (playlistID: any, type: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPlaylistContents: async (playlistID: any, type: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'playlistID' is not null or undefined
-            assertParamExists('getPlaylistContent', 'playlistID', playlistID)
+            assertParamExists('getPlaylistContents', 'playlistID', playlistID)
             // verify required parameter 'type' is not null or undefined
-            assertParamExists('getPlaylistContent', 'type', type)
+            assertParamExists('getPlaylistContents', 'type', type)
             const localVarPath = `/playlists/{playlistID}/items`
                 .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2859,6 +2816,49 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylists: async (playlistType?: any, smart?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/playlists/all`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication PlexToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            if (playlistType !== undefined) {
+                localVarQueryParameter['playlistType'] = playlistType;
+            }
+
+            if (smart !== undefined) {
+                localVarQueryParameter['smart'] = smart;
             }
 
 
@@ -2975,8 +2975,8 @@ export const PlaylistsApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async addPlaylistContent(playlistID: any, uri: any, playQueueID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.addPlaylistContent(playlistID, uri, playQueueID, axiosOptions);
+        async addPlaylistContents(playlistID: any, uri: any, playQueueID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2986,8 +2986,8 @@ export const PlaylistsApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async clearPlaylistContent(playlistID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.clearPlaylistContent(playlistID, axiosOptions);
+        async clearPlaylistContents(playlistID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.clearPlaylistContents(playlistID, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3001,8 +3001,8 @@ export const PlaylistsApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async createAPlaylist(title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createAPlaylist(title, type, smart, uri, playQueueID, axiosOptions);
+        async createPlaylist(title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3014,18 +3014,6 @@ export const PlaylistsApiFp = function(configuration?: Configuration) {
          */
         async deletePlaylist(playlistID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deletePlaylist(playlistID, axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Get All Playlists
-         * @param {any} [playlistType] limit to a type of playlist.
-         * @param {any} [smart] type of playlists to return (default is all).
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getAllPlaylists(playlistType?: any, smart?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllPlaylists(playlistType, smart, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3047,8 +3035,20 @@ export const PlaylistsApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async getPlaylistContent(playlistID: any, type: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlaylistContent(playlistID, type, axiosOptions);
+        async getPlaylistContents(playlistID: any, type: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlaylistContents(playlistID, type, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPlaylists(playlistType?: any, smart?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlaylists(playlistType, smart, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3093,8 +3093,8 @@ export const PlaylistsApiFactory = function (configuration?: Configuration, base
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContent(playlistID: any, uri: any, playQueueID: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.addPlaylistContent(playlistID, uri, playQueueID, axiosOptions).then((request) => request(axios, basePath));
+        addPlaylistContents(playlistID: any, uri: any, playQueueID: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Clears a playlist, only works with dumb playlists. Returns the playlist. 
@@ -3103,8 +3103,8 @@ export const PlaylistsApiFactory = function (configuration?: Configuration, base
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContent(playlistID: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.clearPlaylistContent(playlistID, axiosOptions).then((request) => request(axios, basePath));
+        clearPlaylistContents(playlistID: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.clearPlaylistContents(playlistID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue. 
@@ -3117,8 +3117,8 @@ export const PlaylistsApiFactory = function (configuration?: Configuration, base
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createAPlaylist(title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.createAPlaylist(title, type, smart, uri, playQueueID, axiosOptions).then((request) => request(axios, basePath));
+        createPlaylist(title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will delete a playlist 
@@ -3129,17 +3129,6 @@ export const PlaylistsApiFactory = function (configuration?: Configuration, base
          */
         deletePlaylist(playlistID: any, axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.deletePlaylist(playlistID, axiosOptions).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get All Playlists
-         * @param {any} [playlistType] limit to a type of playlist.
-         * @param {any} [smart] type of playlists to return (default is all).
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllPlaylists(playlistType?: any, smart?: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.getAllPlaylists(playlistType, smart, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing. 
@@ -3159,8 +3148,19 @@ export const PlaylistsApiFactory = function (configuration?: Configuration, base
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContent(playlistID: any, type: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.getPlaylistContent(playlistID, type, axiosOptions).then((request) => request(axios, basePath));
+        getPlaylistContents(playlistID: any, type: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getPlaylistContents(playlistID, type, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylists(playlistType?: any, smart?: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getPlaylists(playlistType, smart, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}` 
@@ -3187,85 +3187,85 @@ export const PlaylistsApiFactory = function (configuration?: Configuration, base
 };
 
 /**
- * Request parameters for addPlaylistContent operation in PlaylistsApi.
+ * Request parameters for addPlaylistContents operation in PlaylistsApi.
  * @export
- * @interface PlaylistsApiAddPlaylistContentRequest
+ * @interface PlaylistsApiAddPlaylistContentsRequest
  */
-export interface PlaylistsApiAddPlaylistContentRequest {
+export interface PlaylistsApiAddPlaylistContentsRequest {
     /**
      * the ID of the playlist
      * @type {any}
-     * @memberof PlaylistsApiAddPlaylistContent
+     * @memberof PlaylistsApiAddPlaylistContents
      */
     readonly playlistID: any
 
     /**
      * the content URI for the playlist
      * @type {any}
-     * @memberof PlaylistsApiAddPlaylistContent
+     * @memberof PlaylistsApiAddPlaylistContents
      */
     readonly uri: any
 
     /**
      * the play queue to add to a playlist
      * @type {any}
-     * @memberof PlaylistsApiAddPlaylistContent
+     * @memberof PlaylistsApiAddPlaylistContents
      */
     readonly playQueueID: any
 }
 
 /**
- * Request parameters for clearPlaylistContent operation in PlaylistsApi.
+ * Request parameters for clearPlaylistContents operation in PlaylistsApi.
  * @export
- * @interface PlaylistsApiClearPlaylistContentRequest
+ * @interface PlaylistsApiClearPlaylistContentsRequest
  */
-export interface PlaylistsApiClearPlaylistContentRequest {
+export interface PlaylistsApiClearPlaylistContentsRequest {
     /**
      * the ID of the playlist
      * @type {any}
-     * @memberof PlaylistsApiClearPlaylistContent
+     * @memberof PlaylistsApiClearPlaylistContents
      */
     readonly playlistID: any
 }
 
 /**
- * Request parameters for createAPlaylist operation in PlaylistsApi.
+ * Request parameters for createPlaylist operation in PlaylistsApi.
  * @export
- * @interface PlaylistsApiCreateAPlaylistRequest
+ * @interface PlaylistsApiCreatePlaylistRequest
  */
-export interface PlaylistsApiCreateAPlaylistRequest {
+export interface PlaylistsApiCreatePlaylistRequest {
     /**
      * name of the playlist
      * @type {any}
-     * @memberof PlaylistsApiCreateAPlaylist
+     * @memberof PlaylistsApiCreatePlaylist
      */
     readonly title: any
 
     /**
      * type of playlist to create
      * @type {any}
-     * @memberof PlaylistsApiCreateAPlaylist
+     * @memberof PlaylistsApiCreatePlaylist
      */
     readonly type: any
 
     /**
      * whether the playlist is smart or not
      * @type {any}
-     * @memberof PlaylistsApiCreateAPlaylist
+     * @memberof PlaylistsApiCreatePlaylist
      */
     readonly smart: any
 
     /**
      * the content URI for the playlist
      * @type {any}
-     * @memberof PlaylistsApiCreateAPlaylist
+     * @memberof PlaylistsApiCreatePlaylist
      */
     readonly uri?: any
 
     /**
      * the play queue to copy to a playlist
      * @type {any}
-     * @memberof PlaylistsApiCreateAPlaylist
+     * @memberof PlaylistsApiCreatePlaylist
      */
     readonly playQueueID?: any
 }
@@ -3285,27 +3285,6 @@ export interface PlaylistsApiDeletePlaylistRequest {
 }
 
 /**
- * Request parameters for getAllPlaylists operation in PlaylistsApi.
- * @export
- * @interface PlaylistsApiGetAllPlaylistsRequest
- */
-export interface PlaylistsApiGetAllPlaylistsRequest {
-    /**
-     * limit to a type of playlist.
-     * @type {any}
-     * @memberof PlaylistsApiGetAllPlaylists
-     */
-    readonly playlistType?: any
-
-    /**
-     * type of playlists to return (default is all).
-     * @type {any}
-     * @memberof PlaylistsApiGetAllPlaylists
-     */
-    readonly smart?: any
-}
-
-/**
  * Request parameters for getPlaylist operation in PlaylistsApi.
  * @export
  * @interface PlaylistsApiGetPlaylistRequest
@@ -3320,24 +3299,45 @@ export interface PlaylistsApiGetPlaylistRequest {
 }
 
 /**
- * Request parameters for getPlaylistContent operation in PlaylistsApi.
+ * Request parameters for getPlaylistContents operation in PlaylistsApi.
  * @export
- * @interface PlaylistsApiGetPlaylistContentRequest
+ * @interface PlaylistsApiGetPlaylistContentsRequest
  */
-export interface PlaylistsApiGetPlaylistContentRequest {
+export interface PlaylistsApiGetPlaylistContentsRequest {
     /**
      * the ID of the playlist
      * @type {any}
-     * @memberof PlaylistsApiGetPlaylistContent
+     * @memberof PlaylistsApiGetPlaylistContents
      */
     readonly playlistID: any
 
     /**
      * the metadata type of the item to return
      * @type {any}
-     * @memberof PlaylistsApiGetPlaylistContent
+     * @memberof PlaylistsApiGetPlaylistContents
      */
     readonly type: any
+}
+
+/**
+ * Request parameters for getPlaylists operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiGetPlaylistsRequest
+ */
+export interface PlaylistsApiGetPlaylistsRequest {
+    /**
+     * limit to a type of playlist.
+     * @type {any}
+     * @memberof PlaylistsApiGetPlaylists
+     */
+    readonly playlistType?: any
+
+    /**
+     * type of playlists to return (default is all).
+     * @type {any}
+     * @memberof PlaylistsApiGetPlaylists
+     */
+    readonly smart?: any
 }
 
 /**
@@ -3385,37 +3385,37 @@ export class PlaylistsApi extends BaseAPI {
     /**
      * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist. 
      * @summary Adding to a Playlist
-     * @param {PlaylistsApiAddPlaylistContentRequest} requestParameters Request parameters.
+     * @param {PlaylistsApiAddPlaylistContentsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    public addPlaylistContent(requestParameters: PlaylistsApiAddPlaylistContentRequest, axiosOptions?: AxiosRequestConfig) {
-        return PlaylistsApiFp(this.configuration).addPlaylistContent(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public addPlaylistContents(requestParameters: PlaylistsApiAddPlaylistContentsRequest, axiosOptions?: AxiosRequestConfig) {
+        return PlaylistsApiFp(this.configuration).addPlaylistContents(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Clears a playlist, only works with dumb playlists. Returns the playlist. 
      * @summary Delete Playlist Contents
-     * @param {PlaylistsApiClearPlaylistContentRequest} requestParameters Request parameters.
+     * @param {PlaylistsApiClearPlaylistContentsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    public clearPlaylistContent(requestParameters: PlaylistsApiClearPlaylistContentRequest, axiosOptions?: AxiosRequestConfig) {
-        return PlaylistsApiFp(this.configuration).clearPlaylistContent(requestParameters.playlistID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public clearPlaylistContents(requestParameters: PlaylistsApiClearPlaylistContentsRequest, axiosOptions?: AxiosRequestConfig) {
+        return PlaylistsApiFp(this.configuration).clearPlaylistContents(requestParameters.playlistID, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue. 
      * @summary Create a Playlist
-     * @param {PlaylistsApiCreateAPlaylistRequest} requestParameters Request parameters.
+     * @param {PlaylistsApiCreatePlaylistRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    public createAPlaylist(requestParameters: PlaylistsApiCreateAPlaylistRequest, axiosOptions?: AxiosRequestConfig) {
-        return PlaylistsApiFp(this.configuration).createAPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public createPlaylist(requestParameters: PlaylistsApiCreatePlaylistRequest, axiosOptions?: AxiosRequestConfig) {
+        return PlaylistsApiFp(this.configuration).createPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3428,18 +3428,6 @@ export class PlaylistsApi extends BaseAPI {
      */
     public deletePlaylist(requestParameters: PlaylistsApiDeletePlaylistRequest, axiosOptions?: AxiosRequestConfig) {
         return PlaylistsApiFp(this.configuration).deletePlaylist(requestParameters.playlistID, axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get All Playlists
-     * @param {PlaylistsApiGetAllPlaylistsRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PlaylistsApi
-     */
-    public getAllPlaylists(requestParameters: PlaylistsApiGetAllPlaylistsRequest = {}, axiosOptions?: AxiosRequestConfig) {
-        return PlaylistsApiFp(this.configuration).getAllPlaylists(requestParameters.playlistType, requestParameters.smart, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3457,13 +3445,25 @@ export class PlaylistsApi extends BaseAPI {
     /**
      * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items. 
      * @summary Retrieve Playlist Contents
-     * @param {PlaylistsApiGetPlaylistContentRequest} requestParameters Request parameters.
+     * @param {PlaylistsApiGetPlaylistContentsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    public getPlaylistContent(requestParameters: PlaylistsApiGetPlaylistContentRequest, axiosOptions?: AxiosRequestConfig) {
-        return PlaylistsApiFp(this.configuration).getPlaylistContent(requestParameters.playlistID, requestParameters.type, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public getPlaylistContents(requestParameters: PlaylistsApiGetPlaylistContentsRequest, axiosOptions?: AxiosRequestConfig) {
+        return PlaylistsApiFp(this.configuration).getPlaylistContents(requestParameters.playlistID, requestParameters.type, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get All Playlists
+     * @param {PlaylistsApiGetPlaylistsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    public getPlaylists(requestParameters: PlaylistsApiGetPlaylistsRequest = {}, axiosOptions?: AxiosRequestConfig) {
+        return PlaylistsApiFp(this.configuration).getPlaylists(requestParameters.playlistType, requestParameters.smart, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3995,13 +3995,13 @@ export class SecurityApi extends BaseAPI {
 export const ServerApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Get Server Preferences
-         * @summary Get Server Preferences
+         * Server Capabilities
+         * @summary Server Capabilities
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerPreferences: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/:/prefs`;
+        getServerCapabilities: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4028,13 +4028,13 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Server Capabilities
-         * @summary Server Capabilities
+         * Get Server Preferences
+         * @summary Get Server Preferences
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        serverCapabilities: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/`;
+        getServerPreferences: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/:/prefs`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4071,6 +4071,16 @@ export const ServerApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ServerApiAxiosParamCreator(configuration)
     return {
         /**
+         * Server Capabilities
+         * @summary Server Capabilities
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getServerCapabilities(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetServerCapabilities200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getServerCapabilities(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Get Server Preferences
          * @summary Get Server Preferences
          * @param {*} [axiosOptions] Override http request option.
@@ -4078,16 +4088,6 @@ export const ServerApiFp = function(configuration?: Configuration) {
          */
         async getServerPreferences(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getServerPreferences(axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Server Capabilities
-         * @summary Server Capabilities
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async serverCapabilities(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ServerCapabilities200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.serverCapabilities(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -4101,6 +4101,15 @@ export const ServerApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = ServerApiFp(configuration)
     return {
         /**
+         * Server Capabilities
+         * @summary Server Capabilities
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerCapabilities(axiosOptions?: any): AxiosPromise<GetServerCapabilities200Response> {
+            return localVarFp.getServerCapabilities(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
          * Get Server Preferences
          * @summary Get Server Preferences
          * @param {*} [axiosOptions] Override http request option.
@@ -4108,15 +4117,6 @@ export const ServerApiFactory = function (configuration?: Configuration, basePat
          */
         getServerPreferences(axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.getServerPreferences(axiosOptions).then((request) => request(axios, basePath));
-        },
-        /**
-         * Server Capabilities
-         * @summary Server Capabilities
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        serverCapabilities(axiosOptions?: any): AxiosPromise<ServerCapabilities200Response> {
-            return localVarFp.serverCapabilities(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4129,6 +4129,17 @@ export const ServerApiFactory = function (configuration?: Configuration, basePat
  */
 export class ServerApi extends BaseAPI {
     /**
+     * Server Capabilities
+     * @summary Server Capabilities
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    public getServerCapabilities(axiosOptions?: AxiosRequestConfig) {
+        return ServerApiFp(this.configuration).getServerCapabilities(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Get Server Preferences
      * @summary Get Server Preferences
      * @param {*} [axiosOptions] Override http request option.
@@ -4137,17 +4148,6 @@ export class ServerApi extends BaseAPI {
      */
     public getServerPreferences(axiosOptions?: AxiosRequestConfig) {
         return ServerApiFp(this.configuration).getServerPreferences(axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Server Capabilities
-     * @summary Server Capabilities
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ServerApi
-     */
-    public serverCapabilities(axiosOptions?: AxiosRequestConfig) {
-        return ServerApiFp(this.configuration).serverCapabilities(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -4330,7 +4330,7 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyingUpdates: async (tonight?: any, skip?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        applyUpdates: async (tonight?: any, skip?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/updater/apply`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4372,7 +4372,7 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkingforUpdates: async (download?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        checkForUpdates: async (download?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/updater/check`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4409,7 +4409,7 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryingUpdateStatus: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        queryUpdateStatus: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/updater/status`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4454,8 +4454,8 @@ export const UpdaterApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async applyingUpdates(tonight?: any, skip?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.applyingUpdates(tonight, skip, axiosOptions);
+        async applyUpdates(tonight?: any, skip?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.applyUpdates(tonight, skip, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4465,8 +4465,8 @@ export const UpdaterApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async checkingforUpdates(download?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.checkingforUpdates(download, axiosOptions);
+        async checkForUpdates(download?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.checkForUpdates(download, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4475,8 +4475,8 @@ export const UpdaterApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async queryingUpdateStatus(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.queryingUpdateStatus(axiosOptions);
+        async queryUpdateStatus(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.queryUpdateStatus(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -4497,8 +4497,8 @@ export const UpdaterApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyingUpdates(tonight?: any, skip?: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.applyingUpdates(tonight, skip, axiosOptions).then((request) => request(axios, basePath));
+        applyUpdates(tonight?: any, skip?: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.applyUpdates(tonight, skip, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Checking for updates
@@ -4507,8 +4507,8 @@ export const UpdaterApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkingforUpdates(download?: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.checkingforUpdates(download, axiosOptions).then((request) => request(axios, basePath));
+        checkForUpdates(download?: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.checkForUpdates(download, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Querying status of updates
@@ -4516,43 +4516,43 @@ export const UpdaterApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryingUpdateStatus(axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.queryingUpdateStatus(axiosOptions).then((request) => request(axios, basePath));
+        queryUpdateStatus(axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.queryUpdateStatus(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * Request parameters for applyingUpdates operation in UpdaterApi.
+ * Request parameters for applyUpdates operation in UpdaterApi.
  * @export
- * @interface UpdaterApiApplyingUpdatesRequest
+ * @interface UpdaterApiApplyUpdatesRequest
  */
-export interface UpdaterApiApplyingUpdatesRequest {
+export interface UpdaterApiApplyUpdatesRequest {
     /**
      * Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
      * @type {any}
-     * @memberof UpdaterApiApplyingUpdates
+     * @memberof UpdaterApiApplyUpdates
      */
     readonly tonight?: any
 
     /**
      * Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
      * @type {any}
-     * @memberof UpdaterApiApplyingUpdates
+     * @memberof UpdaterApiApplyUpdates
      */
     readonly skip?: any
 }
 
 /**
- * Request parameters for checkingforUpdates operation in UpdaterApi.
+ * Request parameters for checkForUpdates operation in UpdaterApi.
  * @export
- * @interface UpdaterApiCheckingforUpdatesRequest
+ * @interface UpdaterApiCheckForUpdatesRequest
  */
-export interface UpdaterApiCheckingforUpdatesRequest {
+export interface UpdaterApiCheckForUpdatesRequest {
     /**
      * Indicate that you want to start download any updates found.
      * @type {any}
-     * @memberof UpdaterApiCheckingforUpdates
+     * @memberof UpdaterApiCheckForUpdates
      */
     readonly download?: any
 }
@@ -4567,25 +4567,25 @@ export class UpdaterApi extends BaseAPI {
     /**
      * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed 
      * @summary Applying updates
-     * @param {UpdaterApiApplyingUpdatesRequest} requestParameters Request parameters.
+     * @param {UpdaterApiApplyUpdatesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    public applyingUpdates(requestParameters: UpdaterApiApplyingUpdatesRequest = {}, axiosOptions?: AxiosRequestConfig) {
-        return UpdaterApiFp(this.configuration).applyingUpdates(requestParameters.tonight, requestParameters.skip, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public applyUpdates(requestParameters: UpdaterApiApplyUpdatesRequest = {}, axiosOptions?: AxiosRequestConfig) {
+        return UpdaterApiFp(this.configuration).applyUpdates(requestParameters.tonight, requestParameters.skip, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Checking for updates
      * @summary Checking for updates
-     * @param {UpdaterApiCheckingforUpdatesRequest} requestParameters Request parameters.
+     * @param {UpdaterApiCheckForUpdatesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    public checkingforUpdates(requestParameters: UpdaterApiCheckingforUpdatesRequest = {}, axiosOptions?: AxiosRequestConfig) {
-        return UpdaterApiFp(this.configuration).checkingforUpdates(requestParameters.download, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public checkForUpdates(requestParameters: UpdaterApiCheckForUpdatesRequest = {}, axiosOptions?: AxiosRequestConfig) {
+        return UpdaterApiFp(this.configuration).checkForUpdates(requestParameters.download, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4595,8 +4595,8 @@ export class UpdaterApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    public queryingUpdateStatus(axiosOptions?: AxiosRequestConfig) {
-        return UpdaterApiFp(this.configuration).queryingUpdateStatus(axiosOptions).then((request) => request(this.axios, this.basePath));
+    public queryUpdateStatus(axiosOptions?: AxiosRequestConfig) {
+        return UpdaterApiFp(this.configuration).queryUpdateStatus(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 

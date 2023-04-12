@@ -137,7 +137,7 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        serverActivities: function (axiosOptions) {
+        getServerActivities: function (axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -204,12 +204,12 @@ var ActivitiesApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        serverActivities: function (axiosOptions) {
+        getServerActivities: function (axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.serverActivities(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerActivities(axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -243,8 +243,8 @@ var ActivitiesApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        serverActivities: function (axiosOptions) {
-            return localVarFp.serverActivities(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getServerActivities: function (axiosOptions) {
+            return localVarFp.getServerActivities(axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -279,9 +279,9 @@ var ActivitiesApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ActivitiesApi
      */
-    ActivitiesApi.prototype.serverActivities = function (axiosOptions) {
+    ActivitiesApi.prototype.getServerActivities = function (axiosOptions) {
         var _this = this;
-        return (0, exports.ActivitiesApiFp)(this.configuration).serverActivities(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.ActivitiesApiFp)(this.configuration).getServerActivities(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return ActivitiesApi;
 }(base_1.BaseAPI));
@@ -294,13 +294,50 @@ var ButlerApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
+         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
+         * @summary Start all Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        startAllTasks: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/butler";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
          * @summary Start a single Butler task
          * @param {any} taskName the name of the task to be started.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAButlerTasks: function (taskName, axiosOptions) {
+        startTask: function (taskName, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -308,7 +345,7 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'taskName' is not null or undefined
-                            (0, common_1.assertParamExists)('startAButlerTasks', 'taskName', taskName);
+                            (0, common_1.assertParamExists)('startTask', 'taskName', taskName);
                             localVarPath = "/butler/{taskName}"
                                 .replace("{".concat("taskName", "}"), encodeURIComponent(String(taskName)));
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -335,12 +372,12 @@ var ButlerApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
-         * @summary Start all Butler tasks
+         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
+         * @summary Stop all Butler tasks
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllButlerTasks: function (axiosOptions) {
+        stopAllTasks: function (axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -352,7 +389,7 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
                             }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
                             // authentication PlexToken required
@@ -378,7 +415,7 @@ var ButlerApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAButlerTasks: function (taskName, axiosOptions) {
+        stopTask: function (taskName, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -386,46 +423,9 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'taskName' is not null or undefined
-                            (0, common_1.assertParamExists)('stopAButlerTasks', 'taskName', taskName);
+                            (0, common_1.assertParamExists)('stopTask', 'taskName', taskName);
                             localVarPath = "/butler/{taskName}"
                                 .replace("{".concat("taskName", "}"), encodeURIComponent(String(taskName)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication PlexToken required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
-                            // authentication PlexToken required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
-        },
-        /**
-         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
-         * @summary Stop all Butler tasks
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        stopAllButlerTasks: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/butler";
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -460,18 +460,17 @@ var ButlerApiFp = function (configuration) {
     var localVarAxiosParamCreator = (0, exports.ButlerApiAxiosParamCreator)(configuration);
     return {
         /**
-         * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
-         * @summary Start a single Butler task
-         * @param {any} taskName the name of the task to be started.
+         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
+         * @summary Start all Butler tasks
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAButlerTasks: function (taskName, axiosOptions) {
+        startAllTasks: function (axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startAButlerTasks(taskName, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startAllTasks(axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -480,17 +479,37 @@ var ButlerApiFp = function (configuration) {
             });
         },
         /**
-         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
-         * @summary Start all Butler tasks
+         * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
+         * @summary Start a single Butler task
+         * @param {any} taskName the name of the task to be started.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllButlerTasks: function (axiosOptions) {
+        startTask: function (taskName, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startAllButlerTasks(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startTask(taskName, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
+         * @summary Stop all Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        stopAllTasks: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.stopAllTasks(axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -505,31 +524,12 @@ var ButlerApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAButlerTasks: function (taskName, axiosOptions) {
+        stopTask: function (taskName, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.stopAButlerTasks(taskName, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
-        },
-        /**
-         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
-         * @summary Stop all Butler tasks
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        stopAllButlerTasks: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.stopAllButlerTasks(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.stopTask(taskName, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -548,23 +548,32 @@ var ButlerApiFactory = function (configuration, basePath, axios) {
     var localVarFp = (0, exports.ButlerApiFp)(configuration);
     return {
         /**
+         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
+         * @summary Start all Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        startAllTasks: function (axiosOptions) {
+            return localVarFp.startAllTasks(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
          * @summary Start a single Butler task
          * @param {any} taskName the name of the task to be started.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAButlerTasks: function (taskName, axiosOptions) {
-            return localVarFp.startAButlerTasks(taskName, axiosOptions).then(function (request) { return request(axios, basePath); });
+        startTask: function (taskName, axiosOptions) {
+            return localVarFp.startTask(taskName, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
-         * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
-         * @summary Start all Butler tasks
+         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
+         * @summary Stop all Butler tasks
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllButlerTasks: function (axiosOptions) {
-            return localVarFp.startAllButlerTasks(axiosOptions).then(function (request) { return request(axios, basePath); });
+        stopAllTasks: function (axiosOptions) {
+            return localVarFp.stopAllTasks(axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
@@ -573,17 +582,8 @@ var ButlerApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAButlerTasks: function (taskName, axiosOptions) {
-            return localVarFp.stopAButlerTasks(taskName, axiosOptions).then(function (request) { return request(axios, basePath); });
-        },
-        /**
-         * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
-         * @summary Stop all Butler tasks
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        stopAllButlerTasks: function (axiosOptions) {
-            return localVarFp.stopAllButlerTasks(axiosOptions).then(function (request) { return request(axios, basePath); });
+        stopTask: function (taskName, axiosOptions) {
+            return localVarFp.stopTask(taskName, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -600,39 +600,27 @@ var ButlerApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
-     * @summary Start a single Butler task
-     * @param {ButlerApiStartAButlerTasksRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ButlerApi
-     */
-    ButlerApi.prototype.startAButlerTasks = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).startAButlerTasks(requestParameters.taskName, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    /**
      * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
      * @summary Start all Butler tasks
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    ButlerApi.prototype.startAllButlerTasks = function (axiosOptions) {
+    ButlerApi.prototype.startAllTasks = function (axiosOptions) {
         var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).startAllButlerTasks(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.ButlerApiFp)(this.configuration).startAllTasks(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
-     * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
-     * @summary Stop a single Butler task
-     * @param {ButlerApiStopAButlerTasksRequest} requestParameters Request parameters.
+     * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
+     * @summary Start a single Butler task
+     * @param {ButlerApiStartTaskRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    ButlerApi.prototype.stopAButlerTasks = function (requestParameters, axiosOptions) {
+    ButlerApi.prototype.startTask = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).stopAButlerTasks(requestParameters.taskName, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.ButlerApiFp)(this.configuration).startTask(requestParameters.taskName, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
@@ -641,9 +629,21 @@ var ButlerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    ButlerApi.prototype.stopAllButlerTasks = function (axiosOptions) {
+    ButlerApi.prototype.stopAllTasks = function (axiosOptions) {
         var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).stopAllButlerTasks(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.ButlerApiFp)(this.configuration).stopAllTasks(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
+     * @summary Stop a single Butler task
+     * @param {ButlerApiStopTaskRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ButlerApi
+     */
+    ButlerApi.prototype.stopTask = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.ButlerApiFp)(this.configuration).stopTask(requestParameters.taskName, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return ButlerApi;
 }(base_1.BaseAPI));
@@ -1267,55 +1267,6 @@ var LibraryApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
-         * This endpoint will return a list of all library items filtered by the filter and type provided
-         * @summary Get All Library Items
-         * @param {any} sectionId the Id of the library to query
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'sectionId' is not null or undefined
-                            (0, common_1.assertParamExists)('getAllLibraryItems', 'sectionId', sectionId);
-                            localVarPath = "/library/sections/{sectionId}/all"
-                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication PlexToken required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
-                            // authentication PlexToken required
-                            _a.sent();
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
-                            }
-                            if (filter !== undefined) {
-                                localVarQueryParameter['filter'] = filter;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
-        },
-        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -1418,7 +1369,7 @@ var LibraryApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1487,6 +1438,55 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             _a.sent();
                             if (includeDetails !== undefined) {
                                 localVarQueryParameter['includeDetails'] = includeDetails;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will return a list of library items filtered by the filter and type provided
+         * @summary Get Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'sectionId' is not null or undefined
+                            (0, common_1.assertParamExists)('getLibraryItems', 'sectionId', sectionId);
+                            localVarPath = "/library/sections/{sectionId}/all"
+                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            if (filter !== undefined) {
+                                localVarQueryParameter['filter'] = filter;
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1588,28 +1588,6 @@ var LibraryApiFp = function (configuration) {
     var localVarAxiosParamCreator = (0, exports.LibraryApiAxiosParamCreator)(configuration);
     return {
         /**
-         * This endpoint will return a list of all library items filtered by the filter and type provided
-         * @summary Get All Library Items
-         * @param {any} sectionId the Id of the library to query
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getAllLibraryItems(sectionId, type, filter, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
-        },
-        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -1654,7 +1632,7 @@ var LibraryApiFp = function (configuration) {
             });
         },
         /**
-         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1686,6 +1664,28 @@ var LibraryApiFp = function (configuration) {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryDetails(sectionId, includeDetails, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will return a list of library items filtered by the filter and type provided
+         * @summary Get Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryItems(sectionId, type, filter, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1743,18 +1743,6 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
     var localVarFp = (0, exports.LibraryApiFp)(configuration);
     return {
         /**
-         * This endpoint will return a list of all library items filtered by the filter and type provided
-         * @summary Get All Library Items
-         * @param {any} sectionId the Id of the library to query
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return localVarFp.getAllLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
-        },
-        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -1779,7 +1767,7 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
             return localVarFp.getLatestLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
-         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -1797,6 +1785,18 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          */
         getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
             return localVarFp.getLibraryDetails(sectionId, includeDetails, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This endpoint will return a list of library items filtered by the filter and type provided
+         * @summary Get Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            return localVarFp.getLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will return the on deck content.
@@ -1832,18 +1832,6 @@ var LibraryApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * This endpoint will return a list of all library items filtered by the filter and type provided
-     * @summary Get All Library Items
-     * @param {LibraryApiGetAllLibraryItemsRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LibraryApi
-     */
-    LibraryApi.prototype.getAllLibraryItems = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getAllLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    /**
      * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
      * @summary Get Common Library Items
      * @param {LibraryApiGetCommonLibraryItemsRequest} requestParameters Request parameters.
@@ -1868,7 +1856,7 @@ var LibraryApi = /** @class */ (function (_super) {
         return (0, exports.LibraryApiFp)(this.configuration).getLatestLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
-     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
+     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      * @summary Get All Libraries
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
@@ -1889,6 +1877,18 @@ var LibraryApi = /** @class */ (function (_super) {
     LibraryApi.prototype.getLibraryDetails = function (requestParameters, axiosOptions) {
         var _this = this;
         return (0, exports.LibraryApiFp)(this.configuration).getLibraryDetails(requestParameters.sectionId, requestParameters.includeDetails, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This endpoint will return a list of library items filtered by the filter and type provided
+     * @summary Get Library Items
+     * @param {LibraryApiGetLibraryItemsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    LibraryApi.prototype.getLibraryItems = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.LibraryApiFp)(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will return the on deck content.
@@ -1961,43 +1961,6 @@ var LogApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
-         * @summary Logging a multi-line message
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        logMultipleLines: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/log";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication PlexToken required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
-                            // authentication PlexToken required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
-        },
-        /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
          * @summary Logging a single line message.
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose
@@ -2006,7 +1969,7 @@ var LogApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logaLine: function (level, message, source, axiosOptions) {
+        logLine: function (level, message, source, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2014,11 +1977,11 @@ var LogApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'level' is not null or undefined
-                            (0, common_1.assertParamExists)('logaLine', 'level', level);
+                            (0, common_1.assertParamExists)('logLine', 'level', level);
                             // verify required parameter 'message' is not null or undefined
-                            (0, common_1.assertParamExists)('logaLine', 'message', message);
+                            (0, common_1.assertParamExists)('logLine', 'message', message);
                             // verify required parameter 'source' is not null or undefined
-                            (0, common_1.assertParamExists)('logaLine', 'source', source);
+                            (0, common_1.assertParamExists)('logLine', 'source', source);
                             localVarPath = "/log";
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
                             if (configuration) {
@@ -2041,6 +2004,43 @@ var LogApiAxiosParamCreator = function (configuration) {
                             if (source !== undefined) {
                                 localVarQueryParameter['source'] = source;
                             }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
+         * @summary Logging a multi-line message
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        logMultiLine: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/log";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -2082,25 +2082,6 @@ var LogApiFp = function (configuration) {
             });
         },
         /**
-         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
-         * @summary Logging a multi-line message
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        logMultipleLines: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logMultipleLines(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
-        },
-        /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
          * @summary Logging a single line message.
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose
@@ -2109,12 +2090,31 @@ var LogApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logaLine: function (level, message, source, axiosOptions) {
+        logLine: function (level, message, source, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logaLine(level, message, source, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logLine(level, message, source, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
+         * @summary Logging a multi-line message
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        logMultiLine: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logMultiLine(axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2142,15 +2142,6 @@ var LogApiFactory = function (configuration, basePath, axios) {
             return localVarFp.enablePaperTrail(axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
-         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
-         * @summary Logging a multi-line message
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        logMultipleLines: function (axiosOptions) {
-            return localVarFp.logMultipleLines(axiosOptions).then(function (request) { return request(axios, basePath); });
-        },
-        /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
          * @summary Logging a single line message.
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose
@@ -2159,8 +2150,17 @@ var LogApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logaLine: function (level, message, source, axiosOptions) {
-            return localVarFp.logaLine(level, message, source, axiosOptions).then(function (request) { return request(axios, basePath); });
+        logLine: function (level, message, source, axiosOptions) {
+            return localVarFp.logLine(level, message, source, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
+         * @summary Logging a multi-line message
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        logMultiLine: function (axiosOptions) {
+            return localVarFp.logMultiLine(axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -2188,27 +2188,27 @@ var LogApi = /** @class */ (function (_super) {
         return (0, exports.LogApiFp)(this.configuration).enablePaperTrail(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
+     * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
+     * @summary Logging a single line message.
+     * @param {LogApiLogLineRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LogApi
+     */
+    LogApi.prototype.logLine = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.LogApiFp)(this.configuration).logLine(requestParameters.level, requestParameters.message, requestParameters.source, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
      * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
      * @summary Logging a multi-line message
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LogApi
      */
-    LogApi.prototype.logMultipleLines = function (axiosOptions) {
+    LogApi.prototype.logMultiLine = function (axiosOptions) {
         var _this = this;
-        return (0, exports.LogApiFp)(this.configuration).logMultipleLines(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    /**
-     * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
-     * @summary Logging a single line message.
-     * @param {LogApiLogaLineRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof LogApi
-     */
-    LogApi.prototype.logaLine = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.LogApiFp)(this.configuration).logaLine(requestParameters.level, requestParameters.message, requestParameters.source, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.LogApiFp)(this.configuration).logMultiLine(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return LogApi;
 }(base_1.BaseAPI));
@@ -2229,7 +2229,7 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContent: function (playlistID, uri, playQueueID, axiosOptions) {
+        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2237,11 +2237,11 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('addPlaylistContent', 'playlistID', playlistID);
+                            (0, common_1.assertParamExists)('addPlaylistContents', 'playlistID', playlistID);
                             // verify required parameter 'uri' is not null or undefined
-                            (0, common_1.assertParamExists)('addPlaylistContent', 'uri', uri);
+                            (0, common_1.assertParamExists)('addPlaylistContents', 'uri', uri);
                             // verify required parameter 'playQueueID' is not null or undefined
-                            (0, common_1.assertParamExists)('addPlaylistContent', 'playQueueID', playQueueID);
+                            (0, common_1.assertParamExists)('addPlaylistContents', 'playQueueID', playQueueID);
                             localVarPath = "/playlists/{playlistID}/items"
                                 .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -2280,7 +2280,7 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContent: function (playlistID, axiosOptions) {
+        clearPlaylistContents: function (playlistID, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2288,7 +2288,7 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('clearPlaylistContent', 'playlistID', playlistID);
+                            (0, common_1.assertParamExists)('clearPlaylistContents', 'playlistID', playlistID);
                             localVarPath = "/playlists/{playlistID}/items"
                                 .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -2325,7 +2325,7 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createAPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
+        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2333,11 +2333,11 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'title' is not null or undefined
-                            (0, common_1.assertParamExists)('createAPlaylist', 'title', title);
+                            (0, common_1.assertParamExists)('createPlaylist', 'title', title);
                             // verify required parameter 'type' is not null or undefined
-                            (0, common_1.assertParamExists)('createAPlaylist', 'type', type);
+                            (0, common_1.assertParamExists)('createPlaylist', 'type', type);
                             // verify required parameter 'smart' is not null or undefined
-                            (0, common_1.assertParamExists)('createAPlaylist', 'smart', smart);
+                            (0, common_1.assertParamExists)('createPlaylist', 'smart', smart);
                             localVarPath = "/playlists";
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
                             if (configuration) {
@@ -2419,51 +2419,6 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         *
-         * @summary Get All Playlists
-         * @param {any} [playlistType] limit to a type of playlist.
-         * @param {any} [smart] type of playlists to return (default is all).
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllPlaylists: function (playlistType, smart, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/playlists/all";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication PlexToken required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
-                            // authentication PlexToken required
-                            _a.sent();
-                            if (playlistType !== undefined) {
-                                localVarQueryParameter['playlistType'] = playlistType;
-                            }
-                            if (smart !== undefined) {
-                                localVarQueryParameter['smart'] = smart;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
-        },
-        /**
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
          * @summary Retrieve Playlist
          * @param {any} playlistID the ID of the playlist
@@ -2512,7 +2467,7 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContent: function (playlistID, type, axiosOptions) {
+        getPlaylistContents: function (playlistID, type, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2520,9 +2475,9 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('getPlaylistContent', 'playlistID', playlistID);
+                            (0, common_1.assertParamExists)('getPlaylistContents', 'playlistID', playlistID);
                             // verify required parameter 'type' is not null or undefined
-                            (0, common_1.assertParamExists)('getPlaylistContent', 'type', type);
+                            (0, common_1.assertParamExists)('getPlaylistContents', 'type', type);
                             localVarPath = "/playlists/{playlistID}/items"
                                 .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -2539,6 +2494,51 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             _a.sent();
                             if (type !== undefined) {
                                 localVarQueryParameter['type'] = type;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylists: function (playlistType, smart, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/playlists/all";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (playlistType !== undefined) {
+                                localVarQueryParameter['playlistType'] = playlistType;
+                            }
+                            if (smart !== undefined) {
+                                localVarQueryParameter['smart'] = smart;
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2660,12 +2660,12 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContent: function (playlistID, uri, playQueueID, axiosOptions) {
+        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.addPlaylistContent(playlistID, uri, playQueueID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2680,12 +2680,12 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContent: function (playlistID, axiosOptions) {
+        clearPlaylistContents: function (playlistID, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.clearPlaylistContent(playlistID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.clearPlaylistContents(playlistID, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2704,12 +2704,12 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createAPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
+        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.createAPlaylist(title, type, smart, uri, playQueueID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2730,27 +2730,6 @@ var PlaylistsApiFp = function (configuration) {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0: return [4 /*yield*/, localVarAxiosParamCreator.deletePlaylist(playlistID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
-        },
-        /**
-         *
-         * @summary Get All Playlists
-         * @param {any} [playlistType] limit to a type of playlist.
-         * @param {any} [smart] type of playlists to return (default is all).
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllPlaylists: function (playlistType, smart, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getAllPlaylists(playlistType, smart, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2786,12 +2765,33 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContent: function (playlistID, type, axiosOptions) {
+        getPlaylistContents: function (playlistID, type, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylistContent(playlistID, type, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylistContents(playlistID, type, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylists: function (playlistType, smart, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylists(playlistType, smart, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2859,8 +2859,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContent: function (playlistID, uri, playQueueID, axiosOptions) {
-            return localVarFp.addPlaylistContent(playlistID, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
+            return localVarFp.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Clears a playlist, only works with dumb playlists. Returns the playlist.
@@ -2869,8 +2869,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContent: function (playlistID, axiosOptions) {
-            return localVarFp.clearPlaylistContent(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        clearPlaylistContents: function (playlistID, axiosOptions) {
+            return localVarFp.clearPlaylistContents(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
@@ -2883,8 +2883,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createAPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
-            return localVarFp.createAPlaylist(title, type, smart, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
+            return localVarFp.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will delete a playlist
@@ -2895,17 +2895,6 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          */
         deletePlaylist: function (playlistID, axiosOptions) {
             return localVarFp.deletePlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
-        },
-        /**
-         *
-         * @summary Get All Playlists
-         * @param {any} [playlistType] limit to a type of playlist.
-         * @param {any} [smart] type of playlists to return (default is all).
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAllPlaylists: function (playlistType, smart, axiosOptions) {
-            return localVarFp.getAllPlaylists(playlistType, smart, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
@@ -2925,8 +2914,19 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContent: function (playlistID, type, axiosOptions) {
-            return localVarFp.getPlaylistContent(playlistID, type, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPlaylistContents: function (playlistID, type, axiosOptions) {
+            return localVarFp.getPlaylistContents(playlistID, type, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylists: function (playlistType, smart, axiosOptions) {
+            return localVarFp.getPlaylists(playlistType, smart, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
@@ -2966,38 +2966,38 @@ var PlaylistsApi = /** @class */ (function (_super) {
     /**
      * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
      * @summary Adding to a Playlist
-     * @param {PlaylistsApiAddPlaylistContentRequest} requestParameters Request parameters.
+     * @param {PlaylistsApiAddPlaylistContentsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.addPlaylistContent = function (requestParameters, axiosOptions) {
+    PlaylistsApi.prototype.addPlaylistContents = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).addPlaylistContent(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).addPlaylistContents(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Clears a playlist, only works with dumb playlists. Returns the playlist.
      * @summary Delete Playlist Contents
-     * @param {PlaylistsApiClearPlaylistContentRequest} requestParameters Request parameters.
+     * @param {PlaylistsApiClearPlaylistContentsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.clearPlaylistContent = function (requestParameters, axiosOptions) {
+    PlaylistsApi.prototype.clearPlaylistContents = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).clearPlaylistContent(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).clearPlaylistContents(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
      * @summary Create a Playlist
-     * @param {PlaylistsApiCreateAPlaylistRequest} requestParameters Request parameters.
+     * @param {PlaylistsApiCreatePlaylistRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.createAPlaylist = function (requestParameters, axiosOptions) {
+    PlaylistsApi.prototype.createPlaylist = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).createAPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).createPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will delete a playlist
@@ -3010,19 +3010,6 @@ var PlaylistsApi = /** @class */ (function (_super) {
     PlaylistsApi.prototype.deletePlaylist = function (requestParameters, axiosOptions) {
         var _this = this;
         return (0, exports.PlaylistsApiFp)(this.configuration).deletePlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    /**
-     *
-     * @summary Get All Playlists
-     * @param {PlaylistsApiGetAllPlaylistsRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PlaylistsApi
-     */
-    PlaylistsApi.prototype.getAllPlaylists = function (requestParameters, axiosOptions) {
-        var _this = this;
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.PlaylistsApiFp)(this.configuration).getAllPlaylists(requestParameters.playlistType, requestParameters.smart, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
@@ -3039,14 +3026,27 @@ var PlaylistsApi = /** @class */ (function (_super) {
     /**
      * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
      * @summary Retrieve Playlist Contents
-     * @param {PlaylistsApiGetPlaylistContentRequest} requestParameters Request parameters.
+     * @param {PlaylistsApiGetPlaylistContentsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.getPlaylistContent = function (requestParameters, axiosOptions) {
+    PlaylistsApi.prototype.getPlaylistContents = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylistContent(requestParameters.playlistID, requestParameters.type, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylistContents(requestParameters.playlistID, requestParameters.type, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Get All Playlists
+     * @param {PlaylistsApiGetPlaylistsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.getPlaylists = function (requestParameters, axiosOptions) {
+        var _this = this;
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylists(requestParameters.playlistType, requestParameters.smart, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
@@ -3543,6 +3543,43 @@ var ServerApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
+         * Server Capabilities
+         * @summary Server Capabilities
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerCapabilities: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
          * Get Server Preferences
          * @summary Get Server Preferences
          * @param {*} [axiosOptions] Override http request option.
@@ -3579,43 +3616,6 @@ var ServerApiAxiosParamCreator = function (configuration) {
                 });
             });
         },
-        /**
-         * Server Capabilities
-         * @summary Server Capabilities
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        serverCapabilities: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication PlexToken required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
-                            // authentication PlexToken required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
-        },
     };
 };
 exports.ServerApiAxiosParamCreator = ServerApiAxiosParamCreator;
@@ -3626,6 +3626,25 @@ exports.ServerApiAxiosParamCreator = ServerApiAxiosParamCreator;
 var ServerApiFp = function (configuration) {
     var localVarAxiosParamCreator = (0, exports.ServerApiAxiosParamCreator)(configuration);
     return {
+        /**
+         * Server Capabilities
+         * @summary Server Capabilities
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerCapabilities: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerCapabilities(axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
         /**
          * Get Server Preferences
          * @summary Get Server Preferences
@@ -3645,25 +3664,6 @@ var ServerApiFp = function (configuration) {
                 });
             });
         },
-        /**
-         * Server Capabilities
-         * @summary Server Capabilities
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        serverCapabilities: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.serverCapabilities(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
-        },
     };
 };
 exports.ServerApiFp = ServerApiFp;
@@ -3675,6 +3675,15 @@ var ServerApiFactory = function (configuration, basePath, axios) {
     var localVarFp = (0, exports.ServerApiFp)(configuration);
     return {
         /**
+         * Server Capabilities
+         * @summary Server Capabilities
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerCapabilities: function (axiosOptions) {
+            return localVarFp.getServerCapabilities(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
          * Get Server Preferences
          * @summary Get Server Preferences
          * @param {*} [axiosOptions] Override http request option.
@@ -3682,15 +3691,6 @@ var ServerApiFactory = function (configuration, basePath, axios) {
          */
         getServerPreferences: function (axiosOptions) {
             return localVarFp.getServerPreferences(axiosOptions).then(function (request) { return request(axios, basePath); });
-        },
-        /**
-         * Server Capabilities
-         * @summary Server Capabilities
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        serverCapabilities: function (axiosOptions) {
-            return localVarFp.serverCapabilities(axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -3707,6 +3707,17 @@ var ServerApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Server Capabilities
+     * @summary Server Capabilities
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    ServerApi.prototype.getServerCapabilities = function (axiosOptions) {
+        var _this = this;
+        return (0, exports.ServerApiFp)(this.configuration).getServerCapabilities(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
      * Get Server Preferences
      * @summary Get Server Preferences
      * @param {*} [axiosOptions] Override http request option.
@@ -3716,17 +3727,6 @@ var ServerApi = /** @class */ (function (_super) {
     ServerApi.prototype.getServerPreferences = function (axiosOptions) {
         var _this = this;
         return (0, exports.ServerApiFp)(this.configuration).getServerPreferences(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    /**
-     * Server Capabilities
-     * @summary Server Capabilities
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ServerApi
-     */
-    ServerApi.prototype.serverCapabilities = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.ServerApiFp)(this.configuration).serverCapabilities(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return ServerApi;
 }(base_1.BaseAPI));
@@ -3942,7 +3942,7 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyingUpdates: function (tonight, skip, axiosOptions) {
+        applyUpdates: function (tonight, skip, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -3986,7 +3986,7 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkingforUpdates: function (download, axiosOptions) {
+        checkForUpdates: function (download, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -4026,7 +4026,7 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryingUpdateStatus: function (axiosOptions) {
+        queryUpdateStatus: function (axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -4075,12 +4075,12 @@ var UpdaterApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyingUpdates: function (tonight, skip, axiosOptions) {
+        applyUpdates: function (tonight, skip, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.applyingUpdates(tonight, skip, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.applyUpdates(tonight, skip, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4095,12 +4095,12 @@ var UpdaterApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkingforUpdates: function (download, axiosOptions) {
+        checkForUpdates: function (download, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.checkingforUpdates(download, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.checkForUpdates(download, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4114,12 +4114,12 @@ var UpdaterApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryingUpdateStatus: function (axiosOptions) {
+        queryUpdateStatus: function (axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.queryingUpdateStatus(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.queryUpdateStatus(axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4145,8 +4145,8 @@ var UpdaterApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyingUpdates: function (tonight, skip, axiosOptions) {
-            return localVarFp.applyingUpdates(tonight, skip, axiosOptions).then(function (request) { return request(axios, basePath); });
+        applyUpdates: function (tonight, skip, axiosOptions) {
+            return localVarFp.applyUpdates(tonight, skip, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Checking for updates
@@ -4155,8 +4155,8 @@ var UpdaterApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkingforUpdates: function (download, axiosOptions) {
-            return localVarFp.checkingforUpdates(download, axiosOptions).then(function (request) { return request(axios, basePath); });
+        checkForUpdates: function (download, axiosOptions) {
+            return localVarFp.checkForUpdates(download, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Querying status of updates
@@ -4164,8 +4164,8 @@ var UpdaterApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryingUpdateStatus: function (axiosOptions) {
-            return localVarFp.queryingUpdateStatus(axiosOptions).then(function (request) { return request(axios, basePath); });
+        queryUpdateStatus: function (axiosOptions) {
+            return localVarFp.queryUpdateStatus(axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -4184,28 +4184,28 @@ var UpdaterApi = /** @class */ (function (_super) {
     /**
      * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
      * @summary Applying updates
-     * @param {UpdaterApiApplyingUpdatesRequest} requestParameters Request parameters.
+     * @param {UpdaterApiApplyUpdatesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    UpdaterApi.prototype.applyingUpdates = function (requestParameters, axiosOptions) {
+    UpdaterApi.prototype.applyUpdates = function (requestParameters, axiosOptions) {
         var _this = this;
         if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.UpdaterApiFp)(this.configuration).applyingUpdates(requestParameters.tonight, requestParameters.skip, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.UpdaterApiFp)(this.configuration).applyUpdates(requestParameters.tonight, requestParameters.skip, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Checking for updates
      * @summary Checking for updates
-     * @param {UpdaterApiCheckingforUpdatesRequest} requestParameters Request parameters.
+     * @param {UpdaterApiCheckForUpdatesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    UpdaterApi.prototype.checkingforUpdates = function (requestParameters, axiosOptions) {
+    UpdaterApi.prototype.checkForUpdates = function (requestParameters, axiosOptions) {
         var _this = this;
         if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.UpdaterApiFp)(this.configuration).checkingforUpdates(requestParameters.download, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.UpdaterApiFp)(this.configuration).checkForUpdates(requestParameters.download, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Querying status of updates
@@ -4214,9 +4214,9 @@ var UpdaterApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    UpdaterApi.prototype.queryingUpdateStatus = function (axiosOptions) {
+    UpdaterApi.prototype.queryUpdateStatus = function (axiosOptions) {
         var _this = this;
-        return (0, exports.UpdaterApiFp)(this.configuration).queryingUpdateStatus(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.UpdaterApiFp)(this.configuration).queryUpdateStatus(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return UpdaterApi;
 }(base_1.BaseAPI));
