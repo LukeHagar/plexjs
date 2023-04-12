@@ -665,7 +665,7 @@ export declare const AuthenticationApiAxiosParamCreator: (configuration?: Config
      */
     getPin: (xPlexClientIdentifier: any, strong?: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
-     * Retrieve a Pin from Plex.tv for authentication flows
+     * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
      * @summary Get Access Token
      * @param {any} pinID The PinID to retrieve an access token for
      * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
@@ -703,7 +703,7 @@ export declare const AuthenticationApiFp: (configuration?: Configuration) => {
      */
     getPin(xPlexClientIdentifier: any, strong?: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPin200Response>>;
     /**
-     * Retrieve a Pin from Plex.tv for authentication flows
+     * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
      * @summary Get Access Token
      * @param {any} pinID The PinID to retrieve an access token for
      * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
@@ -741,7 +741,7 @@ export declare const AuthenticationApiFactory: (configuration?: Configuration, b
      */
     getPin(xPlexClientIdentifier: any, strong?: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<GetPin200Response>;
     /**
-     * Retrieve a Pin from Plex.tv for authentication flows
+     * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
      * @summary Get Access Token
      * @param {any} pinID The PinID to retrieve an access token for
      * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
@@ -896,7 +896,7 @@ export declare class AuthenticationApi extends BaseAPI {
      */
     getPin(requestParameters: AuthenticationApiGetPinRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<GetPin200Response, any>>;
     /**
-     * Retrieve a Pin from Plex.tv for authentication flows
+     * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
      * @summary Get Access Token
      * @param {AuthenticationApiGetTokenRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
