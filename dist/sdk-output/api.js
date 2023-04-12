@@ -662,7 +662,7 @@ var DevicesApiAxiosParamCreator = function (configuration) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
@@ -733,7 +733,7 @@ var DevicesApiAxiosParamCreator = function (configuration) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
@@ -814,7 +814,7 @@ var DevicesApiFp = function (configuration) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
@@ -841,7 +841,7 @@ var DevicesApiFp = function (configuration) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
@@ -878,7 +878,7 @@ var DevicesApiFactory = function (configuration, basePath, axios) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
@@ -895,7 +895,7 @@ var DevicesApiFactory = function (configuration, basePath, axios) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
@@ -4284,7 +4284,7 @@ var UserApiAxiosParamCreator = function (configuration) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
@@ -4365,7 +4365,7 @@ var UserApiFp = function (configuration) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
@@ -4402,7 +4402,7 @@ var UserApiFactory = function (configuration, basePath, axios) {
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;, etc
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
          * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
          * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
          * @param {any} [xPlexVersion] Plex application version number
