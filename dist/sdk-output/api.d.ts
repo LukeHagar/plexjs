@@ -651,8 +651,8 @@ export declare const AuthenticationApiAxiosParamCreator: (configuration?: Config
     /**
      * Retrieve a Pin from Plex.tv for authentication flows
      * @summary Get a Pin
-     * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
      * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
      * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -663,7 +663,7 @@ export declare const AuthenticationApiAxiosParamCreator: (configuration?: Config
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getPin: (strong: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getPin: (xPlexClientIdentifier: any, strong?: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Retrieve a Pin from Plex.tv for authentication flows
      * @summary Get Access Token
@@ -689,8 +689,8 @@ export declare const AuthenticationApiFp: (configuration?: Configuration) => {
     /**
      * Retrieve a Pin from Plex.tv for authentication flows
      * @summary Get a Pin
-     * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
      * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
      * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -701,7 +701,7 @@ export declare const AuthenticationApiFp: (configuration?: Configuration) => {
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getPin(strong: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPin200Response>>;
+    getPin(xPlexClientIdentifier: any, strong?: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPin200Response>>;
     /**
      * Retrieve a Pin from Plex.tv for authentication flows
      * @summary Get Access Token
@@ -727,8 +727,8 @@ export declare const AuthenticationApiFactory: (configuration?: Configuration, b
     /**
      * Retrieve a Pin from Plex.tv for authentication flows
      * @summary Get a Pin
-     * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
      * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
      * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -739,7 +739,7 @@ export declare const AuthenticationApiFactory: (configuration?: Configuration, b
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getPin(strong: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<GetPin200Response>;
+    getPin(xPlexClientIdentifier: any, strong?: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<GetPin200Response>;
     /**
      * Retrieve a Pin from Plex.tv for authentication flows
      * @summary Get Access Token
@@ -764,17 +764,17 @@ export declare const AuthenticationApiFactory: (configuration?: Configuration, b
  */
 export interface AuthenticationApiGetPinRequest {
     /**
-     * Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
-     * @type {any}
-     * @memberof AuthenticationApiGetPin
-     */
-    readonly strong: any;
-    /**
      * Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @type {any}
      * @memberof AuthenticationApiGetPin
      */
     readonly xPlexClientIdentifier: any;
+    /**
+     * Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly strong?: any;
     /**
      * Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
      * @type {any}

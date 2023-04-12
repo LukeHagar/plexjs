@@ -296,8 +296,8 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
          * @summary Get a Pin
-         * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+         * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -308,15 +308,13 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (strong, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getPin: function (xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            // verify required parameter 'strong' is not null or undefined
-                            (0, common_1.assertParamExists)('getPin', 'strong', strong);
                             // verify required parameter 'xPlexClientIdentifier' is not null or undefined
                             (0, common_1.assertParamExists)('getPin', 'xPlexClientIdentifier', xPlexClientIdentifier);
                             localVarPath = "/pins";
@@ -458,8 +456,8 @@ var AuthenticationApiFp = function (configuration) {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
          * @summary Get a Pin
-         * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+         * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -470,12 +468,12 @@ var AuthenticationApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (strong, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getPin: function (xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPin(strong, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPin(xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -524,8 +522,8 @@ var AuthenticationApiFactory = function (configuration, basePath, axios) {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
          * @summary Get a Pin
-         * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+         * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -536,8 +534,8 @@ var AuthenticationApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (strong, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
-            return localVarFp.getPin(strong, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPin: function (xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getPin(xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
@@ -581,7 +579,7 @@ var AuthenticationApi = /** @class */ (function (_super) {
      */
     AuthenticationApi.prototype.getPin = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.AuthenticationApiFp)(this.configuration).getPin(requestParameters.strong, requestParameters.xPlexClientIdentifier, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.AuthenticationApiFp)(this.configuration).getPin(requestParameters.xPlexClientIdentifier, requestParameters.strong, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Retrieve a Pin from Plex.tv for authentication flows
