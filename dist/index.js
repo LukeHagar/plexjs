@@ -18,6 +18,5 @@ exports.axiosRetry = exports.Configuration = void 0;
 __exportStar(require("./sdk-output/api"), exports);
 var configuration_1 = require("./sdk-output/configuration");
 Object.defineProperty(exports, "Configuration", { enumerable: true, get: function () { return configuration_1.Configuration; } });
-__exportStar(require("./paginator"), exports);
 exports.axiosRetry = require("axios-retry");
 //# sourceMappingURL=index.js.map

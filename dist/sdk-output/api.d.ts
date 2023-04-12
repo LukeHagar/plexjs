@@ -15,6 +15,202 @@ import { RequestArgs, BaseAPI } from './base';
 /**
  *
  * @export
+ * @interface GetAvailableClients200Response
+ */
+export interface GetAvailableClients200Response {
+    /**
+     *
+     * @type {GetAvailableClients200ResponseMediaContainer}
+     * @memberof GetAvailableClients200Response
+     */
+    'MediaContainer'?: GetAvailableClients200ResponseMediaContainer;
+}
+/**
+ *
+ * @export
+ * @interface GetAvailableClients200ResponseMediaContainer
+ */
+export interface GetAvailableClients200ResponseMediaContainer {
+    /**
+     *
+     * @type {any}
+     * @memberof GetAvailableClients200ResponseMediaContainer
+     */
+    'size'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetAvailableClients200ResponseMediaContainer
+     */
+    'Server'?: any;
+}
+/**
+ *
+ * @export
+ * @interface GetAvailableClients401Response
+ */
+export interface GetAvailableClients401Response {
+    /**
+     *
+     * @type {any}
+     * @memberof GetAvailableClients401Response
+     */
+    'errors'?: any;
+}
+/**
+ *
+ * @export
+ * @interface GetDevices200Response
+ */
+export interface GetDevices200Response {
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'name'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'product'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'productVersion'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'platform'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'platformVersion'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'device'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'clientIdentifier'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'createdAt'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'lastSeenAt'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'provides'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'ownerId'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'sourceTitle'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'publicAddress'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'accessToken'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'owned'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'home'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'synced'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'relay'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'presence'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'httpsRequired'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'publicAddressMatches'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'dnsRebindingProtection'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'natLoopbackSupported'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetDevices200Response
+     */
+    'connections'?: any;
+}
+/**
+ *
+ * @export
  * @interface ServerActivities200Response
  */
 export interface ServerActivities200Response {
@@ -648,28 +844,381 @@ export declare class ButlerApi extends BaseAPI {
     stopAllButlerTasks(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
 /**
+ * DevicesApi - axios parameter creator
+ * @export
+ */
+export declare const DevicesApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Get Available Clients
+     * @summary Get Available Clients
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAvailableClients: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Get Devices
+     * @summary Get Devices
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDevices: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * DevicesApi - functional programming interface
+ * @export
+ */
+export declare const DevicesApiFp: (configuration?: Configuration) => {
+    /**
+     * Get Available Clients
+     * @summary Get Available Clients
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAvailableClients(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAvailableClients200Response>>;
+    /**
+     * Get Devices
+     * @summary Get Devices
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDevices(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDevices200Response>>;
+};
+/**
+ * DevicesApi - factory interface
+ * @export
+ */
+export declare const DevicesApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Get Available Clients
+     * @summary Get Available Clients
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAvailableClients(axiosOptions?: any): AxiosPromise<GetAvailableClients200Response>;
+    /**
+     * Get Devices
+     * @summary Get Devices
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDevices(axiosOptions?: any): AxiosPromise<GetDevices200Response>;
+};
+/**
+ * DevicesApi - object-oriented interface
+ * @export
+ * @class DevicesApi
+ * @extends {BaseAPI}
+ */
+export declare class DevicesApi extends BaseAPI {
+    /**
+     * Get Available Clients
+     * @summary Get Available Clients
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    getAvailableClients(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<GetAvailableClients200Response, any>>;
+    /**
+     * Get Devices
+     * @summary Get Devices
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    getDevices(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<GetDevices200Response, any>>;
+}
+/**
+ * HashesApi - axios parameter creator
+ * @export
+ */
+export declare const HashesApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * This resource returns hash values for local files
+     * @summary Get Hash Value
+     * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+     * @param {any} [type] Item type
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFileHash: (url: any, type?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * HashesApi - functional programming interface
+ * @export
+ */
+export declare const HashesApiFp: (configuration?: Configuration) => {
+    /**
+     * This resource returns hash values for local files
+     * @summary Get Hash Value
+     * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+     * @param {any} [type] Item type
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFileHash(url: any, type?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * HashesApi - factory interface
+ * @export
+ */
+export declare const HashesApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * This resource returns hash values for local files
+     * @summary Get Hash Value
+     * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+     * @param {any} [type] Item type
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFileHash(url: any, type?: any, axiosOptions?: any): AxiosPromise<void>;
+};
+/**
+ * Request parameters for getFileHash operation in HashesApi.
+ * @export
+ * @interface HashesApiGetFileHashRequest
+ */
+export interface HashesApiGetFileHashRequest {
+    /**
+     * This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+     * @type {any}
+     * @memberof HashesApiGetFileHash
+     */
+    readonly url: any;
+    /**
+     * Item type
+     * @type {any}
+     * @memberof HashesApiGetFileHash
+     */
+    readonly type?: any;
+}
+/**
+ * HashesApi - object-oriented interface
+ * @export
+ * @class HashesApi
+ * @extends {BaseAPI}
+ */
+export declare class HashesApi extends BaseAPI {
+    /**
+     * This resource returns hash values for local files
+     * @summary Get Hash Value
+     * @param {HashesApiGetFileHashRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HashesApi
+     */
+    getFileHash(requestParameters: HashesApiGetFileHashRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+}
+/**
+ * HubsApi - axios parameter creator
+ * @export
+ */
+export declare const HubsApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     *
+     * @summary Get Global Hubs
+     * @param {any} [count] The number of items to return with each hub.
+     * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGlobalHubs: (count?: any, onlyTransient?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * This endpoint will return a list of library specific hubs
+     * @summary Get library specific hubs
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} [count] The number of items to return with each hub.
+     * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLibraryHubs: (sectionId: any, count?: any, onlyTransient?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * HubsApi - functional programming interface
+ * @export
+ */
+export declare const HubsApiFp: (configuration?: Configuration) => {
+    /**
+     *
+     * @summary Get Global Hubs
+     * @param {any} [count] The number of items to return with each hub.
+     * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGlobalHubs(count?: any, onlyTransient?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * This endpoint will return a list of library specific hubs
+     * @summary Get library specific hubs
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} [count] The number of items to return with each hub.
+     * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLibraryHubs(sectionId: any, count?: any, onlyTransient?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * HubsApi - factory interface
+ * @export
+ */
+export declare const HubsApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     *
+     * @summary Get Global Hubs
+     * @param {any} [count] The number of items to return with each hub.
+     * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGlobalHubs(count?: any, onlyTransient?: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * This endpoint will return a list of library specific hubs
+     * @summary Get library specific hubs
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} [count] The number of items to return with each hub.
+     * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLibraryHubs(sectionId: any, count?: any, onlyTransient?: any, axiosOptions?: any): AxiosPromise<void>;
+};
+/**
+ * Request parameters for getGlobalHubs operation in HubsApi.
+ * @export
+ * @interface HubsApiGetGlobalHubsRequest
+ */
+export interface HubsApiGetGlobalHubsRequest {
+    /**
+     * The number of items to return with each hub.
+     * @type {any}
+     * @memberof HubsApiGetGlobalHubs
+     */
+    readonly count?: any;
+    /**
+     * Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+     * @type {any}
+     * @memberof HubsApiGetGlobalHubs
+     */
+    readonly onlyTransient?: any;
+}
+/**
+ * Request parameters for getLibraryHubs operation in HubsApi.
+ * @export
+ * @interface HubsApiGetLibraryHubsRequest
+ */
+export interface HubsApiGetLibraryHubsRequest {
+    /**
+     * the Id of the library to query
+     * @type {any}
+     * @memberof HubsApiGetLibraryHubs
+     */
+    readonly sectionId: any;
+    /**
+     * The number of items to return with each hub.
+     * @type {any}
+     * @memberof HubsApiGetLibraryHubs
+     */
+    readonly count?: any;
+    /**
+     * Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+     * @type {any}
+     * @memberof HubsApiGetLibraryHubs
+     */
+    readonly onlyTransient?: any;
+}
+/**
+ * HubsApi - object-oriented interface
+ * @export
+ * @class HubsApi
+ * @extends {BaseAPI}
+ */
+export declare class HubsApi extends BaseAPI {
+    /**
+     *
+     * @summary Get Global Hubs
+     * @param {HubsApiGetGlobalHubsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HubsApi
+     */
+    getGlobalHubs(requestParameters?: HubsApiGetGlobalHubsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * This endpoint will return a list of library specific hubs
+     * @summary Get library specific hubs
+     * @param {HubsApiGetLibraryHubsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HubsApi
+     */
+    getLibraryHubs(requestParameters: HubsApiGetLibraryHubsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+}
+/**
  * LibraryApi - axios parameter creator
  * @export
  */
 export declare const LibraryApiAxiosParamCreator: (configuration?: Configuration) => {
     /**
-     * This endpoint will return a list of libraries
+     * This endpoint will return a list of all library items filtered by the filter and type provided
+     * @summary Get All Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} [type] item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllLibraryItems: (sectionId: any, type?: any, filter?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
+     * @summary Get Common Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} type item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCommonLibraryItems: (sectionId: any, type: any, filter?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * This endpoint will return a list of the latest library items filtered by the filter and type provided
+     * @summary Get Latest Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} type item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLatestLibraryItems: (sectionId: any, type: any, filter?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      * @summary Get All Libraries
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
     getLibraries: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
-     * This endpoint will return a list of library items filtered by the filter and type provided
-     * @summary Get Library Items
+     * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
+     * @summary Get Library Details
      * @param {any} sectionId the Id of the library to query
-     * @param {any} category the category to retrieve from the library
-     * @param {any} [type] item type
-     * @param {any} [filter] the filter parameter
+     * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getLibraryItems: (sectionId: any, category: any, type?: any, filter?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getLibraryDetails: (sectionId: any, includeDetails?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * This endpoint will return the on deck content.
+     * @summary Get On Deck
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOnDeck: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * This endpoint Refreshes the library.
+     * @summary Refresh Library
+     * @param {any} sectionId the Id of the library to refresh
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    refreshLibrary: (sectionId: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * LibraryApi - functional programming interface
@@ -677,23 +1226,66 @@ export declare const LibraryApiAxiosParamCreator: (configuration?: Configuration
  */
 export declare const LibraryApiFp: (configuration?: Configuration) => {
     /**
-     * This endpoint will return a list of libraries
+     * This endpoint will return a list of all library items filtered by the filter and type provided
+     * @summary Get All Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} [type] item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
+     * @summary Get Common Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} type item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCommonLibraryItems(sectionId: any, type: any, filter?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * This endpoint will return a list of the latest library items filtered by the filter and type provided
+     * @summary Get Latest Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} type item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLatestLibraryItems(sectionId: any, type: any, filter?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      * @summary Get All Libraries
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
     getLibraries(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
-     * This endpoint will return a list of library items filtered by the filter and type provided
-     * @summary Get Library Items
+     * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
+     * @summary Get Library Details
      * @param {any} sectionId the Id of the library to query
-     * @param {any} category the category to retrieve from the library
-     * @param {any} [type] item type
-     * @param {any} [filter] the filter parameter
+     * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getLibraryItems(sectionId: any, category: any, type?: any, filter?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    getLibraryDetails(sectionId: any, includeDetails?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * This endpoint will return the on deck content.
+     * @summary Get On Deck
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOnDeck(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * This endpoint Refreshes the library.
+     * @summary Refresh Library
+     * @param {any} sectionId the Id of the library to refresh
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    refreshLibrary(sectionId: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
 };
 /**
  * LibraryApi - factory interface
@@ -701,54 +1293,173 @@ export declare const LibraryApiFp: (configuration?: Configuration) => {
  */
 export declare const LibraryApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
     /**
-     * This endpoint will return a list of libraries
+     * This endpoint will return a list of all library items filtered by the filter and type provided
+     * @summary Get All Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} [type] item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
+     * @summary Get Common Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} type item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCommonLibraryItems(sectionId: any, type: any, filter?: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * This endpoint will return a list of the latest library items filtered by the filter and type provided
+     * @summary Get Latest Library Items
+     * @param {any} sectionId the Id of the library to query
+     * @param {any} type item type
+     * @param {any} [filter] the filter parameter
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLatestLibraryItems(sectionId: any, type: any, filter?: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      * @summary Get All Libraries
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
     getLibraries(axiosOptions?: any): AxiosPromise<void>;
     /**
-     * This endpoint will return a list of library items filtered by the filter and type provided
-     * @summary Get Library Items
+     * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
+     * @summary Get Library Details
      * @param {any} sectionId the Id of the library to query
-     * @param {any} category the category to retrieve from the library
-     * @param {any} [type] item type
-     * @param {any} [filter] the filter parameter
+     * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getLibraryItems(sectionId: any, category: any, type?: any, filter?: any, axiosOptions?: any): AxiosPromise<void>;
+    getLibraryDetails(sectionId: any, includeDetails?: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * This endpoint will return the on deck content.
+     * @summary Get On Deck
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOnDeck(axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * This endpoint Refreshes the library.
+     * @summary Refresh Library
+     * @param {any} sectionId the Id of the library to refresh
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    refreshLibrary(sectionId: any, axiosOptions?: any): AxiosPromise<void>;
 };
 /**
- * Request parameters for getLibraryItems operation in LibraryApi.
+ * Request parameters for getAllLibraryItems operation in LibraryApi.
  * @export
- * @interface LibraryApiGetLibraryItemsRequest
+ * @interface LibraryApiGetAllLibraryItemsRequest
  */
-export interface LibraryApiGetLibraryItemsRequest {
+export interface LibraryApiGetAllLibraryItemsRequest {
     /**
      * the Id of the library to query
      * @type {any}
-     * @memberof LibraryApiGetLibraryItems
+     * @memberof LibraryApiGetAllLibraryItems
      */
     readonly sectionId: any;
     /**
-     * the category to retrieve from the library
-     * @type {any}
-     * @memberof LibraryApiGetLibraryItems
-     */
-    readonly category: any;
-    /**
      * item type
      * @type {any}
-     * @memberof LibraryApiGetLibraryItems
+     * @memberof LibraryApiGetAllLibraryItems
      */
     readonly type?: any;
     /**
      * the filter parameter
      * @type {any}
-     * @memberof LibraryApiGetLibraryItems
+     * @memberof LibraryApiGetAllLibraryItems
      */
     readonly filter?: any;
+}
+/**
+ * Request parameters for getCommonLibraryItems operation in LibraryApi.
+ * @export
+ * @interface LibraryApiGetCommonLibraryItemsRequest
+ */
+export interface LibraryApiGetCommonLibraryItemsRequest {
+    /**
+     * the Id of the library to query
+     * @type {any}
+     * @memberof LibraryApiGetCommonLibraryItems
+     */
+    readonly sectionId: any;
+    /**
+     * item type
+     * @type {any}
+     * @memberof LibraryApiGetCommonLibraryItems
+     */
+    readonly type: any;
+    /**
+     * the filter parameter
+     * @type {any}
+     * @memberof LibraryApiGetCommonLibraryItems
+     */
+    readonly filter?: any;
+}
+/**
+ * Request parameters for getLatestLibraryItems operation in LibraryApi.
+ * @export
+ * @interface LibraryApiGetLatestLibraryItemsRequest
+ */
+export interface LibraryApiGetLatestLibraryItemsRequest {
+    /**
+     * the Id of the library to query
+     * @type {any}
+     * @memberof LibraryApiGetLatestLibraryItems
+     */
+    readonly sectionId: any;
+    /**
+     * item type
+     * @type {any}
+     * @memberof LibraryApiGetLatestLibraryItems
+     */
+    readonly type: any;
+    /**
+     * the filter parameter
+     * @type {any}
+     * @memberof LibraryApiGetLatestLibraryItems
+     */
+    readonly filter?: any;
+}
+/**
+ * Request parameters for getLibraryDetails operation in LibraryApi.
+ * @export
+ * @interface LibraryApiGetLibraryDetailsRequest
+ */
+export interface LibraryApiGetLibraryDetailsRequest {
+    /**
+     * the Id of the library to query
+     * @type {any}
+     * @memberof LibraryApiGetLibraryDetails
+     */
+    readonly sectionId: any;
+    /**
+     * Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
+     * @type {any}
+     * @memberof LibraryApiGetLibraryDetails
+     */
+    readonly includeDetails?: any;
+}
+/**
+ * Request parameters for refreshLibrary operation in LibraryApi.
+ * @export
+ * @interface LibraryApiRefreshLibraryRequest
+ */
+export interface LibraryApiRefreshLibraryRequest {
+    /**
+     * the Id of the library to refresh
+     * @type {any}
+     * @memberof LibraryApiRefreshLibrary
+     */
+    readonly sectionId: any;
 }
 /**
  * LibraryApi - object-oriented interface
@@ -758,7 +1469,34 @@ export interface LibraryApiGetLibraryItemsRequest {
  */
 export declare class LibraryApi extends BaseAPI {
     /**
-     * This endpoint will return a list of libraries
+     * This endpoint will return a list of all library items filtered by the filter and type provided
+     * @summary Get All Library Items
+     * @param {LibraryApiGetAllLibraryItemsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    getAllLibraryItems(requestParameters: LibraryApiGetAllLibraryItemsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
+     * @summary Get Common Library Items
+     * @param {LibraryApiGetCommonLibraryItemsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    getCommonLibraryItems(requestParameters: LibraryApiGetCommonLibraryItemsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * This endpoint will return a list of the latest library items filtered by the filter and type provided
+     * @summary Get Latest Library Items
+     * @param {LibraryApiGetLatestLibraryItemsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    getLatestLibraryItems(requestParameters: LibraryApiGetLatestLibraryItemsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      * @summary Get All Libraries
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
@@ -766,14 +1504,31 @@ export declare class LibraryApi extends BaseAPI {
      */
     getLibraries(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
     /**
-     * This endpoint will return a list of library items filtered by the filter and type provided
-     * @summary Get Library Items
-     * @param {LibraryApiGetLibraryItemsRequest} requestParameters Request parameters.
+     * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
+     * @summary Get Library Details
+     * @param {LibraryApiGetLibraryDetailsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    getLibraryItems(requestParameters: LibraryApiGetLibraryItemsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    getLibraryDetails(requestParameters: LibraryApiGetLibraryDetailsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * This endpoint will return the on deck content.
+     * @summary Get On Deck
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    getOnDeck(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * This endpoint Refreshes the library.
+     * @summary Refresh Library
+     * @param {LibraryApiRefreshLibraryRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    refreshLibrary(requestParameters: LibraryApiRefreshLibraryRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
 /**
  * LogApi - axios parameter creator
@@ -924,6 +1679,681 @@ export declare class LogApi extends BaseAPI {
     logaLine(requestParameters: LogApiLogaLineRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
 /**
+ * PlaylistsApi - axios parameter creator
+ * @export
+ */
+export declare const PlaylistsApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
+     * @summary Adding to a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {any} uri the content URI for the playlist
+     * @param {any} playQueueID the play queue to add to a playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    addPlaylistContent: (playlistID: any, uri: any, playQueueID: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Clears a playlist, only works with dumb playlists. Returns the playlist.
+     * @summary Delete Playlist Contents
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    clearPlaylistContent: (playlistID: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
+     * @summary Create a Playlist
+     * @param {any} title name of the playlist
+     * @param {any} type type of playlist to create
+     * @param {any} smart whether the playlist is smart or not
+     * @param {any} [uri] the content URI for the playlist
+     * @param {any} [playQueueID] the play queue to copy to a playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAPlaylist: (title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * This endpoint will delete a playlist
+     * @summary Deletes a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePlaylist: (playlistID: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @summary Get All Playlists
+     * @param {any} [playlistType] limit to a type of playlist.
+     * @param {any} [smart] type of playlists to return (default is all).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllPlaylists: (playlistType?: any, smart?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+     * @summary Retrieve Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPlaylist: (playlistID: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+     * @summary Retrieve Playlist Contents
+     * @param {any} playlistID the ID of the playlist
+     * @param {any} type the metadata type of the item to return
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPlaylistContent: (playlistID: any, type: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
+     * @summary Update a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePlaylist: (playlistID: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+     * @summary Upload Playlist
+     * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
+     * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadPlaylist: (path: any, force: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * PlaylistsApi - functional programming interface
+ * @export
+ */
+export declare const PlaylistsApiFp: (configuration?: Configuration) => {
+    /**
+     * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
+     * @summary Adding to a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {any} uri the content URI for the playlist
+     * @param {any} playQueueID the play queue to add to a playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    addPlaylistContent(playlistID: any, uri: any, playQueueID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * Clears a playlist, only works with dumb playlists. Returns the playlist.
+     * @summary Delete Playlist Contents
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    clearPlaylistContent(playlistID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
+     * @summary Create a Playlist
+     * @param {any} title name of the playlist
+     * @param {any} type type of playlist to create
+     * @param {any} smart whether the playlist is smart or not
+     * @param {any} [uri] the content URI for the playlist
+     * @param {any} [playQueueID] the play queue to copy to a playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAPlaylist(title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * This endpoint will delete a playlist
+     * @summary Deletes a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePlaylist(playlistID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @summary Get All Playlists
+     * @param {any} [playlistType] limit to a type of playlist.
+     * @param {any} [smart] type of playlists to return (default is all).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllPlaylists(playlistType?: any, smart?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+     * @summary Retrieve Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPlaylist(playlistID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+     * @summary Retrieve Playlist Contents
+     * @param {any} playlistID the ID of the playlist
+     * @param {any} type the metadata type of the item to return
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPlaylistContent(playlistID: any, type: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
+     * @summary Update a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePlaylist(playlistID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+     * @summary Upload Playlist
+     * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
+     * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadPlaylist(path: any, force: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * PlaylistsApi - factory interface
+ * @export
+ */
+export declare const PlaylistsApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
+     * @summary Adding to a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {any} uri the content URI for the playlist
+     * @param {any} playQueueID the play queue to add to a playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    addPlaylistContent(playlistID: any, uri: any, playQueueID: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * Clears a playlist, only works with dumb playlists. Returns the playlist.
+     * @summary Delete Playlist Contents
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    clearPlaylistContent(playlistID: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
+     * @summary Create a Playlist
+     * @param {any} title name of the playlist
+     * @param {any} type type of playlist to create
+     * @param {any} smart whether the playlist is smart or not
+     * @param {any} [uri] the content URI for the playlist
+     * @param {any} [playQueueID] the play queue to copy to a playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAPlaylist(title: any, type: any, smart: any, uri?: any, playQueueID?: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * This endpoint will delete a playlist
+     * @summary Deletes a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePlaylist(playlistID: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     *
+     * @summary Get All Playlists
+     * @param {any} [playlistType] limit to a type of playlist.
+     * @param {any} [smart] type of playlists to return (default is all).
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllPlaylists(playlistType?: any, smart?: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+     * @summary Retrieve Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPlaylist(playlistID: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+     * @summary Retrieve Playlist Contents
+     * @param {any} playlistID the ID of the playlist
+     * @param {any} type the metadata type of the item to return
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPlaylistContent(playlistID: any, type: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
+     * @summary Update a Playlist
+     * @param {any} playlistID the ID of the playlist
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePlaylist(playlistID: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+     * @summary Upload Playlist
+     * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
+     * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadPlaylist(path: any, force: any, axiosOptions?: any): AxiosPromise<void>;
+};
+/**
+ * Request parameters for addPlaylistContent operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiAddPlaylistContentRequest
+ */
+export interface PlaylistsApiAddPlaylistContentRequest {
+    /**
+     * the ID of the playlist
+     * @type {any}
+     * @memberof PlaylistsApiAddPlaylistContent
+     */
+    readonly playlistID: any;
+    /**
+     * the content URI for the playlist
+     * @type {any}
+     * @memberof PlaylistsApiAddPlaylistContent
+     */
+    readonly uri: any;
+    /**
+     * the play queue to add to a playlist
+     * @type {any}
+     * @memberof PlaylistsApiAddPlaylistContent
+     */
+    readonly playQueueID: any;
+}
+/**
+ * Request parameters for clearPlaylistContent operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiClearPlaylistContentRequest
+ */
+export interface PlaylistsApiClearPlaylistContentRequest {
+    /**
+     * the ID of the playlist
+     * @type {any}
+     * @memberof PlaylistsApiClearPlaylistContent
+     */
+    readonly playlistID: any;
+}
+/**
+ * Request parameters for createAPlaylist operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiCreateAPlaylistRequest
+ */
+export interface PlaylistsApiCreateAPlaylistRequest {
+    /**
+     * name of the playlist
+     * @type {any}
+     * @memberof PlaylistsApiCreateAPlaylist
+     */
+    readonly title: any;
+    /**
+     * type of playlist to create
+     * @type {any}
+     * @memberof PlaylistsApiCreateAPlaylist
+     */
+    readonly type: any;
+    /**
+     * whether the playlist is smart or not
+     * @type {any}
+     * @memberof PlaylistsApiCreateAPlaylist
+     */
+    readonly smart: any;
+    /**
+     * the content URI for the playlist
+     * @type {any}
+     * @memberof PlaylistsApiCreateAPlaylist
+     */
+    readonly uri?: any;
+    /**
+     * the play queue to copy to a playlist
+     * @type {any}
+     * @memberof PlaylistsApiCreateAPlaylist
+     */
+    readonly playQueueID?: any;
+}
+/**
+ * Request parameters for deletePlaylist operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiDeletePlaylistRequest
+ */
+export interface PlaylistsApiDeletePlaylistRequest {
+    /**
+     * the ID of the playlist
+     * @type {any}
+     * @memberof PlaylistsApiDeletePlaylist
+     */
+    readonly playlistID: any;
+}
+/**
+ * Request parameters for getAllPlaylists operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiGetAllPlaylistsRequest
+ */
+export interface PlaylistsApiGetAllPlaylistsRequest {
+    /**
+     * limit to a type of playlist.
+     * @type {any}
+     * @memberof PlaylistsApiGetAllPlaylists
+     */
+    readonly playlistType?: any;
+    /**
+     * type of playlists to return (default is all).
+     * @type {any}
+     * @memberof PlaylistsApiGetAllPlaylists
+     */
+    readonly smart?: any;
+}
+/**
+ * Request parameters for getPlaylist operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiGetPlaylistRequest
+ */
+export interface PlaylistsApiGetPlaylistRequest {
+    /**
+     * the ID of the playlist
+     * @type {any}
+     * @memberof PlaylistsApiGetPlaylist
+     */
+    readonly playlistID: any;
+}
+/**
+ * Request parameters for getPlaylistContent operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiGetPlaylistContentRequest
+ */
+export interface PlaylistsApiGetPlaylistContentRequest {
+    /**
+     * the ID of the playlist
+     * @type {any}
+     * @memberof PlaylistsApiGetPlaylistContent
+     */
+    readonly playlistID: any;
+    /**
+     * the metadata type of the item to return
+     * @type {any}
+     * @memberof PlaylistsApiGetPlaylistContent
+     */
+    readonly type: any;
+}
+/**
+ * Request parameters for updatePlaylist operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiUpdatePlaylistRequest
+ */
+export interface PlaylistsApiUpdatePlaylistRequest {
+    /**
+     * the ID of the playlist
+     * @type {any}
+     * @memberof PlaylistsApiUpdatePlaylist
+     */
+    readonly playlistID: any;
+}
+/**
+ * Request parameters for uploadPlaylist operation in PlaylistsApi.
+ * @export
+ * @interface PlaylistsApiUploadPlaylistRequest
+ */
+export interface PlaylistsApiUploadPlaylistRequest {
+    /**
+     * absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
+     * @type {any}
+     * @memberof PlaylistsApiUploadPlaylist
+     */
+    readonly path: any;
+    /**
+     * force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+     * @type {any}
+     * @memberof PlaylistsApiUploadPlaylist
+     */
+    readonly force: any;
+}
+/**
+ * PlaylistsApi - object-oriented interface
+ * @export
+ * @class PlaylistsApi
+ * @extends {BaseAPI}
+ */
+export declare class PlaylistsApi extends BaseAPI {
+    /**
+     * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
+     * @summary Adding to a Playlist
+     * @param {PlaylistsApiAddPlaylistContentRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    addPlaylistContent(requestParameters: PlaylistsApiAddPlaylistContentRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * Clears a playlist, only works with dumb playlists. Returns the playlist.
+     * @summary Delete Playlist Contents
+     * @param {PlaylistsApiClearPlaylistContentRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    clearPlaylistContent(requestParameters: PlaylistsApiClearPlaylistContentRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
+     * @summary Create a Playlist
+     * @param {PlaylistsApiCreateAPlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    createAPlaylist(requestParameters: PlaylistsApiCreateAPlaylistRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * This endpoint will delete a playlist
+     * @summary Deletes a Playlist
+     * @param {PlaylistsApiDeletePlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    deletePlaylist(requestParameters: PlaylistsApiDeletePlaylistRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @summary Get All Playlists
+     * @param {PlaylistsApiGetAllPlaylistsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    getAllPlaylists(requestParameters?: PlaylistsApiGetAllPlaylistsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+     * @summary Retrieve Playlist
+     * @param {PlaylistsApiGetPlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    getPlaylist(requestParameters: PlaylistsApiGetPlaylistRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+     * @summary Retrieve Playlist Contents
+     * @param {PlaylistsApiGetPlaylistContentRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    getPlaylistContent(requestParameters: PlaylistsApiGetPlaylistContentRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
+     * @summary Update a Playlist
+     * @param {PlaylistsApiUpdatePlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    updatePlaylist(requestParameters: PlaylistsApiUpdatePlaylistRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+     * @summary Upload Playlist
+     * @param {PlaylistsApiUploadPlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    uploadPlaylist(requestParameters: PlaylistsApiUploadPlaylistRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+}
+/**
+ * SearchApi - axios parameter creator
+ * @export
+ */
+export declare const SearchApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
+     * @summary Perform a search
+     * @param {any} query The query term
+     * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+     * @param {any} [limit] The number of items to return per hub
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    performSearch: (query: any, sectionId?: any, limit?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+     * @summary Perform a voice search
+     * @param {any} query The query term
+     * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+     * @param {any} [limit] The number of items to return per hub
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    performVoiceSearch: (query: any, sectionId?: any, limit?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * SearchApi - functional programming interface
+ * @export
+ */
+export declare const SearchApiFp: (configuration?: Configuration) => {
+    /**
+     * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
+     * @summary Perform a search
+     * @param {any} query The query term
+     * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+     * @param {any} [limit] The number of items to return per hub
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    performSearch(query: any, sectionId?: any, limit?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+     * @summary Perform a voice search
+     * @param {any} query The query term
+     * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+     * @param {any} [limit] The number of items to return per hub
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    performVoiceSearch(query: any, sectionId?: any, limit?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * SearchApi - factory interface
+ * @export
+ */
+export declare const SearchApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
+     * @summary Perform a search
+     * @param {any} query The query term
+     * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+     * @param {any} [limit] The number of items to return per hub
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    performSearch(query: any, sectionId?: any, limit?: any, axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+     * @summary Perform a voice search
+     * @param {any} query The query term
+     * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+     * @param {any} [limit] The number of items to return per hub
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    performVoiceSearch(query: any, sectionId?: any, limit?: any, axiosOptions?: any): AxiosPromise<void>;
+};
+/**
+ * Request parameters for performSearch operation in SearchApi.
+ * @export
+ * @interface SearchApiPerformSearchRequest
+ */
+export interface SearchApiPerformSearchRequest {
+    /**
+     * The query term
+     * @type {any}
+     * @memberof SearchApiPerformSearch
+     */
+    readonly query: any;
+    /**
+     * This gives context to the search, and can result in re-ordering of search result hubs
+     * @type {any}
+     * @memberof SearchApiPerformSearch
+     */
+    readonly sectionId?: any;
+    /**
+     * The number of items to return per hub
+     * @type {any}
+     * @memberof SearchApiPerformSearch
+     */
+    readonly limit?: any;
+}
+/**
+ * Request parameters for performVoiceSearch operation in SearchApi.
+ * @export
+ * @interface SearchApiPerformVoiceSearchRequest
+ */
+export interface SearchApiPerformVoiceSearchRequest {
+    /**
+     * The query term
+     * @type {any}
+     * @memberof SearchApiPerformVoiceSearch
+     */
+    readonly query: any;
+    /**
+     * This gives context to the search, and can result in re-ordering of search result hubs
+     * @type {any}
+     * @memberof SearchApiPerformVoiceSearch
+     */
+    readonly sectionId?: any;
+    /**
+     * The number of items to return per hub
+     * @type {any}
+     * @memberof SearchApiPerformVoiceSearch
+     */
+    readonly limit?: any;
+}
+/**
+ * SearchApi - object-oriented interface
+ * @export
+ * @class SearchApi
+ * @extends {BaseAPI}
+ */
+export declare class SearchApi extends BaseAPI {
+    /**
+     * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
+     * @summary Perform a search
+     * @param {SearchApiPerformSearchRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SearchApi
+     */
+    performSearch(requestParameters: SearchApiPerformSearchRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+     * @summary Perform a voice search
+     * @param {SearchApiPerformVoiceSearchRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SearchApi
+     */
+    performVoiceSearch(requestParameters: SearchApiPerformVoiceSearchRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+}
+/**
  * SecurityApi - axios parameter creator
  * @export
  */
@@ -1056,6 +2486,13 @@ export declare class SecurityApi extends BaseAPI {
  */
 export declare const ServerApiAxiosParamCreator: (configuration?: Configuration) => {
     /**
+     * Get Server Preferences
+     * @summary Get Server Preferences
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getServerPreferences: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
      * Server Capabilities
      * @summary Server Capabilities
      * @param {*} [axiosOptions] Override http request option.
@@ -1069,6 +2506,13 @@ export declare const ServerApiAxiosParamCreator: (configuration?: Configuration)
  */
 export declare const ServerApiFp: (configuration?: Configuration) => {
     /**
+     * Get Server Preferences
+     * @summary Get Server Preferences
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getServerPreferences(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
      * Server Capabilities
      * @summary Server Capabilities
      * @param {*} [axiosOptions] Override http request option.
@@ -1081,6 +2525,13 @@ export declare const ServerApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const ServerApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Get Server Preferences
+     * @summary Get Server Preferences
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getServerPreferences(axiosOptions?: any): AxiosPromise<void>;
     /**
      * Server Capabilities
      * @summary Server Capabilities
@@ -1097,6 +2548,14 @@ export declare const ServerApiFactory: (configuration?: Configuration, basePath?
  */
 export declare class ServerApi extends BaseAPI {
     /**
+     * Get Server Preferences
+     * @summary Get Server Preferences
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    getServerPreferences(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
      * Server Capabilities
      * @summary Server Capabilities
      * @param {*} [axiosOptions] Override http request option.
@@ -1104,6 +2563,90 @@ export declare class ServerApi extends BaseAPI {
      * @memberof ServerApi
      */
     serverCapabilities(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<ServerCapabilities200Response, any>>;
+}
+/**
+ * SessionsApi - axios parameter creator
+ * @export
+ */
+export declare const SessionsApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * This will Retrieve a listing of all history views.
+     * @summary Get Session History
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSessionHistory: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * This will retrieve the \"Now Playing\" Information of the PMS.
+     * @summary Get Active Sessions
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSessions: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * SessionsApi - functional programming interface
+ * @export
+ */
+export declare const SessionsApiFp: (configuration?: Configuration) => {
+    /**
+     * This will Retrieve a listing of all history views.
+     * @summary Get Session History
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSessionHistory(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     * This will retrieve the \"Now Playing\" Information of the PMS.
+     * @summary Get Active Sessions
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSessions(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * SessionsApi - factory interface
+ * @export
+ */
+export declare const SessionsApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * This will Retrieve a listing of all history views.
+     * @summary Get Session History
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSessionHistory(axiosOptions?: any): AxiosPromise<void>;
+    /**
+     * This will retrieve the \"Now Playing\" Information of the PMS.
+     * @summary Get Active Sessions
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSessions(axiosOptions?: any): AxiosPromise<void>;
+};
+/**
+ * SessionsApi - object-oriented interface
+ * @export
+ * @class SessionsApi
+ * @extends {BaseAPI}
+ */
+export declare class SessionsApi extends BaseAPI {
+    /**
+     * This will Retrieve a listing of all history views.
+     * @summary Get Session History
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    getSessionHistory(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     * This will retrieve the \"Now Playing\" Information of the PMS.
+     * @summary Get Active Sessions
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    getSessions(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
 /**
  * UpdaterApi - axios parameter creator
@@ -1260,4 +2803,59 @@ export declare class UpdaterApi extends BaseAPI {
      * @memberof UpdaterApi
      */
     queryingUpdateStatus(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+}
+/**
+ * UserApi - axios parameter creator
+ * @export
+ */
+export declare const UserApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Get Logged in User
+     * @summary Get Logged in User
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCurrentUserDetails: (axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+export declare const UserApiFp: (configuration?: Configuration) => {
+    /**
+     * Get Logged in User
+     * @summary Get Logged in User
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCurrentUserDetails(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * UserApi - factory interface
+ * @export
+ */
+export declare const UserApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Get Logged in User
+     * @summary Get Logged in User
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCurrentUserDetails(axiosOptions?: any): AxiosPromise<void>;
+};
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+export declare class UserApi extends BaseAPI {
+    /**
+     * Get Logged in User
+     * @summary Get Logged in User
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    getCurrentUserDetails(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }

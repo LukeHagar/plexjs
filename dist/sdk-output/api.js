@@ -75,7 +75,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdaterApi = exports.UpdaterApiFactory = exports.UpdaterApiFp = exports.UpdaterApiAxiosParamCreator = exports.ServerApi = exports.ServerApiFactory = exports.ServerApiFp = exports.ServerApiAxiosParamCreator = exports.SecurityApi = exports.SecurityApiFactory = exports.SecurityApiFp = exports.SecurityApiAxiosParamCreator = exports.LogApi = exports.LogApiFactory = exports.LogApiFp = exports.LogApiAxiosParamCreator = exports.LibraryApi = exports.LibraryApiFactory = exports.LibraryApiFp = exports.LibraryApiAxiosParamCreator = exports.ButlerApi = exports.ButlerApiFactory = exports.ButlerApiFp = exports.ButlerApiAxiosParamCreator = exports.ActivitiesApi = exports.ActivitiesApiFactory = exports.ActivitiesApiFp = exports.ActivitiesApiAxiosParamCreator = void 0;
+exports.UpdaterApiFp = exports.UpdaterApiAxiosParamCreator = exports.SessionsApi = exports.SessionsApiFactory = exports.SessionsApiFp = exports.SessionsApiAxiosParamCreator = exports.ServerApi = exports.ServerApiFactory = exports.ServerApiFp = exports.ServerApiAxiosParamCreator = exports.SecurityApi = exports.SecurityApiFactory = exports.SecurityApiFp = exports.SecurityApiAxiosParamCreator = exports.SearchApi = exports.SearchApiFactory = exports.SearchApiFp = exports.SearchApiAxiosParamCreator = exports.PlaylistsApi = exports.PlaylistsApiFactory = exports.PlaylistsApiFp = exports.PlaylistsApiAxiosParamCreator = exports.LogApi = exports.LogApiFactory = exports.LogApiFp = exports.LogApiAxiosParamCreator = exports.LibraryApi = exports.LibraryApiFactory = exports.LibraryApiFp = exports.LibraryApiAxiosParamCreator = exports.HubsApi = exports.HubsApiFactory = exports.HubsApiFp = exports.HubsApiAxiosParamCreator = exports.HashesApi = exports.HashesApiFactory = exports.HashesApiFp = exports.HashesApiAxiosParamCreator = exports.DevicesApi = exports.DevicesApiFactory = exports.DevicesApiFp = exports.DevicesApiAxiosParamCreator = exports.ButlerApi = exports.ButlerApiFactory = exports.ButlerApiFp = exports.ButlerApiAxiosParamCreator = exports.ActivitiesApi = exports.ActivitiesApiFactory = exports.ActivitiesApiFp = exports.ActivitiesApiAxiosParamCreator = void 0;
+exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiAxiosParamCreator = exports.UpdaterApi = exports.UpdaterApiFactory = void 0;
 var axios_1 = require("axios");
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -648,6 +649,564 @@ var ButlerApi = /** @class */ (function (_super) {
 }(base_1.BaseAPI));
 exports.ButlerApi = ButlerApi;
 /**
+ * DevicesApi - axios parameter creator
+ * @export
+ */
+var DevicesApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         * Get Available Clients
+         * @summary Get Available Clients
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvailableClients: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/clients";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/resources";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.DevicesApiAxiosParamCreator = DevicesApiAxiosParamCreator;
+/**
+ * DevicesApi - functional programming interface
+ * @export
+ */
+var DevicesApiFp = function (configuration) {
+    var localVarAxiosParamCreator = (0, exports.DevicesApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         * Get Available Clients
+         * @summary Get Available Clients
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvailableClients: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getAvailableClients(axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getDevices(axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.DevicesApiFp = DevicesApiFp;
+/**
+ * DevicesApi - factory interface
+ * @export
+ */
+var DevicesApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = (0, exports.DevicesApiFp)(configuration);
+    return {
+        /**
+         * Get Available Clients
+         * @summary Get Available Clients
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvailableClients: function (axiosOptions) {
+            return localVarFp.getAvailableClients(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices: function (axiosOptions) {
+            return localVarFp.getDevices(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+exports.DevicesApiFactory = DevicesApiFactory;
+/**
+ * DevicesApi - object-oriented interface
+ * @export
+ * @class DevicesApi
+ * @extends {BaseAPI}
+ */
+var DevicesApi = /** @class */ (function (_super) {
+    __extends(DevicesApi, _super);
+    function DevicesApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Get Available Clients
+     * @summary Get Available Clients
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    DevicesApi.prototype.getAvailableClients = function (axiosOptions) {
+        var _this = this;
+        return (0, exports.DevicesApiFp)(this.configuration).getAvailableClients(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * Get Devices
+     * @summary Get Devices
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    DevicesApi.prototype.getDevices = function (axiosOptions) {
+        var _this = this;
+        return (0, exports.DevicesApiFp)(this.configuration).getDevices(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return DevicesApi;
+}(base_1.BaseAPI));
+exports.DevicesApi = DevicesApi;
+/**
+ * HashesApi - axios parameter creator
+ * @export
+ */
+var HashesApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         * This resource returns hash values for local files
+         * @summary Get Hash Value
+         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+         * @param {any} [type] Item type
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFileHash: function (url, type, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'url' is not null or undefined
+                            (0, common_1.assertParamExists)('getFileHash', 'url', url);
+                            localVarPath = "/library/hashes"
+                                .replace("{".concat("url", "}"), encodeURIComponent(String(url)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.HashesApiAxiosParamCreator = HashesApiAxiosParamCreator;
+/**
+ * HashesApi - functional programming interface
+ * @export
+ */
+var HashesApiFp = function (configuration) {
+    var localVarAxiosParamCreator = (0, exports.HashesApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         * This resource returns hash values for local files
+         * @summary Get Hash Value
+         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+         * @param {any} [type] Item type
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFileHash: function (url, type, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getFileHash(url, type, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.HashesApiFp = HashesApiFp;
+/**
+ * HashesApi - factory interface
+ * @export
+ */
+var HashesApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = (0, exports.HashesApiFp)(configuration);
+    return {
+        /**
+         * This resource returns hash values for local files
+         * @summary Get Hash Value
+         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+         * @param {any} [type] Item type
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFileHash: function (url, type, axiosOptions) {
+            return localVarFp.getFileHash(url, type, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+exports.HashesApiFactory = HashesApiFactory;
+/**
+ * HashesApi - object-oriented interface
+ * @export
+ * @class HashesApi
+ * @extends {BaseAPI}
+ */
+var HashesApi = /** @class */ (function (_super) {
+    __extends(HashesApi, _super);
+    function HashesApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * This resource returns hash values for local files
+     * @summary Get Hash Value
+     * @param {HashesApiGetFileHashRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HashesApi
+     */
+    HashesApi.prototype.getFileHash = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.HashesApiFp)(this.configuration).getFileHash(requestParameters.url, requestParameters.type, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return HashesApi;
+}(base_1.BaseAPI));
+exports.HashesApi = HashesApi;
+/**
+ * HubsApi - axios parameter creator
+ * @export
+ */
+var HubsApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         *
+         * @summary Get Global Hubs
+         * @param {any} [count] The number of items to return with each hub.
+         * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/hubs";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (count !== undefined) {
+                                localVarQueryParameter['count'] = count;
+                            }
+                            if (onlyTransient !== undefined) {
+                                localVarQueryParameter['onlyTransient'] = onlyTransient;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will return a list of library specific hubs
+         * @summary Get library specific hubs
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [count] The number of items to return with each hub.
+         * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'sectionId' is not null or undefined
+                            (0, common_1.assertParamExists)('getLibraryHubs', 'sectionId', sectionId);
+                            localVarPath = "/hubs/sections/{sectionId}"
+                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (count !== undefined) {
+                                localVarQueryParameter['count'] = count;
+                            }
+                            if (onlyTransient !== undefined) {
+                                localVarQueryParameter['onlyTransient'] = onlyTransient;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.HubsApiAxiosParamCreator = HubsApiAxiosParamCreator;
+/**
+ * HubsApi - functional programming interface
+ * @export
+ */
+var HubsApiFp = function (configuration) {
+    var localVarAxiosParamCreator = (0, exports.HubsApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         *
+         * @summary Get Global Hubs
+         * @param {any} [count] The number of items to return with each hub.
+         * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getGlobalHubs(count, onlyTransient, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will return a list of library specific hubs
+         * @summary Get library specific hubs
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [count] The number of items to return with each hub.
+         * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryHubs(sectionId, count, onlyTransient, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.HubsApiFp = HubsApiFp;
+/**
+ * HubsApi - factory interface
+ * @export
+ */
+var HubsApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = (0, exports.HubsApiFp)(configuration);
+    return {
+        /**
+         *
+         * @summary Get Global Hubs
+         * @param {any} [count] The number of items to return with each hub.
+         * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
+            return localVarFp.getGlobalHubs(count, onlyTransient, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This endpoint will return a list of library specific hubs
+         * @summary Get library specific hubs
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [count] The number of items to return with each hub.
+         * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
+            return localVarFp.getLibraryHubs(sectionId, count, onlyTransient, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+exports.HubsApiFactory = HubsApiFactory;
+/**
+ * HubsApi - object-oriented interface
+ * @export
+ * @class HubsApi
+ * @extends {BaseAPI}
+ */
+var HubsApi = /** @class */ (function (_super) {
+    __extends(HubsApi, _super);
+    function HubsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     *
+     * @summary Get Global Hubs
+     * @param {HubsApiGetGlobalHubsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HubsApi
+     */
+    HubsApi.prototype.getGlobalHubs = function (requestParameters, axiosOptions) {
+        var _this = this;
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.HubsApiFp)(this.configuration).getGlobalHubs(requestParameters.count, requestParameters.onlyTransient, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This endpoint will return a list of library specific hubs
+     * @summary Get library specific hubs
+     * @param {HubsApiGetLibraryHubsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HubsApi
+     */
+    HubsApi.prototype.getLibraryHubs = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.HubsApiFp)(this.configuration).getLibraryHubs(requestParameters.sectionId, requestParameters.count, requestParameters.onlyTransient, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return HubsApi;
+}(base_1.BaseAPI));
+exports.HubsApi = HubsApi;
+/**
  * LibraryApi - axios parameter creator
  * @export
  */
@@ -655,7 +1214,158 @@ var LibraryApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
-         * This endpoint will return a list of libraries
+         * This endpoint will return a list of all library items filtered by the filter and type provided
+         * @summary Get All Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'sectionId' is not null or undefined
+                            (0, common_1.assertParamExists)('getAllLibraryItems', 'sectionId', sectionId);
+                            localVarPath = "/library/sections/{sectionId}/all"
+                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            if (filter !== undefined) {
+                                localVarQueryParameter['filter'] = filter;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
+         * @summary Get Common Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} type item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'sectionId' is not null or undefined
+                            (0, common_1.assertParamExists)('getCommonLibraryItems', 'sectionId', sectionId);
+                            // verify required parameter 'type' is not null or undefined
+                            (0, common_1.assertParamExists)('getCommonLibraryItems', 'type', type);
+                            localVarPath = "/library/sections/{sectionId}/common"
+                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            if (filter !== undefined) {
+                                localVarQueryParameter['filter'] = filter;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will return a list of the latest library items filtered by the filter and type provided
+         * @summary Get Latest Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} type item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'sectionId' is not null or undefined
+                            (0, common_1.assertParamExists)('getLatestLibraryItems', 'sectionId', sectionId);
+                            // verify required parameter 'type' is not null or undefined
+                            (0, common_1.assertParamExists)('getLatestLibraryItems', 'type', type);
+                            localVarPath = "/library/sections/{sectionId}/latest"
+                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            if (filter !== undefined) {
+                                localVarQueryParameter['filter'] = filter;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -692,16 +1402,14 @@ var LibraryApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * This endpoint will return a list of library items filtered by the filter and type provided
-         * @summary Get Library Items
+         * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
+         * @summary Get Library Details
          * @param {any} sectionId the Id of the library to query
-         * @param {any} category the category to retrieve from the library
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
+         * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, category, type, filter, axiosOptions) {
+        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -709,12 +1417,9 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'sectionId' is not null or undefined
-                            (0, common_1.assertParamExists)('getLibraryItems', 'sectionId', sectionId);
-                            // verify required parameter 'category' is not null or undefined
-                            (0, common_1.assertParamExists)('getLibraryItems', 'category', category);
-                            localVarPath = "/library/sections/{sectionId}/{category}"
-                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)))
-                                .replace("{".concat("category", "}"), encodeURIComponent(String(category)));
+                            (0, common_1.assertParamExists)('getLibraryDetails', 'sectionId', sectionId);
+                            localVarPath = "/library/sections/{sectionId}"
+                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
                             if (configuration) {
                                 baseOptions = configuration.baseOptions;
@@ -727,12 +1432,87 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                         case 1:
                             // authentication PlexToken required
                             _a.sent();
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
+                            if (includeDetails !== undefined) {
+                                localVarQueryParameter['includeDetails'] = includeDetails;
                             }
-                            if (filter !== undefined) {
-                                localVarQueryParameter['filter'] = filter;
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will return the on deck content.
+         * @summary Get On Deck
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOnDeck: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/library/onDeck";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
                             }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint Refreshes the library.
+         * @summary Refresh Library
+         * @param {any} sectionId the Id of the library to refresh
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        refreshLibrary: function (sectionId, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'sectionId' is not null or undefined
+                            (0, common_1.assertParamExists)('refreshLibrary', 'sectionId', sectionId);
+                            localVarPath = "/library/sections/{sectionId}/refresh"
+                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -755,7 +1535,73 @@ var LibraryApiFp = function (configuration) {
     var localVarAxiosParamCreator = (0, exports.LibraryApiAxiosParamCreator)(configuration);
     return {
         /**
-         * This endpoint will return a list of libraries
+         * This endpoint will return a list of all library items filtered by the filter and type provided
+         * @summary Get All Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getAllLibraryItems(sectionId, type, filter, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
+         * @summary Get Common Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} type item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getCommonLibraryItems(sectionId, type, filter, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will return a list of the latest library items filtered by the filter and type provided
+         * @summary Get Latest Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} type item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLatestLibraryItems(sectionId, type, filter, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -774,21 +1620,58 @@ var LibraryApiFp = function (configuration) {
             });
         },
         /**
-         * This endpoint will return a list of library items filtered by the filter and type provided
-         * @summary Get Library Items
+         * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
+         * @summary Get Library Details
          * @param {any} sectionId the Id of the library to query
-         * @param {any} category the category to retrieve from the library
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
+         * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, category, type, filter, axiosOptions) {
+        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryItems(sectionId, category, type, filter, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryDetails(sectionId, includeDetails, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will return the on deck content.
+         * @summary Get On Deck
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOnDeck: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getOnDeck(axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint Refreshes the library.
+         * @summary Refresh Library
+         * @param {any} sectionId the Id of the library to refresh
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        refreshLibrary: function (sectionId, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.refreshLibrary(sectionId, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -807,7 +1690,43 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
     var localVarFp = (0, exports.LibraryApiFp)(configuration);
     return {
         /**
-         * This endpoint will return a list of libraries
+         * This endpoint will return a list of all library items filtered by the filter and type provided
+         * @summary Get All Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} [type] item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            return localVarFp.getAllLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
+         * @summary Get Common Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} type item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            return localVarFp.getCommonLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This endpoint will return a list of the latest library items filtered by the filter and type provided
+         * @summary Get Latest Library Items
+         * @param {any} sectionId the Id of the library to query
+         * @param {any} type item type
+         * @param {any} [filter] the filter parameter
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
+            return localVarFp.getLatestLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
@@ -816,17 +1735,34 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
             return localVarFp.getLibraries(axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
-         * This endpoint will return a list of library items filtered by the filter and type provided
-         * @summary Get Library Items
+         * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
+         * @summary Get Library Details
          * @param {any} sectionId the Id of the library to query
-         * @param {any} category the category to retrieve from the library
-         * @param {any} [type] item type
-         * @param {any} [filter] the filter parameter
+         * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, category, type, filter, axiosOptions) {
-            return localVarFp.getLibraryItems(sectionId, category, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
+            return localVarFp.getLibraryDetails(sectionId, includeDetails, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This endpoint will return the on deck content.
+         * @summary Get On Deck
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOnDeck: function (axiosOptions) {
+            return localVarFp.getOnDeck(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This endpoint Refreshes the library.
+         * @summary Refresh Library
+         * @param {any} sectionId the Id of the library to refresh
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        refreshLibrary: function (sectionId, axiosOptions) {
+            return localVarFp.refreshLibrary(sectionId, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -843,7 +1779,43 @@ var LibraryApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * This endpoint will return a list of libraries
+     * This endpoint will return a list of all library items filtered by the filter and type provided
+     * @summary Get All Library Items
+     * @param {LibraryApiGetAllLibraryItemsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    LibraryApi.prototype.getAllLibraryItems = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.LibraryApiFp)(this.configuration).getAllLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
+     * @summary Get Common Library Items
+     * @param {LibraryApiGetCommonLibraryItemsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    LibraryApi.prototype.getCommonLibraryItems = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.LibraryApiFp)(this.configuration).getCommonLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This endpoint will return a list of the latest library items filtered by the filter and type provided
+     * @summary Get Latest Library Items
+     * @param {LibraryApiGetLatestLibraryItemsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    LibraryApi.prototype.getLatestLibraryItems = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.LibraryApiFp)(this.configuration).getLatestLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  \\This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      * @summary Get All Libraries
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
@@ -854,16 +1826,39 @@ var LibraryApi = /** @class */ (function (_super) {
         return (0, exports.LibraryApiFp)(this.configuration).getLibraries(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
-     * This endpoint will return a list of library items filtered by the filter and type provided
-     * @summary Get Library Items
-     * @param {LibraryApiGetLibraryItemsRequest} requestParameters Request parameters.
+     * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
+     * @summary Get Library Details
+     * @param {LibraryApiGetLibraryDetailsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getLibraryItems = function (requestParameters, axiosOptions) {
+    LibraryApi.prototype.getLibraryDetails = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.category, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.LibraryApiFp)(this.configuration).getLibraryDetails(requestParameters.sectionId, requestParameters.includeDetails, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This endpoint will return the on deck content.
+     * @summary Get On Deck
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    LibraryApi.prototype.getOnDeck = function (axiosOptions) {
+        var _this = this;
+        return (0, exports.LibraryApiFp)(this.configuration).getOnDeck(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This endpoint Refreshes the library.
+     * @summary Refresh Library
+     * @param {LibraryApiRefreshLibraryRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    LibraryApi.prototype.refreshLibrary = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.LibraryApiFp)(this.configuration).refreshLibrary(requestParameters.sectionId, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return LibraryApi;
 }(base_1.BaseAPI));
@@ -1166,6 +2161,1106 @@ var LogApi = /** @class */ (function (_super) {
 }(base_1.BaseAPI));
 exports.LogApi = LogApi;
 /**
+ * PlaylistsApi - axios parameter creator
+ * @export
+ */
+var PlaylistsApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
+         * @summary Adding to a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {any} uri the content URI for the playlist
+         * @param {any} playQueueID the play queue to add to a playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        addPlaylistContent: function (playlistID, uri, playQueueID, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'playlistID' is not null or undefined
+                            (0, common_1.assertParamExists)('addPlaylistContent', 'playlistID', playlistID);
+                            // verify required parameter 'uri' is not null or undefined
+                            (0, common_1.assertParamExists)('addPlaylistContent', 'uri', uri);
+                            // verify required parameter 'playQueueID' is not null or undefined
+                            (0, common_1.assertParamExists)('addPlaylistContent', 'playQueueID', playQueueID);
+                            localVarPath = "/playlists/{playlistID}/items"
+                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (uri !== undefined) {
+                                localVarQueryParameter['uri'] = uri;
+                            }
+                            if (playQueueID !== undefined) {
+                                localVarQueryParameter['playQueueID'] = playQueueID;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Clears a playlist, only works with dumb playlists. Returns the playlist.
+         * @summary Delete Playlist Contents
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        clearPlaylistContent: function (playlistID, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'playlistID' is not null or undefined
+                            (0, common_1.assertParamExists)('clearPlaylistContent', 'playlistID', playlistID);
+                            localVarPath = "/playlists/{playlistID}/items"
+                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
+         * @summary Create a Playlist
+         * @param {any} title name of the playlist
+         * @param {any} type type of playlist to create
+         * @param {any} smart whether the playlist is smart or not
+         * @param {any} [uri] the content URI for the playlist
+         * @param {any} [playQueueID] the play queue to copy to a playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'title' is not null or undefined
+                            (0, common_1.assertParamExists)('createAPlaylist', 'title', title);
+                            // verify required parameter 'type' is not null or undefined
+                            (0, common_1.assertParamExists)('createAPlaylist', 'type', type);
+                            // verify required parameter 'smart' is not null or undefined
+                            (0, common_1.assertParamExists)('createAPlaylist', 'smart', smart);
+                            localVarPath = "/playlists";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (title !== undefined) {
+                                localVarQueryParameter['title'] = title;
+                            }
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            if (smart !== undefined) {
+                                localVarQueryParameter['smart'] = smart;
+                            }
+                            if (uri !== undefined) {
+                                localVarQueryParameter['uri'] = uri;
+                            }
+                            if (playQueueID !== undefined) {
+                                localVarQueryParameter['playQueueID'] = playQueueID;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will delete a playlist
+         * @summary Deletes a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePlaylist: function (playlistID, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'playlistID' is not null or undefined
+                            (0, common_1.assertParamExists)('deletePlaylist', 'playlistID', playlistID);
+                            localVarPath = "/playlists/{playlistID}"
+                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllPlaylists: function (playlistType, smart, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/playlists/all";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (playlistType !== undefined) {
+                                localVarQueryParameter['playlistType'] = playlistType;
+                            }
+                            if (smart !== undefined) {
+                                localVarQueryParameter['smart'] = smart;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+         * @summary Retrieve Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylist: function (playlistID, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'playlistID' is not null or undefined
+                            (0, common_1.assertParamExists)('getPlaylist', 'playlistID', playlistID);
+                            localVarPath = "/playlists/{playlistID}"
+                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+         * @summary Retrieve Playlist Contents
+         * @param {any} playlistID the ID of the playlist
+         * @param {any} type the metadata type of the item to return
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylistContent: function (playlistID, type, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'playlistID' is not null or undefined
+                            (0, common_1.assertParamExists)('getPlaylistContent', 'playlistID', playlistID);
+                            // verify required parameter 'type' is not null or undefined
+                            (0, common_1.assertParamExists)('getPlaylistContent', 'type', type);
+                            localVarPath = "/playlists/{playlistID}/items"
+                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (type !== undefined) {
+                                localVarQueryParameter['type'] = type;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
+         * @summary Update a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePlaylist: function (playlistID, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'playlistID' is not null or undefined
+                            (0, common_1.assertParamExists)('updatePlaylist', 'playlistID', playlistID);
+                            localVarPath = "/playlists/{playlistID}"
+                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+         * @summary Upload Playlist
+         * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
+         * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadPlaylist: function (path, force, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'path' is not null or undefined
+                            (0, common_1.assertParamExists)('uploadPlaylist', 'path', path);
+                            // verify required parameter 'force' is not null or undefined
+                            (0, common_1.assertParamExists)('uploadPlaylist', 'force', force);
+                            localVarPath = "/playlists/upload";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (path !== undefined) {
+                                localVarQueryParameter['path'] = path;
+                            }
+                            if (force !== undefined) {
+                                localVarQueryParameter['force'] = force;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.PlaylistsApiAxiosParamCreator = PlaylistsApiAxiosParamCreator;
+/**
+ * PlaylistsApi - functional programming interface
+ * @export
+ */
+var PlaylistsApiFp = function (configuration) {
+    var localVarAxiosParamCreator = (0, exports.PlaylistsApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
+         * @summary Adding to a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {any} uri the content URI for the playlist
+         * @param {any} playQueueID the play queue to add to a playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        addPlaylistContent: function (playlistID, uri, playQueueID, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.addPlaylistContent(playlistID, uri, playQueueID, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * Clears a playlist, only works with dumb playlists. Returns the playlist.
+         * @summary Delete Playlist Contents
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        clearPlaylistContent: function (playlistID, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.clearPlaylistContent(playlistID, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
+         * @summary Create a Playlist
+         * @param {any} title name of the playlist
+         * @param {any} type type of playlist to create
+         * @param {any} smart whether the playlist is smart or not
+         * @param {any} [uri] the content URI for the playlist
+         * @param {any} [playQueueID] the play queue to copy to a playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.createAPlaylist(title, type, smart, uri, playQueueID, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint will delete a playlist
+         * @summary Deletes a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePlaylist: function (playlistID, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.deletePlaylist(playlistID, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         *
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllPlaylists: function (playlistType, smart, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getAllPlaylists(playlistType, smart, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+         * @summary Retrieve Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylist: function (playlistID, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylist(playlistID, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+         * @summary Retrieve Playlist Contents
+         * @param {any} playlistID the ID of the playlist
+         * @param {any} type the metadata type of the item to return
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylistContent: function (playlistID, type, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylistContent(playlistID, type, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
+         * @summary Update a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePlaylist: function (playlistID, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.updatePlaylist(playlistID, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+         * @summary Upload Playlist
+         * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
+         * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadPlaylist: function (path, force, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.uploadPlaylist(path, force, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.PlaylistsApiFp = PlaylistsApiFp;
+/**
+ * PlaylistsApi - factory interface
+ * @export
+ */
+var PlaylistsApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = (0, exports.PlaylistsApiFp)(configuration);
+    return {
+        /**
+         * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
+         * @summary Adding to a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {any} uri the content URI for the playlist
+         * @param {any} playQueueID the play queue to add to a playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        addPlaylistContent: function (playlistID, uri, playQueueID, axiosOptions) {
+            return localVarFp.addPlaylistContent(playlistID, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * Clears a playlist, only works with dumb playlists. Returns the playlist.
+         * @summary Delete Playlist Contents
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        clearPlaylistContent: function (playlistID, axiosOptions) {
+            return localVarFp.clearPlaylistContent(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
+         * @summary Create a Playlist
+         * @param {any} title name of the playlist
+         * @param {any} type type of playlist to create
+         * @param {any} smart whether the playlist is smart or not
+         * @param {any} [uri] the content URI for the playlist
+         * @param {any} [playQueueID] the play queue to copy to a playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        createAPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
+            return localVarFp.createAPlaylist(title, type, smart, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This endpoint will delete a playlist
+         * @summary Deletes a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePlaylist: function (playlistID, axiosOptions) {
+            return localVarFp.deletePlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         *
+         * @summary Get All Playlists
+         * @param {any} [playlistType] limit to a type of playlist.
+         * @param {any} [smart] type of playlists to return (default is all).
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllPlaylists: function (playlistType, smart, axiosOptions) {
+            return localVarFp.getAllPlaylists(playlistType, smart, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+         * @summary Retrieve Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylist: function (playlistID, axiosOptions) {
+            return localVarFp.getPlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+         * @summary Retrieve Playlist Contents
+         * @param {any} playlistID the ID of the playlist
+         * @param {any} type the metadata type of the item to return
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylistContent: function (playlistID, type, axiosOptions) {
+            return localVarFp.getPlaylistContent(playlistID, type, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
+         * @summary Update a Playlist
+         * @param {any} playlistID the ID of the playlist
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePlaylist: function (playlistID, axiosOptions) {
+            return localVarFp.updatePlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+         * @summary Upload Playlist
+         * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
+         * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadPlaylist: function (path, force, axiosOptions) {
+            return localVarFp.uploadPlaylist(path, force, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+exports.PlaylistsApiFactory = PlaylistsApiFactory;
+/**
+ * PlaylistsApi - object-oriented interface
+ * @export
+ * @class PlaylistsApi
+ * @extends {BaseAPI}
+ */
+var PlaylistsApi = /** @class */ (function (_super) {
+    __extends(PlaylistsApi, _super);
+    function PlaylistsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
+     * @summary Adding to a Playlist
+     * @param {PlaylistsApiAddPlaylistContentRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.addPlaylistContent = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.PlaylistsApiFp)(this.configuration).addPlaylistContent(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * Clears a playlist, only works with dumb playlists. Returns the playlist.
+     * @summary Delete Playlist Contents
+     * @param {PlaylistsApiClearPlaylistContentRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.clearPlaylistContent = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.PlaylistsApiFp)(this.configuration).clearPlaylistContent(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
+     * @summary Create a Playlist
+     * @param {PlaylistsApiCreateAPlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.createAPlaylist = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.PlaylistsApiFp)(this.configuration).createAPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This endpoint will delete a playlist
+     * @summary Deletes a Playlist
+     * @param {PlaylistsApiDeletePlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.deletePlaylist = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.PlaylistsApiFp)(this.configuration).deletePlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     *
+     * @summary Get All Playlists
+     * @param {PlaylistsApiGetAllPlaylistsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.getAllPlaylists = function (requestParameters, axiosOptions) {
+        var _this = this;
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.PlaylistsApiFp)(this.configuration).getAllPlaylists(requestParameters.playlistType, requestParameters.smart, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
+     * @summary Retrieve Playlist
+     * @param {PlaylistsApiGetPlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.getPlaylist = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
+     * @summary Retrieve Playlist Contents
+     * @param {PlaylistsApiGetPlaylistContentRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.getPlaylistContent = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylistContent(requestParameters.playlistID, requestParameters.type, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
+     * @summary Update a Playlist
+     * @param {PlaylistsApiUpdatePlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.updatePlaylist = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.PlaylistsApiFp)(this.configuration).updatePlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
+     * @summary Upload Playlist
+     * @param {PlaylistsApiUploadPlaylistRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlaylistsApi
+     */
+    PlaylistsApi.prototype.uploadPlaylist = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.PlaylistsApiFp)(this.configuration).uploadPlaylist(requestParameters.path, requestParameters.force, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return PlaylistsApi;
+}(base_1.BaseAPI));
+exports.PlaylistsApi = PlaylistsApi;
+/**
+ * SearchApi - axios parameter creator
+ * @export
+ */
+var SearchApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
+         * @summary Perform a search
+         * @param {any} query The query term
+         * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+         * @param {any} [limit] The number of items to return per hub
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        performSearch: function (query, sectionId, limit, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'query' is not null or undefined
+                            (0, common_1.assertParamExists)('performSearch', 'query', query);
+                            localVarPath = "/hubs/search";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (query !== undefined) {
+                                localVarQueryParameter['query'] = query;
+                            }
+                            if (sectionId !== undefined) {
+                                localVarQueryParameter['sectionId'] = sectionId;
+                            }
+                            if (limit !== undefined) {
+                                localVarQueryParameter['limit'] = limit;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+         * @summary Perform a voice search
+         * @param {any} query The query term
+         * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+         * @param {any} [limit] The number of items to return per hub
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            // verify required parameter 'query' is not null or undefined
+                            (0, common_1.assertParamExists)('performVoiceSearch', 'query', query);
+                            localVarPath = "/hubs/search/voice";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (query !== undefined) {
+                                localVarQueryParameter['query'] = query;
+                            }
+                            if (sectionId !== undefined) {
+                                localVarQueryParameter['sectionId'] = sectionId;
+                            }
+                            if (limit !== undefined) {
+                                localVarQueryParameter['limit'] = limit;
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.SearchApiAxiosParamCreator = SearchApiAxiosParamCreator;
+/**
+ * SearchApi - functional programming interface
+ * @export
+ */
+var SearchApiFp = function (configuration) {
+    var localVarAxiosParamCreator = (0, exports.SearchApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
+         * @summary Perform a search
+         * @param {any} query The query term
+         * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+         * @param {any} [limit] The number of items to return per hub
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        performSearch: function (query, sectionId, limit, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.performSearch(query, sectionId, limit, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+         * @summary Perform a voice search
+         * @param {any} query The query term
+         * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+         * @param {any} [limit] The number of items to return per hub
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.performVoiceSearch(query, sectionId, limit, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.SearchApiFp = SearchApiFp;
+/**
+ * SearchApi - factory interface
+ * @export
+ */
+var SearchApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = (0, exports.SearchApiFp)(configuration);
+    return {
+        /**
+         * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
+         * @summary Perform a search
+         * @param {any} query The query term
+         * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+         * @param {any} [limit] The number of items to return per hub
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        performSearch: function (query, sectionId, limit, axiosOptions) {
+            return localVarFp.performSearch(query, sectionId, limit, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+         * @summary Perform a voice search
+         * @param {any} query The query term
+         * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
+         * @param {any} [limit] The number of items to return per hub
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
+            return localVarFp.performVoiceSearch(query, sectionId, limit, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+exports.SearchApiFactory = SearchApiFactory;
+/**
+ * SearchApi - object-oriented interface
+ * @export
+ * @class SearchApi
+ * @extends {BaseAPI}
+ */
+var SearchApi = /** @class */ (function (_super) {
+    __extends(SearchApi, _super);
+    function SearchApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
+     * @summary Perform a search
+     * @param {SearchApiPerformSearchRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SearchApi
+     */
+    SearchApi.prototype.performSearch = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.SearchApiFp)(this.configuration).performSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
+     * @summary Perform a voice search
+     * @param {SearchApiPerformVoiceSearchRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SearchApi
+     */
+    SearchApi.prototype.performVoiceSearch = function (requestParameters, axiosOptions) {
+        var _this = this;
+        return (0, exports.SearchApiFp)(this.configuration).performVoiceSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return SearchApi;
+}(base_1.BaseAPI));
+exports.SearchApi = SearchApi;
+/**
  * SecurityApi - axios parameter creator
  * @export
  */
@@ -1395,6 +3490,43 @@ var ServerApiAxiosParamCreator = function (configuration) {
     var _this = this;
     return {
         /**
+         * Get Server Preferences
+         * @summary Get Server Preferences
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerPreferences: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/:/prefs";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
          * Server Capabilities
          * @summary Server Capabilities
          * @param {*} [axiosOptions] Override http request option.
@@ -1442,6 +3574,25 @@ var ServerApiFp = function (configuration) {
     var localVarAxiosParamCreator = (0, exports.ServerApiAxiosParamCreator)(configuration);
     return {
         /**
+         * Get Server Preferences
+         * @summary Get Server Preferences
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerPreferences: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerPreferences(axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
          * Server Capabilities
          * @summary Server Capabilities
          * @param {*} [axiosOptions] Override http request option.
@@ -1471,6 +3622,15 @@ var ServerApiFactory = function (configuration, basePath, axios) {
     var localVarFp = (0, exports.ServerApiFp)(configuration);
     return {
         /**
+         * Get Server Preferences
+         * @summary Get Server Preferences
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerPreferences: function (axiosOptions) {
+            return localVarFp.getServerPreferences(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
          * Server Capabilities
          * @summary Server Capabilities
          * @param {*} [axiosOptions] Override http request option.
@@ -1494,6 +3654,17 @@ var ServerApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Get Server Preferences
+     * @summary Get Server Preferences
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    ServerApi.prototype.getServerPreferences = function (axiosOptions) {
+        var _this = this;
+        return (0, exports.ServerApiFp)(this.configuration).getServerPreferences(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
      * Server Capabilities
      * @summary Server Capabilities
      * @param {*} [axiosOptions] Override http request option.
@@ -1507,6 +3678,202 @@ var ServerApi = /** @class */ (function (_super) {
     return ServerApi;
 }(base_1.BaseAPI));
 exports.ServerApi = ServerApi;
+/**
+ * SessionsApi - axios parameter creator
+ * @export
+ */
+var SessionsApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         * This will Retrieve a listing of all history views.
+         * @summary Get Session History
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSessionHistory: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/status/sessions/history/all";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+        /**
+         * This will retrieve the \"Now Playing\" Information of the PMS.
+         * @summary Get Active Sessions
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSessions: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/status/sessions";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.SessionsApiAxiosParamCreator = SessionsApiAxiosParamCreator;
+/**
+ * SessionsApi - functional programming interface
+ * @export
+ */
+var SessionsApiFp = function (configuration) {
+    var localVarAxiosParamCreator = (0, exports.SessionsApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         * This will Retrieve a listing of all history views.
+         * @summary Get Session History
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSessionHistory: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSessionHistory(axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * This will retrieve the \"Now Playing\" Information of the PMS.
+         * @summary Get Active Sessions
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSessions: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSessions(axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.SessionsApiFp = SessionsApiFp;
+/**
+ * SessionsApi - factory interface
+ * @export
+ */
+var SessionsApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = (0, exports.SessionsApiFp)(configuration);
+    return {
+        /**
+         * This will Retrieve a listing of all history views.
+         * @summary Get Session History
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSessionHistory: function (axiosOptions) {
+            return localVarFp.getSessionHistory(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * This will retrieve the \"Now Playing\" Information of the PMS.
+         * @summary Get Active Sessions
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSessions: function (axiosOptions) {
+            return localVarFp.getSessions(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+exports.SessionsApiFactory = SessionsApiFactory;
+/**
+ * SessionsApi - object-oriented interface
+ * @export
+ * @class SessionsApi
+ * @extends {BaseAPI}
+ */
+var SessionsApi = /** @class */ (function (_super) {
+    __extends(SessionsApi, _super);
+    function SessionsApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * This will Retrieve a listing of all history views.
+     * @summary Get Session History
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    SessionsApi.prototype.getSessionHistory = function (axiosOptions) {
+        var _this = this;
+        return (0, exports.SessionsApiFp)(this.configuration).getSessionHistory(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    /**
+     * This will retrieve the \"Now Playing\" Information of the PMS.
+     * @summary Get Active Sessions
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    SessionsApi.prototype.getSessions = function (axiosOptions) {
+        var _this = this;
+        return (0, exports.SessionsApiFp)(this.configuration).getSessions(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return SessionsApi;
+}(base_1.BaseAPI));
+exports.SessionsApi = SessionsApi;
 /**
  * UpdaterApi - axios parameter creator
  * @export
@@ -1801,4 +4168,124 @@ var UpdaterApi = /** @class */ (function (_super) {
     return UpdaterApi;
 }(base_1.BaseAPI));
 exports.UpdaterApi = UpdaterApi;
+/**
+ * UserApi - axios parameter creator
+ * @export
+ */
+var UserApiAxiosParamCreator = function (configuration) {
+    var _this = this;
+    return {
+        /**
+         * Get Logged in User
+         * @summary Get Logged in User
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCurrentUserDetails: function (axiosOptions) {
+            if (axiosOptions === void 0) { axiosOptions = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/user";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 1:
+                            // authentication PlexToken required
+                            _a.sent();
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.UserApiAxiosParamCreator = UserApiAxiosParamCreator;
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+var UserApiFp = function (configuration) {
+    var localVarAxiosParamCreator = (0, exports.UserApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         * Get Logged in User
+         * @summary Get Logged in User
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCurrentUserDetails: function (axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getCurrentUserDetails(axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+    };
+};
+exports.UserApiFp = UserApiFp;
+/**
+ * UserApi - factory interface
+ * @export
+ */
+var UserApiFactory = function (configuration, basePath, axios) {
+    var localVarFp = (0, exports.UserApiFp)(configuration);
+    return {
+        /**
+         * Get Logged in User
+         * @summary Get Logged in User
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCurrentUserDetails: function (axiosOptions) {
+            return localVarFp.getCurrentUserDetails(axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+    };
+};
+exports.UserApiFactory = UserApiFactory;
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+var UserApi = /** @class */ (function (_super) {
+    __extends(UserApi, _super);
+    function UserApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Get Logged in User
+     * @summary Get Logged in User
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    UserApi.prototype.getCurrentUserDetails = function (axiosOptions) {
+        var _this = this;
+        return (0, exports.UserApiFp)(this.configuration).getCurrentUserDetails(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+    };
+    return UserApi;
+}(base_1.BaseAPI));
+exports.UserApi = UserApi;
 //# sourceMappingURL=api.js.map
