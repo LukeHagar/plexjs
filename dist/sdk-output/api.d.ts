@@ -15,13 +15,159 @@ import { RequestArgs, BaseAPI } from './base';
 /**
  *
  * @export
- * @interface GetAvailableClients401Response
+ * @interface GetPin200Response
  */
-export interface GetAvailableClients401Response {
+export interface GetPin200Response {
+    /**
+     * PinID for use with authentication
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'id'?: any;
     /**
      *
      * @type {any}
-     * @memberof GetAvailableClients401Response
+     * @memberof GetPin200Response
+     */
+    'code'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'product'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'trusted'?: any;
+    /**
+     * a link to a QR code hosted on plex.tv  The QR code redirects to the relevant `plex.tv/link` authentication page Which then prompts the user for the 4 Digit Link Pin
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'qr'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'clientIdentifier'?: any;
+    /**
+     *
+     * @type {GetPin200ResponseLocation}
+     * @memberof GetPin200Response
+     */
+    'location'?: GetPin200ResponseLocation;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'expiresIn'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'createdAt'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'expiresAt'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'authToken'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200Response
+     */
+    'newRegistration'?: any;
+}
+/**
+ *
+ * @export
+ * @interface GetPin200ResponseLocation
+ */
+export interface GetPin200ResponseLocation {
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'code'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'european_union_member'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'continent_code'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'country'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'city'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'time_zone'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'postal_code'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'in_privacy_restricted_country'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'subdivisions'?: any;
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin200ResponseLocation
+     */
+    'coordinates'?: any;
+}
+/**
+ *
+ * @export
+ * @interface GetPin400Response
+ */
+export interface GetPin400Response {
+    /**
+     *
+     * @type {any}
+     * @memberof GetPin400Response
      */
     'errors'?: any;
 }
@@ -384,6 +530,19 @@ export interface GetServerCapabilities200ResponseMediaContainer {
     'Directory'?: any;
 }
 /**
+ *
+ * @export
+ * @interface GetServerCapabilities401Response
+ */
+export interface GetServerCapabilities401Response {
+    /**
+     *
+     * @type {any}
+     * @memberof GetServerCapabilities401Response
+     */
+    'errors'?: any;
+}
+/**
  * ActivitiesApi - axios parameter creator
  * @export
  */
@@ -483,6 +642,268 @@ export declare class ActivitiesApi extends BaseAPI {
      * @memberof ActivitiesApi
      */
     getServerActivities(axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<GetServerActivities200Response, any>>;
+}
+/**
+ * AuthenticationApi - axios parameter creator
+ * @export
+ */
+export declare const AuthenticationApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get a Pin
+     * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+     * @param {any} [xPlexVersion] Your application version number
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPin: (strong: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get Access Token
+     * @param {any} pinID The PinID to retrieve an access token for
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+     * @param {any} [xPlexVersion] Your application version number
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getToken: (pinID: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * AuthenticationApi - functional programming interface
+ * @export
+ */
+export declare const AuthenticationApiFp: (configuration?: Configuration) => {
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get a Pin
+     * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+     * @param {any} [xPlexVersion] Your application version number
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPin(strong: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPin200Response>>;
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get Access Token
+     * @param {any} pinID The PinID to retrieve an access token for
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+     * @param {any} [xPlexVersion] Your application version number
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getToken(pinID: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * AuthenticationApi - factory interface
+ * @export
+ */
+export declare const AuthenticationApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get a Pin
+     * @param {any} strong Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+     * @param {any} [xPlexVersion] Your application version number
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPin(strong: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<GetPin200Response>;
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get Access Token
+     * @param {any} pinID The PinID to retrieve an access token for
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+     * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+     * @param {any} [xPlexVersion] Your application version number
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     */
+    getToken(pinID: any, xPlexClientIdentifier: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<void>;
+};
+/**
+ * Request parameters for getPin operation in AuthenticationApi.
+ * @export
+ * @interface AuthenticationApiGetPinRequest
+ */
+export interface AuthenticationApiGetPinRequest {
+    /**
+     * Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly strong: any;
+    /**
+     * Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly xPlexClientIdentifier: any;
+    /**
+     * Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly xPlexDeviceName?: any;
+    /**
+     * The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly xPlexDevice?: any;
+    /**
+     * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly xPlexPlatformVersion?: any;
+    /**
+     * Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly xPlexPlatform?: any;
+    /**
+     * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly xPlexProduct?: any;
+    /**
+     * One or more of &#x60;[player, controller, server]&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly xPlexProvides?: any;
+    /**
+     * Your application version number
+     * @type {any}
+     * @memberof AuthenticationApiGetPin
+     */
+    readonly xPlexVersion?: any;
+}
+/**
+ * Request parameters for getToken operation in AuthenticationApi.
+ * @export
+ * @interface AuthenticationApiGetTokenRequest
+ */
+export interface AuthenticationApiGetTokenRequest {
+    /**
+     * The PinID to retrieve an access token for
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly pinID: any;
+    /**
+     * Unique Id, UUID, serial number, or other number unique per device that identifies your client
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly xPlexClientIdentifier: any;
+    /**
+     * Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly xPlexDeviceName?: any;
+    /**
+     * The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly xPlexDevice?: any;
+    /**
+     * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly xPlexPlatformVersion?: any;
+    /**
+     * Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly xPlexPlatform?: any;
+    /**
+     * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly xPlexProduct?: any;
+    /**
+     * One or more of &#x60;[player, controller, server]&#x60;
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly xPlexProvides?: any;
+    /**
+     * Your application version number
+     * @type {any}
+     * @memberof AuthenticationApiGetToken
+     */
+    readonly xPlexVersion?: any;
+}
+/**
+ * AuthenticationApi - object-oriented interface
+ * @export
+ * @class AuthenticationApi
+ * @extends {BaseAPI}
+ */
+export declare class AuthenticationApi extends BaseAPI {
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get a Pin
+     * @param {AuthenticationApiGetPinRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthenticationApi
+     */
+    getPin(requestParameters: AuthenticationApiGetPinRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<GetPin200Response, any>>;
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get Access Token
+     * @param {AuthenticationApiGetTokenRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthenticationApi
+     */
+    getToken(requestParameters: AuthenticationApiGetTokenRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
 /**
  * ButlerApi - axios parameter creator
@@ -675,14 +1096,14 @@ export declare const DevicesApiAxiosParamCreator: (configuration?: Configuration
     /**
      * Get Devices
      * @summary Get Devices
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
+     * @param {any} [xPlexVersion] Your application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
@@ -703,14 +1124,14 @@ export declare const DevicesApiFp: (configuration?: Configuration) => {
     /**
      * Get Devices
      * @summary Get Devices
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
+     * @param {any} [xPlexVersion] Your application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
@@ -731,14 +1152,14 @@ export declare const DevicesApiFactory: (configuration?: Configuration, basePath
     /**
      * Get Devices
      * @summary Get Devices
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
+     * @param {any} [xPlexVersion] Your application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
@@ -751,7 +1172,7 @@ export declare const DevicesApiFactory: (configuration?: Configuration, basePath
  */
 export interface DevicesApiGetDevicesRequest {
     /**
-     * UUID, serial number, or other number unique per device
+     * Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
@@ -763,7 +1184,7 @@ export interface DevicesApiGetDevicesRequest {
      */
     readonly xPlexDeviceName?: any;
     /**
-     * Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
@@ -775,7 +1196,7 @@ export interface DevicesApiGetDevicesRequest {
      */
     readonly xPlexPlatformVersion?: any;
     /**
-     * Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
@@ -793,7 +1214,7 @@ export interface DevicesApiGetDevicesRequest {
      */
     readonly xPlexProvides?: any;
     /**
-     * Plex application version number
+     * Your application version number
      * @type {any}
      * @memberof DevicesApiGetDevices
      */
@@ -2709,14 +3130,14 @@ export declare const UserApiAxiosParamCreator: (configuration?: Configuration) =
     /**
      * Get Logged in User
      * @summary Get Logged in User
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
+     * @param {any} [xPlexVersion] Your application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
@@ -2730,14 +3151,14 @@ export declare const UserApiFp: (configuration?: Configuration) => {
     /**
      * Get Logged in User
      * @summary Get Logged in User
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
+     * @param {any} [xPlexVersion] Your application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
@@ -2751,14 +3172,14 @@ export declare const UserApiFactory: (configuration?: Configuration, basePath?: 
     /**
      * Get Logged in User
      * @summary Get Logged in User
-     * @param {any} xPlexClientIdentifier UUID, serial number, or other number unique per device
+     * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
-     * @param {any} [xPlexDevice] Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
-     * @param {any} [xPlexPlatform] Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
-     * @param {any} [xPlexVersion] Plex application version number
+     * @param {any} [xPlexVersion] Your application version number
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
@@ -2771,7 +3192,7 @@ export declare const UserApiFactory: (configuration?: Configuration, basePath?: 
  */
 export interface UserApiGetCurrentUserDetailsRequest {
     /**
-     * UUID, serial number, or other number unique per device
+     * Unique Id, UUID, serial number, or other number unique per device that identifies your client
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
@@ -2783,7 +3204,7 @@ export interface UserApiGetCurrentUserDetailsRequest {
      */
     readonly xPlexDeviceName?: any;
     /**
-     * Device name and model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+     * The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
@@ -2795,7 +3216,7 @@ export interface UserApiGetCurrentUserDetailsRequest {
      */
     readonly xPlexPlatformVersion?: any;
     /**
-     * Platform name, eg &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+     * Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
@@ -2813,7 +3234,7 @@ export interface UserApiGetCurrentUserDetailsRequest {
      */
     readonly xPlexProvides?: any;
     /**
-     * Plex application version number
+     * Your application version number
      * @type {any}
      * @memberof UserApiGetCurrentUserDetails
      */
