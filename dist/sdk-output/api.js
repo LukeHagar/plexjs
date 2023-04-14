@@ -412,45 +412,60 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    localVarPath = "/pins";
-                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                    if (configuration) {
-                        baseOptions = configuration.baseOptions;
+                    switch (_a.label) {
+                        case 0:
+                            localVarPath = "/pins";
+                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                            if (configuration) {
+                                baseOptions = configuration.baseOptions;
+                            }
+                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                            localVarHeaderParameter = {};
+                            localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
+                            // authentication PlexToken required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
+                        case 2:
+                            // authentication PlexToken required
+                            _a.sent();
+                            if (strong !== undefined) {
+                                localVarQueryParameter['strong'] = strong;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
+                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                            return [2 /*return*/, {
+                                    url: (0, common_1.toPathString)(localVarUrlObj),
+                                    axiosOptions: localVarRequestOptions,
+                                }];
                     }
-                    localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                    localVarHeaderParameter = {};
-                    localVarQueryParameter = {};
-                    if (strong !== undefined) {
-                        localVarQueryParameter['strong'] = strong;
-                    }
-                    if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
-                        localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
-                    }
-                    if (xPlexDevice !== undefined && xPlexDevice !== null) {
-                        localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
-                    }
-                    if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
-                        localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
-                    }
-                    if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
-                        localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
-                    }
-                    if (xPlexProduct !== undefined && xPlexProduct !== null) {
-                        localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
-                    }
-                    if (xPlexProvides !== undefined && xPlexProvides !== null) {
-                        localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
-                    }
-                    if (xPlexVersion !== undefined && xPlexVersion !== null) {
-                        localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
-                    }
-                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                    return [2 /*return*/, {
-                            url: (0, common_1.toPathString)(localVarUrlObj),
-                            axiosOptions: localVarRequestOptions,
-                        }];
                 });
             });
         },
