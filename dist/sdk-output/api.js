@@ -94,10 +94,17 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
          * Cancel Server Activities
          * @summary Cancel Server Activities
          * @param {any} activityUUID The UUID of the activity to cancel.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        cancelServerActivities: function (activityUUID, axiosOptions) {
+        cancelServerActivities: function (activityUUID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -115,11 +122,39 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -132,12 +167,19 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
             });
         },
         /**
-         * Server Activities
-         * @summary Server Activities
+         * Get Server Activities
+         * @summary Get Server Activities
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerActivities: function (axiosOptions) {
+        getServerActivities: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -152,11 +194,39 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -182,15 +252,22 @@ var ActivitiesApiFp = function (configuration) {
          * Cancel Server Activities
          * @summary Cancel Server Activities
          * @param {any} activityUUID The UUID of the activity to cancel.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        cancelServerActivities: function (activityUUID, axiosOptions) {
+        cancelServerActivities: function (activityUUID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.cancelServerActivities(activityUUID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.cancelServerActivities(activityUUID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -199,17 +276,24 @@ var ActivitiesApiFp = function (configuration) {
             });
         },
         /**
-         * Server Activities
-         * @summary Server Activities
+         * Get Server Activities
+         * @summary Get Server Activities
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerActivities: function (axiosOptions) {
+        getServerActivities: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerActivities(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerActivities(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -231,20 +315,34 @@ var ActivitiesApiFactory = function (configuration, basePath, axios) {
          * Cancel Server Activities
          * @summary Cancel Server Activities
          * @param {any} activityUUID The UUID of the activity to cancel.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        cancelServerActivities: function (activityUUID, axiosOptions) {
-            return localVarFp.cancelServerActivities(activityUUID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        cancelServerActivities: function (activityUUID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.cancelServerActivities(activityUUID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
-         * Server Activities
-         * @summary Server Activities
+         * Get Server Activities
+         * @summary Get Server Activities
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerActivities: function (axiosOptions) {
-            return localVarFp.getServerActivities(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getServerActivities: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getServerActivities(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -270,18 +368,20 @@ var ActivitiesApi = /** @class */ (function (_super) {
      */
     ActivitiesApi.prototype.cancelServerActivities = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.ActivitiesApiFp)(this.configuration).cancelServerActivities(requestParameters.activityUUID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.ActivitiesApiFp)(this.configuration).cancelServerActivities(requestParameters.activityUUID, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
-     * Server Activities
-     * @summary Server Activities
+     * Get Server Activities
+     * @summary Get Server Activities
+     * @param {ActivitiesApiGetServerActivitiesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ActivitiesApi
      */
-    ActivitiesApi.prototype.getServerActivities = function (axiosOptions) {
+    ActivitiesApi.prototype.getServerActivities = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.ActivitiesApiFp)(this.configuration).getServerActivities(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.ActivitiesApiFp)(this.configuration).getServerActivities(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return ActivitiesApi;
 }(base_1.BaseAPI));
@@ -296,7 +396,6 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
          * @summary Get a Pin
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
@@ -308,13 +407,11 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getPin: function (strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    // verify required parameter 'xPlexClientIdentifier' is not null or undefined
-                    (0, common_1.assertParamExists)('getPin', 'xPlexClientIdentifier', xPlexClientIdentifier);
                     localVarPath = "/pins";
                     localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
                     if (configuration) {
@@ -325,9 +422,6 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
                     localVarQueryParameter = {};
                     if (strong !== undefined) {
                         localVarQueryParameter['strong'] = strong;
-                    }
-                    if (xPlexClientIdentifier !== undefined && xPlexClientIdentifier !== null) {
-                        localVarHeaderParameter['X-Plex-Client-Identifier'] = String(JSON.stringify(xPlexClientIdentifier));
                     }
                     if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
                         localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
@@ -364,7 +458,6 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
          * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
          * @summary Get Access Token
          * @param {any} pinID The PinID to retrieve an access token for
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -375,7 +468,7 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getToken: function (pinID, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getToken: function (pinID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -384,8 +477,6 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
                         case 0:
                             // verify required parameter 'pinID' is not null or undefined
                             (0, common_1.assertParamExists)('getToken', 'pinID', pinID);
-                            // verify required parameter 'xPlexClientIdentifier' is not null or undefined
-                            (0, common_1.assertParamExists)('getToken', 'xPlexClientIdentifier', xPlexClientIdentifier);
                             localVarPath = "/pins/{pinID}"
                                 .replace("{".concat("pinID", "}"), encodeURIComponent(String(pinID)));
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -395,14 +486,18 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
-                            if (xPlexClientIdentifier !== undefined && xPlexClientIdentifier !== null) {
-                                localVarHeaderParameter['X-Plex-Client-Identifier'] = String(JSON.stringify(xPlexClientIdentifier));
-                            }
                             if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
                                 localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
                             }
@@ -448,7 +543,6 @@ var AuthenticationApiFp = function (configuration) {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
          * @summary Get a Pin
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
@@ -460,12 +554,12 @@ var AuthenticationApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getPin: function (strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPin(xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPin(strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -477,7 +571,6 @@ var AuthenticationApiFp = function (configuration) {
          * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
          * @summary Get Access Token
          * @param {any} pinID The PinID to retrieve an access token for
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -488,12 +581,12 @@ var AuthenticationApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getToken: function (pinID, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getToken: function (pinID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getToken(pinID, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getToken(pinID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -514,7 +607,6 @@ var AuthenticationApiFactory = function (configuration, basePath, axios) {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
          * @summary Get a Pin
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60;
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
@@ -526,14 +618,13 @@ var AuthenticationApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
-            return localVarFp.getPin(xPlexClientIdentifier, strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPin: function (strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getPin(strong, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
          * @summary Get Access Token
          * @param {any} pinID The PinID to retrieve an access token for
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -544,8 +635,8 @@ var AuthenticationApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getToken: function (pinID, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
-            return localVarFp.getToken(pinID, xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getToken: function (pinID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getToken(pinID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -571,7 +662,8 @@ var AuthenticationApi = /** @class */ (function (_super) {
      */
     AuthenticationApi.prototype.getPin = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.AuthenticationApiFp)(this.configuration).getPin(requestParameters.xPlexClientIdentifier, requestParameters.strong, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.AuthenticationApiFp)(this.configuration).getPin(requestParameters.strong, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
@@ -583,7 +675,7 @@ var AuthenticationApi = /** @class */ (function (_super) {
      */
     AuthenticationApi.prototype.getToken = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.AuthenticationApiFp)(this.configuration).getToken(requestParameters.pinID, requestParameters.xPlexClientIdentifier, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.AuthenticationApiFp)(this.configuration).getToken(requestParameters.pinID, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return AuthenticationApi;
 }(base_1.BaseAPI));
@@ -598,10 +690,17 @@ var ButlerApiAxiosParamCreator = function (configuration) {
         /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
          * @summary Start all Butler tasks
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllTasks: function (axiosOptions) {
+        startAllTasks: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -616,11 +715,39 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -636,10 +763,17 @@ var ButlerApiAxiosParamCreator = function (configuration) {
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
          * @summary Start a single Butler task
          * @param {any} taskName the name of the task to be started.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startTask: function (taskName, axiosOptions) {
+        startTask: function (taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -657,11 +791,39 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -694,9 +856,16 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
@@ -714,10 +883,17 @@ var ButlerApiAxiosParamCreator = function (configuration) {
          * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
          * @summary Stop a single Butler task
          * @param {any} taskName The name of the task to be started.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopTask: function (taskName, axiosOptions) {
+        stopTask: function (taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -735,11 +911,39 @@ var ButlerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -764,15 +968,22 @@ var ButlerApiFp = function (configuration) {
         /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
          * @summary Start all Butler tasks
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllTasks: function (axiosOptions) {
+        startAllTasks: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startAllTasks(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startAllTasks(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -784,15 +995,22 @@ var ButlerApiFp = function (configuration) {
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
          * @summary Start a single Butler task
          * @param {any} taskName the name of the task to be started.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startTask: function (taskName, axiosOptions) {
+        startTask: function (taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startTask(taskName, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startTask(taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -823,15 +1041,22 @@ var ButlerApiFp = function (configuration) {
          * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
          * @summary Stop a single Butler task
          * @param {any} taskName The name of the task to be started.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopTask: function (taskName, axiosOptions) {
+        stopTask: function (taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.stopTask(taskName, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.stopTask(taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -852,21 +1077,35 @@ var ButlerApiFactory = function (configuration, basePath, axios) {
         /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
          * @summary Start all Butler tasks
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllTasks: function (axiosOptions) {
-            return localVarFp.startAllTasks(axiosOptions).then(function (request) { return request(axios, basePath); });
+        startAllTasks: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.startAllTasks(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
          * @summary Start a single Butler task
          * @param {any} taskName the name of the task to be started.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startTask: function (taskName, axiosOptions) {
-            return localVarFp.startTask(taskName, axiosOptions).then(function (request) { return request(axios, basePath); });
+        startTask: function (taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.startTask(taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
@@ -881,11 +1120,18 @@ var ButlerApiFactory = function (configuration, basePath, axios) {
          * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
          * @summary Stop a single Butler task
          * @param {any} taskName The name of the task to be started.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopTask: function (taskName, axiosOptions) {
-            return localVarFp.stopTask(taskName, axiosOptions).then(function (request) { return request(axios, basePath); });
+        stopTask: function (taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.stopTask(taskName, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -904,13 +1150,15 @@ var ButlerApi = /** @class */ (function (_super) {
     /**
      * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
      * @summary Start all Butler tasks
+     * @param {ButlerApiStartAllTasksRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    ButlerApi.prototype.startAllTasks = function (axiosOptions) {
+    ButlerApi.prototype.startAllTasks = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).startAllTasks(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.ButlerApiFp)(this.configuration).startAllTasks(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
@@ -922,7 +1170,7 @@ var ButlerApi = /** @class */ (function (_super) {
      */
     ButlerApi.prototype.startTask = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).startTask(requestParameters.taskName, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.ButlerApiFp)(this.configuration).startTask(requestParameters.taskName, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
@@ -945,7 +1193,7 @@ var ButlerApi = /** @class */ (function (_super) {
      */
     ButlerApi.prototype.stopTask = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).stopTask(requestParameters.taskName, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.ButlerApiFp)(this.configuration).stopTask(requestParameters.taskName, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return ButlerApi;
 }(base_1.BaseAPI));
@@ -960,10 +1208,17 @@ var DevicesApiAxiosParamCreator = function (configuration) {
         /**
          * Get Available Clients
          * @summary Get Available Clients
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableClients: function (axiosOptions) {
+        getAvailableClients: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -978,11 +1233,39 @@ var DevicesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -997,7 +1280,6 @@ var DevicesApiAxiosParamCreator = function (configuration) {
         /**
          * Get Devices
          * @summary Get Devices
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -1008,15 +1290,13 @@ var DevicesApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getDevices: function (xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getDevices: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            // verify required parameter 'xPlexClientIdentifier' is not null or undefined
-                            (0, common_1.assertParamExists)('getDevices', 'xPlexClientIdentifier', xPlexClientIdentifier);
                             localVarPath = "/resources";
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
                             if (configuration) {
@@ -1025,14 +1305,18 @@ var DevicesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
-                            if (xPlexClientIdentifier !== undefined && xPlexClientIdentifier !== null) {
-                                localVarHeaderParameter['X-Plex-Client-Identifier'] = String(JSON.stringify(xPlexClientIdentifier));
-                            }
                             if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
                                 localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
                             }
@@ -1078,26 +1362,6 @@ var DevicesApiFp = function (configuration) {
         /**
          * Get Available Clients
          * @summary Get Available Clients
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAvailableClients: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getAvailableClients(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
-        },
-        /**
-         * Get Devices
-         * @summary Get Devices
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -1108,12 +1372,38 @@ var DevicesApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getDevices: function (xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getAvailableClients: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getDevices(xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getAvailableClients(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
+                        case 1:
+                            localVarAxiosArgs = _a.sent();
+                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
+                    }
+                });
+            });
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return __awaiter(this, void 0, void 0, function () {
+                var localVarAxiosArgs;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getDevices(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1134,16 +1424,6 @@ var DevicesApiFactory = function (configuration, basePath, axios) {
         /**
          * Get Available Clients
          * @summary Get Available Clients
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAvailableClients: function (axiosOptions) {
-            return localVarFp.getAvailableClients(axiosOptions).then(function (request) { return request(axios, basePath); });
-        },
-        /**
-         * Get Devices
-         * @summary Get Devices
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -1154,8 +1434,24 @@ var DevicesApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getDevices: function (xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
-            return localVarFp.getDevices(xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getAvailableClients: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getAvailableClients(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getDevices(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -1174,13 +1470,15 @@ var DevicesApi = /** @class */ (function (_super) {
     /**
      * Get Available Clients
      * @summary Get Available Clients
+     * @param {DevicesApiGetAvailableClientsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    DevicesApi.prototype.getAvailableClients = function (axiosOptions) {
+    DevicesApi.prototype.getAvailableClients = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.DevicesApiFp)(this.configuration).getAvailableClients(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.DevicesApiFp)(this.configuration).getAvailableClients(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Get Devices
@@ -1192,7 +1490,8 @@ var DevicesApi = /** @class */ (function (_super) {
      */
     DevicesApi.prototype.getDevices = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.DevicesApiFp)(this.configuration).getDevices(requestParameters.xPlexClientIdentifier, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.DevicesApiFp)(this.configuration).getDevices(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return DevicesApi;
 }(base_1.BaseAPI));
@@ -1209,10 +1508,17 @@ var HashesApiAxiosParamCreator = function (configuration) {
          * @summary Get Hash Value
          * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
          * @param {any} [type] Item type
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getFileHash: function (url, type, axiosOptions) {
+        getFileHash: function (url, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1229,9 +1535,16 @@ var HashesApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (url !== undefined) {
@@ -1239,6 +1552,27 @@ var HashesApiAxiosParamCreator = function (configuration) {
                             }
                             if (type !== undefined) {
                                 localVarQueryParameter['type'] = type;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1266,15 +1600,22 @@ var HashesApiFp = function (configuration) {
          * @summary Get Hash Value
          * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
          * @param {any} [type] Item type
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getFileHash: function (url, type, axiosOptions) {
+        getFileHash: function (url, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getFileHash(url, type, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getFileHash(url, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1297,11 +1638,18 @@ var HashesApiFactory = function (configuration, basePath, axios) {
          * @summary Get Hash Value
          * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
          * @param {any} [type] Item type
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getFileHash: function (url, type, axiosOptions) {
-            return localVarFp.getFileHash(url, type, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getFileHash: function (url, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getFileHash(url, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -1327,7 +1675,7 @@ var HashesApi = /** @class */ (function (_super) {
      */
     HashesApi.prototype.getFileHash = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.HashesApiFp)(this.configuration).getFileHash(requestParameters.url, requestParameters.type, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.HashesApiFp)(this.configuration).getFileHash(requestParameters.url, requestParameters.type, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return HashesApi;
 }(base_1.BaseAPI));
@@ -1344,10 +1692,17 @@ var HubsApiAxiosParamCreator = function (configuration) {
          * @summary Get Global Hubs
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
+        getGlobalHubs: function (count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1362,9 +1717,16 @@ var HubsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (count !== undefined) {
@@ -1372,6 +1734,27 @@ var HubsApiAxiosParamCreator = function (configuration) {
                             }
                             if (onlyTransient !== undefined) {
                                 localVarQueryParameter['onlyTransient'] = onlyTransient;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1390,10 +1773,17 @@ var HubsApiAxiosParamCreator = function (configuration) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
+        getLibraryHubs: function (sectionId, count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1411,9 +1801,16 @@ var HubsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (count !== undefined) {
@@ -1421,6 +1818,27 @@ var HubsApiAxiosParamCreator = function (configuration) {
                             }
                             if (onlyTransient !== undefined) {
                                 localVarQueryParameter['onlyTransient'] = onlyTransient;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1448,15 +1866,22 @@ var HubsApiFp = function (configuration) {
          * @summary Get Global Hubs
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
+        getGlobalHubs: function (count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getGlobalHubs(count, onlyTransient, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getGlobalHubs(count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1470,15 +1895,22 @@ var HubsApiFp = function (configuration) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
+        getLibraryHubs: function (sectionId, count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryHubs(sectionId, count, onlyTransient, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryHubs(sectionId, count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1501,11 +1933,18 @@ var HubsApiFactory = function (configuration, basePath, axios) {
          * @summary Get Global Hubs
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
-            return localVarFp.getGlobalHubs(count, onlyTransient, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getGlobalHubs: function (count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getGlobalHubs(count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will return a list of library specific hubs
@@ -1513,11 +1952,18 @@ var HubsApiFactory = function (configuration, basePath, axios) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
-            return localVarFp.getLibraryHubs(sectionId, count, onlyTransient, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraryHubs: function (sectionId, count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getLibraryHubs(sectionId, count, onlyTransient, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -1544,7 +1990,7 @@ var HubsApi = /** @class */ (function (_super) {
     HubsApi.prototype.getGlobalHubs = function (requestParameters, axiosOptions) {
         var _this = this;
         if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.HubsApiFp)(this.configuration).getGlobalHubs(requestParameters.count, requestParameters.onlyTransient, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.HubsApiFp)(this.configuration).getGlobalHubs(requestParameters.count, requestParameters.onlyTransient, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will return a list of library specific hubs
@@ -1556,7 +2002,7 @@ var HubsApi = /** @class */ (function (_super) {
      */
     HubsApi.prototype.getLibraryHubs = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.HubsApiFp)(this.configuration).getLibraryHubs(requestParameters.sectionId, requestParameters.count, requestParameters.onlyTransient, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.HubsApiFp)(this.configuration).getLibraryHubs(requestParameters.sectionId, requestParameters.count, requestParameters.onlyTransient, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return HubsApi;
 }(base_1.BaseAPI));
@@ -1574,10 +2020,17 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} type item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
+        getCommonLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1597,9 +2050,16 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
@@ -1607,6 +2067,27 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             }
                             if (filter !== undefined) {
                                 localVarQueryParameter['filter'] = filter;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1625,10 +2106,17 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} type item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
+        getLatestLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1648,9 +2136,16 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
@@ -1658,6 +2153,27 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             }
                             if (filter !== undefined) {
                                 localVarQueryParameter['filter'] = filter;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1673,10 +2189,17 @@ var LibraryApiAxiosParamCreator = function (configuration) {
         /**
          * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraries: function (axiosOptions) {
+        getLibraries: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1691,11 +2214,39 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -1712,10 +2263,17 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @summary Get Library Details
          * @param {any} sectionId the Id of the library to query
          * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
+        getLibraryDetails: function (sectionId, includeDetails, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1733,13 +2291,41 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (includeDetails !== undefined) {
                                 localVarQueryParameter['includeDetails'] = includeDetails;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1758,10 +2344,17 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} [type] item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
+        getLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1779,9 +2372,16 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
@@ -1789,6 +2389,27 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             }
                             if (filter !== undefined) {
                                 localVarQueryParameter['filter'] = filter;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1804,10 +2425,17 @@ var LibraryApiAxiosParamCreator = function (configuration) {
         /**
          * This endpoint will return the on deck content.
          * @summary Get On Deck
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getOnDeck: function (axiosOptions) {
+        getOnDeck: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1822,11 +2450,39 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -1842,10 +2498,17 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * This endpoint Refreshes the library.
          * @summary Refresh Library
          * @param {any} sectionId the Id of the library to refresh
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        refreshLibrary: function (sectionId, axiosOptions) {
+        refreshLibrary: function (sectionId, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -1863,11 +2526,39 @@ var LibraryApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -1895,15 +2586,22 @@ var LibraryApiFp = function (configuration) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} type item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
+        getCommonLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getCommonLibraryItems(sectionId, type, filter, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getCommonLibraryItems(sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1917,15 +2615,22 @@ var LibraryApiFp = function (configuration) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} type item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
+        getLatestLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLatestLibraryItems(sectionId, type, filter, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLatestLibraryItems(sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1936,15 +2641,22 @@ var LibraryApiFp = function (configuration) {
         /**
          * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraries: function (axiosOptions) {
+        getLibraries: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraries(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraries(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1957,15 +2669,22 @@ var LibraryApiFp = function (configuration) {
          * @summary Get Library Details
          * @param {any} sectionId the Id of the library to query
          * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
+        getLibraryDetails: function (sectionId, includeDetails, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryDetails(sectionId, includeDetails, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryDetails(sectionId, includeDetails, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1979,15 +2698,22 @@ var LibraryApiFp = function (configuration) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} [type] item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
+        getLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryItems(sectionId, type, filter, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryItems(sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -1998,15 +2724,22 @@ var LibraryApiFp = function (configuration) {
         /**
          * This endpoint will return the on deck content.
          * @summary Get On Deck
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getOnDeck: function (axiosOptions) {
+        getOnDeck: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getOnDeck(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getOnDeck(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2018,15 +2751,22 @@ var LibraryApiFp = function (configuration) {
          * This endpoint Refreshes the library.
          * @summary Refresh Library
          * @param {any} sectionId the Id of the library to refresh
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        refreshLibrary: function (sectionId, axiosOptions) {
+        refreshLibrary: function (sectionId, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.refreshLibrary(sectionId, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.refreshLibrary(sectionId, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2050,11 +2790,18 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} type item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return localVarFp.getCommonLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getCommonLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getCommonLibraryItems(sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will return a list of the latest library items filtered by the filter and type provided
@@ -2062,31 +2809,52 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} type item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return localVarFp.getLatestLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLatestLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getLatestLibraryItems(sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
          * @summary Get All Libraries
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraries: function (axiosOptions) {
-            return localVarFp.getLibraries(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraries: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getLibraries(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
          * @summary Get Library Details
          * @param {any} sectionId the Id of the library to query
          * @param {any} [includeDetails] Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
-            return localVarFp.getLibraryDetails(sectionId, includeDetails, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraryDetails: function (sectionId, includeDetails, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getLibraryDetails(sectionId, includeDetails, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will return a list of library items filtered by the filter and type provided
@@ -2094,30 +2862,51 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {any} sectionId the Id of the library to query
          * @param {any} [type] item type
          * @param {any} [filter] the filter parameter
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return localVarFp.getLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraryItems: function (sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getLibraryItems(sectionId, type, filter, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will return the on deck content.
          * @summary Get On Deck
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getOnDeck: function (axiosOptions) {
-            return localVarFp.getOnDeck(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getOnDeck: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getOnDeck(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint Refreshes the library.
          * @summary Refresh Library
          * @param {any} sectionId the Id of the library to refresh
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        refreshLibrary: function (sectionId, axiosOptions) {
-            return localVarFp.refreshLibrary(sectionId, axiosOptions).then(function (request) { return request(axios, basePath); });
+        refreshLibrary: function (sectionId, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.refreshLibrary(sectionId, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -2143,7 +2932,7 @@ var LibraryApi = /** @class */ (function (_super) {
      */
     LibraryApi.prototype.getCommonLibraryItems = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getCommonLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.LibraryApiFp)(this.configuration).getCommonLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will return a list of the latest library items filtered by the filter and type provided
@@ -2155,18 +2944,20 @@ var LibraryApi = /** @class */ (function (_super) {
      */
     LibraryApi.prototype.getLatestLibraryItems = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLatestLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.LibraryApiFp)(this.configuration).getLatestLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      * @summary Get All Libraries
+     * @param {LibraryApiGetLibrariesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getLibraries = function (axiosOptions) {
+    LibraryApi.prototype.getLibraries = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLibraries(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.LibraryApiFp)(this.configuration).getLibraries(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
@@ -2178,7 +2969,7 @@ var LibraryApi = /** @class */ (function (_super) {
      */
     LibraryApi.prototype.getLibraryDetails = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLibraryDetails(requestParameters.sectionId, requestParameters.includeDetails, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.LibraryApiFp)(this.configuration).getLibraryDetails(requestParameters.sectionId, requestParameters.includeDetails, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will return a list of library items filtered by the filter and type provided
@@ -2190,18 +2981,20 @@ var LibraryApi = /** @class */ (function (_super) {
      */
     LibraryApi.prototype.getLibraryItems = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.LibraryApiFp)(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will return the on deck content.
      * @summary Get On Deck
+     * @param {LibraryApiGetOnDeckRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getOnDeck = function (axiosOptions) {
+    LibraryApi.prototype.getOnDeck = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getOnDeck(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.LibraryApiFp)(this.configuration).getOnDeck(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint Refreshes the library.
@@ -2213,7 +3006,7 @@ var LibraryApi = /** @class */ (function (_super) {
      */
     LibraryApi.prototype.refreshLibrary = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).refreshLibrary(requestParameters.sectionId, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.LibraryApiFp)(this.configuration).refreshLibrary(requestParameters.sectionId, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return LibraryApi;
 }(base_1.BaseAPI));
@@ -2228,10 +3021,17 @@ var LogApiAxiosParamCreator = function (configuration) {
         /**
          * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
          * @summary Enabling Papertrail
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        enablePaperTrail: function (axiosOptions) {
+        enablePaperTrail: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2246,11 +3046,39 @@ var LogApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -2268,10 +3096,17 @@ var LogApiAxiosParamCreator = function (configuration) {
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose
          * @param {any} message The text of the message to write to the log.
          * @param {any} source a string indicating the source of the message.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logLine: function (level, message, source, axiosOptions) {
+        logLine: function (level, message, source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2292,9 +3127,16 @@ var LogApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (level !== undefined) {
@@ -2305,6 +3147,27 @@ var LogApiAxiosParamCreator = function (configuration) {
                             }
                             if (source !== undefined) {
                                 localVarQueryParameter['source'] = source;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2320,10 +3183,17 @@ var LogApiAxiosParamCreator = function (configuration) {
         /**
          * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
          * @summary Logging a multi-line message
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logMultiLine: function (axiosOptions) {
+        logMultiLine: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2338,11 +3208,39 @@ var LogApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -2367,15 +3265,22 @@ var LogApiFp = function (configuration) {
         /**
          * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
          * @summary Enabling Papertrail
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        enablePaperTrail: function (axiosOptions) {
+        enablePaperTrail: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.enablePaperTrail(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.enablePaperTrail(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2389,15 +3294,22 @@ var LogApiFp = function (configuration) {
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose
          * @param {any} message The text of the message to write to the log.
          * @param {any} source a string indicating the source of the message.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logLine: function (level, message, source, axiosOptions) {
+        logLine: function (level, message, source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logLine(level, message, source, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logLine(level, message, source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2408,15 +3320,22 @@ var LogApiFp = function (configuration) {
         /**
          * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
          * @summary Logging a multi-line message
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logMultiLine: function (axiosOptions) {
+        logMultiLine: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logMultiLine(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logMultiLine(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2437,11 +3356,18 @@ var LogApiFactory = function (configuration, basePath, axios) {
         /**
          * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
          * @summary Enabling Papertrail
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        enablePaperTrail: function (axiosOptions) {
-            return localVarFp.enablePaperTrail(axiosOptions).then(function (request) { return request(axios, basePath); });
+        enablePaperTrail: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.enablePaperTrail(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
@@ -2449,20 +3375,34 @@ var LogApiFactory = function (configuration, basePath, axios) {
          * @param {any} level An integer log level to write to the PMS log with.   0: Error   1: Warning   2: Info  3: Debug   4: Verbose
          * @param {any} message The text of the message to write to the log.
          * @param {any} source a string indicating the source of the message.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logLine: function (level, message, source, axiosOptions) {
-            return localVarFp.logLine(level, message, source, axiosOptions).then(function (request) { return request(axios, basePath); });
+        logLine: function (level, message, source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.logLine(level, message, source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
          * @summary Logging a multi-line message
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logMultiLine: function (axiosOptions) {
-            return localVarFp.logMultiLine(axiosOptions).then(function (request) { return request(axios, basePath); });
+        logMultiLine: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.logMultiLine(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -2481,13 +3421,15 @@ var LogApi = /** @class */ (function (_super) {
     /**
      * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
      * @summary Enabling Papertrail
+     * @param {LogApiEnablePaperTrailRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LogApi
      */
-    LogApi.prototype.enablePaperTrail = function (axiosOptions) {
+    LogApi.prototype.enablePaperTrail = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LogApiFp)(this.configuration).enablePaperTrail(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.LogApiFp)(this.configuration).enablePaperTrail(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
@@ -2499,18 +3441,20 @@ var LogApi = /** @class */ (function (_super) {
      */
     LogApi.prototype.logLine = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LogApiFp)(this.configuration).logLine(requestParameters.level, requestParameters.message, requestParameters.source, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.LogApiFp)(this.configuration).logLine(requestParameters.level, requestParameters.message, requestParameters.source, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
      * @summary Logging a multi-line message
+     * @param {LogApiLogMultiLineRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LogApi
      */
-    LogApi.prototype.logMultiLine = function (axiosOptions) {
+    LogApi.prototype.logMultiLine = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.LogApiFp)(this.configuration).logMultiLine(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.LogApiFp)(this.configuration).logMultiLine(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return LogApi;
 }(base_1.BaseAPI));
@@ -2528,10 +3472,17 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {any} playlistID the ID of the playlist
          * @param {any} uri the content URI for the playlist
          * @param {any} playQueueID the play queue to add to a playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
+        addPlaylistContents: function (playlistID, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2553,9 +3504,16 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (uri !== undefined) {
@@ -2563,6 +3521,27 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             }
                             if (playQueueID !== undefined) {
                                 localVarQueryParameter['playQueueID'] = playQueueID;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2579,10 +3558,17 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * Clears a playlist, only works with dumb playlists. Returns the playlist.
          * @summary Delete Playlist Contents
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContents: function (playlistID, axiosOptions) {
+        clearPlaylistContents: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2600,11 +3586,39 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -2624,10 +3638,17 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {any} smart whether the playlist is smart or not
          * @param {any} [uri] the content URI for the playlist
          * @param {any} [playQueueID] the play queue to copy to a playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
+        createPlaylist: function (title, type, smart, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2648,9 +3669,16 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (title !== undefined) {
@@ -2668,6 +3696,27 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             if (playQueueID !== undefined) {
                                 localVarQueryParameter['playQueueID'] = playQueueID;
                             }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -2683,10 +3732,17 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * This endpoint will delete a playlist
          * @summary Deletes a Playlist
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlaylist: function (playlistID, axiosOptions) {
+        deletePlaylist: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2704,11 +3760,39 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -2724,10 +3808,17 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
          * @summary Retrieve Playlist
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylist: function (playlistID, axiosOptions) {
+        getPlaylist: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2745,11 +3836,39 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -2766,10 +3885,17 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @summary Retrieve Playlist Contents
          * @param {any} playlistID the ID of the playlist
          * @param {any} type the metadata type of the item to return
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContents: function (playlistID, type, axiosOptions) {
+        getPlaylistContents: function (playlistID, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2789,13 +3915,41 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
                                 localVarQueryParameter['type'] = type;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2813,10 +3967,17 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @summary Get All Playlists
          * @param {any} [playlistType] limit to a type of playlist.
          * @param {any} [smart] type of playlists to return (default is all).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylists: function (playlistType, smart, axiosOptions) {
+        getPlaylists: function (playlistType, smart, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2831,9 +3992,16 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (playlistType !== undefined) {
@@ -2841,6 +4009,27 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             }
                             if (smart !== undefined) {
                                 localVarQueryParameter['smart'] = smart;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2878,9 +4067,16 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
@@ -2899,10 +4095,17 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @summary Upload Playlist
          * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
          * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        uploadPlaylist: function (path, force, axiosOptions) {
+        uploadPlaylist: function (path, force, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -2921,9 +4124,16 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (path !== undefined) {
@@ -2931,6 +4141,27 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
                             }
                             if (force !== undefined) {
                                 localVarQueryParameter['force'] = force;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2959,15 +4190,22 @@ var PlaylistsApiFp = function (configuration) {
          * @param {any} playlistID the ID of the playlist
          * @param {any} uri the content URI for the playlist
          * @param {any} playQueueID the play queue to add to a playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
+        addPlaylistContents: function (playlistID, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.addPlaylistContents(playlistID, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -2979,15 +4217,22 @@ var PlaylistsApiFp = function (configuration) {
          * Clears a playlist, only works with dumb playlists. Returns the playlist.
          * @summary Delete Playlist Contents
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContents: function (playlistID, axiosOptions) {
+        clearPlaylistContents: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.clearPlaylistContents(playlistID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.clearPlaylistContents(playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3003,15 +4248,22 @@ var PlaylistsApiFp = function (configuration) {
          * @param {any} smart whether the playlist is smart or not
          * @param {any} [uri] the content URI for the playlist
          * @param {any} [playQueueID] the play queue to copy to a playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
+        createPlaylist: function (title, type, smart, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.createPlaylist(title, type, smart, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3023,15 +4275,22 @@ var PlaylistsApiFp = function (configuration) {
          * This endpoint will delete a playlist
          * @summary Deletes a Playlist
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlaylist: function (playlistID, axiosOptions) {
+        deletePlaylist: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.deletePlaylist(playlistID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.deletePlaylist(playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3043,15 +4302,22 @@ var PlaylistsApiFp = function (configuration) {
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
          * @summary Retrieve Playlist
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylist: function (playlistID, axiosOptions) {
+        getPlaylist: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylist(playlistID, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylist(playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3064,15 +4330,22 @@ var PlaylistsApiFp = function (configuration) {
          * @summary Retrieve Playlist Contents
          * @param {any} playlistID the ID of the playlist
          * @param {any} type the metadata type of the item to return
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContents: function (playlistID, type, axiosOptions) {
+        getPlaylistContents: function (playlistID, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylistContents(playlistID, type, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylistContents(playlistID, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3085,15 +4358,22 @@ var PlaylistsApiFp = function (configuration) {
          * @summary Get All Playlists
          * @param {any} [playlistType] limit to a type of playlist.
          * @param {any} [smart] type of playlists to return (default is all).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylists: function (playlistType, smart, axiosOptions) {
+        getPlaylists: function (playlistType, smart, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylists(playlistType, smart, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylists(playlistType, smart, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3126,15 +4406,22 @@ var PlaylistsApiFp = function (configuration) {
          * @summary Upload Playlist
          * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
          * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        uploadPlaylist: function (path, force, axiosOptions) {
+        uploadPlaylist: function (path, force, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.uploadPlaylist(path, force, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.uploadPlaylist(path, force, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3158,21 +4445,35 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {any} playlistID the ID of the playlist
          * @param {any} uri the content URI for the playlist
          * @param {any} playQueueID the play queue to add to a playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
-            return localVarFp.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        addPlaylistContents: function (playlistID, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.addPlaylistContents(playlistID, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Clears a playlist, only works with dumb playlists. Returns the playlist.
          * @summary Delete Playlist Contents
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContents: function (playlistID, axiosOptions) {
-            return localVarFp.clearPlaylistContents(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        clearPlaylistContents: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.clearPlaylistContents(playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
@@ -3182,53 +4483,88 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {any} smart whether the playlist is smart or not
          * @param {any} [uri] the content URI for the playlist
          * @param {any} [playQueueID] the play queue to copy to a playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
-            return localVarFp.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        createPlaylist: function (title, type, smart, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.createPlaylist(title, type, smart, uri, playQueueID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint will delete a playlist
          * @summary Deletes a Playlist
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlaylist: function (playlistID, axiosOptions) {
-            return localVarFp.deletePlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        deletePlaylist: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.deletePlaylist(playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
          * @summary Retrieve Playlist
          * @param {any} playlistID the ID of the playlist
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylist: function (playlistID, axiosOptions) {
-            return localVarFp.getPlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPlaylist: function (playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getPlaylist(playlistID, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
          * @summary Retrieve Playlist Contents
          * @param {any} playlistID the ID of the playlist
          * @param {any} type the metadata type of the item to return
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContents: function (playlistID, type, axiosOptions) {
-            return localVarFp.getPlaylistContents(playlistID, type, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPlaylistContents: function (playlistID, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getPlaylistContents(playlistID, type, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          *
          * @summary Get All Playlists
          * @param {any} [playlistType] limit to a type of playlist.
          * @param {any} [smart] type of playlists to return (default is all).
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylists: function (playlistType, smart, axiosOptions) {
-            return localVarFp.getPlaylists(playlistType, smart, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPlaylists: function (playlistType, smart, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getPlaylists(playlistType, smart, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
@@ -3245,11 +4581,18 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @summary Upload Playlist
          * @param {any} path absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.  If the &#x60;path&#x60; argument is a directory, that path will be scanned for playlist files to be processed.  Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.  If the &#x60;path&#x60; argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.  The GUID of each playlist is based on the filename.
          * @param {any} force force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist.  The &#x60;force&#x60; argument is used to disable overwriting. If the &#x60;force&#x60; argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        uploadPlaylist: function (path, force, axiosOptions) {
-            return localVarFp.uploadPlaylist(path, force, axiosOptions).then(function (request) { return request(axios, basePath); });
+        uploadPlaylist: function (path, force, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.uploadPlaylist(path, force, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -3275,7 +4618,7 @@ var PlaylistsApi = /** @class */ (function (_super) {
      */
     PlaylistsApi.prototype.addPlaylistContents = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).addPlaylistContents(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).addPlaylistContents(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Clears a playlist, only works with dumb playlists. Returns the playlist.
@@ -3287,7 +4630,7 @@ var PlaylistsApi = /** @class */ (function (_super) {
      */
     PlaylistsApi.prototype.clearPlaylistContents = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).clearPlaylistContents(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).clearPlaylistContents(requestParameters.playlistID, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
@@ -3299,7 +4642,7 @@ var PlaylistsApi = /** @class */ (function (_super) {
      */
     PlaylistsApi.prototype.createPlaylist = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).createPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).createPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint will delete a playlist
@@ -3311,7 +4654,7 @@ var PlaylistsApi = /** @class */ (function (_super) {
      */
     PlaylistsApi.prototype.deletePlaylist = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).deletePlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).deletePlaylist(requestParameters.playlistID, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
@@ -3323,7 +4666,7 @@ var PlaylistsApi = /** @class */ (function (_super) {
      */
     PlaylistsApi.prototype.getPlaylist = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylist(requestParameters.playlistID, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
@@ -3335,7 +4678,7 @@ var PlaylistsApi = /** @class */ (function (_super) {
      */
     PlaylistsApi.prototype.getPlaylistContents = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylistContents(requestParameters.playlistID, requestParameters.type, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylistContents(requestParameters.playlistID, requestParameters.type, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      *
@@ -3348,7 +4691,7 @@ var PlaylistsApi = /** @class */ (function (_super) {
     PlaylistsApi.prototype.getPlaylists = function (requestParameters, axiosOptions) {
         var _this = this;
         if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylists(requestParameters.playlistType, requestParameters.smart, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylists(requestParameters.playlistType, requestParameters.smart, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
@@ -3372,7 +4715,7 @@ var PlaylistsApi = /** @class */ (function (_super) {
      */
     PlaylistsApi.prototype.uploadPlaylist = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).uploadPlaylist(requestParameters.path, requestParameters.force, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.PlaylistsApiFp)(this.configuration).uploadPlaylist(requestParameters.path, requestParameters.force, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return PlaylistsApi;
 }(base_1.BaseAPI));
@@ -3390,10 +4733,17 @@ var SearchApiAxiosParamCreator = function (configuration) {
          * @param {any} query The query term
          * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
          * @param {any} [limit] The number of items to return per hub
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performSearch: function (query, sectionId, limit, axiosOptions) {
+        performSearch: function (query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -3410,9 +4760,16 @@ var SearchApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (query !== undefined) {
@@ -3423,6 +4780,27 @@ var SearchApiAxiosParamCreator = function (configuration) {
                             }
                             if (limit !== undefined) {
                                 localVarQueryParameter['limit'] = limit;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -3441,10 +4819,17 @@ var SearchApiAxiosParamCreator = function (configuration) {
          * @param {any} query The query term
          * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
          * @param {any} [limit] The number of items to return per hub
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
+        performVoiceSearch: function (query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -3461,9 +4846,16 @@ var SearchApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (query !== undefined) {
@@ -3474,6 +4866,27 @@ var SearchApiAxiosParamCreator = function (configuration) {
                             }
                             if (limit !== undefined) {
                                 localVarQueryParameter['limit'] = limit;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -3502,15 +4915,22 @@ var SearchApiFp = function (configuration) {
          * @param {any} query The query term
          * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
          * @param {any} [limit] The number of items to return per hub
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performSearch: function (query, sectionId, limit, axiosOptions) {
+        performSearch: function (query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.performSearch(query, sectionId, limit, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.performSearch(query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3524,15 +4944,22 @@ var SearchApiFp = function (configuration) {
          * @param {any} query The query term
          * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
          * @param {any} [limit] The number of items to return per hub
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
+        performVoiceSearch: function (query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.performVoiceSearch(query, sectionId, limit, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.performVoiceSearch(query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3556,11 +4983,18 @@ var SearchApiFactory = function (configuration, basePath, axios) {
          * @param {any} query The query term
          * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
          * @param {any} [limit] The number of items to return per hub
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performSearch: function (query, sectionId, limit, axiosOptions) {
-            return localVarFp.performSearch(query, sectionId, limit, axiosOptions).then(function (request) { return request(axios, basePath); });
+        performSearch: function (query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.performSearch(query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
@@ -3568,11 +5002,18 @@ var SearchApiFactory = function (configuration, basePath, axios) {
          * @param {any} query The query term
          * @param {any} [sectionId] This gives context to the search, and can result in re-ordering of search result hubs
          * @param {any} [limit] The number of items to return per hub
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
-            return localVarFp.performVoiceSearch(query, sectionId, limit, axiosOptions).then(function (request) { return request(axios, basePath); });
+        performVoiceSearch: function (query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.performVoiceSearch(query, sectionId, limit, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -3598,7 +5039,7 @@ var SearchApi = /** @class */ (function (_super) {
      */
     SearchApi.prototype.performSearch = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.SearchApiFp)(this.configuration).performSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.SearchApiFp)(this.configuration).performSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
@@ -3610,7 +5051,7 @@ var SearchApi = /** @class */ (function (_super) {
      */
     SearchApi.prototype.performVoiceSearch = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.SearchApiFp)(this.configuration).performVoiceSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.SearchApiFp)(this.configuration).performVoiceSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return SearchApi;
 }(base_1.BaseAPI));
@@ -3626,10 +5067,17 @@ var SecurityApiAxiosParamCreator = function (configuration) {
          * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
          * @summary Get Source Connection Information
          * @param {any} source The source identifier with an included prefix.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getConnectionInformation: function (source, axiosOptions) {
+        getConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -3646,13 +5094,41 @@ var SecurityApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (source !== undefined) {
                                 localVarQueryParameter['source'] = source;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -3670,10 +5146,17 @@ var SecurityApiAxiosParamCreator = function (configuration) {
          * @summary Get a Transient Token.
          * @param {any} type &#x60;delegation&#x60; - This is the only supported &#x60;type&#x60; parameter.
          * @param {any} scope &#x60;all&#x60; - This is the only supported &#x60;scope&#x60; parameter.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getTransientToken: function (type, scope, axiosOptions) {
+        getTransientToken: function (type, scope, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -3692,9 +5175,16 @@ var SecurityApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (type !== undefined) {
@@ -3702,6 +5192,27 @@ var SecurityApiAxiosParamCreator = function (configuration) {
                             }
                             if (scope !== undefined) {
                                 localVarQueryParameter['scope'] = scope;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -3728,15 +5239,22 @@ var SecurityApiFp = function (configuration) {
          * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
          * @summary Get Source Connection Information
          * @param {any} source The source identifier with an included prefix.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getConnectionInformation: function (source, axiosOptions) {
+        getConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getConnectionInformation(source, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getConnectionInformation(source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3749,15 +5267,22 @@ var SecurityApiFp = function (configuration) {
          * @summary Get a Transient Token.
          * @param {any} type &#x60;delegation&#x60; - This is the only supported &#x60;type&#x60; parameter.
          * @param {any} scope &#x60;all&#x60; - This is the only supported &#x60;scope&#x60; parameter.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getTransientToken: function (type, scope, axiosOptions) {
+        getTransientToken: function (type, scope, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getTransientToken(type, scope, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getTransientToken(type, scope, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3779,22 +5304,36 @@ var SecurityApiFactory = function (configuration, basePath, axios) {
          * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
          * @summary Get Source Connection Information
          * @param {any} source The source identifier with an included prefix.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getConnectionInformation: function (source, axiosOptions) {
-            return localVarFp.getConnectionInformation(source, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getConnectionInformation(source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
          * @summary Get a Transient Token.
          * @param {any} type &#x60;delegation&#x60; - This is the only supported &#x60;type&#x60; parameter.
          * @param {any} scope &#x60;all&#x60; - This is the only supported &#x60;scope&#x60; parameter.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getTransientToken: function (type, scope, axiosOptions) {
-            return localVarFp.getTransientToken(type, scope, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getTransientToken: function (type, scope, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getTransientToken(type, scope, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -3820,7 +5359,7 @@ var SecurityApi = /** @class */ (function (_super) {
      */
     SecurityApi.prototype.getConnectionInformation = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.SecurityApiFp)(this.configuration).getConnectionInformation(requestParameters.source, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.SecurityApiFp)(this.configuration).getConnectionInformation(requestParameters.source, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
@@ -3832,7 +5371,7 @@ var SecurityApi = /** @class */ (function (_super) {
      */
     SecurityApi.prototype.getTransientToken = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.SecurityApiFp)(this.configuration).getTransientToken(requestParameters.type, requestParameters.scope, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.SecurityApiFp)(this.configuration).getTransientToken(requestParameters.type, requestParameters.scope, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return SecurityApi;
 }(base_1.BaseAPI));
@@ -3847,10 +5386,17 @@ var ServerApiAxiosParamCreator = function (configuration) {
         /**
          * Server Capabilities
          * @summary Server Capabilities
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerCapabilities: function (axiosOptions) {
+        getServerCapabilities: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -3865,11 +5411,39 @@ var ServerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -3884,10 +5458,17 @@ var ServerApiAxiosParamCreator = function (configuration) {
         /**
          * Get Server Preferences
          * @summary Get Server Preferences
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerPreferences: function (axiosOptions) {
+        getServerPreferences: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -3902,11 +5483,39 @@ var ServerApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -3931,15 +5540,22 @@ var ServerApiFp = function (configuration) {
         /**
          * Server Capabilities
          * @summary Server Capabilities
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerCapabilities: function (axiosOptions) {
+        getServerCapabilities: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerCapabilities(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerCapabilities(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3950,15 +5566,22 @@ var ServerApiFp = function (configuration) {
         /**
          * Get Server Preferences
          * @summary Get Server Preferences
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerPreferences: function (axiosOptions) {
+        getServerPreferences: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerPreferences(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerPreferences(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -3979,20 +5602,34 @@ var ServerApiFactory = function (configuration, basePath, axios) {
         /**
          * Server Capabilities
          * @summary Server Capabilities
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerCapabilities: function (axiosOptions) {
-            return localVarFp.getServerCapabilities(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getServerCapabilities: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getServerCapabilities(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Get Server Preferences
          * @summary Get Server Preferences
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerPreferences: function (axiosOptions) {
-            return localVarFp.getServerPreferences(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getServerPreferences: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getServerPreferences(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -4011,24 +5648,28 @@ var ServerApi = /** @class */ (function (_super) {
     /**
      * Server Capabilities
      * @summary Server Capabilities
+     * @param {ServerApiGetServerCapabilitiesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ServerApi
      */
-    ServerApi.prototype.getServerCapabilities = function (axiosOptions) {
+    ServerApi.prototype.getServerCapabilities = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.ServerApiFp)(this.configuration).getServerCapabilities(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.ServerApiFp)(this.configuration).getServerCapabilities(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Get Server Preferences
      * @summary Get Server Preferences
+     * @param {ServerApiGetServerPreferencesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof ServerApi
      */
-    ServerApi.prototype.getServerPreferences = function (axiosOptions) {
+    ServerApi.prototype.getServerPreferences = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.ServerApiFp)(this.configuration).getServerPreferences(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.ServerApiFp)(this.configuration).getServerPreferences(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return ServerApi;
 }(base_1.BaseAPI));
@@ -4043,10 +5684,17 @@ var SessionsApiAxiosParamCreator = function (configuration) {
         /**
          * This will Retrieve a listing of all history views.
          * @summary Get Session History
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessionHistory: function (axiosOptions) {
+        getSessionHistory: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -4061,11 +5709,39 @@ var SessionsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -4080,10 +5756,17 @@ var SessionsApiAxiosParamCreator = function (configuration) {
         /**
          * This will retrieve the \"Now Playing\" Information of the PMS.
          * @summary Get Active Sessions
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessions: function (axiosOptions) {
+        getSessions: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -4098,11 +5781,39 @@ var SessionsApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -4127,15 +5838,22 @@ var SessionsApiFp = function (configuration) {
         /**
          * This will Retrieve a listing of all history views.
          * @summary Get Session History
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessionHistory: function (axiosOptions) {
+        getSessionHistory: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSessionHistory(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSessionHistory(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4146,15 +5864,22 @@ var SessionsApiFp = function (configuration) {
         /**
          * This will retrieve the \"Now Playing\" Information of the PMS.
          * @summary Get Active Sessions
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessions: function (axiosOptions) {
+        getSessions: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSessions(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSessions(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4175,20 +5900,34 @@ var SessionsApiFactory = function (configuration, basePath, axios) {
         /**
          * This will Retrieve a listing of all history views.
          * @summary Get Session History
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessionHistory: function (axiosOptions) {
-            return localVarFp.getSessionHistory(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getSessionHistory: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getSessionHistory(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This will retrieve the \"Now Playing\" Information of the PMS.
          * @summary Get Active Sessions
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessions: function (axiosOptions) {
-            return localVarFp.getSessions(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getSessions: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getSessions(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -4207,24 +5946,28 @@ var SessionsApi = /** @class */ (function (_super) {
     /**
      * This will Retrieve a listing of all history views.
      * @summary Get Session History
+     * @param {SessionsApiGetSessionHistoryRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof SessionsApi
      */
-    SessionsApi.prototype.getSessionHistory = function (axiosOptions) {
+    SessionsApi.prototype.getSessionHistory = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.SessionsApiFp)(this.configuration).getSessionHistory(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.SessionsApiFp)(this.configuration).getSessionHistory(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This will retrieve the \"Now Playing\" Information of the PMS.
      * @summary Get Active Sessions
+     * @param {SessionsApiGetSessionsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof SessionsApi
      */
-    SessionsApi.prototype.getSessions = function (axiosOptions) {
+    SessionsApi.prototype.getSessions = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.SessionsApiFp)(this.configuration).getSessions(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.SessionsApiFp)(this.configuration).getSessions(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return SessionsApi;
 }(base_1.BaseAPI));
@@ -4241,10 +5984,17 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
          * @summary Applying updates
          * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
          * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyUpdates: function (tonight, skip, axiosOptions) {
+        applyUpdates: function (tonight, skip, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -4259,9 +6009,16 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (tonight !== undefined) {
@@ -4269,6 +6026,27 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
                             }
                             if (skip !== undefined) {
                                 localVarQueryParameter['skip'] = skip;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -4285,10 +6063,17 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
          * Checking for updates
          * @summary Checking for updates
          * @param {any} [download] Indicate that you want to start download any updates found.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkForUpdates: function (download, axiosOptions) {
+        checkForUpdates: function (download, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -4303,13 +6088,41 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
                             if (download !== undefined) {
                                 localVarQueryParameter['download'] = download;
+                            }
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
                             }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -4325,10 +6138,17 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
         /**
          * Querying status of updates
          * @summary Querying status of updates
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryUpdateStatus: function (axiosOptions) {
+        queryUpdateStatus: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -4343,11 +6163,39 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
+                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                            }
+                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                            }
+                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                            }
+                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                            }
+                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                            }
+                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                            }
+                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                            }
                             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
                             headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
                             localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
@@ -4374,15 +6222,22 @@ var UpdaterApiFp = function (configuration) {
          * @summary Applying updates
          * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
          * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyUpdates: function (tonight, skip, axiosOptions) {
+        applyUpdates: function (tonight, skip, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.applyUpdates(tonight, skip, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.applyUpdates(tonight, skip, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4394,15 +6249,22 @@ var UpdaterApiFp = function (configuration) {
          * Checking for updates
          * @summary Checking for updates
          * @param {any} [download] Indicate that you want to start download any updates found.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkForUpdates: function (download, axiosOptions) {
+        checkForUpdates: function (download, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.checkForUpdates(download, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.checkForUpdates(download, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4413,15 +6275,22 @@ var UpdaterApiFp = function (configuration) {
         /**
          * Querying status of updates
          * @summary Querying status of updates
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryUpdateStatus: function (axiosOptions) {
+        queryUpdateStatus: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.queryUpdateStatus(axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.queryUpdateStatus(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4444,30 +6313,51 @@ var UpdaterApiFactory = function (configuration, basePath, axios) {
          * @summary Applying updates
          * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
          * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyUpdates: function (tonight, skip, axiosOptions) {
-            return localVarFp.applyUpdates(tonight, skip, axiosOptions).then(function (request) { return request(axios, basePath); });
+        applyUpdates: function (tonight, skip, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.applyUpdates(tonight, skip, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Checking for updates
          * @summary Checking for updates
          * @param {any} [download] Indicate that you want to start download any updates found.
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkForUpdates: function (download, axiosOptions) {
-            return localVarFp.checkForUpdates(download, axiosOptions).then(function (request) { return request(axios, basePath); });
+        checkForUpdates: function (download, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.checkForUpdates(download, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * Querying status of updates
          * @summary Querying status of updates
+         * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
+         * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
+         * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
+         * @param {any} [xPlexPlatform] Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
+         * @param {any} [xPlexProduct] Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
+         * @param {any} [xPlexProvides] One or more of &#x60;[player, controller, server]&#x60;
+         * @param {any} [xPlexVersion] Your application version number
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryUpdateStatus: function (axiosOptions) {
-            return localVarFp.queryUpdateStatus(axiosOptions).then(function (request) { return request(axios, basePath); });
+        queryUpdateStatus: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.queryUpdateStatus(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -4494,7 +6384,7 @@ var UpdaterApi = /** @class */ (function (_super) {
     UpdaterApi.prototype.applyUpdates = function (requestParameters, axiosOptions) {
         var _this = this;
         if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.UpdaterApiFp)(this.configuration).applyUpdates(requestParameters.tonight, requestParameters.skip, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.UpdaterApiFp)(this.configuration).applyUpdates(requestParameters.tonight, requestParameters.skip, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Checking for updates
@@ -4507,18 +6397,20 @@ var UpdaterApi = /** @class */ (function (_super) {
     UpdaterApi.prototype.checkForUpdates = function (requestParameters, axiosOptions) {
         var _this = this;
         if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.UpdaterApiFp)(this.configuration).checkForUpdates(requestParameters.download, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.UpdaterApiFp)(this.configuration).checkForUpdates(requestParameters.download, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * Querying status of updates
      * @summary Querying status of updates
+     * @param {UpdaterApiQueryUpdateStatusRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    UpdaterApi.prototype.queryUpdateStatus = function (axiosOptions) {
+    UpdaterApi.prototype.queryUpdateStatus = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.UpdaterApiFp)(this.configuration).queryUpdateStatus(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.UpdaterApiFp)(this.configuration).queryUpdateStatus(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return UpdaterApi;
 }(base_1.BaseAPI));
@@ -4533,7 +6425,6 @@ var UserApiAxiosParamCreator = function (configuration) {
         /**
          * Get Logged in User
          * @summary Get Logged in User
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -4544,15 +6435,13 @@ var UserApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUserDetails: function (xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getCurrentUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            // verify required parameter 'xPlexClientIdentifier' is not null or undefined
-                            (0, common_1.assertParamExists)('getCurrentUserDetails', 'xPlexClientIdentifier', xPlexClientIdentifier);
                             localVarPath = "/user";
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
                             if (configuration) {
@@ -4561,14 +6450,18 @@ var UserApiAxiosParamCreator = function (configuration) {
                             localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
                             localVarHeaderParameter = {};
                             localVarQueryParameter = {};
+                            // authentication PlexClientIdentifier required
+                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+                                // authentication PlexToken required
+                            ];
+                        case 1:
+                            // authentication PlexClientIdentifier required
+                            _a.sent();
                             // authentication PlexToken required
                             return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 1:
+                        case 2:
                             // authentication PlexToken required
                             _a.sent();
-                            if (xPlexClientIdentifier !== undefined && xPlexClientIdentifier !== null) {
-                                localVarHeaderParameter['X-Plex-Client-Identifier'] = String(JSON.stringify(xPlexClientIdentifier));
-                            }
                             if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
                                 localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
                             }
@@ -4614,7 +6507,6 @@ var UserApiFp = function (configuration) {
         /**
          * Get Logged in User
          * @summary Get Logged in User
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -4625,12 +6517,12 @@ var UserApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUserDetails: function (xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getCurrentUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getCurrentUserDetails(xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getCurrentUserDetails(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -4651,7 +6543,6 @@ var UserApiFactory = function (configuration, basePath, axios) {
         /**
          * Get Logged in User
          * @summary Get Logged in User
-         * @param {any} xPlexClientIdentifier Unique Id, UUID, serial number, or other number unique per device that identifies your client
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
          * @param {any} [xPlexDevice] The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
          * @param {any} [xPlexPlatformVersion] Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
@@ -4662,8 +6553,8 @@ var UserApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUserDetails: function (xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
-            return localVarFp.getCurrentUserDetails(xPlexClientIdentifier, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getCurrentUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getCurrentUserDetails(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -4689,7 +6580,8 @@ var UserApi = /** @class */ (function (_super) {
      */
     UserApi.prototype.getCurrentUserDetails = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.UserApiFp)(this.configuration).getCurrentUserDetails(requestParameters.xPlexClientIdentifier, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        if (requestParameters === void 0) { requestParameters = {}; }
+        return (0, exports.UserApiFp)(this.configuration).getCurrentUserDetails(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return UserApi;
 }(base_1.BaseAPI));
