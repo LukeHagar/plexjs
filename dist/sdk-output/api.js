@@ -412,60 +412,45 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/pins";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication PlexClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication PlexToken required
-                            ];
-                        case 1:
-                            // authentication PlexClientIdentifier required
-                            _a.sent();
-                            // authentication PlexToken required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken required
-                            _a.sent();
-                            if (strong !== undefined) {
-                                localVarQueryParameter['strong'] = strong;
-                            }
-                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
-                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
-                            }
-                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
-                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
-                            }
-                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
-                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
-                            }
-                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
-                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
-                            }
-                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
-                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
-                            }
-                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
-                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
-                            }
-                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
-                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
+                    localVarPath = "/pins";
+                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
                     }
+                    localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    if (strong !== undefined) {
+                        localVarQueryParameter['strong'] = strong;
+                    }
+                    if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                        localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                    }
+                    if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                        localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                    }
+                    if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                        localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                    }
+                    if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                        localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                    }
+                    if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                        localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                    }
+                    if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                        localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                    }
+                    if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                        localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                    }
+                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                    return [2 /*return*/, {
+                            url: (0, common_1.toPathString)(localVarUrlObj),
+                            axiosOptions: localVarRequestOptions,
+                        }];
                 });
             });
         },
@@ -488,60 +473,45 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
                 return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'pinID' is not null or undefined
-                            (0, common_1.assertParamExists)('getToken', 'pinID', pinID);
-                            localVarPath = "/pins/{pinID}"
-                                .replace("{".concat("pinID", "}"), encodeURIComponent(String(pinID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication PlexClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication PlexToken required
-                            ];
-                        case 1:
-                            // authentication PlexClientIdentifier required
-                            _a.sent();
-                            // authentication PlexToken required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 2:
-                            // authentication PlexToken required
-                            _a.sent();
-                            if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
-                                localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
-                            }
-                            if (xPlexDevice !== undefined && xPlexDevice !== null) {
-                                localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
-                            }
-                            if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
-                                localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
-                            }
-                            if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
-                                localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
-                            }
-                            if (xPlexProduct !== undefined && xPlexProduct !== null) {
-                                localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
-                            }
-                            if (xPlexProvides !== undefined && xPlexProvides !== null) {
-                                localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
-                            }
-                            if (xPlexVersion !== undefined && xPlexVersion !== null) {
-                                localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
+                    // verify required parameter 'pinID' is not null or undefined
+                    (0, common_1.assertParamExists)('getToken', 'pinID', pinID);
+                    localVarPath = "/pins/{pinID}"
+                        .replace("{".concat("pinID", "}"), encodeURIComponent(String(pinID)));
+                    localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+                    if (configuration) {
+                        baseOptions = configuration.baseOptions;
                     }
+                    localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
+                    localVarHeaderParameter = {};
+                    localVarQueryParameter = {};
+                    if (xPlexDeviceName !== undefined && xPlexDeviceName !== null) {
+                        localVarHeaderParameter['X-Plex-Device-Name'] = String(JSON.stringify(xPlexDeviceName));
+                    }
+                    if (xPlexDevice !== undefined && xPlexDevice !== null) {
+                        localVarHeaderParameter['X-Plex-Device'] = String(JSON.stringify(xPlexDevice));
+                    }
+                    if (xPlexPlatformVersion !== undefined && xPlexPlatformVersion !== null) {
+                        localVarHeaderParameter['X-Plex-Platform-Version'] = String(JSON.stringify(xPlexPlatformVersion));
+                    }
+                    if (xPlexPlatform !== undefined && xPlexPlatform !== null) {
+                        localVarHeaderParameter['X-Plex-Platform'] = String(JSON.stringify(xPlexPlatform));
+                    }
+                    if (xPlexProduct !== undefined && xPlexProduct !== null) {
+                        localVarHeaderParameter['X-Plex-Product'] = String(JSON.stringify(xPlexProduct));
+                    }
+                    if (xPlexProvides !== undefined && xPlexProvides !== null) {
+                        localVarHeaderParameter['X-Plex-Provides'] = String(JSON.stringify(xPlexProvides));
+                    }
+                    if (xPlexVersion !== undefined && xPlexVersion !== null) {
+                        localVarHeaderParameter['X-Plex-Version'] = String(JSON.stringify(xPlexVersion));
+                    }
+                    (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+                    headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+                    localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
+                    return [2 /*return*/, {
+                            url: (0, common_1.toPathString)(localVarUrlObj),
+                            axiosOptions: localVarRequestOptions,
+                        }];
                 });
             });
         },
@@ -5092,7 +5062,7 @@ var SecurityApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getSourceConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -5100,7 +5070,7 @@ var SecurityApiAxiosParamCreator = function (configuration) {
                     switch (_a.label) {
                         case 0:
                             // verify required parameter 'source' is not null or undefined
-                            (0, common_1.assertParamExists)('getConnectionInformation', 'source', source);
+                            (0, common_1.assertParamExists)('getSourceConnectionInformation', 'source', source);
                             localVarPath = "/security/resources";
                             localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
                             if (configuration) {
@@ -5264,12 +5234,12 @@ var SecurityApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getSourceConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getConnectionInformation(source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSourceConnectionInformation(source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -5329,8 +5299,8 @@ var SecurityApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
-            return localVarFp.getConnectionInformation(source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getSourceConnectionInformation: function (source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getSourceConnectionInformation(source, xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
         /**
          * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
@@ -5367,14 +5337,14 @@ var SecurityApi = /** @class */ (function (_super) {
     /**
      * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
      * @summary Get Source Connection Information
-     * @param {SecurityApiGetConnectionInformationRequest} requestParameters Request parameters.
+     * @param {SecurityApiGetSourceConnectionInformationRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof SecurityApi
      */
-    SecurityApi.prototype.getConnectionInformation = function (requestParameters, axiosOptions) {
+    SecurityApi.prototype.getSourceConnectionInformation = function (requestParameters, axiosOptions) {
         var _this = this;
-        return (0, exports.SecurityApiFp)(this.configuration).getConnectionInformation(requestParameters.source, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.SecurityApiFp)(this.configuration).getSourceConnectionInformation(requestParameters.source, requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     /**
      * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
@@ -5996,7 +5966,7 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-         * @summary Applying updates
+         * @summary Apply Updates
          * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
          * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
@@ -6234,7 +6204,7 @@ var UpdaterApiFp = function (configuration) {
     return {
         /**
          * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-         * @summary Applying updates
+         * @summary Apply Updates
          * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
          * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
@@ -6325,7 +6295,7 @@ var UpdaterApiFactory = function (configuration, basePath, axios) {
     return {
         /**
          * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-         * @summary Applying updates
+         * @summary Apply Updates
          * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
          * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
          * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
@@ -6390,7 +6360,7 @@ var UpdaterApi = /** @class */ (function (_super) {
     }
     /**
      * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-     * @summary Applying updates
+     * @summary Apply Updates
      * @param {UpdaterApiApplyUpdatesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
@@ -6450,7 +6420,7 @@ var UserApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             if (axiosOptions === void 0) { axiosOptions = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
@@ -6532,12 +6502,12 @@ var UserApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+        getUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
             return __awaiter(this, void 0, void 0, function () {
                 var localVarAxiosArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getCurrentUserDetails(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
+                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getUserDetails(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions)];
                         case 1:
                             localVarAxiosArgs = _a.sent();
                             return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
@@ -6568,8 +6538,8 @@ var UserApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
-            return localVarFp.getCurrentUserDetails(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getUserDetails: function (xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions) {
+            return localVarFp.getUserDetails(xPlexDeviceName, xPlexDevice, xPlexPlatformVersion, xPlexPlatform, xPlexProduct, xPlexProvides, xPlexVersion, axiosOptions).then(function (request) { return request(axios, basePath); });
         },
     };
 };
@@ -6588,15 +6558,15 @@ var UserApi = /** @class */ (function (_super) {
     /**
      * Get Logged in User
      * @summary Get Logged in User
-     * @param {UserApiGetCurrentUserDetailsRequest} requestParameters Request parameters.
+     * @param {UserApiGetUserDetailsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    UserApi.prototype.getCurrentUserDetails = function (requestParameters, axiosOptions) {
+    UserApi.prototype.getUserDetails = function (requestParameters, axiosOptions) {
         var _this = this;
         if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.UserApiFp)(this.configuration).getCurrentUserDetails(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
+        return (0, exports.UserApiFp)(this.configuration).getUserDetails(requestParameters.xPlexDeviceName, requestParameters.xPlexDevice, requestParameters.xPlexPlatformVersion, requestParameters.xPlexPlatform, requestParameters.xPlexProduct, requestParameters.xPlexProvides, requestParameters.xPlexVersion, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
     };
     return UserApi;
 }(base_1.BaseAPI));

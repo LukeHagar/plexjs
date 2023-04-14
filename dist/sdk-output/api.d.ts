@@ -4546,7 +4546,7 @@ export declare const SecurityApiAxiosParamCreator: (configuration?: Configuratio
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getConnectionInformation: (source: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getSourceConnectionInformation: (source: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
      * @summary Get a Transient Token.
@@ -4583,7 +4583,7 @@ export declare const SecurityApiFp: (configuration?: Configuration) => {
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getConnectionInformation(source: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    getSourceConnectionInformation(source: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
      * @summary Get a Transient Token.
@@ -4620,7 +4620,7 @@ export declare const SecurityApiFactory: (configuration?: Configuration, basePat
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getConnectionInformation(source: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<void>;
+    getSourceConnectionInformation(source: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<void>;
     /**
      * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
      * @summary Get a Transient Token.
@@ -4639,57 +4639,57 @@ export declare const SecurityApiFactory: (configuration?: Configuration, basePat
     getTransientToken(type: any, scope: any, xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<void>;
 };
 /**
- * Request parameters for getConnectionInformation operation in SecurityApi.
+ * Request parameters for getSourceConnectionInformation operation in SecurityApi.
  * @export
- * @interface SecurityApiGetConnectionInformationRequest
+ * @interface SecurityApiGetSourceConnectionInformationRequest
  */
-export interface SecurityApiGetConnectionInformationRequest {
+export interface SecurityApiGetSourceConnectionInformationRequest {
     /**
      * The source identifier with an included prefix.
      * @type {any}
-     * @memberof SecurityApiGetConnectionInformation
+     * @memberof SecurityApiGetSourceConnectionInformation
      */
     readonly source: any;
     /**
      * Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
      * @type {any}
-     * @memberof SecurityApiGetConnectionInformation
+     * @memberof SecurityApiGetSourceConnectionInformation
      */
     readonly xPlexDeviceName?: any;
     /**
      * The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @type {any}
-     * @memberof SecurityApiGetConnectionInformation
+     * @memberof SecurityApiGetSourceConnectionInformation
      */
     readonly xPlexDevice?: any;
     /**
      * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
      * @type {any}
-     * @memberof SecurityApiGetConnectionInformation
+     * @memberof SecurityApiGetSourceConnectionInformation
      */
     readonly xPlexPlatformVersion?: any;
     /**
      * Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @type {any}
-     * @memberof SecurityApiGetConnectionInformation
+     * @memberof SecurityApiGetSourceConnectionInformation
      */
     readonly xPlexPlatform?: any;
     /**
      * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @type {any}
-     * @memberof SecurityApiGetConnectionInformation
+     * @memberof SecurityApiGetSourceConnectionInformation
      */
     readonly xPlexProduct?: any;
     /**
      * One or more of &#x60;[player, controller, server]&#x60;
      * @type {any}
-     * @memberof SecurityApiGetConnectionInformation
+     * @memberof SecurityApiGetSourceConnectionInformation
      */
     readonly xPlexProvides?: any;
     /**
      * Your application version number
      * @type {any}
-     * @memberof SecurityApiGetConnectionInformation
+     * @memberof SecurityApiGetSourceConnectionInformation
      */
     readonly xPlexVersion?: any;
 }
@@ -4764,12 +4764,12 @@ export declare class SecurityApi extends BaseAPI {
     /**
      * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
      * @summary Get Source Connection Information
-     * @param {SecurityApiGetConnectionInformationRequest} requestParameters Request parameters.
+     * @param {SecurityApiGetSourceConnectionInformationRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof SecurityApi
      */
-    getConnectionInformation(requestParameters: SecurityApiGetConnectionInformationRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    getSourceConnectionInformation(requestParameters: SecurityApiGetSourceConnectionInformationRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
     /**
      * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
      * @summary Get a Transient Token.
@@ -5239,7 +5239,7 @@ export declare class SessionsApi extends BaseAPI {
 export declare const UpdaterApiAxiosParamCreator: (configuration?: Configuration) => {
     /**
      * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-     * @summary Applying updates
+     * @summary Apply Updates
      * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
      * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
@@ -5290,7 +5290,7 @@ export declare const UpdaterApiAxiosParamCreator: (configuration?: Configuration
 export declare const UpdaterApiFp: (configuration?: Configuration) => {
     /**
      * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-     * @summary Applying updates
+     * @summary Apply Updates
      * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
      * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
@@ -5341,7 +5341,7 @@ export declare const UpdaterApiFp: (configuration?: Configuration) => {
 export declare const UpdaterApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
     /**
      * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-     * @summary Applying updates
+     * @summary Apply Updates
      * @param {any} [tonight] Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
      * @param {any} [skip] Indicate that the latest version should be marked as skipped. The &lt;Release&gt; entry for this version will have the &#x60;state&#x60; set to &#x60;skipped&#x60;.
      * @param {any} [xPlexDeviceName] Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
@@ -5559,7 +5559,7 @@ export interface UpdaterApiQueryUpdateStatusRequest {
 export declare class UpdaterApi extends BaseAPI {
     /**
      * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-     * @summary Applying updates
+     * @summary Apply Updates
      * @param {UpdaterApiApplyUpdatesRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
@@ -5603,7 +5603,7 @@ export declare const UserApiAxiosParamCreator: (configuration?: Configuration) =
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getCurrentUserDetails: (xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
+    getUserDetails: (xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * UserApi - functional programming interface
@@ -5623,7 +5623,7 @@ export declare const UserApiFp: (configuration?: Configuration) => {
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getCurrentUserDetails(xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    getUserDetails(xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
 };
 /**
  * UserApi - factory interface
@@ -5643,54 +5643,54 @@ export declare const UserApiFactory: (configuration?: Configuration, basePath?: 
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      */
-    getCurrentUserDetails(xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<void>;
+    getUserDetails(xPlexDeviceName?: any, xPlexDevice?: any, xPlexPlatformVersion?: any, xPlexPlatform?: any, xPlexProduct?: any, xPlexProvides?: any, xPlexVersion?: any, axiosOptions?: any): AxiosPromise<void>;
 };
 /**
- * Request parameters for getCurrentUserDetails operation in UserApi.
+ * Request parameters for getUserDetails operation in UserApi.
  * @export
- * @interface UserApiGetCurrentUserDetailsRequest
+ * @interface UserApiGetUserDetailsRequest
  */
-export interface UserApiGetCurrentUserDetailsRequest {
+export interface UserApiGetUserDetailsRequest {
     /**
      * Primary name for the device eg. &#x60;Plex Web (Chrome)&#x60;
      * @type {any}
-     * @memberof UserApiGetCurrentUserDetails
+     * @memberof UserApiGetUserDetails
      */
     readonly xPlexDeviceName?: any;
     /**
      * The type of device your application is running on Device name and or model number, eg &#x60;iPhone3,2&#x60;, &#x60;Motorola XOOM™&#x60;, &#x60;LG5200TV&#x60;
      * @type {any}
-     * @memberof UserApiGetCurrentUserDetails
+     * @memberof UserApiGetUserDetails
      */
     readonly xPlexDevice?: any;
     /**
      * Operating system version, eg &#x60;4.3.1&#x60;, &#x60;10.6.7&#x60;, &#x60;3.2&#x60;
      * @type {any}
-     * @memberof UserApiGetCurrentUserDetails
+     * @memberof UserApiGetUserDetails
      */
     readonly xPlexPlatformVersion?: any;
     /**
      * Platform name, eg &#x60;Web&#x60;, &#x60;iOS&#x60;, &#x60;MacOSX&#x60;, &#x60;Android&#x60;, &#x60;LG&#x60;
      * @type {any}
-     * @memberof UserApiGetCurrentUserDetails
+     * @memberof UserApiGetUserDetails
      */
     readonly xPlexPlatform?: any;
     /**
      * Plex application name, eg &#x60;Laika&#x60;, &#x60;Plex Media Server&#x60;, &#x60;Media Link&#x60;
      * @type {any}
-     * @memberof UserApiGetCurrentUserDetails
+     * @memberof UserApiGetUserDetails
      */
     readonly xPlexProduct?: any;
     /**
      * One or more of &#x60;[player, controller, server]&#x60;
      * @type {any}
-     * @memberof UserApiGetCurrentUserDetails
+     * @memberof UserApiGetUserDetails
      */
     readonly xPlexProvides?: any;
     /**
      * Your application version number
      * @type {any}
-     * @memberof UserApiGetCurrentUserDetails
+     * @memberof UserApiGetUserDetails
      */
     readonly xPlexVersion?: any;
 }
@@ -5704,10 +5704,10 @@ export declare class UserApi extends BaseAPI {
     /**
      * Get Logged in User
      * @summary Get Logged in User
-     * @param {UserApiGetCurrentUserDetailsRequest} requestParameters Request parameters.
+     * @param {UserApiGetUserDetailsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    getCurrentUserDetails(requestParameters?: UserApiGetCurrentUserDetailsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    getUserDetails(requestParameters?: UserApiGetUserDetailsRequest, axiosOptions?: AxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
