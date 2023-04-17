@@ -1,4 +1,3 @@
-"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -12,83 +11,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SessionsApiFp = exports.SessionsApiAxiosParamCreator = exports.ServerApi = exports.ServerApiFactory = exports.ServerApiFp = exports.ServerApiAxiosParamCreator = exports.SecurityApi = exports.SecurityApiFactory = exports.SecurityApiFp = exports.SecurityApiAxiosParamCreator = exports.SearchApi = exports.SearchApiFactory = exports.SearchApiFp = exports.SearchApiAxiosParamCreator = exports.PlaylistsApi = exports.PlaylistsApiFactory = exports.PlaylistsApiFp = exports.PlaylistsApiAxiosParamCreator = exports.LogApi = exports.LogApiFactory = exports.LogApiFp = exports.LogApiAxiosParamCreator = exports.LibraryApi = exports.LibraryApiFactory = exports.LibraryApiFp = exports.LibraryApiAxiosParamCreator = exports.HubsApi = exports.HubsApiFactory = exports.HubsApiFp = exports.HubsApiAxiosParamCreator = exports.HashesApi = exports.HashesApiFactory = exports.HashesApiFp = exports.HashesApiAxiosParamCreator = exports.DevicesApi = exports.DevicesApiFactory = exports.DevicesApiFp = exports.DevicesApiAxiosParamCreator = exports.ButlerApi = exports.ButlerApiFactory = exports.ButlerApiFp = exports.ButlerApiAxiosParamCreator = exports.AuthenticationApi = exports.AuthenticationApiFactory = exports.AuthenticationApiFp = exports.AuthenticationApiAxiosParamCreator = exports.ActivitiesApi = exports.ActivitiesApiFactory = exports.ActivitiesApiFp = exports.ActivitiesApiAxiosParamCreator = void 0;
-exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiAxiosParamCreator = exports.UpdaterApi = exports.UpdaterApiFactory = exports.UpdaterApiFp = exports.UpdaterApiAxiosParamCreator = exports.SessionsApi = exports.SessionsApiFactory = void 0;
-var axios_1 = require("axios");
+import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-var common_1 = require("./common");
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setSearchParams, toPathString, createRequestFunction } from './common';
 // @ts-ignore
-var base_1 = require("./base");
+import { BASE_PATH, BaseAPI } from './base';
 /**
  * ActivitiesApi - axios parameter creator
  * @export
  */
-var ActivitiesApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const ActivitiesApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Cancel Server Activities
@@ -97,60 +30,35 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        cancelServerActivities: function (activityUUID, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'activityUUID' is not null or undefined
-                            (0, common_1.assertParamExists)('cancelServerActivities', 'activityUUID', activityUUID);
-                            localVarPath = "/activities/{activityUUID}"
-                                .replace("{".concat("activityUUID", "}"), encodeURIComponent(String(activityUUID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        cancelServerActivities: async (activityUUID, axiosOptions = {}) => {
+            // verify required parameter 'activityUUID' is not null or undefined
+            assertParamExists('cancelServerActivities', 'activityUUID', activityUUID);
+            const localVarPath = `/activities/{activityUUID}`
+                .replace(`{${"activityUUID"}}`, encodeURIComponent(String(activityUUID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Get Server Activities
@@ -158,67 +66,41 @@ var ActivitiesApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerActivities: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/activities";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getServerActivities: async (axiosOptions = {}) => {
+            const localVarPath = `/activities`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.ActivitiesApiAxiosParamCreator = ActivitiesApiAxiosParamCreator;
 /**
  * ActivitiesApi - functional programming interface
  * @export
  */
-var ActivitiesApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.ActivitiesApiAxiosParamCreator)(configuration);
+export const ActivitiesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = ActivitiesApiAxiosParamCreator(configuration);
     return {
         /**
          * Cancel Server Activities
@@ -227,18 +109,9 @@ var ActivitiesApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        cancelServerActivities: function (activityUUID, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.cancelServerActivities(activityUUID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async cancelServerActivities(activityUUID, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelServerActivities(activityUUID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get Server Activities
@@ -246,28 +119,18 @@ var ActivitiesApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerActivities: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerActivities(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getServerActivities(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getServerActivities(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.ActivitiesApiFp = ActivitiesApiFp;
 /**
  * ActivitiesApi - factory interface
  * @export
  */
-var ActivitiesApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.ActivitiesApiFp)(configuration);
+export const ActivitiesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = ActivitiesApiFp(configuration);
     return {
         /**
          * Cancel Server Activities
@@ -276,8 +139,8 @@ var ActivitiesApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        cancelServerActivities: function (activityUUID, axiosOptions) {
-            return localVarFp.cancelServerActivities(activityUUID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        cancelServerActivities(activityUUID, axiosOptions) {
+            return localVarFp.cancelServerActivities(activityUUID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Get Server Activities
@@ -285,23 +148,18 @@ var ActivitiesApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerActivities: function (axiosOptions) {
-            return localVarFp.getServerActivities(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getServerActivities(axiosOptions) {
+            return localVarFp.getServerActivities(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.ActivitiesApiFactory = ActivitiesApiFactory;
 /**
  * ActivitiesApi - object-oriented interface
  * @export
  * @class ActivitiesApi
  * @extends {BaseAPI}
  */
-var ActivitiesApi = /** @class */ (function (_super) {
-    __extends(ActivitiesApi, _super);
-    function ActivitiesApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class ActivitiesApi extends BaseAPI {
     /**
      * Cancel Server Activities
      * @summary Cancel Server Activities
@@ -310,10 +168,9 @@ var ActivitiesApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ActivitiesApi
      */
-    ActivitiesApi.prototype.cancelServerActivities = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.ActivitiesApiFp)(this.configuration).cancelServerActivities(requestParameters.activityUUID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    cancelServerActivities(requestParameters, axiosOptions) {
+        return ActivitiesApiFp(this.configuration).cancelServerActivities(requestParameters.activityUUID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Get Server Activities
      * @summary Get Server Activities
@@ -321,19 +178,15 @@ var ActivitiesApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ActivitiesApi
      */
-    ActivitiesApi.prototype.getServerActivities = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.ActivitiesApiFp)(this.configuration).getServerActivities(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return ActivitiesApi;
-}(base_1.BaseAPI));
-exports.ActivitiesApi = ActivitiesApi;
+    getServerActivities(axiosOptions) {
+        return ActivitiesApiFp(this.configuration).getServerActivities(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * AuthenticationApi - axios parameter creator
  * @export
  */
-var AuthenticationApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const AuthenticationApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
@@ -342,60 +195,31 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (strong, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/pins";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (strong !== undefined) {
-                                localVarQueryParameter['strong'] = strong;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getPin: async (strong, axiosOptions = {}) => {
+            const localVarPath = `/pins`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            if (strong !== undefined) {
+                localVarQueryParameter['strong'] = strong;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
@@ -404,70 +228,40 @@ var AuthenticationApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getToken: function (pinID, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'pinID' is not null or undefined
-                            (0, common_1.assertParamExists)('getToken', 'pinID', pinID);
-                            localVarPath = "/pins/{pinID}"
-                                .replace("{".concat("pinID", "}"), encodeURIComponent(String(pinID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getToken: async (pinID, axiosOptions = {}) => {
+            // verify required parameter 'pinID' is not null or undefined
+            assertParamExists('getToken', 'pinID', pinID);
+            const localVarPath = `/pins/{pinID}`
+                .replace(`{${"pinID"}}`, encodeURIComponent(String(pinID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.AuthenticationApiAxiosParamCreator = AuthenticationApiAxiosParamCreator;
 /**
  * AuthenticationApi - functional programming interface
  * @export
  */
-var AuthenticationApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.AuthenticationApiAxiosParamCreator)(configuration);
+export const AuthenticationApiFp = function (configuration) {
+    const localVarAxiosParamCreator = AuthenticationApiAxiosParamCreator(configuration);
     return {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
@@ -476,18 +270,9 @@ var AuthenticationApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (strong, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPin(strong, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getPin(strong, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPin(strong, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
@@ -496,28 +281,18 @@ var AuthenticationApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getToken: function (pinID, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getToken(pinID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getToken(pinID, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getToken(pinID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.AuthenticationApiFp = AuthenticationApiFp;
 /**
  * AuthenticationApi - factory interface
  * @export
  */
-var AuthenticationApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.AuthenticationApiFp)(configuration);
+export const AuthenticationApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = AuthenticationApiFp(configuration);
     return {
         /**
          * Retrieve a Pin from Plex.tv for authentication flows
@@ -526,8 +301,8 @@ var AuthenticationApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPin: function (strong, axiosOptions) {
-            return localVarFp.getPin(strong, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPin(strong, axiosOptions) {
+            return localVarFp.getPin(strong, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
@@ -536,23 +311,18 @@ var AuthenticationApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getToken: function (pinID, axiosOptions) {
-            return localVarFp.getToken(pinID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getToken(pinID, axiosOptions) {
+            return localVarFp.getToken(pinID, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.AuthenticationApiFactory = AuthenticationApiFactory;
 /**
  * AuthenticationApi - object-oriented interface
  * @export
  * @class AuthenticationApi
  * @extends {BaseAPI}
  */
-var AuthenticationApi = /** @class */ (function (_super) {
-    __extends(AuthenticationApi, _super);
-    function AuthenticationApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class AuthenticationApi extends BaseAPI {
     /**
      * Retrieve a Pin from Plex.tv for authentication flows
      * @summary Get a Pin
@@ -561,11 +331,9 @@ var AuthenticationApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    AuthenticationApi.prototype.getPin = function (requestParameters, axiosOptions) {
-        var _this = this;
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.AuthenticationApiFp)(this.configuration).getPin(requestParameters.strong, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getPin(requestParameters = {}, axiosOptions) {
+        return AuthenticationApiFp(this.configuration).getPin(requestParameters.strong, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
      * @summary Get Access Token
@@ -574,19 +342,15 @@ var AuthenticationApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    AuthenticationApi.prototype.getToken = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.AuthenticationApiFp)(this.configuration).getToken(requestParameters.pinID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return AuthenticationApi;
-}(base_1.BaseAPI));
-exports.AuthenticationApi = AuthenticationApi;
+    getToken(requestParameters, axiosOptions) {
+        return AuthenticationApiFp(this.configuration).getToken(requestParameters.pinID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * ButlerApi - axios parameter creator
  * @export
  */
-var ButlerApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const ButlerApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
@@ -594,57 +358,32 @@ var ButlerApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllTasks: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/butler";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        startAllTasks: async (axiosOptions = {}) => {
+            const localVarPath = `/butler`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
@@ -653,60 +392,35 @@ var ButlerApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startTask: function (taskName, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'taskName' is not null or undefined
-                            (0, common_1.assertParamExists)('startTask', 'taskName', taskName);
-                            localVarPath = "/butler/{taskName}"
-                                .replace("{".concat("taskName", "}"), encodeURIComponent(String(taskName)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        startTask: async (taskName, axiosOptions = {}) => {
+            // verify required parameter 'taskName' is not null or undefined
+            assertParamExists('startTask', 'taskName', taskName);
+            const localVarPath = `/butler/{taskName}`
+                .replace(`{${"taskName"}}`, encodeURIComponent(String(taskName)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
@@ -714,57 +428,32 @@ var ButlerApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAllTasks: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/butler";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        stopAllTasks: async (axiosOptions = {}) => {
+            const localVarPath = `/butler`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
@@ -773,70 +462,44 @@ var ButlerApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopTask: function (taskName, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'taskName' is not null or undefined
-                            (0, common_1.assertParamExists)('stopTask', 'taskName', taskName);
-                            localVarPath = "/butler/{taskName}"
-                                .replace("{".concat("taskName", "}"), encodeURIComponent(String(taskName)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        stopTask: async (taskName, axiosOptions = {}) => {
+            // verify required parameter 'taskName' is not null or undefined
+            assertParamExists('stopTask', 'taskName', taskName);
+            const localVarPath = `/butler/{taskName}`
+                .replace(`{${"taskName"}}`, encodeURIComponent(String(taskName)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.ButlerApiAxiosParamCreator = ButlerApiAxiosParamCreator;
 /**
  * ButlerApi - functional programming interface
  * @export
  */
-var ButlerApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.ButlerApiAxiosParamCreator)(configuration);
+export const ButlerApiFp = function (configuration) {
+    const localVarAxiosParamCreator = ButlerApiAxiosParamCreator(configuration);
     return {
         /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
@@ -844,18 +507,9 @@ var ButlerApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllTasks: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startAllTasks(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async startAllTasks(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.startAllTasks(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
@@ -864,18 +518,9 @@ var ButlerApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startTask: function (taskName, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.startTask(taskName, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async startTask(taskName, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.startTask(taskName, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
@@ -883,18 +528,9 @@ var ButlerApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAllTasks: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.stopAllTasks(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async stopAllTasks(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.stopAllTasks(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
@@ -903,28 +539,18 @@ var ButlerApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopTask: function (taskName, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.stopTask(taskName, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async stopTask(taskName, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.stopTask(taskName, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.ButlerApiFp = ButlerApiFp;
 /**
  * ButlerApi - factory interface
  * @export
  */
-var ButlerApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.ButlerApiFp)(configuration);
+export const ButlerApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = ButlerApiFp(configuration);
     return {
         /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
@@ -932,8 +558,8 @@ var ButlerApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startAllTasks: function (axiosOptions) {
-            return localVarFp.startAllTasks(axiosOptions).then(function (request) { return request(axios, basePath); });
+        startAllTasks(axiosOptions) {
+            return localVarFp.startAllTasks(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
@@ -942,8 +568,8 @@ var ButlerApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        startTask: function (taskName, axiosOptions) {
-            return localVarFp.startTask(taskName, axiosOptions).then(function (request) { return request(axios, basePath); });
+        startTask(taskName, axiosOptions) {
+            return localVarFp.startTask(taskName, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
@@ -951,8 +577,8 @@ var ButlerApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopAllTasks: function (axiosOptions) {
-            return localVarFp.stopAllTasks(axiosOptions).then(function (request) { return request(axios, basePath); });
+        stopAllTasks(axiosOptions) {
+            return localVarFp.stopAllTasks(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
@@ -961,23 +587,18 @@ var ButlerApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        stopTask: function (taskName, axiosOptions) {
-            return localVarFp.stopTask(taskName, axiosOptions).then(function (request) { return request(axios, basePath); });
+        stopTask(taskName, axiosOptions) {
+            return localVarFp.stopTask(taskName, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.ButlerApiFactory = ButlerApiFactory;
 /**
  * ButlerApi - object-oriented interface
  * @export
  * @class ButlerApi
  * @extends {BaseAPI}
  */
-var ButlerApi = /** @class */ (function (_super) {
-    __extends(ButlerApi, _super);
-    function ButlerApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class ButlerApi extends BaseAPI {
     /**
      * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
      * @summary Start all Butler tasks
@@ -985,10 +606,9 @@ var ButlerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    ButlerApi.prototype.startAllTasks = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).startAllTasks(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    startAllTasks(axiosOptions) {
+        return ButlerApiFp(this.configuration).startAllTasks(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will attempt to start a single Butler task that is enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately.
      * @summary Start a single Butler task
@@ -997,10 +617,9 @@ var ButlerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    ButlerApi.prototype.startTask = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).startTask(requestParameters.taskName, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    startTask(requestParameters, axiosOptions) {
+        return ButlerApiFp(this.configuration).startTask(requestParameters.taskName, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
      * @summary Stop all Butler tasks
@@ -1008,10 +627,9 @@ var ButlerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    ButlerApi.prototype.stopAllTasks = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).stopAllTasks(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    stopAllTasks(axiosOptions) {
+        return ButlerApiFp(this.configuration).stopAllTasks(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
      * @summary Stop a single Butler task
@@ -1020,19 +638,15 @@ var ButlerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ButlerApi
      */
-    ButlerApi.prototype.stopTask = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.ButlerApiFp)(this.configuration).stopTask(requestParameters.taskName, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return ButlerApi;
-}(base_1.BaseAPI));
-exports.ButlerApi = ButlerApi;
+    stopTask(requestParameters, axiosOptions) {
+        return ButlerApiFp(this.configuration).stopTask(requestParameters.taskName, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * DevicesApi - axios parameter creator
  * @export
  */
-var DevicesApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const DevicesApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get Available Clients
@@ -1040,57 +654,32 @@ var DevicesApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableClients: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/clients";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getAvailableClients: async (axiosOptions = {}) => {
+            const localVarPath = `/clients`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Get Devices
@@ -1098,67 +687,41 @@ var DevicesApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getDevices: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/resources";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getDevices: async (axiosOptions = {}) => {
+            const localVarPath = `/resources`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.DevicesApiAxiosParamCreator = DevicesApiAxiosParamCreator;
 /**
  * DevicesApi - functional programming interface
  * @export
  */
-var DevicesApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.DevicesApiAxiosParamCreator)(configuration);
+export const DevicesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = DevicesApiAxiosParamCreator(configuration);
     return {
         /**
          * Get Available Clients
@@ -1166,18 +729,9 @@ var DevicesApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableClients: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getAvailableClients(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getAvailableClients(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableClients(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get Devices
@@ -1185,28 +739,18 @@ var DevicesApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getDevices: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getDevices(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getDevices(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDevices(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.DevicesApiFp = DevicesApiFp;
 /**
  * DevicesApi - factory interface
  * @export
  */
-var DevicesApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.DevicesApiFp)(configuration);
+export const DevicesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = DevicesApiFp(configuration);
     return {
         /**
          * Get Available Clients
@@ -1214,8 +758,8 @@ var DevicesApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getAvailableClients: function (axiosOptions) {
-            return localVarFp.getAvailableClients(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getAvailableClients(axiosOptions) {
+            return localVarFp.getAvailableClients(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Get Devices
@@ -1223,23 +767,18 @@ var DevicesApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getDevices: function (axiosOptions) {
-            return localVarFp.getDevices(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getDevices(axiosOptions) {
+            return localVarFp.getDevices(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.DevicesApiFactory = DevicesApiFactory;
 /**
  * DevicesApi - object-oriented interface
  * @export
  * @class DevicesApi
  * @extends {BaseAPI}
  */
-var DevicesApi = /** @class */ (function (_super) {
-    __extends(DevicesApi, _super);
-    function DevicesApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class DevicesApi extends BaseAPI {
     /**
      * Get Available Clients
      * @summary Get Available Clients
@@ -1247,10 +786,9 @@ var DevicesApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    DevicesApi.prototype.getAvailableClients = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.DevicesApiFp)(this.configuration).getAvailableClients(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getAvailableClients(axiosOptions) {
+        return DevicesApiFp(this.configuration).getAvailableClients(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Get Devices
      * @summary Get Devices
@@ -1258,19 +796,15 @@ var DevicesApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    DevicesApi.prototype.getDevices = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.DevicesApiFp)(this.configuration).getDevices(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return DevicesApi;
-}(base_1.BaseAPI));
-exports.DevicesApi = DevicesApi;
+    getDevices(axiosOptions) {
+        return DevicesApiFp(this.configuration).getDevices(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * HashesApi - axios parameter creator
  * @export
  */
-var HashesApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const HashesApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * This resource returns hash values for local files
@@ -1280,75 +814,49 @@ var HashesApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getFileHash: function (url, type, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'url' is not null or undefined
-                            (0, common_1.assertParamExists)('getFileHash', 'url', url);
-                            localVarPath = "/library/hashes";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (url !== undefined) {
-                                localVarQueryParameter['url'] = url;
-                            }
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getFileHash: async (url, type, axiosOptions = {}) => {
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('getFileHash', 'url', url);
+            const localVarPath = `/library/hashes`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
+            }
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.HashesApiAxiosParamCreator = HashesApiAxiosParamCreator;
 /**
  * HashesApi - functional programming interface
  * @export
  */
-var HashesApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.HashesApiAxiosParamCreator)(configuration);
+export const HashesApiFp = function (configuration) {
+    const localVarAxiosParamCreator = HashesApiAxiosParamCreator(configuration);
     return {
         /**
          * This resource returns hash values for local files
@@ -1358,28 +866,18 @@ var HashesApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getFileHash: function (url, type, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getFileHash(url, type, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getFileHash(url, type, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFileHash(url, type, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.HashesApiFp = HashesApiFp;
 /**
  * HashesApi - factory interface
  * @export
  */
-var HashesApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.HashesApiFp)(configuration);
+export const HashesApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = HashesApiFp(configuration);
     return {
         /**
          * This resource returns hash values for local files
@@ -1389,23 +887,18 @@ var HashesApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getFileHash: function (url, type, axiosOptions) {
-            return localVarFp.getFileHash(url, type, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getFileHash(url, type, axiosOptions) {
+            return localVarFp.getFileHash(url, type, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.HashesApiFactory = HashesApiFactory;
 /**
  * HashesApi - object-oriented interface
  * @export
  * @class HashesApi
  * @extends {BaseAPI}
  */
-var HashesApi = /** @class */ (function (_super) {
-    __extends(HashesApi, _super);
-    function HashesApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class HashesApi extends BaseAPI {
     /**
      * This resource returns hash values for local files
      * @summary Get Hash Value
@@ -1414,19 +907,15 @@ var HashesApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof HashesApi
      */
-    HashesApi.prototype.getFileHash = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.HashesApiFp)(this.configuration).getFileHash(requestParameters.url, requestParameters.type, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return HashesApi;
-}(base_1.BaseAPI));
-exports.HashesApi = HashesApi;
+    getFileHash(requestParameters, axiosOptions) {
+        return HashesApiFp(this.configuration).getFileHash(requestParameters.url, requestParameters.type, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * HubsApi - axios parameter creator
  * @export
  */
-var HubsApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const HubsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          *
@@ -1436,63 +925,38 @@ var HubsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/hubs";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (count !== undefined) {
-                                localVarQueryParameter['count'] = count;
-                            }
-                            if (onlyTransient !== undefined) {
-                                localVarQueryParameter['onlyTransient'] = onlyTransient;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getGlobalHubs: async (count, onlyTransient, axiosOptions = {}) => {
+            const localVarPath = `/hubs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (count !== undefined) {
+                localVarQueryParameter['count'] = count;
+            }
+            if (onlyTransient !== undefined) {
+                localVarQueryParameter['onlyTransient'] = onlyTransient;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will return a list of library specific hubs
@@ -1503,76 +967,50 @@ var HubsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'sectionId' is not null or undefined
-                            (0, common_1.assertParamExists)('getLibraryHubs', 'sectionId', sectionId);
-                            localVarPath = "/hubs/sections/{sectionId}"
-                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (count !== undefined) {
-                                localVarQueryParameter['count'] = count;
-                            }
-                            if (onlyTransient !== undefined) {
-                                localVarQueryParameter['onlyTransient'] = onlyTransient;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getLibraryHubs: async (sectionId, count, onlyTransient, axiosOptions = {}) => {
+            // verify required parameter 'sectionId' is not null or undefined
+            assertParamExists('getLibraryHubs', 'sectionId', sectionId);
+            const localVarPath = `/hubs/sections/{sectionId}`
+                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (count !== undefined) {
+                localVarQueryParameter['count'] = count;
+            }
+            if (onlyTransient !== undefined) {
+                localVarQueryParameter['onlyTransient'] = onlyTransient;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.HubsApiAxiosParamCreator = HubsApiAxiosParamCreator;
 /**
  * HubsApi - functional programming interface
  * @export
  */
-var HubsApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.HubsApiAxiosParamCreator)(configuration);
+export const HubsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = HubsApiAxiosParamCreator(configuration);
     return {
         /**
          *
@@ -1582,18 +1020,9 @@ var HubsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getGlobalHubs(count, onlyTransient, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getGlobalHubs(count, onlyTransient, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGlobalHubs(count, onlyTransient, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will return a list of library specific hubs
@@ -1604,28 +1033,18 @@ var HubsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryHubs(sectionId, count, onlyTransient, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getLibraryHubs(sectionId, count, onlyTransient, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLibraryHubs(sectionId, count, onlyTransient, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.HubsApiFp = HubsApiFp;
 /**
  * HubsApi - factory interface
  * @export
  */
-var HubsApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.HubsApiFp)(configuration);
+export const HubsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = HubsApiFp(configuration);
     return {
         /**
          *
@@ -1635,8 +1054,8 @@ var HubsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getGlobalHubs: function (count, onlyTransient, axiosOptions) {
-            return localVarFp.getGlobalHubs(count, onlyTransient, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getGlobalHubs(count, onlyTransient, axiosOptions) {
+            return localVarFp.getGlobalHubs(count, onlyTransient, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return a list of library specific hubs
@@ -1647,23 +1066,18 @@ var HubsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryHubs: function (sectionId, count, onlyTransient, axiosOptions) {
-            return localVarFp.getLibraryHubs(sectionId, count, onlyTransient, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraryHubs(sectionId, count, onlyTransient, axiosOptions) {
+            return localVarFp.getLibraryHubs(sectionId, count, onlyTransient, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.HubsApiFactory = HubsApiFactory;
 /**
  * HubsApi - object-oriented interface
  * @export
  * @class HubsApi
  * @extends {BaseAPI}
  */
-var HubsApi = /** @class */ (function (_super) {
-    __extends(HubsApi, _super);
-    function HubsApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class HubsApi extends BaseAPI {
     /**
      *
      * @summary Get Global Hubs
@@ -1672,11 +1086,9 @@ var HubsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof HubsApi
      */
-    HubsApi.prototype.getGlobalHubs = function (requestParameters, axiosOptions) {
-        var _this = this;
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.HubsApiFp)(this.configuration).getGlobalHubs(requestParameters.count, requestParameters.onlyTransient, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getGlobalHubs(requestParameters = {}, axiosOptions) {
+        return HubsApiFp(this.configuration).getGlobalHubs(requestParameters.count, requestParameters.onlyTransient, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will return a list of library specific hubs
      * @summary Get library specific hubs
@@ -1685,19 +1097,15 @@ var HubsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof HubsApi
      */
-    HubsApi.prototype.getLibraryHubs = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.HubsApiFp)(this.configuration).getLibraryHubs(requestParameters.sectionId, requestParameters.count, requestParameters.onlyTransient, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return HubsApi;
-}(base_1.BaseAPI));
-exports.HubsApi = HubsApi;
+    getLibraryHubs(requestParameters, axiosOptions) {
+        return HubsApiFp(this.configuration).getLibraryHubs(requestParameters.sectionId, requestParameters.count, requestParameters.onlyTransient, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * LibraryApi - axios parameter creator
  * @export
  */
-var LibraryApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const LibraryApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
@@ -1708,68 +1116,43 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'sectionId' is not null or undefined
-                            (0, common_1.assertParamExists)('getCommonLibraryItems', 'sectionId', sectionId);
-                            // verify required parameter 'type' is not null or undefined
-                            (0, common_1.assertParamExists)('getCommonLibraryItems', 'type', type);
-                            localVarPath = "/library/sections/{sectionId}/common"
-                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
-                            }
-                            if (filter !== undefined) {
-                                localVarQueryParameter['filter'] = filter;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getCommonLibraryItems: async (sectionId, type, filter, axiosOptions = {}) => {
+            // verify required parameter 'sectionId' is not null or undefined
+            assertParamExists('getCommonLibraryItems', 'sectionId', sectionId);
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('getCommonLibraryItems', 'type', type);
+            const localVarPath = `/library/sections/{sectionId}/common`
+                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+            if (filter !== undefined) {
+                localVarQueryParameter['filter'] = filter;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will return a list of the latest library items filtered by the filter and type provided
@@ -1780,68 +1163,43 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'sectionId' is not null or undefined
-                            (0, common_1.assertParamExists)('getLatestLibraryItems', 'sectionId', sectionId);
-                            // verify required parameter 'type' is not null or undefined
-                            (0, common_1.assertParamExists)('getLatestLibraryItems', 'type', type);
-                            localVarPath = "/library/sections/{sectionId}/latest"
-                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
-                            }
-                            if (filter !== undefined) {
-                                localVarQueryParameter['filter'] = filter;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getLatestLibraryItems: async (sectionId, type, filter, axiosOptions = {}) => {
+            // verify required parameter 'sectionId' is not null or undefined
+            assertParamExists('getLatestLibraryItems', 'sectionId', sectionId);
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('getLatestLibraryItems', 'type', type);
+            const localVarPath = `/library/sections/{sectionId}/latest`
+                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+            if (filter !== undefined) {
+                localVarQueryParameter['filter'] = filter;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
@@ -1849,57 +1207,32 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraries: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/library/sections";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getLibraries: async (axiosOptions = {}) => {
+            const localVarPath = `/library/sections`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
@@ -1909,63 +1242,38 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'sectionId' is not null or undefined
-                            (0, common_1.assertParamExists)('getLibraryDetails', 'sectionId', sectionId);
-                            localVarPath = "/library/sections/{sectionId}"
-                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (includeDetails !== undefined) {
-                                localVarQueryParameter['includeDetails'] = includeDetails;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getLibraryDetails: async (sectionId, includeDetails, axiosOptions = {}) => {
+            // verify required parameter 'sectionId' is not null or undefined
+            assertParamExists('getLibraryDetails', 'sectionId', sectionId);
+            const localVarPath = `/library/sections/{sectionId}`
+                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (includeDetails !== undefined) {
+                localVarQueryParameter['includeDetails'] = includeDetails;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will return a list of library items filtered by the filter and type provided
@@ -1976,66 +1284,41 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'sectionId' is not null or undefined
-                            (0, common_1.assertParamExists)('getLibraryItems', 'sectionId', sectionId);
-                            localVarPath = "/library/sections/{sectionId}/all"
-                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
-                            }
-                            if (filter !== undefined) {
-                                localVarQueryParameter['filter'] = filter;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getLibraryItems: async (sectionId, type, filter, axiosOptions = {}) => {
+            // verify required parameter 'sectionId' is not null or undefined
+            assertParamExists('getLibraryItems', 'sectionId', sectionId);
+            const localVarPath = `/library/sections/{sectionId}/all`
+                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+            if (filter !== undefined) {
+                localVarQueryParameter['filter'] = filter;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will return the on deck content.
@@ -2043,57 +1326,32 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getOnDeck: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/library/onDeck";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getOnDeck: async (axiosOptions = {}) => {
+            const localVarPath = `/library/onDeck`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint Refreshes the library.
@@ -2102,70 +1360,44 @@ var LibraryApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        refreshLibrary: function (sectionId, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'sectionId' is not null or undefined
-                            (0, common_1.assertParamExists)('refreshLibrary', 'sectionId', sectionId);
-                            localVarPath = "/library/sections/{sectionId}/refresh"
-                                .replace("{".concat("sectionId", "}"), encodeURIComponent(String(sectionId)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        refreshLibrary: async (sectionId, axiosOptions = {}) => {
+            // verify required parameter 'sectionId' is not null or undefined
+            assertParamExists('refreshLibrary', 'sectionId', sectionId);
+            const localVarPath = `/library/sections/{sectionId}/refresh`
+                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.LibraryApiAxiosParamCreator = LibraryApiAxiosParamCreator;
 /**
  * LibraryApi - functional programming interface
  * @export
  */
-var LibraryApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.LibraryApiAxiosParamCreator)(configuration);
+export const LibraryApiFp = function (configuration) {
+    const localVarAxiosParamCreator = LibraryApiAxiosParamCreator(configuration);
     return {
         /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
@@ -2176,18 +1408,9 @@ var LibraryApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getCommonLibraryItems(sectionId, type, filter, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getCommonLibraryItems(sectionId, type, filter, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCommonLibraryItems(sectionId, type, filter, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will return a list of the latest library items filtered by the filter and type provided
@@ -2198,18 +1421,9 @@ var LibraryApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLatestLibraryItems(sectionId, type, filter, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getLatestLibraryItems(sectionId, type, filter, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLatestLibraryItems(sectionId, type, filter, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
@@ -2217,18 +1431,9 @@ var LibraryApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraries: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraries(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getLibraries(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLibraries(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
@@ -2238,18 +1443,9 @@ var LibraryApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryDetails(sectionId, includeDetails, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getLibraryDetails(sectionId, includeDetails, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLibraryDetails(sectionId, includeDetails, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will return a list of library items filtered by the filter and type provided
@@ -2260,18 +1456,9 @@ var LibraryApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getLibraryItems(sectionId, type, filter, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getLibraryItems(sectionId, type, filter, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLibraryItems(sectionId, type, filter, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will return the on deck content.
@@ -2279,18 +1466,9 @@ var LibraryApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getOnDeck: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getOnDeck(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getOnDeck(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOnDeck(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint Refreshes the library.
@@ -2299,28 +1477,18 @@ var LibraryApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        refreshLibrary: function (sectionId, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.refreshLibrary(sectionId, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async refreshLibrary(sectionId, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.refreshLibrary(sectionId, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.LibraryApiFp = LibraryApiFp;
 /**
  * LibraryApi - factory interface
  * @export
  */
-var LibraryApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.LibraryApiFp)(configuration);
+export const LibraryApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = LibraryApiFp(configuration);
     return {
         /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
@@ -2331,8 +1499,8 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getCommonLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return localVarFp.getCommonLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getCommonLibraryItems(sectionId, type, filter, axiosOptions) {
+            return localVarFp.getCommonLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return a list of the latest library items filtered by the filter and type provided
@@ -2343,8 +1511,8 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLatestLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return localVarFp.getLatestLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLatestLibraryItems(sectionId, type, filter, axiosOptions) {
+            return localVarFp.getLatestLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
@@ -2352,8 +1520,8 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraries: function (axiosOptions) {
-            return localVarFp.getLibraries(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraries(axiosOptions) {
+            return localVarFp.getLibraries(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
@@ -2363,8 +1531,8 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryDetails: function (sectionId, includeDetails, axiosOptions) {
-            return localVarFp.getLibraryDetails(sectionId, includeDetails, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraryDetails(sectionId, includeDetails, axiosOptions) {
+            return localVarFp.getLibraryDetails(sectionId, includeDetails, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return a list of library items filtered by the filter and type provided
@@ -2375,8 +1543,8 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItems: function (sectionId, type, filter, axiosOptions) {
-            return localVarFp.getLibraryItems(sectionId, type, filter, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getLibraryItems(sectionId, type, filter, axiosOptions) {
+            return localVarFp.getLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return the on deck content.
@@ -2384,8 +1552,8 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getOnDeck: function (axiosOptions) {
-            return localVarFp.getOnDeck(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getOnDeck(axiosOptions) {
+            return localVarFp.getOnDeck(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint Refreshes the library.
@@ -2394,23 +1562,18 @@ var LibraryApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        refreshLibrary: function (sectionId, axiosOptions) {
-            return localVarFp.refreshLibrary(sectionId, axiosOptions).then(function (request) { return request(axios, basePath); });
+        refreshLibrary(sectionId, axiosOptions) {
+            return localVarFp.refreshLibrary(sectionId, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.LibraryApiFactory = LibraryApiFactory;
 /**
  * LibraryApi - object-oriented interface
  * @export
  * @class LibraryApi
  * @extends {BaseAPI}
  */
-var LibraryApi = /** @class */ (function (_super) {
-    __extends(LibraryApi, _super);
-    function LibraryApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class LibraryApi extends BaseAPI {
     /**
      * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter
      * @summary Get Common Library Items
@@ -2419,10 +1582,9 @@ var LibraryApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getCommonLibraryItems = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getCommonLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getCommonLibraryItems(requestParameters, axiosOptions) {
+        return LibraryApiFp(this.configuration).getCommonLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will return a list of the latest library items filtered by the filter and type provided
      * @summary Get Latest Library Items
@@ -2431,10 +1593,9 @@ var LibraryApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getLatestLibraryItems = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLatestLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getLatestLibraryItems(requestParameters, axiosOptions) {
+        return LibraryApiFp(this.configuration).getLatestLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * A library section (commonly referred to as just a library) is a collection of media.  Libraries are typed, and depending on their type provide either a flat or a hierarchical view of the media.  For example, a music library has an artist > albums > tracks structure, whereas a movie library is flat.  Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.  This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      * @summary Get All Libraries
@@ -2442,10 +1603,9 @@ var LibraryApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getLibraries = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLibraries(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getLibraries(axiosOptions) {
+        return LibraryApiFp(this.configuration).getLibraries(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field.
      * @summary Get Library Details
@@ -2454,10 +1614,9 @@ var LibraryApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getLibraryDetails = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLibraryDetails(requestParameters.sectionId, requestParameters.includeDetails, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getLibraryDetails(requestParameters, axiosOptions) {
+        return LibraryApiFp(this.configuration).getLibraryDetails(requestParameters.sectionId, requestParameters.includeDetails, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will return a list of library items filtered by the filter and type provided
      * @summary Get Library Items
@@ -2466,10 +1625,9 @@ var LibraryApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getLibraryItems = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getLibraryItems(requestParameters, axiosOptions) {
+        return LibraryApiFp(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will return the on deck content.
      * @summary Get On Deck
@@ -2477,10 +1635,9 @@ var LibraryApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.getOnDeck = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).getOnDeck(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getOnDeck(axiosOptions) {
+        return LibraryApiFp(this.configuration).getOnDeck(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint Refreshes the library.
      * @summary Refresh Library
@@ -2489,19 +1646,15 @@ var LibraryApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    LibraryApi.prototype.refreshLibrary = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.LibraryApiFp)(this.configuration).refreshLibrary(requestParameters.sectionId, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return LibraryApi;
-}(base_1.BaseAPI));
-exports.LibraryApi = LibraryApi;
+    refreshLibrary(requestParameters, axiosOptions) {
+        return LibraryApiFp(this.configuration).refreshLibrary(requestParameters.sectionId, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * LogApi - axios parameter creator
  * @export
  */
-var LogApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const LogApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
@@ -2509,57 +1662,32 @@ var LogApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        enablePaperTrail: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/log/networked";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        enablePaperTrail: async (axiosOptions = {}) => {
+            const localVarPath = `/log/networked`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
@@ -2570,72 +1698,47 @@ var LogApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logLine: function (level, message, source, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'level' is not null or undefined
-                            (0, common_1.assertParamExists)('logLine', 'level', level);
-                            // verify required parameter 'message' is not null or undefined
-                            (0, common_1.assertParamExists)('logLine', 'message', message);
-                            // verify required parameter 'source' is not null or undefined
-                            (0, common_1.assertParamExists)('logLine', 'source', source);
-                            localVarPath = "/log";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (level !== undefined) {
-                                localVarQueryParameter['level'] = level;
-                            }
-                            if (message !== undefined) {
-                                localVarQueryParameter['message'] = message;
-                            }
-                            if (source !== undefined) {
-                                localVarQueryParameter['source'] = source;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        logLine: async (level, message, source, axiosOptions = {}) => {
+            // verify required parameter 'level' is not null or undefined
+            assertParamExists('logLine', 'level', level);
+            // verify required parameter 'message' is not null or undefined
+            assertParamExists('logLine', 'message', message);
+            // verify required parameter 'source' is not null or undefined
+            assertParamExists('logLine', 'source', source);
+            const localVarPath = `/log`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (level !== undefined) {
+                localVarQueryParameter['level'] = level;
+            }
+            if (message !== undefined) {
+                localVarQueryParameter['message'] = message;
+            }
+            if (source !== undefined) {
+                localVarQueryParameter['source'] = source;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
@@ -2643,67 +1746,41 @@ var LogApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logMultiLine: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/log";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        logMultiLine: async (axiosOptions = {}) => {
+            const localVarPath = `/log`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.LogApiAxiosParamCreator = LogApiAxiosParamCreator;
 /**
  * LogApi - functional programming interface
  * @export
  */
-var LogApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.LogApiAxiosParamCreator)(configuration);
+export const LogApiFp = function (configuration) {
+    const localVarAxiosParamCreator = LogApiAxiosParamCreator(configuration);
     return {
         /**
          * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
@@ -2711,18 +1788,9 @@ var LogApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        enablePaperTrail: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.enablePaperTrail(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async enablePaperTrail(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.enablePaperTrail(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
@@ -2733,18 +1801,9 @@ var LogApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logLine: function (level, message, source, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logLine(level, message, source, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async logLine(level, message, source, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.logLine(level, message, source, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
@@ -2752,28 +1811,18 @@ var LogApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logMultiLine: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.logMultiLine(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async logMultiLine(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.logMultiLine(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.LogApiFp = LogApiFp;
 /**
  * LogApi - factory interface
  * @export
  */
-var LogApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.LogApiFp)(configuration);
+export const LogApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = LogApiFp(configuration);
     return {
         /**
          * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
@@ -2781,8 +1830,8 @@ var LogApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        enablePaperTrail: function (axiosOptions) {
-            return localVarFp.enablePaperTrail(axiosOptions).then(function (request) { return request(axios, basePath); });
+        enablePaperTrail(axiosOptions) {
+            return localVarFp.enablePaperTrail(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
@@ -2793,8 +1842,8 @@ var LogApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logLine: function (level, message, source, axiosOptions) {
-            return localVarFp.logLine(level, message, source, axiosOptions).then(function (request) { return request(axios, basePath); });
+        logLine(level, message, source, axiosOptions) {
+            return localVarFp.logLine(level, message, source, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
@@ -2802,23 +1851,18 @@ var LogApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        logMultiLine: function (axiosOptions) {
-            return localVarFp.logMultiLine(axiosOptions).then(function (request) { return request(axios, basePath); });
+        logMultiLine(axiosOptions) {
+            return localVarFp.logMultiLine(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.LogApiFactory = LogApiFactory;
 /**
  * LogApi - object-oriented interface
  * @export
  * @class LogApi
  * @extends {BaseAPI}
  */
-var LogApi = /** @class */ (function (_super) {
-    __extends(LogApi, _super);
-    function LogApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class LogApi extends BaseAPI {
     /**
      * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
      * @summary Enabling Papertrail
@@ -2826,10 +1870,9 @@ var LogApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LogApi
      */
-    LogApi.prototype.enablePaperTrail = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.LogApiFp)(this.configuration).enablePaperTrail(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    enablePaperTrail(axiosOptions) {
+        return LogApiFp(this.configuration).enablePaperTrail(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
      * @summary Logging a single line message.
@@ -2838,10 +1881,9 @@ var LogApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LogApi
      */
-    LogApi.prototype.logLine = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.LogApiFp)(this.configuration).logLine(requestParameters.level, requestParameters.message, requestParameters.source, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    logLine(requestParameters, axiosOptions) {
+        return LogApiFp(this.configuration).logLine(requestParameters.level, requestParameters.message, requestParameters.source, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above GET endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
      * @summary Logging a multi-line message
@@ -2849,19 +1891,15 @@ var LogApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof LogApi
      */
-    LogApi.prototype.logMultiLine = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.LogApiFp)(this.configuration).logMultiLine(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return LogApi;
-}(base_1.BaseAPI));
-exports.LogApi = LogApi;
+    logMultiLine(axiosOptions) {
+        return LogApiFp(this.configuration).logMultiLine(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * PlaylistsApi - axios parameter creator
  * @export
  */
-var PlaylistsApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const PlaylistsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
@@ -2872,70 +1910,45 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('addPlaylistContents', 'playlistID', playlistID);
-                            // verify required parameter 'uri' is not null or undefined
-                            (0, common_1.assertParamExists)('addPlaylistContents', 'uri', uri);
-                            // verify required parameter 'playQueueID' is not null or undefined
-                            (0, common_1.assertParamExists)('addPlaylistContents', 'playQueueID', playQueueID);
-                            localVarPath = "/playlists/{playlistID}/items"
-                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (uri !== undefined) {
-                                localVarQueryParameter['uri'] = uri;
-                            }
-                            if (playQueueID !== undefined) {
-                                localVarQueryParameter['playQueueID'] = playQueueID;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        addPlaylistContents: async (playlistID, uri, playQueueID, axiosOptions = {}) => {
+            // verify required parameter 'playlistID' is not null or undefined
+            assertParamExists('addPlaylistContents', 'playlistID', playlistID);
+            // verify required parameter 'uri' is not null or undefined
+            assertParamExists('addPlaylistContents', 'uri', uri);
+            // verify required parameter 'playQueueID' is not null or undefined
+            assertParamExists('addPlaylistContents', 'playQueueID', playQueueID);
+            const localVarPath = `/playlists/{playlistID}/items`
+                .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (uri !== undefined) {
+                localVarQueryParameter['uri'] = uri;
+            }
+            if (playQueueID !== undefined) {
+                localVarQueryParameter['playQueueID'] = playQueueID;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Clears a playlist, only works with dumb playlists. Returns the playlist.
@@ -2944,60 +1957,35 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContents: function (playlistID, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('clearPlaylistContents', 'playlistID', playlistID);
-                            localVarPath = "/playlists/{playlistID}/items"
-                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        clearPlaylistContents: async (playlistID, axiosOptions = {}) => {
+            // verify required parameter 'playlistID' is not null or undefined
+            assertParamExists('clearPlaylistContents', 'playlistID', playlistID);
+            const localVarPath = `/playlists/{playlistID}/items`
+                .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
@@ -3010,78 +1998,53 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'title' is not null or undefined
-                            (0, common_1.assertParamExists)('createPlaylist', 'title', title);
-                            // verify required parameter 'type' is not null or undefined
-                            (0, common_1.assertParamExists)('createPlaylist', 'type', type);
-                            // verify required parameter 'smart' is not null or undefined
-                            (0, common_1.assertParamExists)('createPlaylist', 'smart', smart);
-                            localVarPath = "/playlists";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (title !== undefined) {
-                                localVarQueryParameter['title'] = title;
-                            }
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
-                            }
-                            if (smart !== undefined) {
-                                localVarQueryParameter['smart'] = smart;
-                            }
-                            if (uri !== undefined) {
-                                localVarQueryParameter['uri'] = uri;
-                            }
-                            if (playQueueID !== undefined) {
-                                localVarQueryParameter['playQueueID'] = playQueueID;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        createPlaylist: async (title, type, smart, uri, playQueueID, axiosOptions = {}) => {
+            // verify required parameter 'title' is not null or undefined
+            assertParamExists('createPlaylist', 'title', title);
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('createPlaylist', 'type', type);
+            // verify required parameter 'smart' is not null or undefined
+            assertParamExists('createPlaylist', 'smart', smart);
+            const localVarPath = `/playlists`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (title !== undefined) {
+                localVarQueryParameter['title'] = title;
+            }
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+            if (smart !== undefined) {
+                localVarQueryParameter['smart'] = smart;
+            }
+            if (uri !== undefined) {
+                localVarQueryParameter['uri'] = uri;
+            }
+            if (playQueueID !== undefined) {
+                localVarQueryParameter['playQueueID'] = playQueueID;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint will delete a playlist
@@ -3090,60 +2053,35 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlaylist: function (playlistID, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('deletePlaylist', 'playlistID', playlistID);
-                            localVarPath = "/playlists/{playlistID}"
-                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        deletePlaylist: async (playlistID, axiosOptions = {}) => {
+            // verify required parameter 'playlistID' is not null or undefined
+            assertParamExists('deletePlaylist', 'playlistID', playlistID);
+            const localVarPath = `/playlists/{playlistID}`
+                .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
@@ -3152,60 +2090,35 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylist: function (playlistID, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('getPlaylist', 'playlistID', playlistID);
-                            localVarPath = "/playlists/{playlistID}"
-                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getPlaylist: async (playlistID, axiosOptions = {}) => {
+            // verify required parameter 'playlistID' is not null or undefined
+            assertParamExists('getPlaylist', 'playlistID', playlistID);
+            const localVarPath = `/playlists/{playlistID}`
+                .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
@@ -3215,65 +2128,40 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContents: function (playlistID, type, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('getPlaylistContents', 'playlistID', playlistID);
-                            // verify required parameter 'type' is not null or undefined
-                            (0, common_1.assertParamExists)('getPlaylistContents', 'type', type);
-                            localVarPath = "/playlists/{playlistID}/items"
-                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getPlaylistContents: async (playlistID, type, axiosOptions = {}) => {
+            // verify required parameter 'playlistID' is not null or undefined
+            assertParamExists('getPlaylistContents', 'playlistID', playlistID);
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('getPlaylistContents', 'type', type);
+            const localVarPath = `/playlists/{playlistID}/items`
+                .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          *
@@ -3283,63 +2171,38 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylists: function (playlistType, smart, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/playlists/all";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (playlistType !== undefined) {
-                                localVarQueryParameter['playlistType'] = playlistType;
-                            }
-                            if (smart !== undefined) {
-                                localVarQueryParameter['smart'] = smart;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getPlaylists: async (playlistType, smart, axiosOptions = {}) => {
+            const localVarPath = `/playlists/all`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (playlistType !== undefined) {
+                localVarQueryParameter['playlistType'] = playlistType;
+            }
+            if (smart !== undefined) {
+                localVarQueryParameter['smart'] = smart;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
@@ -3348,60 +2211,35 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        updatePlaylist: function (playlistID, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'playlistID' is not null or undefined
-                            (0, common_1.assertParamExists)('updatePlaylist', 'playlistID', playlistID);
-                            localVarPath = "/playlists/{playlistID}"
-                                .replace("{".concat("playlistID", "}"), encodeURIComponent(String(playlistID)));
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        updatePlaylist: async (playlistID, axiosOptions = {}) => {
+            // verify required parameter 'playlistID' is not null or undefined
+            assertParamExists('updatePlaylist', 'playlistID', playlistID);
+            const localVarPath = `/playlists/{playlistID}`
+                .replace(`{${"playlistID"}}`, encodeURIComponent(String(playlistID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
@@ -3411,77 +2249,51 @@ var PlaylistsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        uploadPlaylist: function (path, force, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'path' is not null or undefined
-                            (0, common_1.assertParamExists)('uploadPlaylist', 'path', path);
-                            // verify required parameter 'force' is not null or undefined
-                            (0, common_1.assertParamExists)('uploadPlaylist', 'force', force);
-                            localVarPath = "/playlists/upload";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (path !== undefined) {
-                                localVarQueryParameter['path'] = path;
-                            }
-                            if (force !== undefined) {
-                                localVarQueryParameter['force'] = force;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        uploadPlaylist: async (path, force, axiosOptions = {}) => {
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('uploadPlaylist', 'path', path);
+            // verify required parameter 'force' is not null or undefined
+            assertParamExists('uploadPlaylist', 'force', force);
+            const localVarPath = `/playlists/upload`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (path !== undefined) {
+                localVarQueryParameter['path'] = path;
+            }
+            if (force !== undefined) {
+                localVarQueryParameter['force'] = force;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.PlaylistsApiAxiosParamCreator = PlaylistsApiAxiosParamCreator;
 /**
  * PlaylistsApi - functional programming interface
  * @export
  */
-var PlaylistsApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.PlaylistsApiAxiosParamCreator)(configuration);
+export const PlaylistsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = PlaylistsApiAxiosParamCreator(configuration);
     return {
         /**
          * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
@@ -3492,18 +2304,9 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async addPlaylistContents(playlistID, uri, playQueueID, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Clears a playlist, only works with dumb playlists. Returns the playlist.
@@ -3512,18 +2315,9 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContents: function (playlistID, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.clearPlaylistContents(playlistID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async clearPlaylistContents(playlistID, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.clearPlaylistContents(playlistID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
@@ -3536,18 +2330,9 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async createPlaylist(title, type, smart, uri, playQueueID, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will delete a playlist
@@ -3556,18 +2341,9 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlaylist: function (playlistID, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.deletePlaylist(playlistID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async deletePlaylist(playlistID, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deletePlaylist(playlistID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
@@ -3576,18 +2352,9 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylist: function (playlistID, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylist(playlistID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getPlaylist(playlistID, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlaylist(playlistID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
@@ -3597,18 +2364,9 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContents: function (playlistID, type, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylistContents(playlistID, type, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getPlaylistContents(playlistID, type, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlaylistContents(playlistID, type, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          *
@@ -3618,18 +2376,9 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylists: function (playlistType, smart, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getPlaylists(playlistType, smart, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getPlaylists(playlistType, smart, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlaylists(playlistType, smart, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
@@ -3638,18 +2387,9 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        updatePlaylist: function (playlistID, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.updatePlaylist(playlistID, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async updatePlaylist(playlistID, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePlaylist(playlistID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
@@ -3659,28 +2399,18 @@ var PlaylistsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        uploadPlaylist: function (path, force, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.uploadPlaylist(path, force, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async uploadPlaylist(path, force, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.uploadPlaylist(path, force, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.PlaylistsApiFp = PlaylistsApiFp;
 /**
  * PlaylistsApi - factory interface
  * @export
  */
-var PlaylistsApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.PlaylistsApiFp)(configuration);
+export const PlaylistsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = PlaylistsApiFp(configuration);
     return {
         /**
          * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
@@ -3691,8 +2421,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        addPlaylistContents: function (playlistID, uri, playQueueID, axiosOptions) {
-            return localVarFp.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        addPlaylistContents(playlistID, uri, playQueueID, axiosOptions) {
+            return localVarFp.addPlaylistContents(playlistID, uri, playQueueID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Clears a playlist, only works with dumb playlists. Returns the playlist.
@@ -3701,8 +2431,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        clearPlaylistContents: function (playlistID, axiosOptions) {
-            return localVarFp.clearPlaylistContents(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        clearPlaylistContents(playlistID, axiosOptions) {
+            return localVarFp.clearPlaylistContents(playlistID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
@@ -3715,8 +2445,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        createPlaylist: function (title, type, smart, uri, playQueueID, axiosOptions) {
-            return localVarFp.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        createPlaylist(title, type, smart, uri, playQueueID, axiosOptions) {
+            return localVarFp.createPlaylist(title, type, smart, uri, playQueueID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will delete a playlist
@@ -3725,8 +2455,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        deletePlaylist: function (playlistID, axiosOptions) {
-            return localVarFp.deletePlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        deletePlaylist(playlistID, axiosOptions) {
+            return localVarFp.deletePlaylist(playlistID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
@@ -3735,8 +2465,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylist: function (playlistID, axiosOptions) {
-            return localVarFp.getPlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPlaylist(playlistID, axiosOptions) {
+            return localVarFp.getPlaylist(playlistID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
@@ -3746,8 +2476,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylistContents: function (playlistID, type, axiosOptions) {
-            return localVarFp.getPlaylistContents(playlistID, type, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPlaylistContents(playlistID, type, axiosOptions) {
+            return localVarFp.getPlaylistContents(playlistID, type, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -3757,8 +2487,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getPlaylists: function (playlistType, smart, axiosOptions) {
-            return localVarFp.getPlaylists(playlistType, smart, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getPlaylists(playlistType, smart, axiosOptions) {
+            return localVarFp.getPlaylists(playlistType, smart, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
@@ -3767,8 +2497,8 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        updatePlaylist: function (playlistID, axiosOptions) {
-            return localVarFp.updatePlaylist(playlistID, axiosOptions).then(function (request) { return request(axios, basePath); });
+        updatePlaylist(playlistID, axiosOptions) {
+            return localVarFp.updatePlaylist(playlistID, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
@@ -3778,23 +2508,18 @@ var PlaylistsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        uploadPlaylist: function (path, force, axiosOptions) {
-            return localVarFp.uploadPlaylist(path, force, axiosOptions).then(function (request) { return request(axios, basePath); });
+        uploadPlaylist(path, force, axiosOptions) {
+            return localVarFp.uploadPlaylist(path, force, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.PlaylistsApiFactory = PlaylistsApiFactory;
 /**
  * PlaylistsApi - object-oriented interface
  * @export
  * @class PlaylistsApi
  * @extends {BaseAPI}
  */
-var PlaylistsApi = /** @class */ (function (_super) {
-    __extends(PlaylistsApi, _super);
-    function PlaylistsApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class PlaylistsApi extends BaseAPI {
     /**
      * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.  With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
      * @summary Adding to a Playlist
@@ -3803,10 +2528,9 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.addPlaylistContents = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).addPlaylistContents(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    addPlaylistContents(requestParameters, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).addPlaylistContents(requestParameters.playlistID, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Clears a playlist, only works with dumb playlists. Returns the playlist.
      * @summary Delete Playlist Contents
@@ -3815,10 +2539,9 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.clearPlaylistContents = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).clearPlaylistContents(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    clearPlaylistContents(requestParameters, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).clearPlaylistContents(requestParameters.playlistID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass: - `uri` - The content URI for what we\'re playing (e.g. `library://...`). - `playQueueID` - To create a playlist from an existing play queue.
      * @summary Create a Playlist
@@ -3827,10 +2550,9 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.createPlaylist = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).createPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    createPlaylist(requestParameters, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).createPlaylist(requestParameters.title, requestParameters.type, requestParameters.smart, requestParameters.uri, requestParameters.playQueueID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint will delete a playlist
      * @summary Deletes a Playlist
@@ -3839,10 +2561,9 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.deletePlaylist = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).deletePlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    deletePlaylist(requestParameters, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).deletePlaylist(requestParameters.playlistID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Gets detailed metadata for a playlist. A playlist for many purposes (rating, editing metadata, tagging), can be treated like a regular metadata item: Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
      * @summary Retrieve Playlist
@@ -3851,10 +2572,9 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.getPlaylist = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getPlaylist(requestParameters, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).getPlaylist(requestParameters.playlistID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Gets the contents of a playlist. Should be paged by clients via standard mechanisms.  By default leaves are returned (e.g. episodes, movies). In order to return other types you can use the `type` parameter.  For example, you could use this to display a list of recently added albums vis a smart playlist.  Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
      * @summary Retrieve Playlist Contents
@@ -3863,10 +2583,9 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.getPlaylistContents = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylistContents(requestParameters.playlistID, requestParameters.type, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getPlaylistContents(requestParameters, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).getPlaylistContents(requestParameters.playlistID, requestParameters.type, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      *
      * @summary Get All Playlists
@@ -3875,11 +2594,9 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.getPlaylists = function (requestParameters, axiosOptions) {
-        var _this = this;
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.PlaylistsApiFp)(this.configuration).getPlaylists(requestParameters.playlistType, requestParameters.smart, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getPlaylists(requestParameters = {}, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).getPlaylists(requestParameters.playlistType, requestParameters.smart, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * From PMS version 1.9.1 clients can also edit playlist metadata using this endpoint as they would via `PUT /library/metadata/{playlistID}`
      * @summary Update a Playlist
@@ -3888,10 +2605,9 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.updatePlaylist = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).updatePlaylist(requestParameters.playlistID, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    updatePlaylist(requestParameters, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).updatePlaylist(requestParameters.playlistID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
      * @summary Upload Playlist
@@ -3900,19 +2616,15 @@ var PlaylistsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof PlaylistsApi
      */
-    PlaylistsApi.prototype.uploadPlaylist = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.PlaylistsApiFp)(this.configuration).uploadPlaylist(requestParameters.path, requestParameters.force, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return PlaylistsApi;
-}(base_1.BaseAPI));
-exports.PlaylistsApi = PlaylistsApi;
+    uploadPlaylist(requestParameters, axiosOptions) {
+        return PlaylistsApiFp(this.configuration).uploadPlaylist(requestParameters.path, requestParameters.force, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * SearchApi - axios parameter creator
  * @export
  */
-var SearchApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const SearchApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
@@ -3923,68 +2635,43 @@ var SearchApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performSearch: function (query, sectionId, limit, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'query' is not null or undefined
-                            (0, common_1.assertParamExists)('performSearch', 'query', query);
-                            localVarPath = "/hubs/search";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (query !== undefined) {
-                                localVarQueryParameter['query'] = query;
-                            }
-                            if (sectionId !== undefined) {
-                                localVarQueryParameter['sectionId'] = sectionId;
-                            }
-                            if (limit !== undefined) {
-                                localVarQueryParameter['limit'] = limit;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        performSearch: async (query, sectionId, limit, axiosOptions = {}) => {
+            // verify required parameter 'query' is not null or undefined
+            assertParamExists('performSearch', 'query', query);
+            const localVarPath = `/hubs/search`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (query !== undefined) {
+                localVarQueryParameter['query'] = query;
+            }
+            if (sectionId !== undefined) {
+                localVarQueryParameter['sectionId'] = sectionId;
+            }
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
@@ -3995,78 +2682,52 @@ var SearchApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'query' is not null or undefined
-                            (0, common_1.assertParamExists)('performVoiceSearch', 'query', query);
-                            localVarPath = "/hubs/search/voice";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (query !== undefined) {
-                                localVarQueryParameter['query'] = query;
-                            }
-                            if (sectionId !== undefined) {
-                                localVarQueryParameter['sectionId'] = sectionId;
-                            }
-                            if (limit !== undefined) {
-                                localVarQueryParameter['limit'] = limit;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        performVoiceSearch: async (query, sectionId, limit, axiosOptions = {}) => {
+            // verify required parameter 'query' is not null or undefined
+            assertParamExists('performVoiceSearch', 'query', query);
+            const localVarPath = `/hubs/search/voice`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (query !== undefined) {
+                localVarQueryParameter['query'] = query;
+            }
+            if (sectionId !== undefined) {
+                localVarQueryParameter['sectionId'] = sectionId;
+            }
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.SearchApiAxiosParamCreator = SearchApiAxiosParamCreator;
 /**
  * SearchApi - functional programming interface
  * @export
  */
-var SearchApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.SearchApiAxiosParamCreator)(configuration);
+export const SearchApiFp = function (configuration) {
+    const localVarAxiosParamCreator = SearchApiAxiosParamCreator(configuration);
     return {
         /**
          * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
@@ -4077,18 +2738,9 @@ var SearchApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performSearch: function (query, sectionId, limit, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.performSearch(query, sectionId, limit, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async performSearch(query, sectionId, limit, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.performSearch(query, sectionId, limit, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
@@ -4099,28 +2751,18 @@ var SearchApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.performVoiceSearch(query, sectionId, limit, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async performVoiceSearch(query, sectionId, limit, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.performVoiceSearch(query, sectionId, limit, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.SearchApiFp = SearchApiFp;
 /**
  * SearchApi - factory interface
  * @export
  */
-var SearchApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.SearchApiFp)(configuration);
+export const SearchApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = SearchApiFp(configuration);
     return {
         /**
          * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
@@ -4131,8 +2773,8 @@ var SearchApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performSearch: function (query, sectionId, limit, axiosOptions) {
-            return localVarFp.performSearch(query, sectionId, limit, axiosOptions).then(function (request) { return request(axios, basePath); });
+        performSearch(query, sectionId, limit, axiosOptions) {
+            return localVarFp.performSearch(query, sectionId, limit, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
@@ -4143,23 +2785,18 @@ var SearchApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        performVoiceSearch: function (query, sectionId, limit, axiosOptions) {
-            return localVarFp.performVoiceSearch(query, sectionId, limit, axiosOptions).then(function (request) { return request(axios, basePath); });
+        performVoiceSearch(query, sectionId, limit, axiosOptions) {
+            return localVarFp.performVoiceSearch(query, sectionId, limit, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.SearchApiFactory = SearchApiFactory;
 /**
  * SearchApi - object-oriented interface
  * @export
  * @class SearchApi
  * @extends {BaseAPI}
  */
-var SearchApi = /** @class */ (function (_super) {
-    __extends(SearchApi, _super);
-    function SearchApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class SearchApi extends BaseAPI {
     /**
      * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types.
      * @summary Perform a search
@@ -4168,10 +2805,9 @@ var SearchApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    SearchApi.prototype.performSearch = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.SearchApiFp)(this.configuration).performSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    performSearch(requestParameters, axiosOptions) {
+        return SearchApiFp(this.configuration).performSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint performs a search specifically tailored towards voice or other imprecise input which may work badly with the substring and spell-checking heuristics used by the `/hubs/search` endpoint.  It uses a [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) heuristic to search titles, and as such is much slower than the other search endpoint.  Whenever possible, clients should limit the search to the appropriate type.  Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
      * @summary Perform a voice search
@@ -4180,19 +2816,15 @@ var SearchApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof SearchApi
      */
-    SearchApi.prototype.performVoiceSearch = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.SearchApiFp)(this.configuration).performVoiceSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return SearchApi;
-}(base_1.BaseAPI));
-exports.SearchApi = SearchApi;
+    performVoiceSearch(requestParameters, axiosOptions) {
+        return SearchApiFp(this.configuration).performVoiceSearch(requestParameters.query, requestParameters.sectionId, requestParameters.limit, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * SecurityApi - axios parameter creator
  * @export
  */
-var SecurityApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const SecurityApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
@@ -4201,62 +2833,37 @@ var SecurityApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSourceConnectionInformation: function (source, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'source' is not null or undefined
-                            (0, common_1.assertParamExists)('getSourceConnectionInformation', 'source', source);
-                            localVarPath = "/security/resources";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (source !== undefined) {
-                                localVarQueryParameter['source'] = source;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getSourceConnectionInformation: async (source, axiosOptions = {}) => {
+            // verify required parameter 'source' is not null or undefined
+            assertParamExists('getSourceConnectionInformation', 'source', source);
+            const localVarPath = `/security/resources`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (source !== undefined) {
+                localVarQueryParameter['source'] = source;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
@@ -4266,77 +2873,51 @@ var SecurityApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getTransientToken: function (type, scope, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            // verify required parameter 'type' is not null or undefined
-                            (0, common_1.assertParamExists)('getTransientToken', 'type', type);
-                            // verify required parameter 'scope' is not null or undefined
-                            (0, common_1.assertParamExists)('getTransientToken', 'scope', scope);
-                            localVarPath = "/security/token";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (type !== undefined) {
-                                localVarQueryParameter['type'] = type;
-                            }
-                            if (scope !== undefined) {
-                                localVarQueryParameter['scope'] = scope;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getTransientToken: async (type, scope, axiosOptions = {}) => {
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('getTransientToken', 'type', type);
+            // verify required parameter 'scope' is not null or undefined
+            assertParamExists('getTransientToken', 'scope', scope);
+            const localVarPath = `/security/token`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+            if (scope !== undefined) {
+                localVarQueryParameter['scope'] = scope;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.SecurityApiAxiosParamCreator = SecurityApiAxiosParamCreator;
 /**
  * SecurityApi - functional programming interface
  * @export
  */
-var SecurityApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.SecurityApiAxiosParamCreator)(configuration);
+export const SecurityApiFp = function (configuration) {
+    const localVarAxiosParamCreator = SecurityApiAxiosParamCreator(configuration);
     return {
         /**
          * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
@@ -4345,18 +2926,9 @@ var SecurityApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSourceConnectionInformation: function (source, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSourceConnectionInformation(source, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getSourceConnectionInformation(source, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSourceConnectionInformation(source, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
@@ -4366,28 +2938,18 @@ var SecurityApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getTransientToken: function (type, scope, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getTransientToken(type, scope, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getTransientToken(type, scope, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTransientToken(type, scope, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.SecurityApiFp = SecurityApiFp;
 /**
  * SecurityApi - factory interface
  * @export
  */
-var SecurityApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.SecurityApiFp)(configuration);
+export const SecurityApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = SecurityApiFp(configuration);
     return {
         /**
          * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
@@ -4396,8 +2958,8 @@ var SecurityApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSourceConnectionInformation: function (source, axiosOptions) {
-            return localVarFp.getSourceConnectionInformation(source, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getSourceConnectionInformation(source, axiosOptions) {
+            return localVarFp.getSourceConnectionInformation(source, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
@@ -4407,23 +2969,18 @@ var SecurityApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getTransientToken: function (type, scope, axiosOptions) {
-            return localVarFp.getTransientToken(type, scope, axiosOptions).then(function (request) { return request(axios, basePath); });
+        getTransientToken(type, scope, axiosOptions) {
+            return localVarFp.getTransientToken(type, scope, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.SecurityApiFactory = SecurityApiFactory;
 /**
  * SecurityApi - object-oriented interface
  * @export
  * @class SecurityApi
  * @extends {BaseAPI}
  */
-var SecurityApi = /** @class */ (function (_super) {
-    __extends(SecurityApi, _super);
-    function SecurityApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class SecurityApi extends BaseAPI {
     /**
      * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token. Note: requires Plex Media Server >= 1.15.4.
      * @summary Get Source Connection Information
@@ -4432,10 +2989,9 @@ var SecurityApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof SecurityApi
      */
-    SecurityApi.prototype.getSourceConnectionInformation = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.SecurityApiFp)(this.configuration).getSourceConnectionInformation(requestParameters.source, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getSourceConnectionInformation(requestParameters, axiosOptions) {
+        return SecurityApiFp(this.configuration).getSourceConnectionInformation(requestParameters.source, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This endpoint provides the caller with a temporary token with the same access level as the caller\'s token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
      * @summary Get a Transient Token.
@@ -4444,19 +3000,15 @@ var SecurityApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof SecurityApi
      */
-    SecurityApi.prototype.getTransientToken = function (requestParameters, axiosOptions) {
-        var _this = this;
-        return (0, exports.SecurityApiFp)(this.configuration).getTransientToken(requestParameters.type, requestParameters.scope, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return SecurityApi;
-}(base_1.BaseAPI));
-exports.SecurityApi = SecurityApi;
+    getTransientToken(requestParameters, axiosOptions) {
+        return SecurityApiFp(this.configuration).getTransientToken(requestParameters.type, requestParameters.scope, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * ServerApi - axios parameter creator
  * @export
  */
-var ServerApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const ServerApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Server Capabilities
@@ -4464,57 +3016,32 @@ var ServerApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerCapabilities: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getServerCapabilities: async (axiosOptions = {}) => {
+            const localVarPath = `/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Get Server Preferences
@@ -4522,67 +3049,41 @@ var ServerApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerPreferences: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/:/prefs";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getServerPreferences: async (axiosOptions = {}) => {
+            const localVarPath = `/:/prefs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.ServerApiAxiosParamCreator = ServerApiAxiosParamCreator;
 /**
  * ServerApi - functional programming interface
  * @export
  */
-var ServerApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.ServerApiAxiosParamCreator)(configuration);
+export const ServerApiFp = function (configuration) {
+    const localVarAxiosParamCreator = ServerApiAxiosParamCreator(configuration);
     return {
         /**
          * Server Capabilities
@@ -4590,18 +3091,9 @@ var ServerApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerCapabilities: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerCapabilities(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getServerCapabilities(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getServerCapabilities(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get Server Preferences
@@ -4609,28 +3101,18 @@ var ServerApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerPreferences: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getServerPreferences(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getServerPreferences(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getServerPreferences(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.ServerApiFp = ServerApiFp;
 /**
  * ServerApi - factory interface
  * @export
  */
-var ServerApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.ServerApiFp)(configuration);
+export const ServerApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = ServerApiFp(configuration);
     return {
         /**
          * Server Capabilities
@@ -4638,8 +3120,8 @@ var ServerApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerCapabilities: function (axiosOptions) {
-            return localVarFp.getServerCapabilities(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getServerCapabilities(axiosOptions) {
+            return localVarFp.getServerCapabilities(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Get Server Preferences
@@ -4647,23 +3129,18 @@ var ServerApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getServerPreferences: function (axiosOptions) {
-            return localVarFp.getServerPreferences(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getServerPreferences(axiosOptions) {
+            return localVarFp.getServerPreferences(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.ServerApiFactory = ServerApiFactory;
 /**
  * ServerApi - object-oriented interface
  * @export
  * @class ServerApi
  * @extends {BaseAPI}
  */
-var ServerApi = /** @class */ (function (_super) {
-    __extends(ServerApi, _super);
-    function ServerApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class ServerApi extends BaseAPI {
     /**
      * Server Capabilities
      * @summary Server Capabilities
@@ -4671,10 +3148,9 @@ var ServerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ServerApi
      */
-    ServerApi.prototype.getServerCapabilities = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.ServerApiFp)(this.configuration).getServerCapabilities(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getServerCapabilities(axiosOptions) {
+        return ServerApiFp(this.configuration).getServerCapabilities(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Get Server Preferences
      * @summary Get Server Preferences
@@ -4682,19 +3158,15 @@ var ServerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ServerApi
      */
-    ServerApi.prototype.getServerPreferences = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.ServerApiFp)(this.configuration).getServerPreferences(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return ServerApi;
-}(base_1.BaseAPI));
-exports.ServerApi = ServerApi;
+    getServerPreferences(axiosOptions) {
+        return ServerApiFp(this.configuration).getServerPreferences(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * SessionsApi - axios parameter creator
  * @export
  */
-var SessionsApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const SessionsApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * This will Retrieve a listing of all history views.
@@ -4702,57 +3174,32 @@ var SessionsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessionHistory: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/status/sessions/history/all";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getSessionHistory: async (axiosOptions = {}) => {
+            const localVarPath = `/status/sessions/history/all`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * This will retrieve the \"Now Playing\" Information of the PMS.
@@ -4760,67 +3207,41 @@ var SessionsApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessions: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/status/sessions";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getSessions: async (axiosOptions = {}) => {
+            const localVarPath = `/status/sessions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.SessionsApiAxiosParamCreator = SessionsApiAxiosParamCreator;
 /**
  * SessionsApi - functional programming interface
  * @export
  */
-var SessionsApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.SessionsApiAxiosParamCreator)(configuration);
+export const SessionsApiFp = function (configuration) {
+    const localVarAxiosParamCreator = SessionsApiAxiosParamCreator(configuration);
     return {
         /**
          * This will Retrieve a listing of all history views.
@@ -4828,18 +3249,9 @@ var SessionsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessionHistory: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSessionHistory(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getSessionHistory(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSessionHistory(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This will retrieve the \"Now Playing\" Information of the PMS.
@@ -4847,28 +3259,18 @@ var SessionsApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessions: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getSessions(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getSessions(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSessions(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.SessionsApiFp = SessionsApiFp;
 /**
  * SessionsApi - factory interface
  * @export
  */
-var SessionsApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.SessionsApiFp)(configuration);
+export const SessionsApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = SessionsApiFp(configuration);
     return {
         /**
          * This will Retrieve a listing of all history views.
@@ -4876,8 +3278,8 @@ var SessionsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessionHistory: function (axiosOptions) {
-            return localVarFp.getSessionHistory(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getSessionHistory(axiosOptions) {
+            return localVarFp.getSessionHistory(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This will retrieve the \"Now Playing\" Information of the PMS.
@@ -4885,23 +3287,18 @@ var SessionsApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getSessions: function (axiosOptions) {
-            return localVarFp.getSessions(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getSessions(axiosOptions) {
+            return localVarFp.getSessions(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.SessionsApiFactory = SessionsApiFactory;
 /**
  * SessionsApi - object-oriented interface
  * @export
  * @class SessionsApi
  * @extends {BaseAPI}
  */
-var SessionsApi = /** @class */ (function (_super) {
-    __extends(SessionsApi, _super);
-    function SessionsApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class SessionsApi extends BaseAPI {
     /**
      * This will Retrieve a listing of all history views.
      * @summary Get Session History
@@ -4909,10 +3306,9 @@ var SessionsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof SessionsApi
      */
-    SessionsApi.prototype.getSessionHistory = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.SessionsApiFp)(this.configuration).getSessionHistory(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    getSessionHistory(axiosOptions) {
+        return SessionsApiFp(this.configuration).getSessionHistory(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * This will retrieve the \"Now Playing\" Information of the PMS.
      * @summary Get Active Sessions
@@ -4920,19 +3316,15 @@ var SessionsApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof SessionsApi
      */
-    SessionsApi.prototype.getSessions = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.SessionsApiFp)(this.configuration).getSessions(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return SessionsApi;
-}(base_1.BaseAPI));
-exports.SessionsApi = SessionsApi;
+    getSessions(axiosOptions) {
+        return SessionsApiFp(this.configuration).getSessions(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * UpdaterApi - axios parameter creator
  * @export
  */
-var UpdaterApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const UpdaterApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
@@ -4942,63 +3334,38 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyUpdates: function (tonight, skip, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/updater/apply";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (tonight !== undefined) {
-                                localVarQueryParameter['tonight'] = tonight;
-                            }
-                            if (skip !== undefined) {
-                                localVarQueryParameter['skip'] = skip;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        applyUpdates: async (tonight, skip, axiosOptions = {}) => {
+            const localVarPath = `/updater/apply`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (tonight !== undefined) {
+                localVarQueryParameter['tonight'] = tonight;
+            }
+            if (skip !== undefined) {
+                localVarQueryParameter['skip'] = skip;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Checking for updates
@@ -5007,60 +3374,35 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkForUpdates: function (download, axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/updater/check";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            if (download !== undefined) {
-                                localVarQueryParameter['download'] = download;
-                            }
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        checkForUpdates: async (download, axiosOptions = {}) => {
+            const localVarPath = `/updater/check`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            if (download !== undefined) {
+                localVarQueryParameter['download'] = download;
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
         /**
          * Querying status of updates
@@ -5068,67 +3410,41 @@ var UpdaterApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryUpdateStatus: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/updater/status";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        queryUpdateStatus: async (axiosOptions = {}) => {
+            const localVarPath = `/updater/status`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.UpdaterApiAxiosParamCreator = UpdaterApiAxiosParamCreator;
 /**
  * UpdaterApi - functional programming interface
  * @export
  */
-var UpdaterApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.UpdaterApiAxiosParamCreator)(configuration);
+export const UpdaterApiFp = function (configuration) {
+    const localVarAxiosParamCreator = UpdaterApiAxiosParamCreator(configuration);
     return {
         /**
          * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
@@ -5138,18 +3454,9 @@ var UpdaterApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyUpdates: function (tonight, skip, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.applyUpdates(tonight, skip, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async applyUpdates(tonight, skip, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.applyUpdates(tonight, skip, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Checking for updates
@@ -5158,18 +3465,9 @@ var UpdaterApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkForUpdates: function (download, axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.checkForUpdates(download, axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async checkForUpdates(download, axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.checkForUpdates(download, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Querying status of updates
@@ -5177,28 +3475,18 @@ var UpdaterApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryUpdateStatus: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.queryUpdateStatus(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async queryUpdateStatus(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.queryUpdateStatus(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.UpdaterApiFp = UpdaterApiFp;
 /**
  * UpdaterApi - factory interface
  * @export
  */
-var UpdaterApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.UpdaterApiFp)(configuration);
+export const UpdaterApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = UpdaterApiFp(configuration);
     return {
         /**
          * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
@@ -5208,8 +3496,8 @@ var UpdaterApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        applyUpdates: function (tonight, skip, axiosOptions) {
-            return localVarFp.applyUpdates(tonight, skip, axiosOptions).then(function (request) { return request(axios, basePath); });
+        applyUpdates(tonight, skip, axiosOptions) {
+            return localVarFp.applyUpdates(tonight, skip, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Checking for updates
@@ -5218,8 +3506,8 @@ var UpdaterApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        checkForUpdates: function (download, axiosOptions) {
-            return localVarFp.checkForUpdates(download, axiosOptions).then(function (request) { return request(axios, basePath); });
+        checkForUpdates(download, axiosOptions) {
+            return localVarFp.checkForUpdates(download, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * Querying status of updates
@@ -5227,23 +3515,18 @@ var UpdaterApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryUpdateStatus: function (axiosOptions) {
-            return localVarFp.queryUpdateStatus(axiosOptions).then(function (request) { return request(axios, basePath); });
+        queryUpdateStatus(axiosOptions) {
+            return localVarFp.queryUpdateStatus(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.UpdaterApiFactory = UpdaterApiFactory;
 /**
  * UpdaterApi - object-oriented interface
  * @export
  * @class UpdaterApi
  * @extends {BaseAPI}
  */
-var UpdaterApi = /** @class */ (function (_super) {
-    __extends(UpdaterApi, _super);
-    function UpdaterApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class UpdaterApi extends BaseAPI {
     /**
      * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
      * @summary Apply Updates
@@ -5252,11 +3535,9 @@ var UpdaterApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    UpdaterApi.prototype.applyUpdates = function (requestParameters, axiosOptions) {
-        var _this = this;
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.UpdaterApiFp)(this.configuration).applyUpdates(requestParameters.tonight, requestParameters.skip, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    applyUpdates(requestParameters = {}, axiosOptions) {
+        return UpdaterApiFp(this.configuration).applyUpdates(requestParameters.tonight, requestParameters.skip, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Checking for updates
      * @summary Checking for updates
@@ -5265,11 +3546,9 @@ var UpdaterApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    UpdaterApi.prototype.checkForUpdates = function (requestParameters, axiosOptions) {
-        var _this = this;
-        if (requestParameters === void 0) { requestParameters = {}; }
-        return (0, exports.UpdaterApiFp)(this.configuration).checkForUpdates(requestParameters.download, axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
+    checkForUpdates(requestParameters = {}, axiosOptions) {
+        return UpdaterApiFp(this.configuration).checkForUpdates(requestParameters.download, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
     /**
      * Querying status of updates
      * @summary Querying status of updates
@@ -5277,19 +3556,15 @@ var UpdaterApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    UpdaterApi.prototype.queryUpdateStatus = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.UpdaterApiFp)(this.configuration).queryUpdateStatus(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return UpdaterApi;
-}(base_1.BaseAPI));
-exports.UpdaterApi = UpdaterApi;
+    queryUpdateStatus(axiosOptions) {
+        return UpdaterApiFp(this.configuration).queryUpdateStatus(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 /**
  * UserApi - axios parameter creator
  * @export
  */
-var UserApiAxiosParamCreator = function (configuration) {
-    var _this = this;
+export const UserApiAxiosParamCreator = function (configuration) {
     return {
         /**
          * Get Logged in User
@@ -5297,67 +3572,41 @@ var UserApiAxiosParamCreator = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getUserDetails: function (axiosOptions) {
-            if (axiosOptions === void 0) { axiosOptions = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, headersFromBaseOptions;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            localVarPath = "/user";
-                            localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), axiosOptions);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            // authentication ClientIdentifier required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-                                // authentication DeviceName required
-                            ];
-                        case 1:
-                            // authentication ClientIdentifier required
-                            _a.sent();
-                            // authentication DeviceName required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-                                // authentication Host required
-                            ];
-                        case 2:
-                            // authentication DeviceName required
-                            _a.sent();
-                            // authentication Host required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "Host", configuration)
-                                // authentication Token required
-                            ];
-                        case 3:
-                            // authentication Host required
-                            _a.sent();
-                            // authentication Token required
-                            return [4 /*yield*/, (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "X-Plex-Token", configuration)];
-                        case 4:
-                            // authentication Token required
-                            _a.sent();
-                            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), axiosOptions.headers);
-                            return [2 /*return*/, {
-                                    url: (0, common_1.toPathString)(localVarUrlObj),
-                                    axiosOptions: localVarRequestOptions,
-                                }];
-                    }
-                });
-            });
+        getUserDetails: async (axiosOptions = {}) => {
+            const localVarPath = `/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration);
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration);
+            // authentication Host required
+            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration);
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration);
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers };
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
         },
     };
 };
-exports.UserApiAxiosParamCreator = UserApiAxiosParamCreator;
 /**
  * UserApi - functional programming interface
  * @export
  */
-var UserApiFp = function (configuration) {
-    var localVarAxiosParamCreator = (0, exports.UserApiAxiosParamCreator)(configuration);
+export const UserApiFp = function (configuration) {
+    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration);
     return {
         /**
          * Get Logged in User
@@ -5365,28 +3614,18 @@ var UserApiFp = function (configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getUserDetails: function (axiosOptions) {
-            return __awaiter(this, void 0, void 0, function () {
-                var localVarAxiosArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, localVarAxiosParamCreator.getUserDetails(axiosOptions)];
-                        case 1:
-                            localVarAxiosArgs = _a.sent();
-                            return [2 /*return*/, (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)];
-                    }
-                });
-            });
+        async getUserDetails(axiosOptions) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUserDetails(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     };
 };
-exports.UserApiFp = UserApiFp;
 /**
  * UserApi - factory interface
  * @export
  */
-var UserApiFactory = function (configuration, basePath, axios) {
-    var localVarFp = (0, exports.UserApiFp)(configuration);
+export const UserApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = UserApiFp(configuration);
     return {
         /**
          * Get Logged in User
@@ -5394,23 +3633,18 @@ var UserApiFactory = function (configuration, basePath, axios) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getUserDetails: function (axiosOptions) {
-            return localVarFp.getUserDetails(axiosOptions).then(function (request) { return request(axios, basePath); });
+        getUserDetails(axiosOptions) {
+            return localVarFp.getUserDetails(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
-exports.UserApiFactory = UserApiFactory;
 /**
  * UserApi - object-oriented interface
  * @export
  * @class UserApi
  * @extends {BaseAPI}
  */
-var UserApi = /** @class */ (function (_super) {
-    __extends(UserApi, _super);
-    function UserApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+export class UserApi extends BaseAPI {
     /**
      * Get Logged in User
      * @summary Get Logged in User
@@ -5418,11 +3652,8 @@ var UserApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    UserApi.prototype.getUserDetails = function (axiosOptions) {
-        var _this = this;
-        return (0, exports.UserApiFp)(this.configuration).getUserDetails(axiosOptions).then(function (request) { return request(_this.axios, _this.basePath); });
-    };
-    return UserApi;
-}(base_1.BaseAPI));
-exports.UserApi = UserApi;
+    getUserDetails(axiosOptions) {
+        return UserApiFp(this.configuration).getUserDetails(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
 //# sourceMappingURL=api.js.map

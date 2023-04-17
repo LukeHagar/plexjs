@@ -784,14 +784,8 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             // authentication ClientIdentifier required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
 
-            // authentication DeviceName required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
             // authentication Host required
             await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
-            // authentication Token required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
             if (strong !== undefined) {
                 localVarQueryParameter['strong'] = strong;
@@ -834,14 +828,8 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             // authentication ClientIdentifier required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
 
-            // authentication DeviceName required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
             // authentication Host required
             await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
-            // authentication Token required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
 
     
