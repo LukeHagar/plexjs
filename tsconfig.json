@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "declaration": true,
-    "target": "ES5",
-    "module": "CommonJS",
+    "target": "es2022",
+    "module": "es2022",
     "noImplicitAny": true,
     "outDir": "dist",
     "rootDir": ".",
