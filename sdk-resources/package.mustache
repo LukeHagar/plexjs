@@ -1,24 +1,31 @@
 {
   "name": "{{npmName}}",
   "version": "{{npmVersion}}",
-  "description": "OpenAPI client for {{npmName}}",
-  "author": "OpenAPI-Generator Contributors",
+  "description": "Community Made Plex JS/TS Module",
+  "author": "Luke Hagar",
+  "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://{{gitHost}}/{{gitUserId}}/{{gitRepoId}}.git"
+    "url": "https://github.com/LukeHagar/plexjs.git"
   },
   "keywords": [
     "axios",
     "typescript",
-    "openapi-client",
-    "openapi-generator",
+    "openapi",
+    "api",
+    "plex",
+    "plex media server",
+    "pms"
     "{{npmName}}"
   ],
-  "license": "Unlicense",
-  "main": "../dist/index.js",
-  "typings": "../dist/index.d.ts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LukeHagar/plexjs/issues"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc --outDir dist/",
+    "build": "tsc --outDir ./dist/",
     "prepare": "npm run build"
   },
   "dependencies": {

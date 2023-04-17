@@ -19,14 +19,13 @@ jobs:
           ref: ${{ github.ref }}
           fetch-depth: 0
 
-    
       - name: Checkout API Specs Repo
         uses: actions/checkout@v3
         with:
           repository: lukehagar/plex-api-spec
           path: api-specs
           ref: main
-      
+
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
@@ -67,17 +66,17 @@ jobs:
       - name: Build TS SDK
         id: buildTS
         run: |
-          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.3.0/openapi-generator-cli-6.3.0.jar -O openapi-generator-cli.jar
-          rm -rf sdk-output/
-          java -jar openapi-generator-cli.jar generate -i api-specs/referenced/plex-api-spec.yaml -g typescript-axios -o sdk-output/ --global-property skipFormModel=false --config config.yaml
-          
+          rm -rf plexjss/
+          java -jar openapi-generator-cli.jar generate -i api-specs/referenced/plex-api-spec.yaml -g typescript-axios -o plexjs/ --global-property skipFormModel=false --config config.yaml
+
       - name: After SDK Build
         id: buildSDK
         if: steps.buildTS.outcome == 'success'
         run: |
+          cd plexjs
           npm install
           npm run build
-        
+
       - name: Commit changes and create new version tag
         if: steps.buildSDK.outcome == 'success'
         uses: stefanzweifel/git-auto-commit-action@v4
