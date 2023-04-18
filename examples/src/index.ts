@@ -1,6 +1,9 @@
 // eslint-disable-next-line no-console
-import { Configuration, DevicesApi } from '@lukehagar/plexjs';
+import { Configuration, ServerApi } from '@lukehagar/plexjs';
 
-let config = new Configuration({ basePath: 'http://localhost:80' });
+const config = new Configuration({ basePath: 'http://10.10.10.47:32400' });
+const api = new ServerApi(config);
+
+api.getServerCapabilities();
 
 console.log('Hello world!');
