@@ -1,9 +1,8 @@
 {
   "name": "@lukehagar/plexjs",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Community Made Plex JS/TS Module",
   "author": "Luke Hagar",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/LukeHagar/plexjs.git"
