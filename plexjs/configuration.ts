@@ -15,13 +15,82 @@
 import { IAxiosRetryConfig } from "axios-retry";
 
 export interface ConfigurationParameters {
-
-    apiKey?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+    plexToken?: string;
+    clientIdentifier?: string;
+    device?: string;
+    deviceName?: string;
+    platform?: string;
+    platformVersion?: string;
+    product?: string;
+    version?: string;
     basePath?: string;
-
 }
 
 export class Configuration {
+    /**
+    * Plex Media Server or Plex.TV Authentication token
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    plexToken?: string;
+
+    /**
+    * UUID, serial number, or other number unique per device
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    clientIdentifier?: string;
+
+    /**
+    * Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    device?: string;
+
+    /**
+    * Customized Device Name
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    deviceName?: string;
+
+    /**
+    * Platform name, eg iOS, MacOSX, Android, LG, etc
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    platform?: string;
+
+    /**
+    * Operating system version, eg 4.3.1, 10.6.7, 3.2
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    platformVersion?: string;
+
+    /**
+    * Plex application name, eg Laika, Plex Media Server, Media Link
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    product?: string;
+
+    /**
+    * Plex application version number
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    version?: string;
+    
     /**
      * parameter for apiKey security
      * @param name security name
@@ -63,10 +132,42 @@ export class Configuration {
     retriesConfig?: IAxiosRetryConfig
 
     constructor(param: ConfigurationParameters = {}) {
+        this.plexToken = param.plexToken;
+        this.clientIdentifier = param.clientIdentifier || "Plexjs";
+        this.device = param.device || "Unspecified";
+        this.deviceName = param.deviceName || "Unspecified";
+        this.platform = param.platform || "Plexjs";
+        this.platformVersion = param.platformVersion || process.env.npm_package_version;
+        this.product = param.product || "Plexjs";
+        this.version = param.version || process.env.npm_package_version;
 
-        this.apiKey = param.apiKey;
+        this.apiKey = (header: string) => {
+            switch (header) {
+                case "X-Plex-Token":
+                    return this.plexToken
+                case "X-Plex-Client-Identifier":
+                    return this.clientIdentifier
+                case "X-Plex-Device-Name":
+                    return this.deviceName
+                case "X-Plex-Device":
+                    return this.device
+                case "X-Plex-Platform-Version":
+                    return this.platformVersion
+                case "X-Plex-Platform":
+                    return this.platform
+                case "X-Plex-Product":
+                    return this.product
+                case "X-Plex-Version":
+                    return this.version
+                default:
+                    return "";
+            }
+        }
         this.basePath = param.basePath;
+    }
 
+    public setAuthToken(token: string) {
+        this.plexToken = token
     }
 
     /**
