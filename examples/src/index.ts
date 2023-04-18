@@ -1,4 +1,6 @@
-import { Configuration, DevicesApi } from "plexjs";
+// eslint-disable-next-line no-console
+import { Configuration, DevicesApi } from '@lukehagar/plexjs';
 
-let Config = new Configuration({ basePath: "127.0.0.1:80" });
-let devicesApi = new DevicesApi(Config);
+let config = new Configuration({ basePath: 'http://localhost:80' });
+
+console.log('Hello world!');
