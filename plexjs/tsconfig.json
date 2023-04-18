@@ -4,7 +4,7 @@
     "target": "ES5",
     "module": "CommonJS",
     "noImplicitAny": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "rootDir": ".",
     "lib": [
       "es6",
@@ -12,10 +12,12 @@
     ],
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "sourceMap": true
   },
   "exclude": [
     "dist",
-    "node_modules"
+    "node_modules",
+    "./dist/**/*"
   ]
 }

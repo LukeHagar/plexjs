@@ -4,7 +4,7 @@
     "target": "{{#supportsES6}}ES6{{/supportsES6}}{{^supportsES6}}ES5{{/supportsES6}}",
     "module": "{{#supportsES6}}ES6{{/supportsES6}}{{^supportsES6}}CommonJS{{/supportsES6}}",
     "noImplicitAny": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "rootDir": ".",
     {{^supportsES6}}
     "lib": [
@@ -14,10 +14,12 @@
     {{/supportsES6}}
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "sourceMap": true
   },
   "exclude": [
     "dist",
-    "node_modules"
+    "node_modules",
+    "./dist/**/*"
   ]
 }

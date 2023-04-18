@@ -3,5 +3,5 @@
 {{>licenseInfo}}
 
 export * from "./api";
-export * from "./configuration";
+export {Configuration, ConfigurationParameters} from "./configuration";
 {{#withSeparateModelsAndApi}}export * from "./{{tsModelPackage}}";{{/withSeparateModelsAndApi}}
