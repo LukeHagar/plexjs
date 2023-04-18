@@ -1,6 +1,6 @@
 {
   "name": "@lukehagar/plexjs",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Community Made Plex JS/TS Module",
   "author": "Luke Hagar",
   "type": "module",
