@@ -17,6 +17,70 @@ export interface ConfigurationParameters {
 
 export class Configuration {
     /**
+    * Plex Media Server or Plex.TV Authentication token
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    plexToken?: string;
+
+    /**
+    * UUID, serial number, or other number unique per device
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    clientIdentifier?: string;
+
+    /**
+    * Device name and model number, eg iPhone3,2, Motorola XOOM™, LG5200TV
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    device?: string;
+
+    /**
+    * Customized Device Name
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    deviceName?: string;
+
+    /**
+    * Platform name, eg iOS, MacOSX, Android, LG, etc
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    platform?: string;
+
+    /**
+    * Operating system version, eg 4.3.1, 10.6.7, 3.2
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    platformVersion?: string;
+
+    /**
+    * Plex application name, eg Laika, Plex Media Server, Media Link
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    product?: string;
+
+    /**
+    * Plex application version number
+    *
+    * @type {string}
+    * @memberof Configuration
+    */
+    version?: string;
+    
+    /**
      * parameter for apiKey security
      * @param name security name
      * @memberof Configuration
