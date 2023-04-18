@@ -69,7 +69,8 @@ jobs:
           npm install
           npm run build
 
-      - id: Publish to NPM
+      - name: Publish to NPM
+        id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
@@ -86,7 +87,7 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Commit changes and Create new version tag
+      - name: Commit changes and create new version tag
         if: steps.buildSDK.outcome == 'success'
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
