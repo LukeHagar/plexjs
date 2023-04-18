@@ -5,7 +5,7 @@ files:
     destinationFilename: package.json
 npmName: plexjs
 npmRepository: lukehagar
-npmVersion: 0.0.9
+npmVersion: 0.0.10
 useSingleRequestParameter: true
 sortParamsByRequiredFlag: true
 gitUserID: lukehagar
