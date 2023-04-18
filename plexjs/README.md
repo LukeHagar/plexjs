@@ -1,4 +1,4 @@
-## plexjs@0.0.17
+## plexjs@0.0.18
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install plexjs@0.0.17 --save
+npm install plexjs@0.0.18 --save
 ```
 
 _unPublished (not recommended):_
