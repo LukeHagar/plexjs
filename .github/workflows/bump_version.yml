@@ -5,6 +5,11 @@ on:
     inputs:
       version:
         description: The version to bump to
+  push:
+    branches:
+      - main
+    paths:
+      - plexjs/**
 
 jobs:
   update_typescript_version:
@@ -76,6 +81,13 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./plexjs/package.json
 
+      - name: Commit changes and create new version tag
+        if: steps.buildSDK.outcome == 'success'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Bump version to ${{ github.event.inputs.version }}
+          tagging_message: ${{ github.event.inputs.version }}
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -86,10 +98,3 @@ jobs:
           release_name: ${{ github.event.inputs.version }}
           draft: false
           prerelease: false
-
-      - name: Commit changes and create new version tag
-        if: steps.buildSDK.outcome == 'success'
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Bump version to ${{ github.event.inputs.version }}
-          tagging_message: ${{ github.event.inputs.version }}
