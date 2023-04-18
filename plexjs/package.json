@@ -1,5 +1,5 @@
 {
-  "name": "plexjs",
+  "name": "@lukehagar/plexjs",
   "version": "0.0.5",
   "description": "Community Made Plex JS/TS Module",
   "author": "Luke Hagar",
@@ -15,7 +15,7 @@
     "api",
     "plex",
     "plex media server",
-    "pms"
+    "pms",
     "plexjs"
   ],
   "license": "MIT",

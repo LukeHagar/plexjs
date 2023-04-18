@@ -587,9 +587,6 @@ export const ActivitiesApiAxiosParamCreator = function (configuration?: Configur
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -628,9 +625,6 @@ export const ActivitiesApiAxiosParamCreator = function (configuration?: Configur
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -784,9 +778,6 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             // authentication ClientIdentifier required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             if (strong !== undefined) {
                 localVarQueryParameter['strong'] = strong;
             }
@@ -827,9 +818,6 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
 
             // authentication ClientIdentifier required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
 
     
@@ -999,9 +987,6 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -1045,9 +1030,6 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -1086,9 +1068,6 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -1132,9 +1111,6 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -1367,9 +1343,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -1411,9 +1384,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -1603,9 +1573,6 @@ export const HashesApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -1749,9 +1716,6 @@ export const HubsApiAxiosParamCreator = function (configuration?: Configuration)
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -1804,9 +1768,6 @@ export const HubsApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -2022,9 +1983,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -2080,9 +2038,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -2130,9 +2085,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -2176,9 +2128,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -2229,9 +2178,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -2279,9 +2225,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -2324,9 +2267,6 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -2763,9 +2703,6 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -2813,9 +2750,6 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -2867,9 +2801,6 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -3083,9 +3014,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -3137,9 +3065,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -3189,9 +3114,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -3256,9 +3178,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -3301,9 +3220,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -3351,9 +3267,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -3398,9 +3311,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -3453,9 +3363,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -3500,9 +3407,6 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -4098,9 +4002,6 @@ export const SearchApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -4156,9 +4057,6 @@ export const SearchApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -4382,9 +4280,6 @@ export const SecurityApiAxiosParamCreator = function (configuration?: Configurat
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -4433,9 +4328,6 @@ export const SecurityApiAxiosParamCreator = function (configuration?: Configurat
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -4625,9 +4517,6 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -4666,9 +4555,6 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -4807,9 +4693,6 @@ export const SessionsApiAxiosParamCreator = function (configuration?: Configurat
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -4848,9 +4731,6 @@ export const SessionsApiAxiosParamCreator = function (configuration?: Configurat
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -4991,9 +4871,6 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -5042,9 +4919,6 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
 
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
-
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
 
@@ -5087,9 +4961,6 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
@@ -5300,9 +5171,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
             // authentication DeviceName required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Host required
-            await setApiKeyToObject(localVarHeaderParameter, "Host", configuration)
 
             // authentication Token required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
