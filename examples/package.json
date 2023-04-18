@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "Examples using the plexjs package",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "npx ts-node index.ts",
+    "dev": "node --experimental-modules index.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "lukehagar",
   "license": "MIT",
   "devDependencies": {
-    "@lukehagar/plexjs": "^0.0.7"
+    "@lukehagar/plexjs": "^0.0.15"
   }
 }

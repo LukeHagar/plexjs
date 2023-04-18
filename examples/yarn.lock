@@ -9,10 +9,10 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@lukehagar/plexjs@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@lukehagar/plexjs/-/plexjs-0.0.7.tgz#c0d51facae8a6d91cc88f064b3f2427c70cffa8e"
-  integrity sha512-bDMzCkXB89YFTq+EdsmLtePco9o0nKlDW8RTW7a0Xy1tqJJETlA58E/32xC+xuXxLD0uyjsw/SKUN0qBaSDNsg==
+"@lukehagar/plexjs@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@lukehagar/plexjs/-/plexjs-0.0.15.tgz#fa4bfc7b87b0fb79357ae0eb31e68eeed45de0db"
+  integrity sha512-reAJ+c5e7MDEZ6xy+zhNQOPEt+O20s/TYoD8wQXf5KjQCXpYas3isDQgSPxSa6PENJPSr32e30bruuXMXyzDmQ==
   dependencies:
     axios "^0.26.1"
     axios-retry "^3.4.0"
