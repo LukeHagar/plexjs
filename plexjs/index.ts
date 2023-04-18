@@ -14,5 +14,5 @@
 
 
 export * from "./api";
-export * from "./configuration";
+export {ConfigurationParameters, Configuration} from "./configuration";
 
