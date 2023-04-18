@@ -55,18 +55,10 @@ jobs:
         run: |
           yq -i '.npmVersion = "${{ github.event.inputs.version }}"' config.yaml
 
-      ## Update package.json file with new version
-      - name: Update package.json version
-        id: updatePackageJsonVersion
-        if: steps.updateVersion.outcome == 'success'
-        run: |
-          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-          jq '.version = "${{ github.event.inputs.version }}"' package.json > package.json.tmp && mv package.json.tmp package.json
-
       - name: Build TS SDK
         id: buildTS
         run: |
-          rm -rf plexjss/
+          rm -rf plexjs/
           java -jar openapi-generator-cli.jar generate -i api-specs/referenced/plex-api-spec.yaml -g typescript-axios -o plexjs/ --global-property skipFormModel=false --config config.yaml
 
       - name: After SDK Build
