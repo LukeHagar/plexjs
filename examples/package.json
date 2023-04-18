@@ -5,12 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --experimental-modules index.js ",
+    "dev": "node index.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "lukehagar",
   "license": "MIT",
   "devDependencies": {
-    "@lukehagar/plexjs": "^0.0.15"
+    "@lukehagar/plexjs": "^0.0.16"
   }
 }
