@@ -76,10 +76,6 @@ jobs:
           commit_message: Bump version to ${{ github.event.inputs.version }}
           tagging_message: ${{ github.event.inputs.version }}
 
-  release:
-    name: Release Typescript SDK
-    runs-on: ubuntu-latest
-    steps:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -91,10 +87,6 @@ jobs:
           draft: false
           prerelease: false
 
-  publish:
-    name: Publish Typescript SDK
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
