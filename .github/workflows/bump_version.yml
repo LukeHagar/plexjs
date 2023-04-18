@@ -69,12 +69,11 @@ jobs:
           npm install
           npm run build
 
-      - name: Commit changes and create new version tag
-        if: steps.buildSDK.outcome == 'success'
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - id: Publish to NPM
+        uses: JS-DevTools/npm-publish@v1
         with:
-          commit_message: Bump version to ${{ github.event.inputs.version }}
-          tagging_message: ${{ github.event.inputs.version }}
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./plexjs/package.json
 
       - name: Create Release
         id: create_release
@@ -87,16 +86,9 @@ jobs:
           draft: false
           prerelease: false
 
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Commit changes and Create new version tag
+        if: steps.buildSDK.outcome == 'success'
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          node-version: 12
-      - run: |
-          cd plexjs
-          npm ci
-
-      - id: publish
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./plexjs/package.json
+          commit_message: Bump version to ${{ github.event.inputs.version }}
+          tagging_message: ${{ github.event.inputs.version }}
