@@ -22,7 +22,12 @@ yarn add @lukehagar/plexjs
 ## Usage
 
 ```javascript
-import { Configuration, ServerApi } from "@lukehagar/plexjs";
+import {
+  Configuration,
+  ServerApi,
+  DevicesApi,
+  UserApi,
+} from "@lukehagar/plexjs";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -31,7 +36,9 @@ const config = new Configuration({
   plexToken: process.env.PLEX_TOKEN,
 });
 
-const serverApiClient = new ServerApi(config);
+new ServerApi(config).getServerCapabilities().then((resp) => console.log(resp));
 
-serverApiClient.getServerCapabilities().then((resp) => console.log(resp));
+new DevicesApi(config).getDevices().then((resp) => console.log(resp));
+
+new UserApi(config).getUserDetails().then((resp) => console.log(resp));
 ```
