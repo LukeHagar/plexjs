@@ -9,10 +9,12 @@ Documentation for all of the available endpoints can be found here:
 
 ## Installation
 
+npm
 ```bash
 npm install @lukehagar/plexjs
 ```
 
+yarn
 ```bash
 yarn add @lukehagar/plexjs
 ```
