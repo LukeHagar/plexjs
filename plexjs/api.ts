@@ -50,6 +50,49 @@ export interface GetButlerTasks200ResponseButlerTasks {
 /**
  * 
  * @export
+ * @interface GetHomeData200Response
+ */
+export interface GetHomeData200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetHomeData200Response
+     */
+    'id'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetHomeData200Response
+     */
+    'name'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetHomeData200Response
+     */
+    'guestUserID'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetHomeData200Response
+     */
+    'guestUserUUID'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetHomeData200Response
+     */
+    'guestEnabled'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetHomeData200Response
+     */
+    'subscription'?: any;
+}
+/**
+ * 
+ * @export
  * @interface GetMyPlexAccount200Response
  */
 export interface GetMyPlexAccount200Response {
@@ -5350,6 +5393,515 @@ export class PlaylistsApi extends BaseAPI {
      */
     public uploadPlaylist(requestParameters: PlaylistsApiUploadPlaylistRequest, axiosOptions?: AxiosRequestConfig) {
         return PlaylistsApiFp(this.configuration).uploadPlaylist(requestParameters.path, requestParameters.force, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * PlexTvApi - axios parameter creator
+ * @export
+ */
+export const PlexTvApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {any} [includeHttps] Include Https entries in the results
+         * @param {any} [includeRelay] Include Relay addresses in the results
+         * @param {any} [includeIPv6] Include IPv6 entries in the results
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices: async (includeHttps?: any, includeRelay?: any, includeIPv6?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/resources`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+            if (includeHttps !== undefined) {
+                localVarQueryParameter['includeHttps'] = includeHttps;
+            }
+
+            if (includeRelay !== undefined) {
+                localVarQueryParameter['includeRelay'] = includeRelay;
+            }
+
+            if (includeIPv6 !== undefined) {
+                localVarQueryParameter['includeIPv6'] = includeIPv6;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get Home Data
+         * @summary Get Home Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHomeData: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/home`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a Pin from Plex.tv for authentication flows
+         * @summary Get a Pin
+         * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60; 
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPin: async (strong?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/pins`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            if (strong !== undefined) {
+                localVarQueryParameter['strong'] = strong;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
+         * @summary Get Access Token
+         * @param {any} pinID The PinID to retrieve an access token for
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getToken: async (pinID: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pinID' is not null or undefined
+            assertParamExists('getToken', 'pinID', pinID)
+            const localVarPath = `/pins/{pinID}`
+                .replace(`{${"pinID"}}`, encodeURIComponent(String(pinID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get Logged in User
+         * @summary Get Logged in User
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserDetails: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PlexTvApi - functional programming interface
+ * @export
+ */
+export const PlexTvApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PlexTvApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {any} [includeHttps] Include Https entries in the results
+         * @param {any} [includeRelay] Include Relay addresses in the results
+         * @param {any} [includeIPv6] Include IPv6 entries in the results
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getDevices(includeHttps?: any, includeRelay?: any, includeIPv6?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDevices(includeHttps, includeRelay, includeIPv6, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get Home Data
+         * @summary Get Home Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getHomeData(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetHomeData200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getHomeData(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Retrieve a Pin from Plex.tv for authentication flows
+         * @summary Get a Pin
+         * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60; 
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPin(strong?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPin200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPin(strong, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
+         * @summary Get Access Token
+         * @param {any} pinID The PinID to retrieve an access token for
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getToken(pinID: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getToken(pinID, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get Logged in User
+         * @summary Get Logged in User
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUserDetails(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUserDetails(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * PlexTvApi - factory interface
+ * @export
+ */
+export const PlexTvApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PlexTvApiFp(configuration)
+    return {
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {any} [includeHttps] Include Https entries in the results
+         * @param {any} [includeRelay] Include Relay addresses in the results
+         * @param {any} [includeIPv6] Include IPv6 entries in the results
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices(includeHttps?: any, includeRelay?: any, includeIPv6?: any, axiosOptions?: any): AxiosPromise<any> {
+            return localVarFp.getDevices(includeHttps, includeRelay, includeIPv6, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get Home Data
+         * @summary Get Home Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHomeData(axiosOptions?: any): AxiosPromise<GetHomeData200Response> {
+            return localVarFp.getHomeData(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a Pin from Plex.tv for authentication flows
+         * @summary Get a Pin
+         * @param {any} [strong] Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60; 
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPin(strong?: any, axiosOptions?: any): AxiosPromise<GetPin200Response> {
+            return localVarFp.getPin(strong, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
+         * @summary Get Access Token
+         * @param {any} pinID The PinID to retrieve an access token for
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getToken(pinID: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getToken(pinID, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get Logged in User
+         * @summary Get Logged in User
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserDetails(axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getUserDetails(axiosOptions).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for getDevices operation in PlexTvApi.
+ * @export
+ * @interface PlexTvApiGetDevicesRequest
+ */
+export interface PlexTvApiGetDevicesRequest {
+    /**
+     * Include Https entries in the results
+     * @type {any}
+     * @memberof PlexTvApiGetDevices
+     */
+    readonly includeHttps?: any
+
+    /**
+     * Include Relay addresses in the results
+     * @type {any}
+     * @memberof PlexTvApiGetDevices
+     */
+    readonly includeRelay?: any
+
+    /**
+     * Include IPv6 entries in the results
+     * @type {any}
+     * @memberof PlexTvApiGetDevices
+     */
+    readonly includeIPv6?: any
+}
+
+/**
+ * Request parameters for getPin operation in PlexTvApi.
+ * @export
+ * @interface PlexTvApiGetPinRequest
+ */
+export interface PlexTvApiGetPinRequest {
+    /**
+     * Determines the kind of code returned by the API call Strong codes are used for Pin authentication flows Non-Strong codes are used for &#x60;Plex.tv/link&#x60; 
+     * @type {any}
+     * @memberof PlexTvApiGetPin
+     */
+    readonly strong?: any
+}
+
+/**
+ * Request parameters for getToken operation in PlexTvApi.
+ * @export
+ * @interface PlexTvApiGetTokenRequest
+ */
+export interface PlexTvApiGetTokenRequest {
+    /**
+     * The PinID to retrieve an access token for
+     * @type {any}
+     * @memberof PlexTvApiGetToken
+     */
+    readonly pinID: any
+}
+
+/**
+ * PlexTvApi - object-oriented interface
+ * @export
+ * @class PlexTvApi
+ * @extends {BaseAPI}
+ */
+export class PlexTvApi extends BaseAPI {
+    /**
+     * Get Devices
+     * @summary Get Devices
+     * @param {PlexTvApiGetDevicesRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getDevices(requestParameters: PlexTvApiGetDevicesRequest = {}, axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getDevices(requestParameters.includeHttps, requestParameters.includeRelay, requestParameters.includeIPv6, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Home Data
+     * @summary Get Home Data
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getHomeData(axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getHomeData(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a Pin from Plex.tv for authentication flows
+     * @summary Get a Pin
+     * @param {PlexTvApiGetPinRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getPin(requestParameters: PlexTvApiGetPinRequest = {}, axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getPin(requestParameters.strong, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve an Access Token from Plex.tv after the Pin has already been authenticated
+     * @summary Get Access Token
+     * @param {PlexTvApiGetTokenRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getToken(requestParameters: PlexTvApiGetTokenRequest, axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getToken(requestParameters.pinID, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Logged in User
+     * @summary Get Logged in User
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getUserDetails(axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getUserDetails(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
