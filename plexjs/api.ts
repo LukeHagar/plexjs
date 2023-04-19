@@ -1000,6 +1000,62 @@ export interface GetTranscodeSessions200ResponseMediaContainer {
      */
     'TranscodeSession'?: any;
 }
+/**
+ * 
+ * @export
+ * @interface GetUserOptOutSettings200Response
+ */
+export interface GetUserOptOutSettings200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserOptOutSettings200Response
+     */
+    'tv.plex.provider.podcasts'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserOptOutSettings200Response
+     */
+    'tv.plex.provider.news'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserOptOutSettings200Response
+     */
+    'tv.plex.provider.webshows'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserOptOutSettings200Response
+     */
+    'tv.plex.provider.music'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserOptOutSettings200Response
+     */
+    'tv.plex.provider.vod'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserOptOutSettings200Response
+     */
+    'scrobbling'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface GetWatchTogetherRooms200Response
+ */
+export interface GetWatchTogetherRooms200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetWatchTogetherRooms200Response
+     */
+    'rooms'?: any;
+}
 
 /**
  * ActivitiesApi - axios parameter creator
@@ -5404,6 +5460,60 @@ export class PlaylistsApi extends BaseAPI {
 export const PlexTvApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Get Companions Data
+         * @summary Get Companions Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCompanionsData: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/companions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * Get Devices
          * @summary Get Devices
          * @param {any} [includeHttps] Include Https entries in the results
@@ -5709,6 +5819,168 @@ export const PlexTvApiAxiosParamCreator = function (configuration?: Configuratio
                 axiosOptions: localVarRequestOptions,
             };
         },
+        /**
+         * Get User Opt Out Settings
+         * @summary Get User Opt Out Settings
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserOptOutSettings: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/user/settings/opt_outs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get User Settings
+         * @summary Get User Settings
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserSettings: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/user/settings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get Watch Together Rooms
+         * @summary Get Watch Together Rooms
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWatchTogetherRooms: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/rooms`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -5719,6 +5991,16 @@ export const PlexTvApiAxiosParamCreator = function (configuration?: Configuratio
 export const PlexTvApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PlexTvApiAxiosParamCreator(configuration)
     return {
+        /**
+         * Get Companions Data
+         * @summary Get Companions Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getCompanionsData(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanionsData(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
         /**
          * Get Devices
          * @summary Get Devices
@@ -5784,6 +6066,36 @@ export const PlexTvApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserDetails(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Get User Opt Out Settings
+         * @summary Get User Opt Out Settings
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUserOptOutSettings(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserOptOutSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUserOptOutSettings(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get User Settings
+         * @summary Get User Settings
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUserSettings(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUserSettings(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get Watch Together Rooms
+         * @summary Get Watch Together Rooms
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getWatchTogetherRooms(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetWatchTogetherRooms200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWatchTogetherRooms(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -5794,6 +6106,15 @@ export const PlexTvApiFp = function(configuration?: Configuration) {
 export const PlexTvApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = PlexTvApiFp(configuration)
     return {
+        /**
+         * Get Companions Data
+         * @summary Get Companions Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCompanionsData(axiosOptions?: any): AxiosPromise<any> {
+            return localVarFp.getCompanionsData(axiosOptions).then((request) => request(axios, basePath));
+        },
         /**
          * Get Devices
          * @summary Get Devices
@@ -5852,6 +6173,33 @@ export const PlexTvApiFactory = function (configuration?: Configuration, basePat
          */
         getUserDetails(axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.getUserDetails(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get User Opt Out Settings
+         * @summary Get User Opt Out Settings
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserOptOutSettings(axiosOptions?: any): AxiosPromise<GetUserOptOutSettings200Response> {
+            return localVarFp.getUserOptOutSettings(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get User Settings
+         * @summary Get User Settings
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserSettings(axiosOptions?: any): AxiosPromise<any> {
+            return localVarFp.getUserSettings(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get Watch Together Rooms
+         * @summary Get Watch Together Rooms
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWatchTogetherRooms(axiosOptions?: any): AxiosPromise<GetWatchTogetherRooms200Response> {
+            return localVarFp.getWatchTogetherRooms(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
@@ -5920,6 +6268,17 @@ export interface PlexTvApiGetTokenRequest {
  */
 export class PlexTvApi extends BaseAPI {
     /**
+     * Get Companions Data
+     * @summary Get Companions Data
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getCompanionsData(axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getCompanionsData(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Get Devices
      * @summary Get Devices
      * @param {PlexTvApiGetDevicesRequest} requestParameters Request parameters.
@@ -5986,6 +6345,39 @@ export class PlexTvApi extends BaseAPI {
      */
     public getUserDetails(axiosOptions?: AxiosRequestConfig) {
         return PlexTvApiFp(this.configuration).getUserDetails(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get User Opt Out Settings
+     * @summary Get User Opt Out Settings
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getUserOptOutSettings(axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getUserOptOutSettings(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get User Settings
+     * @summary Get User Settings
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getUserSettings(axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getUserSettings(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Watch Together Rooms
+     * @summary Get Watch Together Rooms
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getWatchTogetherRooms(axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getWatchTogetherRooms(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -7913,6 +8305,128 @@ export class UserApi extends BaseAPI {
      */
     public getUserDetails(axiosOptions?: AxiosRequestConfig) {
         return UserApiFp(this.configuration).getUserDetails(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * WatchTogetherApi - axios parameter creator
+ * @export
+ */
+export const WatchTogetherApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get Watch Together Rooms
+         * @summary Get Watch Together Rooms
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWatchTogetherRooms: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/rooms`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * WatchTogetherApi - functional programming interface
+ * @export
+ */
+export const WatchTogetherApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = WatchTogetherApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get Watch Together Rooms
+         * @summary Get Watch Together Rooms
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getWatchTogetherRooms(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetWatchTogetherRooms200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWatchTogetherRooms(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * WatchTogetherApi - factory interface
+ * @export
+ */
+export const WatchTogetherApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = WatchTogetherApiFp(configuration)
+    return {
+        /**
+         * Get Watch Together Rooms
+         * @summary Get Watch Together Rooms
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWatchTogetherRooms(axiosOptions?: any): AxiosPromise<GetWatchTogetherRooms200Response> {
+            return localVarFp.getWatchTogetherRooms(axiosOptions).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * WatchTogetherApi - object-oriented interface
+ * @export
+ * @class WatchTogetherApi
+ * @extends {BaseAPI}
+ */
+export class WatchTogetherApi extends BaseAPI {
+    /**
+     * Get Watch Together Rooms
+     * @summary Get Watch Together Rooms
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WatchTogetherApi
+     */
+    public getWatchTogetherRooms(axiosOptions?: AxiosRequestConfig) {
+        return WatchTogetherApiFp(this.configuration).getWatchTogetherRooms(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
