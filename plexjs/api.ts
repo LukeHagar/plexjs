@@ -50,6 +50,98 @@ export interface GetButlerTasks200ResponseButlerTasks {
 /**
  * 
  * @export
+ * @interface GetMyPlexAccount200Response
+ */
+export interface GetMyPlexAccount200Response {
+    /**
+     * 
+     * @type {GetMyPlexAccount200ResponseMyPlex}
+     * @memberof GetMyPlexAccount200Response
+     */
+    'MyPlex'?: GetMyPlexAccount200ResponseMyPlex;
+}
+/**
+ * 
+ * @export
+ * @interface GetMyPlexAccount200ResponseMyPlex
+ */
+export interface GetMyPlexAccount200ResponseMyPlex {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'authToken'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'username'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'mappingState'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'mappingError'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'signInState'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'publicAddress'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'publicPort'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'privateAddress'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'privatePort'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'subscriptionFeatures'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'subscriptionActive'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetMyPlexAccount200ResponseMyPlex
+     */
+    'subscriptionState'?: any;
+}
+/**
+ * 
+ * @export
  * @interface GetOnDeck200Response
  */
 export interface GetOnDeck200Response {
@@ -329,6 +421,62 @@ export interface GetRecentlyAdded200ResponseMediaContainer {
      * @memberof GetRecentlyAdded200ResponseMediaContainer
      */
     'Metadata'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface GetSearchResults200Response
+ */
+export interface GetSearchResults200Response {
+    /**
+     * 
+     * @type {GetSearchResults200ResponseMediaContainer}
+     * @memberof GetSearchResults200Response
+     */
+    'MediaContainer'?: GetSearchResults200ResponseMediaContainer;
+}
+/**
+ * 
+ * @export
+ * @interface GetSearchResults200ResponseMediaContainer
+ */
+export interface GetSearchResults200ResponseMediaContainer {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetSearchResults200ResponseMediaContainer
+     */
+    'size'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetSearchResults200ResponseMediaContainer
+     */
+    'identifier'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetSearchResults200ResponseMediaContainer
+     */
+    'mediaTagPrefix'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetSearchResults200ResponseMediaContainer
+     */
+    'mediaTagVersion'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetSearchResults200ResponseMediaContainer
+     */
+    'Metadata'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetSearchResults200ResponseMediaContainer
+     */
+    'Provider'?: any;
 }
 /**
  * 
@@ -3715,6 +3863,370 @@ export class LogApi extends BaseAPI {
 
 
 /**
+ * MyPlexApi - axios parameter creator
+ * @export
+ */
+export const MyPlexApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Returns MyPlex Account Information
+         * @summary Get MyPlex Account
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMyPlexAccount: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/myplex/account`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * MyPlexApi - functional programming interface
+ * @export
+ */
+export const MyPlexApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MyPlexApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Returns MyPlex Account Information
+         * @summary Get MyPlex Account
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMyPlexAccount(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyPlexAccount200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyPlexAccount(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * MyPlexApi - factory interface
+ * @export
+ */
+export const MyPlexApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MyPlexApiFp(configuration)
+    return {
+        /**
+         * Returns MyPlex Account Information
+         * @summary Get MyPlex Account
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMyPlexAccount(axiosOptions?: any): AxiosPromise<GetMyPlexAccount200Response> {
+            return localVarFp.getMyPlexAccount(axiosOptions).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MyPlexApi - object-oriented interface
+ * @export
+ * @class MyPlexApi
+ * @extends {BaseAPI}
+ */
+export class MyPlexApi extends BaseAPI {
+    /**
+     * Returns MyPlex Account Information
+     * @summary Get MyPlex Account
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MyPlexApi
+     */
+    public getMyPlexAccount(axiosOptions?: AxiosRequestConfig) {
+        return MyPlexApiFp(this.configuration).getMyPlexAccount(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * PhotosApi - axios parameter creator
+ * @export
+ */
+export const PhotosApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
+         * @summary Get a Resized Photo
+         * @param {any} width The width for the resized photo
+         * @param {any} height The height for the resized photo
+         * @param {any} opacity The opacity for the resized photo
+         * @param {any} blur The width for the resized photo
+         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
+         * @param {any} upscale allow images to be resized beyond native dimensions.
+         * @param {any} url path to image within Plex
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getResizedPhoto: async (width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'width' is not null or undefined
+            assertParamExists('getResizedPhoto', 'width', width)
+            // verify required parameter 'height' is not null or undefined
+            assertParamExists('getResizedPhoto', 'height', height)
+            // verify required parameter 'opacity' is not null or undefined
+            assertParamExists('getResizedPhoto', 'opacity', opacity)
+            // verify required parameter 'blur' is not null or undefined
+            assertParamExists('getResizedPhoto', 'blur', blur)
+            // verify required parameter 'minSize' is not null or undefined
+            assertParamExists('getResizedPhoto', 'minSize', minSize)
+            // verify required parameter 'upscale' is not null or undefined
+            assertParamExists('getResizedPhoto', 'upscale', upscale)
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('getResizedPhoto', 'url', url)
+            const localVarPath = `/photo/:/transcode`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+            if (width !== undefined) {
+                localVarQueryParameter['width'] = width;
+            }
+
+            if (height !== undefined) {
+                localVarQueryParameter['height'] = height;
+            }
+
+            if (opacity !== undefined) {
+                localVarQueryParameter['opacity'] = opacity;
+            }
+
+            if (blur !== undefined) {
+                localVarQueryParameter['blur'] = blur;
+            }
+
+            if (minSize !== undefined) {
+                localVarQueryParameter['minSize'] = minSize;
+            }
+
+            if (upscale !== undefined) {
+                localVarQueryParameter['upscale'] = upscale;
+            }
+
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PhotosApi - functional programming interface
+ * @export
+ */
+export const PhotosApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PhotosApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
+         * @summary Get a Resized Photo
+         * @param {any} width The width for the resized photo
+         * @param {any} height The height for the resized photo
+         * @param {any} opacity The opacity for the resized photo
+         * @param {any} blur The width for the resized photo
+         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
+         * @param {any} upscale allow images to be resized beyond native dimensions.
+         * @param {any} url path to image within Plex
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getResizedPhoto(width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getResizedPhoto(width, height, opacity, blur, minSize, upscale, url, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * PhotosApi - factory interface
+ * @export
+ */
+export const PhotosApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PhotosApiFp(configuration)
+    return {
+        /**
+         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
+         * @summary Get a Resized Photo
+         * @param {any} width The width for the resized photo
+         * @param {any} height The height for the resized photo
+         * @param {any} opacity The opacity for the resized photo
+         * @param {any} blur The width for the resized photo
+         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
+         * @param {any} upscale allow images to be resized beyond native dimensions.
+         * @param {any} url path to image within Plex
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getResizedPhoto(width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getResizedPhoto(width, height, opacity, blur, minSize, upscale, url, axiosOptions).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for getResizedPhoto operation in PhotosApi.
+ * @export
+ * @interface PhotosApiGetResizedPhotoRequest
+ */
+export interface PhotosApiGetResizedPhotoRequest {
+    /**
+     * The width for the resized photo
+     * @type {any}
+     * @memberof PhotosApiGetResizedPhoto
+     */
+    readonly width: any
+
+    /**
+     * The height for the resized photo
+     * @type {any}
+     * @memberof PhotosApiGetResizedPhoto
+     */
+    readonly height: any
+
+    /**
+     * The opacity for the resized photo
+     * @type {any}
+     * @memberof PhotosApiGetResizedPhoto
+     */
+    readonly opacity: any
+
+    /**
+     * The width for the resized photo
+     * @type {any}
+     * @memberof PhotosApiGetResizedPhoto
+     */
+    readonly blur: any
+
+    /**
+     * images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
+     * @type {any}
+     * @memberof PhotosApiGetResizedPhoto
+     */
+    readonly minSize: any
+
+    /**
+     * allow images to be resized beyond native dimensions.
+     * @type {any}
+     * @memberof PhotosApiGetResizedPhoto
+     */
+    readonly upscale: any
+
+    /**
+     * path to image within Plex
+     * @type {any}
+     * @memberof PhotosApiGetResizedPhoto
+     */
+    readonly url: any
+}
+
+/**
+ * PhotosApi - object-oriented interface
+ * @export
+ * @class PhotosApi
+ * @extends {BaseAPI}
+ */
+export class PhotosApi extends BaseAPI {
+    /**
+     * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
+     * @summary Get a Resized Photo
+     * @param {PhotosApiGetResizedPhotoRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PhotosApi
+     */
+    public getResizedPhoto(requestParameters: PhotosApiGetResizedPhotoRequest, axiosOptions?: AxiosRequestConfig) {
+        return PhotosApiFp(this.configuration).getResizedPhoto(requestParameters.width, requestParameters.height, requestParameters.opacity, requestParameters.blur, requestParameters.minSize, requestParameters.upscale, requestParameters.url, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * PlaylistsApi - axios parameter creator
  * @export
  */
@@ -4849,6 +5361,67 @@ export class PlaylistsApi extends BaseAPI {
 export const SearchApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * This will search the database for the string provided.
+         * @summary Get Search Results
+         * @param {any} query The search query string to use
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSearchResults: async (query: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'query' is not null or undefined
+            assertParamExists('getSearchResults', 'query', query)
+            const localVarPath = `/search`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+            if (query !== undefined) {
+                localVarQueryParameter['query'] = query;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types. 
          * @summary Perform a search
          * @param {any} query The query term
@@ -5001,6 +5574,17 @@ export const SearchApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SearchApiAxiosParamCreator(configuration)
     return {
         /**
+         * This will search the database for the string provided.
+         * @summary Get Search Results
+         * @param {any} query The search query string to use
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSearchResults(query: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSearchResults200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSearchResults(query, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types. 
          * @summary Perform a search
          * @param {any} query The query term
@@ -5037,6 +5621,16 @@ export const SearchApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = SearchApiFp(configuration)
     return {
         /**
+         * This will search the database for the string provided.
+         * @summary Get Search Results
+         * @param {any} query The search query string to use
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSearchResults(query: any, axiosOptions?: any): AxiosPromise<GetSearchResults200Response> {
+            return localVarFp.getSearchResults(query, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
          * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types. 
          * @summary Perform a search
          * @param {any} query The query term
@@ -5062,6 +5656,20 @@ export const SearchApiFactory = function (configuration?: Configuration, basePat
         },
     };
 };
+
+/**
+ * Request parameters for getSearchResults operation in SearchApi.
+ * @export
+ * @interface SearchApiGetSearchResultsRequest
+ */
+export interface SearchApiGetSearchResultsRequest {
+    /**
+     * The search query string to use
+     * @type {any}
+     * @memberof SearchApiGetSearchResults
+     */
+    readonly query: any
+}
 
 /**
  * Request parameters for performSearch operation in SearchApi.
@@ -5126,6 +5734,18 @@ export interface SearchApiPerformVoiceSearchRequest {
  * @extends {BaseAPI}
  */
 export class SearchApi extends BaseAPI {
+    /**
+     * This will search the database for the string provided.
+     * @summary Get Search Results
+     * @param {SearchApiGetSearchResultsRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SearchApi
+     */
+    public getSearchResults(requestParameters: SearchApiGetSearchResultsRequest, axiosOptions?: AxiosRequestConfig) {
+        return SearchApiFp(this.configuration).getSearchResults(requestParameters.query, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * This endpoint performs a search across all library sections, or a single section, and returns matches as hubs, split up by type. It performs spell checking, looks for partial matches, and orders the hubs based on quality of results. In addition, based on matches, it will return other related matches (e.g. for a genre match, it may return movies in that genre, or for an actor match, movies with that actor).  In the response\'s items, the following extra attributes are returned to further describe or disambiguate the result:  - `reason`: The reason for the result, if not because of a direct search term match; can be either:   - `section`: There are multiple identical results from different sections.   - `originalTitle`: There was a search term match from the original title field (sometimes those can be very different or in a foreign language).   - `<hub identifier>`: If the reason for the result is due to a result in another hub, the source hub identifier is returned. For example, if the search is for \"dylan\" then Bob Dylan may be returned as an artist result, an a few of his albums returned as album results with a reason code of `artist` (the identifier of that particular hub). Or if the search is for \"arnold\", there might be movie results returned with a reason of `actor` - `reasonTitle`: The string associated with the reason code. For a section reason, it\'ll be the section name; For a hub identifier, it\'ll be a string associated with the match (e.g. `Arnold Schwarzenegger` for movies which were returned because the search was for \"arnold\"). - `reasonID`: The ID of the item associated with the reason for the result. This might be a section ID, a tag ID, an artist ID, or a show ID.  This request is intended to be very fast, and called as the user types. 
      * @summary Perform a search
