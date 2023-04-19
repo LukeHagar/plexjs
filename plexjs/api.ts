@@ -551,6 +551,114 @@ export interface GetServerCapabilities401Response {
      */
     'errors'?: any;
 }
+/**
+ * 
+ * @export
+ * @interface GetServerIdentity200Response
+ */
+export interface GetServerIdentity200Response {
+    /**
+     * 
+     * @type {GetServerIdentity200ResponseMediaContainer}
+     * @memberof GetServerIdentity200Response
+     */
+    'MediaContainer'?: GetServerIdentity200ResponseMediaContainer;
+}
+/**
+ * 
+ * @export
+ * @interface GetServerIdentity200ResponseMediaContainer
+ */
+export interface GetServerIdentity200ResponseMediaContainer {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetServerIdentity200ResponseMediaContainer
+     */
+    'size'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetServerIdentity200ResponseMediaContainer
+     */
+    'claimed'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetServerIdentity200ResponseMediaContainer
+     */
+    'machineIdentifier'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetServerIdentity200ResponseMediaContainer
+     */
+    'version'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface GetServerList200Response
+ */
+export interface GetServerList200Response {
+    /**
+     * 
+     * @type {GetServerList200ResponseMediaContainer}
+     * @memberof GetServerList200Response
+     */
+    'MediaContainer'?: GetServerList200ResponseMediaContainer;
+}
+/**
+ * 
+ * @export
+ * @interface GetServerList200ResponseMediaContainer
+ */
+export interface GetServerList200ResponseMediaContainer {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetServerList200ResponseMediaContainer
+     */
+    'size'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetServerList200ResponseMediaContainer
+     */
+    'Server'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface GetTranscodeSessions200Response
+ */
+export interface GetTranscodeSessions200Response {
+    /**
+     * 
+     * @type {GetTranscodeSessions200ResponseMediaContainer}
+     * @memberof GetTranscodeSessions200Response
+     */
+    'MediaContainer'?: GetTranscodeSessions200ResponseMediaContainer;
+}
+/**
+ * 
+ * @export
+ * @interface GetTranscodeSessions200ResponseMediaContainer
+ */
+export interface GetTranscodeSessions200ResponseMediaContainer {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTranscodeSessions200ResponseMediaContainer
+     */
+    'size'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTranscodeSessions200ResponseMediaContainer
+     */
+    'TranscodeSession'?: any;
+}
 
 /**
  * ActivitiesApi - axios parameter creator
@@ -5057,6 +5165,114 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Get Server Identity
+         * @summary Get Server Identity
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerIdentity: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/identity`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get Server List
+         * @summary Get Server List
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerList: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/servers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * Get Server Preferences
          * @summary Get Server Preferences
          * @param {*} [axiosOptions] Override http request option.
@@ -5131,6 +5347,26 @@ export const ServerApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Get Server Identity
+         * @summary Get Server Identity
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getServerIdentity(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetServerIdentity200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getServerIdentity(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get Server List
+         * @summary Get Server List
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getServerList(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetServerList200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getServerList(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Get Server Preferences
          * @summary Get Server Preferences
          * @param {*} [axiosOptions] Override http request option.
@@ -5160,6 +5396,24 @@ export const ServerApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.getServerCapabilities(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
+         * Get Server Identity
+         * @summary Get Server Identity
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerIdentity(axiosOptions?: any): AxiosPromise<GetServerIdentity200Response> {
+            return localVarFp.getServerIdentity(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get Server List
+         * @summary Get Server List
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServerList(axiosOptions?: any): AxiosPromise<GetServerList200Response> {
+            return localVarFp.getServerList(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
          * Get Server Preferences
          * @summary Get Server Preferences
          * @param {*} [axiosOptions] Override http request option.
@@ -5187,6 +5441,28 @@ export class ServerApi extends BaseAPI {
      */
     public getServerCapabilities(axiosOptions?: AxiosRequestConfig) {
         return ServerApiFp(this.configuration).getServerCapabilities(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Server Identity
+     * @summary Get Server Identity
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    public getServerIdentity(axiosOptions?: AxiosRequestConfig) {
+        return ServerApiFp(this.configuration).getServerIdentity(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Server List
+     * @summary Get Server List
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    public getServerList(axiosOptions?: AxiosRequestConfig) {
+        return ServerApiFp(this.configuration).getServerList(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5316,6 +5592,118 @@ export const SessionsApiAxiosParamCreator = function (configuration?: Configurat
                 axiosOptions: localVarRequestOptions,
             };
         },
+        /**
+         * Get Transcode Sessions
+         * @summary Get Transcode Sessions
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTranscodeSessions: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/transcode/sessions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Stop a Transcode Session
+         * @summary Stop a Transcode Session
+         * @param {any} sessionKey the Key of the transcode session to stop
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        stopTranscodeSession: async (sessionKey: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sessionKey' is not null or undefined
+            assertParamExists('stopTranscodeSession', 'sessionKey', sessionKey)
+            const localVarPath = `/transcode/sessions/{sessionKey}`
+                .replace(`{${"sessionKey"}}`, encodeURIComponent(String(sessionKey)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -5346,6 +5734,27 @@ export const SessionsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSessions(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Get Transcode Sessions
+         * @summary Get Transcode Sessions
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTranscodeSessions(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTranscodeSessions200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTranscodeSessions(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Stop a Transcode Session
+         * @summary Stop a Transcode Session
+         * @param {any} sessionKey the Key of the transcode session to stop
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async stopTranscodeSession(sessionKey: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.stopTranscodeSession(sessionKey, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -5374,8 +5783,41 @@ export const SessionsApiFactory = function (configuration?: Configuration, baseP
         getSessions(axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.getSessions(axiosOptions).then((request) => request(axios, basePath));
         },
+        /**
+         * Get Transcode Sessions
+         * @summary Get Transcode Sessions
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTranscodeSessions(axiosOptions?: any): AxiosPromise<GetTranscodeSessions200Response> {
+            return localVarFp.getTranscodeSessions(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Stop a Transcode Session
+         * @summary Stop a Transcode Session
+         * @param {any} sessionKey the Key of the transcode session to stop
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        stopTranscodeSession(sessionKey: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.stopTranscodeSession(sessionKey, axiosOptions).then((request) => request(axios, basePath));
+        },
     };
 };
+
+/**
+ * Request parameters for stopTranscodeSession operation in SessionsApi.
+ * @export
+ * @interface SessionsApiStopTranscodeSessionRequest
+ */
+export interface SessionsApiStopTranscodeSessionRequest {
+    /**
+     * the Key of the transcode session to stop
+     * @type {any}
+     * @memberof SessionsApiStopTranscodeSession
+     */
+    readonly sessionKey: any
+}
 
 /**
  * SessionsApi - object-oriented interface
@@ -5404,6 +5846,29 @@ export class SessionsApi extends BaseAPI {
      */
     public getSessions(axiosOptions?: AxiosRequestConfig) {
         return SessionsApiFp(this.configuration).getSessions(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Transcode Sessions
+     * @summary Get Transcode Sessions
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public getTranscodeSessions(axiosOptions?: AxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).getTranscodeSessions(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Stop a Transcode Session
+     * @summary Stop a Transcode Session
+     * @param {SessionsApiStopTranscodeSessionRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SessionsApi
+     */
+    public stopTranscodeSession(requestParameters: SessionsApiStopTranscodeSessionRequest, axiosOptions?: AxiosRequestConfig) {
+        return SessionsApiFp(this.configuration).stopTranscodeSession(requestParameters.sessionKey, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -5543,7 +6008,7 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryUpdateStatus: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getUpdateStatus: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/updater/status`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5630,8 +6095,8 @@ export const UpdaterApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async queryUpdateStatus(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.queryUpdateStatus(axiosOptions);
+        async getUpdateStatus(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUpdateStatus(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -5671,8 +6136,8 @@ export const UpdaterApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        queryUpdateStatus(axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.queryUpdateStatus(axiosOptions).then((request) => request(axios, basePath));
+        getUpdateStatus(axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getUpdateStatus(axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
@@ -5750,8 +6215,8 @@ export class UpdaterApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UpdaterApi
      */
-    public queryUpdateStatus(axiosOptions?: AxiosRequestConfig) {
-        return UpdaterApiFp(this.configuration).queryUpdateStatus(axiosOptions).then((request) => request(this.axios, this.basePath));
+    public getUpdateStatus(axiosOptions?: AxiosRequestConfig) {
+        return UpdaterApiFp(this.configuration).getUpdateStatus(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 

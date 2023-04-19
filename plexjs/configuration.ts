@@ -14,7 +14,7 @@
 
 import { IAxiosRetryConfig } from "axios-retry";
 
-export interface ConfigurationParameters {
+export type ConfigurationParameters = {
     plexToken?: string;
     clientIdentifier?: string;
     device?: string;
@@ -90,7 +90,7 @@ export class Configuration {
     * @memberof Configuration
     */
     version?: string;
-    
+
     /**
      * parameter for apiKey security
      * @param name security name
@@ -134,12 +134,12 @@ export class Configuration {
     constructor(param: ConfigurationParameters = {}) {
         this.plexToken = param.plexToken;
         this.clientIdentifier = param.clientIdentifier || "Plexjs";
-        this.device = param.device || "Unspecified";
-        this.deviceName = param.deviceName || "Unspecified";
+        this.device = param.device;
+        this.deviceName = param.deviceName;
         this.platform = param.platform || "Plexjs";
-        this.platformVersion = param.platformVersion || process.env.npm_package_version;
-        this.product = param.product || "Plexjs";
-        this.version = param.version || process.env.npm_package_version;
+        this.platformVersion = param.platformVersion;
+        this.product = param.product;
+        this.version = param.version;
 
         this.apiKey = (header: string) => {
             switch (header) {
