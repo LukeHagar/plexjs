@@ -121,7 +121,7 @@ export class Configuration {
     retriesConfig?: IAxiosRetryConfig
 
     constructor(param: ConfigurationParameters = {}) {
-        this.plexToken = param.plexToken;
+        this.plexToken = param.plexToken || "";
         this.clientIdentifier = param.clientIdentifier || "{{npmName}}";
         this.device = param.device || "{{npmName}}";
         this.deviceName = param.deviceName || "{{npmName}}";
