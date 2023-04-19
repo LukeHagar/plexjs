@@ -132,14 +132,14 @@ export class Configuration {
     retriesConfig?: IAxiosRetryConfig
 
     constructor(param: ConfigurationParameters = {}) {
-        this.plexToken = param.plexToken;
-        this.clientIdentifier = param.clientIdentifier || "Plexjs";
-        this.device = param.device;
-        this.deviceName = param.deviceName;
-        this.platform = param.platform || "Plexjs";
-        this.platformVersion = param.platformVersion;
-        this.product = param.product;
-        this.version = param.version;
+        this.plexToken = param.plexToken || "";
+        this.clientIdentifier = param.clientIdentifier || "plexjs";
+        this.device = param.device || "plexjs";
+        this.deviceName = param.deviceName || "plexjs";
+        this.platform = param.platform || "plexjs";
+        this.platformVersion = param.platformVersion || "0.0.21";
+        this.product = param.product || "plexjs";
+        this.version = param.version || "0.0.21";
 
         this.apiKey = (header: string) => {
             switch (header) {
