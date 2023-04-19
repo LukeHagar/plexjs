@@ -50,43 +50,43 @@ export interface GetButlerTasks200ResponseButlerTasks {
 /**
  * 
  * @export
- * @interface GetHomeData200Response
+ * @interface GetGeoData200Response
  */
-export interface GetHomeData200Response {
+export interface GetGeoData200Response {
     /**
      * 
      * @type {any}
-     * @memberof GetHomeData200Response
+     * @memberof GetGeoData200Response
      */
     'id'?: any;
     /**
      * 
      * @type {any}
-     * @memberof GetHomeData200Response
+     * @memberof GetGeoData200Response
      */
     'name'?: any;
     /**
      * 
      * @type {any}
-     * @memberof GetHomeData200Response
+     * @memberof GetGeoData200Response
      */
     'guestUserID'?: any;
     /**
      * 
      * @type {any}
-     * @memberof GetHomeData200Response
+     * @memberof GetGeoData200Response
      */
     'guestUserUUID'?: any;
     /**
      * 
      * @type {any}
-     * @memberof GetHomeData200Response
+     * @memberof GetGeoData200Response
      */
     'guestEnabled'?: any;
     /**
      * 
      * @type {any}
-     * @memberof GetHomeData200Response
+     * @memberof GetGeoData200Response
      */
     'subscription'?: any;
 }
@@ -5473,6 +5473,60 @@ export const PlexTvApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Get Geo Data
+         * @summary Get Geo Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGeoData: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/geoip`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * Get Home Data
          * @summary Get Home Data
          * @param {*} [axiosOptions] Override http request option.
@@ -5679,12 +5733,22 @@ export const PlexTvApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Get Geo Data
+         * @summary Get Geo Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGeoData(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetGeoData200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGeoData(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Get Home Data
          * @summary Get Home Data
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async getHomeData(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetHomeData200Response>> {
+        async getHomeData(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetGeoData200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getHomeData(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5743,12 +5807,21 @@ export const PlexTvApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.getDevices(includeHttps, includeRelay, includeIPv6, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
+         * Get Geo Data
+         * @summary Get Geo Data
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGeoData(axiosOptions?: any): AxiosPromise<GetGeoData200Response> {
+            return localVarFp.getGeoData(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
          * Get Home Data
          * @summary Get Home Data
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getHomeData(axiosOptions?: any): AxiosPromise<GetHomeData200Response> {
+        getHomeData(axiosOptions?: any): AxiosPromise<GetGeoData200Response> {
             return localVarFp.getHomeData(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
@@ -5856,6 +5929,17 @@ export class PlexTvApi extends BaseAPI {
      */
     public getDevices(requestParameters: PlexTvApiGetDevicesRequest = {}, axiosOptions?: AxiosRequestConfig) {
         return PlexTvApiFp(this.configuration).getDevices(requestParameters.includeHttps, requestParameters.includeRelay, requestParameters.includeIPv6, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Geo Data
+     * @summary Get Geo Data
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlexTvApi
+     */
+    public getGeoData(axiosOptions?: AxiosRequestConfig) {
+        return PlexTvApiFp(this.configuration).getGeoData(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
