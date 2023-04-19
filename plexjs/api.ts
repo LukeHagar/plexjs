@@ -24,6 +24,94 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface GetButlerTasks200Response
+ */
+export interface GetButlerTasks200Response {
+    /**
+     * 
+     * @type {GetButlerTasks200ResponseButlerTasks}
+     * @memberof GetButlerTasks200Response
+     */
+    'ButlerTasks'?: GetButlerTasks200ResponseButlerTasks;
+}
+/**
+ * 
+ * @export
+ * @interface GetButlerTasks200ResponseButlerTasks
+ */
+export interface GetButlerTasks200ResponseButlerTasks {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetButlerTasks200ResponseButlerTasks
+     */
+    'ButlerTask'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface GetOnDeck200Response
+ */
+export interface GetOnDeck200Response {
+    /**
+     * 
+     * @type {GetOnDeck200ResponseMediaContainer}
+     * @memberof GetOnDeck200Response
+     */
+    'MediaContainer'?: GetOnDeck200ResponseMediaContainer;
+}
+/**
+ * 
+ * @export
+ * @interface GetOnDeck200ResponseMediaContainer
+ */
+export interface GetOnDeck200ResponseMediaContainer {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetOnDeck200ResponseMediaContainer
+     */
+    'size'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetOnDeck200ResponseMediaContainer
+     */
+    'allowSync'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetOnDeck200ResponseMediaContainer
+     */
+    'identifier'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetOnDeck200ResponseMediaContainer
+     */
+    'mediaTagPrefix'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetOnDeck200ResponseMediaContainer
+     */
+    'mediaTagVersion'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetOnDeck200ResponseMediaContainer
+     */
+    'mixedParents'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetOnDeck200ResponseMediaContainer
+     */
+    'Metadata'?: any;
+}
+/**
+ * 
+ * @export
  * @interface GetPin200Response
  */
 export interface GetPin200Response {
@@ -179,6 +267,68 @@ export interface GetPin400Response {
      * @memberof GetPin400Response
      */
     'errors'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface GetRecentlyAdded200Response
+ */
+export interface GetRecentlyAdded200Response {
+    /**
+     * 
+     * @type {GetRecentlyAdded200ResponseMediaContainer}
+     * @memberof GetRecentlyAdded200Response
+     */
+    'MediaContainer'?: GetRecentlyAdded200ResponseMediaContainer;
+}
+/**
+ * 
+ * @export
+ * @interface GetRecentlyAdded200ResponseMediaContainer
+ */
+export interface GetRecentlyAdded200ResponseMediaContainer {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetRecentlyAdded200ResponseMediaContainer
+     */
+    'size'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetRecentlyAdded200ResponseMediaContainer
+     */
+    'allowSync'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetRecentlyAdded200ResponseMediaContainer
+     */
+    'identifier'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetRecentlyAdded200ResponseMediaContainer
+     */
+    'mediaTagPrefix'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetRecentlyAdded200ResponseMediaContainer
+     */
+    'mediaTagVersion'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetRecentlyAdded200ResponseMediaContainer
+     */
+    'mixedParents'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetRecentlyAdded200ResponseMediaContainer
+     */
+    'Metadata'?: any;
 }
 /**
  * 
@@ -1101,6 +1251,60 @@ export class AuthenticationApi extends BaseAPI {
 export const ButlerApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Returns a list of butler tasks
+         * @summary Get Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getButlerTasks: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/butler`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
          * @summary Start all Butler tasks
          * @param {*} [axiosOptions] Override http request option.
@@ -1335,6 +1539,16 @@ export const ButlerApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ButlerApiAxiosParamCreator(configuration)
     return {
         /**
+         * Returns a list of butler tasks
+         * @summary Get Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getButlerTasks(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetButlerTasks200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getButlerTasks(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
          * @summary Start all Butler tasks
          * @param {*} [axiosOptions] Override http request option.
@@ -1386,6 +1600,15 @@ export const ButlerApiFp = function(configuration?: Configuration) {
 export const ButlerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ButlerApiFp(configuration)
     return {
+        /**
+         * Returns a list of butler tasks
+         * @summary Get Butler tasks
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getButlerTasks(axiosOptions?: any): AxiosPromise<GetButlerTasks200Response> {
+            return localVarFp.getButlerTasks(axiosOptions).then((request) => request(axios, basePath));
+        },
         /**
          * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
          * @summary Start all Butler tasks
@@ -1462,6 +1685,17 @@ export interface ButlerApiStopTaskRequest {
  * @extends {BaseAPI}
  */
 export class ButlerApi extends BaseAPI {
+    /**
+     * Returns a list of butler tasks
+     * @summary Get Butler tasks
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ButlerApi
+     */
+    public getButlerTasks(axiosOptions?: AxiosRequestConfig) {
+        return ButlerApiFp(this.configuration).getButlerTasks(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * This endpoint will attempt to start all Butler tasks that are enabled in the settings. Butler tasks normally run automatically during a time window configured on the server\'s Settings page but can be manually started using this endpoint. Tasks will run with the following criteria: 1. Any tasks not scheduled to run on the current day will be skipped. 2. If a task is configured to run at a random time during the configured window and we are outside that window, the task will start immediately. 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window. 4. If we are outside the configured window, the task will start immediately. 
      * @summary Start all Butler tasks
@@ -2603,6 +2837,60 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * This endpoint will return the recently added content. 
+         * @summary Get Recently Added
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRecentlyAdded: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/library/recentlyAdded`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * This endpoint Refreshes the library. 
          * @summary Refresh Library
          * @param {any} sectionId the Id of the library to refresh
@@ -2737,8 +3025,18 @@ export const LibraryApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async getOnDeck(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getOnDeck(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOnDeck200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOnDeck(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This endpoint will return the recently added content. 
+         * @summary Get Recently Added
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRecentlyAdded(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRecentlyAdded200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRecentlyAdded(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2824,8 +3122,17 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getOnDeck(axiosOptions?: any): AxiosPromise<void> {
+        getOnDeck(axiosOptions?: any): AxiosPromise<GetOnDeck200Response> {
             return localVarFp.getOnDeck(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint will return the recently added content. 
+         * @summary Get Recently Added
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRecentlyAdded(axiosOptions?: any): AxiosPromise<GetRecentlyAdded200Response> {
+            return localVarFp.getRecentlyAdded(axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint Refreshes the library. 
@@ -3034,6 +3341,17 @@ export class LibraryApi extends BaseAPI {
      */
     public getOnDeck(axiosOptions?: AxiosRequestConfig) {
         return LibraryApiFp(this.configuration).getOnDeck(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint will return the recently added content. 
+     * @summary Get Recently Added
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    public getRecentlyAdded(axiosOptions?: AxiosRequestConfig) {
+        return LibraryApiFp(this.configuration).getRecentlyAdded(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
