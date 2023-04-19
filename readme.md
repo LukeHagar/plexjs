@@ -4,8 +4,7 @@
 
 A typescript sdk for accessing the Plex.tv and Plex Media Server REST API's.
 
-Documentation for all of the available endpoints can be found here:
-[https://plexapi.dev](https://plexapi.dev/docs/plex)
+Documentation for all of the available endpoints [can be found here](https://plexapi.dev/docs/plex)
 
 ## Installation
 
