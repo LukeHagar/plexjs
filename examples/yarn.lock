@@ -592,10 +592,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@lukehagar/plexjs@^0.0.20":
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/@lukehagar/plexjs/-/plexjs-0.0.20.tgz#ecc58f484ce28d5115af1a9a33d79a97a114e2a9"
-  integrity sha512-AMUTfqgWVDNmVi6u1bEbLrfh9a6Oish3Gt70ehToAtu+HRlGE8jdyqIjbDm0fau0sYSRfjLywUdFyTeooOjnnQ==
+"@lukehagar/plexjs@^0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@lukehagar/plexjs/-/plexjs-0.0.21.tgz#2769644c615e8c38a5d7a451d268f87cb4c9d949"
+  integrity sha512-+mYw+/wlR7zXGGpO1M8NwCqTxXkWobQskoAkaNrNIBbQ1pbBngxI8qPplh+n5sY8ctAL6YHEDQWdU5iutVwl6w==
   dependencies:
     axios "^0.26.1"
     axios-retry "^3.4.0"
@@ -798,10 +798,10 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
-"@types/jest@^29.5.0":
-  version "29.5.0"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.0.tgz#337b90bbcfe42158f39c2fb5619ad044bbb518ac"
-  integrity sha512-3Emr5VOl/aoBwnWcH/EFQvlSAmjV+XtV9GGu5mwdYew5vhQh0IUZx/60x0TzHDu09Bi7HMx10t/namdJw5QIcg==
+"@types/jest@^29.5.1":
+  version "29.5.1"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.1.tgz#83c818aa9a87da27d6da85d3378e5a34d2f31a47"
+  integrity sha512-tEuVcHrpaixS36w7hpsfLBLpjtMRJUE09/MHXn923LOVojDwyC14cWcfc0rDs0VEfUyYmt/+iX1kxxp+gZMcaQ==
   dependencies:
     expect "^29.0.0"
     pretty-format "^29.0.0"
@@ -1636,9 +1636,9 @@ dotenv@^16.0.3:
   integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 electron-to-chromium@^1.4.284:
-  version "1.4.367"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.367.tgz#d9ddc529ba2315fc852b722c359e4a40e86aa742"
-  integrity sha512-mNuDxb+HpLhPGUKrg0hSxbTjHWw8EziwkwlJNkFUj3W60ypigLDRVz04vU+VRsJPi8Gub+FDhYUpuTm9xiEwRQ==
+  version "1.4.368"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.368.tgz#75901f97d3e23da2e66feb1e61fbb8e70ac96430"
+  integrity sha512-e2aeCAixCj9M7nJxdB/wDjO6mbYX+lJJxSJCXDzlr5YPGYVofuJwGN9nKg2o6wWInjX6XmxRinn3AeJMK81ltw==
 
 emittery@^0.7.1:
   version "0.7.2"

@@ -122,13 +122,13 @@ export class Configuration {
 
     constructor(param: ConfigurationParameters = {}) {
         this.plexToken = param.plexToken;
-        this.clientIdentifier = param.clientIdentifier || "Plexjs";
-        this.device = param.device;
-        this.deviceName = param.deviceName;
-        this.platform = param.platform || "Plexjs";
-        this.platformVersion = param.platformVersion;
-        this.product = param.product;
-        this.version = param.version;
+        this.clientIdentifier = param.clientIdentifier || "{{npmName}}";
+        this.device = param.device || "{{npmName}}";
+        this.deviceName = param.deviceName || "{{npmName}}";
+        this.platform = param.platform || "{{npmName}}";
+        this.platformVersion = param.platformVersion || "{{npmVersion}}";
+        this.product = param.product || "{{npmName}}";
+        this.version = param.version || "{{npmVersion}}";
 
         this.apiKey = (header: string) => {
             switch (header) {

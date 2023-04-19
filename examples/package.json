@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@lukehagar/plexjs": "^0.0.20",
-    "@types/jest": "^29.5.0",
+    "@lukehagar/plexjs": "^0.0.21",
+    "@types/jest": "^29.5.1",
     "@types/node": "^18.6.1",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
