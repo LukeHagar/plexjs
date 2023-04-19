@@ -1,9 +1,19 @@
-// eslint-disable-next-line no-console
-import { Configuration, ServerApi } from '@lukehagar/plexjs';
+import {
+  Configuration,
+  ServerApi,
+  DevicesApi,
+  UserApi,
+} from "@lukehagar/plexjs";
+import dotenv from "dotenv";
+dotenv.config();
 
-const config = new Configuration({ basePath: 'http://10.10.10.47:32400' });
-const api = new ServerApi(config);
+const config = new Configuration({
+  basePath: process.env.BASE_PATH,
+  plexToken: process.env.PLEX_TOKEN,
+});
 
-api.getServerCapabilities();
+new ServerApi(config).getServerCapabilities().then((resp) => console.log(resp));
 
-console.log('Hello world!');
+new DevicesApi(config).getDevices().then((resp) => console.log(resp));
+
+new UserApi(config).getUserDetails().then((resp) => console.log(resp));
