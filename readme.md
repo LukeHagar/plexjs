@@ -10,9 +10,14 @@ Documentation for all of the available endpoints can be found here:
 ## Installation
 
 ```bash
-npm install plexjs
+npm install @lukehagar/plexjs
 ```
 
+```bash
+yarn add @lukehagar/plexjs
+```
+
+## Usage
 
 ```javascript
 import { Configuration, ServerApi } from "@lukehagar/plexjs";
