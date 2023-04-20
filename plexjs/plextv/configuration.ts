@@ -137,9 +137,9 @@ export class Configuration {
         this.device = param.device || "plexjs";
         this.deviceName = param.deviceName || "plexjs";
         this.platform = param.platform || "plexjs";
-        this.platformVersion = param.platformVersion || "0.0.22";
+        this.platformVersion = param.platformVersion || "0.0.24";
         this.product = param.product || "plexjs";
-        this.version = param.version || "0.0.22";
+        this.version = param.version || "0.0.24";
 
         this.apiKey = (header: string) => {
             switch (header) {
