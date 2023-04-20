@@ -65,21 +65,22 @@ jobs:
           cd plexjs
           jq '.version = "${{ github.event.inputs.version }}"' package.json > package.json.tmp && mv package.json.tmp package.json
 
-      - name: Build TS SDK
-        id: buildTS
+      - name: Build PMS SDK
+        id: buildPMS
         run: |
           rm -rf plexjs/pms
           java -jar openapi-generator-cli.jar generate -i api-specs/pms/pms-spec.yaml -g typescript-axios -o plexjs/pms --global-property skipFormModel=false --config sdk-resources/pms-config.yaml
 
-      - name: Build TS SDK
-        id: buildTS
+      - name: Build PTV SDK
+        id: buildPTV
+        if: steps.buildPMS.outcome == 'success'
         run: |
           rm -rf plexjs/plextv
           java -jar openapi-generator-cli.jar generate -i api-specs/plextv/plextv-spec.yaml -g typescript-axios -o plexjs/plextv --global-property skipFormModel=false --config sdk-resources/plextv-config.yaml
 
       - name: After SDK Build
         id: buildSDK
-        if: steps.buildTS.outcome == 'success'
+        if: steps.buildPTV.outcome == 'success'
         run: |
           cd plexjs
           npm install
