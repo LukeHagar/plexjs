@@ -53,7 +53,7 @@ jobs:
       - name: Update config files with new version
         id: updateVersion
         run: |
-          yq -i '.npmVersion = "${{ github.event.inputs.version }}"' sdk-resources/plexjs-config.yaml
+          yq -i '.npmVersion = "${{ github.event.inputs.version }}"' sdk-resources/pms-config.yaml
           yq -i '.npmVersion = "${{ github.event.inputs.version }}"' sdk-resources/plextv-config.yaml
 
       ## Update package.json file with new version
