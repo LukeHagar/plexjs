@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-
-export * from "./api";
-export {Configuration, ConfigurationParameters} from "./configuration";
-
+export * from "./plextv/api";
+export * from "./pms/api";
+export { Configuration, ConfigurationParameters } from "./configuration";
