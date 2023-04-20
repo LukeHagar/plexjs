@@ -1,4 +1,4 @@
-templateDir: ./plextv-resources
+templateDir: ./sdk-resources/plextv-resources
 files:
   package.mustache:
     templateType: SupportingFiles
