@@ -16,6 +16,4 @@ const config = new Configuration({
 
 // new DevicesApi(config).getDevices().then((resp) => console.log(resp));
 
-new PlexTvApi(config)
-  .getUserDetails({ baseURL: "https://plex.tv/api/v2" })
-  .then((resp) => console.log(resp));
+new PlexTvApi(config).getUserDetails().then((resp) => console.log(resp));
