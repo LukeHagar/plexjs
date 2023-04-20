@@ -1,0 +1,12 @@
+templateDir: ./plextv-resources
+files:
+  package.mustache:
+    templateType: SupportingFiles
+    destinationFilename: package.json
+npmName: plexjs
+npmRepository: lukehagar
+npmVersion: 0.0.22
+useSingleRequestParameter: true
+sortParamsByRequiredFlag: true
+gitUserID: lukehagar
+gitRepoID: plexjs

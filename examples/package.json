@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@lukehagar/plexjs": "^0.0.21",
+    "@lukehagar/plexjs": "^0.0.22",
     "@types/jest": "^29.5.1",
     "@types/node": "^18.6.1",
     "@typescript-eslint/eslint-plugin": "^5.31.0",

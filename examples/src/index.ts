@@ -2,7 +2,7 @@ import {
   Configuration,
   ServerApi,
   DevicesApi,
-  UserApi,
+  PlexTvApi,
 } from "@lukehagar/plexjs";
 import dotenv from "dotenv";
 dotenv.config();
@@ -12,8 +12,10 @@ const config = new Configuration({
   plexToken: process.env.PLEX_TOKEN,
 });
 
-new ServerApi(config).getServerCapabilities().then((resp) => console.log(resp));
+// new ServerApi(config).getServerCapabilities().then((resp) => console.log(resp));
 
-new DevicesApi(config).getDevices().then((resp) => console.log(resp));
+// new DevicesApi(config).getDevices().then((resp) => console.log(resp));
 
-new UserApi(config).getUserDetails().then((resp) => console.log(resp));
+new PlexTvApi(config)
+  .getUserDetails({ baseURL: "https://plex.tv/api/v2" })
+  .then((resp) => console.log(resp));

@@ -1,4 +1,4 @@
-templateDir: ./sdk-resources
+templateDir: ./plexjs-resources
 files:
   package.mustache:
     templateType: SupportingFiles

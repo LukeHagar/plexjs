@@ -592,10 +592,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@lukehagar/plexjs@^0.0.21":
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/@lukehagar/plexjs/-/plexjs-0.0.21.tgz#2769644c615e8c38a5d7a451d268f87cb4c9d949"
-  integrity sha512-+mYw+/wlR7zXGGpO1M8NwCqTxXkWobQskoAkaNrNIBbQ1pbBngxI8qPplh+n5sY8ctAL6YHEDQWdU5iutVwl6w==
+"@lukehagar/plexjs@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@lukehagar/plexjs/-/plexjs-0.0.22.tgz#a87b9df5efee2fd553ec1bb7fe6a2b71dfdd8c27"
+  integrity sha512-0XNjk4ocqULuNbA3tfqK0bIxBAeA64Dkk6jZUpDkI/CCji5ND+Ara38ZmDXBzT5fRioFoP35Lb2/zTLfpMc8wg==
   dependencies:
     axios "^0.26.1"
     axios-retry "^3.4.0"
