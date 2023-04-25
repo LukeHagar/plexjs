@@ -3363,6 +3363,260 @@ export class LogApi extends BaseAPI {
 
 
 /**
+ * MediaApi - axios parameter creator
+ * @export
+ */
+export const MediaApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * This will mark the provided media key as Played.
+         * @summary Mark Media Played
+         * @param {any} key The media key to mark as played
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        markPlayed: async (key: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'key' is not null or undefined
+            assertParamExists('markPlayed', 'key', key)
+            const localVarPath = `/:/scrobble`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+            if (key !== undefined) {
+                localVarQueryParameter['key'] = key;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * This will mark the provided media key as Unplayed.
+         * @summary Mark Media Unplayed
+         * @param {any} key The media key to mark as Unplayed
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        markUnplayed: async (key: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'key' is not null or undefined
+            assertParamExists('markUnplayed', 'key', key)
+            const localVarPath = `/:/unscrobble`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+            if (key !== undefined) {
+                localVarQueryParameter['key'] = key;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * MediaApi - functional programming interface
+ * @export
+ */
+export const MediaApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MediaApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * This will mark the provided media key as Played.
+         * @summary Mark Media Played
+         * @param {any} key The media key to mark as played
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async markPlayed(key: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.markPlayed(key, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This will mark the provided media key as Unplayed.
+         * @summary Mark Media Unplayed
+         * @param {any} key The media key to mark as Unplayed
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async markUnplayed(key: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.markUnplayed(key, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * MediaApi - factory interface
+ * @export
+ */
+export const MediaApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MediaApiFp(configuration)
+    return {
+        /**
+         * This will mark the provided media key as Played.
+         * @summary Mark Media Played
+         * @param {any} key The media key to mark as played
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        markPlayed(key: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.markPlayed(key, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * This will mark the provided media key as Unplayed.
+         * @summary Mark Media Unplayed
+         * @param {any} key The media key to mark as Unplayed
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        markUnplayed(key: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.markUnplayed(key, axiosOptions).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for markPlayed operation in MediaApi.
+ * @export
+ * @interface MediaApiMarkPlayedRequest
+ */
+export interface MediaApiMarkPlayedRequest {
+    /**
+     * The media key to mark as played
+     * @type {any}
+     * @memberof MediaApiMarkPlayed
+     */
+    readonly key: any
+}
+
+/**
+ * Request parameters for markUnplayed operation in MediaApi.
+ * @export
+ * @interface MediaApiMarkUnplayedRequest
+ */
+export interface MediaApiMarkUnplayedRequest {
+    /**
+     * The media key to mark as Unplayed
+     * @type {any}
+     * @memberof MediaApiMarkUnplayed
+     */
+    readonly key: any
+}
+
+/**
+ * MediaApi - object-oriented interface
+ * @export
+ * @class MediaApi
+ * @extends {BaseAPI}
+ */
+export class MediaApi extends BaseAPI {
+    /**
+     * This will mark the provided media key as Played.
+     * @summary Mark Media Played
+     * @param {MediaApiMarkPlayedRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MediaApi
+     */
+    public markPlayed(requestParameters: MediaApiMarkPlayedRequest, axiosOptions?: AxiosRequestConfig) {
+        return MediaApiFp(this.configuration).markPlayed(requestParameters.key, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This will mark the provided media key as Unplayed.
+     * @summary Mark Media Unplayed
+     * @param {MediaApiMarkUnplayedRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MediaApi
+     */
+    public markUnplayed(requestParameters: MediaApiMarkUnplayedRequest, axiosOptions?: AxiosRequestConfig) {
+        return MediaApiFp(this.configuration).markUnplayed(requestParameters.key, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * MyPlexApi - axios parameter creator
  * @export
  */
