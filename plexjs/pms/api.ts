@@ -50,6 +50,44 @@ export interface GetButlerTasks200ResponseButlerTasks {
 /**
  * 
  * @export
+ * @interface GetDevices200Response
+ */
+export interface GetDevices200Response {
+    /**
+     * 
+     * @type {GetDevices200ResponseMediaContainer}
+     * @memberof GetDevices200Response
+     */
+    'MediaContainer'?: GetDevices200ResponseMediaContainer;
+}
+/**
+ * 
+ * @export
+ * @interface GetDevices200ResponseMediaContainer
+ */
+export interface GetDevices200ResponseMediaContainer {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDevices200ResponseMediaContainer
+     */
+    'size'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDevices200ResponseMediaContainer
+     */
+    'identifier'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDevices200ResponseMediaContainer
+     */
+    'Device'?: any;
+}
+/**
+ * 
+ * @export
  * @interface GetMyPlexAccount200Response
  */
 export interface GetMyPlexAccount200Response {
@@ -1586,6 +1624,60 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
                 axiosOptions: localVarRequestOptions,
             };
         },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/devices`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1604,6 +1696,16 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async getAvailableClients(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableClients(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getDevices(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDevices200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDevices(axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1625,6 +1727,15 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         getAvailableClients(axiosOptions?: any): AxiosPromise<any> {
             return localVarFp.getAvailableClients(axiosOptions).then((request) => request(axios, basePath));
         },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices(axiosOptions?: any): AxiosPromise<GetDevices200Response> {
+            return localVarFp.getDevices(axiosOptions).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -1644,6 +1755,17 @@ export class DevicesApi extends BaseAPI {
      */
     public getAvailableClients(axiosOptions?: AxiosRequestConfig) {
         return DevicesApiFp(this.configuration).getAvailableClients(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Devices
+     * @summary Get Devices
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public getDevices(axiosOptions?: AxiosRequestConfig) {
+        return DevicesApiFp(this.configuration).getDevices(axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2106,6 +2228,64 @@ export class HubsApi extends BaseAPI {
 export const LibraryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * 
+         * @summary Delete Library Section
+         * @param {any} sectionId the Id of the library to query
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLibrary: async (sectionId: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sectionId' is not null or undefined
+            assertParamExists('deleteLibrary', 'sectionId', sectionId)
+            const localVarPath = `/library/sections/{sectionId}`
+                .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter 
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -2307,9 +2487,9 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryDetails: async (sectionId: any, includeDetails?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getLibrary: async (sectionId: any, includeDetails?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'sectionId' is not null or undefined
-            assertParamExists('getLibraryDetails', 'sectionId', sectionId)
+            assertParamExists('getLibrary', 'sectionId', sectionId)
             const localVarPath = `/library/sections/{sectionId}`
                 .replace(`{${"sectionId"}}`, encodeURIComponent(String(sectionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2607,6 +2787,17 @@ export const LibraryApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = LibraryApiAxiosParamCreator(configuration)
     return {
         /**
+         * 
+         * @summary Delete Library Section
+         * @param {any} sectionId the Id of the library to query
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteLibrary(sectionId: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteLibrary(sectionId, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter 
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -2650,8 +2841,8 @@ export const LibraryApiFp = function(configuration?: Configuration) {
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        async getLibraryDetails(sectionId: any, includeDetails?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getLibraryDetails(sectionId, includeDetails, axiosOptions);
+        async getLibrary(sectionId: any, includeDetails?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLibrary(sectionId, includeDetails, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2709,6 +2900,16 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = LibraryApiFp(configuration)
     return {
         /**
+         * 
+         * @summary Delete Library Section
+         * @param {any} sectionId the Id of the library to query
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLibrary(sectionId: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.deleteLibrary(sectionId, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
          * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter 
          * @summary Get Common Library Items
          * @param {any} sectionId the Id of the library to query
@@ -2749,8 +2950,8 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [axiosOptions] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryDetails(sectionId: any, includeDetails?: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.getLibraryDetails(sectionId, includeDetails, axiosOptions).then((request) => request(axios, basePath));
+        getLibrary(sectionId: any, includeDetails?: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getLibrary(sectionId, includeDetails, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return a list of library items filtered by the filter and type provided 
@@ -2794,6 +2995,20 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
         },
     };
 };
+
+/**
+ * Request parameters for deleteLibrary operation in LibraryApi.
+ * @export
+ * @interface LibraryApiDeleteLibraryRequest
+ */
+export interface LibraryApiDeleteLibraryRequest {
+    /**
+     * the Id of the library to query
+     * @type {any}
+     * @memberof LibraryApiDeleteLibrary
+     */
+    readonly sectionId: any
+}
 
 /**
  * Request parameters for getCommonLibraryItems operation in LibraryApi.
@@ -2852,22 +3067,22 @@ export interface LibraryApiGetLatestLibraryItemsRequest {
 }
 
 /**
- * Request parameters for getLibraryDetails operation in LibraryApi.
+ * Request parameters for getLibrary operation in LibraryApi.
  * @export
- * @interface LibraryApiGetLibraryDetailsRequest
+ * @interface LibraryApiGetLibraryRequest
  */
-export interface LibraryApiGetLibraryDetailsRequest {
+export interface LibraryApiGetLibraryRequest {
     /**
      * the Id of the library to query
      * @type {any}
-     * @memberof LibraryApiGetLibraryDetails
+     * @memberof LibraryApiGetLibrary
      */
     readonly sectionId: any
 
     /**
      * Whether or not to include details for a section (types, filters, and sorts).  Only exists for backwards compatibility, media providers other than the server libraries have it on always. 
      * @type {any}
-     * @memberof LibraryApiGetLibraryDetails
+     * @memberof LibraryApiGetLibrary
      */
     readonly includeDetails?: any
 }
@@ -2922,6 +3137,18 @@ export interface LibraryApiRefreshLibraryRequest {
  */
 export class LibraryApi extends BaseAPI {
     /**
+     * 
+     * @summary Delete Library Section
+     * @param {LibraryApiDeleteLibraryRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    public deleteLibrary(requestParameters: LibraryApiDeleteLibraryRequest, axiosOptions?: AxiosRequestConfig) {
+        return LibraryApiFp(this.configuration).deleteLibrary(requestParameters.sectionId, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Represents a \"Common\" item. It contains only the common attributes of the items selected by the provided filter 
      * @summary Get Common Library Items
      * @param {LibraryApiGetCommonLibraryItemsRequest} requestParameters Request parameters.
@@ -2959,13 +3186,13 @@ export class LibraryApi extends BaseAPI {
     /**
      * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:  - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:   - Primary: (e.g. all, On Deck) These are still used in some clients to provide \"shortcuts\" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.   - Secondary: These are marked with `secondary=\"1\"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there\'s a completely obsolete entry marked `search=\"1\"` which used to be used to allow clients to build search dialogs on the fly. - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won\'t render any filtering controls. The `Type` object contains:   - `key`: This provides the root endpoint returning the actual media list for the type.   - `type`: This is the metadata type for the type (if a standard Plex type).   - `title`: The title for for the content of this type (e.g. \"Movies\"). - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a \"Genre\" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.   - `title`: The title for the filter. - Each `Sort` object contains a description of the sort field.   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.   - `title`: The title of the field. 
      * @summary Get Library Details
-     * @param {LibraryApiGetLibraryDetailsRequest} requestParameters Request parameters.
+     * @param {LibraryApiGetLibraryRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
      * @throws {RequiredError}
      * @memberof LibraryApi
      */
-    public getLibraryDetails(requestParameters: LibraryApiGetLibraryDetailsRequest, axiosOptions?: AxiosRequestConfig) {
-        return LibraryApiFp(this.configuration).getLibraryDetails(requestParameters.sectionId, requestParameters.includeDetails, axiosOptions).then((request) => request(this.axios, this.basePath));
+    public getLibrary(requestParameters: LibraryApiGetLibraryRequest, axiosOptions?: AxiosRequestConfig) {
+        return LibraryApiFp(this.configuration).getLibrary(requestParameters.sectionId, requestParameters.includeDetails, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
