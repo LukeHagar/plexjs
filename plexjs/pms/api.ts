@@ -1565,379 +1565,13 @@ export class ButlerApi extends BaseAPI {
 
 
 /**
- * DevicesApi - axios parameter creator
- * @export
- */
-export const DevicesApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Get Available Clients
-         * @summary Get Available Clients
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAvailableClients: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/clients`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ClientIdentifier required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-
-            // authentication Device required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
-
-            // authentication DeviceName required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Platform required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
-
-            // authentication PlatformVersion required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
-
-            // authentication Product required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
-
-            // authentication Token required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication Version required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-        /**
-         * Get Devices
-         * @summary Get Devices
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getDevices: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/devices`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ClientIdentifier required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-
-            // authentication Device required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
-
-            // authentication DeviceName required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Platform required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
-
-            // authentication PlatformVersion required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
-
-            // authentication Product required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
-
-            // authentication Token required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication Version required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * DevicesApi - functional programming interface
- * @export
- */
-export const DevicesApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = DevicesApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * Get Available Clients
-         * @summary Get Available Clients
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getAvailableClients(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableClients(axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Get Devices
-         * @summary Get Devices
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getDevices(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDevices200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDevices(axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * DevicesApi - factory interface
- * @export
- */
-export const DevicesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = DevicesApiFp(configuration)
-    return {
-        /**
-         * Get Available Clients
-         * @summary Get Available Clients
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAvailableClients(axiosOptions?: any): AxiosPromise<any> {
-            return localVarFp.getAvailableClients(axiosOptions).then((request) => request(axios, basePath));
-        },
-        /**
-         * Get Devices
-         * @summary Get Devices
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getDevices(axiosOptions?: any): AxiosPromise<GetDevices200Response> {
-            return localVarFp.getDevices(axiosOptions).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * DevicesApi - object-oriented interface
- * @export
- * @class DevicesApi
- * @extends {BaseAPI}
- */
-export class DevicesApi extends BaseAPI {
-    /**
-     * Get Available Clients
-     * @summary Get Available Clients
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public getAvailableClients(axiosOptions?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).getAvailableClients(axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Get Devices
-     * @summary Get Devices
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public getDevices(axiosOptions?: AxiosRequestConfig) {
-        return DevicesApiFp(this.configuration).getDevices(axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * HashesApi - axios parameter creator
- * @export
- */
-export const HashesApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * This resource returns hash values for local files
-         * @summary Get Hash Value
-         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
-         * @param {any} [type] Item type
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFileHash: async (url: any, type?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'url' is not null or undefined
-            assertParamExists('getFileHash', 'url', url)
-            const localVarPath = `/library/hashes`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ClientIdentifier required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-
-            // authentication Device required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
-
-            // authentication DeviceName required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Platform required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
-
-            // authentication PlatformVersion required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
-
-            // authentication Product required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
-
-            // authentication Token required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication Version required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
-
-            if (url !== undefined) {
-                localVarQueryParameter['url'] = url;
-            }
-
-            if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * HashesApi - functional programming interface
- * @export
- */
-export const HashesApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = HashesApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * This resource returns hash values for local files
-         * @summary Get Hash Value
-         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
-         * @param {any} [type] Item type
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getFileHash(url: any, type?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFileHash(url, type, axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * HashesApi - factory interface
- * @export
- */
-export const HashesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = HashesApiFp(configuration)
-    return {
-        /**
-         * This resource returns hash values for local files
-         * @summary Get Hash Value
-         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
-         * @param {any} [type] Item type
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFileHash(url: any, type?: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.getFileHash(url, type, axiosOptions).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * Request parameters for getFileHash operation in HashesApi.
- * @export
- * @interface HashesApiGetFileHashRequest
- */
-export interface HashesApiGetFileHashRequest {
-    /**
-     * This is the path to the local file, must be prefixed by &#x60;file://&#x60;
-     * @type {any}
-     * @memberof HashesApiGetFileHash
-     */
-    readonly url: any
-
-    /**
-     * Item type
-     * @type {any}
-     * @memberof HashesApiGetFileHash
-     */
-    readonly type?: any
-}
-
-/**
- * HashesApi - object-oriented interface
- * @export
- * @class HashesApi
- * @extends {BaseAPI}
- */
-export class HashesApi extends BaseAPI {
-    /**
-     * This resource returns hash values for local files
-     * @summary Get Hash Value
-     * @param {HashesApiGetFileHashRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HashesApi
-     */
-    public getFileHash(requestParameters: HashesApiGetFileHashRequest, axiosOptions?: AxiosRequestConfig) {
-        return HashesApiFp(this.configuration).getFileHash(requestParameters.url, requestParameters.type, axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
  * HubsApi - axios parameter creator
  * @export
  */
 export const HubsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
+         * Get Global Hubs filtered by the parameters provided.
          * @summary Get Global Hubs
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
@@ -2079,7 +1713,7 @@ export const HubsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = HubsApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
+         * Get Global Hubs filtered by the parameters provided.
          * @summary Get Global Hubs
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
@@ -2114,7 +1748,7 @@ export const HubsApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = HubsApiFp(configuration)
     return {
         /**
-         * 
+         * Get Global Hubs filtered by the parameters provided.
          * @summary Get Global Hubs
          * @param {any} [count] The number of items to return with each hub.
          * @param {any} [onlyTransient] Only return hubs which are \&quot;transient\&quot;, meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
@@ -2196,7 +1830,7 @@ export interface HubsApiGetLibraryHubsRequest {
  */
 export class HubsApi extends BaseAPI {
     /**
-     * 
+     * Get Global Hubs filtered by the parameters provided.
      * @summary Get Global Hubs
      * @param {HubsApiGetGlobalHubsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
@@ -2228,7 +1862,7 @@ export class HubsApi extends BaseAPI {
 export const LibraryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
+         * Delate a library using a specific section
          * @summary Delete Library Section
          * @param {any} sectionId the Id of the library to query
          * @param {*} [axiosOptions] Override http request option.
@@ -2342,6 +1976,72 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
 
             if (filter !== undefined) {
                 localVarQueryParameter['filter'] = filter;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * This resource returns hash values for local files
+         * @summary Get Hash Value
+         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+         * @param {any} [type] Item type
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFileHash: async (url: any, type?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('getFileHash', 'url', url)
+            const localVarPath = `/library/hashes`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
 
@@ -2611,6 +2311,64 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * This endpoint will return the metadata of a library item specified with the ratingKey. 
+         * @summary Get Items Metadata
+         * @param {any} ratingKey the id of the library item to return the children of.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMetadata: async (ratingKey: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ratingKey' is not null or undefined
+            assertParamExists('getMetadata', 'ratingKey', ratingKey)
+            const localVarPath = `/library/metadata/{ratingKey}`
+                .replace(`{${"ratingKey"}}`, encodeURIComponent(String(ratingKey)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * This endpoint will return the children of of a library item specified with the ratingKey. 
          * @summary Get Items Children
          * @param {any} ratingKey the id of the library item to return the children of.
@@ -2845,7 +2603,7 @@ export const LibraryApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = LibraryApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
+         * Delate a library using a specific section
          * @summary Delete Library Section
          * @param {any} sectionId the Id of the library to query
          * @param {*} [axiosOptions] Override http request option.
@@ -2866,6 +2624,18 @@ export const LibraryApiFp = function(configuration?: Configuration) {
          */
         async getCommonLibraryItems(sectionId: any, type: any, filter?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCommonLibraryItems(sectionId, type, filter, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This resource returns hash values for local files
+         * @summary Get Hash Value
+         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+         * @param {any} [type] Item type
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFileHash(url: any, type?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFileHash(url, type, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2914,6 +2684,17 @@ export const LibraryApiFp = function(configuration?: Configuration) {
          */
         async getLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLibraryItems(sectionId, type, filter, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * This endpoint will return the metadata of a library item specified with the ratingKey. 
+         * @summary Get Items Metadata
+         * @param {any} ratingKey the id of the library item to return the children of.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMetadata(ratingKey: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMetadata(ratingKey, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2969,7 +2750,7 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = LibraryApiFp(configuration)
     return {
         /**
-         * 
+         * Delate a library using a specific section
          * @summary Delete Library Section
          * @param {any} sectionId the Id of the library to query
          * @param {*} [axiosOptions] Override http request option.
@@ -2989,6 +2770,17 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
          */
         getCommonLibraryItems(sectionId: any, type: any, filter?: any, axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.getCommonLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * This resource returns hash values for local files
+         * @summary Get Hash Value
+         * @param {any} url This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+         * @param {any} [type] Item type
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFileHash(url: any, type?: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getFileHash(url, type, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return a list of the latest library items filtered by the filter and type provided 
@@ -3033,6 +2825,16 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
          */
         getLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.getLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint will return the metadata of a library item specified with the ratingKey. 
+         * @summary Get Items Metadata
+         * @param {any} ratingKey the id of the library item to return the children of.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMetadata(ratingKey: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getMetadata(ratingKey, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return the children of of a library item specified with the ratingKey. 
@@ -3118,6 +2920,27 @@ export interface LibraryApiGetCommonLibraryItemsRequest {
 }
 
 /**
+ * Request parameters for getFileHash operation in LibraryApi.
+ * @export
+ * @interface LibraryApiGetFileHashRequest
+ */
+export interface LibraryApiGetFileHashRequest {
+    /**
+     * This is the path to the local file, must be prefixed by &#x60;file://&#x60;
+     * @type {any}
+     * @memberof LibraryApiGetFileHash
+     */
+    readonly url: any
+
+    /**
+     * Item type
+     * @type {any}
+     * @memberof LibraryApiGetFileHash
+     */
+    readonly type?: any
+}
+
+/**
  * Request parameters for getLatestLibraryItems operation in LibraryApi.
  * @export
  * @interface LibraryApiGetLatestLibraryItemsRequest
@@ -3195,6 +3018,20 @@ export interface LibraryApiGetLibraryItemsRequest {
 }
 
 /**
+ * Request parameters for getMetadata operation in LibraryApi.
+ * @export
+ * @interface LibraryApiGetMetadataRequest
+ */
+export interface LibraryApiGetMetadataRequest {
+    /**
+     * the id of the library item to return the children of.
+     * @type {any}
+     * @memberof LibraryApiGetMetadata
+     */
+    readonly ratingKey: any
+}
+
+/**
  * Request parameters for getMetadataChildren operation in LibraryApi.
  * @export
  * @interface LibraryApiGetMetadataChildrenRequest
@@ -3230,7 +3067,7 @@ export interface LibraryApiRefreshLibraryRequest {
  */
 export class LibraryApi extends BaseAPI {
     /**
-     * 
+     * Delate a library using a specific section
      * @summary Delete Library Section
      * @param {LibraryApiDeleteLibraryRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
@@ -3251,6 +3088,18 @@ export class LibraryApi extends BaseAPI {
      */
     public getCommonLibraryItems(requestParameters: LibraryApiGetCommonLibraryItemsRequest, axiosOptions?: AxiosRequestConfig) {
         return LibraryApiFp(this.configuration).getCommonLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This resource returns hash values for local files
+     * @summary Get Hash Value
+     * @param {LibraryApiGetFileHashRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    public getFileHash(requestParameters: LibraryApiGetFileHashRequest, axiosOptions?: AxiosRequestConfig) {
+        return LibraryApiFp(this.configuration).getFileHash(requestParameters.url, requestParameters.type, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3298,6 +3147,18 @@ export class LibraryApi extends BaseAPI {
      */
     public getLibraryItems(requestParameters: LibraryApiGetLibraryItemsRequest, axiosOptions?: AxiosRequestConfig) {
         return LibraryApiFp(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint will return the metadata of a library item specified with the ratingKey. 
+     * @summary Get Items Metadata
+     * @param {LibraryApiGetMetadataRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    public getMetadata(requestParameters: LibraryApiGetMetadataRequest, axiosOptions?: AxiosRequestConfig) {
+        return LibraryApiFp(this.configuration).getMetadata(requestParameters.ratingKey, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4089,370 +3950,6 @@ export class MediaApi extends BaseAPI {
 
 
 /**
- * MyPlexApi - axios parameter creator
- * @export
- */
-export const MyPlexApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Returns MyPlex Account Information
-         * @summary Get MyPlex Account
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMyPlexAccount: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/myplex/account`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ClientIdentifier required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-
-            // authentication Device required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
-
-            // authentication DeviceName required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Platform required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
-
-            // authentication PlatformVersion required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
-
-            // authentication Product required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
-
-            // authentication Token required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication Version required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * MyPlexApi - functional programming interface
- * @export
- */
-export const MyPlexApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = MyPlexApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * Returns MyPlex Account Information
-         * @summary Get MyPlex Account
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getMyPlexAccount(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyPlexAccount200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyPlexAccount(axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * MyPlexApi - factory interface
- * @export
- */
-export const MyPlexApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = MyPlexApiFp(configuration)
-    return {
-        /**
-         * Returns MyPlex Account Information
-         * @summary Get MyPlex Account
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMyPlexAccount(axiosOptions?: any): AxiosPromise<GetMyPlexAccount200Response> {
-            return localVarFp.getMyPlexAccount(axiosOptions).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * MyPlexApi - object-oriented interface
- * @export
- * @class MyPlexApi
- * @extends {BaseAPI}
- */
-export class MyPlexApi extends BaseAPI {
-    /**
-     * Returns MyPlex Account Information
-     * @summary Get MyPlex Account
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MyPlexApi
-     */
-    public getMyPlexAccount(axiosOptions?: AxiosRequestConfig) {
-        return MyPlexApiFp(this.configuration).getMyPlexAccount(axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * PhotosApi - axios parameter creator
- * @export
- */
-export const PhotosApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
-         * @summary Get a Resized Photo
-         * @param {any} width The width for the resized photo
-         * @param {any} height The height for the resized photo
-         * @param {any} opacity The opacity for the resized photo
-         * @param {any} blur The width for the resized photo
-         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
-         * @param {any} upscale allow images to be resized beyond native dimensions.
-         * @param {any} url path to image within Plex
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getResizedPhoto: async (width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'width' is not null or undefined
-            assertParamExists('getResizedPhoto', 'width', width)
-            // verify required parameter 'height' is not null or undefined
-            assertParamExists('getResizedPhoto', 'height', height)
-            // verify required parameter 'opacity' is not null or undefined
-            assertParamExists('getResizedPhoto', 'opacity', opacity)
-            // verify required parameter 'blur' is not null or undefined
-            assertParamExists('getResizedPhoto', 'blur', blur)
-            // verify required parameter 'minSize' is not null or undefined
-            assertParamExists('getResizedPhoto', 'minSize', minSize)
-            // verify required parameter 'upscale' is not null or undefined
-            assertParamExists('getResizedPhoto', 'upscale', upscale)
-            // verify required parameter 'url' is not null or undefined
-            assertParamExists('getResizedPhoto', 'url', url)
-            const localVarPath = `/photo/:/transcode`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication ClientIdentifier required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
-
-            // authentication Device required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
-
-            // authentication DeviceName required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
-
-            // authentication Platform required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
-
-            // authentication PlatformVersion required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
-
-            // authentication Product required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
-
-            // authentication Token required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication Version required
-            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
-
-            if (width !== undefined) {
-                localVarQueryParameter['width'] = width;
-            }
-
-            if (height !== undefined) {
-                localVarQueryParameter['height'] = height;
-            }
-
-            if (opacity !== undefined) {
-                localVarQueryParameter['opacity'] = opacity;
-            }
-
-            if (blur !== undefined) {
-                localVarQueryParameter['blur'] = blur;
-            }
-
-            if (minSize !== undefined) {
-                localVarQueryParameter['minSize'] = minSize;
-            }
-
-            if (upscale !== undefined) {
-                localVarQueryParameter['upscale'] = upscale;
-            }
-
-            if (url !== undefined) {
-                localVarQueryParameter['url'] = url;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                axiosOptions: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * PhotosApi - functional programming interface
- * @export
- */
-export const PhotosApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = PhotosApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
-         * @summary Get a Resized Photo
-         * @param {any} width The width for the resized photo
-         * @param {any} height The height for the resized photo
-         * @param {any} opacity The opacity for the resized photo
-         * @param {any} blur The width for the resized photo
-         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
-         * @param {any} upscale allow images to be resized beyond native dimensions.
-         * @param {any} url path to image within Plex
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getResizedPhoto(width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getResizedPhoto(width, height, opacity, blur, minSize, upscale, url, axiosOptions);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * PhotosApi - factory interface
- * @export
- */
-export const PhotosApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = PhotosApiFp(configuration)
-    return {
-        /**
-         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
-         * @summary Get a Resized Photo
-         * @param {any} width The width for the resized photo
-         * @param {any} height The height for the resized photo
-         * @param {any} opacity The opacity for the resized photo
-         * @param {any} blur The width for the resized photo
-         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
-         * @param {any} upscale allow images to be resized beyond native dimensions.
-         * @param {any} url path to image within Plex
-         * @param {*} [axiosOptions] Override http request option.
-         * @throws {RequiredError}
-         */
-        getResizedPhoto(width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions?: any): AxiosPromise<void> {
-            return localVarFp.getResizedPhoto(width, height, opacity, blur, minSize, upscale, url, axiosOptions).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * Request parameters for getResizedPhoto operation in PhotosApi.
- * @export
- * @interface PhotosApiGetResizedPhotoRequest
- */
-export interface PhotosApiGetResizedPhotoRequest {
-    /**
-     * The width for the resized photo
-     * @type {any}
-     * @memberof PhotosApiGetResizedPhoto
-     */
-    readonly width: any
-
-    /**
-     * The height for the resized photo
-     * @type {any}
-     * @memberof PhotosApiGetResizedPhoto
-     */
-    readonly height: any
-
-    /**
-     * The opacity for the resized photo
-     * @type {any}
-     * @memberof PhotosApiGetResizedPhoto
-     */
-    readonly opacity: any
-
-    /**
-     * The width for the resized photo
-     * @type {any}
-     * @memberof PhotosApiGetResizedPhoto
-     */
-    readonly blur: any
-
-    /**
-     * images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
-     * @type {any}
-     * @memberof PhotosApiGetResizedPhoto
-     */
-    readonly minSize: any
-
-    /**
-     * allow images to be resized beyond native dimensions.
-     * @type {any}
-     * @memberof PhotosApiGetResizedPhoto
-     */
-    readonly upscale: any
-
-    /**
-     * path to image within Plex
-     * @type {any}
-     * @memberof PhotosApiGetResizedPhoto
-     */
-    readonly url: any
-}
-
-/**
- * PhotosApi - object-oriented interface
- * @export
- * @class PhotosApi
- * @extends {BaseAPI}
- */
-export class PhotosApi extends BaseAPI {
-    /**
-     * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
-     * @summary Get a Resized Photo
-     * @param {PhotosApiGetResizedPhotoRequest} requestParameters Request parameters.
-     * @param {*} [axiosOptions] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PhotosApi
-     */
-    public getResizedPhoto(requestParameters: PhotosApiGetResizedPhotoRequest, axiosOptions?: AxiosRequestConfig) {
-        return PhotosApiFp(this.configuration).getResizedPhoto(requestParameters.width, requestParameters.height, requestParameters.opacity, requestParameters.blur, requestParameters.minSize, requestParameters.upscale, requestParameters.url, axiosOptions).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
  * PlaylistsApi - axios parameter creator
  * @export
  */
@@ -4855,7 +4352,7 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * 
+         * Get All Playlists given the specified filters.
          * @summary Get All Playlists
          * @param {any} [playlistType] limit to a type of playlist.
          * @param {any} [smart] type of playlists to return (default is all).
@@ -5128,7 +4625,7 @@ export const PlaylistsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * Get All Playlists given the specified filters.
          * @summary Get All Playlists
          * @param {any} [playlistType] limit to a type of playlist.
          * @param {any} [smart] type of playlists to return (default is all).
@@ -5240,7 +4737,7 @@ export const PlaylistsApiFactory = function (configuration?: Configuration, base
             return localVarFp.getPlaylistContents(playlistID, type, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * Get All Playlists given the specified filters.
          * @summary Get All Playlists
          * @param {any} [playlistType] limit to a type of playlist.
          * @param {any} [smart] type of playlists to return (default is all).
@@ -5543,7 +5040,7 @@ export class PlaylistsApi extends BaseAPI {
     }
 
     /**
-     * 
+     * Get All Playlists given the specified filters.
      * @summary Get All Playlists
      * @param {PlaylistsApiGetPlaylistsRequest} requestParameters Request parameters.
      * @param {*} [axiosOptions] Override http request option.
@@ -6275,6 +5772,271 @@ export class SecurityApi extends BaseAPI {
 export const ServerApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Get Available Clients
+         * @summary Get Available Clients
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvailableClients: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/clients`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/devices`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns MyPlex Account Information
+         * @summary Get MyPlex Account
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMyPlexAccount: async (axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/myplex/account`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
+         * @summary Get a Resized Photo
+         * @param {any} width The width for the resized photo
+         * @param {any} height The height for the resized photo
+         * @param {any} opacity The opacity for the resized photo
+         * @param {any} blur The width for the resized photo
+         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
+         * @param {any} upscale allow images to be resized beyond native dimensions.
+         * @param {any} url path to image within Plex
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getResizedPhoto: async (width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'width' is not null or undefined
+            assertParamExists('getResizedPhoto', 'width', width)
+            // verify required parameter 'height' is not null or undefined
+            assertParamExists('getResizedPhoto', 'height', height)
+            // verify required parameter 'opacity' is not null or undefined
+            assertParamExists('getResizedPhoto', 'opacity', opacity)
+            // verify required parameter 'blur' is not null or undefined
+            assertParamExists('getResizedPhoto', 'blur', blur)
+            // verify required parameter 'minSize' is not null or undefined
+            assertParamExists('getResizedPhoto', 'minSize', minSize)
+            // verify required parameter 'upscale' is not null or undefined
+            assertParamExists('getResizedPhoto', 'upscale', upscale)
+            // verify required parameter 'url' is not null or undefined
+            assertParamExists('getResizedPhoto', 'url', url)
+            const localVarPath = `/photo/:/transcode`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+            if (width !== undefined) {
+                localVarQueryParameter['width'] = width;
+            }
+
+            if (height !== undefined) {
+                localVarQueryParameter['height'] = height;
+            }
+
+            if (opacity !== undefined) {
+                localVarQueryParameter['opacity'] = opacity;
+            }
+
+            if (blur !== undefined) {
+                localVarQueryParameter['blur'] = blur;
+            }
+
+            if (minSize !== undefined) {
+                localVarQueryParameter['minSize'] = minSize;
+            }
+
+            if (upscale !== undefined) {
+                localVarQueryParameter['upscale'] = upscale;
+            }
+
+            if (url !== undefined) {
+                localVarQueryParameter['url'] = url;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * Server Capabilities
          * @summary Server Capabilities
          * @param {*} [axiosOptions] Override http request option.
@@ -6501,6 +6263,53 @@ export const ServerApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ServerApiAxiosParamCreator(configuration)
     return {
         /**
+         * Get Available Clients
+         * @summary Get Available Clients
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAvailableClients(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAvailableClients(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getDevices(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDevices200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDevices(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns MyPlex Account Information
+         * @summary Get MyPlex Account
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMyPlexAccount(axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyPlexAccount200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyPlexAccount(axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
+         * @summary Get a Resized Photo
+         * @param {any} width The width for the resized photo
+         * @param {any} height The height for the resized photo
+         * @param {any} opacity The opacity for the resized photo
+         * @param {any} blur The width for the resized photo
+         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
+         * @param {any} upscale allow images to be resized beyond native dimensions.
+         * @param {any} url path to image within Plex
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getResizedPhoto(width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getResizedPhoto(width, height, opacity, blur, minSize, upscale, url, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Server Capabilities
          * @summary Server Capabilities
          * @param {*} [axiosOptions] Override http request option.
@@ -6551,6 +6360,49 @@ export const ServerApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = ServerApiFp(configuration)
     return {
         /**
+         * Get Available Clients
+         * @summary Get Available Clients
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAvailableClients(axiosOptions?: any): AxiosPromise<any> {
+            return localVarFp.getAvailableClients(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get Devices
+         * @summary Get Devices
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDevices(axiosOptions?: any): AxiosPromise<GetDevices200Response> {
+            return localVarFp.getDevices(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns MyPlex Account Information
+         * @summary Get MyPlex Account
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMyPlexAccount(axiosOptions?: any): AxiosPromise<GetMyPlexAccount200Response> {
+            return localVarFp.getMyPlexAccount(axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
+         * @summary Get a Resized Photo
+         * @param {any} width The width for the resized photo
+         * @param {any} height The height for the resized photo
+         * @param {any} opacity The opacity for the resized photo
+         * @param {any} blur The width for the resized photo
+         * @param {any} minSize images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
+         * @param {any} upscale allow images to be resized beyond native dimensions.
+         * @param {any} url path to image within Plex
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getResizedPhoto(width: any, height: any, opacity: any, blur: any, minSize: any, upscale: any, url: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getResizedPhoto(width, height, opacity, blur, minSize, upscale, url, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
          * Server Capabilities
          * @summary Server Capabilities
          * @param {*} [axiosOptions] Override http request option.
@@ -6590,12 +6442,113 @@ export const ServerApiFactory = function (configuration?: Configuration, basePat
 };
 
 /**
+ * Request parameters for getResizedPhoto operation in ServerApi.
+ * @export
+ * @interface ServerApiGetResizedPhotoRequest
+ */
+export interface ServerApiGetResizedPhotoRequest {
+    /**
+     * The width for the resized photo
+     * @type {any}
+     * @memberof ServerApiGetResizedPhoto
+     */
+    readonly width: any
+
+    /**
+     * The height for the resized photo
+     * @type {any}
+     * @memberof ServerApiGetResizedPhoto
+     */
+    readonly height: any
+
+    /**
+     * The opacity for the resized photo
+     * @type {any}
+     * @memberof ServerApiGetResizedPhoto
+     */
+    readonly opacity: any
+
+    /**
+     * The width for the resized photo
+     * @type {any}
+     * @memberof ServerApiGetResizedPhoto
+     */
+    readonly blur: any
+
+    /**
+     * images are always scaled proportionally. A value of \&#39;1\&#39; in minSize will make the smaller native dimension the dimension resized against.
+     * @type {any}
+     * @memberof ServerApiGetResizedPhoto
+     */
+    readonly minSize: any
+
+    /**
+     * allow images to be resized beyond native dimensions.
+     * @type {any}
+     * @memberof ServerApiGetResizedPhoto
+     */
+    readonly upscale: any
+
+    /**
+     * path to image within Plex
+     * @type {any}
+     * @memberof ServerApiGetResizedPhoto
+     */
+    readonly url: any
+}
+
+/**
  * ServerApi - object-oriented interface
  * @export
  * @class ServerApi
  * @extends {BaseAPI}
  */
 export class ServerApi extends BaseAPI {
+    /**
+     * Get Available Clients
+     * @summary Get Available Clients
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    public getAvailableClients(axiosOptions?: AxiosRequestConfig) {
+        return ServerApiFp(this.configuration).getAvailableClients(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get Devices
+     * @summary Get Devices
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    public getDevices(axiosOptions?: AxiosRequestConfig) {
+        return ServerApiFp(this.configuration).getDevices(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns MyPlex Account Information
+     * @summary Get MyPlex Account
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    public getMyPlexAccount(axiosOptions?: AxiosRequestConfig) {
+        return ServerApiFp(this.configuration).getMyPlexAccount(axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Plex\'s Photo transcoder is used throughout the service to serve images at specified sizes. 
+     * @summary Get a Resized Photo
+     * @param {ServerApiGetResizedPhotoRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServerApi
+     */
+    public getResizedPhoto(requestParameters: ServerApiGetResizedPhotoRequest, axiosOptions?: AxiosRequestConfig) {
+        return ServerApiFp(this.configuration).getResizedPhoto(requestParameters.width, requestParameters.height, requestParameters.opacity, requestParameters.blur, requestParameters.minSize, requestParameters.upscale, requestParameters.url, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Server Capabilities
      * @summary Server Capabilities
