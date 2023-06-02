@@ -3717,6 +3717,81 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
                 axiosOptions: localVarRequestOptions,
             };
         },
+        /**
+         * This API command can be used to update the play progress of a media item. 
+         * @summary Update Media Play Progress
+         * @param {any} key the media key
+         * @param {any} time The time, in milliseconds, used to set the media playback progress.
+         * @param {any} state The playback state of the media item.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePlayProgress: async (key: any, time: any, state: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'key' is not null or undefined
+            assertParamExists('updatePlayProgress', 'key', key)
+            // verify required parameter 'time' is not null or undefined
+            assertParamExists('updatePlayProgress', 'time', time)
+            // verify required parameter 'state' is not null or undefined
+            assertParamExists('updatePlayProgress', 'state', state)
+            const localVarPath = `/:/progress`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+            if (key !== undefined) {
+                localVarQueryParameter['key'] = key;
+            }
+
+            if (time !== undefined) {
+                localVarQueryParameter['time'] = time;
+            }
+
+            if (state !== undefined) {
+                localVarQueryParameter['state'] = state;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -3749,6 +3824,19 @@ export const MediaApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.markUnplayed(key, axiosOptions);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * This API command can be used to update the play progress of a media item. 
+         * @summary Update Media Play Progress
+         * @param {any} key the media key
+         * @param {any} time The time, in milliseconds, used to set the media playback progress.
+         * @param {any} state The playback state of the media item.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updatePlayProgress(key: any, time: any, state: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePlayProgress(key, time, state, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -3778,6 +3866,18 @@ export const MediaApiFactory = function (configuration?: Configuration, basePath
          */
         markUnplayed(key: any, axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.markUnplayed(key, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * This API command can be used to update the play progress of a media item. 
+         * @summary Update Media Play Progress
+         * @param {any} key the media key
+         * @param {any} time The time, in milliseconds, used to set the media playback progress.
+         * @param {any} state The playback state of the media item.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePlayProgress(key: any, time: any, state: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.updatePlayProgress(key, time, state, axiosOptions).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3811,6 +3911,34 @@ export interface MediaApiMarkUnplayedRequest {
 }
 
 /**
+ * Request parameters for updatePlayProgress operation in MediaApi.
+ * @export
+ * @interface MediaApiUpdatePlayProgressRequest
+ */
+export interface MediaApiUpdatePlayProgressRequest {
+    /**
+     * the media key
+     * @type {any}
+     * @memberof MediaApiUpdatePlayProgress
+     */
+    readonly key: any
+
+    /**
+     * The time, in milliseconds, used to set the media playback progress.
+     * @type {any}
+     * @memberof MediaApiUpdatePlayProgress
+     */
+    readonly time: any
+
+    /**
+     * The playback state of the media item.
+     * @type {any}
+     * @memberof MediaApiUpdatePlayProgress
+     */
+    readonly state: any
+}
+
+/**
  * MediaApi - object-oriented interface
  * @export
  * @class MediaApi
@@ -3839,6 +3967,18 @@ export class MediaApi extends BaseAPI {
      */
     public markUnplayed(requestParameters: MediaApiMarkUnplayedRequest, axiosOptions?: AxiosRequestConfig) {
         return MediaApiFp(this.configuration).markUnplayed(requestParameters.key, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This API command can be used to update the play progress of a media item. 
+     * @summary Update Media Play Progress
+     * @param {MediaApiUpdatePlayProgressRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MediaApi
+     */
+    public updatePlayProgress(requestParameters: MediaApiUpdatePlayProgressRequest, axiosOptions?: AxiosRequestConfig) {
+        return MediaApiFp(this.configuration).updatePlayProgress(requestParameters.key, requestParameters.time, requestParameters.state, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 }
 
