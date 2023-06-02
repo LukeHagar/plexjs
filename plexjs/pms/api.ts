@@ -2611,6 +2611,64 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * This endpoint will return the children of of a library item specified with the ratingKey. 
+         * @summary Get Items Children
+         * @param {any} ratingKey the id of the library item to return the children of.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMetadataChildren: async (ratingKey: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ratingKey' is not null or undefined
+            assertParamExists('getMetadataChildren', 'ratingKey', ratingKey)
+            const localVarPath = `/library/metadata/{ratingKey}/children`
+                .replace(`{${"ratingKey"}}`, encodeURIComponent(String(ratingKey)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ClientIdentifier required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Client-Identifier", configuration)
+
+            // authentication Device required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device", configuration)
+
+            // authentication DeviceName required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Device-Name", configuration)
+
+            // authentication Platform required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform", configuration)
+
+            // authentication PlatformVersion required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Platform-Version", configuration)
+
+            // authentication Product required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Product", configuration)
+
+            // authentication Token required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            // authentication Version required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Version", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
          * This endpoint will return the on deck content. 
          * @summary Get On Deck
          * @param {*} [axiosOptions] Override http request option.
@@ -2859,6 +2917,17 @@ export const LibraryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * This endpoint will return the children of of a library item specified with the ratingKey. 
+         * @summary Get Items Children
+         * @param {any} ratingKey the id of the library item to return the children of.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMetadataChildren(ratingKey: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMetadataChildren(ratingKey, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * This endpoint will return the on deck content. 
          * @summary Get On Deck
          * @param {*} [axiosOptions] Override http request option.
@@ -2964,6 +3033,16 @@ export const LibraryApiFactory = function (configuration?: Configuration, basePa
          */
         getLibraryItems(sectionId: any, type?: any, filter?: any, axiosOptions?: any): AxiosPromise<void> {
             return localVarFp.getLibraryItems(sectionId, type, filter, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint will return the children of of a library item specified with the ratingKey. 
+         * @summary Get Items Children
+         * @param {any} ratingKey the id of the library item to return the children of.
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMetadataChildren(ratingKey: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getMetadataChildren(ratingKey, axiosOptions).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return the on deck content. 
@@ -3116,6 +3195,20 @@ export interface LibraryApiGetLibraryItemsRequest {
 }
 
 /**
+ * Request parameters for getMetadataChildren operation in LibraryApi.
+ * @export
+ * @interface LibraryApiGetMetadataChildrenRequest
+ */
+export interface LibraryApiGetMetadataChildrenRequest {
+    /**
+     * the id of the library item to return the children of.
+     * @type {any}
+     * @memberof LibraryApiGetMetadataChildren
+     */
+    readonly ratingKey: any
+}
+
+/**
  * Request parameters for refreshLibrary operation in LibraryApi.
  * @export
  * @interface LibraryApiRefreshLibraryRequest
@@ -3205,6 +3298,18 @@ export class LibraryApi extends BaseAPI {
      */
     public getLibraryItems(requestParameters: LibraryApiGetLibraryItemsRequest, axiosOptions?: AxiosRequestConfig) {
         return LibraryApiFp(this.configuration).getLibraryItems(requestParameters.sectionId, requestParameters.type, requestParameters.filter, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint will return the children of of a library item specified with the ratingKey. 
+     * @summary Get Items Children
+     * @param {LibraryApiGetMetadataChildrenRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof LibraryApi
+     */
+    public getMetadataChildren(requestParameters: LibraryApiGetMetadataChildrenRequest, axiosOptions?: AxiosRequestConfig) {
+        return LibraryApiFp(this.configuration).getMetadataChildren(requestParameters.ratingKey, axiosOptions).then((request) => request(this.axios, this.basePath));
     }
 
     /**
