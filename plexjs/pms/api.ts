@@ -6162,3 +6162,577 @@ export class UpdaterApi extends BaseAPI {
 }
 
 
+/**
+ * VideoApi - axios parameter creator
+ * @export
+ */
+export const VideoApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get the timeline for a media item
+         * @summary Get the timeline for a media item
+         * @param {any} ratingKey The rating key of the media item
+         * @param {any} key The key of the media item to get the timeline for
+         * @param {any} state The state of the media item
+         * @param {any} hasMDE Whether the media item has MDE
+         * @param {any} time The time of the media item
+         * @param {any} duration The duration of the media item
+         * @param {any} context The context of the media item
+         * @param {any} playQueueItemID The play queue item ID of the media item
+         * @param {any} playBackTime The playback time of the media item
+         * @param {any} row The row of the media item
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTimeline: async (ratingKey: any, key: any, state: any, hasMDE: any, time: any, duration: any, context: any, playQueueItemID: any, playBackTime: any, row: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ratingKey' is not null or undefined
+            assertParamExists('getTimeline', 'ratingKey', ratingKey)
+            // verify required parameter 'key' is not null or undefined
+            assertParamExists('getTimeline', 'key', key)
+            // verify required parameter 'state' is not null or undefined
+            assertParamExists('getTimeline', 'state', state)
+            // verify required parameter 'hasMDE' is not null or undefined
+            assertParamExists('getTimeline', 'hasMDE', hasMDE)
+            // verify required parameter 'time' is not null or undefined
+            assertParamExists('getTimeline', 'time', time)
+            // verify required parameter 'duration' is not null or undefined
+            assertParamExists('getTimeline', 'duration', duration)
+            // verify required parameter 'context' is not null or undefined
+            assertParamExists('getTimeline', 'context', context)
+            // verify required parameter 'playQueueItemID' is not null or undefined
+            assertParamExists('getTimeline', 'playQueueItemID', playQueueItemID)
+            // verify required parameter 'playBackTime' is not null or undefined
+            assertParamExists('getTimeline', 'playBackTime', playBackTime)
+            // verify required parameter 'row' is not null or undefined
+            assertParamExists('getTimeline', 'row', row)
+            const localVarPath = `/:/timeline`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication accessToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            if (ratingKey !== undefined) {
+                localVarQueryParameter['ratingKey'] = ratingKey;
+            }
+
+            if (key !== undefined) {
+                localVarQueryParameter['key'] = key;
+            }
+
+            if (state !== undefined) {
+                localVarQueryParameter['state'] = state;
+            }
+
+            if (hasMDE !== undefined) {
+                localVarQueryParameter['hasMDE'] = hasMDE;
+            }
+
+            if (time !== undefined) {
+                localVarQueryParameter['time'] = time;
+            }
+
+            if (duration !== undefined) {
+                localVarQueryParameter['duration'] = duration;
+            }
+
+            if (context !== undefined) {
+                localVarQueryParameter['context'] = context;
+            }
+
+            if (playQueueItemID !== undefined) {
+                localVarQueryParameter['playQueueItemID'] = playQueueItemID;
+            }
+
+            if (playBackTime !== undefined) {
+                localVarQueryParameter['playBackTime'] = playBackTime;
+            }
+
+            if (row !== undefined) {
+                localVarQueryParameter['row'] = row;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+        /**
+         * Begin a Universal Transcode Session
+         * @summary Start Universal Transcode
+         * @param {any} hasMDE Whether the media item has MDE
+         * @param {any} path The path to the media item to transcode
+         * @param {any} mediaIndex The index of the media item to transcode
+         * @param {any} partIndex The index of the part to transcode
+         * @param {any} protocol The protocol to use for the transcode session
+         * @param {any} [fastSeek] Whether to use fast seek or not
+         * @param {any} [directPlay] Whether to use direct play or not
+         * @param {any} [directStream] Whether to use direct stream or not
+         * @param {any} [subtitleSize] The size of the subtitles
+         * @param {any} [subtites] The subtitles
+         * @param {any} [audioBoost] The audio boost
+         * @param {any} [location] The location of the transcode session
+         * @param {any} [mediaBufferSize] The size of the media buffer
+         * @param {any} [session] The session ID
+         * @param {any} [addDebugOverlay] Whether to add a debug overlay or not
+         * @param {any} [autoAdjustQuality] Whether to auto adjust quality or not
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        startUniversalTranscode: async (hasMDE: any, path: any, mediaIndex: any, partIndex: any, protocol: any, fastSeek?: any, directPlay?: any, directStream?: any, subtitleSize?: any, subtites?: any, audioBoost?: any, location?: any, mediaBufferSize?: any, session?: any, addDebugOverlay?: any, autoAdjustQuality?: any, axiosOptions: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'hasMDE' is not null or undefined
+            assertParamExists('startUniversalTranscode', 'hasMDE', hasMDE)
+            // verify required parameter 'path' is not null or undefined
+            assertParamExists('startUniversalTranscode', 'path', path)
+            // verify required parameter 'mediaIndex' is not null or undefined
+            assertParamExists('startUniversalTranscode', 'mediaIndex', mediaIndex)
+            // verify required parameter 'partIndex' is not null or undefined
+            assertParamExists('startUniversalTranscode', 'partIndex', partIndex)
+            // verify required parameter 'protocol' is not null or undefined
+            assertParamExists('startUniversalTranscode', 'protocol', protocol)
+            const localVarPath = `/video/:/transcode/universal/start.mpd`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosOptions};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication accessToken required
+            await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
+
+            if (hasMDE !== undefined) {
+                localVarQueryParameter['hasMDE'] = hasMDE;
+            }
+
+            if (path !== undefined) {
+                localVarQueryParameter['path'] = path;
+            }
+
+            if (mediaIndex !== undefined) {
+                localVarQueryParameter['mediaIndex'] = mediaIndex;
+            }
+
+            if (partIndex !== undefined) {
+                localVarQueryParameter['partIndex'] = partIndex;
+            }
+
+            if (protocol !== undefined) {
+                localVarQueryParameter['protocol'] = protocol;
+            }
+
+            if (fastSeek !== undefined) {
+                localVarQueryParameter['fastSeek'] = fastSeek;
+            }
+
+            if (directPlay !== undefined) {
+                localVarQueryParameter['directPlay'] = directPlay;
+            }
+
+            if (directStream !== undefined) {
+                localVarQueryParameter['directStream'] = directStream;
+            }
+
+            if (subtitleSize !== undefined) {
+                localVarQueryParameter['subtitleSize'] = subtitleSize;
+            }
+
+            if (subtites !== undefined) {
+                localVarQueryParameter['subtites'] = subtites;
+            }
+
+            if (audioBoost !== undefined) {
+                localVarQueryParameter['audioBoost'] = audioBoost;
+            }
+
+            if (location !== undefined) {
+                localVarQueryParameter['location'] = location;
+            }
+
+            if (mediaBufferSize !== undefined) {
+                localVarQueryParameter['mediaBufferSize'] = mediaBufferSize;
+            }
+
+            if (session !== undefined) {
+                localVarQueryParameter['session'] = session;
+            }
+
+            if (addDebugOverlay !== undefined) {
+                localVarQueryParameter['addDebugOverlay'] = addDebugOverlay;
+            }
+
+            if (autoAdjustQuality !== undefined) {
+                localVarQueryParameter['autoAdjustQuality'] = autoAdjustQuality;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosOptions.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                axiosOptions: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * VideoApi - functional programming interface
+ * @export
+ */
+export const VideoApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = VideoApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get the timeline for a media item
+         * @summary Get the timeline for a media item
+         * @param {any} ratingKey The rating key of the media item
+         * @param {any} key The key of the media item to get the timeline for
+         * @param {any} state The state of the media item
+         * @param {any} hasMDE Whether the media item has MDE
+         * @param {any} time The time of the media item
+         * @param {any} duration The duration of the media item
+         * @param {any} context The context of the media item
+         * @param {any} playQueueItemID The play queue item ID of the media item
+         * @param {any} playBackTime The playback time of the media item
+         * @param {any} row The row of the media item
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTimeline(ratingKey: any, key: any, state: any, hasMDE: any, time: any, duration: any, context: any, playQueueItemID: any, playBackTime: any, row: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTimeline(ratingKey, key, state, hasMDE, time, duration, context, playQueueItemID, playBackTime, row, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Begin a Universal Transcode Session
+         * @summary Start Universal Transcode
+         * @param {any} hasMDE Whether the media item has MDE
+         * @param {any} path The path to the media item to transcode
+         * @param {any} mediaIndex The index of the media item to transcode
+         * @param {any} partIndex The index of the part to transcode
+         * @param {any} protocol The protocol to use for the transcode session
+         * @param {any} [fastSeek] Whether to use fast seek or not
+         * @param {any} [directPlay] Whether to use direct play or not
+         * @param {any} [directStream] Whether to use direct stream or not
+         * @param {any} [subtitleSize] The size of the subtitles
+         * @param {any} [subtites] The subtitles
+         * @param {any} [audioBoost] The audio boost
+         * @param {any} [location] The location of the transcode session
+         * @param {any} [mediaBufferSize] The size of the media buffer
+         * @param {any} [session] The session ID
+         * @param {any} [addDebugOverlay] Whether to add a debug overlay or not
+         * @param {any} [autoAdjustQuality] Whether to auto adjust quality or not
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        async startUniversalTranscode(hasMDE: any, path: any, mediaIndex: any, partIndex: any, protocol: any, fastSeek?: any, directPlay?: any, directStream?: any, subtitleSize?: any, subtites?: any, audioBoost?: any, location?: any, mediaBufferSize?: any, session?: any, addDebugOverlay?: any, autoAdjustQuality?: any, axiosOptions?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.startUniversalTranscode(hasMDE, path, mediaIndex, partIndex, protocol, fastSeek, directPlay, directStream, subtitleSize, subtites, audioBoost, location, mediaBufferSize, session, addDebugOverlay, autoAdjustQuality, axiosOptions);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * VideoApi - factory interface
+ * @export
+ */
+export const VideoApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = VideoApiFp(configuration)
+    return {
+        /**
+         * Get the timeline for a media item
+         * @summary Get the timeline for a media item
+         * @param {any} ratingKey The rating key of the media item
+         * @param {any} key The key of the media item to get the timeline for
+         * @param {any} state The state of the media item
+         * @param {any} hasMDE Whether the media item has MDE
+         * @param {any} time The time of the media item
+         * @param {any} duration The duration of the media item
+         * @param {any} context The context of the media item
+         * @param {any} playQueueItemID The play queue item ID of the media item
+         * @param {any} playBackTime The playback time of the media item
+         * @param {any} row The row of the media item
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTimeline(ratingKey: any, key: any, state: any, hasMDE: any, time: any, duration: any, context: any, playQueueItemID: any, playBackTime: any, row: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.getTimeline(ratingKey, key, state, hasMDE, time, duration, context, playQueueItemID, playBackTime, row, axiosOptions).then((request) => request(axios, basePath));
+        },
+        /**
+         * Begin a Universal Transcode Session
+         * @summary Start Universal Transcode
+         * @param {any} hasMDE Whether the media item has MDE
+         * @param {any} path The path to the media item to transcode
+         * @param {any} mediaIndex The index of the media item to transcode
+         * @param {any} partIndex The index of the part to transcode
+         * @param {any} protocol The protocol to use for the transcode session
+         * @param {any} [fastSeek] Whether to use fast seek or not
+         * @param {any} [directPlay] Whether to use direct play or not
+         * @param {any} [directStream] Whether to use direct stream or not
+         * @param {any} [subtitleSize] The size of the subtitles
+         * @param {any} [subtites] The subtitles
+         * @param {any} [audioBoost] The audio boost
+         * @param {any} [location] The location of the transcode session
+         * @param {any} [mediaBufferSize] The size of the media buffer
+         * @param {any} [session] The session ID
+         * @param {any} [addDebugOverlay] Whether to add a debug overlay or not
+         * @param {any} [autoAdjustQuality] Whether to auto adjust quality or not
+         * @param {*} [axiosOptions] Override http request option.
+         * @throws {RequiredError}
+         */
+        startUniversalTranscode(hasMDE: any, path: any, mediaIndex: any, partIndex: any, protocol: any, fastSeek?: any, directPlay?: any, directStream?: any, subtitleSize?: any, subtites?: any, audioBoost?: any, location?: any, mediaBufferSize?: any, session?: any, addDebugOverlay?: any, autoAdjustQuality?: any, axiosOptions?: any): AxiosPromise<void> {
+            return localVarFp.startUniversalTranscode(hasMDE, path, mediaIndex, partIndex, protocol, fastSeek, directPlay, directStream, subtitleSize, subtites, audioBoost, location, mediaBufferSize, session, addDebugOverlay, autoAdjustQuality, axiosOptions).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for getTimeline operation in VideoApi.
+ * @export
+ * @interface VideoApiGetTimelineRequest
+ */
+export interface VideoApiGetTimelineRequest {
+    /**
+     * The rating key of the media item
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly ratingKey: any
+
+    /**
+     * The key of the media item to get the timeline for
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly key: any
+
+    /**
+     * The state of the media item
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly state: any
+
+    /**
+     * Whether the media item has MDE
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly hasMDE: any
+
+    /**
+     * The time of the media item
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly time: any
+
+    /**
+     * The duration of the media item
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly duration: any
+
+    /**
+     * The context of the media item
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly context: any
+
+    /**
+     * The play queue item ID of the media item
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly playQueueItemID: any
+
+    /**
+     * The playback time of the media item
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly playBackTime: any
+
+    /**
+     * The row of the media item
+     * @type {any}
+     * @memberof VideoApiGetTimeline
+     */
+    readonly row: any
+}
+
+/**
+ * Request parameters for startUniversalTranscode operation in VideoApi.
+ * @export
+ * @interface VideoApiStartUniversalTranscodeRequest
+ */
+export interface VideoApiStartUniversalTranscodeRequest {
+    /**
+     * Whether the media item has MDE
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly hasMDE: any
+
+    /**
+     * The path to the media item to transcode
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly path: any
+
+    /**
+     * The index of the media item to transcode
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly mediaIndex: any
+
+    /**
+     * The index of the part to transcode
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly partIndex: any
+
+    /**
+     * The protocol to use for the transcode session
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly protocol: any
+
+    /**
+     * Whether to use fast seek or not
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly fastSeek?: any
+
+    /**
+     * Whether to use direct play or not
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly directPlay?: any
+
+    /**
+     * Whether to use direct stream or not
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly directStream?: any
+
+    /**
+     * The size of the subtitles
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly subtitleSize?: any
+
+    /**
+     * The subtitles
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly subtites?: any
+
+    /**
+     * The audio boost
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly audioBoost?: any
+
+    /**
+     * The location of the transcode session
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly location?: any
+
+    /**
+     * The size of the media buffer
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly mediaBufferSize?: any
+
+    /**
+     * The session ID
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly session?: any
+
+    /**
+     * Whether to add a debug overlay or not
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly addDebugOverlay?: any
+
+    /**
+     * Whether to auto adjust quality or not
+     * @type {any}
+     * @memberof VideoApiStartUniversalTranscode
+     */
+    readonly autoAdjustQuality?: any
+}
+
+/**
+ * VideoApi - object-oriented interface
+ * @export
+ * @class VideoApi
+ * @extends {BaseAPI}
+ */
+export class VideoApi extends BaseAPI {
+    /**
+     * Get the timeline for a media item
+     * @summary Get the timeline for a media item
+     * @param {VideoApiGetTimelineRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VideoApi
+     */
+    public getTimeline(requestParameters: VideoApiGetTimelineRequest, axiosOptions?: AxiosRequestConfig) {
+        return VideoApiFp(this.configuration).getTimeline(requestParameters.ratingKey, requestParameters.key, requestParameters.state, requestParameters.hasMDE, requestParameters.time, requestParameters.duration, requestParameters.context, requestParameters.playQueueItemID, requestParameters.playBackTime, requestParameters.row, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Begin a Universal Transcode Session
+     * @summary Start Universal Transcode
+     * @param {VideoApiStartUniversalTranscodeRequest} requestParameters Request parameters.
+     * @param {*} [axiosOptions] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VideoApi
+     */
+    public startUniversalTranscode(requestParameters: VideoApiStartUniversalTranscodeRequest, axiosOptions?: AxiosRequestConfig) {
+        return VideoApiFp(this.configuration).startUniversalTranscode(requestParameters.hasMDE, requestParameters.path, requestParameters.mediaIndex, requestParameters.partIndex, requestParameters.protocol, requestParameters.fastSeek, requestParameters.directPlay, requestParameters.directStream, requestParameters.subtitleSize, requestParameters.subtites, requestParameters.audioBoost, requestParameters.location, requestParameters.mediaBufferSize, requestParameters.session, requestParameters.addDebugOverlay, requestParameters.autoAdjustQuality, axiosOptions).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
