@@ -866,11 +866,8 @@ export const ActivitiesApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -902,11 +899,8 @@ export const ActivitiesApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1053,11 +1047,8 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1089,11 +1080,8 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1129,11 +1117,8 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1165,11 +1150,8 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1205,11 +1187,8 @@ export const ButlerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1465,11 +1444,8 @@ export const HubsApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
@@ -1515,11 +1491,8 @@ export const HubsApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
@@ -1722,11 +1695,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1766,11 +1736,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
@@ -1814,11 +1781,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (url !== undefined) {
                 localVarQueryParameter['url'] = url;
@@ -1866,11 +1830,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
@@ -1910,11 +1871,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -1951,11 +1909,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (includeDetails !== undefined) {
                 localVarQueryParameter['includeDetails'] = includeDetails;
@@ -1997,11 +1952,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
@@ -2045,11 +1997,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -2085,11 +2034,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -2121,11 +2067,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -2157,11 +2100,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -2197,11 +2137,8 @@ export const LibraryApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -2856,11 +2793,8 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -2901,11 +2835,8 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (level !== undefined) {
                 localVarQueryParameter['level'] = level;
@@ -2949,11 +2880,8 @@ export const LogApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -3151,11 +3079,8 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (key !== undefined) {
                 localVarQueryParameter['key'] = key;
@@ -3194,11 +3119,8 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (key !== undefined) {
                 localVarQueryParameter['key'] = key;
@@ -3243,11 +3165,8 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (key !== undefined) {
                 localVarQueryParameter['key'] = key;
@@ -3498,11 +3417,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (uri !== undefined) {
                 localVarQueryParameter['uri'] = uri;
@@ -3546,11 +3462,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -3593,11 +3506,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (title !== undefined) {
                 localVarQueryParameter['title'] = title;
@@ -3653,11 +3563,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -3693,11 +3600,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -3736,11 +3640,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
@@ -3778,11 +3679,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (playlistType !== undefined) {
                 localVarQueryParameter['playlistType'] = playlistType;
@@ -3826,11 +3724,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -3868,11 +3763,8 @@ export const PlaylistsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (path !== undefined) {
                 localVarQueryParameter['path'] = path;
@@ -4457,11 +4349,8 @@ export const SearchApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (query !== undefined) {
                 localVarQueryParameter['query'] = query;
@@ -4502,11 +4391,8 @@ export const SearchApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (query !== undefined) {
                 localVarQueryParameter['query'] = query;
@@ -4555,11 +4441,8 @@ export const SearchApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (query !== undefined) {
                 localVarQueryParameter['query'] = query;
@@ -4821,11 +4704,8 @@ export const SecurityApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (source !== undefined) {
                 localVarQueryParameter['source'] = source;
@@ -4867,11 +4747,8 @@ export const SecurityApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (type !== undefined) {
                 localVarQueryParameter['type'] = type;
@@ -5052,11 +4929,8 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5088,11 +4962,8 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5124,11 +4995,8 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5181,11 +5049,8 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (width !== undefined) {
                 localVarQueryParameter['width'] = width;
@@ -5245,11 +5110,8 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5281,11 +5143,8 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5317,11 +5176,8 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5353,11 +5209,8 @@ export const ServerApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5738,11 +5591,8 @@ export const SessionsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5774,11 +5624,8 @@ export const SessionsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5810,11 +5657,8 @@ export const SessionsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -5850,11 +5694,8 @@ export const SessionsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
@@ -6063,11 +5904,8 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (tonight !== undefined) {
                 localVarQueryParameter['tonight'] = tonight;
@@ -6108,11 +5946,8 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
             if (download !== undefined) {
                 localVarQueryParameter['download'] = download;
@@ -6148,11 +5983,8 @@ export const UpdaterApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication accessTokenHeader required
+            // authentication accessToken required
             await setApiKeyToObject(localVarHeaderParameter, "X-Plex-Token", configuration)
-
-            // authentication accessTokenQuery required
-            await setApiKeyToObject(localVarQueryParameter, "X-Plex-Token", configuration)
 
 
     
