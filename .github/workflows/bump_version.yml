@@ -1,5 +1,7 @@
 name: "Update Typescript SDK Version"
 
+run-name: Update Typescript SDK Version to ${{ github.event.inputs.version }}
+
 on:
   workflow_dispatch:
     inputs:
