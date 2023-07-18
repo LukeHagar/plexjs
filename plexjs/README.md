@@ -1,45 +1,49 @@
-## plexjs@0.0.22
+# Plex API Client
 
-This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
+[![Discord](https://img.shields.io/discord/1095524608406474802?style=social&logo=discord)](https://discord.gg/HQTPSJnWhb)
+[![Npm package monthly downloads](https://badgen.net/npm/dm/@lukehagar/plexjs)](https://npmjs.com/package/@lukehagar/plexjs)
+[![GitHub tag](https://img.shields.io/github/tag/LukeHagar/plexjs.svg)](https://GitHub.com/LukeHagar/plexjs/tags/)
 
-Environment
-* Node.js
-* Webpack
-* Browserify
+## Description
 
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
 
-Module system
-* CommonJS
-* ES6 module system
 
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
+A typescript sdk for interacting with Plex.tv and Plex Media Server REST API's.
 
-### Building
+Documentation for all of the available endpoints [can be found here](https://plexapi.dev/docs/plex)
 
-To build and compile the typescript sources to javascript use:
-```
-npm install
-npm run build
+## Installation
+
+npm
+```bash
+npm install @lukehagar/plexjs
 ```
 
-### Publishing
-
-First build the package then run ```npm publish```
-
-### Consuming
-
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
-
-```
-npm install plexjs@0.0.22 --save
+yarn
+```bash
+yarn add @lukehagar/plexjs
 ```
 
-_unPublished (not recommended):_
+## Usage
 
+```javascript
+import {
+  Configuration,
+  ServerApi,
+  DevicesApi,
+  UserApi,
+} from "@lukehagar/plexjs";
+import dotenv from "dotenv";
+dotenv.config();
+
+const config = new Configuration({
+  basePath: process.env.BASE_PATH,
+  plexToken: process.env.PLEX_TOKEN,
+});
+
+new ServerApi(config).getServerCapabilities().then((resp) => console.log(resp));
+
+new DevicesApi(config).getDevices().then((resp) => console.log(resp));
+
+new UserApi(config).getUserDetails().then((resp) => console.log(resp));
 ```
-npm install PATH_TO_GENERATED_PACKAGE --save
