@@ -1,7 +1,7 @@
 # Plex API Client
 
 [![Discord](https://img.shields.io/discord/1095524608406474802?style=social&logo=discord)](https://discord.gg/HQTPSJnWhb)
-[![Npm package monthly downloads](https://badgen.net/npm/dm/@lukehagar/plexjs)](https://npmjs.ccom/package/@lukehagar/plexjs)
+[![Npm package monthly downloads](https://badgen.net/npm/dm/@lukehagar/plexjs)](https://npmjs.com/package/@lukehagar/plexjs)
 [![GitHub tag](https://img.shields.io/github/tag/LukeHagar/plexjs.svg)](https://GitHub.com/LukeHagar/plexjs/tags/)
 
 ## Description
