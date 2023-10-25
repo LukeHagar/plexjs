@@ -47,3 +47,10 @@ jobs:
           cd plexjs
           npm install
           npm run build
+
+      - name: Archive test build
+        uses: actions/upload-artifact@v3
+        with:
+          name: PR-Build-${{ github.ref }}
+          path: |
+            plexjs
