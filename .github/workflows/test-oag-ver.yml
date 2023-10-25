@@ -63,3 +63,4 @@ jobs:
           name: test-build
           path: |
             plexjs
+            sdk-resources
