@@ -44,23 +44,30 @@ jobs:
 
       - name: Build PTV SDK
         id: buildPTV
-        if: steps.buildPMS.outcome == 'success'
         run: |
           rm -rf plexjs/plextv
           java -jar openapi-generator-cli.jar generate -i api-specs/plextv/plextv-spec.yaml -g typescript-axios -o plexjs/plextv --config sdk-resources/plextv-config-test.yaml
 
-      - name: Run npm install and build Typescript SDK
-        id: buildSDK
-        if: steps.buildPTV.outcome == 'success'
-        run: |
-          cd plexjs
-          npm install
-          npm run build
-
       - name: Archive test build
         uses: actions/upload-artifact@v3
         with:
-          name: test-build
+          name: OAG-${{ github.event.inputs.version }}-test-build
           path: |
             plexjs/pms
             plexjs/plextv
+
+      - name: Run npm install and build Typescript SDK
+        id: testPMS
+        if: steps.buildPMS.outcome == 'success'
+        run: |
+          cd plexjs/pms
+          npm install
+          npm run build
+
+      - name: Run npm install and build Typescript SDK
+        id: testPTV
+        if: steps.buildPTV.outcome == 'success'
+        run: |
+          cd plexjs/plextv
+          npm install
+          npm run build
