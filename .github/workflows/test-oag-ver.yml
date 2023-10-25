@@ -62,5 +62,5 @@ jobs:
         with:
           name: test-build
           path: |
-            plexjs
-            sdk-resources
+            plexjs/pms
+            plexjs/plextv
