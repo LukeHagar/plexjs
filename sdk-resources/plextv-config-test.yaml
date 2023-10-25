@@ -1,0 +1,7 @@
+npmName: plexjs
+npmRepository: lukehagar
+npmVersion: 0.0.29
+# useSingleRequestParameter: true
+# sortParamsByRequiredFlag: true
+gitUserID: lukehagar
+gitRepoID: plexjs
