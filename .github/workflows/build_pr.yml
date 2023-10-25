@@ -39,10 +39,10 @@ jobs:
         run: |
           rm -rf plexjs/plextv
           java -jar openapi-generator-cli.jar generate -i api-specs/plextv/plextv-spec.yaml -g typescript-axios -o plexjs/plextv --global-property skipFormModel=false --config sdk-resources/plextv-config.yaml
-          
+
       - name: Run npm install and build Typescript SDK
         id: buildSDK
-        if: steps.buildPMS.outcome == 'success' && steps.buildPTV == 'success'
+        if: steps.buildPTV.outcome == 'success'
         run: |
           cd plexjs
           npm install
