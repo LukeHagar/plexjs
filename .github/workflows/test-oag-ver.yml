@@ -51,7 +51,7 @@ jobs:
 
       - name: Run npm install and build Typescript SDK
         id: buildSDK
-        if: steps.buildPMS.outcome == 'success' && steps.buildPTV == 'success'
+        if: steps.buildPTV.outcome == 'success'
         run: |
           cd plexjs
           npm install
