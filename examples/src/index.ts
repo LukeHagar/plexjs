@@ -1,14 +1,8 @@
-import { Configuration, ServerApi, PlexTvApi } from "@lukehagar/plexjs";
-import dotenv from "dotenv";
-dotenv.config();
+import { PlexSDK } from '@lukehagar/plexjs';
 
-const config = new Configuration({
-  basePath: process.env.BASE_PATH,
-  plexToken: process.env.PLEX_TOKEN,
-});
+const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
-new ServerApi(config).getServerCapabilities().then((resp) => console.log(resp));
-
-new PlexTvApi(config).getDevices().then((resp) => console.log(resp));
-
-new PlexTvApi(config).getUserDetails().then((resp) => console.log(resp));
+(async () => {
+  const result = await sdk.server.getServerCapabilities();
+  console.log(result.data);
+})();

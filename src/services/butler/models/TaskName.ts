@@ -1,0 +1,15 @@
+export type TaskName =
+  | 'BackupDatabase'
+  | 'BuildGracenoteCollections'
+  | 'CheckForUpdates'
+  | 'CleanOldBundles'
+  | 'CleanOldCacheFiles'
+  | 'DeepMediaAnalysis'
+  | 'GenerateAutoTags'
+  | 'GenerateChapterThumbs'
+  | 'GenerateMediaIndexFiles'
+  | 'OptimizeDatabase'
+  | 'RefreshLibraries'
+  | 'RefreshLocalMedia'
+  | 'RefreshPeriodicMetadata'
+  | 'UpgradeMediaAnalysis';
