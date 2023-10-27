@@ -22,25 +22,25 @@ describe('test Log', () => {
   describe('test logLine', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/log?level=2&message=esse&source=cum')
+        .get('/log?level=6&message=necessitatibus&source=saepe')
         .reply(200, { data: {} });
       return sdk.log
-        .logLine(2, 'esse', 'cum')
+        .logLine(6, 'necessitatibus', 'saepe')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/log?level=3&message=iste&source=ullam')
+        .get('/log?level=8&message=provident&source=saepe')
         .reply(200, { data: {} });
       return expect(async () => await sdk.log.logLine()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/log?level=8&message=tenetur&source=eum')
+        .get('/log?level=6&message=laboriosam&source=quas')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.log.logLine(8, 'tenetur', 'eum')).rejects.toThrow();
+      return expect(async () => await sdk.log.logLine(6, 'laboriosam', 'quas')).rejects.toThrow();
     });
   });
 

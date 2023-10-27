@@ -22,26 +22,26 @@ describe('test Library', () => {
   describe('test getFileHash', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/hashes?url=officia&type_=7')
+        .get('/library/hashes?url=voluptatem&type_=2')
         .reply(200, { data: {} });
       return sdk.library
-        .getFileHash('officia', { type: 7 })
+        .getFileHash('voluptatem', { type: 2 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/hashes?url=molestiae&type_=3')
+        .get('/library/hashes?url=velit&type_=8')
         .reply(200, { data: {} });
       return expect(async () => await sdk.library.getFileHash()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/hashes?url=perferendis&type_=6')
+        .get('/library/hashes?url=quis&type_=9')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.library.getFileHash('perferendis', { type: 6 }),
+        async () => await sdk.library.getFileHash('quis', { type: 9 }),
       ).rejects.toThrow();
     });
   });
@@ -67,26 +67,26 @@ describe('test Library', () => {
   describe('test getLibrary', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/3?includeDetails=2')
+        .get('/library/sections/4?includeDetails=7')
         .reply(200, { data: {} });
       return sdk.library
-        .getLibrary(3, { includeDetails: 2 })
+        .getLibrary(4, { includeDetails: 7 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/4?includeDetails=3')
+        .get('/library/sections/5?includeDetails=6')
         .reply(200, { data: {} });
       return expect(async () => await sdk.library.getLibrary()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/9?includeDetails=2')
+        .get('/library/sections/6?includeDetails=1')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.library.getLibrary(9, { includeDetails: 2 }),
+        async () => await sdk.library.getLibrary(6, { includeDetails: 1 }),
       ).rejects.toThrow();
     });
   });
@@ -101,42 +101,42 @@ describe('test Library', () => {
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .delete('/library/sections/7')
+        .delete('/library/sections/8')
         .reply(200, { data: {} });
       return expect(async () => await sdk.library.deleteLibrary()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .delete('/library/sections/8')
+        .delete('/library/sections/3')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.library.deleteLibrary(8)).rejects.toThrow();
+      return expect(async () => await sdk.library.deleteLibrary(3)).rejects.toThrow();
     });
   });
 
   describe('test getLibraryItems', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/1/all?type_=6&filter=consequuntur')
+        .get('/library/sections/4/all?type_=9&filter=totam')
         .reply(200, { data: {} });
       return sdk.library
-        .getLibraryItems(1, { type: 6, filter: 'consequuntur' })
+        .getLibraryItems(4, { type: 9, filter: 'totam' })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/1/all?type_=5&filter=reiciendis')
+        .get('/library/sections/9/all?type_=5&filter=esse')
         .reply(200, { data: {} });
       return expect(async () => await sdk.library.getLibraryItems()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/4/all?type_=5&filter=similique')
+        .get('/library/sections/3/all?type_=4&filter=porro')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.library.getLibraryItems(4, { type: 5, filter: 'similique' }),
+        async () => await sdk.library.getLibraryItems(3, { type: 4, filter: 'porro' }),
       ).rejects.toThrow();
     });
   });
@@ -144,9 +144,9 @@ describe('test Library', () => {
   describe('test refreshLibrary', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/4/refresh')
+        .get('/library/sections/3/refresh')
         .reply(200, { data: {} });
-      return sdk.library.refreshLibrary(4).then((r: any) => expect(r.data).toEqual({ data: {} }));
+      return sdk.library.refreshLibrary(3).then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
@@ -167,26 +167,26 @@ describe('test Library', () => {
   describe('test getLatestLibraryItems', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/6/latest?type_=1&filter=repudiandae')
+        .get('/library/sections/3/latest?type_=9&filter=eligendi')
         .reply(200, { data: {} });
       return sdk.library
-        .getLatestLibraryItems(6, 1, { filter: 'repudiandae' })
+        .getLatestLibraryItems(3, 9, { filter: 'eligendi' })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/7/latest?type_=1&filter=repellendus')
+        .get('/library/sections/4/latest?type_=4&filter=ea')
         .reply(200, { data: {} });
       return expect(async () => await sdk.library.getLatestLibraryItems()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/1/latest?type_=2&filter=consequuntur')
+        .get('/library/sections/2/latest?type_=7&filter=possimus')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.library.getLatestLibraryItems(1, 2, { filter: 'consequuntur' }),
+        async () => await sdk.library.getLatestLibraryItems(2, 7, { filter: 'possimus' }),
       ).rejects.toThrow();
     });
   });
@@ -194,26 +194,26 @@ describe('test Library', () => {
   describe('test getCommonLibraryItems', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/2/common?type_=4&filter=neque')
+        .get('/library/sections/7/common?type_=5&filter=consequatur')
         .reply(200, { data: {} });
       return sdk.library
-        .getCommonLibraryItems(2, 4, { filter: 'neque' })
+        .getCommonLibraryItems(7, 5, { filter: 'consequatur' })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/7/common?type_=4&filter=dolorum')
+        .get('/library/sections/9/common?type_=2&filter=quia')
         .reply(200, { data: {} });
       return expect(async () => await sdk.library.getCommonLibraryItems()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/sections/9/common?type_=2&filter=iusto')
+        .get('/library/sections/2/common?type_=3&filter=animi')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.library.getCommonLibraryItems(9, 2, { filter: 'iusto' }),
+        async () => await sdk.library.getCommonLibraryItems(2, 3, { filter: 'animi' }),
       ).rejects.toThrow();
     });
   });
@@ -221,48 +221,48 @@ describe('test Library', () => {
   describe('test getMetadata', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/metadata/6')
+        .get('/library/metadata/4')
         .reply(200, { data: {} });
-      return sdk.library.getMetadata(6).then((r: any) => expect(r.data).toEqual({ data: {} }));
+      return sdk.library.getMetadata(4).then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/metadata/1')
+        .get('/library/metadata/5')
         .reply(200, { data: {} });
       return expect(async () => await sdk.library.getMetadata()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/metadata/6')
+        .get('/library/metadata/9')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.library.getMetadata(6)).rejects.toThrow();
+      return expect(async () => await sdk.library.getMetadata(9)).rejects.toThrow();
     });
   });
 
   describe('test getMetadataChildren', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/metadata/3/children')
+        .get('/library/metadata/2/children')
         .reply(200, { data: {} });
       return sdk.library
-        .getMetadataChildren(3)
+        .getMetadataChildren(2)
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/metadata/1/children')
+        .get('/library/metadata/4/children')
         .reply(200, { data: {} });
       return expect(async () => await sdk.library.getMetadataChildren()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/library/metadata/8/children')
+        .get('/library/metadata/9/children')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.library.getMetadataChildren(8)).rejects.toThrow();
+      return expect(async () => await sdk.library.getMetadataChildren(9)).rejects.toThrow();
     });
   });
 

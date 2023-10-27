@@ -29,65 +29,65 @@ describe('test Media', () => {
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/:/scrobble?key=4')
+        .get('/:/scrobble?key=2')
         .reply(200, { data: {} });
       return expect(async () => await sdk.media.markPlayed()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/:/scrobble?key=1')
+        .get('/:/scrobble?key=8')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.media.markPlayed(1)).rejects.toThrow();
+      return expect(async () => await sdk.media.markPlayed(8)).rejects.toThrow();
     });
   });
 
   describe('test markUnplayed', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/:/unscrobble?key=8')
+        .get('/:/unscrobble?key=9')
         .reply(200, { data: {} });
-      return sdk.media.markUnplayed(8).then((r: any) => expect(r.data).toEqual({ data: {} }));
+      return sdk.media.markUnplayed(9).then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/:/unscrobble?key=9')
+        .get('/:/unscrobble?key=3')
         .reply(200, { data: {} });
       return expect(async () => await sdk.media.markUnplayed()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/:/unscrobble?key=7')
+        .get('/:/unscrobble?key=6')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.media.markUnplayed(7)).rejects.toThrow();
+      return expect(async () => await sdk.media.markUnplayed(6)).rejects.toThrow();
     });
   });
 
   describe('test updatePlayProgress', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .post('/:/progress?key=exercitationem&time=6&state=eum')
+        .post('/:/progress?key=ad&time=1&state=tenetur')
         .reply(200, { data: {} });
       return sdk.media
-        .updatePlayProgress('exercitationem', 6, 'eum')
+        .updatePlayProgress('ad', 1, 'tenetur')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .post('/:/progress?key=consectetur&time=1&state=ratione')
+        .post('/:/progress?key=nostrum&time=2&state=nostrum')
         .reply(200, { data: {} });
       return expect(async () => await sdk.media.updatePlayProgress()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .post('/:/progress?key=illum&time=1&state=ullam')
+        .post('/:/progress?key=ab&time=3&state=impedit')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.media.updatePlayProgress('illum', 1, 'ullam'),
+        async () => await sdk.media.updatePlayProgress('ab', 3, 'impedit'),
       ).rejects.toThrow();
     });
   });
