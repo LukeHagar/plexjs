@@ -21,7 +21,7 @@ describe('test Activities', () => {
 
   describe('test getServerActivities', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}').get('/activities').reply(200, { data: {} });
+      const scope = nock('http://10.10.10.47:32400').get('/activities').reply(200, { data: {} });
       return sdk.activities
         .getServerActivities()
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
@@ -30,27 +30,27 @@ describe('test Activities', () => {
 
   describe('test cancelServerActivities', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .delete('/activities/fugit')
+      const scope = nock('http://10.10.10.47:32400')
+        .delete('/activities/unde')
         .reply(200, { data: {} });
       return sdk.activities
-        .cancelServerActivities('fugit')
+        .cancelServerActivities('unde')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .delete('/activities/occaecati')
+      const scope = nock('http://10.10.10.47:32400')
+        .delete('/activities/commodi')
         .reply(200, { data: {} });
       return expect(async () => await sdk.activities.cancelServerActivities()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .delete('/activities/tenetur')
+      const scope = nock('http://10.10.10.47:32400')
+        .delete('/activities/alias')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.activities.cancelServerActivities('tenetur'),
+        async () => await sdk.activities.cancelServerActivities('alias'),
       ).rejects.toThrow();
     });
   });

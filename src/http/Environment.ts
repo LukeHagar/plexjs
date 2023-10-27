@@ -1,3 +1,3 @@
 export enum Environment {
-  DEFAULT = '{protocol}://{ip}:{port}',
+  DEFAULT = 'http://10.10.10.47:32400',
 }
