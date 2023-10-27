@@ -23,20 +23,20 @@ describe('test Video', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
         .get(
-          '/video/:/transcode/universal/start.mpd?hasMDE=7&path=ut&mediaIndex=4&partIndex=4&protocol=quam&fastSeek=9&directPlay=5&directStream=1&subtitleSize=3&subtites=unde&audioBoost=3&location=amet&mediaBufferSize=4&session=vero&addDebugOverlay=8&autoAdjustQuality=2',
+          '/video/:/transcode/universal/start.mpd?hasMDE=8&path=harum&mediaIndex=9&partIndex=3&protocol=id&fastSeek=4&directPlay=4&directStream=8&subtitleSize=9&subtites=laudantium&audioBoost=5&location=harum&mediaBufferSize=7&session=possimus&addDebugOverlay=8&autoAdjustQuality=2',
         )
         .reply(200, { data: {} });
       return sdk.video
-        .startUniversalTranscode(7, 'ut', 4, 4, 'quam', {
-          fastSeek: 9,
-          directPlay: 5,
-          directStream: 1,
-          subtitleSize: 3,
-          subtites: 'unde',
-          audioBoost: 3,
-          location: 'amet',
-          mediaBufferSize: 4,
-          session: 'vero',
+        .startUniversalTranscode(8, 'harum', 9, 3, 'id', {
+          fastSeek: 4,
+          directPlay: 4,
+          directStream: 8,
+          subtitleSize: 9,
+          subtites: 'laudantium',
+          audioBoost: 5,
+          location: 'harum',
+          mediaBufferSize: 7,
+          session: 'possimus',
           addDebugOverlay: 8,
           autoAdjustQuality: 2,
         })
@@ -46,7 +46,7 @@ describe('test Video', () => {
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
         .get(
-          '/video/:/transcode/universal/start.mpd?hasMDE=5&path=id&mediaIndex=5&partIndex=3&protocol=commodi&fastSeek=4&directPlay=1&directStream=9&subtitleSize=4&subtites=amet&audioBoost=1&location=eaque&mediaBufferSize=4&session=veritatis&addDebugOverlay=7&autoAdjustQuality=5',
+          '/video/:/transcode/universal/start.mpd?hasMDE=3&path=voluptatibus&mediaIndex=5&partIndex=1&protocol=harum&fastSeek=2&directPlay=3&directStream=5&subtitleSize=6&subtites=repellendus&audioBoost=6&location=cum&mediaBufferSize=5&session=praesentium&addDebugOverlay=4&autoAdjustQuality=5',
         )
         .reply(200, { data: {} });
       return expect(async () => await sdk.video.startUniversalTranscode()).rejects.toThrow();
@@ -55,23 +55,23 @@ describe('test Video', () => {
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
         .get(
-          '/video/:/transcode/universal/start.mpd?hasMDE=2&path=cum&mediaIndex=4&partIndex=9&protocol=odit&fastSeek=6&directPlay=7&directStream=3&subtitleSize=7&subtites=amet&audioBoost=5&location=nam&mediaBufferSize=2&session=libero&addDebugOverlay=8&autoAdjustQuality=5',
+          '/video/:/transcode/universal/start.mpd?hasMDE=4&path=sed&mediaIndex=6&partIndex=3&protocol=tempora&fastSeek=5&directPlay=8&directStream=6&subtitleSize=2&subtites=delectus&audioBoost=7&location=porro&mediaBufferSize=2&session=rem&addDebugOverlay=9&autoAdjustQuality=7',
         )
         .reply(404, { data: {} });
       return expect(
         async () =>
-          await sdk.video.startUniversalTranscode(2, 'cum', 4, 9, 'odit', {
-            fastSeek: 6,
-            directPlay: 7,
-            directStream: 3,
-            subtitleSize: 7,
-            subtites: 'amet',
-            audioBoost: 5,
-            location: 'nam',
+          await sdk.video.startUniversalTranscode(4, 'sed', 6, 3, 'tempora', {
+            fastSeek: 5,
+            directPlay: 8,
+            directStream: 6,
+            subtitleSize: 2,
+            subtites: 'delectus',
+            audioBoost: 7,
+            location: 'porro',
             mediaBufferSize: 2,
-            session: 'libero',
-            addDebugOverlay: 8,
-            autoAdjustQuality: 5,
+            session: 'rem',
+            addDebugOverlay: 9,
+            autoAdjustQuality: 7,
           }),
       ).rejects.toThrow();
     });
@@ -81,18 +81,29 @@ describe('test Video', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
         .get(
-          '/:/timeline?ratingKey=6&key=ullam&state=sunt&hasMDE=6&time=3&duration=8&context=quasiillovoluptatempraesentiumquae&playQueueItemID=8&playBackTime=2&row=7',
+          '/:/timeline?ratingKey=1&key=placeat&state=tempore&hasMDE=7&time=2&duration=8&context=ducimusdoloresnostrumeosimpedit&playQueueItemID=5&playBackTime=1&row=5',
         )
         .reply(200, { data: {} });
       return sdk.video
-        .getTimeline(6, 'ullam', 'sunt', 6, 3, 8, 'quasi illo voluptatem praesentium quae', 8, 2, 7)
+        .getTimeline(
+          1,
+          'placeat',
+          'tempore',
+          7,
+          2,
+          8,
+          'ducimus dolores nostrum eos impedit',
+          5,
+          1,
+          5,
+        )
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
         .get(
-          '/:/timeline?ratingKey=3&key=debitis&state=voluptatem&hasMDE=5&time=7&duration=8&context=excepturiquosuscipitundeprovident&playQueueItemID=4&playBackTime=6&row=2',
+          '/:/timeline?ratingKey=1&key=quidem&state=quo&hasMDE=1&time=8&duration=2&context=aspernatureumdignissimosatqueassumenda&playQueueItemID=6&playBackTime=4&row=6',
         )
         .reply(200, { data: {} });
       return expect(async () => await sdk.video.getTimeline()).rejects.toThrow();
@@ -101,22 +112,22 @@ describe('test Video', () => {
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
         .get(
-          '/:/timeline?ratingKey=3&key=veniam&state=ad&hasMDE=5&time=6&duration=4&context=laboriosameligendiaspernaturfugitnihil&playQueueItemID=8&playBackTime=1&row=1',
+          '/:/timeline?ratingKey=3&key=facilis&state=ipsum&hasMDE=7&time=5&duration=6&context=earumimpeditnequeisteanimi&playQueueItemID=9&playBackTime=2&row=7',
         )
         .reply(404, { data: {} });
       return expect(
         async () =>
           await sdk.video.getTimeline(
             3,
-            'veniam',
-            'ad',
+            'facilis',
+            'ipsum',
+            7,
             5,
             6,
-            4,
-            'laboriosam eligendi aspernatur fugit nihil',
-            8,
-            1,
-            1,
+            'earum impedit neque iste animi',
+            9,
+            2,
+            7,
           ),
       ).rejects.toThrow();
     });

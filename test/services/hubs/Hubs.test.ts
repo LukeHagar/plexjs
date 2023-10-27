@@ -22,10 +22,10 @@ describe('test Hubs', () => {
   describe('test getGlobalHubs', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs?count=5&onlyTransient=3')
+        .get('/hubs?count=1&onlyTransient=1')
         .reply(200, { data: {} });
       return sdk.hubs
-        .getGlobalHubs({ count: 5, onlyTransient: 3 })
+        .getGlobalHubs({ count: 1, onlyTransient: 1 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
   });
@@ -33,26 +33,26 @@ describe('test Hubs', () => {
   describe('test getLibraryHubs', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/sections/2?count=9&onlyTransient=2')
+        .get('/hubs/sections/1?count=4&onlyTransient=5')
         .reply(200, { data: {} });
       return sdk.hubs
-        .getLibraryHubs(2, { count: 9, onlyTransient: 2 })
+        .getLibraryHubs(1, { count: 4, onlyTransient: 5 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/sections/6?count=7&onlyTransient=5')
+        .get('/hubs/sections/2?count=6&onlyTransient=4')
         .reply(200, { data: {} });
       return expect(async () => await sdk.hubs.getLibraryHubs()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/sections/2?count=6&onlyTransient=8')
+        .get('/hubs/sections/5?count=8&onlyTransient=9')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.hubs.getLibraryHubs(2, { count: 6, onlyTransient: 8 }),
+        async () => await sdk.hubs.getLibraryHubs(5, { count: 8, onlyTransient: 9 }),
       ).rejects.toThrow();
     });
   });

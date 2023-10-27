@@ -42,49 +42,45 @@ describe('test Butler', () => {
 
   describe('test startTask', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .post('/butler/doloribus')
-        .reply(200, { data: {} });
-      return sdk.butler
-        .startTask('doloribus')
-        .then((r: any) => expect(r.data).toEqual({ data: {} }));
+      const scope = nock('{protocol}://{ip}:{port}').post('/butler/error').reply(200, { data: {} });
+      return sdk.butler.startTask('error').then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .post('/butler/beatae')
+        .post('/butler/magnam')
         .reply(200, { data: {} });
       return expect(async () => await sdk.butler.startTask()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .post('/butler/aliquam')
+        .post('/butler/cumque')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.butler.startTask('aliquam')).rejects.toThrow();
+      return expect(async () => await sdk.butler.startTask('cumque')).rejects.toThrow();
     });
   });
 
   describe('test stopTask', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .delete('/butler/beatae')
+        .delete('/butler/delectus')
         .reply(200, { data: {} });
-      return sdk.butler.stopTask('beatae').then((r: any) => expect(r.data).toEqual({ data: {} }));
+      return sdk.butler.stopTask('delectus').then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .delete('/butler/necessitatibus')
+        .delete('/butler/repudiandae')
         .reply(200, { data: {} });
       return expect(async () => await sdk.butler.stopTask()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .delete('/butler/officia')
+        .delete('/butler/iusto')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.butler.stopTask('officia')).rejects.toThrow();
+      return expect(async () => await sdk.butler.stopTask('iusto')).rejects.toThrow();
     });
   });
 });

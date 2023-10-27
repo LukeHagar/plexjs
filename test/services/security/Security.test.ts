@@ -22,26 +22,26 @@ describe('test Security', () => {
   describe('test getTransientToken', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/token?type_=consectetur&scope=sed')
+        .get('/security/token?type_=rem&scope=porro')
         .reply(200, { data: {} });
       return sdk.security
-        .getTransientToken('consectetur', 'sed')
+        .getTransientToken('rem', 'porro')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/token?type_=laborum&scope=est')
+        .get('/security/token?type_=rem&scope=magni')
         .reply(200, { data: {} });
       return expect(async () => await sdk.security.getTransientToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/token?type_=debitis&scope=tempora')
+        .get('/security/token?type_=quo&scope=aut')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.security.getTransientToken('debitis', 'tempora'),
+        async () => await sdk.security.getTransientToken('quo', 'aut'),
       ).rejects.toThrow();
     });
   });
@@ -49,16 +49,16 @@ describe('test Security', () => {
   describe('test getSourceConnectionInformation', () => {
     test('test api call', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/resources?source=quod')
+        .get('/security/resources?source=suscipit')
         .reply(200, { data: {} });
       return sdk.security
-        .getSourceConnectionInformation('quod')
+        .getSourceConnectionInformation('suscipit')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/resources?source=repudiandae')
+        .get('/security/resources?source=consectetur')
         .reply(200, { data: {} });
       return expect(
         async () => await sdk.security.getSourceConnectionInformation(),
@@ -67,10 +67,10 @@ describe('test Security', () => {
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/resources?source=similique')
+        .get('/security/resources?source=consequatur')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.security.getSourceConnectionInformation('similique'),
+        async () => await sdk.security.getSourceConnectionInformation('consequatur'),
       ).rejects.toThrow();
     });
   });
