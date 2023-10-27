@@ -21,7 +21,7 @@ describe('test Updater', () => {
 
   describe('test getUpdateStatus', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .get('/updater/status')
         .reply(200, { data: {} });
       return sdk.updater.getUpdateStatus().then((r: any) => expect(r.data).toEqual({ data: {} }));
@@ -30,7 +30,7 @@ describe('test Updater', () => {
 
   describe('test checkForUpdates', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .put('/updater/check?download=foo')
         .reply(200, { data: {} });
       return sdk.updater
@@ -41,7 +41,7 @@ describe('test Updater', () => {
 
   describe('test applyUpdates', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .put('/updater/apply?tonight=foo&skip=foo')
         .reply(200, { data: {} });
       return sdk.updater

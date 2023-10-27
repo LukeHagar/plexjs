@@ -21,80 +21,80 @@ describe('test Search', () => {
 
   describe('test performSearch', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/search?query=adipisci&sectionId=9&limit=8')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/hubs/search?query=fugiat&sectionId=1&limit=3')
         .reply(200, { data: {} });
       return sdk.search
-        .performSearch('adipisci', { sectionId: 9, limit: 8 })
+        .performSearch('fugiat', { sectionId: 1, limit: 3 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/search?query=quas&sectionId=9&limit=1')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/hubs/search?query=ipsam&sectionId=7&limit=2')
         .reply(200, { data: {} });
       return expect(async () => await sdk.search.performSearch()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/search?query=dolores&sectionId=1&limit=2')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/hubs/search?query=quibusdam&sectionId=1&limit=6')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.search.performSearch('dolores', { sectionId: 1, limit: 2 }),
+        async () => await sdk.search.performSearch('quibusdam', { sectionId: 1, limit: 6 }),
       ).rejects.toThrow();
     });
   });
 
   describe('test performVoiceSearch', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/search/voice?query=vitae&sectionId=5&limit=6')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/hubs/search/voice?query=animi&sectionId=7&limit=1')
         .reply(200, { data: {} });
       return sdk.search
-        .performVoiceSearch('vitae', { sectionId: 5, limit: 6 })
+        .performVoiceSearch('animi', { sectionId: 7, limit: 1 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/search/voice?query=ab&sectionId=2&limit=2')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/hubs/search/voice?query=quae&sectionId=6&limit=3')
         .reply(200, { data: {} });
       return expect(async () => await sdk.search.performVoiceSearch()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/hubs/search/voice?query=id&sectionId=5&limit=4')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/hubs/search/voice?query=aspernatur&sectionId=5&limit=8')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.search.performVoiceSearch('id', { sectionId: 5, limit: 4 }),
+        async () => await sdk.search.performVoiceSearch('aspernatur', { sectionId: 5, limit: 8 }),
       ).rejects.toThrow();
     });
   });
 
   describe('test getSearchResults', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/search?query=aspernatur')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/search?query=doloremque')
         .reply(200, { data: {} });
       return sdk.search
-        .getSearchResults('aspernatur')
+        .getSearchResults('doloremque')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/search?query=quasi')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/search?query=facere')
         .reply(200, { data: {} });
       return expect(async () => await sdk.search.getSearchResults()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/search?query=ex')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/search?query=placeat')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.search.getSearchResults('ex')).rejects.toThrow();
+      return expect(async () => await sdk.search.getSearchResults('placeat')).rejects.toThrow();
     });
   });
 });

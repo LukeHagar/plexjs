@@ -21,44 +21,44 @@ describe('test Security', () => {
 
   describe('test getTransientToken', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/token?type_=rem&scope=porro')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/security/token?type_=odit&scope=inventore')
         .reply(200, { data: {} });
       return sdk.security
-        .getTransientToken('rem', 'porro')
+        .getTransientToken('odit', 'inventore')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/token?type_=rem&scope=magni')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/security/token?type_=consequatur&scope=consectetur')
         .reply(200, { data: {} });
       return expect(async () => await sdk.security.getTransientToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/token?type_=quo&scope=aut')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/security/token?type_=consequatur&scope=delectus')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.security.getTransientToken('quo', 'aut'),
+        async () => await sdk.security.getTransientToken('consequatur', 'delectus'),
       ).rejects.toThrow();
     });
   });
 
   describe('test getSourceConnectionInformation', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/resources?source=suscipit')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/security/resources?source=ab')
         .reply(200, { data: {} });
       return sdk.security
-        .getSourceConnectionInformation('suscipit')
+        .getSourceConnectionInformation('ab')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/resources?source=consectetur')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/security/resources?source=pariatur')
         .reply(200, { data: {} });
       return expect(
         async () => await sdk.security.getSourceConnectionInformation(),
@@ -66,11 +66,11 @@ describe('test Security', () => {
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
-        .get('/security/resources?source=consequatur')
+      const scope = nock('http://10.10.10.47:32400')
+        .get('/security/resources?source=consectetur')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.security.getSourceConnectionInformation('consequatur'),
+        async () => await sdk.security.getSourceConnectionInformation('consectetur'),
       ).rejects.toThrow();
     });
   });

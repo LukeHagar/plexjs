@@ -518,7 +518,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.media.updatePlayProgress('key', -25032179.723307386, 'state');
+  const result = await sdk.media.updatePlayProgress('key', 90469787.90055934, 'state');
   console.log(result.data);
 })();
 
@@ -672,7 +672,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.butler.startTask('RefreshPeriodicMetadata');
+  const result = await sdk.butler.startTask('GenerateChapterThumbs');
   console.log(result.data);
 })();
 
@@ -702,7 +702,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.butler.stopTask('GenerateChapterThumbs');
+  const result = await sdk.butler.stopTask('DeepMediaAnalysis');
   console.log(result.data);
 })();
 
@@ -736,7 +736,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.hubs.getGlobalHubs({ count: -41963860.27512902, onlyTransient: 42 });
+  const result = await sdk.hubs.getGlobalHubs({ count: 56455806.18512213, onlyTransient: 1 });
   console.log(result.data);
 })();
 
@@ -774,8 +774,8 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.hubs.getLibraryHubs(-19572217.151876092, {
-    count: 64492424.84453416,
+  const result = await sdk.hubs.getLibraryHubs(14224427.485252097, {
+    count: 59167335.01182026,
     onlyTransient: 1,
   });
   console.log(result.data);
@@ -816,8 +816,8 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.search.performSearch('dylan', {
-    sectionId: -80780418.69956203,
+  const result = await sdk.search.performSearch('arnold', {
+    sectionId: 23503236.39517291,
     limit: 5,
   });
   console.log(result.data);
@@ -858,7 +858,7 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.search.performVoiceSearch('dead+poop', {
-    sectionId: 86426181.42960766,
+    sectionId: 49725001.21318659,
     limit: 5,
   });
   console.log(result.data);
@@ -929,7 +929,7 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.library.getFileHash('file://C:Image.png&type=13', {
-    type: 1221820.9318130612,
+    type: 57131492.35348597,
   });
   console.log(result.data);
 })();
@@ -1081,8 +1081,8 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getLibraryItems(-52353690.921314076, {
-    type: 57657681.83699939,
+  const result = await sdk.library.getLibraryItems(5918142.371238574, {
+    type: -7809061.492073655,
     filter: 'filter',
   });
   console.log(result.data);
@@ -1114,7 +1114,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.refreshLibrary(83063605.3709105);
+  const result = await sdk.library.refreshLibrary(96299696.9761284);
   console.log(result.data);
 })();
 
@@ -1152,7 +1152,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getLatestLibraryItems(17288749.454815328, -65987149.628176846, {
+  const result = await sdk.library.getLatestLibraryItems(92402469.6477915, -96400116.97826156, {
     filter: 'filter',
   });
   console.log(result.data);
@@ -1192,7 +1192,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getCommonLibraryItems(77036914.15493327, 88290768.12302619, {
+  const result = await sdk.library.getCommonLibraryItems(10111915.895296082, 55224735.92815569, {
     filter: 'filter',
   });
   console.log(result.data);
@@ -1224,7 +1224,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getMetadata(-81847309.63397841);
+  const result = await sdk.library.getMetadata(62182009.76385683);
   console.log(result.data);
 })();
 
@@ -1254,7 +1254,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getMetadataChildren(27040154.17391461);
+  const result = await sdk.library.getMetadataChildren(11669243.106740937);
   console.log(result.data);
 })();
 
@@ -1333,7 +1333,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.log.logLine(3, 'message', 'source');
+  const result = await sdk.log.logLine(2, 'message', 'source');
   console.log(result.data);
 })();
 
@@ -1397,9 +1397,9 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.createPlaylist('title', 'photo', 1, {
+  const result = await sdk.playlists.createPlaylist('title', 'audio', 42, {
     uri: 'uri',
-    playQueueID: -19291134.067149103,
+    playQueueID: -22282333.505305633,
   });
   console.log(result.data);
 })();
@@ -1463,7 +1463,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.getPlaylist(56646356.33382389);
+  const result = await sdk.playlists.getPlaylist(25521232.224839047);
   console.log(result.data);
 })();
 
@@ -1493,7 +1493,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.deletePlaylist(-85154371.25049327);
+  const result = await sdk.playlists.deletePlaylist(-60675901.030656695);
   console.log(result.data);
 })();
 
@@ -1523,7 +1523,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.updatePlaylist(-81706994.06882615);
+  const result = await sdk.playlists.updatePlaylist(65200160.70787519);
   console.log(result.data);
 })();
 
@@ -1554,7 +1554,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.getPlaylistContents(76448342.73388726, 15972838.426946774);
+  const result = await sdk.playlists.getPlaylistContents(62167005.120096, 2249491.135525167);
   console.log(result.data);
 })();
 
@@ -1584,7 +1584,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.clearPlaylistContents(13524541.663327798);
+  const result = await sdk.playlists.clearPlaylistContents(24703702.974021226);
   console.log(result.data);
 })();
 
@@ -1616,7 +1616,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.addPlaylistContents(-23895786.25933972, 'library://..', 123);
+  const result = await sdk.playlists.addPlaylistContents(-3444881.095142722, 'library://..', 123);
   console.log(result.data);
 })();
 
@@ -1647,7 +1647,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.uploadPlaylist('/home/barkley/playlist.m3u', 42);
+  const result = await sdk.playlists.uploadPlaylist('/home/barkley/playlist.m3u', 1);
   console.log(result.data);
 })();
 
@@ -1709,7 +1709,9 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.security.getSourceConnectionInformation('server://client-identifier');
+  const result = await sdk.security.getSourceConnectionInformation(
+    'provider://provider-identifier',
+  );
   console.log(result.data);
 })();
 
@@ -1865,7 +1867,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.updater.checkForUpdates({ download: 1 });
+  const result = await sdk.updater.checkForUpdates({ download: 'foo' });
   console.log(result.data);
 })();
 
@@ -1898,7 +1900,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.updater.applyUpdates({ tonight: 1, skip: 'foo' });
+  const result = await sdk.updater.applyUpdates({ tonight: 'foo', skip: 1 });
   console.log(result.data);
 })();
 
@@ -1951,23 +1953,23 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.video.startUniversalTranscode(
-    99273297.24555674,
+    -87516165.31957072,
     'path',
-    21375268.684818625,
-    -18767699.730034873,
+    -62877687.452249065,
+    -23076170.49337977,
     'protocol',
     {
-      fastSeek: -51749402.15485502,
-      directPlay: -77287047.4341131,
-      directStream: 89594169.19331425,
-      subtitleSize: -88919523.21207976,
+      fastSeek: -68282427.87913167,
+      directPlay: -74000014.76895301,
+      directStream: 84943482.78212723,
+      subtitleSize: -55237723.44813809,
       subtites: 'subtites',
-      audioBoost: -81294276.24446929,
+      audioBoost: 29945312.780143052,
       location: 'location',
-      mediaBufferSize: -54391953.000071116,
+      mediaBufferSize: -16516185.759793341,
       session: 'session',
-      addDebugOverlay: -27611912.67288199,
-      autoAdjustQuality: 60220639.02267191,
+      addDebugOverlay: -10261279.500832424,
+      autoAdjustQuality: 32480614.034784466,
     },
   );
   console.log(result.data);
@@ -2009,16 +2011,16 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.video.getTimeline(
-    -59099515.72277228,
+    -32608281.350922346,
     'key',
-    'paused',
-    42923471.63451135,
-    -4768474.493235379,
-    -21041401.28754133,
+    'stopped',
+    -74699884.18136695,
+    -66756517.26572518,
+    -24893130.84645444,
     'context',
-    -68934911.93506223,
-    15139718.511849582,
-    -69627795.90264106,
+    -75734154.35564606,
+    -89175857.3275879,
+    -15877259.38555336,
   );
   console.log(result.data);
 })();

@@ -21,57 +21,57 @@ describe('test Video', () => {
 
   describe('test startUniversalTranscode', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/video/:/transcode/universal/start.mpd?hasMDE=8&path=harum&mediaIndex=9&partIndex=3&protocol=id&fastSeek=4&directPlay=4&directStream=8&subtitleSize=9&subtites=laudantium&audioBoost=5&location=harum&mediaBufferSize=7&session=possimus&addDebugOverlay=8&autoAdjustQuality=2',
+          '/video/:/transcode/universal/start.mpd?hasMDE=2&path=officiis&mediaIndex=8&partIndex=2&protocol=minima&fastSeek=6&directPlay=9&directStream=3&subtitleSize=8&subtites=aut&audioBoost=5&location=porro&mediaBufferSize=4&session=deserunt&addDebugOverlay=4&autoAdjustQuality=2',
         )
         .reply(200, { data: {} });
       return sdk.video
-        .startUniversalTranscode(8, 'harum', 9, 3, 'id', {
-          fastSeek: 4,
-          directPlay: 4,
-          directStream: 8,
-          subtitleSize: 9,
-          subtites: 'laudantium',
+        .startUniversalTranscode(2, 'officiis', 8, 2, 'minima', {
+          fastSeek: 6,
+          directPlay: 9,
+          directStream: 3,
+          subtitleSize: 8,
+          subtites: 'aut',
           audioBoost: 5,
-          location: 'harum',
-          mediaBufferSize: 7,
-          session: 'possimus',
-          addDebugOverlay: 8,
+          location: 'porro',
+          mediaBufferSize: 4,
+          session: 'deserunt',
+          addDebugOverlay: 4,
           autoAdjustQuality: 2,
         })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/video/:/transcode/universal/start.mpd?hasMDE=3&path=voluptatibus&mediaIndex=5&partIndex=1&protocol=harum&fastSeek=2&directPlay=3&directStream=5&subtitleSize=6&subtites=repellendus&audioBoost=6&location=cum&mediaBufferSize=5&session=praesentium&addDebugOverlay=4&autoAdjustQuality=5',
+          '/video/:/transcode/universal/start.mpd?hasMDE=9&path=tempora&mediaIndex=6&partIndex=1&protocol=laudantium&fastSeek=4&directPlay=5&directStream=2&subtitleSize=6&subtites=eveniet&audioBoost=7&location=iure&mediaBufferSize=8&session=modi&addDebugOverlay=9&autoAdjustQuality=5',
         )
         .reply(200, { data: {} });
       return expect(async () => await sdk.video.startUniversalTranscode()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/video/:/transcode/universal/start.mpd?hasMDE=4&path=sed&mediaIndex=6&partIndex=3&protocol=tempora&fastSeek=5&directPlay=8&directStream=6&subtitleSize=2&subtites=delectus&audioBoost=7&location=porro&mediaBufferSize=2&session=rem&addDebugOverlay=9&autoAdjustQuality=7',
+          '/video/:/transcode/universal/start.mpd?hasMDE=8&path=officia&mediaIndex=6&partIndex=7&protocol=hic&fastSeek=6&directPlay=2&directStream=6&subtitleSize=6&subtites=veniam&audioBoost=5&location=sunt&mediaBufferSize=5&session=inventore&addDebugOverlay=9&autoAdjustQuality=5',
         )
         .reply(404, { data: {} });
       return expect(
         async () =>
-          await sdk.video.startUniversalTranscode(4, 'sed', 6, 3, 'tempora', {
-            fastSeek: 5,
-            directPlay: 8,
+          await sdk.video.startUniversalTranscode(8, 'officia', 6, 7, 'hic', {
+            fastSeek: 6,
+            directPlay: 2,
             directStream: 6,
-            subtitleSize: 2,
-            subtites: 'delectus',
-            audioBoost: 7,
-            location: 'porro',
-            mediaBufferSize: 2,
-            session: 'rem',
+            subtitleSize: 6,
+            subtites: 'veniam',
+            audioBoost: 5,
+            location: 'sunt',
+            mediaBufferSize: 5,
+            session: 'inventore',
             addDebugOverlay: 9,
-            autoAdjustQuality: 7,
+            autoAdjustQuality: 5,
           }),
       ).rejects.toThrow();
     });
@@ -79,55 +79,55 @@ describe('test Video', () => {
 
   describe('test getTimeline', () => {
     test('test api call', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/:/timeline?ratingKey=1&key=placeat&state=tempore&hasMDE=7&time=2&duration=8&context=ducimusdoloresnostrumeosimpedit&playQueueItemID=5&playBackTime=1&row=5',
+          '/:/timeline?ratingKey=3&key=dolor&state=consequatur&hasMDE=8&time=4&duration=7&context=possimusducimusdoloribusnequequibusdam&playQueueItemID=3&playBackTime=5&row=4',
         )
         .reply(200, { data: {} });
       return sdk.video
         .getTimeline(
-          1,
-          'placeat',
-          'tempore',
-          7,
-          2,
+          3,
+          'dolor',
+          'consequatur',
           8,
-          'ducimus dolores nostrum eos impedit',
+          4,
+          7,
+          'possimus ducimus doloribus neque quibusdam',
+          3,
           5,
-          1,
-          5,
+          4,
         )
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/:/timeline?ratingKey=1&key=quidem&state=quo&hasMDE=1&time=8&duration=2&context=aspernatureumdignissimosatqueassumenda&playQueueItemID=6&playBackTime=4&row=6',
+          '/:/timeline?ratingKey=8&key=cumque&state=earum&hasMDE=3&time=7&duration=2&context=debitisquisquamquaeeasunt&playQueueItemID=3&playBackTime=2&row=2',
         )
         .reply(200, { data: {} });
       return expect(async () => await sdk.video.getTimeline()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('{protocol}://{ip}:{port}')
+      const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/:/timeline?ratingKey=3&key=facilis&state=ipsum&hasMDE=7&time=5&duration=6&context=earumimpeditnequeisteanimi&playQueueItemID=9&playBackTime=2&row=7',
+          '/:/timeline?ratingKey=6&key=voluptate&state=alias&hasMDE=6&time=3&duration=6&context=assumendaconsequaturaliquidnatussaepe&playQueueItemID=2&playBackTime=9&row=3',
         )
         .reply(404, { data: {} });
       return expect(
         async () =>
           await sdk.video.getTimeline(
-            3,
-            'facilis',
-            'ipsum',
-            7,
-            5,
             6,
-            'earum impedit neque iste animi',
-            9,
+            'voluptate',
+            'alias',
+            6,
+            3,
+            6,
+            'assumenda consequatur aliquid natus saepe',
             2,
-            7,
+            9,
+            3,
           ),
       ).rejects.toThrow();
     });
