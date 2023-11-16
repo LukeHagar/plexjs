@@ -22,26 +22,26 @@ describe('test Security', () => {
   describe('test getTransientToken', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/security/token?type_=odit&scope=inventore')
+        .get('/security/token?type_=nobis&scope=placeat')
         .reply(200, { data: {} });
       return sdk.security
-        .getTransientToken('odit', 'inventore')
+        .getTransientToken('nobis', 'placeat')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/security/token?type_=consequatur&scope=consectetur')
+        .get('/security/token?type_=fugiat&scope=accusantium')
         .reply(200, { data: {} });
       return expect(async () => await sdk.security.getTransientToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/security/token?type_=consequatur&scope=delectus')
+        .get('/security/token?type_=quibusdam&scope=nesciunt')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.security.getTransientToken('consequatur', 'delectus'),
+        async () => await sdk.security.getTransientToken('quibusdam', 'nesciunt'),
       ).rejects.toThrow();
     });
   });
@@ -49,16 +49,16 @@ describe('test Security', () => {
   describe('test getSourceConnectionInformation', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/security/resources?source=ab')
+        .get('/security/resources?source=saepe')
         .reply(200, { data: {} });
       return sdk.security
-        .getSourceConnectionInformation('ab')
+        .getSourceConnectionInformation('saepe')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/security/resources?source=pariatur')
+        .get('/security/resources?source=dolor')
         .reply(200, { data: {} });
       return expect(
         async () => await sdk.security.getSourceConnectionInformation(),
@@ -67,10 +67,10 @@ describe('test Security', () => {
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/security/resources?source=consectetur')
+        .get('/security/resources?source=quam')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.security.getSourceConnectionInformation('consectetur'),
+        async () => await sdk.security.getSourceConnectionInformation('quam'),
       ).rejects.toThrow();
     });
   });

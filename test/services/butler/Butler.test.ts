@@ -43,42 +43,42 @@ describe('test Butler', () => {
   describe('test startTask', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/butler/fugiat')
+        .post('/butler/quaerat')
         .reply(200, { data: {} });
-      return sdk.butler.startTask('fugiat').then((r: any) => expect(r.data).toEqual({ data: {} }));
+      return sdk.butler.startTask('quaerat').then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('http://10.10.10.47:32400').post('/butler/sunt').reply(200, { data: {} });
+      const scope = nock('http://10.10.10.47:32400')
+        .post('/butler/asperiores')
+        .reply(200, { data: {} });
       return expect(async () => await sdk.butler.startTask()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/butler/consequatur')
+        .post('/butler/molestias')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.butler.startTask('consequatur')).rejects.toThrow();
+      return expect(async () => await sdk.butler.startTask('molestias')).rejects.toThrow();
     });
   });
 
   describe('test stopTask', () => {
     test('test api call', () => {
-      const scope = nock('http://10.10.10.47:32400')
-        .delete('/butler/ducimus')
-        .reply(200, { data: {} });
-      return sdk.butler.stopTask('ducimus').then((r: any) => expect(r.data).toEqual({ data: {} }));
+      const scope = nock('http://10.10.10.47:32400').delete('/butler/rem').reply(200, { data: {} });
+      return sdk.butler.stopTask('rem').then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/butler/veniam')
+        .delete('/butler/vero')
         .reply(200, { data: {} });
       return expect(async () => await sdk.butler.stopTask()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('http://10.10.10.47:32400').delete('/butler/in').reply(404, { data: {} });
-      return expect(async () => await sdk.butler.stopTask('in')).rejects.toThrow();
+      const scope = nock('http://10.10.10.47:32400').delete('/butler/aut').reply(404, { data: {} });
+      return expect(async () => await sdk.butler.stopTask('aut')).rejects.toThrow();
     });
   });
 });

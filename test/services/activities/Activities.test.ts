@@ -31,26 +31,26 @@ describe('test Activities', () => {
   describe('test cancelServerActivities', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/activities/unde')
+        .delete('/activities/consequuntur')
         .reply(200, { data: {} });
       return sdk.activities
-        .cancelServerActivities('unde')
+        .cancelServerActivities('consequuntur')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/activities/commodi')
+        .delete('/activities/pariatur')
         .reply(200, { data: {} });
       return expect(async () => await sdk.activities.cancelServerActivities()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/activities/alias')
+        .delete('/activities/asperiores')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.activities.cancelServerActivities('alias'),
+        async () => await sdk.activities.cancelServerActivities('asperiores'),
       ).rejects.toThrow();
     });
   });
