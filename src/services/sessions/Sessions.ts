@@ -15,7 +15,7 @@ export class SessionsService extends BaseService {
    */
   async getSessions(): Promise<any> {
     const urlEndpoint = '/status/sessions';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -39,7 +39,7 @@ export class SessionsService extends BaseService {
    */
   async getSessionHistory(): Promise<any> {
     const urlEndpoint = '/status/sessions/history/all';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -63,7 +63,7 @@ export class SessionsService extends BaseService {
    */
   async getTranscodeSessions(): Promise<Response<GetTranscodeSessionsResponse>> {
     const urlEndpoint = '/transcode/sessions';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -93,9 +93,9 @@ export class SessionsService extends BaseService {
     let urlEndpoint = '/transcode/sessions/{sessionKey}';
     urlEndpoint = urlEndpoint.replace(
       '{sessionKey}',
-      encodeURIComponent(serializePath('simple', false, sessionKey, undefined)),
+      serializePath('simple', false, sessionKey, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.delete(
       finalUrl,
       {},

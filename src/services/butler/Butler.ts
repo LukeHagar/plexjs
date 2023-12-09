@@ -16,7 +16,7 @@ export class ButlerService extends BaseService {
    */
   async getButlerTasks(): Promise<Response<GetButlerTasksResponse>> {
     const urlEndpoint = '/butler';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -45,7 +45,7 @@ export class ButlerService extends BaseService {
    */
   async startAllTasks(): Promise<any> {
     const urlEndpoint = '/butler';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.post(
       finalUrl,
       {},
@@ -70,7 +70,7 @@ export class ButlerService extends BaseService {
    */
   async stopAllTasks(): Promise<any> {
     const urlEndpoint = '/butler';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.delete(
       finalUrl,
       {},
@@ -105,9 +105,9 @@ export class ButlerService extends BaseService {
     let urlEndpoint = '/butler/{taskName}';
     urlEndpoint = urlEndpoint.replace(
       '{taskName}',
-      encodeURIComponent(serializePath('simple', false, taskName, undefined)),
+      serializePath('simple', false, taskName, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.post(
       finalUrl,
       {},
@@ -138,9 +138,9 @@ export class ButlerService extends BaseService {
     let urlEndpoint = '/butler/{taskName}';
     urlEndpoint = urlEndpoint.replace(
       '{taskName}',
-      encodeURIComponent(serializePath('simple', false, taskName, undefined)),
+      serializePath('simple', false, taskName, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.delete(
       finalUrl,
       {},

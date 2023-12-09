@@ -40,7 +40,7 @@ export class LogService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'source', source));
     }
     const urlEndpoint = '/log';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -65,7 +65,7 @@ export class LogService extends BaseService {
    */
   async logMultiLine(): Promise<any> {
     const urlEndpoint = '/log';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.post(
       finalUrl,
       {},
@@ -90,7 +90,7 @@ export class LogService extends BaseService {
    */
   async enablePaperTrail(): Promise<any> {
     const urlEndpoint = '/log/networked';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},

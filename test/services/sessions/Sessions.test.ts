@@ -53,26 +53,26 @@ describe('test Sessions', () => {
   describe('test stopTranscodeSession', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/transcode/sessions/odit')
+        .delete('/transcode/sessions/et')
         .reply(200, { data: {} });
       return sdk.sessions
-        .stopTranscodeSession('odit')
+        .stopTranscodeSession('et')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/transcode/sessions/porro')
+        .delete('/transcode/sessions/ipsam')
         .reply(200, { data: {} });
       return expect(async () => await sdk.sessions.stopTranscodeSession()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/transcode/sessions/minima')
+        .delete('/transcode/sessions/voluptas')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.sessions.stopTranscodeSession('minima'),
+        async () => await sdk.sessions.stopTranscodeSession('voluptas'),
       ).rejects.toThrow();
     });
   });

@@ -124,8 +124,8 @@ export class VideoService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'autoAdjustQuality', autoAdjustQuality));
     }
     const urlEndpoint = '/video/:/transcode/universal/start.mpd';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -217,7 +217,7 @@ export class VideoService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'row', row));
     }
     const urlEndpoint = '/:/timeline';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},

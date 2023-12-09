@@ -31,10 +31,10 @@ describe('test Updater', () => {
   describe('test checkForUpdates', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .put('/updater/check?download=foo')
+        .put('/updater/check?download=3')
         .reply(200, { data: {} });
       return sdk.updater
-        .checkForUpdates({ download: 'foo' })
+        .checkForUpdates({ download: 3 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
   });
@@ -42,10 +42,10 @@ describe('test Updater', () => {
   describe('test applyUpdates', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .put('/updater/apply?tonight=foo&skip=foo')
+        .put('/updater/apply?tonight=8&skip=2')
         .reply(200, { data: {} });
       return sdk.updater
-        .applyUpdates({ tonight: 'foo', skip: 'foo' })
+        .applyUpdates({ tonight: 8, skip: 2 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
   });

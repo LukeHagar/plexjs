@@ -48,8 +48,8 @@ This request is intended to be very fast, and called as the user types.
       queryParams.push(serializeQuery('form', true, 'limit', limit));
     }
     const urlEndpoint = '/hubs/search';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -98,8 +98,8 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
       queryParams.push(serializeQuery('form', true, 'limit', limit));
     }
     const urlEndpoint = '/hubs/search/voice';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -131,7 +131,7 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
       queryParams.push(serializeQuery('form', true, 'query', query));
     }
     const urlEndpoint = '/search';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},

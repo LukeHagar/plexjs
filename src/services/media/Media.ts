@@ -21,7 +21,7 @@ export class MediaService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'key', key));
     }
     const urlEndpoint = '/:/scrobble';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -53,7 +53,7 @@ export class MediaService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'key', key));
     }
     const urlEndpoint = '/:/unscrobble';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -96,7 +96,7 @@ export class MediaService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'state', state));
     }
     const urlEndpoint = '/:/progress';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.post(
       finalUrl,
       { key, time, state },

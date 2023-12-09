@@ -22,7 +22,7 @@ export class ServerService extends BaseService {
    */
   async getServerCapabilities(): Promise<Response<GetServerCapabilitiesResponse>> {
     const urlEndpoint = '/';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -46,7 +46,7 @@ export class ServerService extends BaseService {
    */
   async getServerPreferences(): Promise<any> {
     const urlEndpoint = '/:/prefs';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -70,7 +70,7 @@ export class ServerService extends BaseService {
    */
   async getAvailableClients(): Promise<Response<GetAvailableClientsResponse>> {
     const urlEndpoint = '/clients';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -94,7 +94,7 @@ export class ServerService extends BaseService {
    */
   async getDevices(): Promise<Response<GetDevicesResponse>> {
     const urlEndpoint = '/devices';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -118,7 +118,7 @@ export class ServerService extends BaseService {
    */
   async getServerIdentity(): Promise<Response<GetServerIdentityResponse>> {
     const urlEndpoint = '/identity';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -142,7 +142,7 @@ export class ServerService extends BaseService {
    */
   async getMyPlexAccount(): Promise<Response<GetMyPlexAccountResponse>> {
     const urlEndpoint = '/myplex/account';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -217,7 +217,7 @@ export class ServerService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'url', url));
     }
     const urlEndpoint = '/photo/:/transcode';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -241,7 +241,7 @@ export class ServerService extends BaseService {
    */
   async getServerList(): Promise<Response<GetServerListResponse>> {
     const urlEndpoint = '/servers';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},

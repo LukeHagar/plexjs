@@ -343,7 +343,7 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
     110,
     165,
     100,
-    4000,
+    20,
     1,
     1,
     '/library/metadata/49564/thumb/1654258204',
@@ -463,7 +463,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.media.updatePlayProgress('key', 90469787.90055934, 'state');
+  const result = await sdk.media.updatePlayProgress('key', 27551608.23429507, 'state');
   console.log(result.data);
 })();
 
@@ -617,7 +617,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.butler.startTask('GenerateChapterThumbs');
+  const result = await sdk.butler.startTask('CleanOldBundles');
   console.log(result.data);
 })();
 
@@ -681,7 +681,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.hubs.getGlobalHubs({ count: 56455806.18512213, onlyTransient: 1 });
+  const result = await sdk.hubs.getGlobalHubs({ count: 85088414.29395235, onlyTransient: 1 });
   console.log(result.data);
 })();
 
@@ -719,8 +719,8 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.hubs.getLibraryHubs(14224427.485252097, {
-    count: 59167335.01182026,
+  const result = await sdk.hubs.getLibraryHubs(1529501.7966160178, {
+    count: -55107649.72469167,
     onlyTransient: 1,
   });
   console.log(result.data);
@@ -762,7 +762,7 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.search.performSearch('arnold', {
-    sectionId: 23503236.39517291,
+    sectionId: -91245133.11936787,
     limit: 5,
   });
   console.log(result.data);
@@ -803,7 +803,7 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.search.performVoiceSearch('dead+poop', {
-    sectionId: 49725001.21318659,
+    sectionId: -77985966.3231569,
     limit: 5,
   });
   console.log(result.data);
@@ -859,7 +859,7 @@ Optional parameters are passed as part of the last parameter to the method. Ex. 
 
 | Name    | Type| Description |
 | :-------- | :----------| :----------|
-| type | number | Item type |
+| type_ | number | Item type |
 
 
 **Return Type**
@@ -874,7 +874,7 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.library.getFileHash('file://C:Image.png&type=13', {
-    type: 57131492.35348597,
+    type: -83086119.43343997,
   });
   console.log(result.data);
 })();
@@ -1011,7 +1011,7 @@ Optional parameters are passed as part of the last parameter to the method. Ex. 
 
 | Name    | Type| Description |
 | :-------- | :----------| :----------|
-| type | number | item type |
+| type_ | number | item type |
 | filter | string | the filter parameter |
 
 
@@ -1026,8 +1026,8 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getLibraryItems(5918142.371238574, {
-    type: -7809061.492073655,
+  const result = await sdk.library.getLibraryItems(42026951.633123755, {
+    type: 35182739.55189258,
     filter: 'filter',
   });
   console.log(result.data);
@@ -1059,7 +1059,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.refreshLibrary(96299696.9761284);
+  const result = await sdk.library.refreshLibrary(40666143.29885453);
   console.log(result.data);
 })();
 
@@ -1075,7 +1075,7 @@ Get Latest Library Items
 | Name    | Type| Description |
 | :-------- | :----------| :----------|
 | sectionId | number | the Id of the library to query |
-| type | number | item type |
+| type_ | number | item type |
 
 **Optional Parameters**
 
@@ -1097,7 +1097,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getLatestLibraryItems(92402469.6477915, -96400116.97826156, {
+  const result = await sdk.library.getLatestLibraryItems(68855255.94976288, -62521069.88462107, {
     filter: 'filter',
   });
   console.log(result.data);
@@ -1115,7 +1115,7 @@ Get Common Library Items
 | Name    | Type| Description |
 | :-------- | :----------| :----------|
 | sectionId | number | the Id of the library to query |
-| type | number | item type |
+| type_ | number | item type |
 
 **Optional Parameters**
 
@@ -1137,7 +1137,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getCommonLibraryItems(10111915.895296082, 55224735.92815569, {
+  const result = await sdk.library.getCommonLibraryItems(-8101546.533601046, -75357740.57515395, {
     filter: 'filter',
   });
   console.log(result.data);
@@ -1169,7 +1169,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getMetadata(62182009.76385683);
+  const result = await sdk.library.getMetadata(-88656892.93622507);
   console.log(result.data);
 })();
 
@@ -1199,7 +1199,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.library.getMetadataChildren(11669243.106740937);
+  const result = await sdk.library.getMetadataChildren(-99012349.51775439);
   console.log(result.data);
 })();
 
@@ -1278,7 +1278,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.log.logLine(2, 'message', 'source');
+  const result = await sdk.log.logLine(3, 'message', 'source');
   console.log(result.data);
 })();
 
@@ -1318,7 +1318,7 @@ Create a Playlist
 | Name    | Type| Description |
 | :-------- | :----------| :----------|
 | title | string | name of the playlist |
-| type | [Type](/src/models/README.md#type) | type of playlist to create |
+| type_ | [Type](/src/models/README.md#type) | type of playlist to create |
 | smart | [Smart](/src/models/README.md#smart) | whether the playlist is smart or not |
 
 **Optional Parameters**
@@ -1342,9 +1342,9 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.createPlaylist('title', 'audio', 42, {
+  const result = await sdk.playlists.createPlaylist('title', 'audio', 1, {
     uri: 'uri',
-    playQueueID: -22282333.505305633,
+    playQueueID: 87381919.3788966,
   });
   console.log(result.data);
 })();
@@ -1378,7 +1378,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.getPlaylists({ playlistType: 'photo', smart: 1 });
+  const result = await sdk.playlists.getPlaylists({ playlistType: 'video', smart: 42 });
   console.log(result.data);
 })();
 
@@ -1408,7 +1408,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.getPlaylist(25521232.224839047);
+  const result = await sdk.playlists.getPlaylist(92983670.90558982);
   console.log(result.data);
 })();
 
@@ -1438,7 +1438,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.deletePlaylist(-60675901.030656695);
+  const result = await sdk.playlists.deletePlaylist(99606126.8799004);
   console.log(result.data);
 })();
 
@@ -1468,7 +1468,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.updatePlaylist(65200160.70787519);
+  const result = await sdk.playlists.updatePlaylist(59306036.18112618);
   console.log(result.data);
 })();
 
@@ -1484,7 +1484,7 @@ Retrieve Playlist Contents
 | Name    | Type| Description |
 | :-------- | :----------| :----------|
 | playlistId | number | the ID of the playlist |
-| type | number | the metadata type of the item to return |
+| type_ | number | the metadata type of the item to return |
 
 
 
@@ -1499,7 +1499,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.getPlaylistContents(62167005.120096, 2249491.135525167);
+  const result = await sdk.playlists.getPlaylistContents(-92245882.98409712, -16545042.744542778);
   console.log(result.data);
 })();
 
@@ -1529,7 +1529,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.clearPlaylistContents(24703702.974021226);
+  const result = await sdk.playlists.clearPlaylistContents(14196089.297935858);
   console.log(result.data);
 })();
 
@@ -1561,7 +1561,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.playlists.addPlaylistContents(-3444881.095142722, 'library://..', 123);
+  const result = await sdk.playlists.addPlaylistContents(72519034.14049211, 'library://..', 123);
   console.log(result.data);
 })();
 
@@ -1608,7 +1608,7 @@ Get a Transient Token.
 
 | Name    | Type| Description |
 | :-------- | :----------| :----------|
-| type | [SecurityType](/src/models/README.md#securitytype) | `delegation` - This is the only supported `type` parameter. |
+| type_ | [SecurityType](/src/models/README.md#securitytype) | `delegation` - This is the only supported `type` parameter. |
 | scope | [Scope](/src/models/README.md#scope) | `all` - This is the only supported `scope` parameter. |
 
 
@@ -1812,7 +1812,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.updater.checkForUpdates({ download: 'foo' });
+  const result = await sdk.updater.checkForUpdates({ download: 1 });
   console.log(result.data);
 })();
 
@@ -1845,7 +1845,7 @@ import { PlexSDK } from './src';
 const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
-  const result = await sdk.updater.applyUpdates({ tonight: 'foo', skip: 1 });
+  const result = await sdk.updater.applyUpdates({ tonight: 1, skip: 1 });
   console.log(result.data);
 })();
 
@@ -1898,23 +1898,23 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.video.startUniversalTranscode(
-    -87516165.31957072,
+    75991865.40406942,
     'path',
-    -62877687.452249065,
-    -23076170.49337977,
+    56663842.10067603,
+    -67967057.15750742,
     'protocol',
     {
-      fastSeek: -68282427.87913167,
-      directPlay: -74000014.76895301,
-      directStream: 84943482.78212723,
-      subtitleSize: -55237723.44813809,
+      fastSeek: -62704400.883238874,
+      directPlay: 52960718.78090119,
+      directStream: -94395071.761853,
+      subtitleSize: 33802925.01619348,
       subtites: 'subtites',
-      audioBoost: 29945312.780143052,
+      audioBoost: 10748580.253260702,
       location: 'location',
-      mediaBufferSize: -16516185.759793341,
+      mediaBufferSize: -46116700.53601071,
       session: 'session',
-      addDebugOverlay: -10261279.500832424,
-      autoAdjustQuality: 32480614.034784466,
+      addDebugOverlay: -8127838.686531514,
+      autoAdjustQuality: -52398513.48495814,
     },
   );
   console.log(result.data);
@@ -1956,16 +1956,16 @@ const sdk = new PlexSDK({ apiKey: process.env.PLEXSDK_API_KEY_TOKEN });
 
 (async () => {
   const result = await sdk.video.getTimeline(
-    -32608281.350922346,
+    46174238.848059,
     'key',
-    'stopped',
-    -74699884.18136695,
-    -66756517.26572518,
-    -24893130.84645444,
+    'paused',
+    30544127.328339994,
+    93380826.84958789,
+    -91474715.3910691,
     'context',
-    -75734154.35564606,
-    -89175857.3275879,
-    -15877259.38555336,
+    15473399.928571522,
+    6431628.867009878,
+    81455467.98715591,
   );
   console.log(result.data);
 })();

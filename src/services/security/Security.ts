@@ -17,21 +17,21 @@ export class SecurityService extends BaseService {
    * @param scope `all` - This is the only supported `scope` parameter.
    * @returns {Promise<any>} - The promise with the result
    */
-  async getTransientToken(type: SecurityType, scope: Scope): Promise<any> {
-    if (type === undefined || scope === undefined) {
+  async getTransientToken(type_: SecurityType, scope: Scope): Promise<any> {
+    if (type_ === undefined || scope === undefined) {
       throw new Error(
-        'The following are required parameters: type,scope, cannot be empty or blank',
+        'The following are required parameters: type_,scope, cannot be empty or blank',
       );
     }
     const queryParams: string[] = [];
-    if (type) {
-      queryParams.push(serializeQuery('form', true, 'type_', type));
+    if (type_) {
+      queryParams.push(serializeQuery('form', true, 'type', type_));
     }
     if (scope) {
       queryParams.push(serializeQuery('form', true, 'scope', scope));
     }
     const urlEndpoint = '/security/token';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -65,7 +65,7 @@ Note: requires Plex Media Server >= 1.15.4.
       queryParams.push(serializeQuery('form', true, 'source', source));
     }
     const urlEndpoint = '/security/resources';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},

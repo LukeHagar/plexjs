@@ -27,22 +27,22 @@ export class PlaylistsService extends BaseService {
    */
   async createPlaylist(
     title: string,
-    type: Type,
+    type_: Type,
     smart: Smart,
     optionalParams: { uri?: string; playQueueId?: number } = {},
   ): Promise<any> {
     const { uri, playQueueId } = optionalParams;
-    if (title === undefined || type === undefined || smart === undefined) {
+    if (title === undefined || type_ === undefined || smart === undefined) {
       throw new Error(
-        'The following are required parameters: title,type,smart, cannot be empty or blank',
+        'The following are required parameters: title,type_,smart, cannot be empty or blank',
       );
     }
     const queryParams: string[] = [];
     if (title) {
       queryParams.push(serializeQuery('form', true, 'title', title));
     }
-    if (type) {
-      queryParams.push(serializeQuery('form', true, 'type_', type));
+    if (type_) {
+      queryParams.push(serializeQuery('form', true, 'type', type_));
     }
     if (smart) {
       queryParams.push(serializeQuery('form', true, 'smart', smart));
@@ -54,11 +54,11 @@ export class PlaylistsService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'playQueueID', playQueueId));
     }
     const urlEndpoint = '/playlists';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.post(
       finalUrl,
-      { title, type_: type, smart, uri, playQueueID: playQueueId },
+      { title, type_, smart, uri, playQueueID: playQueueId },
       {
         ...this.getAuthorizationHeader(),
       },
@@ -93,8 +93,8 @@ export class PlaylistsService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'smart', smart));
     }
     const urlEndpoint = '/playlists/all';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -126,9 +126,9 @@ Smart playlist details contain the `content` attribute. This is the content URI 
     let urlEndpoint = '/playlists/{playlistID}';
     urlEndpoint = urlEndpoint.replace(
       '{playlistID}',
-      encodeURIComponent(serializePath('simple', false, playlistId, undefined)),
+      serializePath('simple', false, playlistId, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -159,9 +159,9 @@ Smart playlist details contain the `content` attribute. This is the content URI 
     let urlEndpoint = '/playlists/{playlistID}';
     urlEndpoint = urlEndpoint.replace(
       '{playlistID}',
-      encodeURIComponent(serializePath('simple', false, playlistId, undefined)),
+      serializePath('simple', false, playlistId, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.put(
       finalUrl,
       {},
@@ -192,9 +192,9 @@ Smart playlist details contain the `content` attribute. This is the content URI 
     let urlEndpoint = '/playlists/{playlistID}';
     urlEndpoint = urlEndpoint.replace(
       '{playlistID}',
-      encodeURIComponent(serializePath('simple', false, playlistId, undefined)),
+      serializePath('simple', false, playlistId, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.delete(
       finalUrl,
       {},
@@ -222,22 +222,22 @@ Note that for dumb playlists, items have a `playlistItemID` attribute which is u
    * @param type_ the metadata type of the item to return
    * @returns {Promise<any>} - The promise with the result
    */
-  async getPlaylistContents(playlistId: number, type: number): Promise<any> {
-    if (playlistId === undefined || type === undefined) {
+  async getPlaylistContents(playlistId: number, type_: number): Promise<any> {
+    if (playlistId === undefined || type_ === undefined) {
       throw new Error(
-        'The following are required parameters: playlistId,type, cannot be empty or blank',
+        'The following are required parameters: playlistId,type_, cannot be empty or blank',
       );
     }
     const queryParams: string[] = [];
     let urlEndpoint = '/playlists/{playlistID}/items';
     urlEndpoint = urlEndpoint.replace(
       '{playlistID}',
-      encodeURIComponent(serializePath('simple', false, playlistId, undefined)),
+      serializePath('simple', false, playlistId, undefined),
     );
-    if (type) {
-      queryParams.push(serializeQuery('form', true, 'type_', type));
+    if (type_) {
+      queryParams.push(serializeQuery('form', true, 'type', type_));
     }
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -274,7 +274,7 @@ With a smart playlist, passing a new `uri` parameter replaces the rules for the 
     let urlEndpoint = '/playlists/{playlistID}/items';
     urlEndpoint = urlEndpoint.replace(
       '{playlistID}',
-      encodeURIComponent(serializePath('simple', false, playlistId, undefined)),
+      serializePath('simple', false, playlistId, undefined),
     );
     if (uri) {
       queryParams.push(serializeQuery('form', true, 'uri', uri));
@@ -282,7 +282,7 @@ With a smart playlist, passing a new `uri` parameter replaces the rules for the 
     if (playQueueId) {
       queryParams.push(serializeQuery('form', true, 'playQueueID', playQueueId));
     }
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.put(
       finalUrl,
       { uri, playQueueID: playQueueId },
@@ -313,9 +313,9 @@ With a smart playlist, passing a new `uri` parameter replaces the rules for the 
     let urlEndpoint = '/playlists/{playlistID}/items';
     urlEndpoint = urlEndpoint.replace(
       '{playlistID}',
-      encodeURIComponent(serializePath('simple', false, playlistId, undefined)),
+      serializePath('simple', false, playlistId, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.delete(
       finalUrl,
       {},
@@ -362,7 +362,7 @@ The `force` argument is used to disable overwriting. If the `force` argument is 
       queryParams.push(serializeQuery('form', true, 'force', force));
     }
     const urlEndpoint = '/playlists/upload';
-    const finalUrl = `${this.baseUrl + urlEndpoint}?${encodeURI(queryParams.join('&'))}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}?${queryParams.join('&')}`);
     const response: any = await this.httpClient.post(
       finalUrl,
       { path, force },

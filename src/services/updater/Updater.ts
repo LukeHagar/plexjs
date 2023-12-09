@@ -17,7 +17,7 @@ export class UpdaterService extends BaseService {
    */
   async getUpdateStatus(): Promise<any> {
     const urlEndpoint = '/updater/status';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -49,8 +49,8 @@ export class UpdaterService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'download', download));
     }
     const urlEndpoint = '/updater/check';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.put(
       finalUrl,
       { download },
@@ -87,8 +87,8 @@ export class UpdaterService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'skip', skip));
     }
     const urlEndpoint = '/updater/apply';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.put(
       finalUrl,
       { tonight, skip },

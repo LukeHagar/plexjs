@@ -34,6 +34,9 @@ type Config = {
 
 export * from './http/errors';
 
+/**
+ * An Open API Spec for interacting with Plex.tv and Plex Servers
+ */
 export class PlexSDK {
   public activities: ActivitiesService;
   public butler: ButlerService;
@@ -65,6 +68,10 @@ export class PlexSDK {
     this.video = new VideoService(apiKey, apiKeyHeader);
   }
 
+  /**
+   * Sets the baseUrl that the SDK will use for its requests.
+   * @param {string} url
+   */
   setBaseUrl(url: string): void {
     this.activities.setBaseUrl(url);
     this.butler.setBaseUrl(url);
@@ -81,6 +88,11 @@ export class PlexSDK {
     this.video.setBaseUrl(url);
   }
 
+  /**
+   * Sets the api key used for authentication.
+   * @param {string} key
+   * @param {string} header
+   */
   setApiKey(key: string, header: string = 'X-Plex-Token') {
     this.activities.setApiKey(key, header);
     this.butler.setApiKey(key, header);

@@ -43,13 +43,15 @@ describe('test Butler', () => {
   describe('test startTask', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/butler/fugiat')
+        .post('/butler/itaque')
         .reply(200, { data: {} });
-      return sdk.butler.startTask('fugiat').then((r: any) => expect(r.data).toEqual({ data: {} }));
+      return sdk.butler.startTask('itaque').then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('http://10.10.10.47:32400').post('/butler/sunt').reply(200, { data: {} });
+      const scope = nock('http://10.10.10.47:32400')
+        .post('/butler/officia')
+        .reply(200, { data: {} });
       return expect(async () => await sdk.butler.startTask()).rejects.toThrow();
     });
 
@@ -64,21 +66,25 @@ describe('test Butler', () => {
   describe('test stopTask', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/butler/ducimus')
+        .delete('/butler/necessitatibus')
         .reply(200, { data: {} });
-      return sdk.butler.stopTask('ducimus').then((r: any) => expect(r.data).toEqual({ data: {} }));
+      return sdk.butler
+        .stopTask('necessitatibus')
+        .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/butler/veniam')
+        .delete('/butler/adipisci')
         .reply(200, { data: {} });
       return expect(async () => await sdk.butler.stopTask()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('http://10.10.10.47:32400').delete('/butler/in').reply(404, { data: {} });
-      return expect(async () => await sdk.butler.stopTask('in')).rejects.toThrow();
+      const scope = nock('http://10.10.10.47:32400')
+        .delete('/butler/veritatis')
+        .reply(404, { data: {} });
+      return expect(async () => await sdk.butler.stopTask('veritatis')).rejects.toThrow();
     });
   });
 });

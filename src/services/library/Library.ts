@@ -18,8 +18,8 @@ export class LibraryService extends BaseService {
    * @param optionalParams.type_ - Item type
    * @returns {Promise<any>} - The promise with the result
    */
-  async getFileHash(url: string, optionalParams: { type?: number } = {}): Promise<any> {
-    const { type } = optionalParams;
+  async getFileHash(url: string, optionalParams: { type_?: number } = {}): Promise<any> {
+    const { type_ } = optionalParams;
     if (url === undefined) {
       throw new Error('The following parameter is required: url, cannot be empty or blank');
     }
@@ -27,12 +27,12 @@ export class LibraryService extends BaseService {
     if (url) {
       queryParams.push(serializeQuery('form', true, 'url', url));
     }
-    if (type) {
-      queryParams.push(serializeQuery('form', true, 'type_', type));
+    if (type_) {
+      queryParams.push(serializeQuery('form', true, 'type', type_));
     }
     const urlEndpoint = '/library/hashes';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -57,7 +57,7 @@ export class LibraryService extends BaseService {
    */
   async getRecentlyAdded(): Promise<Response<GetRecentlyAddedResponse>> {
     const urlEndpoint = '/library/recentlyAdded';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -87,7 +87,7 @@ This allows a client to provide a rich interface around the media (e.g. allow so
    */
   async getLibraries(): Promise<any> {
     const urlEndpoint = '/library/sections';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -145,13 +145,13 @@ Only exists for backwards compatibility, media providers other than the server l
     let urlEndpoint = '/library/sections/{sectionId}';
     urlEndpoint = urlEndpoint.replace(
       '{sectionId}',
-      encodeURIComponent(serializePath('simple', false, sectionId, undefined)),
+      serializePath('simple', false, sectionId, undefined),
     );
     if (includeDetails) {
       queryParams.push(serializeQuery('form', true, 'includeDetails', includeDetails));
     }
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -181,9 +181,9 @@ Only exists for backwards compatibility, media providers other than the server l
     let urlEndpoint = '/library/sections/{sectionId}';
     urlEndpoint = urlEndpoint.replace(
       '{sectionId}',
-      encodeURIComponent(serializePath('simple', false, sectionId, undefined)),
+      serializePath('simple', false, sectionId, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.delete(
       finalUrl,
       {},
@@ -212,9 +212,9 @@ Only exists for backwards compatibility, media providers other than the server l
    */
   async getLibraryItems(
     sectionId: number,
-    optionalParams: { type?: number; filter?: string } = {},
+    optionalParams: { type_?: number; filter?: string } = {},
   ): Promise<any> {
-    const { type, filter } = optionalParams;
+    const { type_, filter } = optionalParams;
     if (sectionId === undefined) {
       throw new Error('The following parameter is required: sectionId, cannot be empty or blank');
     }
@@ -222,16 +222,16 @@ Only exists for backwards compatibility, media providers other than the server l
     let urlEndpoint = '/library/sections/{sectionId}/all';
     urlEndpoint = urlEndpoint.replace(
       '{sectionId}',
-      encodeURIComponent(serializePath('simple', false, sectionId, undefined)),
+      serializePath('simple', false, sectionId, undefined),
     );
-    if (type) {
-      queryParams.push(serializeQuery('form', true, 'type_', type));
+    if (type_) {
+      queryParams.push(serializeQuery('form', true, 'type', type_));
     }
     if (filter) {
       queryParams.push(serializeQuery('form', true, 'filter', filter));
     }
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -262,9 +262,9 @@ Only exists for backwards compatibility, media providers other than the server l
     let urlEndpoint = '/library/sections/{sectionId}/refresh';
     urlEndpoint = urlEndpoint.replace(
       '{sectionId}',
-      encodeURIComponent(serializePath('simple', false, sectionId, undefined)),
+      serializePath('simple', false, sectionId, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -293,29 +293,29 @@ Only exists for backwards compatibility, media providers other than the server l
    */
   async getLatestLibraryItems(
     sectionId: number,
-    type: number,
+    type_: number,
     optionalParams: { filter?: string } = {},
   ): Promise<any> {
     const { filter } = optionalParams;
-    if (sectionId === undefined || type === undefined) {
+    if (sectionId === undefined || type_ === undefined) {
       throw new Error(
-        'The following are required parameters: sectionId,type, cannot be empty or blank',
+        'The following are required parameters: sectionId,type_, cannot be empty or blank',
       );
     }
     const queryParams: string[] = [];
     let urlEndpoint = '/library/sections/{sectionId}/latest';
     urlEndpoint = urlEndpoint.replace(
       '{sectionId}',
-      encodeURIComponent(serializePath('simple', false, sectionId, undefined)),
+      serializePath('simple', false, sectionId, undefined),
     );
-    if (type) {
-      queryParams.push(serializeQuery('form', true, 'type_', type));
+    if (type_) {
+      queryParams.push(serializeQuery('form', true, 'type', type_));
     }
     if (filter) {
       queryParams.push(serializeQuery('form', true, 'filter', filter));
     }
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -344,29 +344,29 @@ Only exists for backwards compatibility, media providers other than the server l
    */
   async getCommonLibraryItems(
     sectionId: number,
-    type: number,
+    type_: number,
     optionalParams: { filter?: string } = {},
   ): Promise<any> {
     const { filter } = optionalParams;
-    if (sectionId === undefined || type === undefined) {
+    if (sectionId === undefined || type_ === undefined) {
       throw new Error(
-        'The following are required parameters: sectionId,type, cannot be empty or blank',
+        'The following are required parameters: sectionId,type_, cannot be empty or blank',
       );
     }
     const queryParams: string[] = [];
     let urlEndpoint = '/library/sections/{sectionId}/common';
     urlEndpoint = urlEndpoint.replace(
       '{sectionId}',
-      encodeURIComponent(serializePath('simple', false, sectionId, undefined)),
+      serializePath('simple', false, sectionId, undefined),
     );
-    if (type) {
-      queryParams.push(serializeQuery('form', true, 'type_', type));
+    if (type_) {
+      queryParams.push(serializeQuery('form', true, 'type', type_));
     }
     if (filter) {
       queryParams.push(serializeQuery('form', true, 'filter', filter));
     }
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -397,9 +397,9 @@ Only exists for backwards compatibility, media providers other than the server l
     let urlEndpoint = '/library/metadata/{ratingKey}';
     urlEndpoint = urlEndpoint.replace(
       '{ratingKey}',
-      encodeURIComponent(serializePath('simple', false, ratingKey, undefined)),
+      serializePath('simple', false, ratingKey, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -430,9 +430,9 @@ Only exists for backwards compatibility, media providers other than the server l
     let urlEndpoint = '/library/metadata/{ratingKey}/children';
     urlEndpoint = urlEndpoint.replace(
       '{ratingKey}',
-      encodeURIComponent(serializePath('simple', false, ratingKey, undefined)),
+      serializePath('simple', false, ratingKey, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -457,7 +457,7 @@ Only exists for backwards compatibility, media providers other than the server l
    */
   async getOnDeck(): Promise<Response<GetOnDeckResponse>> {
     const urlEndpoint = '/library/onDeck';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},

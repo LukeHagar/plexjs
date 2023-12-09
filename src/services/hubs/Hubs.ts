@@ -29,8 +29,8 @@ export class HubsService extends BaseService {
       queryParams.push(serializeQuery('form', true, 'onlyTransient', onlyTransient));
     }
     const urlEndpoint = '/hubs';
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -69,7 +69,7 @@ export class HubsService extends BaseService {
     let urlEndpoint = '/hubs/sections/{sectionId}';
     urlEndpoint = urlEndpoint.replace(
       '{sectionId}',
-      encodeURIComponent(serializePath('simple', false, sectionId, undefined)),
+      serializePath('simple', false, sectionId, undefined),
     );
     if (count) {
       queryParams.push(serializeQuery('form', true, 'count', count));
@@ -77,8 +77,8 @@ export class HubsService extends BaseService {
     if (onlyTransient) {
       queryParams.push(serializeQuery('form', true, 'onlyTransient', onlyTransient));
     }
-    const urlParams = queryParams.length > 0 ? `?${encodeURI(queryParams.join('&'))}` : '';
-    const finalUrl = `${this.baseUrl + urlEndpoint}${urlParams}`;
+    const urlParams = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}${urlParams}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},

@@ -15,7 +15,7 @@ export class ActivitiesService extends BaseService {
    */
   async getServerActivities(): Promise<Response<GetServerActivitiesResponse>> {
     const urlEndpoint = '/activities';
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.get(
       finalUrl,
       {},
@@ -47,9 +47,9 @@ export class ActivitiesService extends BaseService {
     let urlEndpoint = '/activities/{activityUUID}';
     urlEndpoint = urlEndpoint.replace(
       '{activityUUID}',
-      encodeURIComponent(serializePath('simple', false, activityUuid, undefined)),
+      serializePath('simple', false, activityUuid, undefined),
     );
-    const finalUrl = `${this.baseUrl + urlEndpoint}`;
+    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
     const response: any = await this.httpClient.delete(
       finalUrl,
       {},

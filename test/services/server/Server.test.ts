@@ -73,18 +73,18 @@ describe('test Server', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/photo/:/transcode?width=4529130729&height=5&opacity=1&blur=5&minSize=5&upscale=4&url=corrupti',
+          '/photo/:/transcode?width=4812092983&height=7&opacity=4&blur=3&minSize=7&upscale=5&url=eius',
         )
         .reply(200, { data: {} });
       return sdk.server
-        .getResizedPhoto(4529130729, 5, 1, 5, 5, 4, 'corrupti')
+        .getResizedPhoto(4812092983, 7, 4, 3, 7, 5, 'eius')
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/photo/:/transcode?width=7748286048&height=7&opacity=2&blur=8&minSize=6&upscale=6&url=accusantium',
+          '/photo/:/transcode?width=4674351221&height=8&opacity=1&blur=3&minSize=2&upscale=3&url=hic',
         )
         .reply(200, { data: {} });
       return expect(async () => await sdk.server.getResizedPhoto()).rejects.toThrow();
@@ -93,11 +93,11 @@ describe('test Server', () => {
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
         .get(
-          '/photo/:/transcode?width=8905574180&height=3&opacity=3&blur=7&minSize=5&upscale=8&url=optio',
+          '/photo/:/transcode?width=2192802438&height=6&opacity=7&blur=1&minSize=9&upscale=5&url=commodi',
         )
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.server.getResizedPhoto(8905574180, 3, 3, 7, 5, 8, 'optio'),
+        async () => await sdk.server.getResizedPhoto(2192802438, 6, 7, 1, 9, 5, 'commodi'),
       ).rejects.toThrow();
     });
   });

@@ -22,29 +22,29 @@ describe('test Playlists', () => {
   describe('test createPlaylist', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/playlists?title=porro&type_=fugiat&smart=9&uri=nihil&playQueueID=6')
+        .post('/playlists?title=non&type=autem&smart=9&uri=ea&playQueueID=5')
         .reply(200, { data: {} });
       return sdk.playlists
-        .createPlaylist('porro', 'fugiat', 9, { uri: 'nihil', playQueueID: 6 })
+        .createPlaylist('non', 'autem', 9, { uri: 'ea', playQueueID: 5 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/playlists?title=perspiciatis&type_=maxime&smart=7&uri=minima&playQueueID=7')
+        .post('/playlists?title=ullam&type=similique&smart=1&uri=numquam&playQueueID=7')
         .reply(200, { data: {} });
       return expect(async () => await sdk.playlists.createPlaylist()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/playlists?title=nam&type_=excepturi&smart=9&uri=iusto&playQueueID=5')
+        .post('/playlists?title=quis&type=inventore&smart=4&uri=facere&playQueueID=7')
         .reply(404, { data: {} });
       return expect(
         async () =>
-          await sdk.playlists.createPlaylist('nam', 'excepturi', 9, {
-            uri: 'iusto',
-            playQueueID: 5,
+          await sdk.playlists.createPlaylist('quis', 'inventore', 4, {
+            uri: 'facere',
+            playQueueID: 7,
           }),
       ).rejects.toThrow();
     });
@@ -53,119 +53,119 @@ describe('test Playlists', () => {
   describe('test getPlaylists', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/playlists/all?playlistType=eveniet&smart=9')
+        .get('/playlists/all?playlistType=laborum&smart=2')
         .reply(200, { data: {} });
       return sdk.playlists
-        .getPlaylists({ playlistType: 'eveniet', smart: 9 })
+        .getPlaylists({ playlistType: 'laborum', smart: 2 })
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
   });
 
   describe('test getPlaylist', () => {
     test('test api call', () => {
-      const scope = nock('http://10.10.10.47:32400').get('/playlists/4').reply(200, { data: {} });
-      return sdk.playlists.getPlaylist(4).then((r: any) => expect(r.data).toEqual({ data: {} }));
+      const scope = nock('http://10.10.10.47:32400').get('/playlists/8').reply(200, { data: {} });
+      return sdk.playlists.getPlaylist(8).then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('http://10.10.10.47:32400').get('/playlists/4').reply(200, { data: {} });
+      const scope = nock('http://10.10.10.47:32400').get('/playlists/6').reply(200, { data: {} });
       return expect(async () => await sdk.playlists.getPlaylist()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('http://10.10.10.47:32400').get('/playlists/1').reply(404, { data: {} });
-      return expect(async () => await sdk.playlists.getPlaylist(1)).rejects.toThrow();
+      const scope = nock('http://10.10.10.47:32400').get('/playlists/6').reply(404, { data: {} });
+      return expect(async () => await sdk.playlists.getPlaylist(6)).rejects.toThrow();
     });
   });
 
   describe('test updatePlaylist', () => {
     test('test api call', () => {
-      const scope = nock('http://10.10.10.47:32400').put('/playlists/3').reply(200, { data: {} });
-      return sdk.playlists.updatePlaylist(3).then((r: any) => expect(r.data).toEqual({ data: {} }));
+      const scope = nock('http://10.10.10.47:32400').put('/playlists/6').reply(200, { data: {} });
+      return sdk.playlists.updatePlaylist(6).then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
-      const scope = nock('http://10.10.10.47:32400').put('/playlists/6').reply(200, { data: {} });
+      const scope = nock('http://10.10.10.47:32400').put('/playlists/1').reply(200, { data: {} });
       return expect(async () => await sdk.playlists.updatePlaylist()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
-      const scope = nock('http://10.10.10.47:32400').put('/playlists/4').reply(404, { data: {} });
-      return expect(async () => await sdk.playlists.updatePlaylist(4)).rejects.toThrow();
+      const scope = nock('http://10.10.10.47:32400').put('/playlists/8').reply(404, { data: {} });
+      return expect(async () => await sdk.playlists.updatePlaylist(8)).rejects.toThrow();
     });
   });
 
   describe('test deletePlaylist', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/playlists/8')
+        .delete('/playlists/2')
         .reply(200, { data: {} });
-      return sdk.playlists.deletePlaylist(8).then((r: any) => expect(r.data).toEqual({ data: {} }));
+      return sdk.playlists.deletePlaylist(2).then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/playlists/9')
+        .delete('/playlists/2')
         .reply(200, { data: {} });
       return expect(async () => await sdk.playlists.deletePlaylist()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/playlists/1')
+        .delete('/playlists/4')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.playlists.deletePlaylist(1)).rejects.toThrow();
+      return expect(async () => await sdk.playlists.deletePlaylist(4)).rejects.toThrow();
     });
   });
 
   describe('test getPlaylistContents', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/playlists/5/items?type_=1')
+        .get('/playlists/7/items?type=1')
         .reply(200, { data: {} });
       return sdk.playlists
-        .getPlaylistContents(5, 1)
+        .getPlaylistContents(7, 1)
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/playlists/2/items?type_=7')
+        .get('/playlists/9/items?type=3')
         .reply(200, { data: {} });
       return expect(async () => await sdk.playlists.getPlaylistContents()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .get('/playlists/9/items?type_=2')
+        .get('/playlists/8/items?type=9')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.playlists.getPlaylistContents(9, 2)).rejects.toThrow();
+      return expect(async () => await sdk.playlists.getPlaylistContents(8, 9)).rejects.toThrow();
     });
   });
 
   describe('test addPlaylistContents', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .put('/playlists/4/items?uri=veniam&playQueueID=1')
+        .put('/playlists/8/items?uri=amet&playQueueID=2')
         .reply(200, { data: {} });
       return sdk.playlists
-        .addPlaylistContents(4, 'veniam', 1)
+        .addPlaylistContents(8, 'amet', 2)
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .put('/playlists/1/items?uri=similique&playQueueID=9')
+        .put('/playlists/9/items?uri=id&playQueueID=6')
         .reply(200, { data: {} });
       return expect(async () => await sdk.playlists.addPlaylistContents()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .put('/playlists/5/items?uri=similique&playQueueID=8')
+        .put('/playlists/5/items?uri=ea&playQueueID=1')
         .reply(404, { data: {} });
       return expect(
-        async () => await sdk.playlists.addPlaylistContents(5, 'similique', 8),
+        async () => await sdk.playlists.addPlaylistContents(5, 'ea', 1),
       ).rejects.toThrow();
     });
   });
@@ -173,50 +173,52 @@ describe('test Playlists', () => {
   describe('test clearPlaylistContents', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/playlists/1/items')
+        .delete('/playlists/3/items')
         .reply(200, { data: {} });
       return sdk.playlists
-        .clearPlaylistContents(1)
+        .clearPlaylistContents(3)
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/playlists/9/items')
+        .delete('/playlists/6/items')
         .reply(200, { data: {} });
       return expect(async () => await sdk.playlists.clearPlaylistContents()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .delete('/playlists/5/items')
+        .delete('/playlists/4/items')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.playlists.clearPlaylistContents(5)).rejects.toThrow();
+      return expect(async () => await sdk.playlists.clearPlaylistContents(4)).rejects.toThrow();
     });
   });
 
   describe('test uploadPlaylist', () => {
     test('test api call', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/playlists/upload?path=a&force=5')
+        .post('/playlists/upload?path=minus&force=7')
         .reply(200, { data: {} });
       return sdk.playlists
-        .uploadPlaylist('a', 5)
+        .uploadPlaylist('minus', 7)
         .then((r: any) => expect(r.data).toEqual({ data: {} }));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/playlists/upload?path=facere&force=6')
+        .post('/playlists/upload?path=non&force=5')
         .reply(200, { data: {} });
       return expect(async () => await sdk.playlists.uploadPlaylist()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('http://10.10.10.47:32400')
-        .post('/playlists/upload?path=animi&force=5')
+        .post('/playlists/upload?path=similique&force=8')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.playlists.uploadPlaylist('animi', 5)).rejects.toThrow();
+      return expect(
+        async () => await sdk.playlists.uploadPlaylist('similique', 8),
+      ).rejects.toThrow();
     });
   });
 });
