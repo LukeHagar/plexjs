@@ -1,0 +1,36 @@
+{
+  "type": "commonjs",
+  "name": "openapi",
+  "version": "0.1.0",
+  "author": "Speakeasy",
+  "main": "./index.js",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LukeHagar/plexjs.git",
+    "directory": "."
+  },
+  "scripts": {
+    "lint": "eslint --max-warnings=0 src",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [],
+  "peerDependencies": {
+    "zod": ">= 3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "eslint": "^8.55.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0",
+    "@types/jsonpath": "^0.2.4",
+    "typescript": "^5.3.3",
+    "zod": "^3.22.4"
+  },
+  "dependencies": {
+    "decimal.js": "^10.4.3",
+    "jsonpath": "^1.1.1"
+  }
+}
