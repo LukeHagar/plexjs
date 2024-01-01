@@ -31,7 +31,7 @@ This request is intended to be very fast, and called as the user types.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -86,7 +86,7 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -137,7 +137,7 @@ This will search the database for the string provided.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({

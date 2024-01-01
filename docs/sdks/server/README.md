@@ -24,7 +24,7 @@ Server Capabilities
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -68,7 +68,7 @@ Get Server Preferences
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -112,7 +112,7 @@ Get Available Clients
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -156,7 +156,7 @@ Get Devices
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -200,7 +200,7 @@ Get Server Identity
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -244,7 +244,7 @@ Returns MyPlex Account Information
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -289,8 +289,8 @@ Plex's Photo transcoder is used throughout the service to serve images at specif
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { MinSize, Upscale } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { MinSize, Upscale } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -343,7 +343,7 @@ Get Server List
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({

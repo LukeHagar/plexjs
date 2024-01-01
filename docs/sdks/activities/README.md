@@ -24,7 +24,7 @@ Get Server Activities
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -68,7 +68,7 @@ Cancel Server Activities
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({

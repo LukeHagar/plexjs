@@ -31,8 +31,8 @@ Create a new playlist. By default the playlist is blank. To create a playlist al
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { Smart, TypeT } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Smart, TypeT } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -81,8 +81,8 @@ Get All Playlists given the specified filters.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { PlaylistType, QueryParamSmart } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { PlaylistType, QueryParamSmart } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -133,7 +133,7 @@ Smart playlist details contain the `content` attribute. This is the content URI 
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -181,7 +181,7 @@ This endpoint will delete a playlist
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -229,7 +229,7 @@ From PMS version 1.9.1 clients can also edit playlist metadata using this endpoi
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -280,7 +280,7 @@ Note that for dumb playlists, items have a `playlistItemID` attribute which is u
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -330,7 +330,7 @@ Clears a playlist, only works with dumb playlists. Returns the playlist.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -379,7 +379,7 @@ With a smart playlist, passing a new `uri` parameter replaces the rules for the 
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -431,8 +431,8 @@ Imports m3u playlists by passing a path on the server to scan for m3u-formatted 
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { Force } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Force } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({

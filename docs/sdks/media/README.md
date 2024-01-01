@@ -19,7 +19,7 @@ This will mark the provided media key as Played.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -66,7 +66,7 @@ This will mark the provided media key as Unplayed.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -114,7 +114,7 @@ This API command can be used to update the play progress of a media item.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({

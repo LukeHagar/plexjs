@@ -20,7 +20,7 @@ Querying status of updates
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -64,8 +64,8 @@ Checking for updates
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { Download } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Download } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -113,8 +113,8 @@ Note that these two parameters are effectively mutually exclusive. The `tonight`
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { Skip, Tonight } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Skip, Tonight } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({

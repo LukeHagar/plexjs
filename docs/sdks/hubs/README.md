@@ -18,8 +18,8 @@ Get Global Hubs filtered by the parameters provided.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { OnlyTransient } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { OnlyTransient } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -69,8 +69,8 @@ This endpoint will return a list of library specific hubs
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { QueryParamOnlyTransient } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { QueryParamOnlyTransient } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({

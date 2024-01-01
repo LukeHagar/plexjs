@@ -20,8 +20,8 @@ This endpoint will write a single-line log message, including a level and source
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { Level } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Level } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -73,7 +73,7 @@ This endpoint will write multiple lines to the main Plex Media Server log in a s
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -118,7 +118,7 @@ This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({

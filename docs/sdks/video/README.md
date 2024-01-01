@@ -18,7 +18,7 @@ Begin a Universal Transcode Session
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -69,8 +69,8 @@ Get the timeline for a media item
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { State } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { State } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({

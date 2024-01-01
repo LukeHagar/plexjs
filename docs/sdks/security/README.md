@@ -19,8 +19,8 @@ This endpoint provides the caller with a temporary token with the same access le
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
-import { QueryParamType, Scope } from "plexjs/models/operations";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { QueryParamType, Scope } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -71,7 +71,7 @@ Note: requires Plex Media Server >= 1.15.4.
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
   const sdk = new PlexAPI({
