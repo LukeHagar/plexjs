@@ -7,13 +7,13 @@ management:
 generation:
   comments: {}
   sdkClassName: Plex-API
-  repoURL: https://github.com/LukeHagar/plexjs.git
+  repoURL: https://github.com/speakeasy-sdks/Personal-sample-sdk-9.git
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: false
-  useClassNamesForArrayFields: true
 features:
   typescript:
     core: 3.3.12
@@ -38,7 +38,7 @@ typescript:
   installationURL: https://github.com/LukeHagar/plexjs
   maxMethodParams: 4
   outputModelSuffix: output
-  packageName: plexjs
+  packageName: '@lukehagar/plexjs'
   published: true
   repoSubDirectory: .
   templateVersion: v2
