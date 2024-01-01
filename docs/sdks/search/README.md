@@ -31,10 +31,10 @@ This request is intended to be very fast, and called as the user types.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -86,10 +86,10 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -137,10 +137,10 @@ This will search the database for the string provided.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 

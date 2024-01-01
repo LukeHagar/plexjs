@@ -20,10 +20,10 @@ Querying status of updates
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -64,11 +64,11 @@ Checking for updates
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { Download } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { Download } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -113,11 +113,11 @@ Note that these two parameters are effectively mutually exclusive. The `tonight`
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { Skip, Tonight } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { Skip, Tonight } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 

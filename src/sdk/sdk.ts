@@ -19,7 +19,7 @@ import { Sessions } from "./sessions";
 import { Updater } from "./updater";
 import { Video } from "./video";
 
-export class SDK extends ClientSDK {
+export class PlexAPI extends ClientSDK {
     private readonly options$: SDKOptions;
 
     constructor(options: SDKOptions = {}) {

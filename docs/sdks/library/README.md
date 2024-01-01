@@ -28,10 +28,10 @@ This resource returns hash values for local files
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -78,10 +78,10 @@ This endpoint will return the recently added content.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -128,10 +128,10 @@ This allows a client to provide a rich interface around the media (e.g. allow so
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -191,11 +191,11 @@ Returns details for the library. This can be thought of as an interstitial endpo
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { IncludeDetails } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { IncludeDetails } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -241,10 +241,10 @@ Delate a library using a specific section
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -289,10 +289,10 @@ This endpoint will return a list of library items filtered by the filter and typ
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -341,10 +341,10 @@ This endpoint Refreshes the library.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -389,10 +389,10 @@ This endpoint will return a list of the latest library items filtered by the fil
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -441,10 +441,10 @@ Represents a "Common" item. It contains only the common attributes of the items 
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -493,10 +493,10 @@ This endpoint will return the metadata of a library item specified with the rati
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -541,10 +541,10 @@ This endpoint will return the children of of a library item specified with the r
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -589,10 +589,10 @@ This endpoint will return the on deck content.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 

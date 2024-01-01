@@ -24,10 +24,10 @@ Server Capabilities
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -68,10 +68,10 @@ Get Server Preferences
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -112,10 +112,10 @@ Get Available Clients
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -156,10 +156,10 @@ Get Devices
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -200,10 +200,10 @@ Get Server Identity
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -244,10 +244,10 @@ Returns MyPlex Account Information
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -289,11 +289,11 @@ Plex's Photo transcoder is used throughout the service to serve images at specif
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { MinSize, Upscale } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { MinSize, Upscale } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -343,10 +343,10 @@ Get Server List
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 

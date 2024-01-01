@@ -20,10 +20,10 @@ This will retrieve the "Now Playing" Information of the PMS.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -64,10 +64,10 @@ This will Retrieve a listing of all history views.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -108,10 +108,10 @@ Get Transcode Sessions
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -152,10 +152,10 @@ Stop a Transcode Session
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 

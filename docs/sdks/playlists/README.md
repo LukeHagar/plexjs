@@ -31,11 +31,11 @@ Create a new playlist. By default the playlist is blank. To create a playlist al
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { Smart, TypeT } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { Smart, TypeT } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -81,11 +81,11 @@ Get All Playlists given the specified filters.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { PlaylistType, QueryParamSmart } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { PlaylistType, QueryParamSmart } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -133,10 +133,10 @@ Smart playlist details contain the `content` attribute. This is the content URI 
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -181,10 +181,10 @@ This endpoint will delete a playlist
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -229,10 +229,10 @@ From PMS version 1.9.1 clients can also edit playlist metadata using this endpoi
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -280,10 +280,10 @@ Note that for dumb playlists, items have a `playlistItemID` attribute which is u
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -330,10 +330,10 @@ Clears a playlist, only works with dumb playlists. Returns the playlist.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -379,10 +379,10 @@ With a smart playlist, passing a new `uri` parameter replaces the rules for the 
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -431,11 +431,11 @@ Imports m3u playlists by passing a path on the server to scan for m3u-formatted 
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { Force } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { Force } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 

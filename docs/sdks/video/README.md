@@ -18,10 +18,10 @@ Begin a Universal Transcode Session
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -69,11 +69,11 @@ Get the timeline for a media item
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { State } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { State } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 

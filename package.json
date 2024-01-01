@@ -1,8 +1,8 @@
 {
   "type": "commonjs",
-  "name": "openapi",
-  "version": "0.1.0",
-  "author": "Speakeasy",
+  "name": "plexjs",
+  "version": "0.2.0",
+  "author": "LukeHagar",
   "main": "./index.js",
   "sideEffects": false,
   "repository": {

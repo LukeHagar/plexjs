@@ -21,10 +21,10 @@ Returns a list of butler tasks
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -70,10 +70,10 @@ This endpoint will attempt to start all Butler tasks that are enabled in the set
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -115,10 +115,10 @@ This endpoint will stop all currently running tasks and remove any scheduled tas
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { PlexAPI } from "plexjs";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -164,11 +164,11 @@ This endpoint will attempt to start a single Butler task that is enabled in the 
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { TaskName } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { TaskName } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
@@ -213,11 +213,11 @@ This endpoint will stop a currently running task by name, or remove it from the 
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
-import { PathParamTaskName } from "openapi/models/operations";
+import { PlexAPI } from "plexjs";
+import { PathParamTaskName } from "plexjs/models/operations";
 
 async function run() {
-  const sdk = new SDK({
+  const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 

@@ -439,7 +439,7 @@ docs/models/errors/startuniversaltranscoderesponsebody.md
 docs/models/errors/gettimelineerrors.md
 docs/models/errors/gettimelineresponsebody.md
 docs/models/components/security.md
-docs/sdks/sdk/README.md
+docs/sdks/plexapi/README.md
 docs/sdks/server/README.md
 docs/sdks/media/README.md
 docs/sdks/activities/README.md
