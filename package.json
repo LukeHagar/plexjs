@@ -1,7 +1,7 @@
 {
   "type": "commonjs",
   "name": "@lukehagar/plexjs",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "LukeHagar",
   "main": "./index.js",
   "sideEffects": false,

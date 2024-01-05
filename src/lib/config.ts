@@ -13,10 +13,6 @@ export const ServerList = [
     /**
      * The full address of your Plex Server
      */
-    "http://10.10.10.47:32400",
-    /**
-     * The full address of your Plex Server
-     */
     "{protocol}://{ip}:{port}",
 ] as const;
 
@@ -62,7 +58,6 @@ export function serverURLFromOptions(options: SDKOptions): URL {
     let serverURL = options.serverURL;
 
     const serverParams = [
-        {},
         {
             protocol: options.protocol?.toString() ?? "http",
             ip: options.ip?.toString() ?? "10.10.10.47",
@@ -84,7 +79,7 @@ export function serverURLFromOptions(options: SDKOptions): URL {
 export const SDK_METADATA = Object.freeze({
     language: "typescript",
     openapiDocVersion: "0.0.3",
-    sdkVersion: "0.3.0",
-    genVersion: "2.225.2",
-    userAgent: "speakeasy-sdk/typescript 0.3.0 2.225.2 0.0.3 @lukehagar/plexjs",
+    sdkVersion: "0.3.1",
+    genVersion: "2.228.1",
+    userAgent: "speakeasy-sdk/typescript 0.3.1 2.228.1 0.0.3 @lukehagar/plexjs",
 });
