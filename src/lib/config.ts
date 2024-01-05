@@ -85,6 +85,6 @@ export const SDK_METADATA = Object.freeze({
     language: "typescript",
     openapiDocVersion: "0.0.3",
     sdkVersion: "0.3.0",
-    genVersion: "2.223.3",
-    userAgent: "speakeasy-sdk/typescript 0.3.0 2.223.3 0.0.3 @lukehagar/plexjs",
+    genVersion: "2.225.2",
+    userAgent: "speakeasy-sdk/typescript 0.3.0 2.225.2 0.0.3 @lukehagar/plexjs",
 });

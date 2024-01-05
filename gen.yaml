@@ -1,26 +1,12 @@
-configVersion: 1.0.0
-management:
-  docChecksum: 550154cf1b4d0c237436fb18c418b5db
-  docVersion: 0.0.3
-  speakeasyVersion: 1.129.1
-  generationVersion: 2.223.3
+configVersion: 2.0.0
 generation:
-  comments: {}
   sdkClassName: Plex-API
-  repoURL: https://github.com/LukeHagar/plexjs.git
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: false
-  useClassNamesForArrayFields: true
-features:
-  typescript:
-    core: 3.3.12
-    flattening: 2.81.1
-    globalSecurity: 2.82.2
-    globalServerURLs: 2.82.1
-    nameOverrides: 2.81.1
 typescript:
   version: 0.3.0
   author: LukeHagar
@@ -35,10 +21,7 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  installationURL: https://github.com/LukeHagar/plexjs
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: '@lukehagar/plexjs'
-  published: true
-  repoSubDirectory: .
   templateVersion: v2
