@@ -47,7 +47,7 @@ export class Server extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "get", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "GET", path: path$, headers: headers$ },
             options
         );
 
@@ -103,7 +103,7 @@ export class Server extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "get", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "GET", path: path$, headers: headers$ },
             options
         );
 
@@ -156,7 +156,7 @@ export class Server extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "get", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "GET", path: path$, headers: headers$ },
             options
         );
 
@@ -210,7 +210,7 @@ export class Server extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "get", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "GET", path: path$, headers: headers$ },
             options
         );
 
@@ -266,7 +266,7 @@ export class Server extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "get", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "GET", path: path$, headers: headers$ },
             options
         );
 
@@ -320,7 +320,7 @@ export class Server extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "get", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "GET", path: path$, headers: headers$ },
             options
         );
 
@@ -404,7 +404,7 @@ export class Server extends ClientSDK {
         const response = await this.fetch$(
             {
                 security: securitySettings$,
-                method: "get",
+                method: "GET",
                 path: path$,
                 headers: headers$,
                 query: query$,
@@ -460,7 +460,7 @@ export class Server extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "get", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "GET", path: path$, headers: headers$ },
             options
         );
 

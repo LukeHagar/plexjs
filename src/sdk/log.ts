@@ -72,7 +72,7 @@ export class Log extends ClientSDK {
         const response = await this.fetch$(
             {
                 security: securitySettings$,
-                method: "get",
+                method: "GET",
                 path: path$,
                 headers: headers$,
                 query: query$,
@@ -129,7 +129,7 @@ export class Log extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "post", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "POST", path: path$, headers: headers$ },
             options
         );
 
@@ -181,7 +181,7 @@ export class Log extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const response = await this.fetch$(
-            { security: securitySettings$, method: "get", path: path$, headers: headers$ },
+            { security: securitySettings$, method: "GET", path: path$, headers: headers$ },
             options
         );
 
