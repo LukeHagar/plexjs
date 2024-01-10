@@ -201,7 +201,12 @@ export function encodeDeepObject(
   value: unknown,
   options?: { charEncoding?: "percent" | "none" },
 ) {
+  if (value == null) {
+    return "";
+  }
+
   let out = "";
+
   const encodeString = (v: string) => {
     return options?.charEncoding === "percent" ? encodeURIComponent(v) : v;
   };
