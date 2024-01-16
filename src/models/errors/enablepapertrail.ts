@@ -34,8 +34,8 @@ export class EnablePaperTrailResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: EnablePaperTrailResponseBodyData;
 
-    constructor(err: EnablePaperTrailResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: EnablePaperTrailResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

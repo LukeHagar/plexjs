@@ -34,8 +34,8 @@ export class GetUpdateStatusResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetUpdateStatusResponseBodyData;
 
-    constructor(err: GetUpdateStatusResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetUpdateStatusResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

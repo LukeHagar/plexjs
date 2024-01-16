@@ -34,8 +34,8 @@ export class GetSourceConnectionInformationResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetSourceConnectionInformationResponseBodyData;
 
-    constructor(err: GetSourceConnectionInformationResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetSourceConnectionInformationResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

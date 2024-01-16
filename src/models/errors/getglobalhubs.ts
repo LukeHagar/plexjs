@@ -34,8 +34,8 @@ export class GetGlobalHubsResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetGlobalHubsResponseBodyData;
 
-    constructor(err: GetGlobalHubsResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetGlobalHubsResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

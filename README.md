@@ -36,13 +36,10 @@ async function run() {
         accessToken: "<YOUR_API_KEY_HERE>",
     });
 
-    const res = await sdk.server.getServerCapabilities();
+    const result = await sdk.server.getServerCapabilities();
 
-    if (res?.statusCode !== 200) {
-        throw new Error("Unexpected status code: " + res?.statusCode || "-");
-    }
-
-    // handle response
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -172,20 +169,23 @@ async function run() {
         accessToken: "<YOUR_API_KEY_HERE>",
     });
 
-    const res = await sdk.server.getServerCapabilities().catch((err) => {
-        if (err instanceof errors.GetServerCapabilitiesResponseBody) {
-            console.error(err); // handle exception
-            return null;
-        } else {
-            throw err;
+    let result;
+    try {
+        result = await sdk.server.getServerCapabilities();
+    } catch (err) {
+        switch (true) {
+            case err instanceof errors.GetServerCapabilitiesResponseBody: {
+                console.error(err); // handle exception
+                return;
+            }
+            default: {
+                throw err;
+            }
         }
-    });
-
-    if (res?.statusCode !== 200) {
-        throw new Error("Unexpected status code: " + res?.statusCode || "-");
     }
 
-    // handle response
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -198,13 +198,30 @@ run();
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `{protocol}://{ip}:{port}` | `protocol` (default is `http`), `ip` (default is `10.10.10.47`), `port` (default is `32400`) |
 
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
 
+async function run() {
+    const sdk = new PlexAPI({
+        serverIdx: 0,
+        accessToken: "<YOUR_API_KEY_HERE>",
+    });
+
+    const result = await sdk.server.getServerCapabilities();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
 
 #### Variables
 
@@ -215,7 +232,26 @@ Some of the server options above contain variables. If you want to set the value
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: str` optional parameter when initializing the SDK client instance. For example:
+The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+async function run() {
+    const sdk = new PlexAPI({
+        serverURL: "{protocol}://{ip}:{port}",
+        accessToken: "<YOUR_API_KEY_HERE>",
+    });
+
+    const result = await sdk.server.getServerCapabilities();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
 <!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
@@ -287,19 +323,22 @@ async function run() {
         accessToken: "<YOUR_API_KEY_HERE>",
     });
 
-    const res = await sdk.server.getServerCapabilities();
+    const result = await sdk.server.getServerCapabilities();
 
-    if (res?.statusCode !== 200) {
-        throw new Error("Unexpected status code: " + res?.statusCode || "-");
-    }
-
-    // handle response
+    // Handle the result
+    console.log(result);
 }
 
 run();
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Requirements [requirements] -->
+## Requirements
+
+For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
+<!-- End Requirements [requirements] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

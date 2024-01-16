@@ -34,8 +34,8 @@ export class CheckForUpdatesResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: CheckForUpdatesResponseBodyData;
 
-    constructor(err: CheckForUpdatesResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: CheckForUpdatesResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

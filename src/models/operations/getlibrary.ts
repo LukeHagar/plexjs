@@ -59,7 +59,7 @@ export namespace GetLibraryRequest$ {
     export const inboundSchema: z.ZodType<GetLibraryRequest, z.ZodTypeDef, Inbound> = z
         .object({
             sectionId: z.number(),
-            includeDetails: IncludeDetails$.optional(),
+            includeDetails: IncludeDetails$.default(IncludeDetails.Zero),
         })
         .transform((v) => {
             return {
@@ -70,18 +70,18 @@ export namespace GetLibraryRequest$ {
 
     export type Outbound = {
         sectionId: number;
-        includeDetails?: IncludeDetails | undefined;
+        includeDetails: IncludeDetails;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibraryRequest> = z
         .object({
             sectionId: z.number(),
-            includeDetails: IncludeDetails$.optional(),
+            includeDetails: IncludeDetails$.default(IncludeDetails.Zero),
         })
         .transform((v) => {
             return {
                 sectionId: v.sectionId,
-                ...(v.includeDetails === undefined ? null : { includeDetails: v.includeDetails }),
+                includeDetails: v.includeDetails,
             };
         });
 }

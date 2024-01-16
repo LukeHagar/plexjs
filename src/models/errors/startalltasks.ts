@@ -34,8 +34,8 @@ export class StartAllTasksResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: StartAllTasksResponseBodyData;
 
-    constructor(err: StartAllTasksResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: StartAllTasksResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

@@ -42,13 +42,10 @@ async function run() {
   const sectionId = 1516.53;
   const limit = 5;
   
-  const res = await sdk.search.performSearch(query, sectionId, limit);
+  const result = await sdk.search.performSearch(query, sectionId, limit);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -97,13 +94,10 @@ async function run() {
   const sectionId = 4094.8;
   const limit = 5;
   
-  const res = await sdk.search.performVoiceSearch(query, sectionId, limit);
+  const result = await sdk.search.performVoiceSearch(query, sectionId, limit);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -146,13 +140,10 @@ async function run() {
 
   const query = "110";
   
-  const res = await sdk.search.getSearchResults(query);
+  const result = await sdk.search.getSearchResults(query);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

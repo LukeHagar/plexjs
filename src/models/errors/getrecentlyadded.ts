@@ -34,8 +34,8 @@ export class GetRecentlyAddedResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetRecentlyAddedResponseBodyData;
 
-    constructor(err: GetRecentlyAddedResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetRecentlyAddedResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

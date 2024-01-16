@@ -23,14 +23,14 @@ type RequestConfig = {
 };
 
 export class ClientSDK {
-    readonly #client: HTTPClient;
+    private readonly client: HTTPClient;
     protected readonly baseURL: URL;
 
     constructor(init: { client: HTTPClient; baseURL: URL }) {
         const url = init.baseURL;
         url.pathname = url.pathname.replace(/\/+$/, "") + "/";
 
-        this.#client = init.client;
+        this.client = init.client;
         this.baseURL = url;
     }
 
@@ -92,7 +92,7 @@ export class ClientSDK {
             method,
         });
 
-        return this.#client.request(req);
+        return this.client.request(req);
     }
 
     protected unpackHeaders = unpackHeaders;

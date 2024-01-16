@@ -34,8 +34,8 @@ export class GetButlerTasksResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetButlerTasksResponseBodyData;
 
-    constructor(err: GetButlerTasksResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetButlerTasksResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

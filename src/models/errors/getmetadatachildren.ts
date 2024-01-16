@@ -34,8 +34,8 @@ export class GetMetadataChildrenResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetMetadataChildrenResponseBodyData;
 
-    constructor(err: GetMetadataChildrenResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetMetadataChildrenResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

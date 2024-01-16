@@ -34,8 +34,8 @@ export class GetOnDeckResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetOnDeckResponseBodyData;
 
-    constructor(err: GetOnDeckResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetOnDeckResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

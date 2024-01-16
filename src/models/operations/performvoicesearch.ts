@@ -46,7 +46,7 @@ export namespace PerformVoiceSearchRequest$ {
         .object({
             query: z.string(),
             sectionId: z.number().optional(),
-            limit: z.number().optional(),
+            limit: z.number().default(3),
         })
         .transform((v) => {
             return {
@@ -59,20 +59,20 @@ export namespace PerformVoiceSearchRequest$ {
     export type Outbound = {
         query: string;
         sectionId?: number | undefined;
-        limit?: number | undefined;
+        limit: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PerformVoiceSearchRequest> = z
         .object({
             query: z.string(),
             sectionId: z.number().optional(),
-            limit: z.number().optional(),
+            limit: z.number().default(3),
         })
         .transform((v) => {
             return {
                 query: v.query,
                 ...(v.sectionId === undefined ? null : { sectionId: v.sectionId }),
-                ...(v.limit === undefined ? null : { limit: v.limit }),
+                limit: v.limit,
             };
         });
 }

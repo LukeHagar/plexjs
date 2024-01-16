@@ -34,8 +34,8 @@ export class GetTimelineResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetTimelineResponseBodyData;
 
-    constructor(err: GetTimelineResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetTimelineResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

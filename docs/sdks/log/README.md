@@ -32,13 +32,10 @@ async function run() {
   const message = "string";
   const source = "string";
   
-  const res = await sdk.log.logLine(level, message, source);
+  const result = await sdk.log.logLine(level, message, source);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -80,13 +77,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.log.logMultiLine();
+  const result = await sdk.log.logMultiLine();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -125,13 +119,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.log.enablePaperTrail();
+  const result = await sdk.log.enablePaperTrail();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

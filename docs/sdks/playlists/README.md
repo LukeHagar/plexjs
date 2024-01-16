@@ -39,17 +39,14 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.playlists.createPlaylist({
+  const result = await sdk.playlists.createPlaylist({
     title: "string",
     type: TypeT.Photo,
     smart: Smart.One,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -92,13 +89,10 @@ async function run() {
   const playlistType = PlaylistType.Audio;
   const smart = QueryParamSmart.Zero;
   
-  const res = await sdk.playlists.getPlaylists(playlistType, smart);
+  const result = await sdk.playlists.getPlaylists(playlistType, smart);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -142,13 +136,10 @@ async function run() {
 
   const playlistID = 4109.48;
   
-  const res = await sdk.playlists.getPlaylist(playlistID);
+  const result = await sdk.playlists.getPlaylist(playlistID);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -190,13 +181,10 @@ async function run() {
 
   const playlistID = 216.22;
   
-  const res = await sdk.playlists.deletePlaylist(playlistID);
+  const result = await sdk.playlists.deletePlaylist(playlistID);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -238,13 +226,10 @@ async function run() {
 
   const playlistID = 3915;
   
-  const res = await sdk.playlists.updatePlaylist(playlistID);
+  const result = await sdk.playlists.updatePlaylist(playlistID);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -290,13 +275,10 @@ async function run() {
   const playlistID = 5004.46;
   const type = 9403.59;
   
-  const res = await sdk.playlists.getPlaylistContents(playlistID, type);
+  const result = await sdk.playlists.getPlaylistContents(playlistID, type);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -339,13 +321,10 @@ async function run() {
 
   const playlistID = 1893.18;
   
-  const res = await sdk.playlists.clearPlaylistContents(playlistID);
+  const result = await sdk.playlists.clearPlaylistContents(playlistID);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -390,13 +369,10 @@ async function run() {
   const uri = "library://..";
   const playQueueID = 123;
   
-  const res = await sdk.playlists.addPlaylistContents(playlistID, uri, playQueueID);
+  const result = await sdk.playlists.addPlaylistContents(playlistID, uri, playQueueID);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -442,13 +418,10 @@ async function run() {
   const path = "/home/barkley/playlist.m3u";
   const force = Force.Zero;
   
-  const res = await sdk.playlists.uploadPlaylist(path, force);
+  const result = await sdk.playlists.uploadPlaylist(path, force);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

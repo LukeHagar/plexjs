@@ -28,13 +28,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.butler.getButlerTasks();
+  const result = await sdk.butler.getButlerTasks();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -77,13 +74,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.butler.startAllTasks();
+  const result = await sdk.butler.startAllTasks();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -122,13 +116,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.butler.stopAllTasks();
+  const result = await sdk.butler.stopAllTasks();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -174,13 +165,10 @@ async function run() {
 
   const taskName = TaskName.CleanOldBundles;
   
-  const res = await sdk.butler.startTask(taskName);
+  const result = await sdk.butler.startTask(taskName);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -223,13 +211,10 @@ async function run() {
 
   const taskName = PathParamTaskName.BackupDatabase;
   
-  const res = await sdk.butler.stopTask(taskName);
+  const result = await sdk.butler.stopTask(taskName);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

@@ -34,8 +34,8 @@ export class StopTranscodeSessionResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: StopTranscodeSessionResponseBodyData;
 
-    constructor(err: StopTranscodeSessionResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: StopTranscodeSessionResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

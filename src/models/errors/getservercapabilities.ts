@@ -34,8 +34,8 @@ export class GetServerCapabilitiesResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetServerCapabilitiesResponseBodyData;
 
-    constructor(err: GetServerCapabilitiesResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetServerCapabilitiesResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

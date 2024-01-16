@@ -34,8 +34,8 @@ export class GetFileHashResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetFileHashResponseBodyData;
 
-    constructor(err: GetFileHashResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetFileHashResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

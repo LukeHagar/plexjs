@@ -34,8 +34,8 @@ export class GetTransientTokenResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetTransientTokenResponseBodyData;
 
-    constructor(err: GetTransientTokenResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetTransientTokenResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

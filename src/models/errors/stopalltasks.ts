@@ -34,8 +34,8 @@ export class StopAllTasksResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: StopAllTasksResponseBodyData;
 
-    constructor(err: StopAllTasksResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: StopAllTasksResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

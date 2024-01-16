@@ -32,7 +32,7 @@ export type GetResizedPhotoRequest = {
     /**
      * The opacity for the resized photo
      */
-    opacity: number;
+    opacity?: number | undefined;
     /**
      * The width for the resized photo
      */
@@ -77,7 +77,7 @@ export namespace GetResizedPhotoRequest$ {
     export type Inbound = {
         width: number;
         height: number;
-        opacity: number;
+        opacity?: number | undefined;
         blur: number;
         minSize: MinSize;
         upscale: Upscale;
@@ -88,7 +88,7 @@ export namespace GetResizedPhotoRequest$ {
         .object({
             width: z.number(),
             height: z.number(),
-            opacity: z.number().int(),
+            opacity: z.number().int().default(100),
             blur: z.number(),
             minSize: MinSize$,
             upscale: Upscale$,
@@ -98,7 +98,7 @@ export namespace GetResizedPhotoRequest$ {
             return {
                 width: v.width,
                 height: v.height,
-                opacity: v.opacity,
+                ...(v.opacity === undefined ? null : { opacity: v.opacity }),
                 blur: v.blur,
                 minSize: v.minSize,
                 upscale: v.upscale,
@@ -120,7 +120,7 @@ export namespace GetResizedPhotoRequest$ {
         .object({
             width: z.number(),
             height: z.number(),
-            opacity: z.number().int(),
+            opacity: z.number().int().default(100),
             blur: z.number(),
             minSize: MinSize$,
             upscale: Upscale$,

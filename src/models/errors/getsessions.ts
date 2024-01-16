@@ -34,8 +34,8 @@ export class GetSessionsResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetSessionsResponseBodyData;
 
-    constructor(err: GetSessionsResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetSessionsResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

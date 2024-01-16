@@ -30,13 +30,10 @@ async function run() {
   const type = QueryParamType.Delegation;
   const scope = Scope.All;
   
-  const res = await sdk.security.getTransientToken(type, scope);
+  const result = await sdk.security.getTransientToken(type, scope);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -80,13 +77,10 @@ async function run() {
 
   const source = "server://client-identifier";
   
-  const res = await sdk.security.getSourceConnectionInformation(source);
+  const result = await sdk.security.getSourceConnectionInformation(source);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

@@ -5,8 +5,8 @@
 import { bytesToBase64 } from "./base64";
 
 export class EncodingError extends Error {
-  constructor(message: string, options?: ErrorOptions) {
-    super(message, options);
+  constructor(message: string) {
+    super(message);
     this.name = "EncodingError";
   }
 }

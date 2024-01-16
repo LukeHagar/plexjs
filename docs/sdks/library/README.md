@@ -38,13 +38,10 @@ async function run() {
   const url = "file://C:\Image.png&type=13";
   const type = 4462.17;
   
-  const res = await sdk.library.getFileHash(url, type);
+  const result = await sdk.library.getFileHash(url, type);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -85,13 +82,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.library.getRecentlyAdded();
+  const result = await sdk.library.getRecentlyAdded();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -135,13 +129,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.library.getLibraries();
+  const result = await sdk.library.getLibraries();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -202,13 +193,10 @@ async function run() {
   const sectionId = 1000;
   const includeDetails = IncludeDetails.Zero;
   
-  const res = await sdk.library.getLibrary(sectionId, includeDetails);
+  const result = await sdk.library.getLibrary(sectionId, includeDetails);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -250,13 +238,10 @@ async function run() {
 
   const sectionId = 1000;
   
-  const res = await sdk.library.deleteLibrary(sectionId);
+  const result = await sdk.library.deleteLibrary(sectionId);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -300,13 +285,10 @@ async function run() {
   const type = 760.66;
   const filter = "string";
   
-  const res = await sdk.library.getLibraryItems(sectionId, type, filter);
+  const result = await sdk.library.getLibraryItems(sectionId, type, filter);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -350,13 +332,10 @@ async function run() {
 
   const sectionId = 934.16;
   
-  const res = await sdk.library.refreshLibrary(sectionId);
+  const result = await sdk.library.refreshLibrary(sectionId);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -400,13 +379,10 @@ async function run() {
   const type = 8015.12;
   const filter = "string";
   
-  const res = await sdk.library.getLatestLibraryItems(sectionId, type, filter);
+  const result = await sdk.library.getLatestLibraryItems(sectionId, type, filter);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -452,13 +428,10 @@ async function run() {
   const type = 2760.31;
   const filter = "string";
   
-  const res = await sdk.library.getCommonLibraryItems(sectionId, type, filter);
+  const result = await sdk.library.getCommonLibraryItems(sectionId, type, filter);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -502,13 +475,10 @@ async function run() {
 
   const ratingKey = 8382.31;
   
-  const res = await sdk.library.getMetadata(ratingKey);
+  const result = await sdk.library.getMetadata(ratingKey);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -550,13 +520,10 @@ async function run() {
 
   const ratingKey = 1539.14;
   
-  const res = await sdk.library.getMetadataChildren(ratingKey);
+  const result = await sdk.library.getMetadataChildren(ratingKey);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -596,13 +563,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.library.getOnDeck();
+  const result = await sdk.library.getOnDeck();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

@@ -34,8 +34,8 @@ export class GetCommonLibraryItemsResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetCommonLibraryItemsResponseBodyData;
 
-    constructor(err: GetCommonLibraryItemsResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetCommonLibraryItemsResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

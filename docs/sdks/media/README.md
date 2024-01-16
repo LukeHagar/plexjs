@@ -28,13 +28,10 @@ async function run() {
 
   const key = 59398;
   
-  const res = await sdk.media.markPlayed(key);
+  const result = await sdk.media.markPlayed(key);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -75,13 +72,10 @@ async function run() {
 
   const key = 59398;
   
-  const res = await sdk.media.markUnplayed(key);
+  const result = await sdk.media.markUnplayed(key);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -125,13 +119,10 @@ async function run() {
   const time = 6900.91;
   const state = "string";
   
-  const res = await sdk.media.updatePlayProgress(key, time, state);
+  const result = await sdk.media.updatePlayProgress(key, time, state);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

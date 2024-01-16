@@ -34,8 +34,8 @@ export class UpdatePlayProgressResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: UpdatePlayProgressResponseBodyData;
 
-    constructor(err: UpdatePlayProgressResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: UpdatePlayProgressResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

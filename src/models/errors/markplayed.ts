@@ -34,8 +34,8 @@ export class MarkPlayedResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: MarkPlayedResponseBodyData;
 
-    constructor(err: MarkPlayedResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: MarkPlayedResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

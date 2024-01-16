@@ -10,8 +10,8 @@ export enum SecurityErrorCode {
 }
 
 export class SecurityError extends Error {
-    constructor(public code: SecurityErrorCode, message: string, options?: ErrorOptions) {
-        super(message, options);
+    constructor(public code: SecurityErrorCode, message: string) {
+        super(message);
         this.name = "SecurityError";
     }
 

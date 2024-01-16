@@ -34,8 +34,8 @@ export class GetResizedPhotoResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetResizedPhotoResponseBodyData;
 
-    constructor(err: GetResizedPhotoResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetResizedPhotoResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

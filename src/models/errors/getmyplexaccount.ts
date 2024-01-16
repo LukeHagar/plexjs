@@ -34,8 +34,8 @@ export class GetMyPlexAccountResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetMyPlexAccountResponseBodyData;
 
-    constructor(err: GetMyPlexAccountResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetMyPlexAccountResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

@@ -34,8 +34,8 @@ export class GetSessionHistoryResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetSessionHistoryResponseBodyData;
 
-    constructor(err: GetSessionHistoryResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetSessionHistoryResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

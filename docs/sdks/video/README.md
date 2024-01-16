@@ -25,7 +25,7 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.video.startUniversalTranscode({
+  const result = await sdk.video.startUniversalTranscode({
     hasMDE: 8924.99,
     path: "/etc/mail",
     mediaIndex: 9962.95,
@@ -33,11 +33,8 @@ async function run() {
     protocol: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -77,7 +74,7 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.video.getTimeline({
+  const result = await sdk.video.getTimeline({
     ratingKey: 716.56,
     key: "<key>",
     state: State.Paused,
@@ -90,11 +87,8 @@ async function run() {
     row: 3536.42,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

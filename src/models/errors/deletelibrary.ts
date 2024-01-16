@@ -34,8 +34,8 @@ export class DeleteLibraryResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: DeleteLibraryResponseBodyData;
 
-    constructor(err: DeleteLibraryResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: DeleteLibraryResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

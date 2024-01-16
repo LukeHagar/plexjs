@@ -29,13 +29,10 @@ async function run() {
   const count = 1262.49;
   const onlyTransient = OnlyTransient.One;
   
-  const res = await sdk.hubs.getGlobalHubs(count, onlyTransient);
+  const result = await sdk.hubs.getGlobalHubs(count, onlyTransient);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -81,13 +78,10 @@ async function run() {
   const count = 9010.22;
   const onlyTransient = QueryParamOnlyTransient.Zero;
   
-  const res = await sdk.hubs.getLibraryHubs(sectionId, count, onlyTransient);
+  const result = await sdk.hubs.getLibraryHubs(sectionId, count, onlyTransient);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

@@ -31,13 +31,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.activities.getServerActivities();
+  const result = await sdk.activities.getServerActivities();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -77,13 +74,10 @@ async function run() {
 
   const activityUUID = "string";
   
-  const res = await sdk.activities.cancelServerActivities(activityUUID);
+  const result = await sdk.activities.cancelServerActivities(activityUUID);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

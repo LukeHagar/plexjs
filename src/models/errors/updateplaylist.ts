@@ -34,8 +34,8 @@ export class UpdatePlaylistResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: UpdatePlaylistResponseBodyData;
 
-    constructor(err: UpdatePlaylistResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: UpdatePlaylistResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

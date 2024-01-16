@@ -34,8 +34,8 @@ export class LogMultiLineResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: LogMultiLineResponseBodyData;
 
-    constructor(err: LogMultiLineResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: LogMultiLineResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

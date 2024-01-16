@@ -27,13 +27,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.sessions.getSessions();
+  const result = await sdk.sessions.getSessions();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -71,13 +68,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.sessions.getSessionHistory();
+  const result = await sdk.sessions.getSessionHistory();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -115,13 +109,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.sessions.getTranscodeSessions();
+  const result = await sdk.sessions.getTranscodeSessions();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -161,13 +152,10 @@ async function run() {
 
   const sessionKey = "zz7llzqlx8w9vnrsbnwhbmep";
   
-  const res = await sdk.sessions.stopTranscodeSession(sessionKey);
+  const result = await sdk.sessions.stopTranscodeSession(sessionKey);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

@@ -27,13 +27,10 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const res = await sdk.updater.getUpdateStatus();
+  const result = await sdk.updater.getUpdateStatus();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -74,13 +71,10 @@ async function run() {
 
   const download = Download.One;
   
-  const res = await sdk.updater.checkForUpdates(download);
+  const result = await sdk.updater.checkForUpdates(download);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -124,13 +118,10 @@ async function run() {
   const tonight = Tonight.One;
   const skip = Skip.Zero;
   
-  const res = await sdk.updater.applyUpdates(tonight, skip);
+  const result = await sdk.updater.applyUpdates(tonight, skip);
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

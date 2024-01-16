@@ -34,8 +34,8 @@ export class GetServerListResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetServerListResponseBodyData;
 
-    constructor(err: GetServerListResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetServerListResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

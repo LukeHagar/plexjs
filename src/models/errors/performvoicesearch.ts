@@ -34,8 +34,8 @@ export class PerformVoiceSearchResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: PerformVoiceSearchResponseBodyData;
 
-    constructor(err: PerformVoiceSearchResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: PerformVoiceSearchResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

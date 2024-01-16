@@ -34,8 +34,8 @@ export class GetDevicesResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetDevicesResponseBodyData;
 
-    constructor(err: GetDevicesResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetDevicesResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

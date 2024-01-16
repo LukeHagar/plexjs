@@ -34,8 +34,8 @@ export class AddPlaylistContentsResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: AddPlaylistContentsResponseBodyData;
 
-    constructor(err: AddPlaylistContentsResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: AddPlaylistContentsResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

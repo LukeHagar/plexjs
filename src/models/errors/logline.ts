@@ -34,8 +34,8 @@ export class LogLineResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: LogLineResponseBodyData;
 
-    constructor(err: LogLineResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: LogLineResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {

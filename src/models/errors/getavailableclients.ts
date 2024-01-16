@@ -34,8 +34,8 @@ export class GetAvailableClientsResponseBody extends Error {
     /** The original data that was passed to this error instance. */
     data$: GetAvailableClientsResponseBodyData;
 
-    constructor(err: GetAvailableClientsResponseBodyData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: GetAvailableClientsResponseBodyData) {
+        super("");
         this.data$ = err;
 
         if (err.errors != null) {
