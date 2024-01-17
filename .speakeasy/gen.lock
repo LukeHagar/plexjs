@@ -4,7 +4,7 @@ management:
   docChecksum: 34d22936f2456c2c461abdfc773e3fc4
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.233.2
+  generationVersion: 2.234.3
   releaseVersion: 0.4.0
   configChecksum: 857d3a3d03c912d0f09faf0342203722
   repoURL: https://github.com/LukeHagar/plexjs.git
@@ -43,6 +43,7 @@ generatedFiles:
   - src/lib/base64.ts
   - src/lib/config.ts
   - src/lib/encodings.ts
+  - src/lib/event-streams.ts
   - src/lib/http.ts
   - src/lib/retries.ts
   - src/lib/sdks.ts
