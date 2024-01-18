@@ -4,6 +4,49 @@
 
 import { z } from "zod";
 
+export type Location = {
+    id?: number | undefined;
+    path?: string | undefined;
+};
+
+export type GetLibrariesDirectory = {
+    allowSync?: boolean | undefined;
+    art?: string | undefined;
+    composite?: string | undefined;
+    filters?: boolean | undefined;
+    refreshing?: boolean | undefined;
+    thumb?: string | undefined;
+    key?: string | undefined;
+    type?: string | undefined;
+    title?: string | undefined;
+    agent?: string | undefined;
+    scanner?: string | undefined;
+    language?: string | undefined;
+    uuid?: string | undefined;
+    updatedAt?: number | undefined;
+    createdAt?: number | undefined;
+    scannedAt?: number | undefined;
+    content?: boolean | undefined;
+    directory?: boolean | undefined;
+    contentChangedAt?: number | undefined;
+    hidden?: number | undefined;
+    location?: Array<Location> | undefined;
+};
+
+export type GetLibrariesMediaContainer = {
+    size?: number | undefined;
+    allowSync?: boolean | undefined;
+    title1?: string | undefined;
+    directory?: Array<GetLibrariesDirectory> | undefined;
+};
+
+/**
+ * The libraries available on the Server
+ */
+export type GetLibrariesResponseBody = {
+    mediaContainer?: GetLibrariesMediaContainer | undefined;
+};
+
 export type GetLibrariesResponse = {
     /**
      * HTTP response content type for this operation
@@ -17,7 +60,283 @@ export type GetLibrariesResponse = {
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse: Response;
+    /**
+     * The libraries available on the Server
+     */
+    object?: GetLibrariesResponseBody | undefined;
 };
+
+/** @internal */
+export namespace Location$ {
+    export type Inbound = {
+        id?: number | undefined;
+        path?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<Location, z.ZodTypeDef, Inbound> = z
+        .object({
+            id: z.number().int().optional(),
+            path: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.path === undefined ? null : { path: v.path }),
+            };
+        });
+
+    export type Outbound = {
+        id?: number | undefined;
+        path?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Location> = z
+        .object({
+            id: z.number().int().optional(),
+            path: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.path === undefined ? null : { path: v.path }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetLibrariesDirectory$ {
+    export type Inbound = {
+        allowSync?: boolean | undefined;
+        art?: string | undefined;
+        composite?: string | undefined;
+        filters?: boolean | undefined;
+        refreshing?: boolean | undefined;
+        thumb?: string | undefined;
+        key?: string | undefined;
+        type?: string | undefined;
+        title?: string | undefined;
+        agent?: string | undefined;
+        scanner?: string | undefined;
+        language?: string | undefined;
+        uuid?: string | undefined;
+        updatedAt?: number | undefined;
+        createdAt?: number | undefined;
+        scannedAt?: number | undefined;
+        content?: boolean | undefined;
+        directory?: boolean | undefined;
+        contentChangedAt?: number | undefined;
+        hidden?: number | undefined;
+        Location?: Array<Location$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetLibrariesDirectory, z.ZodTypeDef, Inbound> = z
+        .object({
+            allowSync: z.boolean().optional(),
+            art: z.string().optional(),
+            composite: z.string().optional(),
+            filters: z.boolean().optional(),
+            refreshing: z.boolean().optional(),
+            thumb: z.string().optional(),
+            key: z.string().optional(),
+            type: z.string().optional(),
+            title: z.string().optional(),
+            agent: z.string().optional(),
+            scanner: z.string().optional(),
+            language: z.string().optional(),
+            uuid: z.string().optional(),
+            updatedAt: z.number().int().optional(),
+            createdAt: z.number().int().optional(),
+            scannedAt: z.number().int().optional(),
+            content: z.boolean().optional(),
+            directory: z.boolean().optional(),
+            contentChangedAt: z.number().int().optional(),
+            hidden: z.number().int().optional(),
+            Location: z.array(z.lazy(() => Location$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.allowSync === undefined ? null : { allowSync: v.allowSync }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.composite === undefined ? null : { composite: v.composite }),
+                ...(v.filters === undefined ? null : { filters: v.filters }),
+                ...(v.refreshing === undefined ? null : { refreshing: v.refreshing }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.agent === undefined ? null : { agent: v.agent }),
+                ...(v.scanner === undefined ? null : { scanner: v.scanner }),
+                ...(v.language === undefined ? null : { language: v.language }),
+                ...(v.uuid === undefined ? null : { uuid: v.uuid }),
+                ...(v.updatedAt === undefined ? null : { updatedAt: v.updatedAt }),
+                ...(v.createdAt === undefined ? null : { createdAt: v.createdAt }),
+                ...(v.scannedAt === undefined ? null : { scannedAt: v.scannedAt }),
+                ...(v.content === undefined ? null : { content: v.content }),
+                ...(v.directory === undefined ? null : { directory: v.directory }),
+                ...(v.contentChangedAt === undefined
+                    ? null
+                    : { contentChangedAt: v.contentChangedAt }),
+                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
+                ...(v.Location === undefined ? null : { location: v.Location }),
+            };
+        });
+
+    export type Outbound = {
+        allowSync?: boolean | undefined;
+        art?: string | undefined;
+        composite?: string | undefined;
+        filters?: boolean | undefined;
+        refreshing?: boolean | undefined;
+        thumb?: string | undefined;
+        key?: string | undefined;
+        type?: string | undefined;
+        title?: string | undefined;
+        agent?: string | undefined;
+        scanner?: string | undefined;
+        language?: string | undefined;
+        uuid?: string | undefined;
+        updatedAt?: number | undefined;
+        createdAt?: number | undefined;
+        scannedAt?: number | undefined;
+        content?: boolean | undefined;
+        directory?: boolean | undefined;
+        contentChangedAt?: number | undefined;
+        hidden?: number | undefined;
+        Location?: Array<Location$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibrariesDirectory> = z
+        .object({
+            allowSync: z.boolean().optional(),
+            art: z.string().optional(),
+            composite: z.string().optional(),
+            filters: z.boolean().optional(),
+            refreshing: z.boolean().optional(),
+            thumb: z.string().optional(),
+            key: z.string().optional(),
+            type: z.string().optional(),
+            title: z.string().optional(),
+            agent: z.string().optional(),
+            scanner: z.string().optional(),
+            language: z.string().optional(),
+            uuid: z.string().optional(),
+            updatedAt: z.number().int().optional(),
+            createdAt: z.number().int().optional(),
+            scannedAt: z.number().int().optional(),
+            content: z.boolean().optional(),
+            directory: z.boolean().optional(),
+            contentChangedAt: z.number().int().optional(),
+            hidden: z.number().int().optional(),
+            location: z.array(z.lazy(() => Location$.outboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.allowSync === undefined ? null : { allowSync: v.allowSync }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.composite === undefined ? null : { composite: v.composite }),
+                ...(v.filters === undefined ? null : { filters: v.filters }),
+                ...(v.refreshing === undefined ? null : { refreshing: v.refreshing }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.agent === undefined ? null : { agent: v.agent }),
+                ...(v.scanner === undefined ? null : { scanner: v.scanner }),
+                ...(v.language === undefined ? null : { language: v.language }),
+                ...(v.uuid === undefined ? null : { uuid: v.uuid }),
+                ...(v.updatedAt === undefined ? null : { updatedAt: v.updatedAt }),
+                ...(v.createdAt === undefined ? null : { createdAt: v.createdAt }),
+                ...(v.scannedAt === undefined ? null : { scannedAt: v.scannedAt }),
+                ...(v.content === undefined ? null : { content: v.content }),
+                ...(v.directory === undefined ? null : { directory: v.directory }),
+                ...(v.contentChangedAt === undefined
+                    ? null
+                    : { contentChangedAt: v.contentChangedAt }),
+                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
+                ...(v.location === undefined ? null : { Location: v.location }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetLibrariesMediaContainer$ {
+    export type Inbound = {
+        size?: number | undefined;
+        allowSync?: boolean | undefined;
+        title1?: string | undefined;
+        Directory?: Array<GetLibrariesDirectory$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetLibrariesMediaContainer, z.ZodTypeDef, Inbound> = z
+        .object({
+            size: z.number().int().optional(),
+            allowSync: z.boolean().optional(),
+            title1: z.string().optional(),
+            Directory: z.array(z.lazy(() => GetLibrariesDirectory$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.allowSync === undefined ? null : { allowSync: v.allowSync }),
+                ...(v.title1 === undefined ? null : { title1: v.title1 }),
+                ...(v.Directory === undefined ? null : { directory: v.Directory }),
+            };
+        });
+
+    export type Outbound = {
+        size?: number | undefined;
+        allowSync?: boolean | undefined;
+        title1?: string | undefined;
+        Directory?: Array<GetLibrariesDirectory$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibrariesMediaContainer> = z
+        .object({
+            size: z.number().int().optional(),
+            allowSync: z.boolean().optional(),
+            title1: z.string().optional(),
+            directory: z.array(z.lazy(() => GetLibrariesDirectory$.outboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.allowSync === undefined ? null : { allowSync: v.allowSync }),
+                ...(v.title1 === undefined ? null : { title1: v.title1 }),
+                ...(v.directory === undefined ? null : { Directory: v.directory }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetLibrariesResponseBody$ {
+    export type Inbound = {
+        MediaContainer?: GetLibrariesMediaContainer$.Inbound | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetLibrariesResponseBody, z.ZodTypeDef, Inbound> = z
+        .object({
+            MediaContainer: z.lazy(() => GetLibrariesMediaContainer$.inboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.MediaContainer === undefined ? null : { mediaContainer: v.MediaContainer }),
+            };
+        });
+
+    export type Outbound = {
+        MediaContainer?: GetLibrariesMediaContainer$.Outbound | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibrariesResponseBody> = z
+        .object({
+            mediaContainer: z.lazy(() => GetLibrariesMediaContainer$.outboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.mediaContainer === undefined ? null : { MediaContainer: v.mediaContainer }),
+            };
+        });
+}
 
 /** @internal */
 export namespace GetLibrariesResponse$ {
@@ -25,6 +344,7 @@ export namespace GetLibrariesResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
+        object?: GetLibrariesResponseBody$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetLibrariesResponse, z.ZodTypeDef, Inbound> = z
@@ -32,12 +352,14 @@ export namespace GetLibrariesResponse$ {
             ContentType: z.string(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
+            object: z.lazy(() => GetLibrariesResponseBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 contentType: v.ContentType,
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 
@@ -45,6 +367,7 @@ export namespace GetLibrariesResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: never;
+        object?: GetLibrariesResponseBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibrariesResponse> = z
@@ -54,12 +377,14 @@ export namespace GetLibrariesResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
+            object: z.lazy(() => GetLibrariesResponseBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 ContentType: v.contentType,
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 }
