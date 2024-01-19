@@ -31,6 +31,37 @@ export type GetLibraryRequest = {
     includeDetails?: IncludeDetails | undefined;
 };
 
+export type GetLibraryDirectory = {
+    secondary?: boolean | undefined;
+    prompt?: string | undefined;
+    search?: boolean | undefined;
+    key?: string | undefined;
+    title?: string | undefined;
+};
+
+export type GetLibraryMediaContainer = {
+    size?: number | undefined;
+    allowSync?: boolean | undefined;
+    art?: string | undefined;
+    content?: string | undefined;
+    identifier?: string | undefined;
+    librarySectionID?: number | undefined;
+    mediaTagPrefix?: string | undefined;
+    mediaTagVersion?: number | undefined;
+    thumb?: string | undefined;
+    title1?: string | undefined;
+    viewGroup?: string | undefined;
+    viewMode?: number | undefined;
+    directory?: Array<GetLibraryDirectory> | undefined;
+};
+
+/**
+ * The details of the library
+ */
+export type GetLibraryResponseBody = {
+    mediaContainer?: GetLibraryMediaContainer | undefined;
+};
+
 export type GetLibraryResponse = {
     /**
      * HTTP response content type for this operation
@@ -44,6 +75,10 @@ export type GetLibraryResponse = {
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse: Response;
+    /**
+     * The details of the library
+     */
+    object?: GetLibraryResponseBody | undefined;
 };
 
 /** @internal */
@@ -87,11 +122,209 @@ export namespace GetLibraryRequest$ {
 }
 
 /** @internal */
+export namespace GetLibraryDirectory$ {
+    export type Inbound = {
+        secondary?: boolean | undefined;
+        prompt?: string | undefined;
+        search?: boolean | undefined;
+        key?: string | undefined;
+        title?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetLibraryDirectory, z.ZodTypeDef, Inbound> = z
+        .object({
+            secondary: z.boolean().optional(),
+            prompt: z.string().optional(),
+            search: z.boolean().optional(),
+            key: z.string().optional(),
+            title: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.secondary === undefined ? null : { secondary: v.secondary }),
+                ...(v.prompt === undefined ? null : { prompt: v.prompt }),
+                ...(v.search === undefined ? null : { search: v.search }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.title === undefined ? null : { title: v.title }),
+            };
+        });
+
+    export type Outbound = {
+        secondary?: boolean | undefined;
+        prompt?: string | undefined;
+        search?: boolean | undefined;
+        key?: string | undefined;
+        title?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibraryDirectory> = z
+        .object({
+            secondary: z.boolean().optional(),
+            prompt: z.string().optional(),
+            search: z.boolean().optional(),
+            key: z.string().optional(),
+            title: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.secondary === undefined ? null : { secondary: v.secondary }),
+                ...(v.prompt === undefined ? null : { prompt: v.prompt }),
+                ...(v.search === undefined ? null : { search: v.search }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.title === undefined ? null : { title: v.title }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetLibraryMediaContainer$ {
+    export type Inbound = {
+        size?: number | undefined;
+        allowSync?: boolean | undefined;
+        art?: string | undefined;
+        content?: string | undefined;
+        identifier?: string | undefined;
+        librarySectionID?: number | undefined;
+        mediaTagPrefix?: string | undefined;
+        mediaTagVersion?: number | undefined;
+        thumb?: string | undefined;
+        title1?: string | undefined;
+        viewGroup?: string | undefined;
+        viewMode?: number | undefined;
+        Directory?: Array<GetLibraryDirectory$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetLibraryMediaContainer, z.ZodTypeDef, Inbound> = z
+        .object({
+            size: z.number().int().optional(),
+            allowSync: z.boolean().optional(),
+            art: z.string().optional(),
+            content: z.string().optional(),
+            identifier: z.string().optional(),
+            librarySectionID: z.number().int().optional(),
+            mediaTagPrefix: z.string().optional(),
+            mediaTagVersion: z.number().int().optional(),
+            thumb: z.string().optional(),
+            title1: z.string().optional(),
+            viewGroup: z.string().optional(),
+            viewMode: z.number().int().optional(),
+            Directory: z.array(z.lazy(() => GetLibraryDirectory$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.allowSync === undefined ? null : { allowSync: v.allowSync }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.content === undefined ? null : { content: v.content }),
+                ...(v.identifier === undefined ? null : { identifier: v.identifier }),
+                ...(v.librarySectionID === undefined
+                    ? null
+                    : { librarySectionID: v.librarySectionID }),
+                ...(v.mediaTagPrefix === undefined ? null : { mediaTagPrefix: v.mediaTagPrefix }),
+                ...(v.mediaTagVersion === undefined
+                    ? null
+                    : { mediaTagVersion: v.mediaTagVersion }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.title1 === undefined ? null : { title1: v.title1 }),
+                ...(v.viewGroup === undefined ? null : { viewGroup: v.viewGroup }),
+                ...(v.viewMode === undefined ? null : { viewMode: v.viewMode }),
+                ...(v.Directory === undefined ? null : { directory: v.Directory }),
+            };
+        });
+
+    export type Outbound = {
+        size?: number | undefined;
+        allowSync?: boolean | undefined;
+        art?: string | undefined;
+        content?: string | undefined;
+        identifier?: string | undefined;
+        librarySectionID?: number | undefined;
+        mediaTagPrefix?: string | undefined;
+        mediaTagVersion?: number | undefined;
+        thumb?: string | undefined;
+        title1?: string | undefined;
+        viewGroup?: string | undefined;
+        viewMode?: number | undefined;
+        Directory?: Array<GetLibraryDirectory$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibraryMediaContainer> = z
+        .object({
+            size: z.number().int().optional(),
+            allowSync: z.boolean().optional(),
+            art: z.string().optional(),
+            content: z.string().optional(),
+            identifier: z.string().optional(),
+            librarySectionID: z.number().int().optional(),
+            mediaTagPrefix: z.string().optional(),
+            mediaTagVersion: z.number().int().optional(),
+            thumb: z.string().optional(),
+            title1: z.string().optional(),
+            viewGroup: z.string().optional(),
+            viewMode: z.number().int().optional(),
+            directory: z.array(z.lazy(() => GetLibraryDirectory$.outboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.allowSync === undefined ? null : { allowSync: v.allowSync }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.content === undefined ? null : { content: v.content }),
+                ...(v.identifier === undefined ? null : { identifier: v.identifier }),
+                ...(v.librarySectionID === undefined
+                    ? null
+                    : { librarySectionID: v.librarySectionID }),
+                ...(v.mediaTagPrefix === undefined ? null : { mediaTagPrefix: v.mediaTagPrefix }),
+                ...(v.mediaTagVersion === undefined
+                    ? null
+                    : { mediaTagVersion: v.mediaTagVersion }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.title1 === undefined ? null : { title1: v.title1 }),
+                ...(v.viewGroup === undefined ? null : { viewGroup: v.viewGroup }),
+                ...(v.viewMode === undefined ? null : { viewMode: v.viewMode }),
+                ...(v.directory === undefined ? null : { Directory: v.directory }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetLibraryResponseBody$ {
+    export type Inbound = {
+        MediaContainer?: GetLibraryMediaContainer$.Inbound | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetLibraryResponseBody, z.ZodTypeDef, Inbound> = z
+        .object({
+            MediaContainer: z.lazy(() => GetLibraryMediaContainer$.inboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.MediaContainer === undefined ? null : { mediaContainer: v.MediaContainer }),
+            };
+        });
+
+    export type Outbound = {
+        MediaContainer?: GetLibraryMediaContainer$.Outbound | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibraryResponseBody> = z
+        .object({
+            mediaContainer: z.lazy(() => GetLibraryMediaContainer$.outboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.mediaContainer === undefined ? null : { MediaContainer: v.mediaContainer }),
+            };
+        });
+}
+
+/** @internal */
 export namespace GetLibraryResponse$ {
     export type Inbound = {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
+        object?: GetLibraryResponseBody$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetLibraryResponse, z.ZodTypeDef, Inbound> = z
@@ -99,12 +332,14 @@ export namespace GetLibraryResponse$ {
             ContentType: z.string(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
+            object: z.lazy(() => GetLibraryResponseBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 contentType: v.ContentType,
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 
@@ -112,6 +347,7 @@ export namespace GetLibraryResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: never;
+        object?: GetLibraryResponseBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibraryResponse> = z
@@ -121,12 +357,14 @@ export namespace GetLibraryResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
+            object: z.lazy(() => GetLibraryResponseBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 ContentType: v.contentType,
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 }

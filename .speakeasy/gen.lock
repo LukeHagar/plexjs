@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 45c73686e6dbe8c29b7e2857b6194ccf
+  docChecksum: a14d0ae27d4f5bd83b80747112f74352
   docVersion: 0.0.3
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: 0.4.1
-  configChecksum: 2bbf5255fdb0ef20c753ed46816eda5b
+  releaseVersion: 0.4.2
+  configChecksum: 6e80d271f4991201f5c573665ed48a76
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -272,6 +272,9 @@ generatedFiles:
   - docs/models/operations/getlibrariesresponse.md
   - docs/models/operations/includedetails.md
   - docs/models/operations/getlibraryrequest.md
+  - docs/models/operations/getlibrarydirectory.md
+  - docs/models/operations/getlibrarymediacontainer.md
+  - docs/models/operations/getlibraryresponsebody.md
   - docs/models/operations/getlibraryresponse.md
   - docs/models/operations/deletelibraryrequest.md
   - docs/models/operations/deletelibraryresponse.md
