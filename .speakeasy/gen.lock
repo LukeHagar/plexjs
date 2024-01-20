@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: a14d0ae27d4f5bd83b80747112f74352
+  docChecksum: 1e8e82037a237e1d1467721fbd2c7ab0
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.237.2
-  releaseVersion: 0.4.2
-  configChecksum: 6e80d271f4991201f5c573665ed48a76
+  generationVersion: 2.237.3
+  releaseVersion: 0.5.0
+  configChecksum: ad00024d316f6c8b4b52b685d3907cf2
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -19,6 +19,7 @@ features:
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.1
     nameOverrides: 2.81.1
+    unions: 2.85.0
 generatedFiles:
   - src/sdk/server.ts
   - src/sdk/media.ts
@@ -181,6 +182,11 @@ generatedFiles:
   - docs/models/operations/mediacontainer.md
   - docs/models/operations/getservercapabilitiesresponsebody.md
   - docs/models/operations/getservercapabilitiesresponse.md
+  - docs/models/operations/two.md
+  - docs/models/operations/one.md
+  - docs/models/operations/setting.md
+  - docs/models/operations/getserverpreferencesmediacontainer.md
+  - docs/models/operations/getserverpreferencesresponsebody.md
   - docs/models/operations/getserverpreferencesresponse.md
   - docs/models/operations/server.md
   - docs/models/operations/getavailableclientsmediacontainer.md
@@ -273,6 +279,12 @@ generatedFiles:
   - docs/models/operations/includedetails.md
   - docs/models/operations/getlibraryrequest.md
   - docs/models/operations/getlibrarydirectory.md
+  - docs/models/operations/filter.md
+  - docs/models/operations/sort.md
+  - docs/models/operations/field.md
+  - docs/models/operations/getlibrarytype.md
+  - docs/models/operations/operator.md
+  - docs/models/operations/fieldtype.md
   - docs/models/operations/getlibrarymediacontainer.md
   - docs/models/operations/getlibraryresponsebody.md
   - docs/models/operations/getlibraryresponse.md

@@ -4,6 +4,45 @@
 
 import { z } from "zod";
 
+export type Two = {
+    id?: string | undefined;
+    label?: string | undefined;
+    summary?: string | undefined;
+    type?: string | undefined;
+    default?: number | undefined;
+    value?: number | undefined;
+    hidden?: boolean | undefined;
+    advanced?: boolean | undefined;
+    group?: string | undefined;
+    enumValues?: string | undefined;
+};
+
+export type One = {
+    id?: string | undefined;
+    label?: string | undefined;
+    summary?: string | undefined;
+    type?: string | undefined;
+    default?: string | undefined;
+    value?: string | undefined;
+    hidden?: boolean | undefined;
+    advanced?: boolean | undefined;
+    group?: string | undefined;
+};
+
+export type Setting = One | Two;
+
+export type GetServerPreferencesMediaContainer = {
+    size?: number | undefined;
+    setting?: Array<One | Two> | undefined;
+};
+
+/**
+ * Server Preferences
+ */
+export type GetServerPreferencesResponseBody = {
+    mediaContainer?: GetServerPreferencesMediaContainer | undefined;
+};
+
 export type GetServerPreferencesResponse = {
     /**
      * HTTP response content type for this operation
@@ -17,7 +56,287 @@ export type GetServerPreferencesResponse = {
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse: Response;
+    /**
+     * Server Preferences
+     */
+    object?: GetServerPreferencesResponseBody | undefined;
 };
+
+/** @internal */
+export namespace Two$ {
+    export type Inbound = {
+        id?: string | undefined;
+        label?: string | undefined;
+        summary?: string | undefined;
+        type?: string | undefined;
+        default?: number | undefined;
+        value?: number | undefined;
+        hidden?: boolean | undefined;
+        advanced?: boolean | undefined;
+        group?: string | undefined;
+        enumValues?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<Two, z.ZodTypeDef, Inbound> = z
+        .object({
+            id: z.string().optional(),
+            label: z.string().optional(),
+            summary: z.string().optional(),
+            type: z.string().optional(),
+            default: z.number().int().optional(),
+            value: z.number().int().optional(),
+            hidden: z.boolean().optional(),
+            advanced: z.boolean().optional(),
+            group: z.string().optional(),
+            enumValues: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.label === undefined ? null : { label: v.label }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.default === undefined ? null : { default: v.default }),
+                ...(v.value === undefined ? null : { value: v.value }),
+                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
+                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
+                ...(v.group === undefined ? null : { group: v.group }),
+                ...(v.enumValues === undefined ? null : { enumValues: v.enumValues }),
+            };
+        });
+
+    export type Outbound = {
+        id?: string | undefined;
+        label?: string | undefined;
+        summary?: string | undefined;
+        type?: string | undefined;
+        default?: number | undefined;
+        value?: number | undefined;
+        hidden?: boolean | undefined;
+        advanced?: boolean | undefined;
+        group?: string | undefined;
+        enumValues?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Two> = z
+        .object({
+            id: z.string().optional(),
+            label: z.string().optional(),
+            summary: z.string().optional(),
+            type: z.string().optional(),
+            default: z.number().int().optional(),
+            value: z.number().int().optional(),
+            hidden: z.boolean().optional(),
+            advanced: z.boolean().optional(),
+            group: z.string().optional(),
+            enumValues: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.label === undefined ? null : { label: v.label }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.default === undefined ? null : { default: v.default }),
+                ...(v.value === undefined ? null : { value: v.value }),
+                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
+                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
+                ...(v.group === undefined ? null : { group: v.group }),
+                ...(v.enumValues === undefined ? null : { enumValues: v.enumValues }),
+            };
+        });
+}
+
+/** @internal */
+export namespace One$ {
+    export type Inbound = {
+        id?: string | undefined;
+        label?: string | undefined;
+        summary?: string | undefined;
+        type?: string | undefined;
+        default?: string | undefined;
+        value?: string | undefined;
+        hidden?: boolean | undefined;
+        advanced?: boolean | undefined;
+        group?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<One, z.ZodTypeDef, Inbound> = z
+        .object({
+            id: z.string().optional(),
+            label: z.string().optional(),
+            summary: z.string().optional(),
+            type: z.string().optional(),
+            default: z.string().optional(),
+            value: z.string().optional(),
+            hidden: z.boolean().optional(),
+            advanced: z.boolean().optional(),
+            group: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.label === undefined ? null : { label: v.label }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.default === undefined ? null : { default: v.default }),
+                ...(v.value === undefined ? null : { value: v.value }),
+                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
+                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
+                ...(v.group === undefined ? null : { group: v.group }),
+            };
+        });
+
+    export type Outbound = {
+        id?: string | undefined;
+        label?: string | undefined;
+        summary?: string | undefined;
+        type?: string | undefined;
+        default?: string | undefined;
+        value?: string | undefined;
+        hidden?: boolean | undefined;
+        advanced?: boolean | undefined;
+        group?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, One> = z
+        .object({
+            id: z.string().optional(),
+            label: z.string().optional(),
+            summary: z.string().optional(),
+            type: z.string().optional(),
+            default: z.string().optional(),
+            value: z.string().optional(),
+            hidden: z.boolean().optional(),
+            advanced: z.boolean().optional(),
+            group: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.label === undefined ? null : { label: v.label }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.default === undefined ? null : { default: v.default }),
+                ...(v.value === undefined ? null : { value: v.value }),
+                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
+                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
+                ...(v.group === undefined ? null : { group: v.group }),
+            };
+        });
+}
+
+/** @internal */
+export namespace Setting$ {
+    export type Inbound = One$.Inbound | Two$.Inbound;
+
+    export type Outbound = One$.Outbound | Two$.Outbound;
+
+    export const inboundSchema: z.ZodType<Setting, z.ZodTypeDef, Inbound> = z.union([
+        z.lazy(() => One$.inboundSchema),
+        z.lazy(() => Two$.inboundSchema),
+    ]);
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Setting> = z.union([
+        z.lazy(() => One$.outboundSchema),
+        z.lazy(() => Two$.outboundSchema),
+    ]);
+}
+
+/** @internal */
+export namespace GetServerPreferencesMediaContainer$ {
+    export type Inbound = {
+        size?: number | undefined;
+        Setting?: Array<One$.Inbound | Two$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<
+        GetServerPreferencesMediaContainer,
+        z.ZodTypeDef,
+        Inbound
+    > = z
+        .object({
+            size: z.number().int().optional(),
+            Setting: z
+                .array(
+                    z.union([z.lazy(() => One$.inboundSchema), z.lazy(() => Two$.inboundSchema)])
+                )
+                .optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.Setting === undefined ? null : { setting: v.Setting }),
+            };
+        });
+
+    export type Outbound = {
+        size?: number | undefined;
+        Setting?: Array<One$.Outbound | Two$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        GetServerPreferencesMediaContainer
+    > = z
+        .object({
+            size: z.number().int().optional(),
+            setting: z
+                .array(
+                    z.union([z.lazy(() => One$.outboundSchema), z.lazy(() => Two$.outboundSchema)])
+                )
+                .optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.setting === undefined ? null : { Setting: v.setting }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetServerPreferencesResponseBody$ {
+    export type Inbound = {
+        MediaContainer?: GetServerPreferencesMediaContainer$.Inbound | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetServerPreferencesResponseBody, z.ZodTypeDef, Inbound> =
+        z
+            .object({
+                MediaContainer: z
+                    .lazy(() => GetServerPreferencesMediaContainer$.inboundSchema)
+                    .optional(),
+            })
+            .transform((v) => {
+                return {
+                    ...(v.MediaContainer === undefined
+                        ? null
+                        : { mediaContainer: v.MediaContainer }),
+                };
+            });
+
+    export type Outbound = {
+        MediaContainer?: GetServerPreferencesMediaContainer$.Outbound | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        GetServerPreferencesResponseBody
+    > = z
+        .object({
+            mediaContainer: z
+                .lazy(() => GetServerPreferencesMediaContainer$.outboundSchema)
+                .optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.mediaContainer === undefined ? null : { MediaContainer: v.mediaContainer }),
+            };
+        });
+}
 
 /** @internal */
 export namespace GetServerPreferencesResponse$ {
@@ -25,6 +344,7 @@ export namespace GetServerPreferencesResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
+        object?: GetServerPreferencesResponseBody$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetServerPreferencesResponse, z.ZodTypeDef, Inbound> = z
@@ -32,12 +352,14 @@ export namespace GetServerPreferencesResponse$ {
             ContentType: z.string(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
+            object: z.lazy(() => GetServerPreferencesResponseBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 contentType: v.ContentType,
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 
@@ -45,6 +367,7 @@ export namespace GetServerPreferencesResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: never;
+        object?: GetServerPreferencesResponseBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetServerPreferencesResponse> = z
@@ -54,12 +377,14 @@ export namespace GetServerPreferencesResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
+            object: z.lazy(() => GetServerPreferencesResponseBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 ContentType: v.contentType,
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 }

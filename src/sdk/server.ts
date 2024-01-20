@@ -113,8 +113,13 @@ export class Server extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetServerPreferencesResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetServerPreferencesResponseBody$.inboundSchema.parse({
@@ -126,8 +131,6 @@ export class Server extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetServerPreferencesResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
