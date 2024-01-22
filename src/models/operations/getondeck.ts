@@ -4,7 +4,7 @@
 
 import { z } from "zod";
 
-export type Stream = {
+export type GetOnDeckStream = {
     id?: number | undefined;
     streamType?: number | undefined;
     default?: boolean | undefined;
@@ -39,7 +39,7 @@ export type GetOnDeckPart = {
     audioProfile?: string | undefined;
     container?: string | undefined;
     videoProfile?: string | undefined;
-    stream?: Array<Stream> | undefined;
+    stream?: Array<GetOnDeckStream> | undefined;
 };
 
 export type GetOnDeckMedia = {
@@ -60,7 +60,7 @@ export type GetOnDeckMedia = {
     part?: Array<GetOnDeckPart> | undefined;
 };
 
-export type Guids = {
+export type GetOnDeckGuids = {
     id?: string | undefined;
 };
 
@@ -100,7 +100,7 @@ export type GetOnDeckMetadata = {
     addedAt?: number | undefined;
     updatedAt?: number | undefined;
     media?: Array<GetOnDeckMedia> | undefined;
-    guids?: Array<Guids> | undefined;
+    guids?: Array<GetOnDeckGuids> | undefined;
 };
 
 export type GetOnDeckMediaContainer = {
@@ -140,7 +140,7 @@ export type GetOnDeckResponse = {
 };
 
 /** @internal */
-export namespace Stream$ {
+export namespace GetOnDeckStream$ {
     export type Inbound = {
         id?: number | undefined;
         streamType?: number | undefined;
@@ -167,7 +167,7 @@ export namespace Stream$ {
         extendedDisplayTitle?: string | undefined;
     };
 
-    export const inboundSchema: z.ZodType<Stream, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckStream, z.ZodTypeDef, Inbound> = z
         .object({
             id: z.number().optional(),
             streamType: z.number().optional(),
@@ -251,7 +251,7 @@ export namespace Stream$ {
         extendedDisplayTitle?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Stream> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetOnDeckStream> = z
         .object({
             id: z.number().optional(),
             streamType: z.number().optional(),
@@ -321,7 +321,7 @@ export namespace GetOnDeckPart$ {
         audioProfile?: string | undefined;
         container?: string | undefined;
         videoProfile?: string | undefined;
-        Stream?: Array<Stream$.Inbound> | undefined;
+        Stream?: Array<GetOnDeckStream$.Inbound> | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetOnDeckPart, z.ZodTypeDef, Inbound> = z
@@ -334,7 +334,7 @@ export namespace GetOnDeckPart$ {
             audioProfile: z.string().optional(),
             container: z.string().optional(),
             videoProfile: z.string().optional(),
-            Stream: z.array(z.lazy(() => Stream$.inboundSchema)).optional(),
+            Stream: z.array(z.lazy(() => GetOnDeckStream$.inboundSchema)).optional(),
         })
         .transform((v) => {
             return {
@@ -359,7 +359,7 @@ export namespace GetOnDeckPart$ {
         audioProfile?: string | undefined;
         container?: string | undefined;
         videoProfile?: string | undefined;
-        Stream?: Array<Stream$.Outbound> | undefined;
+        Stream?: Array<GetOnDeckStream$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetOnDeckPart> = z
@@ -372,7 +372,7 @@ export namespace GetOnDeckPart$ {
             audioProfile: z.string().optional(),
             container: z.string().optional(),
             videoProfile: z.string().optional(),
-            stream: z.array(z.lazy(() => Stream$.outboundSchema)).optional(),
+            stream: z.array(z.lazy(() => GetOnDeckStream$.outboundSchema)).optional(),
         })
         .transform((v) => {
             return {
@@ -509,12 +509,12 @@ export namespace GetOnDeckMedia$ {
 }
 
 /** @internal */
-export namespace Guids$ {
+export namespace GetOnDeckGuids$ {
     export type Inbound = {
         id?: string | undefined;
     };
 
-    export const inboundSchema: z.ZodType<Guids, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckGuids, z.ZodTypeDef, Inbound> = z
         .object({
             id: z.string().optional(),
         })
@@ -528,7 +528,7 @@ export namespace Guids$ {
         id?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Guids> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetOnDeckGuids> = z
         .object({
             id: z.string().optional(),
         })
@@ -577,7 +577,7 @@ export namespace GetOnDeckMetadata$ {
         addedAt?: number | undefined;
         updatedAt?: number | undefined;
         Media?: Array<GetOnDeckMedia$.Inbound> | undefined;
-        guids?: Array<Guids$.Inbound> | undefined;
+        guids?: Array<GetOnDeckGuids$.Inbound> | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetOnDeckMetadata, z.ZodTypeDef, Inbound> = z
@@ -621,7 +621,7 @@ export namespace GetOnDeckMetadata$ {
             addedAt: z.number().optional(),
             updatedAt: z.number().optional(),
             Media: z.array(z.lazy(() => GetOnDeckMedia$.inboundSchema)).optional(),
-            guids: z.array(z.lazy(() => Guids$.inboundSchema)).optional(),
+            guids: z.array(z.lazy(() => GetOnDeckGuids$.inboundSchema)).optional(),
         })
         .transform((v) => {
             return {
@@ -722,7 +722,7 @@ export namespace GetOnDeckMetadata$ {
         addedAt?: number | undefined;
         updatedAt?: number | undefined;
         Media?: Array<GetOnDeckMedia$.Outbound> | undefined;
-        guids?: Array<Guids$.Outbound> | undefined;
+        guids?: Array<GetOnDeckGuids$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetOnDeckMetadata> = z
@@ -765,7 +765,7 @@ export namespace GetOnDeckMetadata$ {
             addedAt: z.number().optional(),
             updatedAt: z.number().optional(),
             media: z.array(z.lazy(() => GetOnDeckMedia$.outboundSchema)).optional(),
-            guids: z.array(z.lazy(() => Guids$.outboundSchema)).optional(),
+            guids: z.array(z.lazy(() => GetOnDeckGuids$.outboundSchema)).optional(),
         })
         .transform((v) => {
             return {

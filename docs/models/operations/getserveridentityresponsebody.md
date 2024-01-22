@@ -1,6 +1,6 @@
 # GetServerIdentityResponseBody
 
-The Transcode Sessions
+The Server Identity information
 
 
 ## Fields

@@ -23,7 +23,10 @@ export type GetAvailableClientsMediaContainer = {
     server?: Array<Server> | undefined;
 };
 
-export type ResponseBody = {
+/**
+ * Available Clients
+ */
+export type GetAvailableClientsResponseBody = {
     mediaContainer?: GetAvailableClientsMediaContainer | undefined;
 };
 
@@ -43,7 +46,7 @@ export type GetAvailableClientsResponse = {
     /**
      * Available Clients
      */
-    responseBodies?: Array<ResponseBody> | undefined;
+    object?: GetAvailableClientsResponseBody | undefined;
 };
 
 /** @internal */
@@ -195,28 +198,35 @@ export namespace GetAvailableClientsMediaContainer$ {
 }
 
 /** @internal */
-export namespace ResponseBody$ {
+export namespace GetAvailableClientsResponseBody$ {
     export type Inbound = {
         MediaContainer?: GetAvailableClientsMediaContainer$.Inbound | undefined;
     };
 
-    export const inboundSchema: z.ZodType<ResponseBody, z.ZodTypeDef, Inbound> = z
-        .object({
-            MediaContainer: z
-                .lazy(() => GetAvailableClientsMediaContainer$.inboundSchema)
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.MediaContainer === undefined ? null : { mediaContainer: v.MediaContainer }),
-            };
-        });
+    export const inboundSchema: z.ZodType<GetAvailableClientsResponseBody, z.ZodTypeDef, Inbound> =
+        z
+            .object({
+                MediaContainer: z
+                    .lazy(() => GetAvailableClientsMediaContainer$.inboundSchema)
+                    .optional(),
+            })
+            .transform((v) => {
+                return {
+                    ...(v.MediaContainer === undefined
+                        ? null
+                        : { mediaContainer: v.MediaContainer }),
+                };
+            });
 
     export type Outbound = {
         MediaContainer?: GetAvailableClientsMediaContainer$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResponseBody> = z
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        GetAvailableClientsResponseBody
+    > = z
         .object({
             mediaContainer: z
                 .lazy(() => GetAvailableClientsMediaContainer$.outboundSchema)
@@ -235,7 +245,7 @@ export namespace GetAvailableClientsResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
-        responseBodies?: Array<ResponseBody$.Inbound> | undefined;
+        object?: GetAvailableClientsResponseBody$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetAvailableClientsResponse, z.ZodTypeDef, Inbound> = z
@@ -243,14 +253,14 @@ export namespace GetAvailableClientsResponse$ {
             ContentType: z.string(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
-            responseBodies: z.array(z.lazy(() => ResponseBody$.inboundSchema)).optional(),
+            object: z.lazy(() => GetAvailableClientsResponseBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 contentType: v.ContentType,
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
-                ...(v.responseBodies === undefined ? null : { responseBodies: v.responseBodies }),
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 
@@ -258,7 +268,7 @@ export namespace GetAvailableClientsResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: never;
-        responseBodies?: Array<ResponseBody$.Outbound> | undefined;
+        object?: GetAvailableClientsResponseBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetAvailableClientsResponse> = z
@@ -268,14 +278,14 @@ export namespace GetAvailableClientsResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
-            responseBodies: z.array(z.lazy(() => ResponseBody$.outboundSchema)).optional(),
+            object: z.lazy(() => GetAvailableClientsResponseBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 ContentType: v.contentType,
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
-                ...(v.responseBodies === undefined ? null : { responseBodies: v.responseBodies }),
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 }

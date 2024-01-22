@@ -3,8 +3,7 @@
 
 ## Fields
 
-| Field                          | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `sectionId`                    | *number*                       | :heavy_check_mark:             | the Id of the library to query |
-| `type`                         | *number*                       | :heavy_minus_sign:             | item type                      |
-| `filter`                       | *string*                       | :heavy_minus_sign:             | the filter parameter           |
+| Field                                                 | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `sectionId`                                           | *number*                                              | :heavy_check_mark:                                    | the Id of the library to query                        |
+| `tag`                                                 | [operations.Tag](../../models/operations/tag.md)      | :heavy_check_mark:                                    | A key representing a specific tag within the section. |

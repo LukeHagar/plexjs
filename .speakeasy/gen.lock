@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 1e8e82037a237e1d1467721fbd2c7ab0
+  docChecksum: 7aba498c024534142941d65a7c2e649c
   docVersion: 0.0.3
   speakeasyVersion: internal
   generationVersion: 2.237.3
-  releaseVersion: 0.5.0
-  configChecksum: ad00024d316f6c8b4b52b685d3907cf2
+  releaseVersion: 0.5.1
+  configChecksum: 168d1f69c7615425697deab74877acce
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -88,8 +88,6 @@ generatedFiles:
   - src/models/operations/deletelibrary.ts
   - src/models/operations/getlibraryitems.ts
   - src/models/operations/refreshlibrary.ts
-  - src/models/operations/getlatestlibraryitems.ts
-  - src/models/operations/getcommonlibraryitems.ts
   - src/models/operations/getmetadata.ts
   - src/models/operations/getmetadatachildren.ts
   - src/models/operations/getondeck.ts
@@ -144,10 +142,7 @@ generatedFiles:
   - src/models/errors/getlibraries.ts
   - src/models/errors/getlibrary.ts
   - src/models/errors/deletelibrary.ts
-  - src/models/errors/getlibraryitems.ts
   - src/models/errors/refreshlibrary.ts
-  - src/models/errors/getlatestlibraryitems.ts
-  - src/models/errors/getcommonlibraryitems.ts
   - src/models/errors/getmetadata.ts
   - src/models/errors/getmetadatachildren.ts
   - src/models/errors/getondeck.ts
@@ -190,7 +185,7 @@ generatedFiles:
   - docs/models/operations/getserverpreferencesresponse.md
   - docs/models/operations/server.md
   - docs/models/operations/getavailableclientsmediacontainer.md
-  - docs/models/operations/responsebody.md
+  - docs/models/operations/getavailableclientsresponsebody.md
   - docs/models/operations/getavailableclientsresponse.md
   - docs/models/operations/device.md
   - docs/models/operations/getdevicesmediacontainer.md
@@ -237,9 +232,25 @@ generatedFiles:
   - docs/models/operations/stoptaskresponse.md
   - docs/models/operations/onlytransient.md
   - docs/models/operations/getglobalhubsrequest.md
+  - docs/models/operations/getglobalhubsmetadata.md
+  - docs/models/operations/hub.md
+  - docs/models/operations/getglobalhubsmediacontainer.md
+  - docs/models/operations/getglobalhubsresponsebody.md
   - docs/models/operations/getglobalhubsresponse.md
   - docs/models/operations/queryparamonlytransient.md
   - docs/models/operations/getlibraryhubsrequest.md
+  - docs/models/operations/getlibraryhubspart.md
+  - docs/models/operations/getlibraryhubsmedia.md
+  - docs/models/operations/getlibraryhubsgenre.md
+  - docs/models/operations/getlibraryhubscountry.md
+  - docs/models/operations/getlibraryhubsdirector.md
+  - docs/models/operations/getlibraryhubsrole.md
+  - docs/models/operations/getlibraryhubswriter.md
+  - docs/types/rfcdate.md
+  - docs/models/operations/getlibraryhubsmetadata.md
+  - docs/models/operations/getlibraryhubshub.md
+  - docs/models/operations/getlibraryhubsmediacontainer.md
+  - docs/models/operations/getlibraryhubsresponsebody.md
   - docs/models/operations/getlibraryhubsresponse.md
   - docs/models/operations/performsearchrequest.md
   - docs/models/operations/performsearchresponse.md
@@ -290,22 +301,47 @@ generatedFiles:
   - docs/models/operations/getlibraryresponse.md
   - docs/models/operations/deletelibraryrequest.md
   - docs/models/operations/deletelibraryresponse.md
+  - docs/models/operations/tag.md
   - docs/models/operations/getlibraryitemsrequest.md
+  - docs/models/operations/getlibraryitemspart.md
+  - docs/models/operations/getlibraryitemsmedia.md
+  - docs/models/operations/getlibraryitemsgenre.md
+  - docs/models/operations/getlibraryitemscountry.md
+  - docs/models/operations/getlibraryitemsdirector.md
+  - docs/models/operations/getlibraryitemswriter.md
+  - docs/models/operations/getlibraryitemsrole.md
+  - docs/models/operations/getlibraryitemsmetadata.md
+  - docs/models/operations/getlibraryitemsmediacontainer.md
+  - docs/models/operations/getlibraryitemsresponsebody.md
   - docs/models/operations/getlibraryitemsresponse.md
   - docs/models/operations/refreshlibraryrequest.md
   - docs/models/operations/refreshlibraryresponse.md
-  - docs/models/operations/getlatestlibraryitemsrequest.md
-  - docs/models/operations/getlatestlibraryitemsresponse.md
-  - docs/models/operations/getcommonlibraryitemsrequest.md
-  - docs/models/operations/getcommonlibraryitemsresponse.md
   - docs/models/operations/getmetadatarequest.md
+  - docs/models/operations/stream.md
+  - docs/models/operations/getmetadatapart.md
+  - docs/models/operations/getmetadatamedia.md
+  - docs/models/operations/getmetadatagenre.md
+  - docs/models/operations/getmetadatacountry.md
+  - docs/models/operations/guids.md
+  - docs/models/operations/ratings.md
+  - docs/models/operations/getmetadatadirector.md
+  - docs/models/operations/getmetadatawriter.md
+  - docs/models/operations/getmetadatarole.md
+  - docs/models/operations/producer.md
+  - docs/models/operations/getmetadatametadata.md
+  - docs/models/operations/getmetadatamediacontainer.md
+  - docs/models/operations/getmetadataresponsebody.md
   - docs/models/operations/getmetadataresponse.md
   - docs/models/operations/getmetadatachildrenrequest.md
+  - docs/models/operations/getmetadatachildrendirectory.md
+  - docs/models/operations/getmetadatachildrenmetadata.md
+  - docs/models/operations/getmetadatachildrenmediacontainer.md
+  - docs/models/operations/getmetadatachildrenresponsebody.md
   - docs/models/operations/getmetadatachildrenresponse.md
-  - docs/models/operations/stream.md
+  - docs/models/operations/getondeckstream.md
   - docs/models/operations/getondeckpart.md
   - docs/models/operations/getondeckmedia.md
-  - docs/models/operations/guids.md
+  - docs/models/operations/getondeckguids.md
   - docs/models/operations/getondeckmetadata.md
   - docs/models/operations/getondeckmediacontainer.md
   - docs/models/operations/getondeckresponsebody.md
@@ -318,22 +354,44 @@ generatedFiles:
   - docs/models/operations/typet.md
   - docs/models/operations/smart.md
   - docs/models/operations/createplaylistrequest.md
+  - docs/models/operations/createplaylistmetadata.md
+  - docs/models/operations/createplaylistmediacontainer.md
+  - docs/models/operations/createplaylistresponsebody.md
   - docs/models/operations/createplaylistresponse.md
   - docs/models/operations/playlisttype.md
   - docs/models/operations/queryparamsmart.md
   - docs/models/operations/getplaylistsrequest.md
+  - docs/models/operations/getplaylistsmetadata.md
+  - docs/models/operations/getplaylistsmediacontainer.md
+  - docs/models/operations/getplaylistsresponsebody.md
   - docs/models/operations/getplaylistsresponse.md
   - docs/models/operations/getplaylistrequest.md
+  - docs/models/operations/getplaylistmetadata.md
+  - docs/models/operations/getplaylistmediacontainer.md
+  - docs/models/operations/getplaylistresponsebody.md
   - docs/models/operations/getplaylistresponse.md
   - docs/models/operations/deleteplaylistrequest.md
   - docs/models/operations/deleteplaylistresponse.md
   - docs/models/operations/updateplaylistrequest.md
   - docs/models/operations/updateplaylistresponse.md
   - docs/models/operations/getplaylistcontentsrequest.md
+  - docs/models/operations/getplaylistcontentspart.md
+  - docs/models/operations/getplaylistcontentsmedia.md
+  - docs/models/operations/getplaylistcontentsgenre.md
+  - docs/models/operations/getplaylistcontentscountry.md
+  - docs/models/operations/getplaylistcontentsdirector.md
+  - docs/models/operations/getplaylistcontentswriter.md
+  - docs/models/operations/getplaylistcontentsrole.md
+  - docs/models/operations/getplaylistcontentsmetadata.md
+  - docs/models/operations/getplaylistcontentsmediacontainer.md
+  - docs/models/operations/getplaylistcontentsresponsebody.md
   - docs/models/operations/getplaylistcontentsresponse.md
   - docs/models/operations/clearplaylistcontentsrequest.md
   - docs/models/operations/clearplaylistcontentsresponse.md
   - docs/models/operations/addplaylistcontentsrequest.md
+  - docs/models/operations/addplaylistcontentsmetadata.md
+  - docs/models/operations/addplaylistcontentsmediacontainer.md
+  - docs/models/operations/addplaylistcontentsresponsebody.md
   - docs/models/operations/addplaylistcontentsresponse.md
   - docs/models/operations/force.md
   - docs/models/operations/uploadplaylistrequest.md
@@ -344,7 +402,19 @@ generatedFiles:
   - docs/models/operations/gettransienttokenresponse.md
   - docs/models/operations/getsourceconnectioninformationrequest.md
   - docs/models/operations/getsourceconnectioninformationresponse.md
+  - docs/models/operations/getsessionsstream.md
+  - docs/models/operations/getsessionspart.md
+  - docs/models/operations/getsessionsmedia.md
+  - docs/models/operations/user.md
+  - docs/models/operations/player.md
+  - docs/models/operations/session.md
+  - docs/models/operations/getsessionsmetadata.md
+  - docs/models/operations/getsessionsmediacontainer.md
+  - docs/models/operations/getsessionsresponsebody.md
   - docs/models/operations/getsessionsresponse.md
+  - docs/models/operations/getsessionhistorymetadata.md
+  - docs/models/operations/getsessionhistorymediacontainer.md
+  - docs/models/operations/getsessionhistoryresponsebody.md
   - docs/models/operations/getsessionhistoryresponse.md
   - docs/models/operations/transcodesession.md
   - docs/models/operations/gettranscodesessionsmediacontainer.md
@@ -352,6 +422,9 @@ generatedFiles:
   - docs/models/operations/gettranscodesessionsresponse.md
   - docs/models/operations/stoptranscodesessionrequest.md
   - docs/models/operations/stoptranscodesessionresponse.md
+  - docs/models/operations/release.md
+  - docs/models/operations/getupdatestatusmediacontainer.md
+  - docs/models/operations/getupdatestatusresponsebody.md
   - docs/models/operations/getupdatestatusresponse.md
   - docs/models/operations/download.md
   - docs/models/operations/checkforupdatesrequest.md
@@ -421,14 +494,8 @@ generatedFiles:
   - docs/models/errors/getlibraryresponsebody.md
   - docs/models/errors/deletelibraryerrors.md
   - docs/models/errors/deletelibraryresponsebody.md
-  - docs/models/errors/getlibraryitemserrors.md
-  - docs/models/errors/getlibraryitemsresponsebody.md
   - docs/models/errors/refreshlibraryerrors.md
   - docs/models/errors/refreshlibraryresponsebody.md
-  - docs/models/errors/getlatestlibraryitemserrors.md
-  - docs/models/errors/getlatestlibraryitemsresponsebody.md
-  - docs/models/errors/getcommonlibraryitemserrors.md
-  - docs/models/errors/getcommonlibraryitemsresponsebody.md
   - docs/models/errors/getmetadataerrors.md
   - docs/models/errors/getmetadataresponsebody.md
   - docs/models/errors/getmetadatachildrenerrors.md

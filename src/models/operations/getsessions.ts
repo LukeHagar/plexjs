@@ -4,6 +4,135 @@
 
 import { z } from "zod";
 
+export type GetSessionsStream = {
+    albumGain?: string | undefined;
+    albumPeak?: string | undefined;
+    albumRange?: string | undefined;
+    audioChannelLayout?: string | undefined;
+    bitDepth?: number | undefined;
+    bitrate?: number | undefined;
+    channels?: number | undefined;
+    codec?: string | undefined;
+    displayTitle?: string | undefined;
+    extendedDisplayTitle?: string | undefined;
+    gain?: string | undefined;
+    id?: string | undefined;
+    index?: number | undefined;
+    loudness?: string | undefined;
+    lra?: string | undefined;
+    peak?: string | undefined;
+    samplingRate?: number | undefined;
+    selected?: boolean | undefined;
+    streamType?: number | undefined;
+    location?: string | undefined;
+};
+
+export type GetSessionsPart = {
+    container?: string | undefined;
+    duration?: number | undefined;
+    file?: string | undefined;
+    hasThumbnail?: string | undefined;
+    id?: string | undefined;
+    key?: string | undefined;
+    size?: number | undefined;
+    decision?: string | undefined;
+    selected?: boolean | undefined;
+    stream?: Array<GetSessionsStream> | undefined;
+};
+
+export type GetSessionsMedia = {
+    audioChannels?: number | undefined;
+    audioCodec?: string | undefined;
+    bitrate?: number | undefined;
+    container?: string | undefined;
+    duration?: number | undefined;
+    id?: string | undefined;
+    selected?: boolean | undefined;
+    part?: Array<GetSessionsPart> | undefined;
+};
+
+export type User = {
+    id?: string | undefined;
+    thumb?: string | undefined;
+    title?: string | undefined;
+};
+
+export type Player = {
+    address?: string | undefined;
+    machineIdentifier?: string | undefined;
+    model?: string | undefined;
+    platform?: string | undefined;
+    platformVersion?: string | undefined;
+    product?: string | undefined;
+    profile?: string | undefined;
+    remotePublicAddress?: string | undefined;
+    state?: string | undefined;
+    title?: string | undefined;
+    version?: string | undefined;
+    local?: boolean | undefined;
+    relayed?: boolean | undefined;
+    secure?: boolean | undefined;
+    userID?: number | undefined;
+};
+
+export type Session = {
+    id?: string | undefined;
+    bandwidth?: number | undefined;
+    location?: string | undefined;
+};
+
+export type GetSessionsMetadata = {
+    addedAt?: number | undefined;
+    art?: string | undefined;
+    duration?: number | undefined;
+    grandparentArt?: string | undefined;
+    grandparentGuid?: string | undefined;
+    grandparentKey?: string | undefined;
+    grandparentRatingKey?: string | undefined;
+    grandparentThumb?: string | undefined;
+    grandparentTitle?: string | undefined;
+    guid?: string | undefined;
+    index?: number | undefined;
+    key?: string | undefined;
+    librarySectionID?: string | undefined;
+    librarySectionKey?: string | undefined;
+    librarySectionTitle?: string | undefined;
+    musicAnalysisVersion?: string | undefined;
+    parentGuid?: string | undefined;
+    parentIndex?: number | undefined;
+    parentKey?: string | undefined;
+    parentRatingKey?: string | undefined;
+    parentStudio?: string | undefined;
+    parentThumb?: string | undefined;
+    parentTitle?: string | undefined;
+    parentYear?: number | undefined;
+    ratingCount?: number | undefined;
+    ratingKey?: string | undefined;
+    sessionKey?: string | undefined;
+    thumb?: string | undefined;
+    title?: string | undefined;
+    titleSort?: string | undefined;
+    type?: string | undefined;
+    updatedAt?: number | undefined;
+    viewOffset?: number | undefined;
+    media?: Array<GetSessionsMedia> | undefined;
+    user?: User | undefined;
+    player?: Player | undefined;
+    session?: Session | undefined;
+};
+
+export type GetSessionsMediaContainer = {
+    size?: number | undefined;
+    metadata?: Array<GetSessionsMetadata> | undefined;
+};
+
+/**
+ * List of Active Plex Sessions
+ */
+export type GetSessionsResponseBody = {
+    mediaContainer?: GetSessionsMediaContainer | undefined;
+};
+
 export type GetSessionsResponse = {
     /**
      * HTTP response content type for this operation
@@ -17,7 +146,886 @@ export type GetSessionsResponse = {
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse: Response;
+    /**
+     * List of Active Plex Sessions
+     */
+    object?: GetSessionsResponseBody | undefined;
 };
+
+/** @internal */
+export namespace GetSessionsStream$ {
+    export type Inbound = {
+        albumGain?: string | undefined;
+        albumPeak?: string | undefined;
+        albumRange?: string | undefined;
+        audioChannelLayout?: string | undefined;
+        bitDepth?: number | undefined;
+        bitrate?: number | undefined;
+        channels?: number | undefined;
+        codec?: string | undefined;
+        displayTitle?: string | undefined;
+        extendedDisplayTitle?: string | undefined;
+        gain?: string | undefined;
+        id?: string | undefined;
+        index?: number | undefined;
+        loudness?: string | undefined;
+        lra?: string | undefined;
+        peak?: string | undefined;
+        samplingRate?: number | undefined;
+        selected?: boolean | undefined;
+        streamType?: number | undefined;
+        location?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetSessionsStream, z.ZodTypeDef, Inbound> = z
+        .object({
+            albumGain: z.string().optional(),
+            albumPeak: z.string().optional(),
+            albumRange: z.string().optional(),
+            audioChannelLayout: z.string().optional(),
+            bitDepth: z.number().int().optional(),
+            bitrate: z.number().int().optional(),
+            channels: z.number().int().optional(),
+            codec: z.string().optional(),
+            displayTitle: z.string().optional(),
+            extendedDisplayTitle: z.string().optional(),
+            gain: z.string().optional(),
+            id: z.string().optional(),
+            index: z.number().int().optional(),
+            loudness: z.string().optional(),
+            lra: z.string().optional(),
+            peak: z.string().optional(),
+            samplingRate: z.number().int().optional(),
+            selected: z.boolean().optional(),
+            streamType: z.number().int().optional(),
+            location: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.albumGain === undefined ? null : { albumGain: v.albumGain }),
+                ...(v.albumPeak === undefined ? null : { albumPeak: v.albumPeak }),
+                ...(v.albumRange === undefined ? null : { albumRange: v.albumRange }),
+                ...(v.audioChannelLayout === undefined
+                    ? null
+                    : { audioChannelLayout: v.audioChannelLayout }),
+                ...(v.bitDepth === undefined ? null : { bitDepth: v.bitDepth }),
+                ...(v.bitrate === undefined ? null : { bitrate: v.bitrate }),
+                ...(v.channels === undefined ? null : { channels: v.channels }),
+                ...(v.codec === undefined ? null : { codec: v.codec }),
+                ...(v.displayTitle === undefined ? null : { displayTitle: v.displayTitle }),
+                ...(v.extendedDisplayTitle === undefined
+                    ? null
+                    : { extendedDisplayTitle: v.extendedDisplayTitle }),
+                ...(v.gain === undefined ? null : { gain: v.gain }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.index === undefined ? null : { index: v.index }),
+                ...(v.loudness === undefined ? null : { loudness: v.loudness }),
+                ...(v.lra === undefined ? null : { lra: v.lra }),
+                ...(v.peak === undefined ? null : { peak: v.peak }),
+                ...(v.samplingRate === undefined ? null : { samplingRate: v.samplingRate }),
+                ...(v.selected === undefined ? null : { selected: v.selected }),
+                ...(v.streamType === undefined ? null : { streamType: v.streamType }),
+                ...(v.location === undefined ? null : { location: v.location }),
+            };
+        });
+
+    export type Outbound = {
+        albumGain?: string | undefined;
+        albumPeak?: string | undefined;
+        albumRange?: string | undefined;
+        audioChannelLayout?: string | undefined;
+        bitDepth?: number | undefined;
+        bitrate?: number | undefined;
+        channels?: number | undefined;
+        codec?: string | undefined;
+        displayTitle?: string | undefined;
+        extendedDisplayTitle?: string | undefined;
+        gain?: string | undefined;
+        id?: string | undefined;
+        index?: number | undefined;
+        loudness?: string | undefined;
+        lra?: string | undefined;
+        peak?: string | undefined;
+        samplingRate?: number | undefined;
+        selected?: boolean | undefined;
+        streamType?: number | undefined;
+        location?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetSessionsStream> = z
+        .object({
+            albumGain: z.string().optional(),
+            albumPeak: z.string().optional(),
+            albumRange: z.string().optional(),
+            audioChannelLayout: z.string().optional(),
+            bitDepth: z.number().int().optional(),
+            bitrate: z.number().int().optional(),
+            channels: z.number().int().optional(),
+            codec: z.string().optional(),
+            displayTitle: z.string().optional(),
+            extendedDisplayTitle: z.string().optional(),
+            gain: z.string().optional(),
+            id: z.string().optional(),
+            index: z.number().int().optional(),
+            loudness: z.string().optional(),
+            lra: z.string().optional(),
+            peak: z.string().optional(),
+            samplingRate: z.number().int().optional(),
+            selected: z.boolean().optional(),
+            streamType: z.number().int().optional(),
+            location: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.albumGain === undefined ? null : { albumGain: v.albumGain }),
+                ...(v.albumPeak === undefined ? null : { albumPeak: v.albumPeak }),
+                ...(v.albumRange === undefined ? null : { albumRange: v.albumRange }),
+                ...(v.audioChannelLayout === undefined
+                    ? null
+                    : { audioChannelLayout: v.audioChannelLayout }),
+                ...(v.bitDepth === undefined ? null : { bitDepth: v.bitDepth }),
+                ...(v.bitrate === undefined ? null : { bitrate: v.bitrate }),
+                ...(v.channels === undefined ? null : { channels: v.channels }),
+                ...(v.codec === undefined ? null : { codec: v.codec }),
+                ...(v.displayTitle === undefined ? null : { displayTitle: v.displayTitle }),
+                ...(v.extendedDisplayTitle === undefined
+                    ? null
+                    : { extendedDisplayTitle: v.extendedDisplayTitle }),
+                ...(v.gain === undefined ? null : { gain: v.gain }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.index === undefined ? null : { index: v.index }),
+                ...(v.loudness === undefined ? null : { loudness: v.loudness }),
+                ...(v.lra === undefined ? null : { lra: v.lra }),
+                ...(v.peak === undefined ? null : { peak: v.peak }),
+                ...(v.samplingRate === undefined ? null : { samplingRate: v.samplingRate }),
+                ...(v.selected === undefined ? null : { selected: v.selected }),
+                ...(v.streamType === undefined ? null : { streamType: v.streamType }),
+                ...(v.location === undefined ? null : { location: v.location }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetSessionsPart$ {
+    export type Inbound = {
+        container?: string | undefined;
+        duration?: number | undefined;
+        file?: string | undefined;
+        hasThumbnail?: string | undefined;
+        id?: string | undefined;
+        key?: string | undefined;
+        size?: number | undefined;
+        decision?: string | undefined;
+        selected?: boolean | undefined;
+        Stream?: Array<GetSessionsStream$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetSessionsPart, z.ZodTypeDef, Inbound> = z
+        .object({
+            container: z.string().optional(),
+            duration: z.number().int().optional(),
+            file: z.string().optional(),
+            hasThumbnail: z.string().optional(),
+            id: z.string().optional(),
+            key: z.string().optional(),
+            size: z.number().int().optional(),
+            decision: z.string().optional(),
+            selected: z.boolean().optional(),
+            Stream: z.array(z.lazy(() => GetSessionsStream$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.container === undefined ? null : { container: v.container }),
+                ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.file === undefined ? null : { file: v.file }),
+                ...(v.hasThumbnail === undefined ? null : { hasThumbnail: v.hasThumbnail }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.decision === undefined ? null : { decision: v.decision }),
+                ...(v.selected === undefined ? null : { selected: v.selected }),
+                ...(v.Stream === undefined ? null : { stream: v.Stream }),
+            };
+        });
+
+    export type Outbound = {
+        container?: string | undefined;
+        duration?: number | undefined;
+        file?: string | undefined;
+        hasThumbnail?: string | undefined;
+        id?: string | undefined;
+        key?: string | undefined;
+        size?: number | undefined;
+        decision?: string | undefined;
+        selected?: boolean | undefined;
+        Stream?: Array<GetSessionsStream$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetSessionsPart> = z
+        .object({
+            container: z.string().optional(),
+            duration: z.number().int().optional(),
+            file: z.string().optional(),
+            hasThumbnail: z.string().optional(),
+            id: z.string().optional(),
+            key: z.string().optional(),
+            size: z.number().int().optional(),
+            decision: z.string().optional(),
+            selected: z.boolean().optional(),
+            stream: z.array(z.lazy(() => GetSessionsStream$.outboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.container === undefined ? null : { container: v.container }),
+                ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.file === undefined ? null : { file: v.file }),
+                ...(v.hasThumbnail === undefined ? null : { hasThumbnail: v.hasThumbnail }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.decision === undefined ? null : { decision: v.decision }),
+                ...(v.selected === undefined ? null : { selected: v.selected }),
+                ...(v.stream === undefined ? null : { Stream: v.stream }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetSessionsMedia$ {
+    export type Inbound = {
+        audioChannels?: number | undefined;
+        audioCodec?: string | undefined;
+        bitrate?: number | undefined;
+        container?: string | undefined;
+        duration?: number | undefined;
+        id?: string | undefined;
+        selected?: boolean | undefined;
+        Part?: Array<GetSessionsPart$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetSessionsMedia, z.ZodTypeDef, Inbound> = z
+        .object({
+            audioChannels: z.number().int().optional(),
+            audioCodec: z.string().optional(),
+            bitrate: z.number().int().optional(),
+            container: z.string().optional(),
+            duration: z.number().int().optional(),
+            id: z.string().optional(),
+            selected: z.boolean().optional(),
+            Part: z.array(z.lazy(() => GetSessionsPart$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.audioChannels === undefined ? null : { audioChannels: v.audioChannels }),
+                ...(v.audioCodec === undefined ? null : { audioCodec: v.audioCodec }),
+                ...(v.bitrate === undefined ? null : { bitrate: v.bitrate }),
+                ...(v.container === undefined ? null : { container: v.container }),
+                ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.selected === undefined ? null : { selected: v.selected }),
+                ...(v.Part === undefined ? null : { part: v.Part }),
+            };
+        });
+
+    export type Outbound = {
+        audioChannels?: number | undefined;
+        audioCodec?: string | undefined;
+        bitrate?: number | undefined;
+        container?: string | undefined;
+        duration?: number | undefined;
+        id?: string | undefined;
+        selected?: boolean | undefined;
+        Part?: Array<GetSessionsPart$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetSessionsMedia> = z
+        .object({
+            audioChannels: z.number().int().optional(),
+            audioCodec: z.string().optional(),
+            bitrate: z.number().int().optional(),
+            container: z.string().optional(),
+            duration: z.number().int().optional(),
+            id: z.string().optional(),
+            selected: z.boolean().optional(),
+            part: z.array(z.lazy(() => GetSessionsPart$.outboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.audioChannels === undefined ? null : { audioChannels: v.audioChannels }),
+                ...(v.audioCodec === undefined ? null : { audioCodec: v.audioCodec }),
+                ...(v.bitrate === undefined ? null : { bitrate: v.bitrate }),
+                ...(v.container === undefined ? null : { container: v.container }),
+                ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.selected === undefined ? null : { selected: v.selected }),
+                ...(v.part === undefined ? null : { Part: v.part }),
+            };
+        });
+}
+
+/** @internal */
+export namespace User$ {
+    export type Inbound = {
+        id?: string | undefined;
+        thumb?: string | undefined;
+        title?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, Inbound> = z
+        .object({
+            id: z.string().optional(),
+            thumb: z.string().optional(),
+            title: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.title === undefined ? null : { title: v.title }),
+            };
+        });
+
+    export type Outbound = {
+        id?: string | undefined;
+        thumb?: string | undefined;
+        title?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, User> = z
+        .object({
+            id: z.string().optional(),
+            thumb: z.string().optional(),
+            title: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.title === undefined ? null : { title: v.title }),
+            };
+        });
+}
+
+/** @internal */
+export namespace Player$ {
+    export type Inbound = {
+        address?: string | undefined;
+        machineIdentifier?: string | undefined;
+        model?: string | undefined;
+        platform?: string | undefined;
+        platformVersion?: string | undefined;
+        product?: string | undefined;
+        profile?: string | undefined;
+        remotePublicAddress?: string | undefined;
+        state?: string | undefined;
+        title?: string | undefined;
+        version?: string | undefined;
+        local?: boolean | undefined;
+        relayed?: boolean | undefined;
+        secure?: boolean | undefined;
+        userID?: number | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<Player, z.ZodTypeDef, Inbound> = z
+        .object({
+            address: z.string().optional(),
+            machineIdentifier: z.string().optional(),
+            model: z.string().optional(),
+            platform: z.string().optional(),
+            platformVersion: z.string().optional(),
+            product: z.string().optional(),
+            profile: z.string().optional(),
+            remotePublicAddress: z.string().optional(),
+            state: z.string().optional(),
+            title: z.string().optional(),
+            version: z.string().optional(),
+            local: z.boolean().optional(),
+            relayed: z.boolean().optional(),
+            secure: z.boolean().optional(),
+            userID: z.number().int().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.address === undefined ? null : { address: v.address }),
+                ...(v.machineIdentifier === undefined
+                    ? null
+                    : { machineIdentifier: v.machineIdentifier }),
+                ...(v.model === undefined ? null : { model: v.model }),
+                ...(v.platform === undefined ? null : { platform: v.platform }),
+                ...(v.platformVersion === undefined
+                    ? null
+                    : { platformVersion: v.platformVersion }),
+                ...(v.product === undefined ? null : { product: v.product }),
+                ...(v.profile === undefined ? null : { profile: v.profile }),
+                ...(v.remotePublicAddress === undefined
+                    ? null
+                    : { remotePublicAddress: v.remotePublicAddress }),
+                ...(v.state === undefined ? null : { state: v.state }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.version === undefined ? null : { version: v.version }),
+                ...(v.local === undefined ? null : { local: v.local }),
+                ...(v.relayed === undefined ? null : { relayed: v.relayed }),
+                ...(v.secure === undefined ? null : { secure: v.secure }),
+                ...(v.userID === undefined ? null : { userID: v.userID }),
+            };
+        });
+
+    export type Outbound = {
+        address?: string | undefined;
+        machineIdentifier?: string | undefined;
+        model?: string | undefined;
+        platform?: string | undefined;
+        platformVersion?: string | undefined;
+        product?: string | undefined;
+        profile?: string | undefined;
+        remotePublicAddress?: string | undefined;
+        state?: string | undefined;
+        title?: string | undefined;
+        version?: string | undefined;
+        local?: boolean | undefined;
+        relayed?: boolean | undefined;
+        secure?: boolean | undefined;
+        userID?: number | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Player> = z
+        .object({
+            address: z.string().optional(),
+            machineIdentifier: z.string().optional(),
+            model: z.string().optional(),
+            platform: z.string().optional(),
+            platformVersion: z.string().optional(),
+            product: z.string().optional(),
+            profile: z.string().optional(),
+            remotePublicAddress: z.string().optional(),
+            state: z.string().optional(),
+            title: z.string().optional(),
+            version: z.string().optional(),
+            local: z.boolean().optional(),
+            relayed: z.boolean().optional(),
+            secure: z.boolean().optional(),
+            userID: z.number().int().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.address === undefined ? null : { address: v.address }),
+                ...(v.machineIdentifier === undefined
+                    ? null
+                    : { machineIdentifier: v.machineIdentifier }),
+                ...(v.model === undefined ? null : { model: v.model }),
+                ...(v.platform === undefined ? null : { platform: v.platform }),
+                ...(v.platformVersion === undefined
+                    ? null
+                    : { platformVersion: v.platformVersion }),
+                ...(v.product === undefined ? null : { product: v.product }),
+                ...(v.profile === undefined ? null : { profile: v.profile }),
+                ...(v.remotePublicAddress === undefined
+                    ? null
+                    : { remotePublicAddress: v.remotePublicAddress }),
+                ...(v.state === undefined ? null : { state: v.state }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.version === undefined ? null : { version: v.version }),
+                ...(v.local === undefined ? null : { local: v.local }),
+                ...(v.relayed === undefined ? null : { relayed: v.relayed }),
+                ...(v.secure === undefined ? null : { secure: v.secure }),
+                ...(v.userID === undefined ? null : { userID: v.userID }),
+            };
+        });
+}
+
+/** @internal */
+export namespace Session$ {
+    export type Inbound = {
+        id?: string | undefined;
+        bandwidth?: number | undefined;
+        location?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<Session, z.ZodTypeDef, Inbound> = z
+        .object({
+            id: z.string().optional(),
+            bandwidth: z.number().int().optional(),
+            location: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.bandwidth === undefined ? null : { bandwidth: v.bandwidth }),
+                ...(v.location === undefined ? null : { location: v.location }),
+            };
+        });
+
+    export type Outbound = {
+        id?: string | undefined;
+        bandwidth?: number | undefined;
+        location?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Session> = z
+        .object({
+            id: z.string().optional(),
+            bandwidth: z.number().int().optional(),
+            location: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.bandwidth === undefined ? null : { bandwidth: v.bandwidth }),
+                ...(v.location === undefined ? null : { location: v.location }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetSessionsMetadata$ {
+    export type Inbound = {
+        addedAt?: number | undefined;
+        art?: string | undefined;
+        duration?: number | undefined;
+        grandparentArt?: string | undefined;
+        grandparentGuid?: string | undefined;
+        grandparentKey?: string | undefined;
+        grandparentRatingKey?: string | undefined;
+        grandparentThumb?: string | undefined;
+        grandparentTitle?: string | undefined;
+        guid?: string | undefined;
+        index?: number | undefined;
+        key?: string | undefined;
+        librarySectionID?: string | undefined;
+        librarySectionKey?: string | undefined;
+        librarySectionTitle?: string | undefined;
+        musicAnalysisVersion?: string | undefined;
+        parentGuid?: string | undefined;
+        parentIndex?: number | undefined;
+        parentKey?: string | undefined;
+        parentRatingKey?: string | undefined;
+        parentStudio?: string | undefined;
+        parentThumb?: string | undefined;
+        parentTitle?: string | undefined;
+        parentYear?: number | undefined;
+        ratingCount?: number | undefined;
+        ratingKey?: string | undefined;
+        sessionKey?: string | undefined;
+        thumb?: string | undefined;
+        title?: string | undefined;
+        titleSort?: string | undefined;
+        type?: string | undefined;
+        updatedAt?: number | undefined;
+        viewOffset?: number | undefined;
+        Media?: Array<GetSessionsMedia$.Inbound> | undefined;
+        User?: User$.Inbound | undefined;
+        Player?: Player$.Inbound | undefined;
+        Session?: Session$.Inbound | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetSessionsMetadata, z.ZodTypeDef, Inbound> = z
+        .object({
+            addedAt: z.number().int().optional(),
+            art: z.string().optional(),
+            duration: z.number().int().optional(),
+            grandparentArt: z.string().optional(),
+            grandparentGuid: z.string().optional(),
+            grandparentKey: z.string().optional(),
+            grandparentRatingKey: z.string().optional(),
+            grandparentThumb: z.string().optional(),
+            grandparentTitle: z.string().optional(),
+            guid: z.string().optional(),
+            index: z.number().int().optional(),
+            key: z.string().optional(),
+            librarySectionID: z.string().optional(),
+            librarySectionKey: z.string().optional(),
+            librarySectionTitle: z.string().optional(),
+            musicAnalysisVersion: z.string().optional(),
+            parentGuid: z.string().optional(),
+            parentIndex: z.number().int().optional(),
+            parentKey: z.string().optional(),
+            parentRatingKey: z.string().optional(),
+            parentStudio: z.string().optional(),
+            parentThumb: z.string().optional(),
+            parentTitle: z.string().optional(),
+            parentYear: z.number().int().optional(),
+            ratingCount: z.number().int().optional(),
+            ratingKey: z.string().optional(),
+            sessionKey: z.string().optional(),
+            thumb: z.string().optional(),
+            title: z.string().optional(),
+            titleSort: z.string().optional(),
+            type: z.string().optional(),
+            updatedAt: z.number().int().optional(),
+            viewOffset: z.number().int().optional(),
+            Media: z.array(z.lazy(() => GetSessionsMedia$.inboundSchema)).optional(),
+            User: z.lazy(() => User$.inboundSchema).optional(),
+            Player: z.lazy(() => Player$.inboundSchema).optional(),
+            Session: z.lazy(() => Session$.inboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.addedAt === undefined ? null : { addedAt: v.addedAt }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.grandparentArt === undefined ? null : { grandparentArt: v.grandparentArt }),
+                ...(v.grandparentGuid === undefined
+                    ? null
+                    : { grandparentGuid: v.grandparentGuid }),
+                ...(v.grandparentKey === undefined ? null : { grandparentKey: v.grandparentKey }),
+                ...(v.grandparentRatingKey === undefined
+                    ? null
+                    : { grandparentRatingKey: v.grandparentRatingKey }),
+                ...(v.grandparentThumb === undefined
+                    ? null
+                    : { grandparentThumb: v.grandparentThumb }),
+                ...(v.grandparentTitle === undefined
+                    ? null
+                    : { grandparentTitle: v.grandparentTitle }),
+                ...(v.guid === undefined ? null : { guid: v.guid }),
+                ...(v.index === undefined ? null : { index: v.index }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.librarySectionID === undefined
+                    ? null
+                    : { librarySectionID: v.librarySectionID }),
+                ...(v.librarySectionKey === undefined
+                    ? null
+                    : { librarySectionKey: v.librarySectionKey }),
+                ...(v.librarySectionTitle === undefined
+                    ? null
+                    : { librarySectionTitle: v.librarySectionTitle }),
+                ...(v.musicAnalysisVersion === undefined
+                    ? null
+                    : { musicAnalysisVersion: v.musicAnalysisVersion }),
+                ...(v.parentGuid === undefined ? null : { parentGuid: v.parentGuid }),
+                ...(v.parentIndex === undefined ? null : { parentIndex: v.parentIndex }),
+                ...(v.parentKey === undefined ? null : { parentKey: v.parentKey }),
+                ...(v.parentRatingKey === undefined
+                    ? null
+                    : { parentRatingKey: v.parentRatingKey }),
+                ...(v.parentStudio === undefined ? null : { parentStudio: v.parentStudio }),
+                ...(v.parentThumb === undefined ? null : { parentThumb: v.parentThumb }),
+                ...(v.parentTitle === undefined ? null : { parentTitle: v.parentTitle }),
+                ...(v.parentYear === undefined ? null : { parentYear: v.parentYear }),
+                ...(v.ratingCount === undefined ? null : { ratingCount: v.ratingCount }),
+                ...(v.ratingKey === undefined ? null : { ratingKey: v.ratingKey }),
+                ...(v.sessionKey === undefined ? null : { sessionKey: v.sessionKey }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.titleSort === undefined ? null : { titleSort: v.titleSort }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.updatedAt === undefined ? null : { updatedAt: v.updatedAt }),
+                ...(v.viewOffset === undefined ? null : { viewOffset: v.viewOffset }),
+                ...(v.Media === undefined ? null : { media: v.Media }),
+                ...(v.User === undefined ? null : { user: v.User }),
+                ...(v.Player === undefined ? null : { player: v.Player }),
+                ...(v.Session === undefined ? null : { session: v.Session }),
+            };
+        });
+
+    export type Outbound = {
+        addedAt?: number | undefined;
+        art?: string | undefined;
+        duration?: number | undefined;
+        grandparentArt?: string | undefined;
+        grandparentGuid?: string | undefined;
+        grandparentKey?: string | undefined;
+        grandparentRatingKey?: string | undefined;
+        grandparentThumb?: string | undefined;
+        grandparentTitle?: string | undefined;
+        guid?: string | undefined;
+        index?: number | undefined;
+        key?: string | undefined;
+        librarySectionID?: string | undefined;
+        librarySectionKey?: string | undefined;
+        librarySectionTitle?: string | undefined;
+        musicAnalysisVersion?: string | undefined;
+        parentGuid?: string | undefined;
+        parentIndex?: number | undefined;
+        parentKey?: string | undefined;
+        parentRatingKey?: string | undefined;
+        parentStudio?: string | undefined;
+        parentThumb?: string | undefined;
+        parentTitle?: string | undefined;
+        parentYear?: number | undefined;
+        ratingCount?: number | undefined;
+        ratingKey?: string | undefined;
+        sessionKey?: string | undefined;
+        thumb?: string | undefined;
+        title?: string | undefined;
+        titleSort?: string | undefined;
+        type?: string | undefined;
+        updatedAt?: number | undefined;
+        viewOffset?: number | undefined;
+        Media?: Array<GetSessionsMedia$.Outbound> | undefined;
+        User?: User$.Outbound | undefined;
+        Player?: Player$.Outbound | undefined;
+        Session?: Session$.Outbound | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetSessionsMetadata> = z
+        .object({
+            addedAt: z.number().int().optional(),
+            art: z.string().optional(),
+            duration: z.number().int().optional(),
+            grandparentArt: z.string().optional(),
+            grandparentGuid: z.string().optional(),
+            grandparentKey: z.string().optional(),
+            grandparentRatingKey: z.string().optional(),
+            grandparentThumb: z.string().optional(),
+            grandparentTitle: z.string().optional(),
+            guid: z.string().optional(),
+            index: z.number().int().optional(),
+            key: z.string().optional(),
+            librarySectionID: z.string().optional(),
+            librarySectionKey: z.string().optional(),
+            librarySectionTitle: z.string().optional(),
+            musicAnalysisVersion: z.string().optional(),
+            parentGuid: z.string().optional(),
+            parentIndex: z.number().int().optional(),
+            parentKey: z.string().optional(),
+            parentRatingKey: z.string().optional(),
+            parentStudio: z.string().optional(),
+            parentThumb: z.string().optional(),
+            parentTitle: z.string().optional(),
+            parentYear: z.number().int().optional(),
+            ratingCount: z.number().int().optional(),
+            ratingKey: z.string().optional(),
+            sessionKey: z.string().optional(),
+            thumb: z.string().optional(),
+            title: z.string().optional(),
+            titleSort: z.string().optional(),
+            type: z.string().optional(),
+            updatedAt: z.number().int().optional(),
+            viewOffset: z.number().int().optional(),
+            media: z.array(z.lazy(() => GetSessionsMedia$.outboundSchema)).optional(),
+            user: z.lazy(() => User$.outboundSchema).optional(),
+            player: z.lazy(() => Player$.outboundSchema).optional(),
+            session: z.lazy(() => Session$.outboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.addedAt === undefined ? null : { addedAt: v.addedAt }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.grandparentArt === undefined ? null : { grandparentArt: v.grandparentArt }),
+                ...(v.grandparentGuid === undefined
+                    ? null
+                    : { grandparentGuid: v.grandparentGuid }),
+                ...(v.grandparentKey === undefined ? null : { grandparentKey: v.grandparentKey }),
+                ...(v.grandparentRatingKey === undefined
+                    ? null
+                    : { grandparentRatingKey: v.grandparentRatingKey }),
+                ...(v.grandparentThumb === undefined
+                    ? null
+                    : { grandparentThumb: v.grandparentThumb }),
+                ...(v.grandparentTitle === undefined
+                    ? null
+                    : { grandparentTitle: v.grandparentTitle }),
+                ...(v.guid === undefined ? null : { guid: v.guid }),
+                ...(v.index === undefined ? null : { index: v.index }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.librarySectionID === undefined
+                    ? null
+                    : { librarySectionID: v.librarySectionID }),
+                ...(v.librarySectionKey === undefined
+                    ? null
+                    : { librarySectionKey: v.librarySectionKey }),
+                ...(v.librarySectionTitle === undefined
+                    ? null
+                    : { librarySectionTitle: v.librarySectionTitle }),
+                ...(v.musicAnalysisVersion === undefined
+                    ? null
+                    : { musicAnalysisVersion: v.musicAnalysisVersion }),
+                ...(v.parentGuid === undefined ? null : { parentGuid: v.parentGuid }),
+                ...(v.parentIndex === undefined ? null : { parentIndex: v.parentIndex }),
+                ...(v.parentKey === undefined ? null : { parentKey: v.parentKey }),
+                ...(v.parentRatingKey === undefined
+                    ? null
+                    : { parentRatingKey: v.parentRatingKey }),
+                ...(v.parentStudio === undefined ? null : { parentStudio: v.parentStudio }),
+                ...(v.parentThumb === undefined ? null : { parentThumb: v.parentThumb }),
+                ...(v.parentTitle === undefined ? null : { parentTitle: v.parentTitle }),
+                ...(v.parentYear === undefined ? null : { parentYear: v.parentYear }),
+                ...(v.ratingCount === undefined ? null : { ratingCount: v.ratingCount }),
+                ...(v.ratingKey === undefined ? null : { ratingKey: v.ratingKey }),
+                ...(v.sessionKey === undefined ? null : { sessionKey: v.sessionKey }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.titleSort === undefined ? null : { titleSort: v.titleSort }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.updatedAt === undefined ? null : { updatedAt: v.updatedAt }),
+                ...(v.viewOffset === undefined ? null : { viewOffset: v.viewOffset }),
+                ...(v.media === undefined ? null : { Media: v.media }),
+                ...(v.user === undefined ? null : { User: v.user }),
+                ...(v.player === undefined ? null : { Player: v.player }),
+                ...(v.session === undefined ? null : { Session: v.session }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetSessionsMediaContainer$ {
+    export type Inbound = {
+        size?: number | undefined;
+        Metadata?: Array<GetSessionsMetadata$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetSessionsMediaContainer, z.ZodTypeDef, Inbound> = z
+        .object({
+            size: z.number().int().optional(),
+            Metadata: z.array(z.lazy(() => GetSessionsMetadata$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.Metadata === undefined ? null : { metadata: v.Metadata }),
+            };
+        });
+
+    export type Outbound = {
+        size?: number | undefined;
+        Metadata?: Array<GetSessionsMetadata$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetSessionsMediaContainer> = z
+        .object({
+            size: z.number().int().optional(),
+            metadata: z.array(z.lazy(() => GetSessionsMetadata$.outboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.metadata === undefined ? null : { Metadata: v.metadata }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetSessionsResponseBody$ {
+    export type Inbound = {
+        MediaContainer?: GetSessionsMediaContainer$.Inbound | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetSessionsResponseBody, z.ZodTypeDef, Inbound> = z
+        .object({
+            MediaContainer: z.lazy(() => GetSessionsMediaContainer$.inboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.MediaContainer === undefined ? null : { mediaContainer: v.MediaContainer }),
+            };
+        });
+
+    export type Outbound = {
+        MediaContainer?: GetSessionsMediaContainer$.Outbound | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetSessionsResponseBody> = z
+        .object({
+            mediaContainer: z.lazy(() => GetSessionsMediaContainer$.outboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.mediaContainer === undefined ? null : { MediaContainer: v.mediaContainer }),
+            };
+        });
+}
 
 /** @internal */
 export namespace GetSessionsResponse$ {
@@ -25,6 +1033,7 @@ export namespace GetSessionsResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
+        object?: GetSessionsResponseBody$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetSessionsResponse, z.ZodTypeDef, Inbound> = z
@@ -32,12 +1041,14 @@ export namespace GetSessionsResponse$ {
             ContentType: z.string(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
+            object: z.lazy(() => GetSessionsResponseBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 contentType: v.ContentType,
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 
@@ -45,6 +1056,7 @@ export namespace GetSessionsResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: never;
+        object?: GetSessionsResponseBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetSessionsResponse> = z
@@ -54,12 +1066,14 @@ export namespace GetSessionsResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
+            object: z.lazy(() => GetSessionsResponseBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 ContentType: v.contentType,
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 }

@@ -55,8 +55,13 @@ export class Sessions extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetSessionsResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetSessionsResponseBody$.inboundSchema.parse({
@@ -68,8 +73,6 @@ export class Sessions extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetSessionsResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -108,8 +111,13 @@ export class Sessions extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetSessionHistoryResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetSessionHistoryResponseBody$.inboundSchema.parse({
@@ -121,8 +129,6 @@ export class Sessions extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetSessionHistoryResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -237,7 +243,7 @@ export class Sessions extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
+        if (this.matchStatusCode(response, 204)) {
             // fallthrough
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();

@@ -216,25 +216,45 @@ export class Library extends ClientSDK {
      * Get Library Details
      *
      * @remarks
-     * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:
+     * ## Library Details Endpoint
      *
-     * - A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:
-     *   - Primary: (e.g. all, On Deck) These are still used in some clients to provide "shortcuts" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.
-     *   - Secondary: These are marked with `secondary="1"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.
-     *   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there's a completely obsolete entry marked `search="1"` which used to be used to allow clients to build search dialogs on the fly.
-     * - A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won't render any filtering controls. The `Type` object contains:
-     *   - `key`: This provides the root endpoint returning the actual media list for the type.
-     *   - `type`: This is the metadata type for the type (if a standard Plex type).
-     *   - `title`: The title for for the content of this type (e.g. "Movies").
-     * - Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.
-     *   - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.
-     *   - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.
-     *   - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a "Genre" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.
-     *   - `title`: The title for the filter.
-     * - Each `Sort` object contains a description of the sort field.
-     *   - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).
-     *   - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.
-     *   - `title`: The title of the field.
+     * This endpoint provides comprehensive details about the library, focusing on organizational aspects rather than the content itself.
+     *
+     * The details include:
+     *
+     * ### Directories
+     * Organized into three categories:
+     *
+     * - **Primary Directories**:
+     *   - Used in some clients for quick access to media subsets (e.g., "All", "On Deck").
+     *   - Most can be replicated via media queries.
+     *   - Customizable by users.
+     *
+     * - **Secondary Directories**:
+     *   - Marked with `secondary="1"`.
+     *   - Used in older clients for structured navigation.
+     *
+     * - **Special Directories**:
+     *   - Includes a "By Folder" entry for filesystem-based browsing.
+     *   - Contains an obsolete `search="1"` entry for on-the-fly search dialog creation.
+     *
+     * ### Types
+     * Each type in the library comes with a set of filters and sorts, aiding in building dynamic media controls:
+     *
+     * - **Type Object Attributes**:
+     *   - `key`: Endpoint for the media list of this type.
+     *   - `type`: Metadata type (if standard Plex type).
+     *   - `title`: Title for this content type (e.g., "Movies").
+     *
+     * - **Filter Objects**:
+     *   - Subset of the media query language.
+     *   - Attributes include `filter` (name), `filterType` (data type), `key` (endpoint for value range), and `title`.
+     *
+     * - **Sort Objects**:
+     *   - Description of sort fields.
+     *   - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
+     *
+     * > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
      *
      */
     async getLibrary(
@@ -396,19 +416,37 @@ export class Library extends ClientSDK {
      * Get Library Items
      *
      * @remarks
-     * This endpoint will return a list of library items filtered by the filter and type provided
+     * Fetches details from a specific section of the library identified by a section key and a tag. The tag parameter accepts the following values:
+     * - `all`: All items in the section.
+     * - `unwatched`: Items that have not been played.
+     * - `newest`: Items that are recently released.
+     * - `recentlyAdded`: Items that are recently added to the library.
+     * - `recentlyViewed`: Items that were recently viewed.
+     * - `onDeck`: Items to continue watching.
+     * - `collection`: Items categorized by collection.
+     * - `edition`: Items categorized by edition.
+     * - `genre`: Items categorized by genre.
+     * - `year`: Items categorized by year of release.
+     * - `decade`: Items categorized by decade.
+     * - `director`: Items categorized by director.
+     * - `actor`: Items categorized by starring actor.
+     * - `country`: Items categorized by country of origin.
+     * - `contentRating`: Items categorized by content rating.
+     * - `rating`: Items categorized by rating.
+     * - `resolution`: Items categorized by resolution.
+     * - `firstCharacter`: Items categorized by the first letter.
+     * - `folder`: Items categorized by folder.
+     * - `search?type=1`: Search functionality within the section.
      *
      */
     async getLibraryItems(
         sectionId: number,
-        type?: number | undefined,
-        filter?: string | undefined,
+        tag: operations.Tag,
         options?: RequestOptions
     ): Promise<operations.GetLibraryItemsResponse> {
         const input$: operations.GetLibraryItemsRequest = {
             sectionId: sectionId,
-            type: type,
-            filter: filter,
+            tag: tag,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -422,16 +460,13 @@ export class Library extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
+            tag: enc$.encodeSimple("tag", payload$.tag, {
+                explode: false,
+                charEncoding: "percent",
+            }),
         };
 
-        const path$ = this.templateURLComponent("/library/sections/{sectionId}/all")(pathParams$);
-
-        const query$ = [
-            enc$.encodeForm("filter", payload$.filter, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const path$ = this.templateURLComponent("/library/sections/{sectionId}/{tag}")(pathParams$);
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -449,7 +484,6 @@ export class Library extends ClientSDK {
                 method: "GET",
                 path: path$,
                 headers: headers$,
-                query: query$,
                 body: body$,
             },
             options
@@ -461,21 +495,17 @@ export class Library extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
+        if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.GetLibraryItemsResponseBody$.inboundSchema.parse({
+            const result = operations.GetLibraryItemsResponse$.inboundSchema.parse({
                 ...responseFields$,
-                ...responseBody,
+                object: responseBody,
             });
-            throw result;
+            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetLibraryItemsResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -555,182 +585,6 @@ export class Library extends ClientSDK {
     }
 
     /**
-     * Get Latest Library Items
-     *
-     * @remarks
-     * This endpoint will return a list of the latest library items filtered by the filter and type provided
-     *
-     */
-    async getLatestLibraryItems(
-        sectionId: number,
-        type: number,
-        filter?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetLatestLibraryItemsResponse> {
-        const input$: operations.GetLatestLibraryItemsRequest = {
-            sectionId: sectionId,
-            type: type,
-            filter: filter,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = operations.GetLatestLibraryItemsRequest$.outboundSchema.parse(input$);
-        const body$ = null;
-
-        const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-
-        const path$ = this.templateURLComponent("/library/sections/{sectionId}/latest")(
-            pathParams$
-        );
-
-        const query$ = [
-            enc$.encodeForm("filter", payload$.filter, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
-
-        let security$;
-        if (typeof this.options$.accessToken === "function") {
-            security$ = { accessToken: await this.options$.accessToken() };
-        } else if (this.options$.accessToken) {
-            security$ = { accessToken: this.options$.accessToken };
-        } else {
-            security$ = {};
-        }
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const response = await this.fetch$(
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-        };
-
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = errors.GetLatestLibraryItemsResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
-
-        return operations.GetLatestLibraryItemsResponse$.inboundSchema.parse(responseFields$);
-    }
-
-    /**
-     * Get Common Library Items
-     *
-     * @remarks
-     * Represents a "Common" item. It contains only the common attributes of the items selected by the provided filter
-     *
-     */
-    async getCommonLibraryItems(
-        sectionId: number,
-        type: number,
-        filter?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetCommonLibraryItemsResponse> {
-        const input$: operations.GetCommonLibraryItemsRequest = {
-            sectionId: sectionId,
-            type: type,
-            filter: filter,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = operations.GetCommonLibraryItemsRequest$.outboundSchema.parse(input$);
-        const body$ = null;
-
-        const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-
-        const path$ = this.templateURLComponent("/library/sections/{sectionId}/common")(
-            pathParams$
-        );
-
-        const query$ = [
-            enc$.encodeForm("filter", payload$.filter, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
-
-        let security$;
-        if (typeof this.options$.accessToken === "function") {
-            security$ = { accessToken: await this.options$.accessToken() };
-        } else if (this.options$.accessToken) {
-            security$ = { accessToken: this.options$.accessToken };
-        } else {
-            security$ = {};
-        }
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const response = await this.fetch$(
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-        };
-
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = errors.GetCommonLibraryItemsResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
-
-        return operations.GetCommonLibraryItemsResponse$.inboundSchema.parse(responseFields$);
-    }
-
-    /**
      * Get Items Metadata
      *
      * @remarks
@@ -787,8 +641,13 @@ export class Library extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetMetadataResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetMetadataResponseBody$.inboundSchema.parse({
@@ -800,8 +659,6 @@ export class Library extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetMetadataResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -863,8 +720,13 @@ export class Library extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetMetadataChildrenResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetMetadataChildrenResponseBody$.inboundSchema.parse({
@@ -876,8 +738,6 @@ export class Library extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetMetadataChildrenResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**

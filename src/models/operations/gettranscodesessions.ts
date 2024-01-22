@@ -13,11 +13,13 @@ export type TranscodeSession = {
     speed?: number | undefined;
     error?: boolean | undefined;
     duration?: number | undefined;
+    remaining?: number | undefined;
     context?: string | undefined;
     sourceVideoCodec?: string | undefined;
     sourceAudioCodec?: string | undefined;
     videoDecision?: string | undefined;
     audioDecision?: string | undefined;
+    subtitleDecision?: string | undefined;
     protocol?: string | undefined;
     container?: string | undefined;
     videoCodec?: string | undefined;
@@ -71,11 +73,13 @@ export namespace TranscodeSession$ {
         speed?: number | undefined;
         error?: boolean | undefined;
         duration?: number | undefined;
+        remaining?: number | undefined;
         context?: string | undefined;
         sourceVideoCodec?: string | undefined;
         sourceAudioCodec?: string | undefined;
         videoDecision?: string | undefined;
         audioDecision?: string | undefined;
+        subtitleDecision?: string | undefined;
         protocol?: string | undefined;
         container?: string | undefined;
         videoCodec?: string | undefined;
@@ -93,20 +97,22 @@ export namespace TranscodeSession$ {
             throttled: z.boolean().optional(),
             complete: z.boolean().optional(),
             progress: z.number().optional(),
-            size: z.number().optional(),
+            size: z.number().int().optional(),
             speed: z.number().optional(),
             error: z.boolean().optional(),
-            duration: z.number().optional(),
+            duration: z.number().int().optional(),
+            remaining: z.number().int().optional(),
             context: z.string().optional(),
             sourceVideoCodec: z.string().optional(),
             sourceAudioCodec: z.string().optional(),
             videoDecision: z.string().optional(),
             audioDecision: z.string().optional(),
+            subtitleDecision: z.string().optional(),
             protocol: z.string().optional(),
             container: z.string().optional(),
             videoCodec: z.string().optional(),
             audioCodec: z.string().optional(),
-            audioChannels: z.number().optional(),
+            audioChannels: z.number().int().optional(),
             transcodeHwRequested: z.boolean().optional(),
             timeStamp: z.number().optional(),
             maxOffsetAvailable: z.number().optional(),
@@ -122,6 +128,7 @@ export namespace TranscodeSession$ {
                 ...(v.speed === undefined ? null : { speed: v.speed }),
                 ...(v.error === undefined ? null : { error: v.error }),
                 ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.remaining === undefined ? null : { remaining: v.remaining }),
                 ...(v.context === undefined ? null : { context: v.context }),
                 ...(v.sourceVideoCodec === undefined
                     ? null
@@ -131,6 +138,9 @@ export namespace TranscodeSession$ {
                     : { sourceAudioCodec: v.sourceAudioCodec }),
                 ...(v.videoDecision === undefined ? null : { videoDecision: v.videoDecision }),
                 ...(v.audioDecision === undefined ? null : { audioDecision: v.audioDecision }),
+                ...(v.subtitleDecision === undefined
+                    ? null
+                    : { subtitleDecision: v.subtitleDecision }),
                 ...(v.protocol === undefined ? null : { protocol: v.protocol }),
                 ...(v.container === undefined ? null : { container: v.container }),
                 ...(v.videoCodec === undefined ? null : { videoCodec: v.videoCodec }),
@@ -158,11 +168,13 @@ export namespace TranscodeSession$ {
         speed?: number | undefined;
         error?: boolean | undefined;
         duration?: number | undefined;
+        remaining?: number | undefined;
         context?: string | undefined;
         sourceVideoCodec?: string | undefined;
         sourceAudioCodec?: string | undefined;
         videoDecision?: string | undefined;
         audioDecision?: string | undefined;
+        subtitleDecision?: string | undefined;
         protocol?: string | undefined;
         container?: string | undefined;
         videoCodec?: string | undefined;
@@ -180,20 +192,22 @@ export namespace TranscodeSession$ {
             throttled: z.boolean().optional(),
             complete: z.boolean().optional(),
             progress: z.number().optional(),
-            size: z.number().optional(),
+            size: z.number().int().optional(),
             speed: z.number().optional(),
             error: z.boolean().optional(),
-            duration: z.number().optional(),
+            duration: z.number().int().optional(),
+            remaining: z.number().int().optional(),
             context: z.string().optional(),
             sourceVideoCodec: z.string().optional(),
             sourceAudioCodec: z.string().optional(),
             videoDecision: z.string().optional(),
             audioDecision: z.string().optional(),
+            subtitleDecision: z.string().optional(),
             protocol: z.string().optional(),
             container: z.string().optional(),
             videoCodec: z.string().optional(),
             audioCodec: z.string().optional(),
-            audioChannels: z.number().optional(),
+            audioChannels: z.number().int().optional(),
             transcodeHwRequested: z.boolean().optional(),
             timeStamp: z.number().optional(),
             maxOffsetAvailable: z.number().optional(),
@@ -209,6 +223,7 @@ export namespace TranscodeSession$ {
                 ...(v.speed === undefined ? null : { speed: v.speed }),
                 ...(v.error === undefined ? null : { error: v.error }),
                 ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.remaining === undefined ? null : { remaining: v.remaining }),
                 ...(v.context === undefined ? null : { context: v.context }),
                 ...(v.sourceVideoCodec === undefined
                     ? null
@@ -218,6 +233,9 @@ export namespace TranscodeSession$ {
                     : { sourceAudioCodec: v.sourceAudioCodec }),
                 ...(v.videoDecision === undefined ? null : { videoDecision: v.videoDecision }),
                 ...(v.audioDecision === undefined ? null : { audioDecision: v.audioDecision }),
+                ...(v.subtitleDecision === undefined
+                    ? null
+                    : { subtitleDecision: v.subtitleDecision }),
                 ...(v.protocol === undefined ? null : { protocol: v.protocol }),
                 ...(v.container === undefined ? null : { container: v.container }),
                 ...(v.videoCodec === undefined ? null : { videoCodec: v.videoCodec }),
@@ -250,7 +268,7 @@ export namespace GetTranscodeSessionsMediaContainer$ {
         Inbound
     > = z
         .object({
-            size: z.number().optional(),
+            size: z.number().int().optional(),
             TranscodeSession: z.array(z.lazy(() => TranscodeSession$.inboundSchema)).optional(),
         })
         .transform((v) => {
@@ -273,7 +291,7 @@ export namespace GetTranscodeSessionsMediaContainer$ {
         GetTranscodeSessionsMediaContainer
     > = z
         .object({
-            size: z.number().optional(),
+            size: z.number().int().optional(),
             transcodeSession: z.array(z.lazy(() => TranscodeSession$.outboundSchema)).optional(),
         })
         .transform((v) => {

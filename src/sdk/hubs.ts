@@ -83,8 +83,13 @@ export class Hubs extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetGlobalHubsResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetGlobalHubsResponseBody$.inboundSchema.parse({
@@ -96,8 +101,6 @@ export class Hubs extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetGlobalHubsResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -172,8 +175,13 @@ export class Hubs extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetLibraryHubsResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetLibraryHubsResponseBody$.inboundSchema.parse({
@@ -185,7 +193,5 @@ export class Hubs extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetLibraryHubsResponse$.inboundSchema.parse(responseFields$);
     }
 }

@@ -9,6 +9,14 @@ export type UpdatePlaylistRequest = {
      * the ID of the playlist
      */
     playlistID: number;
+    /**
+     * name of the playlist
+     */
+    title?: string | undefined;
+    /**
+     * summary description of the playlist
+     */
+    summary?: string | undefined;
 };
 
 export type UpdatePlaylistResponse = {
@@ -30,29 +38,41 @@ export type UpdatePlaylistResponse = {
 export namespace UpdatePlaylistRequest$ {
     export type Inbound = {
         playlistID: number;
+        title?: string | undefined;
+        summary?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<UpdatePlaylistRequest, z.ZodTypeDef, Inbound> = z
         .object({
             playlistID: z.number(),
+            title: z.string().optional(),
+            summary: z.string().optional(),
         })
         .transform((v) => {
             return {
                 playlistID: v.playlistID,
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
             };
         });
 
     export type Outbound = {
         playlistID: number;
+        title?: string | undefined;
+        summary?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdatePlaylistRequest> = z
         .object({
             playlistID: z.number(),
+            title: z.string().optional(),
+            summary: z.string().optional(),
         })
         .transform((v) => {
             return {
                 playlistID: v.playlistID,
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
             };
         });
 }

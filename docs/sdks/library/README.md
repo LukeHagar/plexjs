@@ -15,8 +15,6 @@ API Calls interacting with Plex Media Server Libraries
 * [deleteLibrary](#deletelibrary) - Delete Library Section
 * [getLibraryItems](#getlibraryitems) - Get Library Items
 * [refreshLibrary](#refreshlibrary) - Refresh Library
-* [getLatestLibraryItems](#getlatestlibraryitems) - Get Latest Library Items
-* [getCommonLibraryItems](#getcommonlibraryitems) - Get Common Library Items
 * [getMetadata](#getmetadata) - Get Items Metadata
 * [getMetadataChildren](#getmetadatachildren) - Get Items Children
 * [getOnDeck](#getondeck) - Get On Deck
@@ -158,25 +156,45 @@ run();
 
 ## getLibrary
 
-Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. These details are:
+## Library Details Endpoint
 
-- A list of `Directory` objects: These used to be used by clients to build a menuing system. There are four flavors of directory found here:
-  - Primary: (e.g. all, On Deck) These are still used in some clients to provide "shortcuts" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.
-  - Secondary: These are marked with `secondary="1"` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.
-  - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there's a completely obsolete entry marked `search="1"` which used to be used to allow clients to build search dialogs on the fly.
-- A list of `Type` objects: These represent the types of things found in this library, and for each one, a list of `Filter` and `Sort` objects. These can be used to build rich controls around a grid of media to allow filtering and organizing. Note that these filters and sorts are optional, and without them, the client won't render any filtering controls. The `Type` object contains:
-  - `key`: This provides the root endpoint returning the actual media list for the type.
-  - `type`: This is the metadata type for the type (if a standard Plex type).
-  - `title`: The title for for the content of this type (e.g. "Movies").
-- Each `Filter` object contains a description of the filter. Note that it is not an exhaustive list of the full media query language, but an inportant subset useful for top-level API.
-  - `filter`: This represents the filter name used for the filter, which can be used to construct complex media queries with.
-  - `filterType`: This is either `string`, `integer`, or `boolean`, and describes the type of values used for the filter.
-  - `key`: This provides the endpoint where the possible range of values for the filter can be retrieved (e.g. for a "Genre" filter, it returns a list of all the genres in the library). This will include a `type` argument that matches the metadata type of the Type element.
-  - `title`: The title for the filter.
-- Each `Sort` object contains a description of the sort field.
-  - `defaultDirection`: Can be either `asc` or `desc`, and specifies the default direction for the sort field (e.g. titles default to alphabetically ascending).
-  - `descKey` and `key`: Contains the parameters passed to the `sort=...` media query for each direction of the sort.
-  - `title`: The title of the field.
+This endpoint provides comprehensive details about the library, focusing on organizational aspects rather than the content itself.   
+
+The details include:
+
+### Directories
+Organized into three categories:
+
+- **Primary Directories**: 
+  - Used in some clients for quick access to media subsets (e.g., "All", "On Deck").
+  - Most can be replicated via media queries.
+  - Customizable by users.
+
+- **Secondary Directories**:
+  - Marked with `secondary="1"`.
+  - Used in older clients for structured navigation.
+
+- **Special Directories**:
+  - Includes a "By Folder" entry for filesystem-based browsing.
+  - Contains an obsolete `search="1"` entry for on-the-fly search dialog creation.
+
+### Types
+Each type in the library comes with a set of filters and sorts, aiding in building dynamic media controls:
+
+- **Type Object Attributes**:
+  - `key`: Endpoint for the media list of this type.
+  - `type`: Metadata type (if standard Plex type).
+  - `title`: Title for this content type (e.g., "Movies").
+
+- **Filter Objects**:
+  - Subset of the media query language.
+  - Attributes include `filter` (name), `filterType` (data type), `key` (endpoint for value range), and `title`.
+
+- **Sort Objects**:
+  - Description of sort fields.
+  - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
+
+> **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
 
 
 ### Example Usage
@@ -268,24 +286,44 @@ run();
 
 ## getLibraryItems
 
-This endpoint will return a list of library items filtered by the filter and type provided
+Fetches details from a specific section of the library identified by a section key and a tag. The tag parameter accepts the following values:
+- `all`: All items in the section.
+- `unwatched`: Items that have not been played.
+- `newest`: Items that are recently released.
+- `recentlyAdded`: Items that are recently added to the library.
+- `recentlyViewed`: Items that were recently viewed.
+- `onDeck`: Items to continue watching.
+- `collection`: Items categorized by collection.
+- `edition`: Items categorized by edition.
+- `genre`: Items categorized by genre.
+- `year`: Items categorized by year of release.
+- `decade`: Items categorized by decade.
+- `director`: Items categorized by director.
+- `actor`: Items categorized by starring actor.
+- `country`: Items categorized by country of origin.
+- `contentRating`: Items categorized by content rating.
+- `rating`: Items categorized by rating.
+- `resolution`: Items categorized by resolution.
+- `firstCharacter`: Items categorized by the first letter.
+- `folder`: Items categorized by folder.
+- `search?type=1`: Search functionality within the section.
 
 
 ### Example Usage
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Tag } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const sectionId = 4510.92;
-  const type = 760.66;
-  const filter = "string";
+  const sectionId = 451092;
+  const tag = Tag.Unwatched;
   
-  const result = await sdk.library.getLibraryItems(sectionId, type, filter);
+  const result = await sdk.library.getLibraryItems(sectionId, tag);
 
   // Handle the result
   console.log(result)
@@ -299,8 +337,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 |
-| `type`                                                                                                                                                                         | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | item type                                                                                                                                                                      |
-| `filter`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | the filter parameter                                                                                                                                                           |
+| `tag`                                                                                                                                                                          | [operations.Tag](../../models/operations/tag.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                             | A key representing a specific tag within the section.                                                                                                                          |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -310,10 +347,9 @@ run();
 **Promise<[operations.GetLibraryItemsResponse](../../models/operations/getlibraryitemsresponse.md)>**
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.GetLibraryItemsResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## refreshLibrary
 
@@ -359,104 +395,6 @@ run();
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | errors.RefreshLibraryResponseBody | 401                               | application/json                  |
 | errors.SDKError                   | 4xx-5xx                           | */*                               |
-
-## getLatestLibraryItems
-
-This endpoint will return a list of the latest library items filtered by the filter and type provided
-
-
-### Example Usage
-
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-  });
-
-  const sectionId = 7171.54;
-  const type = 8015.12;
-  const filter = "string";
-  
-  const result = await sdk.library.getLatestLibraryItems(sectionId, type, filter);
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 |
-| `type`                                                                                                                                                                         | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | item type                                                                                                                                                                      |
-| `filter`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | the filter parameter                                                                                                                                                           |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise<[operations.GetLatestLibraryItemsResponse](../../models/operations/getlatestlibraryitemsresponse.md)>**
-### Errors
-
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetLatestLibraryItemsResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
-
-## getCommonLibraryItems
-
-Represents a "Common" item. It contains only the common attributes of the items selected by the provided filter
-
-
-### Example Usage
-
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-  });
-
-  const sectionId = 2710.37;
-  const type = 2760.31;
-  const filter = "string";
-  
-  const result = await sdk.library.getCommonLibraryItems(sectionId, type, filter);
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 |
-| `type`                                                                                                                                                                         | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | item type                                                                                                                                                                      |
-| `filter`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | the filter parameter                                                                                                                                                           |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise<[operations.GetCommonLibraryItemsResponse](../../models/operations/getcommonlibraryitemsresponse.md)>**
-### Errors
-
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetCommonLibraryItemsResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
 
 ## getMetadata
 

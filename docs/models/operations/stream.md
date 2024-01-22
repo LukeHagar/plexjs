@@ -5,26 +5,35 @@
 
 | Field                  | Type                   | Required               | Description            | Example                |
 | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `id`                   | *number*               | :heavy_minus_sign:     | N/A                    | 211234                 |
-| `streamType`           | *number*               | :heavy_minus_sign:     | N/A                    | 1                      |
-| `default`              | *boolean*              | :heavy_minus_sign:     | N/A                    |                        |
-| `codec`                | *string*               | :heavy_minus_sign:     | N/A                    | hevc                   |
+| `id`                   | *number*               | :heavy_minus_sign:     | N/A                    | 29                     |
+| `streamType`           | *number*               | :heavy_minus_sign:     | N/A                    | 2                      |
+| `default`              | *boolean*              | :heavy_minus_sign:     | N/A                    | true                   |
+| `codec`                | *string*               | :heavy_minus_sign:     | N/A                    | aac                    |
 | `index`                | *number*               | :heavy_minus_sign:     | N/A                    | 0                      |
-| `bitrate`              | *number*               | :heavy_minus_sign:     | N/A                    | 918                    |
+| `bitrate`              | *number*               | :heavy_minus_sign:     | N/A                    | 128                    |
+| `bitDepth`             | *number*               | :heavy_minus_sign:     | N/A                    | 8                      |
+| `chromaLocation`       | *string*               | :heavy_minus_sign:     | N/A                    | left                   |
+| `chromaSubsampling`    | *string*               | :heavy_minus_sign:     | N/A                    | 14520                  |
+| `codedHeight`          | *number*               | :heavy_minus_sign:     | N/A                    | 816                    |
+| `codedWidth`           | *number*               | :heavy_minus_sign:     | N/A                    | 1920                   |
+| `colorPrimaries`       | *string*               | :heavy_minus_sign:     | N/A                    | bt709                  |
+| `colorRange`           | *string*               | :heavy_minus_sign:     | N/A                    | tv                     |
+| `colorSpace`           | *string*               | :heavy_minus_sign:     | N/A                    | bt709                  |
+| `colorTrc`             | *string*               | :heavy_minus_sign:     | N/A                    | bt709                  |
+| `frameRate`            | *number*               | :heavy_minus_sign:     | N/A                    | 24                     |
+| `hasScalingMatrix`     | *boolean*              | :heavy_minus_sign:     | N/A                    | false                  |
+| `height`               | *number*               | :heavy_minus_sign:     | N/A                    | 814                    |
+| `level`                | *number*               | :heavy_minus_sign:     | N/A                    | 40                     |
+| `profile`              | *string*               | :heavy_minus_sign:     | N/A                    | lc                     |
+| `refFrames`            | *number*               | :heavy_minus_sign:     | N/A                    | 4                      |
+| `scanType`             | *string*               | :heavy_minus_sign:     | N/A                    | progressive            |
+| `streamIdentifier`     | *string*               | :heavy_minus_sign:     | N/A                    | 1                      |
+| `width`                | *number*               | :heavy_minus_sign:     | N/A                    | 1920                   |
+| `displayTitle`         | *string*               | :heavy_minus_sign:     | N/A                    | English (AAC Stereo)   |
+| `extendedDisplayTitle` | *string*               | :heavy_minus_sign:     | N/A                    | English (AAC Stereo)   |
+| `selected`             | *boolean*              | :heavy_minus_sign:     | N/A                    | true                   |
+| `channels`             | *number*               | :heavy_minus_sign:     | N/A                    | 2                      |
 | `language`             | *string*               | :heavy_minus_sign:     | N/A                    | English                |
 | `languageTag`          | *string*               | :heavy_minus_sign:     | N/A                    | en                     |
 | `languageCode`         | *string*               | :heavy_minus_sign:     | N/A                    | eng                    |
-| `bitDepth`             | *number*               | :heavy_minus_sign:     | N/A                    | 8                      |
-| `chromaLocation`       | *string*               | :heavy_minus_sign:     | N/A                    | left                   |
-| `chromaSubsampling`    | *string*               | :heavy_minus_sign:     | N/A                    | 4:2:0                  |
-| `codedHeight`          | *number*               | :heavy_minus_sign:     | N/A                    | 1080                   |
-| `codedWidth`           | *number*               | :heavy_minus_sign:     | N/A                    | 1920                   |
-| `colorRange`           | *string*               | :heavy_minus_sign:     | N/A                    | tv                     |
-| `frameRate`            | *number*               | :heavy_minus_sign:     | N/A                    | 25                     |
-| `height`               | *number*               | :heavy_minus_sign:     | N/A                    | 1080                   |
-| `level`                | *number*               | :heavy_minus_sign:     | N/A                    | 120                    |
-| `profile`              | *string*               | :heavy_minus_sign:     | N/A                    | main                   |
-| `refFrames`            | *number*               | :heavy_minus_sign:     | N/A                    | 1                      |
-| `width`                | *number*               | :heavy_minus_sign:     | N/A                    | 1920                   |
-| `displayTitle`         | *string*               | :heavy_minus_sign:     | N/A                    | 1080p (HEVC Main)      |
-| `extendedDisplayTitle` | *string*               | :heavy_minus_sign:     | N/A                    | 1080p (HEVC Main)      |
+| `samplingRate`         | *number*               | :heavy_minus_sign:     | N/A                    | 44100                  |

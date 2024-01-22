@@ -4,6 +4,31 @@
 
 import { z } from "zod";
 
+export type Release = {
+    key?: string | undefined;
+    version?: string | undefined;
+    added?: string | undefined;
+    fixed?: string | undefined;
+    downloadURL?: string | undefined;
+    state?: string | undefined;
+};
+
+export type GetUpdateStatusMediaContainer = {
+    size?: number | undefined;
+    canInstall?: boolean | undefined;
+    checkedAt?: number | undefined;
+    downloadURL?: string | undefined;
+    status?: number | undefined;
+    release?: Array<Release> | undefined;
+};
+
+/**
+ * The Server Updates
+ */
+export type GetUpdateStatusResponseBody = {
+    mediaContainer?: GetUpdateStatusMediaContainer | undefined;
+};
+
 export type GetUpdateStatusResponse = {
     /**
      * HTTP response content type for this operation
@@ -17,7 +42,165 @@ export type GetUpdateStatusResponse = {
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse: Response;
+    /**
+     * The Server Updates
+     */
+    object?: GetUpdateStatusResponseBody | undefined;
 };
+
+/** @internal */
+export namespace Release$ {
+    export type Inbound = {
+        key?: string | undefined;
+        version?: string | undefined;
+        added?: string | undefined;
+        fixed?: string | undefined;
+        downloadURL?: string | undefined;
+        state?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<Release, z.ZodTypeDef, Inbound> = z
+        .object({
+            key: z.string().optional(),
+            version: z.string().optional(),
+            added: z.string().optional(),
+            fixed: z.string().optional(),
+            downloadURL: z.string().optional(),
+            state: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.version === undefined ? null : { version: v.version }),
+                ...(v.added === undefined ? null : { added: v.added }),
+                ...(v.fixed === undefined ? null : { fixed: v.fixed }),
+                ...(v.downloadURL === undefined ? null : { downloadURL: v.downloadURL }),
+                ...(v.state === undefined ? null : { state: v.state }),
+            };
+        });
+
+    export type Outbound = {
+        key?: string | undefined;
+        version?: string | undefined;
+        added?: string | undefined;
+        fixed?: string | undefined;
+        downloadURL?: string | undefined;
+        state?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Release> = z
+        .object({
+            key: z.string().optional(),
+            version: z.string().optional(),
+            added: z.string().optional(),
+            fixed: z.string().optional(),
+            downloadURL: z.string().optional(),
+            state: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.version === undefined ? null : { version: v.version }),
+                ...(v.added === undefined ? null : { added: v.added }),
+                ...(v.fixed === undefined ? null : { fixed: v.fixed }),
+                ...(v.downloadURL === undefined ? null : { downloadURL: v.downloadURL }),
+                ...(v.state === undefined ? null : { state: v.state }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetUpdateStatusMediaContainer$ {
+    export type Inbound = {
+        size?: number | undefined;
+        canInstall?: boolean | undefined;
+        checkedAt?: number | undefined;
+        downloadURL?: string | undefined;
+        status?: number | undefined;
+        Release?: Array<Release$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetUpdateStatusMediaContainer, z.ZodTypeDef, Inbound> = z
+        .object({
+            size: z.number().int().optional(),
+            canInstall: z.boolean().optional(),
+            checkedAt: z.number().int().optional(),
+            downloadURL: z.string().optional(),
+            status: z.number().int().optional(),
+            Release: z.array(z.lazy(() => Release$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.canInstall === undefined ? null : { canInstall: v.canInstall }),
+                ...(v.checkedAt === undefined ? null : { checkedAt: v.checkedAt }),
+                ...(v.downloadURL === undefined ? null : { downloadURL: v.downloadURL }),
+                ...(v.status === undefined ? null : { status: v.status }),
+                ...(v.Release === undefined ? null : { release: v.Release }),
+            };
+        });
+
+    export type Outbound = {
+        size?: number | undefined;
+        canInstall?: boolean | undefined;
+        checkedAt?: number | undefined;
+        downloadURL?: string | undefined;
+        status?: number | undefined;
+        Release?: Array<Release$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetUpdateStatusMediaContainer> =
+        z
+            .object({
+                size: z.number().int().optional(),
+                canInstall: z.boolean().optional(),
+                checkedAt: z.number().int().optional(),
+                downloadURL: z.string().optional(),
+                status: z.number().int().optional(),
+                release: z.array(z.lazy(() => Release$.outboundSchema)).optional(),
+            })
+            .transform((v) => {
+                return {
+                    ...(v.size === undefined ? null : { size: v.size }),
+                    ...(v.canInstall === undefined ? null : { canInstall: v.canInstall }),
+                    ...(v.checkedAt === undefined ? null : { checkedAt: v.checkedAt }),
+                    ...(v.downloadURL === undefined ? null : { downloadURL: v.downloadURL }),
+                    ...(v.status === undefined ? null : { status: v.status }),
+                    ...(v.release === undefined ? null : { Release: v.release }),
+                };
+            });
+}
+
+/** @internal */
+export namespace GetUpdateStatusResponseBody$ {
+    export type Inbound = {
+        MediaContainer?: GetUpdateStatusMediaContainer$.Inbound | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetUpdateStatusResponseBody, z.ZodTypeDef, Inbound> = z
+        .object({
+            MediaContainer: z.lazy(() => GetUpdateStatusMediaContainer$.inboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.MediaContainer === undefined ? null : { mediaContainer: v.MediaContainer }),
+            };
+        });
+
+    export type Outbound = {
+        MediaContainer?: GetUpdateStatusMediaContainer$.Outbound | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetUpdateStatusResponseBody> = z
+        .object({
+            mediaContainer: z.lazy(() => GetUpdateStatusMediaContainer$.outboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.mediaContainer === undefined ? null : { MediaContainer: v.mediaContainer }),
+            };
+        });
+}
 
 /** @internal */
 export namespace GetUpdateStatusResponse$ {
@@ -25,6 +208,7 @@ export namespace GetUpdateStatusResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
+        object?: GetUpdateStatusResponseBody$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetUpdateStatusResponse, z.ZodTypeDef, Inbound> = z
@@ -32,12 +216,14 @@ export namespace GetUpdateStatusResponse$ {
             ContentType: z.string(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
+            object: z.lazy(() => GetUpdateStatusResponseBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 contentType: v.ContentType,
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 
@@ -45,6 +231,7 @@ export namespace GetUpdateStatusResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: never;
+        object?: GetUpdateStatusResponseBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetUpdateStatusResponse> = z
@@ -54,12 +241,14 @@ export namespace GetUpdateStatusResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
+            object: z.lazy(() => GetUpdateStatusResponseBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 ContentType: v.contentType,
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 }

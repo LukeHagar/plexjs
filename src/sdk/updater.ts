@@ -55,8 +55,13 @@ export class Updater extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetUpdateStatusResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetUpdateStatusResponseBody$.inboundSchema.parse({
@@ -68,8 +73,6 @@ export class Updater extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetUpdateStatusResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**

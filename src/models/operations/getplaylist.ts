@@ -11,6 +11,36 @@ export type GetPlaylistRequest = {
     playlistID: number;
 };
 
+export type GetPlaylistMetadata = {
+    content?: string | undefined;
+    ratingKey?: string | undefined;
+    key?: string | undefined;
+    guid?: string | undefined;
+    type?: string | undefined;
+    title?: string | undefined;
+    summary?: string | undefined;
+    smart?: boolean | undefined;
+    playlistType?: string | undefined;
+    composite?: string | undefined;
+    icon?: string | undefined;
+    duration?: number | undefined;
+    leafCount?: number | undefined;
+    addedAt?: number | undefined;
+    updatedAt?: number | undefined;
+};
+
+export type GetPlaylistMediaContainer = {
+    size?: number | undefined;
+    metadata?: Array<GetPlaylistMetadata> | undefined;
+};
+
+/**
+ * The playlist
+ */
+export type GetPlaylistResponseBody = {
+    mediaContainer?: GetPlaylistMediaContainer | undefined;
+};
+
 export type GetPlaylistResponse = {
     /**
      * HTTP response content type for this operation
@@ -24,6 +54,10 @@ export type GetPlaylistResponse = {
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse: Response;
+    /**
+     * The playlist
+     */
+    object?: GetPlaylistResponseBody | undefined;
 };
 
 /** @internal */
@@ -58,11 +92,195 @@ export namespace GetPlaylistRequest$ {
 }
 
 /** @internal */
+export namespace GetPlaylistMetadata$ {
+    export type Inbound = {
+        content?: string | undefined;
+        ratingKey?: string | undefined;
+        key?: string | undefined;
+        guid?: string | undefined;
+        type?: string | undefined;
+        title?: string | undefined;
+        summary?: string | undefined;
+        smart?: boolean | undefined;
+        playlistType?: string | undefined;
+        composite?: string | undefined;
+        icon?: string | undefined;
+        duration?: number | undefined;
+        leafCount?: number | undefined;
+        addedAt?: number | undefined;
+        updatedAt?: number | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetPlaylistMetadata, z.ZodTypeDef, Inbound> = z
+        .object({
+            content: z.string().optional(),
+            ratingKey: z.string().optional(),
+            key: z.string().optional(),
+            guid: z.string().optional(),
+            type: z.string().optional(),
+            title: z.string().optional(),
+            summary: z.string().optional(),
+            smart: z.boolean().optional(),
+            playlistType: z.string().optional(),
+            composite: z.string().optional(),
+            icon: z.string().optional(),
+            duration: z.number().int().optional(),
+            leafCount: z.number().int().optional(),
+            addedAt: z.number().int().optional(),
+            updatedAt: z.number().int().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.content === undefined ? null : { content: v.content }),
+                ...(v.ratingKey === undefined ? null : { ratingKey: v.ratingKey }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.guid === undefined ? null : { guid: v.guid }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.smart === undefined ? null : { smart: v.smart }),
+                ...(v.playlistType === undefined ? null : { playlistType: v.playlistType }),
+                ...(v.composite === undefined ? null : { composite: v.composite }),
+                ...(v.icon === undefined ? null : { icon: v.icon }),
+                ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.leafCount === undefined ? null : { leafCount: v.leafCount }),
+                ...(v.addedAt === undefined ? null : { addedAt: v.addedAt }),
+                ...(v.updatedAt === undefined ? null : { updatedAt: v.updatedAt }),
+            };
+        });
+
+    export type Outbound = {
+        content?: string | undefined;
+        ratingKey?: string | undefined;
+        key?: string | undefined;
+        guid?: string | undefined;
+        type?: string | undefined;
+        title?: string | undefined;
+        summary?: string | undefined;
+        smart?: boolean | undefined;
+        playlistType?: string | undefined;
+        composite?: string | undefined;
+        icon?: string | undefined;
+        duration?: number | undefined;
+        leafCount?: number | undefined;
+        addedAt?: number | undefined;
+        updatedAt?: number | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetPlaylistMetadata> = z
+        .object({
+            content: z.string().optional(),
+            ratingKey: z.string().optional(),
+            key: z.string().optional(),
+            guid: z.string().optional(),
+            type: z.string().optional(),
+            title: z.string().optional(),
+            summary: z.string().optional(),
+            smart: z.boolean().optional(),
+            playlistType: z.string().optional(),
+            composite: z.string().optional(),
+            icon: z.string().optional(),
+            duration: z.number().int().optional(),
+            leafCount: z.number().int().optional(),
+            addedAt: z.number().int().optional(),
+            updatedAt: z.number().int().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.content === undefined ? null : { content: v.content }),
+                ...(v.ratingKey === undefined ? null : { ratingKey: v.ratingKey }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.guid === undefined ? null : { guid: v.guid }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.smart === undefined ? null : { smart: v.smart }),
+                ...(v.playlistType === undefined ? null : { playlistType: v.playlistType }),
+                ...(v.composite === undefined ? null : { composite: v.composite }),
+                ...(v.icon === undefined ? null : { icon: v.icon }),
+                ...(v.duration === undefined ? null : { duration: v.duration }),
+                ...(v.leafCount === undefined ? null : { leafCount: v.leafCount }),
+                ...(v.addedAt === undefined ? null : { addedAt: v.addedAt }),
+                ...(v.updatedAt === undefined ? null : { updatedAt: v.updatedAt }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetPlaylistMediaContainer$ {
+    export type Inbound = {
+        size?: number | undefined;
+        Metadata?: Array<GetPlaylistMetadata$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetPlaylistMediaContainer, z.ZodTypeDef, Inbound> = z
+        .object({
+            size: z.number().int().optional(),
+            Metadata: z.array(z.lazy(() => GetPlaylistMetadata$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.Metadata === undefined ? null : { metadata: v.Metadata }),
+            };
+        });
+
+    export type Outbound = {
+        size?: number | undefined;
+        Metadata?: Array<GetPlaylistMetadata$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetPlaylistMediaContainer> = z
+        .object({
+            size: z.number().int().optional(),
+            metadata: z.array(z.lazy(() => GetPlaylistMetadata$.outboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.metadata === undefined ? null : { Metadata: v.metadata }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetPlaylistResponseBody$ {
+    export type Inbound = {
+        MediaContainer?: GetPlaylistMediaContainer$.Inbound | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetPlaylistResponseBody, z.ZodTypeDef, Inbound> = z
+        .object({
+            MediaContainer: z.lazy(() => GetPlaylistMediaContainer$.inboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.MediaContainer === undefined ? null : { mediaContainer: v.MediaContainer }),
+            };
+        });
+
+    export type Outbound = {
+        MediaContainer?: GetPlaylistMediaContainer$.Outbound | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetPlaylistResponseBody> = z
+        .object({
+            mediaContainer: z.lazy(() => GetPlaylistMediaContainer$.outboundSchema).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.mediaContainer === undefined ? null : { MediaContainer: v.mediaContainer }),
+            };
+        });
+}
+
+/** @internal */
 export namespace GetPlaylistResponse$ {
     export type Inbound = {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
+        object?: GetPlaylistResponseBody$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetPlaylistResponse, z.ZodTypeDef, Inbound> = z
@@ -70,12 +288,14 @@ export namespace GetPlaylistResponse$ {
             ContentType: z.string(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
+            object: z.lazy(() => GetPlaylistResponseBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 contentType: v.ContentType,
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 
@@ -83,6 +303,7 @@ export namespace GetPlaylistResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: never;
+        object?: GetPlaylistResponseBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetPlaylistResponse> = z
@@ -92,12 +313,14 @@ export namespace GetPlaylistResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
+            object: z.lazy(() => GetPlaylistResponseBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 ContentType: v.contentType,
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 }

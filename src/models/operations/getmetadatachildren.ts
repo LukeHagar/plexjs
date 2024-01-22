@@ -11,6 +11,77 @@ export type GetMetadataChildrenRequest = {
     ratingKey: number;
 };
 
+export type GetMetadataChildrenDirectory = {
+    leafCount?: number | undefined;
+    thumb?: string | undefined;
+    viewedLeafCount?: number | undefined;
+    key?: string | undefined;
+    title?: string | undefined;
+};
+
+export type GetMetadataChildrenMetadata = {
+    ratingKey?: string | undefined;
+    key?: string | undefined;
+    parentRatingKey?: string | undefined;
+    guid?: string | undefined;
+    parentGuid?: string | undefined;
+    parentStudio?: string | undefined;
+    type?: string | undefined;
+    title?: string | undefined;
+    parentKey?: string | undefined;
+    parentTitle?: string | undefined;
+    summary?: string | undefined;
+    index?: number | undefined;
+    parentIndex?: number | undefined;
+    viewCount?: number | undefined;
+    lastViewedAt?: number | undefined;
+    parentYear?: number | undefined;
+    thumb?: string | undefined;
+    art?: string | undefined;
+    parentThumb?: string | undefined;
+    parentTheme?: string | undefined;
+    leafCount?: number | undefined;
+    viewedLeafCount?: number | undefined;
+    addedAt?: number | undefined;
+    updatedAt?: number | undefined;
+    userRating?: number | undefined;
+    skipCount?: number | undefined;
+    lastRatedAt?: number | undefined;
+};
+
+export type GetMetadataChildrenMediaContainer = {
+    size?: number | undefined;
+    allowSync?: boolean | undefined;
+    art?: string | undefined;
+    identifier?: string | undefined;
+    key?: string | undefined;
+    librarySectionID?: number | undefined;
+    librarySectionTitle?: string | undefined;
+    librarySectionUUID?: string | undefined;
+    mediaTagPrefix?: string | undefined;
+    mediaTagVersion?: number | undefined;
+    nocache?: boolean | undefined;
+    parentIndex?: number | undefined;
+    parentTitle?: string | undefined;
+    parentYear?: number | undefined;
+    summary?: string | undefined;
+    theme?: string | undefined;
+    thumb?: string | undefined;
+    title1?: string | undefined;
+    title2?: string | undefined;
+    viewGroup?: string | undefined;
+    viewMode?: number | undefined;
+    directory?: Array<GetMetadataChildrenDirectory> | undefined;
+    metadata?: Array<GetMetadataChildrenMetadata> | undefined;
+};
+
+/**
+ * The children of the library item.
+ */
+export type GetMetadataChildrenResponseBody = {
+    mediaContainer?: GetMetadataChildrenMediaContainer | undefined;
+};
+
 export type GetMetadataChildrenResponse = {
     /**
      * HTTP response content type for this operation
@@ -24,6 +95,10 @@ export type GetMetadataChildrenResponse = {
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse: Response;
+    /**
+     * The children of the library item.
+     */
+    object?: GetMetadataChildrenResponseBody | undefined;
 };
 
 /** @internal */
@@ -58,11 +133,499 @@ export namespace GetMetadataChildrenRequest$ {
 }
 
 /** @internal */
+export namespace GetMetadataChildrenDirectory$ {
+    export type Inbound = {
+        leafCount?: number | undefined;
+        thumb?: string | undefined;
+        viewedLeafCount?: number | undefined;
+        key?: string | undefined;
+        title?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetMetadataChildrenDirectory, z.ZodTypeDef, Inbound> = z
+        .object({
+            leafCount: z.number().int().optional(),
+            thumb: z.string().optional(),
+            viewedLeafCount: z.number().int().optional(),
+            key: z.string().optional(),
+            title: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.leafCount === undefined ? null : { leafCount: v.leafCount }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.viewedLeafCount === undefined
+                    ? null
+                    : { viewedLeafCount: v.viewedLeafCount }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.title === undefined ? null : { title: v.title }),
+            };
+        });
+
+    export type Outbound = {
+        leafCount?: number | undefined;
+        thumb?: string | undefined;
+        viewedLeafCount?: number | undefined;
+        key?: string | undefined;
+        title?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMetadataChildrenDirectory> = z
+        .object({
+            leafCount: z.number().int().optional(),
+            thumb: z.string().optional(),
+            viewedLeafCount: z.number().int().optional(),
+            key: z.string().optional(),
+            title: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.leafCount === undefined ? null : { leafCount: v.leafCount }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.viewedLeafCount === undefined
+                    ? null
+                    : { viewedLeafCount: v.viewedLeafCount }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.title === undefined ? null : { title: v.title }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetMetadataChildrenMetadata$ {
+    export type Inbound = {
+        ratingKey?: string | undefined;
+        key?: string | undefined;
+        parentRatingKey?: string | undefined;
+        guid?: string | undefined;
+        parentGuid?: string | undefined;
+        parentStudio?: string | undefined;
+        type?: string | undefined;
+        title?: string | undefined;
+        parentKey?: string | undefined;
+        parentTitle?: string | undefined;
+        summary?: string | undefined;
+        index?: number | undefined;
+        parentIndex?: number | undefined;
+        viewCount?: number | undefined;
+        lastViewedAt?: number | undefined;
+        parentYear?: number | undefined;
+        thumb?: string | undefined;
+        art?: string | undefined;
+        parentThumb?: string | undefined;
+        parentTheme?: string | undefined;
+        leafCount?: number | undefined;
+        viewedLeafCount?: number | undefined;
+        addedAt?: number | undefined;
+        updatedAt?: number | undefined;
+        userRating?: number | undefined;
+        skipCount?: number | undefined;
+        lastRatedAt?: number | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetMetadataChildrenMetadata, z.ZodTypeDef, Inbound> = z
+        .object({
+            ratingKey: z.string().optional(),
+            key: z.string().optional(),
+            parentRatingKey: z.string().optional(),
+            guid: z.string().optional(),
+            parentGuid: z.string().optional(),
+            parentStudio: z.string().optional(),
+            type: z.string().optional(),
+            title: z.string().optional(),
+            parentKey: z.string().optional(),
+            parentTitle: z.string().optional(),
+            summary: z.string().optional(),
+            index: z.number().int().optional(),
+            parentIndex: z.number().int().optional(),
+            viewCount: z.number().int().optional(),
+            lastViewedAt: z.number().int().optional(),
+            parentYear: z.number().int().optional(),
+            thumb: z.string().optional(),
+            art: z.string().optional(),
+            parentThumb: z.string().optional(),
+            parentTheme: z.string().optional(),
+            leafCount: z.number().int().optional(),
+            viewedLeafCount: z.number().int().optional(),
+            addedAt: z.number().int().optional(),
+            updatedAt: z.number().int().optional(),
+            userRating: z.number().int().optional(),
+            skipCount: z.number().int().optional(),
+            lastRatedAt: z.number().int().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.ratingKey === undefined ? null : { ratingKey: v.ratingKey }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.parentRatingKey === undefined
+                    ? null
+                    : { parentRatingKey: v.parentRatingKey }),
+                ...(v.guid === undefined ? null : { guid: v.guid }),
+                ...(v.parentGuid === undefined ? null : { parentGuid: v.parentGuid }),
+                ...(v.parentStudio === undefined ? null : { parentStudio: v.parentStudio }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.parentKey === undefined ? null : { parentKey: v.parentKey }),
+                ...(v.parentTitle === undefined ? null : { parentTitle: v.parentTitle }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.index === undefined ? null : { index: v.index }),
+                ...(v.parentIndex === undefined ? null : { parentIndex: v.parentIndex }),
+                ...(v.viewCount === undefined ? null : { viewCount: v.viewCount }),
+                ...(v.lastViewedAt === undefined ? null : { lastViewedAt: v.lastViewedAt }),
+                ...(v.parentYear === undefined ? null : { parentYear: v.parentYear }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.parentThumb === undefined ? null : { parentThumb: v.parentThumb }),
+                ...(v.parentTheme === undefined ? null : { parentTheme: v.parentTheme }),
+                ...(v.leafCount === undefined ? null : { leafCount: v.leafCount }),
+                ...(v.viewedLeafCount === undefined
+                    ? null
+                    : { viewedLeafCount: v.viewedLeafCount }),
+                ...(v.addedAt === undefined ? null : { addedAt: v.addedAt }),
+                ...(v.updatedAt === undefined ? null : { updatedAt: v.updatedAt }),
+                ...(v.userRating === undefined ? null : { userRating: v.userRating }),
+                ...(v.skipCount === undefined ? null : { skipCount: v.skipCount }),
+                ...(v.lastRatedAt === undefined ? null : { lastRatedAt: v.lastRatedAt }),
+            };
+        });
+
+    export type Outbound = {
+        ratingKey?: string | undefined;
+        key?: string | undefined;
+        parentRatingKey?: string | undefined;
+        guid?: string | undefined;
+        parentGuid?: string | undefined;
+        parentStudio?: string | undefined;
+        type?: string | undefined;
+        title?: string | undefined;
+        parentKey?: string | undefined;
+        parentTitle?: string | undefined;
+        summary?: string | undefined;
+        index?: number | undefined;
+        parentIndex?: number | undefined;
+        viewCount?: number | undefined;
+        lastViewedAt?: number | undefined;
+        parentYear?: number | undefined;
+        thumb?: string | undefined;
+        art?: string | undefined;
+        parentThumb?: string | undefined;
+        parentTheme?: string | undefined;
+        leafCount?: number | undefined;
+        viewedLeafCount?: number | undefined;
+        addedAt?: number | undefined;
+        updatedAt?: number | undefined;
+        userRating?: number | undefined;
+        skipCount?: number | undefined;
+        lastRatedAt?: number | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMetadataChildrenMetadata> = z
+        .object({
+            ratingKey: z.string().optional(),
+            key: z.string().optional(),
+            parentRatingKey: z.string().optional(),
+            guid: z.string().optional(),
+            parentGuid: z.string().optional(),
+            parentStudio: z.string().optional(),
+            type: z.string().optional(),
+            title: z.string().optional(),
+            parentKey: z.string().optional(),
+            parentTitle: z.string().optional(),
+            summary: z.string().optional(),
+            index: z.number().int().optional(),
+            parentIndex: z.number().int().optional(),
+            viewCount: z.number().int().optional(),
+            lastViewedAt: z.number().int().optional(),
+            parentYear: z.number().int().optional(),
+            thumb: z.string().optional(),
+            art: z.string().optional(),
+            parentThumb: z.string().optional(),
+            parentTheme: z.string().optional(),
+            leafCount: z.number().int().optional(),
+            viewedLeafCount: z.number().int().optional(),
+            addedAt: z.number().int().optional(),
+            updatedAt: z.number().int().optional(),
+            userRating: z.number().int().optional(),
+            skipCount: z.number().int().optional(),
+            lastRatedAt: z.number().int().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.ratingKey === undefined ? null : { ratingKey: v.ratingKey }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.parentRatingKey === undefined
+                    ? null
+                    : { parentRatingKey: v.parentRatingKey }),
+                ...(v.guid === undefined ? null : { guid: v.guid }),
+                ...(v.parentGuid === undefined ? null : { parentGuid: v.parentGuid }),
+                ...(v.parentStudio === undefined ? null : { parentStudio: v.parentStudio }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.title === undefined ? null : { title: v.title }),
+                ...(v.parentKey === undefined ? null : { parentKey: v.parentKey }),
+                ...(v.parentTitle === undefined ? null : { parentTitle: v.parentTitle }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.index === undefined ? null : { index: v.index }),
+                ...(v.parentIndex === undefined ? null : { parentIndex: v.parentIndex }),
+                ...(v.viewCount === undefined ? null : { viewCount: v.viewCount }),
+                ...(v.lastViewedAt === undefined ? null : { lastViewedAt: v.lastViewedAt }),
+                ...(v.parentYear === undefined ? null : { parentYear: v.parentYear }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.parentThumb === undefined ? null : { parentThumb: v.parentThumb }),
+                ...(v.parentTheme === undefined ? null : { parentTheme: v.parentTheme }),
+                ...(v.leafCount === undefined ? null : { leafCount: v.leafCount }),
+                ...(v.viewedLeafCount === undefined
+                    ? null
+                    : { viewedLeafCount: v.viewedLeafCount }),
+                ...(v.addedAt === undefined ? null : { addedAt: v.addedAt }),
+                ...(v.updatedAt === undefined ? null : { updatedAt: v.updatedAt }),
+                ...(v.userRating === undefined ? null : { userRating: v.userRating }),
+                ...(v.skipCount === undefined ? null : { skipCount: v.skipCount }),
+                ...(v.lastRatedAt === undefined ? null : { lastRatedAt: v.lastRatedAt }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetMetadataChildrenMediaContainer$ {
+    export type Inbound = {
+        size?: number | undefined;
+        allowSync?: boolean | undefined;
+        art?: string | undefined;
+        identifier?: string | undefined;
+        key?: string | undefined;
+        librarySectionID?: number | undefined;
+        librarySectionTitle?: string | undefined;
+        librarySectionUUID?: string | undefined;
+        mediaTagPrefix?: string | undefined;
+        mediaTagVersion?: number | undefined;
+        nocache?: boolean | undefined;
+        parentIndex?: number | undefined;
+        parentTitle?: string | undefined;
+        parentYear?: number | undefined;
+        summary?: string | undefined;
+        theme?: string | undefined;
+        thumb?: string | undefined;
+        title1?: string | undefined;
+        title2?: string | undefined;
+        viewGroup?: string | undefined;
+        viewMode?: number | undefined;
+        Directory?: Array<GetMetadataChildrenDirectory$.Inbound> | undefined;
+        Metadata?: Array<GetMetadataChildrenMetadata$.Inbound> | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<
+        GetMetadataChildrenMediaContainer,
+        z.ZodTypeDef,
+        Inbound
+    > = z
+        .object({
+            size: z.number().int().optional(),
+            allowSync: z.boolean().optional(),
+            art: z.string().optional(),
+            identifier: z.string().optional(),
+            key: z.string().optional(),
+            librarySectionID: z.number().int().optional(),
+            librarySectionTitle: z.string().optional(),
+            librarySectionUUID: z.string().optional(),
+            mediaTagPrefix: z.string().optional(),
+            mediaTagVersion: z.number().int().optional(),
+            nocache: z.boolean().optional(),
+            parentIndex: z.number().int().optional(),
+            parentTitle: z.string().optional(),
+            parentYear: z.number().int().optional(),
+            summary: z.string().optional(),
+            theme: z.string().optional(),
+            thumb: z.string().optional(),
+            title1: z.string().optional(),
+            title2: z.string().optional(),
+            viewGroup: z.string().optional(),
+            viewMode: z.number().int().optional(),
+            Directory: z
+                .array(z.lazy(() => GetMetadataChildrenDirectory$.inboundSchema))
+                .optional(),
+            Metadata: z.array(z.lazy(() => GetMetadataChildrenMetadata$.inboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.allowSync === undefined ? null : { allowSync: v.allowSync }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.identifier === undefined ? null : { identifier: v.identifier }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.librarySectionID === undefined
+                    ? null
+                    : { librarySectionID: v.librarySectionID }),
+                ...(v.librarySectionTitle === undefined
+                    ? null
+                    : { librarySectionTitle: v.librarySectionTitle }),
+                ...(v.librarySectionUUID === undefined
+                    ? null
+                    : { librarySectionUUID: v.librarySectionUUID }),
+                ...(v.mediaTagPrefix === undefined ? null : { mediaTagPrefix: v.mediaTagPrefix }),
+                ...(v.mediaTagVersion === undefined
+                    ? null
+                    : { mediaTagVersion: v.mediaTagVersion }),
+                ...(v.nocache === undefined ? null : { nocache: v.nocache }),
+                ...(v.parentIndex === undefined ? null : { parentIndex: v.parentIndex }),
+                ...(v.parentTitle === undefined ? null : { parentTitle: v.parentTitle }),
+                ...(v.parentYear === undefined ? null : { parentYear: v.parentYear }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.theme === undefined ? null : { theme: v.theme }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.title1 === undefined ? null : { title1: v.title1 }),
+                ...(v.title2 === undefined ? null : { title2: v.title2 }),
+                ...(v.viewGroup === undefined ? null : { viewGroup: v.viewGroup }),
+                ...(v.viewMode === undefined ? null : { viewMode: v.viewMode }),
+                ...(v.Directory === undefined ? null : { directory: v.Directory }),
+                ...(v.Metadata === undefined ? null : { metadata: v.Metadata }),
+            };
+        });
+
+    export type Outbound = {
+        size?: number | undefined;
+        allowSync?: boolean | undefined;
+        art?: string | undefined;
+        identifier?: string | undefined;
+        key?: string | undefined;
+        librarySectionID?: number | undefined;
+        librarySectionTitle?: string | undefined;
+        librarySectionUUID?: string | undefined;
+        mediaTagPrefix?: string | undefined;
+        mediaTagVersion?: number | undefined;
+        nocache?: boolean | undefined;
+        parentIndex?: number | undefined;
+        parentTitle?: string | undefined;
+        parentYear?: number | undefined;
+        summary?: string | undefined;
+        theme?: string | undefined;
+        thumb?: string | undefined;
+        title1?: string | undefined;
+        title2?: string | undefined;
+        viewGroup?: string | undefined;
+        viewMode?: number | undefined;
+        Directory?: Array<GetMetadataChildrenDirectory$.Outbound> | undefined;
+        Metadata?: Array<GetMetadataChildrenMetadata$.Outbound> | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        GetMetadataChildrenMediaContainer
+    > = z
+        .object({
+            size: z.number().int().optional(),
+            allowSync: z.boolean().optional(),
+            art: z.string().optional(),
+            identifier: z.string().optional(),
+            key: z.string().optional(),
+            librarySectionID: z.number().int().optional(),
+            librarySectionTitle: z.string().optional(),
+            librarySectionUUID: z.string().optional(),
+            mediaTagPrefix: z.string().optional(),
+            mediaTagVersion: z.number().int().optional(),
+            nocache: z.boolean().optional(),
+            parentIndex: z.number().int().optional(),
+            parentTitle: z.string().optional(),
+            parentYear: z.number().int().optional(),
+            summary: z.string().optional(),
+            theme: z.string().optional(),
+            thumb: z.string().optional(),
+            title1: z.string().optional(),
+            title2: z.string().optional(),
+            viewGroup: z.string().optional(),
+            viewMode: z.number().int().optional(),
+            directory: z
+                .array(z.lazy(() => GetMetadataChildrenDirectory$.outboundSchema))
+                .optional(),
+            metadata: z.array(z.lazy(() => GetMetadataChildrenMetadata$.outboundSchema)).optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.size === undefined ? null : { size: v.size }),
+                ...(v.allowSync === undefined ? null : { allowSync: v.allowSync }),
+                ...(v.art === undefined ? null : { art: v.art }),
+                ...(v.identifier === undefined ? null : { identifier: v.identifier }),
+                ...(v.key === undefined ? null : { key: v.key }),
+                ...(v.librarySectionID === undefined
+                    ? null
+                    : { librarySectionID: v.librarySectionID }),
+                ...(v.librarySectionTitle === undefined
+                    ? null
+                    : { librarySectionTitle: v.librarySectionTitle }),
+                ...(v.librarySectionUUID === undefined
+                    ? null
+                    : { librarySectionUUID: v.librarySectionUUID }),
+                ...(v.mediaTagPrefix === undefined ? null : { mediaTagPrefix: v.mediaTagPrefix }),
+                ...(v.mediaTagVersion === undefined
+                    ? null
+                    : { mediaTagVersion: v.mediaTagVersion }),
+                ...(v.nocache === undefined ? null : { nocache: v.nocache }),
+                ...(v.parentIndex === undefined ? null : { parentIndex: v.parentIndex }),
+                ...(v.parentTitle === undefined ? null : { parentTitle: v.parentTitle }),
+                ...(v.parentYear === undefined ? null : { parentYear: v.parentYear }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.theme === undefined ? null : { theme: v.theme }),
+                ...(v.thumb === undefined ? null : { thumb: v.thumb }),
+                ...(v.title1 === undefined ? null : { title1: v.title1 }),
+                ...(v.title2 === undefined ? null : { title2: v.title2 }),
+                ...(v.viewGroup === undefined ? null : { viewGroup: v.viewGroup }),
+                ...(v.viewMode === undefined ? null : { viewMode: v.viewMode }),
+                ...(v.directory === undefined ? null : { Directory: v.directory }),
+                ...(v.metadata === undefined ? null : { Metadata: v.metadata }),
+            };
+        });
+}
+
+/** @internal */
+export namespace GetMetadataChildrenResponseBody$ {
+    export type Inbound = {
+        MediaContainer?: GetMetadataChildrenMediaContainer$.Inbound | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<GetMetadataChildrenResponseBody, z.ZodTypeDef, Inbound> =
+        z
+            .object({
+                MediaContainer: z
+                    .lazy(() => GetMetadataChildrenMediaContainer$.inboundSchema)
+                    .optional(),
+            })
+            .transform((v) => {
+                return {
+                    ...(v.MediaContainer === undefined
+                        ? null
+                        : { mediaContainer: v.MediaContainer }),
+                };
+            });
+
+    export type Outbound = {
+        MediaContainer?: GetMetadataChildrenMediaContainer$.Outbound | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        GetMetadataChildrenResponseBody
+    > = z
+        .object({
+            mediaContainer: z
+                .lazy(() => GetMetadataChildrenMediaContainer$.outboundSchema)
+                .optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.mediaContainer === undefined ? null : { MediaContainer: v.mediaContainer }),
+            };
+        });
+}
+
+/** @internal */
 export namespace GetMetadataChildrenResponse$ {
     export type Inbound = {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
+        object?: GetMetadataChildrenResponseBody$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetMetadataChildrenResponse, z.ZodTypeDef, Inbound> = z
@@ -70,12 +633,14 @@ export namespace GetMetadataChildrenResponse$ {
             ContentType: z.string(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
+            object: z.lazy(() => GetMetadataChildrenResponseBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 contentType: v.ContentType,
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 
@@ -83,6 +648,7 @@ export namespace GetMetadataChildrenResponse$ {
         ContentType: string;
         StatusCode: number;
         RawResponse: never;
+        object?: GetMetadataChildrenResponseBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetMetadataChildrenResponse> = z
@@ -92,12 +658,14 @@ export namespace GetMetadataChildrenResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
+            object: z.lazy(() => GetMetadataChildrenResponseBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 ContentType: v.contentType,
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
+                ...(v.object === undefined ? null : { object: v.object }),
             };
         });
 }

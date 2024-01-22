@@ -12,7 +12,7 @@ export type GetServerIdentityMediaContainer = {
 };
 
 /**
- * The Transcode Sessions
+ * The Server Identity information
  */
 export type GetServerIdentityResponseBody = {
     mediaContainer?: GetServerIdentityMediaContainer | undefined;
@@ -32,7 +32,7 @@ export type GetServerIdentityResponse = {
      */
     rawResponse: Response;
     /**
-     * The Transcode Sessions
+     * The Server Identity information
      */
     object?: GetServerIdentityResponseBody | undefined;
 };

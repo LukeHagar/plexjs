@@ -173,7 +173,7 @@ export class Server extends ClientSDK {
             const responseBody = await response.json();
             const result = operations.GetAvailableClientsResponse$.inboundSchema.parse({
                 ...responseFields$,
-                responseBodies: responseBody,
+                object: responseBody,
             });
             return result;
         } else if (this.matchResponse(response, 401, "application/json")) {

@@ -26,7 +26,7 @@ export class Playlists extends ClientSDK {
      *
      * @remarks
      * Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass:
-     * - `uri` - The content URI for what we're playing (e.g. `library://...`).
+     * - `uri` - The content URI for what we're playing (e.g. `server://1234/com.plexapp.plugins.library/library/metadata/1`).
      * - `playQueueID` - To create a playlist from an existing play queue.
      *
      */
@@ -84,8 +84,13 @@ export class Playlists extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.CreatePlaylistResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.CreatePlaylistResponseBody$.inboundSchema.parse({
@@ -97,8 +102,6 @@ export class Playlists extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.CreatePlaylistResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -123,7 +126,7 @@ export class Playlists extends ClientSDK {
         const payload$ = operations.GetPlaylistsRequest$.outboundSchema.parse(input$);
         const body$ = null;
 
-        const path$ = this.templateURLComponent("/playlists/all")();
+        const path$ = this.templateURLComponent("/playlists")();
 
         const query$ = [
             enc$.encodeForm("playlistType", payload$.playlistType, {
@@ -163,8 +166,13 @@ export class Playlists extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetPlaylistsResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetPlaylistsResponseBody$.inboundSchema.parse({
@@ -176,8 +184,6 @@ export class Playlists extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetPlaylistsResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -238,8 +244,13 @@ export class Playlists extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetPlaylistResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetPlaylistResponseBody$.inboundSchema.parse({
@@ -251,8 +262,6 @@ export class Playlists extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetPlaylistResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -338,10 +347,14 @@ export class Playlists extends ClientSDK {
      */
     async updatePlaylist(
         playlistID: number,
+        title?: string | undefined,
+        summary?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.UpdatePlaylistResponse> {
         const input$: operations.UpdatePlaylistRequest = {
             playlistID: playlistID,
+            title: title,
+            summary: summary,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -359,6 +372,16 @@ export class Playlists extends ClientSDK {
 
         const path$ = this.templateURLComponent("/playlists/{playlistID}")(pathParams$);
 
+        const query$ = [
+            enc$.encodeForm("summary", payload$.summary, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeForm("title", payload$.title, { explode: true, charEncoding: "percent" }),
+        ]
+            .filter(Boolean)
+            .join("&");
+
         let security$;
         if (typeof this.options$.accessToken === "function") {
             security$ = { accessToken: await this.options$.accessToken() };
@@ -375,6 +398,7 @@ export class Playlists extends ClientSDK {
                 method: "PUT",
                 path: path$,
                 headers: headers$,
+                query: query$,
                 body: body$,
             },
             options
@@ -472,8 +496,13 @@ export class Playlists extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.GetPlaylistContentsResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.GetPlaylistContentsResponseBody$.inboundSchema.parse({
@@ -485,8 +514,6 @@ export class Playlists extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.GetPlaylistContentsResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
@@ -567,14 +594,14 @@ export class Playlists extends ClientSDK {
      * Adding to a Playlist
      *
      * @remarks
-     * Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.
+     * Adds a generator to a playlist, same parameters as the POST to create. With a dumb playlist, this adds the specified items to the playlist.
      * With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
      *
      */
     async addPlaylistContents(
         playlistID: number,
         uri: string,
-        playQueueID: number,
+        playQueueID?: number | undefined,
         options?: RequestOptions
     ): Promise<operations.AddPlaylistContentsResponse> {
         const input$: operations.AddPlaylistContentsRequest = {
@@ -636,8 +663,13 @@ export class Playlists extends ClientSDK {
             RawResponse: response,
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.AddPlaylistContentsResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
             const result = errors.AddPlaylistContentsResponseBody$.inboundSchema.parse({
@@ -649,8 +681,6 @@ export class Playlists extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return operations.AddPlaylistContentsResponse$.inboundSchema.parse(responseFields$);
     }
 
     /**
