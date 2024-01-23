@@ -32,7 +32,7 @@ Create a new playlist. By default the playlist is blank. To create a playlist al
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Smart, TypeT } from "@lukehagar/plexjs/models/operations";
+import { QueryParamType, Smart } from "@lukehagar/plexjs/models/operations";
 
 async function run() {
   const sdk = new PlexAPI({
@@ -41,7 +41,7 @@ async function run() {
 
   const result = await sdk.playlists.createPlaylist({
     title: "string",
-    type: TypeT.Photo,
+    type: QueryParamType.Photo,
     smart: Smart.One,
     uri: "https://inborn-brochure.biz",
   });

@@ -15,6 +15,7 @@ API Calls interacting with Plex Media Server Libraries
 * [deleteLibrary](#deletelibrary) - Delete Library Section
 * [getLibraryItems](#getlibraryitems) - Get Library Items
 * [refreshLibrary](#refreshlibrary) - Refresh Library
+* [searchLibrary](#searchlibrary) - Search Library
 * [getMetadata](#getmetadata) - Get Items Metadata
 * [getMetadataChildren](#getmetadatachildren) - Get Items Children
 * [getOnDeck](#getondeck) - Get On Deck
@@ -306,7 +307,6 @@ Fetches details from a specific section of the library identified by a section k
 - `resolution`: Items categorized by resolution.
 - `firstCharacter`: Items categorized by the first letter.
 - `folder`: Items categorized by folder.
-- `search?type=1`: Search functionality within the section.
 
 
 ### Example Usage
@@ -395,6 +395,70 @@ run();
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | errors.RefreshLibraryResponseBody | 401                               | application/json                  |
 | errors.SDKError                   | 4xx-5xx                           | */*                               |
+
+## searchLibrary
+
+Search for content within a specific section of the library.
+
+### Types
+Each type in the library comes with a set of filters and sorts, aiding in building dynamic media controls:
+
+- **Type Object Attributes**:
+  - `type`: Metadata type (if standard Plex type).  
+  - `title`: Title for this content type (e.g., "Movies").
+
+- **Filter Objects**:
+  - Subset of the media query language.
+  - Attributes include `filter` (name), `filterType` (data type), `key` (endpoint for value range), and `title`.
+
+- **Sort Objects**:
+  - Description of sort fields.
+  - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
+
+> **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
+
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { TypeT } from "@lukehagar/plexjs/models/operations";
+
+async function run() {
+  const sdk = new PlexAPI({
+    accessToken: "<YOUR_API_KEY_HERE>",
+  });
+
+  const sectionId = 933505;
+  const type = TypeT.Four;
+  
+  const result = await sdk.library.searchLibrary(sectionId, type);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 |
+| `type`                                                                                                                                                                         | [operations.TypeT](../../models/operations/typet.md)                                                                                                                           | :heavy_check_mark:                                                                                                                                                             | Plex content type to search for                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.SearchLibraryResponse](../../models/operations/searchlibraryresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## getMetadata
 

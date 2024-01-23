@@ -7,7 +7,7 @@ import { z } from "zod";
 /**
  * `delegation` - This is the only supported `type` parameter.
  */
-export enum QueryParamType {
+export enum GetTransientTokenQueryParamType {
     Delegation = "delegation",
 }
 
@@ -22,7 +22,7 @@ export type GetTransientTokenRequest = {
     /**
      * `delegation` - This is the only supported `type` parameter.
      */
-    type: QueryParamType;
+    type: GetTransientTokenQueryParamType;
     /**
      * `all` - This is the only supported `scope` parameter.
      */
@@ -45,7 +45,7 @@ export type GetTransientTokenResponse = {
 };
 
 /** @internal */
-export const QueryParamType$ = z.nativeEnum(QueryParamType);
+export const GetTransientTokenQueryParamType$ = z.nativeEnum(GetTransientTokenQueryParamType);
 
 /** @internal */
 export const Scope$ = z.nativeEnum(Scope);
@@ -53,13 +53,13 @@ export const Scope$ = z.nativeEnum(Scope);
 /** @internal */
 export namespace GetTransientTokenRequest$ {
     export type Inbound = {
-        type: QueryParamType;
+        type: GetTransientTokenQueryParamType;
         scope: Scope;
     };
 
     export const inboundSchema: z.ZodType<GetTransientTokenRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            type: QueryParamType$,
+            type: GetTransientTokenQueryParamType$,
             scope: Scope$,
         })
         .transform((v) => {
@@ -70,13 +70,13 @@ export namespace GetTransientTokenRequest$ {
         });
 
     export type Outbound = {
-        type: QueryParamType;
+        type: GetTransientTokenQueryParamType;
         scope: Scope;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetTransientTokenRequest> = z
         .object({
-            type: QueryParamType$,
+            type: GetTransientTokenQueryParamType$,
             scope: Scope$,
         })
         .transform((v) => {

@@ -49,6 +49,7 @@ export * from "./markunplayed";
 export * from "./performsearch";
 export * from "./performvoicesearch";
 export * from "./refreshlibrary";
+export * from "./searchlibrary";
 export * from "./startalltasks";
 export * from "./starttask";
 export * from "./startuniversaltranscode";

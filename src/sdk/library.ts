@@ -436,7 +436,6 @@ export class Library extends ClientSDK {
      * - `resolution`: Items categorized by resolution.
      * - `firstCharacter`: Items categorized by the first letter.
      * - `folder`: Items categorized by folder.
-     * - `search?type=1`: Search functionality within the section.
      *
      */
     async getLibraryItems(
@@ -582,6 +581,104 @@ export class Library extends ClientSDK {
         }
 
         return operations.RefreshLibraryResponse$.inboundSchema.parse(responseFields$);
+    }
+
+    /**
+     * Search Library
+     *
+     * @remarks
+     * Search for content within a specific section of the library.
+     *
+     * ### Types
+     * Each type in the library comes with a set of filters and sorts, aiding in building dynamic media controls:
+     *
+     * - **Type Object Attributes**:
+     *   - `type`: Metadata type (if standard Plex type).
+     *   - `title`: Title for this content type (e.g., "Movies").
+     *
+     * - **Filter Objects**:
+     *   - Subset of the media query language.
+     *   - Attributes include `filter` (name), `filterType` (data type), `key` (endpoint for value range), and `title`.
+     *
+     * - **Sort Objects**:
+     *   - Description of sort fields.
+     *   - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
+     *
+     * > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
+     *
+     */
+    async searchLibrary(
+        sectionId: number,
+        type: operations.TypeT,
+        options?: RequestOptions
+    ): Promise<operations.SearchLibraryResponse> {
+        const input$: operations.SearchLibraryRequest = {
+            sectionId: sectionId,
+            type: type,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = operations.SearchLibraryRequest$.outboundSchema.parse(input$);
+        const body$ = null;
+
+        const pathParams$ = {
+            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+
+        const path$ = this.templateURLComponent("/library/sections/{sectionId}/search")(
+            pathParams$
+        );
+
+        const query$ = [
+            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
+        ]
+            .filter(Boolean)
+            .join("&");
+
+        let security$;
+        if (typeof this.options$.accessToken === "function") {
+            security$ = { accessToken: await this.options$.accessToken() };
+        } else if (this.options$.accessToken) {
+            security$ = { accessToken: this.options$.accessToken };
+        } else {
+            security$ = {};
+        }
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const response = await this.fetch$(
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.SearchLibraryResponse$.inboundSchema.parse({
+                ...responseFields$,
+                object: responseBody,
+            });
+            return result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
     }
 
     /**

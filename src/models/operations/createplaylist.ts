@@ -7,7 +7,7 @@ import { z } from "zod";
 /**
  * type of playlist to create
  */
-export enum TypeT {
+export enum QueryParamType {
     Audio = "audio",
     Video = "video",
     Photo = "photo",
@@ -29,7 +29,7 @@ export type CreatePlaylistRequest = {
     /**
      * type of playlist to create
      */
-    type: TypeT;
+    type: QueryParamType;
     /**
      * whether the playlist is smart or not
      */
@@ -95,7 +95,7 @@ export type CreatePlaylistResponse = {
 };
 
 /** @internal */
-export const TypeT$ = z.nativeEnum(TypeT);
+export const QueryParamType$ = z.nativeEnum(QueryParamType);
 
 /** @internal */
 export const Smart$ = z.nativeEnum(Smart);
@@ -104,7 +104,7 @@ export const Smart$ = z.nativeEnum(Smart);
 export namespace CreatePlaylistRequest$ {
     export type Inbound = {
         title: string;
-        type: TypeT;
+        type: QueryParamType;
         smart: Smart;
         uri: string;
         playQueueID?: number | undefined;
@@ -113,7 +113,7 @@ export namespace CreatePlaylistRequest$ {
     export const inboundSchema: z.ZodType<CreatePlaylistRequest, z.ZodTypeDef, Inbound> = z
         .object({
             title: z.string(),
-            type: TypeT$,
+            type: QueryParamType$,
             smart: Smart$,
             uri: z.string(),
             playQueueID: z.number().optional(),
@@ -130,7 +130,7 @@ export namespace CreatePlaylistRequest$ {
 
     export type Outbound = {
         title: string;
-        type: TypeT;
+        type: QueryParamType;
         smart: Smart;
         uri: string;
         playQueueID?: number | undefined;
@@ -139,7 +139,7 @@ export namespace CreatePlaylistRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreatePlaylistRequest> = z
         .object({
             title: z.string(),
-            type: TypeT$,
+            type: QueryParamType$,
             smart: Smart$,
             uri: z.string(),
             playQueueID: z.number().optional(),

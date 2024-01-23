@@ -1,12 +1,13 @@
 # TypeT
 
-type of playlist to create
+Plex content type to search for
 
 
 ## Values
 
 | Name    | Value   |
 | ------- | ------- |
-| `Audio` | audio   |
-| `Video` | video   |
-| `Photo` | photo   |
+| `One`   | 1       |
+| `Two`   | 2       |
+| `Three` | 3       |
+| `Four`  | 4       |

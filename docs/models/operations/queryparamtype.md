@@ -1,10 +1,12 @@
 # QueryParamType
 
-`delegation` - This is the only supported `type` parameter.
+type of playlist to create
 
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Delegation` | delegation   |
+| Name    | Value   |
+| ------- | ------- |
+| `Audio` | audio   |
+| `Video` | video   |
+| `Photo` | photo   |

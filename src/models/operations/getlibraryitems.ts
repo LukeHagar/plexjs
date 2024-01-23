@@ -28,7 +28,6 @@ export enum Tag {
     Resolution = "resolution",
     FirstCharacter = "firstCharacter",
     Folder = "folder",
-    SearchTypeEqual1 = "search?type=1",
 }
 
 export type GetLibraryItemsRequest = {

@@ -29,7 +29,7 @@ export class Security extends ClientSDK {
      *
      */
     async getTransientToken(
-        type: operations.QueryParamType,
+        type: operations.GetTransientTokenQueryParamType,
         scope: operations.Scope,
         options?: RequestOptions
     ): Promise<operations.GetTransientTokenResponse> {

@@ -100,6 +100,7 @@ run();
 * [deleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 * [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 * [refreshLibrary](docs/sdks/library/README.md#refreshlibrary) - Refresh Library
+* [searchLibrary](docs/sdks/library/README.md#searchlibrary) - Search Library
 * [getMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata
 * [getMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [getOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
