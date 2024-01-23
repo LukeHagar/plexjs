@@ -111,6 +111,13 @@ export type GetLibraryItemsMetadata = {
     chapterSource?: string | undefined;
     primaryExtraKey?: string | undefined;
     ratingImage?: string | undefined;
+    grandparentRatingKey?: string | undefined;
+    grandparentGuid?: string | undefined;
+    grandparentKey?: string | undefined;
+    grandparentTitle?: string | undefined;
+    grandparentThumb?: string | undefined;
+    grandparentArt?: string | undefined;
+    grandparentTheme?: string | undefined;
     media?: Array<GetLibraryItemsMedia> | undefined;
     genre?: Array<GetLibraryItemsGenre> | undefined;
     country?: Array<GetLibraryItemsCountry> | undefined;
@@ -123,6 +130,22 @@ export type GetLibraryItemsMetadata = {
     originalTitle?: string | undefined;
     viewOffset?: number | undefined;
     skipCount?: number | undefined;
+    index?: number | undefined;
+    theme?: string | undefined;
+    leafCount?: number | undefined;
+    viewedLeafCount?: number | undefined;
+    childCount?: number | undefined;
+    hasPremiumExtras?: string | undefined;
+    hasPremiumPrimaryExtra?: string | undefined;
+    parentRatingKey?: string | undefined;
+    parentGuid?: string | undefined;
+    parentStudio?: string | undefined;
+    parentKey?: string | undefined;
+    parentTitle?: string | undefined;
+    parentIndex?: number | undefined;
+    parentYear?: number | undefined;
+    parentThumb?: string | undefined;
+    parentTheme?: string | undefined;
 };
 
 export type GetLibraryItemsMediaContainer = {
@@ -140,6 +163,7 @@ export type GetLibraryItemsMediaContainer = {
     title2?: string | undefined;
     viewGroup?: string | undefined;
     viewMode?: number | undefined;
+    mixedParents?: boolean | undefined;
     metadata?: Array<GetLibraryItemsMetadata> | undefined;
 };
 
@@ -569,6 +593,13 @@ export namespace GetLibraryItemsMetadata$ {
         chapterSource?: string | undefined;
         primaryExtraKey?: string | undefined;
         ratingImage?: string | undefined;
+        grandparentRatingKey?: string | undefined;
+        grandparentGuid?: string | undefined;
+        grandparentKey?: string | undefined;
+        grandparentTitle?: string | undefined;
+        grandparentThumb?: string | undefined;
+        grandparentArt?: string | undefined;
+        grandparentTheme?: string | undefined;
         Media?: Array<GetLibraryItemsMedia$.Inbound> | undefined;
         Genre?: Array<GetLibraryItemsGenre$.Inbound> | undefined;
         Country?: Array<GetLibraryItemsCountry$.Inbound> | undefined;
@@ -581,6 +612,22 @@ export namespace GetLibraryItemsMetadata$ {
         originalTitle?: string | undefined;
         viewOffset?: number | undefined;
         skipCount?: number | undefined;
+        index?: number | undefined;
+        theme?: string | undefined;
+        leafCount?: number | undefined;
+        viewedLeafCount?: number | undefined;
+        childCount?: number | undefined;
+        hasPremiumExtras?: string | undefined;
+        hasPremiumPrimaryExtra?: string | undefined;
+        parentRatingKey?: string | undefined;
+        parentGuid?: string | undefined;
+        parentStudio?: string | undefined;
+        parentKey?: string | undefined;
+        parentTitle?: string | undefined;
+        parentIndex?: number | undefined;
+        parentYear?: number | undefined;
+        parentThumb?: string | undefined;
+        parentTheme?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetLibraryItemsMetadata, z.ZodTypeDef, Inbound> = z
@@ -610,6 +657,13 @@ export namespace GetLibraryItemsMetadata$ {
             chapterSource: z.string().optional(),
             primaryExtraKey: z.string().optional(),
             ratingImage: z.string().optional(),
+            grandparentRatingKey: z.string().optional(),
+            grandparentGuid: z.string().optional(),
+            grandparentKey: z.string().optional(),
+            grandparentTitle: z.string().optional(),
+            grandparentThumb: z.string().optional(),
+            grandparentArt: z.string().optional(),
+            grandparentTheme: z.string().optional(),
             Media: z.array(z.lazy(() => GetLibraryItemsMedia$.inboundSchema)).optional(),
             Genre: z.array(z.lazy(() => GetLibraryItemsGenre$.inboundSchema)).optional(),
             Country: z.array(z.lazy(() => GetLibraryItemsCountry$.inboundSchema)).optional(),
@@ -622,6 +676,22 @@ export namespace GetLibraryItemsMetadata$ {
             originalTitle: z.string().optional(),
             viewOffset: z.number().int().optional(),
             skipCount: z.number().int().optional(),
+            index: z.number().int().optional(),
+            theme: z.string().optional(),
+            leafCount: z.number().int().optional(),
+            viewedLeafCount: z.number().int().optional(),
+            childCount: z.number().int().optional(),
+            hasPremiumExtras: z.string().optional(),
+            hasPremiumPrimaryExtra: z.string().optional(),
+            parentRatingKey: z.string().optional(),
+            parentGuid: z.string().optional(),
+            parentStudio: z.string().optional(),
+            parentKey: z.string().optional(),
+            parentTitle: z.string().optional(),
+            parentIndex: z.number().int().optional(),
+            parentYear: z.number().int().optional(),
+            parentThumb: z.string().optional(),
+            parentTheme: z.string().optional(),
         })
         .transform((v) => {
             return {
@@ -653,6 +723,23 @@ export namespace GetLibraryItemsMetadata$ {
                     ? null
                     : { primaryExtraKey: v.primaryExtraKey }),
                 ...(v.ratingImage === undefined ? null : { ratingImage: v.ratingImage }),
+                ...(v.grandparentRatingKey === undefined
+                    ? null
+                    : { grandparentRatingKey: v.grandparentRatingKey }),
+                ...(v.grandparentGuid === undefined
+                    ? null
+                    : { grandparentGuid: v.grandparentGuid }),
+                ...(v.grandparentKey === undefined ? null : { grandparentKey: v.grandparentKey }),
+                ...(v.grandparentTitle === undefined
+                    ? null
+                    : { grandparentTitle: v.grandparentTitle }),
+                ...(v.grandparentThumb === undefined
+                    ? null
+                    : { grandparentThumb: v.grandparentThumb }),
+                ...(v.grandparentArt === undefined ? null : { grandparentArt: v.grandparentArt }),
+                ...(v.grandparentTheme === undefined
+                    ? null
+                    : { grandparentTheme: v.grandparentTheme }),
                 ...(v.Media === undefined ? null : { media: v.Media }),
                 ...(v.Genre === undefined ? null : { genre: v.Genre }),
                 ...(v.Country === undefined ? null : { country: v.Country }),
@@ -665,6 +752,30 @@ export namespace GetLibraryItemsMetadata$ {
                 ...(v.originalTitle === undefined ? null : { originalTitle: v.originalTitle }),
                 ...(v.viewOffset === undefined ? null : { viewOffset: v.viewOffset }),
                 ...(v.skipCount === undefined ? null : { skipCount: v.skipCount }),
+                ...(v.index === undefined ? null : { index: v.index }),
+                ...(v.theme === undefined ? null : { theme: v.theme }),
+                ...(v.leafCount === undefined ? null : { leafCount: v.leafCount }),
+                ...(v.viewedLeafCount === undefined
+                    ? null
+                    : { viewedLeafCount: v.viewedLeafCount }),
+                ...(v.childCount === undefined ? null : { childCount: v.childCount }),
+                ...(v.hasPremiumExtras === undefined
+                    ? null
+                    : { hasPremiumExtras: v.hasPremiumExtras }),
+                ...(v.hasPremiumPrimaryExtra === undefined
+                    ? null
+                    : { hasPremiumPrimaryExtra: v.hasPremiumPrimaryExtra }),
+                ...(v.parentRatingKey === undefined
+                    ? null
+                    : { parentRatingKey: v.parentRatingKey }),
+                ...(v.parentGuid === undefined ? null : { parentGuid: v.parentGuid }),
+                ...(v.parentStudio === undefined ? null : { parentStudio: v.parentStudio }),
+                ...(v.parentKey === undefined ? null : { parentKey: v.parentKey }),
+                ...(v.parentTitle === undefined ? null : { parentTitle: v.parentTitle }),
+                ...(v.parentIndex === undefined ? null : { parentIndex: v.parentIndex }),
+                ...(v.parentYear === undefined ? null : { parentYear: v.parentYear }),
+                ...(v.parentThumb === undefined ? null : { parentThumb: v.parentThumb }),
+                ...(v.parentTheme === undefined ? null : { parentTheme: v.parentTheme }),
             };
         });
 
@@ -691,6 +802,13 @@ export namespace GetLibraryItemsMetadata$ {
         chapterSource?: string | undefined;
         primaryExtraKey?: string | undefined;
         ratingImage?: string | undefined;
+        grandparentRatingKey?: string | undefined;
+        grandparentGuid?: string | undefined;
+        grandparentKey?: string | undefined;
+        grandparentTitle?: string | undefined;
+        grandparentThumb?: string | undefined;
+        grandparentArt?: string | undefined;
+        grandparentTheme?: string | undefined;
         Media?: Array<GetLibraryItemsMedia$.Outbound> | undefined;
         Genre?: Array<GetLibraryItemsGenre$.Outbound> | undefined;
         Country?: Array<GetLibraryItemsCountry$.Outbound> | undefined;
@@ -703,6 +821,22 @@ export namespace GetLibraryItemsMetadata$ {
         originalTitle?: string | undefined;
         viewOffset?: number | undefined;
         skipCount?: number | undefined;
+        index?: number | undefined;
+        theme?: string | undefined;
+        leafCount?: number | undefined;
+        viewedLeafCount?: number | undefined;
+        childCount?: number | undefined;
+        hasPremiumExtras?: string | undefined;
+        hasPremiumPrimaryExtra?: string | undefined;
+        parentRatingKey?: string | undefined;
+        parentGuid?: string | undefined;
+        parentStudio?: string | undefined;
+        parentKey?: string | undefined;
+        parentTitle?: string | undefined;
+        parentIndex?: number | undefined;
+        parentYear?: number | undefined;
+        parentThumb?: string | undefined;
+        parentTheme?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibraryItemsMetadata> = z
@@ -732,6 +866,13 @@ export namespace GetLibraryItemsMetadata$ {
             chapterSource: z.string().optional(),
             primaryExtraKey: z.string().optional(),
             ratingImage: z.string().optional(),
+            grandparentRatingKey: z.string().optional(),
+            grandparentGuid: z.string().optional(),
+            grandparentKey: z.string().optional(),
+            grandparentTitle: z.string().optional(),
+            grandparentThumb: z.string().optional(),
+            grandparentArt: z.string().optional(),
+            grandparentTheme: z.string().optional(),
             media: z.array(z.lazy(() => GetLibraryItemsMedia$.outboundSchema)).optional(),
             genre: z.array(z.lazy(() => GetLibraryItemsGenre$.outboundSchema)).optional(),
             country: z.array(z.lazy(() => GetLibraryItemsCountry$.outboundSchema)).optional(),
@@ -744,6 +885,22 @@ export namespace GetLibraryItemsMetadata$ {
             originalTitle: z.string().optional(),
             viewOffset: z.number().int().optional(),
             skipCount: z.number().int().optional(),
+            index: z.number().int().optional(),
+            theme: z.string().optional(),
+            leafCount: z.number().int().optional(),
+            viewedLeafCount: z.number().int().optional(),
+            childCount: z.number().int().optional(),
+            hasPremiumExtras: z.string().optional(),
+            hasPremiumPrimaryExtra: z.string().optional(),
+            parentRatingKey: z.string().optional(),
+            parentGuid: z.string().optional(),
+            parentStudio: z.string().optional(),
+            parentKey: z.string().optional(),
+            parentTitle: z.string().optional(),
+            parentIndex: z.number().int().optional(),
+            parentYear: z.number().int().optional(),
+            parentThumb: z.string().optional(),
+            parentTheme: z.string().optional(),
         })
         .transform((v) => {
             return {
@@ -775,6 +932,23 @@ export namespace GetLibraryItemsMetadata$ {
                     ? null
                     : { primaryExtraKey: v.primaryExtraKey }),
                 ...(v.ratingImage === undefined ? null : { ratingImage: v.ratingImage }),
+                ...(v.grandparentRatingKey === undefined
+                    ? null
+                    : { grandparentRatingKey: v.grandparentRatingKey }),
+                ...(v.grandparentGuid === undefined
+                    ? null
+                    : { grandparentGuid: v.grandparentGuid }),
+                ...(v.grandparentKey === undefined ? null : { grandparentKey: v.grandparentKey }),
+                ...(v.grandparentTitle === undefined
+                    ? null
+                    : { grandparentTitle: v.grandparentTitle }),
+                ...(v.grandparentThumb === undefined
+                    ? null
+                    : { grandparentThumb: v.grandparentThumb }),
+                ...(v.grandparentArt === undefined ? null : { grandparentArt: v.grandparentArt }),
+                ...(v.grandparentTheme === undefined
+                    ? null
+                    : { grandparentTheme: v.grandparentTheme }),
                 ...(v.media === undefined ? null : { Media: v.media }),
                 ...(v.genre === undefined ? null : { Genre: v.genre }),
                 ...(v.country === undefined ? null : { Country: v.country }),
@@ -787,6 +961,30 @@ export namespace GetLibraryItemsMetadata$ {
                 ...(v.originalTitle === undefined ? null : { originalTitle: v.originalTitle }),
                 ...(v.viewOffset === undefined ? null : { viewOffset: v.viewOffset }),
                 ...(v.skipCount === undefined ? null : { skipCount: v.skipCount }),
+                ...(v.index === undefined ? null : { index: v.index }),
+                ...(v.theme === undefined ? null : { theme: v.theme }),
+                ...(v.leafCount === undefined ? null : { leafCount: v.leafCount }),
+                ...(v.viewedLeafCount === undefined
+                    ? null
+                    : { viewedLeafCount: v.viewedLeafCount }),
+                ...(v.childCount === undefined ? null : { childCount: v.childCount }),
+                ...(v.hasPremiumExtras === undefined
+                    ? null
+                    : { hasPremiumExtras: v.hasPremiumExtras }),
+                ...(v.hasPremiumPrimaryExtra === undefined
+                    ? null
+                    : { hasPremiumPrimaryExtra: v.hasPremiumPrimaryExtra }),
+                ...(v.parentRatingKey === undefined
+                    ? null
+                    : { parentRatingKey: v.parentRatingKey }),
+                ...(v.parentGuid === undefined ? null : { parentGuid: v.parentGuid }),
+                ...(v.parentStudio === undefined ? null : { parentStudio: v.parentStudio }),
+                ...(v.parentKey === undefined ? null : { parentKey: v.parentKey }),
+                ...(v.parentTitle === undefined ? null : { parentTitle: v.parentTitle }),
+                ...(v.parentIndex === undefined ? null : { parentIndex: v.parentIndex }),
+                ...(v.parentYear === undefined ? null : { parentYear: v.parentYear }),
+                ...(v.parentThumb === undefined ? null : { parentThumb: v.parentThumb }),
+                ...(v.parentTheme === undefined ? null : { parentTheme: v.parentTheme }),
             };
         });
 }
@@ -808,6 +1006,7 @@ export namespace GetLibraryItemsMediaContainer$ {
         title2?: string | undefined;
         viewGroup?: string | undefined;
         viewMode?: number | undefined;
+        mixedParents?: boolean | undefined;
         Metadata?: Array<GetLibraryItemsMetadata$.Inbound> | undefined;
     };
 
@@ -827,6 +1026,7 @@ export namespace GetLibraryItemsMediaContainer$ {
             title2: z.string().optional(),
             viewGroup: z.string().optional(),
             viewMode: z.number().int().optional(),
+            mixedParents: z.boolean().optional(),
             Metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$.inboundSchema)).optional(),
         })
         .transform((v) => {
@@ -853,6 +1053,7 @@ export namespace GetLibraryItemsMediaContainer$ {
                 ...(v.title2 === undefined ? null : { title2: v.title2 }),
                 ...(v.viewGroup === undefined ? null : { viewGroup: v.viewGroup }),
                 ...(v.viewMode === undefined ? null : { viewMode: v.viewMode }),
+                ...(v.mixedParents === undefined ? null : { mixedParents: v.mixedParents }),
                 ...(v.Metadata === undefined ? null : { metadata: v.Metadata }),
             };
         });
@@ -872,6 +1073,7 @@ export namespace GetLibraryItemsMediaContainer$ {
         title2?: string | undefined;
         viewGroup?: string | undefined;
         viewMode?: number | undefined;
+        mixedParents?: boolean | undefined;
         Metadata?: Array<GetLibraryItemsMetadata$.Outbound> | undefined;
     };
 
@@ -892,6 +1094,7 @@ export namespace GetLibraryItemsMediaContainer$ {
                 title2: z.string().optional(),
                 viewGroup: z.string().optional(),
                 viewMode: z.number().int().optional(),
+                mixedParents: z.boolean().optional(),
                 metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$.outboundSchema)).optional(),
             })
             .transform((v) => {
@@ -920,6 +1123,7 @@ export namespace GetLibraryItemsMediaContainer$ {
                     ...(v.title2 === undefined ? null : { title2: v.title2 }),
                     ...(v.viewGroup === undefined ? null : { viewGroup: v.viewGroup }),
                     ...(v.viewMode === undefined ? null : { viewMode: v.viewMode }),
+                    ...(v.mixedParents === undefined ? null : { mixedParents: v.mixedParents }),
                     ...(v.metadata === undefined ? null : { Metadata: v.metadata }),
                 };
             });
