@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 95d4ac4070b7f9db42126fc81b258e02
+  docChecksum: 94439465ae5d544f0e52b00719af05ee
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.237.3
-  releaseVersion: 0.5.3
-  configChecksum: 86bdd2d91c582938b3f3e2587f792c5c
+  generationVersion: 2.239.4
+  releaseVersion: 0.6.0
+  configChecksum: 42a58e9ba53ecd70c05120ba0c5c2d36
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -18,6 +18,7 @@ features:
     flattening: 2.81.1
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.1
+    methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
     unions: 2.85.0
 generatedFiles:
@@ -29,6 +30,8 @@ generatedFiles:
   - src/sdk/search.ts
   - src/sdk/library.ts
   - src/sdk/log.ts
+  - src/sdk/tv.ts
+  - src/sdk/plex.ts
   - src/sdk/playlists.ts
   - src/sdk/security.ts
   - src/sdk/sessions.ts
@@ -95,6 +98,8 @@ generatedFiles:
   - src/models/operations/logline.ts
   - src/models/operations/logmultiline.ts
   - src/models/operations/enablepapertrail.ts
+  - src/models/operations/getpin.ts
+  - src/models/operations/gettoken.ts
   - src/models/operations/createplaylist.ts
   - src/models/operations/getplaylists.ts
   - src/models/operations/getplaylist.ts
@@ -150,6 +155,8 @@ generatedFiles:
   - src/models/errors/logline.ts
   - src/models/errors/logmultiline.ts
   - src/models/errors/enablepapertrail.ts
+  - src/models/errors/getpin.ts
+  - src/models/errors/gettoken.ts
   - src/models/errors/createplaylist.ts
   - src/models/errors/getplaylists.ts
   - src/models/errors/getplaylist.ts
@@ -283,7 +290,7 @@ generatedFiles:
   - docs/models/operations/getrecentlyaddedmediacontainer.md
   - docs/models/operations/getrecentlyaddedresponsebody.md
   - docs/models/operations/getrecentlyaddedresponse.md
-  - docs/models/operations/location.md
+  - docs/models/operations/getlibrarieslocation.md
   - docs/models/operations/getlibrariesdirectory.md
   - docs/models/operations/getlibrariesmediacontainer.md
   - docs/models/operations/getlibrariesresponsebody.md
@@ -358,6 +365,12 @@ generatedFiles:
   - docs/models/operations/loglineresponse.md
   - docs/models/operations/logmultilineresponse.md
   - docs/models/operations/enablepapertrailresponse.md
+  - docs/models/operations/getpinrequest.md
+  - docs/models/operations/location.md
+  - docs/models/operations/getpinresponsebody.md
+  - docs/models/operations/getpinresponse.md
+  - docs/models/operations/gettokenrequest.md
+  - docs/models/operations/gettokenresponse.md
   - docs/models/operations/queryparamtype.md
   - docs/models/operations/smart.md
   - docs/models/operations/createplaylistrequest.md
@@ -515,6 +528,10 @@ generatedFiles:
   - docs/models/errors/logmultilineresponsebody.md
   - docs/models/errors/enablepapertrailerrors.md
   - docs/models/errors/enablepapertrailresponsebody.md
+  - docs/models/errors/getpinerrors.md
+  - docs/models/errors/getpinresponsebody.md
+  - docs/models/errors/gettokenerrors.md
+  - docs/models/errors/gettokenresponsebody.md
   - docs/models/errors/createplaylisterrors.md
   - docs/models/errors/createplaylistresponsebody.md
   - docs/models/errors/getplaylistserrors.md
@@ -565,6 +582,8 @@ generatedFiles:
   - docs/sdks/search/README.md
   - docs/sdks/library/README.md
   - docs/sdks/log/README.md
+  - docs/sdks/plex/README.md
+  - docs/sdks/tv/README.md
   - docs/sdks/playlists/README.md
   - docs/sdks/security/README.md
   - docs/sdks/sessions/README.md

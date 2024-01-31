@@ -4,7 +4,7 @@
 
 import { z } from "zod";
 
-export type Location = {
+export type GetLibrariesLocation = {
     id?: number | undefined;
     path?: string | undefined;
 };
@@ -30,7 +30,7 @@ export type GetLibrariesDirectory = {
     directory?: boolean | undefined;
     contentChangedAt?: number | undefined;
     hidden?: number | undefined;
-    location?: Array<Location> | undefined;
+    location?: Array<GetLibrariesLocation> | undefined;
 };
 
 export type GetLibrariesMediaContainer = {
@@ -67,13 +67,13 @@ export type GetLibrariesResponse = {
 };
 
 /** @internal */
-export namespace Location$ {
+export namespace GetLibrariesLocation$ {
     export type Inbound = {
         id?: number | undefined;
         path?: string | undefined;
     };
 
-    export const inboundSchema: z.ZodType<Location, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibrariesLocation, z.ZodTypeDef, Inbound> = z
         .object({
             id: z.number().int().optional(),
             path: z.string().optional(),
@@ -90,7 +90,7 @@ export namespace Location$ {
         path?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Location> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibrariesLocation> = z
         .object({
             id: z.number().int().optional(),
             path: z.string().optional(),
@@ -126,7 +126,7 @@ export namespace GetLibrariesDirectory$ {
         directory?: boolean | undefined;
         contentChangedAt?: number | undefined;
         hidden?: number | undefined;
-        Location?: Array<Location$.Inbound> | undefined;
+        Location?: Array<GetLibrariesLocation$.Inbound> | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetLibrariesDirectory, z.ZodTypeDef, Inbound> = z
@@ -151,7 +151,7 @@ export namespace GetLibrariesDirectory$ {
             directory: z.boolean().optional(),
             contentChangedAt: z.number().int().optional(),
             hidden: z.number().int().optional(),
-            Location: z.array(z.lazy(() => Location$.inboundSchema)).optional(),
+            Location: z.array(z.lazy(() => GetLibrariesLocation$.inboundSchema)).optional(),
         })
         .transform((v) => {
             return {
@@ -202,7 +202,7 @@ export namespace GetLibrariesDirectory$ {
         directory?: boolean | undefined;
         contentChangedAt?: number | undefined;
         hidden?: number | undefined;
-        Location?: Array<Location$.Outbound> | undefined;
+        Location?: Array<GetLibrariesLocation$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibrariesDirectory> = z
@@ -227,7 +227,7 @@ export namespace GetLibrariesDirectory$ {
             directory: z.boolean().optional(),
             contentChangedAt: z.number().int().optional(),
             hidden: z.number().int().optional(),
-            location: z.array(z.lazy(() => Location$.outboundSchema)).optional(),
+            location: z.array(z.lazy(() => GetLibrariesLocation$.outboundSchema)).optional(),
         })
         .transform((v) => {
             return {

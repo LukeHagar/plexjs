@@ -111,6 +111,12 @@ run();
 * [logMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
 * [enablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
 
+
+### [plex.tv](docs/sdks/tv/README.md)
+
+* [getPin](docs/sdks/tv/README.md#getpin) - Get a Pin
+* [getToken](docs/sdks/tv/README.md#gettoken) - Get Access Token
+
 ### [playlists](docs/sdks/playlists/README.md)
 
 * [createPlaylist](docs/sdks/playlists/README.md#createplaylist) - Create a Playlist
@@ -243,6 +249,32 @@ async function run() {
     });
 
     const result = await sdk.server.getServerCapabilities();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+### Override Server URL Per-Operation
+
+The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+async function run() {
+    const sdk = new PlexAPI({
+        accessToken: "<YOUR_API_KEY_HERE>",
+    });
+
+    const xPlexClientIdentifier = "string";
+    const strong = false;
+
+    const result = await sdk.plex.tv.getPin(xPlexClientIdentifier, strong, {
+        serverURL: "https://plex.tv/api/v2",
+    });
 
     // Handle the result
     console.log(result);

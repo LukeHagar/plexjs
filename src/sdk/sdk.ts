@@ -12,6 +12,7 @@ import { Library } from "./library";
 import { Log } from "./log";
 import { Media } from "./media";
 import { Playlists } from "./playlists";
+import { Plex } from "./plex";
 import { Search } from "./search";
 import { Security } from "./security";
 import { Server } from "./server";
@@ -70,6 +71,11 @@ export class PlexAPI extends ClientSDK {
     private _log?: Log;
     get log() {
         return (this._log ??= new Log(this.options$));
+    }
+
+    private _plex?: Plex;
+    get plex() {
+        return (this._plex ??= new Plex(this.options$));
     }
 
     private _playlists?: Playlists;
