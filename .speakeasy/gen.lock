@@ -4,9 +4,9 @@ management:
   docChecksum: 94439465ae5d544f0e52b00719af05ee
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.239.4
-  releaseVersion: 0.6.0
-  configChecksum: 42a58e9ba53ecd70c05120ba0c5c2d36
+  generationVersion: 2.245.1
+  releaseVersion: 0.6.1
+  configChecksum: 17b196f8440d03f46824f0af095f9927
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -14,13 +14,13 @@ management:
 features:
   typescript:
     constsAndDefaults: 0.1.1
-    core: 3.4.7
+    core: 3.4.8
     flattening: 2.81.1
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
-    unions: 2.85.0
+    unions: 2.85.1
 generatedFiles:
   - src/sdk/server.ts
   - src/sdk/media.ts
@@ -324,7 +324,7 @@ generatedFiles:
   - docs/models/operations/getlibraryitemsresponse.md
   - docs/models/operations/refreshlibraryrequest.md
   - docs/models/operations/refreshlibraryresponse.md
-  - docs/models/operations/typet.md
+  - docs/models/operations/type.md
   - docs/models/operations/searchlibraryrequest.md
   - docs/models/operations/searchlibrarymetadata.md
   - docs/models/operations/searchlibrarymediacontainer.md

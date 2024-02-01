@@ -1,4 +1,4 @@
-# TypeT
+# Type
 
 Plex content type to search for
 

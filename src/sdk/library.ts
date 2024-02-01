@@ -609,7 +609,7 @@ export class Library extends ClientSDK {
      */
     async searchLibrary(
         sectionId: number,
-        type: operations.TypeT,
+        type: operations.Type,
         options?: RequestOptions
     ): Promise<operations.SearchLibraryResponse> {
         const input$: operations.SearchLibraryRequest = {

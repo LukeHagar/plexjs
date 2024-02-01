@@ -7,7 +7,7 @@ import { z } from "zod";
 /**
  * Plex content type to search for
  */
-export enum TypeT {
+export enum Type {
     One = 1,
     Two = 2,
     Three = 3,
@@ -22,7 +22,7 @@ export type SearchLibraryRequest = {
     /**
      * Plex content type to search for
      */
-    type: TypeT;
+    type: Type;
 };
 
 export type SearchLibraryMetadata = {
@@ -91,19 +91,19 @@ export type SearchLibraryResponse = {
 };
 
 /** @internal */
-export const TypeT$ = z.nativeEnum(TypeT);
+export const Type$ = z.nativeEnum(Type);
 
 /** @internal */
 export namespace SearchLibraryRequest$ {
     export type Inbound = {
         sectionId: number;
-        type: TypeT;
+        type: Type;
     };
 
     export const inboundSchema: z.ZodType<SearchLibraryRequest, z.ZodTypeDef, Inbound> = z
         .object({
             sectionId: z.number().int(),
-            type: TypeT$,
+            type: Type$,
         })
         .transform((v) => {
             return {
@@ -114,13 +114,13 @@ export namespace SearchLibraryRequest$ {
 
     export type Outbound = {
         sectionId: number;
-        type: TypeT;
+        type: Type;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, SearchLibraryRequest> = z
         .object({
             sectionId: z.number().int(),
-            type: TypeT$,
+            type: Type$,
         })
         .transform((v) => {
             return {
