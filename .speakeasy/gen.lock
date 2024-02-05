@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 94439465ae5d544f0e52b00719af05ee
+  docChecksum: 099fc5bbb987ae7e391f7f07b4212860
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.245.1
-  releaseVersion: 0.6.1
-  configChecksum: 17b196f8440d03f46824f0af095f9927
+  generationVersion: 2.249.1
+  releaseVersion: 0.7.0
+  configChecksum: b3d1de88036ff1f77a38604e4ce3ffa1
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -30,7 +30,6 @@ generatedFiles:
   - src/sdk/search.ts
   - src/sdk/library.ts
   - src/sdk/log.ts
-  - src/sdk/tv.ts
   - src/sdk/plex.ts
   - src/sdk/playlists.ts
   - src/sdk/security.ts
@@ -583,7 +582,6 @@ generatedFiles:
   - docs/sdks/library/README.md
   - docs/sdks/log/README.md
   - docs/sdks/plex/README.md
-  - docs/sdks/tv/README.md
   - docs/sdks/playlists/README.md
   - docs/sdks/security/README.md
   - docs/sdks/sessions/README.md

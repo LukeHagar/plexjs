@@ -7,8 +7,9 @@ generation:
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
 typescript:
-  version: 0.6.1
+  version: 0.7.0
   author: LukeHagar
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true

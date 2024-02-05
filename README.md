@@ -111,11 +111,10 @@ run();
 * [logMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
 * [enablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
 
+### [plex](docs/sdks/plex/README.md)
 
-### [plex.tv](docs/sdks/tv/README.md)
-
-* [getPin](docs/sdks/tv/README.md#getpin) - Get a Pin
-* [getToken](docs/sdks/tv/README.md#gettoken) - Get Access Token
+* [getPin](docs/sdks/plex/README.md#getpin) - Get a Pin
+* [getToken](docs/sdks/plex/README.md#gettoken) - Get Access Token
 
 ### [playlists](docs/sdks/playlists/README.md)
 
@@ -272,7 +271,7 @@ async function run() {
     const xPlexClientIdentifier = "string";
     const strong = false;
 
-    const result = await sdk.plex.tv.getPin(xPlexClientIdentifier, strong, {
+    const result = await sdk.plex.getPin(xPlexClientIdentifier, strong, {
         serverURL: "https://plex.tv/api/v2",
     });
 

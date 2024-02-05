@@ -8,7 +8,12 @@ export const GetPinServerList = ["https://plex.tv/api/v2"] as const;
 
 export type GetPinRequest = {
     /**
-     * Plex Authentication Token
+     * The unique identifier for the client application
+     *
+     * @remarks
+     * This is used to track the client application and its usage
+     * (UUID, serial number, or other number unique per device)
+     *
      */
     xPlexClientIdentifier: string;
     /**
