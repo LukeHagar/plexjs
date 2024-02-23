@@ -67,6 +67,11 @@ run();
 * [markUnplayed](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
 * [updatePlayProgress](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
 
+### [video](docs/sdks/video/README.md)
+
+* [getTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
+* [startUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
+
 ### [activities](docs/sdks/activities/README.md)
 
 * [getServerActivities](docs/sdks/activities/README.md#getserveractivities) - Get Server Activities
@@ -133,6 +138,10 @@ run();
 * [getTransientToken](docs/sdks/security/README.md#gettransienttoken) - Get a Transient Token.
 * [getSourceConnectionInformation](docs/sdks/security/README.md#getsourceconnectioninformation) - Get Source Connection Information
 
+### [statistics](docs/sdks/statistics/README.md)
+
+* [getStatistics](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
+
 ### [sessions](docs/sdks/sessions/README.md)
 
 * [getSessions](docs/sdks/sessions/README.md#getsessions) - Get Active Sessions
@@ -145,11 +154,6 @@ run();
 * [getUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
 * [checkForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [applyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
-
-### [video](docs/sdks/video/README.md)
-
-* [startUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
-* [getTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -166,7 +170,6 @@ Example
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import * as errors from "@lukehagar/plexjs/models/errors";
 
 async function run() {
     const sdk = new PlexAPI({
@@ -268,7 +271,7 @@ async function run() {
         accessToken: "<YOUR_API_KEY_HERE>",
     });
 
-    const xPlexClientIdentifier = "string";
+    const xPlexClientIdentifier = "<value>";
     const strong = false;
 
     const result = await sdk.plex.getPin(xPlexClientIdentifier, strong, {

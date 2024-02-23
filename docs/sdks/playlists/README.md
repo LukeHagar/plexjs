@@ -40,7 +40,7 @@ async function run() {
   });
 
   const result = await sdk.playlists.createPlaylist({
-    title: "string",
+    title: "<value>",
     type: QueryParamType.Photo,
     smart: Smart.One,
     uri: "https://inborn-brochure.biz",
@@ -226,8 +226,8 @@ async function run() {
   });
 
   const playlistID = 3915;
-  const title = "string";
-  const summary = "string";
+  const title = "<value>";
+  const summary = "<value>";
   
   const result = await sdk.playlists.updatePlaylist(playlistID, title, summary);
 

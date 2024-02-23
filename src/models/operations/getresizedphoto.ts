@@ -98,7 +98,7 @@ export namespace GetResizedPhotoRequest$ {
             return {
                 width: v.width,
                 height: v.height,
-                ...(v.opacity === undefined ? null : { opacity: v.opacity }),
+                opacity: v.opacity,
                 blur: v.blur,
                 minSize: v.minSize,
                 upscale: v.upscale,

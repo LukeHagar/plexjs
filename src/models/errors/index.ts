@@ -38,6 +38,7 @@ export * from "./getserverpreferences";
 export * from "./getsessionhistory";
 export * from "./getsessions";
 export * from "./getsourceconnectioninformation";
+export * from "./getstatistics";
 export * from "./gettimeline";
 export * from "./gettoken";
 export * from "./gettranscodesessions";

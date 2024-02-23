@@ -25,7 +25,7 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const xPlexClientIdentifier = "string";
+  const xPlexClientIdentifier = "<value>";
   const strong = false;
   
   const result = await sdk.plex.getPin(xPlexClientIdentifier, strong);
@@ -72,8 +72,8 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const pinID = "string";
-  const xPlexClientIdentifier = "string";
+  const pinID = "<value>";
+  const xPlexClientIdentifier = "<value>";
   
   const result = await sdk.plex.getToken(pinID, xPlexClientIdentifier);
 

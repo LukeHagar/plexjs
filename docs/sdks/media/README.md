@@ -115,9 +115,9 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const key = "string";
+  const key = "<value>";
   const time = 6900.91;
-  const state = "string";
+  const state = "<value>";
   
   const result = await sdk.media.updatePlayProgress(key, time, state);
 

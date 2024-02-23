@@ -8,8 +8,13 @@ generation:
   fixes:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
 typescript:
-  version: 0.7.0
+  version: 0.8.0
+  additionalDependencies:
+    dependencies: {}
+    devDependencies: {}
+    peerDependencies: {}
   author: LukeHagar
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
@@ -25,4 +30,5 @@ typescript:
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: '@lukehagar/plexjs'
+  responseFormat: envelope
   templateVersion: v2

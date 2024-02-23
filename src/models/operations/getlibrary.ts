@@ -145,7 +145,7 @@ export namespace GetLibraryRequest$ {
         .transform((v) => {
             return {
                 sectionId: v.sectionId,
-                ...(v.includeDetails === undefined ? null : { includeDetails: v.includeDetails }),
+                includeDetails: v.includeDetails,
             };
         });
 

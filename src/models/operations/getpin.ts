@@ -103,7 +103,7 @@ export namespace GetPinRequest$ {
         .transform((v) => {
             return {
                 xPlexClientIdentifier: v["X-Plex-Client-Identifier"],
-                ...(v.strong === undefined ? null : { strong: v.strong }),
+                strong: v.strong,
             };
         });
 

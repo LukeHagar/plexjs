@@ -4,36 +4,22 @@
 
 import { z } from "zod";
 
-export type Two = {
+export type Setting = {
     id?: string | undefined;
     label?: string | undefined;
     summary?: string | undefined;
     type?: string | undefined;
-    default?: number | undefined;
-    value?: number | undefined;
+    default?: boolean | undefined;
+    value?: boolean | undefined;
     hidden?: boolean | undefined;
     advanced?: boolean | undefined;
     group?: string | undefined;
     enumValues?: string | undefined;
 };
 
-export type One = {
-    id?: string | undefined;
-    label?: string | undefined;
-    summary?: string | undefined;
-    type?: string | undefined;
-    default?: string | undefined;
-    value?: string | undefined;
-    hidden?: boolean | undefined;
-    advanced?: boolean | undefined;
-    group?: string | undefined;
-};
-
-export type Setting = One | Two;
-
 export type GetServerPreferencesMediaContainer = {
     size?: number | undefined;
-    setting?: Array<One | Two> | undefined;
+    setting?: Array<Setting> | undefined;
 };
 
 /**
@@ -63,191 +49,95 @@ export type GetServerPreferencesResponse = {
 };
 
 /** @internal */
-export namespace Two$ {
-    export type Inbound = {
-        id?: string | undefined;
-        label?: string | undefined;
-        summary?: string | undefined;
-        type?: string | undefined;
-        default?: number | undefined;
-        value?: number | undefined;
-        hidden?: boolean | undefined;
-        advanced?: boolean | undefined;
-        group?: string | undefined;
-        enumValues?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Two, z.ZodTypeDef, Inbound> = z
-        .object({
-            id: z.string().optional(),
-            label: z.string().optional(),
-            summary: z.string().optional(),
-            type: z.string().optional(),
-            default: z.number().int().optional(),
-            value: z.number().int().optional(),
-            hidden: z.boolean().optional(),
-            advanced: z.boolean().optional(),
-            group: z.string().optional(),
-            enumValues: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.label === undefined ? null : { label: v.label }),
-                ...(v.summary === undefined ? null : { summary: v.summary }),
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.default === undefined ? null : { default: v.default }),
-                ...(v.value === undefined ? null : { value: v.value }),
-                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
-                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
-                ...(v.group === undefined ? null : { group: v.group }),
-                ...(v.enumValues === undefined ? null : { enumValues: v.enumValues }),
-            };
-        });
-
-    export type Outbound = {
-        id?: string | undefined;
-        label?: string | undefined;
-        summary?: string | undefined;
-        type?: string | undefined;
-        default?: number | undefined;
-        value?: number | undefined;
-        hidden?: boolean | undefined;
-        advanced?: boolean | undefined;
-        group?: string | undefined;
-        enumValues?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Two> = z
-        .object({
-            id: z.string().optional(),
-            label: z.string().optional(),
-            summary: z.string().optional(),
-            type: z.string().optional(),
-            default: z.number().int().optional(),
-            value: z.number().int().optional(),
-            hidden: z.boolean().optional(),
-            advanced: z.boolean().optional(),
-            group: z.string().optional(),
-            enumValues: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.label === undefined ? null : { label: v.label }),
-                ...(v.summary === undefined ? null : { summary: v.summary }),
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.default === undefined ? null : { default: v.default }),
-                ...(v.value === undefined ? null : { value: v.value }),
-                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
-                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
-                ...(v.group === undefined ? null : { group: v.group }),
-                ...(v.enumValues === undefined ? null : { enumValues: v.enumValues }),
-            };
-        });
-}
-
-/** @internal */
-export namespace One$ {
-    export type Inbound = {
-        id?: string | undefined;
-        label?: string | undefined;
-        summary?: string | undefined;
-        type?: string | undefined;
-        default?: string | undefined;
-        value?: string | undefined;
-        hidden?: boolean | undefined;
-        advanced?: boolean | undefined;
-        group?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<One, z.ZodTypeDef, Inbound> = z
-        .object({
-            id: z.string().optional(),
-            label: z.string().optional(),
-            summary: z.string().optional(),
-            type: z.string().optional(),
-            default: z.string().optional(),
-            value: z.string().optional(),
-            hidden: z.boolean().optional(),
-            advanced: z.boolean().optional(),
-            group: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.label === undefined ? null : { label: v.label }),
-                ...(v.summary === undefined ? null : { summary: v.summary }),
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.default === undefined ? null : { default: v.default }),
-                ...(v.value === undefined ? null : { value: v.value }),
-                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
-                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
-                ...(v.group === undefined ? null : { group: v.group }),
-            };
-        });
-
-    export type Outbound = {
-        id?: string | undefined;
-        label?: string | undefined;
-        summary?: string | undefined;
-        type?: string | undefined;
-        default?: string | undefined;
-        value?: string | undefined;
-        hidden?: boolean | undefined;
-        advanced?: boolean | undefined;
-        group?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, One> = z
-        .object({
-            id: z.string().optional(),
-            label: z.string().optional(),
-            summary: z.string().optional(),
-            type: z.string().optional(),
-            default: z.string().optional(),
-            value: z.string().optional(),
-            hidden: z.boolean().optional(),
-            advanced: z.boolean().optional(),
-            group: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.label === undefined ? null : { label: v.label }),
-                ...(v.summary === undefined ? null : { summary: v.summary }),
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.default === undefined ? null : { default: v.default }),
-                ...(v.value === undefined ? null : { value: v.value }),
-                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
-                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
-                ...(v.group === undefined ? null : { group: v.group }),
-            };
-        });
-}
-
-/** @internal */
 export namespace Setting$ {
-    export type Inbound = One$.Inbound | Two$.Inbound;
+    export type Inbound = {
+        id?: string | undefined;
+        label?: string | undefined;
+        summary?: string | undefined;
+        type?: string | undefined;
+        default?: boolean | undefined;
+        value?: boolean | undefined;
+        hidden?: boolean | undefined;
+        advanced?: boolean | undefined;
+        group?: string | undefined;
+        enumValues?: string | undefined;
+    };
 
-    export type Outbound = One$.Outbound | Two$.Outbound;
+    export const inboundSchema: z.ZodType<Setting, z.ZodTypeDef, Inbound> = z
+        .object({
+            id: z.string().optional(),
+            label: z.string().optional(),
+            summary: z.string().optional(),
+            type: z.string().optional(),
+            default: z.boolean().optional(),
+            value: z.boolean().optional(),
+            hidden: z.boolean().optional(),
+            advanced: z.boolean().optional(),
+            group: z.string().optional(),
+            enumValues: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.label === undefined ? null : { label: v.label }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.default === undefined ? null : { default: v.default }),
+                ...(v.value === undefined ? null : { value: v.value }),
+                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
+                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
+                ...(v.group === undefined ? null : { group: v.group }),
+                ...(v.enumValues === undefined ? null : { enumValues: v.enumValues }),
+            };
+        });
 
-    export const inboundSchema: z.ZodType<Setting, z.ZodTypeDef, Inbound> = z.union([
-        z.lazy(() => One$.inboundSchema),
-        z.lazy(() => Two$.inboundSchema),
-    ]);
+    export type Outbound = {
+        id?: string | undefined;
+        label?: string | undefined;
+        summary?: string | undefined;
+        type?: string | undefined;
+        default?: boolean | undefined;
+        value?: boolean | undefined;
+        hidden?: boolean | undefined;
+        advanced?: boolean | undefined;
+        group?: string | undefined;
+        enumValues?: string | undefined;
+    };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Setting> = z.union([
-        z.lazy(() => One$.outboundSchema),
-        z.lazy(() => Two$.outboundSchema),
-    ]);
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Setting> = z
+        .object({
+            id: z.string().optional(),
+            label: z.string().optional(),
+            summary: z.string().optional(),
+            type: z.string().optional(),
+            default: z.boolean().optional(),
+            value: z.boolean().optional(),
+            hidden: z.boolean().optional(),
+            advanced: z.boolean().optional(),
+            group: z.string().optional(),
+            enumValues: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.id === undefined ? null : { id: v.id }),
+                ...(v.label === undefined ? null : { label: v.label }),
+                ...(v.summary === undefined ? null : { summary: v.summary }),
+                ...(v.type === undefined ? null : { type: v.type }),
+                ...(v.default === undefined ? null : { default: v.default }),
+                ...(v.value === undefined ? null : { value: v.value }),
+                ...(v.hidden === undefined ? null : { hidden: v.hidden }),
+                ...(v.advanced === undefined ? null : { advanced: v.advanced }),
+                ...(v.group === undefined ? null : { group: v.group }),
+                ...(v.enumValues === undefined ? null : { enumValues: v.enumValues }),
+            };
+        });
 }
 
 /** @internal */
 export namespace GetServerPreferencesMediaContainer$ {
     export type Inbound = {
         size?: number | undefined;
-        Setting?: Array<One$.Inbound | Two$.Inbound> | undefined;
+        Setting?: Array<Setting$.Inbound> | undefined;
     };
 
     export const inboundSchema: z.ZodType<
@@ -257,11 +147,7 @@ export namespace GetServerPreferencesMediaContainer$ {
     > = z
         .object({
             size: z.number().int().optional(),
-            Setting: z
-                .array(
-                    z.union([z.lazy(() => One$.inboundSchema), z.lazy(() => Two$.inboundSchema)])
-                )
-                .optional(),
+            Setting: z.array(z.lazy(() => Setting$.inboundSchema)).optional(),
         })
         .transform((v) => {
             return {
@@ -272,7 +158,7 @@ export namespace GetServerPreferencesMediaContainer$ {
 
     export type Outbound = {
         size?: number | undefined;
-        Setting?: Array<One$.Outbound | Two$.Outbound> | undefined;
+        Setting?: Array<Setting$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -282,11 +168,7 @@ export namespace GetServerPreferencesMediaContainer$ {
     > = z
         .object({
             size: z.number().int().optional(),
-            setting: z
-                .array(
-                    z.union([z.lazy(() => One$.outboundSchema), z.lazy(() => Two$.outboundSchema)])
-                )
-                .optional(),
+            setting: z.array(z.lazy(() => Setting$.outboundSchema)).optional(),
         })
         .transform((v) => {
             return {

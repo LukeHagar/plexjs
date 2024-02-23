@@ -52,7 +52,7 @@ export namespace PerformVoiceSearchRequest$ {
             return {
                 query: v.query,
                 ...(v.sectionId === undefined ? null : { sectionId: v.sectionId }),
-                ...(v.limit === undefined ? null : { limit: v.limit }),
+                limit: v.limit,
             };
         });
 

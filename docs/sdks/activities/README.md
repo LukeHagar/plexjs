@@ -72,7 +72,7 @@ async function run() {
     accessToken: "<YOUR_API_KEY_HERE>",
   });
 
-  const activityUUID = "string";
+  const activityUUID = "<value>";
   
   const result = await sdk.activities.cancelServerActivities(activityUUID);
 
