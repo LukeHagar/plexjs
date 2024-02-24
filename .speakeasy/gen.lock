@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 278d186496d83d5830ba4870f8cad39d
+  docChecksum: e34dac84738ebf2d447ea2b9055a6eeb
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.269.0
-  releaseVersion: 0.8.0
-  configChecksum: ebb8bf50e4df7f6adf9363aaa49f8a39
+  generationVersion: 2.272.4
+  releaseVersion: 0.9.0
+  configChecksum: 040310a82f908de279e981b0c7911a38
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -14,9 +14,9 @@ management:
 features:
   typescript:
     constsAndDefaults: 0.1.3
-    core: 3.5.1
+    core: 3.6.1
     flattening: 2.81.1
-    globalSecurity: 2.82.2
+    globalSecurity: 2.82.3
     globalServerURLs: 2.82.3
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
@@ -33,7 +33,7 @@ generatedFiles:
   - src/sdk/log.ts
   - src/sdk/plex.ts
   - src/sdk/playlists.ts
-  - src/sdk/security.ts
+  - src/sdk/authentication.ts
   - src/sdk/statistics.ts
   - src/sdk/sessions.ts
   - src/sdk/updater.ts
@@ -49,11 +49,13 @@ generatedFiles:
   - src/lib/event-streams.ts
   - src/lib/http.ts
   - src/lib/retries.ts
+  - src/lib/schemas.ts
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
   - src/models/errors/sdkerror.ts
+  - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
   - src/types/decimal.ts
   - src/types/index.ts
@@ -593,7 +595,7 @@ generatedFiles:
   - docs/sdks/log/README.md
   - docs/sdks/plex/README.md
   - docs/sdks/playlists/README.md
-  - docs/sdks/security/README.md
+  - docs/sdks/authentication/README.md
   - docs/sdks/statistics/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/updater/README.md

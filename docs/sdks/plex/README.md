@@ -21,9 +21,7 @@ Retrieve a Pin from Plex.tv for authentication flows
 import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-  });
+  const sdk = new PlexAPI();
 
   const xPlexClientIdentifier = "<value>";
   const strong = false;
@@ -68,9 +66,7 @@ Retrieve an Access Token from Plex.tv after the Pin has already been authenticat
 import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-  });
+  const sdk = new PlexAPI();
 
   const pinID = "<value>";
   const xPlexClientIdentifier = "<value>";

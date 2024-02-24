@@ -52,6 +52,7 @@ export * from "./performsearch";
 export * from "./performvoicesearch";
 export * from "./refreshlibrary";
 export * from "./sdkerror";
+export * from "./sdkvalidationerror";
 export * from "./startalltasks";
 export * from "./starttask";
 export * from "./startuniversaltranscode";

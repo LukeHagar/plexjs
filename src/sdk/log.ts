@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
@@ -60,7 +61,11 @@ export class Log extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = operations.LogLineRequest$.outboundSchema.parse(input$);
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.LogLineRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
         const body$ = null;
 
         const path$ = this.templateURLComponent("/log")();
@@ -88,9 +93,8 @@ export class Log extends ClientSDK {
 
         const context = { operationID: "logLine" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
                 security: securitySettings$,
                 method: "GET",
                 path: path$,
@@ -113,17 +117,27 @@ export class Log extends ClientSDK {
             // fallthrough
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.LogLineResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.LogLineResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
-        return operations.LogLineResponse$.inboundSchema.parse(responseFields$);
+        return schemas$.parse(
+            undefined,
+            () => operations.LogLineResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 
     /**
@@ -162,7 +176,11 @@ export class Log extends ClientSDK {
         headers$.set("Content-Type", "text/plain");
         headers$.set("Accept", "application/json");
 
-        const payload$ = z.string().parse(input);
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => z.string().parse(value$),
+            "Input validation failed"
+        );
         const body$ = payload$;
 
         const path$ = this.templateURLComponent("/log")();
@@ -181,9 +199,8 @@ export class Log extends ClientSDK {
 
         const context = { operationID: "logMultiLine" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
                 security: securitySettings$,
                 method: "POST",
                 path: path$,
@@ -206,17 +223,27 @@ export class Log extends ClientSDK {
             // fallthrough
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.LogMultiLineResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.LogMultiLineResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
-        return operations.LogMultiLineResponse$.inboundSchema.parse(responseFields$);
+        return schemas$.parse(
+            undefined,
+            () => operations.LogMultiLineResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 
     /**
@@ -247,9 +274,8 @@ export class Log extends ClientSDK {
 
         const context = { operationID: "enablePaperTrail" };
         const doOptions = { context, errorCodes: ["400", "401", "403", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
                 security: securitySettings$,
                 method: "GET",
                 path: path$,
@@ -271,16 +297,26 @@ export class Log extends ClientSDK {
             // fallthrough
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.EnablePaperTrailResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.EnablePaperTrailResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
-        return operations.EnablePaperTrailResponse$.inboundSchema.parse(responseFields$);
+        return schemas$.parse(
+            undefined,
+            () => operations.EnablePaperTrailResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 }

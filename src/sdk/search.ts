@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
@@ -70,7 +71,11 @@ export class Search extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = operations.PerformSearchRequest$.outboundSchema.parse(input$);
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.PerformSearchRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
         const body$ = null;
 
         const path$ = this.templateURLComponent("/hubs/search")();
@@ -98,9 +103,8 @@ export class Search extends ClientSDK {
 
         const context = { operationID: "performSearch" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
                 security: securitySettings$,
                 method: "GET",
                 path: path$,
@@ -123,17 +127,27 @@ export class Search extends ClientSDK {
             // fallthrough
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.PerformSearchResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PerformSearchResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
-        return operations.PerformSearchResponse$.inboundSchema.parse(responseFields$);
+        return schemas$.parse(
+            undefined,
+            () => operations.PerformSearchResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 
     /**
@@ -161,7 +175,11 @@ export class Search extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = operations.PerformVoiceSearchRequest$.outboundSchema.parse(input$);
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.PerformVoiceSearchRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
         const body$ = null;
 
         const path$ = this.templateURLComponent("/hubs/search/voice")();
@@ -189,9 +207,8 @@ export class Search extends ClientSDK {
 
         const context = { operationID: "performVoiceSearch" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
                 security: securitySettings$,
                 method: "GET",
                 path: path$,
@@ -214,17 +231,27 @@ export class Search extends ClientSDK {
             // fallthrough
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.PerformVoiceSearchResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PerformVoiceSearchResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
-        return operations.PerformVoiceSearchResponse$.inboundSchema.parse(responseFields$);
+        return schemas$.parse(
+            undefined,
+            () => operations.PerformVoiceSearchResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 
     /**
@@ -244,7 +271,11 @@ export class Search extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = operations.GetSearchResultsRequest$.outboundSchema.parse(input$);
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetSearchResultsRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
         const body$ = null;
 
         const path$ = this.templateURLComponent("/search")();
@@ -267,9 +298,8 @@ export class Search extends ClientSDK {
 
         const context = { operationID: "getSearchResults" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
                 security: securitySettings$,
                 method: "GET",
                 path: path$,
@@ -290,17 +320,29 @@ export class Search extends ClientSDK {
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
-            const result = operations.GetSearchResultsResponse$.inboundSchema.parse({
-                ...responseFields$,
-                object: responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.GetSearchResultsResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        object: val$,
+                    });
+                },
+                "Response validation failed"
+            );
             return result;
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.GetSearchResultsResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.GetSearchResultsResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();

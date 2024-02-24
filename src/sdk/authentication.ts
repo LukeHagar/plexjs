@@ -6,11 +6,12 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
-export class Security extends ClientSDK {
+export class Authentication extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
 
     constructor(options: SDKOptions = {}) {
@@ -57,7 +58,11 @@ export class Security extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = operations.GetTransientTokenRequest$.outboundSchema.parse(input$);
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetTransientTokenRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
         const body$ = null;
 
         const path$ = this.templateURLComponent("/security/token")();
@@ -81,9 +86,8 @@ export class Security extends ClientSDK {
 
         const context = { operationID: "getTransientToken" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
                 security: securitySettings$,
                 method: "GET",
                 path: path$,
@@ -106,17 +110,27 @@ export class Security extends ClientSDK {
             // fallthrough
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.GetTransientTokenResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.GetTransientTokenResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
-        return operations.GetTransientTokenResponse$.inboundSchema.parse(responseFields$);
+        return schemas$.parse(
+            undefined,
+            () => operations.GetTransientTokenResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 
     /**
@@ -138,8 +152,12 @@ export class Security extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ =
-            operations.GetSourceConnectionInformationRequest$.outboundSchema.parse(input$);
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) =>
+                operations.GetSourceConnectionInformationRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
         const body$ = null;
 
         const path$ = this.templateURLComponent("/security/resources")();
@@ -162,9 +180,8 @@ export class Security extends ClientSDK {
 
         const context = { operationID: "getSourceConnectionInformation" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
                 security: securitySettings$,
                 method: "GET",
                 path: path$,
@@ -187,18 +204,29 @@ export class Security extends ClientSDK {
             // fallthrough
         } else if (this.matchResponse(response, 401, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.GetSourceConnectionInformationResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.GetSourceConnectionInformationResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
-        return operations.GetSourceConnectionInformationResponse$.inboundSchema.parse(
-            responseFields$
+        return schemas$.parse(
+            undefined,
+            () =>
+                operations.GetSourceConnectionInformationResponse$.inboundSchema.parse(
+                    responseFields$
+                ),
+            "Response validation failed"
         );
     }
 }

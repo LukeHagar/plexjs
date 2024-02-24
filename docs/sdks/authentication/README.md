@@ -1,9 +1,9 @@
-# Security
-(*security*)
+# Authentication
+(*authentication*)
 
 ## Overview
 
-API Calls against Security for Plex Media Server
+API Calls regarding authentication for Plex Media Server
 
 
 ### Available Operations
@@ -30,7 +30,7 @@ async function run() {
   const type = GetTransientTokenQueryParamType.Delegation;
   const scope = Scope.All;
   
-  const result = await sdk.security.getTransientToken(type, scope);
+  const result = await sdk.authentication.getTransientToken(type, scope);
 
   // Handle the result
   console.log(result)
@@ -77,7 +77,7 @@ async function run() {
 
   const source = "server://client-identifier";
   
-  const result = await sdk.security.getSourceConnectionInformation(source);
+  const result = await sdk.authentication.getSourceConnectionInformation(source);
 
   // Handle the result
   console.log(result)

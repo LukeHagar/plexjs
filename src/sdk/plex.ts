@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
+import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
@@ -56,7 +57,11 @@ export class Plex extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = operations.GetPinRequest$.outboundSchema.parse(input$);
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetPinRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
         const body$ = null;
         const baseURL$ =
             options?.serverURL ||
@@ -80,22 +85,10 @@ export class Plex extends ClientSDK {
             })
         );
 
-        let security$;
-        if (typeof this.options$.accessToken === "function") {
-            security$ = { accessToken: await this.options$.accessToken() };
-        } else if (this.options$.accessToken) {
-            security$ = { accessToken: this.options$.accessToken };
-        } else {
-            security$ = {};
-        }
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
         const context = { operationID: "getPin" };
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
-                security: securitySettings$,
                 method: "POST",
                 baseURL: baseURL$,
                 path: path$,
@@ -116,17 +109,29 @@ export class Plex extends ClientSDK {
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
-            const result = operations.GetPinResponse$.inboundSchema.parse({
-                ...responseFields$,
-                object: responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.GetPinResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        object: val$,
+                    });
+                },
+                "Response validation failed"
+            );
             return result;
         } else if (this.matchResponse(response, 400, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.GetPinResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.GetPinResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
@@ -153,7 +158,11 @@ export class Plex extends ClientSDK {
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = operations.GetTokenRequest$.outboundSchema.parse(input$);
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetTokenRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
         const body$ = null;
         const baseURL$ =
             options?.serverURL ||
@@ -179,22 +188,10 @@ export class Plex extends ClientSDK {
             })
         );
 
-        let security$;
-        if (typeof this.options$.accessToken === "function") {
-            security$ = { accessToken: await this.options$.accessToken() };
-        } else if (this.options$.accessToken) {
-            security$ = { accessToken: this.options$.accessToken };
-        } else {
-            security$ = {};
-        }
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
         const context = { operationID: "getToken" };
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = await this.createRequest$(
+        const request = this.createRequest$(
             {
-                context,
-                security: securitySettings$,
                 method: "GET",
                 baseURL: baseURL$,
                 path: path$,
@@ -217,16 +214,26 @@ export class Plex extends ClientSDK {
             // fallthrough
         } else if (this.matchResponse(response, 400, "application/json")) {
             const responseBody = await response.json();
-            const result = errors.GetTokenResponseBody$.inboundSchema.parse({
-                ...responseFields$,
-                ...responseBody,
-            });
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.GetTokenResponseBody$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
             throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
 
-        return operations.GetTokenResponse$.inboundSchema.parse(responseFields$);
+        return schemas$.parse(
+            undefined,
+            () => operations.GetTokenResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 }

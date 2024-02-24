@@ -7,6 +7,7 @@ import { SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK } from "../lib/sdks";
 import { Activities } from "./activities";
+import { Authentication } from "./authentication";
 import { Butler } from "./butler";
 import { Hubs } from "./hubs";
 import { Library } from "./library";
@@ -15,7 +16,6 @@ import { Media } from "./media";
 import { Playlists } from "./playlists";
 import { Plex } from "./plex";
 import { Search } from "./search";
-import { Security } from "./security";
 import { Server } from "./server";
 import { Sessions } from "./sessions";
 import { Statistics } from "./statistics";
@@ -104,9 +104,9 @@ export class PlexAPI extends ClientSDK {
         return (this._playlists ??= new Playlists(this.options$));
     }
 
-    private _security?: Security;
-    get security() {
-        return (this._security ??= new Security(this.options$));
+    private _authentication?: Authentication;
+    get authentication() {
+        return (this._authentication ??= new Authentication(this.options$));
     }
 
     private _statistics?: Statistics;
