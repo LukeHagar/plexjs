@@ -282,9 +282,9 @@ async function run() {
   const result = await sdk.server.getResizedPhoto({
     width: 110,
     height: 165,
-    opacity: 643869,
-    blur: 4000,
-    minSize: MinSize.Zero,
+    opacity: 100,
+    blur: 20,
+    minSize: MinSize.One,
     upscale: Upscale.Zero,
     url: "/library/metadata/49564/thumb/1654258204",
   });
