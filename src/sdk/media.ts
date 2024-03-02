@@ -78,9 +78,13 @@ export class Media extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "markPlayed",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "markPlayed" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -169,9 +173,13 @@ export class Media extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "markUnplayed",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "markUnplayed" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -267,9 +275,13 @@ export class Media extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "updatePlayProgress",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "updatePlayProgress" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

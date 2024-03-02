@@ -85,9 +85,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "createPlaylist",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "createPlaylist" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -187,9 +191,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getPlaylists",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getPlaylists" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -287,9 +295,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getPlaylist",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getPlaylist" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -386,9 +398,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "deletePlaylist",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "deletePlaylist" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -492,9 +508,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "updatePlaylist",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "updatePlaylist" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -595,9 +615,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getPlaylistContents",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getPlaylistContents" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -694,9 +718,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "clearPlaylistContents",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "clearPlaylistContents" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -801,9 +829,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "addPlaylistContents",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "addPlaylistContents" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -901,9 +933,13 @@ export class Playlists extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "uploadPlaylist",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "uploadPlaylist" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

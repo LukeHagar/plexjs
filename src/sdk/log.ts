@@ -89,9 +89,13 @@ export class Log extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "logLine",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "logLine" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -195,9 +199,13 @@ export class Log extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "logMultiLine",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "logMultiLine" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -270,9 +278,13 @@ export class Log extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "enablePaperTrail",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "enablePaperTrail" };
         const doOptions = { context, errorCodes: ["400", "401", "403", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

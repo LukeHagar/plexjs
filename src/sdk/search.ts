@@ -99,9 +99,13 @@ export class Search extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "performSearch",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "performSearch" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -203,9 +207,13 @@ export class Search extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "performVoiceSearch",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "performVoiceSearch" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -294,9 +302,13 @@ export class Search extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getSearchResults",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getSearchResults" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

@@ -61,9 +61,13 @@ export class Butler extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getButlerTasks",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getButlerTasks" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -144,9 +148,13 @@ export class Butler extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "startAllTasks",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "startAllTasks" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -218,9 +226,13 @@ export class Butler extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "stopAllTasks",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "stopAllTasks" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -315,9 +327,13 @@ export class Butler extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "startTask",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "startTask" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -409,9 +425,13 @@ export class Butler extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "stopTask",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "stopTask" };
         const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

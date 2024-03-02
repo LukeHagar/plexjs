@@ -84,8 +84,8 @@ export class Plex extends ClientSDK {
                 charEncoding: "none",
             })
         );
+        const context = { operationID: "getPin", oAuth2Scopes: [], securitySource: null };
 
-        const context = { operationID: "getPin" };
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -187,8 +187,8 @@ export class Plex extends ClientSDK {
                 charEncoding: "none",
             })
         );
+        const context = { operationID: "getToken", oAuth2Scopes: [], securitySource: null };
 
-        const context = { operationID: "getToken" };
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

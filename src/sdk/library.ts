@@ -81,9 +81,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getFileHash",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getFileHash" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -156,9 +160,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getRecentlyAdded",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getRecentlyAdded" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -240,9 +248,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getLibraries",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getLibraries" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -385,9 +397,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getLibrary",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getLibrary" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -483,9 +499,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "deleteLibrary",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "deleteLibrary" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -602,9 +622,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getLibraryItems",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getLibraryItems" };
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -690,9 +714,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "refreshLibrary",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "refreshLibrary" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -809,9 +837,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "searchLibrary",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "searchLibrary" };
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -895,9 +927,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getMetadata",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getMetadata" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -996,9 +1032,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getMetadataChildren",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getMetadataChildren" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -1076,9 +1116,13 @@ export class Library extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getOnDeck",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getOnDeck" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

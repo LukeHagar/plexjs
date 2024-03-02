@@ -63,9 +63,13 @@ export class Server extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getServerCapabilities",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getServerCapabilities" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -143,9 +147,13 @@ export class Server extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getServerPreferences",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getServerPreferences" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -223,9 +231,13 @@ export class Server extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getAvailableClients",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getAvailableClients" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -301,9 +313,13 @@ export class Server extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getDevices",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getDevices" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -381,9 +397,13 @@ export class Server extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getServerIdentity",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getServerIdentity" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -459,9 +479,13 @@ export class Server extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getMyPlexAccount",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getMyPlexAccount" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -567,9 +591,13 @@ export class Server extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getResizedPhoto",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getResizedPhoto" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -641,9 +669,13 @@ export class Server extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getServerList",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getServerList" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

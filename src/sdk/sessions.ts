@@ -61,9 +61,13 @@ export class Sessions extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getSessions",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getSessions" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -141,9 +145,13 @@ export class Sessions extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getSessionHistory",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getSessionHistory" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -221,9 +229,13 @@ export class Sessions extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getTranscodeSessions",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getTranscodeSessions" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -318,9 +330,13 @@ export class Sessions extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "stopTranscodeSession",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "stopTranscodeSession" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

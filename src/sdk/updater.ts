@@ -61,9 +61,13 @@ export class Updater extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getUpdateStatus",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getUpdateStatus" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -159,9 +163,13 @@ export class Updater extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "checkForUpdates",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "checkForUpdates" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -257,9 +265,13 @@ export class Updater extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "applyUpdates",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "applyUpdates" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "500", "5XX"] };
         const request = this.createRequest$(
             {

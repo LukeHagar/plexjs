@@ -82,9 +82,13 @@ export class Authentication extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getTransientToken",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getTransientToken" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -176,9 +180,13 @@ export class Authentication extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getSourceConnectionInformation",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getSourceConnectionInformation" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

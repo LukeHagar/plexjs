@@ -63,9 +63,13 @@ export class Activities extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "getServerActivities",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "getServerActivities" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
@@ -160,9 +164,13 @@ export class Activities extends ClientSDK {
         } else {
             security$ = {};
         }
+        const context = {
+            operationID: "cancelServerActivities",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const context = { operationID: "cancelServerActivities" };
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
             {

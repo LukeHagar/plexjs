@@ -4,16 +4,16 @@ management:
   docChecksum: e34dac84738ebf2d447ea2b9055a6eeb
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.275.4
-  releaseVersion: 0.9.1
-  configChecksum: 473bdb8c17da87813ad297b3c04dfa50
+  generationVersion: 2.277.0
+  releaseVersion: 0.9.2
+  configChecksum: 25a7a1e125309b9c0fbc9c4649294fed
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
   published: true
 features:
   typescript:
-    constsAndDefaults: 0.1.4
+    constsAndDefaults: 0.1.5
     core: 3.6.1
     flattening: 2.81.1
     globalSecurity: 2.82.4
