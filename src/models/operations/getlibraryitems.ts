@@ -3,7 +3,7 @@
  */
 
 import { RFCDate } from "../../types";
-import { z } from "zod";
+import * as z from "zod";
 
 /**
  * A key representing a specific tag within the section.

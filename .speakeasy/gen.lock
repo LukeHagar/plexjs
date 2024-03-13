@@ -3,10 +3,10 @@ id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
   docChecksum: e34dac84738ebf2d447ea2b9055a6eeb
   docVersion: 0.0.3
-  speakeasyVersion: 1.204.1
-  generationVersion: 2.279.1
-  releaseVersion: 0.10.0
-  configChecksum: c2caa0bd788a98a059e51f793eff1525
+  speakeasyVersion: 1.207.1
+  generationVersion: 2.280.6
+  releaseVersion: 0.10.1
+  configChecksum: 726b0f7d4f020a007a232a1cfe026ef0
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -17,10 +17,10 @@ features:
     core: 3.6.1
     flattening: 2.81.1
     globalSecurity: 2.82.4
-    globalServerURLs: 2.82.3
+    globalServerURLs: 2.82.4
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
-    responseFormat: 0.2.0
+    responseFormat: 0.2.1
 generatedFiles:
   - src/sdk/server.ts
   - src/sdk/media.ts
@@ -46,7 +46,6 @@ generatedFiles:
   - src/lib/base64.ts
   - src/lib/config.ts
   - src/lib/encodings.ts
-  - src/lib/event-streams.ts
   - src/lib/http.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -57,7 +56,6 @@ generatedFiles:
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
-  - src/types/decimal.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts

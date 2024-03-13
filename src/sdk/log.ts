@@ -10,7 +10,7 @@ import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
-import { z } from "zod";
+import * as z from "zod";
 
 export class Log extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
