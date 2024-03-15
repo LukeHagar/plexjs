@@ -3,10 +3,10 @@ id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
   docChecksum: e34dac84738ebf2d447ea2b9055a6eeb
   docVersion: 0.0.3
-  speakeasyVersion: 1.209.2
+  speakeasyVersion: 1.209.3
   generationVersion: 2.281.2
-  releaseVersion: 0.10.2
-  configChecksum: 15703b0c823b93c6420c88f60683a77c
+  releaseVersion: 0.10.3
+  configChecksum: 53d679e5b2a184e4f2eb4a8641521f70
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
