@@ -116,6 +116,7 @@ export namespace GetServerPreferencesResponseBody$ {
                     ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
                 });
             });
+
     export type Outbound = {
         errors?: Array<GetServerPreferencesErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

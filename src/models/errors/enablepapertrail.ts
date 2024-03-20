@@ -115,6 +115,7 @@ export namespace EnablePaperTrailResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<EnablePaperTrailErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

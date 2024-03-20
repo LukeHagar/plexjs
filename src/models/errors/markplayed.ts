@@ -115,6 +115,7 @@ export namespace MarkPlayedResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<MarkPlayedErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

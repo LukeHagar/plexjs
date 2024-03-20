@@ -115,6 +115,7 @@ export namespace StopTaskResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<StopTaskErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

@@ -115,6 +115,7 @@ export namespace LogLineResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<LogLineErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

@@ -115,6 +115,7 @@ export namespace GetPinResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetPinErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

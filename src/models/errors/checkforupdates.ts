@@ -115,6 +115,7 @@ export namespace CheckForUpdatesResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<CheckForUpdatesErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

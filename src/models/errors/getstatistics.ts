@@ -115,6 +115,7 @@ export namespace GetStatisticsResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetStatisticsErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

@@ -115,6 +115,7 @@ export namespace GetOnDeckResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetOnDeckErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

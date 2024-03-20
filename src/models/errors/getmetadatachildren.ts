@@ -116,6 +116,7 @@ export namespace GetMetadataChildrenResponseBody$ {
                     ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
                 });
             });
+
     export type Outbound = {
         errors?: Array<GetMetadataChildrenErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

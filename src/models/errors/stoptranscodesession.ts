@@ -116,6 +116,7 @@ export namespace StopTranscodeSessionResponseBody$ {
                     ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
                 });
             });
+
     export type Outbound = {
         errors?: Array<StopTranscodeSessionErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

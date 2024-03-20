@@ -115,6 +115,7 @@ export namespace DeletePlaylistResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<DeletePlaylistErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

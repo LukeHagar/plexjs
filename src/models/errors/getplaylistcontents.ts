@@ -116,6 +116,7 @@ export namespace GetPlaylistContentsResponseBody$ {
                     ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
                 });
             });
+
     export type Outbound = {
         errors?: Array<GetPlaylistContentsErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

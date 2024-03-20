@@ -115,6 +115,7 @@ export namespace GetRecentlyAddedResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetRecentlyAddedErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

@@ -115,6 +115,7 @@ export namespace GetFileHashResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetFileHashErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

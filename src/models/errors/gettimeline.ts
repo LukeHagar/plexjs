@@ -115,6 +115,7 @@ export namespace GetTimelineResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetTimelineErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

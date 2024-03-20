@@ -119,6 +119,7 @@ export namespace GetServerCapabilitiesResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<Errors$.Outbound> | undefined;
         RawResponse?: never | undefined;

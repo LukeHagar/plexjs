@@ -115,6 +115,7 @@ export namespace GetTokenResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetTokenErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

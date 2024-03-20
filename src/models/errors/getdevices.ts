@@ -115,6 +115,7 @@ export namespace GetDevicesResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetDevicesErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

@@ -129,6 +129,7 @@ export namespace GetSourceConnectionInformationResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetSourceConnectionInformationErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

@@ -115,6 +115,7 @@ export namespace PerformSearchResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<PerformSearchErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

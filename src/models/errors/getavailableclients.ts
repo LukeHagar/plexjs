@@ -116,6 +116,7 @@ export namespace GetAvailableClientsResponseBody$ {
                     ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
                 });
             });
+
     export type Outbound = {
         errors?: Array<GetAvailableClientsErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

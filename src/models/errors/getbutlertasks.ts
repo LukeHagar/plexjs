@@ -115,6 +115,7 @@ export namespace GetButlerTasksResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetButlerTasksErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

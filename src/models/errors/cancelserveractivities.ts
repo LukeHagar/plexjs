@@ -119,6 +119,7 @@ export namespace CancelServerActivitiesResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<CancelServerActivitiesErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

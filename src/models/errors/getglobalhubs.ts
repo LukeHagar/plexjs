@@ -115,6 +115,7 @@ export namespace GetGlobalHubsResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetGlobalHubsErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

@@ -115,6 +115,7 @@ export namespace GetSearchResultsResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetSearchResultsErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

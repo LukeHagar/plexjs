@@ -115,6 +115,7 @@ export namespace GetLibrariesResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<GetLibrariesErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

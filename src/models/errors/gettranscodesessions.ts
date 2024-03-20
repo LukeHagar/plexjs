@@ -116,6 +116,7 @@ export namespace GetTranscodeSessionsResponseBody$ {
                     ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
                 });
             });
+
     export type Outbound = {
         errors?: Array<GetTranscodeSessionsErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;

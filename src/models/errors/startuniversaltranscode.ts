@@ -120,6 +120,7 @@ export namespace StartUniversalTranscodeResponseBody$ {
                 ...(v.RawResponse === undefined ? null : { rawResponse: v.RawResponse }),
             });
         });
+
     export type Outbound = {
         errors?: Array<StartUniversalTranscodeErrors$.Outbound> | undefined;
         RawResponse?: never | undefined;
