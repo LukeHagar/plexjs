@@ -27,6 +27,11 @@ export enum ServerProtocol {
 export type SDKOptions = {
     accessToken?: string | (() => Promise<string>);
 
+    /**
+     * Allows setting the xPlexClientIdentifier parameter for all supported operations
+     */
+    xPlexClientIdentifier?: string;
+
     httpClient?: HTTPClient;
     /**
      * Allows overriding the default server used by the SDK
@@ -82,7 +87,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = Object.freeze({
     language: "typescript",
     openapiDocVersion: "0.0.3",
-    sdkVersion: "0.11.0",
-    genVersion: "2.291.0",
-    userAgent: "speakeasy-sdk/typescript 0.11.0 2.291.0 0.0.3 @lukehagar/plexjs",
+    sdkVersion: "0.12.0",
+    genVersion: "2.292.0",
+    userAgent: "speakeasy-sdk/typescript 0.12.0 2.292.0 0.0.3 @lukehagar/plexjs",
 });

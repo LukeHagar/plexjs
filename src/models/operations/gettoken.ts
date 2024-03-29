@@ -19,7 +19,7 @@ export type GetTokenRequest = {
      * (UUID, serial number, or other number unique per device)
      *
      */
-    xPlexClientIdentifier: string;
+    xPlexClientIdentifier?: string | undefined;
 };
 
 export type GetTokenResponse = {
@@ -41,35 +41,39 @@ export type GetTokenResponse = {
 export namespace GetTokenRequest$ {
     export type Inbound = {
         pinID: string;
-        "X-Plex-Client-Identifier": string;
+        "X-Plex-Client-Identifier"?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetTokenRequest, z.ZodTypeDef, Inbound> = z
         .object({
             pinID: z.string(),
-            "X-Plex-Client-Identifier": z.string(),
+            "X-Plex-Client-Identifier": z.string().optional(),
         })
         .transform((v) => {
             return {
                 pinID: v.pinID,
-                xPlexClientIdentifier: v["X-Plex-Client-Identifier"],
+                ...(v["X-Plex-Client-Identifier"] === undefined
+                    ? null
+                    : { xPlexClientIdentifier: v["X-Plex-Client-Identifier"] }),
             };
         });
 
     export type Outbound = {
         pinID: string;
-        "X-Plex-Client-Identifier": string;
+        "X-Plex-Client-Identifier"?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetTokenRequest> = z
         .object({
             pinID: z.string(),
-            xPlexClientIdentifier: z.string(),
+            xPlexClientIdentifier: z.string().optional(),
         })
         .transform((v) => {
             return {
                 pinID: v.pinID,
-                "X-Plex-Client-Identifier": v.xPlexClientIdentifier,
+                ...(v.xPlexClientIdentifier === undefined
+                    ? null
+                    : { "X-Plex-Client-Identifier": v.xPlexClientIdentifier }),
             };
         });
 }

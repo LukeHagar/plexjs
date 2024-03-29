@@ -32,6 +32,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const url = "file://C:\Image.png&type=13";
@@ -79,6 +80,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.library.getRecentlyAdded();
@@ -126,6 +128,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.library.getLibraries();
@@ -207,6 +210,7 @@ import { IncludeDetails } from "@lukehagar/plexjs/models/operations";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const sectionId = 1000;
@@ -253,6 +257,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const sectionId = 1000;
@@ -318,6 +323,7 @@ import { Tag } from "@lukehagar/plexjs/models/operations";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const sectionId = 451092;
@@ -364,6 +370,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const sectionId = 934.16;
@@ -427,6 +434,7 @@ import { Type } from "@lukehagar/plexjs/models/operations";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const sectionId = 933505;
@@ -473,6 +481,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const ratingKey = 8382.31;
@@ -518,6 +527,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const ratingKey = 1539.14;
@@ -563,6 +573,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.library.getOnDeck();

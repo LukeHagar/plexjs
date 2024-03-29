@@ -45,13 +45,13 @@ export class Plex extends ClientSDK {
      * Retrieve a Pin from Plex.tv for authentication flows
      */
     async getPin(
-        xPlexClientIdentifier: string,
         strong?: boolean | undefined,
+        xPlexClientIdentifier?: string | undefined,
         options?: RequestOptions & { serverURL?: string }
     ): Promise<operations.GetPinResponse> {
         const input$: operations.GetPinRequest = {
-            xPlexClientIdentifier: xPlexClientIdentifier,
             strong: strong,
+            xPlexClientIdentifier: xPlexClientIdentifier,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -79,10 +79,11 @@ export class Plex extends ClientSDK {
 
         headers$.set(
             "X-Plex-Client-Identifier",
-            enc$.encodeSimple("X-Plex-Client-Identifier", payload$["X-Plex-Client-Identifier"], {
-                explode: false,
-                charEncoding: "none",
-            })
+            enc$.encodeSimple(
+                "X-Plex-Client-Identifier",
+                payload$["X-Plex-Client-Identifier"] ?? this.options$.xPlexClientIdentifier,
+                { explode: false, charEncoding: "none" }
+            )
         );
         const context = { operationID: "getPin", oAuth2Scopes: [], securitySource: null };
 
@@ -147,7 +148,7 @@ export class Plex extends ClientSDK {
      */
     async getToken(
         pinID: string,
-        xPlexClientIdentifier: string,
+        xPlexClientIdentifier?: string | undefined,
         options?: RequestOptions & { serverURL?: string }
     ): Promise<operations.GetTokenResponse> {
         const input$: operations.GetTokenRequest = {
@@ -182,10 +183,11 @@ export class Plex extends ClientSDK {
 
         headers$.set(
             "X-Plex-Client-Identifier",
-            enc$.encodeSimple("X-Plex-Client-Identifier", payload$["X-Plex-Client-Identifier"], {
-                explode: false,
-                charEncoding: "none",
-            })
+            enc$.encodeSimple(
+                "X-Plex-Client-Identifier",
+                payload$["X-Plex-Client-Identifier"] ?? this.options$.xPlexClientIdentifier,
+                { explode: false, charEncoding: "none" }
+            )
         );
         const context = { operationID: "getToken", oAuth2Scopes: [], securitySource: null };
 

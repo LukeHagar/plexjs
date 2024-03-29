@@ -25,6 +25,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.sessions.getSessions();
@@ -66,6 +67,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.sessions.getSessionHistory();
@@ -107,6 +109,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.sessions.getTranscodeSessions();
@@ -148,6 +151,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const sessionKey = "zz7llzqlx8w9vnrsbnwhbmep";

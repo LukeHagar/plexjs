@@ -8,15 +8,6 @@ export const GetPinServerList = ["https://plex.tv/api/v2"] as const;
 
 export type GetPinRequest = {
     /**
-     * The unique identifier for the client application
-     *
-     * @remarks
-     * This is used to track the client application and its usage
-     * (UUID, serial number, or other number unique per device)
-     *
-     */
-    xPlexClientIdentifier: string;
-    /**
      * Determines the kind of code returned by the API call
      *
      * @remarks
@@ -25,6 +16,15 @@ export type GetPinRequest = {
      *
      */
     strong?: boolean | undefined;
+    /**
+     * The unique identifier for the client application
+     *
+     * @remarks
+     * This is used to track the client application and its usage
+     * (UUID, serial number, or other number unique per device)
+     *
+     */
+    xPlexClientIdentifier?: string | undefined;
 };
 
 export type Location = {
@@ -91,36 +91,40 @@ export type GetPinResponse = {
 /** @internal */
 export namespace GetPinRequest$ {
     export type Inbound = {
-        "X-Plex-Client-Identifier": string;
         strong?: boolean | undefined;
+        "X-Plex-Client-Identifier"?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetPinRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            "X-Plex-Client-Identifier": z.string(),
             strong: z.boolean().default(false),
+            "X-Plex-Client-Identifier": z.string().optional(),
         })
         .transform((v) => {
             return {
-                xPlexClientIdentifier: v["X-Plex-Client-Identifier"],
                 strong: v.strong,
+                ...(v["X-Plex-Client-Identifier"] === undefined
+                    ? null
+                    : { xPlexClientIdentifier: v["X-Plex-Client-Identifier"] }),
             };
         });
 
     export type Outbound = {
-        "X-Plex-Client-Identifier": string;
         strong: boolean;
+        "X-Plex-Client-Identifier"?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetPinRequest> = z
         .object({
-            xPlexClientIdentifier: z.string(),
             strong: z.boolean().default(false),
+            xPlexClientIdentifier: z.string().optional(),
         })
         .transform((v) => {
             return {
-                "X-Plex-Client-Identifier": v.xPlexClientIdentifier,
                 strong: v.strong,
+                ...(v.xPlexClientIdentifier === undefined
+                    ? null
+                    : { "X-Plex-Client-Identifier": v.xPlexClientIdentifier }),
             };
         });
 }

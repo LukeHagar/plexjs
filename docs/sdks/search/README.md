@@ -36,6 +36,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const query = "dylan";
@@ -88,6 +89,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const query = "dead+poop";
@@ -136,6 +138,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const query = "110";

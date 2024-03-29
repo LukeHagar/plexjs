@@ -34,6 +34,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
     const sdk = new PlexAPI({
         accessToken: "<YOUR_API_KEY_HERE>",
+        xPlexClientIdentifier: "<value>",
     });
 
     const result = await sdk.server.getServerCapabilities();
@@ -176,6 +177,7 @@ import * as errors from "@lukehagar/plexjs/models/errors";
 async function run() {
     const sdk = new PlexAPI({
         accessToken: "<YOUR_API_KEY_HERE>",
+        xPlexClientIdentifier: "<value>",
     });
 
     let result;
@@ -227,6 +229,7 @@ async function run() {
     const sdk = new PlexAPI({
         serverIdx: 0,
         accessToken: "<YOUR_API_KEY_HERE>",
+        xPlexClientIdentifier: "<value>",
     });
 
     const result = await sdk.server.getServerCapabilities();
@@ -257,6 +260,7 @@ async function run() {
     const sdk = new PlexAPI({
         serverURL: "{protocol}://{ip}:{port}",
         accessToken: "<YOUR_API_KEY_HERE>",
+        xPlexClientIdentifier: "<value>",
     });
 
     const result = await sdk.server.getServerCapabilities();
@@ -276,12 +280,14 @@ The server URL can also be overridden on a per-operation basis, provided a serve
 import { PlexAPI } from "@lukehagar/plexjs";
 
 async function run() {
-    const sdk = new PlexAPI();
+    const sdk = new PlexAPI({
+        xPlexClientIdentifier: "<value>",
+    });
 
-    const xPlexClientIdentifier = "<value>";
     const strong = false;
+    const xPlexClientIdentifier = "<value>";
 
-    const result = await sdk.plex.getPin(xPlexClientIdentifier, strong, {
+    const result = await sdk.plex.getPin(strong, xPlexClientIdentifier, {
         serverURL: "https://plex.tv/api/v2",
     });
 
@@ -361,6 +367,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
     const sdk = new PlexAPI({
         accessToken: "<YOUR_API_KEY_HERE>",
+        xPlexClientIdentifier: "<value>",
     });
 
     const result = await sdk.server.getServerCapabilities();
@@ -379,6 +386,50 @@ run();
 
 For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- End Requirements [requirements] -->
+
+<!-- Start Global Parameters [global-parameters] -->
+## Global Parameters
+
+A parameter is configured globally. This parameter must be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+
+For example, you can set `X-Plex-Client-Identifier` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+
+
+### Available Globals
+
+The following global parameter is available. The required parameter must be set when you initialize the SDK client.
+
+| Name | Type | Required | Description |
+| ---- | ---- |:--------:| ----------- |
+| xPlexClientIdentifier | string | ✔️ | The unique identifier for the client application
+This is used to track the client application and its usage
+(UUID, serial number, or other number unique per device)
+ |
+
+
+### Example
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+async function run() {
+    const sdk = new PlexAPI({
+        xPlexClientIdentifier: "<value>",
+    });
+
+    const strong = false;
+    const xPlexClientIdentifier = "<value>";
+
+    const result = await sdk.plex.getPin(strong, xPlexClientIdentifier);
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Global Parameters [global-parameters] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

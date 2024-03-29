@@ -25,6 +25,7 @@ import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/models
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const type = GetTransientTokenQueryParamType.Delegation;
@@ -73,6 +74,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const source = "server://client-identifier";

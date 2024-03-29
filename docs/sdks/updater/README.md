@@ -25,6 +25,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.updater.getUpdateStatus();
@@ -67,6 +68,7 @@ import { Download } from "@lukehagar/plexjs/models/operations";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const download = Download.One;
@@ -113,6 +115,7 @@ import { Skip, Tonight } from "@lukehagar/plexjs/models/operations";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const tonight = Tonight.One;

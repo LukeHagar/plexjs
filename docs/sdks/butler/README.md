@@ -26,6 +26,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.butler.getButlerTasks();
@@ -72,6 +73,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.butler.startAllTasks();
@@ -114,6 +116,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const result = await sdk.butler.stopAllTasks();
@@ -161,6 +164,7 @@ import { TaskName } from "@lukehagar/plexjs/models/operations";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const taskName = TaskName.CleanOldBundles;
@@ -207,6 +211,7 @@ import { PathParamTaskName } from "@lukehagar/plexjs/models/operations";
 async function run() {
   const sdk = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
   });
 
   const taskName = PathParamTaskName.BackupDatabase;
