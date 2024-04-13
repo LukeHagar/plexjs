@@ -33,17 +33,17 @@ This request is intended to be very fast, and called as the user types.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const query = "dylan";
   const sectionId = 1516.53;
   const limit = 5;
   
-  const result = await sdk.search.performSearch(query, sectionId, limit);
+  const result = await plexAPI.search.performSearch(query, sectionId, limit);
 
   // Handle the result
   console.log(result)
@@ -86,17 +86,17 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const query = "dead+poop";
   const sectionId = 4094.8;
   const limit = 5;
   
-  const result = await sdk.search.performVoiceSearch(query, sectionId, limit);
+  const result = await plexAPI.search.performVoiceSearch(query, sectionId, limit);
 
   // Handle the result
   console.log(result)
@@ -135,15 +135,15 @@ This will search the database for the string provided.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const query = "110";
   
-  const result = await sdk.search.getSearchResults(query);
+  const result = await plexAPI.search.getSearchResults(query);
 
   // Handle the result
   console.log(result)

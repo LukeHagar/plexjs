@@ -21,15 +21,15 @@ This will mark the provided media key as Played.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const key = 59398;
   
-  const result = await sdk.media.markPlayed(key);
+  const result = await plexAPI.media.markPlayed(key);
 
   // Handle the result
   console.log(result)
@@ -66,15 +66,15 @@ This will mark the provided media key as Unplayed.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const key = 59398;
   
-  const result = await sdk.media.markUnplayed(key);
+  const result = await plexAPI.media.markUnplayed(key);
 
   // Handle the result
   console.log(result)
@@ -112,17 +112,17 @@ This API command can be used to update the play progress of a media item.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const key = "<value>";
   const time = 6900.91;
   const state = "<value>";
   
-  const result = await sdk.media.updatePlayProgress(key, time, state);
+  const result = await plexAPI.media.updatePlayProgress(key, time, state);
 
   // Handle the result
   console.log(result)

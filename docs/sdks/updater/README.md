@@ -22,13 +22,13 @@ Querying status of updates
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.updater.getUpdateStatus();
+async function run() {
+  const result = await plexAPI.updater.getUpdateStatus();
 
   // Handle the result
   console.log(result)
@@ -65,15 +65,15 @@ Checking for updates
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Download } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const download = Download.One;
   
-  const result = await sdk.updater.checkForUpdates(download);
+  const result = await plexAPI.updater.checkForUpdates(download);
 
   // Handle the result
   console.log(result)
@@ -112,16 +112,16 @@ Note that these two parameters are effectively mutually exclusive. The `tonight`
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Skip, Tonight } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const tonight = Tonight.One;
   const skip = Skip.Zero;
   
-  const result = await sdk.updater.applyUpdates(tonight, skip);
+  const result = await plexAPI.updater.applyUpdates(tonight, skip);
 
   // Handle the result
   console.log(result)

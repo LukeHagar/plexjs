@@ -20,15 +20,15 @@ Retrieve a Pin from Plex.tv for authentication flows
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const strong = false;
   const xPlexClientIdentifier = "<value>";
   
-  const result = await sdk.plex.getPin(strong, xPlexClientIdentifier);
+  const result = await plexAPI.plex.getPin(strong, xPlexClientIdentifier);
 
   // Handle the result
   console.log(result)
@@ -67,15 +67,15 @@ Retrieve an Access Token from Plex.tv after the Pin has already been authenticat
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const pinID = "<value>";
   const xPlexClientIdentifier = "<value>";
   
-  const result = await sdk.plex.getToken(pinID, xPlexClientIdentifier);
+  const result = await plexAPI.plex.getToken(pinID, xPlexClientIdentifier);
 
   // Handle the result
   console.log(result)

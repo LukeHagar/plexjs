@@ -2,13 +2,13 @@
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-    const sdk = new PlexAPI({
-        accessToken: "<YOUR_API_KEY_HERE>",
-        xPlexClientIdentifier: "<value>",
-    });
+const plexAPI = new PlexAPI({
+    accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
+});
 
-    const result = await sdk.server.getServerCapabilities();
+async function run() {
+    const result = await plexAPI.server.getServerCapabilities();
 
     // Handle the result
     console.log(result);

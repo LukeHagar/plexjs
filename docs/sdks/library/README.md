@@ -29,16 +29,16 @@ This resource returns hash values for local files
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const url = "file://C:\Image.png&type=13";
   const type = 4462.17;
   
-  const result = await sdk.library.getFileHash(url, type);
+  const result = await plexAPI.library.getFileHash(url, type);
 
   // Handle the result
   console.log(result)
@@ -77,13 +77,13 @@ This endpoint will return the recently added content.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.library.getRecentlyAdded();
+async function run() {
+  const result = await plexAPI.library.getRecentlyAdded();
 
   // Handle the result
   console.log(result)
@@ -125,13 +125,13 @@ This allows a client to provide a rich interface around the media (e.g. allow so
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.library.getLibraries();
+async function run() {
+  const result = await plexAPI.library.getLibraries();
 
   // Handle the result
   console.log(result)
@@ -207,16 +207,16 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 import { PlexAPI } from "@lukehagar/plexjs";
 import { IncludeDetails } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const sectionId = 1000;
   const includeDetails = IncludeDetails.Zero;
   
-  const result = await sdk.library.getLibrary(sectionId, includeDetails);
+  const result = await plexAPI.library.getLibrary(sectionId, includeDetails);
 
   // Handle the result
   console.log(result)
@@ -254,15 +254,15 @@ Delate a library using a specific section
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const sectionId = 1000;
   
-  const result = await sdk.library.deleteLibrary(sectionId);
+  const result = await plexAPI.library.deleteLibrary(sectionId);
 
   // Handle the result
   console.log(result)
@@ -320,16 +320,16 @@ Fetches details from a specific section of the library identified by a section k
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Tag } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const sectionId = 451092;
   const tag = Tag.Unwatched;
   
-  const result = await sdk.library.getLibraryItems(sectionId, tag);
+  const result = await plexAPI.library.getLibraryItems(sectionId, tag);
 
   // Handle the result
   console.log(result)
@@ -367,15 +367,15 @@ This endpoint Refreshes the library.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const sectionId = 934.16;
   
-  const result = await sdk.library.refreshLibrary(sectionId);
+  const result = await plexAPI.library.refreshLibrary(sectionId);
 
   // Handle the result
   console.log(result)
@@ -431,16 +431,16 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Type } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const sectionId = 933505;
   const type = Type.Four;
   
-  const result = await sdk.library.searchLibrary(sectionId, type);
+  const result = await plexAPI.library.searchLibrary(sectionId, type);
 
   // Handle the result
   console.log(result)
@@ -478,15 +478,15 @@ This endpoint will return the metadata of a library item specified with the rati
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const ratingKey = 8382.31;
   
-  const result = await sdk.library.getMetadata(ratingKey);
+  const result = await plexAPI.library.getMetadata(ratingKey);
 
   // Handle the result
   console.log(result)
@@ -524,15 +524,15 @@ This endpoint will return the children of of a library item specified with the r
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const ratingKey = 1539.14;
   
-  const result = await sdk.library.getMetadataChildren(ratingKey);
+  const result = await plexAPI.library.getMetadataChildren(ratingKey);
 
   // Handle the result
   console.log(result)
@@ -570,13 +570,13 @@ This endpoint will return the on deck content.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.library.getOnDeck();
+async function run() {
+  const result = await plexAPI.library.getOnDeck();
 
   // Handle the result
   console.log(result)

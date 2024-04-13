@@ -23,13 +23,13 @@ Returns a list of butler tasks
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.butler.getButlerTasks();
+async function run() {
+  const result = await plexAPI.butler.getButlerTasks();
 
   // Handle the result
   console.log(result)
@@ -70,13 +70,13 @@ This endpoint will attempt to start all Butler tasks that are enabled in the set
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.butler.startAllTasks();
+async function run() {
+  const result = await plexAPI.butler.startAllTasks();
 
   // Handle the result
   console.log(result)
@@ -113,13 +113,13 @@ This endpoint will stop all currently running tasks and remove any scheduled tas
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.butler.stopAllTasks();
+async function run() {
+  const result = await plexAPI.butler.stopAllTasks();
 
   // Handle the result
   console.log(result)
@@ -161,15 +161,15 @@ This endpoint will attempt to start a single Butler task that is enabled in the 
 import { PlexAPI } from "@lukehagar/plexjs";
 import { TaskName } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const taskName = TaskName.CleanOldBundles;
   
-  const result = await sdk.butler.startTask(taskName);
+  const result = await plexAPI.butler.startTask(taskName);
 
   // Handle the result
   console.log(result)
@@ -208,15 +208,15 @@ This endpoint will stop a currently running task by name, or remove it from the 
 import { PlexAPI } from "@lukehagar/plexjs";
 import { PathParamTaskName } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const taskName = PathParamTaskName.BackupDatabase;
   
-  const result = await sdk.butler.stopTask(taskName);
+  const result = await plexAPI.butler.stopTask(taskName);
 
   // Handle the result
   console.log(result)

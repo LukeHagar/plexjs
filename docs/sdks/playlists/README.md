@@ -34,13 +34,13 @@ Create a new playlist. By default the playlist is blank. To create a playlist al
 import { PlexAPI } from "@lukehagar/plexjs";
 import { QueryParamType, Smart } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.playlists.createPlaylist({
+async function run() {
+  const result = await plexAPI.playlists.createPlaylist({
     title: "<value>",
     type: QueryParamType.Photo,
     smart: Smart.One,
@@ -83,16 +83,16 @@ Get All Playlists given the specified filters.
 import { PlexAPI } from "@lukehagar/plexjs";
 import { PlaylistType, QueryParamSmart } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const playlistType = PlaylistType.Audio;
   const smart = QueryParamSmart.Zero;
   
-  const result = await sdk.playlists.getPlaylists(playlistType, smart);
+  const result = await plexAPI.playlists.getPlaylists(playlistType, smart);
 
   // Handle the result
   console.log(result)
@@ -132,15 +132,15 @@ Smart playlist details contain the `content` attribute. This is the content URI 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const playlistID = 4109.48;
   
-  const result = await sdk.playlists.getPlaylist(playlistID);
+  const result = await plexAPI.playlists.getPlaylist(playlistID);
 
   // Handle the result
   console.log(result)
@@ -178,15 +178,15 @@ This endpoint will delete a playlist
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const playlistID = 216.22;
   
-  const result = await sdk.playlists.deletePlaylist(playlistID);
+  const result = await plexAPI.playlists.deletePlaylist(playlistID);
 
   // Handle the result
   console.log(result)
@@ -224,17 +224,17 @@ From PMS version 1.9.1 clients can also edit playlist metadata using this endpoi
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const playlistID = 3915;
   const title = "<value>";
   const summary = "<value>";
   
-  const result = await sdk.playlists.updatePlaylist(playlistID, title, summary);
+  const result = await plexAPI.playlists.updatePlaylist(playlistID, title, summary);
 
   // Handle the result
   console.log(result)
@@ -277,16 +277,16 @@ Note that for dumb playlists, items have a `playlistItemID` attribute which is u
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const playlistID = 5004.46;
   const type = 9403.59;
   
-  const result = await sdk.playlists.getPlaylistContents(playlistID, type);
+  const result = await plexAPI.playlists.getPlaylistContents(playlistID, type);
 
   // Handle the result
   console.log(result)
@@ -325,15 +325,15 @@ Clears a playlist, only works with dumb playlists. Returns the playlist.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const playlistID = 1893.18;
   
-  const result = await sdk.playlists.clearPlaylistContents(playlistID);
+  const result = await plexAPI.playlists.clearPlaylistContents(playlistID);
 
   // Handle the result
   console.log(result)
@@ -372,17 +372,17 @@ With a smart playlist, passing a new `uri` parameter replaces the rules for the 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const playlistID = 8502.01;
   const uri = "server://12345/com.plexapp.plugins.library/library/metadata/1";
   const playQueueID = 123;
   
-  const result = await sdk.playlists.addPlaylistContents(playlistID, uri, playQueueID);
+  const result = await plexAPI.playlists.addPlaylistContents(playlistID, uri, playQueueID);
 
   // Handle the result
   console.log(result)
@@ -423,16 +423,16 @@ Imports m3u playlists by passing a path on the server to scan for m3u-formatted 
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Force } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const path = "/home/barkley/playlist.m3u";
   const force = Force.Zero;
   
-  const result = await sdk.playlists.uploadPlaylist(path, force);
+  const result = await plexAPI.playlists.uploadPlaylist(path, force);
 
   // Handle the result
   console.log(result)

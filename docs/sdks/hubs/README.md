@@ -21,16 +21,16 @@ Get Global Hubs filtered by the parameters provided.
 import { PlexAPI } from "@lukehagar/plexjs";
 import { OnlyTransient } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const count = 1262.49;
   const onlyTransient = OnlyTransient.One;
   
-  const result = await sdk.hubs.getGlobalHubs(count, onlyTransient);
+  const result = await plexAPI.hubs.getGlobalHubs(count, onlyTransient);
 
   // Handle the result
   console.log(result)
@@ -70,17 +70,17 @@ This endpoint will return a list of library specific hubs
 import { PlexAPI } from "@lukehagar/plexjs";
 import { QueryParamOnlyTransient } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const sectionId = 6728.76;
   const count = 9010.22;
   const onlyTransient = QueryParamOnlyTransient.Zero;
   
-  const result = await sdk.hubs.getLibraryHubs(sectionId, count, onlyTransient);
+  const result = await plexAPI.hubs.getLibraryHubs(sectionId, count, onlyTransient);
 
   // Handle the result
   console.log(result)

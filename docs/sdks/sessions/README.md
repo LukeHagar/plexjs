@@ -22,13 +22,13 @@ This will retrieve the "Now Playing" Information of the PMS.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.sessions.getSessions();
+async function run() {
+  const result = await plexAPI.sessions.getSessions();
 
   // Handle the result
   console.log(result)
@@ -64,13 +64,13 @@ This will Retrieve a listing of all history views.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.sessions.getSessionHistory();
+async function run() {
+  const result = await plexAPI.sessions.getSessionHistory();
 
   // Handle the result
   console.log(result)
@@ -106,13 +106,13 @@ Get Transcode Sessions
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.sessions.getTranscodeSessions();
+async function run() {
+  const result = await plexAPI.sessions.getTranscodeSessions();
 
   // Handle the result
   console.log(result)
@@ -148,15 +148,15 @@ Stop a Transcode Session
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const sessionKey = "zz7llzqlx8w9vnrsbnwhbmep";
   
-  const result = await sdk.sessions.stopTranscodeSession(sessionKey);
+  const result = await plexAPI.sessions.stopTranscodeSession(sessionKey);
 
   // Handle the result
   console.log(result)

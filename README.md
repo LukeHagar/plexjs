@@ -31,13 +31,13 @@ yarn add @lukehagar/plexjs
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-    const sdk = new PlexAPI({
-        accessToken: "<YOUR_API_KEY_HERE>",
-        xPlexClientIdentifier: "<value>",
-    });
+const plexAPI = new PlexAPI({
+    accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
+});
 
-    const result = await sdk.server.getServerCapabilities();
+async function run() {
+    const result = await plexAPI.server.getServerCapabilities();
 
     // Handle the result
     console.log(result);
@@ -174,15 +174,15 @@ Validation errors can also occur when either method arguments or data returned f
 import { PlexAPI } from "@lukehagar/plexjs";
 import * as errors from "@lukehagar/plexjs/models/errors";
 
-async function run() {
-    const sdk = new PlexAPI({
-        accessToken: "<YOUR_API_KEY_HERE>",
-        xPlexClientIdentifier: "<value>",
-    });
+const plexAPI = new PlexAPI({
+    accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
     let result;
     try {
-        result = await sdk.server.getServerCapabilities();
+        result = await plexAPI.server.getServerCapabilities();
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -225,14 +225,14 @@ You can override the default server globally by passing a server index to the `s
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-    const sdk = new PlexAPI({
-        serverIdx: 0,
-        accessToken: "<YOUR_API_KEY_HERE>",
-        xPlexClientIdentifier: "<value>",
-    });
+const plexAPI = new PlexAPI({
+    serverIdx: 0,
+    accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
+});
 
-    const result = await sdk.server.getServerCapabilities();
+async function run() {
+    const result = await plexAPI.server.getServerCapabilities();
 
     // Handle the result
     console.log(result);
@@ -256,14 +256,14 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-    const sdk = new PlexAPI({
-        serverURL: "{protocol}://{ip}:{port}",
-        accessToken: "<YOUR_API_KEY_HERE>",
-        xPlexClientIdentifier: "<value>",
-    });
+const plexAPI = new PlexAPI({
+    serverURL: "{protocol}://{ip}:{port}",
+    accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
+});
 
-    const result = await sdk.server.getServerCapabilities();
+async function run() {
+    const result = await plexAPI.server.getServerCapabilities();
 
     // Handle the result
     console.log(result);
@@ -279,15 +279,15 @@ The server URL can also be overridden on a per-operation basis, provided a serve
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-    const sdk = new PlexAPI({
-        xPlexClientIdentifier: "<value>",
-    });
+const plexAPI = new PlexAPI({
+    xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
     const strong = false;
     const xPlexClientIdentifier = "<value>";
 
-    const result = await sdk.plex.getPin(strong, xPlexClientIdentifier, {
+    const result = await plexAPI.plex.getPin(strong, xPlexClientIdentifier, {
         serverURL: "https://plex.tv/api/v2",
     });
 
@@ -364,13 +364,13 @@ To authenticate with the API the `accessToken` parameter must be set when initia
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-    const sdk = new PlexAPI({
-        accessToken: "<YOUR_API_KEY_HERE>",
-        xPlexClientIdentifier: "<value>",
-    });
+const plexAPI = new PlexAPI({
+    accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "<value>",
+});
 
-    const result = await sdk.server.getServerCapabilities();
+async function run() {
+    const result = await plexAPI.server.getServerCapabilities();
 
     // Handle the result
     console.log(result);
@@ -412,15 +412,15 @@ This is used to track the client application and its usage
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-    const sdk = new PlexAPI({
-        xPlexClientIdentifier: "<value>",
-    });
+const plexAPI = new PlexAPI({
+    xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
     const strong = false;
     const xPlexClientIdentifier = "<value>";
 
-    const result = await sdk.plex.getPin(strong, xPlexClientIdentifier);
+    const result = await plexAPI.plex.getPin(strong, xPlexClientIdentifier);
 
     // Handle the result
     console.log(result);

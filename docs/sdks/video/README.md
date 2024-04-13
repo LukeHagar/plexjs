@@ -21,13 +21,13 @@ Get the timeline for a media item
 import { PlexAPI } from "@lukehagar/plexjs";
 import { State } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.video.getTimeline({
+async function run() {
+  const result = await plexAPI.video.getTimeline({
     ratingKey: 716.56,
     key: "<key>",
     state: State.Paused,
@@ -75,13 +75,13 @@ Begin a Universal Transcode Session
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.video.startUniversalTranscode({
+async function run() {
+  const result = await plexAPI.video.startUniversalTranscode({
     hasMDE: 8924.99,
     path: "/etc/mail",
     mediaIndex: 9962.95,

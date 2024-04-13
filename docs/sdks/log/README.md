@@ -23,17 +23,17 @@ This endpoint will write a single-line log message, including a level and source
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Level } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const level = Level.Three;
   const message = "Test log message";
   const source = "Postman";
   
-  const result = await sdk.log.logLine(level, message, source);
+  const result = await plexAPI.log.logLine(level, message, source);
 
   // Handle the result
   console.log(result)
@@ -93,13 +93,13 @@ Ensure each parameter is properly URL-encoded to avoid interpretation issues.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.log.logMultiLine("level=4&message=Test%20message%201&source=postman
+async function run() {
+  const result = await plexAPI.log.logMultiLine("level=4&message=Test%20message%201&source=postman
   level=3&message=Test%20message%202&source=postman
   level=1&message=Test%20message%203&source=postman");
 
@@ -139,13 +139,13 @@ This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.log.enablePaperTrail();
+async function run() {
+  const result = await plexAPI.log.enablePaperTrail();
 
   // Handle the result
   console.log(result)

@@ -26,13 +26,13 @@ Get Server Activities
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.activities.getServerActivities();
+async function run() {
+  const result = await plexAPI.activities.getServerActivities();
 
   // Handle the result
   console.log(result)
@@ -68,15 +68,15 @@ Cancel Server Activities
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const activityUUID = "<value>";
   
-  const result = await sdk.activities.cancelServerActivities(activityUUID);
+  const result = await plexAPI.activities.cancelServerActivities(activityUUID);
 
   // Handle the result
   console.log(result)

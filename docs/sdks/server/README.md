@@ -26,13 +26,13 @@ Server Capabilities
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.server.getServerCapabilities();
+async function run() {
+  const result = await plexAPI.server.getServerCapabilities();
 
   // Handle the result
   console.log(result)
@@ -68,13 +68,13 @@ Get Server Preferences
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.server.getServerPreferences();
+async function run() {
+  const result = await plexAPI.server.getServerPreferences();
 
   // Handle the result
   console.log(result)
@@ -110,13 +110,13 @@ Get Available Clients
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.server.getAvailableClients();
+async function run() {
+  const result = await plexAPI.server.getAvailableClients();
 
   // Handle the result
   console.log(result)
@@ -152,13 +152,13 @@ Get Devices
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.server.getDevices();
+async function run() {
+  const result = await plexAPI.server.getDevices();
 
   // Handle the result
   console.log(result)
@@ -194,13 +194,13 @@ Get Server Identity
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.server.getServerIdentity();
+async function run() {
+  const result = await plexAPI.server.getServerIdentity();
 
   // Handle the result
   console.log(result)
@@ -236,13 +236,13 @@ Returns MyPlex Account Information
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.server.getMyPlexAccount();
+async function run() {
+  const result = await plexAPI.server.getMyPlexAccount();
 
   // Handle the result
   console.log(result)
@@ -280,13 +280,13 @@ Plex's Photo transcoder is used throughout the service to serve images at specif
 import { PlexAPI } from "@lukehagar/plexjs";
 import { MinSize, Upscale } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.server.getResizedPhoto({
+async function run() {
+  const result = await plexAPI.server.getResizedPhoto({
     width: 110,
     height: 165,
     opacity: 100,
@@ -331,13 +331,13 @@ Get Server List
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
-  const result = await sdk.server.getServerList();
+async function run() {
+  const result = await plexAPI.server.getServerList();
 
   // Handle the result
   console.log(result)

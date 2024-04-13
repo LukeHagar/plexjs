@@ -19,15 +19,15 @@ This will return the media statistics for the server
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const timespan = 411769;
   
-  const result = await sdk.statistics.getStatistics(timespan);
+  const result = await plexAPI.statistics.getStatistics(timespan);
 
   // Handle the result
   console.log(result)

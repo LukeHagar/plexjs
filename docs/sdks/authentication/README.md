@@ -22,16 +22,16 @@ This endpoint provides the caller with a temporary token with the same access le
 import { PlexAPI } from "@lukehagar/plexjs";
 import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/models/operations";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const type = GetTransientTokenQueryParamType.Delegation;
   const scope = Scope.All;
   
-  const result = await sdk.authentication.getTransientToken(type, scope);
+  const result = await plexAPI.authentication.getTransientToken(type, scope);
 
   // Handle the result
   console.log(result)
@@ -71,15 +71,15 @@ Note: requires Plex Media Server >= 1.15.4.
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-async function run() {
-  const sdk = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "<value>",
-  });
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "<value>",
+});
 
+async function run() {
   const source = "server://client-identifier";
   
-  const result = await sdk.authentication.getSourceConnectionInformation(source);
+  const result = await plexAPI.authentication.getSourceConnectionInformation(source);
 
   // Handle the result
   console.log(result)

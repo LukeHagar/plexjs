@@ -12,13 +12,14 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.12.1
+  version: 0.12.2
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   author: LukeHagar
   clientServerStatusCodesAsErrors: true
+  enumFormat: enum
   flattenGlobalSecurity: true
   imports:
     option: openapi
