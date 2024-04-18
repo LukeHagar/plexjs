@@ -12,11 +12,12 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.12.2
+  version: 0.12.3
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
+  additionalPackageJSON: {}
   author: LukeHagar
   clientServerStatusCodesAsErrors: true
   enumFormat: enum

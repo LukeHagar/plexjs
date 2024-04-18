@@ -1,7 +1,7 @@
 {
   "name": "@lukehagar/plexjs",
-  "version": "0.12.2",
-  "author": "LukeHagar",
+  "version": "0.12.3",
+  "author": "LukeHagar",  
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
@@ -14,7 +14,6 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "keywords": [],
   "peerDependencies": {
     "zod": ">= 3"
   },
