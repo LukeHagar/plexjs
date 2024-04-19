@@ -47,10 +47,10 @@ export type ApplyUpdatesResponse = {
 };
 
 /** @internal */
-export const Tonight$ = z.nativeEnum(Tonight);
+export const Tonight$: z.ZodNativeEnum<typeof Tonight> = z.nativeEnum(Tonight);
 
 /** @internal */
-export const Skip$ = z.nativeEnum(Skip);
+export const Skip$: z.ZodNativeEnum<typeof Skip> = z.nativeEnum(Skip);
 
 /** @internal */
 export namespace ApplyUpdatesRequest$ {

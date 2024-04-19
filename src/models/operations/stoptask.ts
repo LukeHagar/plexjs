@@ -47,7 +47,8 @@ export type StopTaskResponse = {
 };
 
 /** @internal */
-export const PathParamTaskName$ = z.nativeEnum(PathParamTaskName);
+export const PathParamTaskName$: z.ZodNativeEnum<typeof PathParamTaskName> =
+    z.nativeEnum(PathParamTaskName);
 
 /** @internal */
 export namespace StopTaskRequest$ {

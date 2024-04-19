@@ -4,7 +4,7 @@
 
 import { HTTPClient } from "./http";
 import { RetryConfig } from "./retries";
-import { pathToFunc } from "./url";
+import { Params, pathToFunc } from "./url";
 
 /**
  * Contains the list of servers available to the SDK
@@ -62,14 +62,14 @@ export type SDKOptions = {
 export function serverURLFromOptions(options: SDKOptions): URL | null {
     let serverURL = options.serverURL;
 
-    const serverParams = [
+    const serverParams: Params[] = [
         {
-            protocol: options.protocol?.toString() ?? "http",
-            ip: options.ip?.toString() ?? "10.10.10.47",
-            port: options.port?.toString() ?? "32400",
+            protocol: options.protocol ?? "http",
+            ip: options.ip ?? "10.10.10.47",
+            port: options.port ?? "32400",
         },
     ];
-    let params: Record<string, string> = {};
+    let params: Params = {};
 
     if (!serverURL) {
         const serverIdx = options.serverIdx ?? 0;
@@ -84,10 +84,10 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
     return new URL(u);
 }
 
-export const SDK_METADATA = Object.freeze({
+export const SDK_METADATA = {
     language: "typescript",
     openapiDocVersion: "0.0.3",
-    sdkVersion: "0.12.3",
-    genVersion: "2.308.2",
-    userAgent: "speakeasy-sdk/typescript 0.12.3 2.308.2 0.0.3 @lukehagar/plexjs",
-});
+    sdkVersion: "0.13.0",
+    genVersion: "2.311.1",
+    userAgent: "speakeasy-sdk/typescript 0.13.0 2.311.1 0.0.3 @lukehagar/plexjs",
+} as const;

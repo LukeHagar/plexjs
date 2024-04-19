@@ -72,7 +72,7 @@ export type GetTimelineResponse = {
 };
 
 /** @internal */
-export const State$ = z.nativeEnum(State);
+export const State$: z.ZodNativeEnum<typeof State> = z.nativeEnum(State);
 
 /** @internal */
 export namespace GetTimelineRequest$ {

@@ -95,10 +95,10 @@ export type CreatePlaylistResponse = {
 };
 
 /** @internal */
-export const QueryParamType$ = z.nativeEnum(QueryParamType);
+export const QueryParamType$: z.ZodNativeEnum<typeof QueryParamType> = z.nativeEnum(QueryParamType);
 
 /** @internal */
-export const Smart$ = z.nativeEnum(Smart);
+export const Smart$: z.ZodNativeEnum<typeof Smart> = z.nativeEnum(Smart);
 
 /** @internal */
 export namespace CreatePlaylistRequest$ {

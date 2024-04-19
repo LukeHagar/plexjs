@@ -170,7 +170,8 @@ export type GetLibraryHubsResponse = {
 };
 
 /** @internal */
-export const QueryParamOnlyTransient$ = z.nativeEnum(QueryParamOnlyTransient);
+export const QueryParamOnlyTransient$: z.ZodNativeEnum<typeof QueryParamOnlyTransient> =
+    z.nativeEnum(QueryParamOnlyTransient);
 
 /** @internal */
 export namespace GetLibraryHubsRequest$ {

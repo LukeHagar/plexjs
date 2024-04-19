@@ -45,10 +45,12 @@ export type GetTransientTokenResponse = {
 };
 
 /** @internal */
-export const GetTransientTokenQueryParamType$ = z.nativeEnum(GetTransientTokenQueryParamType);
+export const GetTransientTokenQueryParamType$: z.ZodNativeEnum<
+    typeof GetTransientTokenQueryParamType
+> = z.nativeEnum(GetTransientTokenQueryParamType);
 
 /** @internal */
-export const Scope$ = z.nativeEnum(Scope);
+export const Scope$: z.ZodNativeEnum<typeof Scope> = z.nativeEnum(Scope);
 
 /** @internal */
 export namespace GetTransientTokenRequest$ {

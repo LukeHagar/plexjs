@@ -128,7 +128,7 @@ export type GetLibraryResponse = {
 };
 
 /** @internal */
-export const IncludeDetails$ = z.nativeEnum(IncludeDetails);
+export const IncludeDetails$: z.ZodNativeEnum<typeof IncludeDetails> = z.nativeEnum(IncludeDetails);
 
 /** @internal */
 export namespace GetLibraryRequest$ {

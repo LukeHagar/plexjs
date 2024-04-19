@@ -47,7 +47,7 @@ export type StartTaskResponse = {
 };
 
 /** @internal */
-export const TaskName$ = z.nativeEnum(TaskName);
+export const TaskName$: z.ZodNativeEnum<typeof TaskName> = z.nativeEnum(TaskName);
 
 /** @internal */
 export namespace StartTaskRequest$ {

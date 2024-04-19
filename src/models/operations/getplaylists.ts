@@ -83,10 +83,11 @@ export type GetPlaylistsResponse = {
 };
 
 /** @internal */
-export const PlaylistType$ = z.nativeEnum(PlaylistType);
+export const PlaylistType$: z.ZodNativeEnum<typeof PlaylistType> = z.nativeEnum(PlaylistType);
 
 /** @internal */
-export const QueryParamSmart$ = z.nativeEnum(QueryParamSmart);
+export const QueryParamSmart$: z.ZodNativeEnum<typeof QueryParamSmart> =
+    z.nativeEnum(QueryParamSmart);
 
 /** @internal */
 export namespace GetPlaylistsRequest$ {

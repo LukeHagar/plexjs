@@ -62,7 +62,7 @@ export type LogLineResponse = {
 };
 
 /** @internal */
-export const Level$ = z.nativeEnum(Level);
+export const Level$: z.ZodNativeEnum<typeof Level> = z.nativeEnum(Level);
 
 /** @internal */
 export namespace LogLineRequest$ {

@@ -67,10 +67,10 @@ export type GetResizedPhotoResponse = {
 };
 
 /** @internal */
-export const MinSize$ = z.nativeEnum(MinSize);
+export const MinSize$: z.ZodNativeEnum<typeof MinSize> = z.nativeEnum(MinSize);
 
 /** @internal */
-export const Upscale$ = z.nativeEnum(Upscale);
+export const Upscale$: z.ZodNativeEnum<typeof Upscale> = z.nativeEnum(Upscale);
 
 /** @internal */
 export namespace GetResizedPhotoRequest$ {

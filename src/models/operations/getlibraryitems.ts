@@ -194,7 +194,7 @@ export type GetLibraryItemsResponse = {
 };
 
 /** @internal */
-export const Tag$ = z.nativeEnum(Tag);
+export const Tag$: z.ZodNativeEnum<typeof Tag> = z.nativeEnum(Tag);
 
 /** @internal */
 export namespace GetLibraryItemsRequest$ {

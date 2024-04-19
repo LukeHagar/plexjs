@@ -91,7 +91,7 @@ export type SearchLibraryResponse = {
 };
 
 /** @internal */
-export const Type$ = z.nativeEnum(Type);
+export const Type$: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
 
 /** @internal */
 export namespace SearchLibraryRequest$ {

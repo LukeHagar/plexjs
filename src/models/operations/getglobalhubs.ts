@@ -91,7 +91,7 @@ export type GetGlobalHubsResponse = {
 };
 
 /** @internal */
-export const OnlyTransient$ = z.nativeEnum(OnlyTransient);
+export const OnlyTransient$: z.ZodNativeEnum<typeof OnlyTransient> = z.nativeEnum(OnlyTransient);
 
 /** @internal */
 export namespace GetGlobalHubsRequest$ {

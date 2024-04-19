@@ -35,7 +35,7 @@ export type CheckForUpdatesResponse = {
 };
 
 /** @internal */
-export const Download$ = z.nativeEnum(Download);
+export const Download$: z.ZodNativeEnum<typeof Download> = z.nativeEnum(Download);
 
 /** @internal */
 export namespace CheckForUpdatesRequest$ {

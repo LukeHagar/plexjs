@@ -59,7 +59,7 @@ export type UploadPlaylistResponse = {
 };
 
 /** @internal */
-export const Force$ = z.nativeEnum(Force);
+export const Force$: z.ZodNativeEnum<typeof Force> = z.nativeEnum(Force);
 
 /** @internal */
 export namespace UploadPlaylistRequest$ {
