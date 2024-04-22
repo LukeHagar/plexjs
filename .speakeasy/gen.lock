@@ -5,8 +5,8 @@ management:
   docVersion: 0.0.3
   speakeasyVersion: 1.267.2
   generationVersion: 2.312.1
-  releaseVersion: 0.13.1
-  configChecksum: 1ff69678442629cebb3690db99f39502
+  releaseVersion: 0.13.2
+  configChecksum: 73e804b9b5ec062bed8d33ed8969587d
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
