@@ -1,4 +1,4 @@
-name: Generate
+name: Publish to JSR
 permissions:
   checks: write
   contents: write
