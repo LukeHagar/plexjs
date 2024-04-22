@@ -23,7 +23,7 @@ import { OnlyTransient } from "@lukehagar/plexjs/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -72,7 +72,7 @@ import { QueryParamOnlyTransient } from "@lukehagar/plexjs/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {

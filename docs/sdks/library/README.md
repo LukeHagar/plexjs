@@ -31,7 +31,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -79,7 +79,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -127,7 +127,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -209,7 +209,7 @@ import { IncludeDetails } from "@lukehagar/plexjs/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -256,7 +256,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -322,7 +322,7 @@ import { Tag } from "@lukehagar/plexjs/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -369,7 +369,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -433,7 +433,7 @@ import { Type } from "@lukehagar/plexjs/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -480,7 +480,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -526,7 +526,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
@@ -572,7 +572,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "<value>",
+  xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
