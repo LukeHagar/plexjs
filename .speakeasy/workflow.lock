@@ -4,7 +4,7 @@ sources:
 targets:
     plexjs:
         source: my-source
-        outLocation: /Users/lukehagar/Documents/GitHub/plexjs
+        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
