@@ -1,10 +1,10 @@
-speakeasyVersion: 1.267.0
+speakeasyVersion: 1.267.2
 sources:
     my-source: {}
 targets:
     plexjs:
         source: my-source
-        outLocation: /github/workspace/repo
+        outLocation: /Users/lukehagar/Documents/GitHub/plexjs
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
