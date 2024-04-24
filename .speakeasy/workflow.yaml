@@ -1,13 +1,15 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    my-source:
-        inputs:
-            - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/main/plex-media-server-spec-dereferenced.yaml
+  my-source:
+    inputs:
+      - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/main/plex-media-server-spec-dereferenced.yaml
 targets:
-    plexjs:
-        target: typescript
-        source: my-source
-        publish:
-            npm:
-                token: $NPM_TOKEN
+  plexjs:
+    target: typescript
+    source: my-source
+    codeSamples:
+      output: codeSamples.yaml
+    publish:
+      npm:
+        token: $NPM_TOKEN
