@@ -72,6 +72,7 @@ export class Activities extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -173,6 +174,7 @@ export class Activities extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",

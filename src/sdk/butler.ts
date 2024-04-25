@@ -70,6 +70,7 @@ export class Butler extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -157,6 +158,7 @@ export class Butler extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -235,6 +237,7 @@ export class Butler extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -336,6 +339,7 @@ export class Butler extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -434,6 +438,7 @@ export class Butler extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",

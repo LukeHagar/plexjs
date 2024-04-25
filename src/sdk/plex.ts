@@ -89,6 +89,7 @@ export class Plex extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 method: "POST",
                 baseURL: baseURL$,
@@ -193,6 +194,7 @@ export class Plex extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 method: "GET",
                 baseURL: baseURL$,
