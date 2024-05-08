@@ -39,11 +39,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const query = "dylan";
-  const sectionId = 1516.53;
-  const limit = 5;
-  
-  const result = await plexAPI.search.performSearch(query, sectionId, limit);
+  const result = await plexAPI.search.performSearch("dylan", 1516.53, 5);
 
   // Handle the result
   console.log(result)
@@ -92,11 +88,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const query = "dead+poop";
-  const sectionId = 4094.8;
-  const limit = 5;
-  
-  const result = await plexAPI.search.performVoiceSearch(query, sectionId, limit);
+  const result = await plexAPI.search.performVoiceSearch("dead+poop", 4094.8, 5);
 
   // Handle the result
   console.log(result)
@@ -141,9 +133,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const query = "110";
-  
-  const result = await plexAPI.search.getSearchResults(query);
+  const result = await plexAPI.search.getSearchResults("110");
 
   // Handle the result
   console.log(result)

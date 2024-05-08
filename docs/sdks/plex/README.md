@@ -25,10 +25,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const strong = false;
-  const xPlexClientIdentifier = "Postman";
-  
-  const result = await plexAPI.plex.getPin(strong, xPlexClientIdentifier);
+  const result = await plexAPI.plex.getPin(false, "Postman");
 
   // Handle the result
   console.log(result)
@@ -72,10 +69,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const pinID = "<value>";
-  const xPlexClientIdentifier = "Postman";
-  
-  const result = await plexAPI.plex.getToken(pinID, xPlexClientIdentifier);
+  const result = await plexAPI.plex.getToken("<value>", "Postman");
 
   // Handle the result
   console.log(result)

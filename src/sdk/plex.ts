@@ -88,7 +88,7 @@ export class Plex extends ClientSDK {
         const context = { operationID: "getPin", oAuth2Scopes: [], securitySource: null };
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 method: "POST",
@@ -101,7 +101,7 @@ export class Plex extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -198,7 +198,7 @@ export class Plex extends ClientSDK {
         const context = { operationID: "getToken", oAuth2Scopes: [], securitySource: null };
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 method: "GET",
@@ -211,7 +211,7 @@ export class Plex extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

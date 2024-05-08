@@ -167,9 +167,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const taskName = TaskName.CleanOldBundles;
-  
-  const result = await plexAPI.butler.startTask(taskName);
+  const result = await plexAPI.butler.startTask(TaskName.CleanOldBundles);
 
   // Handle the result
   console.log(result)
@@ -214,9 +212,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const taskName = PathParamTaskName.BackupDatabase;
-  
-  const result = await plexAPI.butler.stopTask(taskName);
+  const result = await plexAPI.butler.stopTask(PathParamTaskName.BackupDatabase);
 
   // Handle the result
   console.log(result)

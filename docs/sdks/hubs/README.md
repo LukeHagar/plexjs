@@ -27,10 +27,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const count = 1262.49;
-  const onlyTransient = OnlyTransient.One;
-  
-  const result = await plexAPI.hubs.getGlobalHubs(count, onlyTransient);
+  const result = await plexAPI.hubs.getGlobalHubs(1262.49, OnlyTransient.One);
 
   // Handle the result
   console.log(result)
@@ -76,11 +73,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const sectionId = 6728.76;
-  const count = 9010.22;
-  const onlyTransient = QueryParamOnlyTransient.Zero;
-  
-  const result = await plexAPI.hubs.getLibraryHubs(sectionId, count, onlyTransient);
+  const result = await plexAPI.hubs.getLibraryHubs(6728.76, 9010.22, QueryParamOnlyTransient.Zero);
 
   // Handle the result
   console.log(result)

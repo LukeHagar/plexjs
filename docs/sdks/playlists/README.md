@@ -89,10 +89,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const playlistType = PlaylistType.Audio;
-  const smart = QueryParamSmart.Zero;
-  
-  const result = await plexAPI.playlists.getPlaylists(playlistType, smart);
+  const result = await plexAPI.playlists.getPlaylists(PlaylistType.Audio, QueryParamSmart.Zero);
 
   // Handle the result
   console.log(result)
@@ -138,9 +135,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const playlistID = 4109.48;
-  
-  const result = await plexAPI.playlists.getPlaylist(playlistID);
+  const result = await plexAPI.playlists.getPlaylist(4109.48);
 
   // Handle the result
   console.log(result)
@@ -184,9 +179,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const playlistID = 216.22;
-  
-  const result = await plexAPI.playlists.deletePlaylist(playlistID);
+  const result = await plexAPI.playlists.deletePlaylist(216.22);
 
   // Handle the result
   console.log(result)
@@ -230,11 +223,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const playlistID = 3915;
-  const title = "<value>";
-  const summary = "<value>";
-  
-  const result = await plexAPI.playlists.updatePlaylist(playlistID, title, summary);
+  const result = await plexAPI.playlists.updatePlaylist(3915, "<value>", "<value>");
 
   // Handle the result
   console.log(result)
@@ -283,10 +272,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const playlistID = 5004.46;
-  const type = 9403.59;
-  
-  const result = await plexAPI.playlists.getPlaylistContents(playlistID, type);
+  const result = await plexAPI.playlists.getPlaylistContents(5004.46, 9403.59);
 
   // Handle the result
   console.log(result)
@@ -331,9 +317,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const playlistID = 1893.18;
-  
-  const result = await plexAPI.playlists.clearPlaylistContents(playlistID);
+  const result = await plexAPI.playlists.clearPlaylistContents(1893.18);
 
   // Handle the result
   console.log(result)
@@ -378,11 +362,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const playlistID = 8502.01;
-  const uri = "server://12345/com.plexapp.plugins.library/library/metadata/1";
-  const playQueueID = 123;
-  
-  const result = await plexAPI.playlists.addPlaylistContents(playlistID, uri, playQueueID);
+  const result = await plexAPI.playlists.addPlaylistContents(8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
 
   // Handle the result
   console.log(result)
@@ -429,10 +409,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const path = "/home/barkley/playlist.m3u";
-  const force = Force.Zero;
-  
-  const result = await plexAPI.playlists.uploadPlaylist(path, force);
+  const result = await plexAPI.playlists.uploadPlaylist("/home/barkley/playlist.m3u", Force.Zero);
 
   // Handle the result
   console.log(result)

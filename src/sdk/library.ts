@@ -89,7 +89,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -102,7 +102,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -174,7 +174,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -186,7 +186,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -268,7 +268,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -280,7 +280,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -423,7 +423,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -436,7 +436,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -531,7 +531,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -544,7 +544,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -582,127 +582,6 @@ export class Library extends ClientSDK {
             () => operations.DeleteLibraryResponse$.inboundSchema.parse(responseFields$),
             "Response validation failed"
         );
-    }
-
-    /**
-     * Get Library Items
-     *
-     * @remarks
-     * Fetches details from a specific section of the library identified by a section key and a tag. The tag parameter accepts the following values:
-     * - `all`: All items in the section.
-     * - `unwatched`: Items that have not been played.
-     * - `newest`: Items that are recently released.
-     * - `recentlyAdded`: Items that are recently added to the library.
-     * - `recentlyViewed`: Items that were recently viewed.
-     * - `onDeck`: Items to continue watching.
-     * - `collection`: Items categorized by collection.
-     * - `edition`: Items categorized by edition.
-     * - `genre`: Items categorized by genre.
-     * - `year`: Items categorized by year of release.
-     * - `decade`: Items categorized by decade.
-     * - `director`: Items categorized by director.
-     * - `actor`: Items categorized by starring actor.
-     * - `country`: Items categorized by country of origin.
-     * - `contentRating`: Items categorized by content rating.
-     * - `rating`: Items categorized by rating.
-     * - `resolution`: Items categorized by resolution.
-     * - `firstCharacter`: Items categorized by the first letter.
-     * - `folder`: Items categorized by folder.
-     *
-     */
-    async getLibraryItems(
-        sectionId: number,
-        tag: operations.Tag,
-        options?: RequestOptions
-    ): Promise<operations.GetLibraryItemsResponse> {
-        const input$: operations.GetLibraryItemsRequest = {
-            sectionId: sectionId,
-            tag: tag,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetLibraryItemsRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            tag: enc$.encodeSimple("tag", payload$.tag, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/library/sections/{sectionId}/{tag}")(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.accessToken === "function") {
-            security$ = { accessToken: await this.options$.accessToken() };
-        } else if (this.options$.accessToken) {
-            security$ = { accessToken: this.options$.accessToken };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "getLibraryItems",
-            oAuth2Scopes: [],
-            securitySource: this.options$.accessToken,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
-        const request = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request, doOptions);
-
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetLibraryItemsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        object: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
     }
 
     /**
@@ -758,7 +637,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -771,7 +650,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -887,7 +766,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -900,7 +779,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -983,7 +862,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -996,7 +875,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1094,7 +973,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1107,7 +986,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1184,7 +1063,7 @@ export class Library extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1196,7 +1075,7 @@ export class Library extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

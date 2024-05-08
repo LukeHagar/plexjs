@@ -45,15 +45,16 @@ export class Video extends ClientSDK {
      * Get the timeline for a media item
      */
     async getTimeline(
-        input: operations.GetTimelineRequest,
+        request: operations.GetTimelineRequest,
         options?: RequestOptions
     ): Promise<operations.GetTimelineResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetTimelineRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -107,7 +108,7 @@ export class Video extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -120,7 +121,7 @@ export class Video extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -167,15 +168,16 @@ export class Video extends ClientSDK {
      * Begin a Universal Transcode Session
      */
     async startUniversalTranscode(
-        input: operations.StartUniversalTranscodeRequest,
+        request: operations.StartUniversalTranscodeRequest,
         options?: RequestOptions
     ): Promise<operations.StartUniversalTranscodeResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.StartUniversalTranscodeRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -262,7 +264,7 @@ export class Video extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -275,7 +277,7 @@ export class Video extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

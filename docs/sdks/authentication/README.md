@@ -28,10 +28,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const type = GetTransientTokenQueryParamType.Delegation;
-  const scope = Scope.All;
-  
-  const result = await plexAPI.authentication.getTransientToken(type, scope);
+  const result = await plexAPI.authentication.getTransientToken(GetTransientTokenQueryParamType.Delegation, Scope.All);
 
   // Handle the result
   console.log(result)
@@ -77,9 +74,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const source = "server://client-identifier";
-  
-  const result = await plexAPI.authentication.getSourceConnectionInformation(source);
+  const result = await plexAPI.authentication.getSourceConnectionInformation("server://client-identifier");
 
   // Handle the result
   console.log(result)

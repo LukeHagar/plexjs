@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.14.2
+  version: 0.15.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -32,6 +32,7 @@ typescript:
       webhooks: models/webhooks
   inputModelSuffix: input
   maxMethodParams: 4
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: '@lukehagar/plexjs'
   responseFormat: envelope

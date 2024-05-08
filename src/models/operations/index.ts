@@ -19,7 +19,6 @@ export * from "./getglobalhubs";
 export * from "./getlibraries";
 export * from "./getlibrary";
 export * from "./getlibraryhubs";
-export * from "./getlibraryitems";
 export * from "./getmetadata";
 export * from "./getmetadatachildren";
 export * from "./getmyplexaccount";

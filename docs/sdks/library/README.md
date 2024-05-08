@@ -13,7 +13,6 @@ API Calls interacting with Plex Media Server Libraries
 * [getLibraries](#getlibraries) - Get All Libraries
 * [getLibrary](#getlibrary) - Get Library Details
 * [deleteLibrary](#deletelibrary) - Delete Library Section
-* [getLibraryItems](#getlibraryitems) - Get Library Items
 * [refreshLibrary](#refreshlibrary) - Refresh Library
 * [searchLibrary](#searchlibrary) - Search Library
 * [getMetadata](#getmetadata) - Get Items Metadata
@@ -35,10 +34,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const url = "file://C:\Image.png&type=13";
-  const type = 4462.17;
-  
-  const result = await plexAPI.library.getFileHash(url, type);
+  const result = await plexAPI.library.getFileHash("file://C:\Image.png&type=13", 4462.17);
 
   // Handle the result
   console.log(result)
@@ -213,10 +209,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const sectionId = 1000;
-  const includeDetails = IncludeDetails.Zero;
-  
-  const result = await plexAPI.library.getLibrary(sectionId, includeDetails);
+  const result = await plexAPI.library.getLibrary(1000, IncludeDetails.Zero);
 
   // Handle the result
   console.log(result)
@@ -260,9 +253,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const sectionId = 1000;
-  
-  const result = await plexAPI.library.deleteLibrary(sectionId);
+  const result = await plexAPI.library.deleteLibrary(1000);
 
   // Handle the result
   console.log(result)
@@ -290,73 +281,6 @@ run();
 | errors.DeleteLibraryResponseBody | 401                              | application/json                 |
 | errors.SDKError                  | 4xx-5xx                          | */*                              |
 
-## getLibraryItems
-
-Fetches details from a specific section of the library identified by a section key and a tag. The tag parameter accepts the following values:
-- `all`: All items in the section.
-- `unwatched`: Items that have not been played.
-- `newest`: Items that are recently released.
-- `recentlyAdded`: Items that are recently added to the library.
-- `recentlyViewed`: Items that were recently viewed.
-- `onDeck`: Items to continue watching.
-- `collection`: Items categorized by collection.
-- `edition`: Items categorized by edition.
-- `genre`: Items categorized by genre.
-- `year`: Items categorized by year of release.
-- `decade`: Items categorized by decade.
-- `director`: Items categorized by director.
-- `actor`: Items categorized by starring actor.
-- `country`: Items categorized by country of origin.
-- `contentRating`: Items categorized by content rating.
-- `rating`: Items categorized by rating.
-- `resolution`: Items categorized by resolution.
-- `firstCharacter`: Items categorized by the first letter.
-- `folder`: Items categorized by folder.
-
-
-### Example Usage
-
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Tag } from "@lukehagar/plexjs/models/operations";
-
-const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
-});
-
-async function run() {
-  const sectionId = 451092;
-  const tag = Tag.Unwatched;
-  
-  const result = await plexAPI.library.getLibraryItems(sectionId, tag);
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 |
-| `tag`                                                                                                                                                                          | [operations.Tag](../../models/operations/tag.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                             | A key representing a specific tag within the section.                                                                                                                          |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise<[operations.GetLibraryItemsResponse](../../models/operations/getlibraryitemsresponse.md)>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
 ## refreshLibrary
 
 This endpoint Refreshes the library.
@@ -373,9 +297,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const sectionId = 934.16;
-  
-  const result = await plexAPI.library.refreshLibrary(sectionId);
+  const result = await plexAPI.library.refreshLibrary(934.16);
 
   // Handle the result
   console.log(result)
@@ -437,10 +359,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const sectionId = 933505;
-  const type = Type.Four;
-  
-  const result = await plexAPI.library.searchLibrary(sectionId, type);
+  const result = await plexAPI.library.searchLibrary(933505, Type.Four);
 
   // Handle the result
   console.log(result)
@@ -484,9 +403,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const ratingKey = 8382.31;
-  
-  const result = await plexAPI.library.getMetadata(ratingKey);
+  const result = await plexAPI.library.getMetadata(8382.31);
 
   // Handle the result
   console.log(result)
@@ -530,9 +447,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const ratingKey = 1539.14;
-  
-  const result = await plexAPI.library.getMetadataChildren(ratingKey);
+  const result = await plexAPI.library.getMetadataChildren(1539.14);
 
   // Handle the result
   console.log(result)

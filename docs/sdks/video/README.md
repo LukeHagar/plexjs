@@ -28,16 +28,16 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.video.getTimeline({
-    ratingKey: 716.56,
-    key: "<key>",
-    state: State.Paused,
-    hasMDE: 7574.33,
-    time: 3327.51,
-    duration: 7585.39,
-    context: "<value>",
-    playQueueItemID: 1406.21,
-    playBackTime: 2699.34,
-    row: 3536.42,
+    ratingKey: 23409,
+    key: "/library/metadata/23409",
+    state: State.Playing,
+    hasMDE: 1,
+    time: 2000,
+    duration: 10000,
+    context: "home:hub.continueWatching",
+    playQueueItemID: 1,
+    playBackTime: 2000,
+    row: 1,
   });
 
   // Handle the result
@@ -82,11 +82,22 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.video.startUniversalTranscode({
-    hasMDE: 8924.99,
-    path: "/etc/mail",
-    mediaIndex: 9962.95,
-    partIndex: 1232.82,
-    protocol: "<value>",
+    hasMDE: 1,
+    path: "/library/metadata/23409",
+    mediaIndex: 0,
+    partIndex: 0,
+    protocol: "hls",
+    fastSeek: 0,
+    directPlay: 0,
+    directStream: 0,
+    subtitleSize: 100,
+    subtites: "burn",
+    audioBoost: 100,
+    location: "lan",
+    mediaBufferSize: 102400,
+    session: "zvcage8b7rkioqcm8f4uns4c",
+    addDebugOverlay: 0,
+    autoAdjustQuality: 0,
   });
 
   // Handle the result

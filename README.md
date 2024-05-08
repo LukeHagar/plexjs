@@ -104,7 +104,6 @@ run();
 * [getLibraries](docs/sdks/library/README.md#getlibraries) - Get All Libraries
 * [getLibrary](docs/sdks/library/README.md#getlibrary) - Get Library Details
 * [deleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
-* [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 * [refreshLibrary](docs/sdks/library/README.md#refreshlibrary) - Refresh Library
 * [searchLibrary](docs/sdks/library/README.md#searchlibrary) - Search Library
 * [getMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata
@@ -284,10 +283,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-    const strong = false;
-    const xPlexClientIdentifier = "Postman";
-
-    const result = await plexAPI.plex.getPin(strong, xPlexClientIdentifier, {
+    const result = await plexAPI.plex.getPin(false, "Postman", {
         serverURL: "https://plex.tv/api/v2",
     });
 
@@ -330,7 +326,7 @@ const httpClient = new HTTPClient({
 
 httpClient.addHook("beforeRequest", (request) => {
   const nextRequest = new Request(request, {
-    signal: request.signal || AbortSignal.timeout(5000);
+    signal: request.signal || AbortSignal.timeout(5000)
   });
 
   nextRequest.headers.set("x-custom-header", "custom value");
@@ -417,10 +413,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-    const strong = false;
-    const xPlexClientIdentifier = "Postman";
-
-    const result = await plexAPI.plex.getPin(strong, xPlexClientIdentifier);
+    const result = await plexAPI.plex.getPin(false, "Postman");
 
     // Handle the result
     console.log(result);

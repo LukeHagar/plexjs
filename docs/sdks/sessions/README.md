@@ -154,9 +154,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const sessionKey = "zz7llzqlx8w9vnrsbnwhbmep";
-  
-  const result = await plexAPI.sessions.stopTranscodeSession(sessionKey);
+  const result = await plexAPI.sessions.stopTranscodeSession("zz7llzqlx8w9vnrsbnwhbmep");
 
   // Handle the result
   console.log(result)

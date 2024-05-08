@@ -29,11 +29,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const level = Level.Three;
-  const message = "Test log message";
-  const source = "Postman";
-  
-  const result = await plexAPI.log.logLine(level, message, source);
+  const result = await plexAPI.log.logLine(Level.Three, "Test log message", "Postman");
 
   // Handle the result
   console.log(result)
