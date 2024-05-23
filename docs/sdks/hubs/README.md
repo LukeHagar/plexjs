@@ -48,7 +48,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetGlobalHubsResponse](../../models/operations/getglobalhubsresponse.md)>**
+**Promise\<[operations.GetGlobalHubsResponse](../../models/operations/getglobalhubsresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
@@ -95,7 +95,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetLibraryHubsResponse](../../models/operations/getlibraryhubsresponse.md)>**
+**Promise\<[operations.GetLibraryHubsResponse](../../models/operations/getlibraryhubsresponse.md)\>**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

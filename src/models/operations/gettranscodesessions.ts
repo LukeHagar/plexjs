@@ -64,34 +64,7 @@ export type GetTranscodeSessionsResponse = {
 
 /** @internal */
 export namespace TranscodeSession$ {
-    export type Inbound = {
-        key?: string | undefined;
-        throttled?: boolean | undefined;
-        complete?: boolean | undefined;
-        progress?: number | undefined;
-        size?: number | undefined;
-        speed?: number | undefined;
-        error?: boolean | undefined;
-        duration?: number | undefined;
-        remaining?: number | undefined;
-        context?: string | undefined;
-        sourceVideoCodec?: string | undefined;
-        sourceAudioCodec?: string | undefined;
-        videoDecision?: string | undefined;
-        audioDecision?: string | undefined;
-        subtitleDecision?: string | undefined;
-        protocol?: string | undefined;
-        container?: string | undefined;
-        videoCodec?: string | undefined;
-        audioCodec?: string | undefined;
-        audioChannels?: number | undefined;
-        transcodeHwRequested?: boolean | undefined;
-        timeStamp?: number | undefined;
-        maxOffsetAvailable?: number | undefined;
-        minOffsetAvailable?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TranscodeSession, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TranscodeSession, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             throttled: z.boolean().optional(),
@@ -257,15 +230,10 @@ export namespace TranscodeSession$ {
 
 /** @internal */
 export namespace GetTranscodeSessionsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        TranscodeSession?: Array<TranscodeSession$.Inbound> | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetTranscodeSessionsMediaContainer,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             size: z.number().int().optional(),
@@ -306,11 +274,7 @@ export namespace GetTranscodeSessionsMediaContainer$ {
 
 /** @internal */
 export namespace GetTranscodeSessionsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetTranscodeSessionsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTranscodeSessionsResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetTranscodeSessionsResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 MediaContainer: z
@@ -348,14 +312,7 @@ export namespace GetTranscodeSessionsResponseBody$ {
 
 /** @internal */
 export namespace GetTranscodeSessionsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetTranscodeSessionsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTranscodeSessionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTranscodeSessionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

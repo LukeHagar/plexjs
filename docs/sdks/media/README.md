@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise<[operations.MarkPlayedResponse](../../models/operations/markplayedresponse.md)>**
+**Promise\<[operations.MarkPlayedResponse](../../models/operations/markplayedresponse.md)\>**
 ### Errors
 
 | Error Object                  | Status Code                   | Content Type                  |
@@ -90,7 +90,7 @@ run();
 
 ### Response
 
-**Promise<[operations.MarkUnplayedResponse](../../models/operations/markunplayedresponse.md)>**
+**Promise\<[operations.MarkUnplayedResponse](../../models/operations/markunplayedresponse.md)\>**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
@@ -136,7 +136,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdatePlayProgressResponse](../../models/operations/updateplayprogressresponse.md)>**
+**Promise\<[operations.UpdatePlayProgressResponse](../../models/operations/updateplayprogressresponse.md)\>**
 ### Errors
 
 | Error Object                          | Status Code                           | Content Type                          |

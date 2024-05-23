@@ -51,7 +51,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetServerActivitiesResponse](../../models/operations/getserveractivitiesresponse.md)>**
+**Promise\<[operations.GetServerActivitiesResponse](../../models/operations/getserveractivitiesresponse.md)\>**
 ### Errors
 
 | Error Object                           | Status Code                            | Content Type                           |
@@ -94,7 +94,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CancelServerActivitiesResponse](../../models/operations/cancelserveractivitiesresponse.md)>**
+**Promise\<[operations.CancelServerActivitiesResponse](../../models/operations/cancelserveractivitiesresponse.md)\>**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |

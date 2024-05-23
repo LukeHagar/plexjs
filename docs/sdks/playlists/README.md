@@ -65,7 +65,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreatePlaylistResponse](../../models/operations/createplaylistresponse.md)>**
+**Promise\<[operations.CreatePlaylistResponse](../../models/operations/createplaylistresponse.md)\>**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -110,7 +110,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPlaylistsResponse](../../models/operations/getplaylistsresponse.md)>**
+**Promise\<[operations.GetPlaylistsResponse](../../models/operations/getplaylistsresponse.md)\>**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
@@ -155,7 +155,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPlaylistResponse](../../models/operations/getplaylistresponse.md)>**
+**Promise\<[operations.GetPlaylistResponse](../../models/operations/getplaylistresponse.md)\>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -199,7 +199,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeletePlaylistResponse](../../models/operations/deleteplaylistresponse.md)>**
+**Promise\<[operations.DeletePlaylistResponse](../../models/operations/deleteplaylistresponse.md)\>**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -245,7 +245,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdatePlaylistResponse](../../models/operations/updateplaylistresponse.md)>**
+**Promise\<[operations.UpdatePlaylistResponse](../../models/operations/updateplaylistresponse.md)\>**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -293,7 +293,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPlaylistContentsResponse](../../models/operations/getplaylistcontentsresponse.md)>**
+**Promise\<[operations.GetPlaylistContentsResponse](../../models/operations/getplaylistcontentsresponse.md)\>**
 ### Errors
 
 | Error Object                           | Status Code                            | Content Type                           |
@@ -337,7 +337,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ClearPlaylistContentsResponse](../../models/operations/clearplaylistcontentsresponse.md)>**
+**Promise\<[operations.ClearPlaylistContentsResponse](../../models/operations/clearplaylistcontentsresponse.md)\>**
 ### Errors
 
 | Error Object                             | Status Code                              | Content Type                             |
@@ -384,7 +384,7 @@ run();
 
 ### Response
 
-**Promise<[operations.AddPlaylistContentsResponse](../../models/operations/addplaylistcontentsresponse.md)>**
+**Promise\<[operations.AddPlaylistContentsResponse](../../models/operations/addplaylistcontentsresponse.md)\>**
 ### Errors
 
 | Error Object                           | Status Code                            | Content Type                           |
@@ -430,7 +430,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UploadPlaylistResponse](../../models/operations/uploadplaylistresponse.md)>**
+**Promise\<[operations.UploadPlaylistResponse](../../models/operations/uploadplaylistresponse.md)\>**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

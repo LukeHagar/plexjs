@@ -56,13 +56,7 @@ export class UploadPlaylistResponseBody extends Error {
 
 /** @internal */
 export namespace UploadPlaylistErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UploadPlaylistErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UploadPlaylistErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace UploadPlaylistErrors$ {
 
 /** @internal */
 export namespace UploadPlaylistResponseBody$ {
-    export type Inbound = {
-        errors?: Array<UploadPlaylistErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UploadPlaylistResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UploadPlaylistResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => UploadPlaylistErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

@@ -56,13 +56,7 @@ export class CancelServerActivitiesResponseBody extends Error {
 
 /** @internal */
 export namespace CancelServerActivitiesErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CancelServerActivitiesErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CancelServerActivitiesErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,15 +93,10 @@ export namespace CancelServerActivitiesErrors$ {
 
 /** @internal */
 export namespace CancelServerActivitiesResponseBody$ {
-    export type Inbound = {
-        errors?: Array<CancelServerActivitiesErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         CancelServerActivitiesResponseBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             errors: z.array(z.lazy(() => CancelServerActivitiesErrors$.inboundSchema)).optional(),

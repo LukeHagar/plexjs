@@ -88,26 +88,7 @@ export type StartUniversalTranscodeResponse = {
 
 /** @internal */
 export namespace StartUniversalTranscodeRequest$ {
-    export type Inbound = {
-        hasMDE: number;
-        path: string;
-        mediaIndex: number;
-        partIndex: number;
-        protocol: string;
-        fastSeek?: number | undefined;
-        directPlay?: number | undefined;
-        directStream?: number | undefined;
-        subtitleSize?: number | undefined;
-        subtites?: string | undefined;
-        audioBoost?: number | undefined;
-        location?: string | undefined;
-        mediaBufferSize?: number | undefined;
-        session?: string | undefined;
-        addDebugOverlay?: number | undefined;
-        autoAdjustQuality?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StartUniversalTranscodeRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StartUniversalTranscodeRequest, z.ZodTypeDef, unknown> = z
         .object({
             hasMDE: z.number(),
             path: z.string(),
@@ -222,13 +203,7 @@ export namespace StartUniversalTranscodeRequest$ {
 
 /** @internal */
 export namespace StartUniversalTranscodeResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<StartUniversalTranscodeResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<StartUniversalTranscodeResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

@@ -56,13 +56,7 @@ export class GetPinResponseBody extends Error {
 
 /** @internal */
 export namespace GetPinErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPinErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPinErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetPinErrors$ {
 
 /** @internal */
 export namespace GetPinResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetPinErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPinResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPinResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetPinErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

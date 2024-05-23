@@ -50,20 +50,7 @@ export type GetServerPreferencesResponse = {
 
 /** @internal */
 export namespace Setting$ {
-    export type Inbound = {
-        id?: string | undefined;
-        label?: string | undefined;
-        summary?: string | undefined;
-        type?: string | undefined;
-        default?: boolean | undefined;
-        value?: boolean | undefined;
-        hidden?: boolean | undefined;
-        advanced?: boolean | undefined;
-        group?: string | undefined;
-        enumValues?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Setting, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Setting, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string().optional(),
             label: z.string().optional(),
@@ -135,15 +122,10 @@ export namespace Setting$ {
 
 /** @internal */
 export namespace GetServerPreferencesMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        Setting?: Array<Setting$.Inbound> | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetServerPreferencesMediaContainer,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             size: z.number().int().optional(),
@@ -180,11 +162,7 @@ export namespace GetServerPreferencesMediaContainer$ {
 
 /** @internal */
 export namespace GetServerPreferencesResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetServerPreferencesMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerPreferencesResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetServerPreferencesResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 MediaContainer: z
@@ -222,14 +200,7 @@ export namespace GetServerPreferencesResponseBody$ {
 
 /** @internal */
 export namespace GetServerPreferencesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetServerPreferencesResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerPreferencesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerPreferencesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

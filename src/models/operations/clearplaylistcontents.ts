@@ -28,11 +28,7 @@ export type ClearPlaylistContentsResponse = {
 
 /** @internal */
 export namespace ClearPlaylistContentsRequest$ {
-    export type Inbound = {
-        playlistID: number;
-    };
-
-    export const inboundSchema: z.ZodType<ClearPlaylistContentsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ClearPlaylistContentsRequest, z.ZodTypeDef, unknown> = z
         .object({
             playlistID: z.number(),
         })
@@ -59,13 +55,7 @@ export namespace ClearPlaylistContentsRequest$ {
 
 /** @internal */
 export namespace ClearPlaylistContentsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ClearPlaylistContentsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ClearPlaylistContentsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

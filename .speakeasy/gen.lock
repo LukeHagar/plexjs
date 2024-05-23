@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 3ace1ac37c7117fbda261cad01e65943
+  docChecksum: 911d74baa0d06121d2ce2c71d94e977a
   docVersion: 0.0.3
-  speakeasyVersion: 1.285.1
-  generationVersion: 2.326.3
-  releaseVersion: 0.15.4
-  configChecksum: e9e60c3ad9a0490906b386163e5ce5c6
+  speakeasyVersion: 1.295.1
+  generationVersion: 2.335.5
+  releaseVersion: 0.16.0
+  configChecksum: 3944bed5bdaa126637793fcb00b35913
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.3
+    core: 3.9.6
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -26,7 +26,6 @@ features:
     nameOverrides: 2.81.2
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
-    unions: 2.85.4
 generatedFiles:
   - src/sdk/server.ts
   - src/sdk/media.ts
@@ -54,6 +53,7 @@ generatedFiles:
   - src/lib/config.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
+  - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
   - src/lib/sdks.ts
@@ -63,6 +63,7 @@ generatedFiles:
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
+  - src/types/enums.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
@@ -97,6 +98,7 @@ generatedFiles:
   - src/models/operations/getlibraries.ts
   - src/models/operations/getlibrary.ts
   - src/models/operations/deletelibrary.ts
+  - src/models/operations/getlibraryitems.ts
   - src/models/operations/refreshlibrary.ts
   - src/models/operations/searchlibrary.ts
   - src/models/operations/getmetadata.ts
@@ -156,7 +158,9 @@ generatedFiles:
   - src/models/errors/getlibraries.ts
   - src/models/errors/getlibrary.ts
   - src/models/errors/deletelibrary.ts
+  - src/models/errors/getlibraryitems.ts
   - src/models/errors/refreshlibrary.ts
+  - src/models/errors/searchlibrary.ts
   - src/models/errors/getmetadata.ts
   - src/models/errors/getmetadatachildren.ts
   - src/models/errors/getondeck.ts
@@ -319,6 +323,19 @@ generatedFiles:
   - docs/models/operations/getlibraryresponse.md
   - docs/models/operations/deletelibraryrequest.md
   - docs/models/operations/deletelibraryresponse.md
+  - docs/models/operations/tag.md
+  - docs/models/operations/getlibraryitemsrequest.md
+  - docs/models/operations/getlibraryitemspart.md
+  - docs/models/operations/getlibraryitemsmedia.md
+  - docs/models/operations/getlibraryitemsgenre.md
+  - docs/models/operations/getlibraryitemscountry.md
+  - docs/models/operations/getlibraryitemsdirector.md
+  - docs/models/operations/getlibraryitemswriter.md
+  - docs/models/operations/getlibraryitemsrole.md
+  - docs/models/operations/getlibraryitemsmetadata.md
+  - docs/models/operations/getlibraryitemsmediacontainer.md
+  - docs/models/operations/getlibraryitemsresponsebody.md
+  - docs/models/operations/getlibraryitemsresponse.md
   - docs/models/operations/refreshlibraryrequest.md
   - docs/models/operations/refreshlibraryresponse.md
   - docs/models/operations/type.md
@@ -362,10 +379,12 @@ generatedFiles:
   - docs/models/operations/loglineresponse.md
   - docs/models/operations/logmultilineresponse.md
   - docs/models/operations/enablepapertrailresponse.md
+  - docs/models/operations/getpinglobals.md
   - docs/models/operations/getpinrequest.md
   - docs/models/operations/location.md
   - docs/models/operations/getpinresponsebody.md
   - docs/models/operations/getpinresponse.md
+  - docs/models/operations/gettokenglobals.md
   - docs/models/operations/gettokenrequest.md
   - docs/models/operations/gettokenresponse.md
   - docs/models/operations/queryparamtype.md
@@ -517,8 +536,12 @@ generatedFiles:
   - docs/models/errors/getlibraryresponsebody.md
   - docs/models/errors/deletelibraryerrors.md
   - docs/models/errors/deletelibraryresponsebody.md
+  - docs/models/errors/getlibraryitemserrors.md
+  - docs/models/errors/getlibraryitemsresponsebody.md
   - docs/models/errors/refreshlibraryerrors.md
   - docs/models/errors/refreshlibraryresponsebody.md
+  - docs/models/errors/searchlibraryerrors.md
+  - docs/models/errors/searchlibraryresponsebody.md
   - docs/models/errors/getmetadataerrors.md
   - docs/models/errors/getmetadataresponsebody.md
   - docs/models/errors/getmetadatachildrenerrors.md

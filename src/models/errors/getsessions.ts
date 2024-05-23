@@ -56,13 +56,7 @@ export class GetSessionsResponseBody extends Error {
 
 /** @internal */
 export namespace GetSessionsErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetSessionsErrors$ {
 
 /** @internal */
 export namespace GetSessionsResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetSessionsErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetSessionsErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

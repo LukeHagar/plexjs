@@ -21,13 +21,7 @@ export type StopAllTasksResponse = {
 
 /** @internal */
 export namespace StopAllTasksResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<StopAllTasksResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StopAllTasksResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

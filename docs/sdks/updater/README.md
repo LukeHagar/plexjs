@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetUpdateStatusResponse](../../models/operations/getupdatestatusresponse.md)>**
+**Promise\<[operations.GetUpdateStatusResponse](../../models/operations/getupdatestatusresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -91,7 +91,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CheckForUpdatesResponse](../../models/operations/checkforupdatesresponse.md)>**
+**Promise\<[operations.CheckForUpdatesResponse](../../models/operations/checkforupdatesresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -137,7 +137,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ApplyUpdatesResponse](../../models/operations/applyupdatesresponse.md)>**
+**Promise\<[operations.ApplyUpdatesResponse](../../models/operations/applyupdatesresponse.md)\>**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |

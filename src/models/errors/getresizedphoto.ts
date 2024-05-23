@@ -56,13 +56,7 @@ export class GetResizedPhotoResponseBody extends Error {
 
 /** @internal */
 export namespace GetResizedPhotoErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetResizedPhotoErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetResizedPhotoErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetResizedPhotoErrors$ {
 
 /** @internal */
 export namespace GetResizedPhotoResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetResizedPhotoErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetResizedPhotoResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetResizedPhotoResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetResizedPhotoErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

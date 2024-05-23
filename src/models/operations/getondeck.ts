@@ -141,33 +141,7 @@ export type GetOnDeckResponse = {
 
 /** @internal */
 export namespace GetOnDeckStream$ {
-    export type Inbound = {
-        id?: number | undefined;
-        streamType?: number | undefined;
-        default?: boolean | undefined;
-        codec?: string | undefined;
-        index?: number | undefined;
-        bitrate?: number | undefined;
-        language?: string | undefined;
-        languageTag?: string | undefined;
-        languageCode?: string | undefined;
-        bitDepth?: number | undefined;
-        chromaLocation?: string | undefined;
-        chromaSubsampling?: string | undefined;
-        codedHeight?: number | undefined;
-        codedWidth?: number | undefined;
-        colorRange?: string | undefined;
-        frameRate?: number | undefined;
-        height?: number | undefined;
-        level?: number | undefined;
-        profile?: string | undefined;
-        refFrames?: number | undefined;
-        width?: number | undefined;
-        displayTitle?: string | undefined;
-        extendedDisplayTitle?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckStream, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckStream, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             streamType: z.number().optional(),
@@ -312,19 +286,7 @@ export namespace GetOnDeckStream$ {
 
 /** @internal */
 export namespace GetOnDeckPart$ {
-    export type Inbound = {
-        id?: number | undefined;
-        key?: string | undefined;
-        duration?: number | undefined;
-        file?: string | undefined;
-        size?: number | undefined;
-        audioProfile?: string | undefined;
-        container?: string | undefined;
-        videoProfile?: string | undefined;
-        Stream?: Array<GetOnDeckStream$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckPart, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckPart, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             key: z.string().optional(),
@@ -391,25 +353,7 @@ export namespace GetOnDeckPart$ {
 
 /** @internal */
 export namespace GetOnDeckMedia$ {
-    export type Inbound = {
-        id?: number | undefined;
-        duration?: number | undefined;
-        bitrate?: number | undefined;
-        width?: number | undefined;
-        height?: number | undefined;
-        aspectRatio?: number | undefined;
-        audioChannels?: number | undefined;
-        audioCodec?: string | undefined;
-        videoCodec?: string | undefined;
-        videoResolution?: string | undefined;
-        container?: string | undefined;
-        videoFrameRate?: string | undefined;
-        audioProfile?: string | undefined;
-        videoProfile?: string | undefined;
-        Part?: Array<GetOnDeckPart$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckMedia, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckMedia, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             duration: z.number().optional(),
@@ -510,11 +454,7 @@ export namespace GetOnDeckMedia$ {
 
 /** @internal */
 export namespace GetOnDeckGuids$ {
-    export type Inbound = {
-        id?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckGuids, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckGuids, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string().optional(),
         })
@@ -541,46 +481,7 @@ export namespace GetOnDeckGuids$ {
 
 /** @internal */
 export namespace GetOnDeckMetadata$ {
-    export type Inbound = {
-        allowSync?: boolean | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionUUID?: string | undefined;
-        ratingKey?: number | undefined;
-        key?: string | undefined;
-        parentRatingKey?: number | undefined;
-        grandparentRatingKey?: number | undefined;
-        guid?: string | undefined;
-        parentGuid?: string | undefined;
-        grandparentGuid?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        grandparentKey?: string | undefined;
-        parentKey?: string | undefined;
-        librarySectionKey?: string | undefined;
-        grandparentTitle?: string | undefined;
-        parentTitle?: string | undefined;
-        contentRating?: string | undefined;
-        summary?: string | undefined;
-        index?: number | undefined;
-        parentIndex?: number | undefined;
-        lastViewedAt?: number | undefined;
-        year?: number | undefined;
-        thumb?: string | undefined;
-        art?: string | undefined;
-        parentThumb?: string | undefined;
-        grandparentThumb?: string | undefined;
-        grandparentArt?: string | undefined;
-        grandparentTheme?: string | undefined;
-        duration?: number | undefined;
-        originallyAvailableAt?: string | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-        Media?: Array<GetOnDeckMedia$.Inbound> | undefined;
-        guids?: Array<GetOnDeckGuids$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckMetadata, z.ZodTypeDef, unknown> = z
         .object({
             allowSync: z.boolean().optional(),
             librarySectionID: z.number().optional(),
@@ -833,17 +734,7 @@ export namespace GetOnDeckMetadata$ {
 
 /** @internal */
 export namespace GetOnDeckMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        identifier?: string | undefined;
-        mediaTagPrefix?: string | undefined;
-        mediaTagVersion?: number | undefined;
-        mixedParents?: boolean | undefined;
-        Metadata?: Array<GetOnDeckMetadata$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().optional(),
             allowSync: z.boolean().optional(),
@@ -904,11 +795,7 @@ export namespace GetOnDeckMediaContainer$ {
 
 /** @internal */
 export namespace GetOnDeckResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetOnDeckMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetOnDeckMediaContainer$.inboundSchema).optional(),
         })
@@ -935,14 +822,7 @@ export namespace GetOnDeckResponseBody$ {
 
 /** @internal */
 export namespace GetOnDeckResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetOnDeckResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

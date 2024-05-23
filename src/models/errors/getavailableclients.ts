@@ -56,13 +56,7 @@ export class GetAvailableClientsResponseBody extends Error {
 
 /** @internal */
 export namespace GetAvailableClientsErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetAvailableClientsErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetAvailableClientsErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetAvailableClientsErrors$ {
 
 /** @internal */
 export namespace GetAvailableClientsResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetAvailableClientsErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetAvailableClientsResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetAvailableClientsResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 errors: z.array(z.lazy(() => GetAvailableClientsErrors$.inboundSchema)).optional(),

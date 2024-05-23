@@ -28,11 +28,7 @@ export type CancelServerActivitiesResponse = {
 
 /** @internal */
 export namespace CancelServerActivitiesRequest$ {
-    export type Inbound = {
-        activityUUID: string;
-    };
-
-    export const inboundSchema: z.ZodType<CancelServerActivitiesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CancelServerActivitiesRequest, z.ZodTypeDef, unknown> = z
         .object({
             activityUUID: z.string(),
         })
@@ -60,13 +56,7 @@ export namespace CancelServerActivitiesRequest$ {
 
 /** @internal */
 export namespace CancelServerActivitiesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CancelServerActivitiesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CancelServerActivitiesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

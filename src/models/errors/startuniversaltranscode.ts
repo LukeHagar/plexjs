@@ -56,13 +56,7 @@ export class StartUniversalTranscodeResponseBody extends Error {
 
 /** @internal */
 export namespace StartUniversalTranscodeErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StartUniversalTranscodeErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StartUniversalTranscodeErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -100,15 +94,10 @@ export namespace StartUniversalTranscodeErrors$ {
 
 /** @internal */
 export namespace StartUniversalTranscodeResponseBody$ {
-    export type Inbound = {
-        errors?: Array<StartUniversalTranscodeErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         StartUniversalTranscodeResponseBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             errors: z.array(z.lazy(() => StartUniversalTranscodeErrors$.inboundSchema)).optional(),

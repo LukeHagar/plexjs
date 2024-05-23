@@ -56,13 +56,7 @@ export class GetMyPlexAccountResponseBody extends Error {
 
 /** @internal */
 export namespace GetMyPlexAccountErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMyPlexAccountErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMyPlexAccountErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetMyPlexAccountErrors$ {
 
 /** @internal */
 export namespace GetMyPlexAccountResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetMyPlexAccountErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMyPlexAccountResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMyPlexAccountResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetMyPlexAccountErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

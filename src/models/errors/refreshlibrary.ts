@@ -56,13 +56,7 @@ export class RefreshLibraryResponseBody extends Error {
 
 /** @internal */
 export namespace RefreshLibraryErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RefreshLibraryErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RefreshLibraryErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace RefreshLibraryErrors$ {
 
 /** @internal */
 export namespace RefreshLibraryResponseBody$ {
-    export type Inbound = {
-        errors?: Array<RefreshLibraryErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RefreshLibraryResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RefreshLibraryResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => RefreshLibraryErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

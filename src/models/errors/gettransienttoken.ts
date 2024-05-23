@@ -56,13 +56,7 @@ export class GetTransientTokenResponseBody extends Error {
 
 /** @internal */
 export namespace GetTransientTokenErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransientTokenErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransientTokenErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetTransientTokenErrors$ {
 
 /** @internal */
 export namespace GetTransientTokenResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetTransientTokenErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransientTokenResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransientTokenResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetTransientTokenErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

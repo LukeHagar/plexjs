@@ -45,24 +45,23 @@ export type GetTransientTokenResponse = {
 };
 
 /** @internal */
-export const GetTransientTokenQueryParamType$: z.ZodNativeEnum<
-    typeof GetTransientTokenQueryParamType
-> = z.nativeEnum(GetTransientTokenQueryParamType);
+export namespace GetTransientTokenQueryParamType$ {
+    export const inboundSchema = z.nativeEnum(GetTransientTokenQueryParamType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Scope$: z.ZodNativeEnum<typeof Scope> = z.nativeEnum(Scope);
+export namespace Scope$ {
+    export const inboundSchema = z.nativeEnum(Scope);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace GetTransientTokenRequest$ {
-    export type Inbound = {
-        type: GetTransientTokenQueryParamType;
-        scope: Scope;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransientTokenRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransientTokenRequest, z.ZodTypeDef, unknown> = z
         .object({
-            type: GetTransientTokenQueryParamType$,
-            scope: Scope$,
+            type: GetTransientTokenQueryParamType$.inboundSchema,
+            scope: Scope$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -72,14 +71,14 @@ export namespace GetTransientTokenRequest$ {
         });
 
     export type Outbound = {
-        type: GetTransientTokenQueryParamType;
-        scope: Scope;
+        type: string;
+        scope: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetTransientTokenRequest> = z
         .object({
-            type: GetTransientTokenQueryParamType$,
-            scope: Scope$,
+            type: GetTransientTokenQueryParamType$.outboundSchema,
+            scope: Scope$.outboundSchema,
         })
         .transform((v) => {
             return {
@@ -91,13 +90,7 @@ export namespace GetTransientTokenRequest$ {
 
 /** @internal */
 export namespace GetTransientTokenResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransientTokenResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransientTokenResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -36,13 +36,7 @@ export type UpdatePlaylistResponse = {
 
 /** @internal */
 export namespace UpdatePlaylistRequest$ {
-    export type Inbound = {
-        playlistID: number;
-        title?: string | undefined;
-        summary?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdatePlaylistRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdatePlaylistRequest, z.ZodTypeDef, unknown> = z
         .object({
             playlistID: z.number(),
             title: z.string().optional(),
@@ -79,13 +73,7 @@ export namespace UpdatePlaylistRequest$ {
 
 /** @internal */
 export namespace UpdatePlaylistResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<UpdatePlaylistResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdatePlaylistResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

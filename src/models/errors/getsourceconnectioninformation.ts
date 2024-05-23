@@ -56,16 +56,10 @@ export class GetSourceConnectionInformationResponseBody extends Error {
 
 /** @internal */
 export namespace GetSourceConnectionInformationErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetSourceConnectionInformationErrors,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             code: z.number().optional(),
@@ -107,15 +101,10 @@ export namespace GetSourceConnectionInformationErrors$ {
 
 /** @internal */
 export namespace GetSourceConnectionInformationResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetSourceConnectionInformationErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetSourceConnectionInformationResponseBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             errors: z

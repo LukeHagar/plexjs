@@ -56,13 +56,7 @@ export class PerformSearchResponseBody extends Error {
 
 /** @internal */
 export namespace PerformSearchErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PerformSearchErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PerformSearchErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace PerformSearchErrors$ {
 
 /** @internal */
 export namespace PerformSearchResponseBody$ {
-    export type Inbound = {
-        errors?: Array<PerformSearchErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PerformSearchResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PerformSearchResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => PerformSearchErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

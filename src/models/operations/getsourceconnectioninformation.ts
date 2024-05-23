@@ -28,14 +28,10 @@ export type GetSourceConnectionInformationResponse = {
 
 /** @internal */
 export namespace GetSourceConnectionInformationRequest$ {
-    export type Inbound = {
-        source: string;
-    };
-
     export const inboundSchema: z.ZodType<
         GetSourceConnectionInformationRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             source: z.string(),
@@ -67,16 +63,10 @@ export namespace GetSourceConnectionInformationRequest$ {
 
 /** @internal */
 export namespace GetSourceConnectionInformationResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         GetSourceConnectionInformationResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

@@ -79,11 +79,7 @@ export type GetStatisticsResponse = {
 
 /** @internal */
 export namespace GetStatisticsRequest$ {
-    export type Inbound = {
-        Timespan?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetStatisticsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetStatisticsRequest, z.ZodTypeDef, unknown> = z
         .object({
             Timespan: z.number().int().optional(),
         })
@@ -110,15 +106,7 @@ export namespace GetStatisticsRequest$ {
 
 /** @internal */
 export namespace GetStatisticsDevice$ {
-    export type Inbound = {
-        id?: number | undefined;
-        name?: string | undefined;
-        platform?: string | undefined;
-        clientIdentifier?: string | undefined;
-        createdAt?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetStatisticsDevice, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetStatisticsDevice, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             name: z.string().optional(),
@@ -169,18 +157,7 @@ export namespace GetStatisticsDevice$ {
 
 /** @internal */
 export namespace Account$ {
-    export type Inbound = {
-        id?: number | undefined;
-        key?: string | undefined;
-        name?: string | undefined;
-        defaultAudioLanguage?: string | undefined;
-        autoSelectAudio?: boolean | undefined;
-        defaultSubtitleLanguage?: string | undefined;
-        subtitleMode?: number | undefined;
-        thumb?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Account, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             key: z.string().optional(),
@@ -254,17 +231,7 @@ export namespace Account$ {
 
 /** @internal */
 export namespace StatisticsMedia$ {
-    export type Inbound = {
-        accountID?: number | undefined;
-        deviceID?: number | undefined;
-        timespan?: number | undefined;
-        at?: number | undefined;
-        metadataType?: number | undefined;
-        count?: number | undefined;
-        duration?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StatisticsMedia, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StatisticsMedia, z.ZodTypeDef, unknown> = z
         .object({
             accountID: z.number().int().optional(),
             deviceID: z.number().int().optional(),
@@ -321,14 +288,7 @@ export namespace StatisticsMedia$ {
 
 /** @internal */
 export namespace GetStatisticsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        Device?: Array<GetStatisticsDevice$.Inbound> | undefined;
-        Account?: Array<Account$.Inbound> | undefined;
-        StatisticsMedia?: Array<StatisticsMedia$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetStatisticsMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetStatisticsMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             Device: z.array(z.lazy(() => GetStatisticsDevice$.inboundSchema)).optional(),
@@ -374,11 +334,7 @@ export namespace GetStatisticsMediaContainer$ {
 
 /** @internal */
 export namespace GetStatisticsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetStatisticsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetStatisticsResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetStatisticsResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetStatisticsMediaContainer$.inboundSchema).optional(),
         })
@@ -405,14 +361,7 @@ export namespace GetStatisticsResponseBody$ {
 
 /** @internal */
 export namespace GetStatisticsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetStatisticsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetStatisticsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetStatisticsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -6,6 +6,18 @@ import * as z from "zod";
 
 export const GetPinServerList = ["https://plex.tv/api/v2"] as const;
 
+export type GetPinGlobals = {
+    /**
+     * The unique identifier for the client application
+     *
+     * @remarks
+     * This is used to track the client application and its usage
+     * (UUID, serial number, or other number unique per device)
+     *
+     */
+    xPlexClientIdentifier: string;
+};
+
 export type GetPinRequest = {
     /**
      * Determines the kind of code returned by the API call
@@ -89,13 +101,35 @@ export type GetPinResponse = {
 };
 
 /** @internal */
-export namespace GetPinRequest$ {
-    export type Inbound = {
-        strong?: boolean | undefined;
-        "X-Plex-Client-Identifier"?: string | undefined;
+export namespace GetPinGlobals$ {
+    export const inboundSchema: z.ZodType<GetPinGlobals, z.ZodTypeDef, unknown> = z
+        .object({
+            "X-Plex-Client-Identifier": z.string(),
+        })
+        .transform((v) => {
+            return {
+                xPlexClientIdentifier: v["X-Plex-Client-Identifier"],
+            };
+        });
+
+    export type Outbound = {
+        "X-Plex-Client-Identifier": string;
     };
 
-    export const inboundSchema: z.ZodType<GetPinRequest, z.ZodTypeDef, Inbound> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetPinGlobals> = z
+        .object({
+            xPlexClientIdentifier: z.string(),
+        })
+        .transform((v) => {
+            return {
+                "X-Plex-Client-Identifier": v.xPlexClientIdentifier,
+            };
+        });
+}
+
+/** @internal */
+export namespace GetPinRequest$ {
+    export const inboundSchema: z.ZodType<GetPinRequest, z.ZodTypeDef, unknown> = z
         .object({
             strong: z.boolean().default(false),
             "X-Plex-Client-Identifier": z.string().optional(),
@@ -131,20 +165,7 @@ export namespace GetPinRequest$ {
 
 /** @internal */
 export namespace Location$ {
-    export type Inbound = {
-        code?: string | undefined;
-        european_union_member?: boolean | undefined;
-        continent_code?: string | undefined;
-        country?: string | undefined;
-        city?: string | undefined;
-        time_zone?: string | undefined;
-        postal_code?: number | undefined;
-        in_privacy_restricted_country?: boolean | undefined;
-        subdivisions?: string | undefined;
-        coordinates?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Location, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Location, z.ZodTypeDef, unknown> = z
         .object({
             code: z.string().optional(),
             european_union_member: z.boolean().optional(),
@@ -224,22 +245,7 @@ export namespace Location$ {
 
 /** @internal */
 export namespace GetPinResponseBody$ {
-    export type Inbound = {
-        id?: number | undefined;
-        code?: string | undefined;
-        product?: string | undefined;
-        trusted?: boolean | undefined;
-        qr?: string | undefined;
-        clientIdentifier?: string | undefined;
-        location?: Location$.Inbound | undefined;
-        expiresIn?: number | undefined;
-        createdAt?: string | undefined;
-        expiresAt?: string | undefined;
-        authToken?: string | undefined;
-        newRegistration?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPinResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPinResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             code: z.string().optional(),
@@ -343,14 +349,7 @@ export namespace GetPinResponseBody$ {
 
 /** @internal */
 export namespace GetPinResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetPinResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPinResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPinResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -52,11 +52,7 @@ export type GetServerActivitiesResponse = {
 
 /** @internal */
 export namespace Context$ {
-    export type Inbound = {
-        librarySectionID?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Context, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Context, z.ZodTypeDef, unknown> = z
         .object({
             librarySectionID: z.string().optional(),
         })
@@ -87,18 +83,7 @@ export namespace Context$ {
 
 /** @internal */
 export namespace Activity$ {
-    export type Inbound = {
-        uuid?: string | undefined;
-        type?: string | undefined;
-        cancellable?: boolean | undefined;
-        userID?: number | undefined;
-        title?: string | undefined;
-        subtitle?: string | undefined;
-        progress?: number | undefined;
-        Context?: Context$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Activity, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Activity, z.ZodTypeDef, unknown> = z
         .object({
             uuid: z.string().optional(),
             type: z.string().optional(),
@@ -160,15 +145,10 @@ export namespace Activity$ {
 
 /** @internal */
 export namespace GetServerActivitiesMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        Activity?: Array<Activity$.Inbound> | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetServerActivitiesMediaContainer,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             size: z.number().optional(),
@@ -205,11 +185,7 @@ export namespace GetServerActivitiesMediaContainer$ {
 
 /** @internal */
 export namespace GetServerActivitiesResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetServerActivitiesMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerActivitiesResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetServerActivitiesResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 MediaContainer: z
@@ -247,14 +223,7 @@ export namespace GetServerActivitiesResponseBody$ {
 
 /** @internal */
 export namespace GetServerActivitiesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetServerActivitiesResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerActivitiesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerActivitiesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

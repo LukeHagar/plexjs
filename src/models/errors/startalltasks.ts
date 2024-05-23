@@ -56,13 +56,7 @@ export class StartAllTasksResponseBody extends Error {
 
 /** @internal */
 export namespace StartAllTasksErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StartAllTasksErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StartAllTasksErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace StartAllTasksErrors$ {
 
 /** @internal */
 export namespace StartAllTasksResponseBody$ {
-    export type Inbound = {
-        errors?: Array<StartAllTasksErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StartAllTasksResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StartAllTasksResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => StartAllTasksErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

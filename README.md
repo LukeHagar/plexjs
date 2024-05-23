@@ -104,6 +104,7 @@ run();
 * [getLibraries](docs/sdks/library/README.md#getlibraries) - Get All Libraries
 * [getLibrary](docs/sdks/library/README.md#getlibrary) - Get Library Details
 * [deleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
+* [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 * [refreshLibrary](docs/sdks/library/README.md#refreshlibrary) - Refresh Library
 * [searchLibrary](docs/sdks/library/README.md#searchlibrary) - Search Library
 * [getMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata

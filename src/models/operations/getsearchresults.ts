@@ -140,11 +140,7 @@ export type GetSearchResultsResponse = {
 
 /** @internal */
 export namespace GetSearchResultsRequest$ {
-    export type Inbound = {
-        query: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsRequest, z.ZodTypeDef, unknown> = z
         .object({
             query: z.string(),
         })
@@ -171,18 +167,7 @@ export namespace GetSearchResultsRequest$ {
 
 /** @internal */
 export namespace GetSearchResultsPart$ {
-    export type Inbound = {
-        id?: number | undefined;
-        key?: string | undefined;
-        duration?: number | undefined;
-        file?: string | undefined;
-        size?: number | undefined;
-        audioProfile?: string | undefined;
-        container?: string | undefined;
-        videoProfile?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsPart, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsPart, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             key: z.string().optional(),
@@ -244,25 +229,7 @@ export namespace GetSearchResultsPart$ {
 
 /** @internal */
 export namespace GetSearchResultsMedia$ {
-    export type Inbound = {
-        id?: number | undefined;
-        duration?: number | undefined;
-        bitrate?: number | undefined;
-        width?: number | undefined;
-        height?: number | undefined;
-        aspectRatio?: number | undefined;
-        audioChannels?: number | undefined;
-        audioCodec?: string | undefined;
-        videoCodec?: string | undefined;
-        videoResolution?: number | undefined;
-        container?: string | undefined;
-        videoFrameRate?: string | undefined;
-        audioProfile?: string | undefined;
-        videoProfile?: string | undefined;
-        Part?: Array<GetSearchResultsPart$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsMedia, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsMedia, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             duration: z.number().optional(),
@@ -363,11 +330,7 @@ export namespace GetSearchResultsMedia$ {
 
 /** @internal */
 export namespace GetSearchResultsGenre$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsGenre, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsGenre, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -394,11 +357,7 @@ export namespace GetSearchResultsGenre$ {
 
 /** @internal */
 export namespace GetSearchResultsDirector$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsDirector, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsDirector, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -425,11 +384,7 @@ export namespace GetSearchResultsDirector$ {
 
 /** @internal */
 export namespace GetSearchResultsWriter$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsWriter, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsWriter, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -456,11 +411,7 @@ export namespace GetSearchResultsWriter$ {
 
 /** @internal */
 export namespace GetSearchResultsCountry$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsCountry, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsCountry, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -487,11 +438,7 @@ export namespace GetSearchResultsCountry$ {
 
 /** @internal */
 export namespace GetSearchResultsRole$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsRole, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsRole, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -518,44 +465,7 @@ export namespace GetSearchResultsRole$ {
 
 /** @internal */
 export namespace GetSearchResultsMetadata$ {
-    export type Inbound = {
-        allowSync?: boolean | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionUUID?: string | undefined;
-        personal?: boolean | undefined;
-        sourceTitle?: string | undefined;
-        ratingKey?: number | undefined;
-        key?: string | undefined;
-        guid?: string | undefined;
-        studio?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        contentRating?: string | undefined;
-        summary?: string | undefined;
-        rating?: number | undefined;
-        audienceRating?: number | undefined;
-        year?: number | undefined;
-        tagline?: string | undefined;
-        thumb?: string | undefined;
-        art?: string | undefined;
-        duration?: number | undefined;
-        originallyAvailableAt?: string | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-        audienceRatingImage?: string | undefined;
-        chapterSource?: string | undefined;
-        primaryExtraKey?: string | undefined;
-        ratingImage?: string | undefined;
-        Media?: Array<GetSearchResultsMedia$.Inbound> | undefined;
-        Genre?: Array<GetSearchResultsGenre$.Inbound> | undefined;
-        Director?: Array<GetSearchResultsDirector$.Inbound> | undefined;
-        Writer?: Array<GetSearchResultsWriter$.Inbound> | undefined;
-        Country?: Array<GetSearchResultsCountry$.Inbound> | undefined;
-        Role?: Array<GetSearchResultsRole$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsMetadata, z.ZodTypeDef, unknown> = z
         .object({
             allowSync: z.boolean().optional(),
             librarySectionID: z.number().optional(),
@@ -778,13 +688,7 @@ export namespace GetSearchResultsMetadata$ {
 
 /** @internal */
 export namespace Provider$ {
-    export type Inbound = {
-        key?: string | undefined;
-        title?: string | undefined;
-        type?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Provider, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Provider, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             title: z.string().optional(),
@@ -821,16 +725,7 @@ export namespace Provider$ {
 
 /** @internal */
 export namespace GetSearchResultsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        identifier?: string | undefined;
-        mediaTagPrefix?: string | undefined;
-        mediaTagVersion?: number | undefined;
-        Metadata?: Array<GetSearchResultsMetadata$.Inbound> | undefined;
-        Provider?: Array<Provider$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().optional(),
             identifier: z.string().optional(),
@@ -891,11 +786,7 @@ export namespace GetSearchResultsMediaContainer$ {
 
 /** @internal */
 export namespace GetSearchResultsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetSearchResultsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetSearchResultsMediaContainer$.inboundSchema).optional(),
         })
@@ -922,14 +813,7 @@ export namespace GetSearchResultsResponseBody$ {
 
 /** @internal */
 export namespace GetSearchResultsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetSearchResultsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSearchResultsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSearchResultsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -56,13 +56,7 @@ export class StopTranscodeSessionResponseBody extends Error {
 
 /** @internal */
 export namespace StopTranscodeSessionErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StopTranscodeSessionErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StopTranscodeSessionErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace StopTranscodeSessionErrors$ {
 
 /** @internal */
 export namespace StopTranscodeSessionResponseBody$ {
-    export type Inbound = {
-        errors?: Array<StopTranscodeSessionErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StopTranscodeSessionResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<StopTranscodeSessionResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 errors: z.array(z.lazy(() => StopTranscodeSessionErrors$.inboundSchema)).optional(),

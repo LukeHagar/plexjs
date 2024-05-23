@@ -49,7 +49,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransientTokenResponse](../../models/operations/gettransienttokenresponse.md)>**
+**Promise\<[operations.GetTransientTokenResponse](../../models/operations/gettransienttokenresponse.md)\>**
 ### Errors
 
 | Error Object                         | Status Code                          | Content Type                         |
@@ -94,7 +94,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetSourceConnectionInformationResponse](../../models/operations/getsourceconnectioninformationresponse.md)>**
+**Promise\<[operations.GetSourceConnectionInformationResponse](../../models/operations/getsourceconnectioninformationresponse.md)\>**
 ### Errors
 
 | Error Object                                      | Status Code                                       | Content Type                                      |

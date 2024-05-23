@@ -56,13 +56,7 @@ export class GetServerCapabilitiesResponseBody extends Error {
 
 /** @internal */
 export namespace Errors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Errors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Errors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,15 +93,10 @@ export namespace Errors$ {
 
 /** @internal */
 export namespace GetServerCapabilitiesResponseBody$ {
-    export type Inbound = {
-        errors?: Array<Errors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetServerCapabilitiesResponseBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             errors: z.array(z.lazy(() => Errors$.inboundSchema)).optional(),

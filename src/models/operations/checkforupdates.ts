@@ -35,17 +35,16 @@ export type CheckForUpdatesResponse = {
 };
 
 /** @internal */
-export const Download$: z.ZodNativeEnum<typeof Download> = z.nativeEnum(Download);
+export namespace Download$ {
+    export const inboundSchema = z.nativeEnum(Download);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace CheckForUpdatesRequest$ {
-    export type Inbound = {
-        download?: Download | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CheckForUpdatesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CheckForUpdatesRequest, z.ZodTypeDef, unknown> = z
         .object({
-            download: Download$.optional(),
+            download: Download$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -54,12 +53,12 @@ export namespace CheckForUpdatesRequest$ {
         });
 
     export type Outbound = {
-        download?: Download | undefined;
+        download?: number | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CheckForUpdatesRequest> = z
         .object({
-            download: Download$.optional(),
+            download: Download$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -70,13 +69,7 @@ export namespace CheckForUpdatesRequest$ {
 
 /** @internal */
 export namespace CheckForUpdatesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CheckForUpdatesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CheckForUpdatesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

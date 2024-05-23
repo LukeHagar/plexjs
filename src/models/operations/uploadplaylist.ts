@@ -59,19 +59,17 @@ export type UploadPlaylistResponse = {
 };
 
 /** @internal */
-export const Force$: z.ZodNativeEnum<typeof Force> = z.nativeEnum(Force);
+export namespace Force$ {
+    export const inboundSchema = z.nativeEnum(Force);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace UploadPlaylistRequest$ {
-    export type Inbound = {
-        path: string;
-        force: Force;
-    };
-
-    export const inboundSchema: z.ZodType<UploadPlaylistRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UploadPlaylistRequest, z.ZodTypeDef, unknown> = z
         .object({
             path: z.string(),
-            force: Force$,
+            force: Force$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -82,13 +80,13 @@ export namespace UploadPlaylistRequest$ {
 
     export type Outbound = {
         path: string;
-        force: Force;
+        force: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UploadPlaylistRequest> = z
         .object({
             path: z.string(),
-            force: Force$,
+            force: Force$.outboundSchema,
         })
         .transform((v) => {
             return {
@@ -100,13 +98,7 @@ export namespace UploadPlaylistRequest$ {
 
 /** @internal */
 export namespace UploadPlaylistResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<UploadPlaylistResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UploadPlaylistResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

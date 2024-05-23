@@ -56,13 +56,7 @@ export class LogLineResponseBody extends Error {
 
 /** @internal */
 export namespace LogLineErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<LogLineErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LogLineErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace LogLineErrors$ {
 
 /** @internal */
 export namespace LogLineResponseBody$ {
-    export type Inbound = {
-        errors?: Array<LogLineErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<LogLineResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LogLineResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => LogLineErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

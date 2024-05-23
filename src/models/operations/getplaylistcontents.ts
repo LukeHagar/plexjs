@@ -144,12 +144,7 @@ export type GetPlaylistContentsResponse = {
 
 /** @internal */
 export namespace GetPlaylistContentsRequest$ {
-    export type Inbound = {
-        playlistID: number;
-        type: number;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsRequest, z.ZodTypeDef, unknown> = z
         .object({
             playlistID: z.number(),
             type: z.number(),
@@ -181,20 +176,7 @@ export namespace GetPlaylistContentsRequest$ {
 
 /** @internal */
 export namespace GetPlaylistContentsPart$ {
-    export type Inbound = {
-        id?: number | undefined;
-        key?: string | undefined;
-        duration?: number | undefined;
-        file?: string | undefined;
-        size?: number | undefined;
-        audioProfile?: string | undefined;
-        container?: string | undefined;
-        has64bitOffsets?: boolean | undefined;
-        optimizedForStreaming?: boolean | undefined;
-        videoProfile?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsPart, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsPart, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             key: z.string().optional(),
@@ -274,27 +256,7 @@ export namespace GetPlaylistContentsPart$ {
 
 /** @internal */
 export namespace GetPlaylistContentsMedia$ {
-    export type Inbound = {
-        id?: number | undefined;
-        duration?: number | undefined;
-        bitrate?: number | undefined;
-        width?: number | undefined;
-        height?: number | undefined;
-        aspectRatio?: number | undefined;
-        audioChannels?: number | undefined;
-        audioCodec?: string | undefined;
-        videoCodec?: string | undefined;
-        videoResolution?: string | undefined;
-        container?: string | undefined;
-        videoFrameRate?: string | undefined;
-        optimizedForStreaming?: number | undefined;
-        audioProfile?: string | undefined;
-        has64bitOffsets?: boolean | undefined;
-        videoProfile?: string | undefined;
-        Part?: Array<GetPlaylistContentsPart$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsMedia, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsMedia, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             duration: z.number().int().optional(),
@@ -413,11 +375,7 @@ export namespace GetPlaylistContentsMedia$ {
 
 /** @internal */
 export namespace GetPlaylistContentsGenre$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsGenre, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsGenre, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -444,11 +402,7 @@ export namespace GetPlaylistContentsGenre$ {
 
 /** @internal */
 export namespace GetPlaylistContentsCountry$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsCountry, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsCountry, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -475,11 +429,7 @@ export namespace GetPlaylistContentsCountry$ {
 
 /** @internal */
 export namespace GetPlaylistContentsDirector$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsDirector, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsDirector, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -506,11 +456,7 @@ export namespace GetPlaylistContentsDirector$ {
 
 /** @internal */
 export namespace GetPlaylistContentsWriter$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsWriter, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsWriter, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -537,11 +483,7 @@ export namespace GetPlaylistContentsWriter$ {
 
 /** @internal */
 export namespace GetPlaylistContentsRole$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsRole, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsRole, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -568,42 +510,7 @@ export namespace GetPlaylistContentsRole$ {
 
 /** @internal */
 export namespace GetPlaylistContentsMetadata$ {
-    export type Inbound = {
-        ratingKey?: string | undefined;
-        key?: string | undefined;
-        guid?: string | undefined;
-        studio?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        titleSort?: string | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionKey?: string | undefined;
-        contentRating?: string | undefined;
-        summary?: string | undefined;
-        rating?: number | undefined;
-        audienceRating?: number | undefined;
-        year?: number | undefined;
-        tagline?: string | undefined;
-        thumb?: string | undefined;
-        art?: string | undefined;
-        duration?: number | undefined;
-        originallyAvailableAt?: string | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-        audienceRatingImage?: string | undefined;
-        hasPremiumExtras?: string | undefined;
-        hasPremiumPrimaryExtra?: string | undefined;
-        ratingImage?: string | undefined;
-        Media?: Array<GetPlaylistContentsMedia$.Inbound> | undefined;
-        Genre?: Array<GetPlaylistContentsGenre$.Inbound> | undefined;
-        Country?: Array<GetPlaylistContentsCountry$.Inbound> | undefined;
-        Director?: Array<GetPlaylistContentsDirector$.Inbound> | undefined;
-        Writer?: Array<GetPlaylistContentsWriter$.Inbound> | undefined;
-        Role?: Array<GetPlaylistContentsRole$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsMetadata, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.string().optional(),
             key: z.string().optional(),
@@ -819,22 +726,10 @@ export namespace GetPlaylistContentsMetadata$ {
 
 /** @internal */
 export namespace GetPlaylistContentsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        composite?: string | undefined;
-        duration?: number | undefined;
-        leafCount?: number | undefined;
-        playlistType?: string | undefined;
-        ratingKey?: string | undefined;
-        smart?: boolean | undefined;
-        title?: string | undefined;
-        Metadata?: Array<GetPlaylistContentsMetadata$.Inbound> | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetPlaylistContentsMediaContainer,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             size: z.number().int().optional(),
@@ -906,11 +801,7 @@ export namespace GetPlaylistContentsMediaContainer$ {
 
 /** @internal */
 export namespace GetPlaylistContentsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetPlaylistContentsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetPlaylistContentsResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 MediaContainer: z
@@ -948,14 +839,7 @@ export namespace GetPlaylistContentsResponseBody$ {
 
 /** @internal */
 export namespace GetPlaylistContentsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetPlaylistContentsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistContentsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistContentsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -56,13 +56,7 @@ export class GetServerActivitiesResponseBody extends Error {
 
 /** @internal */
 export namespace GetServerActivitiesErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerActivitiesErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerActivitiesErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetServerActivitiesErrors$ {
 
 /** @internal */
 export namespace GetServerActivitiesResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetServerActivitiesErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerActivitiesResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetServerActivitiesResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 errors: z.array(z.lazy(() => GetServerActivitiesErrors$.inboundSchema)).optional(),

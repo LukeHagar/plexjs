@@ -56,13 +56,7 @@ export class GetTranscodeSessionsResponseBody extends Error {
 
 /** @internal */
 export namespace GetTranscodeSessionsErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTranscodeSessionsErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTranscodeSessionsErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetTranscodeSessionsErrors$ {
 
 /** @internal */
 export namespace GetTranscodeSessionsResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetTranscodeSessionsErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTranscodeSessionsResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetTranscodeSessionsResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 errors: z.array(z.lazy(() => GetTranscodeSessionsErrors$.inboundSchema)).optional(),

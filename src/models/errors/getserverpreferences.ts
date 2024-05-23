@@ -56,13 +56,7 @@ export class GetServerPreferencesResponseBody extends Error {
 
 /** @internal */
 export namespace GetServerPreferencesErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerPreferencesErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerPreferencesErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetServerPreferencesErrors$ {
 
 /** @internal */
 export namespace GetServerPreferencesResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetServerPreferencesErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerPreferencesResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetServerPreferencesResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 errors: z.array(z.lazy(() => GetServerPreferencesErrors$.inboundSchema)).optional(),

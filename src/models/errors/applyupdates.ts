@@ -56,13 +56,7 @@ export class ApplyUpdatesResponseBody extends Error {
 
 /** @internal */
 export namespace ApplyUpdatesErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ApplyUpdatesErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ApplyUpdatesErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace ApplyUpdatesErrors$ {
 
 /** @internal */
 export namespace ApplyUpdatesResponseBody$ {
-    export type Inbound = {
-        errors?: Array<ApplyUpdatesErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ApplyUpdatesResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ApplyUpdatesResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => ApplyUpdatesErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

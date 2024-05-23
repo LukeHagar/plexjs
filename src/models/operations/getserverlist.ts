@@ -46,16 +46,7 @@ export type GetServerListResponse = {
 
 /** @internal */
 export namespace GetServerListServer$ {
-    export type Inbound = {
-        name?: string | undefined;
-        host?: string | undefined;
-        address?: string | undefined;
-        port?: number | undefined;
-        machineIdentifier?: string | undefined;
-        version?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerListServer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerListServer, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             host: z.string().optional(),
@@ -111,12 +102,7 @@ export namespace GetServerListServer$ {
 
 /** @internal */
 export namespace GetServerListMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        Server?: Array<GetServerListServer$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerListMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerListMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().optional(),
             Server: z.array(z.lazy(() => GetServerListServer$.inboundSchema)).optional(),
@@ -148,11 +134,7 @@ export namespace GetServerListMediaContainer$ {
 
 /** @internal */
 export namespace GetServerListResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetServerListMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerListResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerListResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetServerListMediaContainer$.inboundSchema).optional(),
         })
@@ -179,14 +161,7 @@ export namespace GetServerListResponseBody$ {
 
 /** @internal */
 export namespace GetServerListResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetServerListResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerListResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerListResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

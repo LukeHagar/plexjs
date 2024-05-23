@@ -56,13 +56,7 @@ export class GetTokenResponseBody extends Error {
 
 /** @internal */
 export namespace GetTokenErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTokenErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTokenErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetTokenErrors$ {
 
 /** @internal */
 export namespace GetTokenResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetTokenErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTokenResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTokenResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetTokenErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

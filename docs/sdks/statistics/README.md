@@ -45,7 +45,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetStatisticsResponse](../../models/operations/getstatisticsresponse.md)>**
+**Promise\<[operations.GetStatisticsResponse](../../models/operations/getstatisticsresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |

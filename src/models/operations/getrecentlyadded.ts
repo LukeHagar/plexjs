@@ -129,20 +129,7 @@ export type GetRecentlyAddedResponse = {
 
 /** @internal */
 export namespace Part$ {
-    export type Inbound = {
-        id?: number | undefined;
-        key?: string | undefined;
-        duration?: number | undefined;
-        file?: string | undefined;
-        size?: number | undefined;
-        container?: string | undefined;
-        has64bitOffsets?: boolean | undefined;
-        hasThumbnail?: number | undefined;
-        optimizedForStreaming?: boolean | undefined;
-        videoProfile?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Part, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Part, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             key: z.string().optional(),
@@ -222,26 +209,7 @@ export namespace Part$ {
 
 /** @internal */
 export namespace Media$ {
-    export type Inbound = {
-        id?: number | undefined;
-        duration?: number | undefined;
-        bitrate?: number | undefined;
-        width?: number | undefined;
-        height?: number | undefined;
-        aspectRatio?: number | undefined;
-        audioChannels?: number | undefined;
-        audioCodec?: string | undefined;
-        videoCodec?: string | undefined;
-        videoResolution?: number | undefined;
-        container?: string | undefined;
-        videoFrameRate?: string | undefined;
-        optimizedForStreaming?: number | undefined;
-        has64bitOffsets?: boolean | undefined;
-        videoProfile?: string | undefined;
-        Part?: Array<Part$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Media, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Media, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             duration: z.number().optional(),
@@ -355,11 +323,7 @@ export namespace Media$ {
 
 /** @internal */
 export namespace Genre$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Genre, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Genre, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -386,11 +350,7 @@ export namespace Genre$ {
 
 /** @internal */
 export namespace Director$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Director, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Director, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -417,11 +377,7 @@ export namespace Director$ {
 
 /** @internal */
 export namespace Writer$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Writer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Writer, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -448,11 +404,7 @@ export namespace Writer$ {
 
 /** @internal */
 export namespace Country$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Country, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -479,11 +431,7 @@ export namespace Country$ {
 
 /** @internal */
 export namespace Role$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Role, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -510,42 +458,7 @@ export namespace Role$ {
 
 /** @internal */
 export namespace Metadata$ {
-    export type Inbound = {
-        allowSync?: boolean | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionUUID?: string | undefined;
-        ratingKey?: number | undefined;
-        key?: string | undefined;
-        guid?: string | undefined;
-        studio?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        contentRating?: string | undefined;
-        summary?: string | undefined;
-        rating?: number | undefined;
-        audienceRating?: number | undefined;
-        year?: number | undefined;
-        tagline?: string | undefined;
-        thumb?: string | undefined;
-        art?: string | undefined;
-        duration?: number | undefined;
-        originallyAvailableAt?: string | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-        audienceRatingImage?: string | undefined;
-        chapterSource?: string | undefined;
-        primaryExtraKey?: string | undefined;
-        ratingImage?: string | undefined;
-        Media?: Array<Media$.Inbound> | undefined;
-        Genre?: Array<Genre$.Inbound> | undefined;
-        Director?: Array<Director$.Inbound> | undefined;
-        Writer?: Array<Writer$.Inbound> | undefined;
-        Country?: Array<Country$.Inbound> | undefined;
-        Role?: Array<Role$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Metadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Metadata, z.ZodTypeDef, unknown> = z
         .object({
             allowSync: z.boolean().optional(),
             librarySectionID: z.number().optional(),
@@ -758,17 +671,7 @@ export namespace Metadata$ {
 
 /** @internal */
 export namespace GetRecentlyAddedMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        identifier?: string | undefined;
-        mediaTagPrefix?: string | undefined;
-        mediaTagVersion?: number | undefined;
-        mixedParents?: boolean | undefined;
-        Metadata?: Array<Metadata$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetRecentlyAddedMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetRecentlyAddedMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().optional(),
             allowSync: z.boolean().optional(),
@@ -832,11 +735,7 @@ export namespace GetRecentlyAddedMediaContainer$ {
 
 /** @internal */
 export namespace GetRecentlyAddedResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetRecentlyAddedMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetRecentlyAddedResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetRecentlyAddedResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetRecentlyAddedMediaContainer$.inboundSchema).optional(),
         })
@@ -863,14 +762,7 @@ export namespace GetRecentlyAddedResponseBody$ {
 
 /** @internal */
 export namespace GetRecentlyAddedResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetRecentlyAddedResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetRecentlyAddedResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetRecentlyAddedResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

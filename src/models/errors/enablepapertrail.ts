@@ -56,13 +56,7 @@ export class EnablePaperTrailResponseBody extends Error {
 
 /** @internal */
 export namespace EnablePaperTrailErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<EnablePaperTrailErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<EnablePaperTrailErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace EnablePaperTrailErrors$ {
 
 /** @internal */
 export namespace EnablePaperTrailResponseBody$ {
-    export type Inbound = {
-        errors?: Array<EnablePaperTrailErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<EnablePaperTrailResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<EnablePaperTrailResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => EnablePaperTrailErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

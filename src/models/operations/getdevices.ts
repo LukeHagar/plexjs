@@ -46,15 +46,7 @@ export type GetDevicesResponse = {
 
 /** @internal */
 export namespace Device$ {
-    export type Inbound = {
-        id?: number | undefined;
-        name?: string | undefined;
-        platform?: string | undefined;
-        clientIdentifier?: string | undefined;
-        createdAt?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Device, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Device, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().optional(),
             name: z.string().optional(),
@@ -105,13 +97,7 @@ export namespace Device$ {
 
 /** @internal */
 export namespace GetDevicesMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        identifier?: string | undefined;
-        Device?: Array<Device$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetDevicesMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetDevicesMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().optional(),
             identifier: z.string().optional(),
@@ -148,11 +134,7 @@ export namespace GetDevicesMediaContainer$ {
 
 /** @internal */
 export namespace GetDevicesResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetDevicesMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetDevicesResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetDevicesResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetDevicesMediaContainer$.inboundSchema).optional(),
         })
@@ -179,14 +161,7 @@ export namespace GetDevicesResponseBody$ {
 
 /** @internal */
 export namespace GetDevicesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetDevicesResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetDevicesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetDevicesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -47,22 +47,7 @@ export type GetMyPlexAccountResponse = {
 
 /** @internal */
 export namespace MyPlex$ {
-    export type Inbound = {
-        authToken?: string | undefined;
-        username?: string | undefined;
-        mappingState?: string | undefined;
-        mappingError?: string | undefined;
-        signInState?: string | undefined;
-        publicAddress?: string | undefined;
-        publicPort?: number | undefined;
-        privateAddress?: string | undefined;
-        privatePort?: number | undefined;
-        subscriptionFeatures?: string | undefined;
-        subscriptionActive?: boolean | undefined;
-        subscriptionState?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<MyPlex, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MyPlex, z.ZodTypeDef, unknown> = z
         .object({
             authToken: z.string().optional(),
             username: z.string().optional(),
@@ -156,11 +141,7 @@ export namespace MyPlex$ {
 
 /** @internal */
 export namespace GetMyPlexAccountResponseBody$ {
-    export type Inbound = {
-        MyPlex?: MyPlex$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMyPlexAccountResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMyPlexAccountResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MyPlex: z.lazy(() => MyPlex$.inboundSchema).optional(),
         })
@@ -187,14 +168,7 @@ export namespace GetMyPlexAccountResponseBody$ {
 
 /** @internal */
 export namespace GetMyPlexAccountResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetMyPlexAccountResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMyPlexAccountResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMyPlexAccountResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -72,28 +72,18 @@ export type GetTimelineResponse = {
 };
 
 /** @internal */
-export const State$: z.ZodNativeEnum<typeof State> = z.nativeEnum(State);
+export namespace State$ {
+    export const inboundSchema = z.nativeEnum(State);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace GetTimelineRequest$ {
-    export type Inbound = {
-        ratingKey: number;
-        key: string;
-        state: State;
-        hasMDE: number;
-        time: number;
-        duration: number;
-        context: string;
-        playQueueItemID: number;
-        playBackTime: number;
-        row: number;
-    };
-
-    export const inboundSchema: z.ZodType<GetTimelineRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTimelineRequest, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.number(),
             key: z.string(),
-            state: State$,
+            state: State$.inboundSchema,
             hasMDE: z.number(),
             time: z.number(),
             duration: z.number(),
@@ -120,7 +110,7 @@ export namespace GetTimelineRequest$ {
     export type Outbound = {
         ratingKey: number;
         key: string;
-        state: State;
+        state: string;
         hasMDE: number;
         time: number;
         duration: number;
@@ -134,7 +124,7 @@ export namespace GetTimelineRequest$ {
         .object({
             ratingKey: z.number(),
             key: z.string(),
-            state: State$,
+            state: State$.outboundSchema,
             hasMDE: z.number(),
             time: z.number(),
             duration: z.number(),
@@ -161,13 +151,7 @@ export namespace GetTimelineRequest$ {
 
 /** @internal */
 export namespace GetTimelineResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetTimelineResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTimelineResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

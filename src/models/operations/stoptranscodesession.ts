@@ -28,11 +28,7 @@ export type StopTranscodeSessionResponse = {
 
 /** @internal */
 export namespace StopTranscodeSessionRequest$ {
-    export type Inbound = {
-        sessionKey: string;
-    };
-
-    export const inboundSchema: z.ZodType<StopTranscodeSessionRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StopTranscodeSessionRequest, z.ZodTypeDef, unknown> = z
         .object({
             sessionKey: z.string(),
         })
@@ -59,13 +55,7 @@ export namespace StopTranscodeSessionRequest$ {
 
 /** @internal */
 export namespace StopTranscodeSessionResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<StopTranscodeSessionResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StopTranscodeSessionResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

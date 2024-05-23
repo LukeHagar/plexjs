@@ -6,6 +6,18 @@ import * as z from "zod";
 
 export const GetTokenServerList = ["https://plex.tv/api/v2"] as const;
 
+export type GetTokenGlobals = {
+    /**
+     * The unique identifier for the client application
+     *
+     * @remarks
+     * This is used to track the client application and its usage
+     * (UUID, serial number, or other number unique per device)
+     *
+     */
+    xPlexClientIdentifier: string;
+};
+
 export type GetTokenRequest = {
     /**
      * The PinID to retrieve an access token for
@@ -38,13 +50,35 @@ export type GetTokenResponse = {
 };
 
 /** @internal */
-export namespace GetTokenRequest$ {
-    export type Inbound = {
-        pinID: string;
-        "X-Plex-Client-Identifier"?: string | undefined;
+export namespace GetTokenGlobals$ {
+    export const inboundSchema: z.ZodType<GetTokenGlobals, z.ZodTypeDef, unknown> = z
+        .object({
+            "X-Plex-Client-Identifier": z.string(),
+        })
+        .transform((v) => {
+            return {
+                xPlexClientIdentifier: v["X-Plex-Client-Identifier"],
+            };
+        });
+
+    export type Outbound = {
+        "X-Plex-Client-Identifier": string;
     };
 
-    export const inboundSchema: z.ZodType<GetTokenRequest, z.ZodTypeDef, Inbound> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetTokenGlobals> = z
+        .object({
+            xPlexClientIdentifier: z.string(),
+        })
+        .transform((v) => {
+            return {
+                "X-Plex-Client-Identifier": v.xPlexClientIdentifier,
+            };
+        });
+}
+
+/** @internal */
+export namespace GetTokenRequest$ {
+    export const inboundSchema: z.ZodType<GetTokenRequest, z.ZodTypeDef, unknown> = z
         .object({
             pinID: z.string(),
             "X-Plex-Client-Identifier": z.string().optional(),
@@ -80,13 +114,7 @@ export namespace GetTokenRequest$ {
 
 /** @internal */
 export namespace GetTokenResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetTokenResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTokenResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

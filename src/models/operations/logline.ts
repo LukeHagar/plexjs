@@ -62,19 +62,16 @@ export type LogLineResponse = {
 };
 
 /** @internal */
-export const Level$: z.ZodNativeEnum<typeof Level> = z.nativeEnum(Level);
+export namespace Level$ {
+    export const inboundSchema = z.nativeEnum(Level);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace LogLineRequest$ {
-    export type Inbound = {
-        level: Level;
-        message: string;
-        source: string;
-    };
-
-    export const inboundSchema: z.ZodType<LogLineRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LogLineRequest, z.ZodTypeDef, unknown> = z
         .object({
-            level: Level$,
+            level: Level$.inboundSchema,
             message: z.string(),
             source: z.string(),
         })
@@ -87,14 +84,14 @@ export namespace LogLineRequest$ {
         });
 
     export type Outbound = {
-        level: Level;
+        level: number;
         message: string;
         source: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LogLineRequest> = z
         .object({
-            level: Level$,
+            level: Level$.outboundSchema,
             message: z.string(),
             source: z.string(),
         })
@@ -109,13 +106,7 @@ export namespace LogLineRequest$ {
 
 /** @internal */
 export namespace LogLineResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<LogLineResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LogLineResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

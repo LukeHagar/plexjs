@@ -56,13 +56,7 @@ export class ClearPlaylistContentsResponseBody extends Error {
 
 /** @internal */
 export namespace ClearPlaylistContentsErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ClearPlaylistContentsErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ClearPlaylistContentsErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,15 +93,10 @@ export namespace ClearPlaylistContentsErrors$ {
 
 /** @internal */
 export namespace ClearPlaylistContentsResponseBody$ {
-    export type Inbound = {
-        errors?: Array<ClearPlaylistContentsErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         ClearPlaylistContentsResponseBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             errors: z.array(z.lazy(() => ClearPlaylistContentsErrors$.inboundSchema)).optional(),

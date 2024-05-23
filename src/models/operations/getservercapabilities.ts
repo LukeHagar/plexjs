@@ -92,13 +92,7 @@ export type GetServerCapabilitiesResponse = {
 
 /** @internal */
 export namespace Directory$ {
-    export type Inbound = {
-        count?: number | undefined;
-        key?: string | undefined;
-        title?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Directory, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Directory, z.ZodTypeDef, unknown> = z
         .object({
             count: z.number().optional(),
             key: z.string().optional(),
@@ -135,61 +129,7 @@ export namespace Directory$ {
 
 /** @internal */
 export namespace MediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowCameraUpload?: boolean | undefined;
-        allowChannelAccess?: boolean | undefined;
-        allowMediaDeletion?: boolean | undefined;
-        allowSharing?: boolean | undefined;
-        allowSync?: boolean | undefined;
-        allowTuners?: boolean | undefined;
-        backgroundProcessing?: boolean | undefined;
-        certificate?: boolean | undefined;
-        companionProxy?: boolean | undefined;
-        countryCode?: string | undefined;
-        diagnostics?: string | undefined;
-        eventStream?: boolean | undefined;
-        friendlyName?: string | undefined;
-        hubSearch?: boolean | undefined;
-        itemClusters?: boolean | undefined;
-        livetv?: number | undefined;
-        machineIdentifier?: string | undefined;
-        mediaProviders?: boolean | undefined;
-        multiuser?: boolean | undefined;
-        musicAnalysis?: number | undefined;
-        myPlex?: boolean | undefined;
-        myPlexMappingState?: string | undefined;
-        myPlexSigninState?: string | undefined;
-        myPlexSubscription?: boolean | undefined;
-        myPlexUsername?: string | undefined;
-        offlineTranscode?: number | undefined;
-        ownerFeatures?: string | undefined;
-        photoAutoTag?: boolean | undefined;
-        platform?: string | undefined;
-        platformVersion?: string | undefined;
-        pluginHost?: boolean | undefined;
-        pushNotifications?: boolean | undefined;
-        readOnlyLibraries?: boolean | undefined;
-        streamingBrainABRVersion?: number | undefined;
-        streamingBrainVersion?: number | undefined;
-        sync?: boolean | undefined;
-        transcoderActiveVideoSessions?: number | undefined;
-        transcoderAudio?: boolean | undefined;
-        transcoderLyrics?: boolean | undefined;
-        transcoderPhoto?: boolean | undefined;
-        transcoderSubtitles?: boolean | undefined;
-        transcoderVideo?: boolean | undefined;
-        transcoderVideoBitrates?: string | undefined;
-        transcoderVideoQualities?: string | undefined;
-        transcoderVideoResolutions?: string | undefined;
-        updatedAt?: number | undefined;
-        updater?: boolean | undefined;
-        version?: string | undefined;
-        voiceSearch?: boolean | undefined;
-        Directory?: Array<Directory$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<MediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().optional(),
             allowCameraUpload: z.boolean().optional(),
@@ -558,14 +498,10 @@ export namespace MediaContainer$ {
 
 /** @internal */
 export namespace GetServerCapabilitiesResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: MediaContainer$.Inbound | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetServerCapabilitiesResponseBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             MediaContainer: z.lazy(() => MediaContainer$.inboundSchema).optional(),
@@ -597,14 +533,7 @@ export namespace GetServerCapabilitiesResponseBody$ {
 
 /** @internal */
 export namespace GetServerCapabilitiesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetServerCapabilitiesResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerCapabilitiesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerCapabilitiesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

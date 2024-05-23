@@ -28,11 +28,7 @@ export type DeletePlaylistResponse = {
 
 /** @internal */
 export namespace DeletePlaylistRequest$ {
-    export type Inbound = {
-        playlistID: number;
-    };
-
-    export const inboundSchema: z.ZodType<DeletePlaylistRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeletePlaylistRequest, z.ZodTypeDef, unknown> = z
         .object({
             playlistID: z.number(),
         })
@@ -59,13 +55,7 @@ export namespace DeletePlaylistRequest$ {
 
 /** @internal */
 export namespace DeletePlaylistResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<DeletePlaylistResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeletePlaylistResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

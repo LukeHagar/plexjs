@@ -58,7 +58,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTimelineResponse](../../models/operations/gettimelineresponse.md)>**
+**Promise\<[operations.GetTimelineResponse](../../models/operations/gettimelineresponse.md)\>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -118,7 +118,7 @@ run();
 
 ### Response
 
-**Promise<[operations.StartUniversalTranscodeResponse](../../models/operations/startuniversaltranscoderesponse.md)>**
+**Promise\<[operations.StartUniversalTranscodeResponse](../../models/operations/startuniversaltranscoderesponse.md)\>**
 ### Errors
 
 | Error Object                               | Status Code                                | Content Type                               |

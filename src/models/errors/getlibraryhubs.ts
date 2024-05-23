@@ -56,13 +56,7 @@ export class GetLibraryHubsResponseBody extends Error {
 
 /** @internal */
 export namespace GetLibraryHubsErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetLibraryHubsErrors$ {
 
 /** @internal */
 export namespace GetLibraryHubsResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetLibraryHubsErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetLibraryHubsErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

@@ -56,13 +56,7 @@ export class GetOnDeckResponseBody extends Error {
 
 /** @internal */
 export namespace GetOnDeckErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetOnDeckErrors$ {
 
 /** @internal */
 export namespace GetOnDeckResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetOnDeckErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetOnDeckResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOnDeckResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetOnDeckErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

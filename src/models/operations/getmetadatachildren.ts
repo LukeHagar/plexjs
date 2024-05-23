@@ -103,11 +103,7 @@ export type GetMetadataChildrenResponse = {
 
 /** @internal */
 export namespace GetMetadataChildrenRequest$ {
-    export type Inbound = {
-        ratingKey: number;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataChildrenRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataChildrenRequest, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.number(),
         })
@@ -134,15 +130,7 @@ export namespace GetMetadataChildrenRequest$ {
 
 /** @internal */
 export namespace GetMetadataChildrenDirectory$ {
-    export type Inbound = {
-        leafCount?: number | undefined;
-        thumb?: string | undefined;
-        viewedLeafCount?: number | undefined;
-        key?: string | undefined;
-        title?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataChildrenDirectory, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataChildrenDirectory, z.ZodTypeDef, unknown> = z
         .object({
             leafCount: z.number().int().optional(),
             thumb: z.string().optional(),
@@ -193,37 +181,7 @@ export namespace GetMetadataChildrenDirectory$ {
 
 /** @internal */
 export namespace GetMetadataChildrenMetadata$ {
-    export type Inbound = {
-        ratingKey?: string | undefined;
-        key?: string | undefined;
-        parentRatingKey?: string | undefined;
-        guid?: string | undefined;
-        parentGuid?: string | undefined;
-        parentStudio?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        parentKey?: string | undefined;
-        parentTitle?: string | undefined;
-        summary?: string | undefined;
-        index?: number | undefined;
-        parentIndex?: number | undefined;
-        viewCount?: number | undefined;
-        lastViewedAt?: number | undefined;
-        parentYear?: number | undefined;
-        thumb?: string | undefined;
-        art?: string | undefined;
-        parentThumb?: string | undefined;
-        parentTheme?: string | undefined;
-        leafCount?: number | undefined;
-        viewedLeafCount?: number | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-        userRating?: number | undefined;
-        skipCount?: number | undefined;
-        lastRatedAt?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataChildrenMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataChildrenMetadata, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.string().optional(),
             key: z.string().optional(),
@@ -388,36 +346,10 @@ export namespace GetMetadataChildrenMetadata$ {
 
 /** @internal */
 export namespace GetMetadataChildrenMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        art?: string | undefined;
-        identifier?: string | undefined;
-        key?: string | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionUUID?: string | undefined;
-        mediaTagPrefix?: string | undefined;
-        mediaTagVersion?: number | undefined;
-        nocache?: boolean | undefined;
-        parentIndex?: number | undefined;
-        parentTitle?: string | undefined;
-        parentYear?: number | undefined;
-        summary?: string | undefined;
-        theme?: string | undefined;
-        thumb?: string | undefined;
-        title1?: string | undefined;
-        title2?: string | undefined;
-        viewGroup?: string | undefined;
-        viewMode?: number | undefined;
-        Directory?: Array<GetMetadataChildrenDirectory$.Inbound> | undefined;
-        Metadata?: Array<GetMetadataChildrenMetadata$.Inbound> | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetMetadataChildrenMediaContainer,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             size: z.number().int().optional(),
@@ -579,11 +511,7 @@ export namespace GetMetadataChildrenMediaContainer$ {
 
 /** @internal */
 export namespace GetMetadataChildrenResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetMetadataChildrenMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataChildrenResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetMetadataChildrenResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 MediaContainer: z
@@ -621,14 +549,7 @@ export namespace GetMetadataChildrenResponseBody$ {
 
 /** @internal */
 export namespace GetMetadataChildrenResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetMetadataChildrenResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataChildrenResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataChildrenResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

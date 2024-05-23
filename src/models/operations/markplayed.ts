@@ -28,11 +28,7 @@ export type MarkPlayedResponse = {
 
 /** @internal */
 export namespace MarkPlayedRequest$ {
-    export type Inbound = {
-        key: number;
-    };
-
-    export const inboundSchema: z.ZodType<MarkPlayedRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MarkPlayedRequest, z.ZodTypeDef, unknown> = z
         .object({
             key: z.number(),
         })
@@ -59,13 +55,7 @@ export namespace MarkPlayedRequest$ {
 
 /** @internal */
 export namespace MarkPlayedResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<MarkPlayedResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MarkPlayedResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

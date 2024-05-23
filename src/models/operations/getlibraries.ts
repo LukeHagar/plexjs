@@ -68,12 +68,7 @@ export type GetLibrariesResponse = {
 
 /** @internal */
 export namespace GetLibrariesLocation$ {
-    export type Inbound = {
-        id?: number | undefined;
-        path?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibrariesLocation, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibrariesLocation, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             path: z.string().optional(),
@@ -105,31 +100,7 @@ export namespace GetLibrariesLocation$ {
 
 /** @internal */
 export namespace GetLibrariesDirectory$ {
-    export type Inbound = {
-        allowSync?: boolean | undefined;
-        art?: string | undefined;
-        composite?: string | undefined;
-        filters?: boolean | undefined;
-        refreshing?: boolean | undefined;
-        thumb?: string | undefined;
-        key?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        agent?: string | undefined;
-        scanner?: string | undefined;
-        language?: string | undefined;
-        uuid?: string | undefined;
-        updatedAt?: number | undefined;
-        createdAt?: number | undefined;
-        scannedAt?: number | undefined;
-        content?: boolean | undefined;
-        directory?: boolean | undefined;
-        contentChangedAt?: number | undefined;
-        hidden?: number | undefined;
-        Location?: Array<GetLibrariesLocation$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibrariesDirectory, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibrariesDirectory, z.ZodTypeDef, unknown> = z
         .object({
             allowSync: z.boolean().optional(),
             art: z.string().optional(),
@@ -260,14 +231,7 @@ export namespace GetLibrariesDirectory$ {
 
 /** @internal */
 export namespace GetLibrariesMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        title1?: string | undefined;
-        Directory?: Array<GetLibrariesDirectory$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibrariesMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibrariesMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             allowSync: z.boolean().optional(),
@@ -309,11 +273,7 @@ export namespace GetLibrariesMediaContainer$ {
 
 /** @internal */
 export namespace GetLibrariesResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetLibrariesMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibrariesResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibrariesResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetLibrariesMediaContainer$.inboundSchema).optional(),
         })
@@ -340,14 +300,7 @@ export namespace GetLibrariesResponseBody$ {
 
 /** @internal */
 export namespace GetLibrariesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetLibrariesResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibrariesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibrariesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

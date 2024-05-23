@@ -212,11 +212,7 @@ export type GetMetadataResponse = {
 
 /** @internal */
 export namespace GetMetadataRequest$ {
-    export type Inbound = {
-        ratingKey: number;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataRequest, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.number(),
         })
@@ -243,42 +239,7 @@ export namespace GetMetadataRequest$ {
 
 /** @internal */
 export namespace Stream$ {
-    export type Inbound = {
-        id?: number | undefined;
-        streamType?: number | undefined;
-        default?: boolean | undefined;
-        codec?: string | undefined;
-        index?: number | undefined;
-        bitrate?: number | undefined;
-        bitDepth?: number | undefined;
-        chromaLocation?: string | undefined;
-        chromaSubsampling?: string | undefined;
-        codedHeight?: number | undefined;
-        codedWidth?: number | undefined;
-        colorPrimaries?: string | undefined;
-        colorRange?: string | undefined;
-        colorSpace?: string | undefined;
-        colorTrc?: string | undefined;
-        frameRate?: number | undefined;
-        hasScalingMatrix?: boolean | undefined;
-        height?: number | undefined;
-        level?: number | undefined;
-        profile?: string | undefined;
-        refFrames?: number | undefined;
-        scanType?: string | undefined;
-        streamIdentifier?: string | undefined;
-        width?: number | undefined;
-        displayTitle?: string | undefined;
-        extendedDisplayTitle?: string | undefined;
-        selected?: boolean | undefined;
-        channels?: number | undefined;
-        language?: string | undefined;
-        languageTag?: string | undefined;
-        languageCode?: string | undefined;
-        samplingRate?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Stream, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             streamType: z.number().int().optional(),
@@ -476,21 +437,7 @@ export namespace Stream$ {
 
 /** @internal */
 export namespace GetMetadataPart$ {
-    export type Inbound = {
-        id?: number | undefined;
-        key?: string | undefined;
-        duration?: number | undefined;
-        file?: string | undefined;
-        size?: number | undefined;
-        audioProfile?: string | undefined;
-        container?: string | undefined;
-        has64bitOffsets?: boolean | undefined;
-        optimizedForStreaming?: boolean | undefined;
-        videoProfile?: string | undefined;
-        Stream?: Array<Stream$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataPart, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataPart, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             key: z.string().optional(),
@@ -575,27 +522,7 @@ export namespace GetMetadataPart$ {
 
 /** @internal */
 export namespace GetMetadataMedia$ {
-    export type Inbound = {
-        id?: number | undefined;
-        duration?: number | undefined;
-        bitrate?: number | undefined;
-        width?: number | undefined;
-        height?: number | undefined;
-        aspectRatio?: number | undefined;
-        audioChannels?: number | undefined;
-        audioCodec?: string | undefined;
-        videoCodec?: string | undefined;
-        videoResolution?: string | undefined;
-        container?: string | undefined;
-        videoFrameRate?: string | undefined;
-        optimizedForStreaming?: number | undefined;
-        audioProfile?: string | undefined;
-        has64bitOffsets?: boolean | undefined;
-        videoProfile?: string | undefined;
-        Part?: Array<GetMetadataPart$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataMedia, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataMedia, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             duration: z.number().int().optional(),
@@ -714,13 +641,7 @@ export namespace GetMetadataMedia$ {
 
 /** @internal */
 export namespace GetMetadataGenre$ {
-    export type Inbound = {
-        id?: number | undefined;
-        filter?: string | undefined;
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataGenre, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataGenre, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             filter: z.string().optional(),
@@ -757,13 +678,7 @@ export namespace GetMetadataGenre$ {
 
 /** @internal */
 export namespace GetMetadataCountry$ {
-    export type Inbound = {
-        id?: number | undefined;
-        filter?: string | undefined;
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataCountry, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataCountry, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             filter: z.string().optional(),
@@ -800,11 +715,7 @@ export namespace GetMetadataCountry$ {
 
 /** @internal */
 export namespace Guids$ {
-    export type Inbound = {
-        id?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Guids, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Guids, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string().optional(),
         })
@@ -831,13 +742,7 @@ export namespace Guids$ {
 
 /** @internal */
 export namespace Ratings$ {
-    export type Inbound = {
-        image?: string | undefined;
-        value?: number | undefined;
-        type?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Ratings, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Ratings, z.ZodTypeDef, unknown> = z
         .object({
             image: z.string().optional(),
             value: z.number().optional(),
@@ -874,15 +779,7 @@ export namespace Ratings$ {
 
 /** @internal */
 export namespace GetMetadataDirector$ {
-    export type Inbound = {
-        id?: number | undefined;
-        filter?: string | undefined;
-        tag?: string | undefined;
-        tagKey?: string | undefined;
-        thumb?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataDirector, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataDirector, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             filter: z.string().optional(),
@@ -929,15 +826,7 @@ export namespace GetMetadataDirector$ {
 
 /** @internal */
 export namespace GetMetadataWriter$ {
-    export type Inbound = {
-        id?: number | undefined;
-        filter?: string | undefined;
-        tag?: string | undefined;
-        tagKey?: string | undefined;
-        thumb?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataWriter, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataWriter, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             filter: z.string().optional(),
@@ -984,16 +873,7 @@ export namespace GetMetadataWriter$ {
 
 /** @internal */
 export namespace GetMetadataRole$ {
-    export type Inbound = {
-        id?: number | undefined;
-        filter?: string | undefined;
-        tag?: string | undefined;
-        tagKey?: string | undefined;
-        role?: string | undefined;
-        thumb?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataRole, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataRole, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             filter: z.string().optional(),
@@ -1045,15 +925,7 @@ export namespace GetMetadataRole$ {
 
 /** @internal */
 export namespace Producer$ {
-    export type Inbound = {
-        id?: number | undefined;
-        filter?: string | undefined;
-        tag?: string | undefined;
-        tagKey?: string | undefined;
-        thumb?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Producer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Producer, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             filter: z.string().optional(),
@@ -1100,43 +972,7 @@ export namespace Producer$ {
 
 /** @internal */
 export namespace GetMetadataMetadata$ {
-    export type Inbound = {
-        ratingKey?: string | undefined;
-        key?: string | undefined;
-        guid?: string | undefined;
-        studio?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionKey?: string | undefined;
-        contentRating?: string | undefined;
-        summary?: string | undefined;
-        rating?: number | undefined;
-        audienceRating?: number | undefined;
-        year?: number | undefined;
-        tagline?: string | undefined;
-        thumb?: string | undefined;
-        art?: string | undefined;
-        duration?: number | undefined;
-        originallyAvailableAt?: string | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-        audienceRatingImage?: string | undefined;
-        hasPremiumPrimaryExtra?: string | undefined;
-        ratingImage?: string | undefined;
-        Media?: Array<GetMetadataMedia$.Inbound> | undefined;
-        Genre?: Array<GetMetadataGenre$.Inbound> | undefined;
-        Country?: Array<GetMetadataCountry$.Inbound> | undefined;
-        guids?: Array<Guids$.Inbound> | undefined;
-        ratings?: Array<Ratings$.Inbound> | undefined;
-        Director?: Array<GetMetadataDirector$.Inbound> | undefined;
-        Writer?: Array<GetMetadataWriter$.Inbound> | undefined;
-        Role?: Array<GetMetadataRole$.Inbound> | undefined;
-        Producer?: Array<Producer$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataMetadata, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.string().optional(),
             key: z.string().optional(),
@@ -1353,19 +1189,7 @@ export namespace GetMetadataMetadata$ {
 
 /** @internal */
 export namespace GetMetadataMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        identifier?: string | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionUUID?: string | undefined;
-        mediaTagPrefix?: string | undefined;
-        mediaTagVersion?: number | undefined;
-        Metadata?: Array<GetMetadataMetadata$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             allowSync: z.boolean().optional(),
@@ -1448,11 +1272,7 @@ export namespace GetMetadataMediaContainer$ {
 
 /** @internal */
 export namespace GetMetadataResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetMetadataMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetMetadataMediaContainer$.inboundSchema).optional(),
         })
@@ -1479,14 +1299,7 @@ export namespace GetMetadataResponseBody$ {
 
 /** @internal */
 export namespace GetMetadataResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetMetadataResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

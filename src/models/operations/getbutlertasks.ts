@@ -45,16 +45,7 @@ export type GetButlerTasksResponse = {
 
 /** @internal */
 export namespace ButlerTask$ {
-    export type Inbound = {
-        name?: string | undefined;
-        interval?: number | undefined;
-        scheduleRandomized?: boolean | undefined;
-        enabled?: boolean | undefined;
-        title?: string | undefined;
-        description?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ButlerTask, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ButlerTask, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             interval: z.number().optional(),
@@ -110,11 +101,7 @@ export namespace ButlerTask$ {
 
 /** @internal */
 export namespace ButlerTasks$ {
-    export type Inbound = {
-        ButlerTask?: Array<ButlerTask$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ButlerTasks, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ButlerTasks, z.ZodTypeDef, unknown> = z
         .object({
             ButlerTask: z.array(z.lazy(() => ButlerTask$.inboundSchema)).optional(),
         })
@@ -141,11 +128,7 @@ export namespace ButlerTasks$ {
 
 /** @internal */
 export namespace GetButlerTasksResponseBody$ {
-    export type Inbound = {
-        ButlerTasks?: ButlerTasks$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetButlerTasksResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetButlerTasksResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             ButlerTasks: z.lazy(() => ButlerTasks$.inboundSchema).optional(),
         })
@@ -172,14 +155,7 @@ export namespace GetButlerTasksResponseBody$ {
 
 /** @internal */
 export namespace GetButlerTasksResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetButlerTasksResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetButlerTasksResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetButlerTasksResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

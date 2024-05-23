@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPinResponse](../../models/operations/getpinresponse.md)>**
+**Promise\<[operations.GetPinResponse](../../models/operations/getpinresponse.md)\>**
 ### Errors
 
 | Error Object              | Status Code               | Content Type              |
@@ -91,7 +91,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTokenResponse](../../models/operations/gettokenresponse.md)>**
+**Promise\<[operations.GetTokenResponse](../../models/operations/gettokenresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

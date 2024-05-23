@@ -51,21 +51,7 @@ export type GetAvailableClientsResponse = {
 
 /** @internal */
 export namespace Server$ {
-    export type Inbound = {
-        name?: string | undefined;
-        host?: string | undefined;
-        address?: string | undefined;
-        port?: number | undefined;
-        machineIdentifier?: string | undefined;
-        version?: string | undefined;
-        protocol?: string | undefined;
-        product?: string | undefined;
-        deviceClass?: string | undefined;
-        protocolVersion?: number | undefined;
-        protocolCapabilities?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Server, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Server, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             host: z.string().optional(),
@@ -154,15 +140,10 @@ export namespace Server$ {
 
 /** @internal */
 export namespace GetAvailableClientsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        Server?: Array<Server$.Inbound> | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         GetAvailableClientsMediaContainer,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             size: z.number().optional(),
@@ -199,11 +180,7 @@ export namespace GetAvailableClientsMediaContainer$ {
 
 /** @internal */
 export namespace GetAvailableClientsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetAvailableClientsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetAvailableClientsResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetAvailableClientsResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 MediaContainer: z
@@ -241,14 +218,7 @@ export namespace GetAvailableClientsResponseBody$ {
 
 /** @internal */
 export namespace GetAvailableClientsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetAvailableClientsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetAvailableClientsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetAvailableClientsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

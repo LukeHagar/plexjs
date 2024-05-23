@@ -56,13 +56,7 @@ export class GetGlobalHubsResponseBody extends Error {
 
 /** @internal */
 export namespace GetGlobalHubsErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetGlobalHubsErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetGlobalHubsErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetGlobalHubsErrors$ {
 
 /** @internal */
 export namespace GetGlobalHubsResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetGlobalHubsErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetGlobalHubsResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetGlobalHubsResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetGlobalHubsErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

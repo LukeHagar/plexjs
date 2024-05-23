@@ -56,13 +56,7 @@ export class GetDevicesResponseBody extends Error {
 
 /** @internal */
 export namespace GetDevicesErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetDevicesErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetDevicesErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetDevicesErrors$ {
 
 /** @internal */
 export namespace GetDevicesResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetDevicesErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetDevicesResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetDevicesResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetDevicesErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

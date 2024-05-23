@@ -47,17 +47,16 @@ export type StartTaskResponse = {
 };
 
 /** @internal */
-export const TaskName$: z.ZodNativeEnum<typeof TaskName> = z.nativeEnum(TaskName);
+export namespace TaskName$ {
+    export const inboundSchema = z.nativeEnum(TaskName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace StartTaskRequest$ {
-    export type Inbound = {
-        taskName: TaskName;
-    };
-
-    export const inboundSchema: z.ZodType<StartTaskRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StartTaskRequest, z.ZodTypeDef, unknown> = z
         .object({
-            taskName: TaskName$,
+            taskName: TaskName$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -66,12 +65,12 @@ export namespace StartTaskRequest$ {
         });
 
     export type Outbound = {
-        taskName: TaskName;
+        taskName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StartTaskRequest> = z
         .object({
-            taskName: TaskName$,
+            taskName: TaskName$.outboundSchema,
         })
         .transform((v) => {
             return {
@@ -82,13 +81,7 @@ export namespace StartTaskRequest$ {
 
 /** @internal */
 export namespace StartTaskResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<StartTaskResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StartTaskResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

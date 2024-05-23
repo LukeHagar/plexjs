@@ -56,13 +56,7 @@ export class GetPlaylistResponseBody extends Error {
 
 /** @internal */
 export namespace GetPlaylistErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetPlaylistErrors$ {
 
 /** @internal */
 export namespace GetPlaylistResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetPlaylistErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetPlaylistErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

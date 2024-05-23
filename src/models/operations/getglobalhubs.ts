@@ -91,19 +91,17 @@ export type GetGlobalHubsResponse = {
 };
 
 /** @internal */
-export const OnlyTransient$: z.ZodNativeEnum<typeof OnlyTransient> = z.nativeEnum(OnlyTransient);
+export namespace OnlyTransient$ {
+    export const inboundSchema = z.nativeEnum(OnlyTransient);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace GetGlobalHubsRequest$ {
-    export type Inbound = {
-        count?: number | undefined;
-        onlyTransient?: OnlyTransient | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetGlobalHubsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetGlobalHubsRequest, z.ZodTypeDef, unknown> = z
         .object({
             count: z.number().optional(),
-            onlyTransient: OnlyTransient$.optional(),
+            onlyTransient: OnlyTransient$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -114,13 +112,13 @@ export namespace GetGlobalHubsRequest$ {
 
     export type Outbound = {
         count?: number | undefined;
-        onlyTransient?: OnlyTransient | undefined;
+        onlyTransient?: number | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetGlobalHubsRequest> = z
         .object({
             count: z.number().optional(),
-            onlyTransient: OnlyTransient$.optional(),
+            onlyTransient: OnlyTransient$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -132,27 +130,7 @@ export namespace GetGlobalHubsRequest$ {
 
 /** @internal */
 export namespace GetGlobalHubsMetadata$ {
-    export type Inbound = {
-        ratingKey?: string | undefined;
-        key?: string | undefined;
-        guid?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        titleSort?: string | undefined;
-        summary?: string | undefined;
-        smart?: boolean | undefined;
-        playlistType?: string | undefined;
-        composite?: string | undefined;
-        icon?: string | undefined;
-        viewCount?: number | undefined;
-        lastViewedAt?: number | undefined;
-        duration?: number | undefined;
-        leafCount?: number | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetGlobalHubsMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetGlobalHubsMetadata, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.string().optional(),
             key: z.string().optional(),
@@ -259,21 +237,7 @@ export namespace GetGlobalHubsMetadata$ {
 
 /** @internal */
 export namespace Hub$ {
-    export type Inbound = {
-        hubKey?: string | undefined;
-        key?: string | undefined;
-        title?: string | undefined;
-        type?: string | undefined;
-        hubIdentifier?: string | undefined;
-        context?: string | undefined;
-        size?: number | undefined;
-        more?: boolean | undefined;
-        style?: string | undefined;
-        promoted?: boolean | undefined;
-        Metadata?: Array<GetGlobalHubsMetadata$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Hub, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Hub, z.ZodTypeDef, unknown> = z
         .object({
             hubKey: z.string().optional(),
             key: z.string().optional(),
@@ -350,14 +314,7 @@ export namespace Hub$ {
 
 /** @internal */
 export namespace GetGlobalHubsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        identifier?: string | undefined;
-        Hub?: Array<Hub$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetGlobalHubsMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetGlobalHubsMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             allowSync: z.boolean().optional(),
@@ -399,11 +356,7 @@ export namespace GetGlobalHubsMediaContainer$ {
 
 /** @internal */
 export namespace GetGlobalHubsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetGlobalHubsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetGlobalHubsResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetGlobalHubsResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetGlobalHubsMediaContainer$.inboundSchema).optional(),
         })
@@ -430,14 +383,7 @@ export namespace GetGlobalHubsResponseBody$ {
 
 /** @internal */
 export namespace GetGlobalHubsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetGlobalHubsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetGlobalHubsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetGlobalHubsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

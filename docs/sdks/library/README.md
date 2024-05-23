@@ -13,6 +13,7 @@ API Calls interacting with Plex Media Server Libraries
 * [getLibraries](#getlibraries) - Get All Libraries
 * [getLibrary](#getlibrary) - Get Library Details
 * [deleteLibrary](#deletelibrary) - Delete Library Section
+* [getLibraryItems](#getlibraryitems) - Get Library Items
 * [refreshLibrary](#refreshlibrary) - Refresh Library
 * [searchLibrary](#searchlibrary) - Search Library
 * [getMetadata](#getmetadata) - Get Items Metadata
@@ -55,7 +56,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetFileHashResponse](../../models/operations/getfilehashresponse.md)>**
+**Promise\<[operations.GetFileHashResponse](../../models/operations/getfilehashresponse.md)\>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -98,7 +99,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetRecentlyAddedResponse](../../models/operations/getrecentlyaddedresponse.md)>**
+**Promise\<[operations.GetRecentlyAddedResponse](../../models/operations/getrecentlyaddedresponse.md)\>**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
@@ -146,7 +147,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetLibrariesResponse](../../models/operations/getlibrariesresponse.md)>**
+**Promise\<[operations.GetLibrariesResponse](../../models/operations/getlibrariesresponse.md)\>**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
@@ -230,7 +231,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetLibraryResponse](../../models/operations/getlibraryresponse.md)>**
+**Promise\<[operations.GetLibraryResponse](../../models/operations/getlibraryresponse.md)\>**
 ### Errors
 
 | Error Object                  | Status Code                   | Content Type                  |
@@ -273,13 +274,78 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteLibraryResponse](../../models/operations/deletelibraryresponse.md)>**
+**Promise\<[operations.DeleteLibraryResponse](../../models/operations/deletelibraryresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | errors.DeleteLibraryResponseBody | 401                              | application/json                 |
 | errors.SDKError                  | 4xx-5xx                          | */*                              |
+
+## getLibraryItems
+
+Fetches details from a specific section of the library identified by a section key and a tag. The tag parameter accepts the following values:
+- `all`: All items in the section.
+- `unwatched`: Items that have not been played.
+- `newest`: Items that are recently released.
+- `recentlyAdded`: Items that are recently added to the library.
+- `recentlyViewed`: Items that were recently viewed.
+- `onDeck`: Items to continue watching.
+- `collection`: Items categorized by collection.
+- `edition`: Items categorized by edition.
+- `genre`: Items categorized by genre.
+- `year`: Items categorized by year of release.
+- `decade`: Items categorized by decade.
+- `director`: Items categorized by director.
+- `actor`: Items categorized by starring actor.
+- `country`: Items categorized by country of origin.
+- `contentRating`: Items categorized by content rating.
+- `rating`: Items categorized by rating.
+- `resolution`: Items categorized by resolution.
+- `firstCharacter`: Items categorized by the first letter.
+- `folder`: Items categorized by folder.
+
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Tag } from "@lukehagar/plexjs/models/operations";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const result = await plexAPI.library.getLibraryItems(1, Tag.Genre);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 | [object Object]                                                                                                                                                                |
+| `tag`                                                                                                                                                                          | [operations.Tag](../../models/operations/tag.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                             | A key representing a specific tag within the section.                                                                                                                          |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise\<[operations.GetLibraryItemsResponse](../../models/operations/getlibraryitemsresponse.md)\>**
+### Errors
+
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetLibraryItemsResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## refreshLibrary
 
@@ -317,7 +383,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RefreshLibraryResponse](../../models/operations/refreshlibraryresponse.md)>**
+**Promise\<[operations.RefreshLibraryResponse](../../models/operations/refreshlibraryresponse.md)\>**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -380,12 +446,13 @@ run();
 
 ### Response
 
-**Promise<[operations.SearchLibraryResponse](../../models/operations/searchlibraryresponse.md)>**
+**Promise\<[operations.SearchLibraryResponse](../../models/operations/searchlibraryresponse.md)\>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| errors.SearchLibraryResponseBody | 401                              | application/json                 |
+| errors.SDKError                  | 4xx-5xx                          | */*                              |
 
 ## getMetadata
 
@@ -423,7 +490,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetMetadataResponse](../../models/operations/getmetadataresponse.md)>**
+**Promise\<[operations.GetMetadataResponse](../../models/operations/getmetadataresponse.md)\>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -467,7 +534,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetMetadataChildrenResponse](../../models/operations/getmetadatachildrenresponse.md)>**
+**Promise\<[operations.GetMetadataChildrenResponse](../../models/operations/getmetadatachildrenresponse.md)\>**
 ### Errors
 
 | Error Object                           | Status Code                            | Content Type                           |
@@ -510,7 +577,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetOnDeckResponse](../../models/operations/getondeckresponse.md)>**
+**Promise\<[operations.GetOnDeckResponse](../../models/operations/getondeckresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |

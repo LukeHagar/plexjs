@@ -56,13 +56,7 @@ export class MarkUnplayedResponseBody extends Error {
 
 /** @internal */
 export namespace MarkUnplayedErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<MarkUnplayedErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MarkUnplayedErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace MarkUnplayedErrors$ {
 
 /** @internal */
 export namespace MarkUnplayedResponseBody$ {
-    export type Inbound = {
-        errors?: Array<MarkUnplayedErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<MarkUnplayedResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MarkUnplayedResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => MarkUnplayedErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

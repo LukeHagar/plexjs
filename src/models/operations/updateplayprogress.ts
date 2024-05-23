@@ -36,13 +36,7 @@ export type UpdatePlayProgressResponse = {
 
 /** @internal */
 export namespace UpdatePlayProgressRequest$ {
-    export type Inbound = {
-        key: string;
-        time: number;
-        state: string;
-    };
-
-    export const inboundSchema: z.ZodType<UpdatePlayProgressRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdatePlayProgressRequest, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string(),
             time: z.number(),
@@ -79,13 +73,7 @@ export namespace UpdatePlayProgressRequest$ {
 
 /** @internal */
 export namespace UpdatePlayProgressResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<UpdatePlayProgressResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdatePlayProgressResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

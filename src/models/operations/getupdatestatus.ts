@@ -50,16 +50,7 @@ export type GetUpdateStatusResponse = {
 
 /** @internal */
 export namespace Release$ {
-    export type Inbound = {
-        key?: string | undefined;
-        version?: string | undefined;
-        added?: string | undefined;
-        fixed?: string | undefined;
-        downloadURL?: string | undefined;
-        state?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Release, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Release, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             version: z.string().optional(),
@@ -111,16 +102,7 @@ export namespace Release$ {
 
 /** @internal */
 export namespace GetUpdateStatusMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        canInstall?: boolean | undefined;
-        checkedAt?: number | undefined;
-        downloadURL?: string | undefined;
-        status?: number | undefined;
-        Release?: Array<Release$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetUpdateStatusMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetUpdateStatusMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             canInstall: z.boolean().optional(),
@@ -173,11 +155,7 @@ export namespace GetUpdateStatusMediaContainer$ {
 
 /** @internal */
 export namespace GetUpdateStatusResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetUpdateStatusMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetUpdateStatusResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetUpdateStatusResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetUpdateStatusMediaContainer$.inboundSchema).optional(),
         })
@@ -204,14 +182,7 @@ export namespace GetUpdateStatusResponseBody$ {
 
 /** @internal */
 export namespace GetUpdateStatusResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetUpdateStatusResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetUpdateStatusResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetUpdateStatusResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

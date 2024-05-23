@@ -51,7 +51,7 @@ run();
 
 ### Response
 
-**Promise<[operations.LogLineResponse](../../models/operations/loglineresponse.md)>**
+**Promise\<[operations.LogLineResponse](../../models/operations/loglineresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -117,7 +117,7 @@ run();
 
 ### Response
 
-**Promise<[operations.LogMultiLineResponse](../../models/operations/logmultilineresponse.md)>**
+**Promise\<[operations.LogMultiLineResponse](../../models/operations/logmultilineresponse.md)\>**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
@@ -160,7 +160,7 @@ run();
 
 ### Response
 
-**Promise<[operations.EnablePaperTrailResponse](../../models/operations/enablepapertrailresponse.md)>**
+**Promise\<[operations.EnablePaperTrailResponse](../../models/operations/enablepapertrailresponse.md)\>**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |

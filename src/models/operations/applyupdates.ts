@@ -47,22 +47,23 @@ export type ApplyUpdatesResponse = {
 };
 
 /** @internal */
-export const Tonight$: z.ZodNativeEnum<typeof Tonight> = z.nativeEnum(Tonight);
+export namespace Tonight$ {
+    export const inboundSchema = z.nativeEnum(Tonight);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Skip$: z.ZodNativeEnum<typeof Skip> = z.nativeEnum(Skip);
+export namespace Skip$ {
+    export const inboundSchema = z.nativeEnum(Skip);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ApplyUpdatesRequest$ {
-    export type Inbound = {
-        tonight?: Tonight | undefined;
-        skip?: Skip | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ApplyUpdatesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ApplyUpdatesRequest, z.ZodTypeDef, unknown> = z
         .object({
-            tonight: Tonight$.optional(),
-            skip: Skip$.optional(),
+            tonight: Tonight$.inboundSchema.optional(),
+            skip: Skip$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -72,14 +73,14 @@ export namespace ApplyUpdatesRequest$ {
         });
 
     export type Outbound = {
-        tonight?: Tonight | undefined;
-        skip?: Skip | undefined;
+        tonight?: number | undefined;
+        skip?: number | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ApplyUpdatesRequest> = z
         .object({
-            tonight: Tonight$.optional(),
-            skip: Skip$.optional(),
+            tonight: Tonight$.outboundSchema.optional(),
+            skip: Skip$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -91,13 +92,7 @@ export namespace ApplyUpdatesRequest$ {
 
 /** @internal */
 export namespace ApplyUpdatesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ApplyUpdatesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ApplyUpdatesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

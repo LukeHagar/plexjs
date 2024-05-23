@@ -28,11 +28,7 @@ export type RefreshLibraryResponse = {
 
 /** @internal */
 export namespace RefreshLibraryRequest$ {
-    export type Inbound = {
-        sectionId: number;
-    };
-
-    export const inboundSchema: z.ZodType<RefreshLibraryRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RefreshLibraryRequest, z.ZodTypeDef, unknown> = z
         .object({
             sectionId: z.number(),
         })
@@ -59,13 +55,7 @@ export namespace RefreshLibraryRequest$ {
 
 /** @internal */
 export namespace RefreshLibraryResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<RefreshLibraryResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RefreshLibraryResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

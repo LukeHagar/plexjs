@@ -67,31 +67,27 @@ export type GetResizedPhotoResponse = {
 };
 
 /** @internal */
-export const MinSize$: z.ZodNativeEnum<typeof MinSize> = z.nativeEnum(MinSize);
+export namespace MinSize$ {
+    export const inboundSchema = z.nativeEnum(MinSize);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Upscale$: z.ZodNativeEnum<typeof Upscale> = z.nativeEnum(Upscale);
+export namespace Upscale$ {
+    export const inboundSchema = z.nativeEnum(Upscale);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace GetResizedPhotoRequest$ {
-    export type Inbound = {
-        width: number;
-        height: number;
-        opacity?: number | undefined;
-        blur: number;
-        minSize: MinSize;
-        upscale: Upscale;
-        url: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetResizedPhotoRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetResizedPhotoRequest, z.ZodTypeDef, unknown> = z
         .object({
             width: z.number(),
             height: z.number(),
             opacity: z.number().int().default(100),
             blur: z.number(),
-            minSize: MinSize$,
-            upscale: Upscale$,
+            minSize: MinSize$.inboundSchema,
+            upscale: Upscale$.inboundSchema,
             url: z.string(),
         })
         .transform((v) => {
@@ -111,8 +107,8 @@ export namespace GetResizedPhotoRequest$ {
         height: number;
         opacity: number;
         blur: number;
-        minSize: MinSize;
-        upscale: Upscale;
+        minSize: number;
+        upscale: number;
         url: string;
     };
 
@@ -122,8 +118,8 @@ export namespace GetResizedPhotoRequest$ {
             height: z.number(),
             opacity: z.number().int().default(100),
             blur: z.number(),
-            minSize: MinSize$,
-            upscale: Upscale$,
+            minSize: MinSize$.outboundSchema,
+            upscale: Upscale$.outboundSchema,
             url: z.string(),
         })
         .transform((v) => {
@@ -141,13 +137,7 @@ export namespace GetResizedPhotoRequest$ {
 
 /** @internal */
 export namespace GetResizedPhotoResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetResizedPhotoResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetResizedPhotoResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

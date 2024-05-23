@@ -47,18 +47,16 @@ export type StopTaskResponse = {
 };
 
 /** @internal */
-export const PathParamTaskName$: z.ZodNativeEnum<typeof PathParamTaskName> =
-    z.nativeEnum(PathParamTaskName);
+export namespace PathParamTaskName$ {
+    export const inboundSchema = z.nativeEnum(PathParamTaskName);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace StopTaskRequest$ {
-    export type Inbound = {
-        taskName: PathParamTaskName;
-    };
-
-    export const inboundSchema: z.ZodType<StopTaskRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StopTaskRequest, z.ZodTypeDef, unknown> = z
         .object({
-            taskName: PathParamTaskName$,
+            taskName: PathParamTaskName$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -67,12 +65,12 @@ export namespace StopTaskRequest$ {
         });
 
     export type Outbound = {
-        taskName: PathParamTaskName;
+        taskName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StopTaskRequest> = z
         .object({
-            taskName: PathParamTaskName$,
+            taskName: PathParamTaskName$.outboundSchema,
         })
         .transform((v) => {
             return {
@@ -83,13 +81,7 @@ export namespace StopTaskRequest$ {
 
 /** @internal */
 export namespace StopTaskResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<StopTaskResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StopTaskResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

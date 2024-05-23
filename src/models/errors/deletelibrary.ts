@@ -56,13 +56,7 @@ export class DeleteLibraryResponseBody extends Error {
 
 /** @internal */
 export namespace DeleteLibraryErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteLibraryErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteLibraryErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace DeleteLibraryErrors$ {
 
 /** @internal */
 export namespace DeleteLibraryResponseBody$ {
-    export type Inbound = {
-        errors?: Array<DeleteLibraryErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteLibraryResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteLibraryResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => DeleteLibraryErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

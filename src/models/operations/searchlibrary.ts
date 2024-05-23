@@ -91,19 +91,17 @@ export type SearchLibraryResponse = {
 };
 
 /** @internal */
-export const Type$: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
+export namespace Type$ {
+    export const inboundSchema = z.nativeEnum(Type);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace SearchLibraryRequest$ {
-    export type Inbound = {
-        sectionId: number;
-        type: Type;
-    };
-
-    export const inboundSchema: z.ZodType<SearchLibraryRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SearchLibraryRequest, z.ZodTypeDef, unknown> = z
         .object({
             sectionId: z.number().int(),
-            type: Type$,
+            type: Type$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -114,13 +112,13 @@ export namespace SearchLibraryRequest$ {
 
     export type Outbound = {
         sectionId: number;
-        type: Type;
+        type: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, SearchLibraryRequest> = z
         .object({
             sectionId: z.number().int(),
-            type: Type$,
+            type: Type$.outboundSchema,
         })
         .transform((v) => {
             return {
@@ -132,30 +130,7 @@ export namespace SearchLibraryRequest$ {
 
 /** @internal */
 export namespace SearchLibraryMetadata$ {
-    export type Inbound = {
-        ratingKey?: string | undefined;
-        key?: string | undefined;
-        parentRatingKey?: string | undefined;
-        guid?: string | undefined;
-        parentGuid?: string | undefined;
-        parentStudio?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        parentKey?: string | undefined;
-        parentTitle?: string | undefined;
-        summary?: string | undefined;
-        index?: number | undefined;
-        parentIndex?: number | undefined;
-        parentYear?: number | undefined;
-        thumb?: string | undefined;
-        art?: string | undefined;
-        parentThumb?: string | undefined;
-        parentTheme?: string | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<SearchLibraryMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SearchLibraryMetadata, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.string().optional(),
             key: z.string().optional(),
@@ -281,23 +256,7 @@ export namespace SearchLibraryMetadata$ {
 
 /** @internal */
 export namespace SearchLibraryMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        art?: string | undefined;
-        identifier?: string | undefined;
-        mediaTagPrefix?: string | undefined;
-        mediaTagVersion?: number | undefined;
-        nocache?: boolean | undefined;
-        thumb?: string | undefined;
-        title1?: string | undefined;
-        title2?: string | undefined;
-        viewGroup?: string | undefined;
-        viewMode?: number | undefined;
-        Metadata?: Array<SearchLibraryMetadata$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<SearchLibraryMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SearchLibraryMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             allowSync: z.boolean().optional(),
@@ -388,11 +347,7 @@ export namespace SearchLibraryMediaContainer$ {
 
 /** @internal */
 export namespace SearchLibraryResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: SearchLibraryMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<SearchLibraryResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SearchLibraryResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => SearchLibraryMediaContainer$.inboundSchema).optional(),
         })
@@ -419,14 +374,7 @@ export namespace SearchLibraryResponseBody$ {
 
 /** @internal */
 export namespace SearchLibraryResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: SearchLibraryResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<SearchLibraryResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SearchLibraryResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

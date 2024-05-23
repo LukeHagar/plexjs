@@ -62,11 +62,7 @@ export type GetPlaylistResponse = {
 
 /** @internal */
 export namespace GetPlaylistRequest$ {
-    export type Inbound = {
-        playlistID: number;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistRequest, z.ZodTypeDef, unknown> = z
         .object({
             playlistID: z.number(),
         })
@@ -93,25 +89,7 @@ export namespace GetPlaylistRequest$ {
 
 /** @internal */
 export namespace GetPlaylistMetadata$ {
-    export type Inbound = {
-        content?: string | undefined;
-        ratingKey?: string | undefined;
-        key?: string | undefined;
-        guid?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        summary?: string | undefined;
-        smart?: boolean | undefined;
-        playlistType?: string | undefined;
-        composite?: string | undefined;
-        icon?: string | undefined;
-        duration?: number | undefined;
-        leafCount?: number | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistMetadata, z.ZodTypeDef, unknown> = z
         .object({
             content: z.string().optional(),
             ratingKey: z.string().optional(),
@@ -208,12 +186,7 @@ export namespace GetPlaylistMetadata$ {
 
 /** @internal */
 export namespace GetPlaylistMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        Metadata?: Array<GetPlaylistMetadata$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             Metadata: z.array(z.lazy(() => GetPlaylistMetadata$.inboundSchema)).optional(),
@@ -245,11 +218,7 @@ export namespace GetPlaylistMediaContainer$ {
 
 /** @internal */
 export namespace GetPlaylistResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetPlaylistMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetPlaylistMediaContainer$.inboundSchema).optional(),
         })
@@ -276,14 +245,7 @@ export namespace GetPlaylistResponseBody$ {
 
 /** @internal */
 export namespace GetPlaylistResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetPlaylistResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetPlaylistResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPlaylistResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

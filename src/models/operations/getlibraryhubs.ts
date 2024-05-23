@@ -170,22 +170,18 @@ export type GetLibraryHubsResponse = {
 };
 
 /** @internal */
-export const QueryParamOnlyTransient$: z.ZodNativeEnum<typeof QueryParamOnlyTransient> =
-    z.nativeEnum(QueryParamOnlyTransient);
+export namespace QueryParamOnlyTransient$ {
+    export const inboundSchema = z.nativeEnum(QueryParamOnlyTransient);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace GetLibraryHubsRequest$ {
-    export type Inbound = {
-        sectionId: number;
-        count?: number | undefined;
-        onlyTransient?: QueryParamOnlyTransient | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsRequest, z.ZodTypeDef, unknown> = z
         .object({
             sectionId: z.number(),
             count: z.number().optional(),
-            onlyTransient: QueryParamOnlyTransient$.optional(),
+            onlyTransient: QueryParamOnlyTransient$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -198,14 +194,14 @@ export namespace GetLibraryHubsRequest$ {
     export type Outbound = {
         sectionId: number;
         count?: number | undefined;
-        onlyTransient?: QueryParamOnlyTransient | undefined;
+        onlyTransient?: number | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibraryHubsRequest> = z
         .object({
             sectionId: z.number(),
             count: z.number().optional(),
-            onlyTransient: QueryParamOnlyTransient$.optional(),
+            onlyTransient: QueryParamOnlyTransient$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -218,20 +214,7 @@ export namespace GetLibraryHubsRequest$ {
 
 /** @internal */
 export namespace GetLibraryHubsPart$ {
-    export type Inbound = {
-        id?: number | undefined;
-        key?: string | undefined;
-        duration?: number | undefined;
-        file?: string | undefined;
-        size?: number | undefined;
-        audioProfile?: string | undefined;
-        container?: string | undefined;
-        has64bitOffsets?: boolean | undefined;
-        optimizedForStreaming?: boolean | undefined;
-        videoProfile?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsPart, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsPart, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             key: z.string().optional(),
@@ -311,27 +294,7 @@ export namespace GetLibraryHubsPart$ {
 
 /** @internal */
 export namespace GetLibraryHubsMedia$ {
-    export type Inbound = {
-        id?: number | undefined;
-        duration?: number | undefined;
-        bitrate?: number | undefined;
-        width?: number | undefined;
-        height?: number | undefined;
-        aspectRatio?: number | undefined;
-        audioChannels?: number | undefined;
-        audioCodec?: string | undefined;
-        videoCodec?: string | undefined;
-        videoResolution?: string | undefined;
-        container?: string | undefined;
-        videoFrameRate?: string | undefined;
-        optimizedForStreaming?: number | undefined;
-        audioProfile?: string | undefined;
-        has64bitOffsets?: boolean | undefined;
-        videoProfile?: string | undefined;
-        Part?: Array<GetLibraryHubsPart$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsMedia, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsMedia, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int().optional(),
             duration: z.number().int().optional(),
@@ -450,11 +413,7 @@ export namespace GetLibraryHubsMedia$ {
 
 /** @internal */
 export namespace GetLibraryHubsGenre$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsGenre, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsGenre, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -481,11 +440,7 @@ export namespace GetLibraryHubsGenre$ {
 
 /** @internal */
 export namespace GetLibraryHubsCountry$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsCountry, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsCountry, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -512,11 +467,7 @@ export namespace GetLibraryHubsCountry$ {
 
 /** @internal */
 export namespace GetLibraryHubsDirector$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsDirector, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsDirector, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -543,11 +494,7 @@ export namespace GetLibraryHubsDirector$ {
 
 /** @internal */
 export namespace GetLibraryHubsRole$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsRole, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsRole, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -574,11 +521,7 @@ export namespace GetLibraryHubsRole$ {
 
 /** @internal */
 export namespace GetLibraryHubsWriter$ {
-    export type Inbound = {
-        tag?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsWriter, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsWriter, z.ZodTypeDef, unknown> = z
         .object({
             tag: z.string().optional(),
         })
@@ -605,44 +548,7 @@ export namespace GetLibraryHubsWriter$ {
 
 /** @internal */
 export namespace GetLibraryHubsMetadata$ {
-    export type Inbound = {
-        ratingKey?: string | undefined;
-        key?: string | undefined;
-        guid?: string | undefined;
-        studio?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionKey?: string | undefined;
-        contentRating?: string | undefined;
-        summary?: string | undefined;
-        rating?: number | undefined;
-        audienceRating?: number | undefined;
-        viewCount?: number | undefined;
-        lastViewedAt?: number | undefined;
-        year?: number | undefined;
-        tagline?: string | undefined;
-        thumb?: string | undefined;
-        art?: string | undefined;
-        duration?: number | undefined;
-        originallyAvailableAt?: string | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-        audienceRatingImage?: string | undefined;
-        primaryExtraKey?: string | undefined;
-        ratingImage?: string | undefined;
-        Media?: Array<GetLibraryHubsMedia$.Inbound> | undefined;
-        Genre?: Array<GetLibraryHubsGenre$.Inbound> | undefined;
-        Country?: Array<GetLibraryHubsCountry$.Inbound> | undefined;
-        Director?: Array<GetLibraryHubsDirector$.Inbound> | undefined;
-        Role?: Array<GetLibraryHubsRole$.Inbound> | undefined;
-        Writer?: Array<GetLibraryHubsWriter$.Inbound> | undefined;
-        skipCount?: number | undefined;
-        chapterSource?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsMetadata, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.string().optional(),
             key: z.string().optional(),
@@ -864,22 +770,7 @@ export namespace GetLibraryHubsMetadata$ {
 
 /** @internal */
 export namespace GetLibraryHubsHub$ {
-    export type Inbound = {
-        key?: string | undefined;
-        title?: string | undefined;
-        type?: string | undefined;
-        hubIdentifier?: string | undefined;
-        context?: string | undefined;
-        size?: number | undefined;
-        more?: boolean | undefined;
-        style?: string | undefined;
-        hubKey?: string | undefined;
-        Metadata?: Array<GetLibraryHubsMetadata$.Inbound> | undefined;
-        promoted?: boolean | undefined;
-        random?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsHub, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsHub, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             title: z.string().optional(),
@@ -961,17 +852,7 @@ export namespace GetLibraryHubsHub$ {
 
 /** @internal */
 export namespace GetLibraryHubsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        identifier?: string | undefined;
-        librarySectionID?: number | undefined;
-        librarySectionTitle?: string | undefined;
-        librarySectionUUID?: string | undefined;
-        Hub?: Array<GetLibraryHubsHub$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             allowSync: z.boolean().optional(),
@@ -1040,11 +921,7 @@ export namespace GetLibraryHubsMediaContainer$ {
 
 /** @internal */
 export namespace GetLibraryHubsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetLibraryHubsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetLibraryHubsMediaContainer$.inboundSchema).optional(),
         })
@@ -1071,14 +948,7 @@ export namespace GetLibraryHubsResponseBody$ {
 
 /** @internal */
 export namespace GetLibraryHubsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetLibraryHubsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryHubsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryHubsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

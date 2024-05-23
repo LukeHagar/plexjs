@@ -56,13 +56,7 @@ export class GetButlerTasksResponseBody extends Error {
 
 /** @internal */
 export namespace GetButlerTasksErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetButlerTasksErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetButlerTasksErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetButlerTasksErrors$ {
 
 /** @internal */
 export namespace GetButlerTasksResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetButlerTasksErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetButlerTasksResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetButlerTasksResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetButlerTasksErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

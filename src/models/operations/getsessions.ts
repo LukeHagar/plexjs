@@ -154,30 +154,7 @@ export type GetSessionsResponse = {
 
 /** @internal */
 export namespace GetSessionsStream$ {
-    export type Inbound = {
-        albumGain?: string | undefined;
-        albumPeak?: string | undefined;
-        albumRange?: string | undefined;
-        audioChannelLayout?: string | undefined;
-        bitDepth?: number | undefined;
-        bitrate?: number | undefined;
-        channels?: number | undefined;
-        codec?: string | undefined;
-        displayTitle?: string | undefined;
-        extendedDisplayTitle?: string | undefined;
-        gain?: string | undefined;
-        id?: string | undefined;
-        index?: number | undefined;
-        loudness?: string | undefined;
-        lra?: string | undefined;
-        peak?: string | undefined;
-        samplingRate?: number | undefined;
-        selected?: boolean | undefined;
-        streamType?: number | undefined;
-        location?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsStream, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsStream, z.ZodTypeDef, unknown> = z
         .object({
             albumGain: z.string().optional(),
             albumPeak: z.string().optional(),
@@ -307,20 +284,7 @@ export namespace GetSessionsStream$ {
 
 /** @internal */
 export namespace GetSessionsPart$ {
-    export type Inbound = {
-        container?: string | undefined;
-        duration?: number | undefined;
-        file?: string | undefined;
-        hasThumbnail?: string | undefined;
-        id?: string | undefined;
-        key?: string | undefined;
-        size?: number | undefined;
-        decision?: string | undefined;
-        selected?: boolean | undefined;
-        Stream?: Array<GetSessionsStream$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsPart, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsPart, z.ZodTypeDef, unknown> = z
         .object({
             container: z.string().optional(),
             duration: z.number().int().optional(),
@@ -392,18 +356,7 @@ export namespace GetSessionsPart$ {
 
 /** @internal */
 export namespace GetSessionsMedia$ {
-    export type Inbound = {
-        audioChannels?: number | undefined;
-        audioCodec?: string | undefined;
-        bitrate?: number | undefined;
-        container?: string | undefined;
-        duration?: number | undefined;
-        id?: string | undefined;
-        selected?: boolean | undefined;
-        Part?: Array<GetSessionsPart$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsMedia, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsMedia, z.ZodTypeDef, unknown> = z
         .object({
             audioChannels: z.number().int().optional(),
             audioCodec: z.string().optional(),
@@ -465,13 +418,7 @@ export namespace GetSessionsMedia$ {
 
 /** @internal */
 export namespace User$ {
-    export type Inbound = {
-        id?: string | undefined;
-        thumb?: string | undefined;
-        title?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string().optional(),
             thumb: z.string().optional(),
@@ -508,25 +455,7 @@ export namespace User$ {
 
 /** @internal */
 export namespace Player$ {
-    export type Inbound = {
-        address?: string | undefined;
-        machineIdentifier?: string | undefined;
-        model?: string | undefined;
-        platform?: string | undefined;
-        platformVersion?: string | undefined;
-        product?: string | undefined;
-        profile?: string | undefined;
-        remotePublicAddress?: string | undefined;
-        state?: string | undefined;
-        title?: string | undefined;
-        version?: string | undefined;
-        local?: boolean | undefined;
-        relayed?: boolean | undefined;
-        secure?: boolean | undefined;
-        userID?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Player, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Player, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string().optional(),
             machineIdentifier: z.string().optional(),
@@ -635,13 +564,7 @@ export namespace Player$ {
 
 /** @internal */
 export namespace Session$ {
-    export type Inbound = {
-        id?: string | undefined;
-        bandwidth?: number | undefined;
-        location?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Session, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Session, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string().optional(),
             bandwidth: z.number().int().optional(),
@@ -678,47 +601,7 @@ export namespace Session$ {
 
 /** @internal */
 export namespace GetSessionsMetadata$ {
-    export type Inbound = {
-        addedAt?: number | undefined;
-        art?: string | undefined;
-        duration?: number | undefined;
-        grandparentArt?: string | undefined;
-        grandparentGuid?: string | undefined;
-        grandparentKey?: string | undefined;
-        grandparentRatingKey?: string | undefined;
-        grandparentThumb?: string | undefined;
-        grandparentTitle?: string | undefined;
-        guid?: string | undefined;
-        index?: number | undefined;
-        key?: string | undefined;
-        librarySectionID?: string | undefined;
-        librarySectionKey?: string | undefined;
-        librarySectionTitle?: string | undefined;
-        musicAnalysisVersion?: string | undefined;
-        parentGuid?: string | undefined;
-        parentIndex?: number | undefined;
-        parentKey?: string | undefined;
-        parentRatingKey?: string | undefined;
-        parentStudio?: string | undefined;
-        parentThumb?: string | undefined;
-        parentTitle?: string | undefined;
-        parentYear?: number | undefined;
-        ratingCount?: number | undefined;
-        ratingKey?: string | undefined;
-        sessionKey?: string | undefined;
-        thumb?: string | undefined;
-        title?: string | undefined;
-        titleSort?: string | undefined;
-        type?: string | undefined;
-        updatedAt?: number | undefined;
-        viewOffset?: number | undefined;
-        Media?: Array<GetSessionsMedia$.Inbound> | undefined;
-        User?: User$.Inbound | undefined;
-        Player?: Player$.Inbound | undefined;
-        Session?: Session$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsMetadata, z.ZodTypeDef, unknown> = z
         .object({
             addedAt: z.number().int().optional(),
             art: z.string().optional(),
@@ -961,12 +844,7 @@ export namespace GetSessionsMetadata$ {
 
 /** @internal */
 export namespace GetSessionsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        Metadata?: Array<GetSessionsMetadata$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             Metadata: z.array(z.lazy(() => GetSessionsMetadata$.inboundSchema)).optional(),
@@ -998,11 +876,7 @@ export namespace GetSessionsMediaContainer$ {
 
 /** @internal */
 export namespace GetSessionsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetSessionsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetSessionsMediaContainer$.inboundSchema).optional(),
         })
@@ -1029,14 +903,7 @@ export namespace GetSessionsResponseBody$ {
 
 /** @internal */
 export namespace GetSessionsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetSessionsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

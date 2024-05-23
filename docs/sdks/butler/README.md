@@ -48,7 +48,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetButlerTasksResponse](../../models/operations/getbutlertasksresponse.md)>**
+**Promise\<[operations.GetButlerTasksResponse](../../models/operations/getbutlertasksresponse.md)\>**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -95,7 +95,7 @@ run();
 
 ### Response
 
-**Promise<[operations.StartAllTasksResponse](../../models/operations/startalltasksresponse.md)>**
+**Promise\<[operations.StartAllTasksResponse](../../models/operations/startalltasksresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
@@ -138,7 +138,7 @@ run();
 
 ### Response
 
-**Promise<[operations.StopAllTasksResponse](../../models/operations/stopalltasksresponse.md)>**
+**Promise\<[operations.StopAllTasksResponse](../../models/operations/stopalltasksresponse.md)\>**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
@@ -187,7 +187,7 @@ run();
 
 ### Response
 
-**Promise<[operations.StartTaskResponse](../../models/operations/starttaskresponse.md)>**
+**Promise\<[operations.StartTaskResponse](../../models/operations/starttaskresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -232,7 +232,7 @@ run();
 
 ### Response
 
-**Promise<[operations.StopTaskResponse](../../models/operations/stoptaskresponse.md)>**
+**Promise\<[operations.StopTaskResponse](../../models/operations/stoptaskresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

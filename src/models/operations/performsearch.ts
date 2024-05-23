@@ -36,13 +36,7 @@ export type PerformSearchResponse = {
 
 /** @internal */
 export namespace PerformSearchRequest$ {
-    export type Inbound = {
-        query: string;
-        sectionId?: number | undefined;
-        limit?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PerformSearchRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PerformSearchRequest, z.ZodTypeDef, unknown> = z
         .object({
             query: z.string(),
             sectionId: z.number().optional(),
@@ -79,13 +73,7 @@ export namespace PerformSearchRequest$ {
 
 /** @internal */
 export namespace PerformSearchResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<PerformSearchResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PerformSearchResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

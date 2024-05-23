@@ -70,13 +70,7 @@ export type AddPlaylistContentsResponse = {
 
 /** @internal */
 export namespace AddPlaylistContentsRequest$ {
-    export type Inbound = {
-        playlistID: number;
-        uri: string;
-        playQueueID?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddPlaylistContentsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddPlaylistContentsRequest, z.ZodTypeDef, unknown> = z
         .object({
             playlistID: z.number(),
             uri: z.string(),
@@ -113,23 +107,7 @@ export namespace AddPlaylistContentsRequest$ {
 
 /** @internal */
 export namespace AddPlaylistContentsMetadata$ {
-    export type Inbound = {
-        ratingKey?: string | undefined;
-        key?: string | undefined;
-        guid?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        summary?: string | undefined;
-        smart?: boolean | undefined;
-        playlistType?: string | undefined;
-        composite?: string | undefined;
-        duration?: number | undefined;
-        leafCount?: number | undefined;
-        addedAt?: number | undefined;
-        updatedAt?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddPlaylistContentsMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddPlaylistContentsMetadata, z.ZodTypeDef, unknown> = z
         .object({
             ratingKey: z.string().optional(),
             key: z.string().optional(),
@@ -216,17 +194,10 @@ export namespace AddPlaylistContentsMetadata$ {
 
 /** @internal */
 export namespace AddPlaylistContentsMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        leafCountAdded?: number | undefined;
-        leafCountRequested?: number | undefined;
-        Metadata?: Array<AddPlaylistContentsMetadata$.Inbound> | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         AddPlaylistContentsMediaContainer,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             size: z.number().int().optional(),
@@ -277,11 +248,7 @@ export namespace AddPlaylistContentsMediaContainer$ {
 
 /** @internal */
 export namespace AddPlaylistContentsResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: AddPlaylistContentsMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddPlaylistContentsResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<AddPlaylistContentsResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 MediaContainer: z
@@ -319,14 +286,7 @@ export namespace AddPlaylistContentsResponseBody$ {
 
 /** @internal */
 export namespace AddPlaylistContentsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: AddPlaylistContentsResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddPlaylistContentsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddPlaylistContentsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -39,14 +39,7 @@ export type GetServerIdentityResponse = {
 
 /** @internal */
 export namespace GetServerIdentityMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        claimed?: boolean | undefined;
-        machineIdentifier?: string | undefined;
-        version?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerIdentityMediaContainer, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetServerIdentityMediaContainer, z.ZodTypeDef, unknown> =
         z
             .object({
                 size: z.number().optional(),
@@ -97,11 +90,7 @@ export namespace GetServerIdentityMediaContainer$ {
 
 /** @internal */
 export namespace GetServerIdentityResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetServerIdentityMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerIdentityResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerIdentityResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetServerIdentityMediaContainer$.inboundSchema).optional(),
         })
@@ -133,14 +122,7 @@ export namespace GetServerIdentityResponseBody$ {
 
 /** @internal */
 export namespace GetServerIdentityResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetServerIdentityResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetServerIdentityResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetServerIdentityResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

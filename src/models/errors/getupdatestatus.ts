@@ -56,13 +56,7 @@ export class GetUpdateStatusResponseBody extends Error {
 
 /** @internal */
 export namespace GetUpdateStatusErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetUpdateStatusErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetUpdateStatusErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetUpdateStatusErrors$ {
 
 /** @internal */
 export namespace GetUpdateStatusResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetUpdateStatusErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetUpdateStatusResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetUpdateStatusResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetUpdateStatusErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

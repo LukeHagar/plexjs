@@ -128,19 +128,17 @@ export type GetLibraryResponse = {
 };
 
 /** @internal */
-export const IncludeDetails$: z.ZodNativeEnum<typeof IncludeDetails> = z.nativeEnum(IncludeDetails);
+export namespace IncludeDetails$ {
+    export const inboundSchema = z.nativeEnum(IncludeDetails);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace GetLibraryRequest$ {
-    export type Inbound = {
-        sectionId: number;
-        includeDetails?: IncludeDetails | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryRequest, z.ZodTypeDef, unknown> = z
         .object({
             sectionId: z.number(),
-            includeDetails: IncludeDetails$.default(IncludeDetails.Zero),
+            includeDetails: IncludeDetails$.inboundSchema.default(IncludeDetails.Zero),
         })
         .transform((v) => {
             return {
@@ -151,13 +149,13 @@ export namespace GetLibraryRequest$ {
 
     export type Outbound = {
         sectionId: number;
-        includeDetails: IncludeDetails;
+        includeDetails: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetLibraryRequest> = z
         .object({
             sectionId: z.number(),
-            includeDetails: IncludeDetails$.default(IncludeDetails.Zero),
+            includeDetails: IncludeDetails$.outboundSchema.default(IncludeDetails.Zero),
         })
         .transform((v) => {
             return {
@@ -169,15 +167,7 @@ export namespace GetLibraryRequest$ {
 
 /** @internal */
 export namespace GetLibraryDirectory$ {
-    export type Inbound = {
-        key?: string | undefined;
-        title?: string | undefined;
-        secondary?: boolean | undefined;
-        prompt?: string | undefined;
-        search?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryDirectory, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryDirectory, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             title: z.string().optional(),
@@ -224,15 +214,7 @@ export namespace GetLibraryDirectory$ {
 
 /** @internal */
 export namespace Filter$ {
-    export type Inbound = {
-        filter?: string | undefined;
-        filterType?: string | undefined;
-        key?: string | undefined;
-        title?: string | undefined;
-        type?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Filter, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Filter, z.ZodTypeDef, unknown> = z
         .object({
             filter: z.string().optional(),
             filterType: z.string().optional(),
@@ -279,16 +261,7 @@ export namespace Filter$ {
 
 /** @internal */
 export namespace Sort$ {
-    export type Inbound = {
-        default?: string | undefined;
-        defaultDirection?: string | undefined;
-        descKey?: string | undefined;
-        firstCharacterKey?: string | undefined;
-        key?: string | undefined;
-        title?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Sort, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Sort, z.ZodTypeDef, unknown> = z
         .object({
             default: z.string().optional(),
             defaultDirection: z.string().optional(),
@@ -348,14 +321,7 @@ export namespace Sort$ {
 
 /** @internal */
 export namespace Field$ {
-    export type Inbound = {
-        key?: string | undefined;
-        title?: string | undefined;
-        type?: string | undefined;
-        subType?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Field, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Field, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             title: z.string().optional(),
@@ -397,17 +363,7 @@ export namespace Field$ {
 
 /** @internal */
 export namespace GetLibraryType$ {
-    export type Inbound = {
-        key?: string | undefined;
-        type?: string | undefined;
-        title?: string | undefined;
-        active?: boolean | undefined;
-        Filter?: Array<Filter$.Inbound> | undefined;
-        Sort?: Array<Sort$.Inbound> | undefined;
-        Field?: Array<Field$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryType, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryType, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             type: z.string().optional(),
@@ -464,12 +420,7 @@ export namespace GetLibraryType$ {
 
 /** @internal */
 export namespace Operator$ {
-    export type Inbound = {
-        key?: string | undefined;
-        title?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Operator, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Operator, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             title: z.string().optional(),
@@ -501,12 +452,7 @@ export namespace Operator$ {
 
 /** @internal */
 export namespace FieldType$ {
-    export type Inbound = {
-        type?: string | undefined;
-        Operator?: Array<Operator$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<FieldType, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<FieldType, z.ZodTypeDef, unknown> = z
         .object({
             type: z.string().optional(),
             Operator: z.array(z.lazy(() => Operator$.inboundSchema)).optional(),
@@ -538,25 +484,7 @@ export namespace FieldType$ {
 
 /** @internal */
 export namespace GetLibraryMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        allowSync?: boolean | undefined;
-        art?: string | undefined;
-        content?: string | undefined;
-        identifier?: string | undefined;
-        librarySectionID?: number | undefined;
-        mediaTagPrefix?: string | undefined;
-        mediaTagVersion?: number | undefined;
-        thumb?: string | undefined;
-        title1?: string | undefined;
-        viewGroup?: string | undefined;
-        viewMode?: number | undefined;
-        Directory?: Array<GetLibraryDirectory$.Inbound> | undefined;
-        Type?: Array<GetLibraryType$.Inbound> | undefined;
-        FieldType?: Array<FieldType$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryMediaContainer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryMediaContainer, z.ZodTypeDef, unknown> = z
         .object({
             size: z.number().int().optional(),
             allowSync: z.boolean().optional(),
@@ -661,11 +589,7 @@ export namespace GetLibraryMediaContainer$ {
 
 /** @internal */
 export namespace GetLibraryResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetLibraryMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetLibraryMediaContainer$.inboundSchema).optional(),
         })
@@ -692,14 +616,7 @@ export namespace GetLibraryResponseBody$ {
 
 /** @internal */
 export namespace GetLibraryResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetLibraryResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetLibraryResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetLibraryResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

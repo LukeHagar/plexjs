@@ -61,7 +61,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PerformSearchResponse](../../models/operations/performsearchresponse.md)>**
+**Promise\<[operations.PerformSearchResponse](../../models/operations/performsearchresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
@@ -110,7 +110,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PerformVoiceSearchResponse](../../models/operations/performvoicesearchresponse.md)>**
+**Promise\<[operations.PerformVoiceSearchResponse](../../models/operations/performvoicesearchresponse.md)\>**
 ### Errors
 
 | Error Object                          | Status Code                           | Content Type                          |
@@ -153,7 +153,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetSearchResultsResponse](../../models/operations/getsearchresultsresponse.md)>**
+**Promise\<[operations.GetSearchResultsResponse](../../models/operations/getsearchresultsresponse.md)\>**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |

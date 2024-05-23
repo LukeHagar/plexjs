@@ -56,13 +56,7 @@ export class CheckForUpdatesResponseBody extends Error {
 
 /** @internal */
 export namespace CheckForUpdatesErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CheckForUpdatesErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CheckForUpdatesErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace CheckForUpdatesErrors$ {
 
 /** @internal */
 export namespace CheckForUpdatesResponseBody$ {
-    export type Inbound = {
-        errors?: Array<CheckForUpdatesErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CheckForUpdatesResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CheckForUpdatesResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => CheckForUpdatesErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

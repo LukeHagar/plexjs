@@ -51,7 +51,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetServerCapabilitiesResponse](../../models/operations/getservercapabilitiesresponse.md)>**
+**Promise\<[operations.GetServerCapabilitiesResponse](../../models/operations/getservercapabilitiesresponse.md)\>**
 ### Errors
 
 | Error Object                             | Status Code                              | Content Type                             |
@@ -93,7 +93,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetServerPreferencesResponse](../../models/operations/getserverpreferencesresponse.md)>**
+**Promise\<[operations.GetServerPreferencesResponse](../../models/operations/getserverpreferencesresponse.md)\>**
 ### Errors
 
 | Error Object                            | Status Code                             | Content Type                            |
@@ -135,7 +135,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetAvailableClientsResponse](../../models/operations/getavailableclientsresponse.md)>**
+**Promise\<[operations.GetAvailableClientsResponse](../../models/operations/getavailableclientsresponse.md)\>**
 ### Errors
 
 | Error Object                           | Status Code                            | Content Type                           |
@@ -177,7 +177,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetDevicesResponse](../../models/operations/getdevicesresponse.md)>**
+**Promise\<[operations.GetDevicesResponse](../../models/operations/getdevicesresponse.md)\>**
 ### Errors
 
 | Error Object                  | Status Code                   | Content Type                  |
@@ -219,7 +219,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetServerIdentityResponse](../../models/operations/getserveridentityresponse.md)>**
+**Promise\<[operations.GetServerIdentityResponse](../../models/operations/getserveridentityresponse.md)\>**
 ### Errors
 
 | Error Object                         | Status Code                          | Content Type                         |
@@ -261,7 +261,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetMyPlexAccountResponse](../../models/operations/getmyplexaccountresponse.md)>**
+**Promise\<[operations.GetMyPlexAccountResponse](../../models/operations/getmyplexaccountresponse.md)\>**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
@@ -314,7 +314,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetResizedPhotoResponse](../../models/operations/getresizedphotoresponse.md)>**
+**Promise\<[operations.GetResizedPhotoResponse](../../models/operations/getresizedphotoresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -356,7 +356,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetServerListResponse](../../models/operations/getserverlistresponse.md)>**
+**Promise\<[operations.GetServerListResponse](../../models/operations/getserverlistresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |

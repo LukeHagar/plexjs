@@ -56,13 +56,7 @@ export class GetMetadataResponseBody extends Error {
 
 /** @internal */
 export namespace GetMetadataErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace GetMetadataErrors$ {
 
 /** @internal */
 export namespace GetMetadataResponseBody$ {
-    export type Inbound = {
-        errors?: Array<GetMetadataErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetMetadataResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMetadataResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => GetMetadataErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

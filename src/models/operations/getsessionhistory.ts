@@ -60,29 +60,7 @@ export type GetSessionHistoryResponse = {
 
 /** @internal */
 export namespace GetSessionHistoryMetadata$ {
-    export type Inbound = {
-        historyKey?: string | undefined;
-        key?: string | undefined;
-        ratingKey?: string | undefined;
-        librarySectionID?: string | undefined;
-        parentKey?: string | undefined;
-        grandparentKey?: string | undefined;
-        title?: string | undefined;
-        grandparentTitle?: string | undefined;
-        type?: string | undefined;
-        thumb?: string | undefined;
-        parentThumb?: string | undefined;
-        grandparentThumb?: string | undefined;
-        grandparentArt?: string | undefined;
-        index?: number | undefined;
-        parentIndex?: number | undefined;
-        originallyAvailableAt?: string | undefined;
-        viewedAt?: number | undefined;
-        accountID?: number | undefined;
-        deviceID?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionHistoryMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionHistoryMetadata, z.ZodTypeDef, unknown> = z
         .object({
             historyKey: z.string().optional(),
             key: z.string().optional(),
@@ -221,12 +199,7 @@ export namespace GetSessionHistoryMetadata$ {
 
 /** @internal */
 export namespace GetSessionHistoryMediaContainer$ {
-    export type Inbound = {
-        size?: number | undefined;
-        Metadata?: Array<GetSessionHistoryMetadata$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionHistoryMediaContainer, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetSessionHistoryMediaContainer, z.ZodTypeDef, unknown> =
         z
             .object({
                 size: z.number().int().optional(),
@@ -265,11 +238,7 @@ export namespace GetSessionHistoryMediaContainer$ {
 
 /** @internal */
 export namespace GetSessionHistoryResponseBody$ {
-    export type Inbound = {
-        MediaContainer?: GetSessionHistoryMediaContainer$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionHistoryResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionHistoryResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             MediaContainer: z.lazy(() => GetSessionHistoryMediaContainer$.inboundSchema).optional(),
         })
@@ -301,14 +270,7 @@ export namespace GetSessionHistoryResponseBody$ {
 
 /** @internal */
 export namespace GetSessionHistoryResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        object?: GetSessionHistoryResponseBody$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetSessionHistoryResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetSessionHistoryResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

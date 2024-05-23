@@ -56,13 +56,7 @@ export class DeletePlaylistResponseBody extends Error {
 
 /** @internal */
 export namespace DeletePlaylistErrors$ {
-    export type Inbound = {
-        code?: number | undefined;
-        message?: string | undefined;
-        status?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DeletePlaylistErrors, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeletePlaylistErrors, z.ZodTypeDef, unknown> = z
         .object({
             code: z.number().optional(),
             message: z.string().optional(),
@@ -99,12 +93,7 @@ export namespace DeletePlaylistErrors$ {
 
 /** @internal */
 export namespace DeletePlaylistResponseBody$ {
-    export type Inbound = {
-        errors?: Array<DeletePlaylistErrors$.Inbound> | undefined;
-        RawResponse?: Response | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DeletePlaylistResponseBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeletePlaylistResponseBody, z.ZodTypeDef, unknown> = z
         .object({
             errors: z.array(z.lazy(() => DeletePlaylistErrors$.inboundSchema)).optional(),
             RawResponse: z.instanceof(Response).optional(),

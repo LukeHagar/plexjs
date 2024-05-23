@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetSessionsResponse](../../models/operations/getsessionsresponse.md)>**
+**Promise\<[operations.GetSessionsResponse](../../models/operations/getsessionsresponse.md)\>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
@@ -89,7 +89,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetSessionHistoryResponse](../../models/operations/getsessionhistoryresponse.md)>**
+**Promise\<[operations.GetSessionHistoryResponse](../../models/operations/getsessionhistoryresponse.md)\>**
 ### Errors
 
 | Error Object                         | Status Code                          | Content Type                         |
@@ -131,7 +131,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTranscodeSessionsResponse](../../models/operations/gettranscodesessionsresponse.md)>**
+**Promise\<[operations.GetTranscodeSessionsResponse](../../models/operations/gettranscodesessionsresponse.md)\>**
 ### Errors
 
 | Error Object                            | Status Code                             | Content Type                            |
@@ -174,7 +174,7 @@ run();
 
 ### Response
 
-**Promise<[operations.StopTranscodeSessionResponse](../../models/operations/stoptranscodesessionresponse.md)>**
+**Promise\<[operations.StopTranscodeSessionResponse](../../models/operations/stoptranscodesessionresponse.md)\>**
 ### Errors
 
 | Error Object                            | Status Code                             | Content Type                            |
