@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -67,12 +67,10 @@ export class Authentication extends ClientSDK {
 
         const path$ = this.templateURLComponent("/security/token")();
 
-        const query$ = [
-            enc$.encodeForm("scope", payload$.scope, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            type: payload$.type,
+            scope: payload$.scope,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -150,11 +148,9 @@ export class Authentication extends ClientSDK {
 
         const path$ = this.templateURLComponent("/security/resources")();
 
-        const query$ = [
-            enc$.encodeForm("source", payload$.source, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            source: payload$.source,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

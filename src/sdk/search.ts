@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -80,16 +80,11 @@ export class Search extends ClientSDK {
 
         const path$ = this.templateURLComponent("/hubs/search")();
 
-        const query$ = [
-            enc$.encodeForm("limit", payload$.limit, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("query", payload$.query, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("sectionId", payload$.sectionId, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            query: payload$.query,
+            sectionId: payload$.sectionId,
+            limit: payload$.limit,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -172,16 +167,11 @@ export class Search extends ClientSDK {
 
         const path$ = this.templateURLComponent("/hubs/search/voice")();
 
-        const query$ = [
-            enc$.encodeForm("limit", payload$.limit, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("query", payload$.query, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("sectionId", payload$.sectionId, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            query: payload$.query,
+            sectionId: payload$.sectionId,
+            limit: payload$.limit,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -256,11 +246,9 @@ export class Search extends ClientSDK {
 
         const path$ = this.templateURLComponent("/search")();
 
-        const query$ = [
-            enc$.encodeForm("query", payload$.query, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            query: payload$.query,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

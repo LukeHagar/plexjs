@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -70,16 +70,11 @@ export class Log extends ClientSDK {
 
         const path$ = this.templateURLComponent("/log")();
 
-        const query$ = [
-            enc$.encodeForm("level", payload$.level, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("message", payload$.message, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("source", payload$.source, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            level: payload$.level,
+            message: payload$.message,
+            source: payload$.source,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

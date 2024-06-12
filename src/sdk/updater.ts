@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -125,14 +125,9 @@ export class Updater extends ClientSDK {
 
         const path$ = this.templateURLComponent("/updater/check")();
 
-        const query$ = [
-            enc$.encodeForm("download", payload$.download, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            download: payload$.download,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -210,15 +205,10 @@ export class Updater extends ClientSDK {
 
         const path$ = this.templateURLComponent("/updater/apply")();
 
-        const query$ = [
-            enc$.encodeForm("skip", payload$.skip, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("tonight", payload$.tonight, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            tonight: payload$.tonight,
+            skip: payload$.skip,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

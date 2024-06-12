@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -64,11 +64,9 @@ export class Media extends ClientSDK {
 
         const path$ = this.templateURLComponent("/:/scrobble")();
 
-        const query$ = [
-            enc$.encodeForm("key", payload$.key, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            key: payload$.key,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -143,11 +141,9 @@ export class Media extends ClientSDK {
 
         const path$ = this.templateURLComponent("/:/unscrobble")();
 
-        const query$ = [
-            enc$.encodeForm("key", payload$.key, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            key: payload$.key,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -227,13 +223,11 @@ export class Media extends ClientSDK {
 
         const path$ = this.templateURLComponent("/:/progress")();
 
-        const query$ = [
-            enc$.encodeForm("key", payload$.key, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("state", payload$.state, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("time", payload$.time, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            key: payload$.key,
+            time: payload$.time,
+            state: payload$.state,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

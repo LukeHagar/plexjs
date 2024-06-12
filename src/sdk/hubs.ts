@@ -4,7 +4,10 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -66,15 +69,10 @@ export class Hubs extends ClientSDK {
 
         const path$ = this.templateURLComponent("/hubs")();
 
-        const query$ = [
-            enc$.encodeForm("count", payload$.count, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("onlyTransient", payload$.onlyTransient, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            count: payload$.count,
+            onlyTransient: payload$.onlyTransient,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -153,22 +151,17 @@ export class Hubs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
+            sectionId: encodeSimple$("sectionId", payload$.sectionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
         };
         const path$ = this.templateURLComponent("/hubs/sections/{sectionId}")(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("count", payload$.count, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("onlyTransient", payload$.onlyTransient, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            count: payload$.count,
+            onlyTransient: payload$.onlyTransient,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

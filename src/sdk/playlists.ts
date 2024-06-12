@@ -4,7 +4,10 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -65,18 +68,13 @@ export class Playlists extends ClientSDK {
 
         const path$ = this.templateURLComponent("/playlists")();
 
-        const query$ = [
-            enc$.encodeForm("playQueueID", payload$.playQueueID, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("smart", payload$.smart, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("title", payload$.title, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("uri", payload$.uri, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            uri: payload$.uri,
+            playQueueID: payload$.playQueueID,
+            title: payload$.title,
+            type: payload$.type,
+            smart: payload$.smart,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -153,15 +151,10 @@ export class Playlists extends ClientSDK {
 
         const path$ = this.templateURLComponent("/playlists")();
 
-        const query$ = [
-            enc$.encodeForm("playlistType", payload$.playlistType, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("smart", payload$.smart, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            smart: payload$.smart,
+            playlistType: payload$.playlistType,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -237,7 +230,7 @@ export class Playlists extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            playlistID: enc$.encodeSimple("playlistID", payload$.playlistID, {
+            playlistID: encodeSimple$("playlistID", payload$.playlistID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -319,7 +312,7 @@ export class Playlists extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            playlistID: enc$.encodeSimple("playlistID", payload$.playlistID, {
+            playlistID: encodeSimple$("playlistID", payload$.playlistID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -405,22 +398,17 @@ export class Playlists extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            playlistID: enc$.encodeSimple("playlistID", payload$.playlistID, {
+            playlistID: encodeSimple$("playlistID", payload$.playlistID, {
                 explode: false,
                 charEncoding: "percent",
             }),
         };
         const path$ = this.templateURLComponent("/playlists/{playlistID}")(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("summary", payload$.summary, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("title", payload$.title, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            title: payload$.title,
+            summary: payload$.summary,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -500,18 +488,16 @@ export class Playlists extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            playlistID: enc$.encodeSimple("playlistID", payload$.playlistID, {
+            playlistID: encodeSimple$("playlistID", payload$.playlistID, {
                 explode: false,
                 charEncoding: "percent",
             }),
         };
         const path$ = this.templateURLComponent("/playlists/{playlistID}/items")(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            type: payload$.type,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -586,7 +572,7 @@ export class Playlists extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            playlistID: enc$.encodeSimple("playlistID", payload$.playlistID, {
+            playlistID: encodeSimple$("playlistID", payload$.playlistID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -673,22 +659,17 @@ export class Playlists extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            playlistID: enc$.encodeSimple("playlistID", payload$.playlistID, {
+            playlistID: encodeSimple$("playlistID", payload$.playlistID, {
                 explode: false,
                 charEncoding: "percent",
             }),
         };
         const path$ = this.templateURLComponent("/playlists/{playlistID}/items")(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("playQueueID", payload$.playQueueID, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("uri", payload$.uri, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            playQueueID: payload$.playQueueID,
+            uri: payload$.uri,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -766,12 +747,10 @@ export class Playlists extends ClientSDK {
 
         const path$ = this.templateURLComponent("/playlists/upload")();
 
-        const query$ = [
-            enc$.encodeForm("force", payload$.force, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("path", payload$.path, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            force: payload$.force,
+            path: payload$.path,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

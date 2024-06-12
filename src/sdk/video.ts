@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -62,35 +62,18 @@ export class Video extends ClientSDK {
 
         const path$ = this.templateURLComponent("/:/timeline")();
 
-        const query$ = [
-            enc$.encodeForm("context", payload$.context, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("duration", payload$.duration, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("hasMDE", payload$.hasMDE, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("key", payload$.key, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("playBackTime", payload$.playBackTime, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("playQueueItemID", payload$.playQueueItemID, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("ratingKey", payload$.ratingKey, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("row", payload$.row, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("state", payload$.state, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("time", payload$.time, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            ratingKey: payload$.ratingKey,
+            hasMDE: payload$.hasMDE,
+            time: payload$.time,
+            playBackTime: payload$.playBackTime,
+            playQueueItemID: payload$.playQueueItemID,
+            row: payload$.row,
+            key: payload$.key,
+            state: payload$.state,
+            duration: payload$.duration,
+            context: payload$.context,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -163,68 +146,24 @@ export class Video extends ClientSDK {
 
         const path$ = this.templateURLComponent("/video/:/transcode/universal/start.mpd")();
 
-        const query$ = [
-            enc$.encodeForm("addDebugOverlay", payload$.addDebugOverlay, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("audioBoost", payload$.audioBoost, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("autoAdjustQuality", payload$.autoAdjustQuality, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("directPlay", payload$.directPlay, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("directStream", payload$.directStream, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("fastSeek", payload$.fastSeek, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("hasMDE", payload$.hasMDE, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("location", payload$.location, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("mediaBufferSize", payload$.mediaBufferSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("mediaIndex", payload$.mediaIndex, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("partIndex", payload$.partIndex, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("path", payload$.path, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("protocol", payload$.protocol, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("session", payload$.session, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("subtites", payload$.subtites, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("subtitleSize", payload$.subtitleSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            path: payload$.path,
+            directStream: payload$.directStream,
+            audioBoost: payload$.audioBoost,
+            location: payload$.location,
+            mediaBufferSize: payload$.mediaBufferSize,
+            addDebugOverlay: payload$.addDebugOverlay,
+            partIndex: payload$.partIndex,
+            fastSeek: payload$.fastSeek,
+            subtitleSize: payload$.subtitleSize,
+            session: payload$.session,
+            mediaIndex: payload$.mediaIndex,
+            autoAdjustQuality: payload$.autoAdjustQuality,
+            hasMDE: payload$.hasMDE,
+            protocol: payload$.protocol,
+            directPlay: payload$.directPlay,
+            subtites: payload$.subtites,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -126,7 +126,7 @@ export class Activities extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            activityUUID: enc$.encodeSimple("activityUUID", payload$.activityUUID, {
+            activityUUID: encodeSimple$("activityUUID", payload$.activityUUID, {
                 explode: false,
                 charEncoding: "percent",
             }),

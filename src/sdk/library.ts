@@ -4,7 +4,10 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -66,12 +69,10 @@ export class Library extends ClientSDK {
 
         const path$ = this.templateURLComponent("/library/hashes")();
 
-        const query$ = [
-            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("url", payload$.url, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            url: payload$.url,
+            type: payload$.type,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -315,21 +316,16 @@ export class Library extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
+            sectionId: encodeSimple$("sectionId", payload$.sectionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
         };
         const path$ = this.templateURLComponent("/library/sections/{sectionId}")(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("includeDetails", payload$.includeDetails, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            includeDetails: payload$.includeDetails,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -403,7 +399,7 @@ export class Library extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
+            sectionId: encodeSimple$("sectionId", payload$.sectionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -506,14 +502,11 @@ export class Library extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
+            sectionId: encodeSimple$("sectionId", payload$.sectionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            tag: enc$.encodeSimple("tag", payload$.tag, {
-                explode: false,
-                charEncoding: "percent",
-            }),
+            tag: encodeSimple$("tag", payload$.tag, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/library/sections/{sectionId}/{tag}")(pathParams$);
 
@@ -592,7 +585,7 @@ export class Library extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
+            sectionId: encodeSimple$("sectionId", payload$.sectionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -695,7 +688,7 @@ export class Library extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            sectionId: enc$.encodeSimple("sectionId", payload$.sectionId, {
+            sectionId: encodeSimple$("sectionId", payload$.sectionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -704,11 +697,9 @@ export class Library extends ClientSDK {
             pathParams$
         );
 
-        const query$ = [
-            enc$.encodeForm("type", payload$.type, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            type: payload$.type,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {
@@ -783,7 +774,7 @@ export class Library extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            ratingKey: enc$.encodeSimple("ratingKey", payload$.ratingKey, {
+            ratingKey: encodeSimple$("ratingKey", payload$.ratingKey, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -865,7 +856,7 @@ export class Library extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            ratingKey: enc$.encodeSimple("ratingKey", payload$.ratingKey, {
+            ratingKey: encodeSimple$("ratingKey", payload$.ratingKey, {
                 explode: false,
                 charEncoding: "percent",
             }),

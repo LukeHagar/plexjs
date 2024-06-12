@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -437,26 +437,15 @@ export class Server extends ClientSDK {
 
         const path$ = this.templateURLComponent("/photo/:/transcode")();
 
-        const query$ = [
-            enc$.encodeForm("blur", payload$.blur, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("height", payload$.height, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("minSize", payload$.minSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("opacity", payload$.opacity, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("upscale", payload$.upscale, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("url", payload$.url, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("width", payload$.width, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            url: payload$.url,
+            width: payload$.width,
+            height: payload$.height,
+            opacity: payload$.opacity,
+            blur: payload$.blur,
+            minSize: payload$.minSize,
+            upscale: payload$.upscale,
+        });
 
         let security$;
         if (typeof this.options$.accessToken === "function") {

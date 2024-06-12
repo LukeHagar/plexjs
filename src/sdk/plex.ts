@@ -4,7 +4,10 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -71,15 +74,13 @@ export class Plex extends ClientSDK {
 
         const path$ = this.templateURLComponent("/pins")();
 
-        const query$ = [
-            enc$.encodeForm("strong", payload$.strong, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            strong: payload$.strong,
+        });
 
         headers$.set(
             "X-Plex-Client-Identifier",
-            enc$.encodeSimple(
+            encodeSimple$(
                 "X-Plex-Client-Identifier",
                 payload$["X-Plex-Client-Identifier"] ?? this.options$.xPlexClientIdentifier,
                 { explode: false, charEncoding: "none" }
@@ -151,7 +152,7 @@ export class Plex extends ClientSDK {
             })();
 
         const pathParams$ = {
-            pinID: enc$.encodeSimple("pinID", payload$.pinID, {
+            pinID: encodeSimple$("pinID", payload$.pinID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -162,7 +163,7 @@ export class Plex extends ClientSDK {
 
         headers$.set(
             "X-Plex-Client-Identifier",
-            enc$.encodeSimple(
+            encodeSimple$(
                 "X-Plex-Client-Identifier",
                 payload$["X-Plex-Client-Identifier"] ?? this.options$.xPlexClientIdentifier,
                 { explode: false, charEncoding: "none" }
