@@ -1,0 +1,15 @@
+# GetSessionsMedia
+
+
+## Fields
+
+| Field                                                    | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `audioChannels`                                          | *number*                                                 | :heavy_minus_sign:                                       | N/A                                                      | 2                                                        |
+| `audioCodec`                                             | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      | flac                                                     |
+| `bitrate`                                                | *number*                                                 | :heavy_minus_sign:                                       | N/A                                                      | 1014                                                     |
+| `container`                                              | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      | flac                                                     |
+| `duration`                                               | *number*                                                 | :heavy_minus_sign:                                       | N/A                                                      | 186240                                                   |
+| `id`                                                     | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      | 130355                                                   |
+| `selected`                                               | *boolean*                                                | :heavy_minus_sign:                                       | N/A                                                      | true                                                     |
+| `part`                                                   | [models.GetSessionsPart](../models/getsessionspart.md)[] | :heavy_minus_sign:                                       | N/A                                                      |                                                          |

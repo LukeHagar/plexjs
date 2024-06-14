@@ -8,8 +8,7 @@ import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Activities extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -46,7 +45,7 @@ export class Activities extends ClientSDK {
      */
     async getServerActivities(
         options?: RequestOptions
-    ): Promise<operations.GetServerActivitiesResponse> {
+    ): Promise<models.GetServerActivitiesResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -92,10 +91,10 @@ export class Activities extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetServerActivitiesResponse>()
-            .json(200, operations.GetServerActivitiesResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetServerActivitiesResponse>()
+            .json(200, models.GetServerActivitiesResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetServerActivitiesResponseBody$, { err: true })
+            .json(401, models.GetServerActivitiesActivitiesResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -110,8 +109,8 @@ export class Activities extends ClientSDK {
     async cancelServerActivities(
         activityUUID: string,
         options?: RequestOptions
-    ): Promise<operations.CancelServerActivitiesResponse> {
-        const input$: operations.CancelServerActivitiesRequest = {
+    ): Promise<models.CancelServerActivitiesResponse> {
+        const input$: models.CancelServerActivitiesRequest = {
             activityUUID: activityUUID,
         };
         const headers$ = new Headers();
@@ -120,7 +119,7 @@ export class Activities extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.CancelServerActivitiesRequest$.outboundSchema.parse(value$),
+            (value$) => models.CancelServerActivitiesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -173,10 +172,10 @@ export class Activities extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.CancelServerActivitiesResponse>()
-            .void(200, operations.CancelServerActivitiesResponse$)
+        const [result$] = await this.matcher<models.CancelServerActivitiesResponse>()
+            .void(200, models.CancelServerActivitiesResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.CancelServerActivitiesResponseBody$, { err: true })
+            .json(401, models.CancelServerActivitiesResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

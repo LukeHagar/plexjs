@@ -5,7 +5,7 @@
 import { never as znever } from "zod";
 import { parse } from "./schemas";
 import { isPlainObject } from "./is-plain-object";
-import * as errors from "../models/errors";
+import * as models from "../models";
 
 export type Fetcher = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 
@@ -406,7 +406,7 @@ export class ResponseMatcher<Result> {
         }
         if (pred == null) {
             const responseBody = await response.text();
-            throw new errors.SDKError(
+            throw new models.SDKError(
                 "Unexpected API response status or content-type",
                 response,
                 responseBody
@@ -446,7 +446,7 @@ export class ResponseMatcher<Result> {
         const resultKey = pred.key || options?.resultKey;
         let data: unknown;
         if (pred.fail) {
-            throw new errors.SDKError(
+            throw new models.SDKError(
                 "API error occurred",
                 response,
                 typeof raw === "string" ? raw : ""

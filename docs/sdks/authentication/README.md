@@ -19,8 +19,7 @@ This endpoint provides the caller with a temporary token with the same access le
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/models/operations";
+import { GetTransientTokenQueryParamType, PlexAPI, Scope } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -41,21 +40,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `type`                                                                                                                                                                         | [operations.GetTransientTokenQueryParamType](../../models/operations/gettransienttokenqueryparamtype.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | `delegation` - This is the only supported `type` parameter.                                                                                                                    |
-| `scope`                                                                                                                                                                        | [operations.Scope](../../models/operations/scope.md)                                                                                                                           | :heavy_check_mark:                                                                                                                                                             | `all` - This is the only supported `scope` parameter.                                                                                                                          |
+| `type`                                                                                                                                                                         | [models.GetTransientTokenQueryParamType](../../models/gettransienttokenqueryparamtype.md)                                                                                      | :heavy_check_mark:                                                                                                                                                             | `delegation` - This is the only supported `type` parameter.                                                                                                                    |
+| `scope`                                                                                                                                                                        | [models.Scope](../../models/scope.md)                                                                                                                                          | :heavy_check_mark:                                                                                                                                                             | `all` - This is the only supported `scope` parameter.                                                                                                                          |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.GetTransientTokenResponse](../../models/operations/gettransienttokenresponse.md)\>**
+**Promise\<[models.GetTransientTokenResponse](../../models/gettransienttokenresponse.md)\>**
 ### Errors
 
 | Error Object                         | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GetTransientTokenResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| models.GetTransientTokenResponseBody | 401                                  | application/json                     |
+| models.SDKError                      | 4xx-5xx                              | */*                                  |
 
 ## getSourceConnectionInformation
 
@@ -94,10 +93,10 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetSourceConnectionInformationResponse](../../models/operations/getsourceconnectioninformationresponse.md)\>**
+**Promise\<[models.GetSourceConnectionInformationResponse](../../models/getsourceconnectioninformationresponse.md)\>**
 ### Errors
 
 | Error Object                                      | Status Code                                       | Content Type                                      |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| errors.GetSourceConnectionInformationResponseBody | 401                                               | application/json                                  |
-| errors.SDKError                                   | 4xx-5xx                                           | */*                                               |
+| models.GetSourceConnectionInformationResponseBody | 401                                               | application/json                                  |
+| models.SDKError                                   | 4xx-5xx                                           | */*                                               |

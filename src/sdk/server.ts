@@ -8,8 +8,7 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Server extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -46,7 +45,7 @@ export class Server extends ClientSDK {
      */
     async getServerCapabilities(
         options?: RequestOptions
-    ): Promise<operations.GetServerCapabilitiesResponse> {
+    ): Promise<models.GetServerCapabilitiesResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -92,10 +91,10 @@ export class Server extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetServerCapabilitiesResponse>()
-            .json(200, operations.GetServerCapabilitiesResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetServerCapabilitiesResponse>()
+            .json(200, models.GetServerCapabilitiesResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetServerCapabilitiesResponseBody$, { err: true })
+            .json(401, models.GetServerCapabilitiesServerResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -109,7 +108,7 @@ export class Server extends ClientSDK {
      */
     async getServerPreferences(
         options?: RequestOptions
-    ): Promise<operations.GetServerPreferencesResponse> {
+    ): Promise<models.GetServerPreferencesResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -155,10 +154,10 @@ export class Server extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetServerPreferencesResponse>()
-            .json(200, operations.GetServerPreferencesResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetServerPreferencesResponse>()
+            .json(200, models.GetServerPreferencesResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetServerPreferencesResponseBody$, { err: true })
+            .json(401, models.GetServerPreferencesServerResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -172,7 +171,7 @@ export class Server extends ClientSDK {
      */
     async getAvailableClients(
         options?: RequestOptions
-    ): Promise<operations.GetAvailableClientsResponse> {
+    ): Promise<models.GetAvailableClientsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -218,10 +217,10 @@ export class Server extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetAvailableClientsResponse>()
-            .json(200, operations.GetAvailableClientsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetAvailableClientsResponse>()
+            .json(200, models.GetAvailableClientsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetAvailableClientsResponseBody$, { err: true })
+            .json(401, models.GetAvailableClientsServerResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -233,7 +232,7 @@ export class Server extends ClientSDK {
      * @remarks
      * Get Devices
      */
-    async getDevices(options?: RequestOptions): Promise<operations.GetDevicesResponse> {
+    async getDevices(options?: RequestOptions): Promise<models.GetDevicesResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -279,10 +278,10 @@ export class Server extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetDevicesResponse>()
-            .json(200, operations.GetDevicesResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetDevicesResponse>()
+            .json(200, models.GetDevicesResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetDevicesResponseBody$, { err: true })
+            .json(401, models.GetDevicesServerResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -294,9 +293,7 @@ export class Server extends ClientSDK {
      * @remarks
      * Get Server Identity
      */
-    async getServerIdentity(
-        options?: RequestOptions
-    ): Promise<operations.GetServerIdentityResponse> {
+    async getServerIdentity(options?: RequestOptions): Promise<models.GetServerIdentityResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -342,10 +339,10 @@ export class Server extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetServerIdentityResponse>()
-            .json(200, operations.GetServerIdentityResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetServerIdentityResponse>()
+            .json(200, models.GetServerIdentityResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetServerIdentityResponseBody$, { err: true })
+            .json(401, models.GetServerIdentityServerResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -357,7 +354,7 @@ export class Server extends ClientSDK {
      * @remarks
      * Returns MyPlex Account Information
      */
-    async getMyPlexAccount(options?: RequestOptions): Promise<operations.GetMyPlexAccountResponse> {
+    async getMyPlexAccount(options?: RequestOptions): Promise<models.GetMyPlexAccountResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -403,10 +400,10 @@ export class Server extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetMyPlexAccountResponse>()
-            .json(200, operations.GetMyPlexAccountResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetMyPlexAccountResponse>()
+            .json(200, models.GetMyPlexAccountResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetMyPlexAccountResponseBody$, { err: true })
+            .json(401, models.GetMyPlexAccountServerResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -420,9 +417,9 @@ export class Server extends ClientSDK {
      *
      */
     async getResizedPhoto(
-        request: operations.GetResizedPhotoRequest,
+        request: models.GetResizedPhotoRequest,
         options?: RequestOptions
-    ): Promise<operations.GetResizedPhotoResponse> {
+    ): Promise<models.GetResizedPhotoResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -430,7 +427,7 @@ export class Server extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetResizedPhotoRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetResizedPhotoRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -485,10 +482,10 @@ export class Server extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetResizedPhotoResponse>()
-            .void(200, operations.GetResizedPhotoResponse$)
+        const [result$] = await this.matcher<models.GetResizedPhotoResponse>()
+            .void(200, models.GetResizedPhotoResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetResizedPhotoResponseBody$, { err: true })
+            .json(401, models.GetResizedPhotoResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -500,7 +497,7 @@ export class Server extends ClientSDK {
      * @remarks
      * Get Server List
      */
-    async getServerList(options?: RequestOptions): Promise<operations.GetServerListResponse> {
+    async getServerList(options?: RequestOptions): Promise<models.GetServerListResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -546,10 +543,10 @@ export class Server extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetServerListResponse>()
-            .json(200, operations.GetServerListResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetServerListResponse>()
+            .json(200, models.GetServerListResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetServerListResponseBody$, { err: true })
+            .json(401, models.GetServerListServerResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

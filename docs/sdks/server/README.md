@@ -51,13 +51,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetServerCapabilitiesResponse](../../models/operations/getservercapabilitiesresponse.md)\>**
+**Promise\<[models.GetServerCapabilitiesResponse](../../models/getservercapabilitiesresponse.md)\>**
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetServerCapabilitiesResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object                                   | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| models.GetServerCapabilitiesServerResponseBody | 401                                            | application/json                               |
+| models.SDKError                                | 4xx-5xx                                        | */*                                            |
 
 ## getServerPreferences
 
@@ -93,13 +93,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetServerPreferencesResponse](../../models/operations/getserverpreferencesresponse.md)\>**
+**Promise\<[models.GetServerPreferencesResponse](../../models/getserverpreferencesresponse.md)\>**
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| errors.GetServerPreferencesResponseBody | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| models.GetServerPreferencesServerResponseBody | 401                                           | application/json                              |
+| models.SDKError                               | 4xx-5xx                                       | */*                                           |
 
 ## getAvailableClients
 
@@ -135,13 +135,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetAvailableClientsResponse](../../models/operations/getavailableclientsresponse.md)\>**
+**Promise\<[models.GetAvailableClientsResponse](../../models/getavailableclientsresponse.md)\>**
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetAvailableClientsResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models.GetAvailableClientsServerResponseBody | 401                                          | application/json                             |
+| models.SDKError                              | 4xx-5xx                                      | */*                                          |
 
 ## getDevices
 
@@ -177,13 +177,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetDevicesResponse](../../models/operations/getdevicesresponse.md)\>**
+**Promise\<[models.GetDevicesResponse](../../models/getdevicesresponse.md)\>**
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.GetDevicesResponseBody | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models.GetDevicesServerResponseBody | 401                                 | application/json                    |
+| models.SDKError                     | 4xx-5xx                             | */*                                 |
 
 ## getServerIdentity
 
@@ -219,13 +219,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetServerIdentityResponse](../../models/operations/getserveridentityresponse.md)\>**
+**Promise\<[models.GetServerIdentityResponse](../../models/getserveridentityresponse.md)\>**
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GetServerIdentityResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| models.GetServerIdentityServerResponseBody | 401                                        | application/json                           |
+| models.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 ## getMyPlexAccount
 
@@ -261,13 +261,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetMyPlexAccountResponse](../../models/operations/getmyplexaccountresponse.md)\>**
+**Promise\<[models.GetMyPlexAccountResponse](../../models/getmyplexaccountresponse.md)\>**
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetMyPlexAccountResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| models.GetMyPlexAccountServerResponseBody | 401                                       | application/json                          |
+| models.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 ## getResizedPhoto
 
@@ -277,8 +277,7 @@ Plex's Photo transcoder is used throughout the service to serve images at specif
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { MinSize, Upscale } from "@lukehagar/plexjs/models/operations";
+import { MinSize, PlexAPI, Upscale } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -307,20 +306,20 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetResizedPhotoRequest](../../models/operations/getresizedphotorequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [models.GetResizedPhotoRequest](../../models/getresizedphotorequest.md)                                                                                                        | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.GetResizedPhotoResponse](../../models/operations/getresizedphotoresponse.md)\>**
+**Promise\<[models.GetResizedPhotoResponse](../../models/getresizedphotoresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.GetResizedPhotoResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| models.GetResizedPhotoResponseBody | 401                                | application/json                   |
+| models.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## getServerList
 
@@ -356,10 +355,10 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetServerListResponse](../../models/operations/getserverlistresponse.md)\>**
+**Promise\<[models.GetServerListResponse](../../models/getserverlistresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.GetServerListResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| models.GetServerListServerResponseBody | 401                                    | application/json                       |
+| models.SDKError                        | 4xx-5xx                                | */*                                    |

@@ -48,13 +48,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetButlerTasksResponse](../../models/operations/getbutlertasksresponse.md)\>**
+**Promise\<[models.GetButlerTasksResponse](../../models/getbutlertasksresponse.md)\>**
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.GetButlerTasksResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| models.GetButlerTasksButlerResponseBody | 401                                     | application/json                        |
+| models.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 ## startAllTasks
 
@@ -95,13 +95,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.StartAllTasksResponse](../../models/operations/startalltasksresponse.md)\>**
+**Promise\<[models.StartAllTasksResponse](../../models/startalltasksresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.StartAllTasksResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| models.StartAllTasksResponseBody | 401                              | application/json                 |
+| models.SDKError                  | 4xx-5xx                          | */*                              |
 
 ## stopAllTasks
 
@@ -138,13 +138,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.StopAllTasksResponse](../../models/operations/stopalltasksresponse.md)\>**
+**Promise\<[models.StopAllTasksResponse](../../models/stopalltasksresponse.md)\>**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
-| errors.StopAllTasksResponseBody | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
+| models.StopAllTasksResponseBody | 401                             | application/json                |
+| models.SDKError                 | 4xx-5xx                         | */*                             |
 
 ## startTask
 
@@ -158,8 +158,7 @@ This endpoint will attempt to start a single Butler task that is enabled in the 
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { TaskName } from "@lukehagar/plexjs/models/operations";
+import { PlexAPI, TaskName } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -180,20 +179,20 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `taskName`                                                                                                                                                                     | [operations.TaskName](../../models/operations/taskname.md)                                                                                                                     | :heavy_check_mark:                                                                                                                                                             | the name of the task to be started.                                                                                                                                            |
+| `taskName`                                                                                                                                                                     | [models.TaskName](../../models/taskname.md)                                                                                                                                    | :heavy_check_mark:                                                                                                                                                             | the name of the task to be started.                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.StartTaskResponse](../../models/operations/starttaskresponse.md)\>**
+**Promise\<[models.StartTaskResponse](../../models/starttaskresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.StartTaskResponseBody | 401                          | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
+| models.StartTaskResponseBody | 401                          | application/json             |
+| models.SDKError              | 4xx-5xx                      | */*                          |
 
 ## stopTask
 
@@ -203,8 +202,7 @@ This endpoint will stop a currently running task by name, or remove it from the 
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { PathParamTaskName } from "@lukehagar/plexjs/models/operations";
+import { PathParamTaskName, PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -225,17 +223,17 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `taskName`                                                                                                                                                                     | [operations.PathParamTaskName](../../models/operations/pathparamtaskname.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The name of the task to be started.                                                                                                                                            |
+| `taskName`                                                                                                                                                                     | [models.PathParamTaskName](../../models/pathparamtaskname.md)                                                                                                                  | :heavy_check_mark:                                                                                                                                                             | The name of the task to be started.                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.StopTaskResponse](../../models/operations/stoptaskresponse.md)\>**
+**Promise\<[models.StopTaskResponse](../../models/stoptaskresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| errors.StopTaskResponseBody | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
+| models.StopTaskResponseBody | 401                         | application/json            |
+| models.SDKError             | 4xx-5xx                     | */*                         |

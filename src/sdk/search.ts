@@ -8,8 +8,7 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Search extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -61,8 +60,8 @@ export class Search extends ClientSDK {
         sectionId?: number | undefined,
         limit?: number | undefined,
         options?: RequestOptions
-    ): Promise<operations.PerformSearchResponse> {
-        const input$: operations.PerformSearchRequest = {
+    ): Promise<models.PerformSearchResponse> {
+        const input$: models.PerformSearchRequest = {
             query: query,
             sectionId: sectionId,
             limit: limit,
@@ -73,7 +72,7 @@ export class Search extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.PerformSearchRequest$.outboundSchema.parse(value$),
+            (value$) => models.PerformSearchRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -124,10 +123,10 @@ export class Search extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.PerformSearchResponse>()
-            .void(200, operations.PerformSearchResponse$)
+        const [result$] = await this.matcher<models.PerformSearchResponse>()
+            .void(200, models.PerformSearchResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.PerformSearchResponseBody$, { err: true })
+            .json(401, models.PerformSearchResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -148,8 +147,8 @@ export class Search extends ClientSDK {
         sectionId?: number | undefined,
         limit?: number | undefined,
         options?: RequestOptions
-    ): Promise<operations.PerformVoiceSearchResponse> {
-        const input$: operations.PerformVoiceSearchRequest = {
+    ): Promise<models.PerformVoiceSearchResponse> {
+        const input$: models.PerformVoiceSearchRequest = {
             query: query,
             sectionId: sectionId,
             limit: limit,
@@ -160,7 +159,7 @@ export class Search extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.PerformVoiceSearchRequest$.outboundSchema.parse(value$),
+            (value$) => models.PerformVoiceSearchRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -211,10 +210,10 @@ export class Search extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.PerformVoiceSearchResponse>()
-            .void(200, operations.PerformVoiceSearchResponse$)
+        const [result$] = await this.matcher<models.PerformVoiceSearchResponse>()
+            .void(200, models.PerformVoiceSearchResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.PerformVoiceSearchResponseBody$, { err: true })
+            .json(401, models.PerformVoiceSearchResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -229,8 +228,8 @@ export class Search extends ClientSDK {
     async getSearchResults(
         query: string,
         options?: RequestOptions
-    ): Promise<operations.GetSearchResultsResponse> {
-        const input$: operations.GetSearchResultsRequest = {
+    ): Promise<models.GetSearchResultsResponse> {
+        const input$: models.GetSearchResultsRequest = {
             query: query,
         };
         const headers$ = new Headers();
@@ -239,7 +238,7 @@ export class Search extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetSearchResultsRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetSearchResultsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -288,10 +287,10 @@ export class Search extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetSearchResultsResponse>()
-            .json(200, operations.GetSearchResultsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetSearchResultsResponse>()
+            .json(200, models.GetSearchResultsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetSearchResultsResponseBody$, { err: true })
+            .json(401, models.GetSearchResultsSearchResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

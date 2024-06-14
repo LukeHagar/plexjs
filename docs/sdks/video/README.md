@@ -18,8 +18,7 @@ Get the timeline for a media item
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { State } from "@lukehagar/plexjs/models/operations";
+import { PlexAPI, State } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -51,20 +50,20 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetTimelineRequest](../../models/operations/gettimelinerequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [models.GetTimelineRequest](../../models/gettimelinerequest.md)                                                                                                                | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.GetTimelineResponse](../../models/operations/gettimelineresponse.md)\>**
+**Promise\<[models.GetTimelineResponse](../../models/gettimelineresponse.md)\>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.GetTimelineResponseBody | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| models.GetTimelineResponseBody | 401                            | application/json               |
+| models.SDKError                | 4xx-5xx                        | */*                            |
 
 ## startUniversalTranscode
 
@@ -111,17 +110,17 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.StartUniversalTranscodeRequest](../../models/operations/startuniversaltranscoderequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [models.StartUniversalTranscodeRequest](../../models/startuniversaltranscoderequest.md)                                                                                        | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.StartUniversalTranscodeResponse](../../models/operations/startuniversaltranscoderesponse.md)\>**
+**Promise\<[models.StartUniversalTranscodeResponse](../../models/startuniversaltranscoderesponse.md)\>**
 ### Errors
 
 | Error Object                               | Status Code                                | Content Type                               |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| errors.StartUniversalTranscodeResponseBody | 401                                        | application/json                           |
-| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
+| models.StartUniversalTranscodeResponseBody | 401                                        | application/json                           |
+| models.SDKError                            | 4xx-5xx                                    | */*                                        |

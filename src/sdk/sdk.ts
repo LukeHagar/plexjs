@@ -21,6 +21,7 @@ import { Sessions } from "./sessions";
 import { Statistics } from "./statistics";
 import { Updater } from "./updater";
 import { Video } from "./video";
+import { Watchlist } from "./watchlist";
 
 export class PlexAPI extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -74,6 +75,11 @@ export class PlexAPI extends ClientSDK {
         return (this._butler ??= new Butler(this.options$));
     }
 
+    private _plex?: Plex;
+    get plex(): Plex {
+        return (this._plex ??= new Plex(this.options$));
+    }
+
     private _hubs?: Hubs;
     get hubs(): Hubs {
         return (this._hubs ??= new Hubs(this.options$));
@@ -92,11 +98,6 @@ export class PlexAPI extends ClientSDK {
     private _log?: Log;
     get log(): Log {
         return (this._log ??= new Log(this.options$));
-    }
-
-    private _plex?: Plex;
-    get plex(): Plex {
-        return (this._plex ??= new Plex(this.options$));
     }
 
     private _playlists?: Playlists;
@@ -122,5 +123,10 @@ export class PlexAPI extends ClientSDK {
     private _updater?: Updater;
     get updater(): Updater {
         return (this._updater ??= new Updater(this.options$));
+    }
+
+    private _watchlist?: Watchlist;
+    get watchlist(): Watchlist {
+        return (this._watchlist ??= new Watchlist(this.options$));
     }
 }

@@ -47,13 +47,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetSessionsResponse](../../models/operations/getsessionsresponse.md)\>**
+**Promise\<[models.GetSessionsResponse](../../models/getsessionsresponse.md)\>**
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.GetSessionsResponseBody | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| models.GetSessionsSessionsResponseBody | 401                                    | application/json                       |
+| models.SDKError                        | 4xx-5xx                                | */*                                    |
 
 ## getSessionHistory
 
@@ -89,13 +89,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetSessionHistoryResponse](../../models/operations/getsessionhistoryresponse.md)\>**
+**Promise\<[models.GetSessionHistoryResponse](../../models/getsessionhistoryresponse.md)\>**
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GetSessionHistoryResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models.GetSessionHistorySessionsResponseBody | 401                                          | application/json                             |
+| models.SDKError                              | 4xx-5xx                                      | */*                                          |
 
 ## getTranscodeSessions
 
@@ -131,13 +131,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetTranscodeSessionsResponse](../../models/operations/gettranscodesessionsresponse.md)\>**
+**Promise\<[models.GetTranscodeSessionsResponse](../../models/gettranscodesessionsresponse.md)\>**
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| errors.GetTranscodeSessionsResponseBody | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| models.GetTranscodeSessionsSessionsResponseBody | 401                                             | application/json                                |
+| models.SDKError                                 | 4xx-5xx                                         | */*                                             |
 
 ## stopTranscodeSession
 
@@ -174,10 +174,10 @@ run();
 
 ### Response
 
-**Promise\<[operations.StopTranscodeSessionResponse](../../models/operations/stoptranscodesessionresponse.md)\>**
+**Promise\<[models.StopTranscodeSessionResponse](../../models/stoptranscodesessionresponse.md)\>**
 ### Errors
 
 | Error Object                            | Status Code                             | Content Type                            |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| errors.StopTranscodeSessionResponseBody | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| models.StopTranscodeSessionResponseBody | 401                                     | application/json                        |
+| models.SDKError                         | 4xx-5xx                                 | */*                                     |

@@ -61,13 +61,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.PerformSearchResponse](../../models/operations/performsearchresponse.md)\>**
+**Promise\<[models.PerformSearchResponse](../../models/performsearchresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.PerformSearchResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| models.PerformSearchResponseBody | 401                              | application/json                 |
+| models.SDKError                  | 4xx-5xx                          | */*                              |
 
 ## performVoiceSearch
 
@@ -110,13 +110,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.PerformVoiceSearchResponse](../../models/operations/performvoicesearchresponse.md)\>**
+**Promise\<[models.PerformVoiceSearchResponse](../../models/performvoicesearchresponse.md)\>**
 ### Errors
 
 | Error Object                          | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.PerformVoiceSearchResponseBody | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
+| models.PerformVoiceSearchResponseBody | 401                                   | application/json                      |
+| models.SDKError                       | 4xx-5xx                               | */*                                   |
 
 ## getSearchResults
 
@@ -153,10 +153,10 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetSearchResultsResponse](../../models/operations/getsearchresultsresponse.md)\>**
+**Promise\<[models.GetSearchResultsResponse](../../models/getsearchresultsresponse.md)\>**
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetSearchResultsResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| models.GetSearchResultsSearchResponseBody | 401                                       | application/json                          |
+| models.SDKError                           | 4xx-5xx                                   | */*                                       |

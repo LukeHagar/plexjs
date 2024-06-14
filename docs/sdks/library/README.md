@@ -56,13 +56,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetFileHashResponse](../../models/operations/getfilehashresponse.md)\>**
+**Promise\<[models.GetFileHashResponse](../../models/getfilehashresponse.md)\>**
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.GetFileHashResponseBody | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| models.GetFileHashResponseBody | 401                            | application/json               |
+| models.SDKError                | 4xx-5xx                        | */*                            |
 
 ## getRecentlyAdded
 
@@ -99,13 +99,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetRecentlyAddedResponse](../../models/operations/getrecentlyaddedresponse.md)\>**
+**Promise\<[models.GetRecentlyAddedResponse](../../models/getrecentlyaddedresponse.md)\>**
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetRecentlyAddedResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| models.GetRecentlyAddedLibraryResponseBody | 401                                        | application/json                           |
+| models.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 ## getLibraries
 
@@ -147,13 +147,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetLibrariesResponse](../../models/operations/getlibrariesresponse.md)\>**
+**Promise\<[models.GetLibrariesResponse](../../models/getlibrariesresponse.md)\>**
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| errors.GetLibrariesResponseBody | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| models.GetLibrariesLibraryResponseBody | 401                                    | application/json                       |
+| models.SDKError                        | 4xx-5xx                                | */*                                    |
 
 ## getLibrary
 
@@ -201,8 +201,7 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { IncludeDetails } from "@lukehagar/plexjs/models/operations";
+import { IncludeDetails, PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -224,20 +223,20 @@ run();
 | Parameter                                                                                                                                                                                  | Type                                                                                                                                                                                       | Required                                                                                                                                                                                   | Description                                                                                                                                                                                | Example                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `sectionId`                                                                                                                                                                                | *number*                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                         | the Id of the library to query                                                                                                                                                             | [object Object]                                                                                                                                                                            |
-| `includeDetails`                                                                                                                                                                           | [operations.IncludeDetails](../../models/operations/includedetails.md)                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                         | Whether or not to include details for a section (types, filters, and sorts). <br/>Only exists for backwards compatibility, media providers other than the server libraries have it on always.<br/> |                                                                                                                                                                                            |
+| `includeDetails`                                                                                                                                                                           | [models.IncludeDetails](../../models/includedetails.md)                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                         | Whether or not to include details for a section (types, filters, and sorts). <br/>Only exists for backwards compatibility, media providers other than the server libraries have it on always.<br/> |                                                                                                                                                                                            |
 | `options`                                                                                                                                                                                  | RequestOptions                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                         | Used to set various options for making HTTP requests.                                                                                                                                      |                                                                                                                                                                                            |
 | `options.fetchOptions`                                                                                                                                                                     | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                    | :heavy_minus_sign:                                                                                                                                                                         | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.             |                                                                                                                                                                                            |
 
 
 ### Response
 
-**Promise\<[operations.GetLibraryResponse](../../models/operations/getlibraryresponse.md)\>**
+**Promise\<[models.GetLibraryResponse](../../models/getlibraryresponse.md)\>**
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.GetLibraryResponseBody | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| models.GetLibraryLibraryResponseBody | 401                                  | application/json                     |
+| models.SDKError                      | 4xx-5xx                              | */*                                  |
 
 ## deleteLibrary
 
@@ -274,13 +273,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteLibraryResponse](../../models/operations/deletelibraryresponse.md)\>**
+**Promise\<[models.DeleteLibraryResponse](../../models/deletelibraryresponse.md)\>**
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.DeleteLibraryResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| models.DeleteLibraryResponseBody | 401                              | application/json                 |
+| models.SDKError                  | 4xx-5xx                          | */*                              |
 
 ## getLibraryItems
 
@@ -309,8 +308,7 @@ Fetches details from a specific section of the library identified by a section k
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Tag } from "@lukehagar/plexjs/models/operations";
+import { PlexAPI, Tag } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -318,7 +316,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.library.getLibraryItems(1, Tag.Genre);
+  const result = await plexAPI.library.getLibraryItems("<value>", Tag.Genre);
 
   // Handle the result
   console.log(result)
@@ -329,23 +327,23 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 | [object Object]                                                                                                                                                                |
-| `tag`                                                                                                                                                                          | [operations.Tag](../../models/operations/tag.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                             | A key representing a specific tag within the section.                                                                                                                          |                                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `sectionId`                                                                                                                                                                    | *any*                                                                                                                                                                          | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 |
+| `tag`                                                                                                                                                                          | [models.Tag](../../models/tag.md)                                                                                                                                              | :heavy_check_mark:                                                                                                                                                             | A key representing a specific tag within the section.                                                                                                                          |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.GetLibraryItemsResponse](../../models/operations/getlibraryitemsresponse.md)\>**
+**Promise\<[models.GetLibraryItemsResponse](../../models/getlibraryitemsresponse.md)\>**
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.GetLibraryItemsResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| models.GetLibraryItemsLibraryResponseBody | 401                                       | application/json                          |
+| models.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 ## refreshLibrary
 
@@ -383,13 +381,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.RefreshLibraryResponse](../../models/operations/refreshlibraryresponse.md)\>**
+**Promise\<[models.RefreshLibraryResponse](../../models/refreshlibraryresponse.md)\>**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.RefreshLibraryResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| models.RefreshLibraryResponseBody | 401                               | application/json                  |
+| models.SDKError                   | 4xx-5xx                           | */*                               |
 
 ## searchLibrary
 
@@ -416,8 +414,7 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 ### Example Usage
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Type } from "@lukehagar/plexjs/models/operations";
+import { PlexAPI, Type } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -439,20 +436,20 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 |
-| `type`                                                                                                                                                                         | [operations.Type](../../models/operations/type.md)                                                                                                                             | :heavy_check_mark:                                                                                                                                                             | Plex content type to search for                                                                                                                                                |
+| `type`                                                                                                                                                                         | [models.Type](../../models/type.md)                                                                                                                                            | :heavy_check_mark:                                                                                                                                                             | Plex content type to search for                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise\<[operations.SearchLibraryResponse](../../models/operations/searchlibraryresponse.md)\>**
+**Promise\<[models.SearchLibraryResponse](../../models/searchlibraryresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.SearchLibraryResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| models.SearchLibraryLibraryResponseBody | 401                                     | application/json                        |
+| models.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 ## getMetadata
 
@@ -490,13 +487,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetMetadataResponse](../../models/operations/getmetadataresponse.md)\>**
+**Promise\<[models.GetMetadataResponse](../../models/getmetadataresponse.md)\>**
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.GetMetadataResponseBody | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models.GetMetadataLibraryResponseBody | 401                                   | application/json                      |
+| models.SDKError                       | 4xx-5xx                               | */*                                   |
 
 ## getMetadataChildren
 
@@ -534,13 +531,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetMetadataChildrenResponse](../../models/operations/getmetadatachildrenresponse.md)\>**
+**Promise\<[models.GetMetadataChildrenResponse](../../models/getmetadatachildrenresponse.md)\>**
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetMetadataChildrenResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| models.GetMetadataChildrenLibraryResponseBody | 401                                           | application/json                              |
+| models.SDKError                               | 4xx-5xx                                       | */*                                           |
 
 ## getOnDeck
 
@@ -577,10 +574,10 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetOnDeckResponse](../../models/operations/getondeckresponse.md)\>**
+**Promise\<[models.GetOnDeckResponse](../../models/getondeckresponse.md)\>**
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.GetOnDeckResponseBody | 401                          | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models.GetOnDeckLibraryResponseBody | 401                                 | application/json                    |
+| models.SDKError                     | 4xx-5xx                             | */*                                 |

@@ -8,8 +8,7 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 import * as z from "zod";
 
 export class Log extends ClientSDK {
@@ -47,12 +46,12 @@ export class Log extends ClientSDK {
      *
      */
     async logLine(
-        level: operations.Level,
+        level: models.Level,
         message: string,
         source: string,
         options?: RequestOptions
-    ): Promise<operations.LogLineResponse> {
-        const input$: operations.LogLineRequest = {
+    ): Promise<models.LogLineResponse> {
+        const input$: models.LogLineRequest = {
             level: level,
             message: message,
             source: source,
@@ -63,7 +62,7 @@ export class Log extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.LogLineRequest$.outboundSchema.parse(value$),
+            (value$) => models.LogLineRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -114,10 +113,10 @@ export class Log extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.LogLineResponse>()
-            .void(200, operations.LogLineResponse$)
+        const [result$] = await this.matcher<models.LogLineResponse>()
+            .void(200, models.LogLineResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.LogLineResponseBody$, { err: true })
+            .json(401, models.LogLineResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -153,7 +152,7 @@ export class Log extends ClientSDK {
     async logMultiLine(
         request: string,
         options?: RequestOptions
-    ): Promise<operations.LogMultiLineResponse> {
+    ): Promise<models.LogMultiLineResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -209,10 +208,10 @@ export class Log extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.LogMultiLineResponse>()
-            .void(200, operations.LogMultiLineResponse$)
+        const [result$] = await this.matcher<models.LogMultiLineResponse>()
+            .void(200, models.LogMultiLineResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.LogMultiLineResponseBody$, { err: true })
+            .json(401, models.LogMultiLineResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -225,7 +224,7 @@ export class Log extends ClientSDK {
      * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
      *
      */
-    async enablePaperTrail(options?: RequestOptions): Promise<operations.EnablePaperTrailResponse> {
+    async enablePaperTrail(options?: RequestOptions): Promise<models.EnablePaperTrailResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -271,10 +270,10 @@ export class Log extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.EnablePaperTrailResponse>()
-            .void(200, operations.EnablePaperTrailResponse$)
+        const [result$] = await this.matcher<models.EnablePaperTrailResponse>()
+            .void(200, models.EnablePaperTrailResponse$)
             .fail([400, 403, "4XX", "5XX"])
-            .json(401, errors.EnablePaperTrailResponseBody$, { err: true })
+            .json(401, models.EnablePaperTrailResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

@@ -8,8 +8,7 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Updater extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -44,7 +43,7 @@ export class Updater extends ClientSDK {
      * @remarks
      * Querying status of updates
      */
-    async getUpdateStatus(options?: RequestOptions): Promise<operations.GetUpdateStatusResponse> {
+    async getUpdateStatus(options?: RequestOptions): Promise<models.GetUpdateStatusResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -90,10 +89,10 @@ export class Updater extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetUpdateStatusResponse>()
-            .json(200, operations.GetUpdateStatusResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetUpdateStatusResponse>()
+            .json(200, models.GetUpdateStatusResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetUpdateStatusResponseBody$, { err: true })
+            .json(401, models.GetUpdateStatusUpdaterResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -106,10 +105,10 @@ export class Updater extends ClientSDK {
      * Checking for updates
      */
     async checkForUpdates(
-        download?: operations.Download | undefined,
+        download?: models.Download | undefined,
         options?: RequestOptions
-    ): Promise<operations.CheckForUpdatesResponse> {
-        const input$: operations.CheckForUpdatesRequest = {
+    ): Promise<models.CheckForUpdatesResponse> {
+        const input$: models.CheckForUpdatesRequest = {
             download: download,
         };
         const headers$ = new Headers();
@@ -118,7 +117,7 @@ export class Updater extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.CheckForUpdatesRequest$.outboundSchema.parse(value$),
+            (value$) => models.CheckForUpdatesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -167,10 +166,10 @@ export class Updater extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.CheckForUpdatesResponse>()
-            .void(200, operations.CheckForUpdatesResponse$)
+        const [result$] = await this.matcher<models.CheckForUpdatesResponse>()
+            .void(200, models.CheckForUpdatesResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.CheckForUpdatesResponseBody$, { err: true })
+            .json(401, models.CheckForUpdatesResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -184,11 +183,11 @@ export class Updater extends ClientSDK {
      *
      */
     async applyUpdates(
-        tonight?: operations.Tonight | undefined,
-        skip?: operations.Skip | undefined,
+        tonight?: models.Tonight | undefined,
+        skip?: models.Skip | undefined,
         options?: RequestOptions
-    ): Promise<operations.ApplyUpdatesResponse> {
-        const input$: operations.ApplyUpdatesRequest = {
+    ): Promise<models.ApplyUpdatesResponse> {
+        const input$: models.ApplyUpdatesRequest = {
             tonight: tonight,
             skip: skip,
         };
@@ -198,7 +197,7 @@ export class Updater extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ApplyUpdatesRequest$.outboundSchema.parse(value$),
+            (value$) => models.ApplyUpdatesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -248,10 +247,10 @@ export class Updater extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.ApplyUpdatesResponse>()
-            .void(200, operations.ApplyUpdatesResponse$)
+        const [result$] = await this.matcher<models.ApplyUpdatesResponse>()
+            .void(200, models.ApplyUpdatesResponse$)
             .fail([400, "4XX", 500, "5XX"])
-            .json(401, errors.ApplyUpdatesResponseBody$, { err: true })
+            .json(401, models.ApplyUpdatesResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

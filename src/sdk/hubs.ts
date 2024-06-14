@@ -11,8 +11,7 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Hubs extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -49,10 +48,10 @@ export class Hubs extends ClientSDK {
      */
     async getGlobalHubs(
         count?: number | undefined,
-        onlyTransient?: operations.OnlyTransient | undefined,
+        onlyTransient?: models.OnlyTransient | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetGlobalHubsResponse> {
-        const input$: operations.GetGlobalHubsRequest = {
+    ): Promise<models.GetGlobalHubsResponse> {
+        const input$: models.GetGlobalHubsRequest = {
             count: count,
             onlyTransient: onlyTransient,
         };
@@ -62,7 +61,7 @@ export class Hubs extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetGlobalHubsRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetGlobalHubsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -112,10 +111,10 @@ export class Hubs extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetGlobalHubsResponse>()
-            .json(200, operations.GetGlobalHubsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetGlobalHubsResponse>()
+            .json(200, models.GetGlobalHubsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetGlobalHubsResponseBody$, { err: true })
+            .json(401, models.GetGlobalHubsHubsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -131,10 +130,10 @@ export class Hubs extends ClientSDK {
     async getLibraryHubs(
         sectionId: number,
         count?: number | undefined,
-        onlyTransient?: operations.QueryParamOnlyTransient | undefined,
+        onlyTransient?: models.QueryParamOnlyTransient | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetLibraryHubsResponse> {
-        const input$: operations.GetLibraryHubsRequest = {
+    ): Promise<models.GetLibraryHubsResponse> {
+        const input$: models.GetLibraryHubsRequest = {
             sectionId: sectionId,
             count: count,
             onlyTransient: onlyTransient,
@@ -145,7 +144,7 @@ export class Hubs extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetLibraryHubsRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetLibraryHubsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -201,10 +200,10 @@ export class Hubs extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetLibraryHubsResponse>()
-            .json(200, operations.GetLibraryHubsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetLibraryHubsResponse>()
+            .json(200, models.GetLibraryHubsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetLibraryHubsResponseBody$, { err: true })
+            .json(401, models.GetLibraryHubsHubsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

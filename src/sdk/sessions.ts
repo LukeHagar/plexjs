@@ -8,8 +8,7 @@ import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Sessions extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -44,7 +43,7 @@ export class Sessions extends ClientSDK {
      * @remarks
      * This will retrieve the "Now Playing" Information of the PMS.
      */
-    async getSessions(options?: RequestOptions): Promise<operations.GetSessionsResponse> {
+    async getSessions(options?: RequestOptions): Promise<models.GetSessionsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -90,10 +89,10 @@ export class Sessions extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetSessionsResponse>()
-            .json(200, operations.GetSessionsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetSessionsResponse>()
+            .json(200, models.GetSessionsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetSessionsResponseBody$, { err: true })
+            .json(401, models.GetSessionsSessionsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -105,9 +104,7 @@ export class Sessions extends ClientSDK {
      * @remarks
      * This will Retrieve a listing of all history views.
      */
-    async getSessionHistory(
-        options?: RequestOptions
-    ): Promise<operations.GetSessionHistoryResponse> {
+    async getSessionHistory(options?: RequestOptions): Promise<models.GetSessionHistoryResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -153,10 +150,10 @@ export class Sessions extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetSessionHistoryResponse>()
-            .json(200, operations.GetSessionHistoryResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetSessionHistoryResponse>()
+            .json(200, models.GetSessionHistoryResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetSessionHistoryResponseBody$, { err: true })
+            .json(401, models.GetSessionHistorySessionsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -170,7 +167,7 @@ export class Sessions extends ClientSDK {
      */
     async getTranscodeSessions(
         options?: RequestOptions
-    ): Promise<operations.GetTranscodeSessionsResponse> {
+    ): Promise<models.GetTranscodeSessionsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -216,10 +213,10 @@ export class Sessions extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetTranscodeSessionsResponse>()
-            .json(200, operations.GetTranscodeSessionsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetTranscodeSessionsResponse>()
+            .json(200, models.GetTranscodeSessionsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetTranscodeSessionsResponseBody$, { err: true })
+            .json(401, models.GetTranscodeSessionsSessionsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -234,8 +231,8 @@ export class Sessions extends ClientSDK {
     async stopTranscodeSession(
         sessionKey: string,
         options?: RequestOptions
-    ): Promise<operations.StopTranscodeSessionResponse> {
-        const input$: operations.StopTranscodeSessionRequest = {
+    ): Promise<models.StopTranscodeSessionResponse> {
+        const input$: models.StopTranscodeSessionRequest = {
             sessionKey: sessionKey,
         };
         const headers$ = new Headers();
@@ -244,7 +241,7 @@ export class Sessions extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.StopTranscodeSessionRequest$.outboundSchema.parse(value$),
+            (value$) => models.StopTranscodeSessionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -297,10 +294,10 @@ export class Sessions extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.StopTranscodeSessionResponse>()
-            .void(204, operations.StopTranscodeSessionResponse$)
+        const [result$] = await this.matcher<models.StopTranscodeSessionResponse>()
+            .void(204, models.StopTranscodeSessionResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.StopTranscodeSessionResponseBody$, { err: true })
+            .json(401, models.StopTranscodeSessionResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

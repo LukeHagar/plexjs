@@ -47,13 +47,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.MarkPlayedResponse](../../models/operations/markplayedresponse.md)\>**
+**Promise\<[models.MarkPlayedResponse](../../models/markplayedresponse.md)\>**
 ### Errors
 
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.MarkPlayedResponseBody | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
+| models.MarkPlayedResponseBody | 401                           | application/json              |
+| models.SDKError               | 4xx-5xx                       | */*                           |
 
 ## markUnplayed
 
@@ -90,13 +90,13 @@ run();
 
 ### Response
 
-**Promise\<[operations.MarkUnplayedResponse](../../models/operations/markunplayedresponse.md)\>**
+**Promise\<[models.MarkUnplayedResponse](../../models/markunplayedresponse.md)\>**
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
-| errors.MarkUnplayedResponseBody | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
+| models.MarkUnplayedResponseBody | 401                             | application/json                |
+| models.SDKError                 | 4xx-5xx                         | */*                             |
 
 ## updatePlayProgress
 
@@ -136,10 +136,10 @@ run();
 
 ### Response
 
-**Promise\<[operations.UpdatePlayProgressResponse](../../models/operations/updateplayprogressresponse.md)\>**
+**Promise\<[models.UpdatePlayProgressResponse](../../models/updateplayprogressresponse.md)\>**
 ### Errors
 
 | Error Object                          | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.UpdatePlayProgressResponseBody | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
+| models.UpdatePlayProgressResponseBody | 401                                   | application/json                      |
+| models.SDKError                       | 4xx-5xx                               | */*                                   |

@@ -8,8 +8,7 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Authentication extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -46,11 +45,11 @@ export class Authentication extends ClientSDK {
      *
      */
     async getTransientToken(
-        type: operations.GetTransientTokenQueryParamType,
-        scope: operations.Scope,
+        type: models.GetTransientTokenQueryParamType,
+        scope: models.Scope,
         options?: RequestOptions
-    ): Promise<operations.GetTransientTokenResponse> {
-        const input$: operations.GetTransientTokenRequest = {
+    ): Promise<models.GetTransientTokenResponse> {
+        const input$: models.GetTransientTokenRequest = {
             type: type,
             scope: scope,
         };
@@ -60,7 +59,7 @@ export class Authentication extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetTransientTokenRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetTransientTokenRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -110,10 +109,10 @@ export class Authentication extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetTransientTokenResponse>()
-            .void(200, operations.GetTransientTokenResponse$)
+        const [result$] = await this.matcher<models.GetTransientTokenResponse>()
+            .void(200, models.GetTransientTokenResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetTransientTokenResponseBody$, { err: true })
+            .json(401, models.GetTransientTokenResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -130,8 +129,8 @@ export class Authentication extends ClientSDK {
     async getSourceConnectionInformation(
         source: string,
         options?: RequestOptions
-    ): Promise<operations.GetSourceConnectionInformationResponse> {
-        const input$: operations.GetSourceConnectionInformationRequest = {
+    ): Promise<models.GetSourceConnectionInformationResponse> {
+        const input$: models.GetSourceConnectionInformationRequest = {
             source: source,
         };
         const headers$ = new Headers();
@@ -140,8 +139,7 @@ export class Authentication extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) =>
-                operations.GetSourceConnectionInformationRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetSourceConnectionInformationRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -190,10 +188,10 @@ export class Authentication extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetSourceConnectionInformationResponse>()
-            .void(200, operations.GetSourceConnectionInformationResponse$)
+        const [result$] = await this.matcher<models.GetSourceConnectionInformationResponse>()
+            .void(200, models.GetSourceConnectionInformationResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetSourceConnectionInformationResponseBody$, { err: true })
+            .json(401, models.GetSourceConnectionInformationResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

@@ -8,8 +8,7 @@ import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Butler extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -44,7 +43,7 @@ export class Butler extends ClientSDK {
      * @remarks
      * Returns a list of butler tasks
      */
-    async getButlerTasks(options?: RequestOptions): Promise<operations.GetButlerTasksResponse> {
+    async getButlerTasks(options?: RequestOptions): Promise<models.GetButlerTasksResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -90,10 +89,10 @@ export class Butler extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetButlerTasksResponse>()
-            .json(200, operations.GetButlerTasksResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetButlerTasksResponse>()
+            .json(200, models.GetButlerTasksResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetButlerTasksResponseBody$, { err: true })
+            .json(401, models.GetButlerTasksButlerResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -110,7 +109,7 @@ export class Butler extends ClientSDK {
      * 4. If we are outside the configured window, the task will start immediately.
      *
      */
-    async startAllTasks(options?: RequestOptions): Promise<operations.StartAllTasksResponse> {
+    async startAllTasks(options?: RequestOptions): Promise<models.StartAllTasksResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -156,10 +155,10 @@ export class Butler extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.StartAllTasksResponse>()
-            .void(200, operations.StartAllTasksResponse$)
+        const [result$] = await this.matcher<models.StartAllTasksResponse>()
+            .void(200, models.StartAllTasksResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.StartAllTasksResponseBody$, { err: true })
+            .json(401, models.StartAllTasksResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -172,7 +171,7 @@ export class Butler extends ClientSDK {
      * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
      *
      */
-    async stopAllTasks(options?: RequestOptions): Promise<operations.StopAllTasksResponse> {
+    async stopAllTasks(options?: RequestOptions): Promise<models.StopAllTasksResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -218,10 +217,10 @@ export class Butler extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.StopAllTasksResponse>()
-            .void(200, operations.StopAllTasksResponse$)
+        const [result$] = await this.matcher<models.StopAllTasksResponse>()
+            .void(200, models.StopAllTasksResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.StopAllTasksResponseBody$, { err: true })
+            .json(401, models.StopAllTasksResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -239,10 +238,10 @@ export class Butler extends ClientSDK {
      *
      */
     async startTask(
-        taskName: operations.TaskName,
+        taskName: models.TaskName,
         options?: RequestOptions
-    ): Promise<operations.StartTaskResponse> {
-        const input$: operations.StartTaskRequest = {
+    ): Promise<models.StartTaskResponse> {
+        const input$: models.StartTaskRequest = {
             taskName: taskName,
         };
         const headers$ = new Headers();
@@ -251,7 +250,7 @@ export class Butler extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.StartTaskRequest$.outboundSchema.parse(value$),
+            (value$) => models.StartTaskRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -304,10 +303,10 @@ export class Butler extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.StartTaskResponse>()
-            .void([200, 202], operations.StartTaskResponse$)
+        const [result$] = await this.matcher<models.StartTaskResponse>()
+            .void([200, 202], models.StartTaskResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.StartTaskResponseBody$, { err: true })
+            .json(401, models.StartTaskResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -321,10 +320,10 @@ export class Butler extends ClientSDK {
      *
      */
     async stopTask(
-        taskName: operations.PathParamTaskName,
+        taskName: models.PathParamTaskName,
         options?: RequestOptions
-    ): Promise<operations.StopTaskResponse> {
-        const input$: operations.StopTaskRequest = {
+    ): Promise<models.StopTaskResponse> {
+        const input$: models.StopTaskRequest = {
             taskName: taskName,
         };
         const headers$ = new Headers();
@@ -333,7 +332,7 @@ export class Butler extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.StopTaskRequest$.outboundSchema.parse(value$),
+            (value$) => models.StopTaskRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -386,10 +385,10 @@ export class Butler extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.StopTaskResponse>()
-            .void(200, operations.StopTaskResponse$)
+        const [result$] = await this.matcher<models.StopTaskResponse>()
+            .void(200, models.StopTaskResponse$)
             .fail([400, 404, "4XX", "5XX"])
-            .json(401, errors.StopTaskResponseBody$, { err: true })
+            .json(401, models.StopTaskResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

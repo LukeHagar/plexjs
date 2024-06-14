@@ -11,8 +11,7 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Library extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -51,8 +50,8 @@ export class Library extends ClientSDK {
         url: string,
         type?: number | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetFileHashResponse> {
-        const input$: operations.GetFileHashRequest = {
+    ): Promise<models.GetFileHashResponse> {
+        const input$: models.GetFileHashRequest = {
             url: url,
             type: type,
         };
@@ -62,7 +61,7 @@ export class Library extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetFileHashRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetFileHashRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -112,10 +111,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetFileHashResponse>()
-            .void(200, operations.GetFileHashResponse$)
+        const [result$] = await this.matcher<models.GetFileHashResponse>()
+            .void(200, models.GetFileHashResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetFileHashResponseBody$, { err: true })
+            .json(401, models.GetFileHashResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -128,7 +127,7 @@ export class Library extends ClientSDK {
      * This endpoint will return the recently added content.
      *
      */
-    async getRecentlyAdded(options?: RequestOptions): Promise<operations.GetRecentlyAddedResponse> {
+    async getRecentlyAdded(options?: RequestOptions): Promise<models.GetRecentlyAddedResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -174,10 +173,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetRecentlyAddedResponse>()
-            .json(200, operations.GetRecentlyAddedResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetRecentlyAddedResponse>()
+            .json(200, models.GetRecentlyAddedResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetRecentlyAddedResponseBody$, { err: true })
+            .json(401, models.GetRecentlyAddedLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -195,7 +194,7 @@ export class Library extends ClientSDK {
      * This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      *
      */
-    async getLibraries(options?: RequestOptions): Promise<operations.GetLibrariesResponse> {
+    async getLibraries(options?: RequestOptions): Promise<models.GetLibrariesResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -241,10 +240,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetLibrariesResponse>()
-            .json(200, operations.GetLibrariesResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetLibrariesResponse>()
+            .json(200, models.GetLibrariesResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetLibrariesResponseBody$, { err: true })
+            .json(401, models.GetLibrariesLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -297,10 +296,10 @@ export class Library extends ClientSDK {
      */
     async getLibrary(
         sectionId: number,
-        includeDetails?: operations.IncludeDetails | undefined,
+        includeDetails?: models.IncludeDetails | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetLibraryResponse> {
-        const input$: operations.GetLibraryRequest = {
+    ): Promise<models.GetLibraryResponse> {
+        const input$: models.GetLibraryRequest = {
             sectionId: sectionId,
             includeDetails: includeDetails,
         };
@@ -310,7 +309,7 @@ export class Library extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetLibraryRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetLibraryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -365,10 +364,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetLibraryResponse>()
-            .json(200, operations.GetLibraryResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetLibraryResponse>()
+            .json(200, models.GetLibraryResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetLibraryResponseBody$, { err: true })
+            .json(401, models.GetLibraryLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -383,8 +382,8 @@ export class Library extends ClientSDK {
     async deleteLibrary(
         sectionId: number,
         options?: RequestOptions
-    ): Promise<operations.DeleteLibraryResponse> {
-        const input$: operations.DeleteLibraryRequest = {
+    ): Promise<models.DeleteLibraryResponse> {
+        const input$: models.DeleteLibraryRequest = {
             sectionId: sectionId,
         };
         const headers$ = new Headers();
@@ -393,7 +392,7 @@ export class Library extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteLibraryRequest$.outboundSchema.parse(value$),
+            (value$) => models.DeleteLibraryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -446,10 +445,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.DeleteLibraryResponse>()
-            .void(200, operations.DeleteLibraryResponse$)
+        const [result$] = await this.matcher<models.DeleteLibraryResponse>()
+            .void(200, models.DeleteLibraryResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.DeleteLibraryResponseBody$, { err: true })
+            .json(401, models.DeleteLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -482,11 +481,11 @@ export class Library extends ClientSDK {
      *
      */
     async getLibraryItems(
-        sectionId: number,
-        tag: operations.Tag,
+        sectionId: any,
+        tag: models.Tag,
         options?: RequestOptions
-    ): Promise<operations.GetLibraryItemsResponse> {
-        const input$: operations.GetLibraryItemsRequest = {
+    ): Promise<models.GetLibraryItemsResponse> {
+        const input$: models.GetLibraryItemsRequest = {
             sectionId: sectionId,
             tag: tag,
         };
@@ -496,7 +495,7 @@ export class Library extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetLibraryItemsRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetLibraryItemsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -550,10 +549,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetLibraryItemsResponse>()
-            .json(200, operations.GetLibraryItemsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetLibraryItemsResponse>()
+            .json(200, models.GetLibraryItemsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetLibraryItemsResponseBody$, { err: true })
+            .json(401, models.GetLibraryItemsLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -569,8 +568,8 @@ export class Library extends ClientSDK {
     async refreshLibrary(
         sectionId: number,
         options?: RequestOptions
-    ): Promise<operations.RefreshLibraryResponse> {
-        const input$: operations.RefreshLibraryRequest = {
+    ): Promise<models.RefreshLibraryResponse> {
+        const input$: models.RefreshLibraryRequest = {
             sectionId: sectionId,
         };
         const headers$ = new Headers();
@@ -579,7 +578,7 @@ export class Library extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RefreshLibraryRequest$.outboundSchema.parse(value$),
+            (value$) => models.RefreshLibraryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -634,10 +633,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.RefreshLibraryResponse>()
-            .void(200, operations.RefreshLibraryResponse$)
+        const [result$] = await this.matcher<models.RefreshLibraryResponse>()
+            .void(200, models.RefreshLibraryResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.RefreshLibraryResponseBody$, { err: true })
+            .json(401, models.RefreshLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -669,10 +668,10 @@ export class Library extends ClientSDK {
      */
     async searchLibrary(
         sectionId: number,
-        type: operations.Type,
+        type: models.Type,
         options?: RequestOptions
-    ): Promise<operations.SearchLibraryResponse> {
-        const input$: operations.SearchLibraryRequest = {
+    ): Promise<models.SearchLibraryResponse> {
+        const input$: models.SearchLibraryRequest = {
             sectionId: sectionId,
             type: type,
         };
@@ -682,7 +681,7 @@ export class Library extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.SearchLibraryRequest$.outboundSchema.parse(value$),
+            (value$) => models.SearchLibraryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -739,10 +738,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.SearchLibraryResponse>()
-            .json(200, operations.SearchLibraryResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.SearchLibraryResponse>()
+            .json(200, models.SearchLibraryResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.SearchLibraryResponseBody$, { err: true })
+            .json(401, models.SearchLibraryLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -758,8 +757,8 @@ export class Library extends ClientSDK {
     async getMetadata(
         ratingKey: number,
         options?: RequestOptions
-    ): Promise<operations.GetMetadataResponse> {
-        const input$: operations.GetMetadataRequest = {
+    ): Promise<models.GetMetadataResponse> {
+        const input$: models.GetMetadataRequest = {
             ratingKey: ratingKey,
         };
         const headers$ = new Headers();
@@ -768,7 +767,7 @@ export class Library extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetMetadataRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetMetadataRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -821,10 +820,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetMetadataResponse>()
-            .json(200, operations.GetMetadataResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetMetadataResponse>()
+            .json(200, models.GetMetadataResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetMetadataResponseBody$, { err: true })
+            .json(401, models.GetMetadataLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -840,8 +839,8 @@ export class Library extends ClientSDK {
     async getMetadataChildren(
         ratingKey: number,
         options?: RequestOptions
-    ): Promise<operations.GetMetadataChildrenResponse> {
-        const input$: operations.GetMetadataChildrenRequest = {
+    ): Promise<models.GetMetadataChildrenResponse> {
+        const input$: models.GetMetadataChildrenRequest = {
             ratingKey: ratingKey,
         };
         const headers$ = new Headers();
@@ -850,7 +849,7 @@ export class Library extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetMetadataChildrenRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetMetadataChildrenRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -905,10 +904,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetMetadataChildrenResponse>()
-            .json(200, operations.GetMetadataChildrenResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetMetadataChildrenResponse>()
+            .json(200, models.GetMetadataChildrenResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetMetadataChildrenResponseBody$, { err: true })
+            .json(401, models.GetMetadataChildrenLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -921,7 +920,7 @@ export class Library extends ClientSDK {
      * This endpoint will return the on deck content.
      *
      */
-    async getOnDeck(options?: RequestOptions): Promise<operations.GetOnDeckResponse> {
+    async getOnDeck(options?: RequestOptions): Promise<models.GetOnDeckResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -967,10 +966,10 @@ export class Library extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetOnDeckResponse>()
-            .json(200, operations.GetOnDeckResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetOnDeckResponse>()
+            .json(200, models.GetOnDeckResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetOnDeckResponseBody$, { err: true })
+            .json(401, models.GetOnDeckLibraryResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

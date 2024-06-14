@@ -1,0 +1,11 @@
+# GetStatisticsMediaContainer
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `size`                                                           | *number*                                                         | :heavy_minus_sign:                                               | N/A                                                              | 5497                                                             |
+| `device`                                                         | [models.GetStatisticsDevice](../models/getstatisticsdevice.md)[] | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
+| `account`                                                        | [models.Account](../models/account.md)[]                         | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
+| `statisticsMedia`                                                | [models.StatisticsMedia](../models/statisticsmedia.md)[]         | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |

@@ -8,8 +8,7 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Media extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -44,11 +43,8 @@ export class Media extends ClientSDK {
      * @remarks
      * This will mark the provided media key as Played.
      */
-    async markPlayed(
-        key: number,
-        options?: RequestOptions
-    ): Promise<operations.MarkPlayedResponse> {
-        const input$: operations.MarkPlayedRequest = {
+    async markPlayed(key: number, options?: RequestOptions): Promise<models.MarkPlayedResponse> {
+        const input$: models.MarkPlayedRequest = {
             key: key,
         };
         const headers$ = new Headers();
@@ -57,7 +53,7 @@ export class Media extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.MarkPlayedRequest$.outboundSchema.parse(value$),
+            (value$) => models.MarkPlayedRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -106,10 +102,10 @@ export class Media extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.MarkPlayedResponse>()
-            .void(200, operations.MarkPlayedResponse$)
+        const [result$] = await this.matcher<models.MarkPlayedResponse>()
+            .void(200, models.MarkPlayedResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.MarkPlayedResponseBody$, { err: true })
+            .json(401, models.MarkPlayedResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -124,8 +120,8 @@ export class Media extends ClientSDK {
     async markUnplayed(
         key: number,
         options?: RequestOptions
-    ): Promise<operations.MarkUnplayedResponse> {
-        const input$: operations.MarkUnplayedRequest = {
+    ): Promise<models.MarkUnplayedResponse> {
+        const input$: models.MarkUnplayedRequest = {
             key: key,
         };
         const headers$ = new Headers();
@@ -134,7 +130,7 @@ export class Media extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.MarkUnplayedRequest$.outboundSchema.parse(value$),
+            (value$) => models.MarkUnplayedRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -183,10 +179,10 @@ export class Media extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.MarkUnplayedResponse>()
-            .void(200, operations.MarkUnplayedResponse$)
+        const [result$] = await this.matcher<models.MarkUnplayedResponse>()
+            .void(200, models.MarkUnplayedResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.MarkUnplayedResponseBody$, { err: true })
+            .json(401, models.MarkUnplayedResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -204,8 +200,8 @@ export class Media extends ClientSDK {
         time: number,
         state: string,
         options?: RequestOptions
-    ): Promise<operations.UpdatePlayProgressResponse> {
-        const input$: operations.UpdatePlayProgressRequest = {
+    ): Promise<models.UpdatePlayProgressResponse> {
+        const input$: models.UpdatePlayProgressRequest = {
             key: key,
             time: time,
             state: state,
@@ -216,7 +212,7 @@ export class Media extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdatePlayProgressRequest$.outboundSchema.parse(value$),
+            (value$) => models.UpdatePlayProgressRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -267,10 +263,10 @@ export class Media extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.UpdatePlayProgressResponse>()
-            .void(200, operations.UpdatePlayProgressResponse$)
+        const [result$] = await this.matcher<models.UpdatePlayProgressResponse>()
+            .void(200, models.UpdatePlayProgressResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.UpdatePlayProgressResponseBody$, { err: true })
+            .json(401, models.UpdatePlayProgressResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

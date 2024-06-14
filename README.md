@@ -86,6 +86,12 @@ run();
 * [startTask](docs/sdks/butler/README.md#starttask) - Start a single Butler task
 * [stopTask](docs/sdks/butler/README.md#stoptask) - Stop a single Butler task
 
+### [plex](docs/sdks/plex/README.md)
+
+* [getHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
+* [getPin](docs/sdks/plex/README.md#getpin) - Get a Pin
+* [getToken](docs/sdks/plex/README.md#gettoken) - Get Access Token
+
 ### [hubs](docs/sdks/hubs/README.md)
 
 * [getGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
@@ -116,11 +122,6 @@ run();
 * [logLine](docs/sdks/log/README.md#logline) - Logging a single line message.
 * [logMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
 * [enablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
-
-### [plex](docs/sdks/plex/README.md)
-
-* [getPin](docs/sdks/plex/README.md#getpin) - Get a Pin
-* [getToken](docs/sdks/plex/README.md#gettoken) - Get Access Token
 
 ### [playlists](docs/sdks/playlists/README.md)
 
@@ -155,6 +156,10 @@ run();
 * [getUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
 * [checkForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [applyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
+
+### [watchlist](docs/sdks/watchlist/README.md)
+
+* [getWatchlist](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -162,17 +167,17 @@ run();
 
 All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetServerCapabilitiesResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object                                   | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| models.GetServerCapabilitiesServerResponseBody | 401                                            | application/json                               |
+| models.SDKError                                | 4xx-5xx                                        | */*                                            |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
 
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import * as errors from "@lukehagar/plexjs/models/errors";
+import * as errors from "@lukehagar/plexjs/models";
 
 const plexAPI = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
@@ -192,7 +197,7 @@ async function run() {
                 console.error(err.rawValue);
                 return;
             }
-            case err instanceof errors.GetServerCapabilitiesResponseBody: {
+            case err instanceof models.GetServerCapabilitiesServerResponseBody: {
                 console.error(err); // handle exception
                 return;
             }
@@ -284,7 +289,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-    const result = await plexAPI.plex.getPin(false, "Postman", {
+    const result = await plexAPI.plex.getPin("Postman", false, "Postman", {
         serverURL: "https://plex.tv/api/v2",
     });
 
@@ -414,7 +419,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-    const result = await plexAPI.plex.getPin(false, "Postman");
+    const result = await plexAPI.plex.getPin("Postman", false, "Postman");
 
     // Handle the result
     console.log(result);

@@ -8,8 +8,7 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Video extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -45,9 +44,9 @@ export class Video extends ClientSDK {
      * Get the timeline for a media item
      */
     async getTimeline(
-        request: operations.GetTimelineRequest,
+        request: models.GetTimelineRequest,
         options?: RequestOptions
-    ): Promise<operations.GetTimelineResponse> {
+    ): Promise<models.GetTimelineResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -55,7 +54,7 @@ export class Video extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetTimelineRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetTimelineRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -113,10 +112,10 @@ export class Video extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetTimelineResponse>()
-            .void(200, operations.GetTimelineResponse$)
+        const [result$] = await this.matcher<models.GetTimelineResponse>()
+            .void(200, models.GetTimelineResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetTimelineResponseBody$, { err: true })
+            .json(401, models.GetTimelineResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -129,9 +128,9 @@ export class Video extends ClientSDK {
      * Begin a Universal Transcode Session
      */
     async startUniversalTranscode(
-        request: operations.StartUniversalTranscodeRequest,
+        request: models.StartUniversalTranscodeRequest,
         options?: RequestOptions
-    ): Promise<operations.StartUniversalTranscodeResponse> {
+    ): Promise<models.StartUniversalTranscodeResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -139,7 +138,7 @@ export class Video extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.StartUniversalTranscodeRequest$.outboundSchema.parse(value$),
+            (value$) => models.StartUniversalTranscodeRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -203,10 +202,10 @@ export class Video extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.StartUniversalTranscodeResponse>()
-            .void(200, operations.StartUniversalTranscodeResponse$)
+        const [result$] = await this.matcher<models.StartUniversalTranscodeResponse>()
+            .void(200, models.StartUniversalTranscodeResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.StartUniversalTranscodeResponseBody$, { err: true })
+            .json(401, models.StartUniversalTranscodeResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

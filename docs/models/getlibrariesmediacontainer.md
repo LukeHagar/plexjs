@@ -1,0 +1,11 @@
+# GetLibrariesMediaContainer
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `size`                                                               | *number*                                                             | :heavy_minus_sign:                                                   | N/A                                                                  | 5                                                                    |
+| `allowSync`                                                          | *boolean*                                                            | :heavy_minus_sign:                                                   | N/A                                                                  | false                                                                |
+| `title1`                                                             | *string*                                                             | :heavy_minus_sign:                                                   | N/A                                                                  | Plex Library                                                         |
+| `directory`                                                          | [models.GetLibrariesDirectory](../models/getlibrariesdirectory.md)[] | :heavy_minus_sign:                                                   | N/A                                                                  |                                                                      |

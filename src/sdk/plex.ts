@@ -11,8 +11,7 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Plex extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -42,19 +41,82 @@ export class Plex extends ClientSDK {
     }
 
     /**
+     * Get Plex Home Data
+     *
+     * @remarks
+     * Retrieves the home data for the authenticated user, including details like home ID, name, guest access information, and subscription status.
+     */
+    async getHomeData(options?: RequestOptions): Promise<models.GetHomeDataResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const path$ = this.templateURLComponent("/home")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.accessToken === "function") {
+            security$ = { accessToken: await this.options$.accessToken() };
+        } else if (this.options$.accessToken) {
+            security$ = { accessToken: this.options$.accessToken };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "getHomeData",
+            oAuth2Scopes: [],
+            securitySource: this.options$.accessToken,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["400", "401", "4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+            Headers: {},
+        };
+
+        const [result$] = await this.matcher<models.GetHomeDataResponse>()
+            .json(200, models.GetHomeDataResponse$, { key: "object" })
+            .fail([400, "4XX", "5XX"])
+            .json(401, models.GetHomeDataPlexResponseBody$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
+    }
+
+    /**
      * Get a Pin
      *
      * @remarks
      * Retrieve a Pin from Plex.tv for authentication flows
      */
     async getPin(
+        xPlexProduct: string,
         strong?: boolean | undefined,
         xPlexClientIdentifier?: string | undefined,
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<operations.GetPinResponse> {
-        const input$: operations.GetPinRequest = {
+    ): Promise<models.GetPinResponse> {
+        const input$: models.GetPinRequest = {
             strong: strong,
             xPlexClientIdentifier: xPlexClientIdentifier,
+            xPlexProduct: xPlexProduct,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -62,15 +124,13 @@ export class Plex extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetPinRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetPinRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
         const baseURL$ =
             options?.serverURL ||
-            this.templateURLComponent(operations.GetPinServerList[0], {
-                charEncoding: "percent",
-            })();
+            this.templateURLComponent(models.GetPinOpServerList[0], { charEncoding: "percent" })();
 
         const path$ = this.templateURLComponent("/pins")();
 
@@ -85,6 +145,13 @@ export class Plex extends ClientSDK {
                 payload$["X-Plex-Client-Identifier"] ?? this.options$.xPlexClientIdentifier,
                 { explode: false, charEncoding: "none" }
             )
+        );
+        headers$.set(
+            "X-Plex-Product",
+            encodeSimple$("X-Plex-Product", payload$["X-Plex-Product"], {
+                explode: false,
+                charEncoding: "none",
+            })
         );
         const context = { operationID: "getPin", oAuth2Scopes: [], securitySource: null };
 
@@ -111,9 +178,9 @@ export class Plex extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetPinResponse>()
-            .json(200, operations.GetPinResponse$, { key: "object" })
-            .json(400, errors.GetPinResponseBody$, { err: true })
+        const [result$] = await this.matcher<models.GetPinResponse>()
+            .json(201, models.GetPinResponse$, { key: "object" })
+            .json(400, models.GetPinPlexResponseBody$, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -130,8 +197,8 @@ export class Plex extends ClientSDK {
         pinID: string,
         xPlexClientIdentifier?: string | undefined,
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<operations.GetTokenResponse> {
-        const input$: operations.GetTokenRequest = {
+    ): Promise<models.GetTokenResponse> {
+        const input$: models.GetTokenRequest = {
             pinID: pinID,
             xPlexClientIdentifier: xPlexClientIdentifier,
         };
@@ -141,13 +208,13 @@ export class Plex extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetTokenRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetTokenRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
         const baseURL$ =
             options?.serverURL ||
-            this.templateURLComponent(operations.GetTokenServerList[0], {
+            this.templateURLComponent(models.GetTokenOpServerList[0], {
                 charEncoding: "percent",
             })();
 
@@ -194,9 +261,9 @@ export class Plex extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetTokenResponse>()
-            .void(200, operations.GetTokenResponse$)
-            .json(400, errors.GetTokenResponseBody$, { err: true })
+        const [result$] = await this.matcher<models.GetTokenResponse>()
+            .json(200, models.GetTokenResponse$, { key: "object" })
+            .json(400, models.GetTokenPlexResponseBody$, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

@@ -45,10 +45,10 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetStatisticsResponse](../../models/operations/getstatisticsresponse.md)\>**
+**Promise\<[models.GetStatisticsResponse](../../models/getstatisticsresponse.md)\>**
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.GetStatisticsResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| models.GetStatisticsStatisticsResponseBody | 401                                        | application/json                           |
+| models.SDKError                            | 4xx-5xx                                    | */*                                        |

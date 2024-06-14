@@ -11,8 +11,7 @@ import {
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Playlists extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -51,9 +50,9 @@ export class Playlists extends ClientSDK {
      *
      */
     async createPlaylist(
-        request: operations.CreatePlaylistRequest,
+        request: models.CreatePlaylistRequest,
         options?: RequestOptions
-    ): Promise<operations.CreatePlaylistResponse> {
+    ): Promise<models.CreatePlaylistResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -61,7 +60,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.CreatePlaylistRequest$.outboundSchema.parse(value$),
+            (value$) => models.CreatePlaylistRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -114,10 +113,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.CreatePlaylistResponse>()
-            .json(200, operations.CreatePlaylistResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.CreatePlaylistResponse>()
+            .json(200, models.CreatePlaylistResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.CreatePlaylistResponseBody$, { err: true })
+            .json(401, models.CreatePlaylistPlaylistsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -130,11 +129,11 @@ export class Playlists extends ClientSDK {
      * Get All Playlists given the specified filters.
      */
     async getPlaylists(
-        playlistType?: operations.PlaylistType | undefined,
-        smart?: operations.QueryParamSmart | undefined,
+        playlistType?: models.PlaylistType | undefined,
+        smart?: models.QueryParamSmart | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetPlaylistsResponse> {
-        const input$: operations.GetPlaylistsRequest = {
+    ): Promise<models.GetPlaylistsResponse> {
+        const input$: models.GetPlaylistsRequest = {
             playlistType: playlistType,
             smart: smart,
         };
@@ -144,7 +143,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetPlaylistsRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetPlaylistsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -194,10 +193,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetPlaylistsResponse>()
-            .json(200, operations.GetPlaylistsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetPlaylistsResponse>()
+            .json(200, models.GetPlaylistsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetPlaylistsResponseBody$, { err: true })
+            .json(401, models.GetPlaylistsPlaylistsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -214,8 +213,8 @@ export class Playlists extends ClientSDK {
     async getPlaylist(
         playlistID: number,
         options?: RequestOptions
-    ): Promise<operations.GetPlaylistResponse> {
-        const input$: operations.GetPlaylistRequest = {
+    ): Promise<models.GetPlaylistResponse> {
+        const input$: models.GetPlaylistRequest = {
             playlistID: playlistID,
         };
         const headers$ = new Headers();
@@ -224,7 +223,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetPlaylistRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetPlaylistRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -277,10 +276,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetPlaylistResponse>()
-            .json(200, operations.GetPlaylistResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetPlaylistResponse>()
+            .json(200, models.GetPlaylistResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetPlaylistResponseBody$, { err: true })
+            .json(401, models.GetPlaylistPlaylistsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -296,8 +295,8 @@ export class Playlists extends ClientSDK {
     async deletePlaylist(
         playlistID: number,
         options?: RequestOptions
-    ): Promise<operations.DeletePlaylistResponse> {
-        const input$: operations.DeletePlaylistRequest = {
+    ): Promise<models.DeletePlaylistResponse> {
+        const input$: models.DeletePlaylistRequest = {
             playlistID: playlistID,
         };
         const headers$ = new Headers();
@@ -306,7 +305,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeletePlaylistRequest$.outboundSchema.parse(value$),
+            (value$) => models.DeletePlaylistRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -359,10 +358,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.DeletePlaylistResponse>()
-            .void(200, operations.DeletePlaylistResponse$)
+        const [result$] = await this.matcher<models.DeletePlaylistResponse>()
+            .void(200, models.DeletePlaylistResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.DeletePlaylistResponseBody$, { err: true })
+            .json(401, models.DeletePlaylistResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -380,8 +379,8 @@ export class Playlists extends ClientSDK {
         title?: string | undefined,
         summary?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdatePlaylistResponse> {
-        const input$: operations.UpdatePlaylistRequest = {
+    ): Promise<models.UpdatePlaylistResponse> {
+        const input$: models.UpdatePlaylistRequest = {
             playlistID: playlistID,
             title: title,
             summary: summary,
@@ -392,7 +391,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdatePlaylistRequest$.outboundSchema.parse(value$),
+            (value$) => models.UpdatePlaylistRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -448,10 +447,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.UpdatePlaylistResponse>()
-            .void(200, operations.UpdatePlaylistResponse$)
+        const [result$] = await this.matcher<models.UpdatePlaylistResponse>()
+            .void(200, models.UpdatePlaylistResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.UpdatePlaylistResponseBody$, { err: true })
+            .json(401, models.UpdatePlaylistResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -471,8 +470,8 @@ export class Playlists extends ClientSDK {
         playlistID: number,
         type: number,
         options?: RequestOptions
-    ): Promise<operations.GetPlaylistContentsResponse> {
-        const input$: operations.GetPlaylistContentsRequest = {
+    ): Promise<models.GetPlaylistContentsResponse> {
+        const input$: models.GetPlaylistContentsRequest = {
             playlistID: playlistID,
             type: type,
         };
@@ -482,7 +481,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetPlaylistContentsRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetPlaylistContentsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -537,10 +536,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetPlaylistContentsResponse>()
-            .json(200, operations.GetPlaylistContentsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetPlaylistContentsResponse>()
+            .json(200, models.GetPlaylistContentsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetPlaylistContentsResponseBody$, { err: true })
+            .json(401, models.GetPlaylistContentsPlaylistsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -556,8 +555,8 @@ export class Playlists extends ClientSDK {
     async clearPlaylistContents(
         playlistID: number,
         options?: RequestOptions
-    ): Promise<operations.ClearPlaylistContentsResponse> {
-        const input$: operations.ClearPlaylistContentsRequest = {
+    ): Promise<models.ClearPlaylistContentsResponse> {
+        const input$: models.ClearPlaylistContentsRequest = {
             playlistID: playlistID,
         };
         const headers$ = new Headers();
@@ -566,7 +565,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.ClearPlaylistContentsRequest$.outboundSchema.parse(value$),
+            (value$) => models.ClearPlaylistContentsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -619,10 +618,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.ClearPlaylistContentsResponse>()
-            .void(200, operations.ClearPlaylistContentsResponse$)
+        const [result$] = await this.matcher<models.ClearPlaylistContentsResponse>()
+            .void(200, models.ClearPlaylistContentsResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.ClearPlaylistContentsResponseBody$, { err: true })
+            .json(401, models.ClearPlaylistContentsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -641,8 +640,8 @@ export class Playlists extends ClientSDK {
         uri: string,
         playQueueID?: number | undefined,
         options?: RequestOptions
-    ): Promise<operations.AddPlaylistContentsResponse> {
-        const input$: operations.AddPlaylistContentsRequest = {
+    ): Promise<models.AddPlaylistContentsResponse> {
+        const input$: models.AddPlaylistContentsRequest = {
             playlistID: playlistID,
             uri: uri,
             playQueueID: playQueueID,
@@ -653,7 +652,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.AddPlaylistContentsRequest$.outboundSchema.parse(value$),
+            (value$) => models.AddPlaylistContentsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -709,10 +708,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.AddPlaylistContentsResponse>()
-            .json(200, operations.AddPlaylistContentsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.AddPlaylistContentsResponse>()
+            .json(200, models.AddPlaylistContentsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.AddPlaylistContentsResponseBody$, { err: true })
+            .json(401, models.AddPlaylistContentsPlaylistsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -727,10 +726,10 @@ export class Playlists extends ClientSDK {
      */
     async uploadPlaylist(
         path: string,
-        force: operations.Force,
+        force: models.Force,
         options?: RequestOptions
-    ): Promise<operations.UploadPlaylistResponse> {
-        const input$: operations.UploadPlaylistRequest = {
+    ): Promise<models.UploadPlaylistResponse> {
+        const input$: models.UploadPlaylistRequest = {
             path: path,
             force: force,
         };
@@ -740,7 +739,7 @@ export class Playlists extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UploadPlaylistRequest$.outboundSchema.parse(value$),
+            (value$) => models.UploadPlaylistRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -790,10 +789,10 @@ export class Playlists extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.UploadPlaylistResponse>()
-            .void(200, operations.UploadPlaylistResponse$)
+        const [result$] = await this.matcher<models.UploadPlaylistResponse>()
+            .void(200, models.UploadPlaylistResponse$)
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.UploadPlaylistResponseBody$, { err: true })
+            .json(401, models.UploadPlaylistResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;

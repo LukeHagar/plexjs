@@ -8,8 +8,7 @@ import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "../models/errors";
-import * as operations from "../models/operations";
+import * as models from "../models";
 
 export class Statistics extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -47,8 +46,8 @@ export class Statistics extends ClientSDK {
     async getStatistics(
         timespan?: number | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetStatisticsResponse> {
-        const input$: operations.GetStatisticsRequest = {
+    ): Promise<models.GetStatisticsResponse> {
+        const input$: models.GetStatisticsRequest = {
             timespan: timespan,
         };
         const headers$ = new Headers();
@@ -57,7 +56,7 @@ export class Statistics extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetStatisticsRequest$.outboundSchema.parse(value$),
+            (value$) => models.GetStatisticsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -106,10 +105,10 @@ export class Statistics extends ClientSDK {
             Headers: {},
         };
 
-        const [result$] = await this.matcher<operations.GetStatisticsResponse>()
-            .json(200, operations.GetStatisticsResponse$, { key: "object" })
+        const [result$] = await this.matcher<models.GetStatisticsResponse>()
+            .json(200, models.GetStatisticsResponse$, { key: "object" })
             .fail([400, "4XX", "5XX"])
-            .json(401, errors.GetStatisticsResponseBody$, { err: true })
+            .json(401, models.GetStatisticsStatisticsResponseBody$, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
