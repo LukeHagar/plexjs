@@ -225,8 +225,8 @@ export class Media extends ClientSDK {
 
         const query$ = encodeFormQuery$({
             key: payload$.key,
-            time: payload$.time,
             state: payload$.state,
+            time: payload$.time,
         });
 
         let security$;

@@ -438,13 +438,13 @@ export class Server extends ClientSDK {
         const path$ = this.templateURLComponent("/photo/:/transcode")();
 
         const query$ = encodeFormQuery$({
+            blur: payload$.blur,
+            height: payload$.height,
+            minSize: payload$.minSize,
+            opacity: payload$.opacity,
+            upscale: payload$.upscale,
             url: payload$.url,
             width: payload$.width,
-            height: payload$.height,
-            opacity: payload$.opacity,
-            blur: payload$.blur,
-            minSize: payload$.minSize,
-            upscale: payload$.upscale,
         });
 
         let security$;

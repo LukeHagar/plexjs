@@ -70,8 +70,8 @@ export class Library extends ClientSDK {
         const path$ = this.templateURLComponent("/library/hashes")();
 
         const query$ = encodeFormQuery$({
-            url: payload$.url,
             type: payload$.type,
+            url: payload$.url,
         });
 
         let security$;

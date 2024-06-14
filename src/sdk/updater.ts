@@ -206,8 +206,8 @@ export class Updater extends ClientSDK {
         const path$ = this.templateURLComponent("/updater/apply")();
 
         const query$ = encodeFormQuery$({
-            tonight: payload$.tonight,
             skip: payload$.skip,
+            tonight: payload$.tonight,
         });
 
         let security$;

@@ -69,11 +69,11 @@ export class Playlists extends ClientSDK {
         const path$ = this.templateURLComponent("/playlists")();
 
         const query$ = encodeFormQuery$({
-            uri: payload$.uri,
             playQueueID: payload$.playQueueID,
+            smart: payload$.smart,
             title: payload$.title,
             type: payload$.type,
-            smart: payload$.smart,
+            uri: payload$.uri,
         });
 
         let security$;
@@ -152,8 +152,8 @@ export class Playlists extends ClientSDK {
         const path$ = this.templateURLComponent("/playlists")();
 
         const query$ = encodeFormQuery$({
-            smart: payload$.smart,
             playlistType: payload$.playlistType,
+            smart: payload$.smart,
         });
 
         let security$;
@@ -406,8 +406,8 @@ export class Playlists extends ClientSDK {
         const path$ = this.templateURLComponent("/playlists/{playlistID}")(pathParams$);
 
         const query$ = encodeFormQuery$({
-            title: payload$.title,
             summary: payload$.summary,
+            title: payload$.title,
         });
 
         let security$;

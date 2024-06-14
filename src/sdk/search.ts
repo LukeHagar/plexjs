@@ -81,9 +81,9 @@ export class Search extends ClientSDK {
         const path$ = this.templateURLComponent("/hubs/search")();
 
         const query$ = encodeFormQuery$({
+            limit: payload$.limit,
             query: payload$.query,
             sectionId: payload$.sectionId,
-            limit: payload$.limit,
         });
 
         let security$;
@@ -168,9 +168,9 @@ export class Search extends ClientSDK {
         const path$ = this.templateURLComponent("/hubs/search/voice")();
 
         const query$ = encodeFormQuery$({
+            limit: payload$.limit,
             query: payload$.query,
             sectionId: payload$.sectionId,
-            limit: payload$.limit,
         });
 
         let security$;

@@ -63,16 +63,16 @@ export class Video extends ClientSDK {
         const path$ = this.templateURLComponent("/:/timeline")();
 
         const query$ = encodeFormQuery$({
-            ratingKey: payload$.ratingKey,
+            context: payload$.context,
+            duration: payload$.duration,
             hasMDE: payload$.hasMDE,
-            time: payload$.time,
+            key: payload$.key,
             playBackTime: payload$.playBackTime,
             playQueueItemID: payload$.playQueueItemID,
+            ratingKey: payload$.ratingKey,
             row: payload$.row,
-            key: payload$.key,
             state: payload$.state,
-            duration: payload$.duration,
-            context: payload$.context,
+            time: payload$.time,
         });
 
         let security$;
@@ -147,22 +147,22 @@ export class Video extends ClientSDK {
         const path$ = this.templateURLComponent("/video/:/transcode/universal/start.mpd")();
 
         const query$ = encodeFormQuery$({
-            path: payload$.path,
-            directStream: payload$.directStream,
+            addDebugOverlay: payload$.addDebugOverlay,
             audioBoost: payload$.audioBoost,
+            autoAdjustQuality: payload$.autoAdjustQuality,
+            directPlay: payload$.directPlay,
+            directStream: payload$.directStream,
+            fastSeek: payload$.fastSeek,
+            hasMDE: payload$.hasMDE,
             location: payload$.location,
             mediaBufferSize: payload$.mediaBufferSize,
-            addDebugOverlay: payload$.addDebugOverlay,
-            partIndex: payload$.partIndex,
-            fastSeek: payload$.fastSeek,
-            subtitleSize: payload$.subtitleSize,
-            session: payload$.session,
             mediaIndex: payload$.mediaIndex,
-            autoAdjustQuality: payload$.autoAdjustQuality,
-            hasMDE: payload$.hasMDE,
+            partIndex: payload$.partIndex,
+            path: payload$.path,
             protocol: payload$.protocol,
-            directPlay: payload$.directPlay,
+            session: payload$.session,
             subtites: payload$.subtites,
+            subtitleSize: payload$.subtitleSize,
         });
 
         let security$;

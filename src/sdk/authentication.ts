@@ -68,8 +68,8 @@ export class Authentication extends ClientSDK {
         const path$ = this.templateURLComponent("/security/token")();
 
         const query$ = encodeFormQuery$({
-            type: payload$.type,
             scope: payload$.scope,
+            type: payload$.type,
         });
 
         let security$;
