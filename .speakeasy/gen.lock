@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 37654ea0982ab5e87a9a9576014c9d19
+  docChecksum: e73920abd3a55e8d249592f2e3090574
   docVersion: 0.0.3
-  speakeasyVersion: 1.308.1
-  generationVersion: 2.342.6
-  releaseVersion: 0.17.0
-  configChecksum: 91cb964c770722eba5f69c04d32554eb
+  speakeasyVersion: 1.314.2
+  generationVersion: 2.349.6
+  releaseVersion: 0.18.0
+  configChecksum: 1f3f4b17023439730da2bea719ba5703
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.14
+    core: 3.10.2
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -24,9 +24,11 @@ features:
     globals: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
+    nullables: 0.1.0
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
     typeOverrides: 2.81.1
+    unions: 2.85.5
 generatedFiles:
   - src/sdk/server.ts
   - src/sdk/media.ts
@@ -45,7 +47,7 @@ generatedFiles:
   - src/sdk/updater.ts
   - src/sdk/watchlist.ts
   - src/sdk/sdk.ts
-  - .eslintrc.js
+  - .eslintrc.cjs
   - .npmignore
   - RUNTIMES.md
   - jsr.json
@@ -109,6 +111,7 @@ generatedFiles:
   - src/models/searchlibraryop.ts
   - src/models/getmetadataop.ts
   - src/models/getmetadatachildrenop.ts
+  - src/models/gettopwatchedcontentop.ts
   - src/models/getondeckop.ts
   - src/models/loglineop.ts
   - src/models/logmultilineop.ts
@@ -125,6 +128,8 @@ generatedFiles:
   - src/models/gettransienttokenop.ts
   - src/models/getsourceconnectioninformationop.ts
   - src/models/getstatisticsop.ts
+  - src/models/getresourcesstatisticsop.ts
+  - src/models/getbandwidthstatisticsop.ts
   - src/models/getsessionsop.ts
   - src/models/getsessionhistoryop.ts
   - src/models/gettranscodesessionsop.ts
@@ -348,6 +353,7 @@ generatedFiles:
   - docs/models/getlibraryitemsrequest.md
   - docs/models/getlibraryitemserrors.md
   - docs/models/getlibraryitemslibraryresponsebody.md
+  - docs/models/librarysectionid.md
   - docs/models/getlibraryitemspart.md
   - docs/models/getlibraryitemsmedia.md
   - docs/models/getlibraryitemsgenre.md
@@ -397,6 +403,16 @@ generatedFiles:
   - docs/models/getmetadatachildrenmediacontainer.md
   - docs/models/getmetadatachildrenresponsebody.md
   - docs/models/getmetadatachildrenresponse.md
+  - docs/models/gettopwatchedcontentrequest.md
+  - docs/models/gettopwatchedcontentgenre.md
+  - docs/models/gettopwatchedcontentcountry.md
+  - docs/models/gettopwatchedcontentguids.md
+  - docs/models/gettopwatchedcontentrole.md
+  - docs/models/user.md
+  - docs/models/gettopwatchedcontentmetadata.md
+  - docs/models/gettopwatchedcontentmediacontainer.md
+  - docs/models/gettopwatchedcontentresponsebody.md
+  - docs/models/gettopwatchedcontentresponse.md
   - docs/models/getondeckerrors.md
   - docs/models/getondecklibraryresponsebody.md
   - docs/models/getondeckstream.md
@@ -500,18 +516,36 @@ generatedFiles:
   - docs/models/getstatisticsmediacontainer.md
   - docs/models/getstatisticsresponsebody.md
   - docs/models/getstatisticsresponse.md
+  - docs/models/getresourcesstatisticsrequest.md
+  - docs/models/getresourcesstatisticserrors.md
+  - docs/models/getresourcesstatisticsstatisticsresponsebody.md
+  - docs/models/statisticsresources.md
+  - docs/models/getresourcesstatisticsmediacontainer.md
+  - docs/models/getresourcesstatisticsresponsebody.md
+  - docs/models/getresourcesstatisticsresponse.md
+  - docs/models/getbandwidthstatisticsrequest.md
+  - docs/models/getbandwidthstatisticserrors.md
+  - docs/models/getbandwidthstatisticsstatisticsresponsebody.md
+  - docs/models/getbandwidthstatisticsdevice.md
+  - docs/models/getbandwidthstatisticsaccount.md
+  - docs/models/statisticsbandwidth.md
+  - docs/models/getbandwidthstatisticsmediacontainer.md
+  - docs/models/getbandwidthstatisticsresponsebody.md
+  - docs/models/getbandwidthstatisticsresponse.md
   - docs/models/getsessionserrors.md
   - docs/models/getsessionssessionsresponsebody.md
   - docs/models/getsessionsstream.md
   - docs/models/getsessionspart.md
   - docs/models/getsessionsmedia.md
-  - docs/models/user.md
+  - docs/models/getsessionsuser.md
   - docs/models/player.md
   - docs/models/session.md
   - docs/models/getsessionsmetadata.md
   - docs/models/getsessionsmediacontainer.md
   - docs/models/getsessionsresponsebody.md
   - docs/models/getsessionsresponse.md
+  - docs/models/filter.md
+  - docs/models/getsessionhistoryrequest.md
   - docs/models/getsessionhistoryerrors.md
   - docs/models/getsessionhistorysessionsresponsebody.md
   - docs/models/getsessionhistorymetadata.md
@@ -545,7 +579,7 @@ generatedFiles:
   - docs/models/applyupdateserrors.md
   - docs/models/applyupdatesresponsebody.md
   - docs/models/applyupdatesresponse.md
-  - docs/models/filter.md
+  - docs/models/pathparamfilter.md
   - docs/models/libtype.md
   - docs/models/includecollections.md
   - docs/models/includeexternalmedia.md

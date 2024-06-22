@@ -17,7 +17,7 @@ Get User Watchlist
 ### Example Usage
 
 ```typescript
-import { Filter, PlexAPI } from "@lukehagar/plexjs";
+import { PathParamFilter, PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -26,7 +26,7 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.watchlist.getWatchlist({
-    filter: Filter.Released,
+    filter: PathParamFilter.Released,
     xPlexToken: "<value>",
   });
 

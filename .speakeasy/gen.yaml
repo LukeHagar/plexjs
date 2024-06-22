@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 0.17.0
+  version: 0.18.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -37,3 +37,4 @@ typescript:
   packageName: '@lukehagar/plexjs'
   responseFormat: envelope
   templateVersion: v2
+  useIndexModules: true

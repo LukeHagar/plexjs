@@ -3,7 +3,7 @@
  */
 
 import { output, ZodEffects, ZodError, ZodObject, ZodRawShape, ZodTypeAny } from "zod";
-import { SDKValidationError } from "../models/sdkvalidationerror";
+import { SDKValidationError } from "../models/sdkvalidationerror.js";
 
 /**
  * Utility function that executes some code which may throw a ZodError. It
