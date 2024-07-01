@@ -15,3 +15,5 @@ targets:
                 token: $NPM_TOKEN
         codeSamples:
             output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/lukehagar/lukehagar/code-samples-typescript-plexjs
