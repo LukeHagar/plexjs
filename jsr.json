@@ -2,7 +2,7 @@
 
 {
   "name": "@lukehagar/plexjs",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "exports": {
     ".": "./src/index.ts",    
     "./models": "./src/models/index.ts",

@@ -1,9 +1,9 @@
-speakeasyVersion: 1.322.3
+speakeasyVersion: 1.323.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:dfe8f9ab1f51394101a47bf021b019fe4355adc2c3bd2c95e36941b0c3b1d762
-        sourceBlobDigest: sha256:078894e40b1da6255dbddab4b5938b81e1711a6ca581da00affcad91adfa1394
+        sourceRevisionDigest: sha256:0e26af4bb9b5be12ffae3b400ee850d3b01e316f5b63346bc24f5173f8f17609
+        sourceBlobDigest: sha256:879ee990da6c37e0b2972ef14220e0ce5db709dc39390ef8c2c24d3f4bba8b13
         tags:
             - latest
             - main
@@ -11,8 +11,10 @@ targets:
     plexjs:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:dfe8f9ab1f51394101a47bf021b019fe4355adc2c3bd2c95e36941b0c3b1d762
-        sourceBlobDigest: sha256:078894e40b1da6255dbddab4b5938b81e1711a6ca581da00affcad91adfa1394
+        sourceRevisionDigest: sha256:0e26af4bb9b5be12ffae3b400ee850d3b01e316f5b63346bc24f5173f8f17609
+        sourceBlobDigest: sha256:879ee990da6c37e0b2972ef14220e0ce5db709dc39390ef8c2c24d3f4bba8b13
+        codeSamplesNamespace: code-samples-typescript-plexjs
+        codeSamplesRevisionDigest: sha256:a9631d3ae79a06641a20d5334a699ffa86a70ae2e64f326d280e285e21258893
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
@@ -32,3 +34,5 @@ workflow:
                     token: $NPM_TOKEN
             codeSamples:
                 output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/lukehagar/lukehagar/code-samples-typescript-plexjs
