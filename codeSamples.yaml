@@ -3,6 +3,907 @@ info:
   title: CodeSamples overlay for typescript target
   version: 0.0.0
 actions:
+  - target: $["paths"]["/hubs/sections/{sectionId}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getLibraryHubs
+          source: |-
+            import { PlexAPI, QueryParamOnlyTransient } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.hubs.getLibraryHubs(6728.76, 9010.22, QueryParamOnlyTransient.Zero);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/recentlyAdded"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getRecentlyAdded
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getRecentlyAdded();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/playlists/{playlistID}/items"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getPlaylistContents
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.playlists.getPlaylistContents(5004.46, 9403.59);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/watchlist/{filter}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getWatchlist
+          source: |-
+            import { PathParamFilter, PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.watchlist.getWatchlist({
+                filter: PathParamFilter.Released,
+                xPlexToken: "<value>",
+              });
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/:/timeline"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getTimeline
+          source: |-
+            import { PlexAPI, State } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.video.getTimeline({
+                ratingKey: 23409,
+                key: "/library/metadata/23409",
+                state: State.Playing,
+                hasMDE: 1,
+                time: 2000,
+                duration: 10000,
+                context: "home:hub.continueWatching",
+                playQueueItemID: 1,
+                playBackTime: 2000,
+                row: 1,
+              });
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/hubs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getGlobalHubs
+          source: |-
+            import { OnlyTransient, PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.hubs.getGlobalHubs(1262.49, OnlyTransient.One);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/activities/{activityUUID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: cancelServerActivities
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.activities.cancelServerActivities("25b71ed5-0f9d-461c-baa7-d404e9e10d3e");
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/playlists/{playlistID}/items"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: clearPlaylistContents
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.playlists.clearPlaylistContents(1893.18);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/statistics/media"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getStatistics
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.statistics.getStatistics(4);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/updater/status"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getUpdateStatus
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.updater.getUpdateStatus();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/butler/{taskName}"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: startTask
+          source: |-
+            import { PlexAPI, TaskName } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.butler.startTask(TaskName.CleanOldBundles);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/security/token"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getTransientToken
+          source: |-
+            import { GetTransientTokenQueryParamType, PlexAPI, Scope } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.getTransientToken(GetTransientTokenQueryParamType.Delegation, Scope.All);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/:/scrobble"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: markPlayed
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.media.markPlayed(59398);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/hubs/search/voice"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: performVoiceSearch
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.search.performVoiceSearch("dead+poop", 4094.8, 5);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/status/sessions"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getSessions
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.sessions.getSessions();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/status/sessions/history/all"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getSessionHistory
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.sessions.getSessionHistory("<value>", 1, {}, 12);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/transcode/sessions/{sessionKey}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: stopTranscodeSession
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.sessions.stopTranscodeSession("zz7llzqlx8w9vnrsbnwhbmep");
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/servers"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getServerList
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.server.getServerList();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/:/progress"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: updatePlayProgress
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.media.updatePlayProgress("<value>", 90000, "played");
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/log/networked"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: enablePaperTrail
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.log.enablePaperTrail();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/playlists/{playlistID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getPlaylist
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.playlists.getPlaylist(4109.48);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/myplex/account"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getMyPlexAccount
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.server.getMyPlexAccount();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/hubs/search"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: performSearch
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.search.performSearch("dylan", 1516.53, 5);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/playlists/{playlistID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: deletePlaylist
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.playlists.deletePlaylist(216.22);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/butler/{taskName}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: stopTask
+          source: |-
+            import { PathParamTaskName, PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.butler.stopTask(PathParamTaskName.BackupDatabase);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}/{tag}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getLibraryItems
+          source: |-
+            import { PlexAPI, Tag } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getLibraryItems("<value>", Tag.Genre, 1);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{ratingKey}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getMetadata
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMetadata(8382.31);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{ratingKey}/children"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getMetadataChildren
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMetadataChildren(1539.14, "<value>");
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/activities"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getServerActivities
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.activities.getServerActivities();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/butler"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: stopAllTasks
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.butler.stopAllTasks();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/butler"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: startAllTasks
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.butler.startAllTasks();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/onDeck"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getOnDeck
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getOnDeck();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/playlists"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: createPlaylist
+          source: |-
+            import { PlexAPI, QueryParamType, Smart } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.playlists.createPlaylist({
+                title: "<value>",
+                type: QueryParamType.Photo,
+                smart: Smart.One,
+                uri: "https://inborn-brochure.biz",
+              });
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/playlists/upload"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: uploadPlaylist
+          source: |-
+            import { Force, PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.playlists.uploadPlaylist("/home/barkley/playlist.m3u", Force.Zero);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/:/prefs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getServerPreferences
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.server.getServerPreferences();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/devices"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getDevices
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.server.getDevices();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionId}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: deleteLibrary
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.deleteLibrary(1000);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/security/resources"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getSourceConnectionInformation
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.authentication.getSourceConnectionInformation("server://client-identifier");
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/statistics/resources"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getResourcesStatistics
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.statistics.getResourcesStatistics(4);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/statistics/bandwidth"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getBandwidthStatistics
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.statistics.getBandwidthStatistics(4);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/transcode/sessions"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getTranscodeSessions
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.sessions.getTranscodeSessions();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/identity"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getServerIdentity
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.server.getServerIdentity();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
   - target: $["paths"]["/video/:/transcode/universal/start.mpd"]["get"]
     update:
       x-codeSamples:
@@ -62,11 +963,11 @@ actions:
             }
 
             run();
-  - target: $["paths"]["/playlists/{playlistID}"]["delete"]
+  - target: $["paths"]["/library/sections/{sectionId}/refresh"]["get"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: deletePlaylist
+          label: refreshLibrary
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -76,238 +977,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.playlists.deletePlaylist(216.22);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/updater/check"]["put"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: checkForUpdates
-          source: |-
-            import { Download, PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.updater.checkForUpdates(Download.One);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/:/unscrobble"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: markUnplayed
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.media.markUnplayed(59398);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/library/onDeck"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getOnDeck
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.library.getOnDeck();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/log/networked"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: enablePaperTrail
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.log.enablePaperTrail();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/playlists/{playlistID}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getPlaylist
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.playlists.getPlaylist(4109.48);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/security/resources"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getSourceConnectionInformation
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.authentication.getSourceConnectionInformation("server://client-identifier");
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/statistics/bandwidth"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getBandwidthStatistics
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.statistics.getBandwidthStatistics(4);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/updater/status"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getUpdateStatus
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.updater.getUpdateStatus();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/myplex/account"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getMyPlexAccount
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.server.getMyPlexAccount();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/hubs/search"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: performSearch
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.search.performSearch("dylan", 1516.53, 5);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/hubs/search/voice"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: performVoiceSearch
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.search.performVoiceSearch("dead+poop", 4094.8, 5);
+              const result = await plexAPI.library.refreshLibrary(934.16);
 
               // Handle the result
               console.log(result)
@@ -337,13 +1007,13 @@ actions:
             }
 
             run();
-  - target: $["paths"]["/library/sections/{sectionId}"]["delete"]
+  - target: $["paths"]["/updater/apply"]["put"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: deleteLibrary
+          label: applyUpdates
           source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
+            import { PlexAPI, Skip, Tonight } from "@lukehagar/plexjs";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -351,144 +1021,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteLibrary(1000);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/status/sessions"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getSessions
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.sessions.getSessions();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/transcode/sessions/{sessionKey}"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: stopTranscodeSession
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.sessions.stopTranscodeSession("zz7llzqlx8w9vnrsbnwhbmep");
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/:/timeline"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getTimeline
-          source: |-
-            import { PlexAPI, State } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.video.getTimeline({
-                ratingKey: 23409,
-                key: "/library/metadata/23409",
-                state: State.Playing,
-                hasMDE: 1,
-                time: 2000,
-                duration: 10000,
-                context: "home:hub.continueWatching",
-                playQueueItemID: 1,
-                playBackTime: 2000,
-                row: 1,
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/butler/{taskName}"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: startTask
-          source: |-
-            import { PlexAPI, TaskName } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.butler.startTask(TaskName.CleanOldBundles);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/butler/{taskName}"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: stopTask
-          source: |-
-            import { PathParamTaskName, PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.butler.stopTask(PathParamTaskName.BackupDatabase);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/statistics/media"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getStatistics
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.statistics.getStatistics(4);
+              const result = await plexAPI.updater.applyUpdates(Tonight.One, Skip.One);
 
               // Handle the result
               console.log(result)
@@ -516,11 +1049,11 @@ actions:
             }
 
             run();
-  - target: $["paths"]["/library/all/top"]["get"]
+  - target: $["paths"]["/library/hashes"]["get"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: getTopWatchedContent
+          label: getFileHash
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -530,280 +1063,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getTopWatchedContent(505531, 1);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/updater/apply"]["put"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: applyUpdates
-          source: |-
-            import { PlexAPI, Skip, Tonight } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.updater.applyUpdates(Tonight.One, Skip.One);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/hubs/sections/{sectionId}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getLibraryHubs
-          source: |-
-            import { PlexAPI, QueryParamOnlyTransient } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.hubs.getLibraryHubs(6728.76, 9010.22, QueryParamOnlyTransient.Zero);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/playlists/{playlistID}/items"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getPlaylistContents
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.playlists.getPlaylistContents(5004.46, 9403.59);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/library/metadata/{ratingKey}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getMetadata
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.library.getMetadata(8382.31);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/log"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: logLine
-          source: |-
-            import { Level, PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.log.logLine(Level.Three, "Test log message", "Postman");
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/playlists/{playlistID}/items"]["put"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: addPlaylistContents
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.playlists.addPlaylistContents(8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/:/prefs"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getServerPreferences
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.server.getServerPreferences();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/library/sections/{sectionId}/{tag}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getLibraryItems
-          source: |-
-            import { PlexAPI, Tag } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.library.getLibraryItems("<value>", Tag.Genre, 1);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/playlists/upload"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: uploadPlaylist
-          source: |-
-            import { Force, PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.playlists.uploadPlaylist("/home/barkley/playlist.m3u", Force.Zero);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/statistics/resources"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getResourcesStatistics
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.statistics.getResourcesStatistics(4);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/transcode/sessions"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getTranscodeSessions
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.sessions.getTranscodeSessions();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/:/scrobble"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: markPlayed
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.media.markPlayed(59398);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/hubs"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getGlobalHubs
-          source: |-
-            import { OnlyTransient, PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.hubs.getGlobalHubs(1262.49, OnlyTransient.One);
+              const result = await plexAPI.library.getFileHash("file://C:\Image.png&type=13", 4462.17);
 
               // Handle the result
               console.log(result)
@@ -831,13 +1091,13 @@ actions:
             }
 
             run();
-  - target: $["paths"]["/library/recentlyAdded"]["get"]
+  - target: $["paths"]["/library/sections/{sectionId}/search"]["get"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: getRecentlyAdded
+          label: searchLibrary
           source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
+            import { PlexAPI, Type } from "@lukehagar/plexjs";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -845,20 +1105,20 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getRecentlyAdded();
+              const result = await plexAPI.library.searchLibrary(933505, Type.Four);
 
               // Handle the result
               console.log(result)
             }
 
             run();
-  - target: $["paths"]["/devices"]["get"]
+  - target: $["paths"]["/playlists"]["get"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: getDevices
+          label: getPlaylists
           source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
+            import { PlaylistType, PlexAPI, QueryParamSmart } from "@lukehagar/plexjs";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -866,219 +1126,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.server.getDevices();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/identity"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getServerIdentity
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.server.getServerIdentity();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/library/hashes"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getFileHash
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.library.getFileHash("file://C:\Image.png&type=13", 4462.17);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/library/sections/watchlist/{filter}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getWatchlist
-          source: |-
-            import { PathParamFilter, PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.watchlist.getWatchlist({
-                filter: PathParamFilter.Released,
-                xPlexToken: "<value>",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getServerCapabilities
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.server.getServerCapabilities();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/clients"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getAvailableClients
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.server.getAvailableClients();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/butler"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: stopAllTasks
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.butler.stopAllTasks();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/library/sections"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getLibraries
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.library.getLibraries();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/butler"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getButlerTasks
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.butler.getButlerTasks();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/pins/{pinID}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getToken
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.plex.getToken("<value>", "Postman");
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/library/metadata/{ratingKey}/children"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getMetadataChildren
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.library.getMetadataChildren(1539.14, "<value>");
+              const result = await plexAPI.playlists.getPlaylists(PlaylistType.Audio, QueryParamSmart.Zero);
 
               // Handle the result
               console.log(result)
@@ -1114,32 +1162,11 @@ actions:
             }
 
             run();
-  - target: $["paths"]["/library/sections/{sectionId}/search"]["get"]
+  - target: $["paths"]["/butler"]["get"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: searchLibrary
-          source: |-
-            import { PlexAPI, Type } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.library.searchLibrary(933505, Type.Four);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/status/sessions/history/all"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getSessionHistory
+          label: getButlerTasks
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1149,7 +1176,153 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.sessions.getSessionHistory("<value>", 1, {}, 12);
+              const result = await plexAPI.butler.getButlerTasks();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getServerCapabilities
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.server.getServerCapabilities();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/updater/check"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: checkForUpdates
+          source: |-
+            import { Download, PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.updater.checkForUpdates(Download.One);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/all/top"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getTopWatchedContent
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getTopWatchedContent(505531, 1);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/playlists/{playlistID}/items"]["put"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: addPlaylistContents
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.playlists.addPlaylistContents(8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/clients"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getAvailableClients
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.server.getAvailableClients();
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/pins"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getPin
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.plex.getPin("Postman", false, "Postman");
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/library/sections"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: getLibraries
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getLibraries();
 
               // Handle the result
               console.log(result)
@@ -1177,11 +1350,32 @@ actions:
             }
 
             run();
-  - target: $["paths"]["/library/sections/{sectionId}/refresh"]["get"]
+  - target: $["paths"]["/log"]["get"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: refreshLibrary
+          label: logLine
+          source: |-
+            import { Level, PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              xPlexClientIdentifier: "Postman",
+            });
+
+            async function run() {
+              const result = await plexAPI.log.logLine(Level.Three, "Test log message", "Postman");
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/:/unscrobble"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: markUnplayed
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1191,102 +1385,18 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.refreshLibrary(934.16);
+              const result = await plexAPI.media.markUnplayed(59398);
 
               // Handle the result
               console.log(result)
             }
 
             run();
-  - target: $["paths"]["/security/token"]["get"]
+  - target: $["paths"]["/pins/{pinID}"]["get"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: getTransientToken
-          source: |-
-            import { GetTransientTokenQueryParamType, PlexAPI, Scope } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.authentication.getTransientToken(GetTransientTokenQueryParamType.Delegation, Scope.All);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/servers"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getServerList
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.server.getServerList();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/:/progress"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: updatePlayProgress
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.media.updatePlayProgress("<value>", 90000, "played");
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/butler"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: startAllTasks
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.butler.startAllTasks();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/pins"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getPin
+          label: getToken
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1295,117 +1405,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.plex.getPin("Postman", false, "Postman");
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/playlists/{playlistID}/items"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: clearPlaylistContents
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.playlists.clearPlaylistContents(1893.18);
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/activities"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getServerActivities
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.activities.getServerActivities();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/activities/{activityUUID}"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: cancelServerActivities
-          source: |-
-            import { PlexAPI } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.activities.cancelServerActivities("25b71ed5-0f9d-461c-baa7-d404e9e10d3e");
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/playlists"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: createPlaylist
-          source: |-
-            import { PlexAPI, QueryParamType, Smart } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.playlists.createPlaylist({
-                title: "<value>",
-                type: QueryParamType.Photo,
-                smart: Smart.One,
-                uri: "https://inborn-brochure.biz",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/playlists"]["get"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: getPlaylists
-          source: |-
-            import { PlaylistType, PlexAPI, QueryParamSmart } from "@lukehagar/plexjs";
-
-            const plexAPI = new PlexAPI({
-              accessToken: "<YOUR_API_KEY_HERE>",
-              xPlexClientIdentifier: "Postman",
-            });
-
-            async function run() {
-              const result = await plexAPI.playlists.getPlaylists(PlaylistType.Audio, QueryParamSmart.Zero);
+              const result = await plexAPI.plex.getToken("<value>", "Postman");
 
               // Handle the result
               console.log(result)
