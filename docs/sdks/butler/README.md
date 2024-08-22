@@ -38,23 +38,56 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { butlerGetButlerTasks } from "@lukehagar/plexjs/funcs/butlerGetButlerTasks.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await butlerGetButlerTasks(plexAPI);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.GetButlerTasksResponse](../../models/getbutlertasksresponse.md)\>**
+
 ### Errors
 
 | Error Object                            | Status Code                             | Content Type                            |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
 | models.GetButlerTasksButlerResponseBody | 401                                     | application/json                        |
 | models.SDKError                         | 4xx-5xx                                 | */*                                     |
+
 
 ## startAllTasks
 
@@ -85,23 +118,56 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { butlerStartAllTasks } from "@lukehagar/plexjs/funcs/butlerStartAllTasks.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await butlerStartAllTasks(plexAPI);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.StartAllTasksResponse](../../models/startalltasksresponse.md)\>**
+
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.StartAllTasksResponseBody | 401                              | application/json                 |
 | models.SDKError                  | 4xx-5xx                          | */*                              |
+
 
 ## stopAllTasks
 
@@ -128,23 +194,56 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { butlerStopAllTasks } from "@lukehagar/plexjs/funcs/butlerStopAllTasks.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await butlerStopAllTasks(plexAPI);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.StopAllTasksResponse](../../models/stopalltasksresponse.md)\>**
+
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | models.StopAllTasksResponseBody | 401                             | application/json                |
 | models.SDKError                 | 4xx-5xx                         | */*                             |
+
 
 ## startTask
 
@@ -175,6 +274,38 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { TaskName } from "@lukehagar/plexjs";
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { butlerStartTask } from "@lukehagar/plexjs/funcs/butlerStartTask.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await butlerStartTask(plexAPI, TaskName.DeepMediaAnalysis);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -182,17 +313,19 @@ run();
 | `taskName`                                                                                                                                                                     | [models.TaskName](../../models/taskname.md)                                                                                                                                    | :heavy_check_mark:                                                                                                                                                             | the name of the task to be started.                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.StartTaskResponse](../../models/starttaskresponse.md)\>**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | models.StartTaskResponseBody | 401                          | application/json             |
 | models.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## stopTask
 
@@ -219,6 +352,38 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PathParamTaskName } from "@lukehagar/plexjs";
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { butlerStopTask } from "@lukehagar/plexjs/funcs/butlerStopTask.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await butlerStopTask(plexAPI, PathParamTaskName.RefreshPeriodicMetadata);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -226,11 +391,12 @@ run();
 | `taskName`                                                                                                                                                                     | [models.PathParamTaskName](../../models/pathparamtaskname.md)                                                                                                                  | :heavy_check_mark:                                                                                                                                                             | The name of the task to be started.                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.StopTaskResponse](../../models/stoptaskresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

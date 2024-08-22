@@ -1,5 +1,14 @@
 # StopTranscodeSessionRequest
 
+## Example Usage
+
+```typescript
+import { StopTranscodeSessionRequest } from "@lukehagar/plexjs";
+
+let value: StopTranscodeSessionRequest = {
+    sessionKey: "zz7llzqlx8w9vnrsbnwhbmep",
+};
+```
 
 ## Fields
 

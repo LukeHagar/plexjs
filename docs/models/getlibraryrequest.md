@@ -1,5 +1,14 @@
 # GetLibraryRequest
 
+## Example Usage
+
+```typescript
+import { GetLibraryRequest } from "@lukehagar/plexjs";
+
+let value: GetLibraryRequest = {
+    sectionId: 1000,
+};
+```
 
 ## Fields
 

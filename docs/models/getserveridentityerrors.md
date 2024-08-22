@@ -1,5 +1,16 @@
 # GetServerIdentityErrors
 
+## Example Usage
+
+```typescript
+import { GetServerIdentityErrors } from "@lukehagar/plexjs";
+
+let value: GetServerIdentityErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

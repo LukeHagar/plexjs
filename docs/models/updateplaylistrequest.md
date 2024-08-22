@@ -1,5 +1,14 @@
 # UpdatePlaylistRequest
 
+## Example Usage
+
+```typescript
+import { UpdatePlaylistRequest } from "@lukehagar/plexjs";
+
+let value: UpdatePlaylistRequest = {
+    playlistID: 4386.01,
+};
+```
 
 ## Fields
 

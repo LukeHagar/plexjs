@@ -2,6 +2,13 @@
 
 The name of the task to be started.
 
+## Example Usage
+
+```typescript
+import { PathParamTaskName } from "@lukehagar/plexjs";
+
+let value: PathParamTaskName = PathParamTaskName.RefreshPeriodicMetadata;
+```
 
 ## Values
 

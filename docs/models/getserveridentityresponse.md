@@ -1,5 +1,25 @@
 # GetServerIdentityResponse
 
+## Example Usage
+
+```typescript
+import { GetServerIdentityResponse } from "@lukehagar/plexjs";
+
+let value: GetServerIdentityResponse = {
+    contentType: "<value>",
+    statusCode: 602763,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    object: {
+        mediaContainer: {
+            size: 0,
+            machineIdentifier: "96f2fe7a78c9dc1f16a16bedbe90f98149be16b4",
+            version: "1.31.3.6868-28fc46b27",
+        },
+    },
+};
+```
 
 ## Fields
 

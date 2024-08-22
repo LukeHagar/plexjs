@@ -1,5 +1,14 @@
 # GetSearchResultsGenre
 
+## Example Usage
+
+```typescript
+import { GetSearchResultsGenre } from "@lukehagar/plexjs";
+
+let value: GetSearchResultsGenre = {
+    tag: "Action",
+};
+```
 
 ## Fields
 

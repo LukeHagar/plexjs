@@ -1,5 +1,16 @@
 # GetSessionHistoryErrors
 
+## Example Usage
+
+```typescript
+import { GetSessionHistoryErrors } from "@lukehagar/plexjs";
+
+let value: GetSessionHistoryErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

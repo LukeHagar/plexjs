@@ -1,5 +1,16 @@
 # LogMultiLineErrors
 
+## Example Usage
+
+```typescript
+import { LogMultiLineErrors } from "@lukehagar/plexjs";
+
+let value: LogMultiLineErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

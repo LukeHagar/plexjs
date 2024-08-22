@@ -1,5 +1,16 @@
 # LogLineErrors
 
+## Example Usage
+
+```typescript
+import { LogLineErrors } from "@lukehagar/plexjs";
+
+let value: LogLineErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

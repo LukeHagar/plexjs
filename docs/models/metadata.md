@@ -1,5 +1,12 @@
 # Metadata
 
+## Example Usage
+
+```typescript
+import { Metadata } from "@lukehagar/plexjs";
+
+let value: Metadata = {};
+```
 
 ## Fields
 

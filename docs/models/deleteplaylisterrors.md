@@ -1,5 +1,16 @@
 # DeletePlaylistErrors
 
+## Example Usage
+
+```typescript
+import { DeletePlaylistErrors } from "@lukehagar/plexjs";
+
+let value: DeletePlaylistErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

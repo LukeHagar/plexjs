@@ -1,5 +1,14 @@
 # GetSearchResultsWriter
 
+## Example Usage
+
+```typescript
+import { GetSearchResultsWriter } from "@lukehagar/plexjs";
+
+let value: GetSearchResultsWriter = {
+    tag: "David Koepp",
+};
+```
 
 ## Fields
 

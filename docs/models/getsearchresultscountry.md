@@ -1,5 +1,14 @@
 # GetSearchResultsCountry
 
+## Example Usage
+
+```typescript
+import { GetSearchResultsCountry } from "@lukehagar/plexjs";
+
+let value: GetSearchResultsCountry = {
+    tag: "United States of America",
+};
+```
 
 ## Fields
 

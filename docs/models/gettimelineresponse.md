@@ -1,5 +1,18 @@
 # GetTimelineResponse
 
+## Example Usage
+
+```typescript
+import { GetTimelineResponse } from "@lukehagar/plexjs";
+
+let value: GetTimelineResponse = {
+    contentType: "<value>",
+    statusCode: 963663,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

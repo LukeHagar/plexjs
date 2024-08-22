@@ -6,6 +6,13 @@ The `force` argument is used to disable overwriting.
 If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
 
 
+## Example Usage
+
+```typescript
+import { Force } from "@lukehagar/plexjs";
+
+let value: Force = Force.One;
+```
 
 ## Values
 

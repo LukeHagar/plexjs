@@ -1,5 +1,39 @@
 # GetSearchResultsMedia
 
+## Example Usage
+
+```typescript
+import { GetSearchResultsMedia } from "@lukehagar/plexjs";
+
+let value: GetSearchResultsMedia = {
+    id: 26610,
+    duration: 6612628,
+    bitrate: 4751,
+    width: 1916,
+    height: 796,
+    aspectRatio: 2.35,
+    audioChannels: 6,
+    audioCodec: "aac",
+    videoCodec: "hevc",
+    videoResolution: 1080,
+    container: "mkv",
+    videoFrameRate: "24p",
+    audioProfile: "lc",
+    videoProfile: "main 10",
+    part: [
+        {
+            id: 26610,
+            key: "/library/parts/26610/1589234571/file.mkv",
+            duration: 6612628,
+            file: "/movies/Mission Impossible (1996)/Mission Impossible (1996) Bluray-1080p.mkv",
+            size: 3926903851,
+            audioProfile: "lc",
+            container: "mkv",
+            videoProfile: "main 10",
+        },
+    ],
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # GetWatchlistResponse
 
+## Example Usage
+
+```typescript
+import { GetWatchlistResponse } from "@lukehagar/plexjs";
+
+let value: GetWatchlistResponse = {
+    contentType: "<value>",
+    statusCode: 971945,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

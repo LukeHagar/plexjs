@@ -1,5 +1,16 @@
 # Ratings
 
+## Example Usage
+
+```typescript
+import { Ratings } from "@lukehagar/plexjs";
+
+let value: Ratings = {
+    image: "themoviedb://image.rating",
+    value: 7.4,
+    type: "audience",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,15 @@
 # GetPlaylistContentsRequest
 
+## Example Usage
+
+```typescript
+import { GetPlaylistContentsRequest } from "@lukehagar/plexjs";
+
+let value: GetPlaylistContentsRequest = {
+    playlistID: 9883.74,
+    type: 9589.5,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # ClearPlaylistContentsResponse
 
+## Example Usage
+
+```typescript
+import { ClearPlaylistContentsResponse } from "@lukehagar/plexjs";
+
+let value: ClearPlaylistContentsResponse = {
+    contentType: "<value>",
+    statusCode: 208876,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

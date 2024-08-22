@@ -1,5 +1,19 @@
 # GetTopWatchedContentRole
 
+## Example Usage
+
+```typescript
+import { GetTopWatchedContentRole } from "@lukehagar/plexjs";
+
+let value: GetTopWatchedContentRole = {
+    id: 220,
+    filter: "actor=220",
+    tag: "Dennis Keiffer",
+    tagKey: "5d77683554f42c001f8c4708",
+    role: "Bar Guy (uncredited)",
+    thumb: "https://metadata-static.plex.tv/6/people/648e9a7ea1d537bccfcd7615134b78ce.jpg",
+};
+```
 
 ## Fields
 

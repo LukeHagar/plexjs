@@ -1,5 +1,14 @@
 # MarkPlayedRequest
 
+## Example Usage
+
+```typescript
+import { MarkPlayedRequest } from "@lukehagar/plexjs";
+
+let value: MarkPlayedRequest = {
+    key: 59398,
+};
+```
 
 ## Fields
 

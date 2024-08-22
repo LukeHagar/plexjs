@@ -41,23 +41,56 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { activitiesGetServerActivities } from "@lukehagar/plexjs/funcs/activitiesGetServerActivities.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await activitiesGetServerActivities(plexAPI);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.GetServerActivitiesResponse](../../models/getserveractivitiesresponse.md)\>**
+
 ### Errors
 
 | Error Object                                     | Status Code                                      | Content Type                                     |
 | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
 | models.GetServerActivitiesActivitiesResponseBody | 401                                              | application/json                                 |
 | models.SDKError                                  | 4xx-5xx                                          | */*                                              |
+
 
 ## cancelServerActivities
 
@@ -83,6 +116,37 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { activitiesCancelServerActivities } from "@lukehagar/plexjs/funcs/activitiesCancelServerActivities.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await activitiesCancelServerActivities(plexAPI, "25b71ed5-0f9d-461c-baa7-d404e9e10d3e");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -90,11 +154,12 @@ run();
 | `activityUUID`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The UUID of the activity to cancel.                                                                                                                                            | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
 **Promise\<[models.CancelServerActivitiesResponse](../../models/cancelserveractivitiesresponse.md)\>**
+
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |

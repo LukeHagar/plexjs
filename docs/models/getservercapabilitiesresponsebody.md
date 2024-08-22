@@ -2,6 +2,13 @@
 
 The Server Capabilities
 
+## Example Usage
+
+```typescript
+import { GetServerCapabilitiesResponseBody } from "@lukehagar/plexjs";
+
+let value: GetServerCapabilitiesResponseBody = {};
+```
 
 ## Fields
 

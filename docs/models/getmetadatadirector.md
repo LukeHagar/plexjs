@@ -1,5 +1,18 @@
 # GetMetadataDirector
 
+## Example Usage
+
+```typescript
+import { GetMetadataDirector } from "@lukehagar/plexjs";
+
+let value: GetMetadataDirector = {
+    id: 130,
+    filter: "director=130",
+    tag: "Joss Whedon",
+    tagKey: "5d776828880197001ec90e8f",
+    thumb: "https://metadata-static.plex.tv/people/5d776828880197001ec90e8f.jpg",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,41 @@
 # GetMetadataChildrenMetadata
 
+## Example Usage
+
+```typescript
+import { GetMetadataChildrenMetadata } from "@lukehagar/plexjs";
+
+let value: GetMetadataChildrenMetadata = {
+    ratingKey: "66488",
+    key: "/library/metadata/66488/children",
+    parentRatingKey: "30072",
+    guid: "plex://season/652aea6549508477c34c6000",
+    parentGuid: "plex://show/5d9c09190aaccd001f8f42f0",
+    parentStudio: "Amazon Studios",
+    type: "season",
+    title: "Season 2",
+    parentKey: "/library/metadata/30072",
+    parentTitle: "Reacher",
+    summary:
+        'Based on"Bad Luck and Trouble," when members of Reacher\'s old military unit start turning up dead, Reacher has just one thing on his mind—revenge.',
+    index: 2,
+    parentIndex: 1,
+    viewCount: 11,
+    lastViewedAt: 1705646565,
+    parentYear: 2022,
+    thumb: "/library/metadata/66488/thumb/1703065033",
+    art: "/library/metadata/30072/art/1705739923",
+    parentThumb: "/library/metadata/30072/thumb/1705739923",
+    parentTheme: "/library/metadata/30072/theme/1705739923",
+    leafCount: 8,
+    viewedLeafCount: 8,
+    addedAt: 1702602021,
+    updatedAt: 1703065033,
+    userRating: 9,
+    skipCount: 1,
+    lastRatedAt: 1703881224,
+};
+```
 
 ## Fields
 

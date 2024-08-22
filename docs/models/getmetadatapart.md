@@ -1,5 +1,59 @@
 # GetMetadataPart
 
+## Example Usage
+
+```typescript
+import { GetMetadataPart } from "@lukehagar/plexjs";
+
+let value: GetMetadataPart = {
+    id: 15,
+    key: "/library/parts/15/1705637151/file.mp4",
+    duration: 141417,
+    file: "/movies/Serenity (2005)/Serenity (2005).mp4",
+    size: 40271948,
+    audioProfile: "lc",
+    container: "mp4",
+    has64bitOffsets: false,
+    optimizedForStreaming: false,
+    videoProfile: "high",
+    stream: [
+        {
+            id: 29,
+            streamType: 2,
+            default: true,
+            codec: "aac",
+            index: 0,
+            bitrate: 128,
+            bitDepth: 8,
+            chromaLocation: "left",
+            chromaSubsampling: "14520",
+            codedHeight: 816,
+            codedWidth: 1920,
+            colorPrimaries: "bt709",
+            colorRange: "tv",
+            colorSpace: "bt709",
+            colorTrc: "bt709",
+            frameRate: 24,
+            hasScalingMatrix: false,
+            height: 814,
+            level: 40,
+            profile: "lc",
+            refFrames: 4,
+            scanType: "progressive",
+            streamIdentifier: "1",
+            width: 1920,
+            displayTitle: "English (AAC Stereo)",
+            extendedDisplayTitle: "English (AAC Stereo)",
+            selected: true,
+            channels: 2,
+            language: "English",
+            languageTag: "en",
+            languageCode: "eng",
+            samplingRate: 44100,
+        },
+    ],
+};
+```
 
 ## Fields
 

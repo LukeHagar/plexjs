@@ -1,5 +1,16 @@
 # GetLibraryItemsRequest
 
+## Example Usage
+
+```typescript
+import { GetLibraryItemsRequest, Tag } from "@lukehagar/plexjs";
+
+let value: GetLibraryItemsRequest = {
+    sectionId: "<value>",
+    tag: Tag.RecentlyViewed,
+    includeGuids: 1,
+};
+```
 
 ## Fields
 

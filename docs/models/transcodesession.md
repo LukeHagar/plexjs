@@ -1,5 +1,37 @@
 # TranscodeSession
 
+## Example Usage
+
+```typescript
+import { TranscodeSession } from "@lukehagar/plexjs";
+
+let value: TranscodeSession = {
+    key: "vv3i2q2lax92qlzul1hbd4bx",
+    throttled: false,
+    complete: false,
+    progress: 1.7999999523162842,
+    size: -22,
+    speed: 25.100000381469727,
+    error: false,
+    duration: 1445695,
+    remaining: 53,
+    context: "streaming",
+    sourceVideoCodec: "h264",
+    sourceAudioCodec: "aac",
+    videoDecision: "transcode",
+    audioDecision: "transcode",
+    subtitleDecision: "burn",
+    protocol: "http",
+    container: "mkv",
+    videoCodec: "h264",
+    audioCodec: "opus",
+    audioChannels: 1,
+    transcodeHwRequested: true,
+    timeStamp: 1705895805.4919229,
+    maxOffsetAvailable: 29.53,
+    minOffsetAvailable: 3.003000020980835,
+};
+```
 
 ## Fields
 

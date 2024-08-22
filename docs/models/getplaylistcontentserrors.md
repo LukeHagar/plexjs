@@ -1,5 +1,16 @@
 # GetPlaylistContentsErrors
 
+## Example Usage
+
+```typescript
+import { GetPlaylistContentsErrors } from "@lukehagar/plexjs";
+
+let value: GetPlaylistContentsErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

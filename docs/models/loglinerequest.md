@@ -1,5 +1,16 @@
 # LogLineRequest
 
+## Example Usage
+
+```typescript
+import { Level, LogLineRequest } from "@lukehagar/plexjs";
+
+let value: LogLineRequest = {
+    level: Level.Two,
+    message: "Test log message",
+    source: "Postman",
+};
+```
 
 ## Fields
 

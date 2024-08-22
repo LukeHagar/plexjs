@@ -1,5 +1,16 @@
 # GetTransientTokenErrors
 
+## Example Usage
+
+```typescript
+import { GetTransientTokenErrors } from "@lukehagar/plexjs";
+
+let value: GetTransientTokenErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

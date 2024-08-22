@@ -1,5 +1,14 @@
 # GetLibraryItemsGenre
 
+## Example Usage
+
+```typescript
+import { GetLibraryItemsGenre } from "@lukehagar/plexjs";
+
+let value: GetLibraryItemsGenre = {
+    tag: "Adventure",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,17 @@
 # Field
 
+## Example Usage
+
+```typescript
+import { Field } from "@lukehagar/plexjs";
+
+let value: Field = {
+    key: "label",
+    title: "Label",
+    type: "tag",
+    subType: "bitrate",
+};
+```
 
 ## Fields
 

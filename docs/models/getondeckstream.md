@@ -1,5 +1,35 @@
 # GetOnDeckStream
 
+## Example Usage
+
+```typescript
+import { GetOnDeckStream } from "@lukehagar/plexjs";
+
+let value: GetOnDeckStream = {
+    id: 211234,
+    streamType: 1,
+    codec: "hevc",
+    index: 0,
+    bitrate: 918,
+    language: "English",
+    languageTag: "en",
+    languageCode: "eng",
+    bitDepth: 8,
+    chromaLocation: "left",
+    chromaSubsampling: "4:2:0",
+    codedHeight: 1080,
+    codedWidth: 1920,
+    colorRange: "tv",
+    frameRate: 25,
+    height: 1080,
+    level: 120,
+    profile: "main",
+    refFrames: 1,
+    width: 1920,
+    displayTitle: "1080p (HEVC Main)",
+    extendedDisplayTitle: "1080p (HEVC Main)",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # GetSearchResultsRequest
 
+## Example Usage
+
+```typescript
+import { GetSearchResultsRequest } from "@lukehagar/plexjs";
+
+let value: GetSearchResultsRequest = {
+    query: "110",
+};
+```
 
 ## Fields
 

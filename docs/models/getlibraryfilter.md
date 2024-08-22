@@ -1,5 +1,18 @@
 # GetLibraryFilter
 
+## Example Usage
+
+```typescript
+import { GetLibraryFilter } from "@lukehagar/plexjs";
+
+let value: GetLibraryFilter = {
+    filter: "label",
+    filterType: "string",
+    key: "/library/sections/1/label",
+    title: "Labels",
+    type: "filter",
+};
+```
 
 ## Fields
 

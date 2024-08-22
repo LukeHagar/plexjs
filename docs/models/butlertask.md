@@ -1,5 +1,17 @@
 # ButlerTask
 
+## Example Usage
+
+```typescript
+import { ButlerTask } from "@lukehagar/plexjs";
+
+let value: ButlerTask = {
+    name: "BackupDatabase",
+    interval: 3,
+    title: "Backup Database",
+    description: "Create a backup copy of the server's database in the configured backup directory",
+};
+```
 
 ## Fields
 

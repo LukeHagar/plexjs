@@ -36,6 +36,38 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs";
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { authenticationGetTransientToken } from "@lukehagar/plexjs/funcs/authenticationGetTransientToken.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await authenticationGetTransientToken(plexAPI, GetTransientTokenQueryParamType.Delegation, Scope.All);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -44,17 +76,19 @@ run();
 | `scope`                                                                                                                                                                        | [models.Scope](../../models/scope.md)                                                                                                                                          | :heavy_check_mark:                                                                                                                                                             | `all` - This is the only supported `scope` parameter.                                                                                                                          |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.GetTransientTokenResponse](../../models/gettransienttokenresponse.md)\>**
+
 ### Errors
 
 | Error Object                         | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | models.GetTransientTokenResponseBody | 401                                  | application/json                     |
 | models.SDKError                      | 4xx-5xx                              | */*                                  |
+
 
 ## getSourceConnectionInformation
 
@@ -82,6 +116,37 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { authenticationGetSourceConnectionInformation } from "@lukehagar/plexjs/funcs/authenticationGetSourceConnectionInformation.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await authenticationGetSourceConnectionInformation(plexAPI, "provider://provider-identifier");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -89,11 +154,12 @@ run();
 | `source`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The source identifier with an included prefix.                                                                                                                                 | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
 **Promise\<[models.GetSourceConnectionInformationResponse](../../models/getsourceconnectioninformationresponse.md)\>**
+
 ### Errors
 
 | Error Object                                      | Status Code                                       | Content Type                                      |

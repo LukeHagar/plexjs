@@ -1,5 +1,43 @@
 # GetPlaylistContentsMedia
 
+## Example Usage
+
+```typescript
+import { GetPlaylistContentsMedia } from "@lukehagar/plexjs";
+
+let value: GetPlaylistContentsMedia = {
+    id: 15,
+    duration: 141416,
+    bitrate: 2273,
+    width: 1920,
+    height: 814,
+    aspectRatio: 2.35,
+    audioChannels: 2,
+    audioCodec: "aac",
+    videoCodec: "h264",
+    videoResolution: "1080",
+    container: "mp4",
+    videoFrameRate: "24p",
+    optimizedForStreaming: 0,
+    audioProfile: "lc",
+    has64bitOffsets: false,
+    videoProfile: "high",
+    part: [
+        {
+            id: 15,
+            key: "/library/parts/15/1705637151/file.mp4",
+            duration: 141416,
+            file: "/movies/Serenity (2005)/Serenity (2005).mp4",
+            size: 40271948,
+            audioProfile: "lc",
+            container: "mp4",
+            has64bitOffsets: false,
+            optimizedForStreaming: false,
+            videoProfile: "high",
+        },
+    ],
+};
+```
 
 ## Fields
 

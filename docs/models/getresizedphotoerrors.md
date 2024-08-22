@@ -1,5 +1,16 @@
 # GetResizedPhotoErrors
 
+## Example Usage
+
+```typescript
+import { GetResizedPhotoErrors } from "@lukehagar/plexjs";
+
+let value: GetResizedPhotoErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # GetServerActivitiesResponse
 
+## Example Usage
+
+```typescript
+import { GetServerActivitiesResponse } from "@lukehagar/plexjs";
+
+let value: GetServerActivitiesResponse = {
+    contentType: "<value>",
+    statusCode: 383441,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

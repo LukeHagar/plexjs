@@ -1,5 +1,14 @@
 # GetFileHashRequest
 
+## Example Usage
+
+```typescript
+import { GetFileHashRequest } from "@lukehagar/plexjs";
+
+let value: GetFileHashRequest = {
+    url: "file://C:Image.png&type=13",
+};
+```
 
 ## Fields
 

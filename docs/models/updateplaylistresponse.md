@@ -1,5 +1,18 @@
 # UpdatePlaylistResponse
 
+## Example Usage
+
+```typescript
+import { UpdatePlaylistResponse } from "@lukehagar/plexjs";
+
+let value: UpdatePlaylistResponse = {
+    contentType: "<value>",
+    statusCode: 634274,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

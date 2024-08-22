@@ -1,5 +1,28 @@
 # GetServerPreferencesMediaContainer
 
+## Example Usage
+
+```typescript
+import { GetServerPreferencesMediaContainer } from "@lukehagar/plexjs";
+
+let value: GetServerPreferencesMediaContainer = {
+    size: 161,
+    setting: [
+        {
+            id: "EnableDatabaseTrace",
+            label: "",
+            summary: "",
+            type: "bool",
+            default: false,
+            value: false,
+            hidden: true,
+            advanced: false,
+            group: "",
+            enumValues: "1:admin only|2:everyone",
+        },
+    ],
+};
+```
 
 ## Fields
 

@@ -1,5 +1,15 @@
 # ApplyUpdatesRequest
 
+## Example Usage
+
+```typescript
+import { ApplyUpdatesRequest, Skip, Tonight } from "@lukehagar/plexjs";
+
+let value: ApplyUpdatesRequest = {
+    tonight: Tonight.One,
+    skip: Skip.One,
+};
+```
 
 ## Fields
 

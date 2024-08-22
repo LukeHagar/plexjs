@@ -1,5 +1,16 @@
 # GetMetadataGenre
 
+## Example Usage
+
+```typescript
+import { GetMetadataGenre } from "@lukehagar/plexjs";
+
+let value: GetMetadataGenre = {
+    id: 184,
+    filter: "genre=184",
+    tag: "Thriller",
+};
+```
 
 ## Fields
 

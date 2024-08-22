@@ -1,5 +1,14 @@
 # GetPlaylistContentsGenre
 
+## Example Usage
+
+```typescript
+import { GetPlaylistContentsGenre } from "@lukehagar/plexjs";
+
+let value: GetPlaylistContentsGenre = {
+    tag: "Action",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # Country
 
+## Example Usage
+
+```typescript
+import { Country } from "@lukehagar/plexjs";
+
+let value: Country = {
+    tag: "United States of America",
+};
+```
 
 ## Fields
 

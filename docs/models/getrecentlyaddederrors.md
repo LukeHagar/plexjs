@@ -1,5 +1,16 @@
 # GetRecentlyAddedErrors
 
+## Example Usage
+
+```typescript
+import { GetRecentlyAddedErrors } from "@lukehagar/plexjs";
+
+let value: GetRecentlyAddedErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

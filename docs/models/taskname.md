@@ -2,6 +2,13 @@
 
 the name of the task to be started.
 
+## Example Usage
+
+```typescript
+import { TaskName } from "@lukehagar/plexjs";
+
+let value: TaskName = TaskName.GenerateAutoTags;
+```
 
 ## Values
 

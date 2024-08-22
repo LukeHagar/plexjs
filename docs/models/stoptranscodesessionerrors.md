@@ -1,5 +1,16 @@
 # StopTranscodeSessionErrors
 
+## Example Usage
+
+```typescript
+import { StopTranscodeSessionErrors } from "@lukehagar/plexjs";
+
+let value: StopTranscodeSessionErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

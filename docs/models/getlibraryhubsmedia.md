@@ -1,5 +1,43 @@
 # GetLibraryHubsMedia
 
+## Example Usage
+
+```typescript
+import { GetLibraryHubsMedia } from "@lukehagar/plexjs";
+
+let value: GetLibraryHubsMedia = {
+    id: 38247,
+    duration: 6017237,
+    bitrate: 2051,
+    width: 1920,
+    height: 1080,
+    aspectRatio: 1.78,
+    audioChannels: 2,
+    audioCodec: "aac",
+    videoCodec: "h264",
+    videoResolution: "1080",
+    container: "mp4",
+    videoFrameRate: "24p",
+    optimizedForStreaming: 1,
+    audioProfile: "lc",
+    has64bitOffsets: false,
+    videoProfile: "high",
+    part: [
+        {
+            id: 38247,
+            key: "/library/parts/38247/1589412494/file.mp4",
+            duration: 6017237,
+            file: "/movies/Tangled (2010)/Tangled (2010) Bluray-1080p.mp4",
+            size: 1545647447,
+            audioProfile: "lc",
+            container: "mp4",
+            has64bitOffsets: false,
+            optimizedForStreaming: true,
+            videoProfile: "high",
+        },
+    ],
+};
+```
 
 ## Fields
 

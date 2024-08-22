@@ -1,5 +1,14 @@
 # GetLibraryHubsRequest
 
+## Example Usage
+
+```typescript
+import { GetLibraryHubsRequest } from "@lukehagar/plexjs";
+
+let value: GetLibraryHubsRequest = {
+    sectionId: 1433.53,
+};
+```
 
 ## Fields
 

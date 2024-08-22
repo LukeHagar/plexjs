@@ -1,5 +1,14 @@
 # GetSearchResultsRole
 
+## Example Usage
+
+```typescript
+import { GetSearchResultsRole } from "@lukehagar/plexjs";
+
+let value: GetSearchResultsRole = {
+    tag: "Tom Cruise",
+};
+```
 
 ## Fields
 

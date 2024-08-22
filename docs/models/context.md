@@ -1,5 +1,12 @@
 # Context
 
+## Example Usage
+
+```typescript
+import { Context } from "@lukehagar/plexjs";
+
+let value: Context = {};
+```
 
 ## Fields
 

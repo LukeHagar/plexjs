@@ -37,23 +37,56 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { sessionsGetSessions } from "@lukehagar/plexjs/funcs/sessionsGetSessions.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await sessionsGetSessions(plexAPI);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.GetSessionsResponse](../../models/getsessionsresponse.md)\>**
+
 ### Errors
 
 | Error Object                           | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | models.GetSessionsSessionsResponseBody | 401                                    | application/json                       |
 | models.SDKError                        | 4xx-5xx                                | */*                                    |
+
 
 ## getSessionHistory
 
@@ -70,7 +103,38 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.sessions.getSessionHistory("<value>", 1, {}, 12);
+  const result = await plexAPI.sessions.getSessionHistory("viewedAt:desc", 1, {}, 12);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { sessionsGetSessionHistory } from "@lukehagar/plexjs/funcs/sessionsGetSessionHistory.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await sessionsGetSessionHistory(plexAPI, "viewedAt:desc", 1, {}, 12);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -89,17 +153,19 @@ run();
 | `librarySectionID`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Filters the results based on the id of a valid library section<br/>                                                                                                            | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
 **Promise\<[models.GetSessionHistoryResponse](../../models/getsessionhistoryresponse.md)\>**
+
 ### Errors
 
 | Error Object                                 | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | models.GetSessionHistorySessionsResponseBody | 401                                          | application/json                             |
 | models.SDKError                              | 4xx-5xx                                      | */*                                          |
+
 
 ## getTranscodeSessions
 
@@ -125,23 +191,56 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { sessionsGetTranscodeSessions } from "@lukehagar/plexjs/funcs/sessionsGetTranscodeSessions.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await sessionsGetTranscodeSessions(plexAPI);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[models.GetTranscodeSessionsResponse](../../models/gettranscodesessionsresponse.md)\>**
+
 ### Errors
 
 | Error Object                                    | Status Code                                     | Content Type                                    |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
 | models.GetTranscodeSessionsSessionsResponseBody | 401                                             | application/json                                |
 | models.SDKError                                 | 4xx-5xx                                         | */*                                             |
+
 
 ## stopTranscodeSession
 
@@ -167,6 +266,37 @@ async function run() {
 run();
 ```
 
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { sessionsStopTranscodeSession } from "@lukehagar/plexjs/funcs/sessionsStopTranscodeSession.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+  const res = await sessionsStopTranscodeSession(plexAPI, "zz7llzqlx8w9vnrsbnwhbmep");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -174,11 +304,12 @@ run();
 | `sessionKey`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Key of the transcode session to stop                                                                                                                                       | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
 **Promise\<[models.StopTranscodeSessionResponse](../../models/stoptranscodesessionresponse.md)\>**
+
 ### Errors
 
 | Error Object                            | Status Code                             | Content Type                            |

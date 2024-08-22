@@ -1,5 +1,14 @@
 # RefreshLibraryRequest
 
+## Example Usage
+
+```typescript
+import { RefreshLibraryRequest } from "@lukehagar/plexjs";
+
+let value: RefreshLibraryRequest = {
+    sectionId: 187.89,
+};
+```
 
 ## Fields
 

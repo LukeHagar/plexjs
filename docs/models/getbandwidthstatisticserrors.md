@@ -1,5 +1,16 @@
 # GetBandwidthStatisticsErrors
 
+## Example Usage
+
+```typescript
+import { GetBandwidthStatisticsErrors } from "@lukehagar/plexjs";
+
+let value: GetBandwidthStatisticsErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

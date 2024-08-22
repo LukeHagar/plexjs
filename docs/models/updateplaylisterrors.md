@@ -1,5 +1,16 @@
 # UpdatePlaylistErrors
 
+## Example Usage
+
+```typescript
+import { UpdatePlaylistErrors } from "@lukehagar/plexjs";
+
+let value: UpdatePlaylistErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

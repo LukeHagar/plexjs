@@ -1,5 +1,14 @@
 # Genre
 
+## Example Usage
+
+```typescript
+import { Genre } from "@lukehagar/plexjs";
+
+let value: Genre = {
+    tag: "Comedy",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,39 @@
 # GetRecentlyAddedMedia
 
+## Example Usage
+
+```typescript
+import { GetRecentlyAddedMedia } from "@lukehagar/plexjs";
+
+let value: GetRecentlyAddedMedia = {
+    id: 120345,
+    duration: 7474422,
+    bitrate: 3623,
+    width: 1920,
+    height: 804,
+    aspectRatio: 2.35,
+    audioChannels: 6,
+    audioCodec: "ac3",
+    videoCodec: "h264",
+    videoResolution: 1080,
+    container: "mp4",
+    videoFrameRate: "24p",
+    optimizedForStreaming: 0,
+    videoProfile: "high",
+    part: [
+        {
+            id: 120353,
+            key: "/library/parts/120353/1681803203/file.mp4",
+            duration: 7474422,
+            file: "/movies/Ant-Man and the Wasp Quantumania (2023)/Ant-Man.and.the.Wasp.Quantumania.2023.1080p.mp4",
+            size: 3395307162,
+            container: "mp4",
+            hasThumbnail: 1,
+            videoProfile: "high",
+        },
+    ],
+};
+```
 
 ## Fields
 

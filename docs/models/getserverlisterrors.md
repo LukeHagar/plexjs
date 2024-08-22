@@ -1,5 +1,16 @@
 # GetServerListErrors
 
+## Example Usage
+
+```typescript
+import { GetServerListErrors } from "@lukehagar/plexjs";
+
+let value: GetServerListErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

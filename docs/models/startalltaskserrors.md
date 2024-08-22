@@ -1,5 +1,16 @@
 # StartAllTasksErrors
 
+## Example Usage
+
+```typescript
+import { StartAllTasksErrors } from "@lukehagar/plexjs";
+
+let value: StartAllTasksErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

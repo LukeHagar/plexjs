@@ -1,5 +1,14 @@
 # GetLibraryHubsWriter
 
+## Example Usage
+
+```typescript
+import { GetLibraryHubsWriter } from "@lukehagar/plexjs";
+
+let value: GetLibraryHubsWriter = {
+    tag: "Wilhelm Grimm",
+};
+```
 
 ## Fields
 

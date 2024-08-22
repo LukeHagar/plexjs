@@ -2,6 +2,13 @@
 
 Indicate that you want to start download any updates found.
 
+## Example Usage
+
+```typescript
+import { Download } from "@lukehagar/plexjs";
+
+let value: Download = Download.One;
+```
 
 ## Values
 

@@ -1,5 +1,18 @@
 # DeleteLibraryResponse
 
+## Example Usage
+
+```typescript
+import { DeleteLibraryResponse } from "@lukehagar/plexjs";
+
+let value: DeleteLibraryResponse = {
+    contentType: "<value>",
+    statusCode: 736918,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

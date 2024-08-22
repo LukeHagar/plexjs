@@ -1,5 +1,16 @@
 # EnablePaperTrailErrors
 
+## Example Usage
+
+```typescript
+import { EnablePaperTrailErrors } from "@lukehagar/plexjs";
+
+let value: EnablePaperTrailErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

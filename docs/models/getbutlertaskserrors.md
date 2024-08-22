@@ -1,5 +1,16 @@
 # GetButlerTasksErrors
 
+## Example Usage
+
+```typescript
+import { GetButlerTasksErrors } from "@lukehagar/plexjs";
+
+let value: GetButlerTasksErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

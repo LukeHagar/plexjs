@@ -1,5 +1,12 @@
 # LibrarySectionID
 
+## Example Usage
+
+```typescript
+import { LibrarySectionID } from "@lukehagar/plexjs";
+
+let value: LibrarySectionID = "<value>";
+```
 
 ## Supported Types
 

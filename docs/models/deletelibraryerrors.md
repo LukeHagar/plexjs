@@ -1,5 +1,16 @@
 # DeleteLibraryErrors
 
+## Example Usage
+
+```typescript
+import { DeleteLibraryErrors } from "@lukehagar/plexjs";
+
+let value: DeleteLibraryErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

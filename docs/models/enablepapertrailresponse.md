@@ -1,5 +1,18 @@
 # EnablePaperTrailResponse
 
+## Example Usage
+
+```typescript
+import { EnablePaperTrailResponse } from "@lukehagar/plexjs";
+
+let value: EnablePaperTrailResponse = {
+    contentType: "<value>",
+    statusCode: 99280,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

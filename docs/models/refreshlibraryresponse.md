@@ -1,5 +1,18 @@
 # RefreshLibraryResponse
 
+## Example Usage
+
+```typescript
+import { RefreshLibraryResponse } from "@lukehagar/plexjs";
+
+let value: RefreshLibraryResponse = {
+    contentType: "<value>",
+    statusCode: 324141,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

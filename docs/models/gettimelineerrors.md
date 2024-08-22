@@ -1,5 +1,16 @@
 # GetTimelineErrors
 
+## Example Usage
+
+```typescript
+import { GetTimelineErrors } from "@lukehagar/plexjs";
+
+let value: GetTimelineErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

@@ -103,9 +103,14 @@ run();
 
 ### [plex](docs/sdks/plex/README.md)
 
+* [getCompanionsData](docs/sdks/plex/README.md#getcompanionsdata) - Get Companions Data
+* [getUserFriends](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
+* [getGeoData](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
 * [getHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
+* [getResources](docs/sdks/plex/README.md#getresources) - Get Resources
 * [getPin](docs/sdks/plex/README.md#getpin) - Get a Pin
-* [getToken](docs/sdks/plex/README.md#gettoken) - Get Access Token
+* [getTokenByPinId](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
+* [getUserDetails](docs/sdks/plex/README.md#getuserdetails) - Get UserData By Token
 
 ### [hubs](docs/sdks/hubs/README.md)
 
@@ -174,6 +179,10 @@ run();
 * [getUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
 * [checkForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [applyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
+
+### [user](docs/sdks/user/README.md)
+
+* [postUsersSigninData](docs/sdks/user/README.md#postuserssignindata) - Get User SignIn Data
 
 ### [watchlist](docs/sdks/watchlist/README.md)
 
@@ -303,11 +312,12 @@ The server URL can also be overridden on a per-operation basis, provided a serve
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
+    accessToken: "<YOUR_API_KEY_HERE>",
     xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
-    const result = await plexAPI.plex.getPin("Postman", false, "Postman", {
+    const result = await plexAPI.plex.getCompanionsData({
         serverURL: "https://plex.tv/api/v2",
     });
 
@@ -407,37 +417,124 @@ run();
 For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- End Requirements [requirements] -->
 
-<!-- Start Global Parameters [global-parameters] -->
-## Global Parameters
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
 
-A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
 
-For example, you can set `X-Plex-Client-Identifier` to `"Postman"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [activitiesCancelServerActivities](docs/sdks/activities/README.md#cancelserveractivities)
+- [activitiesGetServerActivities](docs/sdks/activities/README.md#getserveractivities)
+- [authenticationGetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation)
+- [authenticationGetTransientToken](docs/sdks/authentication/README.md#gettransienttoken)
+- [butlerGetButlerTasks](docs/sdks/butler/README.md#getbutlertasks)
+- [butlerStartAllTasks](docs/sdks/butler/README.md#startalltasks)
+- [butlerStartTask](docs/sdks/butler/README.md#starttask)
+- [butlerStopAllTasks](docs/sdks/butler/README.md#stopalltasks)
+- [butlerStopTask](docs/sdks/butler/README.md#stoptask)
+- [hubsGetGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs)
+- [hubsGetLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs)
+- [libraryDeleteLibrary](docs/sdks/library/README.md#deletelibrary)
+- [libraryGetFileHash](docs/sdks/library/README.md#getfilehash)
+- [libraryGetLibraries](docs/sdks/library/README.md#getlibraries)
+- [libraryGetLibraryItems](docs/sdks/library/README.md#getlibraryitems)
+- [libraryGetLibrary](docs/sdks/library/README.md#getlibrary)
+- [libraryGetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren)
+- [libraryGetMetadata](docs/sdks/library/README.md#getmetadata)
+- [libraryGetOnDeck](docs/sdks/library/README.md#getondeck)
+- [libraryGetRecentlyAdded](docs/sdks/library/README.md#getrecentlyadded)
+- [libraryGetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent)
+- [libraryRefreshLibrary](docs/sdks/library/README.md#refreshlibrary)
+- [librarySearchLibrary](docs/sdks/library/README.md#searchlibrary)
+- [logEnablePaperTrail](docs/sdks/log/README.md#enablepapertrail)
+- [logLogLine](docs/sdks/log/README.md#logline)
+- [logLogMultiLine](docs/sdks/log/README.md#logmultiline)
+- [mediaMarkPlayed](docs/sdks/media/README.md#markplayed)
+- [mediaMarkUnplayed](docs/sdks/media/README.md#markunplayed)
+- [mediaUpdatePlayProgress](docs/sdks/media/README.md#updateplayprogress)
+- [playlistsAddPlaylistContents](docs/sdks/playlists/README.md#addplaylistcontents)
+- [playlistsClearPlaylistContents](docs/sdks/playlists/README.md#clearplaylistcontents)
+- [playlistsCreatePlaylist](docs/sdks/playlists/README.md#createplaylist)
+- [playlistsDeletePlaylist](docs/sdks/playlists/README.md#deleteplaylist)
+- [playlistsGetPlaylistContents](docs/sdks/playlists/README.md#getplaylistcontents)
+- [playlistsGetPlaylist](docs/sdks/playlists/README.md#getplaylist)
+- [playlistsGetPlaylists](docs/sdks/playlists/README.md#getplaylists)
+- [playlistsUpdatePlaylist](docs/sdks/playlists/README.md#updateplaylist)
+- [playlistsUploadPlaylist](docs/sdks/playlists/README.md#uploadplaylist)
+- [plexGetCompanionsData](docs/sdks/plex/README.md#getcompanionsdata)
+- [plexGetGeoData](docs/sdks/plex/README.md#getgeodata)
+- [plexGetHomeData](docs/sdks/plex/README.md#gethomedata)
+- [plexGetPin](docs/sdks/plex/README.md#getpin)
+- [plexGetResources](docs/sdks/plex/README.md#getresources)
+- [plexGetTokenByPinId](docs/sdks/plex/README.md#gettokenbypinid)
+- [plexGetUserDetails](docs/sdks/plex/README.md#getuserdetails)
+- [plexGetUserFriends](docs/sdks/plex/README.md#getuserfriends)
+- [searchGetSearchResults](docs/sdks/search/README.md#getsearchresults)
+- [searchPerformSearch](docs/sdks/search/README.md#performsearch)
+- [searchPerformVoiceSearch](docs/sdks/search/README.md#performvoicesearch)
+- [serverGetAvailableClients](docs/sdks/server/README.md#getavailableclients)
+- [serverGetDevices](docs/sdks/server/README.md#getdevices)
+- [serverGetMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount)
+- [serverGetResizedPhoto](docs/sdks/server/README.md#getresizedphoto)
+- [serverGetServerCapabilities](docs/sdks/server/README.md#getservercapabilities)
+- [serverGetServerIdentity](docs/sdks/server/README.md#getserveridentity)
+- [serverGetServerList](docs/sdks/server/README.md#getserverlist)
+- [serverGetServerPreferences](docs/sdks/server/README.md#getserverpreferences)
+- [sessionsGetSessionHistory](docs/sdks/sessions/README.md#getsessionhistory)
+- [sessionsGetSessions](docs/sdks/sessions/README.md#getsessions)
+- [sessionsGetTranscodeSessions](docs/sdks/sessions/README.md#gettranscodesessions)
+- [sessionsStopTranscodeSession](docs/sdks/sessions/README.md#stoptranscodesession)
+- [statisticsGetBandwidthStatistics](docs/sdks/statistics/README.md#getbandwidthstatistics)
+- [statisticsGetResourcesStatistics](docs/sdks/statistics/README.md#getresourcesstatistics)
+- [statisticsGetStatistics](docs/sdks/statistics/README.md#getstatistics)
+- [updaterApplyUpdates](docs/sdks/updater/README.md#applyupdates)
+- [updaterCheckForUpdates](docs/sdks/updater/README.md#checkforupdates)
+- [updaterGetUpdateStatus](docs/sdks/updater/README.md#getupdatestatus)
+- [userPostUsersSigninData](docs/sdks/user/README.md#postuserssignindata)
+- [videoGetTimeline](docs/sdks/video/README.md#gettimeline)
+- [videoStartUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode)
+- [watchlistGetWatchlist](docs/sdks/watchlist/README.md#getwatchlist)
 
 
-### Available Globals
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
 
-The following global parameter is available.
+<!-- Start Retries [retries] -->
+## Retries
 
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| xPlexClientIdentifier | string |  | The unique identifier for the client application
-This is used to track the client application and its usage
-(UUID, serial number, or other number unique per device)
- |
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-
-### Example
-
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
+    accessToken: "<YOUR_API_KEY_HERE>",
     xPlexClientIdentifier: "Postman",
 });
 
 async function run() {
-    const result = await plexAPI.plex.getPin("Postman", false, "Postman");
+    const result = await plexAPI.server.getServerCapabilities({
+        retries: {
+            strategy: "backoff",
+            backoff: {
+                initialInterval: 1,
+                maxInterval: 50,
+                exponent: 1.1,
+                maxElapsedTime: 100,
+            },
+            retryConnectionErrors: false,
+        },
+    });
 
     // Handle the result
     console.log(result);
@@ -446,7 +543,54 @@ async function run() {
 run();
 
 ```
-<!-- End Global Parameters [global-parameters] -->
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+    accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "Postman",
+});
+
+async function run() {
+    const result = await plexAPI.server.getServerCapabilities();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Retries [retries] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const sdk = new PlexAPI({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

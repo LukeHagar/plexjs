@@ -1,5 +1,16 @@
 # Provider
 
+## Example Usage
+
+```typescript
+import { Provider } from "@lukehagar/plexjs";
+
+let value: Provider = {
+    key: "/system/search",
+    title: "Local Network",
+    type: "mixed",
+};
+```
 
 ## Fields
 

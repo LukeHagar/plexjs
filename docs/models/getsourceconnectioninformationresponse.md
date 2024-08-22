@@ -1,5 +1,18 @@
 # GetSourceConnectionInformationResponse
 
+## Example Usage
+
+```typescript
+import { GetSourceConnectionInformationResponse } from "@lukehagar/plexjs";
+
+let value: GetSourceConnectionInformationResponse = {
+    contentType: "<value>",
+    statusCode: 466311,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

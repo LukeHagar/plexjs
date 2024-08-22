@@ -1,5 +1,12 @@
 # Activity
 
+## Example Usage
+
+```typescript
+import { Activity } from "@lukehagar/plexjs";
+
+let value: Activity = {};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # GetResizedPhotoResponse
 
+## Example Usage
+
+```typescript
+import { GetResizedPhotoResponse } from "@lukehagar/plexjs";
+
+let value: GetResizedPhotoResponse = {
+    contentType: "<value>",
+    statusCode: 384382,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

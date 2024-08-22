@@ -1,5 +1,17 @@
 # CreatePlaylistRequest
 
+## Example Usage
+
+```typescript
+import { CreatePlaylistRequest, QueryParamType, Smart } from "@lukehagar/plexjs";
+
+let value: CreatePlaylistRequest = {
+    title: "<value>",
+    type: QueryParamType.Photo,
+    smart: Smart.One,
+    uri: "https://deadly-corsage.info",
+};
+```
 
 ## Fields
 

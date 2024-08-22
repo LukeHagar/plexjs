@@ -1,5 +1,14 @@
 # Writer
 
+## Example Usage
+
+```typescript
+import { Writer } from "@lukehagar/plexjs";
+
+let value: Writer = {
+    tag: "Jeff Loveness",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,16 @@
 # GetHomeDataErrors
 
+## Example Usage
+
+```typescript
+import { GetHomeDataErrors } from "@lukehagar/plexjs";
+
+let value: GetHomeDataErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

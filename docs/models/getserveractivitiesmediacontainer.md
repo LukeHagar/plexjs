@@ -1,5 +1,12 @@
 # GetServerActivitiesMediaContainer
 
+## Example Usage
+
+```typescript
+import { GetServerActivitiesMediaContainer } from "@lukehagar/plexjs";
+
+let value: GetServerActivitiesMediaContainer = {};
+```
 
 ## Fields
 

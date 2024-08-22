@@ -1,5 +1,16 @@
 # GetMetadataChildrenErrors
 
+## Example Usage
+
+```typescript
+import { GetMetadataChildrenErrors } from "@lukehagar/plexjs";
+
+let value: GetMetadataChildrenErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

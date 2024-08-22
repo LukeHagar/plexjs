@@ -1,5 +1,14 @@
 # GetMetadataRequest
 
+## Example Usage
+
+```typescript
+import { GetMetadataRequest } from "@lukehagar/plexjs";
+
+let value: GetMetadataRequest = {
+    ratingKey: 6169.34,
+};
+```
 
 ## Fields
 

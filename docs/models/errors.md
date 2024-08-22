@@ -1,5 +1,16 @@
 # Errors
 
+## Example Usage
+
+```typescript
+import { Errors } from "@lukehagar/plexjs";
+
+let value: Errors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

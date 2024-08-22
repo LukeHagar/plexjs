@@ -1,5 +1,14 @@
 # StartTaskRequest
 
+## Example Usage
+
+```typescript
+import { StartTaskRequest, TaskName } from "@lukehagar/plexjs";
+
+let value: StartTaskRequest = {
+    taskName: TaskName.GenerateChapterThumbs,
+};
+```
 
 ## Fields
 

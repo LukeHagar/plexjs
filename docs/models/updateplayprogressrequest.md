@@ -1,5 +1,16 @@
 # UpdatePlayProgressRequest
 
+## Example Usage
+
+```typescript
+import { UpdatePlayProgressRequest } from "@lukehagar/plexjs";
+
+let value: UpdatePlayProgressRequest = {
+    key: "<key>",
+    time: 90000,
+    state: "played",
+};
+```
 
 ## Fields
 

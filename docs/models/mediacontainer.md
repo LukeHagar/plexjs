@@ -1,5 +1,12 @@
 # MediaContainer
 
+## Example Usage
+
+```typescript
+import { MediaContainer } from "@lukehagar/plexjs";
+
+let value: MediaContainer = {};
+```
 
 ## Fields
 

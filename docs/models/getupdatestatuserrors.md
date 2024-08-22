@@ -1,5 +1,16 @@
 # GetUpdateStatusErrors
 
+## Example Usage
+
+```typescript
+import { GetUpdateStatusErrors } from "@lukehagar/plexjs";
+
+let value: GetUpdateStatusErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

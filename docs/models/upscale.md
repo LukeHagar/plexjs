@@ -2,6 +2,13 @@
 
 allow images to be resized beyond native dimensions.
 
+## Example Usage
+
+```typescript
+import { Upscale } from "@lukehagar/plexjs";
+
+let value: Upscale = Upscale.One;
+```
 
 ## Values
 

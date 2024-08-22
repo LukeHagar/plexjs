@@ -1,5 +1,16 @@
 # SearchLibraryErrors
 
+## Example Usage
+
+```typescript
+import { SearchLibraryErrors } from "@lukehagar/plexjs";
+
+let value: SearchLibraryErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

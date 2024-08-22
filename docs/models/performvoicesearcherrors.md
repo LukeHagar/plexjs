@@ -1,5 +1,16 @@
 # PerformVoiceSearchErrors
 
+## Example Usage
+
+```typescript
+import { PerformVoiceSearchErrors } from "@lukehagar/plexjs";
+
+let value: PerformVoiceSearchErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

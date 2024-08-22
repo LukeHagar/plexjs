@@ -1,5 +1,16 @@
 # CancelServerActivitiesErrors
 
+## Example Usage
+
+```typescript
+import { CancelServerActivitiesErrors } from "@lukehagar/plexjs";
+
+let value: CancelServerActivitiesErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

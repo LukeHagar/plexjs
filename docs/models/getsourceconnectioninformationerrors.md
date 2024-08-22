@@ -1,5 +1,16 @@
 # GetSourceConnectionInformationErrors
 
+## Example Usage
+
+```typescript
+import { GetSourceConnectionInformationErrors } from "@lukehagar/plexjs";
+
+let value: GetSourceConnectionInformationErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

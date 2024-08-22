@@ -1,5 +1,15 @@
 # Operator
 
+## Example Usage
+
+```typescript
+import { Operator } from "@lukehagar/plexjs";
+
+let value: Operator = {
+    key: "=",
+    title: "is",
+};
+```
 
 ## Fields
 

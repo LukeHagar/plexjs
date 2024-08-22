@@ -1,5 +1,16 @@
 # GetAvailableClientsErrors
 
+## Example Usage
+
+```typescript
+import { GetAvailableClientsErrors } from "@lukehagar/plexjs";
+
+let value: GetAvailableClientsErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

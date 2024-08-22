@@ -1,5 +1,15 @@
 # SearchLibraryRequest
 
+## Example Usage
+
+```typescript
+import { SearchLibraryRequest, Type } from "@lukehagar/plexjs";
+
+let value: SearchLibraryRequest = {
+    sectionId: 149675,
+    type: Type.Three,
+};
+```
 
 ## Fields
 

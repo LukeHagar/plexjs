@@ -1,5 +1,16 @@
 # GetTopWatchedContentCountry
 
+## Example Usage
+
+```typescript
+import { GetTopWatchedContentCountry } from "@lukehagar/plexjs";
+
+let value: GetTopWatchedContentCountry = {
+    id: 116,
+    filter: "country=116",
+    tag: "United States of America",
+};
+```
 
 ## Fields
 

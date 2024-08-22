@@ -1,5 +1,31 @@
 # GetButlerTasksResponse
 
+## Example Usage
+
+```typescript
+import { GetButlerTasksResponse } from "@lukehagar/plexjs";
+
+let value: GetButlerTasksResponse = {
+    contentType: "<value>",
+    statusCode: 791725,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    object: {
+        butlerTasks: {
+            butlerTask: [
+                {
+                    name: "BackupDatabase",
+                    interval: 3,
+                    title: "Backup Database",
+                    description:
+                        "Create a backup copy of the server's database in the configured backup directory",
+                },
+            ],
+        },
+    },
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # LogMultiLineResponse
 
+## Example Usage
+
+```typescript
+import { LogMultiLineResponse } from "@lukehagar/plexjs";
+
+let value: LogMultiLineResponse = {
+    contentType: "<value>",
+    statusCode: 697631,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

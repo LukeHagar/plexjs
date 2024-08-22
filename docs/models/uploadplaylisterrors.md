@@ -1,5 +1,16 @@
 # UploadPlaylistErrors
 
+## Example Usage
+
+```typescript
+import { UploadPlaylistErrors } from "@lukehagar/plexjs";
+
+let value: UploadPlaylistErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

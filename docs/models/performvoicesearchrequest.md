@@ -1,5 +1,15 @@
 # PerformVoiceSearchRequest
 
+## Example Usage
+
+```typescript
+import { PerformVoiceSearchRequest } from "@lukehagar/plexjs";
+
+let value: PerformVoiceSearchRequest = {
+    query: "dead+poop",
+    limit: 5,
+};
+```
 
 ## Fields
 

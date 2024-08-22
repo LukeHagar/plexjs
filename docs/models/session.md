@@ -1,5 +1,16 @@
 # Session
 
+## Example Usage
+
+```typescript
+import { Session } from "@lukehagar/plexjs";
+
+let value: Session = {
+    id: "93h7e00ncblxncqw9lkfaoxi",
+    bandwidth: 1050,
+    location: "lan",
+};
+```
 
 ## Fields
 

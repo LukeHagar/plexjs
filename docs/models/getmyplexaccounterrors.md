@@ -1,5 +1,16 @@
 # GetMyPlexAccountErrors
 
+## Example Usage
+
+```typescript
+import { GetMyPlexAccountErrors } from "@lukehagar/plexjs";
+
+let value: GetMyPlexAccountErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

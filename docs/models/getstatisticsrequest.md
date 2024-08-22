@@ -1,5 +1,14 @@
 # GetStatisticsRequest
 
+## Example Usage
+
+```typescript
+import { GetStatisticsRequest } from "@lukehagar/plexjs";
+
+let value: GetStatisticsRequest = {
+    timespan: 4,
+};
+```
 
 ## Fields
 

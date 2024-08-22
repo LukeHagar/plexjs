@@ -1,5 +1,18 @@
 # StopTaskResponse
 
+## Example Usage
+
+```typescript
+import { StopTaskResponse } from "@lukehagar/plexjs";
+
+let value: StopTaskResponse = {
+    contentType: "<value>",
+    statusCode: 71036,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

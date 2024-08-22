@@ -1,5 +1,14 @@
 # GetLibraryHubsRole
 
+## Example Usage
+
+```typescript
+import { GetLibraryHubsRole } from "@lukehagar/plexjs";
+
+let value: GetLibraryHubsRole = {
+    tag: "Donna Murphy",
+};
+```
 
 ## Fields
 

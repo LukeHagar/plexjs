@@ -1,5 +1,18 @@
 # MarkUnplayedResponse
 
+## Example Usage
+
+```typescript
+import { MarkUnplayedResponse } from "@lukehagar/plexjs";
+
+let value: MarkUnplayedResponse = {
+    contentType: "<value>",
+    statusCode: 891773,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,16 @@
 # ApplyUpdatesErrors
 
+## Example Usage
+
+```typescript
+import { ApplyUpdatesErrors } from "@lukehagar/plexjs";
+
+let value: ApplyUpdatesErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

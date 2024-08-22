@@ -1,5 +1,23 @@
 # GetTimelineRequest
 
+## Example Usage
+
+```typescript
+import { GetTimelineRequest, State } from "@lukehagar/plexjs";
+
+let value: GetTimelineRequest = {
+    ratingKey: 23409,
+    key: "/library/metadata/23409",
+    state: State.Playing,
+    hasMDE: 1,
+    time: 2000,
+    duration: 10000,
+    context: "home:hub.continueWatching",
+    playQueueItemID: 1,
+    playBackTime: 2000,
+    row: 1,
+};
+```
 
 ## Fields
 

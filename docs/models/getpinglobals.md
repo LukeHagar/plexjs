@@ -1,5 +1,12 @@
 # GetPinGlobals
 
+## Example Usage
+
+```typescript
+import { GetPinGlobals } from "@lukehagar/plexjs";
+
+let value: GetPinGlobals = {};
+```
 
 ## Fields
 

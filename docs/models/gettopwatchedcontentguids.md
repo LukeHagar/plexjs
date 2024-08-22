@@ -1,5 +1,14 @@
 # GetTopWatchedContentGuids
 
+## Example Usage
+
+```typescript
+import { GetTopWatchedContentGuids } from "@lukehagar/plexjs";
+
+let value: GetTopWatchedContentGuids = {
+    id: "tvdb://2337",
+};
+```
 
 ## Fields
 

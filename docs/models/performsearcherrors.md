@@ -1,5 +1,16 @@
 # PerformSearchErrors
 
+## Example Usage
+
+```typescript
+import { PerformSearchErrors } from "@lukehagar/plexjs";
+
+let value: PerformSearchErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

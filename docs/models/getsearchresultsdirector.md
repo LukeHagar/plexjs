@@ -1,5 +1,14 @@
 # GetSearchResultsDirector
 
+## Example Usage
+
+```typescript
+import { GetSearchResultsDirector } from "@lukehagar/plexjs";
+
+let value: GetSearchResultsDirector = {
+    tag: "Brian De Palma",
+};
+```
 
 ## Fields
 

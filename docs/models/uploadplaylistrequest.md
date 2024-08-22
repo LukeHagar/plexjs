@@ -1,5 +1,15 @@
 # UploadPlaylistRequest
 
+## Example Usage
+
+```typescript
+import { Force, UploadPlaylistRequest } from "@lukehagar/plexjs";
+
+let value: UploadPlaylistRequest = {
+    path: "/home/barkley/playlist.m3u",
+    force: Force.One,
+};
+```
 
 ## Fields
 

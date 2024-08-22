@@ -1,5 +1,16 @@
 # StopAllTasksErrors
 
+## Example Usage
+
+```typescript
+import { StopAllTasksErrors } from "@lukehagar/plexjs";
+
+let value: StopAllTasksErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

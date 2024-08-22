@@ -1,5 +1,15 @@
 # PerformSearchRequest
 
+## Example Usage
+
+```typescript
+import { PerformSearchRequest } from "@lukehagar/plexjs";
+
+let value: PerformSearchRequest = {
+    query: "dylan",
+    limit: 5,
+};
+```
 
 ## Fields
 

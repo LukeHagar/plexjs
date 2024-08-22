@@ -3,6 +3,13 @@
 include external media in the results
 
 
+## Example Usage
+
+```typescript
+import { IncludeExternalMedia } from "@lukehagar/plexjs";
+
+let value: IncludeExternalMedia = IncludeExternalMedia.Zero;
+```
 
 ## Values
 

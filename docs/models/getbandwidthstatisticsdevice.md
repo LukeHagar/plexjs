@@ -1,5 +1,18 @@
 # GetBandwidthStatisticsDevice
 
+## Example Usage
+
+```typescript
+import { GetBandwidthStatisticsDevice } from "@lukehagar/plexjs";
+
+let value: GetBandwidthStatisticsDevice = {
+    id: 208,
+    name: "Roku Express",
+    platform: "Roku",
+    clientIdentifier: "793095d235660625108ef785cc7646e9",
+    createdAt: 1706470556,
+};
+```
 
 ## Fields
 

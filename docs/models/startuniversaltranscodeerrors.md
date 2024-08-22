@@ -1,5 +1,16 @@
 # StartUniversalTranscodeErrors
 
+## Example Usage
+
+```typescript
+import { StartUniversalTranscodeErrors } from "@lukehagar/plexjs";
+
+let value: StartUniversalTranscodeErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

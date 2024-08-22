@@ -1,5 +1,16 @@
 # GetSessionsErrors
 
+## Example Usage
+
+```typescript
+import { GetSessionsErrors } from "@lukehagar/plexjs";
+
+let value: GetSessionsErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

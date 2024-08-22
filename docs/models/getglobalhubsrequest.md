@@ -1,5 +1,12 @@
 # GetGlobalHubsRequest
 
+## Example Usage
+
+```typescript
+import { GetGlobalHubsRequest } from "@lukehagar/plexjs";
+
+let value: GetGlobalHubsRequest = {};
+```
 
 ## Fields
 

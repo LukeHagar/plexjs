@@ -1,5 +1,16 @@
 # GetSessionHistoryRequest
 
+## Example Usage
+
+```typescript
+import { GetSessionHistoryRequest } from "@lukehagar/plexjs";
+
+let value: GetSessionHistoryRequest = {
+    accountId: 1,
+    filter: {},
+    librarySectionID: 12,
+};
+```
 
 ## Fields
 

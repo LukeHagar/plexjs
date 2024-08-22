@@ -1,5 +1,14 @@
 # GetLibraryItemsCountry
 
+## Example Usage
+
+```typescript
+import { GetLibraryItemsCountry } from "@lukehagar/plexjs";
+
+let value: GetLibraryItemsCountry = {
+    tag: "United States of America",
+};
+```
 
 ## Fields
 

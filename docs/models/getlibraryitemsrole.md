@@ -1,5 +1,14 @@
 # GetLibraryItemsRole
 
+## Example Usage
+
+```typescript
+import { GetLibraryItemsRole } from "@lukehagar/plexjs";
+
+let value: GetLibraryItemsRole = {
+    tag: "Sigourney Weaver",
+};
+```
 
 ## Fields
 

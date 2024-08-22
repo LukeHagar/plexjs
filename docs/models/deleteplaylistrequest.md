@@ -1,5 +1,14 @@
 # DeletePlaylistRequest
 
+## Example Usage
+
+```typescript
+import { DeletePlaylistRequest } from "@lukehagar/plexjs";
+
+let value: DeletePlaylistRequest = {
+    playlistID: 5701.97,
+};
+```
 
 ## Fields
 

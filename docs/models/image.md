@@ -1,5 +1,12 @@
 # Image
 
+## Example Usage
+
+```typescript
+import { Image } from "@lukehagar/plexjs";
+
+let value: Image = {};
+```
 
 ## Fields
 

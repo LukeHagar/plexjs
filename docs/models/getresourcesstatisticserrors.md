@@ -1,5 +1,16 @@
 # GetResourcesStatisticsErrors
 
+## Example Usage
+
+```typescript
+import { GetResourcesStatisticsErrors } from "@lukehagar/plexjs";
+
+let value: GetResourcesStatisticsErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

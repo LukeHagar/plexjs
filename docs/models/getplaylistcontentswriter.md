@@ -1,5 +1,14 @@
 # GetPlaylistContentsWriter
 
+## Example Usage
+
+```typescript
+import { GetPlaylistContentsWriter } from "@lukehagar/plexjs";
+
+let value: GetPlaylistContentsWriter = {
+    tag: "Joss Whedon",
+};
+```
 
 ## Fields
 

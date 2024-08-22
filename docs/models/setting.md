@@ -1,5 +1,23 @@
 # Setting
 
+## Example Usage
+
+```typescript
+import { Setting } from "@lukehagar/plexjs";
+
+let value: Setting = {
+    id: "EnableDatabaseTrace",
+    label: "",
+    summary: "",
+    type: "bool",
+    default: false,
+    value: false,
+    hidden: true,
+    advanced: false,
+    group: "",
+    enumValues: "1:admin only|2:everyone",
+};
+```
 
 ## Fields
 

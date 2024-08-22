@@ -1,5 +1,14 @@
 # Guids
 
+## Example Usage
+
+```typescript
+import { Guids } from "@lukehagar/plexjs";
+
+let value: Guids = {
+    id: "tvdb://2337",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # GetLibraryDirectory
 
+## Example Usage
+
+```typescript
+import { GetLibraryDirectory } from "@lukehagar/plexjs";
+
+let value: GetLibraryDirectory = {
+    key: "search?type=1",
+    title: "Search...",
+    secondary: true,
+    prompt: "Search Movies",
+    search: true,
+};
+```
 
 ## Fields
 

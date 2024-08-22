@@ -1,5 +1,14 @@
 # GetSourceConnectionInformationRequest
 
+## Example Usage
+
+```typescript
+import { GetSourceConnectionInformationRequest } from "@lukehagar/plexjs";
+
+let value: GetSourceConnectionInformationRequest = {
+    source: "server://client-identifier",
+};
+```
 
 ## Fields
 

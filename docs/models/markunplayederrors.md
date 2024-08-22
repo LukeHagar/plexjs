@@ -1,5 +1,16 @@
 # MarkUnplayedErrors
 
+## Example Usage
+
+```typescript
+import { MarkUnplayedErrors } from "@lukehagar/plexjs";
+
+let value: MarkUnplayedErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

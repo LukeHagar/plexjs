@@ -1,5 +1,16 @@
 # GetFileHashErrors
 
+## Example Usage
+
+```typescript
+import { GetFileHashErrors } from "@lukehagar/plexjs";
+
+let value: GetFileHashErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

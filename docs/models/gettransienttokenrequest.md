@@ -1,5 +1,15 @@
 # GetTransientTokenRequest
 
+## Example Usage
+
+```typescript
+import { GetTransientTokenQueryParamType, GetTransientTokenRequest, Scope } from "@lukehagar/plexjs";
+
+let value: GetTransientTokenRequest = {
+    type: GetTransientTokenQueryParamType.Delegation,
+    scope: Scope.All,
+};
+```
 
 ## Fields
 

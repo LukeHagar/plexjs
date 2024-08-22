@@ -1,5 +1,12 @@
 # Directory
 
+## Example Usage
+
+```typescript
+import { Directory } from "@lukehagar/plexjs";
+
+let value: Directory = {};
+```
 
 ## Fields
 

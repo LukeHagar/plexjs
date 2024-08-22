@@ -1,5 +1,20 @@
 # FieldType
 
+## Example Usage
+
+```typescript
+import { FieldType } from "@lukehagar/plexjs";
+
+let value: FieldType = {
+    type: "resolution",
+    operator: [
+        {
+            key: "=",
+            title: "is",
+        },
+    ],
+};
+```
 
 ## Fields
 

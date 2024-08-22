@@ -1,5 +1,16 @@
 # GetLibraryErrors
 
+## Example Usage
+
+```typescript
+import { GetLibraryErrors } from "@lukehagar/plexjs";
+
+let value: GetLibraryErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

@@ -2,6 +2,13 @@
 
 The state of the media item
 
+## Example Usage
+
+```typescript
+import { State } from "@lukehagar/plexjs";
+
+let value: State = State.Playing;
+```
 
 ## Values
 

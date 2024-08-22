@@ -1,5 +1,16 @@
 # GetPinErrors
 
+## Example Usage
+
+```typescript
+import { GetPinErrors } from "@lukehagar/plexjs";
+
+let value: GetPinErrors = {
+    code: 1000,
+    message: "X-Plex-Client-Identifier is missing",
+    status: 400,
+};
+```
 
 ## Fields
 

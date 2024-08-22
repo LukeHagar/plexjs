@@ -1,5 +1,12 @@
 # GetPlaylistsRequest
 
+## Example Usage
+
+```typescript
+import { GetPlaylistsRequest } from "@lukehagar/plexjs";
+
+let value: GetPlaylistsRequest = {};
+```
 
 ## Fields
 

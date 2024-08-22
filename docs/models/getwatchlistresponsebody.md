@@ -2,6 +2,13 @@
 
 Watchlist Data
 
+## Example Usage
+
+```typescript
+import { GetWatchlistResponseBody } from "@lukehagar/plexjs";
+
+let value: GetWatchlistResponseBody = {};
+```
 
 ## Fields
 

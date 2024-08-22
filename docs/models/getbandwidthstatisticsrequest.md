@@ -1,5 +1,14 @@
 # GetBandwidthStatisticsRequest
 
+## Example Usage
+
+```typescript
+import { GetBandwidthStatisticsRequest } from "@lukehagar/plexjs";
+
+let value: GetBandwidthStatisticsRequest = {
+    timespan: 4,
+};
+```
 
 ## Fields
 

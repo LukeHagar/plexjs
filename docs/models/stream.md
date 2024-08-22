@@ -1,5 +1,45 @@
 # Stream
 
+## Example Usage
+
+```typescript
+import { Stream } from "@lukehagar/plexjs";
+
+let value: Stream = {
+    id: 29,
+    streamType: 2,
+    default: true,
+    codec: "aac",
+    index: 0,
+    bitrate: 128,
+    bitDepth: 8,
+    chromaLocation: "left",
+    chromaSubsampling: "14520",
+    codedHeight: 816,
+    codedWidth: 1920,
+    colorPrimaries: "bt709",
+    colorRange: "tv",
+    colorSpace: "bt709",
+    colorTrc: "bt709",
+    frameRate: 24,
+    hasScalingMatrix: false,
+    height: 814,
+    level: 40,
+    profile: "lc",
+    refFrames: 4,
+    scanType: "progressive",
+    streamIdentifier: "1",
+    width: 1920,
+    displayTitle: "English (AAC Stereo)",
+    extendedDisplayTitle: "English (AAC Stereo)",
+    selected: true,
+    channels: 2,
+    language: "English",
+    languageTag: "en",
+    languageCode: "eng",
+    samplingRate: 44100,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # MarkUnplayedRequest
 
+## Example Usage
+
+```typescript
+import { MarkUnplayedRequest } from "@lukehagar/plexjs";
+
+let value: MarkUnplayedRequest = {
+    key: 59398,
+};
+```
 
 ## Fields
 

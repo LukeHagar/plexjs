@@ -1,5 +1,16 @@
 # GetWatchlistErrors
 
+## Example Usage
+
+```typescript
+import { GetWatchlistErrors } from "@lukehagar/plexjs";
+
+let value: GetWatchlistErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

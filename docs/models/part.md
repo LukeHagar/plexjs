@@ -1,5 +1,21 @@
 # Part
 
+## Example Usage
+
+```typescript
+import { Part } from "@lukehagar/plexjs";
+
+let value: Part = {
+    id: 120353,
+    key: "/library/parts/120353/1681803203/file.mp4",
+    duration: 7474422,
+    file: "/movies/Ant-Man and the Wasp Quantumania (2023)/Ant-Man.and.the.Wasp.Quantumania.2023.1080p.mp4",
+    size: 3395307162,
+    container: "mp4",
+    hasThumbnail: 1,
+    videoProfile: "high",
+};
+```
 
 ## Fields
 

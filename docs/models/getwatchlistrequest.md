@@ -1,5 +1,15 @@
 # GetWatchlistRequest
 
+## Example Usage
+
+```typescript
+import { GetWatchlistRequest, PathParamFilter } from "@lukehagar/plexjs";
+
+let value: GetWatchlistRequest = {
+    filter: PathParamFilter.All,
+    xPlexToken: "<value>",
+};
+```
 
 ## Fields
 

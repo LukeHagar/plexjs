@@ -1,5 +1,16 @@
 # GetTranscodeSessionsErrors
 
+## Example Usage
+
+```typescript
+import { GetTranscodeSessionsErrors } from "@lukehagar/plexjs";
+
+let value: GetTranscodeSessionsErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

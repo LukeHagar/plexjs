@@ -2,6 +2,13 @@
 
 Plex content type to search for
 
+## Example Usage
+
+```typescript
+import { Type } from "@lukehagar/plexjs";
+
+let value: Type = Type.Three;
+```
 
 ## Values
 

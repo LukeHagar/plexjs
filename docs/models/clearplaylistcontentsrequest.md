@@ -1,5 +1,14 @@
 # ClearPlaylistContentsRequest
 
+## Example Usage
+
+```typescript
+import { ClearPlaylistContentsRequest } from "@lukehagar/plexjs";
+
+let value: ClearPlaylistContentsRequest = {
+    playlistID: 6527.9,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # GetOnDeckGuids
 
+## Example Usage
+
+```typescript
+import { GetOnDeckGuids } from "@lukehagar/plexjs";
+
+let value: GetOnDeckGuids = {
+    id: "imdb://tt13303712",
+};
+```
 
 ## Fields
 

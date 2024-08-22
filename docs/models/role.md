@@ -1,5 +1,14 @@
 # Role
 
+## Example Usage
+
+```typescript
+import { Role } from "@lukehagar/plexjs";
+
+let value: Role = {
+    tag: "Paul Rudd",
+};
+```
 
 ## Fields
 

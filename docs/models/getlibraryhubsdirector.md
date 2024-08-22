@@ -1,5 +1,14 @@
 # GetLibraryHubsDirector
 
+## Example Usage
+
+```typescript
+import { GetLibraryHubsDirector } from "@lukehagar/plexjs";
+
+let value: GetLibraryHubsDirector = {
+    tag: "Nathan Greno",
+};
+```
 
 ## Fields
 

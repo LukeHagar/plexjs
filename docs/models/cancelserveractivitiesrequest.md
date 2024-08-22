@@ -1,5 +1,14 @@
 # CancelServerActivitiesRequest
 
+## Example Usage
+
+```typescript
+import { CancelServerActivitiesRequest } from "@lukehagar/plexjs";
+
+let value: CancelServerActivitiesRequest = {
+    activityUUID: "25b71ed5-0f9d-461c-baa7-d404e9e10d3e",
+};
+```
 
 ## Fields
 

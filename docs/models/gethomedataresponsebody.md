@@ -2,6 +2,18 @@
 
 Home Data
 
+## Example Usage
+
+```typescript
+import { GetHomeDataResponseBody } from "@lukehagar/plexjs";
+
+let value: GetHomeDataResponseBody = {
+    id: 1841489,
+    name: "Blindkitty38's home",
+    guestUserID: 58815432,
+    guestUserUUID: "f3df4e01bfca0787",
+};
+```
 
 ## Fields
 

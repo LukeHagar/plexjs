@@ -1,5 +1,16 @@
 # CheckForUpdatesErrors
 
+## Example Usage
+
+```typescript
+import { CheckForUpdatesErrors } from "@lukehagar/plexjs";
+
+let value: CheckForUpdatesErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

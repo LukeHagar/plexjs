@@ -1,5 +1,18 @@
 # MarkPlayedResponse
 
+## Example Usage
+
+```typescript
+import { MarkPlayedResponse } from "@lukehagar/plexjs";
+
+let value: MarkPlayedResponse = {
+    contentType: "<value>",
+    statusCode: 297534,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

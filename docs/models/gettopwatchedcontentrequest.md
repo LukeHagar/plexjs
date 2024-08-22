@@ -1,5 +1,15 @@
 # GetTopWatchedContentRequest
 
+## Example Usage
+
+```typescript
+import { GetTopWatchedContentRequest } from "@lukehagar/plexjs";
+
+let value: GetTopWatchedContentRequest = {
+    type: 681820,
+    includeGuids: 1,
+};
+```
 
 ## Fields
 

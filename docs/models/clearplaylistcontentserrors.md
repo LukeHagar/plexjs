@@ -1,5 +1,16 @@
 # ClearPlaylistContentsErrors
 
+## Example Usage
+
+```typescript
+import { ClearPlaylistContentsErrors } from "@lukehagar/plexjs";
+
+let value: ClearPlaylistContentsErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

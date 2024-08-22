@@ -1,5 +1,18 @@
 # LogLineResponse
 
+## Example Usage
+
+```typescript
+import { LogLineResponse } from "@lukehagar/plexjs";
+
+let value: LogLineResponse = {
+    contentType: "<value>",
+    statusCode: 902349,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

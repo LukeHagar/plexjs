@@ -1,5 +1,14 @@
 # GetLibraryItemsWriter
 
+## Example Usage
+
+```typescript
+import { GetLibraryItemsWriter } from "@lukehagar/plexjs";
+
+let value: GetLibraryItemsWriter = {
+    tag: "James Cameron",
+};
+```
 
 ## Fields
 

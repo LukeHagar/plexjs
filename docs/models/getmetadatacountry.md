@@ -1,5 +1,16 @@
 # GetMetadataCountry
 
+## Example Usage
+
+```typescript
+import { GetMetadataCountry } from "@lukehagar/plexjs";
+
+let value: GetMetadataCountry = {
+    id: 116,
+    filter: "country=116",
+    tag: "United States of America",
+};
+```
 
 ## Fields
 

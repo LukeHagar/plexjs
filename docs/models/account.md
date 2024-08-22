@@ -1,5 +1,21 @@
 # Account
 
+## Example Usage
+
+```typescript
+import { Account } from "@lukehagar/plexjs";
+
+let value: Account = {
+    id: 238960586,
+    key: "/accounts/238960586",
+    name: "Diane",
+    defaultAudioLanguage: "en",
+    autoSelectAudio: true,
+    defaultSubtitleLanguage: "en",
+    subtitleMode: 1,
+    thumb: "https://plex.tv/users/50d83634246da1de/avatar?c=1707110967",
+};
+```
 
 ## Fields
 

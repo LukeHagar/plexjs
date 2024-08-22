@@ -1,5 +1,14 @@
 # DeleteLibraryRequest
 
+## Example Usage
+
+```typescript
+import { DeleteLibraryRequest } from "@lukehagar/plexjs";
+
+let value: DeleteLibraryRequest = {
+    sectionId: 1000,
+};
+```
 
 ## Fields
 

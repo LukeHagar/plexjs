@@ -1,5 +1,16 @@
 # GetGlobalHubsErrors
 
+## Example Usage
+
+```typescript
+import { GetGlobalHubsErrors } from "@lukehagar/plexjs";
+
+let value: GetGlobalHubsErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

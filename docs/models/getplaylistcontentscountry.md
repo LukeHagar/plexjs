@@ -1,5 +1,14 @@
 # GetPlaylistContentsCountry
 
+## Example Usage
+
+```typescript
+import { GetPlaylistContentsCountry } from "@lukehagar/plexjs";
+
+let value: GetPlaylistContentsCountry = {
+    tag: "United States of America",
+};
+```
 
 ## Fields
 

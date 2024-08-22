@@ -1,5 +1,14 @@
 # GetLibraryHubsGenre
 
+## Example Usage
+
+```typescript
+import { GetLibraryHubsGenre } from "@lukehagar/plexjs";
+
+let value: GetLibraryHubsGenre = {
+    tag: "Animation",
+};
+```
 
 ## Fields
 

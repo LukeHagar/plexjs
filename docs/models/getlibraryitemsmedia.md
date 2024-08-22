@@ -1,5 +1,37 @@
 # GetLibraryItemsMedia
 
+## Example Usage
+
+```typescript
+import { GetLibraryItemsMedia } from "@lukehagar/plexjs";
+
+let value: GetLibraryItemsMedia = {
+    id: 119534,
+    duration: 11558112,
+    bitrate: 25025,
+    width: 3840,
+    height: 2072,
+    aspectRatio: 1.85,
+    audioChannels: 6,
+    audioCodec: "eac3",
+    videoCodec: "hevc",
+    videoResolution: "4k",
+    container: "mkv",
+    videoFrameRate: "24p",
+    videoProfile: "main 10",
+    part: [
+        {
+            id: 119542,
+            key: "/library/parts/119542/1680457526/file.mkv",
+            duration: 11558112,
+            file: "/movies/Avatar The Way of Water (2022)/Avatar.The.Way.of.Water.2022.2160p.WEB-DL.DDP5.1.Atmos.DV.HDR10.HEVC-CMRG.mkv",
+            size: 36158371307,
+            container: "mkv",
+            videoProfile: "main 10",
+        },
+    ],
+};
+```
 
 ## Fields
 

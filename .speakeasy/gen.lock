@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: e73920abd3a55e8d249592f2e3090574
+  docChecksum: 2ad2b4c59994082e04faa0c3e7675f3e
   docVersion: 0.0.3
-  speakeasyVersion: 1.323.0
-  generationVersion: 2.356.0
-  releaseVersion: 0.18.2
-  configChecksum: f685b81e83e5dfee0dae18eae6baa522
+  speakeasyVersion: 1.377.1
+  generationVersion: 2.404.1
+  releaseVersion: 0.19.0
+  configChecksum: 685039d8e4f59693f709afebf0849817
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -14,10 +14,13 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.5
-    core: 3.10.2
+    constsAndDefaults: 0.1.10
+    core: 3.14.1
+    defaultEnabledRetries: 0.1.0
+    deprecations: 2.81.1
+    envVarSecurityUsage: 0.1.1
     flattening: 2.81.1
-    globalSecurity: 2.82.9
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -26,10 +29,82 @@ features:
     nameOverrides: 2.81.2
     nullables: 0.1.0
     responseFormat: 0.2.3
+    retries: 2.83.0
     sdkHooks: 0.1.0
     typeOverrides: 2.81.1
-    unions: 2.85.5
+    unions: 2.85.7
 generatedFiles:
+  - src/funcs/serverGetServerCapabilities.ts
+  - src/funcs/serverGetServerPreferences.ts
+  - src/funcs/serverGetAvailableClients.ts
+  - src/funcs/serverGetDevices.ts
+  - src/funcs/serverGetServerIdentity.ts
+  - src/funcs/serverGetMyPlexAccount.ts
+  - src/funcs/serverGetResizedPhoto.ts
+  - src/funcs/serverGetServerList.ts
+  - src/funcs/mediaMarkPlayed.ts
+  - src/funcs/mediaMarkUnplayed.ts
+  - src/funcs/mediaUpdatePlayProgress.ts
+  - src/funcs/videoGetTimeline.ts
+  - src/funcs/videoStartUniversalTranscode.ts
+  - src/funcs/activitiesGetServerActivities.ts
+  - src/funcs/activitiesCancelServerActivities.ts
+  - src/funcs/butlerGetButlerTasks.ts
+  - src/funcs/butlerStartAllTasks.ts
+  - src/funcs/butlerStopAllTasks.ts
+  - src/funcs/butlerStartTask.ts
+  - src/funcs/butlerStopTask.ts
+  - src/funcs/plexGetCompanionsData.ts
+  - src/funcs/plexGetUserFriends.ts
+  - src/funcs/plexGetGeoData.ts
+  - src/funcs/plexGetHomeData.ts
+  - src/funcs/plexGetResources.ts
+  - src/funcs/plexGetPin.ts
+  - src/funcs/plexGetTokenByPinId.ts
+  - src/funcs/plexGetUserDetails.ts
+  - src/funcs/hubsGetGlobalHubs.ts
+  - src/funcs/hubsGetLibraryHubs.ts
+  - src/funcs/searchPerformSearch.ts
+  - src/funcs/searchPerformVoiceSearch.ts
+  - src/funcs/searchGetSearchResults.ts
+  - src/funcs/libraryGetFileHash.ts
+  - src/funcs/libraryGetRecentlyAdded.ts
+  - src/funcs/libraryGetLibraries.ts
+  - src/funcs/libraryGetLibrary.ts
+  - src/funcs/libraryDeleteLibrary.ts
+  - src/funcs/libraryGetLibraryItems.ts
+  - src/funcs/libraryRefreshLibrary.ts
+  - src/funcs/librarySearchLibrary.ts
+  - src/funcs/libraryGetMetadata.ts
+  - src/funcs/libraryGetMetadataChildren.ts
+  - src/funcs/libraryGetTopWatchedContent.ts
+  - src/funcs/libraryGetOnDeck.ts
+  - src/funcs/logLogLine.ts
+  - src/funcs/logLogMultiLine.ts
+  - src/funcs/logEnablePaperTrail.ts
+  - src/funcs/playlistsCreatePlaylist.ts
+  - src/funcs/playlistsGetPlaylists.ts
+  - src/funcs/playlistsGetPlaylist.ts
+  - src/funcs/playlistsDeletePlaylist.ts
+  - src/funcs/playlistsUpdatePlaylist.ts
+  - src/funcs/playlistsGetPlaylistContents.ts
+  - src/funcs/playlistsClearPlaylistContents.ts
+  - src/funcs/playlistsAddPlaylistContents.ts
+  - src/funcs/playlistsUploadPlaylist.ts
+  - src/funcs/authenticationGetTransientToken.ts
+  - src/funcs/authenticationGetSourceConnectionInformation.ts
+  - src/funcs/statisticsGetStatistics.ts
+  - src/funcs/statisticsGetResourcesStatistics.ts
+  - src/funcs/statisticsGetBandwidthStatistics.ts
+  - src/funcs/sessionsGetSessions.ts
+  - src/funcs/sessionsGetSessionHistory.ts
+  - src/funcs/sessionsGetTranscodeSessions.ts
+  - src/funcs/sessionsStopTranscodeSession.ts
+  - src/funcs/updaterGetUpdateStatus.ts
+  - src/funcs/updaterCheckForUpdates.ts
+  - src/funcs/updaterApplyUpdates.ts
+  - src/funcs/userPostUsersSigninData.ts
+  - src/funcs/watchlistGetWatchlist.ts
   - src/sdk/server.ts
   - src/sdk/media.ts
   - src/sdk/video.ts
@@ -45,19 +120,25 @@ generatedFiles:
   - src/sdk/statistics.ts
   - src/sdk/sessions.ts
   - src/sdk/updater.ts
+  - src/sdk/user.ts
   - src/sdk/watchlist.ts
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
+  - FUNCTIONS.md
   - RUNTIMES.md
   - jsr.json
   - package.json
+  - src/core.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -65,10 +146,13 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
+  - src/models/httpclienterrors.ts
   - src/models/sdkerror.ts
   - src/models/sdkvalidationerror.ts
   - src/types/blobs.ts
+  - src/types/constdatetime.ts
   - src/types/enums.ts
+  - src/types/fp.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
@@ -93,9 +177,14 @@ generatedFiles:
   - src/models/stopalltasksop.ts
   - src/models/starttaskop.ts
   - src/models/stoptaskop.ts
+  - src/models/getcompanionsdataop.ts
+  - src/models/getuserfriendsop.ts
+  - src/models/getgeodataop.ts
   - src/models/gethomedataop.ts
+  - src/models/getresourcesop.ts
   - src/models/getpinop.ts
-  - src/models/gettokenop.ts
+  - src/models/gettokenbypinidop.ts
+  - src/models/getuserdetailsop.ts
   - src/models/getglobalhubsop.ts
   - src/models/getlibraryhubsop.ts
   - src/models/performsearchop.ts
@@ -137,6 +226,7 @@ generatedFiles:
   - src/models/getupdatestatusop.ts
   - src/models/checkforupdatesop.ts
   - src/models/applyupdatesop.ts
+  - src/models/postuserssignindataop.ts
   - src/models/getwatchlistop.ts
   - src/models/security.ts
   - src/models/index.ts
@@ -240,24 +330,63 @@ generatedFiles:
   - docs/models/stoptaskerrors.md
   - docs/models/stoptaskresponsebody.md
   - docs/models/stoptaskresponse.md
+  - docs/models/getcompanionsdataerrors.md
+  - docs/models/getcompanionsdataresponsebody.md
+  - docs/models/responsebody.md
+  - docs/models/getcompanionsdataresponse.md
+  - docs/models/getuserfriendserrors.md
+  - docs/models/getuserfriendsresponsebody.md
+  - docs/models/sharedservers.md
+  - docs/models/sharedsources.md
+  - docs/models/status.md
+  - docs/models/friend.md
+  - docs/models/getuserfriendsresponse.md
+  - docs/models/getgeodataerrors.md
+  - docs/models/getgeodataresponsebody.md
+  - docs/models/getgeodatageodata.md
+  - docs/models/getgeodataresponse.md
   - docs/models/gethomedataerrors.md
   - docs/models/gethomedataplexresponsebody.md
   - docs/models/gethomedataresponsebody.md
   - docs/models/gethomedataresponse.md
+  - docs/models/getresourcesglobals.md
+  - docs/models/includehttps.md
+  - docs/models/includerelay.md
+  - docs/models/includeipv6.md
+  - docs/models/getresourcesrequest.md
+  - docs/models/getresourceserrors.md
+  - docs/models/getresourcesresponsebody.md
+  - docs/models/connections.md
+  - docs/models/plexdevice.md
+  - docs/models/getresourcesresponse.md
   - docs/models/getpinglobals.md
   - docs/models/getpinrequest.md
   - docs/models/getpinerrors.md
-  - docs/models/getpinplexresponsebody.md
-  - docs/models/location.md
   - docs/models/getpinresponsebody.md
+  - docs/models/geodata.md
+  - docs/models/getpinauthpincontainer.md
   - docs/models/getpinresponse.md
-  - docs/models/gettokenglobals.md
-  - docs/models/gettokenrequest.md
-  - docs/models/gettokenerrors.md
-  - docs/models/gettokenplexresponsebody.md
-  - docs/models/gettokenlocation.md
-  - docs/models/gettokenresponsebody.md
-  - docs/models/gettokenresponse.md
+  - docs/models/gettokenbypinidglobals.md
+  - docs/models/gettokenbypinidrequest.md
+  - docs/models/gettokenbypiniderrors.md
+  - docs/models/gettokenbypinidresponsebody.md
+  - docs/models/gettokenbypinidgeodata.md
+  - docs/models/gettokenbypinidauthpincontainer.md
+  - docs/models/gettokenbypinidresponse.md
+  - docs/models/getuserdetailserrors.md
+  - docs/models/getuserdetailsresponsebody.md
+  - docs/models/mailingliststatus.md
+  - docs/models/userprofile.md
+  - docs/models/getuserdetailsstatus.md
+  - docs/models/services.md
+  - docs/models/features.md
+  - docs/models/getuserdetailsplexstatus.md
+  - docs/models/subscription.md
+  - docs/models/getuserdetailsfeatures.md
+  - docs/models/getuserdetailsplexresponsestatus.md
+  - docs/models/getuserdetailssubscription.md
+  - docs/models/getuserdetailsuserplexaccount.md
+  - docs/models/getuserdetailsresponse.md
   - docs/models/onlytransient.md
   - docs/models/getglobalhubsrequest.md
   - docs/models/getglobalhubserrors.md
@@ -326,7 +455,7 @@ generatedFiles:
   - docs/models/getrecentlyaddedresponse.md
   - docs/models/getlibrarieserrors.md
   - docs/models/getlibrarieslibraryresponsebody.md
-  - docs/models/getlibrarieslocation.md
+  - docs/models/location.md
   - docs/models/getlibrariesdirectory.md
   - docs/models/getlibrariesmediacontainer.md
   - docs/models/getlibrariesresponsebody.md
@@ -408,7 +537,7 @@ generatedFiles:
   - docs/models/gettopwatchedcontentcountry.md
   - docs/models/gettopwatchedcontentguids.md
   - docs/models/gettopwatchedcontentrole.md
-  - docs/models/user.md
+  - docs/models/gettopwatchedcontentuser.md
   - docs/models/gettopwatchedcontentmetadata.md
   - docs/models/gettopwatchedcontentmediacontainer.md
   - docs/models/gettopwatchedcontentresponsebody.md
@@ -579,6 +708,28 @@ generatedFiles:
   - docs/models/applyupdateserrors.md
   - docs/models/applyupdatesresponsebody.md
   - docs/models/applyupdatesresponse.md
+  - docs/models/postuserssignindataglobals.md
+  - docs/models/postuserssignindatarequestbody.md
+  - docs/models/postuserssignindatarequest.md
+  - docs/models/postuserssignindataerrors.md
+  - docs/models/postuserssignindataresponsebody.md
+  - docs/models/postuserssignindatamailingliststatus.md
+  - docs/models/postuserssignindatauserprofile.md
+  - docs/models/postuserssignindatastatus.md
+  - docs/models/postuserssignindataservices.md
+  - docs/models/postuserssignindatafeatures.md
+  - docs/models/postuserssignindatauserstatus.md
+  - docs/models/postuserssignindatasubscription.md
+  - docs/models/postuserssignindatauserfeatures.md
+  - docs/models/postuserssignindatauserresponsestatus.md
+  - docs/models/postuserssignindatausersubscription.md
+  - docs/models/postuserssignindatastate.md
+  - docs/models/internalpaymentmethod.md
+  - docs/models/billing.md
+  - docs/models/pastsubscription.md
+  - docs/models/trials.md
+  - docs/models/postuserssignindatauserplexaccount.md
+  - docs/models/postuserssignindataresponse.md
   - docs/models/pathparamfilter.md
   - docs/models/libtype.md
   - docs/models/includecollections.md
@@ -592,6 +743,7 @@ generatedFiles:
   - docs/models/getwatchlistresponse.md
   - docs/models/security.md
   - docs/sdks/plexapi/README.md
+  - docs/lib/utils/retryconfig.md
   - docs/sdks/server/README.md
   - docs/sdks/media/README.md
   - docs/sdks/video/README.md
@@ -607,9 +759,11 @@ generatedFiles:
   - docs/sdks/statistics/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/updater/README.md
+  - docs/sdks/user/README.md
   - docs/sdks/watchlist/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/hooks/index.ts
+  - CONTRIBUTING.md

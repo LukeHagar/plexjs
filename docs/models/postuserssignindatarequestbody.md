@@ -1,0 +1,22 @@
+# PostUsersSigninDataRequestBody
+
+Login credentials
+
+## Example Usage
+
+```typescript
+import { PostUsersSigninDataRequestBody } from "@lukehagar/plexjs";
+
+let value: PostUsersSigninDataRequestBody = {
+    login: "username@email.com",
+    password: "password123",
+};
+```
+
+## Fields
+
+| Field              | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `login`            | *string*           | :heavy_check_mark: | N/A                | username@email.com |
+| `password`         | *string*           | :heavy_check_mark: | N/A                | password123        |
+| `rememberMe`       | *boolean*          | :heavy_minus_sign: | N/A                |                    |

@@ -1,5 +1,18 @@
 # GetServerCapabilitiesResponse
 
+## Example Usage
+
+```typescript
+import { GetServerCapabilitiesResponse } from "@lukehagar/plexjs";
+
+let value: GetServerCapabilitiesResponse = {
+    contentType: "<value>",
+    statusCode: 548814,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

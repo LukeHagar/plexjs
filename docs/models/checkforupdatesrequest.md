@@ -1,5 +1,14 @@
 # CheckForUpdatesRequest
 
+## Example Usage
+
+```typescript
+import { CheckForUpdatesRequest, Download } from "@lukehagar/plexjs";
+
+let value: CheckForUpdatesRequest = {
+    download: Download.One,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # StartAllTasksResponse
 
+## Example Usage
+
+```typescript
+import { StartAllTasksResponse } from "@lukehagar/plexjs";
+
+let value: StartAllTasksResponse = {
+    contentType: "<value>",
+    statusCode: 812169,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # GetPinRequest
 
+## Example Usage
+
+```typescript
+import { GetPinRequest } from "@lukehagar/plexjs";
+
+let value: GetPinRequest = {
+    xPlexProduct: "Postman",
+};
+```
 
 ## Fields
 

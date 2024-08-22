@@ -8,6 +8,13 @@ An integer log level to write to the PMS log with.
 4: Verbose
 
 
+## Example Usage
+
+```typescript
+import { Level } from "@lukehagar/plexjs";
+
+let value: Level = Level.Three;
+```
 
 ## Values
 

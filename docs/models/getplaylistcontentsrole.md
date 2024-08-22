@@ -1,5 +1,14 @@
 # GetPlaylistContentsRole
 
+## Example Usage
+
+```typescript
+import { GetPlaylistContentsRole } from "@lukehagar/plexjs";
+
+let value: GetPlaylistContentsRole = {
+    tag: "Gina Torres",
+};
+```
 
 ## Fields
 

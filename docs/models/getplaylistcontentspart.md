@@ -1,5 +1,23 @@
 # GetPlaylistContentsPart
 
+## Example Usage
+
+```typescript
+import { GetPlaylistContentsPart } from "@lukehagar/plexjs";
+
+let value: GetPlaylistContentsPart = {
+    id: 15,
+    key: "/library/parts/15/1705637151/file.mp4",
+    duration: 141416,
+    file: "/movies/Serenity (2005)/Serenity (2005).mp4",
+    size: 40271948,
+    audioProfile: "lc",
+    container: "mp4",
+    has64bitOffsets: false,
+    optimizedForStreaming: false,
+    videoProfile: "high",
+};
+```
 
 ## Fields
 

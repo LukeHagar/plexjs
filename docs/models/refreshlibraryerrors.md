@@ -1,5 +1,16 @@
 # RefreshLibraryErrors
 
+## Example Usage
+
+```typescript
+import { RefreshLibraryErrors } from "@lukehagar/plexjs";
+
+let value: RefreshLibraryErrors = {
+    code: 1001,
+    message: "User could not be authenticated",
+    status: 401,
+};
+```
 
 ## Fields
 

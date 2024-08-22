@@ -2,6 +2,13 @@
 
 The Server Activities
 
+## Example Usage
+
+```typescript
+import { GetServerActivitiesResponseBody } from "@lukehagar/plexjs";
+
+let value: GetServerActivitiesResponseBody = {};
+```
 
 ## Fields
 

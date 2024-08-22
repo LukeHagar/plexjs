@@ -1,5 +1,28 @@
 # Player
 
+## Example Usage
+
+```typescript
+import { Player } from "@lukehagar/plexjs";
+
+let value: Player = {
+    address: "10.10.10.171",
+    machineIdentifier: "3tsdzir85m2onc3qyr255aq1",
+    model: "standalone",
+    platform: "windows",
+    platformVersion: "10.0.22621",
+    product: "Plex for Windows",
+    profile: "Plex Desktop",
+    remotePublicAddress: "68.248.140.20",
+    state: "playing",
+    title: "DESKTOP-BL80MTD",
+    version: "1.85.0.4071-21128b56",
+    local: true,
+    relayed: false,
+    secure: true,
+    userID: 1,
+};
+```
 
 ## Fields
 

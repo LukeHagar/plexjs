@@ -1,5 +1,16 @@
 # GetTopWatchedContentGenre
 
+## Example Usage
+
+```typescript
+import { GetTopWatchedContentGenre } from "@lukehagar/plexjs";
+
+let value: GetTopWatchedContentGenre = {
+    id: 184,
+    filter: "genre=184",
+    tag: "Thriller",
+};
+```
 
 ## Fields
 

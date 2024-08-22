@@ -1,5 +1,14 @@
 # GetMetadataChildrenRequest
 
+## Example Usage
+
+```typescript
+import { GetMetadataChildrenRequest } from "@lukehagar/plexjs";
+
+let value: GetMetadataChildrenRequest = {
+    ratingKey: 9437.49,
+};
+```
 
 ## Fields
 

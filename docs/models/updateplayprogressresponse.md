@@ -1,5 +1,18 @@
 # UpdatePlayProgressResponse
 
+## Example Usage
+
+```typescript
+import { UpdatePlayProgressResponse } from "@lukehagar/plexjs";
+
+let value: UpdatePlayProgressResponse = {
+    contentType: "<value>",
+    statusCode: 56713,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 
