@@ -7,7 +7,7 @@ import { GetRecentlyAddedResponse } from "@lukehagar/plexjs";
 
 let value: GetRecentlyAddedResponse = {
     contentType: "<value>",
-    statusCode: 473600,
+    statusCode: 359508,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

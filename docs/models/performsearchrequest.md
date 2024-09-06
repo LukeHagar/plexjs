@@ -6,7 +6,7 @@
 import { PerformSearchRequest } from "@lukehagar/plexjs";
 
 let value: PerformSearchRequest = {
-    query: "dylan",
+    query: "arnold",
     limit: 5,
 };
 ```

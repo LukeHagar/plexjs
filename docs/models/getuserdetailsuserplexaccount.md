@@ -6,13 +6,18 @@ Logged in user details
 
 ```typescript
 import {
+  AutoSelectSubtitle,
+  DefaultSubtitleAccessibility,
+  DefaultSubtitleForced,
   Features,
+  GetUserDetailsAuthenticationResponseStatus,
+  GetUserDetailsAuthenticationStatus,
   GetUserDetailsFeatures,
-  GetUserDetailsPlexResponseStatus,
-  GetUserDetailsPlexStatus,
   GetUserDetailsStatus,
   GetUserDetailsUserPlexAccount,
   MailingListStatus,
+  MediaReviewsVisibility,
+  WatchedIndicator,
 } from "@lukehagar/plexjs";
 
 let value: GetUserDetailsUserPlexAccount = {
@@ -38,21 +43,19 @@ let value: GetUserDetailsUserPlexAccount = {
     joinedAt: 1721154902,
     locale: null,
     mailingListActive: false,
-    mailingListStatus: MailingListStatus.Subscribed,
+    mailingListStatus: MailingListStatus.Unsubscribed,
     maxHomeSize: 15,
     pin: "string",
-    profile: [
-        {
-            autoSelectAudio: true,
-            defaultAudioLanguage: "ja",
-            defaultSubtitleLanguage: "en",
-            autoSelectSubtitle: 1,
-            defaultSubtitleAccessibility: 1,
-            defaultSubtitleForced: 0,
-            watchedIndicator: 1,
-            mediaReviewsVisibility: 0,
-        },
-    ],
+    profile: {
+        autoSelectAudio: true,
+        defaultAudioLanguage: "ja",
+        defaultSubtitleLanguage: "en",
+        autoSelectSubtitle: AutoSelectSubtitle.One,
+        defaultSubtitleAccessibility: DefaultSubtitleAccessibility.One,
+        defaultSubtitleForced: DefaultSubtitleForced.Zero,
+        watchedIndicator: WatchedIndicator.One,
+        mediaReviewsVisibility: MediaReviewsVisibility.One,
+    },
     protected: false,
     rememberExpiresAt: 1722364046,
     restricted: false,
@@ -70,8 +73,8 @@ let value: GetUserDetailsUserPlexAccount = {
     subscription: {
         features: [Features.AndroidDolbyVision],
         active: true,
-        subscribedAt: new Date("2021-04-12T18:21:12Z"),
-        status: GetUserDetailsPlexStatus.Inactive,
+        subscribedAt: "2021-04-12T18:21:12Z",
+        status: GetUserDetailsAuthenticationStatus.Inactive,
         paymentService: "string",
         plan: "string",
     },
@@ -80,8 +83,8 @@ let value: GetUserDetailsUserPlexAccount = {
         {
             features: [GetUserDetailsFeatures.AndroidDolbyVision],
             active: true,
-            subscribedAt: new Date("2021-04-12T18:21:12Z"),
-            status: GetUserDetailsPlexResponseStatus.Inactive,
+            subscribedAt: "2021-04-12T18:21:12Z",
+            status: GetUserDetailsAuthenticationResponseStatus.Inactive,
             paymentService: "string",
             plan: "string",
         },
@@ -123,7 +126,7 @@ let value: GetUserDetailsUserPlexAccount = {
 | `mailingListStatus`                                                                                                                                                   | [models.MailingListStatus](../models/mailingliststatus.md)                                                                                                            | :heavy_check_mark:                                                                                                                                                    | Your current mailing list status                                                                                                                                      |                                                                                                                                                                       |
 | `maxHomeSize`                                                                                                                                                         | *number*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | The maximum number of accounts allowed in the Plex Home                                                                                                               | 15                                                                                                                                                                    |
 | ~~`pin`~~                                                                                                                                                             | *string*                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible.<br/><br/>[Might be removed] The hashed Plex Home PIN  |                                                                                                                                                                       |
-| `profile`                                                                                                                                                             | [models.UserProfile](../models/userprofile.md)[]                                                                                                                      | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   |                                                                                                                                                                       |
+| `profile`                                                                                                                                                             | [models.UserProfile](../models/userprofile.md)                                                                                                                        | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   |                                                                                                                                                                       |
 | `protected`                                                                                                                                                           | *boolean*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | If the account has a Plex Home PIN enabled                                                                                                                            |                                                                                                                                                                       |
 | `rememberExpiresAt`                                                                                                                                                   | *number*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | Unix epoch datetime the authtoken expires                                                                                                                             | 1722364046                                                                                                                                                            |
 | `restricted`                                                                                                                                                          | *boolean*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | If the account is a Plex Home managed user                                                                                                                            |                                                                                                                                                                       |

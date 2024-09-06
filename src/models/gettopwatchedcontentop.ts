@@ -6,11 +6,37 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { RFCDate } from "../types/rfcdate.js";
 import * as z from "zod";
 
+/**
+ * The type of media to retrieve.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ *
+ */
+export enum GetTopWatchedContentQueryParamType {
+    One = 1,
+    Two = 2,
+    Three = 3,
+    Four = 4,
+}
+
 export type GetTopWatchedContentRequest = {
     /**
-     * the library type (1 - movies, 2 - shows, 3 - music)
+     * The type of media to retrieve.
+     *
+     * @remarks
+     * 1 = movie
+     * 2 = show
+     * 3 = season
+     * 4 = episode
+     * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+     *
      */
-    type: number;
+    type: GetTopWatchedContentQueryParamType;
     /**
      * Adds the Guids object to the response
      *
@@ -19,6 +45,55 @@ export type GetTopWatchedContentRequest = {
      */
     includeGuids?: number | undefined;
 };
+
+export type GetTopWatchedContentErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetTopWatchedContentLibraryResponseBodyData = {
+    errors?: Array<GetTopWatchedContentErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetTopWatchedContentLibraryResponseBody extends Error {
+    errors?: Array<GetTopWatchedContentErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetTopWatchedContentLibraryResponseBodyData;
+
+    constructor(err: GetTopWatchedContentLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetTopWatchedContentLibraryResponseBody";
+    }
+}
 
 export type GetTopWatchedContentGenre = {
     id?: number | undefined;
@@ -45,7 +120,7 @@ export type GetTopWatchedContentRole = {
     thumb?: string | undefined;
 };
 
-export type GetTopWatchedContentUser = {
+export type User = {
     id?: number | undefined;
 };
 
@@ -81,7 +156,7 @@ export type GetTopWatchedContentMetadata = {
     country?: Array<GetTopWatchedContentCountry> | undefined;
     guids?: Array<GetTopWatchedContentGuids> | undefined;
     role?: Array<GetTopWatchedContentRole> | undefined;
-    user?: Array<GetTopWatchedContentUser> | undefined;
+    user?: Array<User> | undefined;
 };
 
 export type GetTopWatchedContentMediaContainer = {
@@ -120,12 +195,33 @@ export type GetTopWatchedContentResponse = {
 };
 
 /** @internal */
+export const GetTopWatchedContentQueryParamType$inboundSchema: z.ZodNativeEnum<
+    typeof GetTopWatchedContentQueryParamType
+> = z.nativeEnum(GetTopWatchedContentQueryParamType);
+
+/** @internal */
+export const GetTopWatchedContentQueryParamType$outboundSchema: z.ZodNativeEnum<
+    typeof GetTopWatchedContentQueryParamType
+> = GetTopWatchedContentQueryParamType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTopWatchedContentQueryParamType$ {
+    /** @deprecated use `GetTopWatchedContentQueryParamType$inboundSchema` instead. */
+    export const inboundSchema = GetTopWatchedContentQueryParamType$inboundSchema;
+    /** @deprecated use `GetTopWatchedContentQueryParamType$outboundSchema` instead. */
+    export const outboundSchema = GetTopWatchedContentQueryParamType$outboundSchema;
+}
+
+/** @internal */
 export const GetTopWatchedContentRequest$inboundSchema: z.ZodType<
     GetTopWatchedContentRequest,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    type: z.number().int(),
+    type: GetTopWatchedContentQueryParamType$inboundSchema,
     includeGuids: z.number().int().optional(),
 });
 
@@ -141,7 +237,7 @@ export const GetTopWatchedContentRequest$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetTopWatchedContentRequest
 > = z.object({
-    type: z.number().int(),
+    type: GetTopWatchedContentQueryParamType$outboundSchema,
     includeGuids: z.number().int().optional(),
 });
 
@@ -156,6 +252,111 @@ export namespace GetTopWatchedContentRequest$ {
     export const outboundSchema = GetTopWatchedContentRequest$outboundSchema;
     /** @deprecated use `GetTopWatchedContentRequest$Outbound` instead. */
     export type Outbound = GetTopWatchedContentRequest$Outbound;
+}
+
+/** @internal */
+export const GetTopWatchedContentErrors$inboundSchema: z.ZodType<
+    GetTopWatchedContentErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().optional(),
+    message: z.string().optional(),
+    status: z.number().optional(),
+});
+
+/** @internal */
+export type GetTopWatchedContentErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetTopWatchedContentErrors$outboundSchema: z.ZodType<
+    GetTopWatchedContentErrors$Outbound,
+    z.ZodTypeDef,
+    GetTopWatchedContentErrors
+> = z.object({
+    code: z.number().optional(),
+    message: z.string().optional(),
+    status: z.number().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTopWatchedContentErrors$ {
+    /** @deprecated use `GetTopWatchedContentErrors$inboundSchema` instead. */
+    export const inboundSchema = GetTopWatchedContentErrors$inboundSchema;
+    /** @deprecated use `GetTopWatchedContentErrors$outboundSchema` instead. */
+    export const outboundSchema = GetTopWatchedContentErrors$outboundSchema;
+    /** @deprecated use `GetTopWatchedContentErrors$Outbound` instead. */
+    export type Outbound = GetTopWatchedContentErrors$Outbound;
+}
+
+/** @internal */
+export const GetTopWatchedContentLibraryResponseBody$inboundSchema: z.ZodType<
+    GetTopWatchedContentLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetTopWatchedContentErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetTopWatchedContentLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetTopWatchedContentLibraryResponseBody$Outbound = {
+    errors?: Array<GetTopWatchedContentErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetTopWatchedContentLibraryResponseBody$outboundSchema: z.ZodType<
+    GetTopWatchedContentLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetTopWatchedContentLibraryResponseBody
+> = z
+    .instanceof(GetTopWatchedContentLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetTopWatchedContentErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTopWatchedContentLibraryResponseBody$ {
+    /** @deprecated use `GetTopWatchedContentLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetTopWatchedContentLibraryResponseBody$inboundSchema;
+    /** @deprecated use `GetTopWatchedContentLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetTopWatchedContentLibraryResponseBody$outboundSchema;
+    /** @deprecated use `GetTopWatchedContentLibraryResponseBody$Outbound` instead. */
+    export type Outbound = GetTopWatchedContentLibraryResponseBody$Outbound;
 }
 
 /** @internal */
@@ -330,25 +531,17 @@ export namespace GetTopWatchedContentRole$ {
 }
 
 /** @internal */
-export const GetTopWatchedContentUser$inboundSchema: z.ZodType<
-    GetTopWatchedContentUser,
-    z.ZodTypeDef,
-    unknown
-> = z.object({
+export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z.object({
     id: z.number().int().optional(),
 });
 
 /** @internal */
-export type GetTopWatchedContentUser$Outbound = {
+export type User$Outbound = {
     id?: number | undefined;
 };
 
 /** @internal */
-export const GetTopWatchedContentUser$outboundSchema: z.ZodType<
-    GetTopWatchedContentUser$Outbound,
-    z.ZodTypeDef,
-    GetTopWatchedContentUser
-> = z.object({
+export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> = z.object({
     id: z.number().int().optional(),
 });
 
@@ -356,13 +549,13 @@ export const GetTopWatchedContentUser$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetTopWatchedContentUser$ {
-    /** @deprecated use `GetTopWatchedContentUser$inboundSchema` instead. */
-    export const inboundSchema = GetTopWatchedContentUser$inboundSchema;
-    /** @deprecated use `GetTopWatchedContentUser$outboundSchema` instead. */
-    export const outboundSchema = GetTopWatchedContentUser$outboundSchema;
-    /** @deprecated use `GetTopWatchedContentUser$Outbound` instead. */
-    export type Outbound = GetTopWatchedContentUser$Outbound;
+export namespace User$ {
+    /** @deprecated use `User$inboundSchema` instead. */
+    export const inboundSchema = User$inboundSchema;
+    /** @deprecated use `User$outboundSchema` instead. */
+    export const outboundSchema = User$outboundSchema;
+    /** @deprecated use `User$Outbound` instead. */
+    export type Outbound = User$Outbound;
 }
 
 /** @internal */
@@ -406,7 +599,7 @@ export const GetTopWatchedContentMetadata$inboundSchema: z.ZodType<
         Country: z.array(z.lazy(() => GetTopWatchedContentCountry$inboundSchema)).optional(),
         Guid: z.array(z.lazy(() => GetTopWatchedContentGuids$inboundSchema)).optional(),
         Role: z.array(z.lazy(() => GetTopWatchedContentRole$inboundSchema)).optional(),
-        User: z.array(z.lazy(() => GetTopWatchedContentUser$inboundSchema)).optional(),
+        User: z.array(z.lazy(() => User$inboundSchema)).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -451,7 +644,7 @@ export type GetTopWatchedContentMetadata$Outbound = {
     Country?: Array<GetTopWatchedContentCountry$Outbound> | undefined;
     Guid?: Array<GetTopWatchedContentGuids$Outbound> | undefined;
     Role?: Array<GetTopWatchedContentRole$Outbound> | undefined;
-    User?: Array<GetTopWatchedContentUser$Outbound> | undefined;
+    User?: Array<User$Outbound> | undefined;
 };
 
 /** @internal */
@@ -495,7 +688,7 @@ export const GetTopWatchedContentMetadata$outboundSchema: z.ZodType<
         country: z.array(z.lazy(() => GetTopWatchedContentCountry$outboundSchema)).optional(),
         guids: z.array(z.lazy(() => GetTopWatchedContentGuids$outboundSchema)).optional(),
         role: z.array(z.lazy(() => GetTopWatchedContentRole$outboundSchema)).optional(),
-        user: z.array(z.lazy(() => GetTopWatchedContentUser$outboundSchema)).optional(),
+        user: z.array(z.lazy(() => User$outboundSchema)).optional(),
     })
     .transform((v) => {
         return remap$(v, {

@@ -30,7 +30,7 @@ export class Sessions extends ClientSDK {
     async getSessionHistory(
         sort?: string | undefined,
         accountId?: number | undefined,
-        filter?: models.Filter | undefined,
+        filter?: models.QueryParamFilter | undefined,
         librarySectionID?: number | undefined,
         options?: RequestOptions
     ): Promise<models.GetSessionHistoryResponse> {

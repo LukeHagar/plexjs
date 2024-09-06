@@ -14,5 +14,5 @@ let value: MailingListStatus = MailingListStatus.Unsubscribed;
 
 | Name           | Value          |
 | -------------- | -------------- |
-| `Subscribed`   | subscribed     |
+| `Active`       | active         |
 | `Unsubscribed` | unsubscribed   |

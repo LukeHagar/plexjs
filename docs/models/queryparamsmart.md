@@ -7,7 +7,7 @@ type of playlists to return (default is all).
 ```typescript
 import { QueryParamSmart } from "@lukehagar/plexjs";
 
-let value: QueryParamSmart = QueryParamSmart.Zero;
+let value: QueryParamSmart = QueryParamSmart.One;
 ```
 
 ## Values

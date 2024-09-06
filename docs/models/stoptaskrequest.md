@@ -6,7 +6,7 @@
 import { PathParamTaskName, StopTaskRequest } from "@lukehagar/plexjs";
 
 let value: StopTaskRequest = {
-    taskName: PathParamTaskName.RefreshLocalMedia,
+    taskName: PathParamTaskName.BackupDatabase,
 };
 ```
 

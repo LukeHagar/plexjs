@@ -7,7 +7,7 @@ whether the playlist is smart or not
 ```typescript
 import { Smart } from "@lukehagar/plexjs";
 
-let value: Smart = Smart.One;
+let value: Smart = Smart.Zero;
 ```
 
 ## Values

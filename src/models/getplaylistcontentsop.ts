@@ -6,15 +6,41 @@ import { remap as remap$ } from "../lib/primitives.js";
 import { RFCDate } from "../types/rfcdate.js";
 import * as z from "zod";
 
+/**
+ * The type of media to retrieve.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ *
+ */
+export enum GetPlaylistContentsQueryParamType {
+    One = 1,
+    Two = 2,
+    Three = 3,
+    Four = 4,
+}
+
 export type GetPlaylistContentsRequest = {
     /**
      * the ID of the playlist
      */
     playlistID: number;
     /**
-     * the metadata type of the item to return
+     * The type of media to retrieve.
+     *
+     * @remarks
+     * 1 = movie
+     * 2 = show
+     * 3 = season
+     * 4 = episode
+     * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+     *
      */
-    type: number;
+    type: GetPlaylistContentsQueryParamType;
 };
 
 export type GetPlaylistContentsErrors = {
@@ -193,13 +219,34 @@ export type GetPlaylistContentsResponse = {
 };
 
 /** @internal */
+export const GetPlaylistContentsQueryParamType$inboundSchema: z.ZodNativeEnum<
+    typeof GetPlaylistContentsQueryParamType
+> = z.nativeEnum(GetPlaylistContentsQueryParamType);
+
+/** @internal */
+export const GetPlaylistContentsQueryParamType$outboundSchema: z.ZodNativeEnum<
+    typeof GetPlaylistContentsQueryParamType
+> = GetPlaylistContentsQueryParamType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetPlaylistContentsQueryParamType$ {
+    /** @deprecated use `GetPlaylistContentsQueryParamType$inboundSchema` instead. */
+    export const inboundSchema = GetPlaylistContentsQueryParamType$inboundSchema;
+    /** @deprecated use `GetPlaylistContentsQueryParamType$outboundSchema` instead. */
+    export const outboundSchema = GetPlaylistContentsQueryParamType$outboundSchema;
+}
+
+/** @internal */
 export const GetPlaylistContentsRequest$inboundSchema: z.ZodType<
     GetPlaylistContentsRequest,
     z.ZodTypeDef,
     unknown
 > = z.object({
     playlistID: z.number(),
-    type: z.number(),
+    type: GetPlaylistContentsQueryParamType$inboundSchema,
 });
 
 /** @internal */
@@ -215,7 +262,7 @@ export const GetPlaylistContentsRequest$outboundSchema: z.ZodType<
     GetPlaylistContentsRequest
 > = z.object({
     playlistID: z.number(),
-    type: z.number(),
+    type: GetPlaylistContentsQueryParamType$outboundSchema,
 });
 
 /**

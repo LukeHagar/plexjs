@@ -7,7 +7,7 @@ import { GetTransientTokenResponse } from "@lukehagar/plexjs";
 
 let value: GetTransientTokenResponse = {
     contentType: "<value>",
-    statusCode: 253291,
+    statusCode: 837945,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

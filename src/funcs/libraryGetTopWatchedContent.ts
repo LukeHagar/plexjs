@@ -30,12 +30,13 @@ import { Result } from "../types/fp.js";
  */
 export async function libraryGetTopWatchedContent(
     client$: PlexAPICore,
-    type: number,
+    type: models.GetTopWatchedContentQueryParamType,
     includeGuids?: number | undefined,
     options?: RequestOptions
 ): Promise<
     Result<
         models.GetTopWatchedContentResponse,
+        | models.GetTopWatchedContentLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -101,7 +102,7 @@ export async function libraryGetTopWatchedContent(
 
     const doResult = await client$.do$(request$, {
         context,
-        errorCodes: ["4XX", "5XX"],
+        errorCodes: ["400", "401", "4XX", "5XX"],
         retryConfig: options?.retries || client$.options$.retryConfig,
         retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
     });
@@ -119,6 +120,7 @@ export async function libraryGetTopWatchedContent(
 
     const [result$] = await m$.match<
         models.GetTopWatchedContentResponse,
+        | models.GetTopWatchedContentLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -128,7 +130,8 @@ export async function libraryGetTopWatchedContent(
         | ConnectionError
     >(
         m$.json(200, models.GetTopWatchedContentResponse$inboundSchema, { key: "object" }),
-        m$.fail(["4XX", "5XX"])
+        m$.fail([400, "4XX", "5XX"]),
+        m$.jsonErr(401, models.GetTopWatchedContentLibraryResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

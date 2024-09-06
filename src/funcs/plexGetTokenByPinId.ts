@@ -3,7 +3,10 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -36,6 +39,7 @@ export async function plexGetTokenByPinId(
     Result<
         models.GetTokenByPinIdResponse,
         | models.GetTokenByPinIdResponseBody
+        | models.GetTokenByPinIdPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -71,13 +75,13 @@ export async function plexGetTokenByPinId(
 
     const path$ = pathToFunc("/pins/{pinID}")(pathParams$);
 
+    const query$ = encodeFormQuery$({
+        "X-Plex-Client-Identifier":
+            payload$["X-Plex-Client-Identifier"] ?? client$.options$.xPlexClientIdentifier,
+    });
+
     const headers$ = new Headers({
         Accept: "application/json",
-        "X-Plex-Client-Identifier": encodeSimple$(
-            "X-Plex-Client-Identifier",
-            payload$["X-Plex-Client-Identifier"] ?? client$.options$.xPlexClientIdentifier,
-            { explode: false, charEncoding: "none" }
-        ),
     });
 
     const context = { operationID: "getTokenByPinId", oAuth2Scopes: [], securitySource: null };
@@ -89,6 +93,7 @@ export async function plexGetTokenByPinId(
             baseURL: baseURL$,
             path: path$,
             headers: headers$,
+            query: query$,
             body: body$,
             timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
         },
@@ -120,6 +125,7 @@ export async function plexGetTokenByPinId(
     const [result$] = await m$.match<
         models.GetTokenByPinIdResponse,
         | models.GetTokenByPinIdResponseBody
+        | models.GetTokenByPinIdPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -129,8 +135,9 @@ export async function plexGetTokenByPinId(
         | ConnectionError
     >(
         m$.json(200, models.GetTokenByPinIdResponse$inboundSchema, { key: "AuthPinContainer" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(404, models.GetTokenByPinIdResponseBody$inboundSchema)
+        m$.jsonErr(400, models.GetTokenByPinIdResponseBody$inboundSchema),
+        m$.jsonErr(404, models.GetTokenByPinIdPlexResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

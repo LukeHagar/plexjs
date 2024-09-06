@@ -7,15 +7,39 @@ import { PlexDevice } from "@lukehagar/plexjs";
 
 let value: PlexDevice = {
     name: "<value>",
-    product: "Oriental Bronze Pizza",
+    product: "Oriental Metal Computer",
     productVersion: "<value>",
     platform: "<value>",
     platformVersion: "<value>",
     device: "<value>",
     clientIdentifier: "<value>",
-    createdAt: new Date("2024-08-11T14:46:30.188Z"),
-    lastSeenAt: new Date("2024-12-08T13:34:36.810Z"),
+    createdAt: new Date("2024-02-29T19:31:16.563Z"),
+    lastSeenAt: new Date("2023-12-03T08:28:56.752Z"),
     provides: "<value>",
+    ownerId: 582020,
+    sourceTitle: "<value>",
+    publicAddress: "<value>",
+    accessToken: "<value>",
+    owned: false,
+    home: false,
+    synced: false,
+    relay: false,
+    presence: false,
+    httpsRequired: false,
+    publicAddressMatches: false,
+    dnsRebindingProtection: false,
+    natLoopbackSupported: false,
+    connections: [
+        {
+            protocol: "<value>",
+            address: "59751 Jaren Ford",
+            port: 1863.32,
+            uri: "https://several-increase.biz",
+            local: false,
+            relay: false,
+            iPv6: false,
+        },
+    ],
 };
 ```
 
@@ -33,17 +57,17 @@ let value: PlexDevice = {
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `lastSeenAt`                                                                                  | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `provides`                                                                                    | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `ownerId`                                                                                     | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `sourceTitle`                                                                                 | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `publicAddress`                                                                               | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `accessToken`                                                                                 | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `owned`                                                                                       | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `home`                                                                                        | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `synced`                                                                                      | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `relay`                                                                                       | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `presence`                                                                                    | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `httpsRequired`                                                                               | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `publicAddressMatches`                                                                        | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `dnsRebindingProtection`                                                                      | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `natLoopbackSupported`                                                                        | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `connections`                                                                                 | [models.Connections](../models/connections.md)[]                                              | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `ownerId`                                                                                     | *number*                                                                                      | :heavy_check_mark:                                                                            | ownerId is null when the device is owned by the token used to send the request                |
+| `sourceTitle`                                                                                 | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `publicAddress`                                                                               | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `accessToken`                                                                                 | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `owned`                                                                                       | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `home`                                                                                        | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `synced`                                                                                      | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `relay`                                                                                       | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `presence`                                                                                    | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `httpsRequired`                                                                               | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `publicAddressMatches`                                                                        | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `dnsRebindingProtection`                                                                      | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `natLoopbackSupported`                                                                        | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `connections`                                                                                 | [models.Connections](../models/connections.md)[]                                              | :heavy_check_mark:                                                                            | N/A                                                                                           |

@@ -15,6 +15,7 @@ Operations against the Plex Media Server System.
 * [getServerIdentity](#getserveridentity) - Get Server Identity
 * [getMyPlexAccount](#getmyplexaccount) - Get MyPlex Account
 * [getResizedPhoto](#getresizedphoto) - Get a Resized Photo
+* [getMediaProviders](#getmediaproviders) - Get Media Providers
 * [getServerList](#getserverlist) - Get Server List
 
 ## getServerCapabilities
@@ -28,12 +29,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -53,7 +54,7 @@ import { serverGetServerCapabilities } from "@lukehagar/plexjs/funcs/serverGetSe
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -103,12 +104,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerPreferences();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -128,7 +129,7 @@ import { serverGetServerPreferences } from "@lukehagar/plexjs/funcs/serverGetSer
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -178,12 +179,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.server.getAvailableClients();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -203,7 +204,7 @@ import { serverGetAvailableClients } from "@lukehagar/plexjs/funcs/serverGetAvai
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -253,12 +254,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.server.getDevices();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -278,7 +279,7 @@ import { serverGetDevices } from "@lukehagar/plexjs/funcs/serverGetDevices.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -319,7 +320,7 @@ run();
 
 ## getServerIdentity
 
-Get Server Identity
+This request is useful to determine if the server is online or offline
 
 ### Example Usage
 
@@ -327,13 +328,12 @@ Get Server Identity
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerIdentity();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -352,8 +352,7 @@ import { serverGetServerIdentity } from "@lukehagar/plexjs/funcs/serverGetServer
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -388,7 +387,7 @@ run();
 
 | Error Object                               | Status Code                                | Content Type                               |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| models.GetServerIdentityServerResponseBody | 401                                        | application/json                           |
+| models.GetServerIdentityServerResponseBody | 408                                        | application/json                           |
 | models.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
@@ -403,12 +402,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.server.getMyPlexAccount();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -428,7 +427,7 @@ import { serverGetMyPlexAccount } from "@lukehagar/plexjs/funcs/serverGetMyPlexA
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -479,7 +478,7 @@ import { MinSize, PlexAPI, Upscale } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -492,7 +491,7 @@ async function run() {
     upscale: Upscale.Zero,
     url: "/library/metadata/49564/thumb/1654258204",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -513,7 +512,7 @@ import { serverGetResizedPhoto } from "@lukehagar/plexjs/funcs/serverGetResizedP
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -561,6 +560,82 @@ run();
 | models.SDKError                    | 4xx-5xx                            | */*                                |
 
 
+## getMediaProviders
+
+Retrieves media providers and their features from the Plex server.
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+});
+
+async function run() {
+  const result = await plexAPI.server.getMediaProviders("CV5xoxjTpFKUzBTShsaf");
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { serverGetMediaProviders } from "@lukehagar/plexjs/funcs/serverGetMediaProviders.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+});
+
+async function run() {
+  const res = await serverGetMediaProviders(plexAPI, "CV5xoxjTpFKUzBTShsaf");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `xPlexToken`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Plex Authentication Token                                                                                                                                                      | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[models.GetMediaProvidersResponse](../../models/getmediaprovidersresponse.md)\>**
+
+### Errors
+
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| models.GetMediaProvidersServerResponseBody | 401                                        | application/json                           |
+| models.SDKError                            | 4xx-5xx                                    | */*                                        |
+
+
 ## getServerList
 
 Get Server List
@@ -572,12 +647,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerList();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -597,7 +672,7 @@ import { serverGetServerList } from "@lukehagar/plexjs/funcs/serverGetServerList
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {

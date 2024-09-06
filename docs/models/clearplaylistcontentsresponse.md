@@ -7,7 +7,7 @@ import { ClearPlaylistContentsResponse } from "@lukehagar/plexjs";
 
 let value: ClearPlaylistContentsResponse = {
     contentType: "<value>",
-    statusCode: 208876,
+    statusCode: 368725,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

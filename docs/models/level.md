@@ -13,7 +13,7 @@ An integer log level to write to the PMS log with.
 ```typescript
 import { Level } from "@lukehagar/plexjs";
 
-let value: Level = Level.Three;
+let value: Level = Level.Four;
 ```
 
 ## Values

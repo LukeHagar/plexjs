@@ -31,6 +31,7 @@ let value: GetBandwidthStatisticsMediaContainer = {
     statisticsBandwidth: [
         {
             accountID: 238960586,
+            deviceID: 208,
             timespan: 6,
             at: 1718387650,
             lan: true,

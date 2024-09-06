@@ -3,7 +3,9 @@
  */
 
 import { PlexAPICore } from "../core.js";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
+import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -28,6 +30,8 @@ import { Result } from "../types/fp.js";
  */
 export async function libraryGetRecentlyAdded(
     client$: PlexAPICore,
+    xPlexContainerStart?: number | undefined,
+    xPlexContainerSize?: number | undefined,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -42,7 +46,28 @@ export async function libraryGetRecentlyAdded(
         | ConnectionError
     >
 > {
+    const input$: models.GetRecentlyAddedRequest = {
+        xPlexContainerStart: xPlexContainerStart,
+        xPlexContainerSize: xPlexContainerSize,
+    };
+
+    const parsed$ = schemas$.safeParse(
+        input$,
+        (value$) => models.GetRecentlyAddedRequest$outboundSchema.parse(value$),
+        "Input validation failed"
+    );
+    if (!parsed$.ok) {
+        return parsed$;
+    }
+    const payload$ = parsed$.value;
+    const body$ = null;
+
     const path$ = pathToFunc("/library/recentlyAdded")();
+
+    const query$ = encodeFormQuery$({
+        "X-Plex-Container-Size": payload$["X-Plex-Container-Size"],
+        "X-Plex-Container-Start": payload$["X-Plex-Container-Start"],
+    });
 
     const headers$ = new Headers({
         Accept: "application/json",
@@ -64,6 +89,8 @@ export async function libraryGetRecentlyAdded(
             method: "GET",
             path: path$,
             headers: headers$,
+            query: query$,
+            body: body$,
             timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
         },
         options

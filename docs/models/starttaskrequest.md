@@ -6,7 +6,7 @@
 import { StartTaskRequest, TaskName } from "@lukehagar/plexjs";
 
 let value: StartTaskRequest = {
-    taskName: TaskName.GenerateChapterThumbs,
+    taskName: TaskName.DeepMediaAnalysis,
 };
 ```
 

@@ -7,7 +7,7 @@ import { StopTranscodeSessionResponse } from "@lukehagar/plexjs";
 
 let value: StopTranscodeSessionResponse = {
     contentType: "<value>",
-    statusCode: 674752,
+    statusCode: 83112,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

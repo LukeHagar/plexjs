@@ -1,6 +1,6 @@
 # GetServerIdentityServerResponseBody
 
-Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+Request Timeout
 
 ## Example Usage
 
@@ -12,7 +12,8 @@ import { GetServerIdentityServerResponseBody } from "@lukehagar/plexjs";
 
 ## Fields
 
-| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `errors`                                                                 | [models.GetServerIdentityErrors](../models/getserveridentityerrors.md)[] | :heavy_minus_sign:                                                       | N/A                                                                      |
-| `rawResponse`                                                            | [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)    | :heavy_minus_sign:                                                       | Raw HTTP response; suitable for custom response parsing                  |
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `code`                                                                | *number*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   | 408                                                                   |
+| `message`                                                             | *string*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   | The server timed out waiting for the request.                         |
+| `rawResponse`                                                         | [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) | :heavy_minus_sign:                                                    | Raw HTTP response; suitable for custom response parsing               |                                                                       |

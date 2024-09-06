@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 2ad2b4c59994082e04faa0c3e7675f3e
+  docChecksum: f627107f2ac6c53325be4f291ae2dea7
   docVersion: 0.0.3
-  speakeasyVersion: 1.377.1
-  generationVersion: 2.404.1
-  releaseVersion: 0.19.0
-  configChecksum: 685039d8e4f59693f709afebf0849817
+  speakeasyVersion: 1.390.7
+  generationVersion: 2.409.8
+  releaseVersion: 0.20.0
+  configChecksum: 1eb0f35569735ddf4ea84adabb3887ba
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -14,10 +14,11 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.10
-    core: 3.14.1
+    constsAndDefaults: 0.1.11
+    core: 3.16.1
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
+    downloadStreams: 0.1.1
     envVarSecurityUsage: 0.1.1
     flattening: 2.81.1
     globalSecurity: 2.82.11
@@ -31,7 +32,6 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
-    typeOverrides: 2.81.1
     unions: 2.85.7
 generatedFiles:
   - src/funcs/serverGetServerCapabilities.ts
@@ -41,10 +41,13 @@ generatedFiles:
   - src/funcs/serverGetServerIdentity.ts
   - src/funcs/serverGetMyPlexAccount.ts
   - src/funcs/serverGetResizedPhoto.ts
+  - src/funcs/serverGetMediaProviders.ts
   - src/funcs/serverGetServerList.ts
   - src/funcs/mediaMarkPlayed.ts
   - src/funcs/mediaMarkUnplayed.ts
   - src/funcs/mediaUpdatePlayProgress.ts
+  - src/funcs/mediaGetBannerImage.ts
+  - src/funcs/mediaGetThumbImage.ts
   - src/funcs/videoGetTimeline.ts
   - src/funcs/videoStartUniversalTranscode.ts
   - src/funcs/activitiesGetServerActivities.ts
@@ -58,10 +61,9 @@ generatedFiles:
   - src/funcs/plexGetUserFriends.ts
   - src/funcs/plexGetGeoData.ts
   - src/funcs/plexGetHomeData.ts
-  - src/funcs/plexGetResources.ts
+  - src/funcs/plexGetServerResources.ts
   - src/funcs/plexGetPin.ts
   - src/funcs/plexGetTokenByPinId.ts
-  - src/funcs/plexGetUserDetails.ts
   - src/funcs/hubsGetGlobalHubs.ts
   - src/funcs/hubsGetLibraryHubs.ts
   - src/funcs/searchPerformSearch.ts
@@ -69,16 +71,17 @@ generatedFiles:
   - src/funcs/searchGetSearchResults.ts
   - src/funcs/libraryGetFileHash.ts
   - src/funcs/libraryGetRecentlyAdded.ts
-  - src/funcs/libraryGetLibraries.ts
-  - src/funcs/libraryGetLibrary.ts
+  - src/funcs/libraryGetAllLibraries.ts
+  - src/funcs/libraryGetLibraryDetails.ts
   - src/funcs/libraryDeleteLibrary.ts
   - src/funcs/libraryGetLibraryItems.ts
-  - src/funcs/libraryRefreshLibrary.ts
-  - src/funcs/librarySearchLibrary.ts
-  - src/funcs/libraryGetMetadata.ts
+  - src/funcs/libraryGetRefreshLibraryMetadata.ts
+  - src/funcs/libraryGetSearchLibrary.ts
+  - src/funcs/libraryGetMetaDataByRatingKey.ts
   - src/funcs/libraryGetMetadataChildren.ts
   - src/funcs/libraryGetTopWatchedContent.ts
   - src/funcs/libraryGetOnDeck.ts
+  - src/funcs/watchlistGetWatchList.ts
   - src/funcs/logLogLine.ts
   - src/funcs/logLogMultiLine.ts
   - src/funcs/logEnablePaperTrail.ts
@@ -93,6 +96,8 @@ generatedFiles:
   - src/funcs/playlistsUploadPlaylist.ts
   - src/funcs/authenticationGetTransientToken.ts
   - src/funcs/authenticationGetSourceConnectionInformation.ts
+  - src/funcs/authenticationGetUserDetails.ts
+  - src/funcs/authenticationPostUsersSignInData.ts
   - src/funcs/statisticsGetStatistics.ts
   - src/funcs/statisticsGetResourcesStatistics.ts
   - src/funcs/statisticsGetBandwidthStatistics.ts
@@ -103,8 +108,6 @@ generatedFiles:
   - src/funcs/updaterGetUpdateStatus.ts
   - src/funcs/updaterCheckForUpdates.ts
   - src/funcs/updaterApplyUpdates.ts
-  - src/funcs/userPostUsersSigninData.ts
-  - src/funcs/watchlistGetWatchlist.ts
   - src/sdk/server.ts
   - src/sdk/media.ts
   - src/sdk/video.ts
@@ -114,14 +117,13 @@ generatedFiles:
   - src/sdk/hubs.ts
   - src/sdk/search.ts
   - src/sdk/library.ts
+  - src/sdk/watchlist.ts
   - src/sdk/log.ts
   - src/sdk/playlists.ts
   - src/sdk/authentication.ts
   - src/sdk/statistics.ts
   - src/sdk/sessions.ts
   - src/sdk/updater.ts
-  - src/sdk/user.ts
-  - src/sdk/watchlist.ts
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
@@ -135,6 +137,7 @@ generatedFiles:
   - src/lib/config.ts
   - src/lib/dlv.ts
   - src/lib/encodings.ts
+  - src/lib/files.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
   - src/lib/logger.ts
@@ -156,6 +159,7 @@ generatedFiles:
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
+  - src/types/streams.ts
   - tsconfig.json
   - src/models/getservercapabilitiesop.ts
   - src/models/getserverpreferencesop.ts
@@ -164,10 +168,13 @@ generatedFiles:
   - src/models/getserveridentityop.ts
   - src/models/getmyplexaccountop.ts
   - src/models/getresizedphotoop.ts
+  - src/models/getmediaprovidersop.ts
   - src/models/getserverlistop.ts
   - src/models/markplayedop.ts
   - src/models/markunplayedop.ts
   - src/models/updateplayprogressop.ts
+  - src/models/getbannerimageop.ts
+  - src/models/getthumbimageop.ts
   - src/models/gettimelineop.ts
   - src/models/startuniversaltranscodeop.ts
   - src/models/getserveractivitiesop.ts
@@ -181,10 +188,9 @@ generatedFiles:
   - src/models/getuserfriendsop.ts
   - src/models/getgeodataop.ts
   - src/models/gethomedataop.ts
-  - src/models/getresourcesop.ts
+  - src/models/getserverresourcesop.ts
   - src/models/getpinop.ts
   - src/models/gettokenbypinidop.ts
-  - src/models/getuserdetailsop.ts
   - src/models/getglobalhubsop.ts
   - src/models/getlibraryhubsop.ts
   - src/models/performsearchop.ts
@@ -192,16 +198,17 @@ generatedFiles:
   - src/models/getsearchresultsop.ts
   - src/models/getfilehashop.ts
   - src/models/getrecentlyaddedop.ts
-  - src/models/getlibrariesop.ts
-  - src/models/getlibraryop.ts
+  - src/models/getalllibrariesop.ts
+  - src/models/getlibrarydetailsop.ts
   - src/models/deletelibraryop.ts
   - src/models/getlibraryitemsop.ts
-  - src/models/refreshlibraryop.ts
-  - src/models/searchlibraryop.ts
-  - src/models/getmetadataop.ts
+  - src/models/getrefreshlibrarymetadataop.ts
+  - src/models/getsearchlibraryop.ts
+  - src/models/getmetadatabyratingkeyop.ts
   - src/models/getmetadatachildrenop.ts
   - src/models/gettopwatchedcontentop.ts
   - src/models/getondeckop.ts
+  - src/models/getwatchlistop.ts
   - src/models/loglineop.ts
   - src/models/logmultilineop.ts
   - src/models/enablepapertrailop.ts
@@ -216,6 +223,8 @@ generatedFiles:
   - src/models/uploadplaylistop.ts
   - src/models/gettransienttokenop.ts
   - src/models/getsourceconnectioninformationop.ts
+  - src/models/getuserdetailsop.ts
+  - src/models/postuserssignindataop.ts
   - src/models/getstatisticsop.ts
   - src/models/getresourcesstatisticsop.ts
   - src/models/getbandwidthstatisticsop.ts
@@ -226,8 +235,6 @@ generatedFiles:
   - src/models/getupdatestatusop.ts
   - src/models/checkforupdatesop.ts
   - src/models/applyupdatesop.ts
-  - src/models/postuserssignindataop.ts
-  - src/models/getwatchlistop.ts
   - src/models/security.ts
   - src/models/index.ts
   - docs/models/errors.md
@@ -254,7 +261,6 @@ generatedFiles:
   - docs/models/getdevicesmediacontainer.md
   - docs/models/getdevicesresponsebody.md
   - docs/models/getdevicesresponse.md
-  - docs/models/getserveridentityerrors.md
   - docs/models/getserveridentityserverresponsebody.md
   - docs/models/getserveridentitymediacontainer.md
   - docs/models/getserveridentityresponsebody.md
@@ -270,6 +276,16 @@ generatedFiles:
   - docs/models/getresizedphotoerrors.md
   - docs/models/getresizedphotoresponsebody.md
   - docs/models/getresizedphotoresponse.md
+  - docs/models/getmediaprovidersrequest.md
+  - docs/models/getmediaproviderserrors.md
+  - docs/models/getmediaprovidersserverresponsebody.md
+  - docs/models/pivot.md
+  - docs/models/getmediaprovidersdirectory.md
+  - docs/models/feature.md
+  - docs/models/mediaprovider.md
+  - docs/models/getmediaprovidersmediacontainer.md
+  - docs/models/getmediaprovidersresponsebody.md
+  - docs/models/getmediaprovidersresponse.md
   - docs/models/getserverlisterrors.md
   - docs/models/getserverlistserverresponsebody.md
   - docs/models/getserverlistserver.md
@@ -288,6 +304,14 @@ generatedFiles:
   - docs/models/updateplayprogresserrors.md
   - docs/models/updateplayprogressresponsebody.md
   - docs/models/updateplayprogressresponse.md
+  - docs/models/getbannerimagerequest.md
+  - docs/models/getbannerimageerrors.md
+  - docs/models/getbannerimageresponsebody.md
+  - docs/models/getbannerimageresponse.md
+  - docs/models/getthumbimagerequest.md
+  - docs/models/getthumbimageerrors.md
+  - docs/models/getthumbimageresponsebody.md
+  - docs/models/getthumbimageresponse.md
   - docs/models/state.md
   - docs/models/gettimelinerequest.md
   - docs/models/gettimelineerrors.md
@@ -349,16 +373,16 @@ generatedFiles:
   - docs/models/gethomedataplexresponsebody.md
   - docs/models/gethomedataresponsebody.md
   - docs/models/gethomedataresponse.md
-  - docs/models/getresourcesglobals.md
+  - docs/models/getserverresourcesglobals.md
   - docs/models/includehttps.md
   - docs/models/includerelay.md
   - docs/models/includeipv6.md
-  - docs/models/getresourcesrequest.md
-  - docs/models/getresourceserrors.md
-  - docs/models/getresourcesresponsebody.md
+  - docs/models/getserverresourcesrequest.md
+  - docs/models/getserverresourceserrors.md
+  - docs/models/getserverresourcesresponsebody.md
   - docs/models/connections.md
   - docs/models/plexdevice.md
-  - docs/models/getresourcesresponse.md
+  - docs/models/getserverresourcesresponse.md
   - docs/models/getpinglobals.md
   - docs/models/getpinrequest.md
   - docs/models/getpinerrors.md
@@ -368,25 +392,13 @@ generatedFiles:
   - docs/models/getpinresponse.md
   - docs/models/gettokenbypinidglobals.md
   - docs/models/gettokenbypinidrequest.md
+  - docs/models/gettokenbypinidplexerrors.md
+  - docs/models/gettokenbypinidplexresponsebody.md
   - docs/models/gettokenbypiniderrors.md
   - docs/models/gettokenbypinidresponsebody.md
   - docs/models/gettokenbypinidgeodata.md
   - docs/models/gettokenbypinidauthpincontainer.md
   - docs/models/gettokenbypinidresponse.md
-  - docs/models/getuserdetailserrors.md
-  - docs/models/getuserdetailsresponsebody.md
-  - docs/models/mailingliststatus.md
-  - docs/models/userprofile.md
-  - docs/models/getuserdetailsstatus.md
-  - docs/models/services.md
-  - docs/models/features.md
-  - docs/models/getuserdetailsplexstatus.md
-  - docs/models/subscription.md
-  - docs/models/getuserdetailsfeatures.md
-  - docs/models/getuserdetailsplexresponsestatus.md
-  - docs/models/getuserdetailssubscription.md
-  - docs/models/getuserdetailsuserplexaccount.md
-  - docs/models/getuserdetailsresponse.md
   - docs/models/onlytransient.md
   - docs/models/getglobalhubsrequest.md
   - docs/models/getglobalhubserrors.md
@@ -440,6 +452,7 @@ generatedFiles:
   - docs/models/getfilehasherrors.md
   - docs/models/getfilehashresponsebody.md
   - docs/models/getfilehashresponse.md
+  - docs/models/getrecentlyaddedrequest.md
   - docs/models/getrecentlyaddederrors.md
   - docs/models/getrecentlyaddedlibraryresponsebody.md
   - docs/models/part.md
@@ -453,32 +466,35 @@ generatedFiles:
   - docs/models/getrecentlyaddedmediacontainer.md
   - docs/models/getrecentlyaddedresponsebody.md
   - docs/models/getrecentlyaddedresponse.md
-  - docs/models/getlibrarieserrors.md
-  - docs/models/getlibrarieslibraryresponsebody.md
+  - docs/models/getalllibrarieserrors.md
+  - docs/models/getalllibrarieslibraryresponsebody.md
   - docs/models/location.md
-  - docs/models/getlibrariesdirectory.md
-  - docs/models/getlibrariesmediacontainer.md
-  - docs/models/getlibrariesresponsebody.md
-  - docs/models/getlibrariesresponse.md
+  - docs/models/getalllibrariesdirectory.md
+  - docs/models/getalllibrariesmediacontainer.md
+  - docs/models/getalllibrariesresponsebody.md
+  - docs/models/getalllibrariesresponse.md
   - docs/models/includedetails.md
-  - docs/models/getlibraryrequest.md
-  - docs/models/getlibraryerrors.md
-  - docs/models/getlibrarylibraryresponsebody.md
-  - docs/models/getlibrarydirectory.md
-  - docs/models/getlibraryfilter.md
+  - docs/models/getlibrarydetailsrequest.md
+  - docs/models/getlibrarydetailserrors.md
+  - docs/models/getlibrarydetailslibraryresponsebody.md
+  - docs/models/getlibrarydetailsdirectory.md
+  - docs/models/getlibrarydetailsfilter.md
   - docs/models/sort.md
   - docs/models/field.md
-  - docs/models/getlibrarytype.md
+  - docs/models/getlibrarydetailstype.md
   - docs/models/operator.md
   - docs/models/fieldtype.md
-  - docs/models/getlibrarymediacontainer.md
-  - docs/models/getlibraryresponsebody.md
-  - docs/models/getlibraryresponse.md
+  - docs/models/getlibrarydetailsmediacontainer.md
+  - docs/models/getlibrarydetailsresponsebody.md
+  - docs/models/getlibrarydetailsresponse.md
   - docs/models/deletelibraryrequest.md
   - docs/models/deletelibraryerrors.md
   - docs/models/deletelibraryresponsebody.md
   - docs/models/deletelibraryresponse.md
   - docs/models/tag.md
+  - docs/models/includeguids.md
+  - docs/models/includemeta.md
+  - docs/models/type.md
   - docs/models/getlibraryitemsrequest.md
   - docs/models/getlibraryitemserrors.md
   - docs/models/getlibraryitemslibraryresponsebody.md
@@ -494,36 +510,37 @@ generatedFiles:
   - docs/models/getlibraryitemsmediacontainer.md
   - docs/models/getlibraryitemsresponsebody.md
   - docs/models/getlibraryitemsresponse.md
-  - docs/models/refreshlibraryrequest.md
-  - docs/models/refreshlibraryerrors.md
-  - docs/models/refreshlibraryresponsebody.md
-  - docs/models/refreshlibraryresponse.md
-  - docs/models/type.md
-  - docs/models/searchlibraryrequest.md
-  - docs/models/searchlibraryerrors.md
-  - docs/models/searchlibrarylibraryresponsebody.md
-  - docs/models/searchlibrarymetadata.md
-  - docs/models/searchlibrarymediacontainer.md
-  - docs/models/searchlibraryresponsebody.md
-  - docs/models/searchlibraryresponse.md
-  - docs/models/getmetadatarequest.md
-  - docs/models/getmetadataerrors.md
-  - docs/models/getmetadatalibraryresponsebody.md
+  - docs/models/force.md
+  - docs/models/getrefreshlibrarymetadatarequest.md
+  - docs/models/getrefreshlibrarymetadataerrors.md
+  - docs/models/getrefreshlibrarymetadataresponsebody.md
+  - docs/models/getrefreshlibrarymetadataresponse.md
+  - docs/models/queryparamtype.md
+  - docs/models/getsearchlibraryrequest.md
+  - docs/models/getsearchlibraryerrors.md
+  - docs/models/getsearchlibrarylibraryresponsebody.md
+  - docs/models/getsearchlibrarymetadata.md
+  - docs/models/getsearchlibrarymediacontainer.md
+  - docs/models/getsearchlibraryresponsebody.md
+  - docs/models/getsearchlibraryresponse.md
+  - docs/models/getmetadatabyratingkeyrequest.md
+  - docs/models/getmetadatabyratingkeyerrors.md
+  - docs/models/getmetadatabyratingkeylibraryresponsebody.md
   - docs/models/stream.md
-  - docs/models/getmetadatapart.md
-  - docs/models/getmetadatamedia.md
-  - docs/models/getmetadatagenre.md
-  - docs/models/getmetadatacountry.md
+  - docs/models/getmetadatabyratingkeypart.md
+  - docs/models/getmetadatabyratingkeymedia.md
+  - docs/models/getmetadatabyratingkeygenre.md
+  - docs/models/getmetadatabyratingkeycountry.md
   - docs/models/guids.md
   - docs/models/ratings.md
-  - docs/models/getmetadatadirector.md
-  - docs/models/getmetadatawriter.md
-  - docs/models/getmetadatarole.md
+  - docs/models/getmetadatabyratingkeydirector.md
+  - docs/models/getmetadatabyratingkeywriter.md
+  - docs/models/getmetadatabyratingkeyrole.md
   - docs/models/producer.md
-  - docs/models/getmetadatametadata.md
-  - docs/models/getmetadatamediacontainer.md
-  - docs/models/getmetadataresponsebody.md
-  - docs/models/getmetadataresponse.md
+  - docs/models/getmetadatabyratingkeymetadata.md
+  - docs/models/getmetadatabyratingkeymediacontainer.md
+  - docs/models/getmetadatabyratingkeyresponsebody.md
+  - docs/models/getmetadatabyratingkeyresponse.md
   - docs/models/getmetadatachildrenrequest.md
   - docs/models/getmetadatachildrenerrors.md
   - docs/models/getmetadatachildrenlibraryresponsebody.md
@@ -532,12 +549,15 @@ generatedFiles:
   - docs/models/getmetadatachildrenmediacontainer.md
   - docs/models/getmetadatachildrenresponsebody.md
   - docs/models/getmetadatachildrenresponse.md
+  - docs/models/gettopwatchedcontentqueryparamtype.md
   - docs/models/gettopwatchedcontentrequest.md
+  - docs/models/gettopwatchedcontenterrors.md
+  - docs/models/gettopwatchedcontentlibraryresponsebody.md
   - docs/models/gettopwatchedcontentgenre.md
   - docs/models/gettopwatchedcontentcountry.md
   - docs/models/gettopwatchedcontentguids.md
   - docs/models/gettopwatchedcontentrole.md
-  - docs/models/gettopwatchedcontentuser.md
+  - docs/models/user.md
   - docs/models/gettopwatchedcontentmetadata.md
   - docs/models/gettopwatchedcontentmediacontainer.md
   - docs/models/gettopwatchedcontentresponsebody.md
@@ -552,6 +572,17 @@ generatedFiles:
   - docs/models/getondeckmediacontainer.md
   - docs/models/getondeckresponsebody.md
   - docs/models/getondeckresponse.md
+  - docs/models/filter.md
+  - docs/models/libtype.md
+  - docs/models/includecollections.md
+  - docs/models/includeexternalmedia.md
+  - docs/models/getwatchlistrequest.md
+  - docs/models/getwatchlisterrors.md
+  - docs/models/getwatchlistwatchlistresponsebody.md
+  - docs/models/image.md
+  - docs/models/metadata.md
+  - docs/models/getwatchlistresponsebody.md
+  - docs/models/getwatchlistresponse.md
   - docs/models/level.md
   - docs/models/loglinerequest.md
   - docs/models/loglineerrors.md
@@ -563,7 +594,7 @@ generatedFiles:
   - docs/models/enablepapertrailerrors.md
   - docs/models/enablepapertrailresponsebody.md
   - docs/models/enablepapertrailresponse.md
-  - docs/models/queryparamtype.md
+  - docs/models/createplaylistqueryparamtype.md
   - docs/models/smart.md
   - docs/models/createplaylistrequest.md
   - docs/models/createplaylisterrors.md
@@ -596,6 +627,7 @@ generatedFiles:
   - docs/models/updateplaylisterrors.md
   - docs/models/updateplaylistresponsebody.md
   - docs/models/updateplaylistresponse.md
+  - docs/models/getplaylistcontentsqueryparamtype.md
   - docs/models/getplaylistcontentsrequest.md
   - docs/models/getplaylistcontentserrors.md
   - docs/models/getplaylistcontentsplaylistsresponsebody.md
@@ -621,7 +653,7 @@ generatedFiles:
   - docs/models/addplaylistcontentsmediacontainer.md
   - docs/models/addplaylistcontentsresponsebody.md
   - docs/models/addplaylistcontentsresponse.md
-  - docs/models/force.md
+  - docs/models/queryparamforce.md
   - docs/models/uploadplaylistrequest.md
   - docs/models/uploadplaylisterrors.md
   - docs/models/uploadplaylistresponsebody.md
@@ -636,6 +668,53 @@ generatedFiles:
   - docs/models/getsourceconnectioninformationerrors.md
   - docs/models/getsourceconnectioninformationresponsebody.md
   - docs/models/getsourceconnectioninformationresponse.md
+  - docs/models/getuserdetailsrequest.md
+  - docs/models/getuserdetailserrors.md
+  - docs/models/getuserdetailsresponsebody.md
+  - docs/models/mailingliststatus.md
+  - docs/models/autoselectsubtitle.md
+  - docs/models/defaultsubtitleaccessibility.md
+  - docs/models/defaultsubtitleforced.md
+  - docs/models/watchedindicator.md
+  - docs/models/mediareviewsvisibility.md
+  - docs/models/userprofile.md
+  - docs/models/getuserdetailsstatus.md
+  - docs/models/services.md
+  - docs/models/features.md
+  - docs/models/getuserdetailsauthenticationstatus.md
+  - docs/models/subscription.md
+  - docs/models/getuserdetailsfeatures.md
+  - docs/models/getuserdetailsauthenticationresponsestatus.md
+  - docs/models/getuserdetailssubscription.md
+  - docs/models/getuserdetailsuserplexaccount.md
+  - docs/models/getuserdetailsresponse.md
+  - docs/models/postuserssignindataglobals.md
+  - docs/models/postuserssignindatarequestbody.md
+  - docs/models/postuserssignindatarequest.md
+  - docs/models/postuserssignindataerrors.md
+  - docs/models/postuserssignindataresponsebody.md
+  - docs/models/postuserssignindatamailingliststatus.md
+  - docs/models/postuserssignindataautoselectsubtitle.md
+  - docs/models/postuserssignindatadefaultsubtitleaccessibility.md
+  - docs/models/postuserssignindatadefaultsubtitleforced.md
+  - docs/models/postuserssignindatawatchedindicator.md
+  - docs/models/postuserssignindatamediareviewsvisibility.md
+  - docs/models/postuserssignindatauserprofile.md
+  - docs/models/postuserssignindatastatus.md
+  - docs/models/postuserssignindataservices.md
+  - docs/models/postuserssignindatafeatures.md
+  - docs/models/postuserssignindataauthenticationstatus.md
+  - docs/models/postuserssignindatasubscription.md
+  - docs/models/postuserssignindataauthenticationfeatures.md
+  - docs/models/postuserssignindataauthenticationresponsestatus.md
+  - docs/models/postuserssignindataauthenticationsubscription.md
+  - docs/models/postuserssignindatastate.md
+  - docs/models/internalpaymentmethod.md
+  - docs/models/billing.md
+  - docs/models/pastsubscription.md
+  - docs/models/trials.md
+  - docs/models/postuserssignindatauserplexaccount.md
+  - docs/models/postuserssignindataresponse.md
   - docs/models/getstatisticsrequest.md
   - docs/models/getstatisticserrors.md
   - docs/models/getstatisticsstatisticsresponsebody.md
@@ -673,7 +752,7 @@ generatedFiles:
   - docs/models/getsessionsmediacontainer.md
   - docs/models/getsessionsresponsebody.md
   - docs/models/getsessionsresponse.md
-  - docs/models/filter.md
+  - docs/models/queryparamfilter.md
   - docs/models/getsessionhistoryrequest.md
   - docs/models/getsessionhistoryerrors.md
   - docs/models/getsessionhistorysessionsresponsebody.md
@@ -708,39 +787,6 @@ generatedFiles:
   - docs/models/applyupdateserrors.md
   - docs/models/applyupdatesresponsebody.md
   - docs/models/applyupdatesresponse.md
-  - docs/models/postuserssignindataglobals.md
-  - docs/models/postuserssignindatarequestbody.md
-  - docs/models/postuserssignindatarequest.md
-  - docs/models/postuserssignindataerrors.md
-  - docs/models/postuserssignindataresponsebody.md
-  - docs/models/postuserssignindatamailingliststatus.md
-  - docs/models/postuserssignindatauserprofile.md
-  - docs/models/postuserssignindatastatus.md
-  - docs/models/postuserssignindataservices.md
-  - docs/models/postuserssignindatafeatures.md
-  - docs/models/postuserssignindatauserstatus.md
-  - docs/models/postuserssignindatasubscription.md
-  - docs/models/postuserssignindatauserfeatures.md
-  - docs/models/postuserssignindatauserresponsestatus.md
-  - docs/models/postuserssignindatausersubscription.md
-  - docs/models/postuserssignindatastate.md
-  - docs/models/internalpaymentmethod.md
-  - docs/models/billing.md
-  - docs/models/pastsubscription.md
-  - docs/models/trials.md
-  - docs/models/postuserssignindatauserplexaccount.md
-  - docs/models/postuserssignindataresponse.md
-  - docs/models/pathparamfilter.md
-  - docs/models/libtype.md
-  - docs/models/includecollections.md
-  - docs/models/includeexternalmedia.md
-  - docs/models/getwatchlistrequest.md
-  - docs/models/getwatchlisterrors.md
-  - docs/models/getwatchlistwatchlistresponsebody.md
-  - docs/models/image.md
-  - docs/models/metadata.md
-  - docs/models/getwatchlistresponsebody.md
-  - docs/models/getwatchlistresponse.md
   - docs/models/security.md
   - docs/sdks/plexapi/README.md
   - docs/lib/utils/retryconfig.md
@@ -753,14 +799,13 @@ generatedFiles:
   - docs/sdks/hubs/README.md
   - docs/sdks/search/README.md
   - docs/sdks/library/README.md
+  - docs/sdks/watchlist/README.md
   - docs/sdks/log/README.md
   - docs/sdks/playlists/README.md
   - docs/sdks/authentication/README.md
   - docs/sdks/statistics/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/updater/README.md
-  - docs/sdks/user/README.md
-  - docs/sdks/watchlist/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts

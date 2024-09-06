@@ -23,12 +23,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.statistics.getStatistics(4);
-
+  
   // Handle the result
   console.log(result)
 }
@@ -48,7 +48,7 @@ import { statisticsGetStatistics } from "@lukehagar/plexjs/funcs/statisticsGetSt
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -99,12 +99,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.statistics.getResourcesStatistics(4);
-
+  
   // Handle the result
   console.log(result)
 }
@@ -124,7 +124,7 @@ import { statisticsGetResourcesStatistics } from "@lukehagar/plexjs/funcs/statis
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -175,12 +175,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.statistics.getBandwidthStatistics(4);
-
+  
   // Handle the result
   console.log(result)
 }
@@ -200,7 +200,7 @@ import { statisticsGetBandwidthStatistics } from "@lukehagar/plexjs/funcs/statis
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {

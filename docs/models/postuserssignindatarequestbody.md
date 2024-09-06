@@ -1,13 +1,13 @@
-# PostUsersSigninDataRequestBody
+# PostUsersSignInDataRequestBody
 
 Login credentials
 
 ## Example Usage
 
 ```typescript
-import { PostUsersSigninDataRequestBody } from "@lukehagar/plexjs";
+import { PostUsersSignInDataRequestBody } from "@lukehagar/plexjs";
 
-let value: PostUsersSigninDataRequestBody = {
+let value: PostUsersSignInDataRequestBody = {
     login: "username@email.com",
     password: "password123",
 };

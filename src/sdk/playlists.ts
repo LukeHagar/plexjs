@@ -103,7 +103,7 @@ export class Playlists extends ClientSDK {
      */
     async getPlaylistContents(
         playlistID: number,
-        type: number,
+        type: models.GetPlaylistContentsQueryParamType,
         options?: RequestOptions
     ): Promise<models.GetPlaylistContentsResponse> {
         return unwrapAsync(playlistsGetPlaylistContents(this, playlistID, type, options));
@@ -151,7 +151,7 @@ export class Playlists extends ClientSDK {
      */
     async uploadPlaylist(
         path: string,
-        force: models.Force,
+        force: models.QueryParamForce,
         options?: RequestOptions
     ): Promise<models.UploadPlaylistResponse> {
         return unwrapAsync(playlistsUploadPlaylist(this, path, force, options));

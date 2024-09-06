@@ -1,11 +1,11 @@
-# GetWatchlistErrors
+# GetWatchListErrors
 
 ## Example Usage
 
 ```typescript
-import { GetWatchlistErrors } from "@lukehagar/plexjs";
+import { GetWatchListErrors } from "@lukehagar/plexjs";
 
-let value: GetWatchlistErrors = {
+let value: GetWatchListErrors = {
     code: 1001,
     message: "User could not be authenticated",
     status: 401,

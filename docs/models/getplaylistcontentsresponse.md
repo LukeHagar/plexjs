@@ -8,7 +8,7 @@ import { RFCDate } from "@lukehagar/plexjs/types";
 
 let value: GetPlaylistContentsResponse = {
     contentType: "<value>",
-    statusCode: 102044,
+    statusCode: 196582,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

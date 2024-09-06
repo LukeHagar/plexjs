@@ -24,12 +24,12 @@ import { Level, PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.log.logLine(Level.Three, "Test log message", "Postman");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -50,7 +50,7 @@ import { logLogLine } from "@lukehagar/plexjs/funcs/logLogLine.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -124,14 +124,14 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-  const result = await plexAPI.log.logMultiLine("level=4&message=Test%20message%201&source=postman
-  level=3&message=Test%20message%202&source=postman
-  level=1&message=Test%20message%203&source=postman");
-
+  const result = await plexAPI.log.logMultiLine("level=4&message=Test%20message%201&source=postman\n" +
+  "level=3&message=Test%20message%202&source=postman\n" +
+  "level=1&message=Test%20message%203&source=postman");
+  
   // Handle the result
   console.log(result)
 }
@@ -151,13 +151,13 @@ import { logLogMultiLine } from "@lukehagar/plexjs/funcs/logLogMultiLine.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-  const res = await logLogMultiLine(plexAPI, "level=4&message=Test%20message%201&source=postman
-  level=3&message=Test%20message%202&source=postman
-  level=1&message=Test%20message%203&source=postman");
+  const res = await logLogMultiLine(plexAPI, "level=4&message=Test%20message%201&source=postman\n" +
+  "level=3&message=Test%20message%202&source=postman\n" +
+  "level=1&message=Test%20message%203&source=postman");
 
   if (!res.ok) {
     throw res.error;
@@ -205,12 +205,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.log.enablePaperTrail();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -230,7 +230,7 @@ import { logEnablePaperTrail } from "@lukehagar/plexjs/funcs/logEnablePaperTrail
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {

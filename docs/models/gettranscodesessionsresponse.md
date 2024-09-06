@@ -7,7 +7,7 @@ import { GetTranscodeSessionsResponse } from "@lukehagar/plexjs";
 
 let value: GetTranscodeSessionsResponse = {
     contentType: "<value>",
-    statusCode: 110375,
+    statusCode: 575947,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

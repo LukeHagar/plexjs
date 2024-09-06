@@ -1,4 +1,4 @@
-# PostUsersSigninDataUserPlexAccount
+# PostUsersSignInDataUserPlexAccount
 
 Returns the user account data with a valid auth token
 
@@ -6,17 +6,22 @@ Returns the user account data with a valid auth token
 
 ```typescript
 import {
-  PostUsersSigninDataFeatures,
-  PostUsersSigninDataMailingListStatus,
-  PostUsersSigninDataState,
-  PostUsersSigninDataStatus,
-  PostUsersSigninDataUserFeatures,
-  PostUsersSigninDataUserPlexAccount,
-  PostUsersSigninDataUserResponseStatus,
-  PostUsersSigninDataUserStatus,
+  PostUsersSignInDataAuthenticationFeatures,
+  PostUsersSignInDataAuthenticationResponseStatus,
+  PostUsersSignInDataAuthenticationStatus,
+  PostUsersSignInDataAutoSelectSubtitle,
+  PostUsersSignInDataDefaultSubtitleAccessibility,
+  PostUsersSignInDataDefaultSubtitleForced,
+  PostUsersSignInDataFeatures,
+  PostUsersSignInDataMailingListStatus,
+  PostUsersSignInDataMediaReviewsVisibility,
+  PostUsersSignInDataState,
+  PostUsersSignInDataStatus,
+  PostUsersSignInDataUserPlexAccount,
+  PostUsersSignInDataWatchedIndicator,
 } from "@lukehagar/plexjs";
 
-let value: PostUsersSigninDataUserPlexAccount = {
+let value: PostUsersSignInDataUserPlexAccount = {
     adsConsent: true,
     adsConsentReminderAt: new Date("2019-08-24T14:15:22Z"),
     adsConsentSetAt: new Date("2019-08-24T14:15:22Z"),
@@ -39,21 +44,19 @@ let value: PostUsersSigninDataUserPlexAccount = {
     joinedAt: 1721154902,
     locale: null,
     mailingListActive: false,
-    mailingListStatus: PostUsersSigninDataMailingListStatus.Subscribed,
+    mailingListStatus: PostUsersSignInDataMailingListStatus.Active,
     maxHomeSize: 15,
     pin: "string",
-    profile: [
-        {
-            autoSelectAudio: true,
-            defaultAudioLanguage: "ja",
-            defaultSubtitleLanguage: "en",
-            autoSelectSubtitle: 1,
-            defaultSubtitleAccessibility: 1,
-            defaultSubtitleForced: 0,
-            watchedIndicator: 1,
-            mediaReviewsVisibility: 0,
-        },
-    ],
+    profile: {
+        autoSelectAudio: true,
+        defaultAudioLanguage: "ja",
+        defaultSubtitleLanguage: "en",
+        autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle.One,
+        defaultSubtitleAccessibility: PostUsersSignInDataDefaultSubtitleAccessibility.One,
+        defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.One,
+        watchedIndicator: PostUsersSignInDataWatchedIndicator.One,
+        mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.Zero,
+    },
     protected: false,
     rememberExpiresAt: 1722364046,
     restricted: false,
@@ -65,24 +68,24 @@ let value: PostUsersSigninDataUserPlexAccount = {
             endpoint: "https://epg.provider.plex.tv",
             token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
             secret: "string",
-            status: PostUsersSigninDataStatus.Online,
+            status: PostUsersSignInDataStatus.Online,
         },
     ],
     subscription: {
-        features: [PostUsersSigninDataFeatures.AndroidDolbyVision],
+        features: [PostUsersSignInDataFeatures.AndroidDolbyVision],
         active: true,
-        subscribedAt: new Date("2021-04-12T18:21:12Z"),
-        status: PostUsersSigninDataUserStatus.Inactive,
+        subscribedAt: "2021-04-12T18:21:12Z",
+        status: PostUsersSignInDataAuthenticationStatus.Inactive,
         paymentService: "string",
         plan: "string",
     },
     subscriptionDescription: "string",
     subscriptions: [
         {
-            features: [PostUsersSigninDataUserFeatures.AndroidDolbyVision],
+            features: [PostUsersSignInDataAuthenticationFeatures.AndroidDolbyVision],
             active: true,
-            subscribedAt: new Date("2021-04-12T18:21:12Z"),
-            status: PostUsersSigninDataUserResponseStatus.Inactive,
+            subscribedAt: "2021-04-12T18:21:12Z",
+            status: PostUsersSignInDataAuthenticationResponseStatus.Inactive,
             paymentService: "string",
             plan: "string",
         },
@@ -107,13 +110,11 @@ let value: PostUsersSigninDataUserPlexAccount = {
             canConvert: true,
             type: "plexpass",
             transfer: "string",
-            state: PostUsersSigninDataState.Ended,
-            billing: [
-                {
-                    internalPaymentMethod: {},
-                    paymentMethodId: string,
-                },
-            ],
+            state: PostUsersSignInDataState.Ended,
+            billing: {
+                internalPaymentMethod: {},
+                paymentMethodId: 216822,
+            },
         },
     ],
     trials: [{}],
@@ -146,19 +147,19 @@ let value: PostUsersSigninDataUserPlexAccount = {
 | `joinedAt`                                                                                                                                                            | *number*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | Unix epoch datetime the account joined Plex                                                                                                                           | 1721154902                                                                                                                                                            |
 | `locale`                                                                                                                                                              | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | The account locale                                                                                                                                                    |                                                                                                                                                                       |
 | `mailingListActive`                                                                                                                                                   | *boolean*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | If you are subscribed to the Plex newsletter                                                                                                                          |                                                                                                                                                                       |
-| `mailingListStatus`                                                                                                                                                   | [models.PostUsersSigninDataMailingListStatus](../models/postuserssignindatamailingliststatus.md)                                                                      | :heavy_check_mark:                                                                                                                                                    | Your current mailing list status                                                                                                                                      |                                                                                                                                                                       |
+| `mailingListStatus`                                                                                                                                                   | [models.PostUsersSignInDataMailingListStatus](../models/postuserssignindatamailingliststatus.md)                                                                      | :heavy_check_mark:                                                                                                                                                    | Your current mailing list status                                                                                                                                      |                                                                                                                                                                       |
 | `maxHomeSize`                                                                                                                                                         | *number*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | The maximum number of accounts allowed in the Plex Home                                                                                                               | 15                                                                                                                                                                    |
 | ~~`pin`~~                                                                                                                                                             | *string*                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible.<br/><br/>[Might be removed] The hashed Plex Home PIN  |                                                                                                                                                                       |
-| `profile`                                                                                                                                                             | [models.PostUsersSigninDataUserProfile](../models/postuserssignindatauserprofile.md)[]                                                                                | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   |                                                                                                                                                                       |
+| `profile`                                                                                                                                                             | [models.PostUsersSignInDataUserProfile](../models/postuserssignindatauserprofile.md)                                                                                  | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   |                                                                                                                                                                       |
 | `protected`                                                                                                                                                           | *boolean*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | If the account has a Plex Home PIN enabled                                                                                                                            |                                                                                                                                                                       |
 | `rememberExpiresAt`                                                                                                                                                   | *number*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | Unix epoch datetime the authtoken expires                                                                                                                             | 1722364046                                                                                                                                                            |
 | `restricted`                                                                                                                                                          | *boolean*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | If the account is a Plex Home managed user                                                                                                                            |                                                                                                                                                                       |
 | `roles`                                                                                                                                                               | *string*[]                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                    | [Might be removed] List of account roles. Plexpass membership listed here                                                                                             |                                                                                                                                                                       |
 | `scrobbleTypes`                                                                                                                                                       | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | Unknown                                                                                                                                                               |                                                                                                                                                                       |
-| `services`                                                                                                                                                            | [models.PostUsersSigninDataServices](../models/postuserssignindataservices.md)[]                                                                                      | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   |                                                                                                                                                                       |
-| `subscription`                                                                                                                                                        | [models.PostUsersSigninDataSubscription](../models/postuserssignindatasubscription.md)                                                                                | :heavy_check_mark:                                                                                                                                                    | If the account’s Plex Pass subscription is active                                                                                                                     |                                                                                                                                                                       |
+| `services`                                                                                                                                                            | [models.PostUsersSignInDataServices](../models/postuserssignindataservices.md)[]                                                                                      | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   |                                                                                                                                                                       |
+| `subscription`                                                                                                                                                        | [models.PostUsersSignInDataSubscription](../models/postuserssignindatasubscription.md)                                                                                | :heavy_check_mark:                                                                                                                                                    | If the account’s Plex Pass subscription is active                                                                                                                     |                                                                                                                                                                       |
 | `subscriptionDescription`                                                                                                                                             | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | Description of the Plex Pass subscription                                                                                                                             |                                                                                                                                                                       |
-| `subscriptions`                                                                                                                                                       | [models.PostUsersSigninDataUserSubscription](../models/postuserssignindatausersubscription.md)[]                                                                      | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   |                                                                                                                                                                       |
+| `subscriptions`                                                                                                                                                       | [models.PostUsersSignInDataAuthenticationSubscription](../models/postuserssignindataauthenticationsubscription.md)[]                                                  | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   |                                                                                                                                                                       |
 | `thumb`                                                                                                                                                               | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | URL of the account thumbnail                                                                                                                                          | https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101                                                                                                            |
 | `title`                                                                                                                                                               | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | The title of the account (username or friendly name)                                                                                                                  | UsernameTitle                                                                                                                                                         |
 | `twoFactorEnabled`                                                                                                                                                    | *boolean*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | If two-factor authentication is enabled                                                                                                                               |                                                                                                                                                                       |

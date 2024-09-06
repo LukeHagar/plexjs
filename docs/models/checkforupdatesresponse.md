@@ -7,7 +7,7 @@ import { CheckForUpdatesResponse } from "@lukehagar/plexjs";
 
 let value: CheckForUpdatesResponse = {
     contentType: "<value>",
-    statusCode: 317202,
+    statusCode: 277718,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

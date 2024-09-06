@@ -5,6 +5,27 @@
 import { remap as remap$ } from "../lib/primitives.js";
 import * as z from "zod";
 
+export type GetRecentlyAddedRequest = {
+    /**
+     * The index of the first item to return. If not specified, the first item will be returned.
+     *
+     * @remarks
+     * If the number of items exceeds the limit, the response will be paginated.
+     * By default this is 0
+     *
+     */
+    xPlexContainerStart?: number | undefined;
+    /**
+     * The number of items to return. If not specified, all items will be returned.
+     *
+     * @remarks
+     * If the number of items exceeds the limit, the response will be paginated.
+     * By default this is 50
+     *
+     */
+    xPlexContainerSize?: number | undefined;
+};
+
 export type GetRecentlyAddedErrors = {
     code?: number | undefined;
     message?: string | undefined;
@@ -176,6 +197,59 @@ export type GetRecentlyAddedResponse = {
      */
     object?: GetRecentlyAddedResponseBody | undefined;
 };
+
+/** @internal */
+export const GetRecentlyAddedRequest$inboundSchema: z.ZodType<
+    GetRecentlyAddedRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        "X-Plex-Container-Start": z.number().int().default(0),
+        "X-Plex-Container-Size": z.number().int().default(50),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            "X-Plex-Container-Start": "xPlexContainerStart",
+            "X-Plex-Container-Size": "xPlexContainerSize",
+        });
+    });
+
+/** @internal */
+export type GetRecentlyAddedRequest$Outbound = {
+    "X-Plex-Container-Start": number;
+    "X-Plex-Container-Size": number;
+};
+
+/** @internal */
+export const GetRecentlyAddedRequest$outboundSchema: z.ZodType<
+    GetRecentlyAddedRequest$Outbound,
+    z.ZodTypeDef,
+    GetRecentlyAddedRequest
+> = z
+    .object({
+        xPlexContainerStart: z.number().int().default(0),
+        xPlexContainerSize: z.number().int().default(50),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            xPlexContainerStart: "X-Plex-Container-Start",
+            xPlexContainerSize: "X-Plex-Container-Size",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedRequest$ {
+    /** @deprecated use `GetRecentlyAddedRequest$inboundSchema` instead. */
+    export const inboundSchema = GetRecentlyAddedRequest$inboundSchema;
+    /** @deprecated use `GetRecentlyAddedRequest$outboundSchema` instead. */
+    export const outboundSchema = GetRecentlyAddedRequest$outboundSchema;
+    /** @deprecated use `GetRecentlyAddedRequest$Outbound` instead. */
+    export type Outbound = GetRecentlyAddedRequest$Outbound;
+}
 
 /** @internal */
 export const GetRecentlyAddedErrors$inboundSchema: z.ZodType<

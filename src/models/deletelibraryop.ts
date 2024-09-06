@@ -7,9 +7,13 @@ import * as z from "zod";
 
 export type DeleteLibraryRequest = {
     /**
-     * the Id of the library to query
+     * The unique key of the Plex library.
+     *
+     * @remarks
+     * Note: This is unique in the context of the Plex server.
+     *
      */
-    sectionId: number;
+    sectionKey: number;
 };
 
 export type DeleteLibraryErrors = {
@@ -82,12 +86,12 @@ export const DeleteLibraryRequest$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.object({
-    sectionId: z.number(),
+    sectionKey: z.number().int(),
 });
 
 /** @internal */
 export type DeleteLibraryRequest$Outbound = {
-    sectionId: number;
+    sectionKey: number;
 };
 
 /** @internal */
@@ -96,7 +100,7 @@ export const DeleteLibraryRequest$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     DeleteLibraryRequest
 > = z.object({
-    sectionId: z.number(),
+    sectionKey: z.number().int(),
 });
 
 /**

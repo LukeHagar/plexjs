@@ -1,16 +1,16 @@
-# PostUsersSigninDataServices
+# PostUsersSignInDataServices
 
 ## Example Usage
 
 ```typescript
-import { PostUsersSigninDataServices, PostUsersSigninDataStatus } from "@lukehagar/plexjs";
+import { PostUsersSignInDataServices, PostUsersSignInDataStatus } from "@lukehagar/plexjs";
 
-let value: PostUsersSigninDataServices = {
+let value: PostUsersSignInDataServices = {
     identifier: "metadata-dev",
     endpoint: "https://epg.provider.plex.tv",
     token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
     secret: "<value>",
-    status: PostUsersSigninDataStatus.Online,
+    status: PostUsersSignInDataStatus.Online,
 };
 ```
 
@@ -22,4 +22,4 @@ let value: PostUsersSigninDataServices = {
 | `endpoint`                                                                 | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        | https://epg.provider.plex.tv                                               |
 | `token`                                                                    | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        | DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv                                           |
 | `secret`                                                                   | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |                                                                            |
-| `status`                                                                   | [models.PostUsersSigninDataStatus](../models/postuserssignindatastatus.md) | :heavy_check_mark:                                                         | N/A                                                                        | online                                                                     |
+| `status`                                                                   | [models.PostUsersSignInDataStatus](../models/postuserssignindatastatus.md) | :heavy_check_mark:                                                         | N/A                                                                        | online                                                                     |

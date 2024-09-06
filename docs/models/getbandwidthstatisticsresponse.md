@@ -7,7 +7,7 @@ import { GetBandwidthStatisticsResponse } from "@lukehagar/plexjs";
 
 let value: GetBandwidthStatisticsResponse = {
     contentType: "<value>",
-    statusCode: 623510,
+    statusCode: 916723,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),
@@ -38,6 +38,7 @@ let value: GetBandwidthStatisticsResponse = {
             statisticsBandwidth: [
                 {
                     accountID: 238960586,
+                    deviceID: 208,
                     timespan: 6,
                     at: 1718387650,
                     lan: true,

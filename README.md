@@ -7,8 +7,33 @@
     </a>
 </div>
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Plex-API: An Open API Spec for interacting with Plex.tv and Plex Media Server
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Global Parameters](#global-parameters)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
@@ -48,7 +73,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "Postman",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -75,6 +100,7 @@ run();
 * [getServerIdentity](docs/sdks/server/README.md#getserveridentity) - Get Server Identity
 * [getMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount) - Get MyPlex Account
 * [getResizedPhoto](docs/sdks/server/README.md#getresizedphoto) - Get a Resized Photo
+* [getMediaProviders](docs/sdks/server/README.md#getmediaproviders) - Get Media Providers
 * [getServerList](docs/sdks/server/README.md#getserverlist) - Get Server List
 
 ### [media](docs/sdks/media/README.md)
@@ -82,6 +108,8 @@ run();
 * [markPlayed](docs/sdks/media/README.md#markplayed) - Mark Media Played
 * [markUnplayed](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
 * [updatePlayProgress](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
+* [getBannerImage](docs/sdks/media/README.md#getbannerimage) - Get Banner Image
+* [getThumbImage](docs/sdks/media/README.md#getthumbimage) - Get Thumb Image
 
 ### [video](docs/sdks/video/README.md)
 
@@ -107,10 +135,9 @@ run();
 * [getUserFriends](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
 * [getGeoData](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
 * [getHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
-* [getResources](docs/sdks/plex/README.md#getresources) - Get Resources
+* [getServerResources](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
 * [getPin](docs/sdks/plex/README.md#getpin) - Get a Pin
 * [getTokenByPinId](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
-* [getUserDetails](docs/sdks/plex/README.md#getuserdetails) - Get UserData By Token
 
 ### [hubs](docs/sdks/hubs/README.md)
 
@@ -127,16 +154,20 @@ run();
 
 * [getFileHash](docs/sdks/library/README.md#getfilehash) - Get Hash Value
 * [getRecentlyAdded](docs/sdks/library/README.md#getrecentlyadded) - Get Recently Added
-* [getLibraries](docs/sdks/library/README.md#getlibraries) - Get All Libraries
-* [getLibrary](docs/sdks/library/README.md#getlibrary) - Get Library Details
+* [getAllLibraries](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
+* [getLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 * [deleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 * [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
-* [refreshLibrary](docs/sdks/library/README.md#refreshlibrary) - Refresh Library
-* [searchLibrary](docs/sdks/library/README.md#searchlibrary) - Search Library
-* [getMetadata](docs/sdks/library/README.md#getmetadata) - Get Items Metadata
+* [getRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
+* [getSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
+* [getMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [getMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [getTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
 * [getOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
+
+### [watchlist](docs/sdks/watchlist/README.md)
+
+* [getWatchList](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
 
 ### [log](docs/sdks/log/README.md)
 
@@ -160,6 +191,8 @@ run();
 
 * [getTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token.
 * [getSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
+* [getUserDetails](docs/sdks/authentication/README.md#getuserdetails) - Get User Data By Token
+* [postUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User SignIn Data
 
 ### [statistics](docs/sdks/statistics/README.md)
 
@@ -179,14 +212,6 @@ run();
 * [getUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
 * [checkForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [applyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
-
-### [user](docs/sdks/user/README.md)
-
-* [postUsersSigninData](docs/sdks/user/README.md#postuserssignindata) - Get User SignIn Data
-
-### [watchlist](docs/sdks/watchlist/README.md)
-
-* [getWatchlist](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -203,18 +228,21 @@ Validation errors can also occur when either method arguments or data returned f
 
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { GetServerCapabilitiesServerResponseBody, PlexAPI } from "@lukehagar/plexjs";
 import { SDKValidationError } from "@lukehagar/plexjs/models";
 
 const plexAPI = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "Postman",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
     let result;
     try {
         result = await plexAPI.server.getServerCapabilities();
+
+        // Handle the result
+        console.log(result);
     } catch (err) {
         switch (true) {
             case err instanceof SDKValidationError: {
@@ -224,8 +252,9 @@ async function run() {
                 console.error(err.rawValue);
                 return;
             }
-            case err instanceof models.GetServerCapabilitiesServerResponseBody: {
-                console.error(err); // handle exception
+            case err instanceof GetServerCapabilitiesServerResponseBody: {
+                // Handle err.data$: GetServerCapabilitiesServerResponseBodyData
+                console.error(err);
                 return;
             }
             default: {
@@ -233,9 +262,6 @@ async function run() {
             }
         }
     }
-
-    // Handle the result
-    console.log(result);
 }
 
 run();
@@ -252,7 +278,7 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `{protocol}://{ip}:{port}` | `protocol` (default is `http`), `ip` (default is `10.10.10.47`), `port` (default is `32400`) |
+| 0 | `{protocol}://{ip}:{port}` | `protocol` (default is `https`), `ip` (default is `10.10.10.47`), `port` (default is `32400`) |
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
@@ -260,7 +286,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 const plexAPI = new PlexAPI({
     serverIdx: 0,
     accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "Postman",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -291,7 +317,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 const plexAPI = new PlexAPI({
     serverURL: "{protocol}://{ip}:{port}",
     accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "Postman",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -313,7 +339,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "Postman",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -396,7 +422,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "Postman",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -436,6 +462,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [activitiesGetServerActivities](docs/sdks/activities/README.md#getserveractivities)
 - [authenticationGetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation)
 - [authenticationGetTransientToken](docs/sdks/authentication/README.md#gettransienttoken)
+- [authenticationGetUserDetails](docs/sdks/authentication/README.md#getuserdetails)
+- [authenticationPostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata)
 - [butlerGetButlerTasks](docs/sdks/butler/README.md#getbutlertasks)
 - [butlerStartAllTasks](docs/sdks/butler/README.md#startalltasks)
 - [butlerStartTask](docs/sdks/butler/README.md#starttask)
@@ -444,20 +472,22 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [hubsGetGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs)
 - [hubsGetLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs)
 - [libraryDeleteLibrary](docs/sdks/library/README.md#deletelibrary)
+- [libraryGetAllLibraries](docs/sdks/library/README.md#getalllibraries)
 - [libraryGetFileHash](docs/sdks/library/README.md#getfilehash)
-- [libraryGetLibraries](docs/sdks/library/README.md#getlibraries)
+- [libraryGetLibraryDetails](docs/sdks/library/README.md#getlibrarydetails)
 - [libraryGetLibraryItems](docs/sdks/library/README.md#getlibraryitems)
-- [libraryGetLibrary](docs/sdks/library/README.md#getlibrary)
+- [libraryGetMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey)
 - [libraryGetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren)
-- [libraryGetMetadata](docs/sdks/library/README.md#getmetadata)
 - [libraryGetOnDeck](docs/sdks/library/README.md#getondeck)
 - [libraryGetRecentlyAdded](docs/sdks/library/README.md#getrecentlyadded)
+- [libraryGetRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata)
+- [libraryGetSearchLibrary](docs/sdks/library/README.md#getsearchlibrary)
 - [libraryGetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent)
-- [libraryRefreshLibrary](docs/sdks/library/README.md#refreshlibrary)
-- [librarySearchLibrary](docs/sdks/library/README.md#searchlibrary)
 - [logEnablePaperTrail](docs/sdks/log/README.md#enablepapertrail)
 - [logLogLine](docs/sdks/log/README.md#logline)
 - [logLogMultiLine](docs/sdks/log/README.md#logmultiline)
+- [mediaGetBannerImage](docs/sdks/media/README.md#getbannerimage)
+- [mediaGetThumbImage](docs/sdks/media/README.md#getthumbimage)
 - [mediaMarkPlayed](docs/sdks/media/README.md#markplayed)
 - [mediaMarkUnplayed](docs/sdks/media/README.md#markunplayed)
 - [mediaUpdatePlayProgress](docs/sdks/media/README.md#updateplayprogress)
@@ -474,15 +504,15 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [plexGetGeoData](docs/sdks/plex/README.md#getgeodata)
 - [plexGetHomeData](docs/sdks/plex/README.md#gethomedata)
 - [plexGetPin](docs/sdks/plex/README.md#getpin)
-- [plexGetResources](docs/sdks/plex/README.md#getresources)
+- [plexGetServerResources](docs/sdks/plex/README.md#getserverresources)
 - [plexGetTokenByPinId](docs/sdks/plex/README.md#gettokenbypinid)
-- [plexGetUserDetails](docs/sdks/plex/README.md#getuserdetails)
 - [plexGetUserFriends](docs/sdks/plex/README.md#getuserfriends)
 - [searchGetSearchResults](docs/sdks/search/README.md#getsearchresults)
 - [searchPerformSearch](docs/sdks/search/README.md#performsearch)
 - [searchPerformVoiceSearch](docs/sdks/search/README.md#performvoicesearch)
 - [serverGetAvailableClients](docs/sdks/server/README.md#getavailableclients)
 - [serverGetDevices](docs/sdks/server/README.md#getdevices)
+- [serverGetMediaProviders](docs/sdks/server/README.md#getmediaproviders)
 - [serverGetMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount)
 - [serverGetResizedPhoto](docs/sdks/server/README.md#getresizedphoto)
 - [serverGetServerCapabilities](docs/sdks/server/README.md#getservercapabilities)
@@ -499,14 +529,60 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [updaterApplyUpdates](docs/sdks/updater/README.md#applyupdates)
 - [updaterCheckForUpdates](docs/sdks/updater/README.md#checkforupdates)
 - [updaterGetUpdateStatus](docs/sdks/updater/README.md#getupdatestatus)
-- [userPostUsersSigninData](docs/sdks/user/README.md#postuserssignindata)
 - [videoGetTimeline](docs/sdks/video/README.md#gettimeline)
 - [videoStartUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode)
-- [watchlistGetWatchlist](docs/sdks/watchlist/README.md#getwatchlist)
+- [watchlistGetWatchList](docs/sdks/watchlist/README.md#getwatchlist)
 
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Global Parameters [global-parameters] -->
+## Global Parameters
+
+A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+
+For example, you can set `X-Plex-Client-Identifier` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+
+
+### Available Globals
+
+The following global parameter is available.
+
+| Name | Type | Required | Description |
+| ---- | ---- |:--------:| ----------- |
+| xPlexClientIdentifier | string |  | The unique identifier for the client application
+This is used to track the client application and its usage
+(UUID, serial number, or other number unique per device)
+ |
+
+
+### Example
+
+```typescript
+import { IncludeHttps, IncludeIPv6, IncludeRelay, PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+    accessToken: "<YOUR_API_KEY_HERE>",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+});
+
+async function run() {
+    const result = await plexAPI.plex.getServerResources({
+        xPlexToken: "CV5xoxjTpFKUzBTShsaf",
+        includeHttps: IncludeHttps.One,
+        includeRelay: IncludeRelay.One,
+        includeIPv6: IncludeIPv6.One,
+    });
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Global Parameters [global-parameters] -->
 
 <!-- Start Retries [retries] -->
 ## Retries
@@ -519,7 +595,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "Postman",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -560,7 +636,7 @@ const plexAPI = new PlexAPI({
         retryConnectionErrors: false,
     },
     accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "Postman",
+    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {

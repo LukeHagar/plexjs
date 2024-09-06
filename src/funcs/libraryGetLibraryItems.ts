@@ -52,9 +52,7 @@ import { Result } from "../types/fp.js";
  */
 export async function libraryGetLibraryItems(
     client$: PlexAPICore,
-    sectionId: any,
-    tag: models.Tag,
-    includeGuids?: number | undefined,
+    request: models.GetLibraryItemsRequest,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -69,11 +67,7 @@ export async function libraryGetLibraryItems(
         | ConnectionError
     >
 > {
-    const input$: models.GetLibraryItemsRequest = {
-        sectionId: sectionId,
-        tag: tag,
-        includeGuids: includeGuids,
-    };
+    const input$ = request;
 
     const parsed$ = schemas$.safeParse(
         input$,
@@ -87,17 +81,21 @@ export async function libraryGetLibraryItems(
     const body$ = null;
 
     const pathParams$ = {
-        sectionId: encodeSimple$("sectionId", payload$.sectionId, {
+        sectionKey: encodeSimple$("sectionKey", payload$.sectionKey, {
             explode: false,
             charEncoding: "percent",
         }),
         tag: encodeSimple$("tag", payload$.tag, { explode: false, charEncoding: "percent" }),
     };
 
-    const path$ = pathToFunc("/library/sections/{sectionId}/{tag}")(pathParams$);
+    const path$ = pathToFunc("/library/sections/{sectionKey}/{tag}")(pathParams$);
 
     const query$ = encodeFormQuery$({
         includeGuids: payload$.includeGuids,
+        includeMeta: payload$.includeMeta,
+        type: payload$.type,
+        "X-Plex-Container-Size": payload$["X-Plex-Container-Size"],
+        "X-Plex-Container-Start": payload$["X-Plex-Container-Start"],
     });
 
     const headers$ = new Headers({
@@ -107,7 +105,7 @@ export async function libraryGetLibraryItems(
     const accessToken$ = await extractSecurity(client$.options$.accessToken);
     const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
     const context = {
-        operationID: "getLibraryItems",
+        operationID: "get-library-items",
         oAuth2Scopes: [],
         securitySource: client$.options$.accessToken,
     };

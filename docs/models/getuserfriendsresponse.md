@@ -7,7 +7,7 @@ import { GetUserFriendsResponse, Status } from "@lukehagar/plexjs";
 
 let value: GetUserFriendsResponse = {
     contentType: "<value>",
-    statusCode: 87129,
+    statusCode: 648172,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

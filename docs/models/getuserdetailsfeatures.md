@@ -5,7 +5,7 @@
 ```typescript
 import { GetUserDetailsFeatures } from "@lukehagar/plexjs";
 
-let value: GetUserDetailsFeatures = GetUserDetailsFeatures.PhotosFavorites;
+let value: GetUserDetailsFeatures = GetUserDetailsFeatures.HRKEnableEUR;
 ```
 
 ## Values

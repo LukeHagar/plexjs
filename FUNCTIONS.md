@@ -27,7 +27,7 @@ import { SDKValidationError } from "@lukehagar/plexjs/models/sdkvalidationerror.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {

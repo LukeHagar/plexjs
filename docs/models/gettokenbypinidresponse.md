@@ -7,7 +7,7 @@ import { GetTokenByPinIdResponse } from "@lukehagar/plexjs";
 
 let value: GetTokenByPinIdResponse = {
     contentType: "<value>",
-    statusCode: 461479,
+    statusCode: 324141,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

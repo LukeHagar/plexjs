@@ -17,7 +17,6 @@ import { Server } from "./server.js";
 import { Sessions } from "./sessions.js";
 import { Statistics } from "./statistics.js";
 import { Updater } from "./updater.js";
-import { User } from "./user.js";
 import { Video } from "./video.js";
 import { Watchlist } from "./watchlist.js";
 
@@ -67,6 +66,11 @@ export class PlexAPI extends ClientSDK {
         return (this._library ??= new Library(this.options$));
     }
 
+    private _watchlist?: Watchlist;
+    get watchlist(): Watchlist {
+        return (this._watchlist ??= new Watchlist(this.options$));
+    }
+
     private _log?: Log;
     get log(): Log {
         return (this._log ??= new Log(this.options$));
@@ -95,15 +99,5 @@ export class PlexAPI extends ClientSDK {
     private _updater?: Updater;
     get updater(): Updater {
         return (this._updater ??= new Updater(this.options$));
-    }
-
-    private _user?: User;
-    get user(): User {
-        return (this._user ??= new User(this.options$));
-    }
-
-    private _watchlist?: Watchlist;
-    get watchlist(): Watchlist {
-        return (this._watchlist ??= new Watchlist(this.options$));
     }
 }

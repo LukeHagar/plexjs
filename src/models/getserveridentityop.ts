@@ -5,17 +5,12 @@
 import { remap as remap$ } from "../lib/primitives.js";
 import * as z from "zod";
 
-export type GetServerIdentityErrors = {
-    code?: number | undefined;
-    message?: string | undefined;
-    status?: number | undefined;
-};
-
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Request Timeout
  */
 export type GetServerIdentityServerResponseBodyData = {
-    errors?: Array<GetServerIdentityErrors> | undefined;
+    code?: number | undefined;
+    message?: string | undefined;
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
@@ -23,10 +18,10 @@ export type GetServerIdentityServerResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Request Timeout
  */
 export class GetServerIdentityServerResponseBody extends Error {
-    errors?: Array<GetServerIdentityErrors> | undefined;
+    code?: number | undefined;
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
@@ -43,8 +38,8 @@ export class GetServerIdentityServerResponseBody extends Error {
         super(message);
         this.data$ = err;
 
-        if (err.errors != null) {
-            this.errors = err.errors;
+        if (err.code != null) {
+            this.code = err.code;
         }
         if (err.rawResponse != null) {
             this.rawResponse = err.rawResponse;
@@ -88,55 +83,14 @@ export type GetServerIdentityResponse = {
 };
 
 /** @internal */
-export const GetServerIdentityErrors$inboundSchema: z.ZodType<
-    GetServerIdentityErrors,
-    z.ZodTypeDef,
-    unknown
-> = z.object({
-    code: z.number().optional(),
-    message: z.string().optional(),
-    status: z.number().optional(),
-});
-
-/** @internal */
-export type GetServerIdentityErrors$Outbound = {
-    code?: number | undefined;
-    message?: string | undefined;
-    status?: number | undefined;
-};
-
-/** @internal */
-export const GetServerIdentityErrors$outboundSchema: z.ZodType<
-    GetServerIdentityErrors$Outbound,
-    z.ZodTypeDef,
-    GetServerIdentityErrors
-> = z.object({
-    code: z.number().optional(),
-    message: z.string().optional(),
-    status: z.number().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetServerIdentityErrors$ {
-    /** @deprecated use `GetServerIdentityErrors$inboundSchema` instead. */
-    export const inboundSchema = GetServerIdentityErrors$inboundSchema;
-    /** @deprecated use `GetServerIdentityErrors$outboundSchema` instead. */
-    export const outboundSchema = GetServerIdentityErrors$outboundSchema;
-    /** @deprecated use `GetServerIdentityErrors$Outbound` instead. */
-    export type Outbound = GetServerIdentityErrors$Outbound;
-}
-
-/** @internal */
 export const GetServerIdentityServerResponseBody$inboundSchema: z.ZodType<
     GetServerIdentityServerResponseBody,
     z.ZodTypeDef,
     unknown
 > = z
     .object({
-        errors: z.array(z.lazy(() => GetServerIdentityErrors$inboundSchema)).optional(),
+        code: z.number().int().optional(),
+        message: z.string().optional(),
         RawResponse: z.instanceof(Response).optional(),
     })
     .transform((v) => {
@@ -149,7 +103,8 @@ export const GetServerIdentityServerResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetServerIdentityServerResponseBody$Outbound = {
-    errors?: Array<GetServerIdentityErrors$Outbound> | undefined;
+    code?: number | undefined;
+    message?: string | undefined;
     RawResponse?: never | undefined;
 };
 
@@ -164,7 +119,8 @@ export const GetServerIdentityServerResponseBody$outboundSchema: z.ZodType<
     .pipe(
         z
             .object({
-                errors: z.array(z.lazy(() => GetServerIdentityErrors$outboundSchema)).optional(),
+                code: z.number().int().optional(),
+                message: z.string().optional(),
                 rawResponse: z
                     .instanceof(Response)
                     .transform(() => {

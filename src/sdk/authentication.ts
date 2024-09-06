@@ -4,6 +4,8 @@
 
 import { authenticationGetSourceConnectionInformation } from "../funcs/authenticationGetSourceConnectionInformation.js";
 import { authenticationGetTransientToken } from "../funcs/authenticationGetTransientToken.js";
+import { authenticationGetUserDetails } from "../funcs/authenticationGetUserDetails.js";
+import { authenticationPostUsersSignInData } from "../funcs/authenticationPostUsersSignInData.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -37,5 +39,34 @@ export class Authentication extends ClientSDK {
         options?: RequestOptions
     ): Promise<models.GetSourceConnectionInformationResponse> {
         return unwrapAsync(authenticationGetSourceConnectionInformation(this, source, options));
+    }
+
+    /**
+     * Get User Data By Token
+     *
+     * @remarks
+     * Get the User data from the provided X-Plex-Token
+     */
+    async getUserDetails(
+        xPlexToken: string,
+        options?: RequestOptions & { serverURL?: string }
+    ): Promise<models.GetUserDetailsResponse> {
+        return unwrapAsync(authenticationGetUserDetails(this, xPlexToken, options));
+    }
+
+    /**
+     * Get User SignIn Data
+     *
+     * @remarks
+     * Sign in user with username and password and return user data with Plex authentication token
+     */
+    async postUsersSignInData(
+        xPlexClientIdentifier?: string | undefined,
+        requestBody?: models.PostUsersSignInDataRequestBody | undefined,
+        options?: RequestOptions & { serverURL?: string }
+    ): Promise<models.PostUsersSignInDataResponse> {
+        return unwrapAsync(
+            authenticationPostUsersSignInData(this, xPlexClientIdentifier, requestBody, options)
+        );
     }
 }

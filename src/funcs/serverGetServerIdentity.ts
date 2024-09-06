@@ -5,7 +5,6 @@
 import { PlexAPICore } from "../core.js";
 import * as m$ from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
-import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
     ConnectionError,
@@ -23,7 +22,7 @@ import { Result } from "../types/fp.js";
  * Get Server Identity
  *
  * @remarks
- * Get Server Identity
+ * This request is useful to determine if the server is online or offline
  */
 export async function serverGetServerIdentity(
     client$: PlexAPICore,
@@ -47,19 +46,11 @@ export async function serverGetServerIdentity(
         Accept: "application/json",
     });
 
-    const accessToken$ = await extractSecurity(client$.options$.accessToken);
-    const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
-    const context = {
-        operationID: "getServerIdentity",
-        oAuth2Scopes: [],
-        securitySource: client$.options$.accessToken,
-    };
-    const securitySettings$ = resolveGlobalSecurity(security$);
+    const context = { operationID: "get-server-identity", oAuth2Scopes: [], securitySource: null };
 
     const requestRes = client$.createRequest$(
         context,
         {
-            security: securitySettings$,
             method: "GET",
             path: path$,
             headers: headers$,
@@ -74,7 +65,7 @@ export async function serverGetServerIdentity(
 
     const doResult = await client$.do$(request$, {
         context,
-        errorCodes: ["400", "401", "4XX", "5XX"],
+        errorCodes: ["408", "4XX", "5XX"],
         retryConfig: options?.retries || client$.options$.retryConfig,
         retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
     });
@@ -102,8 +93,8 @@ export async function serverGetServerIdentity(
         | ConnectionError
     >(
         m$.json(200, models.GetServerIdentityResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetServerIdentityServerResponseBody$inboundSchema)
+        m$.jsonErr(408, models.GetServerIdentityServerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

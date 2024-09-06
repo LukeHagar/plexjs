@@ -1,13 +1,13 @@
-# GetWatchlistResponseBody
+# GetWatchListResponseBody
 
 Watchlist Data
 
 ## Example Usage
 
 ```typescript
-import { GetWatchlistResponseBody } from "@lukehagar/plexjs";
+import { GetWatchListResponseBody } from "@lukehagar/plexjs";
 
-let value: GetWatchlistResponseBody = {};
+let value: GetWatchListResponseBody = {};
 ```
 
 ## Fields

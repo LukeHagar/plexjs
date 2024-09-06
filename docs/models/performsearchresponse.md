@@ -7,7 +7,7 @@ import { PerformSearchResponse } from "@lukehagar/plexjs";
 
 let value: PerformSearchResponse = {
     contentType: "<value>",
-    statusCode: 758616,
+    statusCode: 943749,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

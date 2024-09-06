@@ -25,12 +25,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.butler.getButlerTasks();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -50,7 +50,7 @@ import { butlerGetButlerTasks } from "@lukehagar/plexjs/funcs/butlerGetButlerTas
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -105,12 +105,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.butler.startAllTasks();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -130,7 +130,7 @@ import { butlerStartAllTasks } from "@lukehagar/plexjs/funcs/butlerStartAllTasks
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -181,12 +181,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.butler.stopAllTasks();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -206,7 +206,7 @@ import { butlerStopAllTasks } from "@lukehagar/plexjs/funcs/butlerStopAllTasks.j
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -261,12 +261,12 @@ import { PlexAPI, TaskName } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.butler.startTask(TaskName.CleanOldBundles);
-
+  
   // Handle the result
   console.log(result)
 }
@@ -287,7 +287,7 @@ import { butlerStartTask } from "@lukehagar/plexjs/funcs/butlerStartTask.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -339,12 +339,12 @@ import { PathParamTaskName, PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.butler.stopTask(PathParamTaskName.BackupDatabase);
-
+  
   // Handle the result
   console.log(result)
 }
@@ -365,7 +365,7 @@ import { butlerStopTask } from "@lukehagar/plexjs/funcs/butlerStopTask.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {

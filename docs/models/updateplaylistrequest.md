@@ -6,7 +6,7 @@
 import { UpdatePlaylistRequest } from "@lukehagar/plexjs";
 
 let value: UpdatePlaylistRequest = {
-    playlistID: 4386.01,
+    playlistID: 3172.02,
 };
 ```
 

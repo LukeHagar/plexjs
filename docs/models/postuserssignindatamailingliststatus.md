@@ -1,18 +1,18 @@
-# PostUsersSigninDataMailingListStatus
+# PostUsersSignInDataMailingListStatus
 
 Your current mailing list status
 
 ## Example Usage
 
 ```typescript
-import { PostUsersSigninDataMailingListStatus } from "@lukehagar/plexjs";
+import { PostUsersSignInDataMailingListStatus } from "@lukehagar/plexjs";
 
-let value: PostUsersSigninDataMailingListStatus = PostUsersSigninDataMailingListStatus.Unsubscribed;
+let value: PostUsersSignInDataMailingListStatus = PostUsersSignInDataMailingListStatus.Unsubscribed;
 ```
 
 ## Values
 
 | Name           | Value          |
 | -------------- | -------------- |
-| `Subscribed`   | subscribed     |
+| `Active`       | active         |
 | `Unsubscribed` | unsubscribed   |

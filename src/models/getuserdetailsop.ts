@@ -7,6 +7,13 @@ import * as z from "zod";
 
 export const GetUserDetailsOpServerList = ["https://plex.tv/api/v2"] as const;
 
+export type GetUserDetailsRequest = {
+    /**
+     * Plex Authentication Token
+     */
+    xPlexToken: string;
+};
+
 export type GetUserDetailsErrors = {
     code?: number | undefined;
     message?: string | undefined;
@@ -60,8 +67,42 @@ export class GetUserDetailsResponseBody extends Error {
  * Your current mailing list status
  */
 export enum MailingListStatus {
-    Subscribed = "subscribed",
+    Active = "active",
     Unsubscribed = "unsubscribed",
+}
+
+/**
+ * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
+ */
+export enum AutoSelectSubtitle {
+    Zero = "0",
+    One = "1",
+}
+
+/**
+ * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
+ */
+export enum DefaultSubtitleAccessibility {
+    Zero = "0",
+    One = "1",
+}
+
+/**
+ * The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
+ */
+export enum DefaultSubtitleForced {
+    Zero = "0",
+    One = "1",
+}
+
+export enum WatchedIndicator {
+    Zero = "0",
+    One = "1",
+}
+
+export enum MediaReviewsVisibility {
+    Zero = 0,
+    One = 1,
 }
 
 export type UserProfile = {
@@ -72,25 +113,25 @@ export type UserProfile = {
     /**
      * The preferred audio language for the account
      */
-    defaultAudioLanguage?: string | undefined;
+    defaultAudioLanguage: string | null;
     /**
      * The preferred subtitle language for the account
      */
-    defaultSubtitleLanguage?: string | undefined;
+    defaultSubtitleLanguage: string | null;
     /**
      * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
      */
-    autoSelectSubtitle?: number | undefined;
+    autoSelectSubtitle?: AutoSelectSubtitle | undefined;
     /**
      * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
      */
-    defaultSubtitleAccessibility?: number | undefined;
+    defaultSubtitleAccessibility?: DefaultSubtitleAccessibility | undefined;
     /**
      * The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
      */
-    defaultSubtitleForced?: number | undefined;
-    watchedIndicator?: number | undefined;
-    mediaReviewsVisibility?: number | undefined;
+    defaultSubtitleForced?: DefaultSubtitleForced | undefined;
+    watchedIndicator?: WatchedIndicator | undefined;
+    mediaReviewsVisibility?: MediaReviewsVisibility | undefined;
 };
 
 export enum GetUserDetailsStatus {
@@ -171,7 +212,7 @@ export enum Features {
 /**
  * String representation of subscriptionActive
  */
-export enum GetUserDetailsPlexStatus {
+export enum GetUserDetailsAuthenticationStatus {
     Inactive = "Inactive",
     Active = "Active",
 }
@@ -191,11 +232,11 @@ export type Subscription = {
     /**
      * Date the account subscribed to Plex Pass
      */
-    subscribedAt?: Date | undefined;
+    subscribedAt?: string | null | undefined;
     /**
      * String representation of subscriptionActive
      */
-    status?: GetUserDetailsPlexStatus | undefined;
+    status?: GetUserDetailsAuthenticationStatus | undefined;
     /**
      * Payment service used for your Plex Pass subscription
      */
@@ -271,7 +312,7 @@ export enum GetUserDetailsFeatures {
 /**
  * String representation of subscriptionActive
  */
-export enum GetUserDetailsPlexResponseStatus {
+export enum GetUserDetailsAuthenticationResponseStatus {
     Inactive = "Inactive",
     Active = "Active",
 }
@@ -288,11 +329,11 @@ export type GetUserDetailsSubscription = {
     /**
      * Date the account subscribed to Plex Pass
      */
-    subscribedAt?: Date | undefined;
+    subscribedAt?: string | null | undefined;
     /**
      * String representation of subscriptionActive
      */
-    status?: GetUserDetailsPlexResponseStatus | undefined;
+    status?: GetUserDetailsAuthenticationResponseStatus | undefined;
     /**
      * Payment service used for your Plex Pass subscription
      */
@@ -322,7 +363,7 @@ export type GetUserDetailsUserPlexAccount = {
     /**
      * Unknown
      */
-    anonymous?: boolean | undefined;
+    anonymous?: boolean | null | undefined;
     /**
      * The account token
      */
@@ -409,7 +450,7 @@ export type GetUserDetailsUserPlexAccount = {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     pin?: string | undefined;
-    profile: Array<UserProfile>;
+    profile: UserProfile;
     /**
      * If the account has a Plex Home PIN enabled
      */
@@ -480,6 +521,54 @@ export type GetUserDetailsResponse = {
      */
     userPlexAccount?: GetUserDetailsUserPlexAccount | undefined;
 };
+
+/** @internal */
+export const GetUserDetailsRequest$inboundSchema: z.ZodType<
+    GetUserDetailsRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        "X-Plex-Token": z.string(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            "X-Plex-Token": "xPlexToken",
+        });
+    });
+
+/** @internal */
+export type GetUserDetailsRequest$Outbound = {
+    "X-Plex-Token": string;
+};
+
+/** @internal */
+export const GetUserDetailsRequest$outboundSchema: z.ZodType<
+    GetUserDetailsRequest$Outbound,
+    z.ZodTypeDef,
+    GetUserDetailsRequest
+> = z
+    .object({
+        xPlexToken: z.string(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            xPlexToken: "X-Plex-Token",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetUserDetailsRequest$ {
+    /** @deprecated use `GetUserDetailsRequest$inboundSchema` instead. */
+    export const inboundSchema = GetUserDetailsRequest$inboundSchema;
+    /** @deprecated use `GetUserDetailsRequest$outboundSchema` instead. */
+    export const outboundSchema = GetUserDetailsRequest$outboundSchema;
+    /** @deprecated use `GetUserDetailsRequest$Outbound` instead. */
+    export type Outbound = GetUserDetailsRequest$Outbound;
+}
 
 /** @internal */
 export const GetUserDetailsErrors$inboundSchema: z.ZodType<
@@ -606,26 +695,123 @@ export namespace MailingListStatus$ {
 }
 
 /** @internal */
+export const AutoSelectSubtitle$inboundSchema: z.ZodNativeEnum<typeof AutoSelectSubtitle> =
+    z.nativeEnum(AutoSelectSubtitle);
+
+/** @internal */
+export const AutoSelectSubtitle$outboundSchema: z.ZodNativeEnum<typeof AutoSelectSubtitle> =
+    AutoSelectSubtitle$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AutoSelectSubtitle$ {
+    /** @deprecated use `AutoSelectSubtitle$inboundSchema` instead. */
+    export const inboundSchema = AutoSelectSubtitle$inboundSchema;
+    /** @deprecated use `AutoSelectSubtitle$outboundSchema` instead. */
+    export const outboundSchema = AutoSelectSubtitle$outboundSchema;
+}
+
+/** @internal */
+export const DefaultSubtitleAccessibility$inboundSchema: z.ZodNativeEnum<
+    typeof DefaultSubtitleAccessibility
+> = z.nativeEnum(DefaultSubtitleAccessibility);
+
+/** @internal */
+export const DefaultSubtitleAccessibility$outboundSchema: z.ZodNativeEnum<
+    typeof DefaultSubtitleAccessibility
+> = DefaultSubtitleAccessibility$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DefaultSubtitleAccessibility$ {
+    /** @deprecated use `DefaultSubtitleAccessibility$inboundSchema` instead. */
+    export const inboundSchema = DefaultSubtitleAccessibility$inboundSchema;
+    /** @deprecated use `DefaultSubtitleAccessibility$outboundSchema` instead. */
+    export const outboundSchema = DefaultSubtitleAccessibility$outboundSchema;
+}
+
+/** @internal */
+export const DefaultSubtitleForced$inboundSchema: z.ZodNativeEnum<typeof DefaultSubtitleForced> =
+    z.nativeEnum(DefaultSubtitleForced);
+
+/** @internal */
+export const DefaultSubtitleForced$outboundSchema: z.ZodNativeEnum<typeof DefaultSubtitleForced> =
+    DefaultSubtitleForced$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DefaultSubtitleForced$ {
+    /** @deprecated use `DefaultSubtitleForced$inboundSchema` instead. */
+    export const inboundSchema = DefaultSubtitleForced$inboundSchema;
+    /** @deprecated use `DefaultSubtitleForced$outboundSchema` instead. */
+    export const outboundSchema = DefaultSubtitleForced$outboundSchema;
+}
+
+/** @internal */
+export const WatchedIndicator$inboundSchema: z.ZodNativeEnum<typeof WatchedIndicator> =
+    z.nativeEnum(WatchedIndicator);
+
+/** @internal */
+export const WatchedIndicator$outboundSchema: z.ZodNativeEnum<typeof WatchedIndicator> =
+    WatchedIndicator$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace WatchedIndicator$ {
+    /** @deprecated use `WatchedIndicator$inboundSchema` instead. */
+    export const inboundSchema = WatchedIndicator$inboundSchema;
+    /** @deprecated use `WatchedIndicator$outboundSchema` instead. */
+    export const outboundSchema = WatchedIndicator$outboundSchema;
+}
+
+/** @internal */
+export const MediaReviewsVisibility$inboundSchema: z.ZodNativeEnum<typeof MediaReviewsVisibility> =
+    z.nativeEnum(MediaReviewsVisibility);
+
+/** @internal */
+export const MediaReviewsVisibility$outboundSchema: z.ZodNativeEnum<typeof MediaReviewsVisibility> =
+    MediaReviewsVisibility$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MediaReviewsVisibility$ {
+    /** @deprecated use `MediaReviewsVisibility$inboundSchema` instead. */
+    export const inboundSchema = MediaReviewsVisibility$inboundSchema;
+    /** @deprecated use `MediaReviewsVisibility$outboundSchema` instead. */
+    export const outboundSchema = MediaReviewsVisibility$outboundSchema;
+}
+
+/** @internal */
 export const UserProfile$inboundSchema: z.ZodType<UserProfile, z.ZodTypeDef, unknown> = z.object({
     autoSelectAudio: z.boolean().default(true),
-    defaultAudioLanguage: z.string().optional(),
-    defaultSubtitleLanguage: z.string().optional(),
-    autoSelectSubtitle: z.number().int().optional(),
-    defaultSubtitleAccessibility: z.number().int().optional(),
-    defaultSubtitleForced: z.number().int().optional(),
-    watchedIndicator: z.number().int().optional(),
-    mediaReviewsVisibility: z.number().int().optional(),
+    defaultAudioLanguage: z.nullable(z.string()),
+    defaultSubtitleLanguage: z.nullable(z.string()),
+    autoSelectSubtitle: AutoSelectSubtitle$inboundSchema.optional(),
+    defaultSubtitleAccessibility: DefaultSubtitleAccessibility$inboundSchema.optional(),
+    defaultSubtitleForced: DefaultSubtitleForced$inboundSchema.optional(),
+    watchedIndicator: WatchedIndicator$inboundSchema.optional(),
+    mediaReviewsVisibility: MediaReviewsVisibility$inboundSchema.optional(),
 });
 
 /** @internal */
 export type UserProfile$Outbound = {
     autoSelectAudio: boolean;
-    defaultAudioLanguage?: string | undefined;
-    defaultSubtitleLanguage?: string | undefined;
-    autoSelectSubtitle?: number | undefined;
-    defaultSubtitleAccessibility?: number | undefined;
-    defaultSubtitleForced?: number | undefined;
-    watchedIndicator?: number | undefined;
+    defaultAudioLanguage: string | null;
+    defaultSubtitleLanguage: string | null;
+    autoSelectSubtitle?: string | undefined;
+    defaultSubtitleAccessibility?: string | undefined;
+    defaultSubtitleForced?: string | undefined;
+    watchedIndicator?: string | undefined;
     mediaReviewsVisibility?: number | undefined;
 };
 
@@ -636,13 +822,13 @@ export const UserProfile$outboundSchema: z.ZodType<
     UserProfile
 > = z.object({
     autoSelectAudio: z.boolean().default(true),
-    defaultAudioLanguage: z.string().optional(),
-    defaultSubtitleLanguage: z.string().optional(),
-    autoSelectSubtitle: z.number().int().optional(),
-    defaultSubtitleAccessibility: z.number().int().optional(),
-    defaultSubtitleForced: z.number().int().optional(),
-    watchedIndicator: z.number().int().optional(),
-    mediaReviewsVisibility: z.number().int().optional(),
+    defaultAudioLanguage: z.nullable(z.string()),
+    defaultSubtitleLanguage: z.nullable(z.string()),
+    autoSelectSubtitle: AutoSelectSubtitle$outboundSchema.optional(),
+    defaultSubtitleAccessibility: DefaultSubtitleAccessibility$outboundSchema.optional(),
+    defaultSubtitleForced: DefaultSubtitleForced$outboundSchema.optional(),
+    watchedIndicator: WatchedIndicator$outboundSchema.optional(),
+    mediaReviewsVisibility: MediaReviewsVisibility$outboundSchema.optional(),
 });
 
 /**
@@ -736,36 +922,32 @@ export namespace Features$ {
 }
 
 /** @internal */
-export const GetUserDetailsPlexStatus$inboundSchema: z.ZodNativeEnum<
-    typeof GetUserDetailsPlexStatus
-> = z.nativeEnum(GetUserDetailsPlexStatus);
+export const GetUserDetailsAuthenticationStatus$inboundSchema: z.ZodNativeEnum<
+    typeof GetUserDetailsAuthenticationStatus
+> = z.nativeEnum(GetUserDetailsAuthenticationStatus);
 
 /** @internal */
-export const GetUserDetailsPlexStatus$outboundSchema: z.ZodNativeEnum<
-    typeof GetUserDetailsPlexStatus
-> = GetUserDetailsPlexStatus$inboundSchema;
+export const GetUserDetailsAuthenticationStatus$outboundSchema: z.ZodNativeEnum<
+    typeof GetUserDetailsAuthenticationStatus
+> = GetUserDetailsAuthenticationStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetUserDetailsPlexStatus$ {
-    /** @deprecated use `GetUserDetailsPlexStatus$inboundSchema` instead. */
-    export const inboundSchema = GetUserDetailsPlexStatus$inboundSchema;
-    /** @deprecated use `GetUserDetailsPlexStatus$outboundSchema` instead. */
-    export const outboundSchema = GetUserDetailsPlexStatus$outboundSchema;
+export namespace GetUserDetailsAuthenticationStatus$ {
+    /** @deprecated use `GetUserDetailsAuthenticationStatus$inboundSchema` instead. */
+    export const inboundSchema = GetUserDetailsAuthenticationStatus$inboundSchema;
+    /** @deprecated use `GetUserDetailsAuthenticationStatus$outboundSchema` instead. */
+    export const outboundSchema = GetUserDetailsAuthenticationStatus$outboundSchema;
 }
 
 /** @internal */
 export const Subscription$inboundSchema: z.ZodType<Subscription, z.ZodTypeDef, unknown> = z.object({
     features: z.array(Features$inboundSchema).optional(),
     active: z.boolean().optional(),
-    subscribedAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
-        .optional(),
-    status: GetUserDetailsPlexStatus$inboundSchema.optional(),
+    subscribedAt: z.nullable(z.string()).optional(),
+    status: GetUserDetailsAuthenticationStatus$inboundSchema.optional(),
     paymentService: z.nullable(z.string()).optional(),
     plan: z.nullable(z.string()).optional(),
 });
@@ -774,7 +956,7 @@ export const Subscription$inboundSchema: z.ZodType<Subscription, z.ZodTypeDef, u
 export type Subscription$Outbound = {
     features?: Array<string> | undefined;
     active?: boolean | undefined;
-    subscribedAt?: string | undefined;
+    subscribedAt?: string | null | undefined;
     status?: string | undefined;
     paymentService?: string | null | undefined;
     plan?: string | null | undefined;
@@ -788,11 +970,8 @@ export const Subscription$outboundSchema: z.ZodType<
 > = z.object({
     features: z.array(Features$outboundSchema).optional(),
     active: z.boolean().optional(),
-    subscribedAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
-    status: GetUserDetailsPlexStatus$outboundSchema.optional(),
+    subscribedAt: z.nullable(z.string()).optional(),
+    status: GetUserDetailsAuthenticationStatus$outboundSchema.optional(),
     paymentService: z.nullable(z.string()).optional(),
     plan: z.nullable(z.string()).optional(),
 });
@@ -830,24 +1009,24 @@ export namespace GetUserDetailsFeatures$ {
 }
 
 /** @internal */
-export const GetUserDetailsPlexResponseStatus$inboundSchema: z.ZodNativeEnum<
-    typeof GetUserDetailsPlexResponseStatus
-> = z.nativeEnum(GetUserDetailsPlexResponseStatus);
+export const GetUserDetailsAuthenticationResponseStatus$inboundSchema: z.ZodNativeEnum<
+    typeof GetUserDetailsAuthenticationResponseStatus
+> = z.nativeEnum(GetUserDetailsAuthenticationResponseStatus);
 
 /** @internal */
-export const GetUserDetailsPlexResponseStatus$outboundSchema: z.ZodNativeEnum<
-    typeof GetUserDetailsPlexResponseStatus
-> = GetUserDetailsPlexResponseStatus$inboundSchema;
+export const GetUserDetailsAuthenticationResponseStatus$outboundSchema: z.ZodNativeEnum<
+    typeof GetUserDetailsAuthenticationResponseStatus
+> = GetUserDetailsAuthenticationResponseStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetUserDetailsPlexResponseStatus$ {
-    /** @deprecated use `GetUserDetailsPlexResponseStatus$inboundSchema` instead. */
-    export const inboundSchema = GetUserDetailsPlexResponseStatus$inboundSchema;
-    /** @deprecated use `GetUserDetailsPlexResponseStatus$outboundSchema` instead. */
-    export const outboundSchema = GetUserDetailsPlexResponseStatus$outboundSchema;
+export namespace GetUserDetailsAuthenticationResponseStatus$ {
+    /** @deprecated use `GetUserDetailsAuthenticationResponseStatus$inboundSchema` instead. */
+    export const inboundSchema = GetUserDetailsAuthenticationResponseStatus$inboundSchema;
+    /** @deprecated use `GetUserDetailsAuthenticationResponseStatus$outboundSchema` instead. */
+    export const outboundSchema = GetUserDetailsAuthenticationResponseStatus$outboundSchema;
 }
 
 /** @internal */
@@ -858,12 +1037,8 @@ export const GetUserDetailsSubscription$inboundSchema: z.ZodType<
 > = z.object({
     features: z.array(GetUserDetailsFeatures$inboundSchema).optional(),
     active: z.boolean().optional(),
-    subscribedAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
-        .optional(),
-    status: GetUserDetailsPlexResponseStatus$inboundSchema.optional(),
+    subscribedAt: z.nullable(z.string()).optional(),
+    status: GetUserDetailsAuthenticationResponseStatus$inboundSchema.optional(),
     paymentService: z.nullable(z.string()).optional(),
     plan: z.nullable(z.string()).optional(),
 });
@@ -872,7 +1047,7 @@ export const GetUserDetailsSubscription$inboundSchema: z.ZodType<
 export type GetUserDetailsSubscription$Outbound = {
     features?: Array<string> | undefined;
     active?: boolean | undefined;
-    subscribedAt?: string | undefined;
+    subscribedAt?: string | null | undefined;
     status?: string | undefined;
     paymentService?: string | null | undefined;
     plan?: string | null | undefined;
@@ -886,11 +1061,8 @@ export const GetUserDetailsSubscription$outboundSchema: z.ZodType<
 > = z.object({
     features: z.array(GetUserDetailsFeatures$outboundSchema).optional(),
     active: z.boolean().optional(),
-    subscribedAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
-    status: GetUserDetailsPlexResponseStatus$outboundSchema.optional(),
+    subscribedAt: z.nullable(z.string()).optional(),
+    status: GetUserDetailsAuthenticationResponseStatus$outboundSchema.optional(),
     paymentService: z.nullable(z.string()).optional(),
     plan: z.nullable(z.string()).optional(),
 });
@@ -927,32 +1099,32 @@ export const GetUserDetailsUserPlexAccount$inboundSchema: z.ZodType<
             .datetime({ offset: true })
             .transform((v) => new Date(v))
     ),
-    anonymous: z.boolean(),
+    anonymous: z.nullable(z.boolean().default(false)),
     authToken: z.string(),
-    backupCodesCreated: z.boolean(),
-    confirmed: z.boolean(),
+    backupCodesCreated: z.boolean().default(false),
+    confirmed: z.boolean().default(false),
     country: z.string(),
     email: z.string(),
-    emailOnlyAuth: z.boolean(),
-    experimentalFeatures: z.boolean(),
+    emailOnlyAuth: z.boolean().default(false),
+    experimentalFeatures: z.boolean().default(false),
     friendlyName: z.string(),
     entitlements: z.array(z.string()),
-    guest: z.boolean(),
+    guest: z.boolean().default(false),
     hasPassword: z.boolean().default(true),
-    home: z.boolean(),
-    homeAdmin: z.boolean(),
+    home: z.boolean().default(false),
+    homeAdmin: z.boolean().default(false),
     homeSize: z.number().int(),
     id: z.number().int(),
     joinedAt: z.number().int(),
     locale: z.nullable(z.string()),
-    mailingListActive: z.boolean(),
+    mailingListActive: z.boolean().default(false),
     mailingListStatus: MailingListStatus$inboundSchema,
     maxHomeSize: z.number().int(),
     pin: z.string().optional(),
-    profile: z.array(z.lazy(() => UserProfile$inboundSchema)),
-    protected: z.boolean(),
+    profile: z.lazy(() => UserProfile$inboundSchema),
+    protected: z.boolean().default(false),
     rememberExpiresAt: z.number().int(),
-    restricted: z.boolean(),
+    restricted: z.boolean().default(false),
     roles: z.array(z.string()).optional(),
     scrobbleTypes: z.string(),
     services: z.array(z.lazy(() => Services$inboundSchema)),
@@ -961,7 +1133,7 @@ export const GetUserDetailsUserPlexAccount$inboundSchema: z.ZodType<
     subscriptions: z.array(z.lazy(() => GetUserDetailsSubscription$inboundSchema)),
     thumb: z.string(),
     title: z.string(),
-    twoFactorEnabled: z.boolean(),
+    twoFactorEnabled: z.boolean().default(false),
     username: z.string(),
     uuid: z.string(),
 });
@@ -971,7 +1143,7 @@ export type GetUserDetailsUserPlexAccount$Outbound = {
     adsConsent: boolean | null;
     adsConsentReminderAt: string | null;
     adsConsentSetAt: string | null;
-    anonymous: boolean;
+    anonymous: boolean | null;
     authToken: string;
     backupCodesCreated: boolean;
     confirmed: boolean;
@@ -993,7 +1165,7 @@ export type GetUserDetailsUserPlexAccount$Outbound = {
     mailingListStatus: string;
     maxHomeSize: number;
     pin?: string | undefined;
-    profile: Array<UserProfile$Outbound>;
+    profile: UserProfile$Outbound;
     protected: boolean;
     rememberExpiresAt: number;
     restricted: boolean;
@@ -1019,7 +1191,7 @@ export const GetUserDetailsUserPlexAccount$outboundSchema: z.ZodType<
     adsConsent: z.nullable(z.boolean()),
     adsConsentReminderAt: z.nullable(z.date().transform((v) => v.toISOString())),
     adsConsentSetAt: z.nullable(z.date().transform((v) => v.toISOString())),
-    anonymous: z.boolean().default(false),
+    anonymous: z.nullable(z.boolean().default(false)),
     authToken: z.string(),
     backupCodesCreated: z.boolean().default(false),
     confirmed: z.boolean().default(false),
@@ -1041,7 +1213,7 @@ export const GetUserDetailsUserPlexAccount$outboundSchema: z.ZodType<
     mailingListStatus: MailingListStatus$outboundSchema,
     maxHomeSize: z.number().int(),
     pin: z.string().optional(),
-    profile: z.array(z.lazy(() => UserProfile$outboundSchema)),
+    profile: z.lazy(() => UserProfile$outboundSchema),
     protected: z.boolean().default(false),
     rememberExpiresAt: z.number().int(),
     restricted: z.boolean().default(false),

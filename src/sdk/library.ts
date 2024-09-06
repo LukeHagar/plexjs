@@ -3,17 +3,17 @@
  */
 
 import { libraryDeleteLibrary } from "../funcs/libraryDeleteLibrary.js";
+import { libraryGetAllLibraries } from "../funcs/libraryGetAllLibraries.js";
 import { libraryGetFileHash } from "../funcs/libraryGetFileHash.js";
-import { libraryGetLibraries } from "../funcs/libraryGetLibraries.js";
-import { libraryGetLibrary } from "../funcs/libraryGetLibrary.js";
+import { libraryGetLibraryDetails } from "../funcs/libraryGetLibraryDetails.js";
 import { libraryGetLibraryItems } from "../funcs/libraryGetLibraryItems.js";
-import { libraryGetMetadata } from "../funcs/libraryGetMetadata.js";
+import { libraryGetMetaDataByRatingKey } from "../funcs/libraryGetMetaDataByRatingKey.js";
 import { libraryGetMetadataChildren } from "../funcs/libraryGetMetadataChildren.js";
 import { libraryGetOnDeck } from "../funcs/libraryGetOnDeck.js";
 import { libraryGetRecentlyAdded } from "../funcs/libraryGetRecentlyAdded.js";
+import { libraryGetRefreshLibraryMetadata } from "../funcs/libraryGetRefreshLibraryMetadata.js";
+import { libraryGetSearchLibrary } from "../funcs/libraryGetSearchLibrary.js";
 import { libraryGetTopWatchedContent } from "../funcs/libraryGetTopWatchedContent.js";
-import { libraryRefreshLibrary } from "../funcs/libraryRefreshLibrary.js";
-import { librarySearchLibrary } from "../funcs/librarySearchLibrary.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as models from "../models/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -40,8 +40,14 @@ export class Library extends ClientSDK {
      * This endpoint will return the recently added content.
      *
      */
-    async getRecentlyAdded(options?: RequestOptions): Promise<models.GetRecentlyAddedResponse> {
-        return unwrapAsync(libraryGetRecentlyAdded(this, options));
+    async getRecentlyAdded(
+        xPlexContainerStart?: number | undefined,
+        xPlexContainerSize?: number | undefined,
+        options?: RequestOptions
+    ): Promise<models.GetRecentlyAddedResponse> {
+        return unwrapAsync(
+            libraryGetRecentlyAdded(this, xPlexContainerStart, xPlexContainerSize, options)
+        );
     }
 
     /**
@@ -56,8 +62,8 @@ export class Library extends ClientSDK {
      * This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      *
      */
-    async getLibraries(options?: RequestOptions): Promise<models.GetLibrariesResponse> {
-        return unwrapAsync(libraryGetLibraries(this, options));
+    async getAllLibraries(options?: RequestOptions): Promise<models.GetAllLibrariesResponse> {
+        return unwrapAsync(libraryGetAllLibraries(this, options));
     }
 
     /**
@@ -105,25 +111,25 @@ export class Library extends ClientSDK {
      * > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
      *
      */
-    async getLibrary(
-        sectionId: number,
+    async getLibraryDetails(
+        sectionKey: number,
         includeDetails?: models.IncludeDetails | undefined,
         options?: RequestOptions
-    ): Promise<models.GetLibraryResponse> {
-        return unwrapAsync(libraryGetLibrary(this, sectionId, includeDetails, options));
+    ): Promise<models.GetLibraryDetailsResponse> {
+        return unwrapAsync(libraryGetLibraryDetails(this, sectionKey, includeDetails, options));
     }
 
     /**
      * Delete Library Section
      *
      * @remarks
-     * Delate a library using a specific section
+     * Delete a library using a specific section id
      */
     async deleteLibrary(
-        sectionId: number,
+        sectionKey: number,
         options?: RequestOptions
     ): Promise<models.DeleteLibraryResponse> {
-        return unwrapAsync(libraryDeleteLibrary(this, sectionId, options));
+        return unwrapAsync(libraryDeleteLibrary(this, sectionKey, options));
     }
 
     /**
@@ -153,26 +159,25 @@ export class Library extends ClientSDK {
      *
      */
     async getLibraryItems(
-        sectionId: any,
-        tag: models.Tag,
-        includeGuids?: number | undefined,
+        request: models.GetLibraryItemsRequest,
         options?: RequestOptions
     ): Promise<models.GetLibraryItemsResponse> {
-        return unwrapAsync(libraryGetLibraryItems(this, sectionId, tag, includeGuids, options));
+        return unwrapAsync(libraryGetLibraryItems(this, request, options));
     }
 
     /**
-     * Refresh Library
+     * Refresh Metadata Of The Library
      *
      * @remarks
-     * This endpoint Refreshes the library.
+     * This endpoint Refreshes all the Metadata of the library.
      *
      */
-    async refreshLibrary(
-        sectionId: number,
+    async getRefreshLibraryMetadata(
+        sectionKey: number,
+        force?: models.Force | undefined,
         options?: RequestOptions
-    ): Promise<models.RefreshLibraryResponse> {
-        return unwrapAsync(libraryRefreshLibrary(this, sectionId, options));
+    ): Promise<models.GetRefreshLibraryMetadataResponse> {
+        return unwrapAsync(libraryGetRefreshLibraryMetadata(this, sectionKey, force, options));
     }
 
     /**
@@ -199,26 +204,26 @@ export class Library extends ClientSDK {
      * > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
      *
      */
-    async searchLibrary(
-        sectionId: number,
-        type: models.Type,
+    async getSearchLibrary(
+        sectionKey: number,
+        type: models.QueryParamType,
         options?: RequestOptions
-    ): Promise<models.SearchLibraryResponse> {
-        return unwrapAsync(librarySearchLibrary(this, sectionId, type, options));
+    ): Promise<models.GetSearchLibraryResponse> {
+        return unwrapAsync(libraryGetSearchLibrary(this, sectionKey, type, options));
     }
 
     /**
-     * Get Items Metadata
+     * Get Metadata by RatingKey
      *
      * @remarks
      * This endpoint will return the metadata of a library item specified with the ratingKey.
      *
      */
-    async getMetadata(
+    async getMetaDataByRatingKey(
         ratingKey: number,
         options?: RequestOptions
-    ): Promise<models.GetMetadataResponse> {
-        return unwrapAsync(libraryGetMetadata(this, ratingKey, options));
+    ): Promise<models.GetMetaDataByRatingKeyResponse> {
+        return unwrapAsync(libraryGetMetaDataByRatingKey(this, ratingKey, options));
     }
 
     /**
@@ -244,7 +249,7 @@ export class Library extends ClientSDK {
      *
      */
     async getTopWatchedContent(
-        type: number,
+        type: models.GetTopWatchedContentQueryParamType,
         includeGuids?: number | undefined,
         options?: RequestOptions
     ): Promise<models.GetTopWatchedContentResponse> {

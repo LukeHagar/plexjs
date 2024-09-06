@@ -2,4 +2,4 @@
 
 ## Overview
 
-Plex-API: An Open API Spec for interacting with Plex.tv
+Plex-API: An Open API Spec for interacting with Plex.tv and Plex Media Server

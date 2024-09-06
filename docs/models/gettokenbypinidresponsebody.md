@@ -1,6 +1,6 @@
 # GetTokenByPinIdResponseBody
 
-Not Found or Expired
+Bad Request response when the X-Plex-Client-Identifier is missing
 
 ## Example Usage
 

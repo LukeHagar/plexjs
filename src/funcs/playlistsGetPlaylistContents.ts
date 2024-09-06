@@ -37,7 +37,7 @@ import { Result } from "../types/fp.js";
 export async function playlistsGetPlaylistContents(
     client$: PlexAPICore,
     playlistID: number,
-    type: number,
+    type: models.GetPlaylistContentsQueryParamType,
     options?: RequestOptions
 ): Promise<
     Result<

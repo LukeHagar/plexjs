@@ -1,11 +1,11 @@
-# PostUsersSigninDataFeatures
+# PostUsersSignInDataFeatures
 
 ## Example Usage
 
 ```typescript
-import { PostUsersSigninDataFeatures } from "@lukehagar/plexjs";
+import { PostUsersSignInDataFeatures } from "@lukehagar/plexjs";
 
-let value: PostUsersSigninDataFeatures = PostUsersSigninDataFeatures.ClientRadioStations;
+let value: PostUsersSignInDataFeatures = PostUsersSignInDataFeatures.AmazonLoopDebug;
 ```
 
 ## Values

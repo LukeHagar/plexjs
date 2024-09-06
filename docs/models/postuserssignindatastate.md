@@ -1,11 +1,11 @@
-# PostUsersSigninDataState
+# PostUsersSignInDataState
 
 ## Example Usage
 
 ```typescript
-import { PostUsersSigninDataState } from "@lukehagar/plexjs";
+import { PostUsersSignInDataState } from "@lukehagar/plexjs";
 
-let value: PostUsersSigninDataState = PostUsersSigninDataState.Ended;
+let value: PostUsersSignInDataState = PostUsersSignInDataState.Ended;
 ```
 
 ## Values

@@ -1,11 +1,11 @@
-# PostUsersSigninDataErrors
+# PostUsersSignInDataErrors
 
 ## Example Usage
 
 ```typescript
-import { PostUsersSigninDataErrors } from "@lukehagar/plexjs";
+import { PostUsersSignInDataErrors } from "@lukehagar/plexjs";
 
-let value: PostUsersSigninDataErrors = {
+let value: PostUsersSignInDataErrors = {
     code: 1001,
     message: "User could not be authenticated",
     status: 401,

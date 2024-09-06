@@ -4,6 +4,7 @@
 
 export * from "./sdk/sdk.js";
 export * from "./lib/config.js";
+export * as files from "./lib/files.js";
 
 export * from "./models/index.js";
 export * as types from "./types/index.js";

@@ -66,7 +66,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 
     const serverParams: Params[] = [
         {
-            protocol: options.protocol ?? "http",
+            protocol: options.protocol ?? "https",
             ip: options.ip ?? "10.10.10.47",
             port: options.port ?? "32400",
         },
@@ -89,7 +89,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
     language: "typescript",
     openapiDocVersion: "0.0.3",
-    sdkVersion: "0.19.0",
-    genVersion: "2.404.1",
-    userAgent: "speakeasy-sdk/typescript 0.19.0 2.404.1 0.0.3 @lukehagar/plexjs",
+    sdkVersion: "0.20.0",
+    genVersion: "2.409.8",
+    userAgent: "speakeasy-sdk/typescript 0.20.0 2.409.8 0.0.3 @lukehagar/plexjs",
 } as const;

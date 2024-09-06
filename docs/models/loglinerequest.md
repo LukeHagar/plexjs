@@ -6,7 +6,7 @@
 import { Level, LogLineRequest } from "@lukehagar/plexjs";
 
 let value: LogLineRequest = {
-    level: Level.Two,
+    level: Level.Four,
     message: "Test log message",
     source: "Postman",
 };

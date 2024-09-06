@@ -7,7 +7,7 @@ import { CreatePlaylistResponse } from "@lukehagar/plexjs";
 
 let value: CreatePlaylistResponse = {
     contentType: "<value>",
-    statusCode: 128926,
+    statusCode: 474697,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

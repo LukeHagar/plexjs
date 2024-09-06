@@ -31,7 +31,7 @@ import { Result } from "../types/fp.js";
 export async function playlistsUploadPlaylist(
     client$: PlexAPICore,
     path: string,
-    force: models.Force,
+    force: models.QueryParamForce,
     options?: RequestOptions
 ): Promise<
     Result<

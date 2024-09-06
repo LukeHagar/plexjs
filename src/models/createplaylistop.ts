@@ -8,7 +8,7 @@ import * as z from "zod";
 /**
  * type of playlist to create
  */
-export enum QueryParamType {
+export enum CreatePlaylistQueryParamType {
     Audio = "audio",
     Video = "video",
     Photo = "photo",
@@ -30,7 +30,7 @@ export type CreatePlaylistRequest = {
     /**
      * type of playlist to create
      */
-    type: QueryParamType;
+    type: CreatePlaylistQueryParamType;
     /**
      * whether the playlist is smart or not
      */
@@ -145,22 +145,24 @@ export type CreatePlaylistResponse = {
 };
 
 /** @internal */
-export const QueryParamType$inboundSchema: z.ZodNativeEnum<typeof QueryParamType> =
-    z.nativeEnum(QueryParamType);
+export const CreatePlaylistQueryParamType$inboundSchema: z.ZodNativeEnum<
+    typeof CreatePlaylistQueryParamType
+> = z.nativeEnum(CreatePlaylistQueryParamType);
 
 /** @internal */
-export const QueryParamType$outboundSchema: z.ZodNativeEnum<typeof QueryParamType> =
-    QueryParamType$inboundSchema;
+export const CreatePlaylistQueryParamType$outboundSchema: z.ZodNativeEnum<
+    typeof CreatePlaylistQueryParamType
+> = CreatePlaylistQueryParamType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace QueryParamType$ {
-    /** @deprecated use `QueryParamType$inboundSchema` instead. */
-    export const inboundSchema = QueryParamType$inboundSchema;
-    /** @deprecated use `QueryParamType$outboundSchema` instead. */
-    export const outboundSchema = QueryParamType$outboundSchema;
+export namespace CreatePlaylistQueryParamType$ {
+    /** @deprecated use `CreatePlaylistQueryParamType$inboundSchema` instead. */
+    export const inboundSchema = CreatePlaylistQueryParamType$inboundSchema;
+    /** @deprecated use `CreatePlaylistQueryParamType$outboundSchema` instead. */
+    export const outboundSchema = CreatePlaylistQueryParamType$outboundSchema;
 }
 
 /** @internal */
@@ -187,7 +189,7 @@ export const CreatePlaylistRequest$inboundSchema: z.ZodType<
     unknown
 > = z.object({
     title: z.string(),
-    type: QueryParamType$inboundSchema,
+    type: CreatePlaylistQueryParamType$inboundSchema,
     smart: Smart$inboundSchema,
     uri: z.string(),
     playQueueID: z.number().optional(),
@@ -209,7 +211,7 @@ export const CreatePlaylistRequest$outboundSchema: z.ZodType<
     CreatePlaylistRequest
 > = z.object({
     title: z.string(),
-    type: QueryParamType$outboundSchema,
+    type: CreatePlaylistQueryParamType$outboundSchema,
     smart: Smart$outboundSchema,
     uri: z.string(),
     playQueueID: z.number().optional(),

@@ -4,18 +4,23 @@
 
 ```typescript
 import {
+  AutoSelectSubtitle,
+  DefaultSubtitleAccessibility,
+  DefaultSubtitleForced,
   Features,
+  GetUserDetailsAuthenticationResponseStatus,
+  GetUserDetailsAuthenticationStatus,
   GetUserDetailsFeatures,
-  GetUserDetailsPlexResponseStatus,
-  GetUserDetailsPlexStatus,
   GetUserDetailsResponse,
   GetUserDetailsStatus,
   MailingListStatus,
+  MediaReviewsVisibility,
+  WatchedIndicator,
 } from "@lukehagar/plexjs";
 
 let value: GetUserDetailsResponse = {
     contentType: "<value>",
-    statusCode: 118274,
+    statusCode: 19987,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),
@@ -42,21 +47,19 @@ let value: GetUserDetailsResponse = {
         joinedAt: 1721154902,
         locale: null,
         mailingListActive: false,
-        mailingListStatus: MailingListStatus.Subscribed,
+        mailingListStatus: MailingListStatus.Active,
         maxHomeSize: 15,
         pin: "string",
-        profile: [
-            {
-                autoSelectAudio: true,
-                defaultAudioLanguage: "ja",
-                defaultSubtitleLanguage: "en",
-                autoSelectSubtitle: 1,
-                defaultSubtitleAccessibility: 1,
-                defaultSubtitleForced: 0,
-                watchedIndicator: 1,
-                mediaReviewsVisibility: 0,
-            },
-        ],
+        profile: {
+            autoSelectAudio: true,
+            defaultAudioLanguage: "ja",
+            defaultSubtitleLanguage: "en",
+            autoSelectSubtitle: AutoSelectSubtitle.One,
+            defaultSubtitleAccessibility: DefaultSubtitleAccessibility.One,
+            defaultSubtitleForced: DefaultSubtitleForced.Zero,
+            watchedIndicator: WatchedIndicator.One,
+            mediaReviewsVisibility: MediaReviewsVisibility.Zero,
+        },
         protected: false,
         rememberExpiresAt: 1722364046,
         restricted: false,
@@ -74,8 +77,8 @@ let value: GetUserDetailsResponse = {
         subscription: {
             features: [Features.AndroidDolbyVision],
             active: true,
-            subscribedAt: new Date("2021-04-12T18:21:12Z"),
-            status: GetUserDetailsPlexStatus.Inactive,
+            subscribedAt: "2021-04-12T18:21:12Z",
+            status: GetUserDetailsAuthenticationStatus.Inactive,
             paymentService: "string",
             plan: "string",
         },
@@ -84,8 +87,8 @@ let value: GetUserDetailsResponse = {
             {
                 features: [GetUserDetailsFeatures.AndroidDolbyVision],
                 active: true,
-                subscribedAt: new Date("2021-04-12T18:21:12Z"),
-                status: GetUserDetailsPlexResponseStatus.Inactive,
+                subscribedAt: "2021-04-12T18:21:12Z",
+                status: GetUserDetailsAuthenticationResponseStatus.Inactive,
                 paymentService: "string",
                 plan: "string",
             },

@@ -7,7 +7,7 @@ import { LogMultiLineResponse } from "@lukehagar/plexjs";
 
 let value: LogMultiLineResponse = {
     contentType: "<value>",
-    statusCode: 697631,
+    statusCode: 652790,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

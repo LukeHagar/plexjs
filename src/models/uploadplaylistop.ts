@@ -14,7 +14,7 @@ import * as z from "zod";
  * If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
  *
  */
-export enum Force {
+export enum QueryParamForce {
     Zero = 0,
     One = 1,
 }
@@ -41,7 +41,7 @@ export type UploadPlaylistRequest = {
      * If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
      *
      */
-    force: Force;
+    force: QueryParamForce;
 };
 
 export type UploadPlaylistErrors = {
@@ -109,20 +109,22 @@ export type UploadPlaylistResponse = {
 };
 
 /** @internal */
-export const Force$inboundSchema: z.ZodNativeEnum<typeof Force> = z.nativeEnum(Force);
+export const QueryParamForce$inboundSchema: z.ZodNativeEnum<typeof QueryParamForce> =
+    z.nativeEnum(QueryParamForce);
 
 /** @internal */
-export const Force$outboundSchema: z.ZodNativeEnum<typeof Force> = Force$inboundSchema;
+export const QueryParamForce$outboundSchema: z.ZodNativeEnum<typeof QueryParamForce> =
+    QueryParamForce$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Force$ {
-    /** @deprecated use `Force$inboundSchema` instead. */
-    export const inboundSchema = Force$inboundSchema;
-    /** @deprecated use `Force$outboundSchema` instead. */
-    export const outboundSchema = Force$outboundSchema;
+export namespace QueryParamForce$ {
+    /** @deprecated use `QueryParamForce$inboundSchema` instead. */
+    export const inboundSchema = QueryParamForce$inboundSchema;
+    /** @deprecated use `QueryParamForce$outboundSchema` instead. */
+    export const outboundSchema = QueryParamForce$outboundSchema;
 }
 
 /** @internal */
@@ -132,7 +134,7 @@ export const UploadPlaylistRequest$inboundSchema: z.ZodType<
     unknown
 > = z.object({
     path: z.string(),
-    force: Force$inboundSchema,
+    force: QueryParamForce$inboundSchema,
 });
 
 /** @internal */
@@ -148,7 +150,7 @@ export const UploadPlaylistRequest$outboundSchema: z.ZodType<
     UploadPlaylistRequest
 > = z.object({
     path: z.string(),
-    force: Force$outboundSchema,
+    force: QueryParamForce$outboundSchema,
 });
 
 /**

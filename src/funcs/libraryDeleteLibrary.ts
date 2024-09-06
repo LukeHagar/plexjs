@@ -25,11 +25,11 @@ import { Result } from "../types/fp.js";
  * Delete Library Section
  *
  * @remarks
- * Delate a library using a specific section
+ * Delete a library using a specific section id
  */
 export async function libraryDeleteLibrary(
     client$: PlexAPICore,
-    sectionId: number,
+    sectionKey: number,
     options?: RequestOptions
 ): Promise<
     Result<
@@ -45,7 +45,7 @@ export async function libraryDeleteLibrary(
     >
 > {
     const input$: models.DeleteLibraryRequest = {
-        sectionId: sectionId,
+        sectionKey: sectionKey,
     };
 
     const parsed$ = schemas$.safeParse(
@@ -60,13 +60,13 @@ export async function libraryDeleteLibrary(
     const body$ = null;
 
     const pathParams$ = {
-        sectionId: encodeSimple$("sectionId", payload$.sectionId, {
+        sectionKey: encodeSimple$("sectionKey", payload$.sectionKey, {
             explode: false,
             charEncoding: "percent",
         }),
     };
 
-    const path$ = pathToFunc("/library/sections/{sectionId}")(pathParams$);
+    const path$ = pathToFunc("/library/sections/{sectionKey}")(pathParams$);
 
     const headers$ = new Headers({
         Accept: "application/json",

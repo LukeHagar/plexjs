@@ -7,7 +7,7 @@ import { StopAllTasksResponse } from "@lukehagar/plexjs";
 
 let value: StopAllTasksResponse = {
     contentType: "<value>",
-    statusCode: 528895,
+    statusCode: 479977,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

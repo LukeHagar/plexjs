@@ -1,13 +1,13 @@
-# GetWatchlistResponse
+# GetWatchListResponse
 
 ## Example Usage
 
 ```typescript
-import { GetWatchlistResponse } from "@lukehagar/plexjs";
+import { GetWatchListResponse } from "@lukehagar/plexjs";
 
-let value: GetWatchlistResponse = {
+let value: GetWatchListResponse = {
     contentType: "<value>",
-    statusCode: 971945,
+    statusCode: 634274,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),
@@ -21,4 +21,4 @@ let value: GetWatchlistResponse = {
 | `contentType`                                                            | *string*                                                                 | :heavy_check_mark:                                                       | HTTP response content type for this operation                            |
 | `statusCode`                                                             | *number*                                                                 | :heavy_check_mark:                                                       | HTTP response status code for this operation                             |
 | `rawResponse`                                                            | [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)    | :heavy_check_mark:                                                       | Raw HTTP response; suitable for custom response parsing                  |
-| `object`                                                                 | [models.GetWatchlistResponseBody](../models/getwatchlistresponsebody.md) | :heavy_minus_sign:                                                       | Watchlist Data                                                           |
+| `object`                                                                 | [models.GetWatchListResponseBody](../models/getwatchlistresponsebody.md) | :heavy_minus_sign:                                                       | Watchlist Data                                                           |

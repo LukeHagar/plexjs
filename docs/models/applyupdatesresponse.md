@@ -7,7 +7,7 @@ import { ApplyUpdatesResponse } from "@lukehagar/plexjs";
 
 let value: ApplyUpdatesResponse = {
     contentType: "<value>",
-    statusCode: 138183,
+    statusCode: 318569,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

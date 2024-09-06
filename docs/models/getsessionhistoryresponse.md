@@ -8,7 +8,7 @@ import { RFCDate } from "@lukehagar/plexjs/types";
 
 let value: GetSessionHistoryResponse = {
     contentType: "<value>",
-    statusCode: 338007,
+    statusCode: 921158,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

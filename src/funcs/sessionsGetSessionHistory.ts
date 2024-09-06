@@ -31,7 +31,7 @@ export async function sessionsGetSessionHistory(
     client$: PlexAPICore,
     sort?: string | undefined,
     accountId?: number | undefined,
-    filter?: models.Filter | undefined,
+    filter?: models.QueryParamFilter | undefined,
     librarySectionID?: number | undefined,
     options?: RequestOptions
 ): Promise<

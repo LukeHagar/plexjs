@@ -7,7 +7,7 @@ import { UpdatePlayProgressResponse } from "@lukehagar/plexjs";
 
 let value: UpdatePlayProgressResponse = {
     contentType: "<value>",
-    statusCode: 56713,
+    statusCode: 963663,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

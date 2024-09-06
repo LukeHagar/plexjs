@@ -24,12 +24,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.updater.getUpdateStatus();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -49,7 +49,7 @@ import { updaterGetUpdateStatus } from "@lukehagar/plexjs/funcs/updaterGetUpdate
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -99,12 +99,12 @@ import { Download, PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.updater.checkForUpdates(Download.One);
-
+  
   // Handle the result
   console.log(result)
 }
@@ -125,7 +125,7 @@ import { updaterCheckForUpdates } from "@lukehagar/plexjs/funcs/updaterCheckForU
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -177,12 +177,12 @@ import { PlexAPI, Skip, Tonight } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.updater.applyUpdates(Tonight.One, Skip.One);
-
+  
   // Handle the result
   console.log(result)
 }
@@ -203,7 +203,7 @@ import { updaterApplyUpdates } from "@lukehagar/plexjs/funcs/updaterApplyUpdates
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -227,7 +227,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `tonight`                                                                                                                                                                      | [models.Tonight](../../models/tonight.md)                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install                       | [object Object]                                                                                                                                                                |
-| `skip`                                                                                                                                                                         | [models.Skip](../../models/skip.md)                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                             | Indicate that the latest version should be marked as skipped. The <Release> entry for this version will have the `state` set to `skipped`.                                     | [object Object]                                                                                                                                                                |
+| `skip`                                                                                                                                                                         | [models.Skip](../../models/skip.md)                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                             | Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.                                     | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |

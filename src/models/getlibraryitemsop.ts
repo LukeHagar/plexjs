@@ -31,11 +31,55 @@ export enum Tag {
     Folder = "folder",
 }
 
+/**
+ * Adds the Guids object to the response
+ *
+ * @remarks
+ *
+ */
+export enum IncludeGuids {
+    Zero = 0,
+    One = 1,
+}
+
+/**
+ * Adds the Meta object to the response
+ *
+ * @remarks
+ *
+ */
+export enum IncludeMeta {
+    Zero = 0,
+    One = 1,
+}
+
+/**
+ * The type of media to retrieve.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ *
+ */
+export enum Type {
+    One = 1,
+    Two = 2,
+    Three = 3,
+    Four = 4,
+}
+
 export type GetLibraryItemsRequest = {
     /**
-     * the Id of the library to query
+     * The unique key of the Plex library.
+     *
+     * @remarks
+     * Note: This is unique in the context of the Plex server.
+     *
      */
-    sectionId?: any | undefined;
+    sectionKey: number;
     /**
      * A key representing a specific tag within the section.
      */
@@ -46,7 +90,44 @@ export type GetLibraryItemsRequest = {
      * @remarks
      *
      */
-    includeGuids?: number | undefined;
+    includeGuids?: IncludeGuids | undefined;
+    /**
+     * Adds the Meta object to the response
+     *
+     * @remarks
+     *
+     */
+    includeMeta?: IncludeMeta | undefined;
+    /**
+     * The type of media to retrieve.
+     *
+     * @remarks
+     * 1 = movie
+     * 2 = show
+     * 3 = season
+     * 4 = episode
+     * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+     *
+     */
+    type: Type;
+    /**
+     * The index of the first item to return. If not specified, the first item will be returned.
+     *
+     * @remarks
+     * If the number of items exceeds the limit, the response will be paginated.
+     * By default this is 0
+     *
+     */
+    xPlexContainerStart?: number | undefined;
+    /**
+     * The number of items to return. If not specified, all items will be returned.
+     *
+     * @remarks
+     * If the number of items exceeds the limit, the response will be paginated.
+     * By default this is 50
+     *
+     */
+    xPlexContainerSize?: number | undefined;
 };
 
 export type GetLibraryItemsErrors = {
@@ -270,21 +351,91 @@ export namespace Tag$ {
 }
 
 /** @internal */
+export const IncludeGuids$inboundSchema: z.ZodNativeEnum<typeof IncludeGuids> =
+    z.nativeEnum(IncludeGuids);
+
+/** @internal */
+export const IncludeGuids$outboundSchema: z.ZodNativeEnum<typeof IncludeGuids> =
+    IncludeGuids$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IncludeGuids$ {
+    /** @deprecated use `IncludeGuids$inboundSchema` instead. */
+    export const inboundSchema = IncludeGuids$inboundSchema;
+    /** @deprecated use `IncludeGuids$outboundSchema` instead. */
+    export const outboundSchema = IncludeGuids$outboundSchema;
+}
+
+/** @internal */
+export const IncludeMeta$inboundSchema: z.ZodNativeEnum<typeof IncludeMeta> =
+    z.nativeEnum(IncludeMeta);
+
+/** @internal */
+export const IncludeMeta$outboundSchema: z.ZodNativeEnum<typeof IncludeMeta> =
+    IncludeMeta$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IncludeMeta$ {
+    /** @deprecated use `IncludeMeta$inboundSchema` instead. */
+    export const inboundSchema = IncludeMeta$inboundSchema;
+    /** @deprecated use `IncludeMeta$outboundSchema` instead. */
+    export const outboundSchema = IncludeMeta$outboundSchema;
+}
+
+/** @internal */
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
+
+/** @internal */
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = Type$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Type$ {
+    /** @deprecated use `Type$inboundSchema` instead. */
+    export const inboundSchema = Type$inboundSchema;
+    /** @deprecated use `Type$outboundSchema` instead. */
+    export const outboundSchema = Type$outboundSchema;
+}
+
+/** @internal */
 export const GetLibraryItemsRequest$inboundSchema: z.ZodType<
     GetLibraryItemsRequest,
     z.ZodTypeDef,
     unknown
-> = z.object({
-    sectionId: z.any().optional(),
-    tag: Tag$inboundSchema,
-    includeGuids: z.number().int().optional(),
-});
+> = z
+    .object({
+        sectionKey: z.number().int(),
+        tag: Tag$inboundSchema,
+        includeGuids: IncludeGuids$inboundSchema.optional(),
+        includeMeta: IncludeMeta$inboundSchema.optional(),
+        type: Type$inboundSchema,
+        "X-Plex-Container-Start": z.number().int().default(0),
+        "X-Plex-Container-Size": z.number().int().default(50),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            "X-Plex-Container-Start": "xPlexContainerStart",
+            "X-Plex-Container-Size": "xPlexContainerSize",
+        });
+    });
 
 /** @internal */
 export type GetLibraryItemsRequest$Outbound = {
-    sectionId?: any | undefined;
+    sectionKey: number;
     tag: string;
     includeGuids?: number | undefined;
+    includeMeta?: number | undefined;
+    type: number;
+    "X-Plex-Container-Start": number;
+    "X-Plex-Container-Size": number;
 };
 
 /** @internal */
@@ -292,11 +443,22 @@ export const GetLibraryItemsRequest$outboundSchema: z.ZodType<
     GetLibraryItemsRequest$Outbound,
     z.ZodTypeDef,
     GetLibraryItemsRequest
-> = z.object({
-    sectionId: z.any().optional(),
-    tag: Tag$outboundSchema,
-    includeGuids: z.number().int().optional(),
-});
+> = z
+    .object({
+        sectionKey: z.number().int(),
+        tag: Tag$outboundSchema,
+        includeGuids: IncludeGuids$outboundSchema.optional(),
+        includeMeta: IncludeMeta$outboundSchema.optional(),
+        type: Type$outboundSchema,
+        xPlexContainerStart: z.number().int().default(0),
+        xPlexContainerSize: z.number().int().default(50),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            xPlexContainerStart: "X-Plex-Container-Start",
+            xPlexContainerSize: "X-Plex-Container-Size",
+        });
+    });
 
 /**
  * @internal

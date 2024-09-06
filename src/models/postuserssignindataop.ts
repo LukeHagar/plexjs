@@ -5,9 +5,9 @@
 import { remap as remap$ } from "../lib/primitives.js";
 import * as z from "zod";
 
-export const PostUsersSigninDataOpServerList = ["https://plex.tv/api/v2"] as const;
+export const PostUsersSignInDataOpServerList = ["https://plex.tv/api/v2"] as const;
 
-export type PostUsersSigninDataGlobals = {
+export type PostUsersSignInDataGlobals = {
     /**
      * The unique identifier for the client application
      *
@@ -22,13 +22,13 @@ export type PostUsersSigninDataGlobals = {
 /**
  * Login credentials
  */
-export type PostUsersSigninDataRequestBody = {
+export type PostUsersSignInDataRequestBody = {
     login: string;
     password: string;
     rememberMe?: boolean | undefined;
 };
 
-export type PostUsersSigninDataRequest = {
+export type PostUsersSignInDataRequest = {
     /**
      * The unique identifier for the client application
      *
@@ -41,10 +41,10 @@ export type PostUsersSigninDataRequest = {
     /**
      * Login credentials
      */
-    requestBody?: PostUsersSigninDataRequestBody | undefined;
+    requestBody?: PostUsersSignInDataRequestBody | undefined;
 };
 
-export type PostUsersSigninDataErrors = {
+export type PostUsersSignInDataErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -53,8 +53,8 @@ export type PostUsersSigninDataErrors = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export type PostUsersSigninDataResponseBodyData = {
-    errors?: Array<PostUsersSigninDataErrors> | undefined;
+export type PostUsersSignInDataResponseBodyData = {
+    errors?: Array<PostUsersSignInDataErrors> | undefined;
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
@@ -64,17 +64,17 @@ export type PostUsersSigninDataResponseBodyData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class PostUsersSigninDataResponseBody extends Error {
-    errors?: Array<PostUsersSigninDataErrors> | undefined;
+export class PostUsersSignInDataResponseBody extends Error {
+    errors?: Array<PostUsersSignInDataErrors> | undefined;
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse?: Response | undefined;
 
     /** The original data that was passed to this error instance. */
-    data$: PostUsersSigninDataResponseBodyData;
+    data$: PostUsersSignInDataResponseBodyData;
 
-    constructor(err: PostUsersSigninDataResponseBodyData) {
+    constructor(err: PostUsersSignInDataResponseBodyData) {
         const message =
             "message" in err && typeof err.message === "string"
                 ? err.message
@@ -89,19 +89,53 @@ export class PostUsersSigninDataResponseBody extends Error {
             this.rawResponse = err.rawResponse;
         }
 
-        this.name = "PostUsersSigninDataResponseBody";
+        this.name = "PostUsersSignInDataResponseBody";
     }
 }
 
 /**
  * Your current mailing list status
  */
-export enum PostUsersSigninDataMailingListStatus {
-    Subscribed = "subscribed",
+export enum PostUsersSignInDataMailingListStatus {
+    Active = "active",
     Unsubscribed = "unsubscribed",
 }
 
-export type PostUsersSigninDataUserProfile = {
+/**
+ * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
+ */
+export enum PostUsersSignInDataAutoSelectSubtitle {
+    Zero = "0",
+    One = "1",
+}
+
+/**
+ * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
+ */
+export enum PostUsersSignInDataDefaultSubtitleAccessibility {
+    Zero = "0",
+    One = "1",
+}
+
+/**
+ * The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
+ */
+export enum PostUsersSignInDataDefaultSubtitleForced {
+    Zero = "0",
+    One = "1",
+}
+
+export enum PostUsersSignInDataWatchedIndicator {
+    Zero = "0",
+    One = "1",
+}
+
+export enum PostUsersSignInDataMediaReviewsVisibility {
+    Zero = 0,
+    One = 1,
+}
+
+export type PostUsersSignInDataUserProfile = {
     /**
      * If the account has automatically select audio and subtitle tracks enabled
      */
@@ -109,41 +143,41 @@ export type PostUsersSigninDataUserProfile = {
     /**
      * The preferred audio language for the account
      */
-    defaultAudioLanguage?: string | undefined;
+    defaultAudioLanguage: string | null;
     /**
      * The preferred subtitle language for the account
      */
-    defaultSubtitleLanguage?: string | undefined;
+    defaultSubtitleLanguage: string | null;
     /**
      * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
      */
-    autoSelectSubtitle?: number | undefined;
+    autoSelectSubtitle?: PostUsersSignInDataAutoSelectSubtitle | undefined;
     /**
      * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
      */
-    defaultSubtitleAccessibility?: number | undefined;
+    defaultSubtitleAccessibility?: PostUsersSignInDataDefaultSubtitleAccessibility | undefined;
     /**
      * The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
      */
-    defaultSubtitleForced?: number | undefined;
-    watchedIndicator?: number | undefined;
-    mediaReviewsVisibility?: number | undefined;
+    defaultSubtitleForced?: PostUsersSignInDataDefaultSubtitleForced | undefined;
+    watchedIndicator?: PostUsersSignInDataWatchedIndicator | undefined;
+    mediaReviewsVisibility?: PostUsersSignInDataMediaReviewsVisibility | undefined;
 };
 
-export enum PostUsersSigninDataStatus {
+export enum PostUsersSignInDataStatus {
     Online = "online",
     Offline = "offline",
 }
 
-export type PostUsersSigninDataServices = {
+export type PostUsersSignInDataServices = {
     identifier: string;
     endpoint: string;
     token: string | null;
     secret: string | null;
-    status: PostUsersSigninDataStatus;
+    status: PostUsersSignInDataStatus;
 };
 
-export enum PostUsersSigninDataFeatures {
+export enum PostUsersSignInDataFeatures {
     AndroidDolbyVision = "Android - Dolby Vision",
     AndroidPiP = "Android - PiP",
     CUSunset = "CU Sunset",
@@ -208,7 +242,7 @@ export enum PostUsersSigninDataFeatures {
 /**
  * String representation of subscriptionActive
  */
-export enum PostUsersSigninDataUserStatus {
+export enum PostUsersSignInDataAuthenticationStatus {
     Inactive = "Inactive",
     Active = "Active",
 }
@@ -216,11 +250,11 @@ export enum PostUsersSigninDataUserStatus {
 /**
  * If the account’s Plex Pass subscription is active
  */
-export type PostUsersSigninDataSubscription = {
+export type PostUsersSignInDataSubscription = {
     /**
      * List of features allowed on your Plex Pass subscription
      */
-    features?: Array<PostUsersSigninDataFeatures> | undefined;
+    features?: Array<PostUsersSignInDataFeatures> | undefined;
     /**
      * If the account's Plex Pass subscription is active
      */
@@ -228,11 +262,11 @@ export type PostUsersSigninDataSubscription = {
     /**
      * Date the account subscribed to Plex Pass
      */
-    subscribedAt?: Date | undefined;
+    subscribedAt?: string | null | undefined;
     /**
      * String representation of subscriptionActive
      */
-    status?: PostUsersSigninDataUserStatus | undefined;
+    status?: PostUsersSignInDataAuthenticationStatus | undefined;
     /**
      * Payment service used for your Plex Pass subscription
      */
@@ -243,7 +277,7 @@ export type PostUsersSigninDataSubscription = {
     plan?: string | null | undefined;
 };
 
-export enum PostUsersSigninDataUserFeatures {
+export enum PostUsersSignInDataAuthenticationFeatures {
     AndroidDolbyVision = "Android - Dolby Vision",
     AndroidPiP = "Android - PiP",
     CUSunset = "CU Sunset",
@@ -308,16 +342,16 @@ export enum PostUsersSigninDataUserFeatures {
 /**
  * String representation of subscriptionActive
  */
-export enum PostUsersSigninDataUserResponseStatus {
+export enum PostUsersSignInDataAuthenticationResponseStatus {
     Inactive = "Inactive",
     Active = "Active",
 }
 
-export type PostUsersSigninDataUserSubscription = {
+export type PostUsersSignInDataAuthenticationSubscription = {
     /**
      * List of features allowed on your Plex Pass subscription
      */
-    features?: Array<PostUsersSigninDataUserFeatures> | undefined;
+    features?: Array<PostUsersSignInDataAuthenticationFeatures> | undefined;
     /**
      * If the account's Plex Pass subscription is active
      */
@@ -325,11 +359,11 @@ export type PostUsersSigninDataUserSubscription = {
     /**
      * Date the account subscribed to Plex Pass
      */
-    subscribedAt?: Date | undefined;
+    subscribedAt?: string | null | undefined;
     /**
      * String representation of subscriptionActive
      */
-    status?: PostUsersSigninDataUserResponseStatus | undefined;
+    status?: PostUsersSignInDataAuthenticationResponseStatus | undefined;
     /**
      * Payment service used for your Plex Pass subscription
      */
@@ -340,7 +374,7 @@ export type PostUsersSigninDataUserSubscription = {
     plan?: string | null | undefined;
 };
 
-export enum PostUsersSigninDataState {
+export enum PostUsersSignInDataState {
     Ended = "ended",
 }
 
@@ -354,13 +388,7 @@ export type Billing = {
 export type PastSubscription = {
     id: string | null;
     mode: string | null;
-    /**
-     * Unix epoch datetime
-     */
     renewsAt: number | null;
-    /**
-     * Unix epoch datetime
-     */
     endsAt: number | null;
     canceled?: boolean | undefined;
     gracePeriod?: boolean | undefined;
@@ -371,8 +399,8 @@ export type PastSubscription = {
     canConvert?: boolean | undefined;
     type: string;
     transfer: string | null;
-    state: PostUsersSigninDataState;
-    billing: Array<Billing>;
+    state: PostUsersSignInDataState;
+    billing: Billing;
 };
 
 export type Trials = {};
@@ -380,7 +408,7 @@ export type Trials = {};
 /**
  * Returns the user account data with a valid auth token
  */
-export type PostUsersSigninDataUserPlexAccount = {
+export type PostUsersSignInDataUserPlexAccount = {
     /**
      * Unknown
      */
@@ -396,7 +424,7 @@ export type PostUsersSigninDataUserPlexAccount = {
     /**
      * Unknown
      */
-    anonymous?: boolean | undefined;
+    anonymous?: boolean | null | undefined;
     /**
      * The account token
      */
@@ -472,7 +500,7 @@ export type PostUsersSigninDataUserPlexAccount = {
     /**
      * Your current mailing list status
      */
-    mailingListStatus: PostUsersSigninDataMailingListStatus;
+    mailingListStatus: PostUsersSignInDataMailingListStatus;
     /**
      * The maximum number of accounts allowed in the Plex Home
      */
@@ -483,7 +511,7 @@ export type PostUsersSigninDataUserPlexAccount = {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     pin?: string | undefined;
-    profile: Array<PostUsersSigninDataUserProfile>;
+    profile: PostUsersSignInDataUserProfile;
     /**
      * If the account has a Plex Home PIN enabled
      */
@@ -504,16 +532,16 @@ export type PostUsersSigninDataUserPlexAccount = {
      * Unknown
      */
     scrobbleTypes: string;
-    services: Array<PostUsersSigninDataServices>;
+    services: Array<PostUsersSignInDataServices>;
     /**
      * If the account’s Plex Pass subscription is active
      */
-    subscription: PostUsersSigninDataSubscription;
+    subscription: PostUsersSignInDataSubscription;
     /**
      * Description of the Plex Pass subscription
      */
     subscriptionDescription: string | null;
-    subscriptions: Array<PostUsersSigninDataUserSubscription>;
+    subscriptions: Array<PostUsersSignInDataAuthenticationSubscription>;
     /**
      * URL of the account thumbnail
      */
@@ -538,7 +566,7 @@ export type PostUsersSigninDataUserPlexAccount = {
     trials: Array<Trials>;
 };
 
-export type PostUsersSigninDataResponse = {
+export type PostUsersSignInDataResponse = {
     /**
      * HTTP response content type for this operation
      */
@@ -554,12 +582,12 @@ export type PostUsersSigninDataResponse = {
     /**
      * Returns the user account data with a valid auth token
      */
-    userPlexAccount?: PostUsersSigninDataUserPlexAccount | undefined;
+    userPlexAccount?: PostUsersSignInDataUserPlexAccount | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataGlobals$inboundSchema: z.ZodType<
-    PostUsersSigninDataGlobals,
+export const PostUsersSignInDataGlobals$inboundSchema: z.ZodType<
+    PostUsersSignInDataGlobals,
     z.ZodTypeDef,
     unknown
 > = z
@@ -573,15 +601,15 @@ export const PostUsersSigninDataGlobals$inboundSchema: z.ZodType<
     });
 
 /** @internal */
-export type PostUsersSigninDataGlobals$Outbound = {
+export type PostUsersSignInDataGlobals$Outbound = {
     "X-Plex-Client-Identifier"?: string | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataGlobals$outboundSchema: z.ZodType<
-    PostUsersSigninDataGlobals$Outbound,
+export const PostUsersSignInDataGlobals$outboundSchema: z.ZodType<
+    PostUsersSignInDataGlobals$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataGlobals
+    PostUsersSignInDataGlobals
 > = z
     .object({
         xPlexClientIdentifier: z.string().optional(),
@@ -596,38 +624,38 @@ export const PostUsersSigninDataGlobals$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataGlobals$ {
-    /** @deprecated use `PostUsersSigninDataGlobals$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataGlobals$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataGlobals$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataGlobals$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataGlobals$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataGlobals$Outbound;
+export namespace PostUsersSignInDataGlobals$ {
+    /** @deprecated use `PostUsersSignInDataGlobals$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataGlobals$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataGlobals$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataGlobals$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataGlobals$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataGlobals$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataRequestBody$inboundSchema: z.ZodType<
-    PostUsersSigninDataRequestBody,
+export const PostUsersSignInDataRequestBody$inboundSchema: z.ZodType<
+    PostUsersSignInDataRequestBody,
     z.ZodTypeDef,
     unknown
 > = z.object({
     login: z.string(),
     password: z.string(),
-    rememberMe: z.boolean(),
+    rememberMe: z.boolean().default(false),
 });
 
 /** @internal */
-export type PostUsersSigninDataRequestBody$Outbound = {
+export type PostUsersSignInDataRequestBody$Outbound = {
     login: string;
     password: string;
     rememberMe: boolean;
 };
 
 /** @internal */
-export const PostUsersSigninDataRequestBody$outboundSchema: z.ZodType<
-    PostUsersSigninDataRequestBody$Outbound,
+export const PostUsersSignInDataRequestBody$outboundSchema: z.ZodType<
+    PostUsersSignInDataRequestBody$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataRequestBody
+    PostUsersSignInDataRequestBody
 > = z.object({
     login: z.string(),
     password: z.string(),
@@ -638,24 +666,24 @@ export const PostUsersSigninDataRequestBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataRequestBody$ {
-    /** @deprecated use `PostUsersSigninDataRequestBody$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataRequestBody$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataRequestBody$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataRequestBody$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataRequestBody$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataRequestBody$Outbound;
+export namespace PostUsersSignInDataRequestBody$ {
+    /** @deprecated use `PostUsersSignInDataRequestBody$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataRequestBody$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataRequestBody$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataRequestBody$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataRequestBody$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataRequestBody$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataRequest$inboundSchema: z.ZodType<
-    PostUsersSigninDataRequest,
+export const PostUsersSignInDataRequest$inboundSchema: z.ZodType<
+    PostUsersSignInDataRequest,
     z.ZodTypeDef,
     unknown
 > = z
     .object({
         "X-Plex-Client-Identifier": z.string().optional(),
-        RequestBody: z.lazy(() => PostUsersSigninDataRequestBody$inboundSchema).optional(),
+        RequestBody: z.lazy(() => PostUsersSignInDataRequestBody$inboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -665,20 +693,20 @@ export const PostUsersSigninDataRequest$inboundSchema: z.ZodType<
     });
 
 /** @internal */
-export type PostUsersSigninDataRequest$Outbound = {
+export type PostUsersSignInDataRequest$Outbound = {
     "X-Plex-Client-Identifier"?: string | undefined;
-    RequestBody?: PostUsersSigninDataRequestBody$Outbound | undefined;
+    RequestBody?: PostUsersSignInDataRequestBody$Outbound | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataRequest$outboundSchema: z.ZodType<
-    PostUsersSigninDataRequest$Outbound,
+export const PostUsersSignInDataRequest$outboundSchema: z.ZodType<
+    PostUsersSignInDataRequest$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataRequest
+    PostUsersSignInDataRequest
 > = z
     .object({
         xPlexClientIdentifier: z.string().optional(),
-        requestBody: z.lazy(() => PostUsersSigninDataRequestBody$outboundSchema).optional(),
+        requestBody: z.lazy(() => PostUsersSignInDataRequestBody$outboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -691,18 +719,18 @@ export const PostUsersSigninDataRequest$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataRequest$ {
-    /** @deprecated use `PostUsersSigninDataRequest$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataRequest$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataRequest$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataRequest$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataRequest$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataRequest$Outbound;
+export namespace PostUsersSignInDataRequest$ {
+    /** @deprecated use `PostUsersSignInDataRequest$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataRequest$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataRequest$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataRequest$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataRequest$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataRequest$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataErrors$inboundSchema: z.ZodType<
-    PostUsersSigninDataErrors,
+export const PostUsersSignInDataErrors$inboundSchema: z.ZodType<
+    PostUsersSignInDataErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
@@ -712,17 +740,17 @@ export const PostUsersSigninDataErrors$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type PostUsersSigninDataErrors$Outbound = {
+export type PostUsersSignInDataErrors$Outbound = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataErrors$outboundSchema: z.ZodType<
-    PostUsersSigninDataErrors$Outbound,
+export const PostUsersSignInDataErrors$outboundSchema: z.ZodType<
+    PostUsersSignInDataErrors$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataErrors
+    PostUsersSignInDataErrors
 > = z.object({
     code: z.number().optional(),
     message: z.string().optional(),
@@ -733,23 +761,23 @@ export const PostUsersSigninDataErrors$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataErrors$ {
-    /** @deprecated use `PostUsersSigninDataErrors$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataErrors$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataErrors$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataErrors$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataErrors$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataErrors$Outbound;
+export namespace PostUsersSignInDataErrors$ {
+    /** @deprecated use `PostUsersSignInDataErrors$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataErrors$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataErrors$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataErrors$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataErrors$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataErrors$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataResponseBody$inboundSchema: z.ZodType<
-    PostUsersSigninDataResponseBody,
+export const PostUsersSignInDataResponseBody$inboundSchema: z.ZodType<
+    PostUsersSignInDataResponseBody,
     z.ZodTypeDef,
     unknown
 > = z
     .object({
-        errors: z.array(z.lazy(() => PostUsersSigninDataErrors$inboundSchema)).optional(),
+        errors: z.array(z.lazy(() => PostUsersSignInDataErrors$inboundSchema)).optional(),
         RawResponse: z.instanceof(Response).optional(),
     })
     .transform((v) => {
@@ -757,27 +785,27 @@ export const PostUsersSigninDataResponseBody$inboundSchema: z.ZodType<
             RawResponse: "rawResponse",
         });
 
-        return new PostUsersSigninDataResponseBody(remapped);
+        return new PostUsersSignInDataResponseBody(remapped);
     });
 
 /** @internal */
-export type PostUsersSigninDataResponseBody$Outbound = {
-    errors?: Array<PostUsersSigninDataErrors$Outbound> | undefined;
+export type PostUsersSignInDataResponseBody$Outbound = {
+    errors?: Array<PostUsersSignInDataErrors$Outbound> | undefined;
     RawResponse?: never | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataResponseBody$outboundSchema: z.ZodType<
-    PostUsersSigninDataResponseBody$Outbound,
+export const PostUsersSignInDataResponseBody$outboundSchema: z.ZodType<
+    PostUsersSignInDataResponseBody$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataResponseBody
+    PostUsersSignInDataResponseBody
 > = z
-    .instanceof(PostUsersSigninDataResponseBody)
+    .instanceof(PostUsersSignInDataResponseBody)
     .transform((v) => v.data$)
     .pipe(
         z
             .object({
-                errors: z.array(z.lazy(() => PostUsersSigninDataErrors$outboundSchema)).optional(),
+                errors: z.array(z.lazy(() => PostUsersSignInDataErrors$outboundSchema)).optional(),
                 rawResponse: z
                     .instanceof(Response)
                     .transform(() => {
@@ -796,117 +824,224 @@ export const PostUsersSigninDataResponseBody$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataResponseBody$ {
-    /** @deprecated use `PostUsersSigninDataResponseBody$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataResponseBody$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataResponseBody$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataResponseBody$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataResponseBody$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataResponseBody$Outbound;
+export namespace PostUsersSignInDataResponseBody$ {
+    /** @deprecated use `PostUsersSignInDataResponseBody$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataResponseBody$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataResponseBody$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataResponseBody$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataResponseBody$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataResponseBody$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataMailingListStatus$inboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataMailingListStatus
-> = z.nativeEnum(PostUsersSigninDataMailingListStatus);
+export const PostUsersSignInDataMailingListStatus$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataMailingListStatus
+> = z.nativeEnum(PostUsersSignInDataMailingListStatus);
 
 /** @internal */
-export const PostUsersSigninDataMailingListStatus$outboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataMailingListStatus
-> = PostUsersSigninDataMailingListStatus$inboundSchema;
+export const PostUsersSignInDataMailingListStatus$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataMailingListStatus
+> = PostUsersSignInDataMailingListStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataMailingListStatus$ {
-    /** @deprecated use `PostUsersSigninDataMailingListStatus$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataMailingListStatus$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataMailingListStatus$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataMailingListStatus$outboundSchema;
+export namespace PostUsersSignInDataMailingListStatus$ {
+    /** @deprecated use `PostUsersSignInDataMailingListStatus$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataMailingListStatus$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataMailingListStatus$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataMailingListStatus$outboundSchema;
 }
 
 /** @internal */
-export const PostUsersSigninDataUserProfile$inboundSchema: z.ZodType<
-    PostUsersSigninDataUserProfile,
+export const PostUsersSignInDataAutoSelectSubtitle$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataAutoSelectSubtitle
+> = z.nativeEnum(PostUsersSignInDataAutoSelectSubtitle);
+
+/** @internal */
+export const PostUsersSignInDataAutoSelectSubtitle$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataAutoSelectSubtitle
+> = PostUsersSignInDataAutoSelectSubtitle$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PostUsersSignInDataAutoSelectSubtitle$ {
+    /** @deprecated use `PostUsersSignInDataAutoSelectSubtitle$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataAutoSelectSubtitle$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataAutoSelectSubtitle$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataAutoSelectSubtitle$outboundSchema;
+}
+
+/** @internal */
+export const PostUsersSignInDataDefaultSubtitleAccessibility$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataDefaultSubtitleAccessibility
+> = z.nativeEnum(PostUsersSignInDataDefaultSubtitleAccessibility);
+
+/** @internal */
+export const PostUsersSignInDataDefaultSubtitleAccessibility$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataDefaultSubtitleAccessibility
+> = PostUsersSignInDataDefaultSubtitleAccessibility$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PostUsersSignInDataDefaultSubtitleAccessibility$ {
+    /** @deprecated use `PostUsersSignInDataDefaultSubtitleAccessibility$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataDefaultSubtitleAccessibility$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataDefaultSubtitleAccessibility$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataDefaultSubtitleAccessibility$outboundSchema;
+}
+
+/** @internal */
+export const PostUsersSignInDataDefaultSubtitleForced$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataDefaultSubtitleForced
+> = z.nativeEnum(PostUsersSignInDataDefaultSubtitleForced);
+
+/** @internal */
+export const PostUsersSignInDataDefaultSubtitleForced$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataDefaultSubtitleForced
+> = PostUsersSignInDataDefaultSubtitleForced$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PostUsersSignInDataDefaultSubtitleForced$ {
+    /** @deprecated use `PostUsersSignInDataDefaultSubtitleForced$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataDefaultSubtitleForced$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataDefaultSubtitleForced$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataDefaultSubtitleForced$outboundSchema;
+}
+
+/** @internal */
+export const PostUsersSignInDataWatchedIndicator$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataWatchedIndicator
+> = z.nativeEnum(PostUsersSignInDataWatchedIndicator);
+
+/** @internal */
+export const PostUsersSignInDataWatchedIndicator$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataWatchedIndicator
+> = PostUsersSignInDataWatchedIndicator$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PostUsersSignInDataWatchedIndicator$ {
+    /** @deprecated use `PostUsersSignInDataWatchedIndicator$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataWatchedIndicator$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataWatchedIndicator$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataWatchedIndicator$outboundSchema;
+}
+
+/** @internal */
+export const PostUsersSignInDataMediaReviewsVisibility$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataMediaReviewsVisibility
+> = z.nativeEnum(PostUsersSignInDataMediaReviewsVisibility);
+
+/** @internal */
+export const PostUsersSignInDataMediaReviewsVisibility$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataMediaReviewsVisibility
+> = PostUsersSignInDataMediaReviewsVisibility$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PostUsersSignInDataMediaReviewsVisibility$ {
+    /** @deprecated use `PostUsersSignInDataMediaReviewsVisibility$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataMediaReviewsVisibility$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataMediaReviewsVisibility$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataMediaReviewsVisibility$outboundSchema;
+}
+
+/** @internal */
+export const PostUsersSignInDataUserProfile$inboundSchema: z.ZodType<
+    PostUsersSignInDataUserProfile,
     z.ZodTypeDef,
     unknown
 > = z.object({
     autoSelectAudio: z.boolean().default(true),
-    defaultAudioLanguage: z.string().optional(),
-    defaultSubtitleLanguage: z.string().optional(),
-    autoSelectSubtitle: z.number().int().optional(),
-    defaultSubtitleAccessibility: z.number().int().optional(),
-    defaultSubtitleForced: z.number().int().optional(),
-    watchedIndicator: z.number().int().optional(),
-    mediaReviewsVisibility: z.number().int().optional(),
+    defaultAudioLanguage: z.nullable(z.string()),
+    defaultSubtitleLanguage: z.nullable(z.string()),
+    autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle$inboundSchema.optional(),
+    defaultSubtitleAccessibility:
+        PostUsersSignInDataDefaultSubtitleAccessibility$inboundSchema.optional(),
+    defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced$inboundSchema.optional(),
+    watchedIndicator: PostUsersSignInDataWatchedIndicator$inboundSchema.optional(),
+    mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility$inboundSchema.optional(),
 });
 
 /** @internal */
-export type PostUsersSigninDataUserProfile$Outbound = {
+export type PostUsersSignInDataUserProfile$Outbound = {
     autoSelectAudio: boolean;
-    defaultAudioLanguage?: string | undefined;
-    defaultSubtitleLanguage?: string | undefined;
-    autoSelectSubtitle?: number | undefined;
-    defaultSubtitleAccessibility?: number | undefined;
-    defaultSubtitleForced?: number | undefined;
-    watchedIndicator?: number | undefined;
+    defaultAudioLanguage: string | null;
+    defaultSubtitleLanguage: string | null;
+    autoSelectSubtitle?: string | undefined;
+    defaultSubtitleAccessibility?: string | undefined;
+    defaultSubtitleForced?: string | undefined;
+    watchedIndicator?: string | undefined;
     mediaReviewsVisibility?: number | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataUserProfile$outboundSchema: z.ZodType<
-    PostUsersSigninDataUserProfile$Outbound,
+export const PostUsersSignInDataUserProfile$outboundSchema: z.ZodType<
+    PostUsersSignInDataUserProfile$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataUserProfile
+    PostUsersSignInDataUserProfile
 > = z.object({
     autoSelectAudio: z.boolean().default(true),
-    defaultAudioLanguage: z.string().optional(),
-    defaultSubtitleLanguage: z.string().optional(),
-    autoSelectSubtitle: z.number().int().optional(),
-    defaultSubtitleAccessibility: z.number().int().optional(),
-    defaultSubtitleForced: z.number().int().optional(),
-    watchedIndicator: z.number().int().optional(),
-    mediaReviewsVisibility: z.number().int().optional(),
+    defaultAudioLanguage: z.nullable(z.string()),
+    defaultSubtitleLanguage: z.nullable(z.string()),
+    autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle$outboundSchema.optional(),
+    defaultSubtitleAccessibility:
+        PostUsersSignInDataDefaultSubtitleAccessibility$outboundSchema.optional(),
+    defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced$outboundSchema.optional(),
+    watchedIndicator: PostUsersSignInDataWatchedIndicator$outboundSchema.optional(),
+    mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility$outboundSchema.optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataUserProfile$ {
-    /** @deprecated use `PostUsersSigninDataUserProfile$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataUserProfile$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserProfile$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataUserProfile$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserProfile$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataUserProfile$Outbound;
+export namespace PostUsersSignInDataUserProfile$ {
+    /** @deprecated use `PostUsersSignInDataUserProfile$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataUserProfile$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataUserProfile$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataUserProfile$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataUserProfile$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataUserProfile$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataStatus$inboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataStatus
-> = z.nativeEnum(PostUsersSigninDataStatus);
+export const PostUsersSignInDataStatus$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataStatus
+> = z.nativeEnum(PostUsersSignInDataStatus);
 
 /** @internal */
-export const PostUsersSigninDataStatus$outboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataStatus
-> = PostUsersSigninDataStatus$inboundSchema;
+export const PostUsersSignInDataStatus$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataStatus
+> = PostUsersSignInDataStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataStatus$ {
-    /** @deprecated use `PostUsersSigninDataStatus$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataStatus$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataStatus$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataStatus$outboundSchema;
+export namespace PostUsersSignInDataStatus$ {
+    /** @deprecated use `PostUsersSignInDataStatus$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataStatus$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataStatus$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataStatus$outboundSchema;
 }
 
 /** @internal */
-export const PostUsersSigninDataServices$inboundSchema: z.ZodType<
-    PostUsersSigninDataServices,
+export const PostUsersSignInDataServices$inboundSchema: z.ZodType<
+    PostUsersSignInDataServices,
     z.ZodTypeDef,
     unknown
 > = z.object({
@@ -914,11 +1049,11 @@ export const PostUsersSigninDataServices$inboundSchema: z.ZodType<
     endpoint: z.string(),
     token: z.nullable(z.string()),
     secret: z.nullable(z.string()),
-    status: PostUsersSigninDataStatus$inboundSchema,
+    status: PostUsersSignInDataStatus$inboundSchema,
 });
 
 /** @internal */
-export type PostUsersSigninDataServices$Outbound = {
+export type PostUsersSignInDataServices$Outbound = {
     identifier: string;
     endpoint: string;
     token: string | null;
@@ -927,114 +1062,107 @@ export type PostUsersSigninDataServices$Outbound = {
 };
 
 /** @internal */
-export const PostUsersSigninDataServices$outboundSchema: z.ZodType<
-    PostUsersSigninDataServices$Outbound,
+export const PostUsersSignInDataServices$outboundSchema: z.ZodType<
+    PostUsersSignInDataServices$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataServices
+    PostUsersSignInDataServices
 > = z.object({
     identifier: z.string(),
     endpoint: z.string(),
     token: z.nullable(z.string()),
     secret: z.nullable(z.string()),
-    status: PostUsersSigninDataStatus$outboundSchema,
+    status: PostUsersSignInDataStatus$outboundSchema,
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataServices$ {
-    /** @deprecated use `PostUsersSigninDataServices$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataServices$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataServices$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataServices$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataServices$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataServices$Outbound;
+export namespace PostUsersSignInDataServices$ {
+    /** @deprecated use `PostUsersSignInDataServices$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataServices$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataServices$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataServices$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataServices$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataServices$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataFeatures$inboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataFeatures
-> = z.nativeEnum(PostUsersSigninDataFeatures);
+export const PostUsersSignInDataFeatures$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataFeatures
+> = z.nativeEnum(PostUsersSignInDataFeatures);
 
 /** @internal */
-export const PostUsersSigninDataFeatures$outboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataFeatures
-> = PostUsersSigninDataFeatures$inboundSchema;
+export const PostUsersSignInDataFeatures$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataFeatures
+> = PostUsersSignInDataFeatures$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataFeatures$ {
-    /** @deprecated use `PostUsersSigninDataFeatures$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataFeatures$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataFeatures$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataFeatures$outboundSchema;
+export namespace PostUsersSignInDataFeatures$ {
+    /** @deprecated use `PostUsersSignInDataFeatures$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataFeatures$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataFeatures$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataFeatures$outboundSchema;
 }
 
 /** @internal */
-export const PostUsersSigninDataUserStatus$inboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataUserStatus
-> = z.nativeEnum(PostUsersSigninDataUserStatus);
+export const PostUsersSignInDataAuthenticationStatus$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataAuthenticationStatus
+> = z.nativeEnum(PostUsersSignInDataAuthenticationStatus);
 
 /** @internal */
-export const PostUsersSigninDataUserStatus$outboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataUserStatus
-> = PostUsersSigninDataUserStatus$inboundSchema;
+export const PostUsersSignInDataAuthenticationStatus$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataAuthenticationStatus
+> = PostUsersSignInDataAuthenticationStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataUserStatus$ {
-    /** @deprecated use `PostUsersSigninDataUserStatus$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataUserStatus$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserStatus$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataUserStatus$outboundSchema;
+export namespace PostUsersSignInDataAuthenticationStatus$ {
+    /** @deprecated use `PostUsersSignInDataAuthenticationStatus$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataAuthenticationStatus$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationStatus$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataAuthenticationStatus$outboundSchema;
 }
 
 /** @internal */
-export const PostUsersSigninDataSubscription$inboundSchema: z.ZodType<
-    PostUsersSigninDataSubscription,
+export const PostUsersSignInDataSubscription$inboundSchema: z.ZodType<
+    PostUsersSignInDataSubscription,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    features: z.array(PostUsersSigninDataFeatures$inboundSchema).optional(),
+    features: z.array(PostUsersSignInDataFeatures$inboundSchema).optional(),
     active: z.boolean().optional(),
-    subscribedAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
-        .optional(),
-    status: PostUsersSigninDataUserStatus$inboundSchema.optional(),
+    subscribedAt: z.nullable(z.string()).optional(),
+    status: PostUsersSignInDataAuthenticationStatus$inboundSchema.optional(),
     paymentService: z.nullable(z.string()).optional(),
     plan: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
-export type PostUsersSigninDataSubscription$Outbound = {
+export type PostUsersSignInDataSubscription$Outbound = {
     features?: Array<string> | undefined;
     active?: boolean | undefined;
-    subscribedAt?: string | undefined;
+    subscribedAt?: string | null | undefined;
     status?: string | undefined;
     paymentService?: string | null | undefined;
     plan?: string | null | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataSubscription$outboundSchema: z.ZodType<
-    PostUsersSigninDataSubscription$Outbound,
+export const PostUsersSignInDataSubscription$outboundSchema: z.ZodType<
+    PostUsersSignInDataSubscription$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataSubscription
+    PostUsersSignInDataSubscription
 > = z.object({
-    features: z.array(PostUsersSigninDataFeatures$outboundSchema).optional(),
+    features: z.array(PostUsersSignInDataFeatures$outboundSchema).optional(),
     active: z.boolean().optional(),
-    subscribedAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
-    status: PostUsersSigninDataUserStatus$outboundSchema.optional(),
+    subscribedAt: z.nullable(z.string()).optional(),
+    status: PostUsersSignInDataAuthenticationStatus$outboundSchema.optional(),
     paymentService: z.nullable(z.string()).optional(),
     plan: z.nullable(z.string()).optional(),
 });
@@ -1043,98 +1171,91 @@ export const PostUsersSigninDataSubscription$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataSubscription$ {
-    /** @deprecated use `PostUsersSigninDataSubscription$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataSubscription$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataSubscription$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataSubscription$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataSubscription$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataSubscription$Outbound;
+export namespace PostUsersSignInDataSubscription$ {
+    /** @deprecated use `PostUsersSignInDataSubscription$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataSubscription$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataSubscription$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataSubscription$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataSubscription$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataSubscription$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataUserFeatures$inboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataUserFeatures
-> = z.nativeEnum(PostUsersSigninDataUserFeatures);
+export const PostUsersSignInDataAuthenticationFeatures$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataAuthenticationFeatures
+> = z.nativeEnum(PostUsersSignInDataAuthenticationFeatures);
 
 /** @internal */
-export const PostUsersSigninDataUserFeatures$outboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataUserFeatures
-> = PostUsersSigninDataUserFeatures$inboundSchema;
+export const PostUsersSignInDataAuthenticationFeatures$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataAuthenticationFeatures
+> = PostUsersSignInDataAuthenticationFeatures$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataUserFeatures$ {
-    /** @deprecated use `PostUsersSigninDataUserFeatures$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataUserFeatures$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserFeatures$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataUserFeatures$outboundSchema;
+export namespace PostUsersSignInDataAuthenticationFeatures$ {
+    /** @deprecated use `PostUsersSignInDataAuthenticationFeatures$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataAuthenticationFeatures$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationFeatures$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataAuthenticationFeatures$outboundSchema;
 }
 
 /** @internal */
-export const PostUsersSigninDataUserResponseStatus$inboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataUserResponseStatus
-> = z.nativeEnum(PostUsersSigninDataUserResponseStatus);
+export const PostUsersSignInDataAuthenticationResponseStatus$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataAuthenticationResponseStatus
+> = z.nativeEnum(PostUsersSignInDataAuthenticationResponseStatus);
 
 /** @internal */
-export const PostUsersSigninDataUserResponseStatus$outboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataUserResponseStatus
-> = PostUsersSigninDataUserResponseStatus$inboundSchema;
+export const PostUsersSignInDataAuthenticationResponseStatus$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataAuthenticationResponseStatus
+> = PostUsersSignInDataAuthenticationResponseStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataUserResponseStatus$ {
-    /** @deprecated use `PostUsersSigninDataUserResponseStatus$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataUserResponseStatus$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserResponseStatus$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataUserResponseStatus$outboundSchema;
+export namespace PostUsersSignInDataAuthenticationResponseStatus$ {
+    /** @deprecated use `PostUsersSignInDataAuthenticationResponseStatus$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataAuthenticationResponseStatus$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationResponseStatus$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataAuthenticationResponseStatus$outboundSchema;
 }
 
 /** @internal */
-export const PostUsersSigninDataUserSubscription$inboundSchema: z.ZodType<
-    PostUsersSigninDataUserSubscription,
+export const PostUsersSignInDataAuthenticationSubscription$inboundSchema: z.ZodType<
+    PostUsersSignInDataAuthenticationSubscription,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    features: z.array(PostUsersSigninDataUserFeatures$inboundSchema).optional(),
+    features: z.array(PostUsersSignInDataAuthenticationFeatures$inboundSchema).optional(),
     active: z.boolean().optional(),
-    subscribedAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
-        .optional(),
-    status: PostUsersSigninDataUserResponseStatus$inboundSchema.optional(),
+    subscribedAt: z.nullable(z.string()).optional(),
+    status: PostUsersSignInDataAuthenticationResponseStatus$inboundSchema.optional(),
     paymentService: z.nullable(z.string()).optional(),
     plan: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
-export type PostUsersSigninDataUserSubscription$Outbound = {
+export type PostUsersSignInDataAuthenticationSubscription$Outbound = {
     features?: Array<string> | undefined;
     active?: boolean | undefined;
-    subscribedAt?: string | undefined;
+    subscribedAt?: string | null | undefined;
     status?: string | undefined;
     paymentService?: string | null | undefined;
     plan?: string | null | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataUserSubscription$outboundSchema: z.ZodType<
-    PostUsersSigninDataUserSubscription$Outbound,
+export const PostUsersSignInDataAuthenticationSubscription$outboundSchema: z.ZodType<
+    PostUsersSignInDataAuthenticationSubscription$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataUserSubscription
+    PostUsersSignInDataAuthenticationSubscription
 > = z.object({
-    features: z.array(PostUsersSigninDataUserFeatures$outboundSchema).optional(),
+    features: z.array(PostUsersSignInDataAuthenticationFeatures$outboundSchema).optional(),
     active: z.boolean().optional(),
-    subscribedAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
-    status: PostUsersSigninDataUserResponseStatus$outboundSchema.optional(),
+    subscribedAt: z.nullable(z.string()).optional(),
+    status: PostUsersSignInDataAuthenticationResponseStatus$outboundSchema.optional(),
     paymentService: z.nullable(z.string()).optional(),
     plan: z.nullable(z.string()).optional(),
 });
@@ -1143,34 +1264,34 @@ export const PostUsersSigninDataUserSubscription$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataUserSubscription$ {
-    /** @deprecated use `PostUsersSigninDataUserSubscription$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataUserSubscription$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserSubscription$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataUserSubscription$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserSubscription$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataUserSubscription$Outbound;
+export namespace PostUsersSignInDataAuthenticationSubscription$ {
+    /** @deprecated use `PostUsersSignInDataAuthenticationSubscription$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataAuthenticationSubscription$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationSubscription$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataAuthenticationSubscription$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationSubscription$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataAuthenticationSubscription$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataState$inboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataState
-> = z.nativeEnum(PostUsersSigninDataState);
+export const PostUsersSignInDataState$inboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataState
+> = z.nativeEnum(PostUsersSignInDataState);
 
 /** @internal */
-export const PostUsersSigninDataState$outboundSchema: z.ZodNativeEnum<
-    typeof PostUsersSigninDataState
-> = PostUsersSigninDataState$inboundSchema;
+export const PostUsersSignInDataState$outboundSchema: z.ZodNativeEnum<
+    typeof PostUsersSignInDataState
+> = PostUsersSignInDataState$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataState$ {
-    /** @deprecated use `PostUsersSigninDataState$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataState$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataState$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataState$outboundSchema;
+export namespace PostUsersSignInDataState$ {
+    /** @deprecated use `PostUsersSignInDataState$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataState$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataState$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataState$outboundSchema;
 }
 
 /** @internal */
@@ -1241,17 +1362,17 @@ export const PastSubscription$inboundSchema: z.ZodType<PastSubscription, z.ZodTy
         mode: z.nullable(z.string()),
         renewsAt: z.nullable(z.number().int()),
         endsAt: z.nullable(z.number().int()),
-        canceled: z.boolean(),
-        gracePeriod: z.boolean(),
-        onHold: z.boolean(),
-        canReactivate: z.boolean(),
-        canUpgrade: z.boolean(),
-        canDowngrade: z.boolean(),
-        canConvert: z.boolean(),
+        canceled: z.boolean().default(false),
+        gracePeriod: z.boolean().default(false),
+        onHold: z.boolean().default(false),
+        canReactivate: z.boolean().default(false),
+        canUpgrade: z.boolean().default(false),
+        canDowngrade: z.boolean().default(false),
+        canConvert: z.boolean().default(false),
         type: z.string(),
         transfer: z.nullable(z.string()),
-        state: PostUsersSigninDataState$inboundSchema,
-        billing: z.array(z.lazy(() => Billing$inboundSchema)),
+        state: PostUsersSignInDataState$inboundSchema,
+        billing: z.lazy(() => Billing$inboundSchema),
     });
 
 /** @internal */
@@ -1270,7 +1391,7 @@ export type PastSubscription$Outbound = {
     type: string;
     transfer: string | null;
     state: string;
-    billing: Array<Billing$Outbound>;
+    billing: Billing$Outbound;
 };
 
 /** @internal */
@@ -1292,8 +1413,8 @@ export const PastSubscription$outboundSchema: z.ZodType<
     canConvert: z.boolean().default(false),
     type: z.string(),
     transfer: z.nullable(z.string()),
-    state: PostUsersSigninDataState$outboundSchema,
-    billing: z.array(z.lazy(() => Billing$outboundSchema)),
+    state: PostUsersSignInDataState$outboundSchema,
+    billing: z.lazy(() => Billing$outboundSchema),
 });
 
 /**
@@ -1332,8 +1453,8 @@ export namespace Trials$ {
 }
 
 /** @internal */
-export const PostUsersSigninDataUserPlexAccount$inboundSchema: z.ZodType<
-    PostUsersSigninDataUserPlexAccount,
+export const PostUsersSignInDataUserPlexAccount$inboundSchema: z.ZodType<
+    PostUsersSignInDataUserPlexAccount,
     z.ZodTypeDef,
     unknown
 > = z.object({
@@ -1350,41 +1471,43 @@ export const PostUsersSigninDataUserPlexAccount$inboundSchema: z.ZodType<
             .datetime({ offset: true })
             .transform((v) => new Date(v))
     ),
-    anonymous: z.boolean(),
+    anonymous: z.nullable(z.boolean().default(false)),
     authToken: z.string(),
-    backupCodesCreated: z.boolean(),
-    confirmed: z.boolean(),
+    backupCodesCreated: z.boolean().default(false),
+    confirmed: z.boolean().default(false),
     country: z.string(),
     email: z.string(),
-    emailOnlyAuth: z.boolean(),
-    experimentalFeatures: z.boolean(),
+    emailOnlyAuth: z.boolean().default(false),
+    experimentalFeatures: z.boolean().default(false),
     friendlyName: z.string(),
     entitlements: z.array(z.string()),
-    guest: z.boolean(),
+    guest: z.boolean().default(false),
     hasPassword: z.boolean().default(true),
-    home: z.boolean(),
-    homeAdmin: z.boolean(),
+    home: z.boolean().default(false),
+    homeAdmin: z.boolean().default(false),
     homeSize: z.number().int(),
     id: z.number().int(),
     joinedAt: z.number().int(),
     locale: z.nullable(z.string()),
-    mailingListActive: z.boolean(),
-    mailingListStatus: PostUsersSigninDataMailingListStatus$inboundSchema,
+    mailingListActive: z.boolean().default(false),
+    mailingListStatus: PostUsersSignInDataMailingListStatus$inboundSchema,
     maxHomeSize: z.number().int(),
     pin: z.string().optional(),
-    profile: z.array(z.lazy(() => PostUsersSigninDataUserProfile$inboundSchema)),
-    protected: z.boolean(),
+    profile: z.lazy(() => PostUsersSignInDataUserProfile$inboundSchema),
+    protected: z.boolean().default(false),
     rememberExpiresAt: z.number().int(),
-    restricted: z.boolean(),
+    restricted: z.boolean().default(false),
     roles: z.array(z.string()).optional(),
     scrobbleTypes: z.string(),
-    services: z.array(z.lazy(() => PostUsersSigninDataServices$inboundSchema)),
-    subscription: z.lazy(() => PostUsersSigninDataSubscription$inboundSchema),
+    services: z.array(z.lazy(() => PostUsersSignInDataServices$inboundSchema)),
+    subscription: z.lazy(() => PostUsersSignInDataSubscription$inboundSchema),
     subscriptionDescription: z.nullable(z.string()),
-    subscriptions: z.array(z.lazy(() => PostUsersSigninDataUserSubscription$inboundSchema)),
+    subscriptions: z.array(
+        z.lazy(() => PostUsersSignInDataAuthenticationSubscription$inboundSchema)
+    ),
     thumb: z.string(),
     title: z.string(),
-    twoFactorEnabled: z.boolean(),
+    twoFactorEnabled: z.boolean().default(false),
     username: z.string(),
     uuid: z.string(),
     pastSubscriptions: z.array(z.lazy(() => PastSubscription$inboundSchema)),
@@ -1392,11 +1515,11 @@ export const PostUsersSigninDataUserPlexAccount$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type PostUsersSigninDataUserPlexAccount$Outbound = {
+export type PostUsersSignInDataUserPlexAccount$Outbound = {
     adsConsent: boolean | null;
     adsConsentReminderAt: string | null;
     adsConsentSetAt: string | null;
-    anonymous: boolean;
+    anonymous: boolean | null;
     authToken: string;
     backupCodesCreated: boolean;
     confirmed: boolean;
@@ -1418,16 +1541,16 @@ export type PostUsersSigninDataUserPlexAccount$Outbound = {
     mailingListStatus: string;
     maxHomeSize: number;
     pin?: string | undefined;
-    profile: Array<PostUsersSigninDataUserProfile$Outbound>;
+    profile: PostUsersSignInDataUserProfile$Outbound;
     protected: boolean;
     rememberExpiresAt: number;
     restricted: boolean;
     roles?: Array<string> | undefined;
     scrobbleTypes: string;
-    services: Array<PostUsersSigninDataServices$Outbound>;
-    subscription: PostUsersSigninDataSubscription$Outbound;
+    services: Array<PostUsersSignInDataServices$Outbound>;
+    subscription: PostUsersSignInDataSubscription$Outbound;
     subscriptionDescription: string | null;
-    subscriptions: Array<PostUsersSigninDataUserSubscription$Outbound>;
+    subscriptions: Array<PostUsersSignInDataAuthenticationSubscription$Outbound>;
     thumb: string;
     title: string;
     twoFactorEnabled: boolean;
@@ -1438,15 +1561,15 @@ export type PostUsersSigninDataUserPlexAccount$Outbound = {
 };
 
 /** @internal */
-export const PostUsersSigninDataUserPlexAccount$outboundSchema: z.ZodType<
-    PostUsersSigninDataUserPlexAccount$Outbound,
+export const PostUsersSignInDataUserPlexAccount$outboundSchema: z.ZodType<
+    PostUsersSignInDataUserPlexAccount$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataUserPlexAccount
+    PostUsersSignInDataUserPlexAccount
 > = z.object({
     adsConsent: z.nullable(z.boolean()),
     adsConsentReminderAt: z.nullable(z.date().transform((v) => v.toISOString())),
     adsConsentSetAt: z.nullable(z.date().transform((v) => v.toISOString())),
-    anonymous: z.boolean().default(false),
+    anonymous: z.nullable(z.boolean().default(false)),
     authToken: z.string(),
     backupCodesCreated: z.boolean().default(false),
     confirmed: z.boolean().default(false),
@@ -1465,19 +1588,21 @@ export const PostUsersSigninDataUserPlexAccount$outboundSchema: z.ZodType<
     joinedAt: z.number().int(),
     locale: z.nullable(z.string()),
     mailingListActive: z.boolean().default(false),
-    mailingListStatus: PostUsersSigninDataMailingListStatus$outboundSchema,
+    mailingListStatus: PostUsersSignInDataMailingListStatus$outboundSchema,
     maxHomeSize: z.number().int(),
     pin: z.string().optional(),
-    profile: z.array(z.lazy(() => PostUsersSigninDataUserProfile$outboundSchema)),
+    profile: z.lazy(() => PostUsersSignInDataUserProfile$outboundSchema),
     protected: z.boolean().default(false),
     rememberExpiresAt: z.number().int(),
     restricted: z.boolean().default(false),
     roles: z.array(z.string()).optional(),
     scrobbleTypes: z.string(),
-    services: z.array(z.lazy(() => PostUsersSigninDataServices$outboundSchema)),
-    subscription: z.lazy(() => PostUsersSigninDataSubscription$outboundSchema),
+    services: z.array(z.lazy(() => PostUsersSignInDataServices$outboundSchema)),
+    subscription: z.lazy(() => PostUsersSignInDataSubscription$outboundSchema),
     subscriptionDescription: z.nullable(z.string()),
-    subscriptions: z.array(z.lazy(() => PostUsersSigninDataUserSubscription$outboundSchema)),
+    subscriptions: z.array(
+        z.lazy(() => PostUsersSignInDataAuthenticationSubscription$outboundSchema)
+    ),
     thumb: z.string(),
     title: z.string(),
     twoFactorEnabled: z.boolean().default(false),
@@ -1491,18 +1616,18 @@ export const PostUsersSigninDataUserPlexAccount$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataUserPlexAccount$ {
-    /** @deprecated use `PostUsersSigninDataUserPlexAccount$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataUserPlexAccount$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserPlexAccount$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataUserPlexAccount$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataUserPlexAccount$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataUserPlexAccount$Outbound;
+export namespace PostUsersSignInDataUserPlexAccount$ {
+    /** @deprecated use `PostUsersSignInDataUserPlexAccount$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataUserPlexAccount$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataUserPlexAccount$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataUserPlexAccount$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataUserPlexAccount$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataUserPlexAccount$Outbound;
 }
 
 /** @internal */
-export const PostUsersSigninDataResponse$inboundSchema: z.ZodType<
-    PostUsersSigninDataResponse,
+export const PostUsersSignInDataResponse$inboundSchema: z.ZodType<
+    PostUsersSignInDataResponse,
     z.ZodTypeDef,
     unknown
 > = z
@@ -1510,7 +1635,7 @@ export const PostUsersSigninDataResponse$inboundSchema: z.ZodType<
         ContentType: z.string(),
         StatusCode: z.number().int(),
         RawResponse: z.instanceof(Response),
-        UserPlexAccount: z.lazy(() => PostUsersSigninDataUserPlexAccount$inboundSchema).optional(),
+        UserPlexAccount: z.lazy(() => PostUsersSignInDataUserPlexAccount$inboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -1522,18 +1647,18 @@ export const PostUsersSigninDataResponse$inboundSchema: z.ZodType<
     });
 
 /** @internal */
-export type PostUsersSigninDataResponse$Outbound = {
+export type PostUsersSignInDataResponse$Outbound = {
     ContentType: string;
     StatusCode: number;
     RawResponse: never;
-    UserPlexAccount?: PostUsersSigninDataUserPlexAccount$Outbound | undefined;
+    UserPlexAccount?: PostUsersSignInDataUserPlexAccount$Outbound | undefined;
 };
 
 /** @internal */
-export const PostUsersSigninDataResponse$outboundSchema: z.ZodType<
-    PostUsersSigninDataResponse$Outbound,
+export const PostUsersSignInDataResponse$outboundSchema: z.ZodType<
+    PostUsersSignInDataResponse$Outbound,
     z.ZodTypeDef,
-    PostUsersSigninDataResponse
+    PostUsersSignInDataResponse
 > = z
     .object({
         contentType: z.string(),
@@ -1541,7 +1666,7 @@ export const PostUsersSigninDataResponse$outboundSchema: z.ZodType<
         rawResponse: z.instanceof(Response).transform(() => {
             throw new Error("Response cannot be serialized");
         }),
-        userPlexAccount: z.lazy(() => PostUsersSigninDataUserPlexAccount$outboundSchema).optional(),
+        userPlexAccount: z.lazy(() => PostUsersSignInDataUserPlexAccount$outboundSchema).optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -1556,11 +1681,11 @@ export const PostUsersSigninDataResponse$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PostUsersSigninDataResponse$ {
-    /** @deprecated use `PostUsersSigninDataResponse$inboundSchema` instead. */
-    export const inboundSchema = PostUsersSigninDataResponse$inboundSchema;
-    /** @deprecated use `PostUsersSigninDataResponse$outboundSchema` instead. */
-    export const outboundSchema = PostUsersSigninDataResponse$outboundSchema;
-    /** @deprecated use `PostUsersSigninDataResponse$Outbound` instead. */
-    export type Outbound = PostUsersSigninDataResponse$Outbound;
+export namespace PostUsersSignInDataResponse$ {
+    /** @deprecated use `PostUsersSignInDataResponse$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataResponse$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataResponse$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataResponse$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataResponse$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataResponse$Outbound;
 }

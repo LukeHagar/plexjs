@@ -13,7 +13,7 @@ import * as z from "zod";
  * (Unknown if viewedAt is the only supported column)
  *
  */
-export type Filter = {};
+export type QueryParamFilter = {};
 
 export type GetSessionHistoryRequest = {
     /**
@@ -37,7 +37,7 @@ export type GetSessionHistoryRequest = {
      * (Unknown if viewedAt is the only supported column)
      *
      */
-    filter?: Filter | undefined;
+    filter?: QueryParamFilter | undefined;
     /**
      * Filters the results based on the id of a valid library section
      *
@@ -150,25 +150,30 @@ export type GetSessionHistoryResponse = {
 };
 
 /** @internal */
-export const Filter$inboundSchema: z.ZodType<Filter, z.ZodTypeDef, unknown> = z.object({});
+export const QueryParamFilter$inboundSchema: z.ZodType<QueryParamFilter, z.ZodTypeDef, unknown> =
+    z.object({});
 
 /** @internal */
-export type Filter$Outbound = {};
+export type QueryParamFilter$Outbound = {};
 
 /** @internal */
-export const Filter$outboundSchema: z.ZodType<Filter$Outbound, z.ZodTypeDef, Filter> = z.object({});
+export const QueryParamFilter$outboundSchema: z.ZodType<
+    QueryParamFilter$Outbound,
+    z.ZodTypeDef,
+    QueryParamFilter
+> = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Filter$ {
-    /** @deprecated use `Filter$inboundSchema` instead. */
-    export const inboundSchema = Filter$inboundSchema;
-    /** @deprecated use `Filter$outboundSchema` instead. */
-    export const outboundSchema = Filter$outboundSchema;
-    /** @deprecated use `Filter$Outbound` instead. */
-    export type Outbound = Filter$Outbound;
+export namespace QueryParamFilter$ {
+    /** @deprecated use `QueryParamFilter$inboundSchema` instead. */
+    export const inboundSchema = QueryParamFilter$inboundSchema;
+    /** @deprecated use `QueryParamFilter$outboundSchema` instead. */
+    export const outboundSchema = QueryParamFilter$outboundSchema;
+    /** @deprecated use `QueryParamFilter$Outbound` instead. */
+    export type Outbound = QueryParamFilter$Outbound;
 }
 
 /** @internal */
@@ -179,7 +184,7 @@ export const GetSessionHistoryRequest$inboundSchema: z.ZodType<
 > = z.object({
     sort: z.string().optional(),
     accountId: z.number().int().optional(),
-    filter: z.lazy(() => Filter$inboundSchema).optional(),
+    filter: z.lazy(() => QueryParamFilter$inboundSchema).optional(),
     librarySectionID: z.number().int().optional(),
 });
 
@@ -187,7 +192,7 @@ export const GetSessionHistoryRequest$inboundSchema: z.ZodType<
 export type GetSessionHistoryRequest$Outbound = {
     sort?: string | undefined;
     accountId?: number | undefined;
-    filter?: Filter$Outbound | undefined;
+    filter?: QueryParamFilter$Outbound | undefined;
     librarySectionID?: number | undefined;
 };
 
@@ -199,7 +204,7 @@ export const GetSessionHistoryRequest$outboundSchema: z.ZodType<
 > = z.object({
     sort: z.string().optional(),
     accountId: z.number().int().optional(),
-    filter: z.lazy(() => Filter$outboundSchema).optional(),
+    filter: z.lazy(() => QueryParamFilter$outboundSchema).optional(),
     librarySectionID: z.number().int().optional(),
 });
 

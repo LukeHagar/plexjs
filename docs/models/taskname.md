@@ -7,7 +7,7 @@ the name of the task to be started.
 ```typescript
 import { TaskName } from "@lukehagar/plexjs";
 
-let value: TaskName = TaskName.GenerateAutoTags;
+let value: TaskName = TaskName.GenerateChapterThumbs;
 ```
 
 ## Values

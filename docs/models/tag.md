@@ -7,7 +7,7 @@ A key representing a specific tag within the section.
 ```typescript
 import { Tag } from "@lukehagar/plexjs";
 
-let value: Tag = Tag.Genre;
+let value: Tag = Tag.Unwatched;
 ```
 
 ## Values

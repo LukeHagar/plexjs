@@ -8,7 +8,7 @@ The type of library to filter. Can be "movie" or "show", or all if not present.
 ```typescript
 import { Libtype } from "@lukehagar/plexjs";
 
-let value: Libtype = Libtype.Show;
+let value: Libtype = Libtype.Movie;
 ```
 
 ## Values

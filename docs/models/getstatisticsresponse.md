@@ -7,7 +7,7 @@ import { GetStatisticsResponse } from "@lukehagar/plexjs";
 
 let value: GetStatisticsResponse = {
     contentType: "<value>",
-    statusCode: 474697,
+    statusCode: 508969,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

@@ -24,12 +24,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.sessions.getSessions();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -49,7 +49,7 @@ import { sessionsGetSessions } from "@lukehagar/plexjs/funcs/sessionsGetSessions
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -99,12 +99,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.sessions.getSessionHistory("viewedAt:desc", 1, {}, 12);
-
+  
   // Handle the result
   console.log(result)
 }
@@ -124,7 +124,7 @@ import { sessionsGetSessionHistory } from "@lukehagar/plexjs/funcs/sessionsGetSe
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -149,7 +149,7 @@ run();
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `sort`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Sorts the results by the specified field followed by the direction (asc, desc)<br/>                                                                                            |                                                                                                                                                                                |
 | `accountId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Filter results by those that are related to a specific users id<br/>                                                                                                           | [object Object]                                                                                                                                                                |
-| `filter`                                                                                                                                                                       | [models.Filter](../../models/filter.md)                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Filters content by field and direction/equality<br/>(Unknown if viewedAt is the only supported column)<br/>                                                                    | [object Object]                                                                                                                                                                |
+| `filter`                                                                                                                                                                       | [models.QueryParamFilter](../../models/queryparamfilter.md)                                                                                                                    | :heavy_minus_sign:                                                                                                                                                             | Filters content by field and direction/equality<br/>(Unknown if viewedAt is the only supported column)<br/>                                                                    | [object Object]                                                                                                                                                                |
 | `librarySectionID`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Filters the results based on the id of a valid library section<br/>                                                                                                            | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
@@ -178,12 +178,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.sessions.getTranscodeSessions();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -203,7 +203,7 @@ import { sessionsGetTranscodeSessions } from "@lukehagar/plexjs/funcs/sessionsGe
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -253,12 +253,12 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
   const result = await plexAPI.sessions.stopTranscodeSession("zz7llzqlx8w9vnrsbnwhbmep");
-
+  
   // Handle the result
   console.log(result)
 }
@@ -278,7 +278,7 @@ import { sessionsStopTranscodeSession } from "@lukehagar/plexjs/funcs/sessionsSt
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {

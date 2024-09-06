@@ -313,7 +313,7 @@ export const Friend$inboundSchema: z.ZodType<Friend, z.ZodTypeDef, unknown> = z.
     friendlyName: z.nullable(z.string()),
     home: z.boolean(),
     id: z.number().int(),
-    restricted: z.boolean(),
+    restricted: z.boolean().default(false),
     sharedServers: z.array(z.lazy(() => SharedServers$inboundSchema)),
     sharedSources: z.array(z.lazy(() => SharedSources$inboundSchema)),
     status: Status$inboundSchema,

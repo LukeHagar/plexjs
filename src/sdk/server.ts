@@ -4,6 +4,7 @@
 
 import { serverGetAvailableClients } from "../funcs/serverGetAvailableClients.js";
 import { serverGetDevices } from "../funcs/serverGetDevices.js";
+import { serverGetMediaProviders } from "../funcs/serverGetMediaProviders.js";
 import { serverGetMyPlexAccount } from "../funcs/serverGetMyPlexAccount.js";
 import { serverGetResizedPhoto } from "../funcs/serverGetResizedPhoto.js";
 import { serverGetServerCapabilities } from "../funcs/serverGetServerCapabilities.js";
@@ -65,7 +66,7 @@ export class Server extends ClientSDK {
      * Get Server Identity
      *
      * @remarks
-     * Get Server Identity
+     * This request is useful to determine if the server is online or offline
      */
     async getServerIdentity(options?: RequestOptions): Promise<models.GetServerIdentityResponse> {
         return unwrapAsync(serverGetServerIdentity(this, options));
@@ -93,6 +94,19 @@ export class Server extends ClientSDK {
         options?: RequestOptions
     ): Promise<models.GetResizedPhotoResponse> {
         return unwrapAsync(serverGetResizedPhoto(this, request, options));
+    }
+
+    /**
+     * Get Media Providers
+     *
+     * @remarks
+     * Retrieves media providers and their features from the Plex server.
+     */
+    async getMediaProviders(
+        xPlexToken: string,
+        options?: RequestOptions
+    ): Promise<models.GetMediaProvidersResponse> {
+        return unwrapAsync(serverGetMediaProviders(this, xPlexToken, options));
     }
 
     /**

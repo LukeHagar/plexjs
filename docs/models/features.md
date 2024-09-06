@@ -5,7 +5,7 @@
 ```typescript
 import { Features } from "@lukehagar/plexjs";
 
-let value: Features = Features.SharedServerNotification;
+let value: Features = Features.WatchTogetherInvite;
 ```
 
 ## Values

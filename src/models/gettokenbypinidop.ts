@@ -35,13 +35,62 @@ export type GetTokenByPinIdRequest = {
     pinID: number;
 };
 
-export type GetTokenByPinIdErrors = {
+export type GetTokenByPinIdPlexErrors = {
     code?: number | undefined;
     message?: string | undefined;
 };
 
 /**
  * Not Found or Expired
+ */
+export type GetTokenByPinIdPlexResponseBodyData = {
+    errors?: Array<GetTokenByPinIdPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Not Found or Expired
+ */
+export class GetTokenByPinIdPlexResponseBody extends Error {
+    errors?: Array<GetTokenByPinIdPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetTokenByPinIdPlexResponseBodyData;
+
+    constructor(err: GetTokenByPinIdPlexResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetTokenByPinIdPlexResponseBody";
+    }
+}
+
+export type GetTokenByPinIdErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request response when the X-Plex-Client-Identifier is missing
  */
 export type GetTokenByPinIdResponseBodyData = {
     errors?: Array<GetTokenByPinIdErrors> | undefined;
@@ -52,7 +101,7 @@ export type GetTokenByPinIdResponseBodyData = {
 };
 
 /**
- * Not Found or Expired
+ * Bad Request response when the X-Plex-Client-Identifier is missing
  */
 export class GetTokenByPinIdResponseBody extends Error {
     errors?: Array<GetTokenByPinIdErrors> | undefined;
@@ -279,8 +328,8 @@ export namespace GetTokenByPinIdRequest$ {
 }
 
 /** @internal */
-export const GetTokenByPinIdErrors$inboundSchema: z.ZodType<
-    GetTokenByPinIdErrors,
+export const GetTokenByPinIdPlexErrors$inboundSchema: z.ZodType<
+    GetTokenByPinIdPlexErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
@@ -289,9 +338,113 @@ export const GetTokenByPinIdErrors$inboundSchema: z.ZodType<
 });
 
 /** @internal */
+export type GetTokenByPinIdPlexErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+};
+
+/** @internal */
+export const GetTokenByPinIdPlexErrors$outboundSchema: z.ZodType<
+    GetTokenByPinIdPlexErrors$Outbound,
+    z.ZodTypeDef,
+    GetTokenByPinIdPlexErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTokenByPinIdPlexErrors$ {
+    /** @deprecated use `GetTokenByPinIdPlexErrors$inboundSchema` instead. */
+    export const inboundSchema = GetTokenByPinIdPlexErrors$inboundSchema;
+    /** @deprecated use `GetTokenByPinIdPlexErrors$outboundSchema` instead. */
+    export const outboundSchema = GetTokenByPinIdPlexErrors$outboundSchema;
+    /** @deprecated use `GetTokenByPinIdPlexErrors$Outbound` instead. */
+    export type Outbound = GetTokenByPinIdPlexErrors$Outbound;
+}
+
+/** @internal */
+export const GetTokenByPinIdPlexResponseBody$inboundSchema: z.ZodType<
+    GetTokenByPinIdPlexResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetTokenByPinIdPlexErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetTokenByPinIdPlexResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetTokenByPinIdPlexResponseBody$Outbound = {
+    errors?: Array<GetTokenByPinIdPlexErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetTokenByPinIdPlexResponseBody$outboundSchema: z.ZodType<
+    GetTokenByPinIdPlexResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetTokenByPinIdPlexResponseBody
+> = z
+    .instanceof(GetTokenByPinIdPlexResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetTokenByPinIdPlexErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTokenByPinIdPlexResponseBody$ {
+    /** @deprecated use `GetTokenByPinIdPlexResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetTokenByPinIdPlexResponseBody$inboundSchema;
+    /** @deprecated use `GetTokenByPinIdPlexResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetTokenByPinIdPlexResponseBody$outboundSchema;
+    /** @deprecated use `GetTokenByPinIdPlexResponseBody$Outbound` instead. */
+    export type Outbound = GetTokenByPinIdPlexResponseBody$Outbound;
+}
+
+/** @internal */
+export const GetTokenByPinIdErrors$inboundSchema: z.ZodType<
+    GetTokenByPinIdErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
 export type GetTokenByPinIdErrors$Outbound = {
     code?: number | undefined;
     message?: string | undefined;
+    status?: number | undefined;
 };
 
 /** @internal */
@@ -302,6 +455,7 @@ export const GetTokenByPinIdErrors$outboundSchema: z.ZodType<
 > = z.object({
     code: z.number().int().optional(),
     message: z.string().optional(),
+    status: z.number().int().optional(),
 });
 
 /**
@@ -391,11 +545,11 @@ export const GetTokenByPinIdGeoData$inboundSchema: z.ZodType<
         continent_code: z.string(),
         country: z.string(),
         city: z.string(),
-        european_union_member: z.boolean(),
+        european_union_member: z.boolean().default(false),
         time_zone: z.string(),
         postal_code: z.number().int(),
-        in_privacy_restricted_country: z.boolean(),
-        in_privacy_restricted_region: z.boolean(),
+        in_privacy_restricted_country: z.boolean().default(false),
+        in_privacy_restricted_region: z.boolean().default(false),
         subdivisions: z.string(),
         coordinates: z.string(),
     })
@@ -477,7 +631,7 @@ export const GetTokenByPinIdAuthPinContainer$inboundSchema: z.ZodType<
     id: z.number().int(),
     code: z.string(),
     product: z.string(),
-    trusted: z.boolean(),
+    trusted: z.boolean().default(false),
     qr: z.string(),
     clientIdentifier: z.string(),
     location: z.lazy(() => GetTokenByPinIdGeoData$inboundSchema),

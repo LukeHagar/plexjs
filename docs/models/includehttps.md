@@ -7,7 +7,7 @@ Include Https entries in the results
 ```typescript
 import { IncludeHttps } from "@lukehagar/plexjs";
 
-let value: IncludeHttps = IncludeHttps.Zero;
+let value: IncludeHttps = IncludeHttps.One;
 ```
 
 ## Values

@@ -22,7 +22,7 @@ import { PlexAPI, State } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -38,7 +38,7 @@ async function run() {
     playBackTime: 2000,
     row: 1,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -59,7 +59,7 @@ import { videoGetTimeline } from "@lukehagar/plexjs/funcs/videoGetTimeline.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -121,7 +121,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
@@ -143,7 +143,7 @@ async function run() {
     addDebugOverlay: 0,
     autoAdjustQuality: 0,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -163,7 +163,7 @@ import { videoStartUniversalTranscode } from "@lukehagar/plexjs/funcs/videoStart
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "Postman",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {

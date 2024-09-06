@@ -7,7 +7,7 @@ import { GetGeoDataResponse } from "@lukehagar/plexjs";
 
 let value: GetGeoDataResponse = {
     contentType: "<value>",
-    statusCode: 648172,
+    statusCode: 20218,
     rawResponse: new Response('{"message": "hello world"}', {
         headers: { "Content-Type": "application/json" },
     }),

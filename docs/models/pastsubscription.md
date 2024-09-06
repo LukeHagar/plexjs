@@ -3,12 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { PastSubscription, PostUsersSigninDataState } from "@lukehagar/plexjs";
+import { PastSubscription, PostUsersSignInDataState } from "@lukehagar/plexjs";
 
 let value: PastSubscription = {
     id: "<id>",
     mode: "<value>",
-    renewsAt: 662527,
+    renewsAt: 1556281940,
     endsAt: 1556281940,
     canceled: false,
     gracePeriod: false,
@@ -19,13 +19,11 @@ let value: PastSubscription = {
     canConvert: false,
     type: "plexpass",
     transfer: "<value>",
-    state: PostUsersSigninDataState.Ended,
-    billing: [
-        {
-            internalPaymentMethod: {},
-            paymentMethodId: 820994,
-        },
-    ],
+    state: PostUsersSignInDataState.Ended,
+    billing: {
+        internalPaymentMethod: {},
+        paymentMethodId: 880476,
+    },
 };
 ```
 
@@ -35,8 +33,8 @@ let value: PastSubscription = {
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `id`                                                                     | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |                                                                          |
 | `mode`                                                                   | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |                                                                          |
-| `renewsAt`                                                               | *number*                                                                 | :heavy_check_mark:                                                       | Unix epoch datetime                                                      |                                                                          |
-| `endsAt`                                                                 | *number*                                                                 | :heavy_check_mark:                                                       | Unix epoch datetime                                                      | 1556281940                                                               |
+| `renewsAt`                                                               | *number*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      | 1556281940                                                               |
+| `endsAt`                                                                 | *number*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      | 1556281940                                                               |
 | `canceled`                                                               | *boolean*                                                                | :heavy_minus_sign:                                                       | N/A                                                                      | false                                                                    |
 | `gracePeriod`                                                            | *boolean*                                                                | :heavy_minus_sign:                                                       | N/A                                                                      | false                                                                    |
 | `onHold`                                                                 | *boolean*                                                                | :heavy_minus_sign:                                                       | N/A                                                                      | false                                                                    |
@@ -46,5 +44,5 @@ let value: PastSubscription = {
 | `canConvert`                                                             | *boolean*                                                                | :heavy_minus_sign:                                                       | N/A                                                                      | false                                                                    |
 | `type`                                                                   | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      | plexpass                                                                 |
 | `transfer`                                                               | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |                                                                          |
-| `state`                                                                  | [models.PostUsersSigninDataState](../models/postuserssignindatastate.md) | :heavy_check_mark:                                                       | N/A                                                                      | ended                                                                    |
-| `billing`                                                                | [models.Billing](../models/billing.md)[]                                 | :heavy_check_mark:                                                       | N/A                                                                      |                                                                          |
+| `state`                                                                  | [models.PostUsersSignInDataState](../models/postuserssignindatastate.md) | :heavy_check_mark:                                                       | N/A                                                                      | ended                                                                    |
+| `billing`                                                                | [models.Billing](../models/billing.md)                                   | :heavy_check_mark:                                                       | N/A                                                                      |                                                                          |

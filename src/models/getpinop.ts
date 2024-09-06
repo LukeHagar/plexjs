@@ -38,13 +38,7 @@ export type GetPinRequest = {
      *
      */
     xPlexClientIdentifier?: string | undefined;
-    /**
-     * Product name of the application shown in the list of devices
-     *
-     * @remarks
-     *
-     */
-    xPlexProduct: string;
+    xPlexProduct?: string | undefined;
 };
 
 export type GetPinErrors = {
@@ -239,9 +233,9 @@ export namespace GetPinGlobals$ {
 /** @internal */
 export const GetPinRequest$inboundSchema: z.ZodType<GetPinRequest, z.ZodTypeDef, unknown> = z
     .object({
-        strong: z.boolean(),
+        strong: z.boolean().default(false),
         "X-Plex-Client-Identifier": z.string().optional(),
-        "X-Plex-Product": z.string(),
+        "X-Plex-Product": z.string().optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -254,7 +248,7 @@ export const GetPinRequest$inboundSchema: z.ZodType<GetPinRequest, z.ZodTypeDef,
 export type GetPinRequest$Outbound = {
     strong: boolean;
     "X-Plex-Client-Identifier"?: string | undefined;
-    "X-Plex-Product": string;
+    "X-Plex-Product"?: string | undefined;
 };
 
 /** @internal */
@@ -266,7 +260,7 @@ export const GetPinRequest$outboundSchema: z.ZodType<
     .object({
         strong: z.boolean().default(false),
         xPlexClientIdentifier: z.string().optional(),
-        xPlexProduct: z.string(),
+        xPlexProduct: z.string().optional(),
     })
     .transform((v) => {
         return remap$(v, {
@@ -396,11 +390,11 @@ export const GeoData$inboundSchema: z.ZodType<GeoData, z.ZodTypeDef, unknown> = 
         continent_code: z.string(),
         country: z.string(),
         city: z.string(),
-        european_union_member: z.boolean(),
+        european_union_member: z.boolean().default(false),
         time_zone: z.string(),
         postal_code: z.number().int(),
-        in_privacy_restricted_country: z.boolean(),
-        in_privacy_restricted_region: z.boolean(),
+        in_privacy_restricted_country: z.boolean().default(false),
+        in_privacy_restricted_region: z.boolean().default(false),
         subdivisions: z.string(),
         coordinates: z.string(),
     })
@@ -478,7 +472,7 @@ export const GetPinAuthPinContainer$inboundSchema: z.ZodType<
     id: z.number().int(),
     code: z.string(),
     product: z.string(),
-    trusted: z.boolean(),
+    trusted: z.boolean().default(false),
     qr: z.string(),
     clientIdentifier: z.string(),
     location: z.lazy(() => GeoData$inboundSchema),

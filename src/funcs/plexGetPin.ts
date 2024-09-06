@@ -3,10 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import {
-    encodeFormQuery as encodeFormQuery$,
-    encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
+import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -32,9 +29,9 @@ import { Result } from "../types/fp.js";
  */
 export async function plexGetPin(
     client$: PlexAPICore,
-    xPlexProduct: string,
     strong?: boolean | undefined,
     xPlexClientIdentifier?: string | undefined,
+    xPlexProduct?: string | undefined,
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
@@ -73,19 +70,13 @@ export async function plexGetPin(
 
     const query$ = encodeFormQuery$({
         strong: payload$.strong,
+        "X-Plex-Client-Identifier":
+            payload$["X-Plex-Client-Identifier"] ?? client$.options$.xPlexClientIdentifier,
+        "X-Plex-Product": payload$["X-Plex-Product"],
     });
 
     const headers$ = new Headers({
         Accept: "application/json",
-        "X-Plex-Client-Identifier": encodeSimple$(
-            "X-Plex-Client-Identifier",
-            payload$["X-Plex-Client-Identifier"] ?? client$.options$.xPlexClientIdentifier,
-            { explode: false, charEncoding: "none" }
-        ),
-        "X-Plex-Product": encodeSimple$("X-Plex-Product", payload$["X-Plex-Product"], {
-            explode: false,
-            charEncoding: "none",
-        }),
     });
 
     const context = { operationID: "getPin", oAuth2Scopes: [], securitySource: null };

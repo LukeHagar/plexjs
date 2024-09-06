@@ -6,7 +6,7 @@
 import { GetLibraryHubsRequest } from "@lukehagar/plexjs";
 
 let value: GetLibraryHubsRequest = {
-    sectionId: 1433.53,
+    sectionId: 2223.21,
 };
 ```
 
