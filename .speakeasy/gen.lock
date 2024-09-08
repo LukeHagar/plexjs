@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: eae2a027b2467f033ac397a5d9f0add5
+  docChecksum: e86dd5a81cd11202edc0a62b99f0e4ff
   docVersion: 0.0.3
   speakeasyVersion: 1.392.1
   generationVersion: 2.411.9
-  releaseVersion: 0.20.1
-  configChecksum: f629192d4499bb36b01927f9b0146f69
+  releaseVersion: 0.20.2
+  configChecksum: 82c9b6fbb4fc184a9c738a1c06d6e1c7
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -894,6 +894,7 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "200": {}
   getServerPreferences:
     speakeasy-default-get-server-preferences:
       responses:
@@ -951,6 +952,7 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "200": {}
   getServerList:
     speakeasy-default-get-server-list:
       responses:
@@ -998,6 +1000,7 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "200": {}
   get-thumb-image:
     speakeasy-default-get-thumb-image:
       parameters:
@@ -1012,6 +1015,7 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "200": {}
   getTimeline:
     "":
       parameters:
@@ -1057,6 +1061,7 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "200": {}
   cancelServerActivities:
     "":
       parameters:
@@ -1137,6 +1142,7 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "200": {}
   getPin:
     "":
       parameters:
@@ -1364,6 +1370,7 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "200": {}
   logLine:
     speakeasy-default-log-line:
       parameters:

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export const GetGeoDataServerList = ["https://plex.tv/api/v2"] as const;
+export const GetGeoDataServerList = ["https://plex.tv/api/v2/"] as const;
 
 /**
  * Geo location data
