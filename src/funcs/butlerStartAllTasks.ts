@@ -38,6 +38,7 @@ export async function butlerStartAllTasks(
     Result<
         operations.StartAllTasksResponse,
         | errors.StartAllTasksResponseBody
+        | errors.StartAllTasksButlerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -99,6 +100,7 @@ export async function butlerStartAllTasks(
     const [result$] = await m$.match<
         operations.StartAllTasksResponse,
         | errors.StartAllTasksResponseBody
+        | errors.StartAllTasksButlerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -108,8 +110,9 @@ export async function butlerStartAllTasks(
         | ConnectionError
     >(
         m$.nil(200, operations.StartAllTasksResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.StartAllTasksResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.StartAllTasksResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.StartAllTasksButlerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

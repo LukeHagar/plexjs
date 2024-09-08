@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetResizedPhotoErrors = {
+export type GetResizedPhotoServerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetResizedPhotoErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetResizedPhotoServerResponseBodyData = {
+    errors?: Array<GetResizedPhotoServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetResizedPhotoServerResponseBody extends Error {
+    errors?: Array<GetResizedPhotoServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetResizedPhotoServerResponseBodyData;
+
+    constructor(err: GetResizedPhotoServerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetResizedPhotoServerResponseBody";
+    }
+}
+
+export type GetResizedPhotoErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetResizedPhotoResponseBodyData = {
     errors?: Array<GetResizedPhotoErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetResizedPhotoResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetResizedPhotoResponseBody extends Error {
     errors?: Array<GetResizedPhotoErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetResizedPhotoResponseBody extends Error {
 }
 
 /** @internal */
+export const GetResizedPhotoServerErrors$inboundSchema: z.ZodType<
+    GetResizedPhotoServerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetResizedPhotoServerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetResizedPhotoServerErrors$outboundSchema: z.ZodType<
+    GetResizedPhotoServerErrors$Outbound,
+    z.ZodTypeDef,
+    GetResizedPhotoServerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResizedPhotoServerErrors$ {
+    /** @deprecated use `GetResizedPhotoServerErrors$inboundSchema` instead. */
+    export const inboundSchema = GetResizedPhotoServerErrors$inboundSchema;
+    /** @deprecated use `GetResizedPhotoServerErrors$outboundSchema` instead. */
+    export const outboundSchema = GetResizedPhotoServerErrors$outboundSchema;
+    /** @deprecated use `GetResizedPhotoServerErrors$Outbound` instead. */
+    export type Outbound = GetResizedPhotoServerErrors$Outbound;
+}
+
+/** @internal */
+export const GetResizedPhotoServerResponseBody$inboundSchema: z.ZodType<
+    GetResizedPhotoServerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetResizedPhotoServerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetResizedPhotoServerResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetResizedPhotoServerResponseBody$Outbound = {
+    errors?: Array<GetResizedPhotoServerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetResizedPhotoServerResponseBody$outboundSchema: z.ZodType<
+    GetResizedPhotoServerResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetResizedPhotoServerResponseBody
+> = z
+    .instanceof(GetResizedPhotoServerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetResizedPhotoServerErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResizedPhotoServerResponseBody$ {
+    /** @deprecated use `GetResizedPhotoServerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetResizedPhotoServerResponseBody$inboundSchema;
+    /** @deprecated use `GetResizedPhotoServerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetResizedPhotoServerResponseBody$outboundSchema;
+    /** @deprecated use `GetResizedPhotoServerResponseBody$Outbound` instead. */
+    export type Outbound = GetResizedPhotoServerResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetResizedPhotoErrors$inboundSchema: z.ZodType<
     GetResizedPhotoErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetResizedPhotoErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetResizedPhotoErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -33,6 +33,7 @@ export async function updaterGetUpdateStatus(
     Result<
         operations.GetUpdateStatusResponse,
         | errors.GetUpdateStatusResponseBody
+        | errors.GetUpdateStatusUpdaterResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function updaterGetUpdateStatus(
     const [result$] = await m$.match<
         operations.GetUpdateStatusResponse,
         | errors.GetUpdateStatusResponseBody
+        | errors.GetUpdateStatusUpdaterResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function updaterGetUpdateStatus(
         | ConnectionError
     >(
         m$.json(200, operations.GetUpdateStatusResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetUpdateStatusResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetUpdateStatusResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetUpdateStatusUpdaterResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

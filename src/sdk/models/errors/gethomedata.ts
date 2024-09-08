@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetHomeDataErrors = {
+export type GetHomeDataPlexErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetHomeDataErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetHomeDataPlexResponseBodyData = {
+    errors?: Array<GetHomeDataPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetHomeDataPlexResponseBody extends Error {
+    errors?: Array<GetHomeDataPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetHomeDataPlexResponseBodyData;
+
+    constructor(err: GetHomeDataPlexResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetHomeDataPlexResponseBody";
+    }
+}
+
+export type GetHomeDataErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetHomeDataResponseBodyData = {
     errors?: Array<GetHomeDataErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetHomeDataResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetHomeDataResponseBody extends Error {
     errors?: Array<GetHomeDataErrors> | undefined;
@@ -55,11 +104,116 @@ export class GetHomeDataResponseBody extends Error {
 }
 
 /** @internal */
+export const GetHomeDataPlexErrors$inboundSchema: z.ZodType<
+    GetHomeDataPlexErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetHomeDataPlexErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetHomeDataPlexErrors$outboundSchema: z.ZodType<
+    GetHomeDataPlexErrors$Outbound,
+    z.ZodTypeDef,
+    GetHomeDataPlexErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetHomeDataPlexErrors$ {
+    /** @deprecated use `GetHomeDataPlexErrors$inboundSchema` instead. */
+    export const inboundSchema = GetHomeDataPlexErrors$inboundSchema;
+    /** @deprecated use `GetHomeDataPlexErrors$outboundSchema` instead. */
+    export const outboundSchema = GetHomeDataPlexErrors$outboundSchema;
+    /** @deprecated use `GetHomeDataPlexErrors$Outbound` instead. */
+    export type Outbound = GetHomeDataPlexErrors$Outbound;
+}
+
+/** @internal */
+export const GetHomeDataPlexResponseBody$inboundSchema: z.ZodType<
+    GetHomeDataPlexResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetHomeDataPlexErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetHomeDataPlexResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetHomeDataPlexResponseBody$Outbound = {
+    errors?: Array<GetHomeDataPlexErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetHomeDataPlexResponseBody$outboundSchema: z.ZodType<
+    GetHomeDataPlexResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetHomeDataPlexResponseBody
+> = z
+    .instanceof(GetHomeDataPlexResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetHomeDataPlexErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetHomeDataPlexResponseBody$ {
+    /** @deprecated use `GetHomeDataPlexResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetHomeDataPlexResponseBody$inboundSchema;
+    /** @deprecated use `GetHomeDataPlexResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetHomeDataPlexResponseBody$outboundSchema;
+    /** @deprecated use `GetHomeDataPlexResponseBody$Outbound` instead. */
+    export type Outbound = GetHomeDataPlexResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetHomeDataErrors$inboundSchema: z.ZodType<GetHomeDataErrors, z.ZodTypeDef, unknown> =
     z.object({
-        code: z.number().optional(),
+        code: z.number().int().optional(),
         message: z.string().optional(),
-        status: z.number().optional(),
+        status: z.number().int().optional(),
     });
 
 /** @internal */
@@ -75,9 +229,9 @@ export const GetHomeDataErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetHomeDataErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

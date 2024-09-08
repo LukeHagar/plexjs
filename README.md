@@ -192,7 +192,7 @@ run();
 * [getTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token.
 * [getSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
 * [getUserDetails](docs/sdks/authentication/README.md#getuserdetails) - Get User Data By Token
-* [postUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User SignIn Data
+* [postUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
 
 ### [statistics](docs/sdks/statistics/README.md)
 
@@ -219,10 +219,11 @@ run();
 
 All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetServerCapabilitiesResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object                                   | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.GetServerCapabilitiesResponseBody       | 400                                            | application/json                               |
+| errors.GetServerCapabilitiesServerResponseBody | 401                                            | application/json                               |
+| errors.SDKError                                | 4xx-5xx                                        | */*                                            |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
 
@@ -231,6 +232,7 @@ Validation errors can also occur when either method arguments or data returned f
 import { PlexAPI } from "@lukehagar/plexjs";
 import {
     GetServerCapabilitiesResponseBody,
+    GetServerCapabilitiesServerResponseBody,
     SDKValidationError,
 } from "@lukehagar/plexjs/sdk/models/errors";
 
@@ -257,6 +259,11 @@ async function run() {
             }
             case err instanceof GetServerCapabilitiesResponseBody: {
                 // Handle err.data$: GetServerCapabilitiesResponseBodyData
+                console.error(err);
+                return;
+            }
+            case err instanceof GetServerCapabilitiesServerResponseBody: {
+                // Handle err.data$: GetServerCapabilitiesServerResponseBodyData
                 console.error(err);
                 return;
             }

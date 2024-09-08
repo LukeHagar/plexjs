@@ -36,6 +36,7 @@ export async function activitiesCancelServerActivities(
     Result<
         operations.CancelServerActivitiesResponse,
         | errors.CancelServerActivitiesResponseBody
+        | errors.CancelServerActivitiesActivitiesResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -120,6 +121,7 @@ export async function activitiesCancelServerActivities(
     const [result$] = await m$.match<
         operations.CancelServerActivitiesResponse,
         | errors.CancelServerActivitiesResponseBody
+        | errors.CancelServerActivitiesActivitiesResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -129,8 +131,9 @@ export async function activitiesCancelServerActivities(
         | ConnectionError
     >(
         m$.nil(200, operations.CancelServerActivitiesResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.CancelServerActivitiesResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.CancelServerActivitiesResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.CancelServerActivitiesActivitiesResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

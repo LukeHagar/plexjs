@@ -33,6 +33,7 @@ export async function plexGetGeoData(
     Result<
         operations.GetGeoDataResponse,
         | errors.GetGeoDataResponseBody
+        | errors.GetGeoDataPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -90,6 +91,7 @@ export async function plexGetGeoData(
     const [result$] = await m$.match<
         operations.GetGeoDataResponse,
         | errors.GetGeoDataResponseBody
+        | errors.GetGeoDataPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -99,8 +101,9 @@ export async function plexGetGeoData(
         | ConnectionError
     >(
         m$.json(200, operations.GetGeoDataResponse$inboundSchema, { key: "GeoData" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetGeoDataResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetGeoDataResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetGeoDataPlexResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -39,6 +39,7 @@ export async function libraryGetAllLibraries(
     Result<
         operations.GetAllLibrariesResponse,
         | errors.GetAllLibrariesResponseBody
+        | errors.GetAllLibrariesLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -100,6 +101,7 @@ export async function libraryGetAllLibraries(
     const [result$] = await m$.match<
         operations.GetAllLibrariesResponse,
         | errors.GetAllLibrariesResponseBody
+        | errors.GetAllLibrariesLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -109,8 +111,9 @@ export async function libraryGetAllLibraries(
         | ConnectionError
     >(
         m$.json(200, operations.GetAllLibrariesResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetAllLibrariesResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetAllLibrariesResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetAllLibrariesLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

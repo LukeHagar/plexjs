@@ -36,6 +36,7 @@ export async function statisticsGetStatistics(
     Result<
         operations.GetStatisticsResponse,
         | errors.GetStatisticsResponseBody
+        | errors.GetStatisticsStatisticsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -118,6 +119,7 @@ export async function statisticsGetStatistics(
     const [result$] = await m$.match<
         operations.GetStatisticsResponse,
         | errors.GetStatisticsResponseBody
+        | errors.GetStatisticsStatisticsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,8 +129,9 @@ export async function statisticsGetStatistics(
         | ConnectionError
     >(
         m$.json(200, operations.GetStatisticsResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetStatisticsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetStatisticsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetStatisticsStatisticsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

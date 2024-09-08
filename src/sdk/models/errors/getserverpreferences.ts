@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetServerPreferencesErrors = {
+export type GetServerPreferencesServerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetServerPreferencesErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetServerPreferencesServerResponseBodyData = {
+    errors?: Array<GetServerPreferencesServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetServerPreferencesServerResponseBody extends Error {
+    errors?: Array<GetServerPreferencesServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetServerPreferencesServerResponseBodyData;
+
+    constructor(err: GetServerPreferencesServerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetServerPreferencesServerResponseBody";
+    }
+}
+
+export type GetServerPreferencesErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetServerPreferencesResponseBodyData = {
     errors?: Array<GetServerPreferencesErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetServerPreferencesResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetServerPreferencesResponseBody extends Error {
     errors?: Array<GetServerPreferencesErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetServerPreferencesResponseBody extends Error {
 }
 
 /** @internal */
+export const GetServerPreferencesServerErrors$inboundSchema: z.ZodType<
+    GetServerPreferencesServerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetServerPreferencesServerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetServerPreferencesServerErrors$outboundSchema: z.ZodType<
+    GetServerPreferencesServerErrors$Outbound,
+    z.ZodTypeDef,
+    GetServerPreferencesServerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetServerPreferencesServerErrors$ {
+    /** @deprecated use `GetServerPreferencesServerErrors$inboundSchema` instead. */
+    export const inboundSchema = GetServerPreferencesServerErrors$inboundSchema;
+    /** @deprecated use `GetServerPreferencesServerErrors$outboundSchema` instead. */
+    export const outboundSchema = GetServerPreferencesServerErrors$outboundSchema;
+    /** @deprecated use `GetServerPreferencesServerErrors$Outbound` instead. */
+    export type Outbound = GetServerPreferencesServerErrors$Outbound;
+}
+
+/** @internal */
+export const GetServerPreferencesServerResponseBody$inboundSchema: z.ZodType<
+    GetServerPreferencesServerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetServerPreferencesServerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetServerPreferencesServerResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetServerPreferencesServerResponseBody$Outbound = {
+    errors?: Array<GetServerPreferencesServerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetServerPreferencesServerResponseBody$outboundSchema: z.ZodType<
+    GetServerPreferencesServerResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetServerPreferencesServerResponseBody
+> = z
+    .instanceof(GetServerPreferencesServerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetServerPreferencesServerErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetServerPreferencesServerResponseBody$ {
+    /** @deprecated use `GetServerPreferencesServerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetServerPreferencesServerResponseBody$inboundSchema;
+    /** @deprecated use `GetServerPreferencesServerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetServerPreferencesServerResponseBody$outboundSchema;
+    /** @deprecated use `GetServerPreferencesServerResponseBody$Outbound` instead. */
+    export type Outbound = GetServerPreferencesServerResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetServerPreferencesErrors$inboundSchema: z.ZodType<
     GetServerPreferencesErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetServerPreferencesErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetServerPreferencesErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetTransientTokenErrors = {
+export type GetTransientTokenAuthenticationErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetTransientTokenErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetTransientTokenAuthenticationResponseBodyData = {
+    errors?: Array<GetTransientTokenAuthenticationErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetTransientTokenAuthenticationResponseBody extends Error {
+    errors?: Array<GetTransientTokenAuthenticationErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetTransientTokenAuthenticationResponseBodyData;
+
+    constructor(err: GetTransientTokenAuthenticationResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetTransientTokenAuthenticationResponseBody";
+    }
+}
+
+export type GetTransientTokenErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetTransientTokenResponseBodyData = {
     errors?: Array<GetTransientTokenErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetTransientTokenResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetTransientTokenResponseBody extends Error {
     errors?: Array<GetTransientTokenErrors> | undefined;
@@ -55,14 +104,123 @@ export class GetTransientTokenResponseBody extends Error {
 }
 
 /** @internal */
+export const GetTransientTokenAuthenticationErrors$inboundSchema: z.ZodType<
+    GetTransientTokenAuthenticationErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetTransientTokenAuthenticationErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetTransientTokenAuthenticationErrors$outboundSchema: z.ZodType<
+    GetTransientTokenAuthenticationErrors$Outbound,
+    z.ZodTypeDef,
+    GetTransientTokenAuthenticationErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTransientTokenAuthenticationErrors$ {
+    /** @deprecated use `GetTransientTokenAuthenticationErrors$inboundSchema` instead. */
+    export const inboundSchema = GetTransientTokenAuthenticationErrors$inboundSchema;
+    /** @deprecated use `GetTransientTokenAuthenticationErrors$outboundSchema` instead. */
+    export const outboundSchema = GetTransientTokenAuthenticationErrors$outboundSchema;
+    /** @deprecated use `GetTransientTokenAuthenticationErrors$Outbound` instead. */
+    export type Outbound = GetTransientTokenAuthenticationErrors$Outbound;
+}
+
+/** @internal */
+export const GetTransientTokenAuthenticationResponseBody$inboundSchema: z.ZodType<
+    GetTransientTokenAuthenticationResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z
+            .array(z.lazy(() => GetTransientTokenAuthenticationErrors$inboundSchema))
+            .optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetTransientTokenAuthenticationResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetTransientTokenAuthenticationResponseBody$Outbound = {
+    errors?: Array<GetTransientTokenAuthenticationErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetTransientTokenAuthenticationResponseBody$outboundSchema: z.ZodType<
+    GetTransientTokenAuthenticationResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetTransientTokenAuthenticationResponseBody
+> = z
+    .instanceof(GetTransientTokenAuthenticationResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetTransientTokenAuthenticationErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTransientTokenAuthenticationResponseBody$ {
+    /** @deprecated use `GetTransientTokenAuthenticationResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetTransientTokenAuthenticationResponseBody$inboundSchema;
+    /** @deprecated use `GetTransientTokenAuthenticationResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetTransientTokenAuthenticationResponseBody$outboundSchema;
+    /** @deprecated use `GetTransientTokenAuthenticationResponseBody$Outbound` instead. */
+    export type Outbound = GetTransientTokenAuthenticationResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetTransientTokenErrors$inboundSchema: z.ZodType<
     GetTransientTokenErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +236,9 @@ export const GetTransientTokenErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetTransientTokenErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

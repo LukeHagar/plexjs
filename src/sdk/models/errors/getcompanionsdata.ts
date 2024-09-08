@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetCompanionsDataErrors = {
+export type GetCompanionsDataPlexErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetCompanionsDataErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetCompanionsDataPlexResponseBodyData = {
+    errors?: Array<GetCompanionsDataPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetCompanionsDataPlexResponseBody extends Error {
+    errors?: Array<GetCompanionsDataPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetCompanionsDataPlexResponseBodyData;
+
+    constructor(err: GetCompanionsDataPlexResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetCompanionsDataPlexResponseBody";
+    }
+}
+
+export type GetCompanionsDataErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetCompanionsDataResponseBodyData = {
     errors?: Array<GetCompanionsDataErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetCompanionsDataResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetCompanionsDataResponseBody extends Error {
     errors?: Array<GetCompanionsDataErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetCompanionsDataResponseBody extends Error {
 }
 
 /** @internal */
+export const GetCompanionsDataPlexErrors$inboundSchema: z.ZodType<
+    GetCompanionsDataPlexErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetCompanionsDataPlexErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetCompanionsDataPlexErrors$outboundSchema: z.ZodType<
+    GetCompanionsDataPlexErrors$Outbound,
+    z.ZodTypeDef,
+    GetCompanionsDataPlexErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetCompanionsDataPlexErrors$ {
+    /** @deprecated use `GetCompanionsDataPlexErrors$inboundSchema` instead. */
+    export const inboundSchema = GetCompanionsDataPlexErrors$inboundSchema;
+    /** @deprecated use `GetCompanionsDataPlexErrors$outboundSchema` instead. */
+    export const outboundSchema = GetCompanionsDataPlexErrors$outboundSchema;
+    /** @deprecated use `GetCompanionsDataPlexErrors$Outbound` instead. */
+    export type Outbound = GetCompanionsDataPlexErrors$Outbound;
+}
+
+/** @internal */
+export const GetCompanionsDataPlexResponseBody$inboundSchema: z.ZodType<
+    GetCompanionsDataPlexResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetCompanionsDataPlexErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetCompanionsDataPlexResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetCompanionsDataPlexResponseBody$Outbound = {
+    errors?: Array<GetCompanionsDataPlexErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetCompanionsDataPlexResponseBody$outboundSchema: z.ZodType<
+    GetCompanionsDataPlexResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetCompanionsDataPlexResponseBody
+> = z
+    .instanceof(GetCompanionsDataPlexResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetCompanionsDataPlexErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetCompanionsDataPlexResponseBody$ {
+    /** @deprecated use `GetCompanionsDataPlexResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetCompanionsDataPlexResponseBody$inboundSchema;
+    /** @deprecated use `GetCompanionsDataPlexResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetCompanionsDataPlexResponseBody$outboundSchema;
+    /** @deprecated use `GetCompanionsDataPlexResponseBody$Outbound` instead. */
+    export type Outbound = GetCompanionsDataPlexResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetCompanionsDataErrors$inboundSchema: z.ZodType<
     GetCompanionsDataErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetCompanionsDataErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetCompanionsDataErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

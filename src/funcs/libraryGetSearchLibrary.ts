@@ -58,6 +58,7 @@ export async function libraryGetSearchLibrary(
     Result<
         operations.GetSearchLibraryResponse,
         | errors.GetSearchLibraryResponseBody
+        | errors.GetSearchLibraryLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -148,6 +149,7 @@ export async function libraryGetSearchLibrary(
     const [result$] = await m$.match<
         operations.GetSearchLibraryResponse,
         | errors.GetSearchLibraryResponseBody
+        | errors.GetSearchLibraryLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -157,8 +159,9 @@ export async function libraryGetSearchLibrary(
         | ConnectionError
     >(
         m$.json(200, operations.GetSearchLibraryResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetSearchLibraryResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetSearchLibraryResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetSearchLibraryLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

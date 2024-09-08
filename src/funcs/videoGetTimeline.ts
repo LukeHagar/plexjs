@@ -36,6 +36,7 @@ export async function videoGetTimeline(
     Result<
         operations.GetTimelineResponse,
         | errors.GetTimelineResponseBody
+        | errors.GetTimelineVideoResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -125,6 +126,7 @@ export async function videoGetTimeline(
     const [result$] = await m$.match<
         operations.GetTimelineResponse,
         | errors.GetTimelineResponseBody
+        | errors.GetTimelineVideoResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -134,8 +136,9 @@ export async function videoGetTimeline(
         | ConnectionError
     >(
         m$.nil(200, operations.GetTimelineResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetTimelineResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetTimelineResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetTimelineVideoResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

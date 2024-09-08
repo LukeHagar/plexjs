@@ -36,6 +36,7 @@ export async function libraryDeleteLibrary(
     Result<
         operations.DeleteLibraryResponse,
         | errors.DeleteLibraryResponseBody
+        | errors.DeleteLibraryLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -120,6 +121,7 @@ export async function libraryDeleteLibrary(
     const [result$] = await m$.match<
         operations.DeleteLibraryResponse,
         | errors.DeleteLibraryResponseBody
+        | errors.DeleteLibraryLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -129,8 +131,9 @@ export async function libraryDeleteLibrary(
         | ConnectionError
     >(
         m$.nil(200, operations.DeleteLibraryResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.DeleteLibraryResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.DeleteLibraryResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.DeleteLibraryLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

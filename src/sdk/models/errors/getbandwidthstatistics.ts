@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetBandwidthStatisticsErrors = {
+export type GetBandwidthStatisticsStatisticsErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetBandwidthStatisticsErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetBandwidthStatisticsStatisticsResponseBodyData = {
+    errors?: Array<GetBandwidthStatisticsStatisticsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetBandwidthStatisticsStatisticsResponseBody extends Error {
+    errors?: Array<GetBandwidthStatisticsStatisticsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetBandwidthStatisticsStatisticsResponseBodyData;
+
+    constructor(err: GetBandwidthStatisticsStatisticsResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetBandwidthStatisticsStatisticsResponseBody";
+    }
+}
+
+export type GetBandwidthStatisticsErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetBandwidthStatisticsResponseBodyData = {
     errors?: Array<GetBandwidthStatisticsErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetBandwidthStatisticsResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetBandwidthStatisticsResponseBody extends Error {
     errors?: Array<GetBandwidthStatisticsErrors> | undefined;
@@ -55,14 +104,123 @@ export class GetBandwidthStatisticsResponseBody extends Error {
 }
 
 /** @internal */
+export const GetBandwidthStatisticsStatisticsErrors$inboundSchema: z.ZodType<
+    GetBandwidthStatisticsStatisticsErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetBandwidthStatisticsStatisticsErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetBandwidthStatisticsStatisticsErrors$outboundSchema: z.ZodType<
+    GetBandwidthStatisticsStatisticsErrors$Outbound,
+    z.ZodTypeDef,
+    GetBandwidthStatisticsStatisticsErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetBandwidthStatisticsStatisticsErrors$ {
+    /** @deprecated use `GetBandwidthStatisticsStatisticsErrors$inboundSchema` instead. */
+    export const inboundSchema = GetBandwidthStatisticsStatisticsErrors$inboundSchema;
+    /** @deprecated use `GetBandwidthStatisticsStatisticsErrors$outboundSchema` instead. */
+    export const outboundSchema = GetBandwidthStatisticsStatisticsErrors$outboundSchema;
+    /** @deprecated use `GetBandwidthStatisticsStatisticsErrors$Outbound` instead. */
+    export type Outbound = GetBandwidthStatisticsStatisticsErrors$Outbound;
+}
+
+/** @internal */
+export const GetBandwidthStatisticsStatisticsResponseBody$inboundSchema: z.ZodType<
+    GetBandwidthStatisticsStatisticsResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z
+            .array(z.lazy(() => GetBandwidthStatisticsStatisticsErrors$inboundSchema))
+            .optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetBandwidthStatisticsStatisticsResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetBandwidthStatisticsStatisticsResponseBody$Outbound = {
+    errors?: Array<GetBandwidthStatisticsStatisticsErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetBandwidthStatisticsStatisticsResponseBody$outboundSchema: z.ZodType<
+    GetBandwidthStatisticsStatisticsResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetBandwidthStatisticsStatisticsResponseBody
+> = z
+    .instanceof(GetBandwidthStatisticsStatisticsResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetBandwidthStatisticsStatisticsErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetBandwidthStatisticsStatisticsResponseBody$ {
+    /** @deprecated use `GetBandwidthStatisticsStatisticsResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetBandwidthStatisticsStatisticsResponseBody$inboundSchema;
+    /** @deprecated use `GetBandwidthStatisticsStatisticsResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetBandwidthStatisticsStatisticsResponseBody$outboundSchema;
+    /** @deprecated use `GetBandwidthStatisticsStatisticsResponseBody$Outbound` instead. */
+    export type Outbound = GetBandwidthStatisticsStatisticsResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetBandwidthStatisticsErrors$inboundSchema: z.ZodType<
     GetBandwidthStatisticsErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +236,9 @@ export const GetBandwidthStatisticsErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetBandwidthStatisticsErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

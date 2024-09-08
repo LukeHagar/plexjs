@@ -33,6 +33,7 @@ export async function serverGetMyPlexAccount(
     Result<
         operations.GetMyPlexAccountResponse,
         | errors.GetMyPlexAccountResponseBody
+        | errors.GetMyPlexAccountServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function serverGetMyPlexAccount(
     const [result$] = await m$.match<
         operations.GetMyPlexAccountResponse,
         | errors.GetMyPlexAccountResponseBody
+        | errors.GetMyPlexAccountServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function serverGetMyPlexAccount(
         | ConnectionError
     >(
         m$.json(200, operations.GetMyPlexAccountResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetMyPlexAccountResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetMyPlexAccountResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetMyPlexAccountServerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

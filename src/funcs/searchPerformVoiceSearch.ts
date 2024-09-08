@@ -42,6 +42,7 @@ export async function searchPerformVoiceSearch(
     Result<
         operations.PerformVoiceSearchResponse,
         | errors.PerformVoiceSearchResponseBody
+        | errors.PerformVoiceSearchSearchResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -128,6 +129,7 @@ export async function searchPerformVoiceSearch(
     const [result$] = await m$.match<
         operations.PerformVoiceSearchResponse,
         | errors.PerformVoiceSearchResponseBody
+        | errors.PerformVoiceSearchSearchResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -137,8 +139,9 @@ export async function searchPerformVoiceSearch(
         | ConnectionError
     >(
         m$.nil(200, operations.PerformVoiceSearchResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.PerformVoiceSearchResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.PerformVoiceSearchResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.PerformVoiceSearchSearchResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -26,6 +26,7 @@ export type PostUsersSignInDataRequestBody = {
     login: string;
     password: string;
     rememberMe?: boolean | undefined;
+    verificationCode?: string | undefined;
 };
 
 export type PostUsersSignInDataRequest = {
@@ -437,7 +438,7 @@ export type PostUsersSignInDataUserPlexAccount = {
      */
     id: number;
     /**
-     * Unix epoch datetime the account joined Plex
+     * Unix epoch datetime
      */
     joinedAt: number;
     /**
@@ -468,7 +469,7 @@ export type PostUsersSignInDataUserPlexAccount = {
      */
     protected?: boolean | undefined;
     /**
-     * Unix epoch datetime the authtoken expires
+     * Unix epoch datetime
      */
     rememberExpiresAt: number;
     /**
@@ -593,6 +594,7 @@ export const PostUsersSignInDataRequestBody$inboundSchema: z.ZodType<
     login: z.string(),
     password: z.string(),
     rememberMe: z.boolean().default(false),
+    verificationCode: z.string().optional(),
 });
 
 /** @internal */
@@ -600,6 +602,7 @@ export type PostUsersSignInDataRequestBody$Outbound = {
     login: string;
     password: string;
     rememberMe: boolean;
+    verificationCode?: string | undefined;
 };
 
 /** @internal */
@@ -611,6 +614,7 @@ export const PostUsersSignInDataRequestBody$outboundSchema: z.ZodType<
     login: z.string(),
     password: z.string(),
     rememberMe: z.boolean().default(false),
+    verificationCode: z.string().optional(),
 });
 
 /**

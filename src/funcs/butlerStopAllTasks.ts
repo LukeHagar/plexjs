@@ -34,6 +34,7 @@ export async function butlerStopAllTasks(
     Result<
         operations.StopAllTasksResponse,
         | errors.StopAllTasksResponseBody
+        | errors.StopAllTasksButlerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -95,6 +96,7 @@ export async function butlerStopAllTasks(
     const [result$] = await m$.match<
         operations.StopAllTasksResponse,
         | errors.StopAllTasksResponseBody
+        | errors.StopAllTasksButlerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -104,8 +106,9 @@ export async function butlerStopAllTasks(
         | ConnectionError
     >(
         m$.nil(200, operations.StopAllTasksResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.StopAllTasksResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.StopAllTasksResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.StopAllTasksButlerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

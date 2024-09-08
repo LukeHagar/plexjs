@@ -10,6 +10,7 @@ import { PostUsersSignInDataRequestBody } from "@lukehagar/plexjs/sdk/models/ope
 let value: PostUsersSignInDataRequestBody = {
     login: "username@email.com",
     password: "password123",
+    verificationCode: "123456",
 };
 ```
 
@@ -20,3 +21,4 @@ let value: PostUsersSignInDataRequestBody = {
 | `login`            | *string*           | :heavy_check_mark: | N/A                | username@email.com |
 | `password`         | *string*           | :heavy_check_mark: | N/A                | password123        |
 | `rememberMe`       | *boolean*          | :heavy_minus_sign: | N/A                |                    |
+| `verificationCode` | *string*           | :heavy_minus_sign: | N/A                | 123456             |

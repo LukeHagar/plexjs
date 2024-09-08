@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type EnablePaperTrailErrors = {
+export type EnablePaperTrailLogErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type EnablePaperTrailErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type EnablePaperTrailLogResponseBodyData = {
+    errors?: Array<EnablePaperTrailLogErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class EnablePaperTrailLogResponseBody extends Error {
+    errors?: Array<EnablePaperTrailLogErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: EnablePaperTrailLogResponseBodyData;
+
+    constructor(err: EnablePaperTrailLogResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "EnablePaperTrailLogResponseBody";
+    }
+}
+
+export type EnablePaperTrailErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type EnablePaperTrailResponseBodyData = {
     errors?: Array<EnablePaperTrailErrors> | undefined;
@@ -23,7 +72,7 @@ export type EnablePaperTrailResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class EnablePaperTrailResponseBody extends Error {
     errors?: Array<EnablePaperTrailErrors> | undefined;
@@ -55,14 +104,119 @@ export class EnablePaperTrailResponseBody extends Error {
 }
 
 /** @internal */
+export const EnablePaperTrailLogErrors$inboundSchema: z.ZodType<
+    EnablePaperTrailLogErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type EnablePaperTrailLogErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const EnablePaperTrailLogErrors$outboundSchema: z.ZodType<
+    EnablePaperTrailLogErrors$Outbound,
+    z.ZodTypeDef,
+    EnablePaperTrailLogErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EnablePaperTrailLogErrors$ {
+    /** @deprecated use `EnablePaperTrailLogErrors$inboundSchema` instead. */
+    export const inboundSchema = EnablePaperTrailLogErrors$inboundSchema;
+    /** @deprecated use `EnablePaperTrailLogErrors$outboundSchema` instead. */
+    export const outboundSchema = EnablePaperTrailLogErrors$outboundSchema;
+    /** @deprecated use `EnablePaperTrailLogErrors$Outbound` instead. */
+    export type Outbound = EnablePaperTrailLogErrors$Outbound;
+}
+
+/** @internal */
+export const EnablePaperTrailLogResponseBody$inboundSchema: z.ZodType<
+    EnablePaperTrailLogResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => EnablePaperTrailLogErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new EnablePaperTrailLogResponseBody(remapped);
+    });
+
+/** @internal */
+export type EnablePaperTrailLogResponseBody$Outbound = {
+    errors?: Array<EnablePaperTrailLogErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const EnablePaperTrailLogResponseBody$outboundSchema: z.ZodType<
+    EnablePaperTrailLogResponseBody$Outbound,
+    z.ZodTypeDef,
+    EnablePaperTrailLogResponseBody
+> = z
+    .instanceof(EnablePaperTrailLogResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => EnablePaperTrailLogErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EnablePaperTrailLogResponseBody$ {
+    /** @deprecated use `EnablePaperTrailLogResponseBody$inboundSchema` instead. */
+    export const inboundSchema = EnablePaperTrailLogResponseBody$inboundSchema;
+    /** @deprecated use `EnablePaperTrailLogResponseBody$outboundSchema` instead. */
+    export const outboundSchema = EnablePaperTrailLogResponseBody$outboundSchema;
+    /** @deprecated use `EnablePaperTrailLogResponseBody$Outbound` instead. */
+    export type Outbound = EnablePaperTrailLogResponseBody$Outbound;
+}
+
+/** @internal */
 export const EnablePaperTrailErrors$inboundSchema: z.ZodType<
     EnablePaperTrailErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const EnablePaperTrailErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     EnablePaperTrailErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

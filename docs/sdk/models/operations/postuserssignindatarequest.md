@@ -9,6 +9,7 @@ let value: PostUsersSignInDataRequest = {
     requestBody: {
         login: "username@email.com",
         password: "password123",
+        verificationCode: "123456",
     },
 };
 ```

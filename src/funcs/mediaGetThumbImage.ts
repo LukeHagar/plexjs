@@ -39,6 +39,7 @@ export async function mediaGetThumbImage(
     Result<
         operations.GetThumbImageResponse,
         | errors.GetThumbImageResponseBody
+        | errors.GetThumbImageMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,6 +131,7 @@ export async function mediaGetThumbImage(
     const [result$] = await m$.match<
         operations.GetThumbImageResponse,
         | errors.GetThumbImageResponseBody
+        | errors.GetThumbImageMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -143,8 +145,9 @@ export async function mediaGetThumbImage(
             hdrs: true,
             key: "response-stream",
         }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetThumbImageResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetThumbImageResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetThumbImageMediaResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

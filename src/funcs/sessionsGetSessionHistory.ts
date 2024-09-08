@@ -39,6 +39,7 @@ export async function sessionsGetSessionHistory(
     Result<
         operations.GetSessionHistoryResponse,
         | errors.GetSessionHistoryResponseBody
+        | errors.GetSessionHistorySessionsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,6 +128,7 @@ export async function sessionsGetSessionHistory(
     const [result$] = await m$.match<
         operations.GetSessionHistoryResponse,
         | errors.GetSessionHistoryResponseBody
+        | errors.GetSessionHistorySessionsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -136,8 +138,9 @@ export async function sessionsGetSessionHistory(
         | ConnectionError
     >(
         m$.json(200, operations.GetSessionHistoryResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetSessionHistoryResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetSessionHistoryResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetSessionHistorySessionsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

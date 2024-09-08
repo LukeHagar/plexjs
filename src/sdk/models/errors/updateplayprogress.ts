@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type UpdatePlayProgressErrors = {
+export type UpdatePlayProgressMediaErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type UpdatePlayProgressErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type UpdatePlayProgressMediaResponseBodyData = {
+    errors?: Array<UpdatePlayProgressMediaErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class UpdatePlayProgressMediaResponseBody extends Error {
+    errors?: Array<UpdatePlayProgressMediaErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: UpdatePlayProgressMediaResponseBodyData;
+
+    constructor(err: UpdatePlayProgressMediaResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "UpdatePlayProgressMediaResponseBody";
+    }
+}
+
+export type UpdatePlayProgressErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type UpdatePlayProgressResponseBodyData = {
     errors?: Array<UpdatePlayProgressErrors> | undefined;
@@ -23,7 +72,7 @@ export type UpdatePlayProgressResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class UpdatePlayProgressResponseBody extends Error {
     errors?: Array<UpdatePlayProgressErrors> | undefined;
@@ -55,14 +104,121 @@ export class UpdatePlayProgressResponseBody extends Error {
 }
 
 /** @internal */
+export const UpdatePlayProgressMediaErrors$inboundSchema: z.ZodType<
+    UpdatePlayProgressMediaErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type UpdatePlayProgressMediaErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const UpdatePlayProgressMediaErrors$outboundSchema: z.ZodType<
+    UpdatePlayProgressMediaErrors$Outbound,
+    z.ZodTypeDef,
+    UpdatePlayProgressMediaErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdatePlayProgressMediaErrors$ {
+    /** @deprecated use `UpdatePlayProgressMediaErrors$inboundSchema` instead. */
+    export const inboundSchema = UpdatePlayProgressMediaErrors$inboundSchema;
+    /** @deprecated use `UpdatePlayProgressMediaErrors$outboundSchema` instead. */
+    export const outboundSchema = UpdatePlayProgressMediaErrors$outboundSchema;
+    /** @deprecated use `UpdatePlayProgressMediaErrors$Outbound` instead. */
+    export type Outbound = UpdatePlayProgressMediaErrors$Outbound;
+}
+
+/** @internal */
+export const UpdatePlayProgressMediaResponseBody$inboundSchema: z.ZodType<
+    UpdatePlayProgressMediaResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => UpdatePlayProgressMediaErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new UpdatePlayProgressMediaResponseBody(remapped);
+    });
+
+/** @internal */
+export type UpdatePlayProgressMediaResponseBody$Outbound = {
+    errors?: Array<UpdatePlayProgressMediaErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const UpdatePlayProgressMediaResponseBody$outboundSchema: z.ZodType<
+    UpdatePlayProgressMediaResponseBody$Outbound,
+    z.ZodTypeDef,
+    UpdatePlayProgressMediaResponseBody
+> = z
+    .instanceof(UpdatePlayProgressMediaResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => UpdatePlayProgressMediaErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdatePlayProgressMediaResponseBody$ {
+    /** @deprecated use `UpdatePlayProgressMediaResponseBody$inboundSchema` instead. */
+    export const inboundSchema = UpdatePlayProgressMediaResponseBody$inboundSchema;
+    /** @deprecated use `UpdatePlayProgressMediaResponseBody$outboundSchema` instead. */
+    export const outboundSchema = UpdatePlayProgressMediaResponseBody$outboundSchema;
+    /** @deprecated use `UpdatePlayProgressMediaResponseBody$Outbound` instead. */
+    export type Outbound = UpdatePlayProgressMediaResponseBody$Outbound;
+}
+
+/** @internal */
 export const UpdatePlayProgressErrors$inboundSchema: z.ZodType<
     UpdatePlayProgressErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const UpdatePlayProgressErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     UpdatePlayProgressErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

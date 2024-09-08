@@ -34,6 +34,7 @@ export async function logEnablePaperTrail(
     Result<
         operations.EnablePaperTrailResponse,
         | errors.EnablePaperTrailResponseBody
+        | errors.EnablePaperTrailLogResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -95,6 +96,7 @@ export async function logEnablePaperTrail(
     const [result$] = await m$.match<
         operations.EnablePaperTrailResponse,
         | errors.EnablePaperTrailResponseBody
+        | errors.EnablePaperTrailLogResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -104,8 +106,9 @@ export async function logEnablePaperTrail(
         | ConnectionError
     >(
         m$.nil(200, operations.EnablePaperTrailResponse$inboundSchema),
-        m$.fail([400, 403, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.EnablePaperTrailResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.EnablePaperTrailResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.EnablePaperTrailLogResponseBody$inboundSchema),
+        m$.fail([403, "4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type LogLineErrors = {
+export type LogLineLogErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type LogLineErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type LogLineLogResponseBodyData = {
+    errors?: Array<LogLineLogErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class LogLineLogResponseBody extends Error {
+    errors?: Array<LogLineLogErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: LogLineLogResponseBodyData;
+
+    constructor(err: LogLineLogResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "LogLineLogResponseBody";
+    }
+}
+
+export type LogLineErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type LogLineResponseBodyData = {
     errors?: Array<LogLineErrors> | undefined;
@@ -23,7 +72,7 @@ export type LogLineResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class LogLineResponseBody extends Error {
     errors?: Array<LogLineErrors> | undefined;
@@ -55,11 +104,113 @@ export class LogLineResponseBody extends Error {
 }
 
 /** @internal */
+export const LogLineLogErrors$inboundSchema: z.ZodType<LogLineLogErrors, z.ZodTypeDef, unknown> =
+    z.object({
+        code: z.number().int().optional(),
+        message: z.string().optional(),
+        status: z.number().int().optional(),
+    });
+
+/** @internal */
+export type LogLineLogErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const LogLineLogErrors$outboundSchema: z.ZodType<
+    LogLineLogErrors$Outbound,
+    z.ZodTypeDef,
+    LogLineLogErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace LogLineLogErrors$ {
+    /** @deprecated use `LogLineLogErrors$inboundSchema` instead. */
+    export const inboundSchema = LogLineLogErrors$inboundSchema;
+    /** @deprecated use `LogLineLogErrors$outboundSchema` instead. */
+    export const outboundSchema = LogLineLogErrors$outboundSchema;
+    /** @deprecated use `LogLineLogErrors$Outbound` instead. */
+    export type Outbound = LogLineLogErrors$Outbound;
+}
+
+/** @internal */
+export const LogLineLogResponseBody$inboundSchema: z.ZodType<
+    LogLineLogResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => LogLineLogErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new LogLineLogResponseBody(remapped);
+    });
+
+/** @internal */
+export type LogLineLogResponseBody$Outbound = {
+    errors?: Array<LogLineLogErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const LogLineLogResponseBody$outboundSchema: z.ZodType<
+    LogLineLogResponseBody$Outbound,
+    z.ZodTypeDef,
+    LogLineLogResponseBody
+> = z
+    .instanceof(LogLineLogResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => LogLineLogErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace LogLineLogResponseBody$ {
+    /** @deprecated use `LogLineLogResponseBody$inboundSchema` instead. */
+    export const inboundSchema = LogLineLogResponseBody$inboundSchema;
+    /** @deprecated use `LogLineLogResponseBody$outboundSchema` instead. */
+    export const outboundSchema = LogLineLogResponseBody$outboundSchema;
+    /** @deprecated use `LogLineLogResponseBody$Outbound` instead. */
+    export type Outbound = LogLineLogResponseBody$Outbound;
+}
+
+/** @internal */
 export const LogLineErrors$inboundSchema: z.ZodType<LogLineErrors, z.ZodTypeDef, unknown> =
     z.object({
-        code: z.number().optional(),
+        code: z.number().int().optional(),
         message: z.string().optional(),
-        status: z.number().optional(),
+        status: z.number().int().optional(),
     });
 
 /** @internal */
@@ -75,9 +226,9 @@ export const LogLineErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     LogLineErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

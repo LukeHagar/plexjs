@@ -39,6 +39,7 @@ export async function logLogLine(
     Result<
         operations.LogLineResponse,
         | errors.LogLineResponseBody
+        | errors.LogLineLogResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -125,6 +126,7 @@ export async function logLogLine(
     const [result$] = await m$.match<
         operations.LogLineResponse,
         | errors.LogLineResponseBody
+        | errors.LogLineLogResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -134,8 +136,9 @@ export async function logLogLine(
         | ConnectionError
     >(
         m$.nil(200, operations.LogLineResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.LogLineResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.LogLineResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.LogLineLogResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

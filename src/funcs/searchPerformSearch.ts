@@ -50,6 +50,7 @@ export async function searchPerformSearch(
     Result<
         operations.PerformSearchResponse,
         | errors.PerformSearchResponseBody
+        | errors.PerformSearchSearchResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -136,6 +137,7 @@ export async function searchPerformSearch(
     const [result$] = await m$.match<
         operations.PerformSearchResponse,
         | errors.PerformSearchResponseBody
+        | errors.PerformSearchSearchResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -145,8 +147,9 @@ export async function searchPerformSearch(
         | ConnectionError
     >(
         m$.nil(200, operations.PerformSearchResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.PerformSearchResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.PerformSearchResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.PerformSearchSearchResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

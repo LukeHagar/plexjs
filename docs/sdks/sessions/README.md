@@ -82,10 +82,11 @@ run();
 
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.GetSessionsResponseBody | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.GetSessionsResponseBody         | 400                                    | application/json                       |
+| errors.GetSessionsSessionsResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |
 
 
 ## getSessionHistory
@@ -161,10 +162,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GetSessionHistoryResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| errors.GetSessionHistoryResponseBody         | 400                                          | application/json                             |
+| errors.GetSessionHistorySessionsResponseBody | 401                                          | application/json                             |
+| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
 
 
 ## getTranscodeSessions
@@ -236,10 +238,11 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| errors.GetTranscodeSessionsResponseBody | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| errors.GetTranscodeSessionsResponseBody         | 400                                             | application/json                                |
+| errors.GetTranscodeSessionsSessionsResponseBody | 401                                             | application/json                                |
+| errors.SDKError                                 | 4xx-5xx                                         | */*                                             |
 
 
 ## stopTranscodeSession
@@ -312,7 +315,8 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| errors.StopTranscodeSessionResponseBody | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| errors.StopTranscodeSessionResponseBody         | 400                                             | application/json                                |
+| errors.StopTranscodeSessionSessionsResponseBody | 401                                             | application/json                                |
+| errors.SDKError                                 | 4xx-5xx                                         | */*                                             |

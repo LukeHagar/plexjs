@@ -38,6 +38,7 @@ export async function authenticationGetSourceConnectionInformation(
     Result<
         operations.GetSourceConnectionInformationResponse,
         | errors.GetSourceConnectionInformationResponseBody
+        | errors.GetSourceConnectionInformationAuthenticationResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -120,6 +121,7 @@ export async function authenticationGetSourceConnectionInformation(
     const [result$] = await m$.match<
         operations.GetSourceConnectionInformationResponse,
         | errors.GetSourceConnectionInformationResponseBody
+        | errors.GetSourceConnectionInformationAuthenticationResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -129,8 +131,12 @@ export async function authenticationGetSourceConnectionInformation(
         | ConnectionError
     >(
         m$.nil(200, operations.GetSourceConnectionInformationResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetSourceConnectionInformationResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetSourceConnectionInformationResponseBody$inboundSchema),
+        m$.jsonErr(
+            401,
+            errors.GetSourceConnectionInformationAuthenticationResponseBody$inboundSchema
+        ),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

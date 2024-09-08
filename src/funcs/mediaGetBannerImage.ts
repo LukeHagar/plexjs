@@ -39,6 +39,7 @@ export async function mediaGetBannerImage(
     Result<
         operations.GetBannerImageResponse,
         | errors.GetBannerImageResponseBody
+        | errors.GetBannerImageMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,6 +131,7 @@ export async function mediaGetBannerImage(
     const [result$] = await m$.match<
         operations.GetBannerImageResponse,
         | errors.GetBannerImageResponseBody
+        | errors.GetBannerImageMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -143,8 +145,9 @@ export async function mediaGetBannerImage(
             hdrs: true,
             key: "response-stream",
         }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetBannerImageResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetBannerImageResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetBannerImageMediaResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

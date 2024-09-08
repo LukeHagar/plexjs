@@ -96,10 +96,11 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.PerformSearchResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.PerformSearchResponseBody       | 400                                    | application/json                       |
+| errors.PerformSearchSearchResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |
 
 
 ## performVoiceSearch
@@ -178,10 +179,11 @@ run();
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.PerformVoiceSearchResponseBody | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
+| Error Object                                | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.PerformVoiceSearchResponseBody       | 400                                         | application/json                            |
+| errors.PerformVoiceSearchSearchResponseBody | 401                                         | application/json                            |
+| errors.SDKError                             | 4xx-5xx                                     | */*                                         |
 
 
 ## getSearchResults
@@ -254,7 +256,8 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetSearchResultsResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetSearchResultsResponseBody       | 400                                       | application/json                          |
+| errors.GetSearchResultsSearchResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |

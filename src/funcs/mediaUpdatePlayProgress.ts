@@ -39,6 +39,7 @@ export async function mediaUpdatePlayProgress(
     Result<
         operations.UpdatePlayProgressResponse,
         | errors.UpdatePlayProgressResponseBody
+        | errors.UpdatePlayProgressMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -125,6 +126,7 @@ export async function mediaUpdatePlayProgress(
     const [result$] = await m$.match<
         operations.UpdatePlayProgressResponse,
         | errors.UpdatePlayProgressResponseBody
+        | errors.UpdatePlayProgressMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -134,8 +136,9 @@ export async function mediaUpdatePlayProgress(
         | ConnectionError
     >(
         m$.nil(200, operations.UpdatePlayProgressResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.UpdatePlayProgressResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.UpdatePlayProgressResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.UpdatePlayProgressMediaResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -38,6 +38,7 @@ export async function updaterApplyUpdates(
     Result<
         operations.ApplyUpdatesResponse,
         | errors.ApplyUpdatesResponseBody
+        | errors.ApplyUpdatesUpdaterResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -122,6 +123,7 @@ export async function updaterApplyUpdates(
     const [result$] = await m$.match<
         operations.ApplyUpdatesResponse,
         | errors.ApplyUpdatesResponseBody
+        | errors.ApplyUpdatesUpdaterResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -131,8 +133,9 @@ export async function updaterApplyUpdates(
         | ConnectionError
     >(
         m$.nil(200, operations.ApplyUpdatesResponse$inboundSchema),
-        m$.fail([400, "4XX", 500, "5XX"]),
-        m$.jsonErr(401, errors.ApplyUpdatesResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.ApplyUpdatesResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.ApplyUpdatesUpdaterResponseBody$inboundSchema),
+        m$.fail(["4XX", 500, "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

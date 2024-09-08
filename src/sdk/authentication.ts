@@ -55,7 +55,7 @@ export class Authentication extends ClientSDK {
     }
 
     /**
-     * Get User SignIn Data
+     * Get User Sign In Data
      *
      * @remarks
      * Sign in user with username and password and return user data with Plex authentication token

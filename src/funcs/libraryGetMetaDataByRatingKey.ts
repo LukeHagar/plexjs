@@ -37,6 +37,7 @@ export async function libraryGetMetaDataByRatingKey(
     Result<
         operations.GetMetaDataByRatingKeyResponse,
         | errors.GetMetaDataByRatingKeyResponseBody
+        | errors.GetMetaDataByRatingKeyLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -121,6 +122,7 @@ export async function libraryGetMetaDataByRatingKey(
     const [result$] = await m$.match<
         operations.GetMetaDataByRatingKeyResponse,
         | errors.GetMetaDataByRatingKeyResponseBody
+        | errors.GetMetaDataByRatingKeyLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,8 +132,9 @@ export async function libraryGetMetaDataByRatingKey(
         | ConnectionError
     >(
         m$.json(200, operations.GetMetaDataByRatingKeyResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetMetaDataByRatingKeyResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetMetaDataByRatingKeyResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetMetaDataByRatingKeyLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

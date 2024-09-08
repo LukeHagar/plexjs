@@ -26,7 +26,7 @@ import { PostUsersSignInDataServerList } from "../sdk/models/operations/postuser
 import { Result } from "../sdk/types/fp.js";
 
 /**
- * Get User SignIn Data
+ * Get User Sign In Data
  *
  * @remarks
  * Sign in user with username and password and return user data with Plex authentication token
@@ -40,6 +40,7 @@ export async function authenticationPostUsersSignInData(
     Result<
         operations.PostUsersSignInDataResponse,
         | errors.PostUsersSignInDataResponseBody
+        | errors.PostUsersSignInDataAuthenticationResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,6 +131,7 @@ export async function authenticationPostUsersSignInData(
     const [result$] = await m$.match<
         operations.PostUsersSignInDataResponse,
         | errors.PostUsersSignInDataResponseBody
+        | errors.PostUsersSignInDataAuthenticationResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -141,8 +143,9 @@ export async function authenticationPostUsersSignInData(
         m$.json(201, operations.PostUsersSignInDataResponse$inboundSchema, {
             key: "UserPlexAccount",
         }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.PostUsersSignInDataResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.PostUsersSignInDataResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.PostUsersSignInDataAuthenticationResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

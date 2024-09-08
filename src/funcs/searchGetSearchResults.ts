@@ -36,6 +36,7 @@ export async function searchGetSearchResults(
     Result<
         operations.GetSearchResultsResponse,
         | errors.GetSearchResultsResponseBody
+        | errors.GetSearchResultsSearchResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -118,6 +119,7 @@ export async function searchGetSearchResults(
     const [result$] = await m$.match<
         operations.GetSearchResultsResponse,
         | errors.GetSearchResultsResponseBody
+        | errors.GetSearchResultsSearchResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,8 +129,9 @@ export async function searchGetSearchResults(
         | ConnectionError
     >(
         m$.json(200, operations.GetSearchResultsResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetSearchResultsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetSearchResultsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetSearchResultsSearchResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

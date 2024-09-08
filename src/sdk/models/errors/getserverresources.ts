@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetServerResourcesErrors = {
+export type GetServerResourcesPlexErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetServerResourcesErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetServerResourcesPlexResponseBodyData = {
+    errors?: Array<GetServerResourcesPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetServerResourcesPlexResponseBody extends Error {
+    errors?: Array<GetServerResourcesPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetServerResourcesPlexResponseBodyData;
+
+    constructor(err: GetServerResourcesPlexResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetServerResourcesPlexResponseBody";
+    }
+}
+
+export type GetServerResourcesErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetServerResourcesResponseBodyData = {
     errors?: Array<GetServerResourcesErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetServerResourcesResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetServerResourcesResponseBody extends Error {
     errors?: Array<GetServerResourcesErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetServerResourcesResponseBody extends Error {
 }
 
 /** @internal */
+export const GetServerResourcesPlexErrors$inboundSchema: z.ZodType<
+    GetServerResourcesPlexErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetServerResourcesPlexErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetServerResourcesPlexErrors$outboundSchema: z.ZodType<
+    GetServerResourcesPlexErrors$Outbound,
+    z.ZodTypeDef,
+    GetServerResourcesPlexErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetServerResourcesPlexErrors$ {
+    /** @deprecated use `GetServerResourcesPlexErrors$inboundSchema` instead. */
+    export const inboundSchema = GetServerResourcesPlexErrors$inboundSchema;
+    /** @deprecated use `GetServerResourcesPlexErrors$outboundSchema` instead. */
+    export const outboundSchema = GetServerResourcesPlexErrors$outboundSchema;
+    /** @deprecated use `GetServerResourcesPlexErrors$Outbound` instead. */
+    export type Outbound = GetServerResourcesPlexErrors$Outbound;
+}
+
+/** @internal */
+export const GetServerResourcesPlexResponseBody$inboundSchema: z.ZodType<
+    GetServerResourcesPlexResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetServerResourcesPlexErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetServerResourcesPlexResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetServerResourcesPlexResponseBody$Outbound = {
+    errors?: Array<GetServerResourcesPlexErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetServerResourcesPlexResponseBody$outboundSchema: z.ZodType<
+    GetServerResourcesPlexResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetServerResourcesPlexResponseBody
+> = z
+    .instanceof(GetServerResourcesPlexResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetServerResourcesPlexErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetServerResourcesPlexResponseBody$ {
+    /** @deprecated use `GetServerResourcesPlexResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetServerResourcesPlexResponseBody$inboundSchema;
+    /** @deprecated use `GetServerResourcesPlexResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetServerResourcesPlexResponseBody$outboundSchema;
+    /** @deprecated use `GetServerResourcesPlexResponseBody$Outbound` instead. */
+    export type Outbound = GetServerResourcesPlexResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetServerResourcesErrors$inboundSchema: z.ZodType<
     GetServerResourcesErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetServerResourcesErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetServerResourcesErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

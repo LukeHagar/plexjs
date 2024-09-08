@@ -37,6 +37,7 @@ export async function authenticationGetUserDetails(
     Result<
         operations.GetUserDetailsResponse,
         | errors.GetUserDetailsResponseBody
+        | errors.GetUserDetailsAuthenticationResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -124,6 +125,7 @@ export async function authenticationGetUserDetails(
     const [result$] = await m$.match<
         operations.GetUserDetailsResponse,
         | errors.GetUserDetailsResponseBody
+        | errors.GetUserDetailsAuthenticationResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -133,8 +135,9 @@ export async function authenticationGetUserDetails(
         | ConnectionError
     >(
         m$.json(200, operations.GetUserDetailsResponse$inboundSchema, { key: "UserPlexAccount" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetUserDetailsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetUserDetailsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetUserDetailsAuthenticationResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

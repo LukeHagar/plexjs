@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetDevicesErrors = {
+export type GetDevicesServerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetDevicesErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetDevicesServerResponseBodyData = {
+    errors?: Array<GetDevicesServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetDevicesServerResponseBody extends Error {
+    errors?: Array<GetDevicesServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetDevicesServerResponseBodyData;
+
+    constructor(err: GetDevicesServerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetDevicesServerResponseBody";
+    }
+}
+
+export type GetDevicesErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetDevicesResponseBodyData = {
     errors?: Array<GetDevicesErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetDevicesResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetDevicesResponseBody extends Error {
     errors?: Array<GetDevicesErrors> | undefined;
@@ -55,11 +104,116 @@ export class GetDevicesResponseBody extends Error {
 }
 
 /** @internal */
+export const GetDevicesServerErrors$inboundSchema: z.ZodType<
+    GetDevicesServerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetDevicesServerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetDevicesServerErrors$outboundSchema: z.ZodType<
+    GetDevicesServerErrors$Outbound,
+    z.ZodTypeDef,
+    GetDevicesServerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetDevicesServerErrors$ {
+    /** @deprecated use `GetDevicesServerErrors$inboundSchema` instead. */
+    export const inboundSchema = GetDevicesServerErrors$inboundSchema;
+    /** @deprecated use `GetDevicesServerErrors$outboundSchema` instead. */
+    export const outboundSchema = GetDevicesServerErrors$outboundSchema;
+    /** @deprecated use `GetDevicesServerErrors$Outbound` instead. */
+    export type Outbound = GetDevicesServerErrors$Outbound;
+}
+
+/** @internal */
+export const GetDevicesServerResponseBody$inboundSchema: z.ZodType<
+    GetDevicesServerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetDevicesServerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetDevicesServerResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetDevicesServerResponseBody$Outbound = {
+    errors?: Array<GetDevicesServerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetDevicesServerResponseBody$outboundSchema: z.ZodType<
+    GetDevicesServerResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetDevicesServerResponseBody
+> = z
+    .instanceof(GetDevicesServerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetDevicesServerErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetDevicesServerResponseBody$ {
+    /** @deprecated use `GetDevicesServerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetDevicesServerResponseBody$inboundSchema;
+    /** @deprecated use `GetDevicesServerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetDevicesServerResponseBody$outboundSchema;
+    /** @deprecated use `GetDevicesServerResponseBody$Outbound` instead. */
+    export type Outbound = GetDevicesServerResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetDevicesErrors$inboundSchema: z.ZodType<GetDevicesErrors, z.ZodTypeDef, unknown> =
     z.object({
-        code: z.number().optional(),
+        code: z.number().int().optional(),
         message: z.string().optional(),
-        status: z.number().optional(),
+        status: z.number().int().optional(),
     });
 
 /** @internal */
@@ -75,9 +229,9 @@ export const GetDevicesErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetDevicesErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

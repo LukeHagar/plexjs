@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetThumbImageErrors = {
+export type GetThumbImageMediaErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetThumbImageErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetThumbImageMediaResponseBodyData = {
+    errors?: Array<GetThumbImageMediaErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetThumbImageMediaResponseBody extends Error {
+    errors?: Array<GetThumbImageMediaErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetThumbImageMediaResponseBodyData;
+
+    constructor(err: GetThumbImageMediaResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetThumbImageMediaResponseBody";
+    }
+}
+
+export type GetThumbImageErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetThumbImageResponseBodyData = {
     errors?: Array<GetThumbImageErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetThumbImageResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetThumbImageResponseBody extends Error {
     errors?: Array<GetThumbImageErrors> | undefined;
@@ -55,14 +104,119 @@ export class GetThumbImageResponseBody extends Error {
 }
 
 /** @internal */
+export const GetThumbImageMediaErrors$inboundSchema: z.ZodType<
+    GetThumbImageMediaErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetThumbImageMediaErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetThumbImageMediaErrors$outboundSchema: z.ZodType<
+    GetThumbImageMediaErrors$Outbound,
+    z.ZodTypeDef,
+    GetThumbImageMediaErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetThumbImageMediaErrors$ {
+    /** @deprecated use `GetThumbImageMediaErrors$inboundSchema` instead. */
+    export const inboundSchema = GetThumbImageMediaErrors$inboundSchema;
+    /** @deprecated use `GetThumbImageMediaErrors$outboundSchema` instead. */
+    export const outboundSchema = GetThumbImageMediaErrors$outboundSchema;
+    /** @deprecated use `GetThumbImageMediaErrors$Outbound` instead. */
+    export type Outbound = GetThumbImageMediaErrors$Outbound;
+}
+
+/** @internal */
+export const GetThumbImageMediaResponseBody$inboundSchema: z.ZodType<
+    GetThumbImageMediaResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetThumbImageMediaErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetThumbImageMediaResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetThumbImageMediaResponseBody$Outbound = {
+    errors?: Array<GetThumbImageMediaErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetThumbImageMediaResponseBody$outboundSchema: z.ZodType<
+    GetThumbImageMediaResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetThumbImageMediaResponseBody
+> = z
+    .instanceof(GetThumbImageMediaResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetThumbImageMediaErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetThumbImageMediaResponseBody$ {
+    /** @deprecated use `GetThumbImageMediaResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetThumbImageMediaResponseBody$inboundSchema;
+    /** @deprecated use `GetThumbImageMediaResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetThumbImageMediaResponseBody$outboundSchema;
+    /** @deprecated use `GetThumbImageMediaResponseBody$Outbound` instead. */
+    export type Outbound = GetThumbImageMediaResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetThumbImageErrors$inboundSchema: z.ZodType<
     GetThumbImageErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const GetThumbImageErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetThumbImageErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

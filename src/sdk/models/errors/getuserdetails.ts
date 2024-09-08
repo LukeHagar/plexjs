@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetUserDetailsErrors = {
+export type GetUserDetailsAuthenticationErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetUserDetailsErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetUserDetailsAuthenticationResponseBodyData = {
+    errors?: Array<GetUserDetailsAuthenticationErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetUserDetailsAuthenticationResponseBody extends Error {
+    errors?: Array<GetUserDetailsAuthenticationErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetUserDetailsAuthenticationResponseBodyData;
+
+    constructor(err: GetUserDetailsAuthenticationResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetUserDetailsAuthenticationResponseBody";
+    }
+}
+
+export type GetUserDetailsErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetUserDetailsResponseBodyData = {
     errors?: Array<GetUserDetailsErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetUserDetailsResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetUserDetailsResponseBody extends Error {
     errors?: Array<GetUserDetailsErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetUserDetailsResponseBody extends Error {
 }
 
 /** @internal */
+export const GetUserDetailsAuthenticationErrors$inboundSchema: z.ZodType<
+    GetUserDetailsAuthenticationErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetUserDetailsAuthenticationErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetUserDetailsAuthenticationErrors$outboundSchema: z.ZodType<
+    GetUserDetailsAuthenticationErrors$Outbound,
+    z.ZodTypeDef,
+    GetUserDetailsAuthenticationErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetUserDetailsAuthenticationErrors$ {
+    /** @deprecated use `GetUserDetailsAuthenticationErrors$inboundSchema` instead. */
+    export const inboundSchema = GetUserDetailsAuthenticationErrors$inboundSchema;
+    /** @deprecated use `GetUserDetailsAuthenticationErrors$outboundSchema` instead. */
+    export const outboundSchema = GetUserDetailsAuthenticationErrors$outboundSchema;
+    /** @deprecated use `GetUserDetailsAuthenticationErrors$Outbound` instead. */
+    export type Outbound = GetUserDetailsAuthenticationErrors$Outbound;
+}
+
+/** @internal */
+export const GetUserDetailsAuthenticationResponseBody$inboundSchema: z.ZodType<
+    GetUserDetailsAuthenticationResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetUserDetailsAuthenticationErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetUserDetailsAuthenticationResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetUserDetailsAuthenticationResponseBody$Outbound = {
+    errors?: Array<GetUserDetailsAuthenticationErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetUserDetailsAuthenticationResponseBody$outboundSchema: z.ZodType<
+    GetUserDetailsAuthenticationResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetUserDetailsAuthenticationResponseBody
+> = z
+    .instanceof(GetUserDetailsAuthenticationResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetUserDetailsAuthenticationErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetUserDetailsAuthenticationResponseBody$ {
+    /** @deprecated use `GetUserDetailsAuthenticationResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetUserDetailsAuthenticationResponseBody$inboundSchema;
+    /** @deprecated use `GetUserDetailsAuthenticationResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetUserDetailsAuthenticationResponseBody$outboundSchema;
+    /** @deprecated use `GetUserDetailsAuthenticationResponseBody$Outbound` instead. */
+    export type Outbound = GetUserDetailsAuthenticationResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetUserDetailsErrors$inboundSchema: z.ZodType<
     GetUserDetailsErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetUserDetailsErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetUserDetailsErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

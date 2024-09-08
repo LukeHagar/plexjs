@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type StartTaskErrors = {
+export type StartTaskButlerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type StartTaskErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type StartTaskButlerResponseBodyData = {
+    errors?: Array<StartTaskButlerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class StartTaskButlerResponseBody extends Error {
+    errors?: Array<StartTaskButlerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: StartTaskButlerResponseBodyData;
+
+    constructor(err: StartTaskButlerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "StartTaskButlerResponseBody";
+    }
+}
+
+export type StartTaskErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type StartTaskResponseBodyData = {
     errors?: Array<StartTaskErrors> | undefined;
@@ -23,7 +72,7 @@ export type StartTaskResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class StartTaskResponseBody extends Error {
     errors?: Array<StartTaskErrors> | undefined;
@@ -55,11 +104,116 @@ export class StartTaskResponseBody extends Error {
 }
 
 /** @internal */
+export const StartTaskButlerErrors$inboundSchema: z.ZodType<
+    StartTaskButlerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type StartTaskButlerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const StartTaskButlerErrors$outboundSchema: z.ZodType<
+    StartTaskButlerErrors$Outbound,
+    z.ZodTypeDef,
+    StartTaskButlerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StartTaskButlerErrors$ {
+    /** @deprecated use `StartTaskButlerErrors$inboundSchema` instead. */
+    export const inboundSchema = StartTaskButlerErrors$inboundSchema;
+    /** @deprecated use `StartTaskButlerErrors$outboundSchema` instead. */
+    export const outboundSchema = StartTaskButlerErrors$outboundSchema;
+    /** @deprecated use `StartTaskButlerErrors$Outbound` instead. */
+    export type Outbound = StartTaskButlerErrors$Outbound;
+}
+
+/** @internal */
+export const StartTaskButlerResponseBody$inboundSchema: z.ZodType<
+    StartTaskButlerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => StartTaskButlerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new StartTaskButlerResponseBody(remapped);
+    });
+
+/** @internal */
+export type StartTaskButlerResponseBody$Outbound = {
+    errors?: Array<StartTaskButlerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const StartTaskButlerResponseBody$outboundSchema: z.ZodType<
+    StartTaskButlerResponseBody$Outbound,
+    z.ZodTypeDef,
+    StartTaskButlerResponseBody
+> = z
+    .instanceof(StartTaskButlerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => StartTaskButlerErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StartTaskButlerResponseBody$ {
+    /** @deprecated use `StartTaskButlerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = StartTaskButlerResponseBody$inboundSchema;
+    /** @deprecated use `StartTaskButlerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = StartTaskButlerResponseBody$outboundSchema;
+    /** @deprecated use `StartTaskButlerResponseBody$Outbound` instead. */
+    export type Outbound = StartTaskButlerResponseBody$Outbound;
+}
+
+/** @internal */
 export const StartTaskErrors$inboundSchema: z.ZodType<StartTaskErrors, z.ZodTypeDef, unknown> =
     z.object({
-        code: z.number().optional(),
+        code: z.number().int().optional(),
         message: z.string().optional(),
-        status: z.number().optional(),
+        status: z.number().int().optional(),
     });
 
 /** @internal */
@@ -75,9 +229,9 @@ export const StartTaskErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     StartTaskErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type StartUniversalTranscodeErrors = {
+export type StartUniversalTranscodeVideoErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type StartUniversalTranscodeErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type StartUniversalTranscodeVideoResponseBodyData = {
+    errors?: Array<StartUniversalTranscodeVideoErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class StartUniversalTranscodeVideoResponseBody extends Error {
+    errors?: Array<StartUniversalTranscodeVideoErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: StartUniversalTranscodeVideoResponseBodyData;
+
+    constructor(err: StartUniversalTranscodeVideoResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "StartUniversalTranscodeVideoResponseBody";
+    }
+}
+
+export type StartUniversalTranscodeErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type StartUniversalTranscodeResponseBodyData = {
     errors?: Array<StartUniversalTranscodeErrors> | undefined;
@@ -23,7 +72,7 @@ export type StartUniversalTranscodeResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class StartUniversalTranscodeResponseBody extends Error {
     errors?: Array<StartUniversalTranscodeErrors> | undefined;
@@ -55,14 +104,121 @@ export class StartUniversalTranscodeResponseBody extends Error {
 }
 
 /** @internal */
+export const StartUniversalTranscodeVideoErrors$inboundSchema: z.ZodType<
+    StartUniversalTranscodeVideoErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type StartUniversalTranscodeVideoErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const StartUniversalTranscodeVideoErrors$outboundSchema: z.ZodType<
+    StartUniversalTranscodeVideoErrors$Outbound,
+    z.ZodTypeDef,
+    StartUniversalTranscodeVideoErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StartUniversalTranscodeVideoErrors$ {
+    /** @deprecated use `StartUniversalTranscodeVideoErrors$inboundSchema` instead. */
+    export const inboundSchema = StartUniversalTranscodeVideoErrors$inboundSchema;
+    /** @deprecated use `StartUniversalTranscodeVideoErrors$outboundSchema` instead. */
+    export const outboundSchema = StartUniversalTranscodeVideoErrors$outboundSchema;
+    /** @deprecated use `StartUniversalTranscodeVideoErrors$Outbound` instead. */
+    export type Outbound = StartUniversalTranscodeVideoErrors$Outbound;
+}
+
+/** @internal */
+export const StartUniversalTranscodeVideoResponseBody$inboundSchema: z.ZodType<
+    StartUniversalTranscodeVideoResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => StartUniversalTranscodeVideoErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new StartUniversalTranscodeVideoResponseBody(remapped);
+    });
+
+/** @internal */
+export type StartUniversalTranscodeVideoResponseBody$Outbound = {
+    errors?: Array<StartUniversalTranscodeVideoErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const StartUniversalTranscodeVideoResponseBody$outboundSchema: z.ZodType<
+    StartUniversalTranscodeVideoResponseBody$Outbound,
+    z.ZodTypeDef,
+    StartUniversalTranscodeVideoResponseBody
+> = z
+    .instanceof(StartUniversalTranscodeVideoResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => StartUniversalTranscodeVideoErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StartUniversalTranscodeVideoResponseBody$ {
+    /** @deprecated use `StartUniversalTranscodeVideoResponseBody$inboundSchema` instead. */
+    export const inboundSchema = StartUniversalTranscodeVideoResponseBody$inboundSchema;
+    /** @deprecated use `StartUniversalTranscodeVideoResponseBody$outboundSchema` instead. */
+    export const outboundSchema = StartUniversalTranscodeVideoResponseBody$outboundSchema;
+    /** @deprecated use `StartUniversalTranscodeVideoResponseBody$Outbound` instead. */
+    export type Outbound = StartUniversalTranscodeVideoResponseBody$Outbound;
+}
+
+/** @internal */
 export const StartUniversalTranscodeErrors$inboundSchema: z.ZodType<
     StartUniversalTranscodeErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const StartUniversalTranscodeErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     StartUniversalTranscodeErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -37,6 +37,7 @@ export async function serverGetResizedPhoto(
     Result<
         operations.GetResizedPhotoResponse,
         | errors.GetResizedPhotoResponseBody
+        | errors.GetResizedPhotoServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -123,6 +124,7 @@ export async function serverGetResizedPhoto(
     const [result$] = await m$.match<
         operations.GetResizedPhotoResponse,
         | errors.GetResizedPhotoResponseBody
+        | errors.GetResizedPhotoServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -132,8 +134,9 @@ export async function serverGetResizedPhoto(
         | ConnectionError
     >(
         m$.nil(200, operations.GetResizedPhotoResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetResizedPhotoResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetResizedPhotoResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetResizedPhotoServerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

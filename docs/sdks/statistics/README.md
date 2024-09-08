@@ -82,10 +82,11 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.GetStatisticsResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.GetStatisticsResponseBody           | 400                                        | application/json                           |
+| errors.GetStatisticsStatisticsResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
 ## getResourcesStatistics
@@ -158,10 +159,11 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.GetResourcesStatisticsResponseBody | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                                        | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| errors.GetResourcesStatisticsResponseBody           | 400                                                 | application/json                                    |
+| errors.GetResourcesStatisticsStatisticsResponseBody | 401                                                 | application/json                                    |
+| errors.SDKError                                     | 4xx-5xx                                             | */*                                                 |
 
 
 ## getBandwidthStatistics
@@ -234,7 +236,8 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.GetBandwidthStatisticsResponseBody | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                                        | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| errors.GetBandwidthStatisticsResponseBody           | 400                                                 | application/json                                    |
+| errors.GetBandwidthStatisticsStatisticsResponseBody | 401                                                 | application/json                                    |
+| errors.SDKError                                     | 4xx-5xx                                             | */*                                                 |

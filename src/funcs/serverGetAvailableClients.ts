@@ -33,6 +33,7 @@ export async function serverGetAvailableClients(
     Result<
         operations.GetAvailableClientsResponse,
         | errors.GetAvailableClientsResponseBody
+        | errors.GetAvailableClientsServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function serverGetAvailableClients(
     const [result$] = await m$.match<
         operations.GetAvailableClientsResponse,
         | errors.GetAvailableClientsResponseBody
+        | errors.GetAvailableClientsServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function serverGetAvailableClients(
         | ConnectionError
     >(
         m$.json(200, operations.GetAvailableClientsResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetAvailableClientsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetAvailableClientsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetAvailableClientsServerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

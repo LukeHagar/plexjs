@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetFileHashErrors = {
+export type GetFileHashLibraryErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetFileHashErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetFileHashLibraryResponseBodyData = {
+    errors?: Array<GetFileHashLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetFileHashLibraryResponseBody extends Error {
+    errors?: Array<GetFileHashLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetFileHashLibraryResponseBodyData;
+
+    constructor(err: GetFileHashLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetFileHashLibraryResponseBody";
+    }
+}
+
+export type GetFileHashErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetFileHashResponseBodyData = {
     errors?: Array<GetFileHashErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetFileHashResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetFileHashResponseBody extends Error {
     errors?: Array<GetFileHashErrors> | undefined;
@@ -55,11 +104,116 @@ export class GetFileHashResponseBody extends Error {
 }
 
 /** @internal */
+export const GetFileHashLibraryErrors$inboundSchema: z.ZodType<
+    GetFileHashLibraryErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetFileHashLibraryErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetFileHashLibraryErrors$outboundSchema: z.ZodType<
+    GetFileHashLibraryErrors$Outbound,
+    z.ZodTypeDef,
+    GetFileHashLibraryErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetFileHashLibraryErrors$ {
+    /** @deprecated use `GetFileHashLibraryErrors$inboundSchema` instead. */
+    export const inboundSchema = GetFileHashLibraryErrors$inboundSchema;
+    /** @deprecated use `GetFileHashLibraryErrors$outboundSchema` instead. */
+    export const outboundSchema = GetFileHashLibraryErrors$outboundSchema;
+    /** @deprecated use `GetFileHashLibraryErrors$Outbound` instead. */
+    export type Outbound = GetFileHashLibraryErrors$Outbound;
+}
+
+/** @internal */
+export const GetFileHashLibraryResponseBody$inboundSchema: z.ZodType<
+    GetFileHashLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetFileHashLibraryErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetFileHashLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetFileHashLibraryResponseBody$Outbound = {
+    errors?: Array<GetFileHashLibraryErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetFileHashLibraryResponseBody$outboundSchema: z.ZodType<
+    GetFileHashLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetFileHashLibraryResponseBody
+> = z
+    .instanceof(GetFileHashLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetFileHashLibraryErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetFileHashLibraryResponseBody$ {
+    /** @deprecated use `GetFileHashLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetFileHashLibraryResponseBody$inboundSchema;
+    /** @deprecated use `GetFileHashLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetFileHashLibraryResponseBody$outboundSchema;
+    /** @deprecated use `GetFileHashLibraryResponseBody$Outbound` instead. */
+    export type Outbound = GetFileHashLibraryResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetFileHashErrors$inboundSchema: z.ZodType<GetFileHashErrors, z.ZodTypeDef, unknown> =
     z.object({
-        code: z.number().optional(),
+        code: z.number().int().optional(),
         message: z.string().optional(),
-        status: z.number().optional(),
+        status: z.number().int().optional(),
     });
 
 /** @internal */
@@ -75,9 +229,9 @@ export const GetFileHashErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetFileHashErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -36,6 +36,7 @@ export async function mediaMarkUnplayed(
     Result<
         operations.MarkUnplayedResponse,
         | errors.MarkUnplayedResponseBody
+        | errors.MarkUnplayedMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -118,6 +119,7 @@ export async function mediaMarkUnplayed(
     const [result$] = await m$.match<
         operations.MarkUnplayedResponse,
         | errors.MarkUnplayedResponseBody
+        | errors.MarkUnplayedMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,8 +129,9 @@ export async function mediaMarkUnplayed(
         | ConnectionError
     >(
         m$.nil(200, operations.MarkUnplayedResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.MarkUnplayedResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.MarkUnplayedResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.MarkUnplayedMediaResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

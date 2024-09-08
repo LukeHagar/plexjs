@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type PerformSearchErrors = {
+export type PerformSearchSearchErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type PerformSearchErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type PerformSearchSearchResponseBodyData = {
+    errors?: Array<PerformSearchSearchErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class PerformSearchSearchResponseBody extends Error {
+    errors?: Array<PerformSearchSearchErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: PerformSearchSearchResponseBodyData;
+
+    constructor(err: PerformSearchSearchResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "PerformSearchSearchResponseBody";
+    }
+}
+
+export type PerformSearchErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type PerformSearchResponseBodyData = {
     errors?: Array<PerformSearchErrors> | undefined;
@@ -23,7 +72,7 @@ export type PerformSearchResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class PerformSearchResponseBody extends Error {
     errors?: Array<PerformSearchErrors> | undefined;
@@ -55,14 +104,119 @@ export class PerformSearchResponseBody extends Error {
 }
 
 /** @internal */
+export const PerformSearchSearchErrors$inboundSchema: z.ZodType<
+    PerformSearchSearchErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type PerformSearchSearchErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const PerformSearchSearchErrors$outboundSchema: z.ZodType<
+    PerformSearchSearchErrors$Outbound,
+    z.ZodTypeDef,
+    PerformSearchSearchErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PerformSearchSearchErrors$ {
+    /** @deprecated use `PerformSearchSearchErrors$inboundSchema` instead. */
+    export const inboundSchema = PerformSearchSearchErrors$inboundSchema;
+    /** @deprecated use `PerformSearchSearchErrors$outboundSchema` instead. */
+    export const outboundSchema = PerformSearchSearchErrors$outboundSchema;
+    /** @deprecated use `PerformSearchSearchErrors$Outbound` instead. */
+    export type Outbound = PerformSearchSearchErrors$Outbound;
+}
+
+/** @internal */
+export const PerformSearchSearchResponseBody$inboundSchema: z.ZodType<
+    PerformSearchSearchResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => PerformSearchSearchErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new PerformSearchSearchResponseBody(remapped);
+    });
+
+/** @internal */
+export type PerformSearchSearchResponseBody$Outbound = {
+    errors?: Array<PerformSearchSearchErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const PerformSearchSearchResponseBody$outboundSchema: z.ZodType<
+    PerformSearchSearchResponseBody$Outbound,
+    z.ZodTypeDef,
+    PerformSearchSearchResponseBody
+> = z
+    .instanceof(PerformSearchSearchResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => PerformSearchSearchErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PerformSearchSearchResponseBody$ {
+    /** @deprecated use `PerformSearchSearchResponseBody$inboundSchema` instead. */
+    export const inboundSchema = PerformSearchSearchResponseBody$inboundSchema;
+    /** @deprecated use `PerformSearchSearchResponseBody$outboundSchema` instead. */
+    export const outboundSchema = PerformSearchSearchResponseBody$outboundSchema;
+    /** @deprecated use `PerformSearchSearchResponseBody$Outbound` instead. */
+    export type Outbound = PerformSearchSearchResponseBody$Outbound;
+}
+
+/** @internal */
 export const PerformSearchErrors$inboundSchema: z.ZodType<
     PerformSearchErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const PerformSearchErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     PerformSearchErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

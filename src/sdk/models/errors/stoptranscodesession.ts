@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type StopTranscodeSessionErrors = {
+export type StopTranscodeSessionSessionsErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type StopTranscodeSessionErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type StopTranscodeSessionSessionsResponseBodyData = {
+    errors?: Array<StopTranscodeSessionSessionsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class StopTranscodeSessionSessionsResponseBody extends Error {
+    errors?: Array<StopTranscodeSessionSessionsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: StopTranscodeSessionSessionsResponseBodyData;
+
+    constructor(err: StopTranscodeSessionSessionsResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "StopTranscodeSessionSessionsResponseBody";
+    }
+}
+
+export type StopTranscodeSessionErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type StopTranscodeSessionResponseBodyData = {
     errors?: Array<StopTranscodeSessionErrors> | undefined;
@@ -23,7 +72,7 @@ export type StopTranscodeSessionResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class StopTranscodeSessionResponseBody extends Error {
     errors?: Array<StopTranscodeSessionErrors> | undefined;
@@ -55,14 +104,121 @@ export class StopTranscodeSessionResponseBody extends Error {
 }
 
 /** @internal */
+export const StopTranscodeSessionSessionsErrors$inboundSchema: z.ZodType<
+    StopTranscodeSessionSessionsErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type StopTranscodeSessionSessionsErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const StopTranscodeSessionSessionsErrors$outboundSchema: z.ZodType<
+    StopTranscodeSessionSessionsErrors$Outbound,
+    z.ZodTypeDef,
+    StopTranscodeSessionSessionsErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StopTranscodeSessionSessionsErrors$ {
+    /** @deprecated use `StopTranscodeSessionSessionsErrors$inboundSchema` instead. */
+    export const inboundSchema = StopTranscodeSessionSessionsErrors$inboundSchema;
+    /** @deprecated use `StopTranscodeSessionSessionsErrors$outboundSchema` instead. */
+    export const outboundSchema = StopTranscodeSessionSessionsErrors$outboundSchema;
+    /** @deprecated use `StopTranscodeSessionSessionsErrors$Outbound` instead. */
+    export type Outbound = StopTranscodeSessionSessionsErrors$Outbound;
+}
+
+/** @internal */
+export const StopTranscodeSessionSessionsResponseBody$inboundSchema: z.ZodType<
+    StopTranscodeSessionSessionsResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => StopTranscodeSessionSessionsErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new StopTranscodeSessionSessionsResponseBody(remapped);
+    });
+
+/** @internal */
+export type StopTranscodeSessionSessionsResponseBody$Outbound = {
+    errors?: Array<StopTranscodeSessionSessionsErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const StopTranscodeSessionSessionsResponseBody$outboundSchema: z.ZodType<
+    StopTranscodeSessionSessionsResponseBody$Outbound,
+    z.ZodTypeDef,
+    StopTranscodeSessionSessionsResponseBody
+> = z
+    .instanceof(StopTranscodeSessionSessionsResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => StopTranscodeSessionSessionsErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StopTranscodeSessionSessionsResponseBody$ {
+    /** @deprecated use `StopTranscodeSessionSessionsResponseBody$inboundSchema` instead. */
+    export const inboundSchema = StopTranscodeSessionSessionsResponseBody$inboundSchema;
+    /** @deprecated use `StopTranscodeSessionSessionsResponseBody$outboundSchema` instead. */
+    export const outboundSchema = StopTranscodeSessionSessionsResponseBody$outboundSchema;
+    /** @deprecated use `StopTranscodeSessionSessionsResponseBody$Outbound` instead. */
+    export type Outbound = StopTranscodeSessionSessionsResponseBody$Outbound;
+}
+
+/** @internal */
 export const StopTranscodeSessionErrors$inboundSchema: z.ZodType<
     StopTranscodeSessionErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const StopTranscodeSessionErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     StopTranscodeSessionErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

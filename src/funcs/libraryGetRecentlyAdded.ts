@@ -38,6 +38,7 @@ export async function libraryGetRecentlyAdded(
     Result<
         operations.GetRecentlyAddedResponse,
         | errors.GetRecentlyAddedResponseBody
+        | errors.GetRecentlyAddedLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -122,6 +123,7 @@ export async function libraryGetRecentlyAdded(
     const [result$] = await m$.match<
         operations.GetRecentlyAddedResponse,
         | errors.GetRecentlyAddedResponseBody
+        | errors.GetRecentlyAddedLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -131,8 +133,9 @@ export async function libraryGetRecentlyAdded(
         | ConnectionError
     >(
         m$.json(200, operations.GetRecentlyAddedResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetRecentlyAddedResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetRecentlyAddedResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetRecentlyAddedLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

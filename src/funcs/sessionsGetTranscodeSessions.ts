@@ -33,6 +33,7 @@ export async function sessionsGetTranscodeSessions(
     Result<
         operations.GetTranscodeSessionsResponse,
         | errors.GetTranscodeSessionsResponseBody
+        | errors.GetTranscodeSessionsSessionsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function sessionsGetTranscodeSessions(
     const [result$] = await m$.match<
         operations.GetTranscodeSessionsResponse,
         | errors.GetTranscodeSessionsResponseBody
+        | errors.GetTranscodeSessionsSessionsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function sessionsGetTranscodeSessions(
         | ConnectionError
     >(
         m$.json(200, operations.GetTranscodeSessionsResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetTranscodeSessionsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetTranscodeSessionsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetTranscodeSessionsSessionsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

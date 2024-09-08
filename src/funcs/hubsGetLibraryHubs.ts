@@ -42,6 +42,7 @@ export async function hubsGetLibraryHubs(
     Result<
         operations.GetLibraryHubsResponse,
         | errors.GetLibraryHubsResponseBody
+        | errors.GetLibraryHubsHubsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -134,6 +135,7 @@ export async function hubsGetLibraryHubs(
     const [result$] = await m$.match<
         operations.GetLibraryHubsResponse,
         | errors.GetLibraryHubsResponseBody
+        | errors.GetLibraryHubsHubsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -143,8 +145,9 @@ export async function hubsGetLibraryHubs(
         | ConnectionError
     >(
         m$.json(200, operations.GetLibraryHubsResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetLibraryHubsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetLibraryHubsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetLibraryHubsHubsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

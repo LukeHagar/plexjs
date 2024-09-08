@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetPlaylistContentsErrors = {
+export type GetPlaylistContentsPlaylistsErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetPlaylistContentsErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetPlaylistContentsPlaylistsResponseBodyData = {
+    errors?: Array<GetPlaylistContentsPlaylistsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetPlaylistContentsPlaylistsResponseBody extends Error {
+    errors?: Array<GetPlaylistContentsPlaylistsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetPlaylistContentsPlaylistsResponseBodyData;
+
+    constructor(err: GetPlaylistContentsPlaylistsResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetPlaylistContentsPlaylistsResponseBody";
+    }
+}
+
+export type GetPlaylistContentsErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetPlaylistContentsResponseBodyData = {
     errors?: Array<GetPlaylistContentsErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetPlaylistContentsResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetPlaylistContentsResponseBody extends Error {
     errors?: Array<GetPlaylistContentsErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetPlaylistContentsResponseBody extends Error {
 }
 
 /** @internal */
+export const GetPlaylistContentsPlaylistsErrors$inboundSchema: z.ZodType<
+    GetPlaylistContentsPlaylistsErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetPlaylistContentsPlaylistsErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetPlaylistContentsPlaylistsErrors$outboundSchema: z.ZodType<
+    GetPlaylistContentsPlaylistsErrors$Outbound,
+    z.ZodTypeDef,
+    GetPlaylistContentsPlaylistsErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetPlaylistContentsPlaylistsErrors$ {
+    /** @deprecated use `GetPlaylistContentsPlaylistsErrors$inboundSchema` instead. */
+    export const inboundSchema = GetPlaylistContentsPlaylistsErrors$inboundSchema;
+    /** @deprecated use `GetPlaylistContentsPlaylistsErrors$outboundSchema` instead. */
+    export const outboundSchema = GetPlaylistContentsPlaylistsErrors$outboundSchema;
+    /** @deprecated use `GetPlaylistContentsPlaylistsErrors$Outbound` instead. */
+    export type Outbound = GetPlaylistContentsPlaylistsErrors$Outbound;
+}
+
+/** @internal */
+export const GetPlaylistContentsPlaylistsResponseBody$inboundSchema: z.ZodType<
+    GetPlaylistContentsPlaylistsResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetPlaylistContentsPlaylistsErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetPlaylistContentsPlaylistsResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetPlaylistContentsPlaylistsResponseBody$Outbound = {
+    errors?: Array<GetPlaylistContentsPlaylistsErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetPlaylistContentsPlaylistsResponseBody$outboundSchema: z.ZodType<
+    GetPlaylistContentsPlaylistsResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetPlaylistContentsPlaylistsResponseBody
+> = z
+    .instanceof(GetPlaylistContentsPlaylistsResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetPlaylistContentsPlaylistsErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetPlaylistContentsPlaylistsResponseBody$ {
+    /** @deprecated use `GetPlaylistContentsPlaylistsResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetPlaylistContentsPlaylistsResponseBody$inboundSchema;
+    /** @deprecated use `GetPlaylistContentsPlaylistsResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetPlaylistContentsPlaylistsResponseBody$outboundSchema;
+    /** @deprecated use `GetPlaylistContentsPlaylistsResponseBody$Outbound` instead. */
+    export type Outbound = GetPlaylistContentsPlaylistsResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetPlaylistContentsErrors$inboundSchema: z.ZodType<
     GetPlaylistContentsErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetPlaylistContentsErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetPlaylistContentsErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

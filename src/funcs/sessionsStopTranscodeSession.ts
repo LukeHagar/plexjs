@@ -36,6 +36,7 @@ export async function sessionsStopTranscodeSession(
     Result<
         operations.StopTranscodeSessionResponse,
         | errors.StopTranscodeSessionResponseBody
+        | errors.StopTranscodeSessionSessionsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -120,6 +121,7 @@ export async function sessionsStopTranscodeSession(
     const [result$] = await m$.match<
         operations.StopTranscodeSessionResponse,
         | errors.StopTranscodeSessionResponseBody
+        | errors.StopTranscodeSessionSessionsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -129,8 +131,9 @@ export async function sessionsStopTranscodeSession(
         | ConnectionError
     >(
         m$.nil(204, operations.StopTranscodeSessionResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.StopTranscodeSessionResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.StopTranscodeSessionResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.StopTranscodeSessionSessionsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

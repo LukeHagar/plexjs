@@ -34,6 +34,7 @@ export async function plexGetUserFriends(
     Result<
         operations.GetUserFriendsResponse,
         | errors.GetUserFriendsResponseBody
+        | errors.GetUserFriendsPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -100,6 +101,7 @@ export async function plexGetUserFriends(
     const [result$] = await m$.match<
         operations.GetUserFriendsResponse,
         | errors.GetUserFriendsResponseBody
+        | errors.GetUserFriendsPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -109,8 +111,9 @@ export async function plexGetUserFriends(
         | ConnectionError
     >(
         m$.json(200, operations.GetUserFriendsResponse$inboundSchema, { key: "Friends" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetUserFriendsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetUserFriendsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetUserFriendsPlexResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

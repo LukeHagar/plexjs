@@ -36,6 +36,7 @@ export async function mediaMarkPlayed(
     Result<
         operations.MarkPlayedResponse,
         | errors.MarkPlayedResponseBody
+        | errors.MarkPlayedMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -118,6 +119,7 @@ export async function mediaMarkPlayed(
     const [result$] = await m$.match<
         operations.MarkPlayedResponse,
         | errors.MarkPlayedResponseBody
+        | errors.MarkPlayedMediaResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,8 +129,9 @@ export async function mediaMarkPlayed(
         | ConnectionError
     >(
         m$.nil(200, operations.MarkPlayedResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.MarkPlayedResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.MarkPlayedResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.MarkPlayedMediaResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

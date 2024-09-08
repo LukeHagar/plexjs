@@ -33,6 +33,7 @@ export async function serverGetDevices(
     Result<
         operations.GetDevicesResponse,
         | errors.GetDevicesResponseBody
+        | errors.GetDevicesServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function serverGetDevices(
     const [result$] = await m$.match<
         operations.GetDevicesResponse,
         | errors.GetDevicesResponseBody
+        | errors.GetDevicesServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function serverGetDevices(
         | ConnectionError
     >(
         m$.json(200, operations.GetDevicesResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetDevicesResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetDevicesResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetDevicesServerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

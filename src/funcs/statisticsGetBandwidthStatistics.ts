@@ -36,6 +36,7 @@ export async function statisticsGetBandwidthStatistics(
     Result<
         operations.GetBandwidthStatisticsResponse,
         | errors.GetBandwidthStatisticsResponseBody
+        | errors.GetBandwidthStatisticsStatisticsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -118,6 +119,7 @@ export async function statisticsGetBandwidthStatistics(
     const [result$] = await m$.match<
         operations.GetBandwidthStatisticsResponse,
         | errors.GetBandwidthStatisticsResponseBody
+        | errors.GetBandwidthStatisticsStatisticsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,8 +129,9 @@ export async function statisticsGetBandwidthStatistics(
         | ConnectionError
     >(
         m$.json(200, operations.GetBandwidthStatisticsResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetBandwidthStatisticsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetBandwidthStatisticsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetBandwidthStatisticsStatisticsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

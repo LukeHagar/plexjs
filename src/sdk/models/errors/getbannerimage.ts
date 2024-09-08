@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetBannerImageErrors = {
+export type GetBannerImageMediaErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetBannerImageErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetBannerImageMediaResponseBodyData = {
+    errors?: Array<GetBannerImageMediaErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetBannerImageMediaResponseBody extends Error {
+    errors?: Array<GetBannerImageMediaErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetBannerImageMediaResponseBodyData;
+
+    constructor(err: GetBannerImageMediaResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetBannerImageMediaResponseBody";
+    }
+}
+
+export type GetBannerImageErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetBannerImageResponseBodyData = {
     errors?: Array<GetBannerImageErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetBannerImageResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetBannerImageResponseBody extends Error {
     errors?: Array<GetBannerImageErrors> | undefined;
@@ -55,14 +104,119 @@ export class GetBannerImageResponseBody extends Error {
 }
 
 /** @internal */
+export const GetBannerImageMediaErrors$inboundSchema: z.ZodType<
+    GetBannerImageMediaErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetBannerImageMediaErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetBannerImageMediaErrors$outboundSchema: z.ZodType<
+    GetBannerImageMediaErrors$Outbound,
+    z.ZodTypeDef,
+    GetBannerImageMediaErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetBannerImageMediaErrors$ {
+    /** @deprecated use `GetBannerImageMediaErrors$inboundSchema` instead. */
+    export const inboundSchema = GetBannerImageMediaErrors$inboundSchema;
+    /** @deprecated use `GetBannerImageMediaErrors$outboundSchema` instead. */
+    export const outboundSchema = GetBannerImageMediaErrors$outboundSchema;
+    /** @deprecated use `GetBannerImageMediaErrors$Outbound` instead. */
+    export type Outbound = GetBannerImageMediaErrors$Outbound;
+}
+
+/** @internal */
+export const GetBannerImageMediaResponseBody$inboundSchema: z.ZodType<
+    GetBannerImageMediaResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetBannerImageMediaErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetBannerImageMediaResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetBannerImageMediaResponseBody$Outbound = {
+    errors?: Array<GetBannerImageMediaErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetBannerImageMediaResponseBody$outboundSchema: z.ZodType<
+    GetBannerImageMediaResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetBannerImageMediaResponseBody
+> = z
+    .instanceof(GetBannerImageMediaResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetBannerImageMediaErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetBannerImageMediaResponseBody$ {
+    /** @deprecated use `GetBannerImageMediaResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetBannerImageMediaResponseBody$inboundSchema;
+    /** @deprecated use `GetBannerImageMediaResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetBannerImageMediaResponseBody$outboundSchema;
+    /** @deprecated use `GetBannerImageMediaResponseBody$Outbound` instead. */
+    export type Outbound = GetBannerImageMediaResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetBannerImageErrors$inboundSchema: z.ZodType<
     GetBannerImageErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const GetBannerImageErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetBannerImageErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

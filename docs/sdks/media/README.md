@@ -84,10 +84,11 @@ run();
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.MarkPlayedResponseBody | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.MarkPlayedResponseBody      | 400                                | application/json                   |
+| errors.MarkPlayedMediaResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## markUnplayed
@@ -160,10 +161,11 @@ run();
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| errors.MarkUnplayedResponseBody | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.MarkUnplayedResponseBody      | 400                                  | application/json                     |
+| errors.MarkUnplayedMediaResponseBody | 401                                  | application/json                     |
+| errors.SDKError                      | 4xx-5xx                              | */*                                  |
 
 
 ## updatePlayProgress
@@ -239,10 +241,11 @@ run();
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.UpdatePlayProgressResponseBody | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.UpdatePlayProgressResponseBody      | 400                                        | application/json                           |
+| errors.UpdatePlayProgressMediaResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
 ## getBannerImage
@@ -329,10 +332,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.GetBannerImageResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.GetBannerImageResponseBody      | 400                                    | application/json                       |
+| errors.GetBannerImageMediaResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |
 
 
 ## getThumbImage
@@ -419,7 +423,8 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.GetThumbImageResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| errors.GetThumbImageResponseBody      | 400                                   | application/json                      |
+| errors.GetThumbImageMediaResponseBody | 401                                   | application/json                      |
+| errors.SDKError                       | 4xx-5xx                               | */*                                   |

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetRefreshLibraryMetadataErrors = {
+export type GetRefreshLibraryMetadataLibraryErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetRefreshLibraryMetadataErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetRefreshLibraryMetadataLibraryResponseBodyData = {
+    errors?: Array<GetRefreshLibraryMetadataLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetRefreshLibraryMetadataLibraryResponseBody extends Error {
+    errors?: Array<GetRefreshLibraryMetadataLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetRefreshLibraryMetadataLibraryResponseBodyData;
+
+    constructor(err: GetRefreshLibraryMetadataLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetRefreshLibraryMetadataLibraryResponseBody";
+    }
+}
+
+export type GetRefreshLibraryMetadataErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetRefreshLibraryMetadataResponseBodyData = {
     errors?: Array<GetRefreshLibraryMetadataErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetRefreshLibraryMetadataResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetRefreshLibraryMetadataResponseBody extends Error {
     errors?: Array<GetRefreshLibraryMetadataErrors> | undefined;
@@ -55,14 +104,123 @@ export class GetRefreshLibraryMetadataResponseBody extends Error {
 }
 
 /** @internal */
+export const GetRefreshLibraryMetadataLibraryErrors$inboundSchema: z.ZodType<
+    GetRefreshLibraryMetadataLibraryErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetRefreshLibraryMetadataLibraryErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetRefreshLibraryMetadataLibraryErrors$outboundSchema: z.ZodType<
+    GetRefreshLibraryMetadataLibraryErrors$Outbound,
+    z.ZodTypeDef,
+    GetRefreshLibraryMetadataLibraryErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRefreshLibraryMetadataLibraryErrors$ {
+    /** @deprecated use `GetRefreshLibraryMetadataLibraryErrors$inboundSchema` instead. */
+    export const inboundSchema = GetRefreshLibraryMetadataLibraryErrors$inboundSchema;
+    /** @deprecated use `GetRefreshLibraryMetadataLibraryErrors$outboundSchema` instead. */
+    export const outboundSchema = GetRefreshLibraryMetadataLibraryErrors$outboundSchema;
+    /** @deprecated use `GetRefreshLibraryMetadataLibraryErrors$Outbound` instead. */
+    export type Outbound = GetRefreshLibraryMetadataLibraryErrors$Outbound;
+}
+
+/** @internal */
+export const GetRefreshLibraryMetadataLibraryResponseBody$inboundSchema: z.ZodType<
+    GetRefreshLibraryMetadataLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z
+            .array(z.lazy(() => GetRefreshLibraryMetadataLibraryErrors$inboundSchema))
+            .optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetRefreshLibraryMetadataLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetRefreshLibraryMetadataLibraryResponseBody$Outbound = {
+    errors?: Array<GetRefreshLibraryMetadataLibraryErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetRefreshLibraryMetadataLibraryResponseBody$outboundSchema: z.ZodType<
+    GetRefreshLibraryMetadataLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetRefreshLibraryMetadataLibraryResponseBody
+> = z
+    .instanceof(GetRefreshLibraryMetadataLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetRefreshLibraryMetadataLibraryErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRefreshLibraryMetadataLibraryResponseBody$ {
+    /** @deprecated use `GetRefreshLibraryMetadataLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetRefreshLibraryMetadataLibraryResponseBody$inboundSchema;
+    /** @deprecated use `GetRefreshLibraryMetadataLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetRefreshLibraryMetadataLibraryResponseBody$outboundSchema;
+    /** @deprecated use `GetRefreshLibraryMetadataLibraryResponseBody$Outbound` instead. */
+    export type Outbound = GetRefreshLibraryMetadataLibraryResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetRefreshLibraryMetadataErrors$inboundSchema: z.ZodType<
     GetRefreshLibraryMetadataErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +236,9 @@ export const GetRefreshLibraryMetadataErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetRefreshLibraryMetadataErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -106,10 +106,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.CreatePlaylistResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.CreatePlaylistResponseBody          | 400                                        | application/json                           |
+| errors.CreatePlaylistPlaylistsResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
 ## getPlaylists
@@ -183,10 +184,11 @@ run();
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| errors.GetPlaylistsResponseBody | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.GetPlaylistsResponseBody          | 400                                      | application/json                         |
+| errors.GetPlaylistsPlaylistsResponseBody | 401                                      | application/json                         |
+| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
 
 
 ## getPlaylist
@@ -261,10 +263,11 @@ run();
 
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.GetPlaylistResponseBody | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.GetPlaylistResponseBody          | 400                                     | application/json                        |
+| errors.GetPlaylistPlaylistsResponseBody | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 
 ## deletePlaylist
@@ -338,10 +341,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.DeletePlaylistResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.DeletePlaylistResponseBody          | 400                                        | application/json                           |
+| errors.DeletePlaylistPlaylistsResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
 ## updatePlaylist
@@ -417,10 +421,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.UpdatePlaylistResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.UpdatePlaylistResponseBody          | 400                                        | application/json                           |
+| errors.UpdatePlaylistPlaylistsResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
 ## getPlaylistContents
@@ -500,10 +505,11 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetPlaylistContentsResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| errors.GetPlaylistContentsResponseBody          | 400                                             | application/json                                |
+| errors.GetPlaylistContentsPlaylistsResponseBody | 401                                             | application/json                                |
+| errors.SDKError                                 | 4xx-5xx                                         | */*                                             |
 
 
 ## clearPlaylistContents
@@ -577,10 +583,11 @@ run();
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.ClearPlaylistContentsResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object                                      | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| errors.ClearPlaylistContentsResponseBody          | 400                                               | application/json                                  |
+| errors.ClearPlaylistContentsPlaylistsResponseBody | 401                                               | application/json                                  |
+| errors.SDKError                                   | 4xx-5xx                                           | */*                                               |
 
 
 ## addPlaylistContents
@@ -657,10 +664,11 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.AddPlaylistContentsResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| errors.AddPlaylistContentsResponseBody          | 400                                             | application/json                                |
+| errors.AddPlaylistContentsPlaylistsResponseBody | 401                                             | application/json                                |
+| errors.SDKError                                 | 4xx-5xx                                         | */*                                             |
 
 
 ## uploadPlaylist
@@ -737,7 +745,8 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.UploadPlaylistResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.UploadPlaylistResponseBody          | 400                                        | application/json                           |
+| errors.UploadPlaylistPlaylistsResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |

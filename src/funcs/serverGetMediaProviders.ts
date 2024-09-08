@@ -36,6 +36,7 @@ export async function serverGetMediaProviders(
     Result<
         operations.GetMediaProvidersResponse,
         | errors.GetMediaProvidersResponseBody
+        | errors.GetMediaProvidersServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -118,6 +119,7 @@ export async function serverGetMediaProviders(
     const [result$] = await m$.match<
         operations.GetMediaProvidersResponse,
         | errors.GetMediaProvidersResponseBody
+        | errors.GetMediaProvidersServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,8 +129,9 @@ export async function serverGetMediaProviders(
         | ConnectionError
     >(
         m$.json(200, operations.GetMediaProvidersResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetMediaProvidersResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetMediaProvidersResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetMediaProvidersServerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -37,6 +37,7 @@ export async function plexGetServerResources(
     Result<
         operations.GetServerResourcesResponse,
         | errors.GetServerResourcesResponseBody
+        | errors.GetServerResourcesPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,6 +128,7 @@ export async function plexGetServerResources(
     const [result$] = await m$.match<
         operations.GetServerResourcesResponse,
         | errors.GetServerResourcesResponseBody
+        | errors.GetServerResourcesPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -136,8 +138,9 @@ export async function plexGetServerResources(
         | ConnectionError
     >(
         m$.json(200, operations.GetServerResourcesResponse$inboundSchema, { key: "PlexDevices" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetServerResourcesResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetServerResourcesResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetServerResourcesPlexResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

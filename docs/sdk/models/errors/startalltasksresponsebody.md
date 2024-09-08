@@ -1,6 +1,6 @@
 # StartAllTasksResponseBody
 
-Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+Bad Request - A parameter was not specified, or was specified incorrectly.
 
 ## Example Usage
 

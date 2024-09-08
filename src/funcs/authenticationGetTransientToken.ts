@@ -38,6 +38,7 @@ export async function authenticationGetTransientToken(
     Result<
         operations.GetTransientTokenResponse,
         | errors.GetTransientTokenResponseBody
+        | errors.GetTransientTokenAuthenticationResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -122,6 +123,7 @@ export async function authenticationGetTransientToken(
     const [result$] = await m$.match<
         operations.GetTransientTokenResponse,
         | errors.GetTransientTokenResponseBody
+        | errors.GetTransientTokenAuthenticationResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -131,8 +133,9 @@ export async function authenticationGetTransientToken(
         | ConnectionError
     >(
         m$.nil(200, operations.GetTransientTokenResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetTransientTokenResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetTransientTokenResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetTransientTokenAuthenticationResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

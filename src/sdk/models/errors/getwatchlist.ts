@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetWatchListErrors = {
+export type GetWatchListWatchlistErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetWatchListErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetWatchListWatchlistResponseBodyData = {
+    errors?: Array<GetWatchListWatchlistErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetWatchListWatchlistResponseBody extends Error {
+    errors?: Array<GetWatchListWatchlistErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetWatchListWatchlistResponseBodyData;
+
+    constructor(err: GetWatchListWatchlistResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetWatchListWatchlistResponseBody";
+    }
+}
+
+export type GetWatchListErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetWatchListResponseBodyData = {
     errors?: Array<GetWatchListErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetWatchListResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetWatchListResponseBody extends Error {
     errors?: Array<GetWatchListErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetWatchListResponseBody extends Error {
 }
 
 /** @internal */
+export const GetWatchListWatchlistErrors$inboundSchema: z.ZodType<
+    GetWatchListWatchlistErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetWatchListWatchlistErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetWatchListWatchlistErrors$outboundSchema: z.ZodType<
+    GetWatchListWatchlistErrors$Outbound,
+    z.ZodTypeDef,
+    GetWatchListWatchlistErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetWatchListWatchlistErrors$ {
+    /** @deprecated use `GetWatchListWatchlistErrors$inboundSchema` instead. */
+    export const inboundSchema = GetWatchListWatchlistErrors$inboundSchema;
+    /** @deprecated use `GetWatchListWatchlistErrors$outboundSchema` instead. */
+    export const outboundSchema = GetWatchListWatchlistErrors$outboundSchema;
+    /** @deprecated use `GetWatchListWatchlistErrors$Outbound` instead. */
+    export type Outbound = GetWatchListWatchlistErrors$Outbound;
+}
+
+/** @internal */
+export const GetWatchListWatchlistResponseBody$inboundSchema: z.ZodType<
+    GetWatchListWatchlistResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetWatchListWatchlistErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetWatchListWatchlistResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetWatchListWatchlistResponseBody$Outbound = {
+    errors?: Array<GetWatchListWatchlistErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetWatchListWatchlistResponseBody$outboundSchema: z.ZodType<
+    GetWatchListWatchlistResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetWatchListWatchlistResponseBody
+> = z
+    .instanceof(GetWatchListWatchlistResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetWatchListWatchlistErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetWatchListWatchlistResponseBody$ {
+    /** @deprecated use `GetWatchListWatchlistResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetWatchListWatchlistResponseBody$inboundSchema;
+    /** @deprecated use `GetWatchListWatchlistResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetWatchListWatchlistResponseBody$outboundSchema;
+    /** @deprecated use `GetWatchListWatchlistResponseBody$Outbound` instead. */
+    export type Outbound = GetWatchListWatchlistResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetWatchListErrors$inboundSchema: z.ZodType<
     GetWatchListErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetWatchListErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetWatchListErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

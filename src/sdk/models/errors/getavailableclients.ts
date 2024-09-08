@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetAvailableClientsErrors = {
+export type GetAvailableClientsServerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetAvailableClientsErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetAvailableClientsServerResponseBodyData = {
+    errors?: Array<GetAvailableClientsServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetAvailableClientsServerResponseBody extends Error {
+    errors?: Array<GetAvailableClientsServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetAvailableClientsServerResponseBodyData;
+
+    constructor(err: GetAvailableClientsServerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetAvailableClientsServerResponseBody";
+    }
+}
+
+export type GetAvailableClientsErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetAvailableClientsResponseBodyData = {
     errors?: Array<GetAvailableClientsErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetAvailableClientsResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetAvailableClientsResponseBody extends Error {
     errors?: Array<GetAvailableClientsErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetAvailableClientsResponseBody extends Error {
 }
 
 /** @internal */
+export const GetAvailableClientsServerErrors$inboundSchema: z.ZodType<
+    GetAvailableClientsServerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetAvailableClientsServerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetAvailableClientsServerErrors$outboundSchema: z.ZodType<
+    GetAvailableClientsServerErrors$Outbound,
+    z.ZodTypeDef,
+    GetAvailableClientsServerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAvailableClientsServerErrors$ {
+    /** @deprecated use `GetAvailableClientsServerErrors$inboundSchema` instead. */
+    export const inboundSchema = GetAvailableClientsServerErrors$inboundSchema;
+    /** @deprecated use `GetAvailableClientsServerErrors$outboundSchema` instead. */
+    export const outboundSchema = GetAvailableClientsServerErrors$outboundSchema;
+    /** @deprecated use `GetAvailableClientsServerErrors$Outbound` instead. */
+    export type Outbound = GetAvailableClientsServerErrors$Outbound;
+}
+
+/** @internal */
+export const GetAvailableClientsServerResponseBody$inboundSchema: z.ZodType<
+    GetAvailableClientsServerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetAvailableClientsServerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetAvailableClientsServerResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetAvailableClientsServerResponseBody$Outbound = {
+    errors?: Array<GetAvailableClientsServerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetAvailableClientsServerResponseBody$outboundSchema: z.ZodType<
+    GetAvailableClientsServerResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetAvailableClientsServerResponseBody
+> = z
+    .instanceof(GetAvailableClientsServerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetAvailableClientsServerErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAvailableClientsServerResponseBody$ {
+    /** @deprecated use `GetAvailableClientsServerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetAvailableClientsServerResponseBody$inboundSchema;
+    /** @deprecated use `GetAvailableClientsServerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetAvailableClientsServerResponseBody$outboundSchema;
+    /** @deprecated use `GetAvailableClientsServerResponseBody$Outbound` instead. */
+    export type Outbound = GetAvailableClientsServerResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetAvailableClientsErrors$inboundSchema: z.ZodType<
     GetAvailableClientsErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetAvailableClientsErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetAvailableClientsErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

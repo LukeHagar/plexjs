@@ -33,6 +33,7 @@ export async function serverGetServerCapabilities(
     Result<
         operations.GetServerCapabilitiesResponse,
         | errors.GetServerCapabilitiesResponseBody
+        | errors.GetServerCapabilitiesServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function serverGetServerCapabilities(
     const [result$] = await m$.match<
         operations.GetServerCapabilitiesResponse,
         | errors.GetServerCapabilitiesResponseBody
+        | errors.GetServerCapabilitiesServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function serverGetServerCapabilities(
         | ConnectionError
     >(
         m$.json(200, operations.GetServerCapabilitiesResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetServerCapabilitiesResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetServerCapabilitiesResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetServerCapabilitiesServerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetOnDeckErrors = {
+export type GetOnDeckLibraryErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetOnDeckErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetOnDeckLibraryResponseBodyData = {
+    errors?: Array<GetOnDeckLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetOnDeckLibraryResponseBody extends Error {
+    errors?: Array<GetOnDeckLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetOnDeckLibraryResponseBodyData;
+
+    constructor(err: GetOnDeckLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetOnDeckLibraryResponseBody";
+    }
+}
+
+export type GetOnDeckErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetOnDeckResponseBodyData = {
     errors?: Array<GetOnDeckErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetOnDeckResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetOnDeckResponseBody extends Error {
     errors?: Array<GetOnDeckErrors> | undefined;
@@ -55,11 +104,116 @@ export class GetOnDeckResponseBody extends Error {
 }
 
 /** @internal */
+export const GetOnDeckLibraryErrors$inboundSchema: z.ZodType<
+    GetOnDeckLibraryErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetOnDeckLibraryErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetOnDeckLibraryErrors$outboundSchema: z.ZodType<
+    GetOnDeckLibraryErrors$Outbound,
+    z.ZodTypeDef,
+    GetOnDeckLibraryErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetOnDeckLibraryErrors$ {
+    /** @deprecated use `GetOnDeckLibraryErrors$inboundSchema` instead. */
+    export const inboundSchema = GetOnDeckLibraryErrors$inboundSchema;
+    /** @deprecated use `GetOnDeckLibraryErrors$outboundSchema` instead. */
+    export const outboundSchema = GetOnDeckLibraryErrors$outboundSchema;
+    /** @deprecated use `GetOnDeckLibraryErrors$Outbound` instead. */
+    export type Outbound = GetOnDeckLibraryErrors$Outbound;
+}
+
+/** @internal */
+export const GetOnDeckLibraryResponseBody$inboundSchema: z.ZodType<
+    GetOnDeckLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetOnDeckLibraryErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetOnDeckLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetOnDeckLibraryResponseBody$Outbound = {
+    errors?: Array<GetOnDeckLibraryErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetOnDeckLibraryResponseBody$outboundSchema: z.ZodType<
+    GetOnDeckLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetOnDeckLibraryResponseBody
+> = z
+    .instanceof(GetOnDeckLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetOnDeckLibraryErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetOnDeckLibraryResponseBody$ {
+    /** @deprecated use `GetOnDeckLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetOnDeckLibraryResponseBody$inboundSchema;
+    /** @deprecated use `GetOnDeckLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetOnDeckLibraryResponseBody$outboundSchema;
+    /** @deprecated use `GetOnDeckLibraryResponseBody$Outbound` instead. */
+    export type Outbound = GetOnDeckLibraryResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetOnDeckErrors$inboundSchema: z.ZodType<GetOnDeckErrors, z.ZodTypeDef, unknown> =
     z.object({
-        code: z.number().optional(),
+        code: z.number().int().optional(),
         message: z.string().optional(),
-        status: z.number().optional(),
+        status: z.number().int().optional(),
     });
 
 /** @internal */
@@ -75,9 +229,9 @@ export const GetOnDeckErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetOnDeckErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

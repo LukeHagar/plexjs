@@ -36,6 +36,7 @@ export async function videoStartUniversalTranscode(
     Result<
         operations.StartUniversalTranscodeResponse,
         | errors.StartUniversalTranscodeResponseBody
+        | errors.StartUniversalTranscodeVideoResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -131,6 +132,7 @@ export async function videoStartUniversalTranscode(
     const [result$] = await m$.match<
         operations.StartUniversalTranscodeResponse,
         | errors.StartUniversalTranscodeResponseBody
+        | errors.StartUniversalTranscodeVideoResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -140,8 +142,9 @@ export async function videoStartUniversalTranscode(
         | ConnectionError
     >(
         m$.nil(200, operations.StartUniversalTranscodeResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.StartUniversalTranscodeResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.StartUniversalTranscodeResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.StartUniversalTranscodeVideoResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

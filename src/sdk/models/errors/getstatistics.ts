@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetStatisticsErrors = {
+export type GetStatisticsStatisticsErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetStatisticsErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetStatisticsStatisticsResponseBodyData = {
+    errors?: Array<GetStatisticsStatisticsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetStatisticsStatisticsResponseBody extends Error {
+    errors?: Array<GetStatisticsStatisticsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetStatisticsStatisticsResponseBodyData;
+
+    constructor(err: GetStatisticsStatisticsResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetStatisticsStatisticsResponseBody";
+    }
+}
+
+export type GetStatisticsErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetStatisticsResponseBodyData = {
     errors?: Array<GetStatisticsErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetStatisticsResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetStatisticsResponseBody extends Error {
     errors?: Array<GetStatisticsErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetStatisticsResponseBody extends Error {
 }
 
 /** @internal */
+export const GetStatisticsStatisticsErrors$inboundSchema: z.ZodType<
+    GetStatisticsStatisticsErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetStatisticsStatisticsErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetStatisticsStatisticsErrors$outboundSchema: z.ZodType<
+    GetStatisticsStatisticsErrors$Outbound,
+    z.ZodTypeDef,
+    GetStatisticsStatisticsErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetStatisticsStatisticsErrors$ {
+    /** @deprecated use `GetStatisticsStatisticsErrors$inboundSchema` instead. */
+    export const inboundSchema = GetStatisticsStatisticsErrors$inboundSchema;
+    /** @deprecated use `GetStatisticsStatisticsErrors$outboundSchema` instead. */
+    export const outboundSchema = GetStatisticsStatisticsErrors$outboundSchema;
+    /** @deprecated use `GetStatisticsStatisticsErrors$Outbound` instead. */
+    export type Outbound = GetStatisticsStatisticsErrors$Outbound;
+}
+
+/** @internal */
+export const GetStatisticsStatisticsResponseBody$inboundSchema: z.ZodType<
+    GetStatisticsStatisticsResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetStatisticsStatisticsErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetStatisticsStatisticsResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetStatisticsStatisticsResponseBody$Outbound = {
+    errors?: Array<GetStatisticsStatisticsErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetStatisticsStatisticsResponseBody$outboundSchema: z.ZodType<
+    GetStatisticsStatisticsResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetStatisticsStatisticsResponseBody
+> = z
+    .instanceof(GetStatisticsStatisticsResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetStatisticsStatisticsErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetStatisticsStatisticsResponseBody$ {
+    /** @deprecated use `GetStatisticsStatisticsResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetStatisticsStatisticsResponseBody$inboundSchema;
+    /** @deprecated use `GetStatisticsStatisticsResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetStatisticsStatisticsResponseBody$outboundSchema;
+    /** @deprecated use `GetStatisticsStatisticsResponseBody$Outbound` instead. */
+    export type Outbound = GetStatisticsStatisticsResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetStatisticsErrors$inboundSchema: z.ZodType<
     GetStatisticsErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetStatisticsErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetStatisticsErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

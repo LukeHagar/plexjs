@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetUserFriendsErrors = {
+export type GetUserFriendsPlexErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetUserFriendsErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetUserFriendsPlexResponseBodyData = {
+    errors?: Array<GetUserFriendsPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetUserFriendsPlexResponseBody extends Error {
+    errors?: Array<GetUserFriendsPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetUserFriendsPlexResponseBodyData;
+
+    constructor(err: GetUserFriendsPlexResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetUserFriendsPlexResponseBody";
+    }
+}
+
+export type GetUserFriendsErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetUserFriendsResponseBodyData = {
     errors?: Array<GetUserFriendsErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetUserFriendsResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetUserFriendsResponseBody extends Error {
     errors?: Array<GetUserFriendsErrors> | undefined;
@@ -55,14 +104,119 @@ export class GetUserFriendsResponseBody extends Error {
 }
 
 /** @internal */
+export const GetUserFriendsPlexErrors$inboundSchema: z.ZodType<
+    GetUserFriendsPlexErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetUserFriendsPlexErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetUserFriendsPlexErrors$outboundSchema: z.ZodType<
+    GetUserFriendsPlexErrors$Outbound,
+    z.ZodTypeDef,
+    GetUserFriendsPlexErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetUserFriendsPlexErrors$ {
+    /** @deprecated use `GetUserFriendsPlexErrors$inboundSchema` instead. */
+    export const inboundSchema = GetUserFriendsPlexErrors$inboundSchema;
+    /** @deprecated use `GetUserFriendsPlexErrors$outboundSchema` instead. */
+    export const outboundSchema = GetUserFriendsPlexErrors$outboundSchema;
+    /** @deprecated use `GetUserFriendsPlexErrors$Outbound` instead. */
+    export type Outbound = GetUserFriendsPlexErrors$Outbound;
+}
+
+/** @internal */
+export const GetUserFriendsPlexResponseBody$inboundSchema: z.ZodType<
+    GetUserFriendsPlexResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetUserFriendsPlexErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetUserFriendsPlexResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetUserFriendsPlexResponseBody$Outbound = {
+    errors?: Array<GetUserFriendsPlexErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetUserFriendsPlexResponseBody$outboundSchema: z.ZodType<
+    GetUserFriendsPlexResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetUserFriendsPlexResponseBody
+> = z
+    .instanceof(GetUserFriendsPlexResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetUserFriendsPlexErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetUserFriendsPlexResponseBody$ {
+    /** @deprecated use `GetUserFriendsPlexResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetUserFriendsPlexResponseBody$inboundSchema;
+    /** @deprecated use `GetUserFriendsPlexResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetUserFriendsPlexResponseBody$outboundSchema;
+    /** @deprecated use `GetUserFriendsPlexResponseBody$Outbound` instead. */
+    export type Outbound = GetUserFriendsPlexResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetUserFriendsErrors$inboundSchema: z.ZodType<
     GetUserFriendsErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const GetUserFriendsErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetUserFriendsErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

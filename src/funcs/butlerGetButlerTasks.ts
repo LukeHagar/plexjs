@@ -33,6 +33,7 @@ export async function butlerGetButlerTasks(
     Result<
         operations.GetButlerTasksResponse,
         | errors.GetButlerTasksResponseBody
+        | errors.GetButlerTasksButlerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function butlerGetButlerTasks(
     const [result$] = await m$.match<
         operations.GetButlerTasksResponse,
         | errors.GetButlerTasksResponseBody
+        | errors.GetButlerTasksButlerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function butlerGetButlerTasks(
         | ConnectionError
     >(
         m$.json(200, operations.GetButlerTasksResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetButlerTasksResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetButlerTasksResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetButlerTasksButlerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

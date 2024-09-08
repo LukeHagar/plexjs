@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: e86dd5a81cd11202edc0a62b99f0e4ff
+  docChecksum: 75338df5d596b761fe73fe6ff177a197
   docVersion: 0.0.3
   speakeasyVersion: 1.392.1
   generationVersion: 2.411.9
-  releaseVersion: 0.20.2
-  configChecksum: 82c9b6fbb4fc184a9c738a1c06d6e1c7
+  releaseVersion: 0.21.0
+  configChecksum: 44a3ea9646a2c078d60b643b0bcf56da
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -20,6 +20,7 @@ features:
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     envVarSecurityUsage: 0.1.1
+    errors: 2.82.2
     flattening: 2.81.1
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
@@ -43,153 +44,295 @@ generatedFiles:
   - USAGE.md
   - docs/lib/utils/retryconfig.md
   - docs/sdk/models/errors/addplaylistcontentserrors.md
+  - docs/sdk/models/errors/addplaylistcontentsplaylistserrors.md
+  - docs/sdk/models/errors/addplaylistcontentsplaylistsresponsebody.md
   - docs/sdk/models/errors/addplaylistcontentsresponsebody.md
   - docs/sdk/models/errors/applyupdateserrors.md
   - docs/sdk/models/errors/applyupdatesresponsebody.md
+  - docs/sdk/models/errors/applyupdatesupdatererrors.md
+  - docs/sdk/models/errors/applyupdatesupdaterresponsebody.md
+  - docs/sdk/models/errors/cancelserveractivitiesactivitieserrors.md
+  - docs/sdk/models/errors/cancelserveractivitiesactivitiesresponsebody.md
   - docs/sdk/models/errors/cancelserveractivitieserrors.md
   - docs/sdk/models/errors/cancelserveractivitiesresponsebody.md
   - docs/sdk/models/errors/checkforupdateserrors.md
   - docs/sdk/models/errors/checkforupdatesresponsebody.md
+  - docs/sdk/models/errors/checkforupdatesupdatererrors.md
+  - docs/sdk/models/errors/checkforupdatesupdaterresponsebody.md
   - docs/sdk/models/errors/clearplaylistcontentserrors.md
+  - docs/sdk/models/errors/clearplaylistcontentsplaylistserrors.md
+  - docs/sdk/models/errors/clearplaylistcontentsplaylistsresponsebody.md
   - docs/sdk/models/errors/clearplaylistcontentsresponsebody.md
   - docs/sdk/models/errors/createplaylisterrors.md
+  - docs/sdk/models/errors/createplaylistplaylistserrors.md
+  - docs/sdk/models/errors/createplaylistplaylistsresponsebody.md
   - docs/sdk/models/errors/createplaylistresponsebody.md
   - docs/sdk/models/errors/deletelibraryerrors.md
+  - docs/sdk/models/errors/deletelibrarylibraryerrors.md
+  - docs/sdk/models/errors/deletelibrarylibraryresponsebody.md
   - docs/sdk/models/errors/deletelibraryresponsebody.md
   - docs/sdk/models/errors/deleteplaylisterrors.md
+  - docs/sdk/models/errors/deleteplaylistplaylistserrors.md
+  - docs/sdk/models/errors/deleteplaylistplaylistsresponsebody.md
   - docs/sdk/models/errors/deleteplaylistresponsebody.md
   - docs/sdk/models/errors/enablepapertrailerrors.md
+  - docs/sdk/models/errors/enablepapertraillogerrors.md
+  - docs/sdk/models/errors/enablepapertraillogresponsebody.md
   - docs/sdk/models/errors/enablepapertrailresponsebody.md
   - docs/sdk/models/errors/errors.md
   - docs/sdk/models/errors/getalllibrarieserrors.md
+  - docs/sdk/models/errors/getalllibrarieslibraryerrors.md
+  - docs/sdk/models/errors/getalllibrarieslibraryresponsebody.md
   - docs/sdk/models/errors/getalllibrariesresponsebody.md
   - docs/sdk/models/errors/getavailableclientserrors.md
   - docs/sdk/models/errors/getavailableclientsresponsebody.md
+  - docs/sdk/models/errors/getavailableclientsservererrors.md
+  - docs/sdk/models/errors/getavailableclientsserverresponsebody.md
   - docs/sdk/models/errors/getbandwidthstatisticserrors.md
   - docs/sdk/models/errors/getbandwidthstatisticsresponsebody.md
+  - docs/sdk/models/errors/getbandwidthstatisticsstatisticserrors.md
+  - docs/sdk/models/errors/getbandwidthstatisticsstatisticsresponsebody.md
   - docs/sdk/models/errors/getbannerimageerrors.md
+  - docs/sdk/models/errors/getbannerimagemediaerrors.md
+  - docs/sdk/models/errors/getbannerimagemediaresponsebody.md
   - docs/sdk/models/errors/getbannerimageresponsebody.md
+  - docs/sdk/models/errors/getbutlertasksbutlererrors.md
+  - docs/sdk/models/errors/getbutlertasksbutlerresponsebody.md
   - docs/sdk/models/errors/getbutlertaskserrors.md
   - docs/sdk/models/errors/getbutlertasksresponsebody.md
   - docs/sdk/models/errors/getcompanionsdataerrors.md
+  - docs/sdk/models/errors/getcompanionsdataplexerrors.md
+  - docs/sdk/models/errors/getcompanionsdataplexresponsebody.md
   - docs/sdk/models/errors/getcompanionsdataresponsebody.md
   - docs/sdk/models/errors/getdeviceserrors.md
   - docs/sdk/models/errors/getdevicesresponsebody.md
+  - docs/sdk/models/errors/getdevicesservererrors.md
+  - docs/sdk/models/errors/getdevicesserverresponsebody.md
   - docs/sdk/models/errors/getfilehasherrors.md
+  - docs/sdk/models/errors/getfilehashlibraryerrors.md
+  - docs/sdk/models/errors/getfilehashlibraryresponsebody.md
   - docs/sdk/models/errors/getfilehashresponsebody.md
   - docs/sdk/models/errors/getgeodataerrors.md
+  - docs/sdk/models/errors/getgeodataplexerrors.md
+  - docs/sdk/models/errors/getgeodataplexresponsebody.md
   - docs/sdk/models/errors/getgeodataresponsebody.md
   - docs/sdk/models/errors/getglobalhubserrors.md
+  - docs/sdk/models/errors/getglobalhubshubserrors.md
+  - docs/sdk/models/errors/getglobalhubshubsresponsebody.md
   - docs/sdk/models/errors/getglobalhubsresponsebody.md
   - docs/sdk/models/errors/gethomedataerrors.md
+  - docs/sdk/models/errors/gethomedataplexerrors.md
+  - docs/sdk/models/errors/gethomedataplexresponsebody.md
   - docs/sdk/models/errors/gethomedataresponsebody.md
   - docs/sdk/models/errors/getlibrarydetailserrors.md
+  - docs/sdk/models/errors/getlibrarydetailslibraryerrors.md
+  - docs/sdk/models/errors/getlibrarydetailslibraryresponsebody.md
   - docs/sdk/models/errors/getlibrarydetailsresponsebody.md
   - docs/sdk/models/errors/getlibraryhubserrors.md
+  - docs/sdk/models/errors/getlibraryhubshubserrors.md
+  - docs/sdk/models/errors/getlibraryhubshubsresponsebody.md
   - docs/sdk/models/errors/getlibraryhubsresponsebody.md
   - docs/sdk/models/errors/getlibraryitemserrors.md
+  - docs/sdk/models/errors/getlibraryitemslibraryerrors.md
+  - docs/sdk/models/errors/getlibraryitemslibraryresponsebody.md
   - docs/sdk/models/errors/getlibraryitemsresponsebody.md
   - docs/sdk/models/errors/getmediaproviderserrors.md
   - docs/sdk/models/errors/getmediaprovidersresponsebody.md
+  - docs/sdk/models/errors/getmediaprovidersservererrors.md
+  - docs/sdk/models/errors/getmediaprovidersserverresponsebody.md
   - docs/sdk/models/errors/getmetadatabyratingkeyerrors.md
+  - docs/sdk/models/errors/getmetadatabyratingkeylibraryerrors.md
+  - docs/sdk/models/errors/getmetadatabyratingkeylibraryresponsebody.md
   - docs/sdk/models/errors/getmetadatabyratingkeyresponsebody.md
   - docs/sdk/models/errors/getmetadatachildrenerrors.md
+  - docs/sdk/models/errors/getmetadatachildrenlibraryerrors.md
+  - docs/sdk/models/errors/getmetadatachildrenlibraryresponsebody.md
   - docs/sdk/models/errors/getmetadatachildrenresponsebody.md
   - docs/sdk/models/errors/getmyplexaccounterrors.md
   - docs/sdk/models/errors/getmyplexaccountresponsebody.md
+  - docs/sdk/models/errors/getmyplexaccountservererrors.md
+  - docs/sdk/models/errors/getmyplexaccountserverresponsebody.md
   - docs/sdk/models/errors/getondeckerrors.md
+  - docs/sdk/models/errors/getondecklibraryerrors.md
+  - docs/sdk/models/errors/getondecklibraryresponsebody.md
   - docs/sdk/models/errors/getondeckresponsebody.md
   - docs/sdk/models/errors/getpinerrors.md
   - docs/sdk/models/errors/getpinresponsebody.md
   - docs/sdk/models/errors/getplaylistcontentserrors.md
+  - docs/sdk/models/errors/getplaylistcontentsplaylistserrors.md
+  - docs/sdk/models/errors/getplaylistcontentsplaylistsresponsebody.md
   - docs/sdk/models/errors/getplaylistcontentsresponsebody.md
   - docs/sdk/models/errors/getplaylisterrors.md
+  - docs/sdk/models/errors/getplaylistplaylistserrors.md
+  - docs/sdk/models/errors/getplaylistplaylistsresponsebody.md
   - docs/sdk/models/errors/getplaylistresponsebody.md
   - docs/sdk/models/errors/getplaylistserrors.md
+  - docs/sdk/models/errors/getplaylistsplaylistserrors.md
+  - docs/sdk/models/errors/getplaylistsplaylistsresponsebody.md
   - docs/sdk/models/errors/getplaylistsresponsebody.md
   - docs/sdk/models/errors/getrecentlyaddederrors.md
+  - docs/sdk/models/errors/getrecentlyaddedlibraryerrors.md
+  - docs/sdk/models/errors/getrecentlyaddedlibraryresponsebody.md
   - docs/sdk/models/errors/getrecentlyaddedresponsebody.md
   - docs/sdk/models/errors/getrefreshlibrarymetadataerrors.md
+  - docs/sdk/models/errors/getrefreshlibrarymetadatalibraryerrors.md
+  - docs/sdk/models/errors/getrefreshlibrarymetadatalibraryresponsebody.md
   - docs/sdk/models/errors/getrefreshlibrarymetadataresponsebody.md
   - docs/sdk/models/errors/getresizedphotoerrors.md
   - docs/sdk/models/errors/getresizedphotoresponsebody.md
+  - docs/sdk/models/errors/getresizedphotoservererrors.md
+  - docs/sdk/models/errors/getresizedphotoserverresponsebody.md
   - docs/sdk/models/errors/getresourcesstatisticserrors.md
   - docs/sdk/models/errors/getresourcesstatisticsresponsebody.md
+  - docs/sdk/models/errors/getresourcesstatisticsstatisticserrors.md
+  - docs/sdk/models/errors/getresourcesstatisticsstatisticsresponsebody.md
   - docs/sdk/models/errors/getsearchlibraryerrors.md
+  - docs/sdk/models/errors/getsearchlibrarylibraryerrors.md
+  - docs/sdk/models/errors/getsearchlibrarylibraryresponsebody.md
   - docs/sdk/models/errors/getsearchlibraryresponsebody.md
   - docs/sdk/models/errors/getsearchresultserrors.md
   - docs/sdk/models/errors/getsearchresultsresponsebody.md
+  - docs/sdk/models/errors/getsearchresultssearcherrors.md
+  - docs/sdk/models/errors/getsearchresultssearchresponsebody.md
+  - docs/sdk/models/errors/getserveractivitiesactivitieserrors.md
+  - docs/sdk/models/errors/getserveractivitiesactivitiesresponsebody.md
   - docs/sdk/models/errors/getserveractivitieserrors.md
   - docs/sdk/models/errors/getserveractivitiesresponsebody.md
+  - docs/sdk/models/errors/getservercapabilitieserrors.md
   - docs/sdk/models/errors/getservercapabilitiesresponsebody.md
+  - docs/sdk/models/errors/getservercapabilitiesserverresponsebody.md
   - docs/sdk/models/errors/getserveridentityresponsebody.md
   - docs/sdk/models/errors/getserverlisterrors.md
   - docs/sdk/models/errors/getserverlistresponsebody.md
+  - docs/sdk/models/errors/getserverlistservererrors.md
+  - docs/sdk/models/errors/getserverlistserverresponsebody.md
   - docs/sdk/models/errors/getserverpreferenceserrors.md
   - docs/sdk/models/errors/getserverpreferencesresponsebody.md
+  - docs/sdk/models/errors/getserverpreferencesservererrors.md
+  - docs/sdk/models/errors/getserverpreferencesserverresponsebody.md
   - docs/sdk/models/errors/getserverresourceserrors.md
+  - docs/sdk/models/errors/getserverresourcesplexerrors.md
+  - docs/sdk/models/errors/getserverresourcesplexresponsebody.md
   - docs/sdk/models/errors/getserverresourcesresponsebody.md
   - docs/sdk/models/errors/getsessionhistoryerrors.md
   - docs/sdk/models/errors/getsessionhistoryresponsebody.md
+  - docs/sdk/models/errors/getsessionhistorysessionserrors.md
+  - docs/sdk/models/errors/getsessionhistorysessionsresponsebody.md
   - docs/sdk/models/errors/getsessionserrors.md
   - docs/sdk/models/errors/getsessionsresponsebody.md
+  - docs/sdk/models/errors/getsessionssessionserrors.md
+  - docs/sdk/models/errors/getsessionssessionsresponsebody.md
+  - docs/sdk/models/errors/getsourceconnectioninformationauthenticationerrors.md
+  - docs/sdk/models/errors/getsourceconnectioninformationauthenticationresponsebody.md
   - docs/sdk/models/errors/getsourceconnectioninformationerrors.md
   - docs/sdk/models/errors/getsourceconnectioninformationresponsebody.md
   - docs/sdk/models/errors/getstatisticserrors.md
   - docs/sdk/models/errors/getstatisticsresponsebody.md
+  - docs/sdk/models/errors/getstatisticsstatisticserrors.md
+  - docs/sdk/models/errors/getstatisticsstatisticsresponsebody.md
   - docs/sdk/models/errors/getthumbimageerrors.md
+  - docs/sdk/models/errors/getthumbimagemediaerrors.md
+  - docs/sdk/models/errors/getthumbimagemediaresponsebody.md
   - docs/sdk/models/errors/getthumbimageresponsebody.md
   - docs/sdk/models/errors/gettimelineerrors.md
   - docs/sdk/models/errors/gettimelineresponsebody.md
+  - docs/sdk/models/errors/gettimelinevideoerrors.md
+  - docs/sdk/models/errors/gettimelinevideoresponsebody.md
   - docs/sdk/models/errors/gettokenbypiniderrors.md
   - docs/sdk/models/errors/gettokenbypinidplexerrors.md
   - docs/sdk/models/errors/gettokenbypinidplexresponsebody.md
   - docs/sdk/models/errors/gettokenbypinidresponsebody.md
   - docs/sdk/models/errors/gettopwatchedcontenterrors.md
+  - docs/sdk/models/errors/gettopwatchedcontentlibraryerrors.md
+  - docs/sdk/models/errors/gettopwatchedcontentlibraryresponsebody.md
   - docs/sdk/models/errors/gettopwatchedcontentresponsebody.md
   - docs/sdk/models/errors/gettranscodesessionserrors.md
   - docs/sdk/models/errors/gettranscodesessionsresponsebody.md
+  - docs/sdk/models/errors/gettranscodesessionssessionserrors.md
+  - docs/sdk/models/errors/gettranscodesessionssessionsresponsebody.md
+  - docs/sdk/models/errors/gettransienttokenauthenticationerrors.md
+  - docs/sdk/models/errors/gettransienttokenauthenticationresponsebody.md
   - docs/sdk/models/errors/gettransienttokenerrors.md
   - docs/sdk/models/errors/gettransienttokenresponsebody.md
   - docs/sdk/models/errors/getupdatestatuserrors.md
   - docs/sdk/models/errors/getupdatestatusresponsebody.md
+  - docs/sdk/models/errors/getupdatestatusupdatererrors.md
+  - docs/sdk/models/errors/getupdatestatusupdaterresponsebody.md
+  - docs/sdk/models/errors/getuserdetailsauthenticationerrors.md
+  - docs/sdk/models/errors/getuserdetailsauthenticationresponsebody.md
   - docs/sdk/models/errors/getuserdetailserrors.md
   - docs/sdk/models/errors/getuserdetailsresponsebody.md
   - docs/sdk/models/errors/getuserfriendserrors.md
+  - docs/sdk/models/errors/getuserfriendsplexerrors.md
+  - docs/sdk/models/errors/getuserfriendsplexresponsebody.md
   - docs/sdk/models/errors/getuserfriendsresponsebody.md
   - docs/sdk/models/errors/getwatchlisterrors.md
   - docs/sdk/models/errors/getwatchlistresponsebody.md
+  - docs/sdk/models/errors/getwatchlistwatchlisterrors.md
+  - docs/sdk/models/errors/getwatchlistwatchlistresponsebody.md
   - docs/sdk/models/errors/loglineerrors.md
+  - docs/sdk/models/errors/loglinelogerrors.md
+  - docs/sdk/models/errors/loglinelogresponsebody.md
   - docs/sdk/models/errors/loglineresponsebody.md
   - docs/sdk/models/errors/logmultilineerrors.md
+  - docs/sdk/models/errors/logmultilinelogerrors.md
+  - docs/sdk/models/errors/logmultilinelogresponsebody.md
   - docs/sdk/models/errors/logmultilineresponsebody.md
   - docs/sdk/models/errors/markplayederrors.md
+  - docs/sdk/models/errors/markplayedmediaerrors.md
+  - docs/sdk/models/errors/markplayedmediaresponsebody.md
   - docs/sdk/models/errors/markplayedresponsebody.md
   - docs/sdk/models/errors/markunplayederrors.md
+  - docs/sdk/models/errors/markunplayedmediaerrors.md
+  - docs/sdk/models/errors/markunplayedmediaresponsebody.md
   - docs/sdk/models/errors/markunplayedresponsebody.md
   - docs/sdk/models/errors/performsearcherrors.md
   - docs/sdk/models/errors/performsearchresponsebody.md
+  - docs/sdk/models/errors/performsearchsearcherrors.md
+  - docs/sdk/models/errors/performsearchsearchresponsebody.md
   - docs/sdk/models/errors/performvoicesearcherrors.md
   - docs/sdk/models/errors/performvoicesearchresponsebody.md
+  - docs/sdk/models/errors/performvoicesearchsearcherrors.md
+  - docs/sdk/models/errors/performvoicesearchsearchresponsebody.md
+  - docs/sdk/models/errors/postuserssignindataauthenticationerrors.md
+  - docs/sdk/models/errors/postuserssignindataauthenticationresponsebody.md
   - docs/sdk/models/errors/postuserssignindataerrors.md
   - docs/sdk/models/errors/postuserssignindataresponsebody.md
+  - docs/sdk/models/errors/startalltasksbutlererrors.md
+  - docs/sdk/models/errors/startalltasksbutlerresponsebody.md
   - docs/sdk/models/errors/startalltaskserrors.md
   - docs/sdk/models/errors/startalltasksresponsebody.md
+  - docs/sdk/models/errors/starttaskbutlererrors.md
+  - docs/sdk/models/errors/starttaskbutlerresponsebody.md
   - docs/sdk/models/errors/starttaskerrors.md
   - docs/sdk/models/errors/starttaskresponsebody.md
   - docs/sdk/models/errors/startuniversaltranscodeerrors.md
   - docs/sdk/models/errors/startuniversaltranscoderesponsebody.md
+  - docs/sdk/models/errors/startuniversaltranscodevideoerrors.md
+  - docs/sdk/models/errors/startuniversaltranscodevideoresponsebody.md
+  - docs/sdk/models/errors/stopalltasksbutlererrors.md
+  - docs/sdk/models/errors/stopalltasksbutlerresponsebody.md
   - docs/sdk/models/errors/stopalltaskserrors.md
   - docs/sdk/models/errors/stopalltasksresponsebody.md
+  - docs/sdk/models/errors/stoptaskbutlererrors.md
+  - docs/sdk/models/errors/stoptaskbutlerresponsebody.md
   - docs/sdk/models/errors/stoptaskerrors.md
   - docs/sdk/models/errors/stoptaskresponsebody.md
   - docs/sdk/models/errors/stoptranscodesessionerrors.md
   - docs/sdk/models/errors/stoptranscodesessionresponsebody.md
+  - docs/sdk/models/errors/stoptranscodesessionsessionserrors.md
+  - docs/sdk/models/errors/stoptranscodesessionsessionsresponsebody.md
   - docs/sdk/models/errors/updateplaylisterrors.md
+  - docs/sdk/models/errors/updateplaylistplaylistserrors.md
+  - docs/sdk/models/errors/updateplaylistplaylistsresponsebody.md
   - docs/sdk/models/errors/updateplaylistresponsebody.md
   - docs/sdk/models/errors/updateplayprogresserrors.md
+  - docs/sdk/models/errors/updateplayprogressmediaerrors.md
+  - docs/sdk/models/errors/updateplayprogressmediaresponsebody.md
   - docs/sdk/models/errors/updateplayprogressresponsebody.md
   - docs/sdk/models/errors/uploadplaylisterrors.md
+  - docs/sdk/models/errors/uploadplaylistplaylistserrors.md
+  - docs/sdk/models/errors/uploadplaylistplaylistsresponsebody.md
   - docs/sdk/models/errors/uploadplaylistresponsebody.md
   - docs/sdk/models/operations/account.md
   - docs/sdk/models/operations/activity.md
@@ -895,12 +1038,16 @@ examples:
         "401":
           application/json: {"errors": []}
         "200": {}
+        "400":
+          application/json: {"errors": []}
   getServerPreferences:
     speakeasy-default-get-server-preferences:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 161, "Setting": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getAvailableClients:
     speakeasy-default-get-available-clients:
@@ -909,12 +1056,16 @@ examples:
           application/json: {"MediaContainer": {"size": 1, "Server": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getDevices:
     speakeasy-default-get-devices:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 151, "identifier": "com.plexapp.system.devices", "Device": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   get-server-identity:
     speakeasy-default-get-server-identity:
@@ -930,6 +1081,8 @@ examples:
           application/json: {"MyPlex": {"authToken": "Z5v-PrNASDFpsaCi3CPK7", "username": "example.email@mail.com", "mappingState": "mapped", "signInState": "ok", "publicAddress": "140.20.68.140", "publicPort": 32400, "privateAddress": "10.10.10.47", "privatePort": 32400, "subscriptionFeatures": "federated-auth,hardware_transcoding,home,hwtranscode,item_clusters,kevin-bacon,livetv,loudness,lyrics,music-analysis,music_videos,pass,photo_autotags,photos-v5,photosV6-edit,photosV6-tv-albums,premium_music_metadata,radio,server-manager,session_bandwidth_restrictions,session_kick,shared-radio,sync,trailers,tuner-sharing,type-first,unsupportedtuners,webhooks", "subscriptionState": "Active"}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getResizedPhoto:
     speakeasy-default-get-resized-photo:
       parameters:
@@ -944,6 +1097,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   get-media-providers:
     speakeasy-default-get-media-providers:
       parameters:
@@ -953,12 +1108,16 @@ examples:
         "401":
           application/json: {"errors": []}
         "200": {}
+        "400":
+          application/json: {"errors": []}
   getServerList:
     speakeasy-default-get-server-list:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 1, "Server": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   markPlayed:
     speakeasy-default-mark-played:
@@ -968,6 +1127,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   markUnplayed:
     speakeasy-default-mark-unplayed:
       parameters:
@@ -975,6 +1136,8 @@ examples:
           key: 59398
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   updatePlayProgress:
     "":
@@ -985,6 +1148,8 @@ examples:
           state: "played"
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   get-banner-image:
     speakeasy-default-get-banner-image:
@@ -1001,6 +1166,8 @@ examples:
         "401":
           application/json: {"errors": []}
         "200": {}
+        "400":
+          application/json: {"errors": []}
   get-thumb-image:
     speakeasy-default-get-thumb-image:
       parameters:
@@ -1016,6 +1183,8 @@ examples:
         "401":
           application/json: {"errors": []}
         "200": {}
+        "400":
+          application/json: {"errors": []}
   getTimeline:
     "":
       parameters:
@@ -1032,6 +1201,8 @@ examples:
           row: 1
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   startUniversalTranscode:
     "":
@@ -1056,12 +1227,16 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getServerActivities:
     speakeasy-default-get-server-activities:
       responses:
         "401":
           application/json: {"errors": []}
         "200": {}
+        "400":
+          application/json: {"errors": []}
   cancelServerActivities:
     "":
       parameters:
@@ -1070,6 +1245,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getButlerTasks:
     speakeasy-default-get-butler-tasks:
       responses:
@@ -1077,15 +1254,21 @@ examples:
           application/json: {"ButlerTasks": {"ButlerTask": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   startAllTasks:
     speakeasy-default-start-all-tasks:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   stopAllTasks:
     speakeasy-default-stop-all-tasks:
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   startTask:
     speakeasy-default-start-task:
@@ -1095,6 +1278,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   stopTask:
     speakeasy-default-stop-task:
       parameters:
@@ -1103,12 +1288,16 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getCompanionsData:
     speakeasy-default-get-companions-data:
       responses:
         "200":
           application/json: []
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getUserFriends:
     speakeasy-default-get-user-friends:
@@ -1117,6 +1306,8 @@ examples:
           application/json: [{"email": "username@email.com", "friendlyName": "exampleUser", "home": true, "id": 0, "restricted": false, "sharedServers": [], "sharedSources": [], "status": "accepted", "thumb": "https://plex.tv/users/7d1916e0d8f6e76b/avatar?c=1694481578", "title": "username123", "username": "username123", "uuid": "7d1916e0d8f6e76b"}]
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getGeoData:
     speakeasy-default-get-geo-data:
       responses:
@@ -1124,12 +1315,16 @@ examples:
           application/json: {"code": "VI", "continent_code": "NA", "country": "United States Virgin Islands", "city": "Amsterdam", "european_union_member": true, "time_zone": "America/St_Thomas", "postal_code": 802, "in_privacy_restricted_country": true, "in_privacy_restricted_region": true, "subdivisions": "Saint Thomas", "coordinates": "18.3381, -64.8941"}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getHomeData:
     speakeasy-default-get-home-data:
       responses:
         "200":
           application/json: {"id": 1841489, "name": "Blindkitty38's home", "guestUserID": 58815432, "guestUserUUID": "f3df4e01bfca0787"}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   get-server-resources:
     speakeasy-default-get-server-resources:
@@ -1143,6 +1338,8 @@ examples:
         "401":
           application/json: {"errors": []}
         "200": {}
+        "400":
+          application/json: {"errors": []}
   getPin:
     "":
       parameters:
@@ -1173,6 +1370,8 @@ examples:
           application/json: {"MediaContainer": {"size": 8, "allowSync": true, "identifier": "com.plexapp.plugins.library", "Hub": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getLibraryHubs:
     speakeasy-default-get-library-hubs:
       parameters:
@@ -1184,6 +1383,8 @@ examples:
           application/json: {"MediaContainer": {"size": 7, "allowSync": true, "identifier": "com.plexapp.plugins.library", "librarySectionID": 1, "librarySectionTitle": "Movies", "librarySectionUUID": "322a231a-b7f7-49f5-920f-14c61199cd30", "Hub": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   performSearch:
     speakeasy-default-perform-search:
       parameters:
@@ -1193,6 +1394,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   performVoiceSearch:
     speakeasy-default-perform-voice-search:
       parameters:
@@ -1201,6 +1404,8 @@ examples:
           limit: 5
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getSearchResults:
     speakeasy-default-get-search-results:
@@ -1212,6 +1417,8 @@ examples:
           application/json: {"MediaContainer": {"size": 26, "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1680021154, "Metadata": [], "Provider": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getFileHash:
     speakeasy-default-get-file-hash:
       parameters:
@@ -1219,6 +1426,8 @@ examples:
           url: "file://C:\\Image.png&type=13"
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getRecentlyAdded:
     speakeasy-default-get-recently-added:
@@ -1231,12 +1440,16 @@ examples:
           application/json: {"MediaContainer": {"size": 50, "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1680021154, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   get-all-libraries:
     speakeasy-default-get-all-libraries:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 5, "allowSync": false, "title1": "Plex Library", "Directory": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   get-library-details:
     speakeasy-default-get-library-details:
@@ -1249,6 +1462,8 @@ examples:
           application/json: {"MediaContainer": {"size": 29, "allowSync": false, "art": "/:/resources/movie-fanart.jpg", "content": "secondary", "identifier": "com.plexapp.plugins.library", "librarySectionID": 1, "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "thumb": "/:/resources/movie.png", "title1": "Movies", "viewGroup": "secondary", "viewMode": 65592, "Directory": [], "Type": [], "FieldType": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   deleteLibrary:
     speakeasy-default-delete-library:
       parameters:
@@ -1256,6 +1471,8 @@ examples:
           sectionKey: 9518
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   get-library-items:
     "":
@@ -1274,6 +1491,8 @@ examples:
           application/json: {"MediaContainer": {"size": 70, "allowSync": true, "art": "/:/resources/movie-fanart.jpg", "identifier": "com.plexapp.plugins.library", "librarySectionTitle": "Movies", "librarySectionUUID": "322a231a-b7f7-49f5-920f-14c61199cd30", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "thumb": "/:/resources/movie.png", "title1": "Movies", "title2": "Recently Released", "viewGroup": "movie", "viewMode": 65592, "mixedParents": true, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   get-refresh-library-metadata:
     speakeasy-default-get-refresh-library-metadata:
       parameters:
@@ -1283,6 +1502,8 @@ examples:
           force: 0
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   get-search-library:
     speakeasy-default-get-search-library:
@@ -1296,6 +1517,8 @@ examples:
           application/json: {"MediaContainer": {"size": 2, "allowSync": false, "art": "/:/resources/show-fanart.jpg", "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1698860922, "nocache": true, "thumb": "/:/resources/show.png", "title1": "TV Shows", "title2": "Search for ''", "viewGroup": "season", "viewMode": 65593, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   get-meta-data-by-rating-key:
     speakeasy-default-get-meta-data-by-rating-key:
       parameters:
@@ -1305,6 +1528,8 @@ examples:
         "200":
           application/json: {"MediaContainer": {"size": 1, "allowSync": true, "identifier": "com.plexapp.plugins.library", "librarySectionID": 1, "librarySectionTitle": "Movies", "librarySectionUUID": "cfc899d7-3000-46f6-8489-b9592714ada5", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1698860922, "Metadata": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getMetadataChildren:
     include-stream:
@@ -1318,6 +1543,8 @@ examples:
           application/json: {"MediaContainer": {"size": 3, "allowSync": true, "art": "/library/metadata/30072/art/1705739923", "identifier": "com.plexapp.plugins.library", "key": "30072", "librarySectionID": 2, "librarySectionTitle": "TV Shows", "librarySectionUUID": "4bb2521c-8ba9-459b-aaee-8ab8bc35eabd", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "nocache": true, "parentIndex": 1, "parentTitle": "Reacher", "parentYear": 2022, "summary": "When retired Military Police Officer Jack Reacher is arrested for a murder he did not commit, he finds himself in the middle of a deadly conspiracy full of dirty cops, shady businessmen, and scheming politicians. With nothing but his wits, he must figure out what is happening in Margrave, Georgia.", "theme": "/library/metadata/30072/theme/1705739923", "thumb": "/library/metadata/30072/thumb/1705739923", "title1": "TV Shows", "title2": "Reacher", "viewGroup": "season", "viewMode": 65593, "Directory": [{"leafCount": 16, "thumb": "/library/metadata/30072/thumb/1705739923", "viewedLeafCount": 16, "key": "/library/metadata/30072/allLeaves", "title": "All episodes"}], "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
     include-stream-otheritem:
       parameters:
         path:
@@ -1328,6 +1555,8 @@ examples:
         "200":
           application/json: {"MediaContainer": {"size": 3, "allowSync": true, "art": "/library/metadata/30072/art/1705739923", "identifier": "com.plexapp.plugins.library", "key": "30072", "librarySectionID": 2, "librarySectionTitle": "TV Shows", "librarySectionUUID": "4bb2521c-8ba9-459b-aaee-8ab8bc35eabd", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "nocache": true, "parentIndex": 1, "parentTitle": "Reacher", "parentYear": 2022, "summary": "When retired Military Police Officer Jack Reacher is arrested for a murder he did not commit, he finds himself in the middle of a deadly conspiracy full of dirty cops, shady businessmen, and scheming politicians. With nothing but his wits, he must figure out what is happening in Margrave, Georgia.", "theme": "/library/metadata/30072/theme/1705739923", "thumb": "/library/metadata/30072/thumb/1705739923", "title1": "TV Shows", "title2": "Reacher", "viewGroup": "season", "viewMode": 65593, "Directory": [{"leafCount": 16, "thumb": "/library/metadata/30072/thumb/1705739923", "viewedLeafCount": 16, "key": "/library/metadata/30072/allLeaves", "title": "All episodes"}], "Metadata": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
     include-stream-otheritem-anotheritem:
       parameters:
@@ -1340,6 +1569,8 @@ examples:
           application/json: {"MediaContainer": {"size": 3, "allowSync": true, "art": "/library/metadata/30072/art/1705739923", "identifier": "com.plexapp.plugins.library", "key": "30072", "librarySectionID": 2, "librarySectionTitle": "TV Shows", "librarySectionUUID": "4bb2521c-8ba9-459b-aaee-8ab8bc35eabd", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "nocache": true, "parentIndex": 1, "parentTitle": "Reacher", "parentYear": 2022, "summary": "When retired Military Police Officer Jack Reacher is arrested for a murder he did not commit, he finds himself in the middle of a deadly conspiracy full of dirty cops, shady businessmen, and scheming politicians. With nothing but his wits, he must figure out what is happening in Margrave, Georgia.", "theme": "/library/metadata/30072/theme/1705739923", "thumb": "/library/metadata/30072/thumb/1705739923", "title1": "TV Shows", "title2": "Reacher", "viewGroup": "season", "viewMode": 65593, "Directory": [{"leafCount": 16, "thumb": "/library/metadata/30072/thumb/1705739923", "viewedLeafCount": 16, "key": "/library/metadata/30072/allLeaves", "title": "All episodes"}], "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getTopWatchedContent:
     "":
       parameters:
@@ -1351,12 +1582,16 @@ examples:
           application/json: {"MediaContainer": {"size": 1, "allowSync": true, "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1698860922, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getOnDeck:
     speakeasy-default-get-on-deck:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 16, "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1680021154, "Metadata": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   get-watch-list:
     speakeasy-default-get-watch-list:
@@ -1371,6 +1606,8 @@ examples:
         "401":
           application/json: {"errors": []}
         "200": {}
+        "400":
+          application/json: {"errors": []}
   logLine:
     speakeasy-default-log-line:
       parameters:
@@ -1381,6 +1618,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   logMultiLine:
     speakeasy-default-log-multi-line:
       requestBody:
@@ -1388,10 +1627,14 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   enablePaperTrail:
     speakeasy-default-enable-paper-trail:
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   createPlaylist:
     speakeasy-default-create-playlist:
@@ -1406,12 +1649,16 @@ examples:
           application/json: {"MediaContainer": {"size": 7, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getPlaylists:
     speakeasy-default-get-playlists:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 4, "Metadata": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getPlaylist:
     speakeasy-default-get-playlist:
@@ -1423,6 +1670,8 @@ examples:
           application/json: {"MediaContainer": {"size": 1, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   deletePlaylist:
     speakeasy-default-delete-playlist:
       parameters:
@@ -1430,6 +1679,8 @@ examples:
           playlistID: "216.22"
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   updatePlaylist:
     speakeasy-default-update-playlist:
@@ -1439,6 +1690,8 @@ examples:
         query: {}
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getPlaylistContents:
     speakeasy-default-get-playlist-contents:
@@ -1452,6 +1705,8 @@ examples:
           application/json: {"MediaContainer": {"size": 2, "composite": "/playlists/95/composite/1705717521", "duration": 282, "leafCount": 2, "playlistType": "video", "ratingKey": "95", "smart": true, "title": "Smart Movie Playlist", "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   clearPlaylistContents:
     speakeasy-default-clear-playlist-contents:
       parameters:
@@ -1459,6 +1714,8 @@ examples:
           playlistID: "1893.18"
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   addPlaylistContents:
     speakeasy-default-add-playlist-contents:
@@ -1473,6 +1730,8 @@ examples:
           application/json: {"MediaContainer": {"size": 1, "leafCountAdded": 1, "leafCountRequested": 1, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   uploadPlaylist:
     speakeasy-default-upload-playlist:
       parameters:
@@ -1481,6 +1740,8 @@ examples:
           force: 0
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getTransientToken:
     speakeasy-default-get-transient-token:
@@ -1491,6 +1752,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getSourceConnectionInformation:
     speakeasy-default-get-source-connection-information:
       parameters:
@@ -1498,6 +1761,8 @@ examples:
           source: "server://client-identifier"
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getUserDetails:
     speakeasy-default-get-user-details:
@@ -1509,14 +1774,18 @@ examples:
           application/json: {"adsConsent": true, "adsConsentReminderAt": "2019-08-24T14:15:22Z", "adsConsentSetAt": "2019-08-24T14:15:22Z", "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": [], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1721154902, "locale": null, "mailingListActive": false, "mailingListStatus": "unsubscribed", "maxHomeSize": 15, "pin": "string", "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": "1", "defaultSubtitleAccessibility": "1", "defaultSubtitleForced": "0", "watchedIndicator": "1", "mediaReviewsVisibility": 0}, "protected": false, "rememberExpiresAt": 1722364046, "restricted": false, "roles": ["string"], "scrobbleTypes": "", "services": [{"identifier": "metadata-dev", "endpoint": "https://epg.provider.plex.tv", "token": "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv", "secret": "string", "status": "online"}], "subscription": {"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}, "subscriptionDescription": "string", "subscriptions": [{"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f"}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   post-users-sign-in-data:
     speakeasy-default-post-users-sign-in-data:
       requestBody:
-        application/x-www-form-urlencoded: {"login": "username@email.com", "password": "password123"}
+        application/x-www-form-urlencoded: {"login": "username@email.com", "password": "password123", "verificationCode": "123456"}
       responses:
         "201":
           application/json: {"adsConsent": true, "adsConsentReminderAt": "2019-08-24T14:15:22Z", "adsConsentSetAt": "2019-08-24T14:15:22Z", "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": [], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1721154902, "locale": null, "mailingListActive": false, "mailingListStatus": "unsubscribed", "maxHomeSize": 15, "pin": "string", "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": "1", "defaultSubtitleAccessibility": "1", "defaultSubtitleForced": "0", "watchedIndicator": "1", "mediaReviewsVisibility": 0}, "protected": false, "rememberExpiresAt": 1722364046, "restricted": false, "roles": ["string"], "scrobbleTypes": "", "services": [{"identifier": "metadata-dev", "endpoint": "https://epg.provider.plex.tv", "token": "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv", "secret": "string", "status": "online"}], "subscription": {"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}, "subscriptionDescription": "string", "subscriptions": [{"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f", "pastSubscriptions": [{"id": "string", "mode": "string", "renewsAt": "string", "endsAt": "1556281940", "canceled": "0", "gracePeriod": "0", "onHold": "0", "canReactivate": "0", "canUpgrade": "0", "canDowngrade": "0", "canConvert": "0", "type": "plexpass", "transfer": "string", "state": "ended", "billing": {"paymentMethodId": 569045}}], "trials": [{}]}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getStatistics:
     "":
@@ -1528,6 +1797,8 @@ examples:
           application/json: {"MediaContainer": {"size": 5497, "Device": [], "Account": [], "StatisticsMedia": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getResourcesStatistics:
     "":
       parameters:
@@ -1537,6 +1808,8 @@ examples:
         "200":
           application/json: {"MediaContainer": {"size": 5497, "StatisticsResources": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getBandwidthStatistics:
     "":
@@ -1548,12 +1821,16 @@ examples:
           application/json: {"MediaContainer": {"size": 5497, "Device": [], "Account": [], "StatisticsBandwidth": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getSessions:
     speakeasy-default-get-sessions:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 1, "Metadata": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   getSessionHistory:
     viewed-at-descending:
@@ -1567,6 +1844,8 @@ examples:
           application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
     viewed-at-ascending:
       parameters:
         query:
@@ -1577,6 +1856,8 @@ examples:
         "200":
           application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
     rating-descending:
       parameters:
@@ -1589,6 +1870,8 @@ examples:
           application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
     rating-ascending:
       parameters:
         query:
@@ -1600,6 +1883,8 @@ examples:
           application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
     "":
       parameters:
         query:
@@ -1609,6 +1894,8 @@ examples:
         "200":
           application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
     ViewedAt:
       parameters:
@@ -1621,12 +1908,16 @@ examples:
           application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getTranscodeSessions:
     speakeasy-default-get-transcode-sessions:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 1, "TranscodeSession": [{"key": "vv3i2q2lax92qlzul1hbd4bx", "throttled": false, "complete": false, "progress": 1.7999999523162842, "size": -22, "speed": 25.100000381469727, "error": false, "duration": 1445695, "remaining": 53, "context": "streaming", "sourceVideoCodec": "h264", "sourceAudioCodec": "aac", "videoDecision": "transcode", "audioDecision": "transcode", "subtitleDecision": "burn", "protocol": "http", "container": "mkv", "videoCodec": "h264", "audioCodec": "opus", "audioChannels": 1, "transcodeHwRequested": true, "timeStamp": 1705895805.4919229, "maxOffsetAvailable": 29.53, "minOffsetAvailable": 3.003000020980835}]}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   stopTranscodeSession:
     speakeasy-default-stop-transcode-session:
@@ -1636,12 +1927,16 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   getUpdateStatus:
     speakeasy-default-get-update-status:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 1, "canInstall": false, "checkedAt": 1705801232, "downloadURL": "https://plex.tv/downloads/latest/5?channel=8&build=linux-x86_64&distro=redhat&X-Plex-Token=xxxxxxxxxxxxxxxxxxxx", "status": 0, "Release": [{"key": "https://plex.tv/updater/releases/5136", "version": "1.40.0.7775-456fbaf97", "added": "(PLEASE NOTE) This version makes changes to the database which will make it compatible only with server versions 1.31.2 or higher (released March 14). You will not be able to use your database on Plex Media Server versions lower than this after this update. Please also be patient when updating to this version if you have a very large database and allow the upgrade process to finish.\n(Collections) Items added to a collection from the item context menu will now lock the collection field on the items (#12793)\n(Music) Store track genres and add filtering options (#14653)\n(Music) Support ID3v2.4 null-separated tags for genres and release type (#14653)\n(View History) No longer create a view history entry for items marked as played (#10888)\n(Web) Updated to 4.118.0", "fixed": "(Agents) Changing a 'Other Videos' type library to the modern movie agent would fail (#14483)\n(Agents) It is possible that agents are not initialised during startup on rare occasions (#14654)\n(Agents) Remove the legacy OpenSubtitles agent which is no longer supported upstream (#14667)\n(Collection) Server could become unresponsive when collection membership changes (#14612)\n(DVR) Previously watched recordings could be deleted without being watched again (#13779)\n(Libraries) When performing fix match on items from certain music libraries the language would default to Arabic (#14501)\n(Library) The Content Rating not equal to None filter does not work (#14620)\n(Search) Album search results could contain all the album's tracks too (#14486)\n(Subtitles) In some circumstances, sidecar subtitles can show up for media when they're no longer available (#14674)\n(Transcoder) HW encoding would fail on devices with no rate control (#14222)\n(Transcoder) Software transcoding on Ubuntu could cause unexpected behavior (#14605)", "downloadURL": "https://plex.tv/downloads/latest/5?channel=8&build=linux-x86_64&distro=redhat&X-Plex-Token=xxxxxxxxxxxxxxxxxxxx", "state": "notify"}]}}
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}
   checkForUpdates:
     "":
@@ -1651,6 +1946,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
+        "400":
+          application/json: {"errors": []}
   applyUpdates:
     "":
       parameters:
@@ -1659,4 +1956,6 @@ examples:
           skip: 1
       responses:
         "401":
+          application/json: {"errors": []}
+        "400":
           application/json: {"errors": []}

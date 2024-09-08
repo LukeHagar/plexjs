@@ -83,10 +83,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.GetButlerTasksResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.GetButlerTasksResponseBody       | 400                                     | application/json                        |
+| errors.GetButlerTasksButlerResponseBody | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 
 ## startAllTasks
@@ -163,10 +164,11 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.StartAllTasksResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.StartAllTasksResponseBody       | 400                                    | application/json                       |
+| errors.StartAllTasksButlerResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |
 
 
 ## stopAllTasks
@@ -239,10 +241,11 @@ run();
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| errors.StopAllTasksResponseBody | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| errors.StopAllTasksResponseBody       | 400                                   | application/json                      |
+| errors.StopAllTasksButlerResponseBody | 401                                   | application/json                      |
+| errors.SDKError                       | 4xx-5xx                               | */*                                   |
 
 
 ## startTask
@@ -322,10 +325,11 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.StartTaskResponseBody | 401                          | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.StartTaskResponseBody       | 400                                | application/json                   |
+| errors.StartTaskButlerResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## stopTask
@@ -401,7 +405,8 @@ run();
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.StopTaskResponseBody | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.StopTaskResponseBody       | 400                               | application/json                  |
+| errors.StopTaskButlerResponseBody | 401                               | application/json                  |
+| errors.SDKError                   | 4xx-5xx                           | */*                               |

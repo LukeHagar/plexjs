@@ -37,6 +37,7 @@ export async function playlistsDeletePlaylist(
     Result<
         operations.DeletePlaylistResponse,
         | errors.DeletePlaylistResponseBody
+        | errors.DeletePlaylistPlaylistsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -121,6 +122,7 @@ export async function playlistsDeletePlaylist(
     const [result$] = await m$.match<
         operations.DeletePlaylistResponse,
         | errors.DeletePlaylistResponseBody
+        | errors.DeletePlaylistPlaylistsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,8 +132,9 @@ export async function playlistsDeletePlaylist(
         | ConnectionError
     >(
         m$.nil(204, operations.DeletePlaylistResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.DeletePlaylistResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.DeletePlaylistResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.DeletePlaylistPlaylistsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

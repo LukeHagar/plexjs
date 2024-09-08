@@ -37,6 +37,7 @@ export async function hubsGetGlobalHubs(
     Result<
         operations.GetGlobalHubsResponse,
         | errors.GetGlobalHubsResponseBody
+        | errors.GetGlobalHubsHubsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -121,6 +122,7 @@ export async function hubsGetGlobalHubs(
     const [result$] = await m$.match<
         operations.GetGlobalHubsResponse,
         | errors.GetGlobalHubsResponseBody
+        | errors.GetGlobalHubsHubsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,8 +132,9 @@ export async function hubsGetGlobalHubs(
         | ConnectionError
     >(
         m$.json(200, operations.GetGlobalHubsResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetGlobalHubsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetGlobalHubsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetGlobalHubsHubsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type DeletePlaylistErrors = {
+export type DeletePlaylistPlaylistsErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type DeletePlaylistErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type DeletePlaylistPlaylistsResponseBodyData = {
+    errors?: Array<DeletePlaylistPlaylistsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class DeletePlaylistPlaylistsResponseBody extends Error {
+    errors?: Array<DeletePlaylistPlaylistsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: DeletePlaylistPlaylistsResponseBodyData;
+
+    constructor(err: DeletePlaylistPlaylistsResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "DeletePlaylistPlaylistsResponseBody";
+    }
+}
+
+export type DeletePlaylistErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type DeletePlaylistResponseBodyData = {
     errors?: Array<DeletePlaylistErrors> | undefined;
@@ -23,7 +72,7 @@ export type DeletePlaylistResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class DeletePlaylistResponseBody extends Error {
     errors?: Array<DeletePlaylistErrors> | undefined;
@@ -55,14 +104,121 @@ export class DeletePlaylistResponseBody extends Error {
 }
 
 /** @internal */
+export const DeletePlaylistPlaylistsErrors$inboundSchema: z.ZodType<
+    DeletePlaylistPlaylistsErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type DeletePlaylistPlaylistsErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const DeletePlaylistPlaylistsErrors$outboundSchema: z.ZodType<
+    DeletePlaylistPlaylistsErrors$Outbound,
+    z.ZodTypeDef,
+    DeletePlaylistPlaylistsErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeletePlaylistPlaylistsErrors$ {
+    /** @deprecated use `DeletePlaylistPlaylistsErrors$inboundSchema` instead. */
+    export const inboundSchema = DeletePlaylistPlaylistsErrors$inboundSchema;
+    /** @deprecated use `DeletePlaylistPlaylistsErrors$outboundSchema` instead. */
+    export const outboundSchema = DeletePlaylistPlaylistsErrors$outboundSchema;
+    /** @deprecated use `DeletePlaylistPlaylistsErrors$Outbound` instead. */
+    export type Outbound = DeletePlaylistPlaylistsErrors$Outbound;
+}
+
+/** @internal */
+export const DeletePlaylistPlaylistsResponseBody$inboundSchema: z.ZodType<
+    DeletePlaylistPlaylistsResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => DeletePlaylistPlaylistsErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new DeletePlaylistPlaylistsResponseBody(remapped);
+    });
+
+/** @internal */
+export type DeletePlaylistPlaylistsResponseBody$Outbound = {
+    errors?: Array<DeletePlaylistPlaylistsErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const DeletePlaylistPlaylistsResponseBody$outboundSchema: z.ZodType<
+    DeletePlaylistPlaylistsResponseBody$Outbound,
+    z.ZodTypeDef,
+    DeletePlaylistPlaylistsResponseBody
+> = z
+    .instanceof(DeletePlaylistPlaylistsResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => DeletePlaylistPlaylistsErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeletePlaylistPlaylistsResponseBody$ {
+    /** @deprecated use `DeletePlaylistPlaylistsResponseBody$inboundSchema` instead. */
+    export const inboundSchema = DeletePlaylistPlaylistsResponseBody$inboundSchema;
+    /** @deprecated use `DeletePlaylistPlaylistsResponseBody$outboundSchema` instead. */
+    export const outboundSchema = DeletePlaylistPlaylistsResponseBody$outboundSchema;
+    /** @deprecated use `DeletePlaylistPlaylistsResponseBody$Outbound` instead. */
+    export type Outbound = DeletePlaylistPlaylistsResponseBody$Outbound;
+}
+
+/** @internal */
 export const DeletePlaylistErrors$inboundSchema: z.ZodType<
     DeletePlaylistErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const DeletePlaylistErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     DeletePlaylistErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetSearchLibraryErrors = {
+export type GetSearchLibraryLibraryErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetSearchLibraryErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetSearchLibraryLibraryResponseBodyData = {
+    errors?: Array<GetSearchLibraryLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetSearchLibraryLibraryResponseBody extends Error {
+    errors?: Array<GetSearchLibraryLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetSearchLibraryLibraryResponseBodyData;
+
+    constructor(err: GetSearchLibraryLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetSearchLibraryLibraryResponseBody";
+    }
+}
+
+export type GetSearchLibraryErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetSearchLibraryResponseBodyData = {
     errors?: Array<GetSearchLibraryErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetSearchLibraryResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetSearchLibraryResponseBody extends Error {
     errors?: Array<GetSearchLibraryErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetSearchLibraryResponseBody extends Error {
 }
 
 /** @internal */
+export const GetSearchLibraryLibraryErrors$inboundSchema: z.ZodType<
+    GetSearchLibraryLibraryErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetSearchLibraryLibraryErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetSearchLibraryLibraryErrors$outboundSchema: z.ZodType<
+    GetSearchLibraryLibraryErrors$Outbound,
+    z.ZodTypeDef,
+    GetSearchLibraryLibraryErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchLibraryLibraryErrors$ {
+    /** @deprecated use `GetSearchLibraryLibraryErrors$inboundSchema` instead. */
+    export const inboundSchema = GetSearchLibraryLibraryErrors$inboundSchema;
+    /** @deprecated use `GetSearchLibraryLibraryErrors$outboundSchema` instead. */
+    export const outboundSchema = GetSearchLibraryLibraryErrors$outboundSchema;
+    /** @deprecated use `GetSearchLibraryLibraryErrors$Outbound` instead. */
+    export type Outbound = GetSearchLibraryLibraryErrors$Outbound;
+}
+
+/** @internal */
+export const GetSearchLibraryLibraryResponseBody$inboundSchema: z.ZodType<
+    GetSearchLibraryLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetSearchLibraryLibraryErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetSearchLibraryLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetSearchLibraryLibraryResponseBody$Outbound = {
+    errors?: Array<GetSearchLibraryLibraryErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetSearchLibraryLibraryResponseBody$outboundSchema: z.ZodType<
+    GetSearchLibraryLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetSearchLibraryLibraryResponseBody
+> = z
+    .instanceof(GetSearchLibraryLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetSearchLibraryLibraryErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchLibraryLibraryResponseBody$ {
+    /** @deprecated use `GetSearchLibraryLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetSearchLibraryLibraryResponseBody$inboundSchema;
+    /** @deprecated use `GetSearchLibraryLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetSearchLibraryLibraryResponseBody$outboundSchema;
+    /** @deprecated use `GetSearchLibraryLibraryResponseBody$Outbound` instead. */
+    export type Outbound = GetSearchLibraryLibraryResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetSearchLibraryErrors$inboundSchema: z.ZodType<
     GetSearchLibraryErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetSearchLibraryErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetSearchLibraryErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

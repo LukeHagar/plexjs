@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetTopWatchedContentErrors = {
+export type GetTopWatchedContentLibraryErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetTopWatchedContentErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetTopWatchedContentLibraryResponseBodyData = {
+    errors?: Array<GetTopWatchedContentLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetTopWatchedContentLibraryResponseBody extends Error {
+    errors?: Array<GetTopWatchedContentLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetTopWatchedContentLibraryResponseBodyData;
+
+    constructor(err: GetTopWatchedContentLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetTopWatchedContentLibraryResponseBody";
+    }
+}
+
+export type GetTopWatchedContentErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetTopWatchedContentResponseBodyData = {
     errors?: Array<GetTopWatchedContentErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetTopWatchedContentResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetTopWatchedContentResponseBody extends Error {
     errors?: Array<GetTopWatchedContentErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetTopWatchedContentResponseBody extends Error {
 }
 
 /** @internal */
+export const GetTopWatchedContentLibraryErrors$inboundSchema: z.ZodType<
+    GetTopWatchedContentLibraryErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetTopWatchedContentLibraryErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetTopWatchedContentLibraryErrors$outboundSchema: z.ZodType<
+    GetTopWatchedContentLibraryErrors$Outbound,
+    z.ZodTypeDef,
+    GetTopWatchedContentLibraryErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTopWatchedContentLibraryErrors$ {
+    /** @deprecated use `GetTopWatchedContentLibraryErrors$inboundSchema` instead. */
+    export const inboundSchema = GetTopWatchedContentLibraryErrors$inboundSchema;
+    /** @deprecated use `GetTopWatchedContentLibraryErrors$outboundSchema` instead. */
+    export const outboundSchema = GetTopWatchedContentLibraryErrors$outboundSchema;
+    /** @deprecated use `GetTopWatchedContentLibraryErrors$Outbound` instead. */
+    export type Outbound = GetTopWatchedContentLibraryErrors$Outbound;
+}
+
+/** @internal */
+export const GetTopWatchedContentLibraryResponseBody$inboundSchema: z.ZodType<
+    GetTopWatchedContentLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetTopWatchedContentLibraryErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetTopWatchedContentLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetTopWatchedContentLibraryResponseBody$Outbound = {
+    errors?: Array<GetTopWatchedContentLibraryErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetTopWatchedContentLibraryResponseBody$outboundSchema: z.ZodType<
+    GetTopWatchedContentLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetTopWatchedContentLibraryResponseBody
+> = z
+    .instanceof(GetTopWatchedContentLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetTopWatchedContentLibraryErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTopWatchedContentLibraryResponseBody$ {
+    /** @deprecated use `GetTopWatchedContentLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetTopWatchedContentLibraryResponseBody$inboundSchema;
+    /** @deprecated use `GetTopWatchedContentLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetTopWatchedContentLibraryResponseBody$outboundSchema;
+    /** @deprecated use `GetTopWatchedContentLibraryResponseBody$Outbound` instead. */
+    export type Outbound = GetTopWatchedContentLibraryResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetTopWatchedContentErrors$inboundSchema: z.ZodType<
     GetTopWatchedContentErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetTopWatchedContentErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetTopWatchedContentErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetUpdateStatusErrors = {
+export type GetUpdateStatusUpdaterErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetUpdateStatusErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetUpdateStatusUpdaterResponseBodyData = {
+    errors?: Array<GetUpdateStatusUpdaterErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetUpdateStatusUpdaterResponseBody extends Error {
+    errors?: Array<GetUpdateStatusUpdaterErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetUpdateStatusUpdaterResponseBodyData;
+
+    constructor(err: GetUpdateStatusUpdaterResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetUpdateStatusUpdaterResponseBody";
+    }
+}
+
+export type GetUpdateStatusErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetUpdateStatusResponseBodyData = {
     errors?: Array<GetUpdateStatusErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetUpdateStatusResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetUpdateStatusResponseBody extends Error {
     errors?: Array<GetUpdateStatusErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetUpdateStatusResponseBody extends Error {
 }
 
 /** @internal */
+export const GetUpdateStatusUpdaterErrors$inboundSchema: z.ZodType<
+    GetUpdateStatusUpdaterErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetUpdateStatusUpdaterErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetUpdateStatusUpdaterErrors$outboundSchema: z.ZodType<
+    GetUpdateStatusUpdaterErrors$Outbound,
+    z.ZodTypeDef,
+    GetUpdateStatusUpdaterErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetUpdateStatusUpdaterErrors$ {
+    /** @deprecated use `GetUpdateStatusUpdaterErrors$inboundSchema` instead. */
+    export const inboundSchema = GetUpdateStatusUpdaterErrors$inboundSchema;
+    /** @deprecated use `GetUpdateStatusUpdaterErrors$outboundSchema` instead. */
+    export const outboundSchema = GetUpdateStatusUpdaterErrors$outboundSchema;
+    /** @deprecated use `GetUpdateStatusUpdaterErrors$Outbound` instead. */
+    export type Outbound = GetUpdateStatusUpdaterErrors$Outbound;
+}
+
+/** @internal */
+export const GetUpdateStatusUpdaterResponseBody$inboundSchema: z.ZodType<
+    GetUpdateStatusUpdaterResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetUpdateStatusUpdaterErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetUpdateStatusUpdaterResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetUpdateStatusUpdaterResponseBody$Outbound = {
+    errors?: Array<GetUpdateStatusUpdaterErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetUpdateStatusUpdaterResponseBody$outboundSchema: z.ZodType<
+    GetUpdateStatusUpdaterResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetUpdateStatusUpdaterResponseBody
+> = z
+    .instanceof(GetUpdateStatusUpdaterResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetUpdateStatusUpdaterErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetUpdateStatusUpdaterResponseBody$ {
+    /** @deprecated use `GetUpdateStatusUpdaterResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetUpdateStatusUpdaterResponseBody$inboundSchema;
+    /** @deprecated use `GetUpdateStatusUpdaterResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetUpdateStatusUpdaterResponseBody$outboundSchema;
+    /** @deprecated use `GetUpdateStatusUpdaterResponseBody$Outbound` instead. */
+    export type Outbound = GetUpdateStatusUpdaterResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetUpdateStatusErrors$inboundSchema: z.ZodType<
     GetUpdateStatusErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetUpdateStatusErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetUpdateStatusErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

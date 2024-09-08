@@ -36,6 +36,7 @@ export async function statisticsGetResourcesStatistics(
     Result<
         operations.GetResourcesStatisticsResponse,
         | errors.GetResourcesStatisticsResponseBody
+        | errors.GetResourcesStatisticsStatisticsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -118,6 +119,7 @@ export async function statisticsGetResourcesStatistics(
     const [result$] = await m$.match<
         operations.GetResourcesStatisticsResponse,
         | errors.GetResourcesStatisticsResponseBody
+        | errors.GetResourcesStatisticsStatisticsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,8 +129,9 @@ export async function statisticsGetResourcesStatistics(
         | ConnectionError
     >(
         m$.json(200, operations.GetResourcesStatisticsResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetResourcesStatisticsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetResourcesStatisticsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetResourcesStatisticsStatisticsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

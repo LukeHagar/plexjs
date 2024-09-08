@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetMetaDataByRatingKeyErrors = {
+export type GetMetaDataByRatingKeyLibraryErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetMetaDataByRatingKeyErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetMetaDataByRatingKeyLibraryResponseBodyData = {
+    errors?: Array<GetMetaDataByRatingKeyLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetMetaDataByRatingKeyLibraryResponseBody extends Error {
+    errors?: Array<GetMetaDataByRatingKeyLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetMetaDataByRatingKeyLibraryResponseBodyData;
+
+    constructor(err: GetMetaDataByRatingKeyLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetMetaDataByRatingKeyLibraryResponseBody";
+    }
+}
+
+export type GetMetaDataByRatingKeyErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetMetaDataByRatingKeyResponseBodyData = {
     errors?: Array<GetMetaDataByRatingKeyErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetMetaDataByRatingKeyResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetMetaDataByRatingKeyResponseBody extends Error {
     errors?: Array<GetMetaDataByRatingKeyErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetMetaDataByRatingKeyResponseBody extends Error {
 }
 
 /** @internal */
+export const GetMetaDataByRatingKeyLibraryErrors$inboundSchema: z.ZodType<
+    GetMetaDataByRatingKeyLibraryErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetMetaDataByRatingKeyLibraryErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetMetaDataByRatingKeyLibraryErrors$outboundSchema: z.ZodType<
+    GetMetaDataByRatingKeyLibraryErrors$Outbound,
+    z.ZodTypeDef,
+    GetMetaDataByRatingKeyLibraryErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMetaDataByRatingKeyLibraryErrors$ {
+    /** @deprecated use `GetMetaDataByRatingKeyLibraryErrors$inboundSchema` instead. */
+    export const inboundSchema = GetMetaDataByRatingKeyLibraryErrors$inboundSchema;
+    /** @deprecated use `GetMetaDataByRatingKeyLibraryErrors$outboundSchema` instead. */
+    export const outboundSchema = GetMetaDataByRatingKeyLibraryErrors$outboundSchema;
+    /** @deprecated use `GetMetaDataByRatingKeyLibraryErrors$Outbound` instead. */
+    export type Outbound = GetMetaDataByRatingKeyLibraryErrors$Outbound;
+}
+
+/** @internal */
+export const GetMetaDataByRatingKeyLibraryResponseBody$inboundSchema: z.ZodType<
+    GetMetaDataByRatingKeyLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetMetaDataByRatingKeyLibraryErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetMetaDataByRatingKeyLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetMetaDataByRatingKeyLibraryResponseBody$Outbound = {
+    errors?: Array<GetMetaDataByRatingKeyLibraryErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetMetaDataByRatingKeyLibraryResponseBody$outboundSchema: z.ZodType<
+    GetMetaDataByRatingKeyLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetMetaDataByRatingKeyLibraryResponseBody
+> = z
+    .instanceof(GetMetaDataByRatingKeyLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetMetaDataByRatingKeyLibraryErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMetaDataByRatingKeyLibraryResponseBody$ {
+    /** @deprecated use `GetMetaDataByRatingKeyLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetMetaDataByRatingKeyLibraryResponseBody$inboundSchema;
+    /** @deprecated use `GetMetaDataByRatingKeyLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetMetaDataByRatingKeyLibraryResponseBody$outboundSchema;
+    /** @deprecated use `GetMetaDataByRatingKeyLibraryResponseBody$Outbound` instead. */
+    export type Outbound = GetMetaDataByRatingKeyLibraryResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetMetaDataByRatingKeyErrors$inboundSchema: z.ZodType<
     GetMetaDataByRatingKeyErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetMetaDataByRatingKeyErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetMetaDataByRatingKeyErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

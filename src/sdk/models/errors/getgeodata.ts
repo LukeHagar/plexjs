@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetGeoDataErrors = {
+export type GetGeoDataPlexErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetGeoDataErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetGeoDataPlexResponseBodyData = {
+    errors?: Array<GetGeoDataPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetGeoDataPlexResponseBody extends Error {
+    errors?: Array<GetGeoDataPlexErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetGeoDataPlexResponseBodyData;
+
+    constructor(err: GetGeoDataPlexResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetGeoDataPlexResponseBody";
+    }
+}
+
+export type GetGeoDataErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetGeoDataResponseBodyData = {
     errors?: Array<GetGeoDataErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetGeoDataResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetGeoDataResponseBody extends Error {
     errors?: Array<GetGeoDataErrors> | undefined;
@@ -55,11 +104,116 @@ export class GetGeoDataResponseBody extends Error {
 }
 
 /** @internal */
+export const GetGeoDataPlexErrors$inboundSchema: z.ZodType<
+    GetGeoDataPlexErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetGeoDataPlexErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetGeoDataPlexErrors$outboundSchema: z.ZodType<
+    GetGeoDataPlexErrors$Outbound,
+    z.ZodTypeDef,
+    GetGeoDataPlexErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGeoDataPlexErrors$ {
+    /** @deprecated use `GetGeoDataPlexErrors$inboundSchema` instead. */
+    export const inboundSchema = GetGeoDataPlexErrors$inboundSchema;
+    /** @deprecated use `GetGeoDataPlexErrors$outboundSchema` instead. */
+    export const outboundSchema = GetGeoDataPlexErrors$outboundSchema;
+    /** @deprecated use `GetGeoDataPlexErrors$Outbound` instead. */
+    export type Outbound = GetGeoDataPlexErrors$Outbound;
+}
+
+/** @internal */
+export const GetGeoDataPlexResponseBody$inboundSchema: z.ZodType<
+    GetGeoDataPlexResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetGeoDataPlexErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetGeoDataPlexResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetGeoDataPlexResponseBody$Outbound = {
+    errors?: Array<GetGeoDataPlexErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetGeoDataPlexResponseBody$outboundSchema: z.ZodType<
+    GetGeoDataPlexResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetGeoDataPlexResponseBody
+> = z
+    .instanceof(GetGeoDataPlexResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetGeoDataPlexErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGeoDataPlexResponseBody$ {
+    /** @deprecated use `GetGeoDataPlexResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetGeoDataPlexResponseBody$inboundSchema;
+    /** @deprecated use `GetGeoDataPlexResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetGeoDataPlexResponseBody$outboundSchema;
+    /** @deprecated use `GetGeoDataPlexResponseBody$Outbound` instead. */
+    export type Outbound = GetGeoDataPlexResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetGeoDataErrors$inboundSchema: z.ZodType<GetGeoDataErrors, z.ZodTypeDef, unknown> =
     z.object({
-        code: z.number().optional(),
+        code: z.number().int().optional(),
         message: z.string().optional(),
-        status: z.number().optional(),
+        status: z.number().int().optional(),
     });
 
 /** @internal */
@@ -75,9 +229,9 @@ export const GetGeoDataErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetGeoDataErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

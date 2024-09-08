@@ -440,7 +440,7 @@ actions:
       x-codeSamples:
         - lang: typescript
           label: data
-          source: "import { PlexAPI } from \"@lukehagar/plexjs\";\n\nconst plexAPI = new PlexAPI({\n  xPlexClientIdentifier: \"gcgzw5rz2xovp84b4vha3a40\",\n});\n\nasync function run() {\n  const result = await plexAPI.authentication.postUsersSignInData(\"gcgzw5rz2xovp84b4vha3a40\", {\n    login: \"username@email.com\",\n    password: \"password123\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          source: "import { PlexAPI } from \"@lukehagar/plexjs\";\n\nconst plexAPI = new PlexAPI({\n  xPlexClientIdentifier: \"gcgzw5rz2xovp84b4vha3a40\",\n});\n\nasync function run() {\n  const result = await plexAPI.authentication.postUsersSignInData(\"gcgzw5rz2xovp84b4vha3a40\", {\n    login: \"username@email.com\",\n    password: \"password123\",\n    verificationCode: \"123456\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/video/:/transcode/universal/start.mpd"]["get"]
     update:
       x-codeSamples:

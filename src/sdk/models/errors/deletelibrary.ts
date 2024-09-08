@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type DeleteLibraryErrors = {
+export type DeleteLibraryLibraryErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type DeleteLibraryErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type DeleteLibraryLibraryResponseBodyData = {
+    errors?: Array<DeleteLibraryLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class DeleteLibraryLibraryResponseBody extends Error {
+    errors?: Array<DeleteLibraryLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: DeleteLibraryLibraryResponseBodyData;
+
+    constructor(err: DeleteLibraryLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "DeleteLibraryLibraryResponseBody";
+    }
+}
+
+export type DeleteLibraryErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type DeleteLibraryResponseBodyData = {
     errors?: Array<DeleteLibraryErrors> | undefined;
@@ -23,7 +72,7 @@ export type DeleteLibraryResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class DeleteLibraryResponseBody extends Error {
     errors?: Array<DeleteLibraryErrors> | undefined;
@@ -55,14 +104,119 @@ export class DeleteLibraryResponseBody extends Error {
 }
 
 /** @internal */
+export const DeleteLibraryLibraryErrors$inboundSchema: z.ZodType<
+    DeleteLibraryLibraryErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type DeleteLibraryLibraryErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const DeleteLibraryLibraryErrors$outboundSchema: z.ZodType<
+    DeleteLibraryLibraryErrors$Outbound,
+    z.ZodTypeDef,
+    DeleteLibraryLibraryErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeleteLibraryLibraryErrors$ {
+    /** @deprecated use `DeleteLibraryLibraryErrors$inboundSchema` instead. */
+    export const inboundSchema = DeleteLibraryLibraryErrors$inboundSchema;
+    /** @deprecated use `DeleteLibraryLibraryErrors$outboundSchema` instead. */
+    export const outboundSchema = DeleteLibraryLibraryErrors$outboundSchema;
+    /** @deprecated use `DeleteLibraryLibraryErrors$Outbound` instead. */
+    export type Outbound = DeleteLibraryLibraryErrors$Outbound;
+}
+
+/** @internal */
+export const DeleteLibraryLibraryResponseBody$inboundSchema: z.ZodType<
+    DeleteLibraryLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => DeleteLibraryLibraryErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new DeleteLibraryLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type DeleteLibraryLibraryResponseBody$Outbound = {
+    errors?: Array<DeleteLibraryLibraryErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const DeleteLibraryLibraryResponseBody$outboundSchema: z.ZodType<
+    DeleteLibraryLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    DeleteLibraryLibraryResponseBody
+> = z
+    .instanceof(DeleteLibraryLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => DeleteLibraryLibraryErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeleteLibraryLibraryResponseBody$ {
+    /** @deprecated use `DeleteLibraryLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = DeleteLibraryLibraryResponseBody$inboundSchema;
+    /** @deprecated use `DeleteLibraryLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = DeleteLibraryLibraryResponseBody$outboundSchema;
+    /** @deprecated use `DeleteLibraryLibraryResponseBody$Outbound` instead. */
+    export type Outbound = DeleteLibraryLibraryResponseBody$Outbound;
+}
+
+/** @internal */
 export const DeleteLibraryErrors$inboundSchema: z.ZodType<
     DeleteLibraryErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const DeleteLibraryErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     DeleteLibraryErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

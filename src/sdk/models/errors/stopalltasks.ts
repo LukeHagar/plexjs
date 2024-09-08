@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type StopAllTasksErrors = {
+export type StopAllTasksButlerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type StopAllTasksErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type StopAllTasksButlerResponseBodyData = {
+    errors?: Array<StopAllTasksButlerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class StopAllTasksButlerResponseBody extends Error {
+    errors?: Array<StopAllTasksButlerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: StopAllTasksButlerResponseBodyData;
+
+    constructor(err: StopAllTasksButlerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "StopAllTasksButlerResponseBody";
+    }
+}
+
+export type StopAllTasksErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type StopAllTasksResponseBodyData = {
     errors?: Array<StopAllTasksErrors> | undefined;
@@ -23,7 +72,7 @@ export type StopAllTasksResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class StopAllTasksResponseBody extends Error {
     errors?: Array<StopAllTasksErrors> | undefined;
@@ -55,14 +104,119 @@ export class StopAllTasksResponseBody extends Error {
 }
 
 /** @internal */
+export const StopAllTasksButlerErrors$inboundSchema: z.ZodType<
+    StopAllTasksButlerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type StopAllTasksButlerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const StopAllTasksButlerErrors$outboundSchema: z.ZodType<
+    StopAllTasksButlerErrors$Outbound,
+    z.ZodTypeDef,
+    StopAllTasksButlerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StopAllTasksButlerErrors$ {
+    /** @deprecated use `StopAllTasksButlerErrors$inboundSchema` instead. */
+    export const inboundSchema = StopAllTasksButlerErrors$inboundSchema;
+    /** @deprecated use `StopAllTasksButlerErrors$outboundSchema` instead. */
+    export const outboundSchema = StopAllTasksButlerErrors$outboundSchema;
+    /** @deprecated use `StopAllTasksButlerErrors$Outbound` instead. */
+    export type Outbound = StopAllTasksButlerErrors$Outbound;
+}
+
+/** @internal */
+export const StopAllTasksButlerResponseBody$inboundSchema: z.ZodType<
+    StopAllTasksButlerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => StopAllTasksButlerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new StopAllTasksButlerResponseBody(remapped);
+    });
+
+/** @internal */
+export type StopAllTasksButlerResponseBody$Outbound = {
+    errors?: Array<StopAllTasksButlerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const StopAllTasksButlerResponseBody$outboundSchema: z.ZodType<
+    StopAllTasksButlerResponseBody$Outbound,
+    z.ZodTypeDef,
+    StopAllTasksButlerResponseBody
+> = z
+    .instanceof(StopAllTasksButlerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => StopAllTasksButlerErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StopAllTasksButlerResponseBody$ {
+    /** @deprecated use `StopAllTasksButlerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = StopAllTasksButlerResponseBody$inboundSchema;
+    /** @deprecated use `StopAllTasksButlerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = StopAllTasksButlerResponseBody$outboundSchema;
+    /** @deprecated use `StopAllTasksButlerResponseBody$Outbound` instead. */
+    export type Outbound = StopAllTasksButlerResponseBody$Outbound;
+}
+
+/** @internal */
 export const StopAllTasksErrors$inboundSchema: z.ZodType<
     StopAllTasksErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const StopAllTasksErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     StopAllTasksErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type CancelServerActivitiesErrors = {
+export type CancelServerActivitiesActivitiesErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type CancelServerActivitiesErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type CancelServerActivitiesActivitiesResponseBodyData = {
+    errors?: Array<CancelServerActivitiesActivitiesErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class CancelServerActivitiesActivitiesResponseBody extends Error {
+    errors?: Array<CancelServerActivitiesActivitiesErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: CancelServerActivitiesActivitiesResponseBodyData;
+
+    constructor(err: CancelServerActivitiesActivitiesResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "CancelServerActivitiesActivitiesResponseBody";
+    }
+}
+
+export type CancelServerActivitiesErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type CancelServerActivitiesResponseBodyData = {
     errors?: Array<CancelServerActivitiesErrors> | undefined;
@@ -23,7 +72,7 @@ export type CancelServerActivitiesResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class CancelServerActivitiesResponseBody extends Error {
     errors?: Array<CancelServerActivitiesErrors> | undefined;
@@ -55,14 +104,123 @@ export class CancelServerActivitiesResponseBody extends Error {
 }
 
 /** @internal */
+export const CancelServerActivitiesActivitiesErrors$inboundSchema: z.ZodType<
+    CancelServerActivitiesActivitiesErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type CancelServerActivitiesActivitiesErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const CancelServerActivitiesActivitiesErrors$outboundSchema: z.ZodType<
+    CancelServerActivitiesActivitiesErrors$Outbound,
+    z.ZodTypeDef,
+    CancelServerActivitiesActivitiesErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CancelServerActivitiesActivitiesErrors$ {
+    /** @deprecated use `CancelServerActivitiesActivitiesErrors$inboundSchema` instead. */
+    export const inboundSchema = CancelServerActivitiesActivitiesErrors$inboundSchema;
+    /** @deprecated use `CancelServerActivitiesActivitiesErrors$outboundSchema` instead. */
+    export const outboundSchema = CancelServerActivitiesActivitiesErrors$outboundSchema;
+    /** @deprecated use `CancelServerActivitiesActivitiesErrors$Outbound` instead. */
+    export type Outbound = CancelServerActivitiesActivitiesErrors$Outbound;
+}
+
+/** @internal */
+export const CancelServerActivitiesActivitiesResponseBody$inboundSchema: z.ZodType<
+    CancelServerActivitiesActivitiesResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z
+            .array(z.lazy(() => CancelServerActivitiesActivitiesErrors$inboundSchema))
+            .optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new CancelServerActivitiesActivitiesResponseBody(remapped);
+    });
+
+/** @internal */
+export type CancelServerActivitiesActivitiesResponseBody$Outbound = {
+    errors?: Array<CancelServerActivitiesActivitiesErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const CancelServerActivitiesActivitiesResponseBody$outboundSchema: z.ZodType<
+    CancelServerActivitiesActivitiesResponseBody$Outbound,
+    z.ZodTypeDef,
+    CancelServerActivitiesActivitiesResponseBody
+> = z
+    .instanceof(CancelServerActivitiesActivitiesResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => CancelServerActivitiesActivitiesErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CancelServerActivitiesActivitiesResponseBody$ {
+    /** @deprecated use `CancelServerActivitiesActivitiesResponseBody$inboundSchema` instead. */
+    export const inboundSchema = CancelServerActivitiesActivitiesResponseBody$inboundSchema;
+    /** @deprecated use `CancelServerActivitiesActivitiesResponseBody$outboundSchema` instead. */
+    export const outboundSchema = CancelServerActivitiesActivitiesResponseBody$outboundSchema;
+    /** @deprecated use `CancelServerActivitiesActivitiesResponseBody$Outbound` instead. */
+    export type Outbound = CancelServerActivitiesActivitiesResponseBody$Outbound;
+}
+
+/** @internal */
 export const CancelServerActivitiesErrors$inboundSchema: z.ZodType<
     CancelServerActivitiesErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +236,9 @@ export const CancelServerActivitiesErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CancelServerActivitiesErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -376,7 +376,7 @@ export type GetUserDetailsUserPlexAccount = {
      */
     id: number;
     /**
-     * Unix epoch datetime the account joined Plex
+     * Unix epoch datetime
      */
     joinedAt: number;
     /**
@@ -407,7 +407,7 @@ export type GetUserDetailsUserPlexAccount = {
      */
     protected?: boolean | undefined;
     /**
-     * Unix epoch datetime the authtoken expires
+     * Unix epoch datetime
      */
     rememberExpiresAt: number;
     /**

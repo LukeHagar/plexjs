@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetMetadataChildrenErrors = {
+export type GetMetadataChildrenLibraryErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetMetadataChildrenErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetMetadataChildrenLibraryResponseBodyData = {
+    errors?: Array<GetMetadataChildrenLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetMetadataChildrenLibraryResponseBody extends Error {
+    errors?: Array<GetMetadataChildrenLibraryErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetMetadataChildrenLibraryResponseBodyData;
+
+    constructor(err: GetMetadataChildrenLibraryResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetMetadataChildrenLibraryResponseBody";
+    }
+}
+
+export type GetMetadataChildrenErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetMetadataChildrenResponseBodyData = {
     errors?: Array<GetMetadataChildrenErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetMetadataChildrenResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetMetadataChildrenResponseBody extends Error {
     errors?: Array<GetMetadataChildrenErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetMetadataChildrenResponseBody extends Error {
 }
 
 /** @internal */
+export const GetMetadataChildrenLibraryErrors$inboundSchema: z.ZodType<
+    GetMetadataChildrenLibraryErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetMetadataChildrenLibraryErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetMetadataChildrenLibraryErrors$outboundSchema: z.ZodType<
+    GetMetadataChildrenLibraryErrors$Outbound,
+    z.ZodTypeDef,
+    GetMetadataChildrenLibraryErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMetadataChildrenLibraryErrors$ {
+    /** @deprecated use `GetMetadataChildrenLibraryErrors$inboundSchema` instead. */
+    export const inboundSchema = GetMetadataChildrenLibraryErrors$inboundSchema;
+    /** @deprecated use `GetMetadataChildrenLibraryErrors$outboundSchema` instead. */
+    export const outboundSchema = GetMetadataChildrenLibraryErrors$outboundSchema;
+    /** @deprecated use `GetMetadataChildrenLibraryErrors$Outbound` instead. */
+    export type Outbound = GetMetadataChildrenLibraryErrors$Outbound;
+}
+
+/** @internal */
+export const GetMetadataChildrenLibraryResponseBody$inboundSchema: z.ZodType<
+    GetMetadataChildrenLibraryResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetMetadataChildrenLibraryErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetMetadataChildrenLibraryResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetMetadataChildrenLibraryResponseBody$Outbound = {
+    errors?: Array<GetMetadataChildrenLibraryErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetMetadataChildrenLibraryResponseBody$outboundSchema: z.ZodType<
+    GetMetadataChildrenLibraryResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetMetadataChildrenLibraryResponseBody
+> = z
+    .instanceof(GetMetadataChildrenLibraryResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetMetadataChildrenLibraryErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMetadataChildrenLibraryResponseBody$ {
+    /** @deprecated use `GetMetadataChildrenLibraryResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetMetadataChildrenLibraryResponseBody$inboundSchema;
+    /** @deprecated use `GetMetadataChildrenLibraryResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetMetadataChildrenLibraryResponseBody$outboundSchema;
+    /** @deprecated use `GetMetadataChildrenLibraryResponseBody$Outbound` instead. */
+    export type Outbound = GetMetadataChildrenLibraryResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetMetadataChildrenErrors$inboundSchema: z.ZodType<
     GetMetadataChildrenErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetMetadataChildrenErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetMetadataChildrenErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

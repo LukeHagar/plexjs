@@ -34,6 +34,7 @@ export async function libraryGetOnDeck(
     Result<
         operations.GetOnDeckResponse,
         | errors.GetOnDeckResponseBody
+        | errors.GetOnDeckLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -95,6 +96,7 @@ export async function libraryGetOnDeck(
     const [result$] = await m$.match<
         operations.GetOnDeckResponse,
         | errors.GetOnDeckResponseBody
+        | errors.GetOnDeckLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -104,8 +106,9 @@ export async function libraryGetOnDeck(
         | ConnectionError
     >(
         m$.json(200, operations.GetOnDeckResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetOnDeckResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetOnDeckResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetOnDeckLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

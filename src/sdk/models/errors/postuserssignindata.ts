@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type PostUsersSignInDataErrors = {
+export type PostUsersSignInDataAuthenticationErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type PostUsersSignInDataErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type PostUsersSignInDataAuthenticationResponseBodyData = {
+    errors?: Array<PostUsersSignInDataAuthenticationErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class PostUsersSignInDataAuthenticationResponseBody extends Error {
+    errors?: Array<PostUsersSignInDataAuthenticationErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: PostUsersSignInDataAuthenticationResponseBodyData;
+
+    constructor(err: PostUsersSignInDataAuthenticationResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "PostUsersSignInDataAuthenticationResponseBody";
+    }
+}
+
+export type PostUsersSignInDataErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type PostUsersSignInDataResponseBodyData = {
     errors?: Array<PostUsersSignInDataErrors> | undefined;
@@ -23,7 +72,7 @@ export type PostUsersSignInDataResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class PostUsersSignInDataResponseBody extends Error {
     errors?: Array<PostUsersSignInDataErrors> | undefined;
@@ -55,14 +104,123 @@ export class PostUsersSignInDataResponseBody extends Error {
 }
 
 /** @internal */
+export const PostUsersSignInDataAuthenticationErrors$inboundSchema: z.ZodType<
+    PostUsersSignInDataAuthenticationErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type PostUsersSignInDataAuthenticationErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const PostUsersSignInDataAuthenticationErrors$outboundSchema: z.ZodType<
+    PostUsersSignInDataAuthenticationErrors$Outbound,
+    z.ZodTypeDef,
+    PostUsersSignInDataAuthenticationErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PostUsersSignInDataAuthenticationErrors$ {
+    /** @deprecated use `PostUsersSignInDataAuthenticationErrors$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataAuthenticationErrors$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationErrors$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataAuthenticationErrors$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationErrors$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataAuthenticationErrors$Outbound;
+}
+
+/** @internal */
+export const PostUsersSignInDataAuthenticationResponseBody$inboundSchema: z.ZodType<
+    PostUsersSignInDataAuthenticationResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z
+            .array(z.lazy(() => PostUsersSignInDataAuthenticationErrors$inboundSchema))
+            .optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new PostUsersSignInDataAuthenticationResponseBody(remapped);
+    });
+
+/** @internal */
+export type PostUsersSignInDataAuthenticationResponseBody$Outbound = {
+    errors?: Array<PostUsersSignInDataAuthenticationErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const PostUsersSignInDataAuthenticationResponseBody$outboundSchema: z.ZodType<
+    PostUsersSignInDataAuthenticationResponseBody$Outbound,
+    z.ZodTypeDef,
+    PostUsersSignInDataAuthenticationResponseBody
+> = z
+    .instanceof(PostUsersSignInDataAuthenticationResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => PostUsersSignInDataAuthenticationErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PostUsersSignInDataAuthenticationResponseBody$ {
+    /** @deprecated use `PostUsersSignInDataAuthenticationResponseBody$inboundSchema` instead. */
+    export const inboundSchema = PostUsersSignInDataAuthenticationResponseBody$inboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationResponseBody$outboundSchema` instead. */
+    export const outboundSchema = PostUsersSignInDataAuthenticationResponseBody$outboundSchema;
+    /** @deprecated use `PostUsersSignInDataAuthenticationResponseBody$Outbound` instead. */
+    export type Outbound = PostUsersSignInDataAuthenticationResponseBody$Outbound;
+}
+
+/** @internal */
 export const PostUsersSignInDataErrors$inboundSchema: z.ZodType<
     PostUsersSignInDataErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +236,9 @@ export const PostUsersSignInDataErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     PostUsersSignInDataErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

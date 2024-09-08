@@ -41,6 +41,7 @@ export async function butlerStartTask(
     Result<
         operations.StartTaskResponse,
         | errors.StartTaskResponseBody
+        | errors.StartTaskButlerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -125,6 +126,7 @@ export async function butlerStartTask(
     const [result$] = await m$.match<
         operations.StartTaskResponse,
         | errors.StartTaskResponseBody
+        | errors.StartTaskButlerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -134,8 +136,9 @@ export async function butlerStartTask(
         | ConnectionError
     >(
         m$.nil([200, 202], operations.StartTaskResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.StartTaskResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.StartTaskResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.StartTaskButlerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

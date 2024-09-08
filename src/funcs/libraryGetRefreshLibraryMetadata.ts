@@ -41,6 +41,7 @@ export async function libraryGetRefreshLibraryMetadata(
     Result<
         operations.GetRefreshLibraryMetadataResponse,
         | errors.GetRefreshLibraryMetadataResponseBody
+        | errors.GetRefreshLibraryMetadataLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -131,6 +132,7 @@ export async function libraryGetRefreshLibraryMetadata(
     const [result$] = await m$.match<
         operations.GetRefreshLibraryMetadataResponse,
         | errors.GetRefreshLibraryMetadataResponseBody
+        | errors.GetRefreshLibraryMetadataLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -140,8 +142,9 @@ export async function libraryGetRefreshLibraryMetadata(
         | ConnectionError
     >(
         m$.nil(200, operations.GetRefreshLibraryMetadataResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetRefreshLibraryMetadataResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetRefreshLibraryMetadataResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetRefreshLibraryMetadataLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

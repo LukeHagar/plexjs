@@ -40,6 +40,7 @@ export async function watchlistGetWatchList(
     Result<
         operations.GetWatchListResponse,
         | errors.GetWatchListResponseBody
+        | errors.GetWatchListWatchlistResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -138,6 +139,7 @@ export async function watchlistGetWatchList(
     const [result$] = await m$.match<
         operations.GetWatchListResponse,
         | errors.GetWatchListResponseBody
+        | errors.GetWatchListWatchlistResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -147,8 +149,9 @@ export async function watchlistGetWatchList(
         | ConnectionError
     >(
         m$.json(200, operations.GetWatchListResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetWatchListResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetWatchListResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetWatchListWatchlistResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

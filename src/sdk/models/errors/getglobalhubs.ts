@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetGlobalHubsErrors = {
+export type GetGlobalHubsHubsErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetGlobalHubsErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetGlobalHubsHubsResponseBodyData = {
+    errors?: Array<GetGlobalHubsHubsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetGlobalHubsHubsResponseBody extends Error {
+    errors?: Array<GetGlobalHubsHubsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetGlobalHubsHubsResponseBodyData;
+
+    constructor(err: GetGlobalHubsHubsResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetGlobalHubsHubsResponseBody";
+    }
+}
+
+export type GetGlobalHubsErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetGlobalHubsResponseBodyData = {
     errors?: Array<GetGlobalHubsErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetGlobalHubsResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetGlobalHubsResponseBody extends Error {
     errors?: Array<GetGlobalHubsErrors> | undefined;
@@ -55,14 +104,119 @@ export class GetGlobalHubsResponseBody extends Error {
 }
 
 /** @internal */
+export const GetGlobalHubsHubsErrors$inboundSchema: z.ZodType<
+    GetGlobalHubsHubsErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetGlobalHubsHubsErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetGlobalHubsHubsErrors$outboundSchema: z.ZodType<
+    GetGlobalHubsHubsErrors$Outbound,
+    z.ZodTypeDef,
+    GetGlobalHubsHubsErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGlobalHubsHubsErrors$ {
+    /** @deprecated use `GetGlobalHubsHubsErrors$inboundSchema` instead. */
+    export const inboundSchema = GetGlobalHubsHubsErrors$inboundSchema;
+    /** @deprecated use `GetGlobalHubsHubsErrors$outboundSchema` instead. */
+    export const outboundSchema = GetGlobalHubsHubsErrors$outboundSchema;
+    /** @deprecated use `GetGlobalHubsHubsErrors$Outbound` instead. */
+    export type Outbound = GetGlobalHubsHubsErrors$Outbound;
+}
+
+/** @internal */
+export const GetGlobalHubsHubsResponseBody$inboundSchema: z.ZodType<
+    GetGlobalHubsHubsResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetGlobalHubsHubsErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetGlobalHubsHubsResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetGlobalHubsHubsResponseBody$Outbound = {
+    errors?: Array<GetGlobalHubsHubsErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetGlobalHubsHubsResponseBody$outboundSchema: z.ZodType<
+    GetGlobalHubsHubsResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetGlobalHubsHubsResponseBody
+> = z
+    .instanceof(GetGlobalHubsHubsResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetGlobalHubsHubsErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGlobalHubsHubsResponseBody$ {
+    /** @deprecated use `GetGlobalHubsHubsResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetGlobalHubsHubsResponseBody$inboundSchema;
+    /** @deprecated use `GetGlobalHubsHubsResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetGlobalHubsHubsResponseBody$outboundSchema;
+    /** @deprecated use `GetGlobalHubsHubsResponseBody$Outbound` instead. */
+    export type Outbound = GetGlobalHubsHubsResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetGlobalHubsErrors$inboundSchema: z.ZodType<
     GetGlobalHubsErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const GetGlobalHubsErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetGlobalHubsErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

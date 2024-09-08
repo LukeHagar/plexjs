@@ -33,6 +33,7 @@ export async function plexGetHomeData(
     Result<
         operations.GetHomeDataResponse,
         | errors.GetHomeDataResponseBody
+        | errors.GetHomeDataPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function plexGetHomeData(
     const [result$] = await m$.match<
         operations.GetHomeDataResponse,
         | errors.GetHomeDataResponseBody
+        | errors.GetHomeDataPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function plexGetHomeData(
         | ConnectionError
     >(
         m$.json(200, operations.GetHomeDataResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetHomeDataResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetHomeDataResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetHomeDataPlexResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetMediaProvidersErrors = {
+export type GetMediaProvidersServerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetMediaProvidersErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetMediaProvidersServerResponseBodyData = {
+    errors?: Array<GetMediaProvidersServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetMediaProvidersServerResponseBody extends Error {
+    errors?: Array<GetMediaProvidersServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetMediaProvidersServerResponseBodyData;
+
+    constructor(err: GetMediaProvidersServerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetMediaProvidersServerResponseBody";
+    }
+}
+
+export type GetMediaProvidersErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetMediaProvidersResponseBodyData = {
     errors?: Array<GetMediaProvidersErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetMediaProvidersResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetMediaProvidersResponseBody extends Error {
     errors?: Array<GetMediaProvidersErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetMediaProvidersResponseBody extends Error {
 }
 
 /** @internal */
+export const GetMediaProvidersServerErrors$inboundSchema: z.ZodType<
+    GetMediaProvidersServerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetMediaProvidersServerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetMediaProvidersServerErrors$outboundSchema: z.ZodType<
+    GetMediaProvidersServerErrors$Outbound,
+    z.ZodTypeDef,
+    GetMediaProvidersServerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaProvidersServerErrors$ {
+    /** @deprecated use `GetMediaProvidersServerErrors$inboundSchema` instead. */
+    export const inboundSchema = GetMediaProvidersServerErrors$inboundSchema;
+    /** @deprecated use `GetMediaProvidersServerErrors$outboundSchema` instead. */
+    export const outboundSchema = GetMediaProvidersServerErrors$outboundSchema;
+    /** @deprecated use `GetMediaProvidersServerErrors$Outbound` instead. */
+    export type Outbound = GetMediaProvidersServerErrors$Outbound;
+}
+
+/** @internal */
+export const GetMediaProvidersServerResponseBody$inboundSchema: z.ZodType<
+    GetMediaProvidersServerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetMediaProvidersServerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetMediaProvidersServerResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetMediaProvidersServerResponseBody$Outbound = {
+    errors?: Array<GetMediaProvidersServerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetMediaProvidersServerResponseBody$outboundSchema: z.ZodType<
+    GetMediaProvidersServerResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetMediaProvidersServerResponseBody
+> = z
+    .instanceof(GetMediaProvidersServerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetMediaProvidersServerErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaProvidersServerResponseBody$ {
+    /** @deprecated use `GetMediaProvidersServerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetMediaProvidersServerResponseBody$inboundSchema;
+    /** @deprecated use `GetMediaProvidersServerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetMediaProvidersServerResponseBody$outboundSchema;
+    /** @deprecated use `GetMediaProvidersServerResponseBody$Outbound` instead. */
+    export type Outbound = GetMediaProvidersServerResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetMediaProvidersErrors$inboundSchema: z.ZodType<
     GetMediaProvidersErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetMediaProvidersErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetMediaProvidersErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

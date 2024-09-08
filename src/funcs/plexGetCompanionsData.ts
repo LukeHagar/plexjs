@@ -34,6 +34,7 @@ export async function plexGetCompanionsData(
     Result<
         operations.GetCompanionsDataResponse,
         | errors.GetCompanionsDataResponseBody
+        | errors.GetCompanionsDataPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -100,6 +101,7 @@ export async function plexGetCompanionsData(
     const [result$] = await m$.match<
         operations.GetCompanionsDataResponse,
         | errors.GetCompanionsDataResponseBody
+        | errors.GetCompanionsDataPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -109,8 +111,9 @@ export async function plexGetCompanionsData(
         | ConnectionError
     >(
         m$.json(200, operations.GetCompanionsDataResponse$inboundSchema, { key: "responseBodies" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetCompanionsDataResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetCompanionsDataResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetCompanionsDataPlexResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

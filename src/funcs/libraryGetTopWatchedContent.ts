@@ -38,6 +38,7 @@ export async function libraryGetTopWatchedContent(
     Result<
         operations.GetTopWatchedContentResponse,
         | errors.GetTopWatchedContentResponseBody
+        | errors.GetTopWatchedContentLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -122,6 +123,7 @@ export async function libraryGetTopWatchedContent(
     const [result$] = await m$.match<
         operations.GetTopWatchedContentResponse,
         | errors.GetTopWatchedContentResponseBody
+        | errors.GetTopWatchedContentLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -131,8 +133,9 @@ export async function libraryGetTopWatchedContent(
         | ConnectionError
     >(
         m$.json(200, operations.GetTopWatchedContentResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetTopWatchedContentResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetTopWatchedContentResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetTopWatchedContentLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

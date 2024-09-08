@@ -33,6 +33,7 @@ export async function serverGetServerList(
     Result<
         operations.GetServerListResponse,
         | errors.GetServerListResponseBody
+        | errors.GetServerListServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -94,6 +95,7 @@ export async function serverGetServerList(
     const [result$] = await m$.match<
         operations.GetServerListResponse,
         | errors.GetServerListResponseBody
+        | errors.GetServerListServerResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -103,8 +105,9 @@ export async function serverGetServerList(
         | ConnectionError
     >(
         m$.json(200, operations.GetServerListResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetServerListResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetServerListResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetServerListServerResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

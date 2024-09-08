@@ -36,6 +36,7 @@ export async function updaterCheckForUpdates(
     Result<
         operations.CheckForUpdatesResponse,
         | errors.CheckForUpdatesResponseBody
+        | errors.CheckForUpdatesUpdaterResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -118,6 +119,7 @@ export async function updaterCheckForUpdates(
     const [result$] = await m$.match<
         operations.CheckForUpdatesResponse,
         | errors.CheckForUpdatesResponseBody
+        | errors.CheckForUpdatesUpdaterResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,8 +129,9 @@ export async function updaterCheckForUpdates(
         | ConnectionError
     >(
         m$.nil(200, operations.CheckForUpdatesResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.CheckForUpdatesResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.CheckForUpdatesResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.CheckForUpdatesUpdaterResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

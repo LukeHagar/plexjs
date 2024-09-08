@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetSessionHistoryErrors = {
+export type GetSessionHistorySessionsErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetSessionHistoryErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetSessionHistorySessionsResponseBodyData = {
+    errors?: Array<GetSessionHistorySessionsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetSessionHistorySessionsResponseBody extends Error {
+    errors?: Array<GetSessionHistorySessionsErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetSessionHistorySessionsResponseBodyData;
+
+    constructor(err: GetSessionHistorySessionsResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetSessionHistorySessionsResponseBody";
+    }
+}
+
+export type GetSessionHistoryErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetSessionHistoryResponseBodyData = {
     errors?: Array<GetSessionHistoryErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetSessionHistoryResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetSessionHistoryResponseBody extends Error {
     errors?: Array<GetSessionHistoryErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetSessionHistoryResponseBody extends Error {
 }
 
 /** @internal */
+export const GetSessionHistorySessionsErrors$inboundSchema: z.ZodType<
+    GetSessionHistorySessionsErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetSessionHistorySessionsErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetSessionHistorySessionsErrors$outboundSchema: z.ZodType<
+    GetSessionHistorySessionsErrors$Outbound,
+    z.ZodTypeDef,
+    GetSessionHistorySessionsErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSessionHistorySessionsErrors$ {
+    /** @deprecated use `GetSessionHistorySessionsErrors$inboundSchema` instead. */
+    export const inboundSchema = GetSessionHistorySessionsErrors$inboundSchema;
+    /** @deprecated use `GetSessionHistorySessionsErrors$outboundSchema` instead. */
+    export const outboundSchema = GetSessionHistorySessionsErrors$outboundSchema;
+    /** @deprecated use `GetSessionHistorySessionsErrors$Outbound` instead. */
+    export type Outbound = GetSessionHistorySessionsErrors$Outbound;
+}
+
+/** @internal */
+export const GetSessionHistorySessionsResponseBody$inboundSchema: z.ZodType<
+    GetSessionHistorySessionsResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetSessionHistorySessionsErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetSessionHistorySessionsResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetSessionHistorySessionsResponseBody$Outbound = {
+    errors?: Array<GetSessionHistorySessionsErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetSessionHistorySessionsResponseBody$outboundSchema: z.ZodType<
+    GetSessionHistorySessionsResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetSessionHistorySessionsResponseBody
+> = z
+    .instanceof(GetSessionHistorySessionsResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetSessionHistorySessionsErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSessionHistorySessionsResponseBody$ {
+    /** @deprecated use `GetSessionHistorySessionsResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetSessionHistorySessionsResponseBody$inboundSchema;
+    /** @deprecated use `GetSessionHistorySessionsResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetSessionHistorySessionsResponseBody$outboundSchema;
+    /** @deprecated use `GetSessionHistorySessionsResponseBody$Outbound` instead. */
+    export type Outbound = GetSessionHistorySessionsResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetSessionHistoryErrors$inboundSchema: z.ZodType<
     GetSessionHistoryErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetSessionHistoryErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetSessionHistoryErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

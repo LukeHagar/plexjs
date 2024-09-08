@@ -87,10 +87,11 @@ run();
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetServerCapabilitiesResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object                                   | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.GetServerCapabilitiesResponseBody       | 400                                            | application/json                               |
+| errors.GetServerCapabilitiesServerResponseBody | 401                                            | application/json                               |
+| errors.SDKError                                | 4xx-5xx                                        | */*                                            |
 
 
 ## getServerPreferences
@@ -162,10 +163,11 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| errors.GetServerPreferencesResponseBody | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| errors.GetServerPreferencesResponseBody       | 400                                           | application/json                              |
+| errors.GetServerPreferencesServerResponseBody | 401                                           | application/json                              |
+| errors.SDKError                               | 4xx-5xx                                       | */*                                           |
 
 
 ## getAvailableClients
@@ -237,10 +239,11 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetAvailableClientsResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| errors.GetAvailableClientsResponseBody       | 400                                          | application/json                             |
+| errors.GetAvailableClientsServerResponseBody | 401                                          | application/json                             |
+| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
 
 
 ## getDevices
@@ -312,10 +315,11 @@ run();
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.GetDevicesResponseBody | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.GetDevicesResponseBody       | 400                                 | application/json                    |
+| errors.GetDevicesServerResponseBody | 401                                 | application/json                    |
+| errors.SDKError                     | 4xx-5xx                             | */*                                 |
 
 
 ## getServerIdentity
@@ -460,10 +464,11 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetMyPlexAccountResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetMyPlexAccountResponseBody       | 400                                       | application/json                          |
+| errors.GetMyPlexAccountServerResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 
 ## getResizedPhoto
@@ -555,10 +560,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.GetResizedPhotoResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.GetResizedPhotoResponseBody       | 400                                      | application/json                         |
+| errors.GetResizedPhotoServerResponseBody | 401                                      | application/json                         |
+| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
 
 
 ## getMediaProviders
@@ -631,10 +637,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GetMediaProvidersResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.GetMediaProvidersResponseBody       | 400                                        | application/json                           |
+| errors.GetMediaProvidersServerResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
 ## getServerList
@@ -706,7 +713,8 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.GetServerListResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.GetServerListResponseBody       | 400                                    | application/json                       |
+| errors.GetServerListServerResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |

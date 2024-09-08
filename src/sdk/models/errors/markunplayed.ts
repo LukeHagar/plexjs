@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type MarkUnplayedErrors = {
+export type MarkUnplayedMediaErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type MarkUnplayedErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type MarkUnplayedMediaResponseBodyData = {
+    errors?: Array<MarkUnplayedMediaErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class MarkUnplayedMediaResponseBody extends Error {
+    errors?: Array<MarkUnplayedMediaErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: MarkUnplayedMediaResponseBodyData;
+
+    constructor(err: MarkUnplayedMediaResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "MarkUnplayedMediaResponseBody";
+    }
+}
+
+export type MarkUnplayedErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type MarkUnplayedResponseBodyData = {
     errors?: Array<MarkUnplayedErrors> | undefined;
@@ -23,7 +72,7 @@ export type MarkUnplayedResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class MarkUnplayedResponseBody extends Error {
     errors?: Array<MarkUnplayedErrors> | undefined;
@@ -55,14 +104,119 @@ export class MarkUnplayedResponseBody extends Error {
 }
 
 /** @internal */
+export const MarkUnplayedMediaErrors$inboundSchema: z.ZodType<
+    MarkUnplayedMediaErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type MarkUnplayedMediaErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const MarkUnplayedMediaErrors$outboundSchema: z.ZodType<
+    MarkUnplayedMediaErrors$Outbound,
+    z.ZodTypeDef,
+    MarkUnplayedMediaErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MarkUnplayedMediaErrors$ {
+    /** @deprecated use `MarkUnplayedMediaErrors$inboundSchema` instead. */
+    export const inboundSchema = MarkUnplayedMediaErrors$inboundSchema;
+    /** @deprecated use `MarkUnplayedMediaErrors$outboundSchema` instead. */
+    export const outboundSchema = MarkUnplayedMediaErrors$outboundSchema;
+    /** @deprecated use `MarkUnplayedMediaErrors$Outbound` instead. */
+    export type Outbound = MarkUnplayedMediaErrors$Outbound;
+}
+
+/** @internal */
+export const MarkUnplayedMediaResponseBody$inboundSchema: z.ZodType<
+    MarkUnplayedMediaResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => MarkUnplayedMediaErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new MarkUnplayedMediaResponseBody(remapped);
+    });
+
+/** @internal */
+export type MarkUnplayedMediaResponseBody$Outbound = {
+    errors?: Array<MarkUnplayedMediaErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const MarkUnplayedMediaResponseBody$outboundSchema: z.ZodType<
+    MarkUnplayedMediaResponseBody$Outbound,
+    z.ZodTypeDef,
+    MarkUnplayedMediaResponseBody
+> = z
+    .instanceof(MarkUnplayedMediaResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => MarkUnplayedMediaErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MarkUnplayedMediaResponseBody$ {
+    /** @deprecated use `MarkUnplayedMediaResponseBody$inboundSchema` instead. */
+    export const inboundSchema = MarkUnplayedMediaResponseBody$inboundSchema;
+    /** @deprecated use `MarkUnplayedMediaResponseBody$outboundSchema` instead. */
+    export const outboundSchema = MarkUnplayedMediaResponseBody$outboundSchema;
+    /** @deprecated use `MarkUnplayedMediaResponseBody$Outbound` instead. */
+    export type Outbound = MarkUnplayedMediaResponseBody$Outbound;
+}
+
+/** @internal */
 export const MarkUnplayedErrors$inboundSchema: z.ZodType<
     MarkUnplayedErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const MarkUnplayedErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     MarkUnplayedErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

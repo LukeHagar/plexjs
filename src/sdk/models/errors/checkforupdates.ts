@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type CheckForUpdatesErrors = {
+export type CheckForUpdatesUpdaterErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type CheckForUpdatesErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type CheckForUpdatesUpdaterResponseBodyData = {
+    errors?: Array<CheckForUpdatesUpdaterErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class CheckForUpdatesUpdaterResponseBody extends Error {
+    errors?: Array<CheckForUpdatesUpdaterErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: CheckForUpdatesUpdaterResponseBodyData;
+
+    constructor(err: CheckForUpdatesUpdaterResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "CheckForUpdatesUpdaterResponseBody";
+    }
+}
+
+export type CheckForUpdatesErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type CheckForUpdatesResponseBodyData = {
     errors?: Array<CheckForUpdatesErrors> | undefined;
@@ -23,7 +72,7 @@ export type CheckForUpdatesResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class CheckForUpdatesResponseBody extends Error {
     errors?: Array<CheckForUpdatesErrors> | undefined;
@@ -55,14 +104,121 @@ export class CheckForUpdatesResponseBody extends Error {
 }
 
 /** @internal */
+export const CheckForUpdatesUpdaterErrors$inboundSchema: z.ZodType<
+    CheckForUpdatesUpdaterErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type CheckForUpdatesUpdaterErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const CheckForUpdatesUpdaterErrors$outboundSchema: z.ZodType<
+    CheckForUpdatesUpdaterErrors$Outbound,
+    z.ZodTypeDef,
+    CheckForUpdatesUpdaterErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CheckForUpdatesUpdaterErrors$ {
+    /** @deprecated use `CheckForUpdatesUpdaterErrors$inboundSchema` instead. */
+    export const inboundSchema = CheckForUpdatesUpdaterErrors$inboundSchema;
+    /** @deprecated use `CheckForUpdatesUpdaterErrors$outboundSchema` instead. */
+    export const outboundSchema = CheckForUpdatesUpdaterErrors$outboundSchema;
+    /** @deprecated use `CheckForUpdatesUpdaterErrors$Outbound` instead. */
+    export type Outbound = CheckForUpdatesUpdaterErrors$Outbound;
+}
+
+/** @internal */
+export const CheckForUpdatesUpdaterResponseBody$inboundSchema: z.ZodType<
+    CheckForUpdatesUpdaterResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => CheckForUpdatesUpdaterErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new CheckForUpdatesUpdaterResponseBody(remapped);
+    });
+
+/** @internal */
+export type CheckForUpdatesUpdaterResponseBody$Outbound = {
+    errors?: Array<CheckForUpdatesUpdaterErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const CheckForUpdatesUpdaterResponseBody$outboundSchema: z.ZodType<
+    CheckForUpdatesUpdaterResponseBody$Outbound,
+    z.ZodTypeDef,
+    CheckForUpdatesUpdaterResponseBody
+> = z
+    .instanceof(CheckForUpdatesUpdaterResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => CheckForUpdatesUpdaterErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CheckForUpdatesUpdaterResponseBody$ {
+    /** @deprecated use `CheckForUpdatesUpdaterResponseBody$inboundSchema` instead. */
+    export const inboundSchema = CheckForUpdatesUpdaterResponseBody$inboundSchema;
+    /** @deprecated use `CheckForUpdatesUpdaterResponseBody$outboundSchema` instead. */
+    export const outboundSchema = CheckForUpdatesUpdaterResponseBody$outboundSchema;
+    /** @deprecated use `CheckForUpdatesUpdaterResponseBody$Outbound` instead. */
+    export type Outbound = CheckForUpdatesUpdaterResponseBody$Outbound;
+}
+
+/** @internal */
 export const CheckForUpdatesErrors$inboundSchema: z.ZodType<
     CheckForUpdatesErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const CheckForUpdatesErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CheckForUpdatesErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

@@ -11,7 +11,7 @@ API Calls regarding authentication for Plex Media Server
 * [getTransientToken](#gettransienttoken) - Get a Transient Token.
 * [getSourceConnectionInformation](#getsourceconnectioninformation) - Get Source Connection Information
 * [getUserDetails](#getuserdetails) - Get User Data By Token
-* [postUsersSignInData](#postuserssignindata) - Get User SignIn Data
+* [postUsersSignInData](#postuserssignindata) - Get User Sign In Data
 
 ## getTransientToken
 
@@ -87,10 +87,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GetTransientTokenResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| Error Object                                       | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| errors.GetTransientTokenResponseBody               | 400                                                | application/json                                   |
+| errors.GetTransientTokenAuthenticationResponseBody | 401                                                | application/json                                   |
+| errors.SDKError                                    | 4xx-5xx                                            | */*                                                |
 
 
 ## getSourceConnectionInformation
@@ -165,10 +166,11 @@ run();
 
 ### Errors
 
-| Error Object                                      | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| errors.GetSourceConnectionInformationResponseBody | 401                                               | application/json                                  |
-| errors.SDKError                                   | 4xx-5xx                                           | */*                                               |
+| Error Object                                                    | Status Code                                                     | Content Type                                                    |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| errors.GetSourceConnectionInformationResponseBody               | 400                                                             | application/json                                                |
+| errors.GetSourceConnectionInformationAuthenticationResponseBody | 401                                                             | application/json                                                |
+| errors.SDKError                                                 | 4xx-5xx                                                         | */*                                                             |
 
 
 ## getUserDetails
@@ -242,10 +244,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.GetUserDetailsResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| errors.GetUserDetailsResponseBody               | 400                                             | application/json                                |
+| errors.GetUserDetailsAuthenticationResponseBody | 401                                             | application/json                                |
+| errors.SDKError                                 | 4xx-5xx                                         | */*                                             |
 
 
 ## postUsersSignInData
@@ -265,6 +268,7 @@ async function run() {
   const result = await plexAPI.authentication.postUsersSignInData("gcgzw5rz2xovp84b4vha3a40", {
     login: "username@email.com",
     password: "password123",
+    verificationCode: "123456",
   });
   
   // Handle the result
@@ -292,6 +296,7 @@ async function run() {
   const res = await authenticationPostUsersSignInData(plexAPI, "gcgzw5rz2xovp84b4vha3a40", {
     login: "username@email.com",
     password: "password123",
+    verificationCode: "123456",
   });
 
   if (!res.ok) {
@@ -324,7 +329,8 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.PostUsersSignInDataResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                                         | Status Code                                          | Content Type                                         |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| errors.PostUsersSignInDataResponseBody               | 400                                                  | application/json                                     |
+| errors.PostUsersSignInDataAuthenticationResponseBody | 401                                                  | application/json                                     |
+| errors.SDKError                                      | 4xx-5xx                                              | */*                                                  |

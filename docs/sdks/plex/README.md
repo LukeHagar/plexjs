@@ -86,10 +86,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GetCompanionsDataResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.GetCompanionsDataResponseBody     | 400                                      | application/json                         |
+| errors.GetCompanionsDataPlexResponseBody | 401                                      | application/json                         |
+| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
 
 
 ## getUserFriends
@@ -162,10 +163,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.GetUserFriendsResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| errors.GetUserFriendsResponseBody     | 400                                   | application/json                      |
+| errors.GetUserFriendsPlexResponseBody | 401                                   | application/json                      |
+| errors.SDKError                       | 4xx-5xx                               | */*                                   |
 
 
 ## getGeoData
@@ -236,10 +238,11 @@ run();
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| errors.GetGeoDataResponseBody | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.GetGeoDataResponseBody     | 400                               | application/json                  |
+| errors.GetGeoDataPlexResponseBody | 401                               | application/json                  |
+| errors.SDKError                   | 4xx-5xx                           | */*                               |
 
 
 ## getHomeData
@@ -311,10 +314,11 @@ run();
 
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.GetHomeDataResponseBody | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetHomeDataResponseBody     | 400                                | application/json                   |
+| errors.GetHomeDataPlexResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## getServerResources
@@ -400,10 +404,11 @@ run();
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.GetServerResourcesResponseBody | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetServerResourcesResponseBody     | 400                                       | application/json                          |
+| errors.GetServerResourcesPlexResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 
 ## getPin

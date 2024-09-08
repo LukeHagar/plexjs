@@ -57,6 +57,7 @@ export async function logLogMultiLine(
     Result<
         operations.LogMultiLineResponse,
         | errors.LogMultiLineResponseBody
+        | errors.LogMultiLineLogResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -133,6 +134,7 @@ export async function logLogMultiLine(
     const [result$] = await m$.match<
         operations.LogMultiLineResponse,
         | errors.LogMultiLineResponseBody
+        | errors.LogMultiLineLogResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -142,8 +144,9 @@ export async function logLogMultiLine(
         | ConnectionError
     >(
         m$.nil(200, operations.LogMultiLineResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.LogMultiLineResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.LogMultiLineResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.LogMultiLineLogResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

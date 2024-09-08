@@ -37,6 +37,7 @@ export async function playlistsClearPlaylistContents(
     Result<
         operations.ClearPlaylistContentsResponse,
         | errors.ClearPlaylistContentsResponseBody
+        | errors.ClearPlaylistContentsPlaylistsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -121,6 +122,7 @@ export async function playlistsClearPlaylistContents(
     const [result$] = await m$.match<
         operations.ClearPlaylistContentsResponse,
         | errors.ClearPlaylistContentsResponseBody
+        | errors.ClearPlaylistContentsPlaylistsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,8 +132,9 @@ export async function playlistsClearPlaylistContents(
         | ConnectionError
     >(
         m$.nil(200, operations.ClearPlaylistContentsResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.ClearPlaylistContentsResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.ClearPlaylistContentsResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.ClearPlaylistContentsPlaylistsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

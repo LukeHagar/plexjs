@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetButlerTasksErrors = {
+export type GetButlerTasksButlerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetButlerTasksErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetButlerTasksButlerResponseBodyData = {
+    errors?: Array<GetButlerTasksButlerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetButlerTasksButlerResponseBody extends Error {
+    errors?: Array<GetButlerTasksButlerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetButlerTasksButlerResponseBodyData;
+
+    constructor(err: GetButlerTasksButlerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetButlerTasksButlerResponseBody";
+    }
+}
+
+export type GetButlerTasksErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetButlerTasksResponseBodyData = {
     errors?: Array<GetButlerTasksErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetButlerTasksResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetButlerTasksResponseBody extends Error {
     errors?: Array<GetButlerTasksErrors> | undefined;
@@ -55,14 +104,119 @@ export class GetButlerTasksResponseBody extends Error {
 }
 
 /** @internal */
+export const GetButlerTasksButlerErrors$inboundSchema: z.ZodType<
+    GetButlerTasksButlerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetButlerTasksButlerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetButlerTasksButlerErrors$outboundSchema: z.ZodType<
+    GetButlerTasksButlerErrors$Outbound,
+    z.ZodTypeDef,
+    GetButlerTasksButlerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetButlerTasksButlerErrors$ {
+    /** @deprecated use `GetButlerTasksButlerErrors$inboundSchema` instead. */
+    export const inboundSchema = GetButlerTasksButlerErrors$inboundSchema;
+    /** @deprecated use `GetButlerTasksButlerErrors$outboundSchema` instead. */
+    export const outboundSchema = GetButlerTasksButlerErrors$outboundSchema;
+    /** @deprecated use `GetButlerTasksButlerErrors$Outbound` instead. */
+    export type Outbound = GetButlerTasksButlerErrors$Outbound;
+}
+
+/** @internal */
+export const GetButlerTasksButlerResponseBody$inboundSchema: z.ZodType<
+    GetButlerTasksButlerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetButlerTasksButlerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetButlerTasksButlerResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetButlerTasksButlerResponseBody$Outbound = {
+    errors?: Array<GetButlerTasksButlerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetButlerTasksButlerResponseBody$outboundSchema: z.ZodType<
+    GetButlerTasksButlerResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetButlerTasksButlerResponseBody
+> = z
+    .instanceof(GetButlerTasksButlerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z.array(z.lazy(() => GetButlerTasksButlerErrors$outboundSchema)).optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetButlerTasksButlerResponseBody$ {
+    /** @deprecated use `GetButlerTasksButlerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetButlerTasksButlerResponseBody$inboundSchema;
+    /** @deprecated use `GetButlerTasksButlerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetButlerTasksButlerResponseBody$outboundSchema;
+    /** @deprecated use `GetButlerTasksButlerResponseBody$Outbound` instead. */
+    export type Outbound = GetButlerTasksButlerResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetButlerTasksErrors$inboundSchema: z.ZodType<
     GetButlerTasksErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +232,9 @@ export const GetButlerTasksErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetButlerTasksErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

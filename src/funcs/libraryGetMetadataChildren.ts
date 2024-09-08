@@ -41,6 +41,7 @@ export async function libraryGetMetadataChildren(
     Result<
         operations.GetMetadataChildrenResponse,
         | errors.GetMetadataChildrenResponseBody
+        | errors.GetMetadataChildrenLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -131,6 +132,7 @@ export async function libraryGetMetadataChildren(
     const [result$] = await m$.match<
         operations.GetMetadataChildrenResponse,
         | errors.GetMetadataChildrenResponseBody
+        | errors.GetMetadataChildrenLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -140,8 +142,9 @@ export async function libraryGetMetadataChildren(
         | ConnectionError
     >(
         m$.json(200, operations.GetMetadataChildrenResponse$inboundSchema, { key: "object" }),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetMetadataChildrenResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetMetadataChildrenResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetMetadataChildrenLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

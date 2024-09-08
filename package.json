@@ -1,6 +1,6 @@
 {
   "name": "@lukehagar/plexjs",
-  "version": "0.20.2",
+  "version": "0.21.0",
   "author": "LukeHagar",
   "main": "./index.js",
   "sideEffects": false,

@@ -92,10 +92,11 @@ run();
 
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.GetFileHashResponseBody | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| errors.GetFileHashResponseBody        | 400                                   | application/json                      |
+| errors.GetFileHashLibraryResponseBody | 401                                   | application/json                      |
+| errors.SDKError                       | 4xx-5xx                               | */*                                   |
 
 
 ## getRecentlyAdded
@@ -170,10 +171,11 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetRecentlyAddedResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.GetRecentlyAddedResponseBody        | 400                                        | application/json                           |
+| errors.GetRecentlyAddedLibraryResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
 ## getAllLibraries
@@ -251,10 +253,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.GetAllLibrariesResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetAllLibrariesResponseBody        | 400                                       | application/json                          |
+| errors.GetAllLibrariesLibraryResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 
 ## getLibraryDetails
@@ -367,10 +370,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.GetLibraryDetailsResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| Error Object                                | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| errors.GetLibraryDetailsResponseBody        | 400                                         | application/json                            |
+| errors.GetLibraryDetailsLibraryResponseBody | 401                                         | application/json                            |
+| errors.SDKError                             | 4xx-5xx                                     | */*                                         |
 
 
 ## deleteLibrary
@@ -443,10 +447,11 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.DeleteLibraryResponseBody | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.DeleteLibraryResponseBody        | 400                                     | application/json                        |
+| errors.DeleteLibraryLibraryResponseBody | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 
 ## getLibraryItems
@@ -557,10 +562,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.GetLibraryItemsResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetLibraryItemsResponseBody        | 400                                       | application/json                          |
+| errors.GetLibraryItemsLibraryResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 
 ## getRefreshLibraryMetadata
@@ -637,10 +643,11 @@ run();
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| errors.GetRefreshLibraryMetadataResponseBody | 401                                          | application/json                             |
-| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
+| Error Object                                        | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| errors.GetRefreshLibraryMetadataResponseBody        | 400                                                 | application/json                                    |
+| errors.GetRefreshLibraryMetadataLibraryResponseBody | 401                                                 | application/json                                    |
+| errors.SDKError                                     | 4xx-5xx                                             | */*                                                 |
 
 
 ## getSearchLibrary
@@ -734,10 +741,11 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetSearchLibraryResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                               | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.GetSearchLibraryResponseBody        | 400                                        | application/json                           |
+| errors.GetSearchLibraryLibraryResponseBody | 401                                        | application/json                           |
+| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
 
 
 ## getMetaDataByRatingKey
@@ -811,10 +819,11 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.GetMetaDataByRatingKeyResponseBody | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                                     | Status Code                                      | Content Type                                     |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| errors.GetMetaDataByRatingKeyResponseBody        | 400                                              | application/json                                 |
+| errors.GetMetaDataByRatingKeyLibraryResponseBody | 401                                              | application/json                                 |
+| errors.SDKError                                  | 4xx-5xx                                          | */*                                              |
 
 
 ## getMetadataChildren
@@ -889,10 +898,11 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetMetadataChildrenResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                                  | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| errors.GetMetadataChildrenResponseBody        | 400                                           | application/json                              |
+| errors.GetMetadataChildrenLibraryResponseBody | 401                                           | application/json                              |
+| errors.SDKError                               | 4xx-5xx                                       | */*                                           |
 
 
 ## getTopWatchedContent
@@ -969,10 +979,11 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| errors.GetTopWatchedContentResponseBody | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| Error Object                                   | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| errors.GetTopWatchedContentResponseBody        | 400                                            | application/json                               |
+| errors.GetTopWatchedContentLibraryResponseBody | 401                                            | application/json                               |
+| errors.SDKError                                | 4xx-5xx                                        | */*                                            |
 
 
 ## getOnDeck
@@ -1045,7 +1056,8 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.GetOnDeckResponseBody | 401                          | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.GetOnDeckResponseBody        | 400                                 | application/json                    |
+| errors.GetOnDeckLibraryResponseBody | 401                                 | application/json                    |
+| errors.SDKError                     | 4xx-5xx                             | */*                                 |

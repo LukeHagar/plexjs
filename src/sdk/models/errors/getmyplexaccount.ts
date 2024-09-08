@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export type GetMyPlexAccountErrors = {
+export type GetMyPlexAccountServerErrors = {
     code?: number | undefined;
     message?: string | undefined;
     status?: number | undefined;
@@ -13,6 +13,55 @@ export type GetMyPlexAccountErrors = {
 
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export type GetMyPlexAccountServerResponseBodyData = {
+    errors?: Array<GetMyPlexAccountServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+};
+
+/**
+ * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ */
+export class GetMyPlexAccountServerResponseBody extends Error {
+    errors?: Array<GetMyPlexAccountServerErrors> | undefined;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    rawResponse?: Response | undefined;
+
+    /** The original data that was passed to this error instance. */
+    data$: GetMyPlexAccountServerResponseBodyData;
+
+    constructor(err: GetMyPlexAccountServerResponseBodyData) {
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
+        this.data$ = err;
+
+        if (err.errors != null) {
+            this.errors = err.errors;
+        }
+        if (err.rawResponse != null) {
+            this.rawResponse = err.rawResponse;
+        }
+
+        this.name = "GetMyPlexAccountServerResponseBody";
+    }
+}
+
+export type GetMyPlexAccountErrors = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/**
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export type GetMyPlexAccountResponseBodyData = {
     errors?: Array<GetMyPlexAccountErrors> | undefined;
@@ -23,7 +72,7 @@ export type GetMyPlexAccountResponseBodyData = {
 };
 
 /**
- * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+ * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
 export class GetMyPlexAccountResponseBody extends Error {
     errors?: Array<GetMyPlexAccountErrors> | undefined;
@@ -55,14 +104,121 @@ export class GetMyPlexAccountResponseBody extends Error {
 }
 
 /** @internal */
+export const GetMyPlexAccountServerErrors$inboundSchema: z.ZodType<
+    GetMyPlexAccountServerErrors,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetMyPlexAccountServerErrors$Outbound = {
+    code?: number | undefined;
+    message?: string | undefined;
+    status?: number | undefined;
+};
+
+/** @internal */
+export const GetMyPlexAccountServerErrors$outboundSchema: z.ZodType<
+    GetMyPlexAccountServerErrors$Outbound,
+    z.ZodTypeDef,
+    GetMyPlexAccountServerErrors
+> = z.object({
+    code: z.number().int().optional(),
+    message: z.string().optional(),
+    status: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMyPlexAccountServerErrors$ {
+    /** @deprecated use `GetMyPlexAccountServerErrors$inboundSchema` instead. */
+    export const inboundSchema = GetMyPlexAccountServerErrors$inboundSchema;
+    /** @deprecated use `GetMyPlexAccountServerErrors$outboundSchema` instead. */
+    export const outboundSchema = GetMyPlexAccountServerErrors$outboundSchema;
+    /** @deprecated use `GetMyPlexAccountServerErrors$Outbound` instead. */
+    export type Outbound = GetMyPlexAccountServerErrors$Outbound;
+}
+
+/** @internal */
+export const GetMyPlexAccountServerResponseBody$inboundSchema: z.ZodType<
+    GetMyPlexAccountServerResponseBody,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errors: z.array(z.lazy(() => GetMyPlexAccountServerErrors$inboundSchema)).optional(),
+        RawResponse: z.instanceof(Response).optional(),
+    })
+    .transform((v) => {
+        const remapped = remap$(v, {
+            RawResponse: "rawResponse",
+        });
+
+        return new GetMyPlexAccountServerResponseBody(remapped);
+    });
+
+/** @internal */
+export type GetMyPlexAccountServerResponseBody$Outbound = {
+    errors?: Array<GetMyPlexAccountServerErrors$Outbound> | undefined;
+    RawResponse?: never | undefined;
+};
+
+/** @internal */
+export const GetMyPlexAccountServerResponseBody$outboundSchema: z.ZodType<
+    GetMyPlexAccountServerResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetMyPlexAccountServerResponseBody
+> = z
+    .instanceof(GetMyPlexAccountServerResponseBody)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                errors: z
+                    .array(z.lazy(() => GetMyPlexAccountServerErrors$outboundSchema))
+                    .optional(),
+                rawResponse: z
+                    .instanceof(Response)
+                    .transform(() => {
+                        throw new Error("Response cannot be serialized");
+                    })
+                    .optional(),
+            })
+            .transform((v) => {
+                return remap$(v, {
+                    rawResponse: "RawResponse",
+                });
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMyPlexAccountServerResponseBody$ {
+    /** @deprecated use `GetMyPlexAccountServerResponseBody$inboundSchema` instead. */
+    export const inboundSchema = GetMyPlexAccountServerResponseBody$inboundSchema;
+    /** @deprecated use `GetMyPlexAccountServerResponseBody$outboundSchema` instead. */
+    export const outboundSchema = GetMyPlexAccountServerResponseBody$outboundSchema;
+    /** @deprecated use `GetMyPlexAccountServerResponseBody$Outbound` instead. */
+    export type Outbound = GetMyPlexAccountServerResponseBody$Outbound;
+}
+
+/** @internal */
 export const GetMyPlexAccountErrors$inboundSchema: z.ZodType<
     GetMyPlexAccountErrors,
     z.ZodTypeDef,
     unknown
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /** @internal */
@@ -78,9 +234,9 @@ export const GetMyPlexAccountErrors$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     GetMyPlexAccountErrors
 > = z.object({
-    code: z.number().optional(),
+    code: z.number().int().optional(),
     message: z.string().optional(),
-    status: z.number().optional(),
+    status: z.number().int().optional(),
 });
 
 /**

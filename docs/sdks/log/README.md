@@ -87,10 +87,11 @@ run();
 
 ### Errors
 
-| Error Object               | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.LogLineResponseBody | 401                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.LogLineResponseBody    | 400                           | application/json              |
+| errors.LogLineLogResponseBody | 401                           | application/json              |
+| errors.SDKError               | 4xx-5xx                       | */*                           |
 
 
 ## logMultiLine
@@ -188,10 +189,11 @@ run();
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| errors.LogMultiLineResponseBody | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.LogMultiLineResponseBody    | 400                                | application/json                   |
+| errors.LogMultiLineLogResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## enablePaperTrail
@@ -264,7 +266,8 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.EnablePaperTrailResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.EnablePaperTrailResponseBody    | 400                                    | application/json                       |
+| errors.EnablePaperTrailLogResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |

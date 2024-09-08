@@ -42,6 +42,7 @@ export async function playlistsUpdatePlaylist(
     Result<
         operations.UpdatePlaylistResponse,
         | errors.UpdatePlaylistResponseBody
+        | errors.UpdatePlaylistPlaylistsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -134,6 +135,7 @@ export async function playlistsUpdatePlaylist(
     const [result$] = await m$.match<
         operations.UpdatePlaylistResponse,
         | errors.UpdatePlaylistResponseBody
+        | errors.UpdatePlaylistPlaylistsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -143,8 +145,9 @@ export async function playlistsUpdatePlaylist(
         | ConnectionError
     >(
         m$.nil(200, operations.UpdatePlaylistResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.UpdatePlaylistResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.UpdatePlaylistResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.UpdatePlaylistPlaylistsResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

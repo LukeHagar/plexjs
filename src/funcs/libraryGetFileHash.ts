@@ -37,6 +37,7 @@ export async function libraryGetFileHash(
     Result<
         operations.GetFileHashResponse,
         | errors.GetFileHashResponseBody
+        | errors.GetFileHashLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -121,6 +122,7 @@ export async function libraryGetFileHash(
     const [result$] = await m$.match<
         operations.GetFileHashResponse,
         | errors.GetFileHashResponseBody
+        | errors.GetFileHashLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,8 +132,9 @@ export async function libraryGetFileHash(
         | ConnectionError
     >(
         m$.nil(200, operations.GetFileHashResponse$inboundSchema),
-        m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, errors.GetFileHashResponseBody$inboundSchema)
+        m$.jsonErr(400, errors.GetFileHashResponseBody$inboundSchema),
+        m$.jsonErr(401, errors.GetFileHashLibraryResponseBody$inboundSchema),
+        m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;
