@@ -39,7 +39,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.search.performSearch("arnold", 5);
+  const result = await plexAPI.search.performSearch("dylan", 5);
   
   // Handle the result
   console.log(result)
@@ -92,14 +92,14 @@ run();
 
 ### Response
 
-**Promise\<[models.PerformSearchResponse](../../models/performsearchresponse.md)\>**
+**Promise\<[operations.PerformSearchResponse](../../sdk/models/operations/performsearchresponse.md)\>**
 
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| models.PerformSearchResponseBody | 401                              | application/json                 |
-| models.SDKError                  | 4xx-5xx                          | */*                              |
+| errors.PerformSearchResponseBody | 401                              | application/json                 |
+| errors.SDKError                  | 4xx-5xx                          | */*                              |
 
 
 ## performVoiceSearch
@@ -174,14 +174,14 @@ run();
 
 ### Response
 
-**Promise\<[models.PerformVoiceSearchResponse](../../models/performvoicesearchresponse.md)\>**
+**Promise\<[operations.PerformVoiceSearchResponse](../../sdk/models/operations/performvoicesearchresponse.md)\>**
 
 ### Errors
 
 | Error Object                          | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models.PerformVoiceSearchResponseBody | 401                                   | application/json                      |
-| models.SDKError                       | 4xx-5xx                               | */*                                   |
+| errors.PerformVoiceSearchResponseBody | 401                                   | application/json                      |
+| errors.SDKError                       | 4xx-5xx                               | */*                                   |
 
 
 ## getSearchResults
@@ -250,11 +250,11 @@ run();
 
 ### Response
 
-**Promise\<[models.GetSearchResultsResponse](../../models/getsearchresultsresponse.md)\>**
+**Promise\<[operations.GetSearchResultsResponse](../../sdk/models/operations/getsearchresultsresponse.md)\>**
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models.GetSearchResultsSearchResponseBody | 401                                       | application/json                          |
-| models.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.GetSearchResultsResponseBody | 401                                 | application/json                    |
+| errors.SDKError                     | 4xx-5xx                             | */*                                 |

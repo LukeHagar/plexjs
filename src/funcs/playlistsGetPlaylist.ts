@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Retrieve Playlist
@@ -35,8 +36,8 @@ export async function playlistsGetPlaylist(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetPlaylistResponse,
-        | models.GetPlaylistPlaylistsResponseBody
+        operations.GetPlaylistResponse,
+        | errors.GetPlaylistResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -46,13 +47,13 @@ export async function playlistsGetPlaylist(
         | ConnectionError
     >
 > {
-    const input$: models.GetPlaylistRequest = {
+    const input$: operations.GetPlaylistRequest = {
         playlistID: playlistID,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetPlaylistRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetPlaylistRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -119,8 +120,8 @@ export async function playlistsGetPlaylist(
     };
 
     const [result$] = await m$.match<
-        models.GetPlaylistResponse,
-        | models.GetPlaylistPlaylistsResponseBody
+        operations.GetPlaylistResponse,
+        | errors.GetPlaylistResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -129,9 +130,9 @@ export async function playlistsGetPlaylist(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetPlaylistResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetPlaylistResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetPlaylistPlaylistsResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetPlaylistResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

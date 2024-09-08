@@ -6,8 +6,8 @@ import { updaterApplyUpdates } from "../funcs/updaterApplyUpdates.js";
 import { updaterCheckForUpdates } from "../funcs/updaterCheckForUpdates.js";
 import { updaterGetUpdateStatus } from "../funcs/updaterGetUpdateStatus.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Updater extends ClientSDK {
     /**
@@ -16,7 +16,7 @@ export class Updater extends ClientSDK {
      * @remarks
      * Querying status of updates
      */
-    async getUpdateStatus(options?: RequestOptions): Promise<models.GetUpdateStatusResponse> {
+    async getUpdateStatus(options?: RequestOptions): Promise<operations.GetUpdateStatusResponse> {
         return unwrapAsync(updaterGetUpdateStatus(this, options));
     }
 
@@ -27,9 +27,9 @@ export class Updater extends ClientSDK {
      * Checking for updates
      */
     async checkForUpdates(
-        download?: models.Download | undefined,
+        download?: operations.Download | undefined,
         options?: RequestOptions
-    ): Promise<models.CheckForUpdatesResponse> {
+    ): Promise<operations.CheckForUpdatesResponse> {
         return unwrapAsync(updaterCheckForUpdates(this, download, options));
     }
 
@@ -41,10 +41,10 @@ export class Updater extends ClientSDK {
      *
      */
     async applyUpdates(
-        tonight?: models.Tonight | undefined,
-        skip?: models.Skip | undefined,
+        tonight?: operations.Tonight | undefined,
+        skip?: operations.Skip | undefined,
         options?: RequestOptions
-    ): Promise<models.ApplyUpdatesResponse> {
+    ): Promise<operations.ApplyUpdatesResponse> {
         return unwrapAsync(updaterApplyUpdates(this, tonight, skip, options));
     }
 }

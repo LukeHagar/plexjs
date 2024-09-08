@@ -21,7 +21,8 @@ This endpoint provides the caller with a temporary token with the same access le
 ### Example Usage
 
 ```typescript
-import { GetTransientTokenQueryParamType, PlexAPI, Scope } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -43,9 +44,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { authenticationGetTransientToken } from "@lukehagar/plexjs/funcs/authenticationGetTransientToken.js";
+import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -74,22 +75,22 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `type`                                                                                                                                                                         | [models.GetTransientTokenQueryParamType](../../models/gettransienttokenqueryparamtype.md)                                                                                      | :heavy_check_mark:                                                                                                                                                             | `delegation` - This is the only supported `type` parameter.                                                                                                                    |
-| `scope`                                                                                                                                                                        | [models.Scope](../../models/scope.md)                                                                                                                                          | :heavy_check_mark:                                                                                                                                                             | `all` - This is the only supported `scope` parameter.                                                                                                                          |
+| `type`                                                                                                                                                                         | [operations.GetTransientTokenQueryParamType](../../sdk/models/operations/gettransienttokenqueryparamtype.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | `delegation` - This is the only supported `type` parameter.                                                                                                                    |
+| `scope`                                                                                                                                                                        | [operations.Scope](../../sdk/models/operations/scope.md)                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | `all` - This is the only supported `scope` parameter.                                                                                                                          |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[models.GetTransientTokenResponse](../../models/gettransienttokenresponse.md)\>**
+**Promise\<[operations.GetTransientTokenResponse](../../sdk/models/operations/gettransienttokenresponse.md)\>**
 
 ### Errors
 
 | Error Object                         | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| models.GetTransientTokenResponseBody | 401                                  | application/json                     |
-| models.SDKError                      | 4xx-5xx                              | */*                                  |
+| errors.GetTransientTokenResponseBody | 401                                  | application/json                     |
+| errors.SDKError                      | 4xx-5xx                              | */*                                  |
 
 
 ## getSourceConnectionInformation
@@ -160,14 +161,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetSourceConnectionInformationResponse](../../models/getsourceconnectioninformationresponse.md)\>**
+**Promise\<[operations.GetSourceConnectionInformationResponse](../../sdk/models/operations/getsourceconnectioninformationresponse.md)\>**
 
 ### Errors
 
 | Error Object                                      | Status Code                                       | Content Type                                      |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| models.GetSourceConnectionInformationResponseBody | 401                                               | application/json                                  |
-| models.SDKError                                   | 4xx-5xx                                           | */*                                               |
+| errors.GetSourceConnectionInformationResponseBody | 401                                               | application/json                                  |
+| errors.SDKError                                   | 4xx-5xx                                           | */*                                               |
 
 
 ## getUserDetails
@@ -237,14 +238,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetUserDetailsResponse](../../models/getuserdetailsresponse.md)\>**
+**Promise\<[operations.GetUserDetailsResponse](../../sdk/models/operations/getuserdetailsresponse.md)\>**
 
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| models.GetUserDetailsResponseBody | 401                               | application/json                  |
-| models.SDKError                   | 4xx-5xx                           | */*                               |
+| errors.GetUserDetailsResponseBody | 401                               | application/json                  |
+| errors.SDKError                   | 4xx-5xx                           | */*                               |
 
 
 ## postUsersSignInData
@@ -311,7 +312,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `xPlexClientIdentifier`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | [object Object]                                                                                                                                                                |
-| `requestBody`                                                                                                                                                                  | [models.PostUsersSignInDataRequestBody](../../models/postuserssignindatarequestbody.md)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Login credentials                                                                                                                                                              |                                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | [operations.PostUsersSignInDataRequestBody](../../sdk/models/operations/postuserssignindatarequestbody.md)                                                                     | :heavy_minus_sign:                                                                                                                                                             | Login credentials                                                                                                                                                              |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -319,11 +320,11 @@ run();
 
 ### Response
 
-**Promise\<[models.PostUsersSignInDataResponse](../../models/postuserssignindataresponse.md)\>**
+**Promise\<[operations.PostUsersSignInDataResponse](../../sdk/models/operations/postuserssignindataresponse.md)\>**
 
 ### Errors
 
 | Error Object                           | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| models.PostUsersSignInDataResponseBody | 401                                    | application/json                       |
-| models.SDKError                        | 4xx-5xx                                | */*                                    |
+| errors.PostUsersSignInDataResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |

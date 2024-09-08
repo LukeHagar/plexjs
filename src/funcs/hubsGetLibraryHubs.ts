@@ -18,11 +18,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get library specific hubs
@@ -35,12 +36,12 @@ export async function hubsGetLibraryHubs(
     client$: PlexAPICore,
     sectionId: number,
     count?: number | undefined,
-    onlyTransient?: models.QueryParamOnlyTransient | undefined,
+    onlyTransient?: operations.QueryParamOnlyTransient | undefined,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetLibraryHubsResponse,
-        | models.GetLibraryHubsHubsResponseBody
+        operations.GetLibraryHubsResponse,
+        | errors.GetLibraryHubsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -50,7 +51,7 @@ export async function hubsGetLibraryHubs(
         | ConnectionError
     >
 > {
-    const input$: models.GetLibraryHubsRequest = {
+    const input$: operations.GetLibraryHubsRequest = {
         sectionId: sectionId,
         count: count,
         onlyTransient: onlyTransient,
@@ -58,7 +59,7 @@ export async function hubsGetLibraryHubs(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetLibraryHubsRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetLibraryHubsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -131,8 +132,8 @@ export async function hubsGetLibraryHubs(
     };
 
     const [result$] = await m$.match<
-        models.GetLibraryHubsResponse,
-        | models.GetLibraryHubsHubsResponseBody
+        operations.GetLibraryHubsResponse,
+        | errors.GetLibraryHubsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -141,9 +142,9 @@ export async function hubsGetLibraryHubs(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetLibraryHubsResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetLibraryHubsResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetLibraryHubsHubsResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetLibraryHubsResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

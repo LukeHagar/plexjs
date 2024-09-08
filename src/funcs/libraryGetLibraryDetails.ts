@@ -18,11 +18,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Library Details
@@ -72,12 +73,12 @@ import { Result } from "../types/fp.js";
 export async function libraryGetLibraryDetails(
     client$: PlexAPICore,
     sectionKey: number,
-    includeDetails?: models.IncludeDetails | undefined,
+    includeDetails?: operations.IncludeDetails | undefined,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetLibraryDetailsResponse,
-        | models.GetLibraryDetailsLibraryResponseBody
+        operations.GetLibraryDetailsResponse,
+        | errors.GetLibraryDetailsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -87,14 +88,14 @@ export async function libraryGetLibraryDetails(
         | ConnectionError
     >
 > {
-    const input$: models.GetLibraryDetailsRequest = {
+    const input$: operations.GetLibraryDetailsRequest = {
         sectionKey: sectionKey,
         includeDetails: includeDetails,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetLibraryDetailsRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetLibraryDetailsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -166,8 +167,8 @@ export async function libraryGetLibraryDetails(
     };
 
     const [result$] = await m$.match<
-        models.GetLibraryDetailsResponse,
-        | models.GetLibraryDetailsLibraryResponseBody
+        operations.GetLibraryDetailsResponse,
+        | errors.GetLibraryDetailsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -176,9 +177,9 @@ export async function libraryGetLibraryDetails(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetLibraryDetailsResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetLibraryDetailsResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetLibraryDetailsLibraryResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetLibraryDetailsResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

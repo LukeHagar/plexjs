@@ -14,11 +14,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 import * as z from "zod";
 
 /**
@@ -54,8 +55,8 @@ export async function logLogMultiLine(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.LogMultiLineResponse,
-        | models.LogMultiLineResponseBody
+        operations.LogMultiLineResponse,
+        | errors.LogMultiLineResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -130,8 +131,8 @@ export async function logLogMultiLine(
     };
 
     const [result$] = await m$.match<
-        models.LogMultiLineResponse,
-        | models.LogMultiLineResponseBody
+        operations.LogMultiLineResponse,
+        | errors.LogMultiLineResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -140,9 +141,9 @@ export async function logLogMultiLine(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.LogMultiLineResponse$inboundSchema),
+        m$.nil(200, operations.LogMultiLineResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.LogMultiLineResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.LogMultiLineResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

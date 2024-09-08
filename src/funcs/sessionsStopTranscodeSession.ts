@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Stop a Transcode Session
@@ -33,8 +34,8 @@ export async function sessionsStopTranscodeSession(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.StopTranscodeSessionResponse,
-        | models.StopTranscodeSessionResponseBody
+        operations.StopTranscodeSessionResponse,
+        | errors.StopTranscodeSessionResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -44,13 +45,13 @@ export async function sessionsStopTranscodeSession(
         | ConnectionError
     >
 > {
-    const input$: models.StopTranscodeSessionRequest = {
+    const input$: operations.StopTranscodeSessionRequest = {
         sessionKey: sessionKey,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.StopTranscodeSessionRequest$outboundSchema.parse(value$),
+        (value$) => operations.StopTranscodeSessionRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -117,8 +118,8 @@ export async function sessionsStopTranscodeSession(
     };
 
     const [result$] = await m$.match<
-        models.StopTranscodeSessionResponse,
-        | models.StopTranscodeSessionResponseBody
+        operations.StopTranscodeSessionResponse,
+        | errors.StopTranscodeSessionResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -127,9 +128,9 @@ export async function sessionsStopTranscodeSession(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(204, models.StopTranscodeSessionResponse$inboundSchema),
+        m$.nil(204, operations.StopTranscodeSessionResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.StopTranscodeSessionResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.StopTranscodeSessionResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

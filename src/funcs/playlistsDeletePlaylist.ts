@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Deletes a Playlist
@@ -34,8 +35,8 @@ export async function playlistsDeletePlaylist(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.DeletePlaylistResponse,
-        | models.DeletePlaylistResponseBody
+        operations.DeletePlaylistResponse,
+        | errors.DeletePlaylistResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -45,13 +46,13 @@ export async function playlistsDeletePlaylist(
         | ConnectionError
     >
 > {
-    const input$: models.DeletePlaylistRequest = {
+    const input$: operations.DeletePlaylistRequest = {
         playlistID: playlistID,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.DeletePlaylistRequest$outboundSchema.parse(value$),
+        (value$) => operations.DeletePlaylistRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -118,8 +119,8 @@ export async function playlistsDeletePlaylist(
     };
 
     const [result$] = await m$.match<
-        models.DeletePlaylistResponse,
-        | models.DeletePlaylistResponseBody
+        operations.DeletePlaylistResponse,
+        | errors.DeletePlaylistResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -128,9 +129,9 @@ export async function playlistsDeletePlaylist(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(204, models.DeletePlaylistResponse$inboundSchema),
+        m$.nil(204, operations.DeletePlaylistResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.DeletePlaylistResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.DeletePlaylistResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

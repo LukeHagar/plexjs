@@ -5,9 +5,9 @@
 import { safeParse } from "./schemas.js";
 import { StatusCodePredicate, matchResponse, matchStatusCode } from "./http.js";
 import { isPlainObject } from "./is-plain-object.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { Result } from "../sdk/types/fp.js";
 
 export type Encoding = "json" | "text" | "bytes" | "stream" | "sse" | "nil" | "fail";
 

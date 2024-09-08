@@ -5,8 +5,8 @@
 import { hubsGetGlobalHubs } from "../funcs/hubsGetGlobalHubs.js";
 import { hubsGetLibraryHubs } from "../funcs/hubsGetLibraryHubs.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Hubs extends ClientSDK {
     /**
@@ -17,9 +17,9 @@ export class Hubs extends ClientSDK {
      */
     async getGlobalHubs(
         count?: number | undefined,
-        onlyTransient?: models.OnlyTransient | undefined,
+        onlyTransient?: operations.OnlyTransient | undefined,
         options?: RequestOptions
-    ): Promise<models.GetGlobalHubsResponse> {
+    ): Promise<operations.GetGlobalHubsResponse> {
         return unwrapAsync(hubsGetGlobalHubs(this, count, onlyTransient, options));
     }
 
@@ -33,9 +33,9 @@ export class Hubs extends ClientSDK {
     async getLibraryHubs(
         sectionId: number,
         count?: number | undefined,
-        onlyTransient?: models.QueryParamOnlyTransient | undefined,
+        onlyTransient?: operations.QueryParamOnlyTransient | undefined,
         options?: RequestOptions
-    ): Promise<models.GetLibraryHubsResponse> {
+    ): Promise<operations.GetLibraryHubsResponse> {
         return unwrapAsync(hubsGetLibraryHubs(this, sectionId, count, onlyTransient, options));
     }
 }

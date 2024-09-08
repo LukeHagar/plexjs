@@ -6,8 +6,8 @@ import { searchGetSearchResults } from "../funcs/searchGetSearchResults.js";
 import { searchPerformSearch } from "../funcs/searchPerformSearch.js";
 import { searchPerformVoiceSearch } from "../funcs/searchPerformVoiceSearch.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Search extends ClientSDK {
     /**
@@ -33,7 +33,7 @@ export class Search extends ClientSDK {
         sectionId?: number | undefined,
         limit?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.PerformSearchResponse> {
+    ): Promise<operations.PerformSearchResponse> {
         return unwrapAsync(searchPerformSearch(this, query, sectionId, limit, options));
     }
 
@@ -52,7 +52,7 @@ export class Search extends ClientSDK {
         sectionId?: number | undefined,
         limit?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.PerformVoiceSearchResponse> {
+    ): Promise<operations.PerformVoiceSearchResponse> {
         return unwrapAsync(searchPerformVoiceSearch(this, query, sectionId, limit, options));
     }
 
@@ -65,7 +65,7 @@ export class Search extends ClientSDK {
     async getSearchResults(
         query: string,
         options?: RequestOptions
-    ): Promise<models.GetSearchResultsResponse> {
+    ): Promise<operations.GetSearchResultsResponse> {
         return unwrapAsync(searchGetSearchResults(this, query, options));
     }
 }

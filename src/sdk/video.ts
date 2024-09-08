@@ -5,8 +5,8 @@
 import { videoGetTimeline } from "../funcs/videoGetTimeline.js";
 import { videoStartUniversalTranscode } from "../funcs/videoStartUniversalTranscode.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Video extends ClientSDK {
     /**
@@ -16,9 +16,9 @@ export class Video extends ClientSDK {
      * Get the timeline for a media item
      */
     async getTimeline(
-        request: models.GetTimelineRequest,
+        request: operations.GetTimelineRequest,
         options?: RequestOptions
-    ): Promise<models.GetTimelineResponse> {
+    ): Promise<operations.GetTimelineResponse> {
         return unwrapAsync(videoGetTimeline(this, request, options));
     }
 
@@ -29,9 +29,9 @@ export class Video extends ClientSDK {
      * Begin a Universal Transcode Session
      */
     async startUniversalTranscode(
-        request: models.StartUniversalTranscodeRequest,
+        request: operations.StartUniversalTranscodeRequest,
         options?: RequestOptions
-    ): Promise<models.StartUniversalTranscodeResponse> {
+    ): Promise<operations.StartUniversalTranscodeResponse> {
         return unwrapAsync(videoStartUniversalTranscode(this, request, options));
     }
 }

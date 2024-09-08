@@ -1,0 +1,19 @@
+# GetTopWatchedContentRequest
+
+## Example Usage
+
+```typescript
+import { GetTopWatchedContentQueryParamType, GetTopWatchedContentRequest } from "@lukehagar/plexjs/sdk/models/operations";
+
+let value: GetTopWatchedContentRequest = {
+    type: GetTopWatchedContentQueryParamType.Two,
+    includeGuids: 1,
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                           | Type                                                                                                                                                                            | Required                                                                                                                                                                        | Description                                                                                                                                                                     | Example                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                                                                                                                                                                          | [operations.GetTopWatchedContentQueryParamType](../../../sdk/models/operations/gettopwatchedcontentqueryparamtype.md)                                                           | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | 2                                                                                                                                                                               |
+| `includeGuids`                                                                                                                                                                  | *number*                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                              | Adds the Guids object to the response<br/>                                                                                                                                      | 1                                                                                                                                                                               |

@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Stop a single Butler task
@@ -30,12 +31,12 @@ import { Result } from "../types/fp.js";
  */
 export async function butlerStopTask(
     client$: PlexAPICore,
-    taskName: models.PathParamTaskName,
+    taskName: operations.PathParamTaskName,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.StopTaskResponse,
-        | models.StopTaskResponseBody
+        operations.StopTaskResponse,
+        | errors.StopTaskResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -45,13 +46,13 @@ export async function butlerStopTask(
         | ConnectionError
     >
 > {
-    const input$: models.StopTaskRequest = {
+    const input$: operations.StopTaskRequest = {
         taskName: taskName,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.StopTaskRequest$outboundSchema.parse(value$),
+        (value$) => operations.StopTaskRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -118,8 +119,8 @@ export async function butlerStopTask(
     };
 
     const [result$] = await m$.match<
-        models.StopTaskResponse,
-        | models.StopTaskResponseBody
+        operations.StopTaskResponse,
+        | errors.StopTaskResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -128,9 +129,9 @@ export async function butlerStopTask(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.StopTaskResponse$inboundSchema),
+        m$.nil(200, operations.StopTaskResponse$inboundSchema),
         m$.fail([400, 404, "4XX", "5XX"]),
-        m$.jsonErr(401, models.StopTaskResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.StopTaskResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

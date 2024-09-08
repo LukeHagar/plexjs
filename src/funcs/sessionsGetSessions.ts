@@ -13,11 +13,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Active Sessions
@@ -30,8 +31,8 @@ export async function sessionsGetSessions(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetSessionsResponse,
-        | models.GetSessionsSessionsResponseBody
+        operations.GetSessionsResponse,
+        | errors.GetSessionsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -91,8 +92,8 @@ export async function sessionsGetSessions(
     };
 
     const [result$] = await m$.match<
-        models.GetSessionsResponse,
-        | models.GetSessionsSessionsResponseBody
+        operations.GetSessionsResponse,
+        | errors.GetSessionsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -101,9 +102,9 @@ export async function sessionsGetSessions(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetSessionsResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetSessionsResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetSessionsSessionsResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetSessionsResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -18,11 +18,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Update a Playlist
@@ -39,8 +40,8 @@ export async function playlistsUpdatePlaylist(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.UpdatePlaylistResponse,
-        | models.UpdatePlaylistResponseBody
+        operations.UpdatePlaylistResponse,
+        | errors.UpdatePlaylistResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -50,7 +51,7 @@ export async function playlistsUpdatePlaylist(
         | ConnectionError
     >
 > {
-    const input$: models.UpdatePlaylistRequest = {
+    const input$: operations.UpdatePlaylistRequest = {
         playlistID: playlistID,
         title: title,
         summary: summary,
@@ -58,7 +59,7 @@ export async function playlistsUpdatePlaylist(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.UpdatePlaylistRequest$outboundSchema.parse(value$),
+        (value$) => operations.UpdatePlaylistRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -131,8 +132,8 @@ export async function playlistsUpdatePlaylist(
     };
 
     const [result$] = await m$.match<
-        models.UpdatePlaylistResponse,
-        | models.UpdatePlaylistResponseBody
+        operations.UpdatePlaylistResponse,
+        | errors.UpdatePlaylistResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -141,9 +142,9 @@ export async function playlistsUpdatePlaylist(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.UpdatePlaylistResponse$inboundSchema),
+        m$.nil(200, operations.UpdatePlaylistResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.UpdatePlaylistResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.UpdatePlaylistResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

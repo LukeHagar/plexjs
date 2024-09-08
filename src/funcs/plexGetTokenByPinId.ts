@@ -11,18 +11,19 @@ import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
-import { GetTokenByPinIdOpServerList } from "../models/gettokenbypinidop.js";
 import {
     ConnectionError,
     InvalidRequestError,
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { GetTokenByPinIdServerList } from "../sdk/models/operations/gettokenbypinid.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Access Token by PinId
@@ -37,9 +38,9 @@ export async function plexGetTokenByPinId(
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.GetTokenByPinIdResponse,
-        | models.GetTokenByPinIdResponseBody
-        | models.GetTokenByPinIdPlexResponseBody
+        operations.GetTokenByPinIdResponse,
+        | errors.GetTokenByPinIdResponseBody
+        | errors.GetTokenByPinIdPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -49,14 +50,14 @@ export async function plexGetTokenByPinId(
         | ConnectionError
     >
 > {
-    const input$: models.GetTokenByPinIdRequest = {
+    const input$: operations.GetTokenByPinIdRequest = {
         xPlexClientIdentifier: xPlexClientIdentifier,
         pinID: pinID,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetTokenByPinIdRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetTokenByPinIdRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -67,7 +68,7 @@ export async function plexGetTokenByPinId(
 
     const baseURL$ =
         options?.serverURL ||
-        pathToFunc(GetTokenByPinIdOpServerList[0], { charEncoding: "percent" })();
+        pathToFunc(GetTokenByPinIdServerList[0], { charEncoding: "percent" })();
 
     const pathParams$ = {
         pinID: encodeSimple$("pinID", payload$.pinID, { explode: false, charEncoding: "percent" }),
@@ -123,9 +124,9 @@ export async function plexGetTokenByPinId(
     };
 
     const [result$] = await m$.match<
-        models.GetTokenByPinIdResponse,
-        | models.GetTokenByPinIdResponseBody
-        | models.GetTokenByPinIdPlexResponseBody
+        operations.GetTokenByPinIdResponse,
+        | errors.GetTokenByPinIdResponseBody
+        | errors.GetTokenByPinIdPlexResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -134,9 +135,9 @@ export async function plexGetTokenByPinId(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetTokenByPinIdResponse$inboundSchema, { key: "AuthPinContainer" }),
-        m$.jsonErr(400, models.GetTokenByPinIdResponseBody$inboundSchema),
-        m$.jsonErr(404, models.GetTokenByPinIdPlexResponseBody$inboundSchema),
+        m$.json(200, operations.GetTokenByPinIdResponse$inboundSchema, { key: "AuthPinContainer" }),
+        m$.jsonErr(400, errors.GetTokenByPinIdResponseBody$inboundSchema),
+        m$.jsonErr(404, errors.GetTokenByPinIdPlexResponseBody$inboundSchema),
         m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {

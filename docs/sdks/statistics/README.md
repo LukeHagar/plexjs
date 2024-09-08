@@ -78,14 +78,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetStatisticsResponse](../../models/getstatisticsresponse.md)\>**
+**Promise\<[operations.GetStatisticsResponse](../../sdk/models/operations/getstatisticsresponse.md)\>**
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| models.GetStatisticsStatisticsResponseBody | 401                                        | application/json                           |
-| models.SDKError                            | 4xx-5xx                                    | */*                                        |
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| errors.GetStatisticsResponseBody | 401                              | application/json                 |
+| errors.SDKError                  | 4xx-5xx                          | */*                              |
 
 
 ## getResourcesStatistics
@@ -154,14 +154,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetResourcesStatisticsResponse](../../models/getresourcesstatisticsresponse.md)\>**
+**Promise\<[operations.GetResourcesStatisticsResponse](../../sdk/models/operations/getresourcesstatisticsresponse.md)\>**
 
 ### Errors
 
-| Error Object                                        | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| models.GetResourcesStatisticsStatisticsResponseBody | 401                                                 | application/json                                    |
-| models.SDKError                                     | 4xx-5xx                                             | */*                                                 |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetResourcesStatisticsResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 
 ## getBandwidthStatistics
@@ -230,11 +230,11 @@ run();
 
 ### Response
 
-**Promise\<[models.GetBandwidthStatisticsResponse](../../models/getbandwidthstatisticsresponse.md)\>**
+**Promise\<[operations.GetBandwidthStatisticsResponse](../../sdk/models/operations/getbandwidthstatisticsresponse.md)\>**
 
 ### Errors
 
-| Error Object                                        | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| models.GetBandwidthStatisticsStatisticsResponseBody | 401                                                 | application/json                                    |
-| models.SDKError                                     | 4xx-5xx                                             | */*                                                 |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetBandwidthStatisticsResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |

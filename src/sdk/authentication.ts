@@ -7,8 +7,8 @@ import { authenticationGetTransientToken } from "../funcs/authenticationGetTrans
 import { authenticationGetUserDetails } from "../funcs/authenticationGetUserDetails.js";
 import { authenticationPostUsersSignInData } from "../funcs/authenticationPostUsersSignInData.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Authentication extends ClientSDK {
     /**
@@ -19,10 +19,10 @@ export class Authentication extends ClientSDK {
      *
      */
     async getTransientToken(
-        type: models.GetTransientTokenQueryParamType,
-        scope: models.Scope,
+        type: operations.GetTransientTokenQueryParamType,
+        scope: operations.Scope,
         options?: RequestOptions
-    ): Promise<models.GetTransientTokenResponse> {
+    ): Promise<operations.GetTransientTokenResponse> {
         return unwrapAsync(authenticationGetTransientToken(this, type, scope, options));
     }
 
@@ -37,7 +37,7 @@ export class Authentication extends ClientSDK {
     async getSourceConnectionInformation(
         source: string,
         options?: RequestOptions
-    ): Promise<models.GetSourceConnectionInformationResponse> {
+    ): Promise<operations.GetSourceConnectionInformationResponse> {
         return unwrapAsync(authenticationGetSourceConnectionInformation(this, source, options));
     }
 
@@ -50,7 +50,7 @@ export class Authentication extends ClientSDK {
     async getUserDetails(
         xPlexToken: string,
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.GetUserDetailsResponse> {
+    ): Promise<operations.GetUserDetailsResponse> {
         return unwrapAsync(authenticationGetUserDetails(this, xPlexToken, options));
     }
 
@@ -62,9 +62,9 @@ export class Authentication extends ClientSDK {
      */
     async postUsersSignInData(
         xPlexClientIdentifier?: string | undefined,
-        requestBody?: models.PostUsersSignInDataRequestBody | undefined,
+        requestBody?: operations.PostUsersSignInDataRequestBody | undefined,
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.PostUsersSignInDataResponse> {
+    ): Promise<operations.PostUsersSignInDataResponse> {
         return unwrapAsync(
             authenticationPostUsersSignInData(this, xPlexClientIdentifier, requestBody, options)
         );

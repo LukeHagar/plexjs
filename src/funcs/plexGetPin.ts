@@ -8,18 +8,19 @@ import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
-import { GetPinOpServerList } from "../models/getpinop.js";
 import {
     ConnectionError,
     InvalidRequestError,
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { GetPinServerList } from "../sdk/models/operations/getpin.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get a Pin
@@ -35,8 +36,8 @@ export async function plexGetPin(
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.GetPinResponse,
-        | models.GetPinResponseBody
+        operations.GetPinResponse,
+        | errors.GetPinResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -46,7 +47,7 @@ export async function plexGetPin(
         | ConnectionError
     >
 > {
-    const input$: models.GetPinRequest = {
+    const input$: operations.GetPinRequest = {
         strong: strong,
         xPlexClientIdentifier: xPlexClientIdentifier,
         xPlexProduct: xPlexProduct,
@@ -54,7 +55,7 @@ export async function plexGetPin(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetPinRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetPinRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -64,7 +65,7 @@ export async function plexGetPin(
     const body$ = null;
 
     const baseURL$ =
-        options?.serverURL || pathToFunc(GetPinOpServerList[0], { charEncoding: "percent" })();
+        options?.serverURL || pathToFunc(GetPinServerList[0], { charEncoding: "percent" })();
 
     const path$ = pathToFunc("/pins")();
 
@@ -118,8 +119,8 @@ export async function plexGetPin(
     };
 
     const [result$] = await m$.match<
-        models.GetPinResponse,
-        | models.GetPinResponseBody
+        operations.GetPinResponse,
+        | errors.GetPinResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -128,8 +129,8 @@ export async function plexGetPin(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetPinResponse$inboundSchema, { key: "AuthPinContainer" }),
-        m$.jsonErr(400, models.GetPinResponseBody$inboundSchema),
+        m$.json(200, operations.GetPinResponse$inboundSchema, { key: "AuthPinContainer" }),
+        m$.jsonErr(400, errors.GetPinResponseBody$inboundSchema),
         m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {

@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Perform a search
@@ -47,8 +48,8 @@ export async function searchPerformSearch(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.PerformSearchResponse,
-        | models.PerformSearchResponseBody
+        operations.PerformSearchResponse,
+        | errors.PerformSearchResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -58,7 +59,7 @@ export async function searchPerformSearch(
         | ConnectionError
     >
 > {
-    const input$: models.PerformSearchRequest = {
+    const input$: operations.PerformSearchRequest = {
         query: query,
         sectionId: sectionId,
         limit: limit,
@@ -66,7 +67,7 @@ export async function searchPerformSearch(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.PerformSearchRequest$outboundSchema.parse(value$),
+        (value$) => operations.PerformSearchRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -133,8 +134,8 @@ export async function searchPerformSearch(
     };
 
     const [result$] = await m$.match<
-        models.PerformSearchResponse,
-        | models.PerformSearchResponseBody
+        operations.PerformSearchResponse,
+        | errors.PerformSearchResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -143,9 +144,9 @@ export async function searchPerformSearch(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.PerformSearchResponse$inboundSchema),
+        m$.nil(200, operations.PerformSearchResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.PerformSearchResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.PerformSearchResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

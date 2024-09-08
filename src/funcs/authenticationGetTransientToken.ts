@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get a Transient Token.
@@ -30,13 +31,13 @@ import { Result } from "../types/fp.js";
  */
 export async function authenticationGetTransientToken(
     client$: PlexAPICore,
-    type: models.GetTransientTokenQueryParamType,
-    scope: models.Scope,
+    type: operations.GetTransientTokenQueryParamType,
+    scope: operations.Scope,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetTransientTokenResponse,
-        | models.GetTransientTokenResponseBody
+        operations.GetTransientTokenResponse,
+        | errors.GetTransientTokenResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -46,14 +47,14 @@ export async function authenticationGetTransientToken(
         | ConnectionError
     >
 > {
-    const input$: models.GetTransientTokenRequest = {
+    const input$: operations.GetTransientTokenRequest = {
         type: type,
         scope: scope,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetTransientTokenRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetTransientTokenRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -119,8 +120,8 @@ export async function authenticationGetTransientToken(
     };
 
     const [result$] = await m$.match<
-        models.GetTransientTokenResponse,
-        | models.GetTransientTokenResponseBody
+        operations.GetTransientTokenResponse,
+        | errors.GetTransientTokenResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -129,9 +130,9 @@ export async function authenticationGetTransientToken(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.GetTransientTokenResponse$inboundSchema),
+        m$.nil(200, operations.GetTransientTokenResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetTransientTokenResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetTransientTokenResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -18,11 +18,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Retrieve Playlist Contents
@@ -37,12 +38,12 @@ import { Result } from "../types/fp.js";
 export async function playlistsGetPlaylistContents(
     client$: PlexAPICore,
     playlistID: number,
-    type: models.GetPlaylistContentsQueryParamType,
+    type: operations.GetPlaylistContentsQueryParamType,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetPlaylistContentsResponse,
-        | models.GetPlaylistContentsPlaylistsResponseBody
+        operations.GetPlaylistContentsResponse,
+        | errors.GetPlaylistContentsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -52,14 +53,14 @@ export async function playlistsGetPlaylistContents(
         | ConnectionError
     >
 > {
-    const input$: models.GetPlaylistContentsRequest = {
+    const input$: operations.GetPlaylistContentsRequest = {
         playlistID: playlistID,
         type: type,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetPlaylistContentsRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetPlaylistContentsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -131,8 +132,8 @@ export async function playlistsGetPlaylistContents(
     };
 
     const [result$] = await m$.match<
-        models.GetPlaylistContentsResponse,
-        | models.GetPlaylistContentsPlaylistsResponseBody
+        operations.GetPlaylistContentsResponse,
+        | errors.GetPlaylistContentsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -141,9 +142,9 @@ export async function playlistsGetPlaylistContents(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetPlaylistContentsResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetPlaylistContentsResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetPlaylistContentsPlaylistsResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetPlaylistContentsResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

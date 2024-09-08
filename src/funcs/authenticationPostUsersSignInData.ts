@@ -17,12 +17,13 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { PostUsersSignInDataOpServerList } from "../models/postuserssignindataop.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { PostUsersSignInDataServerList } from "../sdk/models/operations/postuserssignindata.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get User SignIn Data
@@ -33,12 +34,12 @@ import { Result } from "../types/fp.js";
 export async function authenticationPostUsersSignInData(
     client$: PlexAPICore,
     xPlexClientIdentifier?: string | undefined,
-    requestBody?: models.PostUsersSignInDataRequestBody | undefined,
+    requestBody?: operations.PostUsersSignInDataRequestBody | undefined,
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.PostUsersSignInDataResponse,
-        | models.PostUsersSignInDataResponseBody
+        operations.PostUsersSignInDataResponse,
+        | errors.PostUsersSignInDataResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -48,14 +49,14 @@ export async function authenticationPostUsersSignInData(
         | ConnectionError
     >
 > {
-    const input$: models.PostUsersSignInDataRequest = {
+    const input$: operations.PostUsersSignInDataRequest = {
         xPlexClientIdentifier: xPlexClientIdentifier,
         requestBody: requestBody,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.PostUsersSignInDataRequest$outboundSchema.parse(value$),
+        (value$) => operations.PostUsersSignInDataRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -70,7 +71,7 @@ export async function authenticationPostUsersSignInData(
 
     const baseURL$ =
         options?.serverURL ||
-        pathToFunc(PostUsersSignInDataOpServerList[0], { charEncoding: "percent" })();
+        pathToFunc(PostUsersSignInDataServerList[0], { charEncoding: "percent" })();
 
     const path$ = pathToFunc("/users/signin")();
 
@@ -127,8 +128,8 @@ export async function authenticationPostUsersSignInData(
     };
 
     const [result$] = await m$.match<
-        models.PostUsersSignInDataResponse,
-        | models.PostUsersSignInDataResponseBody
+        operations.PostUsersSignInDataResponse,
+        | errors.PostUsersSignInDataResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -137,9 +138,11 @@ export async function authenticationPostUsersSignInData(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(201, models.PostUsersSignInDataResponse$inboundSchema, { key: "UserPlexAccount" }),
+        m$.json(201, operations.PostUsersSignInDataResponse$inboundSchema, {
+            key: "UserPlexAccount",
+        }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.PostUsersSignInDataResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.PostUsersSignInDataResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

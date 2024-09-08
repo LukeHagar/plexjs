@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get the timeline for a media item
@@ -29,12 +30,12 @@ import { Result } from "../types/fp.js";
  */
 export async function videoGetTimeline(
     client$: PlexAPICore,
-    request: models.GetTimelineRequest,
+    request: operations.GetTimelineRequest,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetTimelineResponse,
-        | models.GetTimelineResponseBody
+        operations.GetTimelineResponse,
+        | errors.GetTimelineResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -48,7 +49,7 @@ export async function videoGetTimeline(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetTimelineRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetTimelineRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -122,8 +123,8 @@ export async function videoGetTimeline(
     };
 
     const [result$] = await m$.match<
-        models.GetTimelineResponse,
-        | models.GetTimelineResponseBody
+        operations.GetTimelineResponse,
+        | errors.GetTimelineResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -132,9 +133,9 @@ export async function videoGetTimeline(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.GetTimelineResponse$inboundSchema),
+        m$.nil(200, operations.GetTimelineResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetTimelineResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetTimelineResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

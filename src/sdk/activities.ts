@@ -5,8 +5,8 @@
 import { activitiesCancelServerActivities } from "../funcs/activitiesCancelServerActivities.js";
 import { activitiesGetServerActivities } from "../funcs/activitiesGetServerActivities.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Activities extends ClientSDK {
     /**
@@ -17,7 +17,7 @@ export class Activities extends ClientSDK {
      */
     async getServerActivities(
         options?: RequestOptions
-    ): Promise<models.GetServerActivitiesResponse> {
+    ): Promise<operations.GetServerActivitiesResponse> {
         return unwrapAsync(activitiesGetServerActivities(this, options));
     }
 
@@ -30,7 +30,7 @@ export class Activities extends ClientSDK {
     async cancelServerActivities(
         activityUUID: string,
         options?: RequestOptions
-    ): Promise<models.CancelServerActivitiesResponse> {
+    ): Promise<operations.CancelServerActivitiesResponse> {
         return unwrapAsync(activitiesCancelServerActivities(this, activityUUID, options));
     }
 }

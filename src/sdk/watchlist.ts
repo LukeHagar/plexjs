@@ -4,8 +4,8 @@
 
 import { watchlistGetWatchList } from "../funcs/watchlistGetWatchList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Watchlist extends ClientSDK {
     /**
@@ -15,9 +15,9 @@ export class Watchlist extends ClientSDK {
      * Get User Watchlist
      */
     async getWatchList(
-        request: models.GetWatchListRequest,
+        request: operations.GetWatchListRequest,
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.GetWatchListResponse> {
+    ): Promise<operations.GetWatchListResponse> {
         return unwrapAsync(watchlistGetWatchList(this, request, options));
     }
 }

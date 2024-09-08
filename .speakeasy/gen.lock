@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: f627107f2ac6c53325be4f291ae2dea7
+  docChecksum: eae2a027b2467f033ac397a5d9f0add5
   docVersion: 0.0.3
-  speakeasyVersion: 1.390.7
-  generationVersion: 2.409.8
-  releaseVersion: 0.20.0
-  configChecksum: 1eb0f35569735ddf4ea84adabb3887ba
+  speakeasyVersion: 1.392.1
+  generationVersion: 2.411.9
+  releaseVersion: 0.20.1
+  configChecksum: f629192d4499bb36b01927f9b0146f69
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.16.1
+    core: 3.16.4
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
@@ -34,104 +34,662 @@ features:
     sdkHooks: 0.1.0
     unions: 2.85.7
 generatedFiles:
-  - src/funcs/serverGetServerCapabilities.ts
-  - src/funcs/serverGetServerPreferences.ts
-  - src/funcs/serverGetAvailableClients.ts
-  - src/funcs/serverGetDevices.ts
-  - src/funcs/serverGetServerIdentity.ts
-  - src/funcs/serverGetMyPlexAccount.ts
-  - src/funcs/serverGetResizedPhoto.ts
-  - src/funcs/serverGetMediaProviders.ts
-  - src/funcs/serverGetServerList.ts
-  - src/funcs/mediaMarkPlayed.ts
-  - src/funcs/mediaMarkUnplayed.ts
-  - src/funcs/mediaUpdatePlayProgress.ts
-  - src/funcs/mediaGetBannerImage.ts
-  - src/funcs/mediaGetThumbImage.ts
-  - src/funcs/videoGetTimeline.ts
-  - src/funcs/videoStartUniversalTranscode.ts
-  - src/funcs/activitiesGetServerActivities.ts
-  - src/funcs/activitiesCancelServerActivities.ts
-  - src/funcs/butlerGetButlerTasks.ts
-  - src/funcs/butlerStartAllTasks.ts
-  - src/funcs/butlerStopAllTasks.ts
-  - src/funcs/butlerStartTask.ts
-  - src/funcs/butlerStopTask.ts
-  - src/funcs/plexGetCompanionsData.ts
-  - src/funcs/plexGetUserFriends.ts
-  - src/funcs/plexGetGeoData.ts
-  - src/funcs/plexGetHomeData.ts
-  - src/funcs/plexGetServerResources.ts
-  - src/funcs/plexGetPin.ts
-  - src/funcs/plexGetTokenByPinId.ts
-  - src/funcs/hubsGetGlobalHubs.ts
-  - src/funcs/hubsGetLibraryHubs.ts
-  - src/funcs/searchPerformSearch.ts
-  - src/funcs/searchPerformVoiceSearch.ts
-  - src/funcs/searchGetSearchResults.ts
-  - src/funcs/libraryGetFileHash.ts
-  - src/funcs/libraryGetRecentlyAdded.ts
-  - src/funcs/libraryGetAllLibraries.ts
-  - src/funcs/libraryGetLibraryDetails.ts
-  - src/funcs/libraryDeleteLibrary.ts
-  - src/funcs/libraryGetLibraryItems.ts
-  - src/funcs/libraryGetRefreshLibraryMetadata.ts
-  - src/funcs/libraryGetSearchLibrary.ts
-  - src/funcs/libraryGetMetaDataByRatingKey.ts
-  - src/funcs/libraryGetMetadataChildren.ts
-  - src/funcs/libraryGetTopWatchedContent.ts
-  - src/funcs/libraryGetOnDeck.ts
-  - src/funcs/watchlistGetWatchList.ts
-  - src/funcs/logLogLine.ts
-  - src/funcs/logLogMultiLine.ts
-  - src/funcs/logEnablePaperTrail.ts
-  - src/funcs/playlistsCreatePlaylist.ts
-  - src/funcs/playlistsGetPlaylists.ts
-  - src/funcs/playlistsGetPlaylist.ts
-  - src/funcs/playlistsDeletePlaylist.ts
-  - src/funcs/playlistsUpdatePlaylist.ts
-  - src/funcs/playlistsGetPlaylistContents.ts
-  - src/funcs/playlistsClearPlaylistContents.ts
-  - src/funcs/playlistsAddPlaylistContents.ts
-  - src/funcs/playlistsUploadPlaylist.ts
-  - src/funcs/authenticationGetTransientToken.ts
-  - src/funcs/authenticationGetSourceConnectionInformation.ts
-  - src/funcs/authenticationGetUserDetails.ts
-  - src/funcs/authenticationPostUsersSignInData.ts
-  - src/funcs/statisticsGetStatistics.ts
-  - src/funcs/statisticsGetResourcesStatistics.ts
-  - src/funcs/statisticsGetBandwidthStatistics.ts
-  - src/funcs/sessionsGetSessions.ts
-  - src/funcs/sessionsGetSessionHistory.ts
-  - src/funcs/sessionsGetTranscodeSessions.ts
-  - src/funcs/sessionsStopTranscodeSession.ts
-  - src/funcs/updaterGetUpdateStatus.ts
-  - src/funcs/updaterCheckForUpdates.ts
-  - src/funcs/updaterApplyUpdates.ts
-  - src/sdk/server.ts
-  - src/sdk/media.ts
-  - src/sdk/video.ts
-  - src/sdk/activities.ts
-  - src/sdk/butler.ts
-  - src/sdk/plex.ts
-  - src/sdk/hubs.ts
-  - src/sdk/search.ts
-  - src/sdk/library.ts
-  - src/sdk/watchlist.ts
-  - src/sdk/log.ts
-  - src/sdk/playlists.ts
-  - src/sdk/authentication.ts
-  - src/sdk/statistics.ts
-  - src/sdk/sessions.ts
-  - src/sdk/updater.ts
-  - src/sdk/sdk.ts
   - .eslintrc.cjs
+  - .gitattributes
   - .npmignore
+  - CONTRIBUTING.md
   - FUNCTIONS.md
   - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/sdk/models/errors/addplaylistcontentserrors.md
+  - docs/sdk/models/errors/addplaylistcontentsresponsebody.md
+  - docs/sdk/models/errors/applyupdateserrors.md
+  - docs/sdk/models/errors/applyupdatesresponsebody.md
+  - docs/sdk/models/errors/cancelserveractivitieserrors.md
+  - docs/sdk/models/errors/cancelserveractivitiesresponsebody.md
+  - docs/sdk/models/errors/checkforupdateserrors.md
+  - docs/sdk/models/errors/checkforupdatesresponsebody.md
+  - docs/sdk/models/errors/clearplaylistcontentserrors.md
+  - docs/sdk/models/errors/clearplaylistcontentsresponsebody.md
+  - docs/sdk/models/errors/createplaylisterrors.md
+  - docs/sdk/models/errors/createplaylistresponsebody.md
+  - docs/sdk/models/errors/deletelibraryerrors.md
+  - docs/sdk/models/errors/deletelibraryresponsebody.md
+  - docs/sdk/models/errors/deleteplaylisterrors.md
+  - docs/sdk/models/errors/deleteplaylistresponsebody.md
+  - docs/sdk/models/errors/enablepapertrailerrors.md
+  - docs/sdk/models/errors/enablepapertrailresponsebody.md
+  - docs/sdk/models/errors/errors.md
+  - docs/sdk/models/errors/getalllibrarieserrors.md
+  - docs/sdk/models/errors/getalllibrariesresponsebody.md
+  - docs/sdk/models/errors/getavailableclientserrors.md
+  - docs/sdk/models/errors/getavailableclientsresponsebody.md
+  - docs/sdk/models/errors/getbandwidthstatisticserrors.md
+  - docs/sdk/models/errors/getbandwidthstatisticsresponsebody.md
+  - docs/sdk/models/errors/getbannerimageerrors.md
+  - docs/sdk/models/errors/getbannerimageresponsebody.md
+  - docs/sdk/models/errors/getbutlertaskserrors.md
+  - docs/sdk/models/errors/getbutlertasksresponsebody.md
+  - docs/sdk/models/errors/getcompanionsdataerrors.md
+  - docs/sdk/models/errors/getcompanionsdataresponsebody.md
+  - docs/sdk/models/errors/getdeviceserrors.md
+  - docs/sdk/models/errors/getdevicesresponsebody.md
+  - docs/sdk/models/errors/getfilehasherrors.md
+  - docs/sdk/models/errors/getfilehashresponsebody.md
+  - docs/sdk/models/errors/getgeodataerrors.md
+  - docs/sdk/models/errors/getgeodataresponsebody.md
+  - docs/sdk/models/errors/getglobalhubserrors.md
+  - docs/sdk/models/errors/getglobalhubsresponsebody.md
+  - docs/sdk/models/errors/gethomedataerrors.md
+  - docs/sdk/models/errors/gethomedataresponsebody.md
+  - docs/sdk/models/errors/getlibrarydetailserrors.md
+  - docs/sdk/models/errors/getlibrarydetailsresponsebody.md
+  - docs/sdk/models/errors/getlibraryhubserrors.md
+  - docs/sdk/models/errors/getlibraryhubsresponsebody.md
+  - docs/sdk/models/errors/getlibraryitemserrors.md
+  - docs/sdk/models/errors/getlibraryitemsresponsebody.md
+  - docs/sdk/models/errors/getmediaproviderserrors.md
+  - docs/sdk/models/errors/getmediaprovidersresponsebody.md
+  - docs/sdk/models/errors/getmetadatabyratingkeyerrors.md
+  - docs/sdk/models/errors/getmetadatabyratingkeyresponsebody.md
+  - docs/sdk/models/errors/getmetadatachildrenerrors.md
+  - docs/sdk/models/errors/getmetadatachildrenresponsebody.md
+  - docs/sdk/models/errors/getmyplexaccounterrors.md
+  - docs/sdk/models/errors/getmyplexaccountresponsebody.md
+  - docs/sdk/models/errors/getondeckerrors.md
+  - docs/sdk/models/errors/getondeckresponsebody.md
+  - docs/sdk/models/errors/getpinerrors.md
+  - docs/sdk/models/errors/getpinresponsebody.md
+  - docs/sdk/models/errors/getplaylistcontentserrors.md
+  - docs/sdk/models/errors/getplaylistcontentsresponsebody.md
+  - docs/sdk/models/errors/getplaylisterrors.md
+  - docs/sdk/models/errors/getplaylistresponsebody.md
+  - docs/sdk/models/errors/getplaylistserrors.md
+  - docs/sdk/models/errors/getplaylistsresponsebody.md
+  - docs/sdk/models/errors/getrecentlyaddederrors.md
+  - docs/sdk/models/errors/getrecentlyaddedresponsebody.md
+  - docs/sdk/models/errors/getrefreshlibrarymetadataerrors.md
+  - docs/sdk/models/errors/getrefreshlibrarymetadataresponsebody.md
+  - docs/sdk/models/errors/getresizedphotoerrors.md
+  - docs/sdk/models/errors/getresizedphotoresponsebody.md
+  - docs/sdk/models/errors/getresourcesstatisticserrors.md
+  - docs/sdk/models/errors/getresourcesstatisticsresponsebody.md
+  - docs/sdk/models/errors/getsearchlibraryerrors.md
+  - docs/sdk/models/errors/getsearchlibraryresponsebody.md
+  - docs/sdk/models/errors/getsearchresultserrors.md
+  - docs/sdk/models/errors/getsearchresultsresponsebody.md
+  - docs/sdk/models/errors/getserveractivitieserrors.md
+  - docs/sdk/models/errors/getserveractivitiesresponsebody.md
+  - docs/sdk/models/errors/getservercapabilitiesresponsebody.md
+  - docs/sdk/models/errors/getserveridentityresponsebody.md
+  - docs/sdk/models/errors/getserverlisterrors.md
+  - docs/sdk/models/errors/getserverlistresponsebody.md
+  - docs/sdk/models/errors/getserverpreferenceserrors.md
+  - docs/sdk/models/errors/getserverpreferencesresponsebody.md
+  - docs/sdk/models/errors/getserverresourceserrors.md
+  - docs/sdk/models/errors/getserverresourcesresponsebody.md
+  - docs/sdk/models/errors/getsessionhistoryerrors.md
+  - docs/sdk/models/errors/getsessionhistoryresponsebody.md
+  - docs/sdk/models/errors/getsessionserrors.md
+  - docs/sdk/models/errors/getsessionsresponsebody.md
+  - docs/sdk/models/errors/getsourceconnectioninformationerrors.md
+  - docs/sdk/models/errors/getsourceconnectioninformationresponsebody.md
+  - docs/sdk/models/errors/getstatisticserrors.md
+  - docs/sdk/models/errors/getstatisticsresponsebody.md
+  - docs/sdk/models/errors/getthumbimageerrors.md
+  - docs/sdk/models/errors/getthumbimageresponsebody.md
+  - docs/sdk/models/errors/gettimelineerrors.md
+  - docs/sdk/models/errors/gettimelineresponsebody.md
+  - docs/sdk/models/errors/gettokenbypiniderrors.md
+  - docs/sdk/models/errors/gettokenbypinidplexerrors.md
+  - docs/sdk/models/errors/gettokenbypinidplexresponsebody.md
+  - docs/sdk/models/errors/gettokenbypinidresponsebody.md
+  - docs/sdk/models/errors/gettopwatchedcontenterrors.md
+  - docs/sdk/models/errors/gettopwatchedcontentresponsebody.md
+  - docs/sdk/models/errors/gettranscodesessionserrors.md
+  - docs/sdk/models/errors/gettranscodesessionsresponsebody.md
+  - docs/sdk/models/errors/gettransienttokenerrors.md
+  - docs/sdk/models/errors/gettransienttokenresponsebody.md
+  - docs/sdk/models/errors/getupdatestatuserrors.md
+  - docs/sdk/models/errors/getupdatestatusresponsebody.md
+  - docs/sdk/models/errors/getuserdetailserrors.md
+  - docs/sdk/models/errors/getuserdetailsresponsebody.md
+  - docs/sdk/models/errors/getuserfriendserrors.md
+  - docs/sdk/models/errors/getuserfriendsresponsebody.md
+  - docs/sdk/models/errors/getwatchlisterrors.md
+  - docs/sdk/models/errors/getwatchlistresponsebody.md
+  - docs/sdk/models/errors/loglineerrors.md
+  - docs/sdk/models/errors/loglineresponsebody.md
+  - docs/sdk/models/errors/logmultilineerrors.md
+  - docs/sdk/models/errors/logmultilineresponsebody.md
+  - docs/sdk/models/errors/markplayederrors.md
+  - docs/sdk/models/errors/markplayedresponsebody.md
+  - docs/sdk/models/errors/markunplayederrors.md
+  - docs/sdk/models/errors/markunplayedresponsebody.md
+  - docs/sdk/models/errors/performsearcherrors.md
+  - docs/sdk/models/errors/performsearchresponsebody.md
+  - docs/sdk/models/errors/performvoicesearcherrors.md
+  - docs/sdk/models/errors/performvoicesearchresponsebody.md
+  - docs/sdk/models/errors/postuserssignindataerrors.md
+  - docs/sdk/models/errors/postuserssignindataresponsebody.md
+  - docs/sdk/models/errors/startalltaskserrors.md
+  - docs/sdk/models/errors/startalltasksresponsebody.md
+  - docs/sdk/models/errors/starttaskerrors.md
+  - docs/sdk/models/errors/starttaskresponsebody.md
+  - docs/sdk/models/errors/startuniversaltranscodeerrors.md
+  - docs/sdk/models/errors/startuniversaltranscoderesponsebody.md
+  - docs/sdk/models/errors/stopalltaskserrors.md
+  - docs/sdk/models/errors/stopalltasksresponsebody.md
+  - docs/sdk/models/errors/stoptaskerrors.md
+  - docs/sdk/models/errors/stoptaskresponsebody.md
+  - docs/sdk/models/errors/stoptranscodesessionerrors.md
+  - docs/sdk/models/errors/stoptranscodesessionresponsebody.md
+  - docs/sdk/models/errors/updateplaylisterrors.md
+  - docs/sdk/models/errors/updateplaylistresponsebody.md
+  - docs/sdk/models/errors/updateplayprogresserrors.md
+  - docs/sdk/models/errors/updateplayprogressresponsebody.md
+  - docs/sdk/models/errors/uploadplaylisterrors.md
+  - docs/sdk/models/errors/uploadplaylistresponsebody.md
+  - docs/sdk/models/operations/account.md
+  - docs/sdk/models/operations/activity.md
+  - docs/sdk/models/operations/addplaylistcontentsmediacontainer.md
+  - docs/sdk/models/operations/addplaylistcontentsmetadata.md
+  - docs/sdk/models/operations/addplaylistcontentsrequest.md
+  - docs/sdk/models/operations/addplaylistcontentsresponse.md
+  - docs/sdk/models/operations/addplaylistcontentsresponsebody.md
+  - docs/sdk/models/operations/applyupdatesrequest.md
+  - docs/sdk/models/operations/applyupdatesresponse.md
+  - docs/sdk/models/operations/autoselectsubtitle.md
+  - docs/sdk/models/operations/billing.md
+  - docs/sdk/models/operations/butlertask.md
+  - docs/sdk/models/operations/butlertasks.md
+  - docs/sdk/models/operations/cancelserveractivitiesrequest.md
+  - docs/sdk/models/operations/cancelserveractivitiesresponse.md
+  - docs/sdk/models/operations/checkforupdatesrequest.md
+  - docs/sdk/models/operations/checkforupdatesresponse.md
+  - docs/sdk/models/operations/clearplaylistcontentsrequest.md
+  - docs/sdk/models/operations/clearplaylistcontentsresponse.md
+  - docs/sdk/models/operations/connections.md
+  - docs/sdk/models/operations/context.md
+  - docs/sdk/models/operations/country.md
+  - docs/sdk/models/operations/createplaylistmediacontainer.md
+  - docs/sdk/models/operations/createplaylistmetadata.md
+  - docs/sdk/models/operations/createplaylistqueryparamtype.md
+  - docs/sdk/models/operations/createplaylistrequest.md
+  - docs/sdk/models/operations/createplaylistresponse.md
+  - docs/sdk/models/operations/createplaylistresponsebody.md
+  - docs/sdk/models/operations/defaultsubtitleaccessibility.md
+  - docs/sdk/models/operations/defaultsubtitleforced.md
+  - docs/sdk/models/operations/deletelibraryrequest.md
+  - docs/sdk/models/operations/deletelibraryresponse.md
+  - docs/sdk/models/operations/deleteplaylistrequest.md
+  - docs/sdk/models/operations/deleteplaylistresponse.md
+  - docs/sdk/models/operations/device.md
+  - docs/sdk/models/operations/director.md
+  - docs/sdk/models/operations/directory.md
+  - docs/sdk/models/operations/download.md
+  - docs/sdk/models/operations/enablepapertrailresponse.md
+  - docs/sdk/models/operations/feature.md
+  - docs/sdk/models/operations/features.md
+  - docs/sdk/models/operations/field.md
+  - docs/sdk/models/operations/fieldtype.md
+  - docs/sdk/models/operations/filter.md
+  - docs/sdk/models/operations/force.md
+  - docs/sdk/models/operations/friend.md
+  - docs/sdk/models/operations/genre.md
+  - docs/sdk/models/operations/geodata.md
+  - docs/sdk/models/operations/getalllibrariesdirectory.md
+  - docs/sdk/models/operations/getalllibrariesmediacontainer.md
+  - docs/sdk/models/operations/getalllibrariesresponse.md
+  - docs/sdk/models/operations/getalllibrariesresponsebody.md
+  - docs/sdk/models/operations/getavailableclientsmediacontainer.md
+  - docs/sdk/models/operations/getavailableclientsresponse.md
+  - docs/sdk/models/operations/getavailableclientsresponsebody.md
+  - docs/sdk/models/operations/getbandwidthstatisticsaccount.md
+  - docs/sdk/models/operations/getbandwidthstatisticsdevice.md
+  - docs/sdk/models/operations/getbandwidthstatisticsmediacontainer.md
+  - docs/sdk/models/operations/getbandwidthstatisticsrequest.md
+  - docs/sdk/models/operations/getbandwidthstatisticsresponse.md
+  - docs/sdk/models/operations/getbandwidthstatisticsresponsebody.md
+  - docs/sdk/models/operations/getbannerimagerequest.md
+  - docs/sdk/models/operations/getbannerimageresponse.md
+  - docs/sdk/models/operations/getbutlertasksresponse.md
+  - docs/sdk/models/operations/getbutlertasksresponsebody.md
+  - docs/sdk/models/operations/getcompanionsdataresponse.md
+  - docs/sdk/models/operations/getdevicesmediacontainer.md
+  - docs/sdk/models/operations/getdevicesresponse.md
+  - docs/sdk/models/operations/getdevicesresponsebody.md
+  - docs/sdk/models/operations/getfilehashrequest.md
+  - docs/sdk/models/operations/getfilehashresponse.md
+  - docs/sdk/models/operations/getgeodatageodata.md
+  - docs/sdk/models/operations/getgeodataresponse.md
+  - docs/sdk/models/operations/getglobalhubsmediacontainer.md
+  - docs/sdk/models/operations/getglobalhubsmetadata.md
+  - docs/sdk/models/operations/getglobalhubsrequest.md
+  - docs/sdk/models/operations/getglobalhubsresponse.md
+  - docs/sdk/models/operations/getglobalhubsresponsebody.md
+  - docs/sdk/models/operations/gethomedataresponse.md
+  - docs/sdk/models/operations/gethomedataresponsebody.md
+  - docs/sdk/models/operations/getlibrarydetailsdirectory.md
+  - docs/sdk/models/operations/getlibrarydetailsfilter.md
+  - docs/sdk/models/operations/getlibrarydetailsmediacontainer.md
+  - docs/sdk/models/operations/getlibrarydetailsrequest.md
+  - docs/sdk/models/operations/getlibrarydetailsresponse.md
+  - docs/sdk/models/operations/getlibrarydetailsresponsebody.md
+  - docs/sdk/models/operations/getlibrarydetailstype.md
+  - docs/sdk/models/operations/getlibraryhubscountry.md
+  - docs/sdk/models/operations/getlibraryhubsdirector.md
+  - docs/sdk/models/operations/getlibraryhubsgenre.md
+  - docs/sdk/models/operations/getlibraryhubshub.md
+  - docs/sdk/models/operations/getlibraryhubsmedia.md
+  - docs/sdk/models/operations/getlibraryhubsmediacontainer.md
+  - docs/sdk/models/operations/getlibraryhubsmetadata.md
+  - docs/sdk/models/operations/getlibraryhubspart.md
+  - docs/sdk/models/operations/getlibraryhubsrequest.md
+  - docs/sdk/models/operations/getlibraryhubsresponse.md
+  - docs/sdk/models/operations/getlibraryhubsresponsebody.md
+  - docs/sdk/models/operations/getlibraryhubsrole.md
+  - docs/sdk/models/operations/getlibraryhubswriter.md
+  - docs/sdk/models/operations/getlibraryitemscountry.md
+  - docs/sdk/models/operations/getlibraryitemsdirector.md
+  - docs/sdk/models/operations/getlibraryitemsgenre.md
+  - docs/sdk/models/operations/getlibraryitemsmedia.md
+  - docs/sdk/models/operations/getlibraryitemsmediacontainer.md
+  - docs/sdk/models/operations/getlibraryitemsmetadata.md
+  - docs/sdk/models/operations/getlibraryitemspart.md
+  - docs/sdk/models/operations/getlibraryitemsrequest.md
+  - docs/sdk/models/operations/getlibraryitemsresponse.md
+  - docs/sdk/models/operations/getlibraryitemsresponsebody.md
+  - docs/sdk/models/operations/getlibraryitemsrole.md
+  - docs/sdk/models/operations/getlibraryitemswriter.md
+  - docs/sdk/models/operations/getmediaprovidersdirectory.md
+  - docs/sdk/models/operations/getmediaprovidersmediacontainer.md
+  - docs/sdk/models/operations/getmediaprovidersrequest.md
+  - docs/sdk/models/operations/getmediaprovidersresponse.md
+  - docs/sdk/models/operations/getmediaprovidersresponsebody.md
+  - docs/sdk/models/operations/getmetadatabyratingkeycountry.md
+  - docs/sdk/models/operations/getmetadatabyratingkeydirector.md
+  - docs/sdk/models/operations/getmetadatabyratingkeygenre.md
+  - docs/sdk/models/operations/getmetadatabyratingkeymedia.md
+  - docs/sdk/models/operations/getmetadatabyratingkeymediacontainer.md
+  - docs/sdk/models/operations/getmetadatabyratingkeymetadata.md
+  - docs/sdk/models/operations/getmetadatabyratingkeypart.md
+  - docs/sdk/models/operations/getmetadatabyratingkeyrequest.md
+  - docs/sdk/models/operations/getmetadatabyratingkeyresponse.md
+  - docs/sdk/models/operations/getmetadatabyratingkeyresponsebody.md
+  - docs/sdk/models/operations/getmetadatabyratingkeyrole.md
+  - docs/sdk/models/operations/getmetadatabyratingkeywriter.md
+  - docs/sdk/models/operations/getmetadatachildrendirectory.md
+  - docs/sdk/models/operations/getmetadatachildrenmediacontainer.md
+  - docs/sdk/models/operations/getmetadatachildrenmetadata.md
+  - docs/sdk/models/operations/getmetadatachildrenrequest.md
+  - docs/sdk/models/operations/getmetadatachildrenresponse.md
+  - docs/sdk/models/operations/getmetadatachildrenresponsebody.md
+  - docs/sdk/models/operations/getmyplexaccountresponse.md
+  - docs/sdk/models/operations/getmyplexaccountresponsebody.md
+  - docs/sdk/models/operations/getondeckguids.md
+  - docs/sdk/models/operations/getondeckmedia.md
+  - docs/sdk/models/operations/getondeckmediacontainer.md
+  - docs/sdk/models/operations/getondeckmetadata.md
+  - docs/sdk/models/operations/getondeckpart.md
+  - docs/sdk/models/operations/getondeckresponse.md
+  - docs/sdk/models/operations/getondeckresponsebody.md
+  - docs/sdk/models/operations/getondeckstream.md
+  - docs/sdk/models/operations/getpinauthpincontainer.md
+  - docs/sdk/models/operations/getpinglobals.md
+  - docs/sdk/models/operations/getpinrequest.md
+  - docs/sdk/models/operations/getpinresponse.md
+  - docs/sdk/models/operations/getplaylistcontentscountry.md
+  - docs/sdk/models/operations/getplaylistcontentsdirector.md
+  - docs/sdk/models/operations/getplaylistcontentsgenre.md
+  - docs/sdk/models/operations/getplaylistcontentsmedia.md
+  - docs/sdk/models/operations/getplaylistcontentsmediacontainer.md
+  - docs/sdk/models/operations/getplaylistcontentsmetadata.md
+  - docs/sdk/models/operations/getplaylistcontentspart.md
+  - docs/sdk/models/operations/getplaylistcontentsqueryparamtype.md
+  - docs/sdk/models/operations/getplaylistcontentsrequest.md
+  - docs/sdk/models/operations/getplaylistcontentsresponse.md
+  - docs/sdk/models/operations/getplaylistcontentsresponsebody.md
+  - docs/sdk/models/operations/getplaylistcontentsrole.md
+  - docs/sdk/models/operations/getplaylistcontentswriter.md
+  - docs/sdk/models/operations/getplaylistmediacontainer.md
+  - docs/sdk/models/operations/getplaylistmetadata.md
+  - docs/sdk/models/operations/getplaylistrequest.md
+  - docs/sdk/models/operations/getplaylistresponse.md
+  - docs/sdk/models/operations/getplaylistresponsebody.md
+  - docs/sdk/models/operations/getplaylistsmediacontainer.md
+  - docs/sdk/models/operations/getplaylistsmetadata.md
+  - docs/sdk/models/operations/getplaylistsrequest.md
+  - docs/sdk/models/operations/getplaylistsresponse.md
+  - docs/sdk/models/operations/getplaylistsresponsebody.md
+  - docs/sdk/models/operations/getrecentlyaddedmediacontainer.md
+  - docs/sdk/models/operations/getrecentlyaddedmetadata.md
+  - docs/sdk/models/operations/getrecentlyaddedrequest.md
+  - docs/sdk/models/operations/getrecentlyaddedresponse.md
+  - docs/sdk/models/operations/getrecentlyaddedresponsebody.md
+  - docs/sdk/models/operations/getrefreshlibrarymetadatarequest.md
+  - docs/sdk/models/operations/getrefreshlibrarymetadataresponse.md
+  - docs/sdk/models/operations/getresizedphotorequest.md
+  - docs/sdk/models/operations/getresizedphotoresponse.md
+  - docs/sdk/models/operations/getresourcesstatisticsmediacontainer.md
+  - docs/sdk/models/operations/getresourcesstatisticsrequest.md
+  - docs/sdk/models/operations/getresourcesstatisticsresponse.md
+  - docs/sdk/models/operations/getresourcesstatisticsresponsebody.md
+  - docs/sdk/models/operations/getsearchlibrarymediacontainer.md
+  - docs/sdk/models/operations/getsearchlibrarymetadata.md
+  - docs/sdk/models/operations/getsearchlibraryrequest.md
+  - docs/sdk/models/operations/getsearchlibraryresponse.md
+  - docs/sdk/models/operations/getsearchlibraryresponsebody.md
+  - docs/sdk/models/operations/getsearchresultscountry.md
+  - docs/sdk/models/operations/getsearchresultsdirector.md
+  - docs/sdk/models/operations/getsearchresultsgenre.md
+  - docs/sdk/models/operations/getsearchresultsmedia.md
+  - docs/sdk/models/operations/getsearchresultsmediacontainer.md
+  - docs/sdk/models/operations/getsearchresultsmetadata.md
+  - docs/sdk/models/operations/getsearchresultspart.md
+  - docs/sdk/models/operations/getsearchresultsrequest.md
+  - docs/sdk/models/operations/getsearchresultsresponse.md
+  - docs/sdk/models/operations/getsearchresultsresponsebody.md
+  - docs/sdk/models/operations/getsearchresultsrole.md
+  - docs/sdk/models/operations/getsearchresultswriter.md
+  - docs/sdk/models/operations/getserveractivitiesmediacontainer.md
+  - docs/sdk/models/operations/getserveractivitiesresponse.md
+  - docs/sdk/models/operations/getserveractivitiesresponsebody.md
+  - docs/sdk/models/operations/getservercapabilitiesresponse.md
+  - docs/sdk/models/operations/getservercapabilitiesresponsebody.md
+  - docs/sdk/models/operations/getserveridentitymediacontainer.md
+  - docs/sdk/models/operations/getserveridentityresponse.md
+  - docs/sdk/models/operations/getserveridentityresponsebody.md
+  - docs/sdk/models/operations/getserverlistmediacontainer.md
+  - docs/sdk/models/operations/getserverlistresponse.md
+  - docs/sdk/models/operations/getserverlistresponsebody.md
+  - docs/sdk/models/operations/getserverlistserver.md
+  - docs/sdk/models/operations/getserverpreferencesmediacontainer.md
+  - docs/sdk/models/operations/getserverpreferencesresponse.md
+  - docs/sdk/models/operations/getserverpreferencesresponsebody.md
+  - docs/sdk/models/operations/getserverresourcesglobals.md
+  - docs/sdk/models/operations/getserverresourcesrequest.md
+  - docs/sdk/models/operations/getserverresourcesresponse.md
+  - docs/sdk/models/operations/getsessionhistorymediacontainer.md
+  - docs/sdk/models/operations/getsessionhistorymetadata.md
+  - docs/sdk/models/operations/getsessionhistoryrequest.md
+  - docs/sdk/models/operations/getsessionhistoryresponse.md
+  - docs/sdk/models/operations/getsessionhistoryresponsebody.md
+  - docs/sdk/models/operations/getsessionsmedia.md
+  - docs/sdk/models/operations/getsessionsmediacontainer.md
+  - docs/sdk/models/operations/getsessionsmetadata.md
+  - docs/sdk/models/operations/getsessionspart.md
+  - docs/sdk/models/operations/getsessionsresponse.md
+  - docs/sdk/models/operations/getsessionsresponsebody.md
+  - docs/sdk/models/operations/getsessionsstream.md
+  - docs/sdk/models/operations/getsessionsuser.md
+  - docs/sdk/models/operations/getsourceconnectioninformationrequest.md
+  - docs/sdk/models/operations/getsourceconnectioninformationresponse.md
+  - docs/sdk/models/operations/getstatisticsdevice.md
+  - docs/sdk/models/operations/getstatisticsmediacontainer.md
+  - docs/sdk/models/operations/getstatisticsrequest.md
+  - docs/sdk/models/operations/getstatisticsresponse.md
+  - docs/sdk/models/operations/getstatisticsresponsebody.md
+  - docs/sdk/models/operations/getthumbimagerequest.md
+  - docs/sdk/models/operations/getthumbimageresponse.md
+  - docs/sdk/models/operations/gettimelinerequest.md
+  - docs/sdk/models/operations/gettimelineresponse.md
+  - docs/sdk/models/operations/gettokenbypinidauthpincontainer.md
+  - docs/sdk/models/operations/gettokenbypinidgeodata.md
+  - docs/sdk/models/operations/gettokenbypinidglobals.md
+  - docs/sdk/models/operations/gettokenbypinidrequest.md
+  - docs/sdk/models/operations/gettokenbypinidresponse.md
+  - docs/sdk/models/operations/gettopwatchedcontentcountry.md
+  - docs/sdk/models/operations/gettopwatchedcontentgenre.md
+  - docs/sdk/models/operations/gettopwatchedcontentguids.md
+  - docs/sdk/models/operations/gettopwatchedcontentmediacontainer.md
+  - docs/sdk/models/operations/gettopwatchedcontentmetadata.md
+  - docs/sdk/models/operations/gettopwatchedcontentqueryparamtype.md
+  - docs/sdk/models/operations/gettopwatchedcontentrequest.md
+  - docs/sdk/models/operations/gettopwatchedcontentresponse.md
+  - docs/sdk/models/operations/gettopwatchedcontentresponsebody.md
+  - docs/sdk/models/operations/gettopwatchedcontentrole.md
+  - docs/sdk/models/operations/gettranscodesessionsmediacontainer.md
+  - docs/sdk/models/operations/gettranscodesessionsresponse.md
+  - docs/sdk/models/operations/gettranscodesessionsresponsebody.md
+  - docs/sdk/models/operations/gettransienttokenqueryparamtype.md
+  - docs/sdk/models/operations/gettransienttokenrequest.md
+  - docs/sdk/models/operations/gettransienttokenresponse.md
+  - docs/sdk/models/operations/getupdatestatusmediacontainer.md
+  - docs/sdk/models/operations/getupdatestatusresponse.md
+  - docs/sdk/models/operations/getupdatestatusresponsebody.md
+  - docs/sdk/models/operations/getuserdetailsauthenticationresponsestatus.md
+  - docs/sdk/models/operations/getuserdetailsauthenticationstatus.md
+  - docs/sdk/models/operations/getuserdetailsfeatures.md
+  - docs/sdk/models/operations/getuserdetailsrequest.md
+  - docs/sdk/models/operations/getuserdetailsresponse.md
+  - docs/sdk/models/operations/getuserdetailsstatus.md
+  - docs/sdk/models/operations/getuserdetailssubscription.md
+  - docs/sdk/models/operations/getuserdetailsuserplexaccount.md
+  - docs/sdk/models/operations/getuserfriendsresponse.md
+  - docs/sdk/models/operations/getwatchlistrequest.md
+  - docs/sdk/models/operations/getwatchlistresponse.md
+  - docs/sdk/models/operations/getwatchlistresponsebody.md
+  - docs/sdk/models/operations/guids.md
+  - docs/sdk/models/operations/hub.md
+  - docs/sdk/models/operations/image.md
+  - docs/sdk/models/operations/includecollections.md
+  - docs/sdk/models/operations/includedetails.md
+  - docs/sdk/models/operations/includeexternalmedia.md
+  - docs/sdk/models/operations/includeguids.md
+  - docs/sdk/models/operations/includehttps.md
+  - docs/sdk/models/operations/includeipv6.md
+  - docs/sdk/models/operations/includemeta.md
+  - docs/sdk/models/operations/includerelay.md
+  - docs/sdk/models/operations/internalpaymentmethod.md
+  - docs/sdk/models/operations/level.md
+  - docs/sdk/models/operations/librarysectionid.md
+  - docs/sdk/models/operations/libtype.md
+  - docs/sdk/models/operations/location.md
+  - docs/sdk/models/operations/loglinerequest.md
+  - docs/sdk/models/operations/loglineresponse.md
+  - docs/sdk/models/operations/logmultilineresponse.md
+  - docs/sdk/models/operations/mailingliststatus.md
+  - docs/sdk/models/operations/markplayedrequest.md
+  - docs/sdk/models/operations/markplayedresponse.md
+  - docs/sdk/models/operations/markunplayedrequest.md
+  - docs/sdk/models/operations/markunplayedresponse.md
+  - docs/sdk/models/operations/media.md
+  - docs/sdk/models/operations/mediacontainer.md
+  - docs/sdk/models/operations/mediaprovider.md
+  - docs/sdk/models/operations/mediareviewsvisibility.md
+  - docs/sdk/models/operations/metadata.md
+  - docs/sdk/models/operations/minsize.md
+  - docs/sdk/models/operations/myplex.md
+  - docs/sdk/models/operations/onlytransient.md
+  - docs/sdk/models/operations/operator.md
+  - docs/sdk/models/operations/part.md
+  - docs/sdk/models/operations/pastsubscription.md
+  - docs/sdk/models/operations/pathparamtaskname.md
+  - docs/sdk/models/operations/performsearchrequest.md
+  - docs/sdk/models/operations/performsearchresponse.md
+  - docs/sdk/models/operations/performvoicesearchrequest.md
+  - docs/sdk/models/operations/performvoicesearchresponse.md
+  - docs/sdk/models/operations/pivot.md
+  - docs/sdk/models/operations/player.md
+  - docs/sdk/models/operations/playlisttype.md
+  - docs/sdk/models/operations/plexdevice.md
+  - docs/sdk/models/operations/postuserssignindataauthenticationfeatures.md
+  - docs/sdk/models/operations/postuserssignindataauthenticationresponsestatus.md
+  - docs/sdk/models/operations/postuserssignindataauthenticationstatus.md
+  - docs/sdk/models/operations/postuserssignindataauthenticationsubscription.md
+  - docs/sdk/models/operations/postuserssignindataautoselectsubtitle.md
+  - docs/sdk/models/operations/postuserssignindatadefaultsubtitleaccessibility.md
+  - docs/sdk/models/operations/postuserssignindatadefaultsubtitleforced.md
+  - docs/sdk/models/operations/postuserssignindatafeatures.md
+  - docs/sdk/models/operations/postuserssignindataglobals.md
+  - docs/sdk/models/operations/postuserssignindatamailingliststatus.md
+  - docs/sdk/models/operations/postuserssignindatamediareviewsvisibility.md
+  - docs/sdk/models/operations/postuserssignindatarequest.md
+  - docs/sdk/models/operations/postuserssignindatarequestbody.md
+  - docs/sdk/models/operations/postuserssignindataresponse.md
+  - docs/sdk/models/operations/postuserssignindataservices.md
+  - docs/sdk/models/operations/postuserssignindatastate.md
+  - docs/sdk/models/operations/postuserssignindatastatus.md
+  - docs/sdk/models/operations/postuserssignindatasubscription.md
+  - docs/sdk/models/operations/postuserssignindatauserplexaccount.md
+  - docs/sdk/models/operations/postuserssignindatauserprofile.md
+  - docs/sdk/models/operations/postuserssignindatawatchedindicator.md
+  - docs/sdk/models/operations/producer.md
+  - docs/sdk/models/operations/provider.md
+  - docs/sdk/models/operations/queryparamfilter.md
+  - docs/sdk/models/operations/queryparamforce.md
+  - docs/sdk/models/operations/queryparamonlytransient.md
+  - docs/sdk/models/operations/queryparamsmart.md
+  - docs/sdk/models/operations/queryparamtype.md
+  - docs/sdk/models/operations/ratings.md
+  - docs/sdk/models/operations/release.md
+  - docs/sdk/models/operations/responsebody.md
+  - docs/sdk/models/operations/role.md
+  - docs/sdk/models/operations/scope.md
+  - docs/sdk/models/operations/server.md
+  - docs/sdk/models/operations/services.md
+  - docs/sdk/models/operations/session.md
+  - docs/sdk/models/operations/setting.md
+  - docs/sdk/models/operations/sharedservers.md
+  - docs/sdk/models/operations/sharedsources.md
+  - docs/sdk/models/operations/skip.md
+  - docs/sdk/models/operations/smart.md
+  - docs/sdk/models/operations/sort.md
+  - docs/sdk/models/operations/startalltasksresponse.md
+  - docs/sdk/models/operations/starttaskrequest.md
+  - docs/sdk/models/operations/starttaskresponse.md
+  - docs/sdk/models/operations/startuniversaltranscoderequest.md
+  - docs/sdk/models/operations/startuniversaltranscoderesponse.md
+  - docs/sdk/models/operations/state.md
+  - docs/sdk/models/operations/statisticsbandwidth.md
+  - docs/sdk/models/operations/statisticsmedia.md
+  - docs/sdk/models/operations/statisticsresources.md
+  - docs/sdk/models/operations/status.md
+  - docs/sdk/models/operations/stopalltasksresponse.md
+  - docs/sdk/models/operations/stoptaskrequest.md
+  - docs/sdk/models/operations/stoptaskresponse.md
+  - docs/sdk/models/operations/stoptranscodesessionrequest.md
+  - docs/sdk/models/operations/stoptranscodesessionresponse.md
+  - docs/sdk/models/operations/stream.md
+  - docs/sdk/models/operations/subscription.md
+  - docs/sdk/models/operations/tag.md
+  - docs/sdk/models/operations/taskname.md
+  - docs/sdk/models/operations/tonight.md
+  - docs/sdk/models/operations/transcodesession.md
+  - docs/sdk/models/operations/trials.md
+  - docs/sdk/models/operations/type.md
+  - docs/sdk/models/operations/updateplaylistrequest.md
+  - docs/sdk/models/operations/updateplaylistresponse.md
+  - docs/sdk/models/operations/updateplayprogressrequest.md
+  - docs/sdk/models/operations/updateplayprogressresponse.md
+  - docs/sdk/models/operations/uploadplaylistrequest.md
+  - docs/sdk/models/operations/uploadplaylistresponse.md
+  - docs/sdk/models/operations/upscale.md
+  - docs/sdk/models/operations/user.md
+  - docs/sdk/models/operations/userprofile.md
+  - docs/sdk/models/operations/watchedindicator.md
+  - docs/sdk/models/operations/writer.md
+  - docs/sdk/models/shared/security.md
+  - docs/sdks/activities/README.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/butler/README.md
+  - docs/sdks/hubs/README.md
+  - docs/sdks/library/README.md
+  - docs/sdks/log/README.md
+  - docs/sdks/media/README.md
+  - docs/sdks/playlists/README.md
+  - docs/sdks/plex/README.md
+  - docs/sdks/plexapi/README.md
+  - docs/sdks/search/README.md
+  - docs/sdks/server/README.md
+  - docs/sdks/sessions/README.md
+  - docs/sdks/statistics/README.md
+  - docs/sdks/updater/README.md
+  - docs/sdks/video/README.md
+  - docs/sdks/watchlist/README.md
+  - docs/types/rfcdate.md
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/activitiesCancelServerActivities.ts
+  - src/funcs/activitiesGetServerActivities.ts
+  - src/funcs/authenticationGetSourceConnectionInformation.ts
+  - src/funcs/authenticationGetTransientToken.ts
+  - src/funcs/authenticationGetUserDetails.ts
+  - src/funcs/authenticationPostUsersSignInData.ts
+  - src/funcs/butlerGetButlerTasks.ts
+  - src/funcs/butlerStartAllTasks.ts
+  - src/funcs/butlerStartTask.ts
+  - src/funcs/butlerStopAllTasks.ts
+  - src/funcs/butlerStopTask.ts
+  - src/funcs/hubsGetGlobalHubs.ts
+  - src/funcs/hubsGetLibraryHubs.ts
+  - src/funcs/libraryDeleteLibrary.ts
+  - src/funcs/libraryGetAllLibraries.ts
+  - src/funcs/libraryGetFileHash.ts
+  - src/funcs/libraryGetLibraryDetails.ts
+  - src/funcs/libraryGetLibraryItems.ts
+  - src/funcs/libraryGetMetaDataByRatingKey.ts
+  - src/funcs/libraryGetMetadataChildren.ts
+  - src/funcs/libraryGetOnDeck.ts
+  - src/funcs/libraryGetRecentlyAdded.ts
+  - src/funcs/libraryGetRefreshLibraryMetadata.ts
+  - src/funcs/libraryGetSearchLibrary.ts
+  - src/funcs/libraryGetTopWatchedContent.ts
+  - src/funcs/logEnablePaperTrail.ts
+  - src/funcs/logLogLine.ts
+  - src/funcs/logLogMultiLine.ts
+  - src/funcs/mediaGetBannerImage.ts
+  - src/funcs/mediaGetThumbImage.ts
+  - src/funcs/mediaMarkPlayed.ts
+  - src/funcs/mediaMarkUnplayed.ts
+  - src/funcs/mediaUpdatePlayProgress.ts
+  - src/funcs/playlistsAddPlaylistContents.ts
+  - src/funcs/playlistsClearPlaylistContents.ts
+  - src/funcs/playlistsCreatePlaylist.ts
+  - src/funcs/playlistsDeletePlaylist.ts
+  - src/funcs/playlistsGetPlaylist.ts
+  - src/funcs/playlistsGetPlaylistContents.ts
+  - src/funcs/playlistsGetPlaylists.ts
+  - src/funcs/playlistsUpdatePlaylist.ts
+  - src/funcs/playlistsUploadPlaylist.ts
+  - src/funcs/plexGetCompanionsData.ts
+  - src/funcs/plexGetGeoData.ts
+  - src/funcs/plexGetHomeData.ts
+  - src/funcs/plexGetPin.ts
+  - src/funcs/plexGetServerResources.ts
+  - src/funcs/plexGetTokenByPinId.ts
+  - src/funcs/plexGetUserFriends.ts
+  - src/funcs/searchGetSearchResults.ts
+  - src/funcs/searchPerformSearch.ts
+  - src/funcs/searchPerformVoiceSearch.ts
+  - src/funcs/serverGetAvailableClients.ts
+  - src/funcs/serverGetDevices.ts
+  - src/funcs/serverGetMediaProviders.ts
+  - src/funcs/serverGetMyPlexAccount.ts
+  - src/funcs/serverGetResizedPhoto.ts
+  - src/funcs/serverGetServerCapabilities.ts
+  - src/funcs/serverGetServerIdentity.ts
+  - src/funcs/serverGetServerList.ts
+  - src/funcs/serverGetServerPreferences.ts
+  - src/funcs/sessionsGetSessionHistory.ts
+  - src/funcs/sessionsGetSessions.ts
+  - src/funcs/sessionsGetTranscodeSessions.ts
+  - src/funcs/sessionsStopTranscodeSession.ts
+  - src/funcs/statisticsGetBandwidthStatistics.ts
+  - src/funcs/statisticsGetResourcesStatistics.ts
+  - src/funcs/statisticsGetStatistics.ts
+  - src/funcs/updaterApplyUpdates.ts
+  - src/funcs/updaterCheckForUpdates.ts
+  - src/funcs/updaterGetUpdateStatus.ts
+  - src/funcs/videoGetTimeline.ts
+  - src/funcs/videoStartUniversalTranscode.ts
+  - src/funcs/watchlistGetWatchList.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
@@ -148,667 +706,950 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
+  - src/sdk/activities.ts
+  - src/sdk/authentication.ts
+  - src/sdk/butler.ts
+  - src/sdk/hubs.ts
   - src/sdk/index.ts
-  - src/models/httpclienterrors.ts
-  - src/models/sdkerror.ts
-  - src/models/sdkvalidationerror.ts
-  - src/types/blobs.ts
-  - src/types/constdatetime.ts
-  - src/types/enums.ts
-  - src/types/fp.ts
-  - src/types/index.ts
-  - src/types/operations.ts
-  - src/types/rfcdate.ts
-  - src/types/streams.ts
+  - src/sdk/library.ts
+  - src/sdk/log.ts
+  - src/sdk/media.ts
+  - src/sdk/models/errors/addplaylistcontents.ts
+  - src/sdk/models/errors/applyupdates.ts
+  - src/sdk/models/errors/cancelserveractivities.ts
+  - src/sdk/models/errors/checkforupdates.ts
+  - src/sdk/models/errors/clearplaylistcontents.ts
+  - src/sdk/models/errors/createplaylist.ts
+  - src/sdk/models/errors/deletelibrary.ts
+  - src/sdk/models/errors/deleteplaylist.ts
+  - src/sdk/models/errors/enablepapertrail.ts
+  - src/sdk/models/errors/getalllibraries.ts
+  - src/sdk/models/errors/getavailableclients.ts
+  - src/sdk/models/errors/getbandwidthstatistics.ts
+  - src/sdk/models/errors/getbannerimage.ts
+  - src/sdk/models/errors/getbutlertasks.ts
+  - src/sdk/models/errors/getcompanionsdata.ts
+  - src/sdk/models/errors/getdevices.ts
+  - src/sdk/models/errors/getfilehash.ts
+  - src/sdk/models/errors/getgeodata.ts
+  - src/sdk/models/errors/getglobalhubs.ts
+  - src/sdk/models/errors/gethomedata.ts
+  - src/sdk/models/errors/getlibrarydetails.ts
+  - src/sdk/models/errors/getlibraryhubs.ts
+  - src/sdk/models/errors/getlibraryitems.ts
+  - src/sdk/models/errors/getmediaproviders.ts
+  - src/sdk/models/errors/getmetadatabyratingkey.ts
+  - src/sdk/models/errors/getmetadatachildren.ts
+  - src/sdk/models/errors/getmyplexaccount.ts
+  - src/sdk/models/errors/getondeck.ts
+  - src/sdk/models/errors/getpin.ts
+  - src/sdk/models/errors/getplaylist.ts
+  - src/sdk/models/errors/getplaylistcontents.ts
+  - src/sdk/models/errors/getplaylists.ts
+  - src/sdk/models/errors/getrecentlyadded.ts
+  - src/sdk/models/errors/getrefreshlibrarymetadata.ts
+  - src/sdk/models/errors/getresizedphoto.ts
+  - src/sdk/models/errors/getresourcesstatistics.ts
+  - src/sdk/models/errors/getsearchlibrary.ts
+  - src/sdk/models/errors/getsearchresults.ts
+  - src/sdk/models/errors/getserveractivities.ts
+  - src/sdk/models/errors/getservercapabilities.ts
+  - src/sdk/models/errors/getserveridentity.ts
+  - src/sdk/models/errors/getserverlist.ts
+  - src/sdk/models/errors/getserverpreferences.ts
+  - src/sdk/models/errors/getserverresources.ts
+  - src/sdk/models/errors/getsessionhistory.ts
+  - src/sdk/models/errors/getsessions.ts
+  - src/sdk/models/errors/getsourceconnectioninformation.ts
+  - src/sdk/models/errors/getstatistics.ts
+  - src/sdk/models/errors/getthumbimage.ts
+  - src/sdk/models/errors/gettimeline.ts
+  - src/sdk/models/errors/gettokenbypinid.ts
+  - src/sdk/models/errors/gettopwatchedcontent.ts
+  - src/sdk/models/errors/gettranscodesessions.ts
+  - src/sdk/models/errors/gettransienttoken.ts
+  - src/sdk/models/errors/getupdatestatus.ts
+  - src/sdk/models/errors/getuserdetails.ts
+  - src/sdk/models/errors/getuserfriends.ts
+  - src/sdk/models/errors/getwatchlist.ts
+  - src/sdk/models/errors/httpclienterrors.ts
+  - src/sdk/models/errors/index.ts
+  - src/sdk/models/errors/logline.ts
+  - src/sdk/models/errors/logmultiline.ts
+  - src/sdk/models/errors/markplayed.ts
+  - src/sdk/models/errors/markunplayed.ts
+  - src/sdk/models/errors/performsearch.ts
+  - src/sdk/models/errors/performvoicesearch.ts
+  - src/sdk/models/errors/postuserssignindata.ts
+  - src/sdk/models/errors/sdkerror.ts
+  - src/sdk/models/errors/sdkvalidationerror.ts
+  - src/sdk/models/errors/startalltasks.ts
+  - src/sdk/models/errors/starttask.ts
+  - src/sdk/models/errors/startuniversaltranscode.ts
+  - src/sdk/models/errors/stopalltasks.ts
+  - src/sdk/models/errors/stoptask.ts
+  - src/sdk/models/errors/stoptranscodesession.ts
+  - src/sdk/models/errors/updateplaylist.ts
+  - src/sdk/models/errors/updateplayprogress.ts
+  - src/sdk/models/errors/uploadplaylist.ts
+  - src/sdk/models/operations/addplaylistcontents.ts
+  - src/sdk/models/operations/applyupdates.ts
+  - src/sdk/models/operations/cancelserveractivities.ts
+  - src/sdk/models/operations/checkforupdates.ts
+  - src/sdk/models/operations/clearplaylistcontents.ts
+  - src/sdk/models/operations/createplaylist.ts
+  - src/sdk/models/operations/deletelibrary.ts
+  - src/sdk/models/operations/deleteplaylist.ts
+  - src/sdk/models/operations/enablepapertrail.ts
+  - src/sdk/models/operations/getalllibraries.ts
+  - src/sdk/models/operations/getavailableclients.ts
+  - src/sdk/models/operations/getbandwidthstatistics.ts
+  - src/sdk/models/operations/getbannerimage.ts
+  - src/sdk/models/operations/getbutlertasks.ts
+  - src/sdk/models/operations/getcompanionsdata.ts
+  - src/sdk/models/operations/getdevices.ts
+  - src/sdk/models/operations/getfilehash.ts
+  - src/sdk/models/operations/getgeodata.ts
+  - src/sdk/models/operations/getglobalhubs.ts
+  - src/sdk/models/operations/gethomedata.ts
+  - src/sdk/models/operations/getlibrarydetails.ts
+  - src/sdk/models/operations/getlibraryhubs.ts
+  - src/sdk/models/operations/getlibraryitems.ts
+  - src/sdk/models/operations/getmediaproviders.ts
+  - src/sdk/models/operations/getmetadatabyratingkey.ts
+  - src/sdk/models/operations/getmetadatachildren.ts
+  - src/sdk/models/operations/getmyplexaccount.ts
+  - src/sdk/models/operations/getondeck.ts
+  - src/sdk/models/operations/getpin.ts
+  - src/sdk/models/operations/getplaylist.ts
+  - src/sdk/models/operations/getplaylistcontents.ts
+  - src/sdk/models/operations/getplaylists.ts
+  - src/sdk/models/operations/getrecentlyadded.ts
+  - src/sdk/models/operations/getrefreshlibrarymetadata.ts
+  - src/sdk/models/operations/getresizedphoto.ts
+  - src/sdk/models/operations/getresourcesstatistics.ts
+  - src/sdk/models/operations/getsearchlibrary.ts
+  - src/sdk/models/operations/getsearchresults.ts
+  - src/sdk/models/operations/getserveractivities.ts
+  - src/sdk/models/operations/getservercapabilities.ts
+  - src/sdk/models/operations/getserveridentity.ts
+  - src/sdk/models/operations/getserverlist.ts
+  - src/sdk/models/operations/getserverpreferences.ts
+  - src/sdk/models/operations/getserverresources.ts
+  - src/sdk/models/operations/getsessionhistory.ts
+  - src/sdk/models/operations/getsessions.ts
+  - src/sdk/models/operations/getsourceconnectioninformation.ts
+  - src/sdk/models/operations/getstatistics.ts
+  - src/sdk/models/operations/getthumbimage.ts
+  - src/sdk/models/operations/gettimeline.ts
+  - src/sdk/models/operations/gettokenbypinid.ts
+  - src/sdk/models/operations/gettopwatchedcontent.ts
+  - src/sdk/models/operations/gettranscodesessions.ts
+  - src/sdk/models/operations/gettransienttoken.ts
+  - src/sdk/models/operations/getupdatestatus.ts
+  - src/sdk/models/operations/getuserdetails.ts
+  - src/sdk/models/operations/getuserfriends.ts
+  - src/sdk/models/operations/getwatchlist.ts
+  - src/sdk/models/operations/index.ts
+  - src/sdk/models/operations/logline.ts
+  - src/sdk/models/operations/logmultiline.ts
+  - src/sdk/models/operations/markplayed.ts
+  - src/sdk/models/operations/markunplayed.ts
+  - src/sdk/models/operations/performsearch.ts
+  - src/sdk/models/operations/performvoicesearch.ts
+  - src/sdk/models/operations/postuserssignindata.ts
+  - src/sdk/models/operations/startalltasks.ts
+  - src/sdk/models/operations/starttask.ts
+  - src/sdk/models/operations/startuniversaltranscode.ts
+  - src/sdk/models/operations/stopalltasks.ts
+  - src/sdk/models/operations/stoptask.ts
+  - src/sdk/models/operations/stoptranscodesession.ts
+  - src/sdk/models/operations/updateplaylist.ts
+  - src/sdk/models/operations/updateplayprogress.ts
+  - src/sdk/models/operations/uploadplaylist.ts
+  - src/sdk/models/shared/index.ts
+  - src/sdk/models/shared/security.ts
+  - src/sdk/playlists.ts
+  - src/sdk/plex.ts
+  - src/sdk/sdk.ts
+  - src/sdk/search.ts
+  - src/sdk/server.ts
+  - src/sdk/sessions.ts
+  - src/sdk/statistics.ts
+  - src/sdk/types/blobs.ts
+  - src/sdk/types/constdatetime.ts
+  - src/sdk/types/enums.ts
+  - src/sdk/types/fp.ts
+  - src/sdk/types/index.ts
+  - src/sdk/types/operations.ts
+  - src/sdk/types/rfcdate.ts
+  - src/sdk/types/streams.ts
+  - src/sdk/updater.ts
+  - src/sdk/video.ts
+  - src/sdk/watchlist.ts
   - tsconfig.json
-  - src/models/getservercapabilitiesop.ts
-  - src/models/getserverpreferencesop.ts
-  - src/models/getavailableclientsop.ts
-  - src/models/getdevicesop.ts
-  - src/models/getserveridentityop.ts
-  - src/models/getmyplexaccountop.ts
-  - src/models/getresizedphotoop.ts
-  - src/models/getmediaprovidersop.ts
-  - src/models/getserverlistop.ts
-  - src/models/markplayedop.ts
-  - src/models/markunplayedop.ts
-  - src/models/updateplayprogressop.ts
-  - src/models/getbannerimageop.ts
-  - src/models/getthumbimageop.ts
-  - src/models/gettimelineop.ts
-  - src/models/startuniversaltranscodeop.ts
-  - src/models/getserveractivitiesop.ts
-  - src/models/cancelserveractivitiesop.ts
-  - src/models/getbutlertasksop.ts
-  - src/models/startalltasksop.ts
-  - src/models/stopalltasksop.ts
-  - src/models/starttaskop.ts
-  - src/models/stoptaskop.ts
-  - src/models/getcompanionsdataop.ts
-  - src/models/getuserfriendsop.ts
-  - src/models/getgeodataop.ts
-  - src/models/gethomedataop.ts
-  - src/models/getserverresourcesop.ts
-  - src/models/getpinop.ts
-  - src/models/gettokenbypinidop.ts
-  - src/models/getglobalhubsop.ts
-  - src/models/getlibraryhubsop.ts
-  - src/models/performsearchop.ts
-  - src/models/performvoicesearchop.ts
-  - src/models/getsearchresultsop.ts
-  - src/models/getfilehashop.ts
-  - src/models/getrecentlyaddedop.ts
-  - src/models/getalllibrariesop.ts
-  - src/models/getlibrarydetailsop.ts
-  - src/models/deletelibraryop.ts
-  - src/models/getlibraryitemsop.ts
-  - src/models/getrefreshlibrarymetadataop.ts
-  - src/models/getsearchlibraryop.ts
-  - src/models/getmetadatabyratingkeyop.ts
-  - src/models/getmetadatachildrenop.ts
-  - src/models/gettopwatchedcontentop.ts
-  - src/models/getondeckop.ts
-  - src/models/getwatchlistop.ts
-  - src/models/loglineop.ts
-  - src/models/logmultilineop.ts
-  - src/models/enablepapertrailop.ts
-  - src/models/createplaylistop.ts
-  - src/models/getplaylistsop.ts
-  - src/models/getplaylistop.ts
-  - src/models/deleteplaylistop.ts
-  - src/models/updateplaylistop.ts
-  - src/models/getplaylistcontentsop.ts
-  - src/models/clearplaylistcontentsop.ts
-  - src/models/addplaylistcontentsop.ts
-  - src/models/uploadplaylistop.ts
-  - src/models/gettransienttokenop.ts
-  - src/models/getsourceconnectioninformationop.ts
-  - src/models/getuserdetailsop.ts
-  - src/models/postuserssignindataop.ts
-  - src/models/getstatisticsop.ts
-  - src/models/getresourcesstatisticsop.ts
-  - src/models/getbandwidthstatisticsop.ts
-  - src/models/getsessionsop.ts
-  - src/models/getsessionhistoryop.ts
-  - src/models/gettranscodesessionsop.ts
-  - src/models/stoptranscodesessionop.ts
-  - src/models/getupdatestatusop.ts
-  - src/models/checkforupdatesop.ts
-  - src/models/applyupdatesop.ts
-  - src/models/security.ts
-  - src/models/index.ts
-  - docs/models/errors.md
-  - docs/models/getservercapabilitiesserverresponsebody.md
-  - docs/models/directory.md
-  - docs/models/mediacontainer.md
-  - docs/models/getservercapabilitiesresponsebody.md
-  - docs/models/getservercapabilitiesresponse.md
-  - docs/models/getserverpreferenceserrors.md
-  - docs/models/getserverpreferencesserverresponsebody.md
-  - docs/models/setting.md
-  - docs/models/getserverpreferencesmediacontainer.md
-  - docs/models/getserverpreferencesresponsebody.md
-  - docs/models/getserverpreferencesresponse.md
-  - docs/models/getavailableclientserrors.md
-  - docs/models/getavailableclientsserverresponsebody.md
-  - docs/models/getavailableclientsserver.md
-  - docs/models/getavailableclientsmediacontainer.md
-  - docs/models/getavailableclientsresponsebody.md
-  - docs/models/getavailableclientsresponse.md
-  - docs/models/getdeviceserrors.md
-  - docs/models/getdevicesserverresponsebody.md
-  - docs/models/device.md
-  - docs/models/getdevicesmediacontainer.md
-  - docs/models/getdevicesresponsebody.md
-  - docs/models/getdevicesresponse.md
-  - docs/models/getserveridentityserverresponsebody.md
-  - docs/models/getserveridentitymediacontainer.md
-  - docs/models/getserveridentityresponsebody.md
-  - docs/models/getserveridentityresponse.md
-  - docs/models/getmyplexaccounterrors.md
-  - docs/models/getmyplexaccountserverresponsebody.md
-  - docs/models/myplex.md
-  - docs/models/getmyplexaccountresponsebody.md
-  - docs/models/getmyplexaccountresponse.md
-  - docs/models/minsize.md
-  - docs/models/upscale.md
-  - docs/models/getresizedphotorequest.md
-  - docs/models/getresizedphotoerrors.md
-  - docs/models/getresizedphotoresponsebody.md
-  - docs/models/getresizedphotoresponse.md
-  - docs/models/getmediaprovidersrequest.md
-  - docs/models/getmediaproviderserrors.md
-  - docs/models/getmediaprovidersserverresponsebody.md
-  - docs/models/pivot.md
-  - docs/models/getmediaprovidersdirectory.md
-  - docs/models/feature.md
-  - docs/models/mediaprovider.md
-  - docs/models/getmediaprovidersmediacontainer.md
-  - docs/models/getmediaprovidersresponsebody.md
-  - docs/models/getmediaprovidersresponse.md
-  - docs/models/getserverlisterrors.md
-  - docs/models/getserverlistserverresponsebody.md
-  - docs/models/getserverlistserver.md
-  - docs/models/getserverlistmediacontainer.md
-  - docs/models/getserverlistresponsebody.md
-  - docs/models/getserverlistresponse.md
-  - docs/models/markplayedrequest.md
-  - docs/models/markplayederrors.md
-  - docs/models/markplayedresponsebody.md
-  - docs/models/markplayedresponse.md
-  - docs/models/markunplayedrequest.md
-  - docs/models/markunplayederrors.md
-  - docs/models/markunplayedresponsebody.md
-  - docs/models/markunplayedresponse.md
-  - docs/models/updateplayprogressrequest.md
-  - docs/models/updateplayprogresserrors.md
-  - docs/models/updateplayprogressresponsebody.md
-  - docs/models/updateplayprogressresponse.md
-  - docs/models/getbannerimagerequest.md
-  - docs/models/getbannerimageerrors.md
-  - docs/models/getbannerimageresponsebody.md
-  - docs/models/getbannerimageresponse.md
-  - docs/models/getthumbimagerequest.md
-  - docs/models/getthumbimageerrors.md
-  - docs/models/getthumbimageresponsebody.md
-  - docs/models/getthumbimageresponse.md
-  - docs/models/state.md
-  - docs/models/gettimelinerequest.md
-  - docs/models/gettimelineerrors.md
-  - docs/models/gettimelineresponsebody.md
-  - docs/models/gettimelineresponse.md
-  - docs/models/startuniversaltranscoderequest.md
-  - docs/models/startuniversaltranscodeerrors.md
-  - docs/models/startuniversaltranscoderesponsebody.md
-  - docs/models/startuniversaltranscoderesponse.md
-  - docs/models/getserveractivitieserrors.md
-  - docs/models/getserveractivitiesactivitiesresponsebody.md
-  - docs/models/context.md
-  - docs/models/activity.md
-  - docs/models/getserveractivitiesmediacontainer.md
-  - docs/models/getserveractivitiesresponsebody.md
-  - docs/models/getserveractivitiesresponse.md
-  - docs/models/cancelserveractivitiesrequest.md
-  - docs/models/cancelserveractivitieserrors.md
-  - docs/models/cancelserveractivitiesresponsebody.md
-  - docs/models/cancelserveractivitiesresponse.md
-  - docs/models/getbutlertaskserrors.md
-  - docs/models/getbutlertasksbutlerresponsebody.md
-  - docs/models/butlertask.md
-  - docs/models/butlertasks.md
-  - docs/models/getbutlertasksresponsebody.md
-  - docs/models/getbutlertasksresponse.md
-  - docs/models/startalltaskserrors.md
-  - docs/models/startalltasksresponsebody.md
-  - docs/models/startalltasksresponse.md
-  - docs/models/stopalltaskserrors.md
-  - docs/models/stopalltasksresponsebody.md
-  - docs/models/stopalltasksresponse.md
-  - docs/models/taskname.md
-  - docs/models/starttaskrequest.md
-  - docs/models/starttaskerrors.md
-  - docs/models/starttaskresponsebody.md
-  - docs/models/starttaskresponse.md
-  - docs/models/pathparamtaskname.md
-  - docs/models/stoptaskrequest.md
-  - docs/models/stoptaskerrors.md
-  - docs/models/stoptaskresponsebody.md
-  - docs/models/stoptaskresponse.md
-  - docs/models/getcompanionsdataerrors.md
-  - docs/models/getcompanionsdataresponsebody.md
-  - docs/models/responsebody.md
-  - docs/models/getcompanionsdataresponse.md
-  - docs/models/getuserfriendserrors.md
-  - docs/models/getuserfriendsresponsebody.md
-  - docs/models/sharedservers.md
-  - docs/models/sharedsources.md
-  - docs/models/status.md
-  - docs/models/friend.md
-  - docs/models/getuserfriendsresponse.md
-  - docs/models/getgeodataerrors.md
-  - docs/models/getgeodataresponsebody.md
-  - docs/models/getgeodatageodata.md
-  - docs/models/getgeodataresponse.md
-  - docs/models/gethomedataerrors.md
-  - docs/models/gethomedataplexresponsebody.md
-  - docs/models/gethomedataresponsebody.md
-  - docs/models/gethomedataresponse.md
-  - docs/models/getserverresourcesglobals.md
-  - docs/models/includehttps.md
-  - docs/models/includerelay.md
-  - docs/models/includeipv6.md
-  - docs/models/getserverresourcesrequest.md
-  - docs/models/getserverresourceserrors.md
-  - docs/models/getserverresourcesresponsebody.md
-  - docs/models/connections.md
-  - docs/models/plexdevice.md
-  - docs/models/getserverresourcesresponse.md
-  - docs/models/getpinglobals.md
-  - docs/models/getpinrequest.md
-  - docs/models/getpinerrors.md
-  - docs/models/getpinresponsebody.md
-  - docs/models/geodata.md
-  - docs/models/getpinauthpincontainer.md
-  - docs/models/getpinresponse.md
-  - docs/models/gettokenbypinidglobals.md
-  - docs/models/gettokenbypinidrequest.md
-  - docs/models/gettokenbypinidplexerrors.md
-  - docs/models/gettokenbypinidplexresponsebody.md
-  - docs/models/gettokenbypiniderrors.md
-  - docs/models/gettokenbypinidresponsebody.md
-  - docs/models/gettokenbypinidgeodata.md
-  - docs/models/gettokenbypinidauthpincontainer.md
-  - docs/models/gettokenbypinidresponse.md
-  - docs/models/onlytransient.md
-  - docs/models/getglobalhubsrequest.md
-  - docs/models/getglobalhubserrors.md
-  - docs/models/getglobalhubshubsresponsebody.md
-  - docs/models/getglobalhubsmetadata.md
-  - docs/models/hub.md
-  - docs/models/getglobalhubsmediacontainer.md
-  - docs/models/getglobalhubsresponsebody.md
-  - docs/models/getglobalhubsresponse.md
-  - docs/models/queryparamonlytransient.md
-  - docs/models/getlibraryhubsrequest.md
-  - docs/models/getlibraryhubserrors.md
-  - docs/models/getlibraryhubshubsresponsebody.md
-  - docs/models/getlibraryhubspart.md
-  - docs/models/getlibraryhubsmedia.md
-  - docs/models/getlibraryhubsgenre.md
-  - docs/models/getlibraryhubscountry.md
-  - docs/models/getlibraryhubsdirector.md
-  - docs/models/getlibraryhubsrole.md
-  - docs/models/getlibraryhubswriter.md
-  - docs/types/rfcdate.md
-  - docs/models/getlibraryhubsmetadata.md
-  - docs/models/getlibraryhubshub.md
-  - docs/models/getlibraryhubsmediacontainer.md
-  - docs/models/getlibraryhubsresponsebody.md
-  - docs/models/getlibraryhubsresponse.md
-  - docs/models/performsearchrequest.md
-  - docs/models/performsearcherrors.md
-  - docs/models/performsearchresponsebody.md
-  - docs/models/performsearchresponse.md
-  - docs/models/performvoicesearchrequest.md
-  - docs/models/performvoicesearcherrors.md
-  - docs/models/performvoicesearchresponsebody.md
-  - docs/models/performvoicesearchresponse.md
-  - docs/models/getsearchresultsrequest.md
-  - docs/models/getsearchresultserrors.md
-  - docs/models/getsearchresultssearchresponsebody.md
-  - docs/models/getsearchresultspart.md
-  - docs/models/getsearchresultsmedia.md
-  - docs/models/getsearchresultsgenre.md
-  - docs/models/getsearchresultsdirector.md
-  - docs/models/getsearchresultswriter.md
-  - docs/models/getsearchresultscountry.md
-  - docs/models/getsearchresultsrole.md
-  - docs/models/getsearchresultsmetadata.md
-  - docs/models/provider.md
-  - docs/models/getsearchresultsmediacontainer.md
-  - docs/models/getsearchresultsresponsebody.md
-  - docs/models/getsearchresultsresponse.md
-  - docs/models/getfilehashrequest.md
-  - docs/models/getfilehasherrors.md
-  - docs/models/getfilehashresponsebody.md
-  - docs/models/getfilehashresponse.md
-  - docs/models/getrecentlyaddedrequest.md
-  - docs/models/getrecentlyaddederrors.md
-  - docs/models/getrecentlyaddedlibraryresponsebody.md
-  - docs/models/part.md
-  - docs/models/getrecentlyaddedmedia.md
-  - docs/models/genre.md
-  - docs/models/director.md
-  - docs/models/writer.md
-  - docs/models/country.md
-  - docs/models/role.md
-  - docs/models/getrecentlyaddedmetadata.md
-  - docs/models/getrecentlyaddedmediacontainer.md
-  - docs/models/getrecentlyaddedresponsebody.md
-  - docs/models/getrecentlyaddedresponse.md
-  - docs/models/getalllibrarieserrors.md
-  - docs/models/getalllibrarieslibraryresponsebody.md
-  - docs/models/location.md
-  - docs/models/getalllibrariesdirectory.md
-  - docs/models/getalllibrariesmediacontainer.md
-  - docs/models/getalllibrariesresponsebody.md
-  - docs/models/getalllibrariesresponse.md
-  - docs/models/includedetails.md
-  - docs/models/getlibrarydetailsrequest.md
-  - docs/models/getlibrarydetailserrors.md
-  - docs/models/getlibrarydetailslibraryresponsebody.md
-  - docs/models/getlibrarydetailsdirectory.md
-  - docs/models/getlibrarydetailsfilter.md
-  - docs/models/sort.md
-  - docs/models/field.md
-  - docs/models/getlibrarydetailstype.md
-  - docs/models/operator.md
-  - docs/models/fieldtype.md
-  - docs/models/getlibrarydetailsmediacontainer.md
-  - docs/models/getlibrarydetailsresponsebody.md
-  - docs/models/getlibrarydetailsresponse.md
-  - docs/models/deletelibraryrequest.md
-  - docs/models/deletelibraryerrors.md
-  - docs/models/deletelibraryresponsebody.md
-  - docs/models/deletelibraryresponse.md
-  - docs/models/tag.md
-  - docs/models/includeguids.md
-  - docs/models/includemeta.md
-  - docs/models/type.md
-  - docs/models/getlibraryitemsrequest.md
-  - docs/models/getlibraryitemserrors.md
-  - docs/models/getlibraryitemslibraryresponsebody.md
-  - docs/models/librarysectionid.md
-  - docs/models/getlibraryitemspart.md
-  - docs/models/getlibraryitemsmedia.md
-  - docs/models/getlibraryitemsgenre.md
-  - docs/models/getlibraryitemscountry.md
-  - docs/models/getlibraryitemsdirector.md
-  - docs/models/getlibraryitemswriter.md
-  - docs/models/getlibraryitemsrole.md
-  - docs/models/getlibraryitemsmetadata.md
-  - docs/models/getlibraryitemsmediacontainer.md
-  - docs/models/getlibraryitemsresponsebody.md
-  - docs/models/getlibraryitemsresponse.md
-  - docs/models/force.md
-  - docs/models/getrefreshlibrarymetadatarequest.md
-  - docs/models/getrefreshlibrarymetadataerrors.md
-  - docs/models/getrefreshlibrarymetadataresponsebody.md
-  - docs/models/getrefreshlibrarymetadataresponse.md
-  - docs/models/queryparamtype.md
-  - docs/models/getsearchlibraryrequest.md
-  - docs/models/getsearchlibraryerrors.md
-  - docs/models/getsearchlibrarylibraryresponsebody.md
-  - docs/models/getsearchlibrarymetadata.md
-  - docs/models/getsearchlibrarymediacontainer.md
-  - docs/models/getsearchlibraryresponsebody.md
-  - docs/models/getsearchlibraryresponse.md
-  - docs/models/getmetadatabyratingkeyrequest.md
-  - docs/models/getmetadatabyratingkeyerrors.md
-  - docs/models/getmetadatabyratingkeylibraryresponsebody.md
-  - docs/models/stream.md
-  - docs/models/getmetadatabyratingkeypart.md
-  - docs/models/getmetadatabyratingkeymedia.md
-  - docs/models/getmetadatabyratingkeygenre.md
-  - docs/models/getmetadatabyratingkeycountry.md
-  - docs/models/guids.md
-  - docs/models/ratings.md
-  - docs/models/getmetadatabyratingkeydirector.md
-  - docs/models/getmetadatabyratingkeywriter.md
-  - docs/models/getmetadatabyratingkeyrole.md
-  - docs/models/producer.md
-  - docs/models/getmetadatabyratingkeymetadata.md
-  - docs/models/getmetadatabyratingkeymediacontainer.md
-  - docs/models/getmetadatabyratingkeyresponsebody.md
-  - docs/models/getmetadatabyratingkeyresponse.md
-  - docs/models/getmetadatachildrenrequest.md
-  - docs/models/getmetadatachildrenerrors.md
-  - docs/models/getmetadatachildrenlibraryresponsebody.md
-  - docs/models/getmetadatachildrendirectory.md
-  - docs/models/getmetadatachildrenmetadata.md
-  - docs/models/getmetadatachildrenmediacontainer.md
-  - docs/models/getmetadatachildrenresponsebody.md
-  - docs/models/getmetadatachildrenresponse.md
-  - docs/models/gettopwatchedcontentqueryparamtype.md
-  - docs/models/gettopwatchedcontentrequest.md
-  - docs/models/gettopwatchedcontenterrors.md
-  - docs/models/gettopwatchedcontentlibraryresponsebody.md
-  - docs/models/gettopwatchedcontentgenre.md
-  - docs/models/gettopwatchedcontentcountry.md
-  - docs/models/gettopwatchedcontentguids.md
-  - docs/models/gettopwatchedcontentrole.md
-  - docs/models/user.md
-  - docs/models/gettopwatchedcontentmetadata.md
-  - docs/models/gettopwatchedcontentmediacontainer.md
-  - docs/models/gettopwatchedcontentresponsebody.md
-  - docs/models/gettopwatchedcontentresponse.md
-  - docs/models/getondeckerrors.md
-  - docs/models/getondecklibraryresponsebody.md
-  - docs/models/getondeckstream.md
-  - docs/models/getondeckpart.md
-  - docs/models/getondeckmedia.md
-  - docs/models/getondeckguids.md
-  - docs/models/getondeckmetadata.md
-  - docs/models/getondeckmediacontainer.md
-  - docs/models/getondeckresponsebody.md
-  - docs/models/getondeckresponse.md
-  - docs/models/filter.md
-  - docs/models/libtype.md
-  - docs/models/includecollections.md
-  - docs/models/includeexternalmedia.md
-  - docs/models/getwatchlistrequest.md
-  - docs/models/getwatchlisterrors.md
-  - docs/models/getwatchlistwatchlistresponsebody.md
-  - docs/models/image.md
-  - docs/models/metadata.md
-  - docs/models/getwatchlistresponsebody.md
-  - docs/models/getwatchlistresponse.md
-  - docs/models/level.md
-  - docs/models/loglinerequest.md
-  - docs/models/loglineerrors.md
-  - docs/models/loglineresponsebody.md
-  - docs/models/loglineresponse.md
-  - docs/models/logmultilineerrors.md
-  - docs/models/logmultilineresponsebody.md
-  - docs/models/logmultilineresponse.md
-  - docs/models/enablepapertrailerrors.md
-  - docs/models/enablepapertrailresponsebody.md
-  - docs/models/enablepapertrailresponse.md
-  - docs/models/createplaylistqueryparamtype.md
-  - docs/models/smart.md
-  - docs/models/createplaylistrequest.md
-  - docs/models/createplaylisterrors.md
-  - docs/models/createplaylistplaylistsresponsebody.md
-  - docs/models/createplaylistmetadata.md
-  - docs/models/createplaylistmediacontainer.md
-  - docs/models/createplaylistresponsebody.md
-  - docs/models/createplaylistresponse.md
-  - docs/models/playlisttype.md
-  - docs/models/queryparamsmart.md
-  - docs/models/getplaylistsrequest.md
-  - docs/models/getplaylistserrors.md
-  - docs/models/getplaylistsplaylistsresponsebody.md
-  - docs/models/getplaylistsmetadata.md
-  - docs/models/getplaylistsmediacontainer.md
-  - docs/models/getplaylistsresponsebody.md
-  - docs/models/getplaylistsresponse.md
-  - docs/models/getplaylistrequest.md
-  - docs/models/getplaylisterrors.md
-  - docs/models/getplaylistplaylistsresponsebody.md
-  - docs/models/getplaylistmetadata.md
-  - docs/models/getplaylistmediacontainer.md
-  - docs/models/getplaylistresponsebody.md
-  - docs/models/getplaylistresponse.md
-  - docs/models/deleteplaylistrequest.md
-  - docs/models/deleteplaylisterrors.md
-  - docs/models/deleteplaylistresponsebody.md
-  - docs/models/deleteplaylistresponse.md
-  - docs/models/updateplaylistrequest.md
-  - docs/models/updateplaylisterrors.md
-  - docs/models/updateplaylistresponsebody.md
-  - docs/models/updateplaylistresponse.md
-  - docs/models/getplaylistcontentsqueryparamtype.md
-  - docs/models/getplaylistcontentsrequest.md
-  - docs/models/getplaylistcontentserrors.md
-  - docs/models/getplaylistcontentsplaylistsresponsebody.md
-  - docs/models/getplaylistcontentspart.md
-  - docs/models/getplaylistcontentsmedia.md
-  - docs/models/getplaylistcontentsgenre.md
-  - docs/models/getplaylistcontentscountry.md
-  - docs/models/getplaylistcontentsdirector.md
-  - docs/models/getplaylistcontentswriter.md
-  - docs/models/getplaylistcontentsrole.md
-  - docs/models/getplaylistcontentsmetadata.md
-  - docs/models/getplaylistcontentsmediacontainer.md
-  - docs/models/getplaylistcontentsresponsebody.md
-  - docs/models/getplaylistcontentsresponse.md
-  - docs/models/clearplaylistcontentsrequest.md
-  - docs/models/clearplaylistcontentserrors.md
-  - docs/models/clearplaylistcontentsresponsebody.md
-  - docs/models/clearplaylistcontentsresponse.md
-  - docs/models/addplaylistcontentsrequest.md
-  - docs/models/addplaylistcontentserrors.md
-  - docs/models/addplaylistcontentsplaylistsresponsebody.md
-  - docs/models/addplaylistcontentsmetadata.md
-  - docs/models/addplaylistcontentsmediacontainer.md
-  - docs/models/addplaylistcontentsresponsebody.md
-  - docs/models/addplaylistcontentsresponse.md
-  - docs/models/queryparamforce.md
-  - docs/models/uploadplaylistrequest.md
-  - docs/models/uploadplaylisterrors.md
-  - docs/models/uploadplaylistresponsebody.md
-  - docs/models/uploadplaylistresponse.md
-  - docs/models/gettransienttokenqueryparamtype.md
-  - docs/models/scope.md
-  - docs/models/gettransienttokenrequest.md
-  - docs/models/gettransienttokenerrors.md
-  - docs/models/gettransienttokenresponsebody.md
-  - docs/models/gettransienttokenresponse.md
-  - docs/models/getsourceconnectioninformationrequest.md
-  - docs/models/getsourceconnectioninformationerrors.md
-  - docs/models/getsourceconnectioninformationresponsebody.md
-  - docs/models/getsourceconnectioninformationresponse.md
-  - docs/models/getuserdetailsrequest.md
-  - docs/models/getuserdetailserrors.md
-  - docs/models/getuserdetailsresponsebody.md
-  - docs/models/mailingliststatus.md
-  - docs/models/autoselectsubtitle.md
-  - docs/models/defaultsubtitleaccessibility.md
-  - docs/models/defaultsubtitleforced.md
-  - docs/models/watchedindicator.md
-  - docs/models/mediareviewsvisibility.md
-  - docs/models/userprofile.md
-  - docs/models/getuserdetailsstatus.md
-  - docs/models/services.md
-  - docs/models/features.md
-  - docs/models/getuserdetailsauthenticationstatus.md
-  - docs/models/subscription.md
-  - docs/models/getuserdetailsfeatures.md
-  - docs/models/getuserdetailsauthenticationresponsestatus.md
-  - docs/models/getuserdetailssubscription.md
-  - docs/models/getuserdetailsuserplexaccount.md
-  - docs/models/getuserdetailsresponse.md
-  - docs/models/postuserssignindataglobals.md
-  - docs/models/postuserssignindatarequestbody.md
-  - docs/models/postuserssignindatarequest.md
-  - docs/models/postuserssignindataerrors.md
-  - docs/models/postuserssignindataresponsebody.md
-  - docs/models/postuserssignindatamailingliststatus.md
-  - docs/models/postuserssignindataautoselectsubtitle.md
-  - docs/models/postuserssignindatadefaultsubtitleaccessibility.md
-  - docs/models/postuserssignindatadefaultsubtitleforced.md
-  - docs/models/postuserssignindatawatchedindicator.md
-  - docs/models/postuserssignindatamediareviewsvisibility.md
-  - docs/models/postuserssignindatauserprofile.md
-  - docs/models/postuserssignindatastatus.md
-  - docs/models/postuserssignindataservices.md
-  - docs/models/postuserssignindatafeatures.md
-  - docs/models/postuserssignindataauthenticationstatus.md
-  - docs/models/postuserssignindatasubscription.md
-  - docs/models/postuserssignindataauthenticationfeatures.md
-  - docs/models/postuserssignindataauthenticationresponsestatus.md
-  - docs/models/postuserssignindataauthenticationsubscription.md
-  - docs/models/postuserssignindatastate.md
-  - docs/models/internalpaymentmethod.md
-  - docs/models/billing.md
-  - docs/models/pastsubscription.md
-  - docs/models/trials.md
-  - docs/models/postuserssignindatauserplexaccount.md
-  - docs/models/postuserssignindataresponse.md
-  - docs/models/getstatisticsrequest.md
-  - docs/models/getstatisticserrors.md
-  - docs/models/getstatisticsstatisticsresponsebody.md
-  - docs/models/getstatisticsdevice.md
-  - docs/models/account.md
-  - docs/models/statisticsmedia.md
-  - docs/models/getstatisticsmediacontainer.md
-  - docs/models/getstatisticsresponsebody.md
-  - docs/models/getstatisticsresponse.md
-  - docs/models/getresourcesstatisticsrequest.md
-  - docs/models/getresourcesstatisticserrors.md
-  - docs/models/getresourcesstatisticsstatisticsresponsebody.md
-  - docs/models/statisticsresources.md
-  - docs/models/getresourcesstatisticsmediacontainer.md
-  - docs/models/getresourcesstatisticsresponsebody.md
-  - docs/models/getresourcesstatisticsresponse.md
-  - docs/models/getbandwidthstatisticsrequest.md
-  - docs/models/getbandwidthstatisticserrors.md
-  - docs/models/getbandwidthstatisticsstatisticsresponsebody.md
-  - docs/models/getbandwidthstatisticsdevice.md
-  - docs/models/getbandwidthstatisticsaccount.md
-  - docs/models/statisticsbandwidth.md
-  - docs/models/getbandwidthstatisticsmediacontainer.md
-  - docs/models/getbandwidthstatisticsresponsebody.md
-  - docs/models/getbandwidthstatisticsresponse.md
-  - docs/models/getsessionserrors.md
-  - docs/models/getsessionssessionsresponsebody.md
-  - docs/models/getsessionsstream.md
-  - docs/models/getsessionspart.md
-  - docs/models/getsessionsmedia.md
-  - docs/models/getsessionsuser.md
-  - docs/models/player.md
-  - docs/models/session.md
-  - docs/models/getsessionsmetadata.md
-  - docs/models/getsessionsmediacontainer.md
-  - docs/models/getsessionsresponsebody.md
-  - docs/models/getsessionsresponse.md
-  - docs/models/queryparamfilter.md
-  - docs/models/getsessionhistoryrequest.md
-  - docs/models/getsessionhistoryerrors.md
-  - docs/models/getsessionhistorysessionsresponsebody.md
-  - docs/models/getsessionhistorymetadata.md
-  - docs/models/getsessionhistorymediacontainer.md
-  - docs/models/getsessionhistoryresponsebody.md
-  - docs/models/getsessionhistoryresponse.md
-  - docs/models/gettranscodesessionserrors.md
-  - docs/models/gettranscodesessionssessionsresponsebody.md
-  - docs/models/transcodesession.md
-  - docs/models/gettranscodesessionsmediacontainer.md
-  - docs/models/gettranscodesessionsresponsebody.md
-  - docs/models/gettranscodesessionsresponse.md
-  - docs/models/stoptranscodesessionrequest.md
-  - docs/models/stoptranscodesessionerrors.md
-  - docs/models/stoptranscodesessionresponsebody.md
-  - docs/models/stoptranscodesessionresponse.md
-  - docs/models/getupdatestatuserrors.md
-  - docs/models/getupdatestatusupdaterresponsebody.md
-  - docs/models/release.md
-  - docs/models/getupdatestatusmediacontainer.md
-  - docs/models/getupdatestatusresponsebody.md
-  - docs/models/getupdatestatusresponse.md
-  - docs/models/download.md
-  - docs/models/checkforupdatesrequest.md
-  - docs/models/checkforupdateserrors.md
-  - docs/models/checkforupdatesresponsebody.md
-  - docs/models/checkforupdatesresponse.md
-  - docs/models/tonight.md
-  - docs/models/skip.md
-  - docs/models/applyupdatesrequest.md
-  - docs/models/applyupdateserrors.md
-  - docs/models/applyupdatesresponsebody.md
-  - docs/models/applyupdatesresponse.md
-  - docs/models/security.md
-  - docs/sdks/plexapi/README.md
-  - docs/lib/utils/retryconfig.md
-  - docs/sdks/server/README.md
-  - docs/sdks/media/README.md
-  - docs/sdks/video/README.md
-  - docs/sdks/activities/README.md
-  - docs/sdks/butler/README.md
-  - docs/sdks/plex/README.md
-  - docs/sdks/hubs/README.md
-  - docs/sdks/search/README.md
-  - docs/sdks/library/README.md
-  - docs/sdks/watchlist/README.md
-  - docs/sdks/log/README.md
-  - docs/sdks/playlists/README.md
-  - docs/sdks/authentication/README.md
-  - docs/sdks/statistics/README.md
-  - docs/sdks/sessions/README.md
-  - docs/sdks/updater/README.md
-  - USAGE.md
-  - .gitattributes
-  - src/hooks/hooks.ts
-  - src/hooks/types.ts
-  - src/hooks/index.ts
-  - CONTRIBUTING.md
+examples:
+  getServerCapabilities:
+    speakeasy-default-get-server-capabilities:
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getServerPreferences:
+    speakeasy-default-get-server-preferences:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 161, "Setting": []}}
+        "401":
+          application/json: {"errors": []}
+  getAvailableClients:
+    speakeasy-default-get-available-clients:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "Server": []}}
+        "401":
+          application/json: {"errors": []}
+  getDevices:
+    speakeasy-default-get-devices:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 151, "identifier": "com.plexapp.system.devices", "Device": []}}
+        "401":
+          application/json: {"errors": []}
+  get-server-identity:
+    speakeasy-default-get-server-identity:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 0, "machineIdentifier": "96f2fe7a78c9dc1f16a16bedbe90f98149be16b4", "version": "1.31.3.6868-28fc46b27"}}
+        "408":
+          application/json: {"code": 408, "message": "The server timed out waiting for the request."}
+  getMyPlexAccount:
+    speakeasy-default-get-my-plex-account:
+      responses:
+        "200":
+          application/json: {"MyPlex": {"authToken": "Z5v-PrNASDFpsaCi3CPK7", "username": "example.email@mail.com", "mappingState": "mapped", "signInState": "ok", "publicAddress": "140.20.68.140", "publicPort": 32400, "privateAddress": "10.10.10.47", "privatePort": 32400, "subscriptionFeatures": "federated-auth,hardware_transcoding,home,hwtranscode,item_clusters,kevin-bacon,livetv,loudness,lyrics,music-analysis,music_videos,pass,photo_autotags,photos-v5,photosV6-edit,photosV6-tv-albums,premium_music_metadata,radio,server-manager,session_bandwidth_restrictions,session_kick,shared-radio,sync,trailers,tuner-sharing,type-first,unsupportedtuners,webhooks", "subscriptionState": "Active"}}
+        "401":
+          application/json: {"errors": []}
+  getResizedPhoto:
+    speakeasy-default-get-resized-photo:
+      parameters:
+        query:
+          width: 110
+          height: 165
+          opacity: 100
+          blur: 20
+          minSize: 1
+          upscale: 0
+          url: "/library/metadata/49564/thumb/1654258204"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  get-media-providers:
+    speakeasy-default-get-media-providers:
+      parameters:
+        query:
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getServerList:
+    speakeasy-default-get-server-list:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "Server": []}}
+        "401":
+          application/json: {"errors": []}
+  markPlayed:
+    speakeasy-default-mark-played:
+      parameters:
+        query:
+          key: 59398
+      responses:
+        "401":
+          application/json: {"errors": []}
+  markUnplayed:
+    speakeasy-default-mark-unplayed:
+      parameters:
+        query:
+          key: 59398
+      responses:
+        "401":
+          application/json: {"errors": []}
+  updatePlayProgress:
+    "":
+      parameters:
+        query:
+          key: "<key>"
+          time: 90000
+          state: "played"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  get-banner-image:
+    speakeasy-default-get-banner-image:
+      parameters:
+        path:
+          ratingKey: 9518
+        query:
+          width: 396
+          height: 396
+          minSize: 1
+          upscale: 1
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  get-thumb-image:
+    speakeasy-default-get-thumb-image:
+      parameters:
+        path:
+          ratingKey: 9518
+        query:
+          width: 396
+          height: 396
+          minSize: 1
+          upscale: 1
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getTimeline:
+    "":
+      parameters:
+        query:
+          ratingKey: 23409
+          key: "/library/metadata/23409"
+          state: "playing"
+          hasMDE: 1
+          time: 2000
+          duration: 10000
+          context: "home:hub.continueWatching"
+          playQueueItemID: 1
+          playBackTime: 2000
+          row: 1
+      responses:
+        "401":
+          application/json: {"errors": []}
+  startUniversalTranscode:
+    "":
+      parameters:
+        query:
+          hasMDE: 1
+          path: "/library/metadata/23409"
+          mediaIndex: 0
+          partIndex: 0
+          protocol: "hls"
+          fastSeek: 0
+          directPlay: 0
+          directStream: 0
+          subtitleSize: 100
+          subtites: "burn"
+          audioBoost: 100
+          location: "lan"
+          mediaBufferSize: 102400
+          session: "zvcage8b7rkioqcm8f4uns4c"
+          addDebugOverlay: 0
+          autoAdjustQuality: 0
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getServerActivities:
+    speakeasy-default-get-server-activities:
+      responses:
+        "401":
+          application/json: {"errors": []}
+  cancelServerActivities:
+    "":
+      parameters:
+        path:
+          activityUUID: "25b71ed5-0f9d-461c-baa7-d404e9e10d3e"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getButlerTasks:
+    speakeasy-default-get-butler-tasks:
+      responses:
+        "200":
+          application/json: {"ButlerTasks": {"ButlerTask": []}}
+        "401":
+          application/json: {"errors": []}
+  startAllTasks:
+    speakeasy-default-start-all-tasks:
+      responses:
+        "401":
+          application/json: {"errors": []}
+  stopAllTasks:
+    speakeasy-default-stop-all-tasks:
+      responses:
+        "401":
+          application/json: {"errors": []}
+  startTask:
+    speakeasy-default-start-task:
+      parameters:
+        path:
+          taskName: "CleanOldBundles"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  stopTask:
+    speakeasy-default-stop-task:
+      parameters:
+        path:
+          taskName: "BackupDatabase"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getCompanionsData:
+    speakeasy-default-get-companions-data:
+      responses:
+        "200":
+          application/json: []
+        "401":
+          application/json: {"errors": []}
+  getUserFriends:
+    speakeasy-default-get-user-friends:
+      responses:
+        "200":
+          application/json: [{"email": "username@email.com", "friendlyName": "exampleUser", "home": true, "id": 0, "restricted": false, "sharedServers": [], "sharedSources": [], "status": "accepted", "thumb": "https://plex.tv/users/7d1916e0d8f6e76b/avatar?c=1694481578", "title": "username123", "username": "username123", "uuid": "7d1916e0d8f6e76b"}]
+        "401":
+          application/json: {"errors": []}
+  getGeoData:
+    speakeasy-default-get-geo-data:
+      responses:
+        "200":
+          application/json: {"code": "VI", "continent_code": "NA", "country": "United States Virgin Islands", "city": "Amsterdam", "european_union_member": true, "time_zone": "America/St_Thomas", "postal_code": 802, "in_privacy_restricted_country": true, "in_privacy_restricted_region": true, "subdivisions": "Saint Thomas", "coordinates": "18.3381, -64.8941"}
+        "401":
+          application/json: {"errors": []}
+  getHomeData:
+    speakeasy-default-get-home-data:
+      responses:
+        "200":
+          application/json: {"id": 1841489, "name": "Blindkitty38's home", "guestUserID": 58815432, "guestUserUUID": "f3df4e01bfca0787"}
+        "401":
+          application/json: {"errors": []}
+  get-server-resources:
+    speakeasy-default-get-server-resources:
+      parameters:
+        query:
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+          includeHttps: 1
+          includeRelay: 1
+          includeIPv6: 1
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getPin:
+    "":
+      parameters:
+        query:
+          X-Plex-Product: "Plex Web"
+      responses:
+        "200":
+          application/json: {"id": 308667304, "code": "7RQZ", "product": "0", "trusted": false, "qr": "https://plex.tv/api/v2/pins/qr/7RQZ", "clientIdentifier": "string", "location": {"code": "VI", "continent_code": "NA", "country": "United States Virgin Islands", "city": "Amsterdam", "european_union_member": true, "time_zone": "America/St_Thomas", "postal_code": 802, "in_privacy_restricted_country": true, "in_privacy_restricted_region": true, "subdivisions": "Saint Thomas", "coordinates": "18.3381, -64.8941"}, "expiresIn": 876, "createdAt": "2024-07-16T17:03:05Z", "expiresAt": "2024-07-16T17:18:05Z", "authToken": null, "newRegistration": null}
+        "400":
+          application/json: {"errors": []}
+  getTokenByPinId:
+    "":
+      parameters:
+        path:
+          pinID: 408895
+        query: {}
+      responses:
+        "200":
+          application/json: {"id": 308667304, "code": "7RQZ", "product": "0", "trusted": false, "qr": "https://plex.tv/api/v2/pins/qr/7RQZ", "clientIdentifier": "string", "location": {"code": "VI", "continent_code": "NA", "country": "United States Virgin Islands", "city": "Amsterdam", "european_union_member": true, "time_zone": "America/St_Thomas", "postal_code": 802, "in_privacy_restricted_country": true, "in_privacy_restricted_region": true, "subdivisions": "Saint Thomas", "coordinates": "18.3381, -64.8941"}, "expiresIn": 876, "createdAt": "2024-07-16T17:03:05Z", "expiresAt": "2024-07-16T17:18:05Z", "authToken": null, "newRegistration": null}
+        "400":
+          application/json: {"errors": []}
+        "404":
+          application/json: {"errors": [{"code": 1020, "message": "Code not found or expired"}]}
+  getGlobalHubs:
+    speakeasy-default-get-global-hubs:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 8, "allowSync": true, "identifier": "com.plexapp.plugins.library", "Hub": []}}
+        "401":
+          application/json: {"errors": []}
+  getLibraryHubs:
+    speakeasy-default-get-library-hubs:
+      parameters:
+        path:
+          sectionId: "6728.76"
+        query: {}
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 7, "allowSync": true, "identifier": "com.plexapp.plugins.library", "librarySectionID": 1, "librarySectionTitle": "Movies", "librarySectionUUID": "322a231a-b7f7-49f5-920f-14c61199cd30", "Hub": []}}
+        "401":
+          application/json: {"errors": []}
+  performSearch:
+    speakeasy-default-perform-search:
+      parameters:
+        query:
+          query: "dylan"
+          limit: 5
+      responses:
+        "401":
+          application/json: {"errors": []}
+  performVoiceSearch:
+    speakeasy-default-perform-voice-search:
+      parameters:
+        query:
+          query: "dead+poop"
+          limit: 5
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getSearchResults:
+    speakeasy-default-get-search-results:
+      parameters:
+        query:
+          query: "110"
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 26, "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1680021154, "Metadata": [], "Provider": []}}
+        "401":
+          application/json: {"errors": []}
+  getFileHash:
+    speakeasy-default-get-file-hash:
+      parameters:
+        query:
+          url: "file://C:\\Image.png&type=13"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getRecentlyAdded:
+    speakeasy-default-get-recently-added:
+      parameters:
+        query:
+          X-Plex-Container-Start: 0
+          X-Plex-Container-Size: 50
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 50, "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1680021154, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  get-all-libraries:
+    speakeasy-default-get-all-libraries:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 5, "allowSync": false, "title1": "Plex Library", "Directory": []}}
+        "401":
+          application/json: {"errors": []}
+  get-library-details:
+    speakeasy-default-get-library-details:
+      parameters:
+        path:
+          sectionKey: 9518
+        query: {}
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 29, "allowSync": false, "art": "/:/resources/movie-fanart.jpg", "content": "secondary", "identifier": "com.plexapp.plugins.library", "librarySectionID": 1, "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "thumb": "/:/resources/movie.png", "title1": "Movies", "viewGroup": "secondary", "viewMode": 65592, "Directory": [], "Type": [], "FieldType": []}}
+        "401":
+          application/json: {"errors": []}
+  deleteLibrary:
+    speakeasy-default-delete-library:
+      parameters:
+        path:
+          sectionKey: 9518
+      responses:
+        "401":
+          application/json: {"errors": []}
+  get-library-items:
+    "":
+      parameters:
+        path:
+          sectionKey: 9518
+          tag: "edition"
+        query:
+          includeGuids: 1
+          includeMeta: 1
+          type: 2
+          X-Plex-Container-Start: 0
+          X-Plex-Container-Size: 50
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 70, "allowSync": true, "art": "/:/resources/movie-fanart.jpg", "identifier": "com.plexapp.plugins.library", "librarySectionTitle": "Movies", "librarySectionUUID": "322a231a-b7f7-49f5-920f-14c61199cd30", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "thumb": "/:/resources/movie.png", "title1": "Movies", "title2": "Recently Released", "viewGroup": "movie", "viewMode": 65592, "mixedParents": true, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  get-refresh-library-metadata:
+    speakeasy-default-get-refresh-library-metadata:
+      parameters:
+        path:
+          sectionKey: 9518
+        query:
+          force: 0
+      responses:
+        "401":
+          application/json: {"errors": []}
+  get-search-library:
+    speakeasy-default-get-search-library:
+      parameters:
+        path:
+          sectionKey: 9518
+        query:
+          type: 2
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 2, "allowSync": false, "art": "/:/resources/show-fanart.jpg", "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1698860922, "nocache": true, "thumb": "/:/resources/show.png", "title1": "TV Shows", "title2": "Search for ''", "viewGroup": "season", "viewMode": 65593, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  get-meta-data-by-rating-key:
+    speakeasy-default-get-meta-data-by-rating-key:
+      parameters:
+        path:
+          ratingKey: 9518
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "allowSync": true, "identifier": "com.plexapp.plugins.library", "librarySectionID": 1, "librarySectionTitle": "Movies", "librarySectionUUID": "cfc899d7-3000-46f6-8489-b9592714ada5", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1698860922, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  getMetadataChildren:
+    include-stream:
+      parameters:
+        path:
+          ratingKey: "1539.14"
+        query:
+          includeElements: "Stream"
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 3, "allowSync": true, "art": "/library/metadata/30072/art/1705739923", "identifier": "com.plexapp.plugins.library", "key": "30072", "librarySectionID": 2, "librarySectionTitle": "TV Shows", "librarySectionUUID": "4bb2521c-8ba9-459b-aaee-8ab8bc35eabd", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "nocache": true, "parentIndex": 1, "parentTitle": "Reacher", "parentYear": 2022, "summary": "When retired Military Police Officer Jack Reacher is arrested for a murder he did not commit, he finds himself in the middle of a deadly conspiracy full of dirty cops, shady businessmen, and scheming politicians. With nothing but his wits, he must figure out what is happening in Margrave, Georgia.", "theme": "/library/metadata/30072/theme/1705739923", "thumb": "/library/metadata/30072/thumb/1705739923", "title1": "TV Shows", "title2": "Reacher", "viewGroup": "season", "viewMode": 65593, "Directory": [{"leafCount": 16, "thumb": "/library/metadata/30072/thumb/1705739923", "viewedLeafCount": 16, "key": "/library/metadata/30072/allLeaves", "title": "All episodes"}], "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+    include-stream-otheritem:
+      parameters:
+        path:
+          ratingKey: "8449.64"
+        query:
+          includeElements: "Stream,OtherItem"
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 3, "allowSync": true, "art": "/library/metadata/30072/art/1705739923", "identifier": "com.plexapp.plugins.library", "key": "30072", "librarySectionID": 2, "librarySectionTitle": "TV Shows", "librarySectionUUID": "4bb2521c-8ba9-459b-aaee-8ab8bc35eabd", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "nocache": true, "parentIndex": 1, "parentTitle": "Reacher", "parentYear": 2022, "summary": "When retired Military Police Officer Jack Reacher is arrested for a murder he did not commit, he finds himself in the middle of a deadly conspiracy full of dirty cops, shady businessmen, and scheming politicians. With nothing but his wits, he must figure out what is happening in Margrave, Georgia.", "theme": "/library/metadata/30072/theme/1705739923", "thumb": "/library/metadata/30072/thumb/1705739923", "title1": "TV Shows", "title2": "Reacher", "viewGroup": "season", "viewMode": 65593, "Directory": [{"leafCount": 16, "thumb": "/library/metadata/30072/thumb/1705739923", "viewedLeafCount": 16, "key": "/library/metadata/30072/allLeaves", "title": "All episodes"}], "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+    include-stream-otheritem-anotheritem:
+      parameters:
+        path:
+          ratingKey: "5800.4"
+        query:
+          includeElements: "Stream,OtherItem,AnotherItem"
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 3, "allowSync": true, "art": "/library/metadata/30072/art/1705739923", "identifier": "com.plexapp.plugins.library", "key": "30072", "librarySectionID": 2, "librarySectionTitle": "TV Shows", "librarySectionUUID": "4bb2521c-8ba9-459b-aaee-8ab8bc35eabd", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1701731894, "nocache": true, "parentIndex": 1, "parentTitle": "Reacher", "parentYear": 2022, "summary": "When retired Military Police Officer Jack Reacher is arrested for a murder he did not commit, he finds himself in the middle of a deadly conspiracy full of dirty cops, shady businessmen, and scheming politicians. With nothing but his wits, he must figure out what is happening in Margrave, Georgia.", "theme": "/library/metadata/30072/theme/1705739923", "thumb": "/library/metadata/30072/thumb/1705739923", "title1": "TV Shows", "title2": "Reacher", "viewGroup": "season", "viewMode": 65593, "Directory": [{"leafCount": 16, "thumb": "/library/metadata/30072/thumb/1705739923", "viewedLeafCount": 16, "key": "/library/metadata/30072/allLeaves", "title": "All episodes"}], "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  getTopWatchedContent:
+    "":
+      parameters:
+        query:
+          type: 2
+          includeGuids: 1
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "allowSync": true, "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1698860922, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  getOnDeck:
+    speakeasy-default-get-on-deck:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 16, "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1680021154, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  get-watch-list:
+    speakeasy-default-get-watch-list:
+      parameters:
+        path:
+          filter: "available"
+        query:
+          X-Plex-Container-Start: 0
+          X-Plex-Container-Size: 50
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  logLine:
+    speakeasy-default-log-line:
+      parameters:
+        query:
+          level: 3
+          message: "Test log message"
+          source: "Postman"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  logMultiLine:
+    speakeasy-default-log-multi-line:
+      requestBody:
+        text/plain: "level=4&message=Test%20message%201&source=postman\nlevel=3&message=Test%20message%202&source=postman\nlevel=1&message=Test%20message%203&source=postman"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  enablePaperTrail:
+    speakeasy-default-enable-paper-trail:
+      responses:
+        "401":
+          application/json: {"errors": []}
+  createPlaylist:
+    speakeasy-default-create-playlist:
+      parameters:
+        query:
+          title: "<value>"
+          type: "photo"
+          smart: 1
+          uri: "https://inborn-brochure.biz"
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 7, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  getPlaylists:
+    speakeasy-default-get-playlists:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 4, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  getPlaylist:
+    speakeasy-default-get-playlist:
+      parameters:
+        path:
+          playlistID: "4109.48"
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  deletePlaylist:
+    speakeasy-default-delete-playlist:
+      parameters:
+        path:
+          playlistID: "216.22"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  updatePlaylist:
+    speakeasy-default-update-playlist:
+      parameters:
+        path:
+          playlistID: "3915"
+        query: {}
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getPlaylistContents:
+    speakeasy-default-get-playlist-contents:
+      parameters:
+        path:
+          playlistID: "5004.46"
+        query:
+          type: 2
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 2, "composite": "/playlists/95/composite/1705717521", "duration": 282, "leafCount": 2, "playlistType": "video", "ratingKey": "95", "smart": true, "title": "Smart Movie Playlist", "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  clearPlaylistContents:
+    speakeasy-default-clear-playlist-contents:
+      parameters:
+        path:
+          playlistID: "1893.18"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  addPlaylistContents:
+    speakeasy-default-add-playlist-contents:
+      parameters:
+        path:
+          playlistID: "8502.01"
+        query:
+          uri: "server://12345/com.plexapp.plugins.library/library/metadata/1"
+          playQueueID: 123
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "leafCountAdded": 1, "leafCountRequested": 1, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  uploadPlaylist:
+    speakeasy-default-upload-playlist:
+      parameters:
+        query:
+          path: "/home/barkley/playlist.m3u"
+          force: 0
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getTransientToken:
+    speakeasy-default-get-transient-token:
+      parameters:
+        query:
+          type: "delegation"
+          scope: "all"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getSourceConnectionInformation:
+    speakeasy-default-get-source-connection-information:
+      parameters:
+        query:
+          source: "server://client-identifier"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getUserDetails:
+    speakeasy-default-get-user-details:
+      parameters:
+        query:
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+      responses:
+        "200":
+          application/json: {"adsConsent": true, "adsConsentReminderAt": "2019-08-24T14:15:22Z", "adsConsentSetAt": "2019-08-24T14:15:22Z", "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": [], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1721154902, "locale": null, "mailingListActive": false, "mailingListStatus": "unsubscribed", "maxHomeSize": 15, "pin": "string", "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": "1", "defaultSubtitleAccessibility": "1", "defaultSubtitleForced": "0", "watchedIndicator": "1", "mediaReviewsVisibility": 0}, "protected": false, "rememberExpiresAt": 1722364046, "restricted": false, "roles": ["string"], "scrobbleTypes": "", "services": [{"identifier": "metadata-dev", "endpoint": "https://epg.provider.plex.tv", "token": "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv", "secret": "string", "status": "online"}], "subscription": {"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}, "subscriptionDescription": "string", "subscriptions": [{"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f"}
+        "401":
+          application/json: {"errors": []}
+  post-users-sign-in-data:
+    speakeasy-default-post-users-sign-in-data:
+      requestBody:
+        application/x-www-form-urlencoded: {"login": "username@email.com", "password": "password123"}
+      responses:
+        "201":
+          application/json: {"adsConsent": true, "adsConsentReminderAt": "2019-08-24T14:15:22Z", "adsConsentSetAt": "2019-08-24T14:15:22Z", "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": [], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1721154902, "locale": null, "mailingListActive": false, "mailingListStatus": "unsubscribed", "maxHomeSize": 15, "pin": "string", "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": "1", "defaultSubtitleAccessibility": "1", "defaultSubtitleForced": "0", "watchedIndicator": "1", "mediaReviewsVisibility": 0}, "protected": false, "rememberExpiresAt": 1722364046, "restricted": false, "roles": ["string"], "scrobbleTypes": "", "services": [{"identifier": "metadata-dev", "endpoint": "https://epg.provider.plex.tv", "token": "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv", "secret": "string", "status": "online"}], "subscription": {"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}, "subscriptionDescription": "string", "subscriptions": [{"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f", "pastSubscriptions": [{"id": "string", "mode": "string", "renewsAt": "string", "endsAt": "1556281940", "canceled": "0", "gracePeriod": "0", "onHold": "0", "canReactivate": "0", "canUpgrade": "0", "canDowngrade": "0", "canConvert": "0", "type": "plexpass", "transfer": "string", "state": "ended", "billing": {"paymentMethodId": 569045}}], "trials": [{}]}
+        "401":
+          application/json: {"errors": []}
+  getStatistics:
+    "":
+      parameters:
+        query:
+          Timespan: 4
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 5497, "Device": [], "Account": [], "StatisticsMedia": []}}
+        "401":
+          application/json: {"errors": []}
+  getResourcesStatistics:
+    "":
+      parameters:
+        query:
+          Timespan: 4
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 5497, "StatisticsResources": []}}
+        "401":
+          application/json: {"errors": []}
+  getBandwidthStatistics:
+    "":
+      parameters:
+        query:
+          Timespan: 4
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 5497, "Device": [], "Account": [], "StatisticsBandwidth": []}}
+        "401":
+          application/json: {"errors": []}
+  getSessions:
+    speakeasy-default-get-sessions:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  getSessionHistory:
+    viewed-at-descending:
+      parameters:
+        query:
+          sort: "viewedAt:desc"
+          accountId: 1
+          librarySectionID: 12
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+    viewed-at-ascending:
+      parameters:
+        query:
+          sort: "viewedAt:asc"
+          accountId: 1
+          librarySectionID: 12
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+    rating-descending:
+      parameters:
+        query:
+          sort: "rating:desc"
+          accountId: 1
+          librarySectionID: 12
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+    rating-ascending:
+      parameters:
+        query:
+          sort: "rating:asc"
+          accountId: 1
+          librarySectionID: 12
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+    "":
+      parameters:
+        query:
+          accountId: 1
+          librarySectionID: 12
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+    ViewedAt:
+      parameters:
+        query:
+          accountId: 1
+          filter: viewedAt>=1704862818
+          librarySectionID: 12
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 10855, "Metadata": []}}
+        "401":
+          application/json: {"errors": []}
+  getTranscodeSessions:
+    speakeasy-default-get-transcode-sessions:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "TranscodeSession": [{"key": "vv3i2q2lax92qlzul1hbd4bx", "throttled": false, "complete": false, "progress": 1.7999999523162842, "size": -22, "speed": 25.100000381469727, "error": false, "duration": 1445695, "remaining": 53, "context": "streaming", "sourceVideoCodec": "h264", "sourceAudioCodec": "aac", "videoDecision": "transcode", "audioDecision": "transcode", "subtitleDecision": "burn", "protocol": "http", "container": "mkv", "videoCodec": "h264", "audioCodec": "opus", "audioChannels": 1, "transcodeHwRequested": true, "timeStamp": 1705895805.4919229, "maxOffsetAvailable": 29.53, "minOffsetAvailable": 3.003000020980835}]}}
+        "401":
+          application/json: {"errors": []}
+  stopTranscodeSession:
+    speakeasy-default-stop-transcode-session:
+      parameters:
+        path:
+          sessionKey: "zz7llzqlx8w9vnrsbnwhbmep"
+      responses:
+        "401":
+          application/json: {"errors": []}
+  getUpdateStatus:
+    speakeasy-default-get-update-status:
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 1, "canInstall": false, "checkedAt": 1705801232, "downloadURL": "https://plex.tv/downloads/latest/5?channel=8&build=linux-x86_64&distro=redhat&X-Plex-Token=xxxxxxxxxxxxxxxxxxxx", "status": 0, "Release": [{"key": "https://plex.tv/updater/releases/5136", "version": "1.40.0.7775-456fbaf97", "added": "(PLEASE NOTE) This version makes changes to the database which will make it compatible only with server versions 1.31.2 or higher (released March 14). You will not be able to use your database on Plex Media Server versions lower than this after this update. Please also be patient when updating to this version if you have a very large database and allow the upgrade process to finish.\n(Collections) Items added to a collection from the item context menu will now lock the collection field on the items (#12793)\n(Music) Store track genres and add filtering options (#14653)\n(Music) Support ID3v2.4 null-separated tags for genres and release type (#14653)\n(View History) No longer create a view history entry for items marked as played (#10888)\n(Web) Updated to 4.118.0", "fixed": "(Agents) Changing a 'Other Videos' type library to the modern movie agent would fail (#14483)\n(Agents) It is possible that agents are not initialised during startup on rare occasions (#14654)\n(Agents) Remove the legacy OpenSubtitles agent which is no longer supported upstream (#14667)\n(Collection) Server could become unresponsive when collection membership changes (#14612)\n(DVR) Previously watched recordings could be deleted without being watched again (#13779)\n(Libraries) When performing fix match on items from certain music libraries the language would default to Arabic (#14501)\n(Library) The Content Rating not equal to None filter does not work (#14620)\n(Search) Album search results could contain all the album's tracks too (#14486)\n(Subtitles) In some circumstances, sidecar subtitles can show up for media when they're no longer available (#14674)\n(Transcoder) HW encoding would fail on devices with no rate control (#14222)\n(Transcoder) Software transcoding on Ubuntu could cause unexpected behavior (#14605)", "downloadURL": "https://plex.tv/downloads/latest/5?channel=8&build=linux-x86_64&distro=redhat&X-Plex-Token=xxxxxxxxxxxxxxxxxxxx", "state": "notify"}]}}
+        "401":
+          application/json: {"errors": []}
+  checkForUpdates:
+    "":
+      parameters:
+        query:
+          download: 1
+      responses:
+        "401":
+          application/json: {"errors": []}
+  applyUpdates:
+    "":
+      parameters:
+        query:
+          tonight: 1
+          skip: 1
+      responses:
+        "401":
+          application/json: {"errors": []}

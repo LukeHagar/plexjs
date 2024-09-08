@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Update Media Play Progress
@@ -36,8 +37,8 @@ export async function mediaUpdatePlayProgress(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.UpdatePlayProgressResponse,
-        | models.UpdatePlayProgressResponseBody
+        operations.UpdatePlayProgressResponse,
+        | errors.UpdatePlayProgressResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -47,7 +48,7 @@ export async function mediaUpdatePlayProgress(
         | ConnectionError
     >
 > {
-    const input$: models.UpdatePlayProgressRequest = {
+    const input$: operations.UpdatePlayProgressRequest = {
         key: key,
         time: time,
         state: state,
@@ -55,7 +56,7 @@ export async function mediaUpdatePlayProgress(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.UpdatePlayProgressRequest$outboundSchema.parse(value$),
+        (value$) => operations.UpdatePlayProgressRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -122,8 +123,8 @@ export async function mediaUpdatePlayProgress(
     };
 
     const [result$] = await m$.match<
-        models.UpdatePlayProgressResponse,
-        | models.UpdatePlayProgressResponseBody
+        operations.UpdatePlayProgressResponse,
+        | errors.UpdatePlayProgressResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -132,9 +133,9 @@ export async function mediaUpdatePlayProgress(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.UpdatePlayProgressResponse$inboundSchema),
+        m$.nil(200, operations.UpdatePlayProgressResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.UpdatePlayProgressResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.UpdatePlayProgressResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -80,14 +80,14 @@ run();
 
 ### Response
 
-**Promise\<[models.MarkPlayedResponse](../../models/markplayedresponse.md)\>**
+**Promise\<[operations.MarkPlayedResponse](../../sdk/models/operations/markplayedresponse.md)\>**
 
 ### Errors
 
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| models.MarkPlayedResponseBody | 401                           | application/json              |
-| models.SDKError               | 4xx-5xx                       | */*                           |
+| errors.MarkPlayedResponseBody | 401                           | application/json              |
+| errors.SDKError               | 4xx-5xx                       | */*                           |
 
 
 ## markUnplayed
@@ -156,14 +156,14 @@ run();
 
 ### Response
 
-**Promise\<[models.MarkUnplayedResponse](../../models/markunplayedresponse.md)\>**
+**Promise\<[operations.MarkUnplayedResponse](../../sdk/models/operations/markunplayedresponse.md)\>**
 
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
-| models.MarkUnplayedResponseBody | 401                             | application/json                |
-| models.SDKError                 | 4xx-5xx                         | */*                             |
+| errors.MarkUnplayedResponseBody | 401                             | application/json                |
+| errors.SDKError                 | 4xx-5xx                         | */*                             |
 
 
 ## updatePlayProgress
@@ -235,14 +235,14 @@ run();
 
 ### Response
 
-**Promise\<[models.UpdatePlayProgressResponse](../../models/updateplayprogressresponse.md)\>**
+**Promise\<[operations.UpdatePlayProgressResponse](../../sdk/models/operations/updateplayprogressresponse.md)\>**
 
 ### Errors
 
 | Error Object                          | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models.UpdatePlayProgressResponseBody | 401                                   | application/json                      |
-| models.SDKError                       | 4xx-5xx                               | */*                                   |
+| errors.UpdatePlayProgressResponseBody | 401                                   | application/json                      |
+| errors.SDKError                       | 4xx-5xx                               | */*                                   |
 
 
 ## getBannerImage
@@ -318,21 +318,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [models.GetBannerImageRequest](../../models/getbannerimagerequest.md)                                                                                                          | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetBannerImageRequest](../../sdk/models/operations/getbannerimagerequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[models.GetBannerImageResponse](../../models/getbannerimageresponse.md)\>**
+**Promise\<[operations.GetBannerImageResponse](../../sdk/models/operations/getbannerimageresponse.md)\>**
 
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| models.GetBannerImageResponseBody | 401                               | application/json                  |
-| models.SDKError                   | 4xx-5xx                           | */*                               |
+| errors.GetBannerImageResponseBody | 401                               | application/json                  |
+| errors.SDKError                   | 4xx-5xx                           | */*                               |
 
 
 ## getThumbImage
@@ -408,18 +408,18 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [models.GetThumbImageRequest](../../models/getthumbimagerequest.md)                                                                                                            | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetThumbImageRequest](../../sdk/models/operations/getthumbimagerequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[models.GetThumbImageResponse](../../models/getthumbimageresponse.md)\>**
+**Promise\<[operations.GetThumbImageResponse](../../sdk/models/operations/getthumbimageresponse.md)\>**
 
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| models.GetThumbImageResponseBody | 401                              | application/json                 |
-| models.SDKError                  | 4xx-5xx                          | */*                              |
+| errors.GetThumbImageResponseBody | 401                              | application/json                 |
+| errors.SDKError                  | 4xx-5xx                          | */*                              |

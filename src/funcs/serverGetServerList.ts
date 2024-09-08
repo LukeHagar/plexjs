@@ -13,11 +13,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Server List
@@ -30,8 +31,8 @@ export async function serverGetServerList(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetServerListResponse,
-        | models.GetServerListServerResponseBody
+        operations.GetServerListResponse,
+        | errors.GetServerListResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -91,8 +92,8 @@ export async function serverGetServerList(
     };
 
     const [result$] = await m$.match<
-        models.GetServerListResponse,
-        | models.GetServerListServerResponseBody
+        operations.GetServerListResponse,
+        | errors.GetServerListResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -101,9 +102,9 @@ export async function serverGetServerList(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetServerListResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetServerListResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetServerListServerResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetServerListResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

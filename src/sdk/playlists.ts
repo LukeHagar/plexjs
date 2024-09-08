@@ -12,8 +12,8 @@ import { playlistsGetPlaylists } from "../funcs/playlistsGetPlaylists.js";
 import { playlistsUpdatePlaylist } from "../funcs/playlistsUpdatePlaylist.js";
 import { playlistsUploadPlaylist } from "../funcs/playlistsUploadPlaylist.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Playlists extends ClientSDK {
     /**
@@ -26,9 +26,9 @@ export class Playlists extends ClientSDK {
      *
      */
     async createPlaylist(
-        request: models.CreatePlaylistRequest,
+        request: operations.CreatePlaylistRequest,
         options?: RequestOptions
-    ): Promise<models.CreatePlaylistResponse> {
+    ): Promise<operations.CreatePlaylistResponse> {
         return unwrapAsync(playlistsCreatePlaylist(this, request, options));
     }
 
@@ -39,10 +39,10 @@ export class Playlists extends ClientSDK {
      * Get All Playlists given the specified filters.
      */
     async getPlaylists(
-        playlistType?: models.PlaylistType | undefined,
-        smart?: models.QueryParamSmart | undefined,
+        playlistType?: operations.PlaylistType | undefined,
+        smart?: operations.QueryParamSmart | undefined,
         options?: RequestOptions
-    ): Promise<models.GetPlaylistsResponse> {
+    ): Promise<operations.GetPlaylistsResponse> {
         return unwrapAsync(playlistsGetPlaylists(this, playlistType, smart, options));
     }
 
@@ -57,7 +57,7 @@ export class Playlists extends ClientSDK {
     async getPlaylist(
         playlistID: number,
         options?: RequestOptions
-    ): Promise<models.GetPlaylistResponse> {
+    ): Promise<operations.GetPlaylistResponse> {
         return unwrapAsync(playlistsGetPlaylist(this, playlistID, options));
     }
 
@@ -71,7 +71,7 @@ export class Playlists extends ClientSDK {
     async deletePlaylist(
         playlistID: number,
         options?: RequestOptions
-    ): Promise<models.DeletePlaylistResponse> {
+    ): Promise<operations.DeletePlaylistResponse> {
         return unwrapAsync(playlistsDeletePlaylist(this, playlistID, options));
     }
 
@@ -87,7 +87,7 @@ export class Playlists extends ClientSDK {
         title?: string | undefined,
         summary?: string | undefined,
         options?: RequestOptions
-    ): Promise<models.UpdatePlaylistResponse> {
+    ): Promise<operations.UpdatePlaylistResponse> {
         return unwrapAsync(playlistsUpdatePlaylist(this, playlistID, title, summary, options));
     }
 
@@ -103,9 +103,9 @@ export class Playlists extends ClientSDK {
      */
     async getPlaylistContents(
         playlistID: number,
-        type: models.GetPlaylistContentsQueryParamType,
+        type: operations.GetPlaylistContentsQueryParamType,
         options?: RequestOptions
-    ): Promise<models.GetPlaylistContentsResponse> {
+    ): Promise<operations.GetPlaylistContentsResponse> {
         return unwrapAsync(playlistsGetPlaylistContents(this, playlistID, type, options));
     }
 
@@ -119,7 +119,7 @@ export class Playlists extends ClientSDK {
     async clearPlaylistContents(
         playlistID: number,
         options?: RequestOptions
-    ): Promise<models.ClearPlaylistContentsResponse> {
+    ): Promise<operations.ClearPlaylistContentsResponse> {
         return unwrapAsync(playlistsClearPlaylistContents(this, playlistID, options));
     }
 
@@ -136,7 +136,7 @@ export class Playlists extends ClientSDK {
         uri: string,
         playQueueID?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.AddPlaylistContentsResponse> {
+    ): Promise<operations.AddPlaylistContentsResponse> {
         return unwrapAsync(
             playlistsAddPlaylistContents(this, playlistID, uri, playQueueID, options)
         );
@@ -151,9 +151,9 @@ export class Playlists extends ClientSDK {
      */
     async uploadPlaylist(
         path: string,
-        force: models.QueryParamForce,
+        force: operations.QueryParamForce,
         options?: RequestOptions
-    ): Promise<models.UploadPlaylistResponse> {
+    ): Promise<operations.UploadPlaylistResponse> {
         return unwrapAsync(playlistsUploadPlaylist(this, path, force, options));
     }
 }

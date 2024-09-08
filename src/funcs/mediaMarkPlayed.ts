@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Mark Media Played
@@ -33,8 +34,8 @@ export async function mediaMarkPlayed(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.MarkPlayedResponse,
-        | models.MarkPlayedResponseBody
+        operations.MarkPlayedResponse,
+        | errors.MarkPlayedResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -44,13 +45,13 @@ export async function mediaMarkPlayed(
         | ConnectionError
     >
 > {
-    const input$: models.MarkPlayedRequest = {
+    const input$: operations.MarkPlayedRequest = {
         key: key,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.MarkPlayedRequest$outboundSchema.parse(value$),
+        (value$) => operations.MarkPlayedRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -115,8 +116,8 @@ export async function mediaMarkPlayed(
     };
 
     const [result$] = await m$.match<
-        models.MarkPlayedResponse,
-        | models.MarkPlayedResponseBody
+        operations.MarkPlayedResponse,
+        | errors.MarkPlayedResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -125,9 +126,9 @@ export async function mediaMarkPlayed(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.MarkPlayedResponse$inboundSchema),
+        m$.nil(200, operations.MarkPlayedResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.MarkPlayedResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.MarkPlayedResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

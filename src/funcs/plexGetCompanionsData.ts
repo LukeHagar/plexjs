@@ -7,18 +7,19 @@ import * as m$ from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { GetCompanionsDataOpServerList } from "../models/getcompanionsdataop.js";
 import {
     ConnectionError,
     InvalidRequestError,
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { GetCompanionsDataServerList } from "../sdk/models/operations/getcompanionsdata.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Companions Data
@@ -31,8 +32,8 @@ export async function plexGetCompanionsData(
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.GetCompanionsDataResponse,
-        | models.GetCompanionsDataResponseBody
+        operations.GetCompanionsDataResponse,
+        | errors.GetCompanionsDataResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -44,7 +45,7 @@ export async function plexGetCompanionsData(
 > {
     const baseURL$ =
         options?.serverURL ||
-        pathToFunc(GetCompanionsDataOpServerList[0], { charEncoding: "percent" })();
+        pathToFunc(GetCompanionsDataServerList[0], { charEncoding: "percent" })();
 
     const path$ = pathToFunc("/companions")();
 
@@ -97,8 +98,8 @@ export async function plexGetCompanionsData(
     };
 
     const [result$] = await m$.match<
-        models.GetCompanionsDataResponse,
-        | models.GetCompanionsDataResponseBody
+        operations.GetCompanionsDataResponse,
+        | errors.GetCompanionsDataResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -107,9 +108,9 @@ export async function plexGetCompanionsData(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetCompanionsDataResponse$inboundSchema, { key: "responseBodies" }),
+        m$.json(200, operations.GetCompanionsDataResponse$inboundSchema, { key: "responseBodies" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetCompanionsDataResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetCompanionsDataResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

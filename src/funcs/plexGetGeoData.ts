@@ -6,18 +6,19 @@ import { PlexAPICore } from "../core.js";
 import * as m$ from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
-import { GetGeoDataOpServerList } from "../models/getgeodataop.js";
 import {
     ConnectionError,
     InvalidRequestError,
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { GetGeoDataServerList } from "../sdk/models/operations/getgeodata.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Geo Data
@@ -30,8 +31,8 @@ export async function plexGetGeoData(
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.GetGeoDataResponse,
-        | models.GetGeoDataResponseBody
+        operations.GetGeoDataResponse,
+        | errors.GetGeoDataResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -42,7 +43,7 @@ export async function plexGetGeoData(
     >
 > {
     const baseURL$ =
-        options?.serverURL || pathToFunc(GetGeoDataOpServerList[0], { charEncoding: "percent" })();
+        options?.serverURL || pathToFunc(GetGeoDataServerList[0], { charEncoding: "percent" })();
 
     const path$ = pathToFunc("/geoip")();
 
@@ -87,8 +88,8 @@ export async function plexGetGeoData(
     };
 
     const [result$] = await m$.match<
-        models.GetGeoDataResponse,
-        | models.GetGeoDataResponseBody
+        operations.GetGeoDataResponse,
+        | errors.GetGeoDataResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -97,9 +98,9 @@ export async function plexGetGeoData(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetGeoDataResponse$inboundSchema, { key: "GeoData" }),
+        m$.json(200, operations.GetGeoDataResponse$inboundSchema, { key: "GeoData" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetGeoDataResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetGeoDataResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

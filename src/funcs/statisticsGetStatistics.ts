@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Media Statistics
@@ -33,8 +34,8 @@ export async function statisticsGetStatistics(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetStatisticsResponse,
-        | models.GetStatisticsStatisticsResponseBody
+        operations.GetStatisticsResponse,
+        | errors.GetStatisticsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -44,13 +45,13 @@ export async function statisticsGetStatistics(
         | ConnectionError
     >
 > {
-    const input$: models.GetStatisticsRequest = {
+    const input$: operations.GetStatisticsRequest = {
         timespan: timespan,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetStatisticsRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetStatisticsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -115,8 +116,8 @@ export async function statisticsGetStatistics(
     };
 
     const [result$] = await m$.match<
-        models.GetStatisticsResponse,
-        | models.GetStatisticsStatisticsResponseBody
+        operations.GetStatisticsResponse,
+        | errors.GetStatisticsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -125,9 +126,9 @@ export async function statisticsGetStatistics(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetStatisticsResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetStatisticsResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetStatisticsStatisticsResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetStatisticsResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

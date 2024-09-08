@@ -13,11 +13,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get On Deck
@@ -31,8 +32,8 @@ export async function libraryGetOnDeck(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetOnDeckResponse,
-        | models.GetOnDeckLibraryResponseBody
+        operations.GetOnDeckResponse,
+        | errors.GetOnDeckResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -92,8 +93,8 @@ export async function libraryGetOnDeck(
     };
 
     const [result$] = await m$.match<
-        models.GetOnDeckResponse,
-        | models.GetOnDeckLibraryResponseBody
+        operations.GetOnDeckResponse,
+        | errors.GetOnDeckResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -102,9 +103,9 @@ export async function libraryGetOnDeck(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetOnDeckResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetOnDeckResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetOnDeckLibraryResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetOnDeckResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

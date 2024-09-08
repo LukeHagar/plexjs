@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Top Watched Content
@@ -30,13 +31,13 @@ import { Result } from "../types/fp.js";
  */
 export async function libraryGetTopWatchedContent(
     client$: PlexAPICore,
-    type: models.GetTopWatchedContentQueryParamType,
+    type: operations.GetTopWatchedContentQueryParamType,
     includeGuids?: number | undefined,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetTopWatchedContentResponse,
-        | models.GetTopWatchedContentLibraryResponseBody
+        operations.GetTopWatchedContentResponse,
+        | errors.GetTopWatchedContentResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -46,14 +47,14 @@ export async function libraryGetTopWatchedContent(
         | ConnectionError
     >
 > {
-    const input$: models.GetTopWatchedContentRequest = {
+    const input$: operations.GetTopWatchedContentRequest = {
         type: type,
         includeGuids: includeGuids,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetTopWatchedContentRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetTopWatchedContentRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -119,8 +120,8 @@ export async function libraryGetTopWatchedContent(
     };
 
     const [result$] = await m$.match<
-        models.GetTopWatchedContentResponse,
-        | models.GetTopWatchedContentLibraryResponseBody
+        operations.GetTopWatchedContentResponse,
+        | errors.GetTopWatchedContentResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -129,9 +130,9 @@ export async function libraryGetTopWatchedContent(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetTopWatchedContentResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetTopWatchedContentResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetTopWatchedContentLibraryResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetTopWatchedContentResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

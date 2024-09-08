@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Metadata by RatingKey
@@ -34,8 +35,8 @@ export async function libraryGetMetaDataByRatingKey(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetMetaDataByRatingKeyResponse,
-        | models.GetMetaDataByRatingKeyLibraryResponseBody
+        operations.GetMetaDataByRatingKeyResponse,
+        | errors.GetMetaDataByRatingKeyResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -45,13 +46,13 @@ export async function libraryGetMetaDataByRatingKey(
         | ConnectionError
     >
 > {
-    const input$: models.GetMetaDataByRatingKeyRequest = {
+    const input$: operations.GetMetaDataByRatingKeyRequest = {
         ratingKey: ratingKey,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetMetaDataByRatingKeyRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetMetaDataByRatingKeyRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -118,8 +119,8 @@ export async function libraryGetMetaDataByRatingKey(
     };
 
     const [result$] = await m$.match<
-        models.GetMetaDataByRatingKeyResponse,
-        | models.GetMetaDataByRatingKeyLibraryResponseBody
+        operations.GetMetaDataByRatingKeyResponse,
+        | errors.GetMetaDataByRatingKeyResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -128,9 +129,9 @@ export async function libraryGetMetaDataByRatingKey(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetMetaDataByRatingKeyResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetMetaDataByRatingKeyResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetMetaDataByRatingKeyLibraryResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetMetaDataByRatingKeyResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

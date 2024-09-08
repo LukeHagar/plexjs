@@ -12,11 +12,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Server Identity
@@ -29,8 +30,8 @@ export async function serverGetServerIdentity(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetServerIdentityResponse,
-        | models.GetServerIdentityServerResponseBody
+        operations.GetServerIdentityResponse,
+        | errors.GetServerIdentityResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -82,8 +83,8 @@ export async function serverGetServerIdentity(
     };
 
     const [result$] = await m$.match<
-        models.GetServerIdentityResponse,
-        | models.GetServerIdentityServerResponseBody
+        operations.GetServerIdentityResponse,
+        | errors.GetServerIdentityResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -92,8 +93,8 @@ export async function serverGetServerIdentity(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetServerIdentityResponse$inboundSchema, { key: "object" }),
-        m$.jsonErr(408, models.GetServerIdentityServerResponseBody$inboundSchema),
+        m$.json(200, operations.GetServerIdentityResponse$inboundSchema, { key: "object" }),
+        m$.jsonErr(408, errors.GetServerIdentityResponseBody$inboundSchema),
         m$.fail(["4XX", "5XX"])
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {

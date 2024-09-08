@@ -219,17 +219,20 @@ run();
 
 All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
-| Error Object                                   | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| models.GetServerCapabilitiesServerResponseBody | 401                                            | application/json                               |
-| models.SDKError                                | 4xx-5xx                                        | */*                                            |
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.GetServerCapabilitiesResponseBody | 401                                      | application/json                         |
+| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
 
 
 ```typescript
-import { GetServerCapabilitiesServerResponseBody, PlexAPI } from "@lukehagar/plexjs";
-import { SDKValidationError } from "@lukehagar/plexjs/models";
+import { PlexAPI } from "@lukehagar/plexjs";
+import {
+    GetServerCapabilitiesResponseBody,
+    SDKValidationError,
+} from "@lukehagar/plexjs/sdk/models/errors";
 
 const plexAPI = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",
@@ -252,8 +255,8 @@ async function run() {
                 console.error(err.rawValue);
                 return;
             }
-            case err instanceof GetServerCapabilitiesServerResponseBody: {
-                // Handle err.data$: GetServerCapabilitiesServerResponseBodyData
+            case err instanceof GetServerCapabilitiesResponseBody: {
+                // Handle err.data$: GetServerCapabilitiesResponseBodyData
                 console.error(err);
                 return;
             }
@@ -560,7 +563,8 @@ This is used to track the client application and its usage
 ### Example
 
 ```typescript
-import { IncludeHttps, IncludeIPv6, IncludeRelay, PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
     accessToken: "<YOUR_API_KEY_HERE>",

@@ -13,11 +13,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Start all Butler tasks
@@ -35,8 +36,8 @@ export async function butlerStartAllTasks(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.StartAllTasksResponse,
-        | models.StartAllTasksResponseBody
+        operations.StartAllTasksResponse,
+        | errors.StartAllTasksResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -96,8 +97,8 @@ export async function butlerStartAllTasks(
     };
 
     const [result$] = await m$.match<
-        models.StartAllTasksResponse,
-        | models.StartAllTasksResponseBody
+        operations.StartAllTasksResponse,
+        | errors.StartAllTasksResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -106,9 +107,9 @@ export async function butlerStartAllTasks(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.StartAllTasksResponse$inboundSchema),
+        m$.nil(200, operations.StartAllTasksResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.StartAllTasksResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.StartAllTasksResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

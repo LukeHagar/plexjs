@@ -3,16 +3,14 @@ speakeasyVersion: latest
 sources:
     my-source:
         inputs:
-            - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/main/plex-media-server-spec-dereferenced.yaml
-        registry:
-            location: registry.speakeasyapi.dev/lukehagar/lukehagar/my-source
+            - location: registry.speakeasyapi.dev/lukehagar/lukehagar/plex-api:main
 targets:
     plexjs:
         target: typescript
         source: my-source
         publish:
             npm:
-                token: $NPM_TOKEN
+                token: $npm_token
         codeSamples:
             output: codeSamples.yaml
             registry:

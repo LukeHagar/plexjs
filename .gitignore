@@ -1,3 +1,6 @@
+/sdk/models/errors
+/sdk/types
+/__tests__
 /funcs
 /core.*
 /esm

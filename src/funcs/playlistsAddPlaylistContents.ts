@@ -18,11 +18,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Adding to a Playlist
@@ -40,8 +41,8 @@ export async function playlistsAddPlaylistContents(
     options?: RequestOptions
 ): Promise<
     Result<
-        models.AddPlaylistContentsResponse,
-        | models.AddPlaylistContentsPlaylistsResponseBody
+        operations.AddPlaylistContentsResponse,
+        | errors.AddPlaylistContentsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -51,7 +52,7 @@ export async function playlistsAddPlaylistContents(
         | ConnectionError
     >
 > {
-    const input$: models.AddPlaylistContentsRequest = {
+    const input$: operations.AddPlaylistContentsRequest = {
         playlistID: playlistID,
         uri: uri,
         playQueueID: playQueueID,
@@ -59,7 +60,7 @@ export async function playlistsAddPlaylistContents(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.AddPlaylistContentsRequest$outboundSchema.parse(value$),
+        (value$) => operations.AddPlaylistContentsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -132,8 +133,8 @@ export async function playlistsAddPlaylistContents(
     };
 
     const [result$] = await m$.match<
-        models.AddPlaylistContentsResponse,
-        | models.AddPlaylistContentsPlaylistsResponseBody
+        operations.AddPlaylistContentsResponse,
+        | errors.AddPlaylistContentsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -142,9 +143,9 @@ export async function playlistsAddPlaylistContents(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.AddPlaylistContentsResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.AddPlaylistContentsResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.AddPlaylistContentsPlaylistsResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.AddPlaylistContentsResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

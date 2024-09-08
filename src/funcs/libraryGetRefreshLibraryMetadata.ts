@@ -18,11 +18,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Refresh Metadata Of The Library
@@ -34,12 +35,12 @@ import { Result } from "../types/fp.js";
 export async function libraryGetRefreshLibraryMetadata(
     client$: PlexAPICore,
     sectionKey: number,
-    force?: models.Force | undefined,
+    force?: operations.Force | undefined,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetRefreshLibraryMetadataResponse,
-        | models.GetRefreshLibraryMetadataResponseBody
+        operations.GetRefreshLibraryMetadataResponse,
+        | errors.GetRefreshLibraryMetadataResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -49,14 +50,14 @@ export async function libraryGetRefreshLibraryMetadata(
         | ConnectionError
     >
 > {
-    const input$: models.GetRefreshLibraryMetadataRequest = {
+    const input$: operations.GetRefreshLibraryMetadataRequest = {
         sectionKey: sectionKey,
         force: force,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetRefreshLibraryMetadataRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetRefreshLibraryMetadataRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -128,8 +129,8 @@ export async function libraryGetRefreshLibraryMetadata(
     };
 
     const [result$] = await m$.match<
-        models.GetRefreshLibraryMetadataResponse,
-        | models.GetRefreshLibraryMetadataResponseBody
+        operations.GetRefreshLibraryMetadataResponse,
+        | errors.GetRefreshLibraryMetadataResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -138,9 +139,9 @@ export async function libraryGetRefreshLibraryMetadata(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.GetRefreshLibraryMetadataResponse$inboundSchema),
+        m$.nil(200, operations.GetRefreshLibraryMetadataResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetRefreshLibraryMetadataResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetRefreshLibraryMetadataResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

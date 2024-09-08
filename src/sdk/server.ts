@@ -12,8 +12,8 @@ import { serverGetServerIdentity } from "../funcs/serverGetServerIdentity.js";
 import { serverGetServerList } from "../funcs/serverGetServerList.js";
 import { serverGetServerPreferences } from "../funcs/serverGetServerPreferences.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Server extends ClientSDK {
     /**
@@ -24,7 +24,7 @@ export class Server extends ClientSDK {
      */
     async getServerCapabilities(
         options?: RequestOptions
-    ): Promise<models.GetServerCapabilitiesResponse> {
+    ): Promise<operations.GetServerCapabilitiesResponse> {
         return unwrapAsync(serverGetServerCapabilities(this, options));
     }
 
@@ -36,7 +36,7 @@ export class Server extends ClientSDK {
      */
     async getServerPreferences(
         options?: RequestOptions
-    ): Promise<models.GetServerPreferencesResponse> {
+    ): Promise<operations.GetServerPreferencesResponse> {
         return unwrapAsync(serverGetServerPreferences(this, options));
     }
 
@@ -48,7 +48,7 @@ export class Server extends ClientSDK {
      */
     async getAvailableClients(
         options?: RequestOptions
-    ): Promise<models.GetAvailableClientsResponse> {
+    ): Promise<operations.GetAvailableClientsResponse> {
         return unwrapAsync(serverGetAvailableClients(this, options));
     }
 
@@ -58,7 +58,7 @@ export class Server extends ClientSDK {
      * @remarks
      * Get Devices
      */
-    async getDevices(options?: RequestOptions): Promise<models.GetDevicesResponse> {
+    async getDevices(options?: RequestOptions): Promise<operations.GetDevicesResponse> {
         return unwrapAsync(serverGetDevices(this, options));
     }
 
@@ -68,7 +68,9 @@ export class Server extends ClientSDK {
      * @remarks
      * This request is useful to determine if the server is online or offline
      */
-    async getServerIdentity(options?: RequestOptions): Promise<models.GetServerIdentityResponse> {
+    async getServerIdentity(
+        options?: RequestOptions
+    ): Promise<operations.GetServerIdentityResponse> {
         return unwrapAsync(serverGetServerIdentity(this, options));
     }
 
@@ -78,7 +80,7 @@ export class Server extends ClientSDK {
      * @remarks
      * Returns MyPlex Account Information
      */
-    async getMyPlexAccount(options?: RequestOptions): Promise<models.GetMyPlexAccountResponse> {
+    async getMyPlexAccount(options?: RequestOptions): Promise<operations.GetMyPlexAccountResponse> {
         return unwrapAsync(serverGetMyPlexAccount(this, options));
     }
 
@@ -90,9 +92,9 @@ export class Server extends ClientSDK {
      *
      */
     async getResizedPhoto(
-        request: models.GetResizedPhotoRequest,
+        request: operations.GetResizedPhotoRequest,
         options?: RequestOptions
-    ): Promise<models.GetResizedPhotoResponse> {
+    ): Promise<operations.GetResizedPhotoResponse> {
         return unwrapAsync(serverGetResizedPhoto(this, request, options));
     }
 
@@ -105,7 +107,7 @@ export class Server extends ClientSDK {
     async getMediaProviders(
         xPlexToken: string,
         options?: RequestOptions
-    ): Promise<models.GetMediaProvidersResponse> {
+    ): Promise<operations.GetMediaProvidersResponse> {
         return unwrapAsync(serverGetMediaProviders(this, xPlexToken, options));
     }
 
@@ -115,7 +117,7 @@ export class Server extends ClientSDK {
      * @remarks
      * Get Server List
      */
-    async getServerList(options?: RequestOptions): Promise<models.GetServerListResponse> {
+    async getServerList(options?: RequestOptions): Promise<operations.GetServerListResponse> {
         return unwrapAsync(serverGetServerList(this, options));
     }
 }

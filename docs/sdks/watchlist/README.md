@@ -17,7 +17,8 @@ Get User Watchlist
 ### Example Usage
 
 ```typescript
-import { Filter, PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Filter } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -44,9 +45,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { Filter } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { watchlistGetWatchList } from "@lukehagar/plexjs/funcs/watchlistGetWatchList.js";
+import { Filter } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -57,7 +58,7 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await watchlistGetWatchList(plexAPI, {
-    filter: Filter.Released,
+    filter: Filter.Available,
     xPlexContainerStart: 0,
     xPlexContainerSize: 50,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
@@ -80,7 +81,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [models.GetWatchListRequest](../../models/getwatchlistrequest.md)                                                                                                              | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetWatchListRequest](../../sdk/models/operations/getwatchlistrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -88,11 +89,11 @@ run();
 
 ### Response
 
-**Promise\<[models.GetWatchListResponse](../../models/getwatchlistresponse.md)\>**
+**Promise\<[operations.GetWatchListResponse](../../sdk/models/operations/getwatchlistresponse.md)\>**
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| models.GetWatchListWatchlistResponseBody | 401                                      | application/json                         |
-| models.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.GetWatchListResponseBody | 401                             | application/json                |
+| errors.SDKError                 | 4xx-5xx                         | */*                             |

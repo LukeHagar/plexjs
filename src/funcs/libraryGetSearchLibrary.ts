@@ -18,11 +18,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Search Library
@@ -51,12 +52,12 @@ import { Result } from "../types/fp.js";
 export async function libraryGetSearchLibrary(
     client$: PlexAPICore,
     sectionKey: number,
-    type: models.QueryParamType,
+    type: operations.QueryParamType,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetSearchLibraryResponse,
-        | models.GetSearchLibraryLibraryResponseBody
+        operations.GetSearchLibraryResponse,
+        | errors.GetSearchLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -66,14 +67,14 @@ export async function libraryGetSearchLibrary(
         | ConnectionError
     >
 > {
-    const input$: models.GetSearchLibraryRequest = {
+    const input$: operations.GetSearchLibraryRequest = {
         sectionKey: sectionKey,
         type: type,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetSearchLibraryRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetSearchLibraryRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -145,8 +146,8 @@ export async function libraryGetSearchLibrary(
     };
 
     const [result$] = await m$.match<
-        models.GetSearchLibraryResponse,
-        | models.GetSearchLibraryLibraryResponseBody
+        operations.GetSearchLibraryResponse,
+        | errors.GetSearchLibraryResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -155,9 +156,9 @@ export async function libraryGetSearchLibrary(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetSearchLibraryResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetSearchLibraryResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetSearchLibraryLibraryResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetSearchLibraryResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -20,7 +20,8 @@ This endpoint will write a single-line log message, including a level and source
 ### Example Usage
 
 ```typescript
-import { Level, PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Level } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -42,9 +43,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { Level } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { logLogLine } from "@lukehagar/plexjs/funcs/logLogLine.js";
+import { Level } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -54,7 +55,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await logLogLine(plexAPI, Level.One, "Test log message", "Postman");
+  const res = await logLogLine(plexAPI, Level.Three, "Test log message", "Postman");
 
   if (!res.ok) {
     throw res.error;
@@ -73,7 +74,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `level`                                                                                                                                                                        | [models.Level](../../models/level.md)                                                                                                                                          | :heavy_check_mark:                                                                                                                                                             | An integer log level to write to the PMS log with.  <br/>0: Error  <br/>1: Warning  <br/>2: Info  <br/>3: Debug  <br/>4: Verbose<br/>                                          |                                                                                                                                                                                |
+| `level`                                                                                                                                                                        | [operations.Level](../../sdk/models/operations/level.md)                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | An integer log level to write to the PMS log with.  <br/>0: Error  <br/>1: Warning  <br/>2: Info  <br/>3: Debug  <br/>4: Verbose<br/>                                          |                                                                                                                                                                                |
 | `message`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The text of the message to write to the log.                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `source`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | a string indicating the source of the message.                                                                                                                                 | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
@@ -82,14 +83,14 @@ run();
 
 ### Response
 
-**Promise\<[models.LogLineResponse](../../models/loglineresponse.md)\>**
+**Promise\<[operations.LogLineResponse](../../sdk/models/operations/loglineresponse.md)\>**
 
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| models.LogLineResponseBody | 401                        | application/json           |
-| models.SDKError            | 4xx-5xx                    | */*                        |
+| errors.LogLineResponseBody | 401                        | application/json           |
+| errors.SDKError            | 4xx-5xx                    | */*                        |
 
 
 ## logMultiLine
@@ -183,14 +184,14 @@ run();
 
 ### Response
 
-**Promise\<[models.LogMultiLineResponse](../../models/logmultilineresponse.md)\>**
+**Promise\<[operations.LogMultiLineResponse](../../sdk/models/operations/logmultilineresponse.md)\>**
 
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
-| models.LogMultiLineResponseBody | 401                             | application/json                |
-| models.SDKError                 | 4xx-5xx                         | */*                             |
+| errors.LogMultiLineResponseBody | 401                             | application/json                |
+| errors.SDKError                 | 4xx-5xx                         | */*                             |
 
 
 ## enablePaperTrail
@@ -259,11 +260,11 @@ run();
 
 ### Response
 
-**Promise\<[models.EnablePaperTrailResponse](../../models/enablepapertrailresponse.md)\>**
+**Promise\<[operations.EnablePaperTrailResponse](../../sdk/models/operations/enablepapertrailresponse.md)\>**
 
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models.EnablePaperTrailResponseBody | 401                                 | application/json                    |
-| models.SDKError                     | 4xx-5xx                             | */*                                 |
+| errors.EnablePaperTrailResponseBody | 401                                 | application/json                    |
+| errors.SDKError                     | 4xx-5xx                             | */*                                 |

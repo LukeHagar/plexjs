@@ -9,18 +9,19 @@ import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { GetUserDetailsOpServerList } from "../models/getuserdetailsop.js";
 import {
     ConnectionError,
     InvalidRequestError,
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { GetUserDetailsServerList } from "../sdk/models/operations/getuserdetails.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get User Data By Token
@@ -34,8 +35,8 @@ export async function authenticationGetUserDetails(
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.GetUserDetailsResponse,
-        | models.GetUserDetailsResponseBody
+        operations.GetUserDetailsResponse,
+        | errors.GetUserDetailsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -45,13 +46,13 @@ export async function authenticationGetUserDetails(
         | ConnectionError
     >
 > {
-    const input$: models.GetUserDetailsRequest = {
+    const input$: operations.GetUserDetailsRequest = {
         xPlexToken: xPlexToken,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetUserDetailsRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetUserDetailsRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -62,7 +63,7 @@ export async function authenticationGetUserDetails(
 
     const baseURL$ =
         options?.serverURL ||
-        pathToFunc(GetUserDetailsOpServerList[0], { charEncoding: "percent" })();
+        pathToFunc(GetUserDetailsServerList[0], { charEncoding: "percent" })();
 
     const path$ = pathToFunc("/user")();
 
@@ -121,8 +122,8 @@ export async function authenticationGetUserDetails(
     };
 
     const [result$] = await m$.match<
-        models.GetUserDetailsResponse,
-        | models.GetUserDetailsResponseBody
+        operations.GetUserDetailsResponse,
+        | errors.GetUserDetailsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -131,9 +132,9 @@ export async function authenticationGetUserDetails(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetUserDetailsResponse$inboundSchema, { key: "UserPlexAccount" }),
+        m$.json(200, operations.GetUserDetailsResponse$inboundSchema, { key: "UserPlexAccount" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetUserDetailsResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetUserDetailsResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -9,18 +9,19 @@ import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { GetServerResourcesOpServerList } from "../models/getserverresourcesop.js";
 import {
     ConnectionError,
     InvalidRequestError,
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { GetServerResourcesServerList } from "../sdk/models/operations/getserverresources.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Server Resources
@@ -30,12 +31,12 @@ import { Result } from "../types/fp.js";
  */
 export async function plexGetServerResources(
     client$: PlexAPICore,
-    request: models.GetServerResourcesRequest,
+    request: operations.GetServerResourcesRequest,
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.GetServerResourcesResponse,
-        | models.GetServerResourcesResponseBody
+        operations.GetServerResourcesResponse,
+        | errors.GetServerResourcesResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -49,7 +50,7 @@ export async function plexGetServerResources(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetServerResourcesRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetServerResourcesRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -60,7 +61,7 @@ export async function plexGetServerResources(
 
     const baseURL$ =
         options?.serverURL ||
-        pathToFunc(GetServerResourcesOpServerList[0], { charEncoding: "percent" })();
+        pathToFunc(GetServerResourcesServerList[0], { charEncoding: "percent" })();
 
     const path$ = pathToFunc("/resources")();
 
@@ -124,8 +125,8 @@ export async function plexGetServerResources(
     };
 
     const [result$] = await m$.match<
-        models.GetServerResourcesResponse,
-        | models.GetServerResourcesResponseBody
+        operations.GetServerResourcesResponse,
+        | errors.GetServerResourcesResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -134,9 +135,9 @@ export async function plexGetServerResources(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetServerResourcesResponse$inboundSchema, { key: "PlexDevices" }),
+        m$.json(200, operations.GetServerResourcesResponse$inboundSchema, { key: "PlexDevices" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetServerResourcesResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetServerResourcesResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

@@ -88,14 +88,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetFileHashResponse](../../models/getfilehashresponse.md)\>**
+**Promise\<[operations.GetFileHashResponse](../../sdk/models/operations/getfilehashresponse.md)\>**
 
 ### Errors
 
 | Error Object                   | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
-| models.GetFileHashResponseBody | 401                            | application/json               |
-| models.SDKError                | 4xx-5xx                        | */*                            |
+| errors.GetFileHashResponseBody | 401                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 
 ## getRecentlyAdded
@@ -166,14 +166,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetRecentlyAddedResponse](../../models/getrecentlyaddedresponse.md)\>**
+**Promise\<[operations.GetRecentlyAddedResponse](../../sdk/models/operations/getrecentlyaddedresponse.md)\>**
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| models.GetRecentlyAddedLibraryResponseBody | 401                                        | application/json                           |
-| models.SDKError                            | 4xx-5xx                                    | */*                                        |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.GetRecentlyAddedResponseBody | 401                                 | application/json                    |
+| errors.SDKError                     | 4xx-5xx                             | */*                                 |
 
 
 ## getAllLibraries
@@ -247,14 +247,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetAllLibrariesResponse](../../models/getalllibrariesresponse.md)\>**
+**Promise\<[operations.GetAllLibrariesResponse](../../sdk/models/operations/getalllibrariesresponse.md)\>**
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models.GetAllLibrariesLibraryResponseBody | 401                                       | application/json                          |
-| models.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetAllLibrariesResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## getLibraryDetails
@@ -356,21 +356,21 @@ run();
 | Parameter                                                                                                                                                                                  | Type                                                                                                                                                                                       | Required                                                                                                                                                                                   | Description                                                                                                                                                                                | Example                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `sectionKey`                                                                                                                                                                               | *number*                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                         | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                                      | [object Object]                                                                                                                                                                            |
-| `includeDetails`                                                                                                                                                                           | [models.IncludeDetails](../../models/includedetails.md)                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                         | Whether or not to include details for a section (types, filters, and sorts). <br/>Only exists for backwards compatibility, media providers other than the server libraries have it on always.<br/> |                                                                                                                                                                                            |
+| `includeDetails`                                                                                                                                                                           | [operations.IncludeDetails](../../sdk/models/operations/includedetails.md)                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                         | Whether or not to include details for a section (types, filters, and sorts). <br/>Only exists for backwards compatibility, media providers other than the server libraries have it on always.<br/> |                                                                                                                                                                                            |
 | `options`                                                                                                                                                                                  | RequestOptions                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                         | Used to set various options for making HTTP requests.                                                                                                                                      |                                                                                                                                                                                            |
 | `options.fetchOptions`                                                                                                                                                                     | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                    | :heavy_minus_sign:                                                                                                                                                                         | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.             |                                                                                                                                                                                            |
 | `options.retries`                                                                                                                                                                          | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                         | Enables retrying HTTP requests under certain failure conditions.                                                                                                                           |                                                                                                                                                                                            |
 
 ### Response
 
-**Promise\<[models.GetLibraryDetailsResponse](../../models/getlibrarydetailsresponse.md)\>**
+**Promise\<[operations.GetLibraryDetailsResponse](../../sdk/models/operations/getlibrarydetailsresponse.md)\>**
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| models.GetLibraryDetailsLibraryResponseBody | 401                                         | application/json                            |
-| models.SDKError                             | 4xx-5xx                                     | */*                                         |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.GetLibraryDetailsResponseBody | 401                                  | application/json                     |
+| errors.SDKError                      | 4xx-5xx                              | */*                                  |
 
 
 ## deleteLibrary
@@ -439,14 +439,14 @@ run();
 
 ### Response
 
-**Promise\<[models.DeleteLibraryResponse](../../models/deletelibraryresponse.md)\>**
+**Promise\<[operations.DeleteLibraryResponse](../../sdk/models/operations/deletelibraryresponse.md)\>**
 
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| models.DeleteLibraryResponseBody | 401                              | application/json                 |
-| models.SDKError                  | 4xx-5xx                          | */*                              |
+| errors.DeleteLibraryResponseBody | 401                              | application/json                 |
+| errors.SDKError                  | 4xx-5xx                          | */*                              |
 
 
 ## getLibraryItems
@@ -476,7 +476,8 @@ Fetches details from a specific section of the library identified by a section k
 ### Example Usage
 
 ```typescript
-import { IncludeGuids, IncludeMeta, PlexAPI, Tag, Type } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { IncludeGuids, IncludeMeta, Tag, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -506,9 +507,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { IncludeGuids, IncludeMeta, Tag, Type } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetLibraryItems } from "@lukehagar/plexjs/funcs/libraryGetLibraryItems.js";
+import { IncludeGuids, IncludeMeta, Tag, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -520,7 +521,7 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await libraryGetLibraryItems(plexAPI, {
     sectionKey: 9518,
-    tag: Tag.Actor,
+    tag: Tag.Edition,
     includeGuids: IncludeGuids.One,
     includeMeta: IncludeMeta.One,
     type: Type.Two,
@@ -545,21 +546,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [models.GetLibraryItemsRequest](../../models/getlibraryitemsrequest.md)                                                                                                        | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetLibraryItemsRequest](../../sdk/models/operations/getlibraryitemsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[models.GetLibraryItemsResponse](../../models/getlibraryitemsresponse.md)\>**
+**Promise\<[operations.GetLibraryItemsResponse](../../sdk/models/operations/getlibraryitemsresponse.md)\>**
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models.GetLibraryItemsLibraryResponseBody | 401                                       | application/json                          |
-| models.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetLibraryItemsResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## getRefreshLibraryMetadata
@@ -570,7 +571,8 @@ This endpoint Refreshes all the Metadata of the library.
 ### Example Usage
 
 ```typescript
-import { Force, PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Force } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -592,9 +594,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { Force } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetRefreshLibraryMetadata } from "@lukehagar/plexjs/funcs/libraryGetRefreshLibraryMetadata.js";
+import { Force } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -624,21 +626,21 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `sectionKey`                                                                                                                                                                   | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                          | [object Object]                                                                                                                                                                |
-| `force`                                                                                                                                                                        | [models.Force](../../models/force.md)                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                             | Force the refresh even if the library is already being refreshed.                                                                                                              | [object Object]                                                                                                                                                                |
+| `force`                                                                                                                                                                        | [operations.Force](../../sdk/models/operations/force.md)                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Force the refresh even if the library is already being refreshed.                                                                                                              | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
-**Promise\<[models.GetRefreshLibraryMetadataResponse](../../models/getrefreshlibrarymetadataresponse.md)\>**
+**Promise\<[operations.GetRefreshLibraryMetadataResponse](../../sdk/models/operations/getrefreshlibrarymetadataresponse.md)\>**
 
 ### Errors
 
 | Error Object                                 | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models.GetRefreshLibraryMetadataResponseBody | 401                                          | application/json                             |
-| models.SDKError                              | 4xx-5xx                                      | */*                                          |
+| errors.GetRefreshLibraryMetadataResponseBody | 401                                          | application/json                             |
+| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
 
 
 ## getSearchLibrary
@@ -666,7 +668,8 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 ### Example Usage
 
 ```typescript
-import { PlexAPI, QueryParamType } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -688,9 +691,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { QueryParamType } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetSearchLibrary } from "@lukehagar/plexjs/funcs/libraryGetSearchLibrary.js";
+import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -720,21 +723,21 @@ run();
 | Parameter                                                                                                                                                                       | Type                                                                                                                                                                            | Required                                                                                                                                                                        | Description                                                                                                                                                                     | Example                                                                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sectionKey`                                                                                                                                                                    | *number*                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                              | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                           | [object Object]                                                                                                                                                                 |
-| `type`                                                                                                                                                                          | [models.QueryParamType](../../models/queryparamtype.md)                                                                                                                         | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | [object Object]                                                                                                                                                                 |
+| `type`                                                                                                                                                                          | [operations.QueryParamType](../../sdk/models/operations/queryparamtype.md)                                                                                                      | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | [object Object]                                                                                                                                                                 |
 | `options`                                                                                                                                                                       | RequestOptions                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                              | Used to set various options for making HTTP requests.                                                                                                                           |                                                                                                                                                                                 |
 | `options.fetchOptions`                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                         | :heavy_minus_sign:                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.  |                                                                                                                                                                                 |
 | `options.retries`                                                                                                                                                               | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                              | Enables retrying HTTP requests under certain failure conditions.                                                                                                                |                                                                                                                                                                                 |
 
 ### Response
 
-**Promise\<[models.GetSearchLibraryResponse](../../models/getsearchlibraryresponse.md)\>**
+**Promise\<[operations.GetSearchLibraryResponse](../../sdk/models/operations/getsearchlibraryresponse.md)\>**
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| models.GetSearchLibraryLibraryResponseBody | 401                                        | application/json                           |
-| models.SDKError                            | 4xx-5xx                                    | */*                                        |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.GetSearchLibraryResponseBody | 401                                 | application/json                    |
+| errors.SDKError                     | 4xx-5xx                             | */*                                 |
 
 
 ## getMetaDataByRatingKey
@@ -804,14 +807,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetMetaDataByRatingKeyResponse](../../models/getmetadatabyratingkeyresponse.md)\>**
+**Promise\<[operations.GetMetaDataByRatingKeyResponse](../../sdk/models/operations/getmetadatabyratingkeyresponse.md)\>**
 
 ### Errors
 
-| Error Object                                     | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| models.GetMetaDataByRatingKeyLibraryResponseBody | 401                                              | application/json                                 |
-| models.SDKError                                  | 4xx-5xx                                          | */*                                              |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetMetaDataByRatingKeyResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 
 ## getMetadataChildren
@@ -855,7 +858,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryGetMetadataChildren(plexAPI, 5800.4, "Stream");
+  const res = await libraryGetMetadataChildren(plexAPI, 1539.14, "Stream");
 
   if (!res.ok) {
     throw res.error;
@@ -882,14 +885,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetMetadataChildrenResponse](../../models/getmetadatachildrenresponse.md)\>**
+**Promise\<[operations.GetMetadataChildrenResponse](../../sdk/models/operations/getmetadatachildrenresponse.md)\>**
 
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| models.GetMetadataChildrenLibraryResponseBody | 401                                           | application/json                              |
-| models.SDKError                               | 4xx-5xx                                       | */*                                           |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.GetMetadataChildrenResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |
 
 
 ## getTopWatchedContent
@@ -900,7 +903,8 @@ This endpoint will return the top watched content from libraries of a certain ty
 ### Example Usage
 
 ```typescript
-import { GetTopWatchedContentQueryParamType, PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { GetTopWatchedContentQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -922,9 +926,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { GetTopWatchedContentQueryParamType } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetTopWatchedContent } from "@lukehagar/plexjs/funcs/libraryGetTopWatchedContent.js";
+import { GetTopWatchedContentQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -953,7 +957,7 @@ run();
 
 | Parameter                                                                                                                                                                       | Type                                                                                                                                                                            | Required                                                                                                                                                                        | Description                                                                                                                                                                     | Example                                                                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                                                                                                                                                                          | [models.GetTopWatchedContentQueryParamType](../../models/gettopwatchedcontentqueryparamtype.md)                                                                                 | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | [object Object]                                                                                                                                                                 |
+| `type`                                                                                                                                                                          | [operations.GetTopWatchedContentQueryParamType](../../sdk/models/operations/gettopwatchedcontentqueryparamtype.md)                                                              | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | [object Object]                                                                                                                                                                 |
 | `includeGuids`                                                                                                                                                                  | *number*                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                              | Adds the Guids object to the response<br/>                                                                                                                                      | [object Object]                                                                                                                                                                 |
 | `options`                                                                                                                                                                       | RequestOptions                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                              | Used to set various options for making HTTP requests.                                                                                                                           |                                                                                                                                                                                 |
 | `options.fetchOptions`                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                         | :heavy_minus_sign:                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.  |                                                                                                                                                                                 |
@@ -961,14 +965,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetTopWatchedContentResponse](../../models/gettopwatchedcontentresponse.md)\>**
+**Promise\<[operations.GetTopWatchedContentResponse](../../sdk/models/operations/gettopwatchedcontentresponse.md)\>**
 
 ### Errors
 
-| Error Object                                   | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| models.GetTopWatchedContentLibraryResponseBody | 401                                            | application/json                               |
-| models.SDKError                                | 4xx-5xx                                        | */*                                            |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.GetTopWatchedContentResponseBody | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 
 ## getOnDeck
@@ -1037,11 +1041,11 @@ run();
 
 ### Response
 
-**Promise\<[models.GetOnDeckResponse](../../models/getondeckresponse.md)\>**
+**Promise\<[operations.GetOnDeckResponse](../../sdk/models/operations/getondeckresponse.md)\>**
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models.GetOnDeckLibraryResponseBody | 401                                 | application/json                    |
-| models.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.GetOnDeckResponseBody | 401                          | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |

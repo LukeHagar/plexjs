@@ -15,11 +15,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Checking for updates
@@ -29,12 +30,12 @@ import { Result } from "../types/fp.js";
  */
 export async function updaterCheckForUpdates(
     client$: PlexAPICore,
-    download?: models.Download | undefined,
+    download?: operations.Download | undefined,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.CheckForUpdatesResponse,
-        | models.CheckForUpdatesResponseBody
+        operations.CheckForUpdatesResponse,
+        | errors.CheckForUpdatesResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -44,13 +45,13 @@ export async function updaterCheckForUpdates(
         | ConnectionError
     >
 > {
-    const input$: models.CheckForUpdatesRequest = {
+    const input$: operations.CheckForUpdatesRequest = {
         download: download,
     };
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.CheckForUpdatesRequest$outboundSchema.parse(value$),
+        (value$) => operations.CheckForUpdatesRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -115,8 +116,8 @@ export async function updaterCheckForUpdates(
     };
 
     const [result$] = await m$.match<
-        models.CheckForUpdatesResponse,
-        | models.CheckForUpdatesResponseBody
+        operations.CheckForUpdatesResponse,
+        | errors.CheckForUpdatesResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -125,9 +126,9 @@ export async function updaterCheckForUpdates(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.nil(200, models.CheckForUpdatesResponse$inboundSchema),
+        m$.nil(200, operations.CheckForUpdatesResponse$inboundSchema),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.CheckForUpdatesResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.CheckForUpdatesResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

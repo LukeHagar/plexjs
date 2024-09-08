@@ -6,8 +6,8 @@ import { statisticsGetBandwidthStatistics } from "../funcs/statisticsGetBandwidt
 import { statisticsGetResourcesStatistics } from "../funcs/statisticsGetResourcesStatistics.js";
 import { statisticsGetStatistics } from "../funcs/statisticsGetStatistics.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Statistics extends ClientSDK {
     /**
@@ -19,7 +19,7 @@ export class Statistics extends ClientSDK {
     async getStatistics(
         timespan?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.GetStatisticsResponse> {
+    ): Promise<operations.GetStatisticsResponse> {
         return unwrapAsync(statisticsGetStatistics(this, timespan, options));
     }
 
@@ -32,7 +32,7 @@ export class Statistics extends ClientSDK {
     async getResourcesStatistics(
         timespan?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.GetResourcesStatisticsResponse> {
+    ): Promise<operations.GetResourcesStatisticsResponse> {
         return unwrapAsync(statisticsGetResourcesStatistics(this, timespan, options));
     }
 
@@ -45,7 +45,7 @@ export class Statistics extends ClientSDK {
     async getBandwidthStatistics(
         timespan?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.GetBandwidthStatisticsResponse> {
+    ): Promise<operations.GetBandwidthStatisticsResponse> {
         return unwrapAsync(statisticsGetBandwidthStatistics(this, timespan, options));
     }
 }

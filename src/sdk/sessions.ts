@@ -7,8 +7,8 @@ import { sessionsGetSessions } from "../funcs/sessionsGetSessions.js";
 import { sessionsGetTranscodeSessions } from "../funcs/sessionsGetTranscodeSessions.js";
 import { sessionsStopTranscodeSession } from "../funcs/sessionsStopTranscodeSession.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Sessions extends ClientSDK {
     /**
@@ -17,7 +17,7 @@ export class Sessions extends ClientSDK {
      * @remarks
      * This will retrieve the "Now Playing" Information of the PMS.
      */
-    async getSessions(options?: RequestOptions): Promise<models.GetSessionsResponse> {
+    async getSessions(options?: RequestOptions): Promise<operations.GetSessionsResponse> {
         return unwrapAsync(sessionsGetSessions(this, options));
     }
 
@@ -30,10 +30,10 @@ export class Sessions extends ClientSDK {
     async getSessionHistory(
         sort?: string | undefined,
         accountId?: number | undefined,
-        filter?: models.QueryParamFilter | undefined,
+        filter?: operations.QueryParamFilter | undefined,
         librarySectionID?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.GetSessionHistoryResponse> {
+    ): Promise<operations.GetSessionHistoryResponse> {
         return unwrapAsync(
             sessionsGetSessionHistory(this, sort, accountId, filter, librarySectionID, options)
         );
@@ -47,7 +47,7 @@ export class Sessions extends ClientSDK {
      */
     async getTranscodeSessions(
         options?: RequestOptions
-    ): Promise<models.GetTranscodeSessionsResponse> {
+    ): Promise<operations.GetTranscodeSessionsResponse> {
         return unwrapAsync(sessionsGetTranscodeSessions(this, options));
     }
 
@@ -60,7 +60,7 @@ export class Sessions extends ClientSDK {
     async stopTranscodeSession(
         sessionKey: string,
         options?: RequestOptions
-    ): Promise<models.StopTranscodeSessionResponse> {
+    ): Promise<operations.StopTranscodeSessionResponse> {
         return unwrapAsync(sessionsStopTranscodeSession(this, sessionKey, options));
     }
 }

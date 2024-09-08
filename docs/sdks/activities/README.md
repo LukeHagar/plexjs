@@ -82,14 +82,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetServerActivitiesResponse](../../models/getserveractivitiesresponse.md)\>**
+**Promise\<[operations.GetServerActivitiesResponse](../../sdk/models/operations/getserveractivitiesresponse.md)\>**
 
 ### Errors
 
-| Error Object                                     | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| models.GetServerActivitiesActivitiesResponseBody | 401                                              | application/json                                 |
-| models.SDKError                                  | 4xx-5xx                                          | */*                                              |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.GetServerActivitiesResponseBody | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |
 
 
 ## cancelServerActivities
@@ -158,11 +158,11 @@ run();
 
 ### Response
 
-**Promise\<[models.CancelServerActivitiesResponse](../../models/cancelserveractivitiesresponse.md)\>**
+**Promise\<[operations.CancelServerActivitiesResponse](../../sdk/models/operations/cancelserveractivitiesresponse.md)\>**
 
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models.CancelServerActivitiesResponseBody | 401                                       | application/json                          |
-| models.SDKError                           | 4xx-5xx                                   | */*                                       |
+| errors.CancelServerActivitiesResponseBody | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |

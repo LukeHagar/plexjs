@@ -8,8 +8,8 @@ import { mediaMarkPlayed } from "../funcs/mediaMarkPlayed.js";
 import { mediaMarkUnplayed } from "../funcs/mediaMarkUnplayed.js";
 import { mediaUpdatePlayProgress } from "../funcs/mediaUpdatePlayProgress.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Media extends ClientSDK {
     /**
@@ -18,7 +18,10 @@ export class Media extends ClientSDK {
      * @remarks
      * This will mark the provided media key as Played.
      */
-    async markPlayed(key: number, options?: RequestOptions): Promise<models.MarkPlayedResponse> {
+    async markPlayed(
+        key: number,
+        options?: RequestOptions
+    ): Promise<operations.MarkPlayedResponse> {
         return unwrapAsync(mediaMarkPlayed(this, key, options));
     }
 
@@ -31,7 +34,7 @@ export class Media extends ClientSDK {
     async markUnplayed(
         key: number,
         options?: RequestOptions
-    ): Promise<models.MarkUnplayedResponse> {
+    ): Promise<operations.MarkUnplayedResponse> {
         return unwrapAsync(mediaMarkUnplayed(this, key, options));
     }
 
@@ -47,7 +50,7 @@ export class Media extends ClientSDK {
         time: number,
         state: string,
         options?: RequestOptions
-    ): Promise<models.UpdatePlayProgressResponse> {
+    ): Promise<operations.UpdatePlayProgressResponse> {
         return unwrapAsync(mediaUpdatePlayProgress(this, key, time, state, options));
     }
 
@@ -58,9 +61,9 @@ export class Media extends ClientSDK {
      * Gets the banner image of the media item
      */
     async getBannerImage(
-        request: models.GetBannerImageRequest,
+        request: operations.GetBannerImageRequest,
         options?: RequestOptions
-    ): Promise<models.GetBannerImageResponse> {
+    ): Promise<operations.GetBannerImageResponse> {
         return unwrapAsync(mediaGetBannerImage(this, request, options));
     }
 
@@ -71,9 +74,9 @@ export class Media extends ClientSDK {
      * Gets the thumbnail image of the media item
      */
     async getThumbImage(
-        request: models.GetThumbImageRequest,
+        request: operations.GetThumbImageRequest,
         options?: RequestOptions
-    ): Promise<models.GetThumbImageResponse> {
+    ): Promise<operations.GetThumbImageResponse> {
         return unwrapAsync(mediaGetThumbImage(this, request, options));
     }
 }

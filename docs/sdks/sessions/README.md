@@ -78,14 +78,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetSessionsResponse](../../models/getsessionsresponse.md)\>**
+**Promise\<[operations.GetSessionsResponse](../../sdk/models/operations/getsessionsresponse.md)\>**
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| models.GetSessionsSessionsResponseBody | 401                                    | application/json                       |
-| models.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.GetSessionsResponseBody | 401                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 
 ## getSessionHistory
@@ -149,7 +149,7 @@ run();
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `sort`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Sorts the results by the specified field followed by the direction (asc, desc)<br/>                                                                                            |                                                                                                                                                                                |
 | `accountId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Filter results by those that are related to a specific users id<br/>                                                                                                           | [object Object]                                                                                                                                                                |
-| `filter`                                                                                                                                                                       | [models.QueryParamFilter](../../models/queryparamfilter.md)                                                                                                                    | :heavy_minus_sign:                                                                                                                                                             | Filters content by field and direction/equality<br/>(Unknown if viewedAt is the only supported column)<br/>                                                                    | [object Object]                                                                                                                                                                |
+| `filter`                                                                                                                                                                       | [operations.QueryParamFilter](../../sdk/models/operations/queryparamfilter.md)                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Filters content by field and direction/equality<br/>(Unknown if viewedAt is the only supported column)<br/>                                                                    | [object Object]                                                                                                                                                                |
 | `librarySectionID`                                                                                                                                                             | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Filters the results based on the id of a valid library section<br/>                                                                                                            | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
@@ -157,14 +157,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetSessionHistoryResponse](../../models/getsessionhistoryresponse.md)\>**
+**Promise\<[operations.GetSessionHistoryResponse](../../sdk/models/operations/getsessionhistoryresponse.md)\>**
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models.GetSessionHistorySessionsResponseBody | 401                                          | application/json                             |
-| models.SDKError                              | 4xx-5xx                                      | */*                                          |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.GetSessionHistoryResponseBody | 401                                  | application/json                     |
+| errors.SDKError                      | 4xx-5xx                              | */*                                  |
 
 
 ## getTranscodeSessions
@@ -232,14 +232,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetTranscodeSessionsResponse](../../models/gettranscodesessionsresponse.md)\>**
+**Promise\<[operations.GetTranscodeSessionsResponse](../../sdk/models/operations/gettranscodesessionsresponse.md)\>**
 
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models.GetTranscodeSessionsSessionsResponseBody | 401                                             | application/json                                |
-| models.SDKError                                 | 4xx-5xx                                         | */*                                             |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.GetTranscodeSessionsResponseBody | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 
 ## stopTranscodeSession
@@ -308,11 +308,11 @@ run();
 
 ### Response
 
-**Promise\<[models.StopTranscodeSessionResponse](../../models/stoptranscodesessionresponse.md)\>**
+**Promise\<[operations.StopTranscodeSessionResponse](../../sdk/models/operations/stoptranscodesessionresponse.md)\>**
 
 ### Errors
 
 | Error Object                            | Status Code                             | Content Type                            |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models.StopTranscodeSessionResponseBody | 401                                     | application/json                        |
-| models.SDKError                         | 4xx-5xx                                 | */*                                     |
+| errors.StopTranscodeSessionResponseBody | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |

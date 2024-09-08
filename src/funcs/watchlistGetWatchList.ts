@@ -12,18 +12,19 @@ import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { GetWatchListOpServerList } from "../models/getwatchlistop.js";
 import {
     ConnectionError,
     InvalidRequestError,
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { GetWatchListServerList } from "../sdk/models/operations/getwatchlist.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get User Watchlist
@@ -33,12 +34,12 @@ import { Result } from "../types/fp.js";
  */
 export async function watchlistGetWatchList(
     client$: PlexAPICore,
-    request: models.GetWatchListRequest,
+    request: operations.GetWatchListRequest,
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.GetWatchListResponse,
-        | models.GetWatchListWatchlistResponseBody
+        operations.GetWatchListResponse,
+        | errors.GetWatchListResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -52,7 +53,7 @@ export async function watchlistGetWatchList(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetWatchListRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetWatchListRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -62,8 +63,7 @@ export async function watchlistGetWatchList(
     const body$ = null;
 
     const baseURL$ =
-        options?.serverURL ||
-        pathToFunc(GetWatchListOpServerList[0], { charEncoding: "percent" })();
+        options?.serverURL || pathToFunc(GetWatchListServerList[0], { charEncoding: "percent" })();
 
     const pathParams$ = {
         filter: encodeSimple$("filter", payload$.filter, {
@@ -136,8 +136,8 @@ export async function watchlistGetWatchList(
     };
 
     const [result$] = await m$.match<
-        models.GetWatchListResponse,
-        | models.GetWatchListWatchlistResponseBody
+        operations.GetWatchListResponse,
+        | errors.GetWatchListResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -146,9 +146,9 @@ export async function watchlistGetWatchList(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetWatchListResponse$inboundSchema, { key: "object" }),
+        m$.json(200, operations.GetWatchListResponse$inboundSchema, { key: "object" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetWatchListWatchlistResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetWatchListResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

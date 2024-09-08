@@ -10,8 +10,8 @@ import { plexGetServerResources } from "../funcs/plexGetServerResources.js";
 import { plexGetTokenByPinId } from "../funcs/plexGetTokenByPinId.js";
 import { plexGetUserFriends } from "../funcs/plexGetUserFriends.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Plex extends ClientSDK {
     /**
@@ -22,7 +22,7 @@ export class Plex extends ClientSDK {
      */
     async getCompanionsData(
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.GetCompanionsDataResponse> {
+    ): Promise<operations.GetCompanionsDataResponse> {
         return unwrapAsync(plexGetCompanionsData(this, options));
     }
 
@@ -34,7 +34,7 @@ export class Plex extends ClientSDK {
      */
     async getUserFriends(
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.GetUserFriendsResponse> {
+    ): Promise<operations.GetUserFriendsResponse> {
         return unwrapAsync(plexGetUserFriends(this, options));
     }
 
@@ -46,7 +46,7 @@ export class Plex extends ClientSDK {
      */
     async getGeoData(
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.GetGeoDataResponse> {
+    ): Promise<operations.GetGeoDataResponse> {
         return unwrapAsync(plexGetGeoData(this, options));
     }
 
@@ -56,7 +56,7 @@ export class Plex extends ClientSDK {
      * @remarks
      * Retrieves the home data for the authenticated user, including details like home ID, name, guest access information, and subscription status.
      */
-    async getHomeData(options?: RequestOptions): Promise<models.GetHomeDataResponse> {
+    async getHomeData(options?: RequestOptions): Promise<operations.GetHomeDataResponse> {
         return unwrapAsync(plexGetHomeData(this, options));
     }
 
@@ -67,9 +67,9 @@ export class Plex extends ClientSDK {
      * Get Plex server access tokens and server connections
      */
     async getServerResources(
-        request: models.GetServerResourcesRequest,
+        request: operations.GetServerResourcesRequest,
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.GetServerResourcesResponse> {
+    ): Promise<operations.GetServerResourcesResponse> {
         return unwrapAsync(plexGetServerResources(this, request, options));
     }
 
@@ -84,7 +84,7 @@ export class Plex extends ClientSDK {
         xPlexClientIdentifier?: string | undefined,
         xPlexProduct?: string | undefined,
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.GetPinResponse> {
+    ): Promise<operations.GetPinResponse> {
         return unwrapAsync(plexGetPin(this, strong, xPlexClientIdentifier, xPlexProduct, options));
     }
 
@@ -98,7 +98,7 @@ export class Plex extends ClientSDK {
         pinID: number,
         xPlexClientIdentifier?: string | undefined,
         options?: RequestOptions & { serverURL?: string }
-    ): Promise<models.GetTokenByPinIdResponse> {
+    ): Promise<operations.GetTokenByPinIdResponse> {
         return unwrapAsync(plexGetTokenByPinId(this, pinID, xPlexClientIdentifier, options));
     }
 }

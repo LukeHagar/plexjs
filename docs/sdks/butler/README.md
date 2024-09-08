@@ -79,14 +79,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetButlerTasksResponse](../../models/getbutlertasksresponse.md)\>**
+**Promise\<[operations.GetButlerTasksResponse](../../sdk/models/operations/getbutlertasksresponse.md)\>**
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models.GetButlerTasksButlerResponseBody | 401                                     | application/json                        |
-| models.SDKError                         | 4xx-5xx                                 | */*                                     |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.GetButlerTasksResponseBody | 401                               | application/json                  |
+| errors.SDKError                   | 4xx-5xx                           | */*                               |
 
 
 ## startAllTasks
@@ -159,14 +159,14 @@ run();
 
 ### Response
 
-**Promise\<[models.StartAllTasksResponse](../../models/startalltasksresponse.md)\>**
+**Promise\<[operations.StartAllTasksResponse](../../sdk/models/operations/startalltasksresponse.md)\>**
 
 ### Errors
 
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| models.StartAllTasksResponseBody | 401                              | application/json                 |
-| models.SDKError                  | 4xx-5xx                          | */*                              |
+| errors.StartAllTasksResponseBody | 401                              | application/json                 |
+| errors.SDKError                  | 4xx-5xx                          | */*                              |
 
 
 ## stopAllTasks
@@ -235,14 +235,14 @@ run();
 
 ### Response
 
-**Promise\<[models.StopAllTasksResponse](../../models/stopalltasksresponse.md)\>**
+**Promise\<[operations.StopAllTasksResponse](../../sdk/models/operations/stopalltasksresponse.md)\>**
 
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
-| models.StopAllTasksResponseBody | 401                             | application/json                |
-| models.SDKError                 | 4xx-5xx                         | */*                             |
+| errors.StopAllTasksResponseBody | 401                             | application/json                |
+| errors.SDKError                 | 4xx-5xx                         | */*                             |
 
 
 ## startTask
@@ -257,7 +257,8 @@ This endpoint will attempt to start a single Butler task that is enabled in the 
 ### Example Usage
 
 ```typescript
-import { PlexAPI, TaskName } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { TaskName } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -279,9 +280,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { TaskName } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { butlerStartTask } from "@lukehagar/plexjs/funcs/butlerStartTask.js";
+import { TaskName } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -291,7 +292,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await butlerStartTask(plexAPI, TaskName.DeepMediaAnalysis);
+  const res = await butlerStartTask(plexAPI, TaskName.CleanOldBundles);
 
   if (!res.ok) {
     throw res.error;
@@ -310,21 +311,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `taskName`                                                                                                                                                                     | [models.TaskName](../../models/taskname.md)                                                                                                                                    | :heavy_check_mark:                                                                                                                                                             | the name of the task to be started.                                                                                                                                            |
+| `taskName`                                                                                                                                                                     | [operations.TaskName](../../sdk/models/operations/taskname.md)                                                                                                                 | :heavy_check_mark:                                                                                                                                                             | the name of the task to be started.                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[models.StartTaskResponse](../../models/starttaskresponse.md)\>**
+**Promise\<[operations.StartTaskResponse](../../sdk/models/operations/starttaskresponse.md)\>**
 
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| models.StartTaskResponseBody | 401                          | application/json             |
-| models.SDKError              | 4xx-5xx                      | */*                          |
+| errors.StartTaskResponseBody | 401                          | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 
 ## stopTask
@@ -335,7 +336,8 @@ This endpoint will stop a currently running task by name, or remove it from the 
 ### Example Usage
 
 ```typescript
-import { PathParamTaskName, PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { PathParamTaskName } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -357,9 +359,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PathParamTaskName } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { butlerStopTask } from "@lukehagar/plexjs/funcs/butlerStopTask.js";
+import { PathParamTaskName } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -369,7 +371,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await butlerStopTask(plexAPI, PathParamTaskName.RefreshPeriodicMetadata);
+  const res = await butlerStopTask(plexAPI, PathParamTaskName.BackupDatabase);
 
   if (!res.ok) {
     throw res.error;
@@ -388,18 +390,18 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `taskName`                                                                                                                                                                     | [models.PathParamTaskName](../../models/pathparamtaskname.md)                                                                                                                  | :heavy_check_mark:                                                                                                                                                             | The name of the task to be started.                                                                                                                                            |
+| `taskName`                                                                                                                                                                     | [operations.PathParamTaskName](../../sdk/models/operations/pathparamtaskname.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The name of the task to be started.                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[models.StopTaskResponse](../../models/stoptaskresponse.md)\>**
+**Promise\<[operations.StopTaskResponse](../../sdk/models/operations/stoptaskresponse.md)\>**
 
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models.StopTaskResponseBody | 401                         | application/json            |
-| models.SDKError             | 4xx-5xx                     | */*                         |
+| errors.StopTaskResponseBody | 401                         | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |

@@ -15,8 +15,8 @@ import { libraryGetRefreshLibraryMetadata } from "../funcs/libraryGetRefreshLibr
 import { libraryGetSearchLibrary } from "../funcs/libraryGetSearchLibrary.js";
 import { libraryGetTopWatchedContent } from "../funcs/libraryGetTopWatchedContent.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Library extends ClientSDK {
     /**
@@ -29,7 +29,7 @@ export class Library extends ClientSDK {
         url: string,
         type?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.GetFileHashResponse> {
+    ): Promise<operations.GetFileHashResponse> {
         return unwrapAsync(libraryGetFileHash(this, url, type, options));
     }
 
@@ -44,7 +44,7 @@ export class Library extends ClientSDK {
         xPlexContainerStart?: number | undefined,
         xPlexContainerSize?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.GetRecentlyAddedResponse> {
+    ): Promise<operations.GetRecentlyAddedResponse> {
         return unwrapAsync(
             libraryGetRecentlyAdded(this, xPlexContainerStart, xPlexContainerSize, options)
         );
@@ -62,7 +62,7 @@ export class Library extends ClientSDK {
      * This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
      *
      */
-    async getAllLibraries(options?: RequestOptions): Promise<models.GetAllLibrariesResponse> {
+    async getAllLibraries(options?: RequestOptions): Promise<operations.GetAllLibrariesResponse> {
         return unwrapAsync(libraryGetAllLibraries(this, options));
     }
 
@@ -113,9 +113,9 @@ export class Library extends ClientSDK {
      */
     async getLibraryDetails(
         sectionKey: number,
-        includeDetails?: models.IncludeDetails | undefined,
+        includeDetails?: operations.IncludeDetails | undefined,
         options?: RequestOptions
-    ): Promise<models.GetLibraryDetailsResponse> {
+    ): Promise<operations.GetLibraryDetailsResponse> {
         return unwrapAsync(libraryGetLibraryDetails(this, sectionKey, includeDetails, options));
     }
 
@@ -128,7 +128,7 @@ export class Library extends ClientSDK {
     async deleteLibrary(
         sectionKey: number,
         options?: RequestOptions
-    ): Promise<models.DeleteLibraryResponse> {
+    ): Promise<operations.DeleteLibraryResponse> {
         return unwrapAsync(libraryDeleteLibrary(this, sectionKey, options));
     }
 
@@ -159,9 +159,9 @@ export class Library extends ClientSDK {
      *
      */
     async getLibraryItems(
-        request: models.GetLibraryItemsRequest,
+        request: operations.GetLibraryItemsRequest,
         options?: RequestOptions
-    ): Promise<models.GetLibraryItemsResponse> {
+    ): Promise<operations.GetLibraryItemsResponse> {
         return unwrapAsync(libraryGetLibraryItems(this, request, options));
     }
 
@@ -174,9 +174,9 @@ export class Library extends ClientSDK {
      */
     async getRefreshLibraryMetadata(
         sectionKey: number,
-        force?: models.Force | undefined,
+        force?: operations.Force | undefined,
         options?: RequestOptions
-    ): Promise<models.GetRefreshLibraryMetadataResponse> {
+    ): Promise<operations.GetRefreshLibraryMetadataResponse> {
         return unwrapAsync(libraryGetRefreshLibraryMetadata(this, sectionKey, force, options));
     }
 
@@ -206,9 +206,9 @@ export class Library extends ClientSDK {
      */
     async getSearchLibrary(
         sectionKey: number,
-        type: models.QueryParamType,
+        type: operations.QueryParamType,
         options?: RequestOptions
-    ): Promise<models.GetSearchLibraryResponse> {
+    ): Promise<operations.GetSearchLibraryResponse> {
         return unwrapAsync(libraryGetSearchLibrary(this, sectionKey, type, options));
     }
 
@@ -222,7 +222,7 @@ export class Library extends ClientSDK {
     async getMetaDataByRatingKey(
         ratingKey: number,
         options?: RequestOptions
-    ): Promise<models.GetMetaDataByRatingKeyResponse> {
+    ): Promise<operations.GetMetaDataByRatingKeyResponse> {
         return unwrapAsync(libraryGetMetaDataByRatingKey(this, ratingKey, options));
     }
 
@@ -237,7 +237,7 @@ export class Library extends ClientSDK {
         ratingKey: number,
         includeElements?: string | undefined,
         options?: RequestOptions
-    ): Promise<models.GetMetadataChildrenResponse> {
+    ): Promise<operations.GetMetadataChildrenResponse> {
         return unwrapAsync(libraryGetMetadataChildren(this, ratingKey, includeElements, options));
     }
 
@@ -249,10 +249,10 @@ export class Library extends ClientSDK {
      *
      */
     async getTopWatchedContent(
-        type: models.GetTopWatchedContentQueryParamType,
+        type: operations.GetTopWatchedContentQueryParamType,
         includeGuids?: number | undefined,
         options?: RequestOptions
-    ): Promise<models.GetTopWatchedContentResponse> {
+    ): Promise<operations.GetTopWatchedContentResponse> {
         return unwrapAsync(libraryGetTopWatchedContent(this, type, includeGuids, options));
     }
 
@@ -263,7 +263,7 @@ export class Library extends ClientSDK {
      * This endpoint will return the on deck content.
      *
      */
-    async getOnDeck(options?: RequestOptions): Promise<models.GetOnDeckResponse> {
+    async getOnDeck(options?: RequestOptions): Promise<operations.GetOnDeckResponse> {
         return unwrapAsync(libraryGetOnDeck(this, options));
     }
 }

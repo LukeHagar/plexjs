@@ -6,8 +6,8 @@ import { logEnablePaperTrail } from "../funcs/logEnablePaperTrail.js";
 import { logLogLine } from "../funcs/logLogLine.js";
 import { logLogMultiLine } from "../funcs/logLogMultiLine.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Log extends ClientSDK {
     /**
@@ -18,11 +18,11 @@ export class Log extends ClientSDK {
      *
      */
     async logLine(
-        level: models.Level,
+        level: operations.Level,
         message: string,
         source: string,
         options?: RequestOptions
-    ): Promise<models.LogLineResponse> {
+    ): Promise<operations.LogLineResponse> {
         return unwrapAsync(logLogLine(this, level, message, source, options));
     }
 
@@ -56,7 +56,7 @@ export class Log extends ClientSDK {
     async logMultiLine(
         request: string,
         options?: RequestOptions
-    ): Promise<models.LogMultiLineResponse> {
+    ): Promise<operations.LogMultiLineResponse> {
         return unwrapAsync(logLogMultiLine(this, request, options));
     }
 
@@ -67,7 +67,7 @@ export class Log extends ClientSDK {
      * This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
      *
      */
-    async enablePaperTrail(options?: RequestOptions): Promise<models.EnablePaperTrailResponse> {
+    async enablePaperTrail(options?: RequestOptions): Promise<operations.EnablePaperTrailResponse> {
         return unwrapAsync(logEnablePaperTrail(this, options));
     }
 }

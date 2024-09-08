@@ -8,8 +8,8 @@ import { butlerStartTask } from "../funcs/butlerStartTask.js";
 import { butlerStopAllTasks } from "../funcs/butlerStopAllTasks.js";
 import { butlerStopTask } from "../funcs/butlerStopTask.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as models from "../models/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import * as operations from "./models/operations/index.js";
+import { unwrapAsync } from "./types/fp.js";
 
 export class Butler extends ClientSDK {
     /**
@@ -18,7 +18,7 @@ export class Butler extends ClientSDK {
      * @remarks
      * Returns a list of butler tasks
      */
-    async getButlerTasks(options?: RequestOptions): Promise<models.GetButlerTasksResponse> {
+    async getButlerTasks(options?: RequestOptions): Promise<operations.GetButlerTasksResponse> {
         return unwrapAsync(butlerGetButlerTasks(this, options));
     }
 
@@ -33,7 +33,7 @@ export class Butler extends ClientSDK {
      * 4. If we are outside the configured window, the task will start immediately.
      *
      */
-    async startAllTasks(options?: RequestOptions): Promise<models.StartAllTasksResponse> {
+    async startAllTasks(options?: RequestOptions): Promise<operations.StartAllTasksResponse> {
         return unwrapAsync(butlerStartAllTasks(this, options));
     }
 
@@ -44,7 +44,7 @@ export class Butler extends ClientSDK {
      * This endpoint will stop all currently running tasks and remove any scheduled tasks from the queue.
      *
      */
-    async stopAllTasks(options?: RequestOptions): Promise<models.StopAllTasksResponse> {
+    async stopAllTasks(options?: RequestOptions): Promise<operations.StopAllTasksResponse> {
         return unwrapAsync(butlerStopAllTasks(this, options));
     }
 
@@ -60,9 +60,9 @@ export class Butler extends ClientSDK {
      *
      */
     async startTask(
-        taskName: models.TaskName,
+        taskName: operations.TaskName,
         options?: RequestOptions
-    ): Promise<models.StartTaskResponse> {
+    ): Promise<operations.StartTaskResponse> {
         return unwrapAsync(butlerStartTask(this, taskName, options));
     }
 
@@ -74,9 +74,9 @@ export class Butler extends ClientSDK {
      *
      */
     async stopTask(
-        taskName: models.PathParamTaskName,
+        taskName: operations.PathParamTaskName,
         options?: RequestOptions
-    ): Promise<models.StopTaskResponse> {
+    ): Promise<operations.StopTaskResponse> {
         return unwrapAsync(butlerStopTask(this, taskName, options));
     }
 }

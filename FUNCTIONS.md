@@ -21,7 +21,7 @@ specific category of applications.
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { serverGetServerCapabilities } from "@lukehagar/plexjs/funcs/serverGetServerCapabilities.js";
-import { SDKValidationError } from "@lukehagar/plexjs/models/sdkvalidationerror.js";
+import { SDKValidationError } from "@lukehagar/plexjs/sdk/models/errors/sdkvalidationerror.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

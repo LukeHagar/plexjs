@@ -78,14 +78,14 @@ run();
 
 ### Response
 
-**Promise\<[models.GetUpdateStatusResponse](../../models/getupdatestatusresponse.md)\>**
+**Promise\<[operations.GetUpdateStatusResponse](../../sdk/models/operations/getupdatestatusresponse.md)\>**
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models.GetUpdateStatusUpdaterResponseBody | 401                                       | application/json                          |
-| models.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetUpdateStatusResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## checkForUpdates
@@ -95,7 +95,8 @@ Checking for updates
 ### Example Usage
 
 ```typescript
-import { Download, PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Download } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -117,9 +118,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { Download } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { updaterCheckForUpdates } from "@lukehagar/plexjs/funcs/updaterCheckForUpdates.js";
+import { Download } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -148,21 +149,21 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `download`                                                                                                                                                                     | [models.Download](../../models/download.md)                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                             | Indicate that you want to start download any updates found.                                                                                                                    | [object Object]                                                                                                                                                                |
+| `download`                                                                                                                                                                     | [operations.Download](../../sdk/models/operations/download.md)                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Indicate that you want to start download any updates found.                                                                                                                    | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
-**Promise\<[models.CheckForUpdatesResponse](../../models/checkforupdatesresponse.md)\>**
+**Promise\<[operations.CheckForUpdatesResponse](../../sdk/models/operations/checkforupdatesresponse.md)\>**
 
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models.CheckForUpdatesResponseBody | 401                                | application/json                   |
-| models.SDKError                    | 4xx-5xx                            | */*                                |
+| errors.CheckForUpdatesResponseBody | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## applyUpdates
@@ -173,7 +174,8 @@ Note that these two parameters are effectively mutually exclusive. The `tonight`
 ### Example Usage
 
 ```typescript
-import { PlexAPI, Skip, Tonight } from "@lukehagar/plexjs";
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Skip, Tonight } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -195,9 +197,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { Skip, Tonight } from "@lukehagar/plexjs";
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { updaterApplyUpdates } from "@lukehagar/plexjs/funcs/updaterApplyUpdates.js";
+import { Skip, Tonight } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -226,19 +228,19 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `tonight`                                                                                                                                                                      | [models.Tonight](../../models/tonight.md)                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install                       | [object Object]                                                                                                                                                                |
-| `skip`                                                                                                                                                                         | [models.Skip](../../models/skip.md)                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                             | Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.                                     | [object Object]                                                                                                                                                                |
+| `tonight`                                                                                                                                                                      | [operations.Tonight](../../sdk/models/operations/tonight.md)                                                                                                                   | :heavy_minus_sign:                                                                                                                                                             | Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install                       | [object Object]                                                                                                                                                                |
+| `skip`                                                                                                                                                                         | [operations.Skip](../../sdk/models/operations/skip.md)                                                                                                                         | :heavy_minus_sign:                                                                                                                                                             | Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.                                     | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
-**Promise\<[models.ApplyUpdatesResponse](../../models/applyupdatesresponse.md)\>**
+**Promise\<[operations.ApplyUpdatesResponse](../../sdk/models/operations/applyupdatesresponse.md)\>**
 
 ### Errors
 
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
-| models.ApplyUpdatesResponseBody | 401                             | application/json                |
-| models.SDKError                 | 4xx-5xx                         | */*                             |
+| errors.ApplyUpdatesResponseBody | 401                             | application/json                |
+| errors.SDKError                 | 4xx-5xx                         | */*                             |

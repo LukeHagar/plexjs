@@ -18,11 +18,12 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get Banner Image
@@ -32,12 +33,12 @@ import { Result } from "../types/fp.js";
  */
 export async function mediaGetBannerImage(
     client$: PlexAPICore,
-    request: models.GetBannerImageRequest,
+    request: operations.GetBannerImageRequest,
     options?: RequestOptions
 ): Promise<
     Result<
-        models.GetBannerImageResponse,
-        | models.GetBannerImageResponseBody
+        operations.GetBannerImageResponse,
+        | errors.GetBannerImageResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -51,7 +52,7 @@ export async function mediaGetBannerImage(
 
     const parsed$ = schemas$.safeParse(
         input$,
-        (value$) => models.GetBannerImageRequest$outboundSchema.parse(value$),
+        (value$) => operations.GetBannerImageRequest$outboundSchema.parse(value$),
         "Input validation failed"
     );
     if (!parsed$.ok) {
@@ -127,8 +128,8 @@ export async function mediaGetBannerImage(
     };
 
     const [result$] = await m$.match<
-        models.GetBannerImageResponse,
-        | models.GetBannerImageResponseBody
+        operations.GetBannerImageResponse,
+        | errors.GetBannerImageResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -137,13 +138,13 @@ export async function mediaGetBannerImage(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.stream(200, models.GetBannerImageResponse$inboundSchema, {
+        m$.stream(200, operations.GetBannerImageResponse$inboundSchema, {
             ctype: "image/jpeg",
             hdrs: true,
             key: "response-stream",
         }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetBannerImageResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetBannerImageResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;

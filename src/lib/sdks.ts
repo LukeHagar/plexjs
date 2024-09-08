@@ -24,8 +24,8 @@ import {
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import { ERR, OK, Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import { ERR, OK, Result } from "../sdk/types/fp.js";
 
 export type RequestOptions = {
     /**

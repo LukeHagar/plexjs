@@ -7,18 +7,19 @@ import * as m$ from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { GetUserFriendsOpServerList } from "../models/getuserfriendsop.js";
 import {
     ConnectionError,
     InvalidRequestError,
     RequestAbortedError,
     RequestTimeoutError,
     UnexpectedClientError,
-} from "../models/httpclienterrors.js";
-import * as models from "../models/index.js";
-import { SDKError } from "../models/sdkerror.js";
-import { SDKValidationError } from "../models/sdkvalidationerror.js";
-import { Result } from "../types/fp.js";
+} from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { GetUserFriendsServerList } from "../sdk/models/operations/getuserfriends.js";
+import * as operations from "../sdk/models/operations/index.js";
+import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get list of friends of the user logged in
@@ -31,8 +32,8 @@ export async function plexGetUserFriends(
     options?: RequestOptions & { serverURL?: string }
 ): Promise<
     Result<
-        models.GetUserFriendsResponse,
-        | models.GetUserFriendsResponseBody
+        operations.GetUserFriendsResponse,
+        | errors.GetUserFriendsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -44,7 +45,7 @@ export async function plexGetUserFriends(
 > {
     const baseURL$ =
         options?.serverURL ||
-        pathToFunc(GetUserFriendsOpServerList[0], { charEncoding: "percent" })();
+        pathToFunc(GetUserFriendsServerList[0], { charEncoding: "percent" })();
 
     const path$ = pathToFunc("/friends")();
 
@@ -97,8 +98,8 @@ export async function plexGetUserFriends(
     };
 
     const [result$] = await m$.match<
-        models.GetUserFriendsResponse,
-        | models.GetUserFriendsResponseBody
+        operations.GetUserFriendsResponse,
+        | errors.GetUserFriendsResponseBody
         | SDKError
         | SDKValidationError
         | UnexpectedClientError
@@ -107,9 +108,9 @@ export async function plexGetUserFriends(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, models.GetUserFriendsResponse$inboundSchema, { key: "Friends" }),
+        m$.json(200, operations.GetUserFriendsResponse$inboundSchema, { key: "Friends" }),
         m$.fail([400, "4XX", "5XX"]),
-        m$.jsonErr(401, models.GetUserFriendsResponseBody$inboundSchema)
+        m$.jsonErr(401, errors.GetUserFriendsResponseBody$inboundSchema)
     )(response, { extraFields: responseFields$ });
     if (!result$.ok) {
         return result$;
