@@ -347,7 +347,7 @@ const plexAPI = new PlexAPI({
 
 async function run() {
     const result = await plexAPI.plex.getCompanionsData({
-        serverURL: "https://plex.tv/api/v2",
+        serverURL: "https://plex.tv/api/v2/",
     });
 
     // Handle the result

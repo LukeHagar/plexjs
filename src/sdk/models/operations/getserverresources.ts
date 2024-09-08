@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
-export const GetServerResourcesServerList = ["https://plex.tv/api/v2"] as const;
+export const GetServerResourcesServerList = ["https://plex.tv/api/v2/"] as const;
 
 export type GetServerResourcesGlobals = {
     /**
