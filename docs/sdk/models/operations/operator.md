@@ -6,8 +6,8 @@
 import { Operator } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Operator = {
-    key: "=",
-    title: "is",
+  key: "=",
+  title: "is",
 };
 ```
 

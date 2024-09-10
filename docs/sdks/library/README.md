@@ -92,11 +92,11 @@ run();
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.GetFileHashResponseBody        | 400                                   | application/json                      |
-| errors.GetFileHashLibraryResponseBody | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.GetFileHashBadRequest   | 400                            | application/json               |
+| errors.GetFileHashUnauthorized | 401                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 
 ## getRecentlyAdded
@@ -171,11 +171,11 @@ run();
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| errors.GetRecentlyAddedResponseBody        | 400                                        | application/json                           |
-| errors.GetRecentlyAddedLibraryResponseBody | 401                                        | application/json                           |
-| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.GetRecentlyAddedBadRequest   | 400                                 | application/json                    |
+| errors.GetRecentlyAddedUnauthorized | 401                                 | application/json                    |
+| errors.SDKError                     | 4xx-5xx                             | */*                                 |
 
 
 ## getAllLibraries
@@ -253,11 +253,11 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.GetAllLibrariesResponseBody        | 400                                       | application/json                          |
-| errors.GetAllLibrariesLibraryResponseBody | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetAllLibrariesBadRequest   | 400                                | application/json                   |
+| errors.GetAllLibrariesUnauthorized | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## getLibraryDetails
@@ -370,11 +370,11 @@ run();
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| errors.GetLibraryDetailsResponseBody        | 400                                         | application/json                            |
-| errors.GetLibraryDetailsLibraryResponseBody | 401                                         | application/json                            |
-| errors.SDKError                             | 4xx-5xx                                     | */*                                         |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.GetLibraryDetailsBadRequest   | 400                                  | application/json                     |
+| errors.GetLibraryDetailsUnauthorized | 401                                  | application/json                     |
+| errors.SDKError                      | 4xx-5xx                              | */*                                  |
 
 
 ## deleteLibrary
@@ -447,11 +447,11 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| errors.DeleteLibraryResponseBody        | 400                                     | application/json                        |
-| errors.DeleteLibraryLibraryResponseBody | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| errors.DeleteLibraryBadRequest   | 400                              | application/json                 |
+| errors.DeleteLibraryUnauthorized | 401                              | application/json                 |
+| errors.SDKError                  | 4xx-5xx                          | */*                              |
 
 
 ## getLibraryItems
@@ -562,11 +562,11 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.GetLibraryItemsResponseBody        | 400                                       | application/json                          |
-| errors.GetLibraryItemsLibraryResponseBody | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetLibraryItemsBadRequest   | 400                                | application/json                   |
+| errors.GetLibraryItemsUnauthorized | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## getRefreshLibraryMetadata
@@ -643,11 +643,11 @@ run();
 
 ### Errors
 
-| Error Object                                        | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| errors.GetRefreshLibraryMetadataResponseBody        | 400                                                 | application/json                                    |
-| errors.GetRefreshLibraryMetadataLibraryResponseBody | 401                                                 | application/json                                    |
-| errors.SDKError                                     | 4xx-5xx                                             | */*                                                 |
+| Error Object                                 | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| errors.GetRefreshLibraryMetadataBadRequest   | 400                                          | application/json                             |
+| errors.GetRefreshLibraryMetadataUnauthorized | 401                                          | application/json                             |
+| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
 
 
 ## getSearchLibrary
@@ -741,11 +741,11 @@ run();
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| errors.GetSearchLibraryResponseBody        | 400                                        | application/json                           |
-| errors.GetSearchLibraryLibraryResponseBody | 401                                        | application/json                           |
-| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.GetSearchLibraryBadRequest   | 400                                 | application/json                    |
+| errors.GetSearchLibraryUnauthorized | 401                                 | application/json                    |
+| errors.SDKError                     | 4xx-5xx                             | */*                                 |
 
 
 ## getMetaDataByRatingKey
@@ -819,11 +819,11 @@ run();
 
 ### Errors
 
-| Error Object                                     | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| errors.GetMetaDataByRatingKeyResponseBody        | 400                                              | application/json                                 |
-| errors.GetMetaDataByRatingKeyLibraryResponseBody | 401                                              | application/json                                 |
-| errors.SDKError                                  | 4xx-5xx                                          | */*                                              |
+| Error Object                              | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| errors.GetMetaDataByRatingKeyBadRequest   | 400                                       | application/json                          |
+| errors.GetMetaDataByRatingKeyUnauthorized | 401                                       | application/json                          |
+| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
 
 
 ## getMetadataChildren
@@ -898,11 +898,11 @@ run();
 
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| errors.GetMetadataChildrenResponseBody        | 400                                           | application/json                              |
-| errors.GetMetadataChildrenLibraryResponseBody | 401                                           | application/json                              |
-| errors.SDKError                               | 4xx-5xx                                       | */*                                           |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.GetMetadataChildrenBadRequest   | 400                                    | application/json                       |
+| errors.GetMetadataChildrenUnauthorized | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |
 
 
 ## getTopWatchedContent
@@ -979,11 +979,11 @@ run();
 
 ### Errors
 
-| Error Object                                   | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.GetTopWatchedContentResponseBody        | 400                                            | application/json                               |
-| errors.GetTopWatchedContentLibraryResponseBody | 401                                            | application/json                               |
-| errors.SDKError                                | 4xx-5xx                                        | */*                                            |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.GetTopWatchedContentBadRequest   | 400                                     | application/json                        |
+| errors.GetTopWatchedContentUnauthorized | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 
 ## getOnDeck
@@ -1056,8 +1056,8 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetOnDeckResponseBody        | 400                                 | application/json                    |
-| errors.GetOnDeckLibraryResponseBody | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.GetOnDeckBadRequest   | 400                          | application/json             |
+| errors.GetOnDeckUnauthorized | 401                          | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |

@@ -6,10 +6,10 @@
 import { Field } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Field = {
-    key: "label",
-    title: "Label",
-    type: "tag",
-    subType: "bitrate",
+  key: "label",
+  title: "Label",
+  type: "tag",
+  subType: "bitrate",
 };
 ```
 

@@ -5,7 +5,8 @@
 ```typescript
 import { PostUsersSignInDataFeatures } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PostUsersSignInDataFeatures = PostUsersSignInDataFeatures.AmazonLoopDebug;
+let value: PostUsersSignInDataFeatures =
+  PostUsersSignInDataFeatures.AmazonLoopDebug;
 ```
 
 ## Values

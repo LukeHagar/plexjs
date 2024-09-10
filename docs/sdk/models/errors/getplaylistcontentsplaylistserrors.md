@@ -6,9 +6,9 @@
 import { GetPlaylistContentsPlaylistsErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
 let value: GetPlaylistContentsPlaylistsErrors = {
-    code: 1001,
-    message: "User could not be authenticated",
-    status: 401,
+  code: 1001,
+  message: "User could not be authenticated",
+  status: 401,
 };
 ```
 

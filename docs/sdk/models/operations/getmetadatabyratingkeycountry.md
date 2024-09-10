@@ -6,9 +6,9 @@
 import { GetMetaDataByRatingKeyCountry } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMetaDataByRatingKeyCountry = {
-    id: 116,
-    filter: "country=116",
-    tag: "United States of America",
+  id: 116,
+  filter: "country=116",
+  tag: "United States of America",
 };
 ```
 

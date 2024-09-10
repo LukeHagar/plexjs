@@ -6,9 +6,9 @@
 import { UpdatePlayProgressRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: UpdatePlayProgressRequest = {
-    key: "<key>",
-    time: 90000,
-    state: "played",
+  key: "<key>",
+  time: 90000,
+  state: "played",
 };
 ```
 

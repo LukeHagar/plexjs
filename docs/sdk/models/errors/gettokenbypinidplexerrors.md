@@ -6,8 +6,8 @@
 import { GetTokenByPinIdPlexErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
 let value: GetTokenByPinIdPlexErrors = {
-    code: 1020,
-    message: "Code not found or expired",
+  code: 1020,
+  message: "Code not found or expired",
 };
 ```
 

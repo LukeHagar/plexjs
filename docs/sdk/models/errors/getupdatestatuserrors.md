@@ -6,9 +6,9 @@
 import { GetUpdateStatusErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
 let value: GetUpdateStatusErrors = {
-    code: 1000,
-    message: "X-Plex-Client-Identifier is missing",
-    status: 400,
+  code: 1000,
+  message: "X-Plex-Client-Identifier is missing",
+  status: 400,
 };
 ```
 

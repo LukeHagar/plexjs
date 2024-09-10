@@ -6,7 +6,7 @@
 import { GetSearchResultsDirector } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchResultsDirector = {
-    tag: "Brian De Palma",
+  tag: "Brian De Palma",
 };
 ```
 

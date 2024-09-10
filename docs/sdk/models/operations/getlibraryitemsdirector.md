@@ -6,7 +6,7 @@
 import { GetLibraryItemsDirector } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsDirector = {
-    tag: "James Cameron",
+  tag: "James Cameron",
 };
 ```
 

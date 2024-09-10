@@ -6,9 +6,9 @@
 import { Ratings } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Ratings = {
-    image: "themoviedb://image.rating",
-    value: 7.4,
-    type: "audience",
+  image: "themoviedb://image.rating",
+  value: 7.4,
+  type: "audience",
 };
 ```
 

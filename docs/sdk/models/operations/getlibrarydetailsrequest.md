@@ -6,7 +6,7 @@
 import { GetLibraryDetailsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryDetailsRequest = {
-    sectionKey: 9518,
+  sectionKey: 9518,
 };
 ```
 

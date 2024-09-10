@@ -6,7 +6,7 @@
 import { GetSearchResultsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchResultsRequest = {
-    query: "110",
+  query: "110",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { GetPlaylistContentsRole } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPlaylistContentsRole = {
-    tag: "Gina Torres",
+  tag: "Gina Torres",
 };
 ```
 

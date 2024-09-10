@@ -6,8 +6,8 @@
 import { GetTopWatchedContentQueryParamType, GetTopWatchedContentRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTopWatchedContentRequest = {
-    type: GetTopWatchedContentQueryParamType.Two,
-    includeGuids: 1,
+  type: GetTopWatchedContentQueryParamType.Two,
+  includeGuids: 1,
 };
 ```
 

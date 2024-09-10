@@ -6,10 +6,11 @@
 import { ButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: ButlerTask = {
-    name: "BackupDatabase",
-    interval: 3,
-    title: "Backup Database",
-    description: "Create a backup copy of the server's database in the configured backup directory",
+  name: "BackupDatabase",
+  interval: 3,
+  title: "Backup Database",
+  description:
+    "Create a backup copy of the server's database in the configured backup directory",
 };
 ```
 

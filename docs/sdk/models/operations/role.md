@@ -6,7 +6,7 @@
 import { Role } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Role = {
-    tag: "Paul Rudd",
+  tag: "Paul Rudd",
 };
 ```
 

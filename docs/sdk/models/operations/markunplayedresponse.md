@@ -6,11 +6,11 @@
 import { MarkUnplayedResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: MarkUnplayedResponse = {
-    contentType: "<value>",
-    statusCode: 56713,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 56713,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

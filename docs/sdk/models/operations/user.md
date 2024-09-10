@@ -6,7 +6,7 @@
 import { User } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: User = {
-    id: 220,
+  id: 220,
 };
 ```
 

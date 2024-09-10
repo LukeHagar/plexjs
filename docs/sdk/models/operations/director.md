@@ -6,7 +6,7 @@
 import { Director } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Director = {
-    tag: "Peyton Reed",
+  tag: "Peyton Reed",
 };
 ```
 

@@ -3,15 +3,15 @@
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.server.getServerCapabilities();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

@@ -6,7 +6,7 @@
 import { GetOnDeckGuids } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetOnDeckGuids = {
-    id: "imdb://tt13303712",
+  id: "imdb://tt13303712",
 };
 ```
 

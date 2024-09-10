@@ -6,11 +6,11 @@
 import { UpdatePlaylistResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: UpdatePlaylistResponse = {
-    contentType: "<value>",
-    statusCode: 138183,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 138183,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

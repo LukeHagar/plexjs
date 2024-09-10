@@ -344,7 +344,7 @@ actions:
       x-codeSamples:
         - lang: typescript
           label: resources
-          source: "import { PlexAPI } from \"@lukehagar/plexjs\";\nimport { IncludeHttps, IncludeIPv6, IncludeRelay } from \"@lukehagar/plexjs/sdk/models/operations\";\n\nconst plexAPI = new PlexAPI({\n  accessToken: \"<YOUR_API_KEY_HERE>\",\n  xPlexClientIdentifier: \"gcgzw5rz2xovp84b4vha3a40\",\n});\n\nasync function run() {\n  const result = await plexAPI.plex.getServerResources({\n    xPlexToken: \"CV5xoxjTpFKUzBTShsaf\",\n    includeHttps: IncludeHttps.One,\n    includeRelay: IncludeRelay.One,\n    includeIPv6: IncludeIPv6.One,\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          source: "import { PlexAPI } from \"@lukehagar/plexjs\";\nimport { IncludeHttps, IncludeIPv6, IncludeRelay } from \"@lukehagar/plexjs/sdk/models/operations\";\n\nconst plexAPI = new PlexAPI({\n  accessToken: \"<YOUR_API_KEY_HERE>\",\n  xPlexClientIdentifier: \"gcgzw5rz2xovp84b4vha3a40\",\n});\n\nasync function run() {\n  const result = await plexAPI.plex.getServerResources(\"gcgzw5rz2xovp84b4vha3a40\", IncludeHttps.One, IncludeRelay.One, IncludeIPv6.One);\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/search"]["get"]
     update:
       x-codeSamples:
@@ -433,8 +433,8 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: getUserDetails
-          source: "import { PlexAPI } from \"@lukehagar/plexjs\";\n\nconst plexAPI = new PlexAPI({\n  accessToken: \"<YOUR_API_KEY_HERE>\",\n  xPlexClientIdentifier: \"gcgzw5rz2xovp84b4vha3a40\",\n});\n\nasync function run() {\n  const result = await plexAPI.authentication.getUserDetails(\"CV5xoxjTpFKUzBTShsaf\");\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          label: getTokenDetails
+          source: "import { PlexAPI } from \"@lukehagar/plexjs\";\n\nconst plexAPI = new PlexAPI({\n  accessToken: \"<YOUR_API_KEY_HERE>\",\n  xPlexClientIdentifier: \"gcgzw5rz2xovp84b4vha3a40\",\n});\n\nasync function run() {\n  const result = await plexAPI.authentication.getTokenDetails();\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/users/signin"]["post"]
     update:
       x-codeSamples:

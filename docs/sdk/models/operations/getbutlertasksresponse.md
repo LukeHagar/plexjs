@@ -6,24 +6,24 @@
 import { GetButlerTasksResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetButlerTasksResponse = {
-    contentType: "<value>",
-    statusCode: 812169,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    object: {
-        butlerTasks: {
-            butlerTask: [
-                {
-                    name: "BackupDatabase",
-                    interval: 3,
-                    title: "Backup Database",
-                    description:
-                        "Create a backup copy of the server's database in the configured backup directory",
-                },
-            ],
+  contentType: "<value>",
+  statusCode: 812169,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  object: {
+    butlerTasks: {
+      butlerTask: [
+        {
+          name: "BackupDatabase",
+          interval: 3,
+          title: "Backup Database",
+          description:
+            "Create a backup copy of the server's database in the configured backup directory",
         },
+      ],
     },
+  },
 };
 ```
 

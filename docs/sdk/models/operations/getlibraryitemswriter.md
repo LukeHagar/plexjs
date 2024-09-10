@@ -6,7 +6,7 @@
 import { GetLibraryItemsWriter } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsWriter = {
-    tag: "James Cameron",
+  tag: "James Cameron",
 };
 ```
 

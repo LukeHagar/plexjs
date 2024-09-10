@@ -6,7 +6,7 @@
 import { Country } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Country = {
-    tag: "United States of America",
+  tag: "United States of America",
 };
 ```
 

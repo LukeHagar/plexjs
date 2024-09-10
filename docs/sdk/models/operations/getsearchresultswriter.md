@@ -6,7 +6,7 @@
 import { GetSearchResultsWriter } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchResultsWriter = {
-    tag: "David Koepp",
+  tag: "David Koepp",
 };
 ```
 

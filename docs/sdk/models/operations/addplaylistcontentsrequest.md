@@ -6,9 +6,9 @@
 import { AddPlaylistContentsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: AddPlaylistContentsRequest = {
-    playlistID: 6625.27,
-    uri: "server://12345/com.plexapp.plugins.library/library/metadata/1",
-    playQueueID: 123,
+  playlistID: 6625.27,
+  uri: "server://12345/com.plexapp.plugins.library/library/metadata/1",
+  playQueueID: 123,
 };
 ```
 

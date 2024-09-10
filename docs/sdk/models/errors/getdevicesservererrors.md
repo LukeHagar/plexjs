@@ -6,9 +6,9 @@
 import { GetDevicesServerErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
 let value: GetDevicesServerErrors = {
-    code: 1001,
-    message: "User could not be authenticated",
-    status: 401,
+  code: 1001,
+  message: "User could not be authenticated",
+  status: 401,
 };
 ```
 

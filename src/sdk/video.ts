@@ -9,29 +9,37 @@ import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Video extends ClientSDK {
-    /**
-     * Get the timeline for a media item
-     *
-     * @remarks
-     * Get the timeline for a media item
-     */
-    async getTimeline(
-        request: operations.GetTimelineRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetTimelineResponse> {
-        return unwrapAsync(videoGetTimeline(this, request, options));
-    }
+  /**
+   * Get the timeline for a media item
+   *
+   * @remarks
+   * Get the timeline for a media item
+   */
+  async getTimeline(
+    request: operations.GetTimelineRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetTimelineResponse> {
+    return unwrapAsync(videoGetTimeline(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Start Universal Transcode
-     *
-     * @remarks
-     * Begin a Universal Transcode Session
-     */
-    async startUniversalTranscode(
-        request: operations.StartUniversalTranscodeRequest,
-        options?: RequestOptions
-    ): Promise<operations.StartUniversalTranscodeResponse> {
-        return unwrapAsync(videoStartUniversalTranscode(this, request, options));
-    }
+  /**
+   * Start Universal Transcode
+   *
+   * @remarks
+   * Begin a Universal Transcode Session
+   */
+  async startUniversalTranscode(
+    request: operations.StartUniversalTranscodeRequest,
+    options?: RequestOptions,
+  ): Promise<operations.StartUniversalTranscodeResponse> {
+    return unwrapAsync(videoStartUniversalTranscode(
+      this,
+      request,
+      options,
+    ));
+  }
 }

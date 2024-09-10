@@ -6,9 +6,9 @@
 import { GetSessionsUser } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSessionsUser = {
-    id: "1",
-    thumb: "https://plex.tv/users/844780fc6f8a26b5/avatar?c=1705853661",
-    title: "Blindkitty38",
+  id: "1",
+  thumb: "https://plex.tv/users/844780fc6f8a26b5/avatar?c=1705853661",
+  title: "Blindkitty38",
 };
 ```
 

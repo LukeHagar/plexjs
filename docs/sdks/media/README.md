@@ -84,11 +84,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.MarkPlayedResponseBody      | 400                                | application/json                   |
-| errors.MarkPlayedMediaResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.MarkPlayedBadRequest   | 400                           | application/json              |
+| errors.MarkPlayedUnauthorized | 401                           | application/json              |
+| errors.SDKError               | 4xx-5xx                       | */*                           |
 
 
 ## markUnplayed
@@ -161,11 +161,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| errors.MarkUnplayedResponseBody      | 400                                  | application/json                     |
-| errors.MarkUnplayedMediaResponseBody | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.MarkUnplayedBadRequest   | 400                             | application/json                |
+| errors.MarkUnplayedUnauthorized | 401                             | application/json                |
+| errors.SDKError                 | 4xx-5xx                         | */*                             |
 
 
 ## updatePlayProgress
@@ -241,11 +241,11 @@ run();
 
 ### Errors
 
-| Error Object                               | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| errors.UpdatePlayProgressResponseBody      | 400                                        | application/json                           |
-| errors.UpdatePlayProgressMediaResponseBody | 401                                        | application/json                           |
-| errors.SDKError                            | 4xx-5xx                                    | */*                                        |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| errors.UpdatePlayProgressBadRequest   | 400                                   | application/json                      |
+| errors.UpdatePlayProgressUnauthorized | 401                                   | application/json                      |
+| errors.SDKError                       | 4xx-5xx                               | */*                                   |
 
 
 ## getBannerImage
@@ -332,11 +332,11 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetBannerImageResponseBody      | 400                                    | application/json                       |
-| errors.GetBannerImageMediaResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.GetBannerImageBadRequest   | 400                               | application/json                  |
+| errors.GetBannerImageUnauthorized | 401                               | application/json                  |
+| errors.SDKError                   | 4xx-5xx                           | */*                               |
 
 
 ## getThumbImage
@@ -423,8 +423,8 @@ run();
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.GetThumbImageResponseBody      | 400                                   | application/json                      |
-| errors.GetThumbImageMediaResponseBody | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| errors.GetThumbImageBadRequest   | 400                              | application/json                 |
+| errors.GetThumbImageUnauthorized | 401                              | application/json                 |
+| errors.SDKError                  | 4xx-5xx                          | */*                              |

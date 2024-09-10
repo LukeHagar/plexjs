@@ -6,11 +6,11 @@
 import { GetLibraryDetailsFilter } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryDetailsFilter = {
-    filter: "label",
-    filterType: "string",
-    key: "/library/sections/1/label",
-    title: "Labels",
-    type: "filter",
+  filter: "label",
+  filterType: "string",
+  key: "/library/sections/1/label",
+  title: "Labels",
+  type: "filter",
 };
 ```
 

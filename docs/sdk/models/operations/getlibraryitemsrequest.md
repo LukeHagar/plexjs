@@ -6,13 +6,13 @@
 import { GetLibraryItemsRequest, IncludeGuids, IncludeMeta, Tag, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsRequest = {
-    sectionKey: 9518,
-    tag: Tag.Unwatched,
-    includeGuids: IncludeGuids.One,
-    includeMeta: IncludeMeta.One,
-    type: Type.Two,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
+  sectionKey: 9518,
+  tag: Tag.Unwatched,
+  includeGuids: IncludeGuids.One,
+  includeMeta: IncludeMeta.One,
+  type: Type.Two,
+  xPlexContainerStart: 0,
+  xPlexContainerSize: 50,
 };
 ```
 

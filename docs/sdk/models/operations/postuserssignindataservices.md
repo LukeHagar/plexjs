@@ -6,11 +6,11 @@
 import { PostUsersSignInDataServices, PostUsersSignInDataStatus } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataServices = {
-    identifier: "metadata-dev",
-    endpoint: "https://epg.provider.plex.tv",
-    token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
-    secret: "<value>",
-    status: PostUsersSignInDataStatus.Online,
+  identifier: "metadata-dev",
+  endpoint: "https://epg.provider.plex.tv",
+  token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
+  secret: "<value>",
+  status: PostUsersSignInDataStatus.Online,
 };
 ```
 

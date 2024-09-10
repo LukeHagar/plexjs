@@ -72,15 +72,15 @@ yarn add @lukehagar/plexjs zod
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.server.getServerCapabilities();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -189,9 +189,9 @@ run();
 
 ### [authentication](docs/sdks/authentication/README.md)
 
-* [getTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token.
+* [getTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token
 * [getSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
-* [getUserDetails](docs/sdks/authentication/README.md#getuserdetails) - Get User Data By Token
+* [getTokenDetails](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
 * [postUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
 
 ### [statistics](docs/sdks/statistics/README.md)
@@ -219,11 +219,11 @@ run();
 
 All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
-| Error Object                                   | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| errors.GetServerCapabilitiesResponseBody       | 400                                            | application/json                               |
-| errors.GetServerCapabilitiesServerResponseBody | 401                                            | application/json                               |
-| errors.SDKError                                | 4xx-5xx                                        | */*                                            |
+| Error Object                             | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.GetServerCapabilitiesBadRequest   | 400                                      | application/json                         |
+| errors.GetServerCapabilitiesUnauthorized | 401                                      | application/json                         |
+| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
 
@@ -231,47 +231,47 @@ Validation errors can also occur when either method arguments or data returned f
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import {
-    GetServerCapabilitiesResponseBody,
-    GetServerCapabilitiesServerResponseBody,
-    SDKValidationError,
+  GetServerCapabilitiesBadRequest,
+  GetServerCapabilitiesUnauthorized,
+  SDKValidationError,
 } from "@lukehagar/plexjs/sdk/models/errors";
 
 const plexAPI = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    let result;
-    try {
-        result = await plexAPI.server.getServerCapabilities();
+  let result;
+  try {
+    result = await plexAPI.server.getServerCapabilities();
 
-        // Handle the result
-        console.log(result);
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            case err instanceof GetServerCapabilitiesResponseBody: {
-                // Handle err.data$: GetServerCapabilitiesResponseBodyData
-                console.error(err);
-                return;
-            }
-            case err instanceof GetServerCapabilitiesServerResponseBody: {
-                // Handle err.data$: GetServerCapabilitiesServerResponseBodyData
-                console.error(err);
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
+    // Handle the result
+    console.log(result);
+  } catch (err) {
+    switch (true) {
+      case (err instanceof SDKValidationError): {
+        // Validation errors can be pretty-printed
+        console.error(err.pretty());
+        // Raw value may also be inspected
+        console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof GetServerCapabilitiesBadRequest): {
+        // Handle err.data$: GetServerCapabilitiesBadRequestData
+        console.error(err);
+        return;
+      }
+      case (err instanceof GetServerCapabilitiesUnauthorized): {
+        // Handle err.data$: GetServerCapabilitiesUnauthorizedData
+        console.error(err);
+        return;
+      }
+      default: {
+        throw err;
+      }
     }
+  }
 }
 
 run();
@@ -294,16 +294,16 @@ You can override the default server globally by passing a server index to the `s
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-    serverIdx: 0,
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  serverIdx: 0,
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.server.getServerCapabilities();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -325,16 +325,16 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-    serverURL: "{protocol}://{ip}:{port}",
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  serverURL: "{protocol}://{ip}:{port}",
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.server.getServerCapabilities();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -348,17 +348,17 @@ The server URL can also be overridden on a per-operation basis, provided a serve
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.plex.getCompanionsData({
-        serverURL: "https://plex.tv/api/v2/",
-    });
+  const result = await plexAPI.plex.getCompanionsData({
+    serverURL: "https://plex.tv/api/v2/",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -431,15 +431,15 @@ To authenticate with the API the `accessToken` parameter must be set when initia
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.server.getServerCapabilities();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -471,8 +471,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [activitiesCancelServerActivities](docs/sdks/activities/README.md#cancelserveractivities)
 - [activitiesGetServerActivities](docs/sdks/activities/README.md#getserveractivities)
 - [authenticationGetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation)
+- [authenticationGetTokenDetails](docs/sdks/authentication/README.md#gettokendetails)
 - [authenticationGetTransientToken](docs/sdks/authentication/README.md#gettransienttoken)
-- [authenticationGetUserDetails](docs/sdks/authentication/README.md#getuserdetails)
 - [authenticationPostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata)
 - [butlerGetButlerTasks](docs/sdks/butler/README.md#getbutlertasks)
 - [butlerStartAllTasks](docs/sdks/butler/README.md#startalltasks)
@@ -571,23 +571,27 @@ This is used to track the client application and its usage
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  IncludeHttps,
+  IncludeIPv6,
+  IncludeRelay,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.plex.getServerResources({
-        xPlexToken: "CV5xoxjTpFKUzBTShsaf",
-        includeHttps: IncludeHttps.One,
-        includeRelay: IncludeRelay.One,
-        includeIPv6: IncludeIPv6.One,
-    });
+  const result = await plexAPI.plex.getServerResources(
+    "gcgzw5rz2xovp84b4vha3a40",
+    IncludeHttps.One,
+    IncludeRelay.One,
+    IncludeIPv6.One,
+  );
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -605,26 +609,26 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.server.getServerCapabilities({
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
-        },
-    });
+  const result = await plexAPI.server.getServerCapabilities({
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -636,25 +640,25 @@ If you'd like to override the default retry strategy for all operations that sup
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    accessToken: "<YOUR_API_KEY_HERE>",
-    xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+    retryConnectionErrors: false,
+  },
+  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
 });
 
 async function run() {
-    const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.server.getServerCapabilities();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

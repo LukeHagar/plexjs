@@ -6,24 +6,24 @@
 import { PastSubscription, PostUsersSignInDataState } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PastSubscription = {
-    id: "<id>",
-    mode: "<value>",
-    renewsAt: 1556281940,
-    endsAt: 1556281940,
-    canceled: false,
-    gracePeriod: false,
-    onHold: false,
-    canReactivate: false,
-    canUpgrade: false,
-    canDowngrade: false,
-    canConvert: false,
-    type: "plexpass",
-    transfer: "<value>",
-    state: PostUsersSignInDataState.Ended,
-    billing: {
-        internalPaymentMethod: {},
-        paymentMethodId: 880476,
-    },
+  id: "<id>",
+  mode: "<value>",
+  renewsAt: 1556281940,
+  endsAt: 1556281940,
+  canceled: false,
+  gracePeriod: false,
+  onHold: false,
+  canReactivate: false,
+  canUpgrade: false,
+  canDowngrade: false,
+  canConvert: false,
+  type: "plexpass",
+  transfer: "<value>",
+  state: PostUsersSignInDataState.Ended,
+  billing: {
+    internalPaymentMethod: {},
+    paymentMethodId: 880476,
+  },
 };
 ```
 

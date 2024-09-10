@@ -6,7 +6,7 @@
 import { GetPlaylistContentsGenre } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPlaylistContentsGenre = {
-    tag: "Action",
+  tag: "Action",
 };
 ```
 

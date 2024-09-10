@@ -3,70 +3,82 @@
  */
 
 import { authenticationGetSourceConnectionInformation } from "../funcs/authenticationGetSourceConnectionInformation.js";
+import { authenticationGetTokenDetails } from "../funcs/authenticationGetTokenDetails.js";
 import { authenticationGetTransientToken } from "../funcs/authenticationGetTransientToken.js";
-import { authenticationGetUserDetails } from "../funcs/authenticationGetUserDetails.js";
 import { authenticationPostUsersSignInData } from "../funcs/authenticationPostUsersSignInData.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Authentication extends ClientSDK {
-    /**
-     * Get a Transient Token.
-     *
-     * @remarks
-     * This endpoint provides the caller with a temporary token with the same access level as the caller's token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
-     *
-     */
-    async getTransientToken(
-        type: operations.GetTransientTokenQueryParamType,
-        scope: operations.Scope,
-        options?: RequestOptions
-    ): Promise<operations.GetTransientTokenResponse> {
-        return unwrapAsync(authenticationGetTransientToken(this, type, scope, options));
-    }
+  /**
+   * Get a Transient Token
+   *
+   * @remarks
+   * This endpoint provides the caller with a temporary token with the same access level as the caller's token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
+   */
+  async getTransientToken(
+    type: operations.GetTransientTokenQueryParamType,
+    scope: operations.Scope,
+    options?: RequestOptions,
+  ): Promise<operations.GetTransientTokenResponse> {
+    return unwrapAsync(authenticationGetTransientToken(
+      this,
+      type,
+      scope,
+      options,
+    ));
+  }
 
-    /**
-     * Get Source Connection Information
-     *
-     * @remarks
-     * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token.
-     * Note: requires Plex Media Server >= 1.15.4.
-     *
-     */
-    async getSourceConnectionInformation(
-        source: string,
-        options?: RequestOptions
-    ): Promise<operations.GetSourceConnectionInformationResponse> {
-        return unwrapAsync(authenticationGetSourceConnectionInformation(this, source, options));
-    }
+  /**
+   * Get Source Connection Information
+   *
+   * @remarks
+   * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token.
+   * Note: requires Plex Media Server >= 1.15.4.
+   */
+  async getSourceConnectionInformation(
+    source: string,
+    options?: RequestOptions,
+  ): Promise<operations.GetSourceConnectionInformationResponse> {
+    return unwrapAsync(authenticationGetSourceConnectionInformation(
+      this,
+      source,
+      options,
+    ));
+  }
 
-    /**
-     * Get User Data By Token
-     *
-     * @remarks
-     * Get the User data from the provided X-Plex-Token
-     */
-    async getUserDetails(
-        xPlexToken: string,
-        options?: RequestOptions & { serverURL?: string }
-    ): Promise<operations.GetUserDetailsResponse> {
-        return unwrapAsync(authenticationGetUserDetails(this, xPlexToken, options));
-    }
+  /**
+   * Get Token Details
+   *
+   * @remarks
+   * Get the User data from the provided X-Plex-Token
+   */
+  async getTokenDetails(
+    options?: RequestOptions & { serverURL?: string },
+  ): Promise<operations.GetTokenDetailsResponse> {
+    return unwrapAsync(authenticationGetTokenDetails(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get User Sign In Data
-     *
-     * @remarks
-     * Sign in user with username and password and return user data with Plex authentication token
-     */
-    async postUsersSignInData(
-        xPlexClientIdentifier?: string | undefined,
-        requestBody?: operations.PostUsersSignInDataRequestBody | undefined,
-        options?: RequestOptions & { serverURL?: string }
-    ): Promise<operations.PostUsersSignInDataResponse> {
-        return unwrapAsync(
-            authenticationPostUsersSignInData(this, xPlexClientIdentifier, requestBody, options)
-        );
-    }
+  /**
+   * Get User Sign In Data
+   *
+   * @remarks
+   * Sign in user with username and password and return user data with Plex authentication token
+   */
+  async postUsersSignInData(
+    xPlexClientIdentifier?: string | undefined,
+    requestBody?: operations.PostUsersSignInDataRequestBody | undefined,
+    options?: RequestOptions & { serverURL?: string },
+  ): Promise<operations.PostUsersSignInDataResponse> {
+    return unwrapAsync(authenticationPostUsersSignInData(
+      this,
+      xPlexClientIdentifier,
+      requestBody,
+      options,
+    ));
+  }
 }

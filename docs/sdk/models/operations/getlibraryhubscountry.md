@@ -6,7 +6,7 @@
 import { GetLibraryHubsCountry } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryHubsCountry = {
-    tag: "United States of America",
+  tag: "United States of America",
 };
 ```
 

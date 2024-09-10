@@ -6,7 +6,7 @@
 import { GetBandwidthStatisticsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetBandwidthStatisticsRequest = {
-    timespan: 4,
+  timespan: 4,
 };
 ```
 

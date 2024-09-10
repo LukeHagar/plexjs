@@ -6,7 +6,7 @@
 import { MarkPlayedRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: MarkPlayedRequest = {
-    key: 59398,
+  key: 59398,
 };
 ```
 

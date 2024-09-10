@@ -6,7 +6,7 @@
 import { GetSearchResultsRole } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchResultsRole = {
-    tag: "Tom Cruise",
+  tag: "Tom Cruise",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { GetMediaProvidersRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMediaProvidersRequest = {
-    xPlexToken: "CV5xoxjTpFKUzBTShsaf",
+  xPlexToken: "CV5xoxjTpFKUzBTShsaf",
 };
 ```
 

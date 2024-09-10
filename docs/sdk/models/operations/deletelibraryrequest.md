@@ -6,7 +6,7 @@
 import { DeleteLibraryRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: DeleteLibraryRequest = {
-    sectionKey: 9518,
+  sectionKey: 9518,
 };
 ```
 

@@ -6,7 +6,7 @@
 import { GetLibraryItemsGenre } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsGenre = {
-    tag: "Adventure",
+  tag: "Adventure",
 };
 ```
 

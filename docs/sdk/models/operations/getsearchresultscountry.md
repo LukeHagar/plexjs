@@ -6,7 +6,7 @@
 import { GetSearchResultsCountry } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchResultsCountry = {
-    tag: "United States of America",
+  tag: "United States of America",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { GetTokenByPinIdRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTokenByPinIdRequest = {
-    pinID: 18789,
+  pinID: 18789,
 };
 ```
 

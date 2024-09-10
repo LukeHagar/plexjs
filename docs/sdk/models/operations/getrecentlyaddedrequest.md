@@ -6,8 +6,8 @@
 import { GetRecentlyAddedRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetRecentlyAddedRequest = {
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
+  xPlexContainerStart: 0,
+  xPlexContainerSize: 50,
 };
 ```
 

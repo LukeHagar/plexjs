@@ -6,12 +6,12 @@
 import { GetBannerImageRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetBannerImageRequest = {
-    ratingKey: 9518,
-    width: 396,
-    height: 396,
-    minSize: 1,
-    upscale: 1,
-    xPlexToken: "CV5xoxjTpFKUzBTShsaf",
+  ratingKey: 9518,
+  width: 396,
+  height: 396,
+  minSize: 1,
+  upscale: 1,
+  xPlexToken: "CV5xoxjTpFKUzBTShsaf",
 };
 ```
 

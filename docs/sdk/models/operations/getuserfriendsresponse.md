@@ -6,27 +6,31 @@
 import { GetUserFriendsResponse, Status } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetUserFriendsResponse = {
-    contentType: "<value>",
-    statusCode: 648172,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    friends: [
-        {
-            email: "username@email.com",
-            friendlyName: "exampleUser",
-            home: true,
-            id: 0,
-            restricted: false,
-            sharedServers: [{}],
-            sharedSources: [{}],
-            status: Status.Accepted,
-            thumb: "https://plex.tv/users/7d1916e0d8f6e76b/avatar?c=1694481578",
-            title: "username123",
-            username: "username123",
-            uuid: "7d1916e0d8f6e76b",
-        },
-    ],
+  contentType: "<value>",
+  statusCode: 648172,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  friends: [
+    {
+      email: "username@email.com",
+      friendlyName: "exampleUser",
+      home: true,
+      id: 0,
+      restricted: false,
+      sharedServers: [
+        {},
+      ],
+      sharedSources: [
+        {},
+      ],
+      status: Status.Accepted,
+      thumb: "https://plex.tv/users/7d1916e0d8f6e76b/avatar?c=1694481578",
+      title: "username123",
+      username: "username123",
+      uuid: "7d1916e0d8f6e76b",
+    },
+  ],
 };
 ```
 

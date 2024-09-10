@@ -4,8 +4,8 @@
 
 import { PlexAPICore } from "../core.js";
 import {
-    encodeFormQuery as encodeFormQuery$,
-    encodeSimple as encodeSimple$,
+  encodeFormQuery as encodeFormQuery$,
+  encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -13,11 +13,11 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
@@ -33,129 +33,129 @@ import { Result } from "../sdk/types/fp.js";
  * Get User Watchlist
  */
 export async function watchlistGetWatchList(
-    client$: PlexAPICore,
-    request: operations.GetWatchListRequest,
-    options?: RequestOptions & { serverURL?: string }
+  client$: PlexAPICore,
+  request: operations.GetWatchListRequest,
+  options?: RequestOptions & { serverURL?: string },
 ): Promise<
-    Result<
-        operations.GetWatchListResponse,
-        | errors.GetWatchListResponseBody
-        | errors.GetWatchListWatchlistResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >
+  Result<
+    operations.GetWatchListResponse,
+    | errors.GetWatchListBadRequest
+    | errors.GetWatchListUnauthorized
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >
 > {
-    const input$ = request;
+  const input$ = request;
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) => operations.GetWatchListRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return parsed$;
-    }
-    const payload$ = parsed$.value;
-    const body$ = null;
+  const parsed$ = schemas$.safeParse(
+    input$,
+    (value$) => operations.GetWatchListRequest$outboundSchema.parse(value$),
+    "Input validation failed",
+  );
+  if (!parsed$.ok) {
+    return parsed$;
+  }
+  const payload$ = parsed$.value;
+  const body$ = null;
 
-    const baseURL$ =
-        options?.serverURL || pathToFunc(GetWatchListServerList[0], { charEncoding: "percent" })();
+  const baseURL$ = options?.serverURL
+    || pathToFunc(GetWatchListServerList[0], { charEncoding: "percent" })();
 
-    const pathParams$ = {
-        filter: encodeSimple$("filter", payload$.filter, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-    };
+  const pathParams$ = {
+    filter: encodeSimple$("filter", payload$.filter, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
 
-    const path$ = pathToFunc("/library/sections/watchlist/{filter}")(pathParams$);
+  const path$ = pathToFunc("/library/sections/watchlist/{filter}")(pathParams$);
 
-    const query$ = encodeFormQuery$({
-        includeCollections: payload$.includeCollections,
-        includeExternalMedia: payload$.includeExternalMedia,
-        libtype: payload$.libtype,
-        maxresults: payload$.maxresults,
-        sort: payload$.sort,
-        "X-Plex-Container-Size": payload$["X-Plex-Container-Size"],
-        "X-Plex-Container-Start": payload$["X-Plex-Container-Start"],
-        "X-Plex-Token": payload$["X-Plex-Token"],
-    });
+  const query$ = encodeFormQuery$({
+    "includeCollections": payload$.includeCollections,
+    "includeExternalMedia": payload$.includeExternalMedia,
+    "libtype": payload$.libtype,
+    "maxresults": payload$.maxresults,
+    "sort": payload$.sort,
+    "X-Plex-Container-Size": payload$["X-Plex-Container-Size"],
+    "X-Plex-Container-Start": payload$["X-Plex-Container-Start"],
+    "X-Plex-Token": payload$["X-Plex-Token"],
+  });
 
-    const headers$ = new Headers({
-        Accept: "application/json",
-    });
+  const headers$ = new Headers({
+    Accept: "application/json",
+  });
 
-    const accessToken$ = await extractSecurity(client$.options$.accessToken);
-    const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
-    const context = {
-        operationID: "get-watch-list",
-        oAuth2Scopes: [],
-        securitySource: client$.options$.accessToken,
-    };
-    const securitySettings$ = resolveGlobalSecurity(security$);
+  const accessToken$ = await extractSecurity(client$.options$.accessToken);
+  const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
+  const context = {
+    operationID: "get-watch-list",
+    oAuth2Scopes: [],
+    securitySource: client$.options$.accessToken,
+  };
+  const securitySettings$ = resolveGlobalSecurity(security$);
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            security: securitySettings$,
-            method: "GET",
-            baseURL: baseURL$,
-            path: path$,
-            headers: headers$,
-            query: query$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-        },
-        options
-    );
-    if (!requestRes.ok) {
-        return requestRes;
-    }
-    const request$ = requestRes.value;
+  const requestRes = client$.createRequest$(context, {
+    security: securitySettings$,
+    method: "GET",
+    baseURL: baseURL$,
+    path: path$,
+    headers: headers$,
+    query: query$,
+    body: body$,
+    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const request$ = requestRes.value;
 
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["400", "401", "4XX", "5XX"],
-        retryConfig: options?.retries || client$.options$.retryConfig,
-        retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
-    });
-    if (!doResult.ok) {
-        return doResult;
-    }
-    const response = doResult.value;
+  const doResult = await client$.do$(request$, {
+    context,
+    errorCodes: ["400", "401", "4XX", "5XX"],
+    retryConfig: options?.retries
+      || client$.options$.retryConfig,
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+  });
+  if (!doResult.ok) {
+    return doResult;
+  }
+  const response = doResult.value;
 
-    const responseFields$ = {
-        ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-        StatusCode: response.status,
-        RawResponse: response,
-        Headers: {},
-    };
+  const responseFields$ = {
+    ContentType: response.headers.get("content-type")
+      ?? "application/octet-stream",
+    StatusCode: response.status,
+    RawResponse: response,
+    Headers: {},
+  };
 
-    const [result$] = await m$.match<
-        operations.GetWatchListResponse,
-        | errors.GetWatchListResponseBody
-        | errors.GetWatchListWatchlistResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >(
-        m$.json(200, operations.GetWatchListResponse$inboundSchema, { key: "object" }),
-        m$.jsonErr(400, errors.GetWatchListResponseBody$inboundSchema),
-        m$.jsonErr(401, errors.GetWatchListWatchlistResponseBody$inboundSchema),
-        m$.fail(["4XX", "5XX"])
-    )(response, { extraFields: responseFields$ });
-    if (!result$.ok) {
-        return result$;
-    }
-
+  const [result$] = await m$.match<
+    operations.GetWatchListResponse,
+    | errors.GetWatchListBadRequest
+    | errors.GetWatchListUnauthorized
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >(
+    m$.json(200, operations.GetWatchListResponse$inboundSchema, {
+      key: "object",
+    }),
+    m$.jsonErr(400, errors.GetWatchListBadRequest$inboundSchema),
+    m$.jsonErr(401, errors.GetWatchListUnauthorized$inboundSchema),
+    m$.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields$ });
+  if (!result$.ok) {
     return result$;
+  }
+
+  return result$;
 }

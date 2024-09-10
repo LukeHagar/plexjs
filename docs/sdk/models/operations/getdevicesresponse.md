@@ -6,25 +6,25 @@
 import { GetDevicesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetDevicesResponse = {
-    contentType: "<value>",
-    statusCode: 844266,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    object: {
-        mediaContainer: {
-            size: 151,
-            identifier: "com.plexapp.system.devices",
-            device: [
-                {
-                    id: 1,
-                    name: "iPhone",
-                    platform: "iOS",
-                    createdAt: 1654131230,
-                },
-            ],
+  contentType: "<value>",
+  statusCode: 844266,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  object: {
+    mediaContainer: {
+      size: 151,
+      identifier: "com.plexapp.system.devices",
+      device: [
+        {
+          id: 1,
+          name: "iPhone",
+          platform: "iOS",
+          createdAt: 1654131230,
         },
+      ],
     },
+  },
 };
 ```
 

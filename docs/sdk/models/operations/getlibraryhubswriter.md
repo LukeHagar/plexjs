@@ -6,7 +6,7 @@
 import { GetLibraryHubsWriter } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryHubsWriter = {
-    tag: "Wilhelm Grimm",
+  tag: "Wilhelm Grimm",
 };
 ```
 

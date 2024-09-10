@@ -6,9 +6,9 @@
 import { GetMetaDataByRatingKeyGenre } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMetaDataByRatingKeyGenre = {
-    id: 184,
-    filter: "genre=184",
-    tag: "Thriller",
+  id: 184,
+  filter: "genre=184",
+  tag: "Thriller",
 };
 ```
 

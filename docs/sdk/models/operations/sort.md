@@ -6,12 +6,12 @@
 import { Sort } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Sort = {
-    default: "asc",
-    defaultDirection: "desc",
-    descKey: "random:desc",
-    firstCharacterKey: "/library/sections/1/firstCharacter",
-    key: "random",
-    title: "Randomly",
+  default: "asc",
+  defaultDirection: "desc",
+  descKey: "random:desc",
+  firstCharacterKey: "/library/sections/1/firstCharacter",
+  key: "random",
+  title: "Randomly",
 };
 ```
 

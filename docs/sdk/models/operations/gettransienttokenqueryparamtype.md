@@ -7,7 +7,8 @@
 ```typescript
 import { GetTransientTokenQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetTransientTokenQueryParamType = GetTransientTokenQueryParamType.Delegation;
+let value: GetTransientTokenQueryParamType =
+  GetTransientTokenQueryParamType.Delegation;
 ```
 
 ## Values

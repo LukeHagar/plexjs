@@ -4,8 +4,8 @@
 
 import { PlexAPICore } from "../core.js";
 import {
-    encodeFormQuery as encodeFormQuery$,
-    encodeSimple as encodeSimple$,
+  encodeFormQuery as encodeFormQuery$,
+  encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -13,11 +13,11 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
@@ -30,128 +30,127 @@ import { Result } from "../sdk/types/fp.js";
  *
  * @remarks
  * This endpoint will return a list of library specific hubs
- *
  */
 export async function hubsGetLibraryHubs(
-    client$: PlexAPICore,
-    sectionId: number,
-    count?: number | undefined,
-    onlyTransient?: operations.QueryParamOnlyTransient | undefined,
-    options?: RequestOptions
+  client$: PlexAPICore,
+  sectionId: number,
+  count?: number | undefined,
+  onlyTransient?: operations.QueryParamOnlyTransient | undefined,
+  options?: RequestOptions,
 ): Promise<
-    Result<
-        operations.GetLibraryHubsResponse,
-        | errors.GetLibraryHubsResponseBody
-        | errors.GetLibraryHubsHubsResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >
+  Result<
+    operations.GetLibraryHubsResponse,
+    | errors.GetLibraryHubsBadRequest
+    | errors.GetLibraryHubsUnauthorized
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >
 > {
-    const input$: operations.GetLibraryHubsRequest = {
-        sectionId: sectionId,
-        count: count,
-        onlyTransient: onlyTransient,
-    };
+  const input$: operations.GetLibraryHubsRequest = {
+    sectionId: sectionId,
+    count: count,
+    onlyTransient: onlyTransient,
+  };
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) => operations.GetLibraryHubsRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return parsed$;
-    }
-    const payload$ = parsed$.value;
-    const body$ = null;
+  const parsed$ = schemas$.safeParse(
+    input$,
+    (value$) => operations.GetLibraryHubsRequest$outboundSchema.parse(value$),
+    "Input validation failed",
+  );
+  if (!parsed$.ok) {
+    return parsed$;
+  }
+  const payload$ = parsed$.value;
+  const body$ = null;
 
-    const pathParams$ = {
-        sectionId: encodeSimple$("sectionId", payload$.sectionId, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-    };
+  const pathParams$ = {
+    sectionId: encodeSimple$("sectionId", payload$.sectionId, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
 
-    const path$ = pathToFunc("/hubs/sections/{sectionId}")(pathParams$);
+  const path$ = pathToFunc("/hubs/sections/{sectionId}")(pathParams$);
 
-    const query$ = encodeFormQuery$({
-        count: payload$.count,
-        onlyTransient: payload$.onlyTransient,
-    });
+  const query$ = encodeFormQuery$({
+    "count": payload$.count,
+    "onlyTransient": payload$.onlyTransient,
+  });
 
-    const headers$ = new Headers({
-        Accept: "application/json",
-    });
+  const headers$ = new Headers({
+    Accept: "application/json",
+  });
 
-    const accessToken$ = await extractSecurity(client$.options$.accessToken);
-    const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
-    const context = {
-        operationID: "getLibraryHubs",
-        oAuth2Scopes: [],
-        securitySource: client$.options$.accessToken,
-    };
-    const securitySettings$ = resolveGlobalSecurity(security$);
+  const accessToken$ = await extractSecurity(client$.options$.accessToken);
+  const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
+  const context = {
+    operationID: "getLibraryHubs",
+    oAuth2Scopes: [],
+    securitySource: client$.options$.accessToken,
+  };
+  const securitySettings$ = resolveGlobalSecurity(security$);
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            security: securitySettings$,
-            method: "GET",
-            path: path$,
-            headers: headers$,
-            query: query$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-        },
-        options
-    );
-    if (!requestRes.ok) {
-        return requestRes;
-    }
-    const request$ = requestRes.value;
+  const requestRes = client$.createRequest$(context, {
+    security: securitySettings$,
+    method: "GET",
+    path: path$,
+    headers: headers$,
+    query: query$,
+    body: body$,
+    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const request$ = requestRes.value;
 
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["400", "401", "4XX", "5XX"],
-        retryConfig: options?.retries || client$.options$.retryConfig,
-        retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
-    });
-    if (!doResult.ok) {
-        return doResult;
-    }
-    const response = doResult.value;
+  const doResult = await client$.do$(request$, {
+    context,
+    errorCodes: ["400", "401", "4XX", "5XX"],
+    retryConfig: options?.retries
+      || client$.options$.retryConfig,
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+  });
+  if (!doResult.ok) {
+    return doResult;
+  }
+  const response = doResult.value;
 
-    const responseFields$ = {
-        ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-        StatusCode: response.status,
-        RawResponse: response,
-        Headers: {},
-    };
+  const responseFields$ = {
+    ContentType: response.headers.get("content-type")
+      ?? "application/octet-stream",
+    StatusCode: response.status,
+    RawResponse: response,
+    Headers: {},
+  };
 
-    const [result$] = await m$.match<
-        operations.GetLibraryHubsResponse,
-        | errors.GetLibraryHubsResponseBody
-        | errors.GetLibraryHubsHubsResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >(
-        m$.json(200, operations.GetLibraryHubsResponse$inboundSchema, { key: "object" }),
-        m$.jsonErr(400, errors.GetLibraryHubsResponseBody$inboundSchema),
-        m$.jsonErr(401, errors.GetLibraryHubsHubsResponseBody$inboundSchema),
-        m$.fail(["4XX", "5XX"])
-    )(response, { extraFields: responseFields$ });
-    if (!result$.ok) {
-        return result$;
-    }
-
+  const [result$] = await m$.match<
+    operations.GetLibraryHubsResponse,
+    | errors.GetLibraryHubsBadRequest
+    | errors.GetLibraryHubsUnauthorized
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >(
+    m$.json(200, operations.GetLibraryHubsResponse$inboundSchema, {
+      key: "object",
+    }),
+    m$.jsonErr(400, errors.GetLibraryHubsBadRequest$inboundSchema),
+    m$.jsonErr(401, errors.GetLibraryHubsUnauthorized$inboundSchema),
+    m$.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields$ });
+  if (!result$.ok) {
     return result$;
+  }
+
+  return result$;
 }

@@ -6,7 +6,7 @@
 import { StopTranscodeSessionRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: StopTranscodeSessionRequest = {
-    sessionKey: "zz7llzqlx8w9vnrsbnwhbmep",
+  sessionKey: "zz7llzqlx8w9vnrsbnwhbmep",
 };
 ```
 

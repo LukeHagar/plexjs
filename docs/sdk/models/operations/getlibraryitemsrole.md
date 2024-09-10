@@ -6,7 +6,7 @@
 import { GetLibraryItemsRole } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsRole = {
-    tag: "Sigourney Weaver",
+  tag: "Sigourney Weaver",
 };
 ```
 

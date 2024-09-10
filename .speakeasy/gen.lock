@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 75338df5d596b761fe73fe6ff177a197
+  docChecksum: a6fee1797b2da7ccbaf7743772a40b56
   docVersion: 0.0.3
-  speakeasyVersion: 1.392.1
-  generationVersion: 2.411.9
-  releaseVersion: 0.21.1
-  configChecksum: 34ca28189c800b0933ed3de23dc9a3ca
+  speakeasyVersion: 1.394.0
+  generationVersion: 2.413.0
+  releaseVersion: 0.22.0
+  configChecksum: d564900123a71faa49f3efd7732519bf
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.16.4
+    core: 3.17.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
@@ -43,297 +43,297 @@ generatedFiles:
   - RUNTIMES.md
   - USAGE.md
   - docs/lib/utils/retryconfig.md
+  - docs/sdk/models/errors/addplaylistcontentsbadrequest.md
   - docs/sdk/models/errors/addplaylistcontentserrors.md
   - docs/sdk/models/errors/addplaylistcontentsplaylistserrors.md
-  - docs/sdk/models/errors/addplaylistcontentsplaylistsresponsebody.md
-  - docs/sdk/models/errors/addplaylistcontentsresponsebody.md
+  - docs/sdk/models/errors/addplaylistcontentsunauthorized.md
+  - docs/sdk/models/errors/applyupdatesbadrequest.md
   - docs/sdk/models/errors/applyupdateserrors.md
-  - docs/sdk/models/errors/applyupdatesresponsebody.md
+  - docs/sdk/models/errors/applyupdatesunauthorized.md
   - docs/sdk/models/errors/applyupdatesupdatererrors.md
-  - docs/sdk/models/errors/applyupdatesupdaterresponsebody.md
   - docs/sdk/models/errors/cancelserveractivitiesactivitieserrors.md
-  - docs/sdk/models/errors/cancelserveractivitiesactivitiesresponsebody.md
+  - docs/sdk/models/errors/cancelserveractivitiesbadrequest.md
   - docs/sdk/models/errors/cancelserveractivitieserrors.md
-  - docs/sdk/models/errors/cancelserveractivitiesresponsebody.md
+  - docs/sdk/models/errors/cancelserveractivitiesunauthorized.md
+  - docs/sdk/models/errors/checkforupdatesbadrequest.md
   - docs/sdk/models/errors/checkforupdateserrors.md
-  - docs/sdk/models/errors/checkforupdatesresponsebody.md
+  - docs/sdk/models/errors/checkforupdatesunauthorized.md
   - docs/sdk/models/errors/checkforupdatesupdatererrors.md
-  - docs/sdk/models/errors/checkforupdatesupdaterresponsebody.md
+  - docs/sdk/models/errors/clearplaylistcontentsbadrequest.md
   - docs/sdk/models/errors/clearplaylistcontentserrors.md
   - docs/sdk/models/errors/clearplaylistcontentsplaylistserrors.md
-  - docs/sdk/models/errors/clearplaylistcontentsplaylistsresponsebody.md
-  - docs/sdk/models/errors/clearplaylistcontentsresponsebody.md
+  - docs/sdk/models/errors/clearplaylistcontentsunauthorized.md
+  - docs/sdk/models/errors/createplaylistbadrequest.md
   - docs/sdk/models/errors/createplaylisterrors.md
   - docs/sdk/models/errors/createplaylistplaylistserrors.md
-  - docs/sdk/models/errors/createplaylistplaylistsresponsebody.md
-  - docs/sdk/models/errors/createplaylistresponsebody.md
+  - docs/sdk/models/errors/createplaylistunauthorized.md
+  - docs/sdk/models/errors/deletelibrarybadrequest.md
   - docs/sdk/models/errors/deletelibraryerrors.md
   - docs/sdk/models/errors/deletelibrarylibraryerrors.md
-  - docs/sdk/models/errors/deletelibrarylibraryresponsebody.md
-  - docs/sdk/models/errors/deletelibraryresponsebody.md
+  - docs/sdk/models/errors/deletelibraryunauthorized.md
+  - docs/sdk/models/errors/deleteplaylistbadrequest.md
   - docs/sdk/models/errors/deleteplaylisterrors.md
   - docs/sdk/models/errors/deleteplaylistplaylistserrors.md
-  - docs/sdk/models/errors/deleteplaylistplaylistsresponsebody.md
-  - docs/sdk/models/errors/deleteplaylistresponsebody.md
+  - docs/sdk/models/errors/deleteplaylistunauthorized.md
+  - docs/sdk/models/errors/enablepapertrailbadrequest.md
   - docs/sdk/models/errors/enablepapertrailerrors.md
   - docs/sdk/models/errors/enablepapertraillogerrors.md
-  - docs/sdk/models/errors/enablepapertraillogresponsebody.md
-  - docs/sdk/models/errors/enablepapertrailresponsebody.md
+  - docs/sdk/models/errors/enablepapertrailunauthorized.md
   - docs/sdk/models/errors/errors.md
+  - docs/sdk/models/errors/getalllibrariesbadrequest.md
   - docs/sdk/models/errors/getalllibrarieserrors.md
   - docs/sdk/models/errors/getalllibrarieslibraryerrors.md
-  - docs/sdk/models/errors/getalllibrarieslibraryresponsebody.md
-  - docs/sdk/models/errors/getalllibrariesresponsebody.md
+  - docs/sdk/models/errors/getalllibrariesunauthorized.md
+  - docs/sdk/models/errors/getavailableclientsbadrequest.md
   - docs/sdk/models/errors/getavailableclientserrors.md
-  - docs/sdk/models/errors/getavailableclientsresponsebody.md
   - docs/sdk/models/errors/getavailableclientsservererrors.md
-  - docs/sdk/models/errors/getavailableclientsserverresponsebody.md
+  - docs/sdk/models/errors/getavailableclientsunauthorized.md
+  - docs/sdk/models/errors/getbandwidthstatisticsbadrequest.md
   - docs/sdk/models/errors/getbandwidthstatisticserrors.md
-  - docs/sdk/models/errors/getbandwidthstatisticsresponsebody.md
   - docs/sdk/models/errors/getbandwidthstatisticsstatisticserrors.md
-  - docs/sdk/models/errors/getbandwidthstatisticsstatisticsresponsebody.md
+  - docs/sdk/models/errors/getbandwidthstatisticsunauthorized.md
+  - docs/sdk/models/errors/getbannerimagebadrequest.md
   - docs/sdk/models/errors/getbannerimageerrors.md
   - docs/sdk/models/errors/getbannerimagemediaerrors.md
-  - docs/sdk/models/errors/getbannerimagemediaresponsebody.md
-  - docs/sdk/models/errors/getbannerimageresponsebody.md
+  - docs/sdk/models/errors/getbannerimageunauthorized.md
+  - docs/sdk/models/errors/getbutlertasksbadrequest.md
   - docs/sdk/models/errors/getbutlertasksbutlererrors.md
-  - docs/sdk/models/errors/getbutlertasksbutlerresponsebody.md
   - docs/sdk/models/errors/getbutlertaskserrors.md
-  - docs/sdk/models/errors/getbutlertasksresponsebody.md
+  - docs/sdk/models/errors/getbutlertasksunauthorized.md
+  - docs/sdk/models/errors/getcompanionsdatabadrequest.md
   - docs/sdk/models/errors/getcompanionsdataerrors.md
   - docs/sdk/models/errors/getcompanionsdataplexerrors.md
-  - docs/sdk/models/errors/getcompanionsdataplexresponsebody.md
-  - docs/sdk/models/errors/getcompanionsdataresponsebody.md
+  - docs/sdk/models/errors/getcompanionsdataunauthorized.md
+  - docs/sdk/models/errors/getdevicesbadrequest.md
   - docs/sdk/models/errors/getdeviceserrors.md
-  - docs/sdk/models/errors/getdevicesresponsebody.md
   - docs/sdk/models/errors/getdevicesservererrors.md
-  - docs/sdk/models/errors/getdevicesserverresponsebody.md
+  - docs/sdk/models/errors/getdevicesunauthorized.md
+  - docs/sdk/models/errors/getfilehashbadrequest.md
   - docs/sdk/models/errors/getfilehasherrors.md
   - docs/sdk/models/errors/getfilehashlibraryerrors.md
-  - docs/sdk/models/errors/getfilehashlibraryresponsebody.md
-  - docs/sdk/models/errors/getfilehashresponsebody.md
+  - docs/sdk/models/errors/getfilehashunauthorized.md
+  - docs/sdk/models/errors/getgeodatabadrequest.md
   - docs/sdk/models/errors/getgeodataerrors.md
   - docs/sdk/models/errors/getgeodataplexerrors.md
-  - docs/sdk/models/errors/getgeodataplexresponsebody.md
-  - docs/sdk/models/errors/getgeodataresponsebody.md
+  - docs/sdk/models/errors/getgeodataunauthorized.md
+  - docs/sdk/models/errors/getglobalhubsbadrequest.md
   - docs/sdk/models/errors/getglobalhubserrors.md
   - docs/sdk/models/errors/getglobalhubshubserrors.md
-  - docs/sdk/models/errors/getglobalhubshubsresponsebody.md
-  - docs/sdk/models/errors/getglobalhubsresponsebody.md
+  - docs/sdk/models/errors/getglobalhubsunauthorized.md
+  - docs/sdk/models/errors/gethomedatabadrequest.md
   - docs/sdk/models/errors/gethomedataerrors.md
   - docs/sdk/models/errors/gethomedataplexerrors.md
-  - docs/sdk/models/errors/gethomedataplexresponsebody.md
-  - docs/sdk/models/errors/gethomedataresponsebody.md
+  - docs/sdk/models/errors/gethomedataunauthorized.md
+  - docs/sdk/models/errors/getlibrarydetailsbadrequest.md
   - docs/sdk/models/errors/getlibrarydetailserrors.md
   - docs/sdk/models/errors/getlibrarydetailslibraryerrors.md
-  - docs/sdk/models/errors/getlibrarydetailslibraryresponsebody.md
-  - docs/sdk/models/errors/getlibrarydetailsresponsebody.md
+  - docs/sdk/models/errors/getlibrarydetailsunauthorized.md
+  - docs/sdk/models/errors/getlibraryhubsbadrequest.md
   - docs/sdk/models/errors/getlibraryhubserrors.md
   - docs/sdk/models/errors/getlibraryhubshubserrors.md
-  - docs/sdk/models/errors/getlibraryhubshubsresponsebody.md
-  - docs/sdk/models/errors/getlibraryhubsresponsebody.md
+  - docs/sdk/models/errors/getlibraryhubsunauthorized.md
+  - docs/sdk/models/errors/getlibraryitemsbadrequest.md
   - docs/sdk/models/errors/getlibraryitemserrors.md
   - docs/sdk/models/errors/getlibraryitemslibraryerrors.md
-  - docs/sdk/models/errors/getlibraryitemslibraryresponsebody.md
-  - docs/sdk/models/errors/getlibraryitemsresponsebody.md
+  - docs/sdk/models/errors/getlibraryitemsunauthorized.md
+  - docs/sdk/models/errors/getmediaprovidersbadrequest.md
   - docs/sdk/models/errors/getmediaproviderserrors.md
-  - docs/sdk/models/errors/getmediaprovidersresponsebody.md
   - docs/sdk/models/errors/getmediaprovidersservererrors.md
-  - docs/sdk/models/errors/getmediaprovidersserverresponsebody.md
+  - docs/sdk/models/errors/getmediaprovidersunauthorized.md
+  - docs/sdk/models/errors/getmetadatabyratingkeybadrequest.md
   - docs/sdk/models/errors/getmetadatabyratingkeyerrors.md
   - docs/sdk/models/errors/getmetadatabyratingkeylibraryerrors.md
-  - docs/sdk/models/errors/getmetadatabyratingkeylibraryresponsebody.md
-  - docs/sdk/models/errors/getmetadatabyratingkeyresponsebody.md
+  - docs/sdk/models/errors/getmetadatabyratingkeyunauthorized.md
+  - docs/sdk/models/errors/getmetadatachildrenbadrequest.md
   - docs/sdk/models/errors/getmetadatachildrenerrors.md
   - docs/sdk/models/errors/getmetadatachildrenlibraryerrors.md
-  - docs/sdk/models/errors/getmetadatachildrenlibraryresponsebody.md
-  - docs/sdk/models/errors/getmetadatachildrenresponsebody.md
+  - docs/sdk/models/errors/getmetadatachildrenunauthorized.md
+  - docs/sdk/models/errors/getmyplexaccountbadrequest.md
   - docs/sdk/models/errors/getmyplexaccounterrors.md
-  - docs/sdk/models/errors/getmyplexaccountresponsebody.md
   - docs/sdk/models/errors/getmyplexaccountservererrors.md
-  - docs/sdk/models/errors/getmyplexaccountserverresponsebody.md
+  - docs/sdk/models/errors/getmyplexaccountunauthorized.md
+  - docs/sdk/models/errors/getondeckbadrequest.md
   - docs/sdk/models/errors/getondeckerrors.md
   - docs/sdk/models/errors/getondecklibraryerrors.md
-  - docs/sdk/models/errors/getondecklibraryresponsebody.md
-  - docs/sdk/models/errors/getondeckresponsebody.md
+  - docs/sdk/models/errors/getondeckunauthorized.md
+  - docs/sdk/models/errors/getpinbadrequest.md
   - docs/sdk/models/errors/getpinerrors.md
-  - docs/sdk/models/errors/getpinresponsebody.md
+  - docs/sdk/models/errors/getplaylistbadrequest.md
+  - docs/sdk/models/errors/getplaylistcontentsbadrequest.md
   - docs/sdk/models/errors/getplaylistcontentserrors.md
   - docs/sdk/models/errors/getplaylistcontentsplaylistserrors.md
-  - docs/sdk/models/errors/getplaylistcontentsplaylistsresponsebody.md
-  - docs/sdk/models/errors/getplaylistcontentsresponsebody.md
+  - docs/sdk/models/errors/getplaylistcontentsunauthorized.md
   - docs/sdk/models/errors/getplaylisterrors.md
   - docs/sdk/models/errors/getplaylistplaylistserrors.md
-  - docs/sdk/models/errors/getplaylistplaylistsresponsebody.md
-  - docs/sdk/models/errors/getplaylistresponsebody.md
+  - docs/sdk/models/errors/getplaylistsbadrequest.md
   - docs/sdk/models/errors/getplaylistserrors.md
   - docs/sdk/models/errors/getplaylistsplaylistserrors.md
-  - docs/sdk/models/errors/getplaylistsplaylistsresponsebody.md
-  - docs/sdk/models/errors/getplaylistsresponsebody.md
+  - docs/sdk/models/errors/getplaylistsunauthorized.md
+  - docs/sdk/models/errors/getplaylistunauthorized.md
+  - docs/sdk/models/errors/getrecentlyaddedbadrequest.md
   - docs/sdk/models/errors/getrecentlyaddederrors.md
   - docs/sdk/models/errors/getrecentlyaddedlibraryerrors.md
-  - docs/sdk/models/errors/getrecentlyaddedlibraryresponsebody.md
-  - docs/sdk/models/errors/getrecentlyaddedresponsebody.md
+  - docs/sdk/models/errors/getrecentlyaddedunauthorized.md
+  - docs/sdk/models/errors/getrefreshlibrarymetadatabadrequest.md
   - docs/sdk/models/errors/getrefreshlibrarymetadataerrors.md
   - docs/sdk/models/errors/getrefreshlibrarymetadatalibraryerrors.md
-  - docs/sdk/models/errors/getrefreshlibrarymetadatalibraryresponsebody.md
-  - docs/sdk/models/errors/getrefreshlibrarymetadataresponsebody.md
+  - docs/sdk/models/errors/getrefreshlibrarymetadataunauthorized.md
+  - docs/sdk/models/errors/getresizedphotobadrequest.md
   - docs/sdk/models/errors/getresizedphotoerrors.md
-  - docs/sdk/models/errors/getresizedphotoresponsebody.md
   - docs/sdk/models/errors/getresizedphotoservererrors.md
-  - docs/sdk/models/errors/getresizedphotoserverresponsebody.md
+  - docs/sdk/models/errors/getresizedphotounauthorized.md
+  - docs/sdk/models/errors/getresourcesstatisticsbadrequest.md
   - docs/sdk/models/errors/getresourcesstatisticserrors.md
-  - docs/sdk/models/errors/getresourcesstatisticsresponsebody.md
   - docs/sdk/models/errors/getresourcesstatisticsstatisticserrors.md
-  - docs/sdk/models/errors/getresourcesstatisticsstatisticsresponsebody.md
+  - docs/sdk/models/errors/getresourcesstatisticsunauthorized.md
+  - docs/sdk/models/errors/getsearchlibrarybadrequest.md
   - docs/sdk/models/errors/getsearchlibraryerrors.md
   - docs/sdk/models/errors/getsearchlibrarylibraryerrors.md
-  - docs/sdk/models/errors/getsearchlibrarylibraryresponsebody.md
-  - docs/sdk/models/errors/getsearchlibraryresponsebody.md
+  - docs/sdk/models/errors/getsearchlibraryunauthorized.md
+  - docs/sdk/models/errors/getsearchresultsbadrequest.md
   - docs/sdk/models/errors/getsearchresultserrors.md
-  - docs/sdk/models/errors/getsearchresultsresponsebody.md
   - docs/sdk/models/errors/getsearchresultssearcherrors.md
-  - docs/sdk/models/errors/getsearchresultssearchresponsebody.md
+  - docs/sdk/models/errors/getsearchresultsunauthorized.md
   - docs/sdk/models/errors/getserveractivitiesactivitieserrors.md
-  - docs/sdk/models/errors/getserveractivitiesactivitiesresponsebody.md
+  - docs/sdk/models/errors/getserveractivitiesbadrequest.md
   - docs/sdk/models/errors/getserveractivitieserrors.md
-  - docs/sdk/models/errors/getserveractivitiesresponsebody.md
+  - docs/sdk/models/errors/getserveractivitiesunauthorized.md
+  - docs/sdk/models/errors/getservercapabilitiesbadrequest.md
   - docs/sdk/models/errors/getservercapabilitieserrors.md
-  - docs/sdk/models/errors/getservercapabilitiesresponsebody.md
-  - docs/sdk/models/errors/getservercapabilitiesserverresponsebody.md
-  - docs/sdk/models/errors/getserveridentityresponsebody.md
+  - docs/sdk/models/errors/getservercapabilitiesunauthorized.md
+  - docs/sdk/models/errors/getserveridentityrequesttimeout.md
+  - docs/sdk/models/errors/getserverlistbadrequest.md
   - docs/sdk/models/errors/getserverlisterrors.md
-  - docs/sdk/models/errors/getserverlistresponsebody.md
   - docs/sdk/models/errors/getserverlistservererrors.md
-  - docs/sdk/models/errors/getserverlistserverresponsebody.md
+  - docs/sdk/models/errors/getserverlistunauthorized.md
+  - docs/sdk/models/errors/getserverpreferencesbadrequest.md
   - docs/sdk/models/errors/getserverpreferenceserrors.md
-  - docs/sdk/models/errors/getserverpreferencesresponsebody.md
   - docs/sdk/models/errors/getserverpreferencesservererrors.md
-  - docs/sdk/models/errors/getserverpreferencesserverresponsebody.md
+  - docs/sdk/models/errors/getserverpreferencesunauthorized.md
+  - docs/sdk/models/errors/getserverresourcesbadrequest.md
   - docs/sdk/models/errors/getserverresourceserrors.md
   - docs/sdk/models/errors/getserverresourcesplexerrors.md
-  - docs/sdk/models/errors/getserverresourcesplexresponsebody.md
-  - docs/sdk/models/errors/getserverresourcesresponsebody.md
+  - docs/sdk/models/errors/getserverresourcesunauthorized.md
+  - docs/sdk/models/errors/getsessionhistorybadrequest.md
   - docs/sdk/models/errors/getsessionhistoryerrors.md
-  - docs/sdk/models/errors/getsessionhistoryresponsebody.md
   - docs/sdk/models/errors/getsessionhistorysessionserrors.md
-  - docs/sdk/models/errors/getsessionhistorysessionsresponsebody.md
+  - docs/sdk/models/errors/getsessionhistoryunauthorized.md
+  - docs/sdk/models/errors/getsessionsbadrequest.md
   - docs/sdk/models/errors/getsessionserrors.md
-  - docs/sdk/models/errors/getsessionsresponsebody.md
   - docs/sdk/models/errors/getsessionssessionserrors.md
-  - docs/sdk/models/errors/getsessionssessionsresponsebody.md
+  - docs/sdk/models/errors/getsessionsunauthorized.md
   - docs/sdk/models/errors/getsourceconnectioninformationauthenticationerrors.md
-  - docs/sdk/models/errors/getsourceconnectioninformationauthenticationresponsebody.md
+  - docs/sdk/models/errors/getsourceconnectioninformationbadrequest.md
   - docs/sdk/models/errors/getsourceconnectioninformationerrors.md
-  - docs/sdk/models/errors/getsourceconnectioninformationresponsebody.md
+  - docs/sdk/models/errors/getsourceconnectioninformationunauthorized.md
+  - docs/sdk/models/errors/getstatisticsbadrequest.md
   - docs/sdk/models/errors/getstatisticserrors.md
-  - docs/sdk/models/errors/getstatisticsresponsebody.md
   - docs/sdk/models/errors/getstatisticsstatisticserrors.md
-  - docs/sdk/models/errors/getstatisticsstatisticsresponsebody.md
+  - docs/sdk/models/errors/getstatisticsunauthorized.md
+  - docs/sdk/models/errors/getthumbimagebadrequest.md
   - docs/sdk/models/errors/getthumbimageerrors.md
   - docs/sdk/models/errors/getthumbimagemediaerrors.md
-  - docs/sdk/models/errors/getthumbimagemediaresponsebody.md
-  - docs/sdk/models/errors/getthumbimageresponsebody.md
+  - docs/sdk/models/errors/getthumbimageunauthorized.md
+  - docs/sdk/models/errors/gettimelinebadrequest.md
   - docs/sdk/models/errors/gettimelineerrors.md
-  - docs/sdk/models/errors/gettimelineresponsebody.md
+  - docs/sdk/models/errors/gettimelineunauthorized.md
   - docs/sdk/models/errors/gettimelinevideoerrors.md
-  - docs/sdk/models/errors/gettimelinevideoresponsebody.md
+  - docs/sdk/models/errors/gettokenbypinidbadrequest.md
   - docs/sdk/models/errors/gettokenbypiniderrors.md
   - docs/sdk/models/errors/gettokenbypinidplexerrors.md
-  - docs/sdk/models/errors/gettokenbypinidplexresponsebody.md
   - docs/sdk/models/errors/gettokenbypinidresponsebody.md
+  - docs/sdk/models/errors/gettokendetailsauthenticationerrors.md
+  - docs/sdk/models/errors/gettokendetailsbadrequest.md
+  - docs/sdk/models/errors/gettokendetailserrors.md
+  - docs/sdk/models/errors/gettokendetailsunauthorized.md
+  - docs/sdk/models/errors/gettopwatchedcontentbadrequest.md
   - docs/sdk/models/errors/gettopwatchedcontenterrors.md
   - docs/sdk/models/errors/gettopwatchedcontentlibraryerrors.md
-  - docs/sdk/models/errors/gettopwatchedcontentlibraryresponsebody.md
-  - docs/sdk/models/errors/gettopwatchedcontentresponsebody.md
+  - docs/sdk/models/errors/gettopwatchedcontentunauthorized.md
+  - docs/sdk/models/errors/gettranscodesessionsbadrequest.md
   - docs/sdk/models/errors/gettranscodesessionserrors.md
-  - docs/sdk/models/errors/gettranscodesessionsresponsebody.md
   - docs/sdk/models/errors/gettranscodesessionssessionserrors.md
-  - docs/sdk/models/errors/gettranscodesessionssessionsresponsebody.md
+  - docs/sdk/models/errors/gettranscodesessionsunauthorized.md
   - docs/sdk/models/errors/gettransienttokenauthenticationerrors.md
-  - docs/sdk/models/errors/gettransienttokenauthenticationresponsebody.md
+  - docs/sdk/models/errors/gettransienttokenbadrequest.md
   - docs/sdk/models/errors/gettransienttokenerrors.md
-  - docs/sdk/models/errors/gettransienttokenresponsebody.md
+  - docs/sdk/models/errors/gettransienttokenunauthorized.md
+  - docs/sdk/models/errors/getupdatestatusbadrequest.md
   - docs/sdk/models/errors/getupdatestatuserrors.md
-  - docs/sdk/models/errors/getupdatestatusresponsebody.md
+  - docs/sdk/models/errors/getupdatestatusunauthorized.md
   - docs/sdk/models/errors/getupdatestatusupdatererrors.md
-  - docs/sdk/models/errors/getupdatestatusupdaterresponsebody.md
-  - docs/sdk/models/errors/getuserdetailsauthenticationerrors.md
-  - docs/sdk/models/errors/getuserdetailsauthenticationresponsebody.md
-  - docs/sdk/models/errors/getuserdetailserrors.md
-  - docs/sdk/models/errors/getuserdetailsresponsebody.md
+  - docs/sdk/models/errors/getuserfriendsbadrequest.md
   - docs/sdk/models/errors/getuserfriendserrors.md
   - docs/sdk/models/errors/getuserfriendsplexerrors.md
-  - docs/sdk/models/errors/getuserfriendsplexresponsebody.md
-  - docs/sdk/models/errors/getuserfriendsresponsebody.md
+  - docs/sdk/models/errors/getuserfriendsunauthorized.md
+  - docs/sdk/models/errors/getwatchlistbadrequest.md
   - docs/sdk/models/errors/getwatchlisterrors.md
-  - docs/sdk/models/errors/getwatchlistresponsebody.md
+  - docs/sdk/models/errors/getwatchlistunauthorized.md
   - docs/sdk/models/errors/getwatchlistwatchlisterrors.md
-  - docs/sdk/models/errors/getwatchlistwatchlistresponsebody.md
+  - docs/sdk/models/errors/loglinebadrequest.md
   - docs/sdk/models/errors/loglineerrors.md
   - docs/sdk/models/errors/loglinelogerrors.md
-  - docs/sdk/models/errors/loglinelogresponsebody.md
-  - docs/sdk/models/errors/loglineresponsebody.md
+  - docs/sdk/models/errors/loglineunauthorized.md
+  - docs/sdk/models/errors/logmultilinebadrequest.md
   - docs/sdk/models/errors/logmultilineerrors.md
   - docs/sdk/models/errors/logmultilinelogerrors.md
-  - docs/sdk/models/errors/logmultilinelogresponsebody.md
-  - docs/sdk/models/errors/logmultilineresponsebody.md
+  - docs/sdk/models/errors/logmultilineunauthorized.md
+  - docs/sdk/models/errors/markplayedbadrequest.md
   - docs/sdk/models/errors/markplayederrors.md
   - docs/sdk/models/errors/markplayedmediaerrors.md
-  - docs/sdk/models/errors/markplayedmediaresponsebody.md
-  - docs/sdk/models/errors/markplayedresponsebody.md
+  - docs/sdk/models/errors/markplayedunauthorized.md
+  - docs/sdk/models/errors/markunplayedbadrequest.md
   - docs/sdk/models/errors/markunplayederrors.md
   - docs/sdk/models/errors/markunplayedmediaerrors.md
-  - docs/sdk/models/errors/markunplayedmediaresponsebody.md
-  - docs/sdk/models/errors/markunplayedresponsebody.md
+  - docs/sdk/models/errors/markunplayedunauthorized.md
+  - docs/sdk/models/errors/performsearchbadrequest.md
   - docs/sdk/models/errors/performsearcherrors.md
-  - docs/sdk/models/errors/performsearchresponsebody.md
   - docs/sdk/models/errors/performsearchsearcherrors.md
-  - docs/sdk/models/errors/performsearchsearchresponsebody.md
+  - docs/sdk/models/errors/performsearchunauthorized.md
+  - docs/sdk/models/errors/performvoicesearchbadrequest.md
   - docs/sdk/models/errors/performvoicesearcherrors.md
-  - docs/sdk/models/errors/performvoicesearchresponsebody.md
   - docs/sdk/models/errors/performvoicesearchsearcherrors.md
-  - docs/sdk/models/errors/performvoicesearchsearchresponsebody.md
+  - docs/sdk/models/errors/performvoicesearchunauthorized.md
   - docs/sdk/models/errors/postuserssignindataauthenticationerrors.md
-  - docs/sdk/models/errors/postuserssignindataauthenticationresponsebody.md
+  - docs/sdk/models/errors/postuserssignindatabadrequest.md
   - docs/sdk/models/errors/postuserssignindataerrors.md
-  - docs/sdk/models/errors/postuserssignindataresponsebody.md
+  - docs/sdk/models/errors/postuserssignindataunauthorized.md
+  - docs/sdk/models/errors/startalltasksbadrequest.md
   - docs/sdk/models/errors/startalltasksbutlererrors.md
-  - docs/sdk/models/errors/startalltasksbutlerresponsebody.md
   - docs/sdk/models/errors/startalltaskserrors.md
-  - docs/sdk/models/errors/startalltasksresponsebody.md
+  - docs/sdk/models/errors/startalltasksunauthorized.md
+  - docs/sdk/models/errors/starttaskbadrequest.md
   - docs/sdk/models/errors/starttaskbutlererrors.md
-  - docs/sdk/models/errors/starttaskbutlerresponsebody.md
   - docs/sdk/models/errors/starttaskerrors.md
-  - docs/sdk/models/errors/starttaskresponsebody.md
+  - docs/sdk/models/errors/starttaskunauthorized.md
+  - docs/sdk/models/errors/startuniversaltranscodebadrequest.md
   - docs/sdk/models/errors/startuniversaltranscodeerrors.md
-  - docs/sdk/models/errors/startuniversaltranscoderesponsebody.md
+  - docs/sdk/models/errors/startuniversaltranscodeunauthorized.md
   - docs/sdk/models/errors/startuniversaltranscodevideoerrors.md
-  - docs/sdk/models/errors/startuniversaltranscodevideoresponsebody.md
+  - docs/sdk/models/errors/stopalltasksbadrequest.md
   - docs/sdk/models/errors/stopalltasksbutlererrors.md
-  - docs/sdk/models/errors/stopalltasksbutlerresponsebody.md
   - docs/sdk/models/errors/stopalltaskserrors.md
-  - docs/sdk/models/errors/stopalltasksresponsebody.md
+  - docs/sdk/models/errors/stopalltasksunauthorized.md
+  - docs/sdk/models/errors/stoptaskbadrequest.md
   - docs/sdk/models/errors/stoptaskbutlererrors.md
-  - docs/sdk/models/errors/stoptaskbutlerresponsebody.md
   - docs/sdk/models/errors/stoptaskerrors.md
-  - docs/sdk/models/errors/stoptaskresponsebody.md
+  - docs/sdk/models/errors/stoptaskunauthorized.md
+  - docs/sdk/models/errors/stoptranscodesessionbadrequest.md
   - docs/sdk/models/errors/stoptranscodesessionerrors.md
-  - docs/sdk/models/errors/stoptranscodesessionresponsebody.md
   - docs/sdk/models/errors/stoptranscodesessionsessionserrors.md
-  - docs/sdk/models/errors/stoptranscodesessionsessionsresponsebody.md
+  - docs/sdk/models/errors/stoptranscodesessionunauthorized.md
+  - docs/sdk/models/errors/updateplaylistbadrequest.md
   - docs/sdk/models/errors/updateplaylisterrors.md
   - docs/sdk/models/errors/updateplaylistplaylistserrors.md
-  - docs/sdk/models/errors/updateplaylistplaylistsresponsebody.md
-  - docs/sdk/models/errors/updateplaylistresponsebody.md
+  - docs/sdk/models/errors/updateplaylistunauthorized.md
+  - docs/sdk/models/errors/updateplayprogressbadrequest.md
   - docs/sdk/models/errors/updateplayprogresserrors.md
   - docs/sdk/models/errors/updateplayprogressmediaerrors.md
-  - docs/sdk/models/errors/updateplayprogressmediaresponsebody.md
-  - docs/sdk/models/errors/updateplayprogressresponsebody.md
+  - docs/sdk/models/errors/updateplayprogressunauthorized.md
+  - docs/sdk/models/errors/uploadplaylistbadrequest.md
   - docs/sdk/models/errors/uploadplaylisterrors.md
   - docs/sdk/models/errors/uploadplaylistplaylistserrors.md
-  - docs/sdk/models/errors/uploadplaylistplaylistsresponsebody.md
-  - docs/sdk/models/errors/uploadplaylistresponsebody.md
+  - docs/sdk/models/errors/uploadplaylistunauthorized.md
   - docs/sdk/models/operations/account.md
   - docs/sdk/models/operations/activity.md
   - docs/sdk/models/operations/addplaylistcontentsmediacontainer.md
@@ -583,6 +583,13 @@ generatedFiles:
   - docs/sdk/models/operations/gettokenbypinidglobals.md
   - docs/sdk/models/operations/gettokenbypinidrequest.md
   - docs/sdk/models/operations/gettokenbypinidresponse.md
+  - docs/sdk/models/operations/gettokendetailsauthenticationresponsestatus.md
+  - docs/sdk/models/operations/gettokendetailsauthenticationstatus.md
+  - docs/sdk/models/operations/gettokendetailsfeatures.md
+  - docs/sdk/models/operations/gettokendetailsresponse.md
+  - docs/sdk/models/operations/gettokendetailsstatus.md
+  - docs/sdk/models/operations/gettokendetailssubscription.md
+  - docs/sdk/models/operations/gettokendetailsuserplexaccount.md
   - docs/sdk/models/operations/gettopwatchedcontentcountry.md
   - docs/sdk/models/operations/gettopwatchedcontentgenre.md
   - docs/sdk/models/operations/gettopwatchedcontentguids.md
@@ -602,14 +609,6 @@ generatedFiles:
   - docs/sdk/models/operations/getupdatestatusmediacontainer.md
   - docs/sdk/models/operations/getupdatestatusresponse.md
   - docs/sdk/models/operations/getupdatestatusresponsebody.md
-  - docs/sdk/models/operations/getuserdetailsauthenticationresponsestatus.md
-  - docs/sdk/models/operations/getuserdetailsauthenticationstatus.md
-  - docs/sdk/models/operations/getuserdetailsfeatures.md
-  - docs/sdk/models/operations/getuserdetailsrequest.md
-  - docs/sdk/models/operations/getuserdetailsresponse.md
-  - docs/sdk/models/operations/getuserdetailsstatus.md
-  - docs/sdk/models/operations/getuserdetailssubscription.md
-  - docs/sdk/models/operations/getuserdetailsuserplexaccount.md
   - docs/sdk/models/operations/getuserfriendsresponse.md
   - docs/sdk/models/operations/getwatchlistrequest.md
   - docs/sdk/models/operations/getwatchlistresponse.md
@@ -759,8 +758,8 @@ generatedFiles:
   - src/funcs/activitiesCancelServerActivities.ts
   - src/funcs/activitiesGetServerActivities.ts
   - src/funcs/authenticationGetSourceConnectionInformation.ts
+  - src/funcs/authenticationGetTokenDetails.ts
   - src/funcs/authenticationGetTransientToken.ts
-  - src/funcs/authenticationGetUserDetails.ts
   - src/funcs/authenticationPostUsersSignInData.ts
   - src/funcs/butlerGetButlerTasks.ts
   - src/funcs/butlerStartAllTasks.ts
@@ -908,11 +907,11 @@ generatedFiles:
   - src/sdk/models/errors/getthumbimage.ts
   - src/sdk/models/errors/gettimeline.ts
   - src/sdk/models/errors/gettokenbypinid.ts
+  - src/sdk/models/errors/gettokendetails.ts
   - src/sdk/models/errors/gettopwatchedcontent.ts
   - src/sdk/models/errors/gettranscodesessions.ts
   - src/sdk/models/errors/gettransienttoken.ts
   - src/sdk/models/errors/getupdatestatus.ts
-  - src/sdk/models/errors/getuserdetails.ts
   - src/sdk/models/errors/getuserfriends.ts
   - src/sdk/models/errors/getwatchlist.ts
   - src/sdk/models/errors/httpclienterrors.ts
@@ -986,11 +985,11 @@ generatedFiles:
   - src/sdk/models/operations/getthumbimage.ts
   - src/sdk/models/operations/gettimeline.ts
   - src/sdk/models/operations/gettokenbypinid.ts
+  - src/sdk/models/operations/gettokendetails.ts
   - src/sdk/models/operations/gettopwatchedcontent.ts
   - src/sdk/models/operations/gettranscodesessions.ts
   - src/sdk/models/operations/gettransienttoken.ts
   - src/sdk/models/operations/getupdatestatus.ts
-  - src/sdk/models/operations/getuserdetails.ts
   - src/sdk/models/operations/getuserfriends.ts
   - src/sdk/models/operations/getwatchlist.ts
   - src/sdk/models/operations/index.ts
@@ -1337,7 +1336,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
-        "200": {}
+        "200":
+          application/json: []
         "400":
           application/json: {"errors": []}
   getPin:
@@ -1958,4 +1958,13 @@ examples:
         "401":
           application/json: {"errors": []}
         "400":
+          application/json: {"errors": []}
+  getTokenDetails:
+    speakeasy-default-get-token-details:
+      responses:
+        "200":
+          application/json: {"adsConsent": true, "adsConsentReminderAt": "2019-08-24T14:15:22Z", "adsConsentSetAt": "2019-08-24T14:15:22Z", "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": [], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1721154902, "locale": null, "mailingListActive": false, "mailingListStatus": "unsubscribed", "maxHomeSize": 15, "pin": "string", "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": "1", "defaultSubtitleAccessibility": "1", "defaultSubtitleForced": "0", "watchedIndicator": "1", "mediaReviewsVisibility": 0}, "protected": false, "rememberExpiresAt": 1722364046, "restricted": false, "roles": ["string"], "scrobbleTypes": "", "services": [{"identifier": "metadata-dev", "endpoint": "https://epg.provider.plex.tv", "token": "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv", "secret": "string", "status": "online"}], "subscription": {"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}, "subscriptionDescription": "string", "subscriptions": [{"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f"}
+        "400":
+          application/json: {"errors": []}
+        "401":
           application/json: {"errors": []}

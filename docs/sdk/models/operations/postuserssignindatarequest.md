@@ -6,11 +6,11 @@
 import { PostUsersSignInDataRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataRequest = {
-    requestBody: {
-        login: "username@email.com",
-        password: "password123",
-        verificationCode: "123456",
-    },
+  requestBody: {
+    login: "username@email.com",
+    password: "password123",
+    verificationCode: "123456",
+  },
 };
 ```
 

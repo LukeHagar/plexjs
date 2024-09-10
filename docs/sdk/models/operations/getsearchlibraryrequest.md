@@ -6,8 +6,8 @@
 import { GetSearchLibraryRequest, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchLibraryRequest = {
-    sectionKey: 9518,
-    type: QueryParamType.Two,
+  sectionKey: 9518,
+  type: QueryParamType.Two,
 };
 ```
 

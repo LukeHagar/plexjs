@@ -6,9 +6,9 @@
 import { Session } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Session = {
-    id: "93h7e00ncblxncqw9lkfaoxi",
-    bandwidth: 1050,
-    location: "lan",
+  id: "93h7e00ncblxncqw9lkfaoxi",
+  bandwidth: 1050,
+  location: "lan",
 };
 ```
 

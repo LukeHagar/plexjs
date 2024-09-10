@@ -12,71 +12,92 @@ import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Media extends ClientSDK {
-    /**
-     * Mark Media Played
-     *
-     * @remarks
-     * This will mark the provided media key as Played.
-     */
-    async markPlayed(
-        key: number,
-        options?: RequestOptions
-    ): Promise<operations.MarkPlayedResponse> {
-        return unwrapAsync(mediaMarkPlayed(this, key, options));
-    }
+  /**
+   * Mark Media Played
+   *
+   * @remarks
+   * This will mark the provided media key as Played.
+   */
+  async markPlayed(
+    key: number,
+    options?: RequestOptions,
+  ): Promise<operations.MarkPlayedResponse> {
+    return unwrapAsync(mediaMarkPlayed(
+      this,
+      key,
+      options,
+    ));
+  }
 
-    /**
-     * Mark Media Unplayed
-     *
-     * @remarks
-     * This will mark the provided media key as Unplayed.
-     */
-    async markUnplayed(
-        key: number,
-        options?: RequestOptions
-    ): Promise<operations.MarkUnplayedResponse> {
-        return unwrapAsync(mediaMarkUnplayed(this, key, options));
-    }
+  /**
+   * Mark Media Unplayed
+   *
+   * @remarks
+   * This will mark the provided media key as Unplayed.
+   */
+  async markUnplayed(
+    key: number,
+    options?: RequestOptions,
+  ): Promise<operations.MarkUnplayedResponse> {
+    return unwrapAsync(mediaMarkUnplayed(
+      this,
+      key,
+      options,
+    ));
+  }
 
-    /**
-     * Update Media Play Progress
-     *
-     * @remarks
-     * This API command can be used to update the play progress of a media item.
-     *
-     */
-    async updatePlayProgress(
-        key: string,
-        time: number,
-        state: string,
-        options?: RequestOptions
-    ): Promise<operations.UpdatePlayProgressResponse> {
-        return unwrapAsync(mediaUpdatePlayProgress(this, key, time, state, options));
-    }
+  /**
+   * Update Media Play Progress
+   *
+   * @remarks
+   * This API command can be used to update the play progress of a media item.
+   */
+  async updatePlayProgress(
+    key: string,
+    time: number,
+    state: string,
+    options?: RequestOptions,
+  ): Promise<operations.UpdatePlayProgressResponse> {
+    return unwrapAsync(mediaUpdatePlayProgress(
+      this,
+      key,
+      time,
+      state,
+      options,
+    ));
+  }
 
-    /**
-     * Get Banner Image
-     *
-     * @remarks
-     * Gets the banner image of the media item
-     */
-    async getBannerImage(
-        request: operations.GetBannerImageRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetBannerImageResponse> {
-        return unwrapAsync(mediaGetBannerImage(this, request, options));
-    }
+  /**
+   * Get Banner Image
+   *
+   * @remarks
+   * Gets the banner image of the media item
+   */
+  async getBannerImage(
+    request: operations.GetBannerImageRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetBannerImageResponse> {
+    return unwrapAsync(mediaGetBannerImage(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get Thumb Image
-     *
-     * @remarks
-     * Gets the thumbnail image of the media item
-     */
-    async getThumbImage(
-        request: operations.GetThumbImageRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetThumbImageResponse> {
-        return unwrapAsync(mediaGetThumbImage(this, request, options));
-    }
+  /**
+   * Get Thumb Image
+   *
+   * @remarks
+   * Gets the thumbnail image of the media item
+   */
+  async getThumbImage(
+    request: operations.GetThumbImageRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetThumbImageResponse> {
+    return unwrapAsync(mediaGetThumbImage(
+      this,
+      request,
+      options,
+    ));
+  }
 }

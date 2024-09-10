@@ -16,108 +16,142 @@ import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Server extends ClientSDK {
-    /**
-     * Get Server Capabilities
-     *
-     * @remarks
-     * Get Server Capabilities
-     */
-    async getServerCapabilities(
-        options?: RequestOptions
-    ): Promise<operations.GetServerCapabilitiesResponse> {
-        return unwrapAsync(serverGetServerCapabilities(this, options));
-    }
+  /**
+   * Get Server Capabilities
+   *
+   * @remarks
+   * Get Server Capabilities
+   */
+  async getServerCapabilities(
+    options?: RequestOptions,
+  ): Promise<operations.GetServerCapabilitiesResponse> {
+    return unwrapAsync(serverGetServerCapabilities(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get Server Preferences
-     *
-     * @remarks
-     * Get Server Preferences
-     */
-    async getServerPreferences(
-        options?: RequestOptions
-    ): Promise<operations.GetServerPreferencesResponse> {
-        return unwrapAsync(serverGetServerPreferences(this, options));
-    }
+  /**
+   * Get Server Preferences
+   *
+   * @remarks
+   * Get Server Preferences
+   */
+  async getServerPreferences(
+    options?: RequestOptions,
+  ): Promise<operations.GetServerPreferencesResponse> {
+    return unwrapAsync(serverGetServerPreferences(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get Available Clients
-     *
-     * @remarks
-     * Get Available Clients
-     */
-    async getAvailableClients(
-        options?: RequestOptions
-    ): Promise<operations.GetAvailableClientsResponse> {
-        return unwrapAsync(serverGetAvailableClients(this, options));
-    }
+  /**
+   * Get Available Clients
+   *
+   * @remarks
+   * Get Available Clients
+   */
+  async getAvailableClients(
+    options?: RequestOptions,
+  ): Promise<operations.GetAvailableClientsResponse> {
+    return unwrapAsync(serverGetAvailableClients(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get Devices
-     *
-     * @remarks
-     * Get Devices
-     */
-    async getDevices(options?: RequestOptions): Promise<operations.GetDevicesResponse> {
-        return unwrapAsync(serverGetDevices(this, options));
-    }
+  /**
+   * Get Devices
+   *
+   * @remarks
+   * Get Devices
+   */
+  async getDevices(
+    options?: RequestOptions,
+  ): Promise<operations.GetDevicesResponse> {
+    return unwrapAsync(serverGetDevices(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get Server Identity
-     *
-     * @remarks
-     * This request is useful to determine if the server is online or offline
-     */
-    async getServerIdentity(
-        options?: RequestOptions
-    ): Promise<operations.GetServerIdentityResponse> {
-        return unwrapAsync(serverGetServerIdentity(this, options));
-    }
+  /**
+   * Get Server Identity
+   *
+   * @remarks
+   * This request is useful to determine if the server is online or offline
+   */
+  async getServerIdentity(
+    options?: RequestOptions,
+  ): Promise<operations.GetServerIdentityResponse> {
+    return unwrapAsync(serverGetServerIdentity(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get MyPlex Account
-     *
-     * @remarks
-     * Returns MyPlex Account Information
-     */
-    async getMyPlexAccount(options?: RequestOptions): Promise<operations.GetMyPlexAccountResponse> {
-        return unwrapAsync(serverGetMyPlexAccount(this, options));
-    }
+  /**
+   * Get MyPlex Account
+   *
+   * @remarks
+   * Returns MyPlex Account Information
+   */
+  async getMyPlexAccount(
+    options?: RequestOptions,
+  ): Promise<operations.GetMyPlexAccountResponse> {
+    return unwrapAsync(serverGetMyPlexAccount(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get a Resized Photo
-     *
-     * @remarks
-     * Plex's Photo transcoder is used throughout the service to serve images at specified sizes.
-     *
-     */
-    async getResizedPhoto(
-        request: operations.GetResizedPhotoRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetResizedPhotoResponse> {
-        return unwrapAsync(serverGetResizedPhoto(this, request, options));
-    }
+  /**
+   * Get a Resized Photo
+   *
+   * @remarks
+   * Plex's Photo transcoder is used throughout the service to serve images at specified sizes.
+   */
+  async getResizedPhoto(
+    request: operations.GetResizedPhotoRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetResizedPhotoResponse> {
+    return unwrapAsync(serverGetResizedPhoto(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get Media Providers
-     *
-     * @remarks
-     * Retrieves media providers and their features from the Plex server.
-     */
-    async getMediaProviders(
-        xPlexToken: string,
-        options?: RequestOptions
-    ): Promise<operations.GetMediaProvidersResponse> {
-        return unwrapAsync(serverGetMediaProviders(this, xPlexToken, options));
-    }
+  /**
+   * Get Media Providers
+   *
+   * @remarks
+   * Retrieves media providers and their features from the Plex server.
+   */
+  async getMediaProviders(
+    xPlexToken: string,
+    options?: RequestOptions,
+  ): Promise<operations.GetMediaProvidersResponse> {
+    return unwrapAsync(serverGetMediaProviders(
+      this,
+      xPlexToken,
+      options,
+    ));
+  }
 
-    /**
-     * Get Server List
-     *
-     * @remarks
-     * Get Server List
-     */
-    async getServerList(options?: RequestOptions): Promise<operations.GetServerListResponse> {
-        return unwrapAsync(serverGetServerList(this, options));
-    }
+  /**
+   * Get Server List
+   *
+   * @remarks
+   * Get Server List
+   */
+  async getServerList(
+    options?: RequestOptions,
+  ): Promise<operations.GetServerListResponse> {
+    return unwrapAsync(serverGetServerList(
+      this,
+      options,
+    ));
+  }
 }

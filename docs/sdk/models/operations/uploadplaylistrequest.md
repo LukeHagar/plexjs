@@ -6,8 +6,8 @@
 import { QueryParamForce, UploadPlaylistRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: UploadPlaylistRequest = {
-    path: "/home/barkley/playlist.m3u",
-    force: QueryParamForce.Zero,
+  path: "/home/barkley/playlist.m3u",
+  force: QueryParamForce.Zero,
 };
 ```
 

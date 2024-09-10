@@ -6,11 +6,11 @@
 import { GetMetaDataByRatingKeyDirector } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMetaDataByRatingKeyDirector = {
-    id: 130,
-    filter: "director=130",
-    tag: "Joss Whedon",
-    tagKey: "5d776828880197001ec90e8f",
-    thumb: "https://metadata-static.plex.tv/people/5d776828880197001ec90e8f.jpg",
+  id: 130,
+  filter: "director=130",
+  tag: "Joss Whedon",
+  tagKey: "5d776828880197001ec90e8f",
+  thumb: "https://metadata-static.plex.tv/people/5d776828880197001ec90e8f.jpg",
 };
 ```
 

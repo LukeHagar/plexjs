@@ -6,7 +6,7 @@
 import { GetLibraryHubsRole } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryHubsRole = {
-    tag: "Donna Murphy",
+  tag: "Donna Murphy",
 };
 ```
 

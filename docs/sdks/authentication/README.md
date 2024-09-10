@@ -8,9 +8,9 @@ API Calls regarding authentication for Plex Media Server
 
 ### Available Operations
 
-* [getTransientToken](#gettransienttoken) - Get a Transient Token.
+* [getTransientToken](#gettransienttoken) - Get a Transient Token
 * [getSourceConnectionInformation](#getsourceconnectioninformation) - Get Source Connection Information
-* [getUserDetails](#getuserdetails) - Get User Data By Token
+* [getTokenDetails](#gettokendetails) - Get Token Details
 * [postUsersSignInData](#postuserssignindata) - Get User Sign In Data
 
 ## getTransientToken
@@ -87,11 +87,11 @@ run();
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| errors.GetTransientTokenResponseBody               | 400                                                | application/json                                   |
-| errors.GetTransientTokenAuthenticationResponseBody | 401                                                | application/json                                   |
-| errors.SDKError                                    | 4xx-5xx                                            | */*                                                |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.GetTransientTokenBadRequest   | 400                                  | application/json                     |
+| errors.GetTransientTokenUnauthorized | 401                                  | application/json                     |
+| errors.SDKError                      | 4xx-5xx                              | */*                                  |
 
 
 ## getSourceConnectionInformation
@@ -166,14 +166,14 @@ run();
 
 ### Errors
 
-| Error Object                                                    | Status Code                                                     | Content Type                                                    |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| errors.GetSourceConnectionInformationResponseBody               | 400                                                             | application/json                                                |
-| errors.GetSourceConnectionInformationAuthenticationResponseBody | 401                                                             | application/json                                                |
-| errors.SDKError                                                 | 4xx-5xx                                                         | */*                                                             |
+| Error Object                                      | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| errors.GetSourceConnectionInformationBadRequest   | 400                                               | application/json                                  |
+| errors.GetSourceConnectionInformationUnauthorized | 401                                               | application/json                                  |
+| errors.SDKError                                   | 4xx-5xx                                           | */*                                               |
 
 
-## getUserDetails
+## getTokenDetails
 
 Get the User data from the provided X-Plex-Token
 
@@ -188,7 +188,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.authentication.getUserDetails("CV5xoxjTpFKUzBTShsaf");
+  const result = await plexAPI.authentication.getTokenDetails();
   
   // Handle the result
   console.log(result)
@@ -203,7 +203,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { authenticationGetUserDetails } from "@lukehagar/plexjs/funcs/authenticationGetUserDetails.js";
+import { authenticationGetTokenDetails } from "@lukehagar/plexjs/funcs/authenticationGetTokenDetails.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -213,7 +213,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await authenticationGetUserDetails(plexAPI, "CV5xoxjTpFKUzBTShsaf");
+  const res = await authenticationGetTokenDetails(plexAPI);
 
   if (!res.ok) {
     throw res.error;
@@ -230,25 +230,24 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `xPlexToken`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Plex Authentication Token                                                                                                                                                      | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
-| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 | http://localhost:8080                                                                                                                                                          |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 |
 
 ### Response
 
-**Promise\<[operations.GetUserDetailsResponse](../../sdk/models/operations/getuserdetailsresponse.md)\>**
+**Promise\<[operations.GetTokenDetailsResponse](../../sdk/models/operations/gettokendetailsresponse.md)\>**
 
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| errors.GetUserDetailsResponseBody               | 400                                             | application/json                                |
-| errors.GetUserDetailsAuthenticationResponseBody | 401                                             | application/json                                |
-| errors.SDKError                                 | 4xx-5xx                                         | */*                                             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetTokenDetailsBadRequest   | 400                                | application/json                   |
+| errors.GetTokenDetailsUnauthorized | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## postUsersSignInData
@@ -329,8 +328,8 @@ run();
 
 ### Errors
 
-| Error Object                                         | Status Code                                          | Content Type                                         |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| errors.PostUsersSignInDataResponseBody               | 400                                                  | application/json                                     |
-| errors.PostUsersSignInDataAuthenticationResponseBody | 401                                                  | application/json                                     |
-| errors.SDKError                                      | 4xx-5xx                                              | */*                                                  |
+| Error Object                           | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.PostUsersSignInDataBadRequest   | 400                                    | application/json                       |
+| errors.PostUsersSignInDataUnauthorized | 401                                    | application/json                       |
+| errors.SDKError                        | 4xx-5xx                                | */*                                    |

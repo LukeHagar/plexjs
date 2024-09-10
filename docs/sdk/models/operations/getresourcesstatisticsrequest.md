@@ -6,7 +6,7 @@
 import { GetResourcesStatisticsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetResourcesStatisticsRequest = {
-    timespan: 4,
+  timespan: 4,
 };
 ```
 

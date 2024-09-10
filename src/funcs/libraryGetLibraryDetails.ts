@@ -4,8 +4,8 @@
 
 import { PlexAPICore } from "../core.js";
 import {
-    encodeFormQuery as encodeFormQuery$,
-    encodeSimple as encodeSimple$,
+  encodeFormQuery as encodeFormQuery$,
+  encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -13,11 +13,11 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
@@ -68,125 +68,125 @@ import { Result } from "../sdk/types/fp.js";
  *   - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
  *
  * > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
- *
  */
 export async function libraryGetLibraryDetails(
-    client$: PlexAPICore,
-    sectionKey: number,
-    includeDetails?: operations.IncludeDetails | undefined,
-    options?: RequestOptions
+  client$: PlexAPICore,
+  sectionKey: number,
+  includeDetails?: operations.IncludeDetails | undefined,
+  options?: RequestOptions,
 ): Promise<
-    Result<
-        operations.GetLibraryDetailsResponse,
-        | errors.GetLibraryDetailsResponseBody
-        | errors.GetLibraryDetailsLibraryResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >
+  Result<
+    operations.GetLibraryDetailsResponse,
+    | errors.GetLibraryDetailsBadRequest
+    | errors.GetLibraryDetailsUnauthorized
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >
 > {
-    const input$: operations.GetLibraryDetailsRequest = {
-        sectionKey: sectionKey,
-        includeDetails: includeDetails,
-    };
+  const input$: operations.GetLibraryDetailsRequest = {
+    sectionKey: sectionKey,
+    includeDetails: includeDetails,
+  };
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) => operations.GetLibraryDetailsRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return parsed$;
-    }
-    const payload$ = parsed$.value;
-    const body$ = null;
+  const parsed$ = schemas$.safeParse(
+    input$,
+    (value$) =>
+      operations.GetLibraryDetailsRequest$outboundSchema.parse(value$),
+    "Input validation failed",
+  );
+  if (!parsed$.ok) {
+    return parsed$;
+  }
+  const payload$ = parsed$.value;
+  const body$ = null;
 
-    const pathParams$ = {
-        sectionKey: encodeSimple$("sectionKey", payload$.sectionKey, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-    };
+  const pathParams$ = {
+    sectionKey: encodeSimple$("sectionKey", payload$.sectionKey, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
 
-    const path$ = pathToFunc("/library/sections/{sectionKey}")(pathParams$);
+  const path$ = pathToFunc("/library/sections/{sectionKey}")(pathParams$);
 
-    const query$ = encodeFormQuery$({
-        includeDetails: payload$.includeDetails,
-    });
+  const query$ = encodeFormQuery$({
+    "includeDetails": payload$.includeDetails,
+  });
 
-    const headers$ = new Headers({
-        Accept: "application/json",
-    });
+  const headers$ = new Headers({
+    Accept: "application/json",
+  });
 
-    const accessToken$ = await extractSecurity(client$.options$.accessToken);
-    const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
-    const context = {
-        operationID: "get-library-details",
-        oAuth2Scopes: [],
-        securitySource: client$.options$.accessToken,
-    };
-    const securitySettings$ = resolveGlobalSecurity(security$);
+  const accessToken$ = await extractSecurity(client$.options$.accessToken);
+  const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
+  const context = {
+    operationID: "get-library-details",
+    oAuth2Scopes: [],
+    securitySource: client$.options$.accessToken,
+  };
+  const securitySettings$ = resolveGlobalSecurity(security$);
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            security: securitySettings$,
-            method: "GET",
-            path: path$,
-            headers: headers$,
-            query: query$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-        },
-        options
-    );
-    if (!requestRes.ok) {
-        return requestRes;
-    }
-    const request$ = requestRes.value;
+  const requestRes = client$.createRequest$(context, {
+    security: securitySettings$,
+    method: "GET",
+    path: path$,
+    headers: headers$,
+    query: query$,
+    body: body$,
+    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const request$ = requestRes.value;
 
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["400", "401", "4XX", "5XX"],
-        retryConfig: options?.retries || client$.options$.retryConfig,
-        retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
-    });
-    if (!doResult.ok) {
-        return doResult;
-    }
-    const response = doResult.value;
+  const doResult = await client$.do$(request$, {
+    context,
+    errorCodes: ["400", "401", "4XX", "5XX"],
+    retryConfig: options?.retries
+      || client$.options$.retryConfig,
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+  });
+  if (!doResult.ok) {
+    return doResult;
+  }
+  const response = doResult.value;
 
-    const responseFields$ = {
-        ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-        StatusCode: response.status,
-        RawResponse: response,
-        Headers: {},
-    };
+  const responseFields$ = {
+    ContentType: response.headers.get("content-type")
+      ?? "application/octet-stream",
+    StatusCode: response.status,
+    RawResponse: response,
+    Headers: {},
+  };
 
-    const [result$] = await m$.match<
-        operations.GetLibraryDetailsResponse,
-        | errors.GetLibraryDetailsResponseBody
-        | errors.GetLibraryDetailsLibraryResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >(
-        m$.json(200, operations.GetLibraryDetailsResponse$inboundSchema, { key: "object" }),
-        m$.jsonErr(400, errors.GetLibraryDetailsResponseBody$inboundSchema),
-        m$.jsonErr(401, errors.GetLibraryDetailsLibraryResponseBody$inboundSchema),
-        m$.fail(["4XX", "5XX"])
-    )(response, { extraFields: responseFields$ });
-    if (!result$.ok) {
-        return result$;
-    }
-
+  const [result$] = await m$.match<
+    operations.GetLibraryDetailsResponse,
+    | errors.GetLibraryDetailsBadRequest
+    | errors.GetLibraryDetailsUnauthorized
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >(
+    m$.json(200, operations.GetLibraryDetailsResponse$inboundSchema, {
+      key: "object",
+    }),
+    m$.jsonErr(400, errors.GetLibraryDetailsBadRequest$inboundSchema),
+    m$.jsonErr(401, errors.GetLibraryDetailsUnauthorized$inboundSchema),
+    m$.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields$ });
+  if (!result$.ok) {
     return result$;
+  }
+
+  return result$;
 }

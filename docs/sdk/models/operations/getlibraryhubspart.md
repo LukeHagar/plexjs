@@ -6,16 +6,16 @@
 import { GetLibraryHubsPart } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryHubsPart = {
-    id: 38247,
-    key: "/library/parts/38247/1589412494/file.mp4",
-    duration: 6017237,
-    file: "/movies/Tangled (2010)/Tangled (2010) Bluray-1080p.mp4",
-    size: 1545647447,
-    audioProfile: "lc",
-    container: "mp4",
-    has64bitOffsets: false,
-    optimizedForStreaming: true,
-    videoProfile: "high",
+  id: 38247,
+  key: "/library/parts/38247/1589412494/file.mp4",
+  duration: 6017237,
+  file: "/movies/Tangled (2010)/Tangled (2010) Bluray-1080p.mp4",
+  size: 1545647447,
+  audioProfile: "lc",
+  container: "mp4",
+  has64bitOffsets: false,
+  optimizedForStreaming: true,
+  videoProfile: "high",
 };
 ```
 

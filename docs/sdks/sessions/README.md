@@ -82,11 +82,11 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetSessionsResponseBody         | 400                                    | application/json                       |
-| errors.GetSessionsSessionsResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.GetSessionsBadRequest   | 400                            | application/json               |
+| errors.GetSessionsUnauthorized | 401                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 
 ## getSessionHistory
@@ -162,11 +162,11 @@ run();
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| errors.GetSessionHistoryResponseBody         | 400                                          | application/json                             |
-| errors.GetSessionHistorySessionsResponseBody | 401                                          | application/json                             |
-| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.GetSessionHistoryBadRequest   | 400                                  | application/json                     |
+| errors.GetSessionHistoryUnauthorized | 401                                  | application/json                     |
+| errors.SDKError                      | 4xx-5xx                              | */*                                  |
 
 
 ## getTranscodeSessions
@@ -238,11 +238,11 @@ run();
 
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| errors.GetTranscodeSessionsResponseBody         | 400                                             | application/json                                |
-| errors.GetTranscodeSessionsSessionsResponseBody | 401                                             | application/json                                |
-| errors.SDKError                                 | 4xx-5xx                                         | */*                                             |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.GetTranscodeSessionsBadRequest   | 400                                     | application/json                        |
+| errors.GetTranscodeSessionsUnauthorized | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
 
 
 ## stopTranscodeSession
@@ -315,8 +315,8 @@ run();
 
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| errors.StopTranscodeSessionResponseBody         | 400                                             | application/json                                |
-| errors.StopTranscodeSessionSessionsResponseBody | 401                                             | application/json                                |
-| errors.SDKError                                 | 4xx-5xx                                         | */*                                             |
+| Error Object                            | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.StopTranscodeSessionBadRequest   | 400                                     | application/json                        |
+| errors.StopTranscodeSessionUnauthorized | 401                                     | application/json                        |
+| errors.SDKError                         | 4xx-5xx                                 | */*                                     |

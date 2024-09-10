@@ -6,7 +6,7 @@
 import { Genre } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Genre = {
-    tag: "Comedy",
+  tag: "Comedy",
 };
 ```
 

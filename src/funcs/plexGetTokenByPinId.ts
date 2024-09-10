@@ -4,19 +4,19 @@
 
 import { PlexAPICore } from "../core.js";
 import {
-    encodeFormQuery as encodeFormQuery$,
-    encodeSimple as encodeSimple$,
+  encodeFormQuery as encodeFormQuery$,
+  encodeSimple as encodeSimple$,
 } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
@@ -32,117 +32,123 @@ import { Result } from "../sdk/types/fp.js";
  * Retrieve an Access Token from Plex.tv after the Pin has been authenticated
  */
 export async function plexGetTokenByPinId(
-    client$: PlexAPICore,
-    pinID: number,
-    xPlexClientIdentifier?: string | undefined,
-    options?: RequestOptions & { serverURL?: string }
+  client$: PlexAPICore,
+  pinID: number,
+  xPlexClientIdentifier?: string | undefined,
+  options?: RequestOptions & { serverURL?: string },
 ): Promise<
-    Result<
-        operations.GetTokenByPinIdResponse,
-        | errors.GetTokenByPinIdResponseBody
-        | errors.GetTokenByPinIdPlexResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >
+  Result<
+    operations.GetTokenByPinIdResponse,
+    | errors.GetTokenByPinIdBadRequest
+    | errors.GetTokenByPinIdResponseBody
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >
 > {
-    const input$: operations.GetTokenByPinIdRequest = {
-        xPlexClientIdentifier: xPlexClientIdentifier,
-        pinID: pinID,
-    };
+  const input$: operations.GetTokenByPinIdRequest = {
+    xPlexClientIdentifier: xPlexClientIdentifier,
+    pinID: pinID,
+  };
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) => operations.GetTokenByPinIdRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return parsed$;
-    }
-    const payload$ = parsed$.value;
-    const body$ = null;
+  const parsed$ = schemas$.safeParse(
+    input$,
+    (value$) => operations.GetTokenByPinIdRequest$outboundSchema.parse(value$),
+    "Input validation failed",
+  );
+  if (!parsed$.ok) {
+    return parsed$;
+  }
+  const payload$ = parsed$.value;
+  const body$ = null;
 
-    const baseURL$ =
-        options?.serverURL ||
-        pathToFunc(GetTokenByPinIdServerList[0], { charEncoding: "percent" })();
+  const baseURL$ = options?.serverURL
+    || pathToFunc(GetTokenByPinIdServerList[0], { charEncoding: "percent" })();
 
-    const pathParams$ = {
-        pinID: encodeSimple$("pinID", payload$.pinID, { explode: false, charEncoding: "percent" }),
-    };
+  const pathParams$ = {
+    pinID: encodeSimple$("pinID", payload$.pinID, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
 
-    const path$ = pathToFunc("/pins/{pinID}")(pathParams$);
+  const path$ = pathToFunc("/pins/{pinID}")(pathParams$);
 
-    const query$ = encodeFormQuery$({
-        "X-Plex-Client-Identifier":
-            payload$["X-Plex-Client-Identifier"] ?? client$.options$.xPlexClientIdentifier,
-    });
+  const query$ = encodeFormQuery$({
+    "X-Plex-Client-Identifier": payload$["X-Plex-Client-Identifier"]
+      ?? client$.options$.xPlexClientIdentifier,
+  });
 
-    const headers$ = new Headers({
-        Accept: "application/json",
-    });
+  const headers$ = new Headers({
+    Accept: "application/json",
+  });
 
-    const context = { operationID: "getTokenByPinId", oAuth2Scopes: [], securitySource: null };
+  const context = {
+    operationID: "getTokenByPinId",
+    oAuth2Scopes: [],
+    securitySource: null,
+  };
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            method: "GET",
-            baseURL: baseURL$,
-            path: path$,
-            headers: headers$,
-            query: query$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-        },
-        options
-    );
-    if (!requestRes.ok) {
-        return requestRes;
-    }
-    const request$ = requestRes.value;
+  const requestRes = client$.createRequest$(context, {
+    method: "GET",
+    baseURL: baseURL$,
+    path: path$,
+    headers: headers$,
+    query: query$,
+    body: body$,
+    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const request$ = requestRes.value;
 
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["400", "404", "4XX", "5XX"],
-        retryConfig: options?.retries || client$.options$.retryConfig,
-        retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
-    });
-    if (!doResult.ok) {
-        return doResult;
-    }
-    const response = doResult.value;
+  const doResult = await client$.do$(request$, {
+    context,
+    errorCodes: ["400", "404", "4XX", "5XX"],
+    retryConfig: options?.retries
+      || client$.options$.retryConfig,
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+  });
+  if (!doResult.ok) {
+    return doResult;
+  }
+  const response = doResult.value;
 
-    const responseFields$ = {
-        ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-        StatusCode: response.status,
-        RawResponse: response,
-        Headers: {},
-    };
+  const responseFields$ = {
+    ContentType: response.headers.get("content-type")
+      ?? "application/octet-stream",
+    StatusCode: response.status,
+    RawResponse: response,
+    Headers: {},
+  };
 
-    const [result$] = await m$.match<
-        operations.GetTokenByPinIdResponse,
-        | errors.GetTokenByPinIdResponseBody
-        | errors.GetTokenByPinIdPlexResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >(
-        m$.json(200, operations.GetTokenByPinIdResponse$inboundSchema, { key: "AuthPinContainer" }),
-        m$.jsonErr(400, errors.GetTokenByPinIdResponseBody$inboundSchema),
-        m$.jsonErr(404, errors.GetTokenByPinIdPlexResponseBody$inboundSchema),
-        m$.fail(["4XX", "5XX"])
-    )(response, { extraFields: responseFields$ });
-    if (!result$.ok) {
-        return result$;
-    }
-
+  const [result$] = await m$.match<
+    operations.GetTokenByPinIdResponse,
+    | errors.GetTokenByPinIdBadRequest
+    | errors.GetTokenByPinIdResponseBody
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >(
+    m$.json(200, operations.GetTokenByPinIdResponse$inboundSchema, {
+      key: "AuthPinContainer",
+    }),
+    m$.jsonErr(400, errors.GetTokenByPinIdBadRequest$inboundSchema),
+    m$.jsonErr(404, errors.GetTokenByPinIdResponseBody$inboundSchema),
+    m$.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields$ });
+  if (!result$.ok) {
     return result$;
+  }
+
+  return result$;
 }

@@ -6,10 +6,10 @@
 import { Device } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Device = {
-    id: 1,
-    name: "iPhone",
-    platform: "iOS",
-    createdAt: 1654131230,
+  id: 1,
+  name: "iPhone",
+  platform: "iOS",
+  createdAt: 1654131230,
 };
 ```
 

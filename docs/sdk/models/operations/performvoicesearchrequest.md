@@ -6,8 +6,8 @@
 import { PerformVoiceSearchRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PerformVoiceSearchRequest = {
-    query: "dead+poop",
-    limit: 5,
+  query: "dead+poop",
+  limit: 5,
 };
 ```
 

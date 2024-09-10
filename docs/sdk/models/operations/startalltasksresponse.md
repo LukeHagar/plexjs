@@ -6,11 +6,11 @@
 import { StartAllTasksResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: StartAllTasksResponse = {
-    contentType: "<value>",
-    statusCode: 528895,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 528895,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

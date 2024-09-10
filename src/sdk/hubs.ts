@@ -9,33 +9,43 @@ import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Hubs extends ClientSDK {
-    /**
-     * Get Global Hubs
-     *
-     * @remarks
-     * Get Global Hubs filtered by the parameters provided.
-     */
-    async getGlobalHubs(
-        count?: number | undefined,
-        onlyTransient?: operations.OnlyTransient | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetGlobalHubsResponse> {
-        return unwrapAsync(hubsGetGlobalHubs(this, count, onlyTransient, options));
-    }
+  /**
+   * Get Global Hubs
+   *
+   * @remarks
+   * Get Global Hubs filtered by the parameters provided.
+   */
+  async getGlobalHubs(
+    count?: number | undefined,
+    onlyTransient?: operations.OnlyTransient | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.GetGlobalHubsResponse> {
+    return unwrapAsync(hubsGetGlobalHubs(
+      this,
+      count,
+      onlyTransient,
+      options,
+    ));
+  }
 
-    /**
-     * Get library specific hubs
-     *
-     * @remarks
-     * This endpoint will return a list of library specific hubs
-     *
-     */
-    async getLibraryHubs(
-        sectionId: number,
-        count?: number | undefined,
-        onlyTransient?: operations.QueryParamOnlyTransient | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetLibraryHubsResponse> {
-        return unwrapAsync(hubsGetLibraryHubs(this, sectionId, count, onlyTransient, options));
-    }
+  /**
+   * Get library specific hubs
+   *
+   * @remarks
+   * This endpoint will return a list of library specific hubs
+   */
+  async getLibraryHubs(
+    sectionId: number,
+    count?: number | undefined,
+    onlyTransient?: operations.QueryParamOnlyTransient | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.GetLibraryHubsResponse> {
+    return unwrapAsync(hubsGetLibraryHubs(
+      this,
+      sectionId,
+      count,
+      onlyTransient,
+      options,
+    ));
+  }
 }

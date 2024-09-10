@@ -6,12 +6,12 @@
 import { StatisticsBandwidth } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: StatisticsBandwidth = {
-    accountID: 238960586,
-    deviceID: 208,
-    timespan: 6,
-    at: 1718387650,
-    lan: true,
-    bytes: 22,
+  accountID: 238960586,
+  deviceID: 208,
+  timespan: 6,
+  at: 1718387650,
+  lan: true,
+  bytes: 22,
 };
 ```
 

@@ -6,13 +6,13 @@
 import { StatisticsMedia } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: StatisticsMedia = {
-    accountID: 1,
-    deviceID: 13,
-    timespan: 4,
-    at: 1707141600,
-    metadataType: 4,
-    count: 1,
-    duration: 1555,
+  accountID: 1,
+  deviceID: 13,
+  timespan: 4,
+  at: 1707141600,
+  metadataType: 4,
+  count: 1,
+  duration: 1555,
 };
 ```
 

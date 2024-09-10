@@ -6,22 +6,22 @@
 import { StartUniversalTranscodeRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: StartUniversalTranscodeRequest = {
-    hasMDE: 1,
-    path: "/library/metadata/23409",
-    mediaIndex: 0,
-    partIndex: 0,
-    protocol: "hls",
-    fastSeek: 0,
-    directPlay: 0,
-    directStream: 0,
-    subtitleSize: 100,
-    subtites: "burn",
-    audioBoost: 100,
-    location: "lan",
-    mediaBufferSize: 102400,
-    session: "zvcage8b7rkioqcm8f4uns4c",
-    addDebugOverlay: 0,
-    autoAdjustQuality: 0,
+  hasMDE: 1,
+  path: "/library/metadata/23409",
+  mediaIndex: 0,
+  partIndex: 0,
+  protocol: "hls",
+  fastSeek: 0,
+  directPlay: 0,
+  directStream: 0,
+  subtitleSize: 100,
+  subtites: "burn",
+  audioBoost: 100,
+  location: "lan",
+  mediaBufferSize: 102400,
+  session: "zvcage8b7rkioqcm8f4uns4c",
+  addDebugOverlay: 0,
+  autoAdjustQuality: 0,
 };
 ```
 

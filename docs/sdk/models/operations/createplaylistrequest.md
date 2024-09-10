@@ -6,10 +6,10 @@
 import { CreatePlaylistQueryParamType, CreatePlaylistRequest, Smart } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: CreatePlaylistRequest = {
-    title: "<value>",
-    type: CreatePlaylistQueryParamType.Photo,
-    smart: Smart.One,
-    uri: "https://exotic-harm.info",
+  title: "<value>",
+  type: CreatePlaylistQueryParamType.Photo,
+  smart: Smart.One,
+  uri: "https://exotic-harm.info",
 };
 ```
 

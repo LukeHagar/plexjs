@@ -8,10 +8,10 @@ Home Data
 import { GetHomeDataResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetHomeDataResponseBody = {
-    id: 1841489,
-    name: "Blindkitty38's home",
-    guestUserID: 58815432,
-    guestUserUUID: "f3df4e01bfca0787",
+  id: 1841489,
+  name: "Blindkitty38's home",
+  guestUserID: 58815432,
+  guestUserUUID: "f3df4e01bfca0787",
 };
 ```
 

@@ -6,9 +6,9 @@
 import { UpdatePlaylistPlaylistsErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
 let value: UpdatePlaylistPlaylistsErrors = {
-    code: 1001,
-    message: "User could not be authenticated",
-    status: 401,
+  code: 1001,
+  message: "User could not be authenticated",
+  status: 401,
 };
 ```
 

@@ -6,7 +6,7 @@
 import { GetLibraryHubsDirector } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryHubsDirector = {
-    tag: "Nathan Greno",
+  tag: "Nathan Greno",
 };
 ```
 

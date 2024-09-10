@@ -6,37 +6,37 @@
 import { GetLibraryDetailsType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryDetailsType = {
-    key: "/library/sections/1/all?type=1",
-    type: "movie",
-    title: "Movies",
-    active: false,
-    filter: [
-        {
-            filter: "label",
-            filterType: "string",
-            key: "/library/sections/1/label",
-            title: "Labels",
-            type: "filter",
-        },
-    ],
-    sort: [
-        {
-            default: "asc",
-            defaultDirection: "desc",
-            descKey: "random:desc",
-            firstCharacterKey: "/library/sections/1/firstCharacter",
-            key: "random",
-            title: "Randomly",
-        },
-    ],
-    field: [
-        {
-            key: "label",
-            title: "Label",
-            type: "tag",
-            subType: "bitrate",
-        },
-    ],
+  key: "/library/sections/1/all?type=1",
+  type: "movie",
+  title: "Movies",
+  active: false,
+  filter: [
+    {
+      filter: "label",
+      filterType: "string",
+      key: "/library/sections/1/label",
+      title: "Labels",
+      type: "filter",
+    },
+  ],
+  sort: [
+    {
+      default: "asc",
+      defaultDirection: "desc",
+      descKey: "random:desc",
+      firstCharacterKey: "/library/sections/1/firstCharacter",
+      key: "random",
+      title: "Randomly",
+    },
+  ],
+  field: [
+    {
+      key: "label",
+      title: "Label",
+      type: "tag",
+      subType: "bitrate",
+    },
+  ],
 };
 ```
 

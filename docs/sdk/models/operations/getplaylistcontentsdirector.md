@@ -6,7 +6,7 @@
 import { GetPlaylistContentsDirector } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPlaylistContentsDirector = {
-    tag: "Joss Whedon",
+  tag: "Joss Whedon",
 };
 ```
 

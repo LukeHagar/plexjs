@@ -6,9 +6,9 @@
 import { GetTopWatchedContentGenre } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTopWatchedContentGenre = {
-    id: 184,
-    filter: "genre=184",
-    tag: "Thriller",
+  id: 184,
+  filter: "genre=184",
+  tag: "Thriller",
 };
 ```
 

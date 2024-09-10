@@ -6,7 +6,7 @@
 import { Writer } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Writer = {
-    tag: "Jeff Loveness",
+  tag: "Jeff Loveness",
 };
 ```
 

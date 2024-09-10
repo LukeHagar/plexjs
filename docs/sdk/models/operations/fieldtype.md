@@ -6,13 +6,13 @@
 import { FieldType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: FieldType = {
-    type: "resolution",
-    operator: [
-        {
-            key: "=",
-            title: "is",
-        },
-    ],
+  type: "resolution",
+  operator: [
+    {
+      key: "=",
+      title: "is",
+    },
+  ],
 };
 ```
 

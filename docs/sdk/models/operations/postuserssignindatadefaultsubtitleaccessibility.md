@@ -8,7 +8,7 @@ The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer no
 import { PostUsersSignInDataDefaultSubtitleAccessibility } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataDefaultSubtitleAccessibility =
-    PostUsersSignInDataDefaultSubtitleAccessibility.One;
+  PostUsersSignInDataDefaultSubtitleAccessibility.One;
 ```
 
 ## Values

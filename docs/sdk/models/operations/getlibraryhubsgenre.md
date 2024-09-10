@@ -6,7 +6,7 @@
 import { GetLibraryHubsGenre } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryHubsGenre = {
-    tag: "Animation",
+  tag: "Animation",
 };
 ```
 

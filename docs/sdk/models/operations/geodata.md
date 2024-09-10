@@ -8,17 +8,17 @@ Geo location data
 import { GeoData } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GeoData = {
-    code: "VI",
-    continentCode: "NA",
-    country: "United States Virgin Islands",
-    city: "Amsterdam",
-    europeanUnionMember: true,
-    timeZone: "America/St_Thomas",
-    postalCode: 802,
-    inPrivacyRestrictedCountry: true,
-    inPrivacyRestrictedRegion: true,
-    subdivisions: "Saint Thomas",
-    coordinates: "18.3381, -64.8941",
+  code: "VI",
+  continentCode: "NA",
+  country: "United States Virgin Islands",
+  city: "Amsterdam",
+  europeanUnionMember: true,
+  timeZone: "America/St_Thomas",
+  postalCode: 802,
+  inPrivacyRestrictedCountry: true,
+  inPrivacyRestrictedRegion: true,
+  subdivisions: "Saint Thomas",
+  coordinates: "18.3381, -64.8941",
 };
 ```
 

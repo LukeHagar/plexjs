@@ -6,10 +6,10 @@
 import { Filter, GetWatchListRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetWatchListRequest = {
-    filter: Filter.Available,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
-    xPlexToken: "CV5xoxjTpFKUzBTShsaf",
+  filter: Filter.Available,
+  xPlexContainerStart: 0,
+  xPlexContainerSize: 50,
+  xPlexToken: "CV5xoxjTpFKUzBTShsaf",
 };
 ```
 

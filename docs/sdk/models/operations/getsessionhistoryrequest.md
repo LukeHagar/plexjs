@@ -6,9 +6,9 @@
 import { GetSessionHistoryRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSessionHistoryRequest = {
-    accountId: 1,
-    filter: {},
-    librarySectionID: 12,
+  accountId: 1,
+  filter: {},
+  librarySectionID: 12,
 };
 ```
 

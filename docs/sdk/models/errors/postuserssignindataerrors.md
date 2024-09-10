@@ -6,9 +6,9 @@
 import { PostUsersSignInDataErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
 let value: PostUsersSignInDataErrors = {
-    code: 1000,
-    message: "X-Plex-Client-Identifier is missing",
-    status: 400,
+  code: 1000,
+  message: "X-Plex-Client-Identifier is missing",
+  status: 400,
 };
 ```
 

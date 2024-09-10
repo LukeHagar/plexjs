@@ -7,7 +7,8 @@ Your current mailing list status
 ```typescript
 import { PostUsersSignInDataMailingListStatus } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PostUsersSignInDataMailingListStatus = PostUsersSignInDataMailingListStatus.Unsubscribed;
+let value: PostUsersSignInDataMailingListStatus =
+  PostUsersSignInDataMailingListStatus.Unsubscribed;
 ```
 
 ## Values

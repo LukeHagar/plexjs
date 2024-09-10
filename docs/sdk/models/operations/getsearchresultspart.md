@@ -6,14 +6,15 @@
 import { GetSearchResultsPart } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchResultsPart = {
-    id: 26610,
-    key: "/library/parts/26610/1589234571/file.mkv",
-    duration: 6612628,
-    file: "/movies/Mission Impossible (1996)/Mission Impossible (1996) Bluray-1080p.mkv",
-    size: 3926903851,
-    audioProfile: "lc",
-    container: "mkv",
-    videoProfile: "main 10",
+  id: 26610,
+  key: "/library/parts/26610/1589234571/file.mkv",
+  duration: 6612628,
+  file:
+    "/movies/Mission Impossible (1996)/Mission Impossible (1996) Bluray-1080p.mkv",
+  size: 3926903851,
+  audioProfile: "lc",
+  container: "mkv",
+  videoProfile: "main 10",
 };
 ```
 

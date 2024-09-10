@@ -8,23 +8,23 @@ Server Preferences
 import { GetServerPreferencesResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetServerPreferencesResponseBody = {
-    mediaContainer: {
-        size: 161,
-        setting: [
-            {
-                id: "EnableDatabaseTrace",
-                label: "",
-                summary: "",
-                type: "bool",
-                default: false,
-                value: false,
-                hidden: true,
-                advanced: false,
-                group: "",
-                enumValues: "1:admin only|2:everyone",
-            },
-        ],
-    },
+  mediaContainer: {
+    size: 161,
+    setting: [
+      {
+        id: "EnableDatabaseTrace",
+        label: "",
+        summary: "",
+        type: "bool",
+        default: false,
+        value: false,
+        hidden: true,
+        advanced: false,
+        group: "",
+        enumValues: "1:admin only|2:everyone",
+      },
+    ],
+  },
 };
 ```
 

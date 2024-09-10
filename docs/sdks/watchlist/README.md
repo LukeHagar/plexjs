@@ -93,8 +93,8 @@ run();
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetWatchListResponseBody          | 400                                      | application/json                         |
-| errors.GetWatchListWatchlistResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.GetWatchListBadRequest   | 400                             | application/json                |
+| errors.GetWatchListUnauthorized | 401                             | application/json                |
+| errors.SDKError                 | 4xx-5xx                         | */*                             |

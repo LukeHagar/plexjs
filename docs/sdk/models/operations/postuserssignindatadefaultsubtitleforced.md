@@ -7,7 +7,8 @@ The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer 
 ```typescript
 import { PostUsersSignInDataDefaultSubtitleForced } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PostUsersSignInDataDefaultSubtitleForced = PostUsersSignInDataDefaultSubtitleForced.Zero;
+let value: PostUsersSignInDataDefaultSubtitleForced =
+  PostUsersSignInDataDefaultSubtitleForced.Zero;
 ```
 
 ## Values

@@ -6,37 +6,37 @@
 import { GetPinResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPinResponse = {
-    contentType: "<value>",
-    statusCode: 135218,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    authPinContainer: {
-        id: 308667304,
-        code: "7RQZ",
-        product: "0",
-        trusted: false,
-        qr: "https://plex.tv/api/v2/pins/qr/7RQZ",
-        clientIdentifier: "string",
-        location: {
-            code: "VI",
-            continentCode: "NA",
-            country: "United States Virgin Islands",
-            city: "Amsterdam",
-            europeanUnionMember: true,
-            timeZone: "America/St_Thomas",
-            postalCode: 802,
-            inPrivacyRestrictedCountry: true,
-            inPrivacyRestrictedRegion: true,
-            subdivisions: "Saint Thomas",
-            coordinates: "18.3381, -64.8941",
-        },
-        expiresIn: 876,
-        createdAt: new Date("2024-07-16T17:03:05Z"),
-        expiresAt: new Date("2024-07-16T17:18:05Z"),
-        authToken: null,
-        newRegistration: null,
+  contentType: "<value>",
+  statusCode: 135218,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  authPinContainer: {
+    id: 308667304,
+    code: "7RQZ",
+    product: "0",
+    trusted: false,
+    qr: "https://plex.tv/api/v2/pins/qr/7RQZ",
+    clientIdentifier: "string",
+    location: {
+      code: "VI",
+      continentCode: "NA",
+      country: "United States Virgin Islands",
+      city: "Amsterdam",
+      europeanUnionMember: true,
+      timeZone: "America/St_Thomas",
+      postalCode: 802,
+      inPrivacyRestrictedCountry: true,
+      inPrivacyRestrictedRegion: true,
+      subdivisions: "Saint Thomas",
+      coordinates: "18.3381, -64.8941",
     },
+    expiresIn: 876,
+    createdAt: new Date("2024-07-16T17:03:05Z"),
+    expiresAt: new Date("2024-07-16T17:18:05Z"),
+    authToken: null,
+    newRegistration: null,
+  },
 };
 ```
 

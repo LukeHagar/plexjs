@@ -6,8 +6,8 @@
 import { Location } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Location = {
-    id: 1,
-    path: "/movies",
+  id: 1,
+  path: "/movies",
 };
 ```
 

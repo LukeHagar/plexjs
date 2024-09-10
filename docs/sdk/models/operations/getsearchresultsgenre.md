@@ -6,7 +6,7 @@
 import { GetSearchResultsGenre } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchResultsGenre = {
-    tag: "Action",
+  tag: "Action",
 };
 ```
 

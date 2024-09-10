@@ -86,11 +86,11 @@ run();
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetCompanionsDataResponseBody     | 400                                      | application/json                         |
-| errors.GetCompanionsDataPlexResponseBody | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
+| Error Object                         | Status Code                          | Content Type                         |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| errors.GetCompanionsDataBadRequest   | 400                                  | application/json                     |
+| errors.GetCompanionsDataUnauthorized | 401                                  | application/json                     |
+| errors.SDKError                      | 4xx-5xx                              | */*                                  |
 
 
 ## getUserFriends
@@ -163,11 +163,11 @@ run();
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.GetUserFriendsResponseBody     | 400                                   | application/json                      |
-| errors.GetUserFriendsPlexResponseBody | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| errors.GetUserFriendsBadRequest   | 400                               | application/json                  |
+| errors.GetUserFriendsUnauthorized | 401                               | application/json                  |
+| errors.SDKError                   | 4xx-5xx                           | */*                               |
 
 
 ## getGeoData
@@ -238,11 +238,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.GetGeoDataResponseBody     | 400                               | application/json                  |
-| errors.GetGeoDataPlexResponseBody | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| errors.GetGeoDataBadRequest   | 400                           | application/json              |
+| errors.GetGeoDataUnauthorized | 401                           | application/json              |
+| errors.SDKError               | 4xx-5xx                       | */*                           |
 
 
 ## getHomeData
@@ -314,11 +314,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| errors.GetHomeDataResponseBody     | 400                                | application/json                   |
-| errors.GetHomeDataPlexResponseBody | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| Error Object                   | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.GetHomeDataBadRequest   | 400                            | application/json               |
+| errors.GetHomeDataUnauthorized | 401                            | application/json               |
+| errors.SDKError                | 4xx-5xx                        | */*                            |
 
 
 ## getServerResources
@@ -337,12 +337,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.plex.getServerResources({
-    xPlexToken: "CV5xoxjTpFKUzBTShsaf",
-    includeHttps: IncludeHttps.One,
-    includeRelay: IncludeRelay.One,
-    includeIPv6: IncludeIPv6.One,
-  });
+  const result = await plexAPI.plex.getServerResources("gcgzw5rz2xovp84b4vha3a40", IncludeHttps.One, IncludeRelay.One, IncludeIPv6.One);
   
   // Handle the result
   console.log(result)
@@ -368,12 +363,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await plexGetServerResources(plexAPI, {
-    xPlexToken: "CV5xoxjTpFKUzBTShsaf",
-    includeHttps: IncludeHttps.One,
-    includeRelay: IncludeRelay.One,
-    includeIPv6: IncludeIPv6.One,
-  });
+  const res = await plexGetServerResources(plexAPI, "gcgzw5rz2xovp84b4vha3a40", IncludeHttps.One, IncludeRelay.One, IncludeIPv6.One);
 
   if (!res.ok) {
     throw res.error;
@@ -390,13 +380,16 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetServerResourcesRequest](../../sdk/models/operations/getserverresourcesrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `xPlexClientIdentifier`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | [object Object]                                                                                                                                                                |
+| `includeHttps`                                                                                                                                                                 | [operations.IncludeHttps](../../sdk/models/operations/includehttps.md)                                                                                                         | :heavy_minus_sign:                                                                                                                                                             | Include Https entries in the results                                                                                                                                           | [object Object]                                                                                                                                                                |
+| `includeRelay`                                                                                                                                                                 | [operations.IncludeRelay](../../sdk/models/operations/includerelay.md)                                                                                                         | :heavy_minus_sign:                                                                                                                                                             | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/>                                                     | [object Object]                                                                                                                                                                |
+| `includeIPv6`                                                                                                                                                                  | [operations.IncludeIPv6](../../sdk/models/operations/includeipv6.md)                                                                                                           | :heavy_minus_sign:                                                                                                                                                             | Include IPv6 entries in the results                                                                                                                                            | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 | http://localhost:8080                                                                                                                                                          |
 
 ### Response
 
@@ -404,11 +397,11 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.GetServerResourcesResponseBody     | 400                                       | application/json                          |
-| errors.GetServerResourcesPlexResponseBody | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                          | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| errors.GetServerResourcesBadRequest   | 400                                   | application/json                      |
+| errors.GetServerResourcesUnauthorized | 401                                   | application/json                      |
+| errors.SDKError                       | 4xx-5xx                               | */*                                   |
 
 
 ## getPin
@@ -482,10 +475,10 @@ run();
 
 ### Errors
 
-| Error Object              | Status Code               | Content Type              |
-| ------------------------- | ------------------------- | ------------------------- |
-| errors.GetPinResponseBody | 400                       | application/json          |
-| errors.SDKError           | 4xx-5xx                   | */*                       |
+| Error Object            | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| errors.GetPinBadRequest | 400                     | application/json        |
+| errors.SDKError         | 4xx-5xx                 | */*                     |
 
 
 ## getTokenByPinId
@@ -558,8 +551,8 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetTokenByPinIdResponseBody     | 400                                    | application/json                       |
-| errors.GetTokenByPinIdPlexResponseBody | 404                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetTokenByPinIdBadRequest   | 400                                | application/json                   |
+| errors.GetTokenByPinIdResponseBody | 404                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |

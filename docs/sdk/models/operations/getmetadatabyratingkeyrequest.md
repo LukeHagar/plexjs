@@ -6,7 +6,7 @@
 import { GetMetaDataByRatingKeyRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMetaDataByRatingKeyRequest = {
-    ratingKey: 9518,
+  ratingKey: 9518,
 };
 ```
 

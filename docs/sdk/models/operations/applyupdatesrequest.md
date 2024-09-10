@@ -6,8 +6,8 @@
 import { ApplyUpdatesRequest, Skip, Tonight } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: ApplyUpdatesRequest = {
-    tonight: Tonight.One,
-    skip: Skip.One,
+  tonight: Tonight.One,
+  skip: Skip.One,
 };
 ```
 

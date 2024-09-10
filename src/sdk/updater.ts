@@ -10,41 +10,54 @@ import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Updater extends ClientSDK {
-    /**
-     * Querying status of updates
-     *
-     * @remarks
-     * Querying status of updates
-     */
-    async getUpdateStatus(options?: RequestOptions): Promise<operations.GetUpdateStatusResponse> {
-        return unwrapAsync(updaterGetUpdateStatus(this, options));
-    }
+  /**
+   * Querying status of updates
+   *
+   * @remarks
+   * Querying status of updates
+   */
+  async getUpdateStatus(
+    options?: RequestOptions,
+  ): Promise<operations.GetUpdateStatusResponse> {
+    return unwrapAsync(updaterGetUpdateStatus(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Checking for updates
-     *
-     * @remarks
-     * Checking for updates
-     */
-    async checkForUpdates(
-        download?: operations.Download | undefined,
-        options?: RequestOptions
-    ): Promise<operations.CheckForUpdatesResponse> {
-        return unwrapAsync(updaterCheckForUpdates(this, download, options));
-    }
+  /**
+   * Checking for updates
+   *
+   * @remarks
+   * Checking for updates
+   */
+  async checkForUpdates(
+    download?: operations.Download | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.CheckForUpdatesResponse> {
+    return unwrapAsync(updaterCheckForUpdates(
+      this,
+      download,
+      options,
+    ));
+  }
 
-    /**
-     * Apply Updates
-     *
-     * @remarks
-     * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
-     *
-     */
-    async applyUpdates(
-        tonight?: operations.Tonight | undefined,
-        skip?: operations.Skip | undefined,
-        options?: RequestOptions
-    ): Promise<operations.ApplyUpdatesResponse> {
-        return unwrapAsync(updaterApplyUpdates(this, tonight, skip, options));
-    }
+  /**
+   * Apply Updates
+   *
+   * @remarks
+   * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
+   */
+  async applyUpdates(
+    tonight?: operations.Tonight | undefined,
+    skip?: operations.Skip | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.ApplyUpdatesResponse> {
+    return unwrapAsync(updaterApplyUpdates(
+      this,
+      tonight,
+      skip,
+      options,
+    ));
+  }
 }

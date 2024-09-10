@@ -8,9 +8,9 @@ If the account’s Plex Pass subscription is active
 import { PostUsersSignInDataAuthenticationStatus, PostUsersSignInDataSubscription } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataSubscription = {
-    active: true,
-    subscribedAt: "2021-04-12T18:21:12Z",
-    status: PostUsersSignInDataAuthenticationStatus.Inactive,
+  active: true,
+  subscribedAt: "2021-04-12T18:21:12Z",
+  status: PostUsersSignInDataAuthenticationStatus.Inactive,
 };
 ```
 

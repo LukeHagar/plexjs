@@ -6,7 +6,7 @@
 import { GetPinRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPinRequest = {
-    xPlexProduct: "Plex Web",
+  xPlexProduct: "Plex Web",
 };
 ```
 

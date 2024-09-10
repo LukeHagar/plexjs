@@ -6,12 +6,12 @@
 import { ResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: ResponseBody = {
-    identifier: "tv.plex.sonos",
-    baseURL: "https://sonos.plex.tv",
-    title: "Sonos",
-    linkURL: "https://sonos.plex.tv/link",
-    provides: "client,player",
-    token: "<value>",
+  identifier: "tv.plex.sonos",
+  baseURL: "https://sonos.plex.tv",
+  title: "Sonos",
+  linkURL: "https://sonos.plex.tv/link",
+  provides: "client,player",
+  token: "<value>",
 };
 ```
 

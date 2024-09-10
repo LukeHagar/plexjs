@@ -6,7 +6,7 @@
 import { CheckForUpdatesRequest, Download } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: CheckForUpdatesRequest = {
-    download: Download.One,
+  download: Download.One,
 };
 ```
 

@@ -6,8 +6,8 @@
 import { GetTransientTokenQueryParamType, GetTransientTokenRequest, Scope } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTransientTokenRequest = {
-    type: GetTransientTokenQueryParamType.Delegation,
-    scope: Scope.All,
+  type: GetTransientTokenQueryParamType.Delegation,
+  scope: Scope.All,
 };
 ```
 

@@ -6,7 +6,7 @@
 import { GetStatisticsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetStatisticsRequest = {
-    timespan: 4,
+  timespan: 4,
 };
 ```
 

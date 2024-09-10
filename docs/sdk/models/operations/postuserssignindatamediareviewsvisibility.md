@@ -6,7 +6,7 @@
 import { PostUsersSignInDataMediaReviewsVisibility } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataMediaReviewsVisibility =
-    PostUsersSignInDataMediaReviewsVisibility.Zero;
+  PostUsersSignInDataMediaReviewsVisibility.Zero;
 ```
 
 ## Values

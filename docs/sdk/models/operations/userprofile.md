@@ -13,14 +13,14 @@ import {
 } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: UserProfile = {
-    autoSelectAudio: true,
-    defaultAudioLanguage: "ja",
-    defaultSubtitleLanguage: "en",
-    autoSelectSubtitle: AutoSelectSubtitle.One,
-    defaultSubtitleAccessibility: DefaultSubtitleAccessibility.One,
-    defaultSubtitleForced: DefaultSubtitleForced.Zero,
-    watchedIndicator: WatchedIndicator.One,
-    mediaReviewsVisibility: MediaReviewsVisibility.One,
+  autoSelectAudio: true,
+  defaultAudioLanguage: "ja",
+  defaultSubtitleLanguage: "en",
+  autoSelectSubtitle: AutoSelectSubtitle.One,
+  defaultSubtitleAccessibility: DefaultSubtitleAccessibility.One,
+  defaultSubtitleForced: DefaultSubtitleForced.Zero,
+  watchedIndicator: WatchedIndicator.One,
+  mediaReviewsVisibility: MediaReviewsVisibility.One,
 };
 ```
 

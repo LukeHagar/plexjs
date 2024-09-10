@@ -8,16 +8,20 @@ import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Watchlist extends ClientSDK {
-    /**
-     * Get User Watchlist
-     *
-     * @remarks
-     * Get User Watchlist
-     */
-    async getWatchList(
-        request: operations.GetWatchListRequest,
-        options?: RequestOptions & { serverURL?: string }
-    ): Promise<operations.GetWatchListResponse> {
-        return unwrapAsync(watchlistGetWatchList(this, request, options));
-    }
+  /**
+   * Get User Watchlist
+   *
+   * @remarks
+   * Get User Watchlist
+   */
+  async getWatchList(
+    request: operations.GetWatchListRequest,
+    options?: RequestOptions & { serverURL?: string },
+  ): Promise<operations.GetWatchListResponse> {
+    return unwrapAsync(watchlistGetWatchList(
+      this,
+      request,
+      options,
+    ));
+  }
 }

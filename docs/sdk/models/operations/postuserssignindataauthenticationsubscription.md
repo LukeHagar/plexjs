@@ -9,9 +9,9 @@ import {
 } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataAuthenticationSubscription = {
-    active: true,
-    subscribedAt: "2021-04-12T18:21:12Z",
-    status: PostUsersSignInDataAuthenticationResponseStatus.Inactive,
+  active: true,
+  subscribedAt: "2021-04-12T18:21:12Z",
+  status: PostUsersSignInDataAuthenticationResponseStatus.Inactive,
 };
 ```
 

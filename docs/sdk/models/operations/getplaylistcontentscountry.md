@@ -6,7 +6,7 @@
 import { GetPlaylistContentsCountry } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPlaylistContentsCountry = {
-    tag: "United States of America",
+  tag: "United States of America",
 };
 ```
 

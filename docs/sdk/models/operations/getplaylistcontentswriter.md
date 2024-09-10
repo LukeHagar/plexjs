@@ -6,7 +6,7 @@
 import { GetPlaylistContentsWriter } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPlaylistContentsWriter = {
-    tag: "Joss Whedon",
+  tag: "Joss Whedon",
 };
 ```
 

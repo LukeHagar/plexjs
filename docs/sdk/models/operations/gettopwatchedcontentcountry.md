@@ -6,9 +6,9 @@
 import { GetTopWatchedContentCountry } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTopWatchedContentCountry = {
-    id: 116,
-    filter: "country=116",
-    tag: "United States of America",
+  id: 116,
+  filter: "country=116",
+  tag: "United States of America",
 };
 ```
 

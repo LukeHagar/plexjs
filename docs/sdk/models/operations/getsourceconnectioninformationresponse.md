@@ -6,11 +6,11 @@
 import { GetSourceConnectionInformationResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSourceConnectionInformationResponse = {
-    contentType: "<value>",
-    statusCode: 96098,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 96098,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

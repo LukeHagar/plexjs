@@ -6,11 +6,11 @@
 import { GetLibraryDetailsDirectory } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryDetailsDirectory = {
-    key: "search?type=1",
-    title: "Search...",
-    secondary: true,
-    prompt: "Search Movies",
-    search: true,
+  key: "search?type=1",
+  title: "Search...",
+  secondary: true,
+  prompt: "Search Movies",
+  search: true,
 };
 ```
 

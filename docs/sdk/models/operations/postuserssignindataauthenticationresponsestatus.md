@@ -8,7 +8,7 @@ String representation of subscriptionActive
 import { PostUsersSignInDataAuthenticationResponseStatus } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataAuthenticationResponseStatus =
-    PostUsersSignInDataAuthenticationResponseStatus.Inactive;
+  PostUsersSignInDataAuthenticationResponseStatus.Inactive;
 ```
 
 ## Values

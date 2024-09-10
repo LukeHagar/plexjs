@@ -6,7 +6,7 @@
 import { PostUsersSignInDataAuthenticationFeatures } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataAuthenticationFeatures =
-    PostUsersSignInDataAuthenticationFeatures.PhotosFavorites;
+  PostUsersSignInDataAuthenticationFeatures.PhotosFavorites;
 ```
 
 ## Values

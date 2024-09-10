@@ -6,11 +6,11 @@
 import { GetMetadataChildrenDirectory } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMetadataChildrenDirectory = {
-    leafCount: 16,
-    thumb: "/library/metadata/30072/thumb/1705739923",
-    viewedLeafCount: 16,
-    key: "/library/metadata/30072/allLeaves",
-    title: "All episodes",
+  leafCount: 16,
+  thumb: "/library/metadata/30072/thumb/1705739923",
+  viewedLeafCount: 16,
+  key: "/library/metadata/30072/allLeaves",
+  title: "All episodes",
 };
 ```
 

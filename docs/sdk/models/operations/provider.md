@@ -6,9 +6,9 @@
 import { Provider } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Provider = {
-    key: "/system/search",
-    title: "Local Network",
-    type: "mixed",
+  key: "/system/search",
+  title: "Local Network",
+  type: "mixed",
 };
 ```
 

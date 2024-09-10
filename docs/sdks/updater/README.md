@@ -82,11 +82,11 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.GetUpdateStatusResponseBody        | 400                                       | application/json                          |
-| errors.GetUpdateStatusUpdaterResponseBody | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.GetUpdateStatusBadRequest   | 400                                | application/json                   |
+| errors.GetUpdateStatusUnauthorized | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## checkForUpdates
@@ -161,11 +161,11 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.CheckForUpdatesResponseBody        | 400                                       | application/json                          |
-| errors.CheckForUpdatesUpdaterResponseBody | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.CheckForUpdatesBadRequest   | 400                                | application/json                   |
+| errors.CheckForUpdatesUnauthorized | 401                                | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 
 ## applyUpdates
@@ -242,8 +242,8 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.ApplyUpdatesResponseBody        | 400                                    | application/json                       |
-| errors.ApplyUpdatesUpdaterResponseBody | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.ApplyUpdatesBadRequest   | 400                             | application/json                |
+| errors.ApplyUpdatesUnauthorized | 401                             | application/json                |
+| errors.SDKError                 | 4xx-5xx                         | */*                             |

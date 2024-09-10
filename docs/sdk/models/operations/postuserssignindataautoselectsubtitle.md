@@ -7,7 +7,8 @@ The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign aud
 ```typescript
 import { PostUsersSignInDataAutoSelectSubtitle } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PostUsersSignInDataAutoSelectSubtitle = PostUsersSignInDataAutoSelectSubtitle.One;
+let value: PostUsersSignInDataAutoSelectSubtitle =
+  PostUsersSignInDataAutoSelectSubtitle.One;
 ```
 
 ## Values

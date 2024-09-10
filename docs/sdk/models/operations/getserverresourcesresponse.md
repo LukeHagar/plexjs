@@ -6,11 +6,11 @@
 import { GetServerResourcesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetServerResourcesResponse = {
-    contentType: "<value>",
-    statusCode: 568434,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 568434,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

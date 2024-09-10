@@ -6,7 +6,7 @@
 import { PathParamTaskName, StopTaskRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: StopTaskRequest = {
-    taskName: PathParamTaskName.BackupDatabase,
+  taskName: PathParamTaskName.BackupDatabase,
 };
 ```
 

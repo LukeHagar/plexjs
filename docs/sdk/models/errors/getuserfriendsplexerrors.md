@@ -6,9 +6,9 @@
 import { GetUserFriendsPlexErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
 let value: GetUserFriendsPlexErrors = {
-    code: 1001,
-    message: "User could not be authenticated",
-    status: 401,
+  code: 1001,
+  message: "User could not be authenticated",
+  status: 401,
 };
 ```
 

@@ -6,9 +6,9 @@
 import { GetServerResourcesPlexErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
 let value: GetServerResourcesPlexErrors = {
-    code: 1001,
-    message: "User could not be authenticated",
-    status: 401,
+  code: 1001,
+  message: "User could not be authenticated",
+  status: 401,
 };
 ```
 

@@ -8,9 +8,9 @@ Login credentials
 import { PostUsersSignInDataRequestBody } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataRequestBody = {
-    login: "username@email.com",
-    password: "password123",
-    verificationCode: "123456",
+  login: "username@email.com",
+  password: "password123",
+  verificationCode: "123456",
 };
 ```
 

@@ -1,9 +1,9 @@
-speakeasyVersion: 1.392.1
+speakeasyVersion: 1.394.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:06d2bc8083f30b9af5d98573735dcbe4b08efb34abd1829f8ce5d8a4a54f2a7c
-        sourceBlobDigest: sha256:ce28f3e6f2abc18cde6fb9e41093952eac55be5ad46b47b6f44fcdee1ca77eb2
+        sourceRevisionDigest: sha256:289c5a73965c8fa779f32919d1353d0d275163982c0a0f5525ef4146c462a486
+        sourceBlobDigest: sha256:f7e2709f52370dff16c1851a7a4e44a89f2e978e9cae335bffc10625950b3bd9
         tags:
             - latest
             - main
@@ -11,10 +11,10 @@ targets:
     plexjs:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:06d2bc8083f30b9af5d98573735dcbe4b08efb34abd1829f8ce5d8a4a54f2a7c
-        sourceBlobDigest: sha256:ce28f3e6f2abc18cde6fb9e41093952eac55be5ad46b47b6f44fcdee1ca77eb2
+        sourceRevisionDigest: sha256:289c5a73965c8fa779f32919d1353d0d275163982c0a0f5525ef4146c462a486
+        sourceBlobDigest: sha256:f7e2709f52370dff16c1851a7a4e44a89f2e978e9cae335bffc10625950b3bd9
         codeSamplesNamespace: code-samples-typescript-plexjs
-        codeSamplesRevisionDigest: sha256:449f01edd3f23d0c55b0daeac1240a8b08125fd34e06c09da47e9cb8222d2494
+        codeSamplesRevisionDigest: sha256:4839a28a1c341cc984e5d46aabc2c5a1885e0fdea0a670ef61e83286ee087e19
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0

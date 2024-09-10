@@ -4,19 +4,19 @@
 
 import { PlexAPICore } from "../core.js";
 import {
-    encodeBodyForm as encodeBodyForm$,
-    encodeFormQuery as encodeFormQuery$,
+  encodeBodyForm as encodeBodyForm$,
+  encodeFormQuery as encodeFormQuery$,
 } from "../lib/encodings.js";
 import * as m$ from "../lib/matchers.js";
 import * as schemas$ from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
@@ -32,124 +32,122 @@ import { Result } from "../sdk/types/fp.js";
  * Sign in user with username and password and return user data with Plex authentication token
  */
 export async function authenticationPostUsersSignInData(
-    client$: PlexAPICore,
-    xPlexClientIdentifier?: string | undefined,
-    requestBody?: operations.PostUsersSignInDataRequestBody | undefined,
-    options?: RequestOptions & { serverURL?: string }
+  client$: PlexAPICore,
+  xPlexClientIdentifier?: string | undefined,
+  requestBody?: operations.PostUsersSignInDataRequestBody | undefined,
+  options?: RequestOptions & { serverURL?: string },
 ): Promise<
-    Result<
-        operations.PostUsersSignInDataResponse,
-        | errors.PostUsersSignInDataResponseBody
-        | errors.PostUsersSignInDataAuthenticationResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >
+  Result<
+    operations.PostUsersSignInDataResponse,
+    | errors.PostUsersSignInDataBadRequest
+    | errors.PostUsersSignInDataUnauthorized
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >
 > {
-    const input$: operations.PostUsersSignInDataRequest = {
-        xPlexClientIdentifier: xPlexClientIdentifier,
-        requestBody: requestBody,
-    };
+  const input$: operations.PostUsersSignInDataRequest = {
+    xPlexClientIdentifier: xPlexClientIdentifier,
+    requestBody: requestBody,
+  };
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) => operations.PostUsersSignInDataRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return parsed$;
-    }
-    const payload$ = parsed$.value;
-    const body$ = Object.entries(payload$.RequestBody || {})
-        .map(([k, v]) => {
-            return encodeBodyForm$(k, v, { charEncoding: "percent" });
-        })
-        .join("&");
+  const parsed$ = schemas$.safeParse(
+    input$,
+    (value$) =>
+      operations.PostUsersSignInDataRequest$outboundSchema.parse(value$),
+    "Input validation failed",
+  );
+  if (!parsed$.ok) {
+    return parsed$;
+  }
+  const payload$ = parsed$.value;
+  const body$ = Object.entries(payload$.RequestBody || {}).map(([k, v]) => {
+    return encodeBodyForm$(k, v, { charEncoding: "percent" });
+  }).join("&");
 
-    const baseURL$ =
-        options?.serverURL ||
-        pathToFunc(PostUsersSignInDataServerList[0], { charEncoding: "percent" })();
+  const baseURL$ = options?.serverURL
+    || pathToFunc(PostUsersSignInDataServerList[0], {
+      charEncoding: "percent",
+    })();
 
-    const path$ = pathToFunc("/users/signin")();
+  const path$ = pathToFunc("/users/signin")();
 
-    const query$ = encodeFormQuery$({
-        "X-Plex-Client-Identifier":
-            payload$["X-Plex-Client-Identifier"] ?? client$.options$.xPlexClientIdentifier,
-    });
+  const query$ = encodeFormQuery$({
+    "X-Plex-Client-Identifier": payload$["X-Plex-Client-Identifier"]
+      ?? client$.options$.xPlexClientIdentifier,
+  });
 
-    const headers$ = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
-    });
+  const headers$ = new Headers({
+    "Content-Type": "application/x-www-form-urlencoded",
+    Accept: "application/json",
+  });
 
-    const context = {
-        operationID: "post-users-sign-in-data",
-        oAuth2Scopes: [],
-        securitySource: null,
-    };
+  const context = {
+    operationID: "post-users-sign-in-data",
+    oAuth2Scopes: [],
+    securitySource: null,
+  };
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            method: "POST",
-            baseURL: baseURL$,
-            path: path$,
-            headers: headers$,
-            query: query$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-        },
-        options
-    );
-    if (!requestRes.ok) {
-        return requestRes;
-    }
-    const request$ = requestRes.value;
+  const requestRes = client$.createRequest$(context, {
+    method: "POST",
+    baseURL: baseURL$,
+    path: path$,
+    headers: headers$,
+    query: query$,
+    body: body$,
+    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return requestRes;
+  }
+  const request$ = requestRes.value;
 
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["400", "401", "4XX", "5XX"],
-        retryConfig: options?.retries || client$.options$.retryConfig,
-        retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
-    });
-    if (!doResult.ok) {
-        return doResult;
-    }
-    const response = doResult.value;
+  const doResult = await client$.do$(request$, {
+    context,
+    errorCodes: ["400", "401", "4XX", "5XX"],
+    retryConfig: options?.retries
+      || client$.options$.retryConfig,
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+  });
+  if (!doResult.ok) {
+    return doResult;
+  }
+  const response = doResult.value;
 
-    const responseFields$ = {
-        ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-        StatusCode: response.status,
-        RawResponse: response,
-        Headers: {},
-    };
+  const responseFields$ = {
+    ContentType: response.headers.get("content-type")
+      ?? "application/octet-stream",
+    StatusCode: response.status,
+    RawResponse: response,
+    Headers: {},
+  };
 
-    const [result$] = await m$.match<
-        operations.PostUsersSignInDataResponse,
-        | errors.PostUsersSignInDataResponseBody
-        | errors.PostUsersSignInDataAuthenticationResponseBody
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >(
-        m$.json(201, operations.PostUsersSignInDataResponse$inboundSchema, {
-            key: "UserPlexAccount",
-        }),
-        m$.jsonErr(400, errors.PostUsersSignInDataResponseBody$inboundSchema),
-        m$.jsonErr(401, errors.PostUsersSignInDataAuthenticationResponseBody$inboundSchema),
-        m$.fail(["4XX", "5XX"])
-    )(response, { extraFields: responseFields$ });
-    if (!result$.ok) {
-        return result$;
-    }
-
+  const [result$] = await m$.match<
+    operations.PostUsersSignInDataResponse,
+    | errors.PostUsersSignInDataBadRequest
+    | errors.PostUsersSignInDataUnauthorized
+    | SDKError
+    | SDKValidationError
+    | UnexpectedClientError
+    | InvalidRequestError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | ConnectionError
+  >(
+    m$.json(201, operations.PostUsersSignInDataResponse$inboundSchema, {
+      key: "UserPlexAccount",
+    }),
+    m$.jsonErr(400, errors.PostUsersSignInDataBadRequest$inboundSchema),
+    m$.jsonErr(401, errors.PostUsersSignInDataUnauthorized$inboundSchema),
+    m$.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields$ });
+  if (!result$.ok) {
     return result$;
+  }
+
+  return result$;
 }
