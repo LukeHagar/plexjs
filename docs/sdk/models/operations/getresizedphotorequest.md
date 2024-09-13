@@ -11,7 +11,7 @@ let value: GetResizedPhotoRequest = {
   opacity: 100,
   blur: 20,
   minSize: MinSize.One,
-  upscale: Upscale.One,
+  upscale: Upscale.Zero,
   url: "/library/metadata/49564/thumb/1654258204",
 };
 ```

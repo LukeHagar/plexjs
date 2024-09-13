@@ -5,7 +5,7 @@
 ```typescript
 import { Features } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: Features = Features.WatchTogetherInvite;
+let value: Features = Features.LiveTvSupportIncompleteSegments;
 ```
 
 ## Values

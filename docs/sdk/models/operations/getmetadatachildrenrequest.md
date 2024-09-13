@@ -6,7 +6,7 @@
 import { GetMetadataChildrenRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMetadataChildrenRequest = {
-  ratingKey: 1289.26,
+  ratingKey: 7506.86,
 };
 ```
 

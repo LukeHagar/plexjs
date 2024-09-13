@@ -5,7 +5,8 @@
 ```typescript
 import { GetTokenDetailsFeatures } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetTokenDetailsFeatures = GetTokenDetailsFeatures.HRKEnableEUR;
+let value: GetTokenDetailsFeatures =
+  GetTokenDetailsFeatures.IncreasePasswordComplexity;
 ```
 
 ## Values

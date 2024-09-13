@@ -6,7 +6,7 @@
 import { PostUsersSignInDataFeatures } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataFeatures =
-  PostUsersSignInDataFeatures.AmazonLoopDebug;
+  PostUsersSignInDataFeatures.DisableHomeUserFriendships;
 ```
 
 ## Values

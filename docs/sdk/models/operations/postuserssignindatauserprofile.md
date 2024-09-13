@@ -21,7 +21,7 @@ let value: PostUsersSignInDataUserProfile = {
     PostUsersSignInDataDefaultSubtitleAccessibility.One,
   defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.Zero,
   watchedIndicator: PostUsersSignInDataWatchedIndicator.One,
-  mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.Zero,
+  mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.One,
 };
 ```
 

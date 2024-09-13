@@ -8,7 +8,7 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetTopWatchedContentResponse = {
   contentType: "<value>",
-  statusCode: 315428,
+  statusCode: 607831,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -20,7 +20,7 @@ import {
 
 let value: GetTokenDetailsResponse = {
   contentType: "<value>",
-  statusCode: 19987,
+  statusCode: 441711,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -58,7 +58,7 @@ let value: GetTokenDetailsResponse = {
       defaultSubtitleLanguage: "en",
       autoSelectSubtitle: AutoSelectSubtitle.One,
       defaultSubtitleAccessibility: DefaultSubtitleAccessibility.One,
-      defaultSubtitleForced: DefaultSubtitleForced.Zero,
+      defaultSubtitleForced: DefaultSubtitleForced.One,
       watchedIndicator: WatchedIndicator.One,
       mediaReviewsVisibility: MediaReviewsVisibility.Zero,
     },

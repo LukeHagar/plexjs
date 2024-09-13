@@ -7,16 +7,16 @@ import { PlexDevice } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PlexDevice = {
   name: "<value>",
-  product: "Oriental Metal Computer",
+  product: "Handcrafted Bronze Fish",
   productVersion: "<value>",
   platform: "<value>",
   platformVersion: "<value>",
   device: "<value>",
   clientIdentifier: "<value>",
-  createdAt: new Date("2024-02-29T19:31:16.563Z"),
-  lastSeenAt: new Date("2023-12-03T08:28:56.752Z"),
+  createdAt: new Date("2023-12-03T08:28:56.752Z"),
+  lastSeenAt: new Date("2023-09-30T21:26:54.920Z"),
   provides: "<value>",
-  ownerId: 582020,
+  ownerId: 143353,
   sourceTitle: "<value>",
   publicAddress: "<value>",
   accessToken: "<value>",
@@ -32,7 +32,7 @@ let value: PlexDevice = {
   connections: [
     {
       protocol: "<value>",
-      address: "59751 Jaren Ford",
+      address: "9751 Jaren Ford",
       port: 1863.32,
       uri: "https://several-increase.biz",
       local: false,

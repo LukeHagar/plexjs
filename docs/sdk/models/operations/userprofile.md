@@ -18,9 +18,9 @@ let value: UserProfile = {
   defaultSubtitleLanguage: "en",
   autoSelectSubtitle: AutoSelectSubtitle.One,
   defaultSubtitleAccessibility: DefaultSubtitleAccessibility.One,
-  defaultSubtitleForced: DefaultSubtitleForced.Zero,
+  defaultSubtitleForced: DefaultSubtitleForced.One,
   watchedIndicator: WatchedIndicator.One,
-  mediaReviewsVisibility: MediaReviewsVisibility.One,
+  mediaReviewsVisibility: MediaReviewsVisibility.Zero,
 };
 ```
 

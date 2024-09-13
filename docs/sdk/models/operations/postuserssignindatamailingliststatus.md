@@ -8,7 +8,7 @@ Your current mailing list status
 import { PostUsersSignInDataMailingListStatus } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataMailingListStatus =
-  PostUsersSignInDataMailingListStatus.Unsubscribed;
+  PostUsersSignInDataMailingListStatus.Active;
 ```
 
 ## Values

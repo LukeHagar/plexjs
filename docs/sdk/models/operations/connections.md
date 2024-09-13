@@ -7,9 +7,9 @@ import { Connections } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Connections = {
   protocol: "<value>",
-  address: "971 Strosin Wall",
-  port: 4736.08,
-  uri: "https://starry-initialise.name",
+  address: "718 Wolff Light",
+  port: 7991.59,
+  uri: "https://jumbo-lobotomy.net",
   local: false,
   relay: false,
   iPv6: false,

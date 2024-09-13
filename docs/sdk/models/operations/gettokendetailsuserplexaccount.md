@@ -56,7 +56,7 @@ let value: GetTokenDetailsUserPlexAccount = {
     defaultSubtitleAccessibility: DefaultSubtitleAccessibility.One,
     defaultSubtitleForced: DefaultSubtitleForced.Zero,
     watchedIndicator: WatchedIndicator.One,
-    mediaReviewsVisibility: MediaReviewsVisibility.One,
+    mediaReviewsVisibility: MediaReviewsVisibility.Zero,
   },
   protected: false,
   rememberExpiresAt: 1722364046,

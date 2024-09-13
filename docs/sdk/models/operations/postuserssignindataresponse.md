@@ -21,7 +21,7 @@ import {
 
 let value: PostUsersSignInDataResponse = {
   contentType: "<value>",
-  statusCode: 692472,
+  statusCode: 566602,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -60,7 +60,7 @@ let value: PostUsersSignInDataResponse = {
       autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle.One,
       defaultSubtitleAccessibility:
         PostUsersSignInDataDefaultSubtitleAccessibility.One,
-      defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.One,
+      defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.Zero,
       watchedIndicator: PostUsersSignInDataWatchedIndicator.One,
       mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.One,
     },
@@ -126,7 +126,7 @@ let value: PostUsersSignInDataResponse = {
         state: PostUsersSignInDataState.Ended,
         billing: {
           internalPaymentMethod: {},
-          paymentMethodId: 265389,
+          paymentMethodId: 523248,
         },
       },
     ],

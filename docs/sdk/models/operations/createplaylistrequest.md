@@ -7,9 +7,9 @@ import { CreatePlaylistQueryParamType, CreatePlaylistRequest, Smart } from "@luk
 
 let value: CreatePlaylistRequest = {
   title: "<value>",
-  type: CreatePlaylistQueryParamType.Photo,
+  type: CreatePlaylistQueryParamType.Video,
   smart: Smart.One,
-  uri: "https://exotic-harm.info",
+  uri: "http://immediate-instructor.info",
 };
 ```
 

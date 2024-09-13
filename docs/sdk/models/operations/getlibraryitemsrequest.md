@@ -7,7 +7,7 @@ import { GetLibraryItemsRequest, IncludeGuids, IncludeMeta, Tag, Type } from "@l
 
 let value: GetLibraryItemsRequest = {
   sectionKey: 9518,
-  tag: Tag.Unwatched,
+  tag: Tag.Folder,
   includeGuids: IncludeGuids.One,
   includeMeta: IncludeMeta.One,
   type: Type.Two,

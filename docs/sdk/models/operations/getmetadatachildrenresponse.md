@@ -7,7 +7,7 @@ import { GetMetadataChildrenResponse } from "@lukehagar/plexjs/sdk/models/operat
 
 let value: GetMetadataChildrenResponse = {
   contentType: "<value>",
-  statusCode: 750686,
+  statusCode: 315428,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

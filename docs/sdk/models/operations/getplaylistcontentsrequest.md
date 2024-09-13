@@ -6,7 +6,7 @@
 import { GetPlaylistContentsQueryParamType, GetPlaylistContentsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPlaylistContentsRequest = {
-  playlistID: 7783.46,
+  playlistID: 1965.82,
   type: GetPlaylistContentsQueryParamType.Two,
 };
 ```

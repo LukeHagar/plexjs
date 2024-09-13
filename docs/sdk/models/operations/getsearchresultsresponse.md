@@ -7,7 +7,7 @@ import { GetSearchResultsResponse } from "@lukehagar/plexjs/sdk/models/operation
 
 let value: GetSearchResultsResponse = {
   contentType: "<value>",
-  statusCode: 681820,
+  statusCode: 449950,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

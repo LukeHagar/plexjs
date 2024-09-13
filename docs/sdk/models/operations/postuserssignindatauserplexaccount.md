@@ -56,9 +56,9 @@ let value: PostUsersSignInDataUserPlexAccount = {
     autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle.One,
     defaultSubtitleAccessibility:
       PostUsersSignInDataDefaultSubtitleAccessibility.One,
-    defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.One,
+    defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.Zero,
     watchedIndicator: PostUsersSignInDataWatchedIndicator.One,
-    mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.Zero,
+    mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.One,
   },
   protected: false,
   rememberExpiresAt: 1722364046,
@@ -122,7 +122,7 @@ let value: PostUsersSignInDataUserPlexAccount = {
       state: PostUsersSignInDataState.Ended,
       billing: {
         internalPaymentMethod: {},
-        paymentMethodId: 216822,
+        paymentMethodId: 565189,
       },
     },
   ],
