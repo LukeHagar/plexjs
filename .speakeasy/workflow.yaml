@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     my-source:
         inputs:
-            - location: registry.speakeasyapi.dev/lukehagar/lukehagar/plex-api:main
+            - location: registry.speakeasyapi.dev/plexapi/plexapi/plex-api:main
 targets:
     plexjs:
         target: typescript
@@ -14,4 +14,4 @@ targets:
         codeSamples:
             output: codeSamples.yaml
             registry:
-                location: registry.speakeasyapi.dev/lukehagar/lukehagar/code-samples-typescript-plexjs
+                location: registry.speakeasyapi.dev/plexapi/plexapi/code-samples-typescript-plexjs
