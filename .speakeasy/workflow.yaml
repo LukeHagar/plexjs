@@ -1,13 +1,13 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    my-source:
+    plexapi:
         inputs:
-            - location: registry.speakeasyapi.dev/plexapi/plexapi/plex-api:main
+            - location: registry.speakeasyapi.dev/plexapi/plexapi/plexapi:main
 targets:
     plexjs:
         target: typescript
-        source: my-source
+        source: plexapi
         publish:
             npm:
                 token: $npm_token
