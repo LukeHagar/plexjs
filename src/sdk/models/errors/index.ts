@@ -34,7 +34,7 @@ export * from "./getpin.js";
 export * from "./getplaylist.js";
 export * from "./getplaylistcontents.js";
 export * from "./getplaylists.js";
-export * from "./getrecentlyadded.js";
+export * from "./getrecentlyaddedlibrary.js";
 export * from "./getrefreshlibrarymetadata.js";
 export * from "./getresizedphoto.js";
 export * from "./getresourcesstatistics.js";

@@ -7,7 +7,7 @@ import { GetServerPreferencesResponse } from "@lukehagar/plexjs/sdk/models/opera
 
 let value: GetServerPreferencesResponse = {
   contentType: "<value>",
-  statusCode: 592845,
+  statusCode: 415,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -27,7 +27,11 @@ import { SDKValidationError } from "@lukehagar/plexjs/sdk/models/errors/sdkvalid
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -53,7 +57,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();

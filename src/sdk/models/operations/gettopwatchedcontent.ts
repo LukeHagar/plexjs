@@ -17,10 +17,10 @@ import { RFCDate } from "../../types/rfcdate.js";
  * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
  */
 export enum GetTopWatchedContentQueryParamType {
-  One = 1,
-  Two = 2,
-  Three = 3,
-  Four = 4,
+  Movie = 1,
+  TvShow = 2,
+  Season = 3,
+  Episode = 4,
 }
 
 export type GetTopWatchedContentRequest = {

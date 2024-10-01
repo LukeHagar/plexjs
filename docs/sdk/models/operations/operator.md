@@ -15,5 +15,5 @@ let value: Operator = {
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `key`              | *string*           | :heavy_minus_sign: | N/A                | =                  |
-| `title`            | *string*           | :heavy_minus_sign: | N/A                | is                 |
+| `key`              | *string*           | :heavy_check_mark: | N/A                | =                  |
+| `title`            | *string*           | :heavy_check_mark: | N/A                | is                 |

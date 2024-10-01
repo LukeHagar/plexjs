@@ -7,7 +7,7 @@ import { DeletePlaylistResponse } from "@lukehagar/plexjs/sdk/models/operations"
 
 let value: DeletePlaylistResponse = {
   contentType: "<value>",
-  statusCode: 317202,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

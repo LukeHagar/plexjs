@@ -49,7 +49,7 @@ export type GetLibraryDetailsFilter = {
   type?: string | undefined;
 };
 
-export type Sort = {
+export type GetLibraryDetailsSort = {
   default?: string | undefined;
   defaultDirection?: string | undefined;
   descKey?: string | undefined;
@@ -58,7 +58,7 @@ export type Sort = {
   title?: string | undefined;
 };
 
-export type Field = {
+export type GetLibraryDetailsField = {
   key?: string | undefined;
   title?: string | undefined;
   type?: string | undefined;
@@ -71,18 +71,18 @@ export type GetLibraryDetailsType = {
   title?: string | undefined;
   active?: boolean | undefined;
   filter?: Array<GetLibraryDetailsFilter> | undefined;
-  sort?: Array<Sort> | undefined;
-  field?: Array<Field> | undefined;
+  sort?: Array<GetLibraryDetailsSort> | undefined;
+  field?: Array<GetLibraryDetailsField> | undefined;
 };
 
-export type Operator = {
+export type GetLibraryDetailsOperator = {
   key?: string | undefined;
   title?: string | undefined;
 };
 
-export type FieldType = {
+export type GetLibraryDetailsFieldType = {
   type?: string | undefined;
-  operator?: Array<Operator> | undefined;
+  operator?: Array<GetLibraryDetailsOperator> | undefined;
 };
 
 export type GetLibraryDetailsMediaContainer = {
@@ -100,7 +100,7 @@ export type GetLibraryDetailsMediaContainer = {
   viewMode?: number | undefined;
   directory?: Array<GetLibraryDetailsDirectory> | undefined;
   type?: Array<GetLibraryDetailsType> | undefined;
-  fieldType?: Array<FieldType> | undefined;
+  fieldType?: Array<GetLibraryDetailsFieldType> | undefined;
 };
 
 /**
@@ -286,18 +286,21 @@ export namespace GetLibraryDetailsFilter$ {
 }
 
 /** @internal */
-export const Sort$inboundSchema: z.ZodType<Sort, z.ZodTypeDef, unknown> = z
-  .object({
-    default: z.string().optional(),
-    defaultDirection: z.string().optional(),
-    descKey: z.string().optional(),
-    firstCharacterKey: z.string().optional(),
-    key: z.string().optional(),
-    title: z.string().optional(),
-  });
+export const GetLibraryDetailsSort$inboundSchema: z.ZodType<
+  GetLibraryDetailsSort,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  default: z.string().optional(),
+  defaultDirection: z.string().optional(),
+  descKey: z.string().optional(),
+  firstCharacterKey: z.string().optional(),
+  key: z.string().optional(),
+  title: z.string().optional(),
+});
 
 /** @internal */
-export type Sort$Outbound = {
+export type GetLibraryDetailsSort$Outbound = {
   default?: string | undefined;
   defaultDirection?: string | undefined;
   descKey?: string | undefined;
@@ -307,40 +310,46 @@ export type Sort$Outbound = {
 };
 
 /** @internal */
-export const Sort$outboundSchema: z.ZodType<Sort$Outbound, z.ZodTypeDef, Sort> =
-  z.object({
-    default: z.string().optional(),
-    defaultDirection: z.string().optional(),
-    descKey: z.string().optional(),
-    firstCharacterKey: z.string().optional(),
-    key: z.string().optional(),
-    title: z.string().optional(),
-  });
+export const GetLibraryDetailsSort$outboundSchema: z.ZodType<
+  GetLibraryDetailsSort$Outbound,
+  z.ZodTypeDef,
+  GetLibraryDetailsSort
+> = z.object({
+  default: z.string().optional(),
+  defaultDirection: z.string().optional(),
+  descKey: z.string().optional(),
+  firstCharacterKey: z.string().optional(),
+  key: z.string().optional(),
+  title: z.string().optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Sort$ {
-  /** @deprecated use `Sort$inboundSchema` instead. */
-  export const inboundSchema = Sort$inboundSchema;
-  /** @deprecated use `Sort$outboundSchema` instead. */
-  export const outboundSchema = Sort$outboundSchema;
-  /** @deprecated use `Sort$Outbound` instead. */
-  export type Outbound = Sort$Outbound;
+export namespace GetLibraryDetailsSort$ {
+  /** @deprecated use `GetLibraryDetailsSort$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryDetailsSort$inboundSchema;
+  /** @deprecated use `GetLibraryDetailsSort$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryDetailsSort$outboundSchema;
+  /** @deprecated use `GetLibraryDetailsSort$Outbound` instead. */
+  export type Outbound = GetLibraryDetailsSort$Outbound;
 }
 
 /** @internal */
-export const Field$inboundSchema: z.ZodType<Field, z.ZodTypeDef, unknown> = z
-  .object({
-    key: z.string().optional(),
-    title: z.string().optional(),
-    type: z.string().optional(),
-    subType: z.string().optional(),
-  });
+export const GetLibraryDetailsField$inboundSchema: z.ZodType<
+  GetLibraryDetailsField,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string().optional(),
+  title: z.string().optional(),
+  type: z.string().optional(),
+  subType: z.string().optional(),
+});
 
 /** @internal */
-export type Field$Outbound = {
+export type GetLibraryDetailsField$Outbound = {
   key?: string | undefined;
   title?: string | undefined;
   type?: string | undefined;
@@ -348,10 +357,10 @@ export type Field$Outbound = {
 };
 
 /** @internal */
-export const Field$outboundSchema: z.ZodType<
-  Field$Outbound,
+export const GetLibraryDetailsField$outboundSchema: z.ZodType<
+  GetLibraryDetailsField$Outbound,
   z.ZodTypeDef,
-  Field
+  GetLibraryDetailsField
 > = z.object({
   key: z.string().optional(),
   title: z.string().optional(),
@@ -363,13 +372,13 @@ export const Field$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Field$ {
-  /** @deprecated use `Field$inboundSchema` instead. */
-  export const inboundSchema = Field$inboundSchema;
-  /** @deprecated use `Field$outboundSchema` instead. */
-  export const outboundSchema = Field$outboundSchema;
-  /** @deprecated use `Field$Outbound` instead. */
-  export type Outbound = Field$Outbound;
+export namespace GetLibraryDetailsField$ {
+  /** @deprecated use `GetLibraryDetailsField$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryDetailsField$inboundSchema;
+  /** @deprecated use `GetLibraryDetailsField$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryDetailsField$outboundSchema;
+  /** @deprecated use `GetLibraryDetailsField$Outbound` instead. */
+  export type Outbound = GetLibraryDetailsField$Outbound;
 }
 
 /** @internal */
@@ -384,8 +393,8 @@ export const GetLibraryDetailsType$inboundSchema: z.ZodType<
   active: z.boolean().optional(),
   Filter: z.array(z.lazy(() => GetLibraryDetailsFilter$inboundSchema))
     .optional(),
-  Sort: z.array(z.lazy(() => Sort$inboundSchema)).optional(),
-  Field: z.array(z.lazy(() => Field$inboundSchema)).optional(),
+  Sort: z.array(z.lazy(() => GetLibraryDetailsSort$inboundSchema)).optional(),
+  Field: z.array(z.lazy(() => GetLibraryDetailsField$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "Filter": "filter",
@@ -401,8 +410,8 @@ export type GetLibraryDetailsType$Outbound = {
   title?: string | undefined;
   active?: boolean | undefined;
   Filter?: Array<GetLibraryDetailsFilter$Outbound> | undefined;
-  Sort?: Array<Sort$Outbound> | undefined;
-  Field?: Array<Field$Outbound> | undefined;
+  Sort?: Array<GetLibraryDetailsSort$Outbound> | undefined;
+  Field?: Array<GetLibraryDetailsField$Outbound> | undefined;
 };
 
 /** @internal */
@@ -417,8 +426,9 @@ export const GetLibraryDetailsType$outboundSchema: z.ZodType<
   active: z.boolean().optional(),
   filter: z.array(z.lazy(() => GetLibraryDetailsFilter$outboundSchema))
     .optional(),
-  sort: z.array(z.lazy(() => Sort$outboundSchema)).optional(),
-  field: z.array(z.lazy(() => Field$outboundSchema)).optional(),
+  sort: z.array(z.lazy(() => GetLibraryDetailsSort$outboundSchema)).optional(),
+  field: z.array(z.lazy(() => GetLibraryDetailsField$outboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     filter: "Filter",
@@ -441,8 +451,8 @@ export namespace GetLibraryDetailsType$ {
 }
 
 /** @internal */
-export const Operator$inboundSchema: z.ZodType<
-  Operator,
+export const GetLibraryDetailsOperator$inboundSchema: z.ZodType<
+  GetLibraryDetailsOperator,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -451,16 +461,16 @@ export const Operator$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Operator$Outbound = {
+export type GetLibraryDetailsOperator$Outbound = {
   key?: string | undefined;
   title?: string | undefined;
 };
 
 /** @internal */
-export const Operator$outboundSchema: z.ZodType<
-  Operator$Outbound,
+export const GetLibraryDetailsOperator$outboundSchema: z.ZodType<
+  GetLibraryDetailsOperator$Outbound,
   z.ZodTypeDef,
-  Operator
+  GetLibraryDetailsOperator
 > = z.object({
   key: z.string().optional(),
   title: z.string().optional(),
@@ -470,23 +480,24 @@ export const Operator$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Operator$ {
-  /** @deprecated use `Operator$inboundSchema` instead. */
-  export const inboundSchema = Operator$inboundSchema;
-  /** @deprecated use `Operator$outboundSchema` instead. */
-  export const outboundSchema = Operator$outboundSchema;
-  /** @deprecated use `Operator$Outbound` instead. */
-  export type Outbound = Operator$Outbound;
+export namespace GetLibraryDetailsOperator$ {
+  /** @deprecated use `GetLibraryDetailsOperator$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryDetailsOperator$inboundSchema;
+  /** @deprecated use `GetLibraryDetailsOperator$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryDetailsOperator$outboundSchema;
+  /** @deprecated use `GetLibraryDetailsOperator$Outbound` instead. */
+  export type Outbound = GetLibraryDetailsOperator$Outbound;
 }
 
 /** @internal */
-export const FieldType$inboundSchema: z.ZodType<
-  FieldType,
+export const GetLibraryDetailsFieldType$inboundSchema: z.ZodType<
+  GetLibraryDetailsFieldType,
   z.ZodTypeDef,
   unknown
 > = z.object({
   type: z.string().optional(),
-  Operator: z.array(z.lazy(() => Operator$inboundSchema)).optional(),
+  Operator: z.array(z.lazy(() => GetLibraryDetailsOperator$inboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "Operator": "operator",
@@ -494,19 +505,20 @@ export const FieldType$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type FieldType$Outbound = {
+export type GetLibraryDetailsFieldType$Outbound = {
   type?: string | undefined;
-  Operator?: Array<Operator$Outbound> | undefined;
+  Operator?: Array<GetLibraryDetailsOperator$Outbound> | undefined;
 };
 
 /** @internal */
-export const FieldType$outboundSchema: z.ZodType<
-  FieldType$Outbound,
+export const GetLibraryDetailsFieldType$outboundSchema: z.ZodType<
+  GetLibraryDetailsFieldType$Outbound,
   z.ZodTypeDef,
-  FieldType
+  GetLibraryDetailsFieldType
 > = z.object({
   type: z.string().optional(),
-  operator: z.array(z.lazy(() => Operator$outboundSchema)).optional(),
+  operator: z.array(z.lazy(() => GetLibraryDetailsOperator$outboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     operator: "Operator",
@@ -517,13 +529,13 @@ export const FieldType$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace FieldType$ {
-  /** @deprecated use `FieldType$inboundSchema` instead. */
-  export const inboundSchema = FieldType$inboundSchema;
-  /** @deprecated use `FieldType$outboundSchema` instead. */
-  export const outboundSchema = FieldType$outboundSchema;
-  /** @deprecated use `FieldType$Outbound` instead. */
-  export type Outbound = FieldType$Outbound;
+export namespace GetLibraryDetailsFieldType$ {
+  /** @deprecated use `GetLibraryDetailsFieldType$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryDetailsFieldType$inboundSchema;
+  /** @deprecated use `GetLibraryDetailsFieldType$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryDetailsFieldType$outboundSchema;
+  /** @deprecated use `GetLibraryDetailsFieldType$Outbound` instead. */
+  export type Outbound = GetLibraryDetailsFieldType$Outbound;
 }
 
 /** @internal */
@@ -547,7 +559,8 @@ export const GetLibraryDetailsMediaContainer$inboundSchema: z.ZodType<
   Directory: z.array(z.lazy(() => GetLibraryDetailsDirectory$inboundSchema))
     .optional(),
   Type: z.array(z.lazy(() => GetLibraryDetailsType$inboundSchema)).optional(),
-  FieldType: z.array(z.lazy(() => FieldType$inboundSchema)).optional(),
+  FieldType: z.array(z.lazy(() => GetLibraryDetailsFieldType$inboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "Directory": "directory",
@@ -572,7 +585,7 @@ export type GetLibraryDetailsMediaContainer$Outbound = {
   viewMode?: number | undefined;
   Directory?: Array<GetLibraryDetailsDirectory$Outbound> | undefined;
   Type?: Array<GetLibraryDetailsType$Outbound> | undefined;
-  FieldType?: Array<FieldType$Outbound> | undefined;
+  FieldType?: Array<GetLibraryDetailsFieldType$Outbound> | undefined;
 };
 
 /** @internal */
@@ -596,7 +609,8 @@ export const GetLibraryDetailsMediaContainer$outboundSchema: z.ZodType<
   directory: z.array(z.lazy(() => GetLibraryDetailsDirectory$outboundSchema))
     .optional(),
   type: z.array(z.lazy(() => GetLibraryDetailsType$outboundSchema)).optional(),
-  fieldType: z.array(z.lazy(() => FieldType$outboundSchema)).optional(),
+  fieldType: z.array(z.lazy(() => GetLibraryDetailsFieldType$outboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     directory: "Directory",

@@ -37,18 +37,8 @@ export enum Tag {
  * @remarks
  */
 export enum IncludeGuids {
-  Zero = 0,
-  One = 1,
-}
-
-/**
- * Adds the Meta object to the response
- *
- * @remarks
- */
-export enum IncludeMeta {
-  Zero = 0,
-  One = 1,
+  Disable = 0,
+  Enable = 1,
 }
 
 /**
@@ -61,11 +51,21 @@ export enum IncludeMeta {
  * 4 = episode
  * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
  */
-export enum Type {
-  One = 1,
-  Two = 2,
-  Three = 3,
-  Four = 4,
+export enum GetLibraryItemsQueryParamType {
+  Movie = 1,
+  TvShow = 2,
+  Season = 3,
+  Episode = 4,
+}
+
+/**
+ * Adds the Meta object to the response
+ *
+ * @remarks
+ */
+export enum GetLibraryItemsQueryParamIncludeMeta {
+  Disable = 0,
+  Enable = 1,
 }
 
 export type GetLibraryItemsRequest = {
@@ -87,12 +87,6 @@ export type GetLibraryItemsRequest = {
    */
   includeGuids?: IncludeGuids | undefined;
   /**
-   * Adds the Meta object to the response
-   *
-   * @remarks
-   */
-  includeMeta?: IncludeMeta | undefined;
-  /**
    * The type of media to retrieve.
    *
    * @remarks
@@ -102,7 +96,13 @@ export type GetLibraryItemsRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: Type;
+  type?: GetLibraryItemsQueryParamType | undefined;
+  /**
+   * Adds the Meta object to the response
+   *
+   * @remarks
+   */
+  includeMeta?: GetLibraryItemsQueryParamIncludeMeta | undefined;
   /**
    * The index of the first item to return. If not specified, the first item will be returned.
    *
@@ -121,33 +121,310 @@ export type GetLibraryItemsRequest = {
   xPlexContainerSize?: number | undefined;
 };
 
-export type LibrarySectionID = number | string;
+export type GetLibraryItemsFilter = {
+  filter: string;
+  filterType: string;
+  key: string;
+  title: string;
+  type: string;
+};
+
+/**
+ * The direction of the sort. Can be either `asc` or `desc`.
+ *
+ * @remarks
+ */
+export enum GetLibraryItemsActiveDirection {
+  Ascending = "asc",
+  Descending = "desc",
+}
+
+/**
+ * The direction of the sort. Can be either `asc` or `desc`.
+ *
+ * @remarks
+ */
+export enum GetLibraryItemsDefaultDirection {
+  Ascending = "asc",
+  Descending = "desc",
+}
+
+export type GetLibraryItemsSort = {
+  default?: string | undefined;
+  active?: boolean | undefined;
+  /**
+   * The direction of the sort. Can be either `asc` or `desc`.
+   *
+   * @remarks
+   */
+  activeDirection?: GetLibraryItemsActiveDirection | undefined;
+  /**
+   * The direction of the sort. Can be either `asc` or `desc`.
+   *
+   * @remarks
+   */
+  defaultDirection?: GetLibraryItemsDefaultDirection | undefined;
+  descKey?: string | undefined;
+  firstCharacterKey?: string | undefined;
+  key: string;
+  title: string;
+};
+
+export type GetLibraryItemsField = {
+  key: string;
+  title: string;
+  type: string;
+  subType?: string | undefined;
+};
+
+export type GetLibraryItemsType = {
+  key: string;
+  type: string;
+  title: string;
+  active: boolean;
+  filter?: Array<GetLibraryItemsFilter> | undefined;
+  sort?: Array<GetLibraryItemsSort> | undefined;
+  field?: Array<GetLibraryItemsField> | undefined;
+};
+
+export type GetLibraryItemsOperator = {
+  key: string;
+  title: string;
+};
+
+export type GetLibraryItemsFieldType = {
+  type: string;
+  operator: Array<GetLibraryItemsOperator>;
+};
+
+/**
+ * The type of media content
+ *
+ * @remarks
+ */
+export enum GetLibraryItemsLibraryType {
+  Movie = "movie",
+  TvShow = "show",
+  Season = "season",
+  Episode = "episode",
+}
+
+export enum GetLibraryItemsFlattenSeasons {
+  False = "0",
+  True = "1",
+}
+
+/**
+ * Setting that indicates the episode ordering for the show
+ *
+ * @remarks
+ * None = Library default,
+ * tmdbAiring = The Movie Database (Aired),
+ * aired = TheTVDB (Aired),
+ * dvd = TheTVDB (DVD),
+ * absolute = TheTVDB (Absolute)).
+ */
+export enum GetLibraryItemsShowOrdering {
+  None = "None",
+  TmdbAiring = "tmdbAiring",
+  Aired = "aired",
+  Dvd = "dvd",
+  Absolute = "absolute",
+}
+
+export enum GetLibraryItemsOptimizedForStreaming {
+  Disable = 0,
+  Enable = 1,
+}
+
+export enum GetLibraryItemsHasThumbnail {
+  False = "0",
+  True = "1",
+}
+
+export type GetLibraryItemsStream = {
+  id: number;
+  /**
+   * Type of stream (1 = video, 2 = audio, 3 = subtitle)
+   */
+  streamType: number;
+  /**
+   * Indicates if this is the default stream
+   */
+  default?: boolean | undefined;
+  /**
+   * Indicates if the stream is selected
+   */
+  selected?: boolean | undefined;
+  /**
+   * Codec used by the stream
+   */
+  codec: string;
+  /**
+   * The index of the stream
+   */
+  index: number;
+  /**
+   * The bitrate of the stream in kbps
+   */
+  bitrate?: number | undefined;
+  /**
+   * The color primaries of the video stream
+   */
+  colorPrimaries?: string | undefined;
+  /**
+   * The color range of the video stream
+   */
+  colorRange?: string | undefined;
+  /**
+   * The color space of the video stream
+   */
+  colorSpace?: string | undefined;
+  /**
+   * The transfer characteristics (TRC) of the video stream
+   */
+  colorTrc?: string | undefined;
+  /**
+   * The bit depth of the video stream
+   */
+  bitDepth?: number | undefined;
+  /**
+   * The chroma location of the video stream
+   */
+  chromaLocation?: string | undefined;
+  /**
+   * The identifier of the video stream
+   */
+  streamIdentifier?: string | undefined;
+  /**
+   * The chroma subsampling format
+   */
+  chromaSubsampling?: string | undefined;
+  /**
+   * The coded height of the video stream
+   */
+  codedHeight?: number | undefined;
+  /**
+   * The coded width of the video stream
+   */
+  codedWidth?: number | undefined;
+  /**
+   * The frame rate of the video stream
+   */
+  frameRate?: number | undefined;
+  /**
+   * Indicates if the stream has a scaling matrix
+   */
+  hasScalingMatrix?: boolean | undefined;
+  hearingImpaired?: boolean | undefined;
+  closedCaptions?: boolean | undefined;
+  embeddedInVideo?: string | undefined;
+  /**
+   * The height of the video stream
+   */
+  height?: number | undefined;
+  /**
+   * The level of the video codec
+   */
+  level?: number | undefined;
+  /**
+   * The profile of the video codec
+   */
+  profile?: string | undefined;
+  /**
+   * Number of reference frames
+   */
+  refFrames?: number | undefined;
+  /**
+   * The scan type (progressive or interlaced)
+   */
+  scanType?: string | undefined;
+  /**
+   * The width of the video stream
+   */
+  width?: number | undefined;
+  /**
+   * Display title of the stream
+   */
+  displayTitle?: string | undefined;
+  /**
+   * Extended display title of the stream
+   */
+  extendedDisplayTitle?: string | undefined;
+  /**
+   * Number of audio channels (for audio streams)
+   */
+  channels?: number | undefined;
+  /**
+   * The language of the stream (for audio/subtitle streams)
+   */
+  language?: string | undefined;
+  /**
+   * Language tag of the stream
+   */
+  languageTag?: string | undefined;
+  /**
+   * Language code of the stream
+   */
+  languageCode?: string | undefined;
+  /**
+   * The audio channel layout
+   */
+  audioChannelLayout?: string | undefined;
+  /**
+   * Sampling rate of the audio stream in Hz
+   */
+  samplingRate?: number | undefined;
+  /**
+   * Title of the subtitle track (for subtitle streams)
+   */
+  title?: string | undefined;
+  /**
+   * Indicates if the subtitle stream can auto-sync
+   */
+  canAutoSync?: boolean | undefined;
+};
 
 export type GetLibraryItemsPart = {
-  id?: number | undefined;
-  key?: string | undefined;
-  duration?: number | undefined;
-  file?: string | undefined;
-  size?: number | undefined;
-  container?: string | undefined;
-  videoProfile?: string | undefined;
+  id: number;
+  key: string;
+  duration: number;
+  file: string;
+  size: number;
+  /**
+   * The container format of the media file.
+   *
+   * @remarks
+   */
+  container: string;
+  audioProfile?: string | undefined;
+  has64bitOffsets?: boolean | undefined;
+  optimizedForStreaming?: boolean | undefined;
+  videoProfile: string;
+  indexes?: string | undefined;
+  hasThumbnail?: GetLibraryItemsHasThumbnail | undefined;
+  stream?: Array<GetLibraryItemsStream> | undefined;
 };
 
 export type GetLibraryItemsMedia = {
-  id?: number | undefined;
-  duration?: number | undefined;
-  bitrate?: number | undefined;
-  width?: number | undefined;
-  height?: number | undefined;
-  aspectRatio?: number | undefined;
-  audioChannels?: number | undefined;
-  audioCodec?: string | undefined;
-  videoCodec?: string | undefined;
-  videoResolution?: string | undefined;
-  container?: string | undefined;
-  videoFrameRate?: string | undefined;
-  videoProfile?: string | undefined;
-  part?: Array<GetLibraryItemsPart> | undefined;
+  id: number;
+  duration: number;
+  bitrate: number;
+  width: number;
+  height: number;
+  aspectRatio: number;
+  audioProfile?: string | undefined;
+  audioChannels: number;
+  audioCodec: string;
+  videoCodec: string;
+  videoResolution: string;
+  container: string;
+  videoFrameRate: string;
+  videoProfile: string;
+  hasVoiceActivity?: boolean | undefined;
+  optimizedForStreaming?: GetLibraryItemsOptimizedForStreaming | undefined;
+  has64bitOffsets?: boolean | undefined;
+  part: Array<GetLibraryItemsPart>;
 };
 
 export type GetLibraryItemsGenre = {
@@ -166,28 +443,136 @@ export type GetLibraryItemsWriter = {
   tag?: string | undefined;
 };
 
-export type GetLibraryItemsRole = {
+export type GetLibraryItemsCollection = {
   tag?: string | undefined;
 };
 
+export type GetLibraryItemsRole = {
+  /**
+   * The ID of the tag or actor.
+   */
+  id?: number | undefined;
+  /**
+   * The filter used to find the actor or tag.
+   */
+  filter?: string | undefined;
+  /**
+   * The thumbnail of the actor
+   */
+  thumb?: string | undefined;
+  /**
+   * The name of the tag or actor.
+   */
+  tag?: string | undefined;
+  /**
+   * Unique identifier for the tag.
+   */
+  tagKey?: string | undefined;
+  /**
+   * The role of the actor or tag in the media.
+   */
+  role?: string | undefined;
+};
+
+export type GetLibraryItemsMediaGuid = {
+  /**
+   * Can be one of the following formats:
+   *
+   * @remarks
+   * imdb://tt13015952, tmdb://2434012, tvdb://7945991
+   */
+  id: string;
+};
+
+export type GetLibraryItemsUltraBlurColors = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+export type GetLibraryItemsMetaDataRating = {
+  /**
+   * A URI or path to the rating image.
+   */
+  image: string;
+  /**
+   * The value of the rating.
+   */
+  value: number;
+  /**
+   * The type of rating (e.g., audience, critic).
+   */
+  type: string;
+};
+
+export enum GetLibraryItemsLibraryResponse200Type {
+  CoverPoster = "coverPoster",
+  Background = "background",
+  Snapshot = "snapshot",
+  ClearLogo = "clearLogo",
+}
+
+export type GetLibraryItemsImage = {
+  alt: string;
+  type: GetLibraryItemsLibraryResponse200Type;
+  url: string;
+};
+
 export type GetLibraryItemsMetadata = {
-  ratingKey?: string | undefined;
-  key?: string | undefined;
-  guid?: string | undefined;
+  /**
+   * The rating key (Media ID) of this media item.
+   *
+   * @remarks
+   * Note: This is always an integer, but is represented as a string in the API.
+   */
+  ratingKey: string;
+  key: string;
+  guid: string;
   studio?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
+  skipChildren?: boolean | undefined;
+  librarySectionID?: number | undefined;
+  librarySectionTitle?: string | undefined;
+  librarySectionKey?: string | undefined;
+  /**
+   * The type of media content
+   *
+   * @remarks
+   */
+  type: GetLibraryItemsLibraryType;
+  title: string;
+  slug?: string | undefined;
   contentRating?: string | undefined;
-  summary?: string | undefined;
+  summary: string;
   rating?: number | undefined;
   audienceRating?: number | undefined;
   year?: number | undefined;
+  seasonCount?: number | undefined;
   tagline?: string | undefined;
+  flattenSeasons?: GetLibraryItemsFlattenSeasons | undefined;
+  /**
+   * Setting that indicates the episode ordering for the show
+   *
+   * @remarks
+   * None = Library default,
+   * tmdbAiring = The Movie Database (Aired),
+   * aired = TheTVDB (Aired),
+   * dvd = TheTVDB (DVD),
+   * absolute = TheTVDB (Absolute)).
+   */
+  showOrdering?: GetLibraryItemsShowOrdering | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
+  banner?: string | undefined;
   duration?: number | undefined;
   originallyAvailableAt?: RFCDate | undefined;
-  addedAt?: number | undefined;
+  /**
+   * Unix epoch datetime in seconds
+   */
+  addedAt: number;
+  /**
+   * Unix epoch datetime in seconds
+   */
   updatedAt?: number | undefined;
   audienceRatingImage?: string | undefined;
   chapterSource?: string | undefined;
@@ -198,14 +583,31 @@ export type GetLibraryItemsMetadata = {
   grandparentKey?: string | undefined;
   grandparentTitle?: string | undefined;
   grandparentThumb?: string | undefined;
+  parentSlug?: string | undefined;
+  grandparentSlug?: string | undefined;
   grandparentArt?: string | undefined;
   grandparentTheme?: string | undefined;
+  /**
+   * The Media object is only included when type query is `4` or higher.
+   *
+   * @remarks
+   */
   media?: Array<GetLibraryItemsMedia> | undefined;
   genre?: Array<GetLibraryItemsGenre> | undefined;
   country?: Array<GetLibraryItemsCountry> | undefined;
   director?: Array<GetLibraryItemsDirector> | undefined;
   writer?: Array<GetLibraryItemsWriter> | undefined;
+  collection?: Array<GetLibraryItemsCollection> | undefined;
   role?: Array<GetLibraryItemsRole> | undefined;
+  /**
+   * The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
+   *
+   * @remarks
+   */
+  mediaGuid?: Array<GetLibraryItemsMediaGuid> | undefined;
+  ultraBlurColors?: GetLibraryItemsUltraBlurColors | undefined;
+  metaDataRating?: Array<GetLibraryItemsMetaDataRating> | undefined;
+  image?: Array<GetLibraryItemsImage> | undefined;
   titleSort?: string | undefined;
   viewCount?: number | undefined;
   lastViewedAt?: number | undefined;
@@ -219,6 +621,11 @@ export type GetLibraryItemsMetadata = {
   childCount?: number | undefined;
   hasPremiumExtras?: string | undefined;
   hasPremiumPrimaryExtra?: string | undefined;
+  /**
+   * The rating key of the parent item.
+   *
+   * @remarks
+   */
   parentRatingKey?: string | undefined;
   parentGuid?: string | undefined;
   parentStudio?: string | undefined;
@@ -230,23 +637,126 @@ export type GetLibraryItemsMetadata = {
   parentTheme?: string | undefined;
 };
 
+export type GetLibraryItemsLibraryFilter = {
+  filter: string;
+  filterType: string;
+  key: string;
+  title: string;
+  type: string;
+};
+
+/**
+ * The direction of the sort. Can be either `asc` or `desc`.
+ *
+ * @remarks
+ */
+export enum GetLibraryItemsLibraryActiveDirection {
+  Ascending = "asc",
+  Descending = "desc",
+}
+
+/**
+ * The direction of the sort. Can be either `asc` or `desc`.
+ *
+ * @remarks
+ */
+export enum GetLibraryItemsLibraryDefaultDirection {
+  Ascending = "asc",
+  Descending = "desc",
+}
+
+export type GetLibraryItemsLibrarySort = {
+  default?: string | undefined;
+  active?: boolean | undefined;
+  /**
+   * The direction of the sort. Can be either `asc` or `desc`.
+   *
+   * @remarks
+   */
+  activeDirection?: GetLibraryItemsLibraryActiveDirection | undefined;
+  /**
+   * The direction of the sort. Can be either `asc` or `desc`.
+   *
+   * @remarks
+   */
+  defaultDirection?: GetLibraryItemsLibraryDefaultDirection | undefined;
+  descKey?: string | undefined;
+  firstCharacterKey?: string | undefined;
+  key: string;
+  title: string;
+};
+
+export type GetLibraryItemsLibraryField = {
+  key: string;
+  title: string;
+  type: string;
+  subType?: string | undefined;
+};
+
+export type GetLibraryItemsLibraryResponseType = {
+  key: string;
+  type: string;
+  title: string;
+  active: boolean;
+  filter?: Array<GetLibraryItemsLibraryFilter> | undefined;
+  sort?: Array<GetLibraryItemsLibrarySort> | undefined;
+  field?: Array<GetLibraryItemsLibraryField> | undefined;
+};
+
+export type GetLibraryItemsLibraryOperator = {
+  key: string;
+  title: string;
+};
+
+export type GetLibraryItemsLibraryFieldType = {
+  type: string;
+  operator: Array<GetLibraryItemsLibraryOperator>;
+};
+
+/**
+ * The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
+ *
+ * @remarks
+ */
+export type GetLibraryItemsMeta = {
+  type?: Array<GetLibraryItemsLibraryResponseType> | undefined;
+  fieldType?: Array<GetLibraryItemsLibraryFieldType> | undefined;
+};
+
+/**
+ * The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
+ *
+ * @remarks
+ */
 export type GetLibraryItemsMediaContainer = {
-  size?: number | undefined;
-  allowSync?: boolean | undefined;
-  art?: string | undefined;
-  identifier?: string | undefined;
-  librarySectionID?: number | string | undefined;
-  librarySectionTitle?: string | undefined;
-  librarySectionUUID?: string | undefined;
-  mediaTagPrefix?: string | undefined;
-  mediaTagVersion?: number | undefined;
-  thumb?: string | undefined;
-  title1?: string | undefined;
-  title2?: string | undefined;
-  viewGroup?: string | undefined;
+  type?: Array<GetLibraryItemsType> | undefined;
+  fieldType?: Array<GetLibraryItemsFieldType> | undefined;
+  size: number;
+  totalSize: number;
+  offset: number;
+  content: string;
+  allowSync: boolean;
+  nocache?: boolean | undefined;
+  art: string;
+  identifier: string;
+  librarySectionID: number;
+  librarySectionTitle: string;
+  librarySectionUUID: string;
+  mediaTagPrefix: string;
+  mediaTagVersion: number;
+  thumb: string;
+  title1: string;
+  title2: string;
+  viewGroup: string;
   viewMode?: number | undefined;
   mixedParents?: boolean | undefined;
-  metadata?: Array<GetLibraryItemsMetadata> | undefined;
+  metadata: Array<GetLibraryItemsMetadata>;
+  /**
+   * The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
+   *
+   * @remarks
+   */
+  meta?: GetLibraryItemsMeta | undefined;
 };
 
 /**
@@ -313,42 +823,48 @@ export namespace IncludeGuids$ {
 }
 
 /** @internal */
-export const IncludeMeta$inboundSchema: z.ZodNativeEnum<typeof IncludeMeta> = z
-  .nativeEnum(IncludeMeta);
+export const GetLibraryItemsQueryParamType$inboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsQueryParamType
+> = z.nativeEnum(GetLibraryItemsQueryParamType);
 
 /** @internal */
-export const IncludeMeta$outboundSchema: z.ZodNativeEnum<typeof IncludeMeta> =
-  IncludeMeta$inboundSchema;
+export const GetLibraryItemsQueryParamType$outboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsQueryParamType
+> = GetLibraryItemsQueryParamType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace IncludeMeta$ {
-  /** @deprecated use `IncludeMeta$inboundSchema` instead. */
-  export const inboundSchema = IncludeMeta$inboundSchema;
-  /** @deprecated use `IncludeMeta$outboundSchema` instead. */
-  export const outboundSchema = IncludeMeta$outboundSchema;
+export namespace GetLibraryItemsQueryParamType$ {
+  /** @deprecated use `GetLibraryItemsQueryParamType$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsQueryParamType$inboundSchema;
+  /** @deprecated use `GetLibraryItemsQueryParamType$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsQueryParamType$outboundSchema;
 }
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const GetLibraryItemsQueryParamIncludeMeta$inboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsQueryParamIncludeMeta> = z.nativeEnum(
+    GetLibraryItemsQueryParamIncludeMeta,
+  );
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
+export const GetLibraryItemsQueryParamIncludeMeta$outboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsQueryParamIncludeMeta> =
+    GetLibraryItemsQueryParamIncludeMeta$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
+export namespace GetLibraryItemsQueryParamIncludeMeta$ {
+  /** @deprecated use `GetLibraryItemsQueryParamIncludeMeta$inboundSchema` instead. */
+  export const inboundSchema =
+    GetLibraryItemsQueryParamIncludeMeta$inboundSchema;
+  /** @deprecated use `GetLibraryItemsQueryParamIncludeMeta$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLibraryItemsQueryParamIncludeMeta$outboundSchema;
 }
 
 /** @internal */
@@ -359,9 +875,9 @@ export const GetLibraryItemsRequest$inboundSchema: z.ZodType<
 > = z.object({
   sectionKey: z.number().int(),
   tag: Tag$inboundSchema,
-  includeGuids: IncludeGuids$inboundSchema.optional(),
-  includeMeta: IncludeMeta$inboundSchema.optional(),
-  type: Type$inboundSchema,
+  includeGuids: IncludeGuids$inboundSchema,
+  type: GetLibraryItemsQueryParamType$inboundSchema.optional(),
+  includeMeta: GetLibraryItemsQueryParamIncludeMeta$inboundSchema,
   "X-Plex-Container-Start": z.number().int().default(0),
   "X-Plex-Container-Size": z.number().int().default(50),
 }).transform((v) => {
@@ -375,9 +891,9 @@ export const GetLibraryItemsRequest$inboundSchema: z.ZodType<
 export type GetLibraryItemsRequest$Outbound = {
   sectionKey: number;
   tag: string;
-  includeGuids?: number | undefined;
-  includeMeta?: number | undefined;
-  type: number;
+  includeGuids: number;
+  type?: number | undefined;
+  includeMeta: number;
   "X-Plex-Container-Start": number;
   "X-Plex-Container-Size": number;
 };
@@ -390,9 +906,11 @@ export const GetLibraryItemsRequest$outboundSchema: z.ZodType<
 > = z.object({
   sectionKey: z.number().int(),
   tag: Tag$outboundSchema,
-  includeGuids: IncludeGuids$outboundSchema.optional(),
-  includeMeta: IncludeMeta$outboundSchema.optional(),
-  type: Type$outboundSchema,
+  includeGuids: IncludeGuids$outboundSchema.default(IncludeGuids.Disable),
+  type: GetLibraryItemsQueryParamType$outboundSchema.optional(),
+  includeMeta: GetLibraryItemsQueryParamIncludeMeta$outboundSchema.default(
+    GetLibraryItemsQueryParamIncludeMeta.Disable,
+  ),
   xPlexContainerStart: z.number().int().default(0),
   xPlexContainerSize: z.number().int().default(50),
 }).transform((v) => {
@@ -416,33 +934,611 @@ export namespace GetLibraryItemsRequest$ {
 }
 
 /** @internal */
-export const LibrarySectionID$inboundSchema: z.ZodType<
-  LibrarySectionID,
+export const GetLibraryItemsFilter$inboundSchema: z.ZodType<
+  GetLibraryItemsFilter,
   z.ZodTypeDef,
   unknown
-> = z.union([z.number().int(), z.string()]);
+> = z.object({
+  filter: z.string(),
+  filterType: z.string(),
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+});
 
 /** @internal */
-export type LibrarySectionID$Outbound = number | string;
+export type GetLibraryItemsFilter$Outbound = {
+  filter: string;
+  filterType: string;
+  key: string;
+  title: string;
+  type: string;
+};
 
 /** @internal */
-export const LibrarySectionID$outboundSchema: z.ZodType<
-  LibrarySectionID$Outbound,
+export const GetLibraryItemsFilter$outboundSchema: z.ZodType<
+  GetLibraryItemsFilter$Outbound,
   z.ZodTypeDef,
-  LibrarySectionID
-> = z.union([z.number().int(), z.string()]);
+  GetLibraryItemsFilter
+> = z.object({
+  filter: z.string(),
+  filterType: z.string(),
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace LibrarySectionID$ {
-  /** @deprecated use `LibrarySectionID$inboundSchema` instead. */
-  export const inboundSchema = LibrarySectionID$inboundSchema;
-  /** @deprecated use `LibrarySectionID$outboundSchema` instead. */
-  export const outboundSchema = LibrarySectionID$outboundSchema;
-  /** @deprecated use `LibrarySectionID$Outbound` instead. */
-  export type Outbound = LibrarySectionID$Outbound;
+export namespace GetLibraryItemsFilter$ {
+  /** @deprecated use `GetLibraryItemsFilter$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsFilter$inboundSchema;
+  /** @deprecated use `GetLibraryItemsFilter$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsFilter$outboundSchema;
+  /** @deprecated use `GetLibraryItemsFilter$Outbound` instead. */
+  export type Outbound = GetLibraryItemsFilter$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsActiveDirection$inboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsActiveDirection
+> = z.nativeEnum(GetLibraryItemsActiveDirection);
+
+/** @internal */
+export const GetLibraryItemsActiveDirection$outboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsActiveDirection
+> = GetLibraryItemsActiveDirection$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsActiveDirection$ {
+  /** @deprecated use `GetLibraryItemsActiveDirection$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsActiveDirection$inboundSchema;
+  /** @deprecated use `GetLibraryItemsActiveDirection$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsActiveDirection$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsDefaultDirection$inboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsDefaultDirection
+> = z.nativeEnum(GetLibraryItemsDefaultDirection);
+
+/** @internal */
+export const GetLibraryItemsDefaultDirection$outboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsDefaultDirection
+> = GetLibraryItemsDefaultDirection$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsDefaultDirection$ {
+  /** @deprecated use `GetLibraryItemsDefaultDirection$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsDefaultDirection$inboundSchema;
+  /** @deprecated use `GetLibraryItemsDefaultDirection$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsDefaultDirection$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsSort$inboundSchema: z.ZodType<
+  GetLibraryItemsSort,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  default: z.string().optional(),
+  active: z.boolean().optional(),
+  activeDirection: GetLibraryItemsActiveDirection$inboundSchema.default(
+    GetLibraryItemsActiveDirection.Ascending,
+  ),
+  defaultDirection: GetLibraryItemsDefaultDirection$inboundSchema.default(
+    GetLibraryItemsDefaultDirection.Ascending,
+  ),
+  descKey: z.string().optional(),
+  firstCharacterKey: z.string().optional(),
+  key: z.string(),
+  title: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsSort$Outbound = {
+  default?: string | undefined;
+  active?: boolean | undefined;
+  activeDirection: string;
+  defaultDirection: string;
+  descKey?: string | undefined;
+  firstCharacterKey?: string | undefined;
+  key: string;
+  title: string;
+};
+
+/** @internal */
+export const GetLibraryItemsSort$outboundSchema: z.ZodType<
+  GetLibraryItemsSort$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsSort
+> = z.object({
+  default: z.string().optional(),
+  active: z.boolean().optional(),
+  activeDirection: GetLibraryItemsActiveDirection$outboundSchema.default(
+    GetLibraryItemsActiveDirection.Ascending,
+  ),
+  defaultDirection: GetLibraryItemsDefaultDirection$outboundSchema.default(
+    GetLibraryItemsDefaultDirection.Ascending,
+  ),
+  descKey: z.string().optional(),
+  firstCharacterKey: z.string().optional(),
+  key: z.string(),
+  title: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsSort$ {
+  /** @deprecated use `GetLibraryItemsSort$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsSort$inboundSchema;
+  /** @deprecated use `GetLibraryItemsSort$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsSort$outboundSchema;
+  /** @deprecated use `GetLibraryItemsSort$Outbound` instead. */
+  export type Outbound = GetLibraryItemsSort$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsField$inboundSchema: z.ZodType<
+  GetLibraryItemsField,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+  subType: z.string().optional(),
+});
+
+/** @internal */
+export type GetLibraryItemsField$Outbound = {
+  key: string;
+  title: string;
+  type: string;
+  subType?: string | undefined;
+};
+
+/** @internal */
+export const GetLibraryItemsField$outboundSchema: z.ZodType<
+  GetLibraryItemsField$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsField
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+  subType: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsField$ {
+  /** @deprecated use `GetLibraryItemsField$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsField$inboundSchema;
+  /** @deprecated use `GetLibraryItemsField$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsField$outboundSchema;
+  /** @deprecated use `GetLibraryItemsField$Outbound` instead. */
+  export type Outbound = GetLibraryItemsField$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsType$inboundSchema: z.ZodType<
+  GetLibraryItemsType,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  type: z.string(),
+  title: z.string(),
+  active: z.boolean(),
+  Filter: z.array(z.lazy(() => GetLibraryItemsFilter$inboundSchema)).optional(),
+  Sort: z.array(z.lazy(() => GetLibraryItemsSort$inboundSchema)).optional(),
+  Field: z.array(z.lazy(() => GetLibraryItemsField$inboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Filter": "filter",
+    "Sort": "sort",
+    "Field": "field",
+  });
+});
+
+/** @internal */
+export type GetLibraryItemsType$Outbound = {
+  key: string;
+  type: string;
+  title: string;
+  active: boolean;
+  Filter?: Array<GetLibraryItemsFilter$Outbound> | undefined;
+  Sort?: Array<GetLibraryItemsSort$Outbound> | undefined;
+  Field?: Array<GetLibraryItemsField$Outbound> | undefined;
+};
+
+/** @internal */
+export const GetLibraryItemsType$outboundSchema: z.ZodType<
+  GetLibraryItemsType$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsType
+> = z.object({
+  key: z.string(),
+  type: z.string(),
+  title: z.string(),
+  active: z.boolean(),
+  filter: z.array(z.lazy(() => GetLibraryItemsFilter$outboundSchema))
+    .optional(),
+  sort: z.array(z.lazy(() => GetLibraryItemsSort$outboundSchema)).optional(),
+  field: z.array(z.lazy(() => GetLibraryItemsField$outboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    filter: "Filter",
+    sort: "Sort",
+    field: "Field",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsType$ {
+  /** @deprecated use `GetLibraryItemsType$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsType$inboundSchema;
+  /** @deprecated use `GetLibraryItemsType$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsType$outboundSchema;
+  /** @deprecated use `GetLibraryItemsType$Outbound` instead. */
+  export type Outbound = GetLibraryItemsType$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsOperator$inboundSchema: z.ZodType<
+  GetLibraryItemsOperator,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsOperator$Outbound = {
+  key: string;
+  title: string;
+};
+
+/** @internal */
+export const GetLibraryItemsOperator$outboundSchema: z.ZodType<
+  GetLibraryItemsOperator$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsOperator
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsOperator$ {
+  /** @deprecated use `GetLibraryItemsOperator$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsOperator$inboundSchema;
+  /** @deprecated use `GetLibraryItemsOperator$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsOperator$outboundSchema;
+  /** @deprecated use `GetLibraryItemsOperator$Outbound` instead. */
+  export type Outbound = GetLibraryItemsOperator$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsFieldType$inboundSchema: z.ZodType<
+  GetLibraryItemsFieldType,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: z.string(),
+  Operator: z.array(z.lazy(() => GetLibraryItemsOperator$inboundSchema)),
+}).transform((v) => {
+  return remap$(v, {
+    "Operator": "operator",
+  });
+});
+
+/** @internal */
+export type GetLibraryItemsFieldType$Outbound = {
+  type: string;
+  Operator: Array<GetLibraryItemsOperator$Outbound>;
+};
+
+/** @internal */
+export const GetLibraryItemsFieldType$outboundSchema: z.ZodType<
+  GetLibraryItemsFieldType$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsFieldType
+> = z.object({
+  type: z.string(),
+  operator: z.array(z.lazy(() => GetLibraryItemsOperator$outboundSchema)),
+}).transform((v) => {
+  return remap$(v, {
+    operator: "Operator",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsFieldType$ {
+  /** @deprecated use `GetLibraryItemsFieldType$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsFieldType$inboundSchema;
+  /** @deprecated use `GetLibraryItemsFieldType$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsFieldType$outboundSchema;
+  /** @deprecated use `GetLibraryItemsFieldType$Outbound` instead. */
+  export type Outbound = GetLibraryItemsFieldType$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsLibraryType$inboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsLibraryType
+> = z.nativeEnum(GetLibraryItemsLibraryType);
+
+/** @internal */
+export const GetLibraryItemsLibraryType$outboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsLibraryType
+> = GetLibraryItemsLibraryType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryType$ {
+  /** @deprecated use `GetLibraryItemsLibraryType$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsLibraryType$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryType$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsLibraryType$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsFlattenSeasons$inboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsFlattenSeasons
+> = z.nativeEnum(GetLibraryItemsFlattenSeasons);
+
+/** @internal */
+export const GetLibraryItemsFlattenSeasons$outboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsFlattenSeasons
+> = GetLibraryItemsFlattenSeasons$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsFlattenSeasons$ {
+  /** @deprecated use `GetLibraryItemsFlattenSeasons$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsFlattenSeasons$inboundSchema;
+  /** @deprecated use `GetLibraryItemsFlattenSeasons$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsFlattenSeasons$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsShowOrdering$inboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsShowOrdering
+> = z.nativeEnum(GetLibraryItemsShowOrdering);
+
+/** @internal */
+export const GetLibraryItemsShowOrdering$outboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsShowOrdering
+> = GetLibraryItemsShowOrdering$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsShowOrdering$ {
+  /** @deprecated use `GetLibraryItemsShowOrdering$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsShowOrdering$inboundSchema;
+  /** @deprecated use `GetLibraryItemsShowOrdering$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsShowOrdering$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsOptimizedForStreaming$inboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsOptimizedForStreaming> = z.nativeEnum(
+    GetLibraryItemsOptimizedForStreaming,
+  );
+
+/** @internal */
+export const GetLibraryItemsOptimizedForStreaming$outboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsOptimizedForStreaming> =
+    GetLibraryItemsOptimizedForStreaming$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsOptimizedForStreaming$ {
+  /** @deprecated use `GetLibraryItemsOptimizedForStreaming$inboundSchema` instead. */
+  export const inboundSchema =
+    GetLibraryItemsOptimizedForStreaming$inboundSchema;
+  /** @deprecated use `GetLibraryItemsOptimizedForStreaming$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLibraryItemsOptimizedForStreaming$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsHasThumbnail$inboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsHasThumbnail
+> = z.nativeEnum(GetLibraryItemsHasThumbnail);
+
+/** @internal */
+export const GetLibraryItemsHasThumbnail$outboundSchema: z.ZodNativeEnum<
+  typeof GetLibraryItemsHasThumbnail
+> = GetLibraryItemsHasThumbnail$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsHasThumbnail$ {
+  /** @deprecated use `GetLibraryItemsHasThumbnail$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsHasThumbnail$inboundSchema;
+  /** @deprecated use `GetLibraryItemsHasThumbnail$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsHasThumbnail$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsStream$inboundSchema: z.ZodType<
+  GetLibraryItemsStream,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  streamType: z.number().int(),
+  default: z.boolean().optional(),
+  selected: z.boolean().optional(),
+  codec: z.string(),
+  index: z.number().int(),
+  bitrate: z.number().int().optional(),
+  colorPrimaries: z.string().optional(),
+  colorRange: z.string().optional(),
+  colorSpace: z.string().optional(),
+  colorTrc: z.string().optional(),
+  bitDepth: z.number().int().optional(),
+  chromaLocation: z.string().optional(),
+  streamIdentifier: z.string().optional(),
+  chromaSubsampling: z.string().optional(),
+  codedHeight: z.number().int().optional(),
+  codedWidth: z.number().int().optional(),
+  frameRate: z.number().optional(),
+  hasScalingMatrix: z.boolean().optional(),
+  hearingImpaired: z.boolean().optional(),
+  closedCaptions: z.boolean().optional(),
+  embeddedInVideo: z.string().optional(),
+  height: z.number().int().optional(),
+  level: z.number().int().optional(),
+  profile: z.string().optional(),
+  refFrames: z.number().int().optional(),
+  scanType: z.string().optional(),
+  width: z.number().int().optional(),
+  displayTitle: z.string().optional(),
+  extendedDisplayTitle: z.string().optional(),
+  channels: z.number().int().optional(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
+  audioChannelLayout: z.string().optional(),
+  samplingRate: z.number().int().optional(),
+  title: z.string().optional(),
+  canAutoSync: z.boolean().optional(),
+});
+
+/** @internal */
+export type GetLibraryItemsStream$Outbound = {
+  id: number;
+  streamType: number;
+  default?: boolean | undefined;
+  selected?: boolean | undefined;
+  codec: string;
+  index: number;
+  bitrate?: number | undefined;
+  colorPrimaries?: string | undefined;
+  colorRange?: string | undefined;
+  colorSpace?: string | undefined;
+  colorTrc?: string | undefined;
+  bitDepth?: number | undefined;
+  chromaLocation?: string | undefined;
+  streamIdentifier?: string | undefined;
+  chromaSubsampling?: string | undefined;
+  codedHeight?: number | undefined;
+  codedWidth?: number | undefined;
+  frameRate?: number | undefined;
+  hasScalingMatrix?: boolean | undefined;
+  hearingImpaired?: boolean | undefined;
+  closedCaptions?: boolean | undefined;
+  embeddedInVideo?: string | undefined;
+  height?: number | undefined;
+  level?: number | undefined;
+  profile?: string | undefined;
+  refFrames?: number | undefined;
+  scanType?: string | undefined;
+  width?: number | undefined;
+  displayTitle?: string | undefined;
+  extendedDisplayTitle?: string | undefined;
+  channels?: number | undefined;
+  language?: string | undefined;
+  languageTag?: string | undefined;
+  languageCode?: string | undefined;
+  audioChannelLayout?: string | undefined;
+  samplingRate?: number | undefined;
+  title?: string | undefined;
+  canAutoSync?: boolean | undefined;
+};
+
+/** @internal */
+export const GetLibraryItemsStream$outboundSchema: z.ZodType<
+  GetLibraryItemsStream$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsStream
+> = z.object({
+  id: z.number().int(),
+  streamType: z.number().int(),
+  default: z.boolean().optional(),
+  selected: z.boolean().optional(),
+  codec: z.string(),
+  index: z.number().int(),
+  bitrate: z.number().int().optional(),
+  colorPrimaries: z.string().optional(),
+  colorRange: z.string().optional(),
+  colorSpace: z.string().optional(),
+  colorTrc: z.string().optional(),
+  bitDepth: z.number().int().optional(),
+  chromaLocation: z.string().optional(),
+  streamIdentifier: z.string().optional(),
+  chromaSubsampling: z.string().optional(),
+  codedHeight: z.number().int().optional(),
+  codedWidth: z.number().int().optional(),
+  frameRate: z.number().optional(),
+  hasScalingMatrix: z.boolean().optional(),
+  hearingImpaired: z.boolean().optional(),
+  closedCaptions: z.boolean().optional(),
+  embeddedInVideo: z.string().optional(),
+  height: z.number().int().optional(),
+  level: z.number().int().optional(),
+  profile: z.string().optional(),
+  refFrames: z.number().int().optional(),
+  scanType: z.string().optional(),
+  width: z.number().int().optional(),
+  displayTitle: z.string().optional(),
+  extendedDisplayTitle: z.string().optional(),
+  channels: z.number().int().optional(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
+  audioChannelLayout: z.string().optional(),
+  samplingRate: z.number().int().optional(),
+  title: z.string().optional(),
+  canAutoSync: z.boolean().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsStream$ {
+  /** @deprecated use `GetLibraryItemsStream$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsStream$inboundSchema;
+  /** @deprecated use `GetLibraryItemsStream$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsStream$outboundSchema;
+  /** @deprecated use `GetLibraryItemsStream$Outbound` instead. */
+  export type Outbound = GetLibraryItemsStream$Outbound;
 }
 
 /** @internal */
@@ -451,24 +1547,42 @@ export const GetLibraryItemsPart$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.number().int().optional(),
-  key: z.string().optional(),
-  duration: z.number().int().optional(),
-  file: z.string().optional(),
-  size: z.number().int().optional(),
-  container: z.string().optional(),
-  videoProfile: z.string().optional(),
+  id: z.number().int(),
+  key: z.string(),
+  duration: z.number().int(),
+  file: z.string(),
+  size: z.number().int(),
+  container: z.string(),
+  audioProfile: z.string().optional(),
+  has64bitOffsets: z.boolean().optional(),
+  optimizedForStreaming: z.boolean().optional(),
+  videoProfile: z.string(),
+  indexes: z.string().optional(),
+  hasThumbnail: GetLibraryItemsHasThumbnail$inboundSchema.default(
+    GetLibraryItemsHasThumbnail.False,
+  ),
+  Stream: z.array(z.lazy(() => GetLibraryItemsStream$inboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Stream": "stream",
+  });
 });
 
 /** @internal */
 export type GetLibraryItemsPart$Outbound = {
-  id?: number | undefined;
-  key?: string | undefined;
-  duration?: number | undefined;
-  file?: string | undefined;
-  size?: number | undefined;
-  container?: string | undefined;
-  videoProfile?: string | undefined;
+  id: number;
+  key: string;
+  duration: number;
+  file: string;
+  size: number;
+  container: string;
+  audioProfile?: string | undefined;
+  has64bitOffsets?: boolean | undefined;
+  optimizedForStreaming?: boolean | undefined;
+  videoProfile: string;
+  indexes?: string | undefined;
+  hasThumbnail: string;
+  Stream?: Array<GetLibraryItemsStream$Outbound> | undefined;
 };
 
 /** @internal */
@@ -477,13 +1591,26 @@ export const GetLibraryItemsPart$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryItemsPart
 > = z.object({
-  id: z.number().int().optional(),
-  key: z.string().optional(),
-  duration: z.number().int().optional(),
-  file: z.string().optional(),
-  size: z.number().int().optional(),
-  container: z.string().optional(),
-  videoProfile: z.string().optional(),
+  id: z.number().int(),
+  key: z.string(),
+  duration: z.number().int(),
+  file: z.string(),
+  size: z.number().int(),
+  container: z.string(),
+  audioProfile: z.string().optional(),
+  has64bitOffsets: z.boolean().optional(),
+  optimizedForStreaming: z.boolean().optional(),
+  videoProfile: z.string(),
+  indexes: z.string().optional(),
+  hasThumbnail: GetLibraryItemsHasThumbnail$outboundSchema.default(
+    GetLibraryItemsHasThumbnail.False,
+  ),
+  stream: z.array(z.lazy(() => GetLibraryItemsStream$outboundSchema))
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    stream: "Stream",
+  });
 });
 
 /**
@@ -505,20 +1632,24 @@ export const GetLibraryItemsMedia$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.number().int().optional(),
-  duration: z.number().int().optional(),
-  bitrate: z.number().int().optional(),
-  width: z.number().int().optional(),
-  height: z.number().int().optional(),
-  aspectRatio: z.number().optional(),
-  audioChannels: z.number().int().optional(),
-  audioCodec: z.string().optional(),
-  videoCodec: z.string().optional(),
-  videoResolution: z.string().optional(),
-  container: z.string().optional(),
-  videoFrameRate: z.string().optional(),
-  videoProfile: z.string().optional(),
-  Part: z.array(z.lazy(() => GetLibraryItemsPart$inboundSchema)).optional(),
+  id: z.number().int(),
+  duration: z.number().int(),
+  bitrate: z.number().int(),
+  width: z.number().int(),
+  height: z.number().int(),
+  aspectRatio: z.number(),
+  audioProfile: z.string().optional(),
+  audioChannels: z.number().int(),
+  audioCodec: z.string(),
+  videoCodec: z.string(),
+  videoResolution: z.string(),
+  container: z.string(),
+  videoFrameRate: z.string(),
+  videoProfile: z.string(),
+  hasVoiceActivity: z.boolean().optional(),
+  optimizedForStreaming: GetLibraryItemsOptimizedForStreaming$inboundSchema,
+  has64bitOffsets: z.boolean().optional(),
+  Part: z.array(z.lazy(() => GetLibraryItemsPart$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Part": "part",
@@ -527,20 +1658,24 @@ export const GetLibraryItemsMedia$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetLibraryItemsMedia$Outbound = {
-  id?: number | undefined;
-  duration?: number | undefined;
-  bitrate?: number | undefined;
-  width?: number | undefined;
-  height?: number | undefined;
-  aspectRatio?: number | undefined;
-  audioChannels?: number | undefined;
-  audioCodec?: string | undefined;
-  videoCodec?: string | undefined;
-  videoResolution?: string | undefined;
-  container?: string | undefined;
-  videoFrameRate?: string | undefined;
-  videoProfile?: string | undefined;
-  Part?: Array<GetLibraryItemsPart$Outbound> | undefined;
+  id: number;
+  duration: number;
+  bitrate: number;
+  width: number;
+  height: number;
+  aspectRatio: number;
+  audioProfile?: string | undefined;
+  audioChannels: number;
+  audioCodec: string;
+  videoCodec: string;
+  videoResolution: string;
+  container: string;
+  videoFrameRate: string;
+  videoProfile: string;
+  hasVoiceActivity?: boolean | undefined;
+  optimizedForStreaming: number;
+  has64bitOffsets?: boolean | undefined;
+  Part: Array<GetLibraryItemsPart$Outbound>;
 };
 
 /** @internal */
@@ -549,20 +1684,25 @@ export const GetLibraryItemsMedia$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryItemsMedia
 > = z.object({
-  id: z.number().int().optional(),
-  duration: z.number().int().optional(),
-  bitrate: z.number().int().optional(),
-  width: z.number().int().optional(),
-  height: z.number().int().optional(),
-  aspectRatio: z.number().optional(),
-  audioChannels: z.number().int().optional(),
-  audioCodec: z.string().optional(),
-  videoCodec: z.string().optional(),
-  videoResolution: z.string().optional(),
-  container: z.string().optional(),
-  videoFrameRate: z.string().optional(),
-  videoProfile: z.string().optional(),
-  part: z.array(z.lazy(() => GetLibraryItemsPart$outboundSchema)).optional(),
+  id: z.number().int(),
+  duration: z.number().int(),
+  bitrate: z.number().int(),
+  width: z.number().int(),
+  height: z.number().int(),
+  aspectRatio: z.number(),
+  audioProfile: z.string().optional(),
+  audioChannels: z.number().int(),
+  audioCodec: z.string(),
+  videoCodec: z.string(),
+  videoResolution: z.string(),
+  container: z.string(),
+  videoFrameRate: z.string(),
+  videoProfile: z.string(),
+  hasVoiceActivity: z.boolean().optional(),
+  optimizedForStreaming: GetLibraryItemsOptimizedForStreaming$outboundSchema
+    .default(GetLibraryItemsOptimizedForStreaming.Disable),
+  has64bitOffsets: z.boolean().optional(),
+  part: z.array(z.lazy(() => GetLibraryItemsPart$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     part: "Part",
@@ -727,8 +1867,8 @@ export namespace GetLibraryItemsWriter$ {
 }
 
 /** @internal */
-export const GetLibraryItemsRole$inboundSchema: z.ZodType<
-  GetLibraryItemsRole,
+export const GetLibraryItemsCollection$inboundSchema: z.ZodType<
+  GetLibraryItemsCollection,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -736,8 +1876,54 @@ export const GetLibraryItemsRole$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetLibraryItemsRole$Outbound = {
+export type GetLibraryItemsCollection$Outbound = {
   tag?: string | undefined;
+};
+
+/** @internal */
+export const GetLibraryItemsCollection$outboundSchema: z.ZodType<
+  GetLibraryItemsCollection$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsCollection
+> = z.object({
+  tag: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsCollection$ {
+  /** @deprecated use `GetLibraryItemsCollection$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsCollection$inboundSchema;
+  /** @deprecated use `GetLibraryItemsCollection$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsCollection$outboundSchema;
+  /** @deprecated use `GetLibraryItemsCollection$Outbound` instead. */
+  export type Outbound = GetLibraryItemsCollection$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsRole$inboundSchema: z.ZodType<
+  GetLibraryItemsRole,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int().optional(),
+  filter: z.string().optional(),
+  thumb: z.string().optional(),
+  tag: z.string().optional(),
+  tagKey: z.string().optional(),
+  role: z.string().optional(),
+});
+
+/** @internal */
+export type GetLibraryItemsRole$Outbound = {
+  id?: number | undefined;
+  filter?: string | undefined;
+  thumb?: string | undefined;
+  tag?: string | undefined;
+  tagKey?: string | undefined;
+  role?: string | undefined;
 };
 
 /** @internal */
@@ -746,7 +1932,12 @@ export const GetLibraryItemsRole$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryItemsRole
 > = z.object({
+  id: z.number().int().optional(),
+  filter: z.string().optional(),
+  thumb: z.string().optional(),
   tag: z.string().optional(),
+  tagKey: z.string().optional(),
+  role: z.string().optional(),
 });
 
 /**
@@ -763,28 +1954,228 @@ export namespace GetLibraryItemsRole$ {
 }
 
 /** @internal */
+export const GetLibraryItemsMediaGuid$inboundSchema: z.ZodType<
+  GetLibraryItemsMediaGuid,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsMediaGuid$Outbound = {
+  id: string;
+};
+
+/** @internal */
+export const GetLibraryItemsMediaGuid$outboundSchema: z.ZodType<
+  GetLibraryItemsMediaGuid$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsMediaGuid
+> = z.object({
+  id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsMediaGuid$ {
+  /** @deprecated use `GetLibraryItemsMediaGuid$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsMediaGuid$inboundSchema;
+  /** @deprecated use `GetLibraryItemsMediaGuid$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsMediaGuid$outboundSchema;
+  /** @deprecated use `GetLibraryItemsMediaGuid$Outbound` instead. */
+  export type Outbound = GetLibraryItemsMediaGuid$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsUltraBlurColors$inboundSchema: z.ZodType<
+  GetLibraryItemsUltraBlurColors,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsUltraBlurColors$Outbound = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+/** @internal */
+export const GetLibraryItemsUltraBlurColors$outboundSchema: z.ZodType<
+  GetLibraryItemsUltraBlurColors$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsUltraBlurColors
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsUltraBlurColors$ {
+  /** @deprecated use `GetLibraryItemsUltraBlurColors$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsUltraBlurColors$inboundSchema;
+  /** @deprecated use `GetLibraryItemsUltraBlurColors$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsUltraBlurColors$outboundSchema;
+  /** @deprecated use `GetLibraryItemsUltraBlurColors$Outbound` instead. */
+  export type Outbound = GetLibraryItemsUltraBlurColors$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsMetaDataRating$inboundSchema: z.ZodType<
+  GetLibraryItemsMetaDataRating,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  image: z.string(),
+  value: z.number(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsMetaDataRating$Outbound = {
+  image: string;
+  value: number;
+  type: string;
+};
+
+/** @internal */
+export const GetLibraryItemsMetaDataRating$outboundSchema: z.ZodType<
+  GetLibraryItemsMetaDataRating$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsMetaDataRating
+> = z.object({
+  image: z.string(),
+  value: z.number(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsMetaDataRating$ {
+  /** @deprecated use `GetLibraryItemsMetaDataRating$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsMetaDataRating$inboundSchema;
+  /** @deprecated use `GetLibraryItemsMetaDataRating$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsMetaDataRating$outboundSchema;
+  /** @deprecated use `GetLibraryItemsMetaDataRating$Outbound` instead. */
+  export type Outbound = GetLibraryItemsMetaDataRating$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsLibraryResponse200Type$inboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsLibraryResponse200Type> = z.nativeEnum(
+    GetLibraryItemsLibraryResponse200Type,
+  );
+
+/** @internal */
+export const GetLibraryItemsLibraryResponse200Type$outboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsLibraryResponse200Type> =
+    GetLibraryItemsLibraryResponse200Type$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryResponse200Type$ {
+  /** @deprecated use `GetLibraryItemsLibraryResponse200Type$inboundSchema` instead. */
+  export const inboundSchema =
+    GetLibraryItemsLibraryResponse200Type$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryResponse200Type$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLibraryItemsLibraryResponse200Type$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsImage$inboundSchema: z.ZodType<
+  GetLibraryItemsImage,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  alt: z.string(),
+  type: GetLibraryItemsLibraryResponse200Type$inboundSchema,
+  url: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsImage$Outbound = {
+  alt: string;
+  type: string;
+  url: string;
+};
+
+/** @internal */
+export const GetLibraryItemsImage$outboundSchema: z.ZodType<
+  GetLibraryItemsImage$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsImage
+> = z.object({
+  alt: z.string(),
+  type: GetLibraryItemsLibraryResponse200Type$outboundSchema,
+  url: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsImage$ {
+  /** @deprecated use `GetLibraryItemsImage$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsImage$inboundSchema;
+  /** @deprecated use `GetLibraryItemsImage$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsImage$outboundSchema;
+  /** @deprecated use `GetLibraryItemsImage$Outbound` instead. */
+  export type Outbound = GetLibraryItemsImage$Outbound;
+}
+
+/** @internal */
 export const GetLibraryItemsMetadata$inboundSchema: z.ZodType<
   GetLibraryItemsMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  ratingKey: z.string().optional(),
-  key: z.string().optional(),
-  guid: z.string().optional(),
+  ratingKey: z.string(),
+  key: z.string(),
+  guid: z.string(),
   studio: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
+  skipChildren: z.boolean().optional(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
+  librarySectionKey: z.string().optional(),
+  type: GetLibraryItemsLibraryType$inboundSchema,
+  title: z.string(),
+  slug: z.string().optional(),
   contentRating: z.string().optional(),
-  summary: z.string().optional(),
+  summary: z.string(),
   rating: z.number().optional(),
   audienceRating: z.number().optional(),
   year: z.number().int().optional(),
+  seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
+  flattenSeasons: GetLibraryItemsFlattenSeasons$inboundSchema.default(
+    GetLibraryItemsFlattenSeasons.False,
+  ),
+  showOrdering: GetLibraryItemsShowOrdering$inboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
+  banner: z.string().optional(),
   duration: z.number().int().optional(),
   originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
-  addedAt: z.number().int().optional(),
+  addedAt: z.number().int(),
   updatedAt: z.number().int().optional(),
   audienceRatingImage: z.string().optional(),
   chapterSource: z.string().optional(),
@@ -795,6 +2186,8 @@ export const GetLibraryItemsMetadata$inboundSchema: z.ZodType<
   grandparentKey: z.string().optional(),
   grandparentTitle: z.string().optional(),
   grandparentThumb: z.string().optional(),
+  parentSlug: z.string().optional(),
+  grandparentSlug: z.string().optional(),
   grandparentArt: z.string().optional(),
   grandparentTheme: z.string().optional(),
   Media: z.array(z.lazy(() => GetLibraryItemsMedia$inboundSchema)).optional(),
@@ -804,7 +2197,16 @@ export const GetLibraryItemsMetadata$inboundSchema: z.ZodType<
   Director: z.array(z.lazy(() => GetLibraryItemsDirector$inboundSchema))
     .optional(),
   Writer: z.array(z.lazy(() => GetLibraryItemsWriter$inboundSchema)).optional(),
+  Collection: z.array(z.lazy(() => GetLibraryItemsCollection$inboundSchema))
+    .optional(),
   Role: z.array(z.lazy(() => GetLibraryItemsRole$inboundSchema)).optional(),
+  Guid: z.array(z.lazy(() => GetLibraryItemsMediaGuid$inboundSchema))
+    .optional(),
+  UltraBlurColors: z.lazy(() => GetLibraryItemsUltraBlurColors$inboundSchema)
+    .optional(),
+  Rating: z.array(z.lazy(() => GetLibraryItemsMetaDataRating$inboundSchema))
+    .optional(),
+  Image: z.array(z.lazy(() => GetLibraryItemsImage$inboundSchema)).optional(),
   titleSort: z.string().optional(),
   viewCount: z.number().int().optional(),
   lastViewedAt: z.number().int().optional(),
@@ -834,29 +2236,43 @@ export const GetLibraryItemsMetadata$inboundSchema: z.ZodType<
     "Country": "country",
     "Director": "director",
     "Writer": "writer",
+    "Collection": "collection",
     "Role": "role",
+    "Guid": "mediaGuid",
+    "UltraBlurColors": "ultraBlurColors",
+    "Rating": "metaDataRating",
+    "Image": "image",
   });
 });
 
 /** @internal */
 export type GetLibraryItemsMetadata$Outbound = {
-  ratingKey?: string | undefined;
-  key?: string | undefined;
-  guid?: string | undefined;
+  ratingKey: string;
+  key: string;
+  guid: string;
   studio?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
+  skipChildren?: boolean | undefined;
+  librarySectionID?: number | undefined;
+  librarySectionTitle?: string | undefined;
+  librarySectionKey?: string | undefined;
+  type: string;
+  title: string;
+  slug?: string | undefined;
   contentRating?: string | undefined;
-  summary?: string | undefined;
+  summary: string;
   rating?: number | undefined;
   audienceRating?: number | undefined;
   year?: number | undefined;
+  seasonCount?: number | undefined;
   tagline?: string | undefined;
+  flattenSeasons: string;
+  showOrdering?: string | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
+  banner?: string | undefined;
   duration?: number | undefined;
   originallyAvailableAt?: string | undefined;
-  addedAt?: number | undefined;
+  addedAt: number;
   updatedAt?: number | undefined;
   audienceRatingImage?: string | undefined;
   chapterSource?: string | undefined;
@@ -867,6 +2283,8 @@ export type GetLibraryItemsMetadata$Outbound = {
   grandparentKey?: string | undefined;
   grandparentTitle?: string | undefined;
   grandparentThumb?: string | undefined;
+  parentSlug?: string | undefined;
+  grandparentSlug?: string | undefined;
   grandparentArt?: string | undefined;
   grandparentTheme?: string | undefined;
   Media?: Array<GetLibraryItemsMedia$Outbound> | undefined;
@@ -874,7 +2292,12 @@ export type GetLibraryItemsMetadata$Outbound = {
   Country?: Array<GetLibraryItemsCountry$Outbound> | undefined;
   Director?: Array<GetLibraryItemsDirector$Outbound> | undefined;
   Writer?: Array<GetLibraryItemsWriter$Outbound> | undefined;
+  Collection?: Array<GetLibraryItemsCollection$Outbound> | undefined;
   Role?: Array<GetLibraryItemsRole$Outbound> | undefined;
+  Guid?: Array<GetLibraryItemsMediaGuid$Outbound> | undefined;
+  UltraBlurColors?: GetLibraryItemsUltraBlurColors$Outbound | undefined;
+  Rating?: Array<GetLibraryItemsMetaDataRating$Outbound> | undefined;
+  Image?: Array<GetLibraryItemsImage$Outbound> | undefined;
   titleSort?: string | undefined;
   viewCount?: number | undefined;
   lastViewedAt?: number | undefined;
@@ -905,24 +2328,35 @@ export const GetLibraryItemsMetadata$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryItemsMetadata
 > = z.object({
-  ratingKey: z.string().optional(),
-  key: z.string().optional(),
-  guid: z.string().optional(),
+  ratingKey: z.string(),
+  key: z.string(),
+  guid: z.string(),
   studio: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
+  skipChildren: z.boolean().optional(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
+  librarySectionKey: z.string().optional(),
+  type: GetLibraryItemsLibraryType$outboundSchema,
+  title: z.string(),
+  slug: z.string().optional(),
   contentRating: z.string().optional(),
-  summary: z.string().optional(),
+  summary: z.string(),
   rating: z.number().optional(),
   audienceRating: z.number().optional(),
   year: z.number().int().optional(),
+  seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
+  flattenSeasons: GetLibraryItemsFlattenSeasons$outboundSchema.default(
+    GetLibraryItemsFlattenSeasons.False,
+  ),
+  showOrdering: GetLibraryItemsShowOrdering$outboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
+  banner: z.string().optional(),
   duration: z.number().int().optional(),
   originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString())
     .optional(),
-  addedAt: z.number().int().optional(),
+  addedAt: z.number().int(),
   updatedAt: z.number().int().optional(),
   audienceRatingImage: z.string().optional(),
   chapterSource: z.string().optional(),
@@ -933,6 +2367,8 @@ export const GetLibraryItemsMetadata$outboundSchema: z.ZodType<
   grandparentKey: z.string().optional(),
   grandparentTitle: z.string().optional(),
   grandparentThumb: z.string().optional(),
+  parentSlug: z.string().optional(),
+  grandparentSlug: z.string().optional(),
   grandparentArt: z.string().optional(),
   grandparentTheme: z.string().optional(),
   media: z.array(z.lazy(() => GetLibraryItemsMedia$outboundSchema)).optional(),
@@ -943,7 +2379,17 @@ export const GetLibraryItemsMetadata$outboundSchema: z.ZodType<
     .optional(),
   writer: z.array(z.lazy(() => GetLibraryItemsWriter$outboundSchema))
     .optional(),
+  collection: z.array(z.lazy(() => GetLibraryItemsCollection$outboundSchema))
+    .optional(),
   role: z.array(z.lazy(() => GetLibraryItemsRole$outboundSchema)).optional(),
+  mediaGuid: z.array(z.lazy(() => GetLibraryItemsMediaGuid$outboundSchema))
+    .optional(),
+  ultraBlurColors: z.lazy(() => GetLibraryItemsUltraBlurColors$outboundSchema)
+    .optional(),
+  metaDataRating: z.array(
+    z.lazy(() => GetLibraryItemsMetaDataRating$outboundSchema),
+  ).optional(),
+  image: z.array(z.lazy(() => GetLibraryItemsImage$outboundSchema)).optional(),
   titleSort: z.string().optional(),
   viewCount: z.number().int().optional(),
   lastViewedAt: z.number().int().optional(),
@@ -973,7 +2419,12 @@ export const GetLibraryItemsMetadata$outboundSchema: z.ZodType<
     country: "Country",
     director: "Director",
     writer: "Writer",
+    collection: "Collection",
     role: "Role",
+    mediaGuid: "Guid",
+    ultraBlurColors: "UltraBlurColors",
+    metaDataRating: "Rating",
+    image: "Image",
   });
 });
 
@@ -991,52 +2442,489 @@ export namespace GetLibraryItemsMetadata$ {
 }
 
 /** @internal */
+export const GetLibraryItemsLibraryFilter$inboundSchema: z.ZodType<
+  GetLibraryItemsLibraryFilter,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  filter: z.string(),
+  filterType: z.string(),
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsLibraryFilter$Outbound = {
+  filter: string;
+  filterType: string;
+  key: string;
+  title: string;
+  type: string;
+};
+
+/** @internal */
+export const GetLibraryItemsLibraryFilter$outboundSchema: z.ZodType<
+  GetLibraryItemsLibraryFilter$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsLibraryFilter
+> = z.object({
+  filter: z.string(),
+  filterType: z.string(),
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryFilter$ {
+  /** @deprecated use `GetLibraryItemsLibraryFilter$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsLibraryFilter$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryFilter$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsLibraryFilter$outboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryFilter$Outbound` instead. */
+  export type Outbound = GetLibraryItemsLibraryFilter$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsLibraryActiveDirection$inboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsLibraryActiveDirection> = z.nativeEnum(
+    GetLibraryItemsLibraryActiveDirection,
+  );
+
+/** @internal */
+export const GetLibraryItemsLibraryActiveDirection$outboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsLibraryActiveDirection> =
+    GetLibraryItemsLibraryActiveDirection$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryActiveDirection$ {
+  /** @deprecated use `GetLibraryItemsLibraryActiveDirection$inboundSchema` instead. */
+  export const inboundSchema =
+    GetLibraryItemsLibraryActiveDirection$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryActiveDirection$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLibraryItemsLibraryActiveDirection$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsLibraryDefaultDirection$inboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsLibraryDefaultDirection> = z.nativeEnum(
+    GetLibraryItemsLibraryDefaultDirection,
+  );
+
+/** @internal */
+export const GetLibraryItemsLibraryDefaultDirection$outboundSchema:
+  z.ZodNativeEnum<typeof GetLibraryItemsLibraryDefaultDirection> =
+    GetLibraryItemsLibraryDefaultDirection$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryDefaultDirection$ {
+  /** @deprecated use `GetLibraryItemsLibraryDefaultDirection$inboundSchema` instead. */
+  export const inboundSchema =
+    GetLibraryItemsLibraryDefaultDirection$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryDefaultDirection$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLibraryItemsLibraryDefaultDirection$outboundSchema;
+}
+
+/** @internal */
+export const GetLibraryItemsLibrarySort$inboundSchema: z.ZodType<
+  GetLibraryItemsLibrarySort,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  default: z.string().optional(),
+  active: z.boolean().optional(),
+  activeDirection: GetLibraryItemsLibraryActiveDirection$inboundSchema.default(
+    GetLibraryItemsLibraryActiveDirection.Ascending,
+  ),
+  defaultDirection: GetLibraryItemsLibraryDefaultDirection$inboundSchema
+    .default(GetLibraryItemsLibraryDefaultDirection.Ascending),
+  descKey: z.string().optional(),
+  firstCharacterKey: z.string().optional(),
+  key: z.string(),
+  title: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsLibrarySort$Outbound = {
+  default?: string | undefined;
+  active?: boolean | undefined;
+  activeDirection: string;
+  defaultDirection: string;
+  descKey?: string | undefined;
+  firstCharacterKey?: string | undefined;
+  key: string;
+  title: string;
+};
+
+/** @internal */
+export const GetLibraryItemsLibrarySort$outboundSchema: z.ZodType<
+  GetLibraryItemsLibrarySort$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsLibrarySort
+> = z.object({
+  default: z.string().optional(),
+  active: z.boolean().optional(),
+  activeDirection: GetLibraryItemsLibraryActiveDirection$outboundSchema.default(
+    GetLibraryItemsLibraryActiveDirection.Ascending,
+  ),
+  defaultDirection: GetLibraryItemsLibraryDefaultDirection$outboundSchema
+    .default(GetLibraryItemsLibraryDefaultDirection.Ascending),
+  descKey: z.string().optional(),
+  firstCharacterKey: z.string().optional(),
+  key: z.string(),
+  title: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibrarySort$ {
+  /** @deprecated use `GetLibraryItemsLibrarySort$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsLibrarySort$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibrarySort$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsLibrarySort$outboundSchema;
+  /** @deprecated use `GetLibraryItemsLibrarySort$Outbound` instead. */
+  export type Outbound = GetLibraryItemsLibrarySort$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsLibraryField$inboundSchema: z.ZodType<
+  GetLibraryItemsLibraryField,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+  subType: z.string().optional(),
+});
+
+/** @internal */
+export type GetLibraryItemsLibraryField$Outbound = {
+  key: string;
+  title: string;
+  type: string;
+  subType?: string | undefined;
+};
+
+/** @internal */
+export const GetLibraryItemsLibraryField$outboundSchema: z.ZodType<
+  GetLibraryItemsLibraryField$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsLibraryField
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+  subType: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryField$ {
+  /** @deprecated use `GetLibraryItemsLibraryField$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsLibraryField$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryField$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsLibraryField$outboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryField$Outbound` instead. */
+  export type Outbound = GetLibraryItemsLibraryField$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsLibraryResponseType$inboundSchema: z.ZodType<
+  GetLibraryItemsLibraryResponseType,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  type: z.string(),
+  title: z.string(),
+  active: z.boolean(),
+  Filter: z.array(z.lazy(() => GetLibraryItemsLibraryFilter$inboundSchema))
+    .optional(),
+  Sort: z.array(z.lazy(() => GetLibraryItemsLibrarySort$inboundSchema))
+    .optional(),
+  Field: z.array(z.lazy(() => GetLibraryItemsLibraryField$inboundSchema))
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Filter": "filter",
+    "Sort": "sort",
+    "Field": "field",
+  });
+});
+
+/** @internal */
+export type GetLibraryItemsLibraryResponseType$Outbound = {
+  key: string;
+  type: string;
+  title: string;
+  active: boolean;
+  Filter?: Array<GetLibraryItemsLibraryFilter$Outbound> | undefined;
+  Sort?: Array<GetLibraryItemsLibrarySort$Outbound> | undefined;
+  Field?: Array<GetLibraryItemsLibraryField$Outbound> | undefined;
+};
+
+/** @internal */
+export const GetLibraryItemsLibraryResponseType$outboundSchema: z.ZodType<
+  GetLibraryItemsLibraryResponseType$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsLibraryResponseType
+> = z.object({
+  key: z.string(),
+  type: z.string(),
+  title: z.string(),
+  active: z.boolean(),
+  filter: z.array(z.lazy(() => GetLibraryItemsLibraryFilter$outboundSchema))
+    .optional(),
+  sort: z.array(z.lazy(() => GetLibraryItemsLibrarySort$outboundSchema))
+    .optional(),
+  field: z.array(z.lazy(() => GetLibraryItemsLibraryField$outboundSchema))
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    filter: "Filter",
+    sort: "Sort",
+    field: "Field",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryResponseType$ {
+  /** @deprecated use `GetLibraryItemsLibraryResponseType$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsLibraryResponseType$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryResponseType$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLibraryItemsLibraryResponseType$outboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryResponseType$Outbound` instead. */
+  export type Outbound = GetLibraryItemsLibraryResponseType$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsLibraryOperator$inboundSchema: z.ZodType<
+  GetLibraryItemsLibraryOperator,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+});
+
+/** @internal */
+export type GetLibraryItemsLibraryOperator$Outbound = {
+  key: string;
+  title: string;
+};
+
+/** @internal */
+export const GetLibraryItemsLibraryOperator$outboundSchema: z.ZodType<
+  GetLibraryItemsLibraryOperator$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsLibraryOperator
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryOperator$ {
+  /** @deprecated use `GetLibraryItemsLibraryOperator$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsLibraryOperator$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryOperator$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsLibraryOperator$outboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryOperator$Outbound` instead. */
+  export type Outbound = GetLibraryItemsLibraryOperator$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsLibraryFieldType$inboundSchema: z.ZodType<
+  GetLibraryItemsLibraryFieldType,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: z.string(),
+  Operator: z.array(z.lazy(() => GetLibraryItemsLibraryOperator$inboundSchema)),
+}).transform((v) => {
+  return remap$(v, {
+    "Operator": "operator",
+  });
+});
+
+/** @internal */
+export type GetLibraryItemsLibraryFieldType$Outbound = {
+  type: string;
+  Operator: Array<GetLibraryItemsLibraryOperator$Outbound>;
+};
+
+/** @internal */
+export const GetLibraryItemsLibraryFieldType$outboundSchema: z.ZodType<
+  GetLibraryItemsLibraryFieldType$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsLibraryFieldType
+> = z.object({
+  type: z.string(),
+  operator: z.array(
+    z.lazy(() => GetLibraryItemsLibraryOperator$outboundSchema),
+  ),
+}).transform((v) => {
+  return remap$(v, {
+    operator: "Operator",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLibraryFieldType$ {
+  /** @deprecated use `GetLibraryItemsLibraryFieldType$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsLibraryFieldType$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryFieldType$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsLibraryFieldType$outboundSchema;
+  /** @deprecated use `GetLibraryItemsLibraryFieldType$Outbound` instead. */
+  export type Outbound = GetLibraryItemsLibraryFieldType$Outbound;
+}
+
+/** @internal */
+export const GetLibraryItemsMeta$inboundSchema: z.ZodType<
+  GetLibraryItemsMeta,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Type: z.array(z.lazy(() => GetLibraryItemsLibraryResponseType$inboundSchema))
+    .optional(),
+  FieldType: z.array(
+    z.lazy(() => GetLibraryItemsLibraryFieldType$inboundSchema),
+  ).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Type": "type",
+    "FieldType": "fieldType",
+  });
+});
+
+/** @internal */
+export type GetLibraryItemsMeta$Outbound = {
+  Type?: Array<GetLibraryItemsLibraryResponseType$Outbound> | undefined;
+  FieldType?: Array<GetLibraryItemsLibraryFieldType$Outbound> | undefined;
+};
+
+/** @internal */
+export const GetLibraryItemsMeta$outboundSchema: z.ZodType<
+  GetLibraryItemsMeta$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsMeta
+> = z.object({
+  type: z.array(z.lazy(() => GetLibraryItemsLibraryResponseType$outboundSchema))
+    .optional(),
+  fieldType: z.array(
+    z.lazy(() => GetLibraryItemsLibraryFieldType$outboundSchema),
+  ).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    type: "Type",
+    fieldType: "FieldType",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsMeta$ {
+  /** @deprecated use `GetLibraryItemsMeta$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsMeta$inboundSchema;
+  /** @deprecated use `GetLibraryItemsMeta$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsMeta$outboundSchema;
+  /** @deprecated use `GetLibraryItemsMeta$Outbound` instead. */
+  export type Outbound = GetLibraryItemsMeta$Outbound;
+}
+
+/** @internal */
 export const GetLibraryItemsMediaContainer$inboundSchema: z.ZodType<
   GetLibraryItemsMediaContainer,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  size: z.number().int().optional(),
-  allowSync: z.boolean().optional(),
-  art: z.string().optional(),
-  identifier: z.string().optional(),
-  librarySectionID: z.union([z.number().int(), z.string()]).optional(),
-  librarySectionTitle: z.string().optional(),
-  librarySectionUUID: z.string().optional(),
-  mediaTagPrefix: z.string().optional(),
-  mediaTagVersion: z.number().int().optional(),
-  thumb: z.string().optional(),
-  title1: z.string().optional(),
-  title2: z.string().optional(),
-  viewGroup: z.string().optional(),
+  Type: z.array(z.lazy(() => GetLibraryItemsType$inboundSchema)).optional(),
+  FieldType: z.array(z.lazy(() => GetLibraryItemsFieldType$inboundSchema))
+    .optional(),
+  size: z.number().int(),
+  totalSize: z.number().int(),
+  offset: z.number().int(),
+  content: z.string(),
+  allowSync: z.boolean(),
+  nocache: z.boolean().optional(),
+  art: z.string(),
+  identifier: z.string(),
+  librarySectionID: z.number().int(),
+  librarySectionTitle: z.string(),
+  librarySectionUUID: z.string(),
+  mediaTagPrefix: z.string(),
+  mediaTagVersion: z.number().int(),
+  thumb: z.string(),
+  title1: z.string(),
+  title2: z.string(),
+  viewGroup: z.string(),
   viewMode: z.number().int().optional(),
   mixedParents: z.boolean().optional(),
-  Metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$inboundSchema))
-    .optional(),
+  Metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$inboundSchema)),
+  Meta: z.lazy(() => GetLibraryItemsMeta$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "Type": "type",
+    "FieldType": "fieldType",
     "Metadata": "metadata",
+    "Meta": "meta",
   });
 });
 
 /** @internal */
 export type GetLibraryItemsMediaContainer$Outbound = {
-  size?: number | undefined;
-  allowSync?: boolean | undefined;
-  art?: string | undefined;
-  identifier?: string | undefined;
-  librarySectionID?: number | string | undefined;
-  librarySectionTitle?: string | undefined;
-  librarySectionUUID?: string | undefined;
-  mediaTagPrefix?: string | undefined;
-  mediaTagVersion?: number | undefined;
-  thumb?: string | undefined;
-  title1?: string | undefined;
-  title2?: string | undefined;
-  viewGroup?: string | undefined;
+  Type?: Array<GetLibraryItemsType$Outbound> | undefined;
+  FieldType?: Array<GetLibraryItemsFieldType$Outbound> | undefined;
+  size: number;
+  totalSize: number;
+  offset: number;
+  content: string;
+  allowSync: boolean;
+  nocache?: boolean | undefined;
+  art: string;
+  identifier: string;
+  librarySectionID: number;
+  librarySectionTitle: string;
+  librarySectionUUID: string;
+  mediaTagPrefix: string;
+  mediaTagVersion: number;
+  thumb: string;
+  title1: string;
+  title2: string;
+  viewGroup: string;
   viewMode?: number | undefined;
   mixedParents?: boolean | undefined;
-  Metadata?: Array<GetLibraryItemsMetadata$Outbound> | undefined;
+  Metadata: Array<GetLibraryItemsMetadata$Outbound>;
+  Meta?: GetLibraryItemsMeta$Outbound | undefined;
 };
 
 /** @internal */
@@ -1045,26 +2933,36 @@ export const GetLibraryItemsMediaContainer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryItemsMediaContainer
 > = z.object({
-  size: z.number().int().optional(),
-  allowSync: z.boolean().optional(),
-  art: z.string().optional(),
-  identifier: z.string().optional(),
-  librarySectionID: z.union([z.number().int(), z.string()]).optional(),
-  librarySectionTitle: z.string().optional(),
-  librarySectionUUID: z.string().optional(),
-  mediaTagPrefix: z.string().optional(),
-  mediaTagVersion: z.number().int().optional(),
-  thumb: z.string().optional(),
-  title1: z.string().optional(),
-  title2: z.string().optional(),
-  viewGroup: z.string().optional(),
+  type: z.array(z.lazy(() => GetLibraryItemsType$outboundSchema)).optional(),
+  fieldType: z.array(z.lazy(() => GetLibraryItemsFieldType$outboundSchema))
+    .optional(),
+  size: z.number().int(),
+  totalSize: z.number().int(),
+  offset: z.number().int(),
+  content: z.string(),
+  allowSync: z.boolean(),
+  nocache: z.boolean().optional(),
+  art: z.string(),
+  identifier: z.string(),
+  librarySectionID: z.number().int(),
+  librarySectionTitle: z.string(),
+  librarySectionUUID: z.string(),
+  mediaTagPrefix: z.string(),
+  mediaTagVersion: z.number().int(),
+  thumb: z.string(),
+  title1: z.string(),
+  title2: z.string(),
+  viewGroup: z.string(),
   viewMode: z.number().int().optional(),
   mixedParents: z.boolean().optional(),
-  metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$outboundSchema))
-    .optional(),
+  metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$outboundSchema)),
+  meta: z.lazy(() => GetLibraryItemsMeta$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    type: "Type",
+    fieldType: "FieldType",
     metadata: "Metadata",
+    meta: "Meta",
   });
 });
 

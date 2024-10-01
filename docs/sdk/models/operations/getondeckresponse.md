@@ -7,7 +7,7 @@ import { GetOnDeckResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetOnDeckResponse = {
   contentType: "<value>",
-  statusCode: 363711,
+  statusCode: 511,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

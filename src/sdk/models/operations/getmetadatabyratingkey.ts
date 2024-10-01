@@ -13,7 +13,7 @@ export type GetMetaDataByRatingKeyRequest = {
   ratingKey: number;
 };
 
-export type Stream = {
+export type GetMetaDataByRatingKeyStream = {
   id?: number | undefined;
   streamType?: number | undefined;
   default?: boolean | undefined;
@@ -59,7 +59,7 @@ export type GetMetaDataByRatingKeyPart = {
   has64bitOffsets?: boolean | undefined;
   optimizedForStreaming?: boolean | undefined;
   videoProfile?: string | undefined;
-  stream?: Array<Stream> | undefined;
+  stream?: Array<GetMetaDataByRatingKeyStream> | undefined;
 };
 
 export type GetMetaDataByRatingKeyMedia = {
@@ -248,44 +248,47 @@ export namespace GetMetaDataByRatingKeyRequest$ {
 }
 
 /** @internal */
-export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.number().int().optional(),
-    streamType: z.number().int().optional(),
-    default: z.boolean().optional(),
-    codec: z.string().optional(),
-    index: z.number().int().optional(),
-    bitrate: z.number().int().optional(),
-    bitDepth: z.number().int().optional(),
-    chromaLocation: z.string().optional(),
-    chromaSubsampling: z.string().optional(),
-    codedHeight: z.number().int().optional(),
-    codedWidth: z.number().int().optional(),
-    colorPrimaries: z.string().optional(),
-    colorRange: z.string().optional(),
-    colorSpace: z.string().optional(),
-    colorTrc: z.string().optional(),
-    frameRate: z.number().int().optional(),
-    hasScalingMatrix: z.boolean().optional(),
-    height: z.number().int().optional(),
-    level: z.number().int().optional(),
-    profile: z.string().optional(),
-    refFrames: z.number().int().optional(),
-    scanType: z.string().optional(),
-    streamIdentifier: z.string().optional(),
-    width: z.number().int().optional(),
-    displayTitle: z.string().optional(),
-    extendedDisplayTitle: z.string().optional(),
-    selected: z.boolean().optional(),
-    channels: z.number().int().optional(),
-    language: z.string().optional(),
-    languageTag: z.string().optional(),
-    languageCode: z.string().optional(),
-    samplingRate: z.number().int().optional(),
-  });
+export const GetMetaDataByRatingKeyStream$inboundSchema: z.ZodType<
+  GetMetaDataByRatingKeyStream,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int().optional(),
+  streamType: z.number().int().optional(),
+  default: z.boolean().optional(),
+  codec: z.string().optional(),
+  index: z.number().int().optional(),
+  bitrate: z.number().int().optional(),
+  bitDepth: z.number().int().optional(),
+  chromaLocation: z.string().optional(),
+  chromaSubsampling: z.string().optional(),
+  codedHeight: z.number().int().optional(),
+  codedWidth: z.number().int().optional(),
+  colorPrimaries: z.string().optional(),
+  colorRange: z.string().optional(),
+  colorSpace: z.string().optional(),
+  colorTrc: z.string().optional(),
+  frameRate: z.number().int().optional(),
+  hasScalingMatrix: z.boolean().optional(),
+  height: z.number().int().optional(),
+  level: z.number().int().optional(),
+  profile: z.string().optional(),
+  refFrames: z.number().int().optional(),
+  scanType: z.string().optional(),
+  streamIdentifier: z.string().optional(),
+  width: z.number().int().optional(),
+  displayTitle: z.string().optional(),
+  extendedDisplayTitle: z.string().optional(),
+  selected: z.boolean().optional(),
+  channels: z.number().int().optional(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
+  samplingRate: z.number().int().optional(),
+});
 
 /** @internal */
-export type Stream$Outbound = {
+export type GetMetaDataByRatingKeyStream$Outbound = {
   id?: number | undefined;
   streamType?: number | undefined;
   default?: boolean | undefined;
@@ -321,10 +324,10 @@ export type Stream$Outbound = {
 };
 
 /** @internal */
-export const Stream$outboundSchema: z.ZodType<
-  Stream$Outbound,
+export const GetMetaDataByRatingKeyStream$outboundSchema: z.ZodType<
+  GetMetaDataByRatingKeyStream$Outbound,
   z.ZodTypeDef,
-  Stream
+  GetMetaDataByRatingKeyStream
 > = z.object({
   id: z.number().int().optional(),
   streamType: z.number().int().optional(),
@@ -364,13 +367,13 @@ export const Stream$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Stream$ {
-  /** @deprecated use `Stream$inboundSchema` instead. */
-  export const inboundSchema = Stream$inboundSchema;
-  /** @deprecated use `Stream$outboundSchema` instead. */
-  export const outboundSchema = Stream$outboundSchema;
-  /** @deprecated use `Stream$Outbound` instead. */
-  export type Outbound = Stream$Outbound;
+export namespace GetMetaDataByRatingKeyStream$ {
+  /** @deprecated use `GetMetaDataByRatingKeyStream$inboundSchema` instead. */
+  export const inboundSchema = GetMetaDataByRatingKeyStream$inboundSchema;
+  /** @deprecated use `GetMetaDataByRatingKeyStream$outboundSchema` instead. */
+  export const outboundSchema = GetMetaDataByRatingKeyStream$outboundSchema;
+  /** @deprecated use `GetMetaDataByRatingKeyStream$Outbound` instead. */
+  export type Outbound = GetMetaDataByRatingKeyStream$Outbound;
 }
 
 /** @internal */
@@ -389,7 +392,8 @@ export const GetMetaDataByRatingKeyPart$inboundSchema: z.ZodType<
   has64bitOffsets: z.boolean().optional(),
   optimizedForStreaming: z.boolean().optional(),
   videoProfile: z.string().optional(),
-  Stream: z.array(z.lazy(() => Stream$inboundSchema)).optional(),
+  Stream: z.array(z.lazy(() => GetMetaDataByRatingKeyStream$inboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "Stream": "stream",
@@ -408,7 +412,7 @@ export type GetMetaDataByRatingKeyPart$Outbound = {
   has64bitOffsets?: boolean | undefined;
   optimizedForStreaming?: boolean | undefined;
   videoProfile?: string | undefined;
-  Stream?: Array<Stream$Outbound> | undefined;
+  Stream?: Array<GetMetaDataByRatingKeyStream$Outbound> | undefined;
 };
 
 /** @internal */
@@ -427,7 +431,8 @@ export const GetMetaDataByRatingKeyPart$outboundSchema: z.ZodType<
   has64bitOffsets: z.boolean().optional(),
   optimizedForStreaming: z.boolean().optional(),
   videoProfile: z.string().optional(),
-  stream: z.array(z.lazy(() => Stream$outboundSchema)).optional(),
+  stream: z.array(z.lazy(() => GetMetaDataByRatingKeyStream$outboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     stream: "Stream",

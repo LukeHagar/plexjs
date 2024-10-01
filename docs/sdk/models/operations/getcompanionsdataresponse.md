@@ -7,7 +7,7 @@ import { GetCompanionsDataResponse } from "@lukehagar/plexjs/sdk/models/operatio
 
 let value: GetCompanionsDataResponse = {
   contentType: "<value>",
-  statusCode: 648172,
+  statusCode: 308,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,7 +7,7 @@ the name of the task to be started.
 ```typescript
 import { TaskName } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: TaskName = TaskName.DeepMediaAnalysis;
+let value: TaskName = TaskName.BackupDatabase;
 ```
 
 ## Values

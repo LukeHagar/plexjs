@@ -7,7 +7,7 @@ import { GetResizedPhotoResponse } from "@lukehagar/plexjs/sdk/models/operations
 
 let value: GetResizedPhotoResponse = {
   contentType: "<value>",
-  statusCode: 437587,
+  statusCode: 508,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

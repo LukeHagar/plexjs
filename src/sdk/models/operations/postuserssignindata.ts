@@ -4,20 +4,25 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const PostUsersSignInDataServerList = [
-  "https://plex.tv/api/v2/",
+  "https://plex.tv/api/v2",
 ] as const;
 
 export type PostUsersSignInDataGlobals = {
   /**
-   * The unique identifier for the client application
-   *
-   * @remarks
-   * This is used to track the client application and its usage
-   * (UUID, serial number, or other number unique per device)
+   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
    */
-  xPlexClientIdentifier?: string | undefined;
+  clientID?: string | undefined;
+  clientName?: string | undefined;
+  deviceName?: string | undefined;
+  clientVersion?: string | undefined;
+  clientPlatform?: string | undefined;
 };
 
 /**
@@ -32,13 +37,13 @@ export type PostUsersSignInDataRequestBody = {
 
 export type PostUsersSignInDataRequest = {
   /**
-   * The unique identifier for the client application
-   *
-   * @remarks
-   * This is used to track the client application and its usage
-   * (UUID, serial number, or other number unique per device)
+   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
    */
-  xPlexClientIdentifier?: string | undefined;
+  clientID?: string | undefined;
+  clientName?: string | undefined;
+  deviceName?: string | undefined;
+  clientVersion?: string | undefined;
+  clientPlatform?: string | undefined;
   /**
    * Login credentials
    */
@@ -46,7 +51,7 @@ export type PostUsersSignInDataRequest = {
 };
 
 /**
- * Your current mailing list status
+ * Your current mailing list status (active or unsubscribed)
  */
 export enum PostUsersSignInDataMailingListStatus {
   Active = "active",
@@ -57,34 +62,40 @@ export enum PostUsersSignInDataMailingListStatus {
  * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
  */
 export enum PostUsersSignInDataAutoSelectSubtitle {
-  Zero = "0",
-  One = "1",
+  Disable = 0,
+  Enable = 1,
 }
 
 /**
- * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
+ * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only show non-SDH subtitles)
  */
 export enum PostUsersSignInDataDefaultSubtitleAccessibility {
-  Zero = "0",
-  One = "1",
+  Disable = 0,
+  Enable = 1,
 }
 
 /**
  * The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
  */
 export enum PostUsersSignInDataDefaultSubtitleForced {
-  Zero = "0",
-  One = "1",
+  Disable = 0,
+  Enable = 1,
 }
 
+/**
+ * Whether or not media watched indicators are enabled (little orange dot on media)
+ */
 export enum PostUsersSignInDataWatchedIndicator {
-  Zero = "0",
-  One = "1",
+  Disable = 0,
+  Enable = 1,
 }
 
+/**
+ * Whether or not the account has media reviews visibility enabled
+ */
 export enum PostUsersSignInDataMediaReviewsVisibility {
-  Zero = 0,
-  One = 1,
+  Disable = 0,
+  Enable = 1,
 }
 
 export type PostUsersSignInDataUserProfile = {
@@ -100,19 +111,10 @@ export type PostUsersSignInDataUserProfile = {
    * The preferred subtitle language for the account
    */
   defaultSubtitleLanguage: string | null;
-  /**
-   * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
-   */
   autoSelectSubtitle?: PostUsersSignInDataAutoSelectSubtitle | undefined;
-  /**
-   * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
-   */
   defaultSubtitleAccessibility?:
     | PostUsersSignInDataDefaultSubtitleAccessibility
     | undefined;
-  /**
-   * The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
-   */
   defaultSubtitleForced?: PostUsersSignInDataDefaultSubtitleForced | undefined;
   watchedIndicator?: PostUsersSignInDataWatchedIndicator | undefined;
   mediaReviewsVisibility?:
@@ -141,29 +143,44 @@ export enum PostUsersSignInDataFeatures {
   TREBLEShowFeatures = "TREBLE-show-features",
   AdCountdownTimer = "ad-countdown-timer",
   AdaptiveBitrate = "adaptive_bitrate",
+  AlbumTypes = "album-types",
+  AllowDvr = "allow_dvr",
   AmazonLoopDebug = "amazon-loop-debug",
   AvodAdAnalysis = "avod-ad-analysis",
   AvodNewMedia = "avod-new-media",
   BlacklistGetSignin = "blacklist_get_signin",
+  BoostVoices = "boost-voices",
+  CameraUpload = "camera_upload",
   ClientRadioStations = "client-radio-stations",
   CloudflareTurnstileRequired = "cloudflare-turnstile-required",
+  Cloudsync = "cloudsync",
   Collections = "collections",
   CommentsAndRepliesPushNotifications =
     "comments_and_replies_push_notifications",
   CommunityAccessPlexTv = "community_access_plex_tv",
   CompanionsSonos = "companions_sonos",
+  ContentFilter = "content_filter",
   CustomHomeRemoval = "custom-home-removal",
   DisableHomeUserFriendships = "disable_home_user_friendships",
   DisableSharingFriendships = "disable_sharing_friendships",
+  DownloadsGating = "downloads-gating",
   DrmSupport = "drm_support",
+  Dvr = "dvr",
+  DvrBlockUnsupportedCountries = "dvr-block-unsupported-countries",
+  EpgRecentChannels = "epg-recent-channels",
   ExcludeRestrictions = "exclude restrictions",
   FederatedAuth = "federated-auth",
   FriendRequestPushNotifications = "friend_request_push_notifications",
+  GrandfatherSync = "grandfather-sync",
   GuidedUpgrade = "guided-upgrade",
+  HardwareTranscoding = "hardware_transcoding",
   Home = "home",
+  Hwtranscode = "hwtranscode",
+  ImaggaV2 = "imagga-v2",
   IncreasePasswordComplexity = "increase-password-complexity",
   Ios14PrivacyBanner = "ios14-privacy-banner",
   IterableNotificationTokens = "iterable-notification-tokens",
+  ItemClusters = "item_clusters",
   KeepPaymentMethod = "keep-payment-method",
   KevinBacon = "kevin-bacon",
   KoreaConsent = "korea-consent",
@@ -172,29 +189,53 @@ export enum PostUsersSignInDataFeatures {
   LightningDvrPivot = "lightning-dvr-pivot",
   LiveTvSupportIncompleteSegments = "live-tv-support-incomplete-segments",
   Livetv = "livetv",
+  Lyrics = "lyrics",
   MetadataSearch = "metadata_search",
+  MusicAnalysis = "music-analysis",
+  MusicVideos = "music_videos",
   NewPlexPassPrices = "new_plex_pass_prices",
   NewsProviderSunsetModal = "news-provider-sunset-modal",
+  Nominatim = "nominatim",
+  Pass = "pass",
   PhotosFavorites = "photos-favorites",
   PhotosMetadataEdition = "photos-metadata-edition",
+  PhotosV6Edit = "photosV6-edit",
+  PhotosV6TvAlbums = "photosV6-tv-albums",
   PmsHealth = "pms_health",
+  PremiumDashboard = "premium-dashboard",
+  PremiumMusicMetadata = "premium_music_metadata",
   Radio = "radio",
   RateLimitClientToken = "rate-limit-client-token",
   ScrobblingServicePlexTv = "scrobbling-service-plex-tv",
+  SessionBandwidthRestrictions = "session_bandwidth_restrictions",
+  SessionKick = "session_kick",
   SharedServerNotification = "shared_server_notification",
   SharedSourceNotification = "shared_source_notification",
+  SigninNotification = "signin_notification",
   SigninWithApple = "signin_with_apple",
+  SilenceRemoval = "silence-removal",
+  SleepTimer = "sleep-timer",
   SpringServeAdProvider = "spring_serve_ad_provider",
+  Sync = "sync",
+  SweetFades = "sweet-fades",
   TranscoderCache = "transcoder_cache",
+  Trailers = "trailers",
   TunerSharing = "tuner-sharing",
   TwoFactorAuthentication = "two-factor-authentication",
   Unsupportedtuners = "unsupportedtuners",
   Upgrade3ds2 = "upgrade-3ds2",
+  Visualizers = "visualizers",
   VodSchema = "vod-schema",
   VodCloudflare = "vod_cloudflare",
+  VolumeLeveling = "volume-leveling",
   WatchTogetherInvite = "watch-together-invite",
+  WatchlistRss = "watchlist-rss",
   WebServerDashboard = "web_server_dashboard",
+  Webhooks = "webhooks",
 }
+export type PostUsersSignInDataFeaturesOpen = OpenEnum<
+  typeof PostUsersSignInDataFeatures
+>;
 
 /**
  * String representation of subscriptionActive
@@ -211,7 +252,7 @@ export type PostUsersSignInDataSubscription = {
   /**
    * List of features allowed on your Plex Pass subscription
    */
-  features?: Array<PostUsersSignInDataFeatures> | undefined;
+  features?: Array<PostUsersSignInDataFeaturesOpen> | undefined;
   /**
    * If the account's Plex Pass subscription is active
    */
@@ -242,29 +283,44 @@ export enum PostUsersSignInDataAuthenticationFeatures {
   TREBLEShowFeatures = "TREBLE-show-features",
   AdCountdownTimer = "ad-countdown-timer",
   AdaptiveBitrate = "adaptive_bitrate",
+  AlbumTypes = "album-types",
+  AllowDvr = "allow_dvr",
   AmazonLoopDebug = "amazon-loop-debug",
   AvodAdAnalysis = "avod-ad-analysis",
   AvodNewMedia = "avod-new-media",
   BlacklistGetSignin = "blacklist_get_signin",
+  BoostVoices = "boost-voices",
+  CameraUpload = "camera_upload",
   ClientRadioStations = "client-radio-stations",
   CloudflareTurnstileRequired = "cloudflare-turnstile-required",
+  Cloudsync = "cloudsync",
   Collections = "collections",
   CommentsAndRepliesPushNotifications =
     "comments_and_replies_push_notifications",
   CommunityAccessPlexTv = "community_access_plex_tv",
   CompanionsSonos = "companions_sonos",
+  ContentFilter = "content_filter",
   CustomHomeRemoval = "custom-home-removal",
   DisableHomeUserFriendships = "disable_home_user_friendships",
   DisableSharingFriendships = "disable_sharing_friendships",
+  DownloadsGating = "downloads-gating",
   DrmSupport = "drm_support",
+  Dvr = "dvr",
+  DvrBlockUnsupportedCountries = "dvr-block-unsupported-countries",
+  EpgRecentChannels = "epg-recent-channels",
   ExcludeRestrictions = "exclude restrictions",
   FederatedAuth = "federated-auth",
   FriendRequestPushNotifications = "friend_request_push_notifications",
+  GrandfatherSync = "grandfather-sync",
   GuidedUpgrade = "guided-upgrade",
+  HardwareTranscoding = "hardware_transcoding",
   Home = "home",
+  Hwtranscode = "hwtranscode",
+  ImaggaV2 = "imagga-v2",
   IncreasePasswordComplexity = "increase-password-complexity",
   Ios14PrivacyBanner = "ios14-privacy-banner",
   IterableNotificationTokens = "iterable-notification-tokens",
+  ItemClusters = "item_clusters",
   KeepPaymentMethod = "keep-payment-method",
   KevinBacon = "kevin-bacon",
   KoreaConsent = "korea-consent",
@@ -273,29 +329,53 @@ export enum PostUsersSignInDataAuthenticationFeatures {
   LightningDvrPivot = "lightning-dvr-pivot",
   LiveTvSupportIncompleteSegments = "live-tv-support-incomplete-segments",
   Livetv = "livetv",
+  Lyrics = "lyrics",
   MetadataSearch = "metadata_search",
+  MusicAnalysis = "music-analysis",
+  MusicVideos = "music_videos",
   NewPlexPassPrices = "new_plex_pass_prices",
   NewsProviderSunsetModal = "news-provider-sunset-modal",
+  Nominatim = "nominatim",
+  Pass = "pass",
   PhotosFavorites = "photos-favorites",
   PhotosMetadataEdition = "photos-metadata-edition",
+  PhotosV6Edit = "photosV6-edit",
+  PhotosV6TvAlbums = "photosV6-tv-albums",
   PmsHealth = "pms_health",
+  PremiumDashboard = "premium-dashboard",
+  PremiumMusicMetadata = "premium_music_metadata",
   Radio = "radio",
   RateLimitClientToken = "rate-limit-client-token",
   ScrobblingServicePlexTv = "scrobbling-service-plex-tv",
+  SessionBandwidthRestrictions = "session_bandwidth_restrictions",
+  SessionKick = "session_kick",
   SharedServerNotification = "shared_server_notification",
   SharedSourceNotification = "shared_source_notification",
+  SigninNotification = "signin_notification",
   SigninWithApple = "signin_with_apple",
+  SilenceRemoval = "silence-removal",
+  SleepTimer = "sleep-timer",
   SpringServeAdProvider = "spring_serve_ad_provider",
+  Sync = "sync",
+  SweetFades = "sweet-fades",
   TranscoderCache = "transcoder_cache",
+  Trailers = "trailers",
   TunerSharing = "tuner-sharing",
   TwoFactorAuthentication = "two-factor-authentication",
   Unsupportedtuners = "unsupportedtuners",
   Upgrade3ds2 = "upgrade-3ds2",
+  Visualizers = "visualizers",
   VodSchema = "vod-schema",
   VodCloudflare = "vod_cloudflare",
+  VolumeLeveling = "volume-leveling",
   WatchTogetherInvite = "watch-together-invite",
+  WatchlistRss = "watchlist-rss",
   WebServerDashboard = "web_server_dashboard",
+  Webhooks = "webhooks",
 }
+export type PostUsersSignInDataAuthenticationFeaturesOpen = OpenEnum<
+  typeof PostUsersSignInDataAuthenticationFeatures
+>;
 
 /**
  * String representation of subscriptionActive
@@ -309,7 +389,7 @@ export type PostUsersSignInDataAuthenticationSubscription = {
   /**
    * List of features allowed on your Plex Pass subscription
    */
-  features?: Array<PostUsersSignInDataAuthenticationFeatures> | undefined;
+  features?: Array<PostUsersSignInDataAuthenticationFeaturesOpen> | undefined;
   /**
    * If the account's Plex Pass subscription is active
    */
@@ -444,7 +524,7 @@ export type PostUsersSignInDataUserPlexAccount = {
    */
   id: number;
   /**
-   * Unix epoch datetime
+   * Unix epoch datetime in seconds
    */
   joinedAt: number;
   /**
@@ -456,7 +536,7 @@ export type PostUsersSignInDataUserPlexAccount = {
    */
   mailingListActive?: boolean | undefined;
   /**
-   * Your current mailing list status
+   * Your current mailing list status (active or unsubscribed)
    */
   mailingListStatus: PostUsersSignInDataMailingListStatus;
   /**
@@ -475,7 +555,7 @@ export type PostUsersSignInDataUserPlexAccount = {
    */
   protected?: boolean | undefined;
   /**
-   * Unix epoch datetime
+   * Unix epoch datetime in seconds
    */
   rememberExpiresAt: number;
   /**
@@ -520,6 +600,7 @@ export type PostUsersSignInDataUserPlexAccount = {
    * The account UUID
    */
   uuid: string;
+  attributionPartner: string | null;
   pastSubscriptions: Array<PastSubscription>;
   trials: Array<Trials>;
 };
@@ -549,16 +630,28 @@ export const PostUsersSignInDataGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "X-Plex-Client-Identifier": z.string().optional(),
+  ClientID: z.string().optional(),
+  ClientName: z.string().optional(),
+  DeviceName: z.string().optional(),
+  ClientVersion: z.string().optional(),
+  ClientPlatform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "ClientID": "clientID",
+    "ClientName": "clientName",
+    "DeviceName": "deviceName",
+    "ClientVersion": "clientVersion",
+    "ClientPlatform": "clientPlatform",
   });
 });
 
 /** @internal */
 export type PostUsersSignInDataGlobals$Outbound = {
-  "X-Plex-Client-Identifier"?: string | undefined;
+  ClientID?: string | undefined;
+  ClientName?: string | undefined;
+  DeviceName?: string | undefined;
+  ClientVersion?: string | undefined;
+  ClientPlatform?: string | undefined;
 };
 
 /** @internal */
@@ -567,10 +660,18 @@ export const PostUsersSignInDataGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PostUsersSignInDataGlobals
 > = z.object({
-  xPlexClientIdentifier: z.string().optional(),
+  clientID: z.string().optional(),
+  clientName: z.string().optional(),
+  deviceName: z.string().optional(),
+  clientVersion: z.string().optional(),
+  clientPlatform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    clientID: "ClientID",
+    clientName: "ClientName",
+    deviceName: "DeviceName",
+    clientVersion: "ClientVersion",
+    clientPlatform: "ClientPlatform",
   });
 });
 
@@ -638,19 +739,31 @@ export const PostUsersSignInDataRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "X-Plex-Client-Identifier": z.string().optional(),
+  ClientID: z.string().optional(),
+  ClientName: z.string().optional(),
+  DeviceName: z.string().optional(),
+  ClientVersion: z.string().optional(),
+  ClientPlatform: z.string().optional(),
   RequestBody: z.lazy(() => PostUsersSignInDataRequestBody$inboundSchema)
     .optional(),
 }).transform((v) => {
   return remap$(v, {
-    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "ClientID": "clientID",
+    "ClientName": "clientName",
+    "DeviceName": "deviceName",
+    "ClientVersion": "clientVersion",
+    "ClientPlatform": "clientPlatform",
     "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type PostUsersSignInDataRequest$Outbound = {
-  "X-Plex-Client-Identifier"?: string | undefined;
+  ClientID?: string | undefined;
+  ClientName?: string | undefined;
+  DeviceName?: string | undefined;
+  ClientVersion?: string | undefined;
+  ClientPlatform?: string | undefined;
   RequestBody?: PostUsersSignInDataRequestBody$Outbound | undefined;
 };
 
@@ -660,12 +773,20 @@ export const PostUsersSignInDataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PostUsersSignInDataRequest
 > = z.object({
-  xPlexClientIdentifier: z.string().optional(),
+  clientID: z.string().optional(),
+  clientName: z.string().optional(),
+  deviceName: z.string().optional(),
+  clientVersion: z.string().optional(),
+  clientPlatform: z.string().optional(),
   requestBody: z.lazy(() => PostUsersSignInDataRequestBody$outboundSchema)
     .optional(),
 }).transform((v) => {
   return remap$(v, {
-    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    clientID: "ClientID",
+    clientName: "ClientName",
+    deviceName: "DeviceName",
+    clientVersion: "ClientVersion",
+    clientPlatform: "ClientPlatform",
     requestBody: "RequestBody",
   });
 });
@@ -832,16 +953,13 @@ export const PostUsersSignInDataUserProfile$inboundSchema: z.ZodType<
   autoSelectAudio: z.boolean().default(true),
   defaultAudioLanguage: z.nullable(z.string()),
   defaultSubtitleLanguage: z.nullable(z.string()),
-  autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle$inboundSchema
-    .optional(),
+  autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle$inboundSchema,
   defaultSubtitleAccessibility:
-    PostUsersSignInDataDefaultSubtitleAccessibility$inboundSchema.optional(),
-  defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced$inboundSchema
-    .optional(),
-  watchedIndicator: PostUsersSignInDataWatchedIndicator$inboundSchema
-    .optional(),
+    PostUsersSignInDataDefaultSubtitleAccessibility$inboundSchema,
+  defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced$inboundSchema,
+  watchedIndicator: PostUsersSignInDataWatchedIndicator$inboundSchema,
   mediaReviewsVisibility:
-    PostUsersSignInDataMediaReviewsVisibility$inboundSchema.optional(),
+    PostUsersSignInDataMediaReviewsVisibility$inboundSchema,
 });
 
 /** @internal */
@@ -849,11 +967,11 @@ export type PostUsersSignInDataUserProfile$Outbound = {
   autoSelectAudio: boolean;
   defaultAudioLanguage: string | null;
   defaultSubtitleLanguage: string | null;
-  autoSelectSubtitle?: string | undefined;
-  defaultSubtitleAccessibility?: string | undefined;
-  defaultSubtitleForced?: string | undefined;
-  watchedIndicator?: string | undefined;
-  mediaReviewsVisibility?: number | undefined;
+  autoSelectSubtitle: number;
+  defaultSubtitleAccessibility: number;
+  defaultSubtitleForced: number;
+  watchedIndicator: number;
+  mediaReviewsVisibility: number;
 };
 
 /** @internal */
@@ -866,15 +984,20 @@ export const PostUsersSignInDataUserProfile$outboundSchema: z.ZodType<
   defaultAudioLanguage: z.nullable(z.string()),
   defaultSubtitleLanguage: z.nullable(z.string()),
   autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle$outboundSchema
-    .optional(),
+    .default(PostUsersSignInDataAutoSelectSubtitle.Disable),
   defaultSubtitleAccessibility:
-    PostUsersSignInDataDefaultSubtitleAccessibility$outboundSchema.optional(),
+    PostUsersSignInDataDefaultSubtitleAccessibility$outboundSchema.default(
+      PostUsersSignInDataDefaultSubtitleAccessibility.Disable,
+    ),
   defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced$outboundSchema
-    .optional(),
-  watchedIndicator: PostUsersSignInDataWatchedIndicator$outboundSchema
-    .optional(),
+    .default(PostUsersSignInDataDefaultSubtitleForced.Disable),
+  watchedIndicator: PostUsersSignInDataWatchedIndicator$outboundSchema.default(
+    PostUsersSignInDataWatchedIndicator.Disable,
+  ),
   mediaReviewsVisibility:
-    PostUsersSignInDataMediaReviewsVisibility$outboundSchema.optional(),
+    PostUsersSignInDataMediaReviewsVisibility$outboundSchema.default(
+      PostUsersSignInDataMediaReviewsVisibility.Disable,
+    ),
 });
 
 /**
@@ -960,14 +1083,25 @@ export namespace PostUsersSignInDataServices$ {
 }
 
 /** @internal */
-export const PostUsersSignInDataFeatures$inboundSchema: z.ZodNativeEnum<
-  typeof PostUsersSignInDataFeatures
-> = z.nativeEnum(PostUsersSignInDataFeatures);
+export const PostUsersSignInDataFeatures$inboundSchema: z.ZodType<
+  PostUsersSignInDataFeaturesOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(PostUsersSignInDataFeatures),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const PostUsersSignInDataFeatures$outboundSchema: z.ZodNativeEnum<
-  typeof PostUsersSignInDataFeatures
-> = PostUsersSignInDataFeatures$inboundSchema;
+export const PostUsersSignInDataFeatures$outboundSchema: z.ZodType<
+  PostUsersSignInDataFeaturesOpen,
+  z.ZodTypeDef,
+  PostUsersSignInDataFeaturesOpen
+> = z.union([
+  z.nativeEnum(PostUsersSignInDataFeatures),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -1055,14 +1189,26 @@ export namespace PostUsersSignInDataSubscription$ {
 }
 
 /** @internal */
-export const PostUsersSignInDataAuthenticationFeatures$inboundSchema:
-  z.ZodNativeEnum<typeof PostUsersSignInDataAuthenticationFeatures> = z
-    .nativeEnum(PostUsersSignInDataAuthenticationFeatures);
+export const PostUsersSignInDataAuthenticationFeatures$inboundSchema: z.ZodType<
+  PostUsersSignInDataAuthenticationFeaturesOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(PostUsersSignInDataAuthenticationFeatures),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
 export const PostUsersSignInDataAuthenticationFeatures$outboundSchema:
-  z.ZodNativeEnum<typeof PostUsersSignInDataAuthenticationFeatures> =
-    PostUsersSignInDataAuthenticationFeatures$inboundSchema;
+  z.ZodType<
+    PostUsersSignInDataAuthenticationFeaturesOpen,
+    z.ZodTypeDef,
+    PostUsersSignInDataAuthenticationFeaturesOpen
+  > = z.union([
+    z.nativeEnum(PostUsersSignInDataAuthenticationFeatures),
+    z.string().and(z.custom<Unrecognized<string>>()),
+  ]);
 
 /**
  * @internal
@@ -1403,6 +1549,7 @@ export const PostUsersSignInDataUserPlexAccount$inboundSchema: z.ZodType<
   twoFactorEnabled: z.boolean().default(false),
   username: z.string(),
   uuid: z.string(),
+  attributionPartner: z.nullable(z.string()),
   pastSubscriptions: z.array(z.lazy(() => PastSubscription$inboundSchema)),
   trials: z.array(z.lazy(() => Trials$inboundSchema)),
 });
@@ -1449,6 +1596,7 @@ export type PostUsersSignInDataUserPlexAccount$Outbound = {
   twoFactorEnabled: boolean;
   username: string;
   uuid: string;
+  attributionPartner: string | null;
   pastSubscriptions: Array<PastSubscription$Outbound>;
   trials: Array<Trials$Outbound>;
 };
@@ -1501,6 +1649,7 @@ export const PostUsersSignInDataUserPlexAccount$outboundSchema: z.ZodType<
   twoFactorEnabled: z.boolean().default(false),
   username: z.string(),
   uuid: z.string(),
+  attributionPartner: z.nullable(z.string()),
   pastSubscriptions: z.array(z.lazy(() => PastSubscription$outboundSchema)),
   trials: z.array(z.lazy(() => Trials$outboundSchema)),
 });

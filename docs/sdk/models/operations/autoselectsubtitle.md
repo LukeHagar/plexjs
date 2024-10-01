@@ -7,12 +7,12 @@ The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign aud
 ```typescript
 import { AutoSelectSubtitle } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: AutoSelectSubtitle = AutoSelectSubtitle.One;
+let value: AutoSelectSubtitle = AutoSelectSubtitle.Enable;
 ```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+| Name      | Value     |
+| --------- | --------- |
+| `Disable` | 0         |
+| `Enable`  | 1         |

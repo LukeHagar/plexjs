@@ -3,9 +3,9 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -30,7 +30,7 @@ import { Result } from "../sdk/types/fp.js";
  * Smart playlist details contain the `content` attribute. This is the content URI for the generator. This can then be parsed by a client to provide smart playlist editing.
  */
 export async function playlistsGetPlaylist(
-  client$: PlexAPICore,
+  client: PlexAPICore,
   playlistID: number,
   options?: RequestOptions,
 ): Promise<
@@ -47,61 +47,61 @@ export async function playlistsGetPlaylist(
     | ConnectionError
   >
 > {
-  const input$: operations.GetPlaylistRequest = {
+  const input: operations.GetPlaylistRequest = {
     playlistID: playlistID,
   };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => operations.GetPlaylistRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.GetPlaylistRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const pathParams$ = {
-    playlistID: encodeSimple$("playlistID", payload$.playlistID, {
+  const pathParams = {
+    playlistID: encodeSimple("playlistID", payload.playlistID, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/playlists/{playlistID}")(pathParams$);
+  const path = pathToFunc("/playlists/{playlistID}")(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const accessToken$ = await extractSecurity(client$.options$.accessToken);
-  const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
+  const secConfig = await extractSecurity(client._options.accessToken);
+  const securityInput = secConfig == null ? {} : { accessToken: secConfig };
   const context = {
     operationID: "getPlaylist",
     oAuth2Scopes: [],
-    securitySource: client$.options$.accessToken,
+    securitySource: client._options.accessToken,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -109,7 +109,7 @@ export async function playlistsGetPlaylist(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -117,7 +117,7 @@ export async function playlistsGetPlaylist(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GetPlaylistResponse,
     | errors.GetPlaylistBadRequest
     | errors.GetPlaylistUnauthorized
@@ -129,16 +129,16 @@ export async function playlistsGetPlaylist(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GetPlaylistResponse$inboundSchema, {
+    M.json(200, operations.GetPlaylistResponse$inboundSchema, {
       key: "object",
     }),
-    m$.jsonErr(400, errors.GetPlaylistBadRequest$inboundSchema),
-    m$.jsonErr(401, errors.GetPlaylistUnauthorized$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr(400, errors.GetPlaylistBadRequest$inboundSchema),
+    M.jsonErr(401, errors.GetPlaylistUnauthorized$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

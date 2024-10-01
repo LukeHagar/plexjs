@@ -7,12 +7,12 @@ Include Https entries in the results
 ```typescript
 import { IncludeHttps } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: IncludeHttps = IncludeHttps.One;
+let value: IncludeHttps = IncludeHttps.Enable;
 ```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+| Name      | Value     |
+| --------- | --------- |
+| `Disable` | 0         |
+| `Enable`  | 1         |

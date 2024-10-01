@@ -25,14 +25,18 @@ import { Level } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.log.logLine(Level.Three, "Test log message", "Postman");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -51,7 +55,11 @@ import { Level } from "@lukehagar/plexjs/sdk/models/operations";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -64,7 +72,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -87,12 +95,11 @@ run();
 
 ### Errors
 
-| Error Object               | Status Code                | Content Type               |
+| Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.LogLineBadRequest   | 400                        | application/json           |
 | errors.LogLineUnauthorized | 401                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
-
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## logMultiLine
 
@@ -126,16 +133,20 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.log.logMultiLine("level=4&message=Test%20message%201&source=postman\n" +
   "level=3&message=Test%20message%202&source=postman\n" +
   "level=1&message=Test%20message%203&source=postman");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -153,7 +164,11 @@ import { logLogMultiLine } from "@lukehagar/plexjs/funcs/logLogMultiLine.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -168,7 +183,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -189,12 +204,11 @@ run();
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
+| Error Type                      | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | errors.LogMultiLineBadRequest   | 400                             | application/json                |
 | errors.LogMultiLineUnauthorized | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
-
+| errors.SDKError                 | 4XX, 5XX                        | \*/\*                           |
 
 ## enablePaperTrail
 
@@ -208,14 +222,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.log.enablePaperTrail();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -233,7 +251,11 @@ import { logEnablePaperTrail } from "@lukehagar/plexjs/funcs/logEnablePaperTrail
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -246,7 +268,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -266,8 +288,8 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | errors.EnablePaperTrailBadRequest   | 400                                 | application/json                    |
 | errors.EnablePaperTrailUnauthorized | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
+| errors.SDKError                     | 4XX, 5XX                            | \*/\*                               |

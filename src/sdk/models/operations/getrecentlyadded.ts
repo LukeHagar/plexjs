@@ -4,8 +4,65 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { RFCDate } from "../../types/rfcdate.js";
+
+/**
+ * The type of media to retrieve.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export enum Type {
+  Movie = 1,
+  TvShow = 2,
+  Season = 3,
+  Episode = 4,
+}
+
+/**
+ * Adds the Meta object to the response
+ *
+ * @remarks
+ */
+export enum IncludeMeta {
+  Disable = 0,
+  Enable = 1,
+}
 
 export type GetRecentlyAddedRequest = {
+  /**
+   * The content directory ID.
+   */
+  contentDirectoryID: number;
+  /**
+   * Comma-separated list of pinned content directory IDs.
+   */
+  pinnedContentDirectoryID?: string | undefined;
+  /**
+   * The library section ID for filtering content.
+   */
+  sectionID?: number | undefined;
+  /**
+   * The type of media to retrieve.
+   *
+   * @remarks
+   * 1 = movie
+   * 2 = show
+   * 3 = season
+   * 4 = episode
+   * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+   */
+  type: Type;
+  /**
+   * Adds the Meta object to the response
+   *
+   * @remarks
+   */
+  includeMeta?: IncludeMeta | undefined;
   /**
    * The index of the first item to return. If not specified, the first item will be returned.
    *
@@ -24,39 +81,327 @@ export type GetRecentlyAddedRequest = {
   xPlexContainerSize?: number | undefined;
 };
 
+export type GetRecentlyAddedFilter = {
+  filter: string;
+  filterType: string;
+  key: string;
+  title: string;
+  type: string;
+};
+
+/**
+ * The direction of the sort. Can be either `asc` or `desc`.
+ *
+ * @remarks
+ */
+export enum GetRecentlyAddedActiveDirection {
+  Ascending = "asc",
+  Descending = "desc",
+}
+
+/**
+ * The direction of the sort. Can be either `asc` or `desc`.
+ *
+ * @remarks
+ */
+export enum GetRecentlyAddedDefaultDirection {
+  Ascending = "asc",
+  Descending = "desc",
+}
+
+export type GetRecentlyAddedSort = {
+  default?: string | undefined;
+  active?: boolean | undefined;
+  /**
+   * The direction of the sort. Can be either `asc` or `desc`.
+   *
+   * @remarks
+   */
+  activeDirection?: GetRecentlyAddedActiveDirection | undefined;
+  /**
+   * The direction of the sort. Can be either `asc` or `desc`.
+   *
+   * @remarks
+   */
+  defaultDirection?: GetRecentlyAddedDefaultDirection | undefined;
+  descKey?: string | undefined;
+  firstCharacterKey?: string | undefined;
+  key: string;
+  title: string;
+};
+
+export type GetRecentlyAddedField = {
+  key: string;
+  title: string;
+  type: string;
+  subType?: string | undefined;
+};
+
+export type GetRecentlyAddedType = {
+  key: string;
+  type: string;
+  title: string;
+  active: boolean;
+  filter?: Array<GetRecentlyAddedFilter> | undefined;
+  sort?: Array<GetRecentlyAddedSort> | undefined;
+  field?: Array<GetRecentlyAddedField> | undefined;
+};
+
+export type GetRecentlyAddedOperator = {
+  key: string;
+  title: string;
+};
+
+export type GetRecentlyAddedFieldType = {
+  type: string;
+  operator: Array<GetRecentlyAddedOperator>;
+};
+
+/**
+ * The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
+ *
+ * @remarks
+ */
+export type Meta = {
+  type?: Array<GetRecentlyAddedType> | undefined;
+  fieldType?: Array<GetRecentlyAddedFieldType> | undefined;
+};
+
+/**
+ * The type of media content
+ *
+ * @remarks
+ */
+export enum GetRecentlyAddedHubsType {
+  Movie = "movie",
+  TvShow = "show",
+  Season = "season",
+  Episode = "episode",
+}
+
+export enum FlattenSeasons {
+  False = "0",
+  True = "1",
+}
+
+/**
+ * Setting that indicates the episode ordering for the show
+ *
+ * @remarks
+ * None = Library default,
+ * tmdbAiring = The Movie Database (Aired),
+ * aired = TheTVDB (Aired),
+ * dvd = TheTVDB (DVD),
+ * absolute = TheTVDB (Absolute)).
+ */
+export enum ShowOrdering {
+  None = "None",
+  TmdbAiring = "tmdbAiring",
+  Aired = "aired",
+  Dvd = "dvd",
+  Absolute = "absolute",
+}
+
+export enum OptimizedForStreaming {
+  Disable = 0,
+  Enable = 1,
+}
+
+export enum HasThumbnail {
+  False = "0",
+  True = "1",
+}
+
+export type Stream = {
+  id: number;
+  /**
+   * Type of stream (1 = video, 2 = audio, 3 = subtitle)
+   */
+  streamType: number;
+  /**
+   * Indicates if this is the default stream
+   */
+  default?: boolean | undefined;
+  /**
+   * Indicates if the stream is selected
+   */
+  selected?: boolean | undefined;
+  /**
+   * Codec used by the stream
+   */
+  codec: string;
+  /**
+   * The index of the stream
+   */
+  index: number;
+  /**
+   * The bitrate of the stream in kbps
+   */
+  bitrate?: number | undefined;
+  /**
+   * The color primaries of the video stream
+   */
+  colorPrimaries?: string | undefined;
+  /**
+   * The color range of the video stream
+   */
+  colorRange?: string | undefined;
+  /**
+   * The color space of the video stream
+   */
+  colorSpace?: string | undefined;
+  /**
+   * The transfer characteristics (TRC) of the video stream
+   */
+  colorTrc?: string | undefined;
+  /**
+   * The bit depth of the video stream
+   */
+  bitDepth?: number | undefined;
+  /**
+   * The chroma location of the video stream
+   */
+  chromaLocation?: string | undefined;
+  /**
+   * The identifier of the video stream
+   */
+  streamIdentifier?: string | undefined;
+  /**
+   * The chroma subsampling format
+   */
+  chromaSubsampling?: string | undefined;
+  /**
+   * The coded height of the video stream
+   */
+  codedHeight?: number | undefined;
+  /**
+   * The coded width of the video stream
+   */
+  codedWidth?: number | undefined;
+  /**
+   * The frame rate of the video stream
+   */
+  frameRate?: number | undefined;
+  /**
+   * Indicates if the stream has a scaling matrix
+   */
+  hasScalingMatrix?: boolean | undefined;
+  hearingImpaired?: boolean | undefined;
+  closedCaptions?: boolean | undefined;
+  embeddedInVideo?: string | undefined;
+  /**
+   * The height of the video stream
+   */
+  height?: number | undefined;
+  /**
+   * The level of the video codec
+   */
+  level?: number | undefined;
+  /**
+   * The profile of the video codec
+   */
+  profile?: string | undefined;
+  /**
+   * Number of reference frames
+   */
+  refFrames?: number | undefined;
+  /**
+   * The scan type (progressive or interlaced)
+   */
+  scanType?: string | undefined;
+  /**
+   * The width of the video stream
+   */
+  width?: number | undefined;
+  /**
+   * Display title of the stream
+   */
+  displayTitle?: string | undefined;
+  /**
+   * Extended display title of the stream
+   */
+  extendedDisplayTitle?: string | undefined;
+  /**
+   * Number of audio channels (for audio streams)
+   */
+  channels?: number | undefined;
+  /**
+   * The language of the stream (for audio/subtitle streams)
+   */
+  language?: string | undefined;
+  /**
+   * Language tag of the stream
+   */
+  languageTag?: string | undefined;
+  /**
+   * Language code of the stream
+   */
+  languageCode?: string | undefined;
+  /**
+   * The audio channel layout
+   */
+  audioChannelLayout?: string | undefined;
+  /**
+   * Sampling rate of the audio stream in Hz
+   */
+  samplingRate?: number | undefined;
+  /**
+   * Title of the subtitle track (for subtitle streams)
+   */
+  title?: string | undefined;
+  /**
+   * Indicates if the subtitle stream can auto-sync
+   */
+  canAutoSync?: boolean | undefined;
+};
+
 export type Part = {
-  id?: number | undefined;
-  key?: string | undefined;
-  duration?: number | undefined;
-  file?: string | undefined;
-  size?: number | undefined;
-  container?: string | undefined;
+  id: number;
+  key: string;
+  duration: number;
+  file: string;
+  size: number;
+  /**
+   * The container format of the media file.
+   *
+   * @remarks
+   */
+  container: string;
+  audioProfile?: string | undefined;
   has64bitOffsets?: boolean | undefined;
-  hasThumbnail?: number | undefined;
   optimizedForStreaming?: boolean | undefined;
-  videoProfile?: string | undefined;
+  videoProfile: string;
+  indexes?: string | undefined;
+  hasThumbnail?: HasThumbnail | undefined;
+  stream?: Array<Stream> | undefined;
 };
 
 export type Media = {
-  id?: number | undefined;
-  duration?: number | undefined;
-  bitrate?: number | undefined;
-  width?: number | undefined;
-  height?: number | undefined;
-  aspectRatio?: number | undefined;
-  audioChannels?: number | undefined;
-  audioCodec?: string | undefined;
-  videoCodec?: string | undefined;
-  videoResolution?: number | undefined;
-  container?: string | undefined;
-  videoFrameRate?: string | undefined;
-  optimizedForStreaming?: number | undefined;
+  id: number;
+  duration: number;
+  bitrate: number;
+  width: number;
+  height: number;
+  aspectRatio: number;
+  audioProfile?: string | undefined;
+  audioChannels: number;
+  audioCodec: string;
+  videoCodec: string;
+  videoResolution: string;
+  container: string;
+  videoFrameRate: string;
+  videoProfile: string;
+  hasVoiceActivity?: boolean | undefined;
+  optimizedForStreaming?: OptimizedForStreaming | undefined;
   has64bitOffsets?: boolean | undefined;
-  videoProfile?: string | undefined;
-  part?: Array<Part> | undefined;
+  part: Array<Part>;
 };
 
 export type Genre = {
+  tag?: string | undefined;
+};
+
+export type Country = {
   tag?: string | undefined;
 };
 
@@ -68,61 +413,217 @@ export type Writer = {
   tag?: string | undefined;
 };
 
-export type Country = {
+export type Collection = {
   tag?: string | undefined;
 };
 
 export type Role = {
+  /**
+   * The ID of the tag or actor.
+   */
+  id?: number | undefined;
+  /**
+   * The filter used to find the actor or tag.
+   */
+  filter?: string | undefined;
+  /**
+   * The thumbnail of the actor
+   */
+  thumb?: string | undefined;
+  /**
+   * The name of the tag or actor.
+   */
   tag?: string | undefined;
+  /**
+   * Unique identifier for the tag.
+   */
+  tagKey?: string | undefined;
+  /**
+   * The role of the actor or tag in the media.
+   */
+  role?: string | undefined;
+};
+
+export type MediaGuid = {
+  /**
+   * Can be one of the following formats:
+   *
+   * @remarks
+   * imdb://tt13015952, tmdb://2434012, tvdb://7945991
+   */
+  id: string;
+};
+
+export type UltraBlurColors = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+export type MetaDataRating = {
+  /**
+   * A URI or path to the rating image.
+   */
+  image: string;
+  /**
+   * The value of the rating.
+   */
+  value: number;
+  /**
+   * The type of rating (e.g., audience, critic).
+   */
+  type: string;
+};
+
+export enum GetRecentlyAddedHubsResponseType {
+  CoverPoster = "coverPoster",
+  Background = "background",
+  Snapshot = "snapshot",
+  ClearLogo = "clearLogo",
+}
+
+export type GetRecentlyAddedImage = {
+  alt: string;
+  type: GetRecentlyAddedHubsResponseType;
+  url: string;
 };
 
 export type GetRecentlyAddedMetadata = {
-  allowSync?: boolean | undefined;
+  /**
+   * The rating key (Media ID) of this media item.
+   *
+   * @remarks
+   * Note: This is always an integer, but is represented as a string in the API.
+   */
+  ratingKey: string;
+  key: string;
+  guid: string;
+  studio?: string | undefined;
+  skipChildren?: boolean | undefined;
   librarySectionID?: number | undefined;
   librarySectionTitle?: string | undefined;
-  librarySectionUUID?: string | undefined;
-  ratingKey?: number | undefined;
-  key?: string | undefined;
-  guid?: string | undefined;
-  studio?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
+  librarySectionKey?: string | undefined;
+  /**
+   * The type of media content
+   *
+   * @remarks
+   */
+  type: GetRecentlyAddedHubsType;
+  title: string;
+  slug?: string | undefined;
   contentRating?: string | undefined;
-  summary?: string | undefined;
+  summary: string;
   rating?: number | undefined;
   audienceRating?: number | undefined;
   year?: number | undefined;
+  seasonCount?: number | undefined;
   tagline?: string | undefined;
+  flattenSeasons?: FlattenSeasons | undefined;
+  /**
+   * Setting that indicates the episode ordering for the show
+   *
+   * @remarks
+   * None = Library default,
+   * tmdbAiring = The Movie Database (Aired),
+   * aired = TheTVDB (Aired),
+   * dvd = TheTVDB (DVD),
+   * absolute = TheTVDB (Absolute)).
+   */
+  showOrdering?: ShowOrdering | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
+  banner?: string | undefined;
   duration?: number | undefined;
-  originallyAvailableAt?: Date | undefined;
-  addedAt?: number | undefined;
+  originallyAvailableAt?: RFCDate | undefined;
+  /**
+   * Unix epoch datetime in seconds
+   */
+  addedAt: number;
+  /**
+   * Unix epoch datetime in seconds
+   */
   updatedAt?: number | undefined;
   audienceRatingImage?: string | undefined;
   chapterSource?: string | undefined;
   primaryExtraKey?: string | undefined;
   ratingImage?: string | undefined;
+  grandparentRatingKey?: string | undefined;
+  grandparentGuid?: string | undefined;
+  grandparentKey?: string | undefined;
+  grandparentTitle?: string | undefined;
+  grandparentThumb?: string | undefined;
+  parentSlug?: string | undefined;
+  grandparentSlug?: string | undefined;
+  grandparentArt?: string | undefined;
+  grandparentTheme?: string | undefined;
+  /**
+   * The Media object is only included when type query is `4` or higher.
+   *
+   * @remarks
+   */
   media?: Array<Media> | undefined;
   genre?: Array<Genre> | undefined;
+  country?: Array<Country> | undefined;
   director?: Array<Director> | undefined;
   writer?: Array<Writer> | undefined;
-  country?: Array<Country> | undefined;
+  collection?: Array<Collection> | undefined;
   role?: Array<Role> | undefined;
+  /**
+   * The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
+   *
+   * @remarks
+   */
+  mediaGuid?: Array<MediaGuid> | undefined;
+  ultraBlurColors?: UltraBlurColors | undefined;
+  metaDataRating?: Array<MetaDataRating> | undefined;
+  image?: Array<GetRecentlyAddedImage> | undefined;
+  titleSort?: string | undefined;
+  viewCount?: number | undefined;
+  lastViewedAt?: number | undefined;
+  originalTitle?: string | undefined;
+  viewOffset?: number | undefined;
+  skipCount?: number | undefined;
+  index?: number | undefined;
+  theme?: string | undefined;
+  leafCount?: number | undefined;
+  viewedLeafCount?: number | undefined;
+  childCount?: number | undefined;
+  hasPremiumExtras?: string | undefined;
+  hasPremiumPrimaryExtra?: string | undefined;
+  /**
+   * The rating key of the parent item.
+   *
+   * @remarks
+   */
+  parentRatingKey?: string | undefined;
+  parentGuid?: string | undefined;
+  parentStudio?: string | undefined;
+  parentKey?: string | undefined;
+  parentTitle?: string | undefined;
+  parentIndex?: number | undefined;
+  parentYear?: number | undefined;
+  parentThumb?: string | undefined;
+  parentTheme?: string | undefined;
 };
 
 export type GetRecentlyAddedMediaContainer = {
-  size?: number | undefined;
-  allowSync?: boolean | undefined;
+  size: number;
+  offset?: number | undefined;
+  totalSize?: number | undefined;
   identifier?: string | undefined;
-  mediaTagPrefix?: string | undefined;
-  mediaTagVersion?: number | undefined;
-  mixedParents?: boolean | undefined;
+  allowSync?: boolean | undefined;
+  /**
+   * The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
+   *
+   * @remarks
+   */
+  meta?: Meta | undefined;
   metadata?: Array<GetRecentlyAddedMetadata> | undefined;
 };
 
 /**
- * The recently added content
+ * A successful response with recently added content.
  */
 export type GetRecentlyAddedResponseBody = {
   mediaContainer?: GetRecentlyAddedMediaContainer | undefined;
@@ -142,10 +643,49 @@ export type GetRecentlyAddedResponse = {
    */
   rawResponse: Response;
   /**
-   * The recently added content
+   * A successful response with recently added content.
    */
   object?: GetRecentlyAddedResponseBody | undefined;
 };
+
+/** @internal */
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
+
+/** @internal */
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Type$ {
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
+}
+
+/** @internal */
+export const IncludeMeta$inboundSchema: z.ZodNativeEnum<typeof IncludeMeta> = z
+  .nativeEnum(IncludeMeta);
+
+/** @internal */
+export const IncludeMeta$outboundSchema: z.ZodNativeEnum<typeof IncludeMeta> =
+  IncludeMeta$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace IncludeMeta$ {
+  /** @deprecated use `IncludeMeta$inboundSchema` instead. */
+  export const inboundSchema = IncludeMeta$inboundSchema;
+  /** @deprecated use `IncludeMeta$outboundSchema` instead. */
+  export const outboundSchema = IncludeMeta$outboundSchema;
+}
 
 /** @internal */
 export const GetRecentlyAddedRequest$inboundSchema: z.ZodType<
@@ -153,6 +693,11 @@ export const GetRecentlyAddedRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  contentDirectoryID: z.number().int(),
+  pinnedContentDirectoryID: z.string().optional(),
+  sectionID: z.number().int().optional(),
+  type: Type$inboundSchema,
+  includeMeta: IncludeMeta$inboundSchema,
   "X-Plex-Container-Start": z.number().int().default(0),
   "X-Plex-Container-Size": z.number().int().default(50),
 }).transform((v) => {
@@ -164,6 +709,11 @@ export const GetRecentlyAddedRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetRecentlyAddedRequest$Outbound = {
+  contentDirectoryID: number;
+  pinnedContentDirectoryID?: string | undefined;
+  sectionID?: number | undefined;
+  type: number;
+  includeMeta: number;
   "X-Plex-Container-Start": number;
   "X-Plex-Container-Size": number;
 };
@@ -174,6 +724,11 @@ export const GetRecentlyAddedRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetRecentlyAddedRequest
 > = z.object({
+  contentDirectoryID: z.number().int(),
+  pinnedContentDirectoryID: z.string().optional(),
+  sectionID: z.number().int().optional(),
+  type: Type$outboundSchema,
+  includeMeta: IncludeMeta$outboundSchema.default(IncludeMeta.Disable),
   xPlexContainerStart: z.number().int().default(0),
   xPlexContainerSize: z.number().int().default(50),
 }).transform((v) => {
@@ -197,47 +752,708 @@ export namespace GetRecentlyAddedRequest$ {
 }
 
 /** @internal */
+export const GetRecentlyAddedFilter$inboundSchema: z.ZodType<
+  GetRecentlyAddedFilter,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  filter: z.string(),
+  filterType: z.string(),
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+});
+
+/** @internal */
+export type GetRecentlyAddedFilter$Outbound = {
+  filter: string;
+  filterType: string;
+  key: string;
+  title: string;
+  type: string;
+};
+
+/** @internal */
+export const GetRecentlyAddedFilter$outboundSchema: z.ZodType<
+  GetRecentlyAddedFilter$Outbound,
+  z.ZodTypeDef,
+  GetRecentlyAddedFilter
+> = z.object({
+  filter: z.string(),
+  filterType: z.string(),
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedFilter$ {
+  /** @deprecated use `GetRecentlyAddedFilter$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedFilter$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedFilter$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedFilter$outboundSchema;
+  /** @deprecated use `GetRecentlyAddedFilter$Outbound` instead. */
+  export type Outbound = GetRecentlyAddedFilter$Outbound;
+}
+
+/** @internal */
+export const GetRecentlyAddedActiveDirection$inboundSchema: z.ZodNativeEnum<
+  typeof GetRecentlyAddedActiveDirection
+> = z.nativeEnum(GetRecentlyAddedActiveDirection);
+
+/** @internal */
+export const GetRecentlyAddedActiveDirection$outboundSchema: z.ZodNativeEnum<
+  typeof GetRecentlyAddedActiveDirection
+> = GetRecentlyAddedActiveDirection$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedActiveDirection$ {
+  /** @deprecated use `GetRecentlyAddedActiveDirection$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedActiveDirection$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedActiveDirection$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedActiveDirection$outboundSchema;
+}
+
+/** @internal */
+export const GetRecentlyAddedDefaultDirection$inboundSchema: z.ZodNativeEnum<
+  typeof GetRecentlyAddedDefaultDirection
+> = z.nativeEnum(GetRecentlyAddedDefaultDirection);
+
+/** @internal */
+export const GetRecentlyAddedDefaultDirection$outboundSchema: z.ZodNativeEnum<
+  typeof GetRecentlyAddedDefaultDirection
+> = GetRecentlyAddedDefaultDirection$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedDefaultDirection$ {
+  /** @deprecated use `GetRecentlyAddedDefaultDirection$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedDefaultDirection$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedDefaultDirection$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedDefaultDirection$outboundSchema;
+}
+
+/** @internal */
+export const GetRecentlyAddedSort$inboundSchema: z.ZodType<
+  GetRecentlyAddedSort,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  default: z.string().optional(),
+  active: z.boolean().optional(),
+  activeDirection: GetRecentlyAddedActiveDirection$inboundSchema.default(
+    GetRecentlyAddedActiveDirection.Ascending,
+  ),
+  defaultDirection: GetRecentlyAddedDefaultDirection$inboundSchema.default(
+    GetRecentlyAddedDefaultDirection.Ascending,
+  ),
+  descKey: z.string().optional(),
+  firstCharacterKey: z.string().optional(),
+  key: z.string(),
+  title: z.string(),
+});
+
+/** @internal */
+export type GetRecentlyAddedSort$Outbound = {
+  default?: string | undefined;
+  active?: boolean | undefined;
+  activeDirection: string;
+  defaultDirection: string;
+  descKey?: string | undefined;
+  firstCharacterKey?: string | undefined;
+  key: string;
+  title: string;
+};
+
+/** @internal */
+export const GetRecentlyAddedSort$outboundSchema: z.ZodType<
+  GetRecentlyAddedSort$Outbound,
+  z.ZodTypeDef,
+  GetRecentlyAddedSort
+> = z.object({
+  default: z.string().optional(),
+  active: z.boolean().optional(),
+  activeDirection: GetRecentlyAddedActiveDirection$outboundSchema.default(
+    GetRecentlyAddedActiveDirection.Ascending,
+  ),
+  defaultDirection: GetRecentlyAddedDefaultDirection$outboundSchema.default(
+    GetRecentlyAddedDefaultDirection.Ascending,
+  ),
+  descKey: z.string().optional(),
+  firstCharacterKey: z.string().optional(),
+  key: z.string(),
+  title: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedSort$ {
+  /** @deprecated use `GetRecentlyAddedSort$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedSort$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedSort$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedSort$outboundSchema;
+  /** @deprecated use `GetRecentlyAddedSort$Outbound` instead. */
+  export type Outbound = GetRecentlyAddedSort$Outbound;
+}
+
+/** @internal */
+export const GetRecentlyAddedField$inboundSchema: z.ZodType<
+  GetRecentlyAddedField,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+  subType: z.string().optional(),
+});
+
+/** @internal */
+export type GetRecentlyAddedField$Outbound = {
+  key: string;
+  title: string;
+  type: string;
+  subType?: string | undefined;
+};
+
+/** @internal */
+export const GetRecentlyAddedField$outboundSchema: z.ZodType<
+  GetRecentlyAddedField$Outbound,
+  z.ZodTypeDef,
+  GetRecentlyAddedField
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+  type: z.string(),
+  subType: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedField$ {
+  /** @deprecated use `GetRecentlyAddedField$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedField$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedField$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedField$outboundSchema;
+  /** @deprecated use `GetRecentlyAddedField$Outbound` instead. */
+  export type Outbound = GetRecentlyAddedField$Outbound;
+}
+
+/** @internal */
+export const GetRecentlyAddedType$inboundSchema: z.ZodType<
+  GetRecentlyAddedType,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  type: z.string(),
+  title: z.string(),
+  active: z.boolean(),
+  Filter: z.array(z.lazy(() => GetRecentlyAddedFilter$inboundSchema))
+    .optional(),
+  Sort: z.array(z.lazy(() => GetRecentlyAddedSort$inboundSchema)).optional(),
+  Field: z.array(z.lazy(() => GetRecentlyAddedField$inboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Filter": "filter",
+    "Sort": "sort",
+    "Field": "field",
+  });
+});
+
+/** @internal */
+export type GetRecentlyAddedType$Outbound = {
+  key: string;
+  type: string;
+  title: string;
+  active: boolean;
+  Filter?: Array<GetRecentlyAddedFilter$Outbound> | undefined;
+  Sort?: Array<GetRecentlyAddedSort$Outbound> | undefined;
+  Field?: Array<GetRecentlyAddedField$Outbound> | undefined;
+};
+
+/** @internal */
+export const GetRecentlyAddedType$outboundSchema: z.ZodType<
+  GetRecentlyAddedType$Outbound,
+  z.ZodTypeDef,
+  GetRecentlyAddedType
+> = z.object({
+  key: z.string(),
+  type: z.string(),
+  title: z.string(),
+  active: z.boolean(),
+  filter: z.array(z.lazy(() => GetRecentlyAddedFilter$outboundSchema))
+    .optional(),
+  sort: z.array(z.lazy(() => GetRecentlyAddedSort$outboundSchema)).optional(),
+  field: z.array(z.lazy(() => GetRecentlyAddedField$outboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    filter: "Filter",
+    sort: "Sort",
+    field: "Field",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedType$ {
+  /** @deprecated use `GetRecentlyAddedType$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedType$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedType$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedType$outboundSchema;
+  /** @deprecated use `GetRecentlyAddedType$Outbound` instead. */
+  export type Outbound = GetRecentlyAddedType$Outbound;
+}
+
+/** @internal */
+export const GetRecentlyAddedOperator$inboundSchema: z.ZodType<
+  GetRecentlyAddedOperator,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+});
+
+/** @internal */
+export type GetRecentlyAddedOperator$Outbound = {
+  key: string;
+  title: string;
+};
+
+/** @internal */
+export const GetRecentlyAddedOperator$outboundSchema: z.ZodType<
+  GetRecentlyAddedOperator$Outbound,
+  z.ZodTypeDef,
+  GetRecentlyAddedOperator
+> = z.object({
+  key: z.string(),
+  title: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedOperator$ {
+  /** @deprecated use `GetRecentlyAddedOperator$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedOperator$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedOperator$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedOperator$outboundSchema;
+  /** @deprecated use `GetRecentlyAddedOperator$Outbound` instead. */
+  export type Outbound = GetRecentlyAddedOperator$Outbound;
+}
+
+/** @internal */
+export const GetRecentlyAddedFieldType$inboundSchema: z.ZodType<
+  GetRecentlyAddedFieldType,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: z.string(),
+  Operator: z.array(z.lazy(() => GetRecentlyAddedOperator$inboundSchema)),
+}).transform((v) => {
+  return remap$(v, {
+    "Operator": "operator",
+  });
+});
+
+/** @internal */
+export type GetRecentlyAddedFieldType$Outbound = {
+  type: string;
+  Operator: Array<GetRecentlyAddedOperator$Outbound>;
+};
+
+/** @internal */
+export const GetRecentlyAddedFieldType$outboundSchema: z.ZodType<
+  GetRecentlyAddedFieldType$Outbound,
+  z.ZodTypeDef,
+  GetRecentlyAddedFieldType
+> = z.object({
+  type: z.string(),
+  operator: z.array(z.lazy(() => GetRecentlyAddedOperator$outboundSchema)),
+}).transform((v) => {
+  return remap$(v, {
+    operator: "Operator",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedFieldType$ {
+  /** @deprecated use `GetRecentlyAddedFieldType$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedFieldType$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedFieldType$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedFieldType$outboundSchema;
+  /** @deprecated use `GetRecentlyAddedFieldType$Outbound` instead. */
+  export type Outbound = GetRecentlyAddedFieldType$Outbound;
+}
+
+/** @internal */
+export const Meta$inboundSchema: z.ZodType<Meta, z.ZodTypeDef, unknown> = z
+  .object({
+    Type: z.array(z.lazy(() => GetRecentlyAddedType$inboundSchema)).optional(),
+    FieldType: z.array(z.lazy(() => GetRecentlyAddedFieldType$inboundSchema))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Type": "type",
+      "FieldType": "fieldType",
+    });
+  });
+
+/** @internal */
+export type Meta$Outbound = {
+  Type?: Array<GetRecentlyAddedType$Outbound> | undefined;
+  FieldType?: Array<GetRecentlyAddedFieldType$Outbound> | undefined;
+};
+
+/** @internal */
+export const Meta$outboundSchema: z.ZodType<Meta$Outbound, z.ZodTypeDef, Meta> =
+  z.object({
+    type: z.array(z.lazy(() => GetRecentlyAddedType$outboundSchema)).optional(),
+    fieldType: z.array(z.lazy(() => GetRecentlyAddedFieldType$outboundSchema))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      type: "Type",
+      fieldType: "FieldType",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Meta$ {
+  /** @deprecated use `Meta$inboundSchema` instead. */
+  export const inboundSchema = Meta$inboundSchema;
+  /** @deprecated use `Meta$outboundSchema` instead. */
+  export const outboundSchema = Meta$outboundSchema;
+  /** @deprecated use `Meta$Outbound` instead. */
+  export type Outbound = Meta$Outbound;
+}
+
+/** @internal */
+export const GetRecentlyAddedHubsType$inboundSchema: z.ZodNativeEnum<
+  typeof GetRecentlyAddedHubsType
+> = z.nativeEnum(GetRecentlyAddedHubsType);
+
+/** @internal */
+export const GetRecentlyAddedHubsType$outboundSchema: z.ZodNativeEnum<
+  typeof GetRecentlyAddedHubsType
+> = GetRecentlyAddedHubsType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedHubsType$ {
+  /** @deprecated use `GetRecentlyAddedHubsType$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedHubsType$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedHubsType$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedHubsType$outboundSchema;
+}
+
+/** @internal */
+export const FlattenSeasons$inboundSchema: z.ZodNativeEnum<
+  typeof FlattenSeasons
+> = z.nativeEnum(FlattenSeasons);
+
+/** @internal */
+export const FlattenSeasons$outboundSchema: z.ZodNativeEnum<
+  typeof FlattenSeasons
+> = FlattenSeasons$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace FlattenSeasons$ {
+  /** @deprecated use `FlattenSeasons$inboundSchema` instead. */
+  export const inboundSchema = FlattenSeasons$inboundSchema;
+  /** @deprecated use `FlattenSeasons$outboundSchema` instead. */
+  export const outboundSchema = FlattenSeasons$outboundSchema;
+}
+
+/** @internal */
+export const ShowOrdering$inboundSchema: z.ZodNativeEnum<typeof ShowOrdering> =
+  z.nativeEnum(ShowOrdering);
+
+/** @internal */
+export const ShowOrdering$outboundSchema: z.ZodNativeEnum<typeof ShowOrdering> =
+  ShowOrdering$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ShowOrdering$ {
+  /** @deprecated use `ShowOrdering$inboundSchema` instead. */
+  export const inboundSchema = ShowOrdering$inboundSchema;
+  /** @deprecated use `ShowOrdering$outboundSchema` instead. */
+  export const outboundSchema = ShowOrdering$outboundSchema;
+}
+
+/** @internal */
+export const OptimizedForStreaming$inboundSchema: z.ZodNativeEnum<
+  typeof OptimizedForStreaming
+> = z.nativeEnum(OptimizedForStreaming);
+
+/** @internal */
+export const OptimizedForStreaming$outboundSchema: z.ZodNativeEnum<
+  typeof OptimizedForStreaming
+> = OptimizedForStreaming$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace OptimizedForStreaming$ {
+  /** @deprecated use `OptimizedForStreaming$inboundSchema` instead. */
+  export const inboundSchema = OptimizedForStreaming$inboundSchema;
+  /** @deprecated use `OptimizedForStreaming$outboundSchema` instead. */
+  export const outboundSchema = OptimizedForStreaming$outboundSchema;
+}
+
+/** @internal */
+export const HasThumbnail$inboundSchema: z.ZodNativeEnum<typeof HasThumbnail> =
+  z.nativeEnum(HasThumbnail);
+
+/** @internal */
+export const HasThumbnail$outboundSchema: z.ZodNativeEnum<typeof HasThumbnail> =
+  HasThumbnail$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace HasThumbnail$ {
+  /** @deprecated use `HasThumbnail$inboundSchema` instead. */
+  export const inboundSchema = HasThumbnail$inboundSchema;
+  /** @deprecated use `HasThumbnail$outboundSchema` instead. */
+  export const outboundSchema = HasThumbnail$outboundSchema;
+}
+
+/** @internal */
+export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.number().int(),
+    streamType: z.number().int(),
+    default: z.boolean().optional(),
+    selected: z.boolean().optional(),
+    codec: z.string(),
+    index: z.number().int(),
+    bitrate: z.number().int().optional(),
+    colorPrimaries: z.string().optional(),
+    colorRange: z.string().optional(),
+    colorSpace: z.string().optional(),
+    colorTrc: z.string().optional(),
+    bitDepth: z.number().int().optional(),
+    chromaLocation: z.string().optional(),
+    streamIdentifier: z.string().optional(),
+    chromaSubsampling: z.string().optional(),
+    codedHeight: z.number().int().optional(),
+    codedWidth: z.number().int().optional(),
+    frameRate: z.number().optional(),
+    hasScalingMatrix: z.boolean().optional(),
+    hearingImpaired: z.boolean().optional(),
+    closedCaptions: z.boolean().optional(),
+    embeddedInVideo: z.string().optional(),
+    height: z.number().int().optional(),
+    level: z.number().int().optional(),
+    profile: z.string().optional(),
+    refFrames: z.number().int().optional(),
+    scanType: z.string().optional(),
+    width: z.number().int().optional(),
+    displayTitle: z.string().optional(),
+    extendedDisplayTitle: z.string().optional(),
+    channels: z.number().int().optional(),
+    language: z.string().optional(),
+    languageTag: z.string().optional(),
+    languageCode: z.string().optional(),
+    audioChannelLayout: z.string().optional(),
+    samplingRate: z.number().int().optional(),
+    title: z.string().optional(),
+    canAutoSync: z.boolean().optional(),
+  });
+
+/** @internal */
+export type Stream$Outbound = {
+  id: number;
+  streamType: number;
+  default?: boolean | undefined;
+  selected?: boolean | undefined;
+  codec: string;
+  index: number;
+  bitrate?: number | undefined;
+  colorPrimaries?: string | undefined;
+  colorRange?: string | undefined;
+  colorSpace?: string | undefined;
+  colorTrc?: string | undefined;
+  bitDepth?: number | undefined;
+  chromaLocation?: string | undefined;
+  streamIdentifier?: string | undefined;
+  chromaSubsampling?: string | undefined;
+  codedHeight?: number | undefined;
+  codedWidth?: number | undefined;
+  frameRate?: number | undefined;
+  hasScalingMatrix?: boolean | undefined;
+  hearingImpaired?: boolean | undefined;
+  closedCaptions?: boolean | undefined;
+  embeddedInVideo?: string | undefined;
+  height?: number | undefined;
+  level?: number | undefined;
+  profile?: string | undefined;
+  refFrames?: number | undefined;
+  scanType?: string | undefined;
+  width?: number | undefined;
+  displayTitle?: string | undefined;
+  extendedDisplayTitle?: string | undefined;
+  channels?: number | undefined;
+  language?: string | undefined;
+  languageTag?: string | undefined;
+  languageCode?: string | undefined;
+  audioChannelLayout?: string | undefined;
+  samplingRate?: number | undefined;
+  title?: string | undefined;
+  canAutoSync?: boolean | undefined;
+};
+
+/** @internal */
+export const Stream$outboundSchema: z.ZodType<
+  Stream$Outbound,
+  z.ZodTypeDef,
+  Stream
+> = z.object({
+  id: z.number().int(),
+  streamType: z.number().int(),
+  default: z.boolean().optional(),
+  selected: z.boolean().optional(),
+  codec: z.string(),
+  index: z.number().int(),
+  bitrate: z.number().int().optional(),
+  colorPrimaries: z.string().optional(),
+  colorRange: z.string().optional(),
+  colorSpace: z.string().optional(),
+  colorTrc: z.string().optional(),
+  bitDepth: z.number().int().optional(),
+  chromaLocation: z.string().optional(),
+  streamIdentifier: z.string().optional(),
+  chromaSubsampling: z.string().optional(),
+  codedHeight: z.number().int().optional(),
+  codedWidth: z.number().int().optional(),
+  frameRate: z.number().optional(),
+  hasScalingMatrix: z.boolean().optional(),
+  hearingImpaired: z.boolean().optional(),
+  closedCaptions: z.boolean().optional(),
+  embeddedInVideo: z.string().optional(),
+  height: z.number().int().optional(),
+  level: z.number().int().optional(),
+  profile: z.string().optional(),
+  refFrames: z.number().int().optional(),
+  scanType: z.string().optional(),
+  width: z.number().int().optional(),
+  displayTitle: z.string().optional(),
+  extendedDisplayTitle: z.string().optional(),
+  channels: z.number().int().optional(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
+  audioChannelLayout: z.string().optional(),
+  samplingRate: z.number().int().optional(),
+  title: z.string().optional(),
+  canAutoSync: z.boolean().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Stream$ {
+  /** @deprecated use `Stream$inboundSchema` instead. */
+  export const inboundSchema = Stream$inboundSchema;
+  /** @deprecated use `Stream$outboundSchema` instead. */
+  export const outboundSchema = Stream$outboundSchema;
+  /** @deprecated use `Stream$Outbound` instead. */
+  export type Outbound = Stream$Outbound;
+}
+
+/** @internal */
 export const Part$inboundSchema: z.ZodType<Part, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.number().optional(),
-    key: z.string().optional(),
-    duration: z.number().optional(),
-    file: z.string().optional(),
-    size: z.number().optional(),
-    container: z.string().optional(),
+    id: z.number().int(),
+    key: z.string(),
+    duration: z.number().int(),
+    file: z.string(),
+    size: z.number().int(),
+    container: z.string(),
+    audioProfile: z.string().optional(),
     has64bitOffsets: z.boolean().optional(),
-    hasThumbnail: z.number().optional(),
     optimizedForStreaming: z.boolean().optional(),
-    videoProfile: z.string().optional(),
+    videoProfile: z.string(),
+    indexes: z.string().optional(),
+    hasThumbnail: HasThumbnail$inboundSchema.default(HasThumbnail.False),
+    Stream: z.array(z.lazy(() => Stream$inboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Stream": "stream",
+    });
   });
 
 /** @internal */
 export type Part$Outbound = {
-  id?: number | undefined;
-  key?: string | undefined;
-  duration?: number | undefined;
-  file?: string | undefined;
-  size?: number | undefined;
-  container?: string | undefined;
+  id: number;
+  key: string;
+  duration: number;
+  file: string;
+  size: number;
+  container: string;
+  audioProfile?: string | undefined;
   has64bitOffsets?: boolean | undefined;
-  hasThumbnail?: number | undefined;
   optimizedForStreaming?: boolean | undefined;
-  videoProfile?: string | undefined;
+  videoProfile: string;
+  indexes?: string | undefined;
+  hasThumbnail: string;
+  Stream?: Array<Stream$Outbound> | undefined;
 };
 
 /** @internal */
 export const Part$outboundSchema: z.ZodType<Part$Outbound, z.ZodTypeDef, Part> =
   z.object({
-    id: z.number().optional(),
-    key: z.string().optional(),
-    duration: z.number().optional(),
-    file: z.string().optional(),
-    size: z.number().optional(),
-    container: z.string().optional(),
+    id: z.number().int(),
+    key: z.string(),
+    duration: z.number().int(),
+    file: z.string(),
+    size: z.number().int(),
+    container: z.string(),
+    audioProfile: z.string().optional(),
     has64bitOffsets: z.boolean().optional(),
-    hasThumbnail: z.number().optional(),
     optimizedForStreaming: z.boolean().optional(),
-    videoProfile: z.string().optional(),
+    videoProfile: z.string(),
+    indexes: z.string().optional(),
+    hasThumbnail: HasThumbnail$outboundSchema.default(HasThumbnail.False),
+    stream: z.array(z.lazy(() => Stream$outboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      stream: "Stream",
+    });
   });
 
 /**
@@ -256,22 +1472,24 @@ export namespace Part$ {
 /** @internal */
 export const Media$inboundSchema: z.ZodType<Media, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.number().optional(),
-    duration: z.number().optional(),
-    bitrate: z.number().optional(),
-    width: z.number().optional(),
-    height: z.number().optional(),
-    aspectRatio: z.number().optional(),
-    audioChannels: z.number().optional(),
-    audioCodec: z.string().optional(),
-    videoCodec: z.string().optional(),
-    videoResolution: z.number().optional(),
-    container: z.string().optional(),
-    videoFrameRate: z.string().optional(),
-    optimizedForStreaming: z.number().optional(),
+    id: z.number().int(),
+    duration: z.number().int(),
+    bitrate: z.number().int(),
+    width: z.number().int(),
+    height: z.number().int(),
+    aspectRatio: z.number(),
+    audioProfile: z.string().optional(),
+    audioChannels: z.number().int(),
+    audioCodec: z.string(),
+    videoCodec: z.string(),
+    videoResolution: z.string(),
+    container: z.string(),
+    videoFrameRate: z.string(),
+    videoProfile: z.string(),
+    hasVoiceActivity: z.boolean().optional(),
+    optimizedForStreaming: OptimizedForStreaming$inboundSchema,
     has64bitOffsets: z.boolean().optional(),
-    videoProfile: z.string().optional(),
-    Part: z.array(z.lazy(() => Part$inboundSchema)).optional(),
+    Part: z.array(z.lazy(() => Part$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "Part": "part",
@@ -280,22 +1498,24 @@ export const Media$inboundSchema: z.ZodType<Media, z.ZodTypeDef, unknown> = z
 
 /** @internal */
 export type Media$Outbound = {
-  id?: number | undefined;
-  duration?: number | undefined;
-  bitrate?: number | undefined;
-  width?: number | undefined;
-  height?: number | undefined;
-  aspectRatio?: number | undefined;
-  audioChannels?: number | undefined;
-  audioCodec?: string | undefined;
-  videoCodec?: string | undefined;
-  videoResolution?: number | undefined;
-  container?: string | undefined;
-  videoFrameRate?: string | undefined;
-  optimizedForStreaming?: number | undefined;
+  id: number;
+  duration: number;
+  bitrate: number;
+  width: number;
+  height: number;
+  aspectRatio: number;
+  audioProfile?: string | undefined;
+  audioChannels: number;
+  audioCodec: string;
+  videoCodec: string;
+  videoResolution: string;
+  container: string;
+  videoFrameRate: string;
+  videoProfile: string;
+  hasVoiceActivity?: boolean | undefined;
+  optimizedForStreaming: number;
   has64bitOffsets?: boolean | undefined;
-  videoProfile?: string | undefined;
-  Part?: Array<Part$Outbound> | undefined;
+  Part: Array<Part$Outbound>;
 };
 
 /** @internal */
@@ -304,22 +1524,26 @@ export const Media$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Media
 > = z.object({
-  id: z.number().optional(),
-  duration: z.number().optional(),
-  bitrate: z.number().optional(),
-  width: z.number().optional(),
-  height: z.number().optional(),
-  aspectRatio: z.number().optional(),
-  audioChannels: z.number().optional(),
-  audioCodec: z.string().optional(),
-  videoCodec: z.string().optional(),
-  videoResolution: z.number().optional(),
-  container: z.string().optional(),
-  videoFrameRate: z.string().optional(),
-  optimizedForStreaming: z.number().optional(),
+  id: z.number().int(),
+  duration: z.number().int(),
+  bitrate: z.number().int(),
+  width: z.number().int(),
+  height: z.number().int(),
+  aspectRatio: z.number(),
+  audioProfile: z.string().optional(),
+  audioChannels: z.number().int(),
+  audioCodec: z.string(),
+  videoCodec: z.string(),
+  videoResolution: z.string(),
+  container: z.string(),
+  videoFrameRate: z.string(),
+  videoProfile: z.string(),
+  hasVoiceActivity: z.boolean().optional(),
+  optimizedForStreaming: OptimizedForStreaming$outboundSchema.default(
+    OptimizedForStreaming.Disable,
+  ),
   has64bitOffsets: z.boolean().optional(),
-  videoProfile: z.string().optional(),
-  part: z.array(z.lazy(() => Part$outboundSchema)).optional(),
+  part: z.array(z.lazy(() => Part$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     part: "Part",
@@ -370,6 +1594,39 @@ export namespace Genre$ {
   export const outboundSchema = Genre$outboundSchema;
   /** @deprecated use `Genre$Outbound` instead. */
   export type Outbound = Genre$Outbound;
+}
+
+/** @internal */
+export const Country$inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> =
+  z.object({
+    tag: z.string().optional(),
+  });
+
+/** @internal */
+export type Country$Outbound = {
+  tag?: string | undefined;
+};
+
+/** @internal */
+export const Country$outboundSchema: z.ZodType<
+  Country$Outbound,
+  z.ZodTypeDef,
+  Country
+> = z.object({
+  tag: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Country$ {
+  /** @deprecated use `Country$inboundSchema` instead. */
+  export const inboundSchema = Country$inboundSchema;
+  /** @deprecated use `Country$outboundSchema` instead. */
+  export const outboundSchema = Country$outboundSchema;
+  /** @deprecated use `Country$Outbound` instead. */
+  export type Outbound = Country$Outbound;
 }
 
 /** @internal */
@@ -442,21 +1699,24 @@ export namespace Writer$ {
 }
 
 /** @internal */
-export const Country$inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> =
-  z.object({
-    tag: z.string().optional(),
-  });
+export const Collection$inboundSchema: z.ZodType<
+  Collection,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  tag: z.string().optional(),
+});
 
 /** @internal */
-export type Country$Outbound = {
+export type Collection$Outbound = {
   tag?: string | undefined;
 };
 
 /** @internal */
-export const Country$outboundSchema: z.ZodType<
-  Country$Outbound,
+export const Collection$outboundSchema: z.ZodType<
+  Collection$Outbound,
   z.ZodTypeDef,
-  Country
+  Collection
 > = z.object({
   tag: z.string().optional(),
 });
@@ -465,30 +1725,45 @@ export const Country$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Country$ {
-  /** @deprecated use `Country$inboundSchema` instead. */
-  export const inboundSchema = Country$inboundSchema;
-  /** @deprecated use `Country$outboundSchema` instead. */
-  export const outboundSchema = Country$outboundSchema;
-  /** @deprecated use `Country$Outbound` instead. */
-  export type Outbound = Country$Outbound;
+export namespace Collection$ {
+  /** @deprecated use `Collection$inboundSchema` instead. */
+  export const inboundSchema = Collection$inboundSchema;
+  /** @deprecated use `Collection$outboundSchema` instead. */
+  export const outboundSchema = Collection$outboundSchema;
+  /** @deprecated use `Collection$Outbound` instead. */
+  export type Outbound = Collection$Outbound;
 }
 
 /** @internal */
 export const Role$inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z
   .object({
+    id: z.number().int().optional(),
+    filter: z.string().optional(),
+    thumb: z.string().optional(),
     tag: z.string().optional(),
+    tagKey: z.string().optional(),
+    role: z.string().optional(),
   });
 
 /** @internal */
 export type Role$Outbound = {
+  id?: number | undefined;
+  filter?: string | undefined;
+  thumb?: string | undefined;
   tag?: string | undefined;
+  tagKey?: string | undefined;
+  role?: string | undefined;
 };
 
 /** @internal */
 export const Role$outboundSchema: z.ZodType<Role$Outbound, z.ZodTypeDef, Role> =
   z.object({
+    id: z.number().int().optional(),
+    filter: z.string().optional(),
+    thumb: z.string().optional(),
     tag: z.string().optional(),
+    tagKey: z.string().optional(),
+    role: z.string().optional(),
   });
 
 /**
@@ -505,90 +1780,361 @@ export namespace Role$ {
 }
 
 /** @internal */
+export const MediaGuid$inboundSchema: z.ZodType<
+  MediaGuid,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+});
+
+/** @internal */
+export type MediaGuid$Outbound = {
+  id: string;
+};
+
+/** @internal */
+export const MediaGuid$outboundSchema: z.ZodType<
+  MediaGuid$Outbound,
+  z.ZodTypeDef,
+  MediaGuid
+> = z.object({
+  id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MediaGuid$ {
+  /** @deprecated use `MediaGuid$inboundSchema` instead. */
+  export const inboundSchema = MediaGuid$inboundSchema;
+  /** @deprecated use `MediaGuid$outboundSchema` instead. */
+  export const outboundSchema = MediaGuid$outboundSchema;
+  /** @deprecated use `MediaGuid$Outbound` instead. */
+  export type Outbound = MediaGuid$Outbound;
+}
+
+/** @internal */
+export const UltraBlurColors$inboundSchema: z.ZodType<
+  UltraBlurColors,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/** @internal */
+export type UltraBlurColors$Outbound = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+/** @internal */
+export const UltraBlurColors$outboundSchema: z.ZodType<
+  UltraBlurColors$Outbound,
+  z.ZodTypeDef,
+  UltraBlurColors
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UltraBlurColors$ {
+  /** @deprecated use `UltraBlurColors$inboundSchema` instead. */
+  export const inboundSchema = UltraBlurColors$inboundSchema;
+  /** @deprecated use `UltraBlurColors$outboundSchema` instead. */
+  export const outboundSchema = UltraBlurColors$outboundSchema;
+  /** @deprecated use `UltraBlurColors$Outbound` instead. */
+  export type Outbound = UltraBlurColors$Outbound;
+}
+
+/** @internal */
+export const MetaDataRating$inboundSchema: z.ZodType<
+  MetaDataRating,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  image: z.string(),
+  value: z.number(),
+  type: z.string(),
+});
+
+/** @internal */
+export type MetaDataRating$Outbound = {
+  image: string;
+  value: number;
+  type: string;
+};
+
+/** @internal */
+export const MetaDataRating$outboundSchema: z.ZodType<
+  MetaDataRating$Outbound,
+  z.ZodTypeDef,
+  MetaDataRating
+> = z.object({
+  image: z.string(),
+  value: z.number(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MetaDataRating$ {
+  /** @deprecated use `MetaDataRating$inboundSchema` instead. */
+  export const inboundSchema = MetaDataRating$inboundSchema;
+  /** @deprecated use `MetaDataRating$outboundSchema` instead. */
+  export const outboundSchema = MetaDataRating$outboundSchema;
+  /** @deprecated use `MetaDataRating$Outbound` instead. */
+  export type Outbound = MetaDataRating$Outbound;
+}
+
+/** @internal */
+export const GetRecentlyAddedHubsResponseType$inboundSchema: z.ZodNativeEnum<
+  typeof GetRecentlyAddedHubsResponseType
+> = z.nativeEnum(GetRecentlyAddedHubsResponseType);
+
+/** @internal */
+export const GetRecentlyAddedHubsResponseType$outboundSchema: z.ZodNativeEnum<
+  typeof GetRecentlyAddedHubsResponseType
+> = GetRecentlyAddedHubsResponseType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedHubsResponseType$ {
+  /** @deprecated use `GetRecentlyAddedHubsResponseType$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedHubsResponseType$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedHubsResponseType$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedHubsResponseType$outboundSchema;
+}
+
+/** @internal */
+export const GetRecentlyAddedImage$inboundSchema: z.ZodType<
+  GetRecentlyAddedImage,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  alt: z.string(),
+  type: GetRecentlyAddedHubsResponseType$inboundSchema,
+  url: z.string(),
+});
+
+/** @internal */
+export type GetRecentlyAddedImage$Outbound = {
+  alt: string;
+  type: string;
+  url: string;
+};
+
+/** @internal */
+export const GetRecentlyAddedImage$outboundSchema: z.ZodType<
+  GetRecentlyAddedImage$Outbound,
+  z.ZodTypeDef,
+  GetRecentlyAddedImage
+> = z.object({
+  alt: z.string(),
+  type: GetRecentlyAddedHubsResponseType$outboundSchema,
+  url: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedImage$ {
+  /** @deprecated use `GetRecentlyAddedImage$inboundSchema` instead. */
+  export const inboundSchema = GetRecentlyAddedImage$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedImage$outboundSchema` instead. */
+  export const outboundSchema = GetRecentlyAddedImage$outboundSchema;
+  /** @deprecated use `GetRecentlyAddedImage$Outbound` instead. */
+  export type Outbound = GetRecentlyAddedImage$Outbound;
+}
+
+/** @internal */
 export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
   GetRecentlyAddedMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  allowSync: z.boolean().optional(),
-  librarySectionID: z.number().optional(),
-  librarySectionTitle: z.string().optional(),
-  librarySectionUUID: z.string().optional(),
-  ratingKey: z.number().optional(),
-  key: z.string().optional(),
-  guid: z.string().optional(),
+  ratingKey: z.string(),
+  key: z.string(),
+  guid: z.string(),
   studio: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
+  skipChildren: z.boolean().optional(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
+  librarySectionKey: z.string().optional(),
+  type: GetRecentlyAddedHubsType$inboundSchema,
+  title: z.string(),
+  slug: z.string().optional(),
   contentRating: z.string().optional(),
-  summary: z.string().optional(),
+  summary: z.string(),
   rating: z.number().optional(),
   audienceRating: z.number().optional(),
-  year: z.number().optional(),
+  year: z.number().int().optional(),
+  seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
+  flattenSeasons: FlattenSeasons$inboundSchema.default(FlattenSeasons.False),
+  showOrdering: ShowOrdering$inboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
-  duration: z.number().optional(),
-  originallyAvailableAt: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  addedAt: z.number().optional(),
-  updatedAt: z.number().optional(),
+  banner: z.string().optional(),
+  duration: z.number().int().optional(),
+  originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
+  addedAt: z.number().int(),
+  updatedAt: z.number().int().optional(),
   audienceRatingImage: z.string().optional(),
   chapterSource: z.string().optional(),
   primaryExtraKey: z.string().optional(),
   ratingImage: z.string().optional(),
+  grandparentRatingKey: z.string().optional(),
+  grandparentGuid: z.string().optional(),
+  grandparentKey: z.string().optional(),
+  grandparentTitle: z.string().optional(),
+  grandparentThumb: z.string().optional(),
+  parentSlug: z.string().optional(),
+  grandparentSlug: z.string().optional(),
+  grandparentArt: z.string().optional(),
+  grandparentTheme: z.string().optional(),
   Media: z.array(z.lazy(() => Media$inboundSchema)).optional(),
   Genre: z.array(z.lazy(() => Genre$inboundSchema)).optional(),
+  Country: z.array(z.lazy(() => Country$inboundSchema)).optional(),
   Director: z.array(z.lazy(() => Director$inboundSchema)).optional(),
   Writer: z.array(z.lazy(() => Writer$inboundSchema)).optional(),
-  Country: z.array(z.lazy(() => Country$inboundSchema)).optional(),
+  Collection: z.array(z.lazy(() => Collection$inboundSchema)).optional(),
   Role: z.array(z.lazy(() => Role$inboundSchema)).optional(),
+  Guid: z.array(z.lazy(() => MediaGuid$inboundSchema)).optional(),
+  UltraBlurColors: z.lazy(() => UltraBlurColors$inboundSchema).optional(),
+  Rating: z.array(z.lazy(() => MetaDataRating$inboundSchema)).optional(),
+  Image: z.array(z.lazy(() => GetRecentlyAddedImage$inboundSchema)).optional(),
+  titleSort: z.string().optional(),
+  viewCount: z.number().int().optional(),
+  lastViewedAt: z.number().int().optional(),
+  originalTitle: z.string().optional(),
+  viewOffset: z.number().int().optional(),
+  skipCount: z.number().int().optional(),
+  index: z.number().int().optional(),
+  theme: z.string().optional(),
+  leafCount: z.number().int().optional(),
+  viewedLeafCount: z.number().int().optional(),
+  childCount: z.number().int().optional(),
+  hasPremiumExtras: z.string().optional(),
+  hasPremiumPrimaryExtra: z.string().optional(),
+  parentRatingKey: z.string().optional(),
+  parentGuid: z.string().optional(),
+  parentStudio: z.string().optional(),
+  parentKey: z.string().optional(),
+  parentTitle: z.string().optional(),
+  parentIndex: z.number().int().optional(),
+  parentYear: z.number().int().optional(),
+  parentThumb: z.string().optional(),
+  parentTheme: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "Media": "media",
     "Genre": "genre",
+    "Country": "country",
     "Director": "director",
     "Writer": "writer",
-    "Country": "country",
+    "Collection": "collection",
     "Role": "role",
+    "Guid": "mediaGuid",
+    "UltraBlurColors": "ultraBlurColors",
+    "Rating": "metaDataRating",
+    "Image": "image",
   });
 });
 
 /** @internal */
 export type GetRecentlyAddedMetadata$Outbound = {
-  allowSync?: boolean | undefined;
+  ratingKey: string;
+  key: string;
+  guid: string;
+  studio?: string | undefined;
+  skipChildren?: boolean | undefined;
   librarySectionID?: number | undefined;
   librarySectionTitle?: string | undefined;
-  librarySectionUUID?: string | undefined;
-  ratingKey?: number | undefined;
-  key?: string | undefined;
-  guid?: string | undefined;
-  studio?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
+  librarySectionKey?: string | undefined;
+  type: string;
+  title: string;
+  slug?: string | undefined;
   contentRating?: string | undefined;
-  summary?: string | undefined;
+  summary: string;
   rating?: number | undefined;
   audienceRating?: number | undefined;
   year?: number | undefined;
+  seasonCount?: number | undefined;
   tagline?: string | undefined;
+  flattenSeasons: string;
+  showOrdering?: string | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
+  banner?: string | undefined;
   duration?: number | undefined;
   originallyAvailableAt?: string | undefined;
-  addedAt?: number | undefined;
+  addedAt: number;
   updatedAt?: number | undefined;
   audienceRatingImage?: string | undefined;
   chapterSource?: string | undefined;
   primaryExtraKey?: string | undefined;
   ratingImage?: string | undefined;
+  grandparentRatingKey?: string | undefined;
+  grandparentGuid?: string | undefined;
+  grandparentKey?: string | undefined;
+  grandparentTitle?: string | undefined;
+  grandparentThumb?: string | undefined;
+  parentSlug?: string | undefined;
+  grandparentSlug?: string | undefined;
+  grandparentArt?: string | undefined;
+  grandparentTheme?: string | undefined;
   Media?: Array<Media$Outbound> | undefined;
   Genre?: Array<Genre$Outbound> | undefined;
+  Country?: Array<Country$Outbound> | undefined;
   Director?: Array<Director$Outbound> | undefined;
   Writer?: Array<Writer$Outbound> | undefined;
-  Country?: Array<Country$Outbound> | undefined;
+  Collection?: Array<Collection$Outbound> | undefined;
   Role?: Array<Role$Outbound> | undefined;
+  Guid?: Array<MediaGuid$Outbound> | undefined;
+  UltraBlurColors?: UltraBlurColors$Outbound | undefined;
+  Rating?: Array<MetaDataRating$Outbound> | undefined;
+  Image?: Array<GetRecentlyAddedImage$Outbound> | undefined;
+  titleSort?: string | undefined;
+  viewCount?: number | undefined;
+  lastViewedAt?: number | undefined;
+  originalTitle?: string | undefined;
+  viewOffset?: number | undefined;
+  skipCount?: number | undefined;
+  index?: number | undefined;
+  theme?: string | undefined;
+  leafCount?: number | undefined;
+  viewedLeafCount?: number | undefined;
+  childCount?: number | undefined;
+  hasPremiumExtras?: string | undefined;
+  hasPremiumPrimaryExtra?: string | undefined;
+  parentRatingKey?: string | undefined;
+  parentGuid?: string | undefined;
+  parentStudio?: string | undefined;
+  parentKey?: string | undefined;
+  parentTitle?: string | undefined;
+  parentIndex?: number | undefined;
+  parentYear?: number | undefined;
+  parentThumb?: string | undefined;
+  parentTheme?: string | undefined;
 };
 
 /** @internal */
@@ -597,46 +2143,94 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetRecentlyAddedMetadata
 > = z.object({
-  allowSync: z.boolean().optional(),
-  librarySectionID: z.number().optional(),
-  librarySectionTitle: z.string().optional(),
-  librarySectionUUID: z.string().optional(),
-  ratingKey: z.number().optional(),
-  key: z.string().optional(),
-  guid: z.string().optional(),
+  ratingKey: z.string(),
+  key: z.string(),
+  guid: z.string(),
   studio: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
+  skipChildren: z.boolean().optional(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
+  librarySectionKey: z.string().optional(),
+  type: GetRecentlyAddedHubsType$outboundSchema,
+  title: z.string(),
+  slug: z.string().optional(),
   contentRating: z.string().optional(),
-  summary: z.string().optional(),
+  summary: z.string(),
   rating: z.number().optional(),
   audienceRating: z.number().optional(),
-  year: z.number().optional(),
+  year: z.number().int().optional(),
+  seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
+  flattenSeasons: FlattenSeasons$outboundSchema.default(FlattenSeasons.False),
+  showOrdering: ShowOrdering$outboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
-  duration: z.number().optional(),
-  originallyAvailableAt: z.date().transform(v => v.toISOString()).optional(),
-  addedAt: z.number().optional(),
-  updatedAt: z.number().optional(),
+  banner: z.string().optional(),
+  duration: z.number().int().optional(),
+  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString())
+    .optional(),
+  addedAt: z.number().int(),
+  updatedAt: z.number().int().optional(),
   audienceRatingImage: z.string().optional(),
   chapterSource: z.string().optional(),
   primaryExtraKey: z.string().optional(),
   ratingImage: z.string().optional(),
+  grandparentRatingKey: z.string().optional(),
+  grandparentGuid: z.string().optional(),
+  grandparentKey: z.string().optional(),
+  grandparentTitle: z.string().optional(),
+  grandparentThumb: z.string().optional(),
+  parentSlug: z.string().optional(),
+  grandparentSlug: z.string().optional(),
+  grandparentArt: z.string().optional(),
+  grandparentTheme: z.string().optional(),
   media: z.array(z.lazy(() => Media$outboundSchema)).optional(),
   genre: z.array(z.lazy(() => Genre$outboundSchema)).optional(),
+  country: z.array(z.lazy(() => Country$outboundSchema)).optional(),
   director: z.array(z.lazy(() => Director$outboundSchema)).optional(),
   writer: z.array(z.lazy(() => Writer$outboundSchema)).optional(),
-  country: z.array(z.lazy(() => Country$outboundSchema)).optional(),
+  collection: z.array(z.lazy(() => Collection$outboundSchema)).optional(),
   role: z.array(z.lazy(() => Role$outboundSchema)).optional(),
+  mediaGuid: z.array(z.lazy(() => MediaGuid$outboundSchema)).optional(),
+  ultraBlurColors: z.lazy(() => UltraBlurColors$outboundSchema).optional(),
+  metaDataRating: z.array(z.lazy(() => MetaDataRating$outboundSchema))
+    .optional(),
+  image: z.array(z.lazy(() => GetRecentlyAddedImage$outboundSchema)).optional(),
+  titleSort: z.string().optional(),
+  viewCount: z.number().int().optional(),
+  lastViewedAt: z.number().int().optional(),
+  originalTitle: z.string().optional(),
+  viewOffset: z.number().int().optional(),
+  skipCount: z.number().int().optional(),
+  index: z.number().int().optional(),
+  theme: z.string().optional(),
+  leafCount: z.number().int().optional(),
+  viewedLeafCount: z.number().int().optional(),
+  childCount: z.number().int().optional(),
+  hasPremiumExtras: z.string().optional(),
+  hasPremiumPrimaryExtra: z.string().optional(),
+  parentRatingKey: z.string().optional(),
+  parentGuid: z.string().optional(),
+  parentStudio: z.string().optional(),
+  parentKey: z.string().optional(),
+  parentTitle: z.string().optional(),
+  parentIndex: z.number().int().optional(),
+  parentYear: z.number().int().optional(),
+  parentThumb: z.string().optional(),
+  parentTheme: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     media: "Media",
     genre: "Genre",
+    country: "Country",
     director: "Director",
     writer: "Writer",
-    country: "Country",
+    collection: "Collection",
     role: "Role",
+    mediaGuid: "Guid",
+    ultraBlurColors: "UltraBlurColors",
+    metaDataRating: "Rating",
+    image: "Image",
   });
 });
 
@@ -659,28 +2253,29 @@ export const GetRecentlyAddedMediaContainer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  size: z.number().optional(),
-  allowSync: z.boolean().optional(),
+  size: z.number(),
+  offset: z.number().int().optional(),
+  totalSize: z.number().int().optional(),
   identifier: z.string().optional(),
-  mediaTagPrefix: z.string().optional(),
-  mediaTagVersion: z.number().optional(),
-  mixedParents: z.boolean().optional(),
+  allowSync: z.boolean().optional(),
+  Meta: z.lazy(() => Meta$inboundSchema).optional(),
   Metadata: z.array(z.lazy(() => GetRecentlyAddedMetadata$inboundSchema))
     .optional(),
 }).transform((v) => {
   return remap$(v, {
+    "Meta": "meta",
     "Metadata": "metadata",
   });
 });
 
 /** @internal */
 export type GetRecentlyAddedMediaContainer$Outbound = {
-  size?: number | undefined;
-  allowSync?: boolean | undefined;
+  size: number;
+  offset?: number | undefined;
+  totalSize?: number | undefined;
   identifier?: string | undefined;
-  mediaTagPrefix?: string | undefined;
-  mediaTagVersion?: number | undefined;
-  mixedParents?: boolean | undefined;
+  allowSync?: boolean | undefined;
+  Meta?: Meta$Outbound | undefined;
   Metadata?: Array<GetRecentlyAddedMetadata$Outbound> | undefined;
 };
 
@@ -690,16 +2285,17 @@ export const GetRecentlyAddedMediaContainer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetRecentlyAddedMediaContainer
 > = z.object({
-  size: z.number().optional(),
-  allowSync: z.boolean().optional(),
+  size: z.number(),
+  offset: z.number().int().optional(),
+  totalSize: z.number().int().optional(),
   identifier: z.string().optional(),
-  mediaTagPrefix: z.string().optional(),
-  mediaTagVersion: z.number().optional(),
-  mixedParents: z.boolean().optional(),
+  allowSync: z.boolean().optional(),
+  meta: z.lazy(() => Meta$outboundSchema).optional(),
   metadata: z.array(z.lazy(() => GetRecentlyAddedMetadata$outboundSchema))
     .optional(),
 }).transform((v) => {
   return remap$(v, {
+    meta: "Meta",
     metadata: "Metadata",
   });
 });

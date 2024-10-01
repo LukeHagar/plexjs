@@ -39,6 +39,10 @@ export type UploadPlaylistRequest = {
    * If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
    */
   force: QueryParamForce;
+  /**
+   * Possibly the section ID to upload the playlist to, we are not certain.
+   */
+  sectionID?: number | undefined;
 };
 
 export type UploadPlaylistResponse = {
@@ -85,12 +89,14 @@ export const UploadPlaylistRequest$inboundSchema: z.ZodType<
 > = z.object({
   path: z.string(),
   force: QueryParamForce$inboundSchema,
+  sectionID: z.number().int().default(1),
 });
 
 /** @internal */
 export type UploadPlaylistRequest$Outbound = {
   path: string;
   force: number;
+  sectionID: number;
 };
 
 /** @internal */
@@ -101,6 +107,7 @@ export const UploadPlaylistRequest$outboundSchema: z.ZodType<
 > = z.object({
   path: z.string(),
   force: QueryParamForce$outboundSchema,
+  sectionID: z.number().int().default(1),
 });
 
 /**

@@ -7,12 +7,12 @@ The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer 
 ```typescript
 import { DefaultSubtitleForced } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: DefaultSubtitleForced = DefaultSubtitleForced.Zero;
+let value: DefaultSubtitleForced = DefaultSubtitleForced.Enable;
 ```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+| Name      | Value     |
+| --------- | --------- |
+| `Disable` | 0         |
+| `Enable`  | 1         |

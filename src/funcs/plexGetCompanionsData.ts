@@ -3,7 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import * as m$ from "../lib/matchers.js";
+import * as M from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -28,7 +28,7 @@ import { Result } from "../sdk/types/fp.js";
  * Get Companions Data
  */
 export async function plexGetCompanionsData(
-  client$: PlexAPICore,
+  client: PlexAPICore,
   options?: RequestOptions & { serverURL?: string },
 ): Promise<
   Result<
@@ -44,44 +44,44 @@ export async function plexGetCompanionsData(
     | ConnectionError
   >
 > {
-  const baseURL$ = options?.serverURL
+  const baseURL = options?.serverURL
     || pathToFunc(GetCompanionsDataServerList[0], {
       charEncoding: "percent",
     })();
 
-  const path$ = pathToFunc("/companions")();
+  const path = pathToFunc("/companions")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const accessToken$ = await extractSecurity(client$.options$.accessToken);
-  const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
+  const secConfig = await extractSecurity(client._options.accessToken);
+  const securityInput = secConfig == null ? {} : { accessToken: secConfig };
   const context = {
     operationID: "getCompanionsData",
     oAuth2Scopes: [],
-    securitySource: client$.options$.accessToken,
+    securitySource: client._options.accessToken,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    baseURL: baseURL$,
-    path: path$,
-    headers: headers$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    baseURL: baseURL,
+    path: path,
+    headers: headers,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -89,7 +89,7 @@ export async function plexGetCompanionsData(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -97,7 +97,7 @@ export async function plexGetCompanionsData(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GetCompanionsDataResponse,
     | errors.GetCompanionsDataBadRequest
     | errors.GetCompanionsDataUnauthorized
@@ -109,16 +109,16 @@ export async function plexGetCompanionsData(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GetCompanionsDataResponse$inboundSchema, {
+    M.json(200, operations.GetCompanionsDataResponse$inboundSchema, {
       key: "responseBodies",
     }),
-    m$.jsonErr(400, errors.GetCompanionsDataBadRequest$inboundSchema),
-    m$.jsonErr(401, errors.GetCompanionsDataUnauthorized$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr(400, errors.GetCompanionsDataBadRequest$inboundSchema),
+    M.jsonErr(401, errors.GetCompanionsDataUnauthorized$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

@@ -27,14 +27,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.plex.getCompanionsData();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -52,7 +56,11 @@ import { plexGetCompanionsData } from "@lukehagar/plexjs/funcs/plexGetCompanions
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -65,7 +73,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -86,12 +94,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | errors.GetCompanionsDataBadRequest   | 400                                  | application/json                     |
 | errors.GetCompanionsDataUnauthorized | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
-
+| errors.SDKError                      | 4XX, 5XX                             | \*/\*                                |
 
 ## getUserFriends
 
@@ -104,14 +111,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.plex.getUserFriends();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -129,7 +140,11 @@ import { plexGetUserFriends } from "@lukehagar/plexjs/funcs/plexGetUserFriends.j
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -142,7 +157,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -163,12 +178,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | errors.GetUserFriendsBadRequest   | 400                               | application/json                  |
 | errors.GetUserFriendsUnauthorized | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
-
+| errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |
 
 ## getGeoData
 
@@ -180,14 +194,18 @@ Returns the geolocation and locale data of the caller
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.plex.getGeoData();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -204,7 +222,11 @@ import { plexGetGeoData } from "@lukehagar/plexjs/funcs/plexGetGeoData.js";
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -217,7 +239,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -238,12 +260,11 @@ run();
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | errors.GetGeoDataBadRequest   | 400                           | application/json              |
 | errors.GetGeoDataUnauthorized | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
-
+| errors.SDKError               | 4XX, 5XX                      | \*/\*                         |
 
 ## getHomeData
 
@@ -256,14 +277,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.plex.getHomeData();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -281,7 +306,11 @@ import { plexGetHomeData } from "@lukehagar/plexjs/funcs/plexGetHomeData.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -294,7 +323,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -314,12 +343,11 @@ run();
 
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
+| Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | errors.GetHomeDataBadRequest   | 400                            | application/json               |
 | errors.GetHomeDataUnauthorized | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
-
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## getServerResources
 
@@ -333,14 +361,18 @@ import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/m
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const result = await plexAPI.plex.getServerResources("gcgzw5rz2xovp84b4vha3a40", IncludeHttps.One, IncludeRelay.One, IncludeIPv6.One);
-  
+  const result = await plexAPI.plex.getServerResources(IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable, "gcgzw5rz2xovp84b4vha3a40");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -359,11 +391,15 @@ import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/m
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await plexGetServerResources(plexAPI, "gcgzw5rz2xovp84b4vha3a40", IncludeHttps.One, IncludeRelay.One, IncludeIPv6.One);
+  const res = await plexGetServerResources(plexAPI, IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable, "gcgzw5rz2xovp84b4vha3a40");
 
   if (!res.ok) {
     throw res.error;
@@ -372,7 +408,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -382,10 +418,10 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `xPlexClientIdentifier`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | [object Object]                                                                                                                                                                |
 | `includeHttps`                                                                                                                                                                 | [operations.IncludeHttps](../../sdk/models/operations/includehttps.md)                                                                                                         | :heavy_minus_sign:                                                                                                                                                             | Include Https entries in the results                                                                                                                                           | [object Object]                                                                                                                                                                |
 | `includeRelay`                                                                                                                                                                 | [operations.IncludeRelay](../../sdk/models/operations/includerelay.md)                                                                                                         | :heavy_minus_sign:                                                                                                                                                             | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/>                                                     | [object Object]                                                                                                                                                                |
 | `includeIPv6`                                                                                                                                                                  | [operations.IncludeIPv6](../../sdk/models/operations/includeipv6.md)                                                                                                           | :heavy_minus_sign:                                                                                                                                                             | Include IPv6 entries in the results                                                                                                                                            | [object Object]                                                                                                                                                                |
+| `clientID`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)         | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -397,16 +433,15 @@ run();
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
+| Error Type                            | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | errors.GetServerResourcesBadRequest   | 400                                   | application/json                      |
 | errors.GetServerResourcesUnauthorized | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
-
+| errors.SDKError                       | 4XX, 5XX                              | \*/\*                                 |
 
 ## getPin
 
-Retrieve a Pin from Plex.tv for authentication flows
+Retrieve a Pin ID from Plex.tv to use for authentication flows
 
 ### Example Usage
 
@@ -414,14 +449,18 @@ Retrieve a Pin from Plex.tv for authentication flows
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const result = await plexAPI.plex.getPin("gcgzw5rz2xovp84b4vha3a40", "Plex Web");
-  
+  const result = await plexAPI.plex.getPin({});
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -438,11 +477,15 @@ import { plexGetPin } from "@lukehagar/plexjs/funcs/plexGetPin.js";
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await plexGetPin(plexAPI, "gcgzw5rz2xovp84b4vha3a40", "Plex Web");
+  const res = await plexGetPin(plexAPI, {});
 
   if (!res.ok) {
     throw res.error;
@@ -451,7 +494,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -459,15 +502,13 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `strong`                                                                                                                                                                       | *boolean*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | Determines the kind of code returned by the API call<br/>Strong codes are used for Pin authentication flows<br/>Non-Strong codes are used for `Plex.tv/link`<br/>              |                                                                                                                                                                                |
-| `xPlexClientIdentifier`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | [object Object]                                                                                                                                                                |
-| `xPlexProduct`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
-| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 | http://localhost:8080                                                                                                                                                          |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetPinRequest](../../sdk/models/operations/getpinrequest.md)                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 |
 
 ### Response
 
@@ -475,11 +516,10 @@ run();
 
 ### Errors
 
-| Error Object            | Status Code             | Content Type            |
+| Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | errors.GetPinBadRequest | 400                     | application/json        |
-| errors.SDKError         | 4xx-5xx                 | */*                     |
-
+| errors.SDKError         | 4XX, 5XX                | \*/\*                   |
 
 ## getTokenByPinId
 
@@ -491,14 +531,20 @@ Retrieve an Access Token from Plex.tv after the Pin has been authenticated
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const result = await plexAPI.plex.getTokenByPinId(408895, "gcgzw5rz2xovp84b4vha3a40");
-  
+  const result = await plexAPI.plex.getTokenByPinId({
+    pinID: 408895,
+  });
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -515,11 +561,17 @@ import { plexGetTokenByPinId } from "@lukehagar/plexjs/funcs/plexGetTokenByPinId
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await plexGetTokenByPinId(plexAPI, 408895, "gcgzw5rz2xovp84b4vha3a40");
+  const res = await plexGetTokenByPinId(plexAPI, {
+    pinID: 408895,
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -528,7 +580,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -536,14 +588,13 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `pinID`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The PinID to retrieve an access token for                                                                                                                                      |                                                                                                                                                                                |
-| `xPlexClientIdentifier`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
-| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 | http://localhost:8080                                                                                                                                                          |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetTokenByPinIdRequest](../../sdk/models/operations/gettokenbypinidrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 |
 
 ### Response
 
@@ -551,8 +602,8 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.GetTokenByPinIdBadRequest   | 400                                | application/json                   |
 | errors.GetTokenByPinIdResponseBody | 404                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
+| errors.SDKError                    | 4XX, 5XX                           | \*/\*                              |

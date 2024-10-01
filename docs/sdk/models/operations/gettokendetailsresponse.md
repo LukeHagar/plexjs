@@ -20,7 +20,7 @@ import {
 
 let value: GetTokenDetailsResponse = {
   contentType: "<value>",
-  statusCode: 441711,
+  statusCode: 103,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -49,18 +49,18 @@ let value: GetTokenDetailsResponse = {
     joinedAt: 1721154902,
     locale: null,
     mailingListActive: false,
-    mailingListStatus: MailingListStatus.Active,
+    mailingListStatus: MailingListStatus.Unsubscribed,
     maxHomeSize: 15,
     pin: "string",
     profile: {
       autoSelectAudio: true,
       defaultAudioLanguage: "ja",
       defaultSubtitleLanguage: "en",
-      autoSelectSubtitle: AutoSelectSubtitle.One,
-      defaultSubtitleAccessibility: DefaultSubtitleAccessibility.One,
-      defaultSubtitleForced: DefaultSubtitleForced.One,
-      watchedIndicator: WatchedIndicator.One,
-      mediaReviewsVisibility: MediaReviewsVisibility.Zero,
+      autoSelectSubtitle: AutoSelectSubtitle.Enable,
+      defaultSubtitleAccessibility: DefaultSubtitleAccessibility.Enable,
+      defaultSubtitleForced: DefaultSubtitleForced.Enable,
+      watchedIndicator: WatchedIndicator.Enable,
+      mediaReviewsVisibility: MediaReviewsVisibility.Enable,
     },
     protected: false,
     rememberExpiresAt: 1722364046,
@@ -106,6 +106,7 @@ let value: GetTokenDetailsResponse = {
     twoFactorEnabled: false,
     username: "Username",
     uuid: "dae343c1f45beb4f",
+    attributionPartner: null,
   },
 };
 ```

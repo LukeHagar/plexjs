@@ -34,9 +34,29 @@ export type SDKOptions = {
   accessToken?: string | (() => Promise<string>);
 
   /**
-   * Allows setting the xPlexClientIdentifier parameter for all supported operations
+   * Allows setting the clientID parameter for all supported operations
    */
-  xPlexClientIdentifier?: string | undefined;
+  clientID?: string | undefined;
+
+  /**
+   * Allows setting the clientName parameter for all supported operations
+   */
+  clientName?: string | undefined;
+
+  /**
+   * Allows setting the clientVersion parameter for all supported operations
+   */
+  clientVersion?: string | undefined;
+
+  /**
+   * Allows setting the clientPlatform parameter for all supported operations
+   */
+  clientPlatform?: string | undefined;
+
+  /**
+   * Allows setting the deviceName parameter for all supported operations
+   */
+  deviceName?: string | undefined;
 
   httpClient?: HTTPClient;
   /**
@@ -95,7 +115,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "0.0.3",
-  sdkVersion: "0.23.5",
-  genVersion: "2.415.8",
-  userAgent: "speakeasy-sdk/typescript 0.23.5 2.415.8 0.0.3 @lukehagar/plexjs",
+  sdkVersion: "0.24.0",
+  genVersion: "2.428.1",
+  userAgent: "speakeasy-sdk/typescript 0.24.0 2.428.1 0.0.3 @lukehagar/plexjs",
 } as const;

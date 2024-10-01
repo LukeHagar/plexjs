@@ -24,14 +24,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.sessions.getSessions();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -49,7 +53,11 @@ import { sessionsGetSessions } from "@lukehagar/plexjs/funcs/sessionsGetSessions
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -62,7 +70,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -82,12 +90,11 @@ run();
 
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
+| Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | errors.GetSessionsBadRequest   | 400                            | application/json               |
 | errors.GetSessionsUnauthorized | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
-
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
 ## getSessionHistory
 
@@ -100,14 +107,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.sessions.getSessionHistory("viewedAt:desc", 1, {}, 12);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -125,7 +136,11 @@ import { sessionsGetSessionHistory } from "@lukehagar/plexjs/funcs/sessionsGetSe
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -138,7 +153,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -162,12 +177,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | errors.GetSessionHistoryBadRequest   | 400                                  | application/json                     |
 | errors.GetSessionHistoryUnauthorized | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
-
+| errors.SDKError                      | 4XX, 5XX                             | \*/\*                                |
 
 ## getTranscodeSessions
 
@@ -180,14 +194,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.sessions.getTranscodeSessions();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -205,7 +223,11 @@ import { sessionsGetTranscodeSessions } from "@lukehagar/plexjs/funcs/sessionsGe
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -218,7 +240,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -238,12 +260,11 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
+| Error Type                              | Status Code                             | Content Type                            |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
 | errors.GetTranscodeSessionsBadRequest   | 400                                     | application/json                        |
 | errors.GetTranscodeSessionsUnauthorized | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
-
+| errors.SDKError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## stopTranscodeSession
 
@@ -256,14 +277,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.sessions.stopTranscodeSession("zz7llzqlx8w9vnrsbnwhbmep");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -281,7 +306,11 @@ import { sessionsStopTranscodeSession } from "@lukehagar/plexjs/funcs/sessionsSt
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -294,7 +323,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -315,8 +344,8 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
+| Error Type                              | Status Code                             | Content Type                            |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
 | errors.StopTranscodeSessionBadRequest   | 400                                     | application/json                        |
 | errors.StopTranscodeSessionUnauthorized | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
+| errors.SDKError                         | 4XX, 5XX                                | \*/\*                                   |

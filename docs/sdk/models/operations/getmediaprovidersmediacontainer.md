@@ -5,7 +5,26 @@
 ```typescript
 import { GetMediaProvidersMediaContainer } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetMediaProvidersMediaContainer = {};
+let value: GetMediaProvidersMediaContainer = {
+  mediaProvider: [
+    {
+      feature: [
+        {
+          type: "<value>",
+          flavor: "global",
+          scrobbleKey: "/:/scrobble/new",
+          unscrobbleKey: "/:/unscrobble/new",
+          action: [
+            {
+              id: "addToContinueWatching",
+              key: "/actions/addToContinueWatching",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
 ```
 
 ## Fields

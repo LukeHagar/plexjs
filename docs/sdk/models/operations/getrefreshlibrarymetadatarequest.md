@@ -7,7 +7,7 @@ import { Force, GetRefreshLibraryMetadataRequest } from "@lukehagar/plexjs/sdk/m
 
 let value: GetRefreshLibraryMetadataRequest = {
   sectionKey: 9518,
-  force: Force.Zero,
+  force: Force.One,
 };
 ```
 

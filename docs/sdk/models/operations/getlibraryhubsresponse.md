@@ -8,7 +8,7 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetLibraryHubsResponse = {
   contentType: "<value>",
-  statusCode: 616934,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

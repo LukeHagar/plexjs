@@ -9,6 +9,7 @@ Hubs are a structured two-dimensional container for media, generally represented
 ### Available Operations
 
 * [getGlobalHubs](#getglobalhubs) - Get Global Hubs
+* [getRecentlyAdded](#getrecentlyadded) - Get Recently Added
 * [getLibraryHubs](#getlibraryhubs) - Get library specific hubs
 
 ## getGlobalHubs
@@ -22,14 +23,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.hubs.getGlobalHubs();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -47,7 +52,11 @@ import { hubsGetGlobalHubs } from "@lukehagar/plexjs/funcs/hubsGetGlobalHubs.js"
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -60,7 +69,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -82,12 +91,110 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | errors.GetGlobalHubsBadRequest   | 400                              | application/json                 |
 | errors.GetGlobalHubsUnauthorized | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| errors.SDKError                  | 4XX, 5XX                         | \*/\*                            |
 
+## getRecentlyAdded
+
+This endpoint will return the recently added content.
+
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getRecentlyAdded({
+    contentDirectoryID: 470161,
+    sectionID: 2,
+    type: Type.TvShow,
+    includeMeta: IncludeMeta.Enable,
+    xPlexContainerStart: 0,
+    xPlexContainerSize: 50,
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsGetRecentlyAdded } from "@lukehagar/plexjs/funcs/hubsGetRecentlyAdded.js";
+import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
+});
+
+async function run() {
+  const res = await hubsGetRecentlyAdded(plexAPI, {
+    contentDirectoryID: 470161,
+    sectionID: 2,
+    type: Type.TvShow,
+    includeMeta: IncludeMeta.Enable,
+    xPlexContainerStart: 0,
+    xPlexContainerSize: 50,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetRecentlyAddedRequest](../../sdk/models/operations/getrecentlyaddedrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetRecentlyAddedResponse](../../sdk/models/operations/getrecentlyaddedresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## getLibraryHubs
 
@@ -101,14 +208,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.hubs.getLibraryHubs(6728.76);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -126,7 +237,11 @@ import { hubsGetLibraryHubs } from "@lukehagar/plexjs/funcs/hubsGetLibraryHubs.j
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -139,7 +254,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -162,8 +277,8 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | errors.GetLibraryHubsBadRequest   | 400                               | application/json                  |
 | errors.GetLibraryHubsUnauthorized | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
+| errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |

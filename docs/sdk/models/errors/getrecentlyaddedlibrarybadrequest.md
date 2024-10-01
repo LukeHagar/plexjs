@@ -1,11 +1,11 @@
-# GetRecentlyAddedUnauthorized
+# GetRecentlyAddedLibraryBadRequest
 
-Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+Bad Request - A parameter was not specified, or was specified incorrectly.
 
 ## Example Usage
 
 ```typescript
-import { GetRecentlyAddedUnauthorized } from "@lukehagar/plexjs/sdk/models/errors";
+import { GetRecentlyAddedLibraryBadRequest } from "@lukehagar/plexjs/sdk/models/errors";
 
 // No examples available for this model
 ```

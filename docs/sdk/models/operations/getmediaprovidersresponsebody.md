@@ -7,7 +7,28 @@ Media providers and their features
 ```typescript
 import { GetMediaProvidersResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetMediaProvidersResponseBody = {};
+let value: GetMediaProvidersResponseBody = {
+  mediaContainer: {
+    mediaProvider: [
+      {
+        feature: [
+          {
+            type: "<value>",
+            flavor: "global",
+            scrobbleKey: "/:/scrobble/new",
+            unscrobbleKey: "/:/unscrobble/new",
+            action: [
+              {
+                id: "addToContinueWatching",
+                key: "/actions/addToContinueWatching",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+};
 ```
 
 ## Fields

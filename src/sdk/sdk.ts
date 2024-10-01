@@ -23,81 +23,81 @@ import { Watchlist } from "./watchlist.js";
 export class PlexAPI extends ClientSDK {
   private _server?: Server;
   get server(): Server {
-    return (this._server ??= new Server(this.options$));
+    return (this._server ??= new Server(this._options));
   }
 
   private _media?: Media;
   get media(): Media {
-    return (this._media ??= new Media(this.options$));
+    return (this._media ??= new Media(this._options));
   }
 
   private _video?: Video;
   get video(): Video {
-    return (this._video ??= new Video(this.options$));
+    return (this._video ??= new Video(this._options));
   }
 
   private _activities?: Activities;
   get activities(): Activities {
-    return (this._activities ??= new Activities(this.options$));
+    return (this._activities ??= new Activities(this._options));
   }
 
   private _butler?: Butler;
   get butler(): Butler {
-    return (this._butler ??= new Butler(this.options$));
+    return (this._butler ??= new Butler(this._options));
   }
 
   private _plex?: Plex;
   get plex(): Plex {
-    return (this._plex ??= new Plex(this.options$));
+    return (this._plex ??= new Plex(this._options));
   }
 
   private _hubs?: Hubs;
   get hubs(): Hubs {
-    return (this._hubs ??= new Hubs(this.options$));
+    return (this._hubs ??= new Hubs(this._options));
   }
 
   private _search?: Search;
   get search(): Search {
-    return (this._search ??= new Search(this.options$));
+    return (this._search ??= new Search(this._options));
   }
 
   private _library?: Library;
   get library(): Library {
-    return (this._library ??= new Library(this.options$));
+    return (this._library ??= new Library(this._options));
   }
 
   private _watchlist?: Watchlist;
   get watchlist(): Watchlist {
-    return (this._watchlist ??= new Watchlist(this.options$));
+    return (this._watchlist ??= new Watchlist(this._options));
   }
 
   private _log?: Log;
   get log(): Log {
-    return (this._log ??= new Log(this.options$));
+    return (this._log ??= new Log(this._options));
   }
 
   private _playlists?: Playlists;
   get playlists(): Playlists {
-    return (this._playlists ??= new Playlists(this.options$));
+    return (this._playlists ??= new Playlists(this._options));
   }
 
   private _authentication?: Authentication;
   get authentication(): Authentication {
-    return (this._authentication ??= new Authentication(this.options$));
+    return (this._authentication ??= new Authentication(this._options));
   }
 
   private _statistics?: Statistics;
   get statistics(): Statistics {
-    return (this._statistics ??= new Statistics(this.options$));
+    return (this._statistics ??= new Statistics(this._options));
   }
 
   private _sessions?: Sessions;
   get sessions(): Sessions {
-    return (this._sessions ??= new Sessions(this.options$));
+    return (this._sessions ??= new Sessions(this._options));
   }
 
   private _updater?: Updater;
   get updater(): Updater {
-    return (this._updater ??= new Updater(this.options$));
+    return (this._updater ??= new Updater(this._options));
   }
 }

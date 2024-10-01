@@ -3,12 +3,9 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import {
-  encodeFormQuery as encodeFormQuery$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -32,9 +29,8 @@ import { Result } from "../sdk/types/fp.js";
  * Retrieve an Access Token from Plex.tv after the Pin has been authenticated
  */
 export async function plexGetTokenByPinId(
-  client$: PlexAPICore,
-  pinID: number,
-  xPlexClientIdentifier?: string | undefined,
+  client: PlexAPICore,
+  request: operations.GetTokenByPinIdRequest,
   options?: RequestOptions & { serverURL?: string },
 ): Promise<
   Result<
@@ -50,40 +46,45 @@ export async function plexGetTokenByPinId(
     | ConnectionError
   >
 > {
-  const input$: operations.GetTokenByPinIdRequest = {
-    xPlexClientIdentifier: xPlexClientIdentifier,
-    pinID: pinID,
-  };
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => operations.GetTokenByPinIdRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.GetTokenByPinIdRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const baseURL$ = options?.serverURL
+  const baseURL = options?.serverURL
     || pathToFunc(GetTokenByPinIdServerList[0], { charEncoding: "percent" })();
 
-  const pathParams$ = {
-    pinID: encodeSimple$("pinID", payload$.pinID, {
+  const pathParams = {
+    pinID: encodeSimple("pinID", payload.pinID, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/pins/{pinID}")(pathParams$);
+  const path = pathToFunc("/pins/{pinID}")(pathParams);
 
-  const query$ = encodeFormQuery$({
-    "X-Plex-Client-Identifier": payload$["X-Plex-Client-Identifier"]
-      ?? client$.options$.xPlexClientIdentifier,
+  const query = encodeFormQuery({
+    "X-Plex-Client-Identifier": client._options.clientID,
+    "X-Plex-Client-Identifier": payload.ClientID,
+    "X-Plex-Device": payload.DeviceName,
+    "X-Plex-Device": client._options.deviceName,
+    "X-Plex-Platform": client._options.clientPlatform,
+    "X-Plex-Platform": payload.ClientPlatform,
+    "X-Plex-Product": payload.ClientName,
+    "X-Plex-Product": client._options.clientName,
+    "X-Plex-Version": payload.ClientVersion,
+    "X-Plex-Version": client._options.clientVersion,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
@@ -93,25 +94,25 @@ export async function plexGetTokenByPinId(
     securitySource: null,
   };
 
-  const requestRes = client$.createRequest$(context, {
+  const requestRes = client._createRequest(context, {
     method: "GET",
-    baseURL: baseURL$,
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    baseURL: baseURL,
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "404", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -119,7 +120,7 @@ export async function plexGetTokenByPinId(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -127,7 +128,7 @@ export async function plexGetTokenByPinId(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GetTokenByPinIdResponse,
     | errors.GetTokenByPinIdBadRequest
     | errors.GetTokenByPinIdResponseBody
@@ -139,16 +140,16 @@ export async function plexGetTokenByPinId(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GetTokenByPinIdResponse$inboundSchema, {
+    M.json(200, operations.GetTokenByPinIdResponse$inboundSchema, {
       key: "AuthPinContainer",
     }),
-    m$.jsonErr(400, errors.GetTokenByPinIdBadRequest$inboundSchema),
-    m$.jsonErr(404, errors.GetTokenByPinIdResponseBody$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr(400, errors.GetTokenByPinIdBadRequest$inboundSchema),
+    M.jsonErr(404, errors.GetTokenByPinIdResponseBody$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

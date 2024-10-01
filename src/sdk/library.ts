@@ -10,7 +10,7 @@ import { libraryGetLibraryItems } from "../funcs/libraryGetLibraryItems.js";
 import { libraryGetMetaDataByRatingKey } from "../funcs/libraryGetMetaDataByRatingKey.js";
 import { libraryGetMetadataChildren } from "../funcs/libraryGetMetadataChildren.js";
 import { libraryGetOnDeck } from "../funcs/libraryGetOnDeck.js";
-import { libraryGetRecentlyAdded } from "../funcs/libraryGetRecentlyAdded.js";
+import { libraryGetRecentlyAddedLibrary } from "../funcs/libraryGetRecentlyAddedLibrary.js";
 import { libraryGetRefreshLibraryMetadata } from "../funcs/libraryGetRefreshLibraryMetadata.js";
 import { libraryGetSearchLibrary } from "../funcs/libraryGetSearchLibrary.js";
 import { libraryGetTopWatchedContent } from "../funcs/libraryGetTopWatchedContent.js";
@@ -44,15 +44,13 @@ export class Library extends ClientSDK {
    * @remarks
    * This endpoint will return the recently added content.
    */
-  async getRecentlyAdded(
-    xPlexContainerStart?: number | undefined,
-    xPlexContainerSize?: number | undefined,
+  async getRecentlyAddedLibrary(
+    request: operations.GetRecentlyAddedLibraryRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetRecentlyAddedResponse> {
-    return unwrapAsync(libraryGetRecentlyAdded(
+  ): Promise<operations.GetRecentlyAddedLibraryResponse> {
+    return unwrapAsync(libraryGetRecentlyAddedLibrary(
       this,
-      xPlexContainerStart,
-      xPlexContainerSize,
+      request,
       options,
     ));
   }
@@ -231,7 +229,7 @@ export class Library extends ClientSDK {
    */
   async getSearchLibrary(
     sectionKey: number,
-    type: operations.QueryParamType,
+    type: operations.GetSearchLibraryQueryParamType,
     options?: RequestOptions,
   ): Promise<operations.GetSearchLibraryResponse> {
     return unwrapAsync(libraryGetSearchLibrary(

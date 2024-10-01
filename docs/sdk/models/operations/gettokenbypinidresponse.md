@@ -7,7 +7,7 @@ import { GetTokenByPinIdResponse } from "@lukehagar/plexjs/sdk/models/operations
 
 let value: GetTokenByPinIdResponse = {
   contentType: "<value>",
-  statusCode: 324141,
+  statusCode: 506,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -25,7 +25,7 @@ let value: GetTokenByPinIdResponse = {
       city: "Amsterdam",
       europeanUnionMember: true,
       timeZone: "America/St_Thomas",
-      postalCode: 802,
+      postalCode: "802",
       inPrivacyRestrictedCountry: true,
       inPrivacyRestrictedRegion: true,
       subdivisions: "Saint Thomas",

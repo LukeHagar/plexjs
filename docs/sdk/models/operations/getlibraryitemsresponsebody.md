@@ -5,15 +5,80 @@ The contents of the library by section and tag
 ## Example Usage
 
 ```typescript
-import { GetLibraryItemsResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetLibraryItemsActiveDirection,
+  GetLibraryItemsDefaultDirection,
+  GetLibraryItemsFlattenSeasons,
+  GetLibraryItemsHasThumbnail,
+  GetLibraryItemsLibraryActiveDirection,
+  GetLibraryItemsLibraryDefaultDirection,
+  GetLibraryItemsLibraryResponse200Type,
+  GetLibraryItemsLibraryType,
+  GetLibraryItemsOptimizedForStreaming,
+  GetLibraryItemsResponseBody,
+  GetLibraryItemsShowOrdering,
+} from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetLibraryItemsResponseBody = {
   mediaContainer: {
+    type: [
+      {
+        key: "/library/sections/2/all?type=2",
+        type: "show",
+        title: "TV Shows",
+        active: false,
+        filter: [
+          {
+            filter: "genre",
+            filterType: "string",
+            key: "/library/sections/2/genre?type=2",
+            title: "Genre",
+            type: "filter",
+          },
+        ],
+        sort: [
+          {
+            default: "asc",
+            active: false,
+            activeDirection: GetLibraryItemsActiveDirection.Ascending,
+            defaultDirection: GetLibraryItemsDefaultDirection.Ascending,
+            descKey: "titleSort:desc",
+            firstCharacterKey: "/library/sections/2/firstCharacter",
+            key: "titleSort",
+            title: "Title",
+          },
+        ],
+        field: [
+          {
+            key: "show.title",
+            title: "Show Title",
+            type: "string",
+            subType: "rating",
+          },
+        ],
+      },
+    ],
+    fieldType: [
+      {
+        type: "tag",
+        operator: [
+          {
+            key: "=",
+            title: "is",
+          },
+        ],
+      },
+    ],
     size: 70,
+    totalSize: 170,
+    offset: 0,
+    content: "secondary",
     allowSync: true,
+    nocache: true,
     art: "/:/resources/movie-fanart.jpg",
     identifier: "com.plexapp.plugins.library",
+    librarySectionID: 1,
     librarySectionTitle: "Movies",
     librarySectionUUID: "322a231a-b7f7-49f5-920f-14c61199cd30",
     mediaTagPrefix: "/system/bundle/media/flags/",
@@ -30,21 +95,30 @@ let value: GetLibraryItemsResponseBody = {
         key: "/library/metadata/58683",
         guid: "plex://movie/5d7768ba96b655001fdc0408",
         studio: "20th Century Studios",
-        type: "movie",
+        skipChildren: false,
+        librarySectionID: 1,
+        librarySectionTitle: "Movies",
+        librarySectionKey: "/library/sections/1",
+        type: GetLibraryItemsLibraryType.Movie,
         title: "Avatar: The Way of Water",
+        slug: "4-for-texas",
         contentRating: "PG-13",
         summary:
           "Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their home.",
         rating: 7.6,
         audienceRating: 9.2,
         year: 2022,
+        seasonCount: 2022,
         tagline: "Return to Pandora.",
+        flattenSeasons: GetLibraryItemsFlattenSeasons.True,
+        showOrdering: GetLibraryItemsShowOrdering.Dvd,
         thumb: "/library/metadata/58683/thumb/1703239236",
         art: "/library/metadata/58683/art/1703239236",
+        banner: "/library/metadata/58683/banner/1703239236",
         duration: 11558112,
         originallyAvailableAt: new RFCDate("2022-12-14T00:00:00Z"),
-        addedAt: 1680457607,
-        updatedAt: 1703239236,
+        addedAt: 1556281940,
+        updatedAt: 1556281940,
         audienceRatingImage: "rottentomatoes://image.rating.upright",
         chapterSource: "media",
         primaryExtraKey: "/library/metadata/58684",
@@ -54,6 +128,8 @@ let value: GetLibraryItemsResponseBody = {
         grandparentKey: "/library/metadata/66",
         grandparentTitle: "Caprica",
         grandparentThumb: "/library/metadata/66/thumb/1705716261",
+        parentSlug: "alice-in-borderland-2020",
+        grandparentSlug: "alice-in-borderland-2020",
         grandparentArt: "/library/metadata/66/art/1705716261",
         grandparentTheme: "/library/metadata/66/theme/1705716261",
         media: [
@@ -64,6 +140,7 @@ let value: GetLibraryItemsResponseBody = {
             width: 3840,
             height: 2072,
             aspectRatio: 1.85,
+            audioProfile: "dts",
             audioChannels: 6,
             audioCodec: "eac3",
             videoCodec: "hevc",
@@ -71,6 +148,9 @@ let value: GetLibraryItemsResponseBody = {
             container: "mkv",
             videoFrameRate: "24p",
             videoProfile: "main 10",
+            hasVoiceActivity: false,
+            optimizedForStreaming: GetLibraryItemsOptimizedForStreaming.Enable,
+            has64bitOffsets: false,
             part: [
               {
                 id: 119542,
@@ -80,7 +160,54 @@ let value: GetLibraryItemsResponseBody = {
                   "/movies/Avatar The Way of Water (2022)/Avatar.The.Way.of.Water.2022.2160p.WEB-DL.DDP5.1.Atmos.DV.HDR10.HEVC-CMRG.mkv",
                 size: 36158371307,
                 container: "mkv",
+                audioProfile: "dts",
+                has64bitOffsets: false,
+                optimizedForStreaming: false,
                 videoProfile: "main 10",
+                indexes: "sd",
+                hasThumbnail: GetLibraryItemsHasThumbnail.True,
+                stream: [
+                  {
+                    id: 272796,
+                    streamType: 1,
+                    default: true,
+                    selected: true,
+                    codec: "h264",
+                    index: 0,
+                    bitrate: 6273,
+                    colorPrimaries: "bt709",
+                    colorRange: "tv",
+                    colorSpace: "bt709",
+                    colorTrc: "bt709",
+                    bitDepth: 8,
+                    chromaLocation: "left",
+                    streamIdentifier: "2",
+                    chromaSubsampling: "4:2:0",
+                    codedHeight: 1088,
+                    codedWidth: 1920,
+                    frameRate: 29.97,
+                    hasScalingMatrix: false,
+                    hearingImpaired: false,
+                    closedCaptions: false,
+                    embeddedInVideo: "1",
+                    height: 1080,
+                    level: 40,
+                    profile: "main",
+                    refFrames: 4,
+                    scanType: "progressive",
+                    width: 1920,
+                    displayTitle: "1080p (H.264)",
+                    extendedDisplayTitle: "1080p (H.264)",
+                    channels: 2,
+                    language: "English",
+                    languageTag: "en",
+                    languageCode: "eng",
+                    audioChannelLayout: "stereo",
+                    samplingRate: 48000,
+                    title: "English",
+                    canAutoSync: false,
+                  },
+                ],
               },
             ],
           },
@@ -105,9 +232,45 @@ let value: GetLibraryItemsResponseBody = {
             tag: "James Cameron",
           },
         ],
+        collection: [
+          {
+            tag: "Working NL Subs",
+          },
+        ],
         role: [
           {
-            tag: "Sigourney Weaver",
+            id: 294129,
+            filter: "actor=294129",
+            thumb:
+              "https://metadata-static.plex.tv/2/people/27b85844536c39f3f9ac943aaad46608.jpg",
+            tag: "Mike Smith",
+            tagKey: "668e7e7b22bcad9064350c91",
+            role: "Self",
+          },
+        ],
+        mediaGuid: [
+          {
+            id: "imdb://tt13015952",
+          },
+        ],
+        ultraBlurColors: {
+          topLeft: "11333b",
+          topRight: "0a232d",
+          bottomRight: "73958",
+          bottomLeft: "1f5066",
+        },
+        metaDataRating: [
+          {
+            image: "themoviedb://image.rating",
+            value: 3,
+            type: "audience",
+          },
+        ],
+        image: [
+          {
+            alt: "Episode 1",
+            type: GetLibraryItemsLibraryResponse200Type.Background,
+            url: "/library/metadata/45521/thumb/1644710589",
           },
         ],
         titleSort: "Whale",
@@ -134,6 +297,57 @@ let value: GetLibraryItemsResponseBody = {
         parentTheme: "/library/metadata/66/theme/1705716261",
       },
     ],
+    meta: {
+      type: [
+        {
+          key: "/library/sections/2/all?type=2",
+          type: "show",
+          title: "TV Shows",
+          active: false,
+          filter: [
+            {
+              filter: "genre",
+              filterType: "string",
+              key: "/library/sections/2/genre?type=2",
+              title: "Genre",
+              type: "filter",
+            },
+          ],
+          sort: [
+            {
+              default: "asc",
+              active: false,
+              activeDirection: GetLibraryItemsLibraryActiveDirection.Ascending,
+              defaultDirection:
+                GetLibraryItemsLibraryDefaultDirection.Ascending,
+              descKey: "titleSort:desc",
+              firstCharacterKey: "/library/sections/2/firstCharacter",
+              key: "titleSort",
+              title: "Title",
+            },
+          ],
+          field: [
+            {
+              key: "show.title",
+              title: "Show Title",
+              type: "string",
+              subType: "rating",
+            },
+          ],
+        },
+      ],
+      fieldType: [
+        {
+          type: "tag",
+          operator: [
+            {
+              key: "=",
+              title: "is",
+            },
+          ],
+        },
+      ],
+    },
   },
 };
 ```

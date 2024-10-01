@@ -9,7 +9,7 @@ API Calls interacting with Plex Media Server Libraries
 ### Available Operations
 
 * [getFileHash](#getfilehash) - Get Hash Value
-* [getRecentlyAdded](#getrecentlyadded) - Get Recently Added
+* [getRecentlyAddedLibrary](#getrecentlyaddedlibrary) - Get Recently Added
 * [getAllLibraries](#getalllibraries) - Get All Libraries
 * [getLibraryDetails](#getlibrarydetails) - Get Library Details
 * [deleteLibrary](#deletelibrary) - Delete Library Section
@@ -32,14 +32,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.getFileHash("file://C:\Image.png&type=13");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -57,7 +61,11 @@ import { libraryGetFileHash } from "@lukehagar/plexjs/funcs/libraryGetFileHash.j
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -70,7 +78,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -92,14 +100,13 @@ run();
 
 ### Errors
 
-| Error Object                   | Status Code                    | Content Type                   |
+| Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | errors.GetFileHashBadRequest   | 400                            | application/json               |
 | errors.GetFileHashUnauthorized | 401                            | application/json               |
-| errors.SDKError                | 4xx-5xx                        | */*                            |
+| errors.SDKError                | 4XX, 5XX                       | \*/\*                          |
 
-
-## getRecentlyAdded
+## getRecentlyAddedLibrary
 
 This endpoint will return the recently added content.
 
@@ -108,17 +115,43 @@ This endpoint will return the recently added content.
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const result = await plexAPI.library.getRecentlyAdded(0, 50);
-  
+  const result = await plexAPI.library.getRecentlyAddedLibrary({
+    contentDirectoryID: 2,
+    pinnedContentDirectoryID: [
+      3,
+      5,
+      7,
+      13,
+      12,
+      1,
+      6,
+      14,
+      2,
+      10,
+      16,
+      17,
+    ],
+    sectionID: 2,
+    type: QueryParamType.TvShow,
+    includeMeta: QueryParamIncludeMeta.Enable,
+    xPlexContainerStart: 0,
+    xPlexContainerSize: 50,
+  });
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -130,17 +163,43 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryGetRecentlyAdded } from "@lukehagar/plexjs/funcs/libraryGetRecentlyAdded.js";
+import { libraryGetRecentlyAddedLibrary } from "@lukehagar/plexjs/funcs/libraryGetRecentlyAddedLibrary.js";
+import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await libraryGetRecentlyAdded(plexAPI, 0, 50);
+  const res = await libraryGetRecentlyAddedLibrary(plexAPI, {
+    contentDirectoryID: 2,
+    pinnedContentDirectoryID: [
+      3,
+      5,
+      7,
+      13,
+      12,
+      1,
+      6,
+      14,
+      2,
+      10,
+      16,
+      17,
+    ],
+    sectionID: 2,
+    type: QueryParamType.TvShow,
+    includeMeta: QueryParamIncludeMeta.Enable,
+    xPlexContainerStart: 0,
+    xPlexContainerSize: 50,
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -149,7 +208,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -157,26 +216,24 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                 | Type                                                                                                                                                                                      | Required                                                                                                                                                                                  | Description                                                                                                                                                                               | Example                                                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `xPlexContainerStart`                                                                                                                                                                     | *number*                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                        | The index of the first item to return. If not specified, the first item will be returned.<br/>If the number of items exceeds the limit, the response will be paginated.<br/>By default this is 0<br/> | [object Object]                                                                                                                                                                           |
-| `xPlexContainerSize`                                                                                                                                                                      | *number*                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                        | The number of items to return. If not specified, all items will be returned.<br/>If the number of items exceeds the limit, the response will be paginated.<br/>By default this is 50<br/> | [object Object]                                                                                                                                                                           |
-| `options`                                                                                                                                                                                 | RequestOptions                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                        | Used to set various options for making HTTP requests.                                                                                                                                     |                                                                                                                                                                                           |
-| `options.fetchOptions`                                                                                                                                                                    | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                   | :heavy_minus_sign:                                                                                                                                                                        | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.            |                                                                                                                                                                                           |
-| `options.retries`                                                                                                                                                                         | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                        | Enables retrying HTTP requests under certain failure conditions.                                                                                                                          |                                                                                                                                                                                           |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetRecentlyAddedLibraryRequest](../../sdk/models/operations/getrecentlyaddedlibraryrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetRecentlyAddedResponse](../../sdk/models/operations/getrecentlyaddedresponse.md)\>**
+**Promise\<[operations.GetRecentlyAddedLibraryResponse](../../sdk/models/operations/getrecentlyaddedlibraryresponse.md)\>**
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.GetRecentlyAddedBadRequest   | 400                                 | application/json                    |
-| errors.GetRecentlyAddedUnauthorized | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
-
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.GetRecentlyAddedLibraryBadRequest   | 400                                        | application/json                           |
+| errors.GetRecentlyAddedLibraryUnauthorized | 401                                        | application/json                           |
+| errors.SDKError                            | 4XX, 5XX                                   | \*/\*                                      |
 
 ## getAllLibraries
 
@@ -195,14 +252,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.getAllLibraries();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -220,7 +281,11 @@ import { libraryGetAllLibraries } from "@lukehagar/plexjs/funcs/libraryGetAllLib
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -233,7 +298,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -253,12 +318,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.GetAllLibrariesBadRequest   | 400                                | application/json                   |
 | errors.GetAllLibrariesUnauthorized | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
-
+| errors.SDKError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## getLibraryDetails
 
@@ -310,14 +374,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.getLibraryDetails(9518);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -335,7 +403,11 @@ import { libraryGetLibraryDetails } from "@lukehagar/plexjs/funcs/libraryGetLibr
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -348,7 +420,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -370,12 +442,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | errors.GetLibraryDetailsBadRequest   | 400                                  | application/json                     |
 | errors.GetLibraryDetailsUnauthorized | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
-
+| errors.SDKError                      | 4XX, 5XX                             | \*/\*                                |
 
 ## deleteLibrary
 
@@ -388,14 +459,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.deleteLibrary(9518);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -413,7 +488,11 @@ import { libraryDeleteLibrary } from "@lukehagar/plexjs/funcs/libraryDeleteLibra
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -426,7 +505,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -447,12 +526,11 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | errors.DeleteLibraryBadRequest   | 400                              | application/json                 |
 | errors.DeleteLibraryUnauthorized | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
-
+| errors.SDKError                  | 4XX, 5XX                         | \*/\*                            |
 
 ## getLibraryItems
 
@@ -482,26 +560,35 @@ Fetches details from a specific section of the library identified by a section k
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { IncludeGuids, IncludeMeta, Tag, Type } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetLibraryItemsQueryParamIncludeMeta,
+  GetLibraryItemsQueryParamType,
+  IncludeGuids,
+  Tag,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.getLibraryItems({
     sectionKey: 9518,
     tag: Tag.Edition,
-    includeGuids: IncludeGuids.One,
-    includeMeta: IncludeMeta.One,
-    type: Type.Two,
+    includeGuids: IncludeGuids.Enable,
+    type: GetLibraryItemsQueryParamType.TvShow,
+    includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
     xPlexContainerStart: 0,
     xPlexContainerSize: 50,
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -514,22 +601,31 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetLibraryItems } from "@lukehagar/plexjs/funcs/libraryGetLibraryItems.js";
-import { IncludeGuids, IncludeMeta, Tag, Type } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetLibraryItemsQueryParamIncludeMeta,
+  GetLibraryItemsQueryParamType,
+  IncludeGuids,
+  Tag,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const res = await libraryGetLibraryItems(plexAPI, {
     sectionKey: 9518,
     tag: Tag.Edition,
-    includeGuids: IncludeGuids.One,
-    includeMeta: IncludeMeta.One,
-    type: Type.Two,
+    includeGuids: IncludeGuids.Enable,
+    type: GetLibraryItemsQueryParamType.TvShow,
+    includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
     xPlexContainerStart: 0,
     xPlexContainerSize: 50,
   });
@@ -541,7 +637,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -562,12 +658,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.GetLibraryItemsBadRequest   | 400                                | application/json                   |
 | errors.GetLibraryItemsUnauthorized | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
-
+| errors.SDKError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## getRefreshLibraryMetadata
 
@@ -582,14 +677,18 @@ import { Force } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.getRefreshLibraryMetadata(9518, Force.One);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -608,11 +707,15 @@ import { Force } from "@lukehagar/plexjs/sdk/models/operations";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await libraryGetRefreshLibraryMetadata(plexAPI, 9518, Force.One);
+  const res = await libraryGetRefreshLibraryMetadata(plexAPI, 9518, Force.Zero);
 
   if (!res.ok) {
     throw res.error;
@@ -621,7 +724,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -643,12 +746,11 @@ run();
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | errors.GetRefreshLibraryMetadataBadRequest   | 400                                          | application/json                             |
 | errors.GetRefreshLibraryMetadataUnauthorized | 401                                          | application/json                             |
-| errors.SDKError                              | 4xx-5xx                                      | */*                                          |
-
+| errors.SDKError                              | 4XX, 5XX                                     | \*/\*                                        |
 
 ## getSearchLibrary
 
@@ -676,18 +778,22 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetSearchLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const result = await plexAPI.library.getSearchLibrary(9518, QueryParamType.Two);
-  
+  const result = await plexAPI.library.getSearchLibrary(9518, GetSearchLibraryQueryParamType.TvShow);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -700,17 +806,21 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetSearchLibrary } from "@lukehagar/plexjs/funcs/libraryGetSearchLibrary.js";
-import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetSearchLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await libraryGetSearchLibrary(plexAPI, 9518, QueryParamType.Two);
+  const res = await libraryGetSearchLibrary(plexAPI, 9518, GetSearchLibraryQueryParamType.TvShow);
 
   if (!res.ok) {
     throw res.error;
@@ -719,7 +829,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -730,7 +840,7 @@ run();
 | Parameter                                                                                                                                                                       | Type                                                                                                                                                                            | Required                                                                                                                                                                        | Description                                                                                                                                                                     | Example                                                                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sectionKey`                                                                                                                                                                    | *number*                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                              | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                           | [object Object]                                                                                                                                                                 |
-| `type`                                                                                                                                                                          | [operations.QueryParamType](../../sdk/models/operations/queryparamtype.md)                                                                                                      | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | [object Object]                                                                                                                                                                 |
+| `type`                                                                                                                                                                          | [operations.GetSearchLibraryQueryParamType](../../sdk/models/operations/getsearchlibraryqueryparamtype.md)                                                                      | :heavy_check_mark:                                                                                                                                                              | The type of media to retrieve.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | [object Object]                                                                                                                                                                 |
 | `options`                                                                                                                                                                       | RequestOptions                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                              | Used to set various options for making HTTP requests.                                                                                                                           |                                                                                                                                                                                 |
 | `options.fetchOptions`                                                                                                                                                          | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                         | :heavy_minus_sign:                                                                                                                                                              | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.  |                                                                                                                                                                                 |
 | `options.retries`                                                                                                                                                               | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                              | Enables retrying HTTP requests under certain failure conditions.                                                                                                                |                                                                                                                                                                                 |
@@ -741,12 +851,11 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | errors.GetSearchLibraryBadRequest   | 400                                 | application/json                    |
 | errors.GetSearchLibraryUnauthorized | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
-
+| errors.SDKError                     | 4XX, 5XX                            | \*/\*                               |
 
 ## getMetaDataByRatingKey
 
@@ -760,14 +869,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.getMetaDataByRatingKey(9518);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -785,7 +898,11 @@ import { libraryGetMetaDataByRatingKey } from "@lukehagar/plexjs/funcs/libraryGe
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -798,7 +915,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -819,12 +936,11 @@ run();
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | errors.GetMetaDataByRatingKeyBadRequest   | 400                                       | application/json                          |
 | errors.GetMetaDataByRatingKeyUnauthorized | 401                                       | application/json                          |
-| errors.SDKError                           | 4xx-5xx                                   | */*                                       |
-
+| errors.SDKError                           | 4XX, 5XX                                  | \*/\*                                     |
 
 ## getMetadataChildren
 
@@ -838,14 +954,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.getMetadataChildren(1539.14, "Stream");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -863,7 +983,11 @@ import { libraryGetMetadataChildren } from "@lukehagar/plexjs/funcs/libraryGetMe
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -876,7 +1000,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -898,12 +1022,11 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | errors.GetMetadataChildrenBadRequest   | 400                                    | application/json                       |
 | errors.GetMetadataChildrenUnauthorized | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
-
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
 
 ## getTopWatchedContent
 
@@ -918,14 +1041,18 @@ import { GetTopWatchedContentQueryParamType } from "@lukehagar/plexjs/sdk/models
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const result = await plexAPI.library.getTopWatchedContent(GetTopWatchedContentQueryParamType.Two, 1);
-  
+  const result = await plexAPI.library.getTopWatchedContent(GetTopWatchedContentQueryParamType.TvShow, 1);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -944,11 +1071,15 @@ import { GetTopWatchedContentQueryParamType } from "@lukehagar/plexjs/sdk/models
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await libraryGetTopWatchedContent(plexAPI, GetTopWatchedContentQueryParamType.Two, 1);
+  const res = await libraryGetTopWatchedContent(plexAPI, GetTopWatchedContentQueryParamType.TvShow, 1);
 
   if (!res.ok) {
     throw res.error;
@@ -957,7 +1088,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -979,12 +1110,11 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
+| Error Type                              | Status Code                             | Content Type                            |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
 | errors.GetTopWatchedContentBadRequest   | 400                                     | application/json                        |
 | errors.GetTopWatchedContentUnauthorized | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
-
+| errors.SDKError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## getOnDeck
 
@@ -998,14 +1128,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.library.getOnDeck();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1023,7 +1157,11 @@ import { libraryGetOnDeck } from "@lukehagar/plexjs/funcs/libraryGetOnDeck.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -1036,7 +1174,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1056,8 +1194,8 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.GetOnDeckBadRequest   | 400                          | application/json             |
 | errors.GetOnDeckUnauthorized | 401                          | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |

@@ -21,7 +21,7 @@ import {
 
 let value: PostUsersSignInDataResponse = {
   contentType: "<value>",
-  statusCode: 566602,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -50,19 +50,19 @@ let value: PostUsersSignInDataResponse = {
     joinedAt: 1721154902,
     locale: null,
     mailingListActive: false,
-    mailingListStatus: PostUsersSignInDataMailingListStatus.Unsubscribed,
+    mailingListStatus: PostUsersSignInDataMailingListStatus.Active,
     maxHomeSize: 15,
     pin: "string",
     profile: {
       autoSelectAudio: true,
       defaultAudioLanguage: "ja",
       defaultSubtitleLanguage: "en",
-      autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle.One,
+      autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle.Enable,
       defaultSubtitleAccessibility:
-        PostUsersSignInDataDefaultSubtitleAccessibility.One,
-      defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.Zero,
-      watchedIndicator: PostUsersSignInDataWatchedIndicator.One,
-      mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.One,
+        PostUsersSignInDataDefaultSubtitleAccessibility.Enable,
+      defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.Enable,
+      watchedIndicator: PostUsersSignInDataWatchedIndicator.Enable,
+      mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.Enable,
     },
     protected: false,
     rememberExpiresAt: 1722364046,
@@ -108,6 +108,7 @@ let value: PostUsersSignInDataResponse = {
     twoFactorEnabled: false,
     username: "Username",
     uuid: "dae343c1f45beb4f",
+    attributionPartner: null,
     pastSubscriptions: [
       {
         id: "string",
@@ -126,7 +127,7 @@ let value: PostUsersSignInDataResponse = {
         state: PostUsersSignInDataState.Ended,
         billing: {
           internalPaymentMethod: {},
-          paymentMethodId: 523248,
+          paymentMethodId: 374170,
         },
       },
     ],

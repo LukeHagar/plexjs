@@ -7,7 +7,7 @@ import { GetAllLibrariesResponse } from "@lukehagar/plexjs/sdk/models/operations
 
 let value: GetAllLibrariesResponse = {
   contentType: "<value>",
-  statusCode: 437032,
+  statusCode: 308,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -36,7 +36,7 @@ let value: GetAllLibrariesResponse = {
           scannedAt: 1556281940,
           content: true,
           directory: true,
-          contentChangedAt: 3192854,
+          contentChangedAt: 1556281940,
           hidden: 0,
           location: [
             {

@@ -29,7 +29,7 @@ let value: GetAllLibrariesMediaContainer = {
       scannedAt: 1556281940,
       content: true,
       directory: true,
-      contentChangedAt: 3192854,
+      contentChangedAt: 1556281940,
       hidden: 0,
       location: [
         {
@@ -49,4 +49,4 @@ let value: GetAllLibrariesMediaContainer = {
 | `size`                                                                                              | *number*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 | 5                                                                                                   |
 | `allowSync`                                                                                         | *boolean*                                                                                           | :heavy_check_mark:                                                                                  | N/A                                                                                                 | false                                                                                               |
 | `title1`                                                                                            | *string*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 | Plex Library                                                                                        |
-| `directory`                                                                                         | [operations.GetAllLibrariesDirectory](../../../sdk/models/operations/getalllibrariesdirectory.md)[] | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |                                                                                                     |
+| `directory`                                                                                         | [operations.GetAllLibrariesDirectory](../../../sdk/models/operations/getalllibrariesdirectory.md)[] | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |

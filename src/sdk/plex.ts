@@ -81,18 +81,18 @@ export class Plex extends ClientSDK {
    * Get Plex server access tokens and server connections
    */
   async getServerResources(
-    xPlexClientIdentifier?: string | undefined,
     includeHttps?: operations.IncludeHttps | undefined,
     includeRelay?: operations.IncludeRelay | undefined,
     includeIPv6?: operations.IncludeIPv6 | undefined,
+    clientID?: string | undefined,
     options?: RequestOptions & { serverURL?: string },
   ): Promise<operations.GetServerResourcesResponse> {
     return unwrapAsync(plexGetServerResources(
       this,
-      xPlexClientIdentifier,
       includeHttps,
       includeRelay,
       includeIPv6,
+      clientID,
       options,
     ));
   }
@@ -101,19 +101,15 @@ export class Plex extends ClientSDK {
    * Get a Pin
    *
    * @remarks
-   * Retrieve a Pin from Plex.tv for authentication flows
+   * Retrieve a Pin ID from Plex.tv to use for authentication flows
    */
   async getPin(
-    strong?: boolean | undefined,
-    xPlexClientIdentifier?: string | undefined,
-    xPlexProduct?: string | undefined,
+    request: operations.GetPinRequest,
     options?: RequestOptions & { serverURL?: string },
   ): Promise<operations.GetPinResponse> {
     return unwrapAsync(plexGetPin(
       this,
-      strong,
-      xPlexClientIdentifier,
-      xPlexProduct,
+      request,
       options,
     ));
   }
@@ -125,14 +121,12 @@ export class Plex extends ClientSDK {
    * Retrieve an Access Token from Plex.tv after the Pin has been authenticated
    */
   async getTokenByPinId(
-    pinID: number,
-    xPlexClientIdentifier?: string | undefined,
+    request: operations.GetTokenByPinIdRequest,
     options?: RequestOptions & { serverURL?: string },
   ): Promise<operations.GetTokenByPinIdResponse> {
     return unwrapAsync(plexGetTokenByPinId(
       this,
-      pinID,
-      xPlexClientIdentifier,
+      request,
       options,
     ));
   }

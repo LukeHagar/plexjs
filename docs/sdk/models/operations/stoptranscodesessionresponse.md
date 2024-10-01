@@ -7,7 +7,7 @@ import { StopTranscodeSessionResponse } from "@lukehagar/plexjs/sdk/models/opera
 
 let value: StopTranscodeSessionResponse = {
   contentType: "<value>",
-  statusCode: 277718,
+  statusCode: 303,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

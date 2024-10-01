@@ -8,12 +8,12 @@ The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign aud
 import { PostUsersSignInDataAutoSelectSubtitle } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataAutoSelectSubtitle =
-  PostUsersSignInDataAutoSelectSubtitle.One;
+  PostUsersSignInDataAutoSelectSubtitle.Enable;
 ```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+| Name      | Value     |
+| --------- | --------- |
+| `Disable` | 0         |
+| `Enable`  | 1         |

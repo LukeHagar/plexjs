@@ -7,7 +7,7 @@ Force the refresh even if the library is already being refreshed.
 ```typescript
 import { Force } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: Force = Force.One;
+let value: Force = Force.Zero;
 ```
 
 ## Values

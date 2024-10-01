@@ -11,6 +11,31 @@
 ## Summary
 
 Plex-API: An Open API Spec for interacting with Plex.tv and Plex Media Server
+
+# Plex Media Server OpenAPI Specification
+
+An Open Source OpenAPI Specification for Plex Media Server
+
+Automation and SDKs provided by [Speakeasy](https://speakeasyapi.dev/)
+
+## Documentation
+
+[API Documentation](https://plexapi.dev)
+
+## SDKs
+
+The following SDKs are generated from the OpenAPI Specification. They are automatically generated and may not be fully tested. If you find any issues, please open an issue on the [main specification Repository](https://github.com/LukeHagar/plex-api-spec).
+
+| Language              | Repository                                        | Releases                                                                                         | Other                                                   |
+| --------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+| Python                | [GitHub](https://github.com/LukeHagar/plexpy)     | [PyPI](https://pypi.org/project/plex-api-client/)                                                | -                                                       |
+| JavaScript/TypeScript | [GitHub](https://github.com/LukeHagar/plexjs)     | [NPM](https://www.npmjs.com/package/@lukehagar/plexjs) \ [JSR](https://jsr.io/@lukehagar/plexjs) | -                                                       |
+| Go                    | [GitHub](https://github.com/LukeHagar/plexgo)     | [Releases](https://github.com/LukeHagar/plexgo/releases)                                         | [GoDoc](https://pkg.go.dev/github.com/LukeHagar/plexgo) |
+| Ruby                  | [GitHub](https://github.com/LukeHagar/plexruby)   | [Releases](https://github.com/LukeHagar/plexruby/releases)                                       | -                                                       |
+| Swift                 | [GitHub](https://github.com/LukeHagar/plexswift)  | [Releases](https://github.com/LukeHagar/plexswift/releases)                                      | -                                                       |
+| PHP                   | [GitHub](https://github.com/LukeHagar/plexphp)    | [Releases](https://github.com/LukeHagar/plexphp/releases)                                        | -                                                       |
+| Java                  | [GitHub](https://github.com/LukeHagar/plexjava)   | [Releases](https://github.com/LukeHagar/plexjava/releases)                                       | -                                                       |
+| C#                    | [GitHub](https://github.com/LukeHagar/plexcsharp) | [Releases](https://github.com/LukeHagar/plexcsharp/releases)                                     | -
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -73,7 +98,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -117,12 +146,13 @@ run();
 ### [hubs](docs/sdks/hubs/README.md)
 
 * [getGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
+* [getRecentlyAdded](docs/sdks/hubs/README.md#getrecentlyadded) - Get Recently Added
 * [getLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs) - Get library specific hubs
 
 ### [library](docs/sdks/library/README.md)
 
 * [getFileHash](docs/sdks/library/README.md#getfilehash) - Get Hash Value
-* [getRecentlyAdded](docs/sdks/library/README.md#getrecentlyadded) - Get Recently Added
+* [getRecentlyAddedLibrary](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added
 * [getAllLibraries](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
 * [getLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 * [deleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
@@ -223,16 +253,25 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
 
-| Error Object                             | Status Code                              | Content Type                             |
+If a HTTP request fails, an operation my also throw an error from the `sdk/models/errors/httpclienterrors.ts` module:
+
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `getServerCapabilities` method may throw the following errors:
+
+| Error Type                               | Status Code                              | Content Type                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | errors.GetServerCapabilitiesBadRequest   | 400                                      | application/json                         |
 | errors.GetServerCapabilitiesUnauthorized | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
-
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
-
+| errors.SDKError                          | 4XX, 5XX                                 | \*/\*                                    |
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
@@ -244,7 +283,11 @@ import {
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -283,6 +326,8 @@ async function run() {
 run();
 
 ```
+
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -302,7 +347,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 const plexAPI = new PlexAPI({
   serverIdx: 0,
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -333,7 +382,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 const plexAPI = new PlexAPI({
   serverURL: "{protocol}://{ip}:{port}",
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -355,12 +408,16 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.plex.getCompanionsData({
-    serverURL: "https://plex.tv/api/v2/",
+    serverURL: "https://plex.tv/api/v2",
   });
 
   // Handle the result
@@ -438,7 +495,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -487,6 +548,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [butlerStopTask](docs/sdks/butler/README.md#stoptask)
 - [hubsGetGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs)
 - [hubsGetLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs)
+- [hubsGetRecentlyAdded](docs/sdks/hubs/README.md#getrecentlyadded)
 - [libraryDeleteLibrary](docs/sdks/library/README.md#deletelibrary)
 - [libraryGetAllLibraries](docs/sdks/library/README.md#getalllibraries)
 - [libraryGetFileHash](docs/sdks/library/README.md#getfilehash)
@@ -495,7 +557,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [libraryGetMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey)
 - [libraryGetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren)
 - [libraryGetOnDeck](docs/sdks/library/README.md#getondeck)
-- [libraryGetRecentlyAdded](docs/sdks/library/README.md#getrecentlyadded)
+- [libraryGetRecentlyAddedLibrary](docs/sdks/library/README.md#getrecentlyaddedlibrary)
 - [libraryGetRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata)
 - [libraryGetSearchLibrary](docs/sdks/library/README.md#getsearchlibrary)
 - [libraryGetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent)
@@ -556,21 +618,22 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <!-- Start Global Parameters [global-parameters] -->
 ## Global Parameters
 
-A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `X-Plex-Client-Identifier` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `ClientID` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
 
-The following global parameter is available.
+The following global parameters are available.
 
 | Name | Type | Required | Description |
 | ---- | ---- |:--------:| ----------- |
-| xPlexClientIdentifier | string |  | The unique identifier for the client application
-This is used to track the client application and its usage
-(UUID, serial number, or other number unique per device)
- |
+| clientID | string |  | The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device) |
+| clientName | string |  | The clientName parameter. |
+| clientVersion | string |  | The clientVersion parameter. |
+| clientPlatform | string |  | The clientPlatform parameter. |
+| deviceName | string |  | The deviceName parameter. |
 
 
 ### Example
@@ -585,15 +648,19 @@ import {
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.plex.getServerResources(
+    IncludeHttps.Enable,
+    IncludeRelay.Enable,
+    IncludeIPv6.Enable,
     "gcgzw5rz2xovp84b4vha3a40",
-    IncludeHttps.One,
-    IncludeRelay.One,
-    IncludeIPv6.One,
   );
 
   // Handle the result
@@ -616,7 +683,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -657,7 +728,11 @@ const plexAPI = new PlexAPI({
     retryConnectionErrors: false,
   },
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {

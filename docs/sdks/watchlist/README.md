@@ -22,7 +22,11 @@ import { Filter } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -32,9 +36,9 @@ async function run() {
     xPlexContainerSize: 50,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -53,7 +57,11 @@ import { Filter } from "@lukehagar/plexjs/sdk/models/operations";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -71,7 +79,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -93,8 +101,8 @@ run();
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
+| Error Type                      | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | errors.GetWatchListBadRequest   | 400                             | application/json                |
 | errors.GetWatchListUnauthorized | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
+| errors.SDKError                 | 4XX, 5XX                        | \*/\*                           |

@@ -3,9 +3,9 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -32,7 +32,7 @@ import { Result } from "../sdk/types/fp.js";
  * Results, as well as their containing per-type hubs, contain a `distance` attribute which can be used to judge result quality.
  */
 export async function searchPerformVoiceSearch(
-  client$: PlexAPICore,
+  client: PlexAPICore,
   query: string,
   sectionId?: number | undefined,
   limit?: number | undefined,
@@ -51,64 +51,63 @@ export async function searchPerformVoiceSearch(
     | ConnectionError
   >
 > {
-  const input$: operations.PerformVoiceSearchRequest = {
+  const input: operations.PerformVoiceSearchRequest = {
     query: query,
     sectionId: sectionId,
     limit: limit,
   };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
-      operations.PerformVoiceSearchRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.PerformVoiceSearchRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const path$ = pathToFunc("/hubs/search/voice")();
+  const path = pathToFunc("/hubs/search/voice")();
 
-  const query$ = encodeFormQuery$({
-    "limit": payload$.limit,
-    "query": payload$.query,
-    "sectionId": payload$.sectionId,
+  const query$ = encodeFormQuery({
+    "limit": payload.limit,
+    "query": payload.query,
+    "sectionId": payload.sectionId,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const accessToken$ = await extractSecurity(client$.options$.accessToken);
-  const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
+  const secConfig = await extractSecurity(client._options.accessToken);
+  const securityInput = secConfig == null ? {} : { accessToken: secConfig };
   const context = {
     operationID: "performVoiceSearch",
     oAuth2Scopes: [],
-    securitySource: client$.options$.accessToken,
+    securitySource: client._options.accessToken,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
+    path: path,
+    headers: headers,
     query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -116,7 +115,7 @@ export async function searchPerformVoiceSearch(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -124,7 +123,7 @@ export async function searchPerformVoiceSearch(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.PerformVoiceSearchResponse,
     | errors.PerformVoiceSearchBadRequest
     | errors.PerformVoiceSearchUnauthorized
@@ -136,14 +135,14 @@ export async function searchPerformVoiceSearch(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.nil(200, operations.PerformVoiceSearchResponse$inboundSchema),
-    m$.jsonErr(400, errors.PerformVoiceSearchBadRequest$inboundSchema),
-    m$.jsonErr(401, errors.PerformVoiceSearchUnauthorized$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.nil(200, operations.PerformVoiceSearchResponse$inboundSchema),
+    M.jsonErr(400, errors.PerformVoiceSearchBadRequest$inboundSchema),
+    M.jsonErr(401, errors.PerformVoiceSearchUnauthorized$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

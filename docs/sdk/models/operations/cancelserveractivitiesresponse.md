@@ -7,7 +7,7 @@ import { CancelServerActivitiesResponse } from "@lukehagar/plexjs/sdk/models/ope
 
 let value: CancelServerActivitiesResponse = {
   contentType: "<value>",
-  statusCode: 812169,
+  statusCode: 417,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

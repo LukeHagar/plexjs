@@ -3,9 +3,9 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -29,7 +29,7 @@ import { Result } from "../sdk/types/fp.js";
  * This endpoint provides the caller with a temporary token with the same access level as the caller's token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
  */
 export async function authenticationGetTransientToken(
-  client$: PlexAPICore,
+  client: PlexAPICore,
   type: operations.GetTransientTokenQueryParamType,
   scope: operations.Scope,
   options?: RequestOptions,
@@ -47,62 +47,61 @@ export async function authenticationGetTransientToken(
     | ConnectionError
   >
 > {
-  const input$: operations.GetTransientTokenRequest = {
+  const input: operations.GetTransientTokenRequest = {
     type: type,
     scope: scope,
   };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
-      operations.GetTransientTokenRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.GetTransientTokenRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const path$ = pathToFunc("/security/token")();
+  const path = pathToFunc("/security/token")();
 
-  const query$ = encodeFormQuery$({
-    "scope": payload$.scope,
-    "type": payload$.type,
+  const query = encodeFormQuery({
+    "scope": payload.scope,
+    "type": payload.type,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const accessToken$ = await extractSecurity(client$.options$.accessToken);
-  const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
+  const secConfig = await extractSecurity(client._options.accessToken);
+  const securityInput = secConfig == null ? {} : { accessToken: secConfig };
   const context = {
     operationID: "getTransientToken",
     oAuth2Scopes: [],
-    securitySource: client$.options$.accessToken,
+    securitySource: client._options.accessToken,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -110,7 +109,7 @@ export async function authenticationGetTransientToken(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -118,7 +117,7 @@ export async function authenticationGetTransientToken(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GetTransientTokenResponse,
     | errors.GetTransientTokenBadRequest
     | errors.GetTransientTokenUnauthorized
@@ -130,14 +129,14 @@ export async function authenticationGetTransientToken(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.nil(200, operations.GetTransientTokenResponse$inboundSchema),
-    m$.jsonErr(400, errors.GetTransientTokenBadRequest$inboundSchema),
-    m$.jsonErr(401, errors.GetTransientTokenUnauthorized$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.nil(200, operations.GetTransientTokenResponse$inboundSchema),
+    M.jsonErr(400, errors.GetTransientTokenBadRequest$inboundSchema),
+    M.jsonErr(401, errors.GetTransientTokenUnauthorized$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

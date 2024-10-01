@@ -6,7 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 
 export const GetUserFriendsServerList = [
-  "https://plex.tv/api/v2/",
+  "https://plex.tv/api/v2",
 ] as const;
 
 export type SharedServers = {};

@@ -32,7 +32,7 @@ let value: GetAllLibrariesResponseBody = {
         scannedAt: 1556281940,
         content: true,
         directory: true,
-        contentChangedAt: 3192854,
+        contentChangedAt: 1556281940,
         hidden: 0,
         location: [
           {
@@ -50,4 +50,4 @@ let value: GetAllLibrariesResponseBody = {
 
 | Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `mediaContainer`                                                                                            | [operations.GetAllLibrariesMediaContainer](../../../sdk/models/operations/getalllibrariesmediacontainer.md) | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |
+| `mediaContainer`                                                                                            | [operations.GetAllLibrariesMediaContainer](../../../sdk/models/operations/getalllibrariesmediacontainer.md) | :heavy_check_mark:                                                                                          | N/A                                                                                                         |

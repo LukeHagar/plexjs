@@ -7,7 +7,7 @@ import { GetServerIdentityResponse } from "@lukehagar/plexjs/sdk/models/operatio
 
 let value: GetServerIdentityResponse = {
   contentType: "<value>",
-  statusCode: 602763,
+  statusCode: 504,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

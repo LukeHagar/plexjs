@@ -14,14 +14,14 @@ E.g. A movie library will not return anything with type 3 as there are no season
 import { GetTopWatchedContentQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTopWatchedContentQueryParamType =
-  GetTopWatchedContentQueryParamType.Two;
+  GetTopWatchedContentQueryParamType.TvShow;
 ```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `One`   | 1       |
-| `Two`   | 2       |
-| `Three` | 3       |
-| `Four`  | 4       |
+| Name      | Value     |
+| --------- | --------- |
+| `Movie`   | 1         |
+| `TvShow`  | 2         |
+| `Season`  | 3         |
+| `Episode` | 4         |

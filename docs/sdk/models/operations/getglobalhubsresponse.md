@@ -7,7 +7,7 @@ import { GetGlobalHubsResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetGlobalHubsResponse = {
   contentType: "<value>",
-  statusCode: 149675,
+  statusCode: 423,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

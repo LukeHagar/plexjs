@@ -26,14 +26,18 @@ import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/sdk/mo
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.authentication.getTransientToken(GetTransientTokenQueryParamType.Delegation, Scope.All);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -52,7 +56,11 @@ import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/sdk/mo
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -65,7 +73,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -87,12 +95,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | errors.GetTransientTokenBadRequest   | 400                                  | application/json                     |
 | errors.GetTransientTokenUnauthorized | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
-
+| errors.SDKError                      | 4XX, 5XX                             | \*/\*                                |
 
 ## getSourceConnectionInformation
 
@@ -107,14 +114,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const result = await plexAPI.authentication.getSourceConnectionInformation("server://client-identifier");
-  
+  const result = await plexAPI.authentication.getSourceConnectionInformation("provider://provider-identifier");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -132,11 +143,15 @@ import { authenticationGetSourceConnectionInformation } from "@lukehagar/plexjs/
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await authenticationGetSourceConnectionInformation(plexAPI, "server://client-identifier");
+  const res = await authenticationGetSourceConnectionInformation(plexAPI, "provider://provider-identifier");
 
   if (!res.ok) {
     throw res.error;
@@ -145,7 +160,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -166,12 +181,11 @@ run();
 
 ### Errors
 
-| Error Object                                      | Status Code                                       | Content Type                                      |
+| Error Type                                        | Status Code                                       | Content Type                                      |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
 | errors.GetSourceConnectionInformationBadRequest   | 400                                               | application/json                                  |
 | errors.GetSourceConnectionInformationUnauthorized | 401                                               | application/json                                  |
-| errors.SDKError                                   | 4xx-5xx                                           | */*                                               |
-
+| errors.SDKError                                   | 4XX, 5XX                                          | \*/\*                                             |
 
 ## getTokenDetails
 
@@ -184,14 +198,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.authentication.getTokenDetails();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -209,7 +227,11 @@ import { authenticationGetTokenDetails } from "@lukehagar/plexjs/funcs/authentic
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -222,7 +244,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -243,12 +265,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.GetTokenDetailsBadRequest   | 400                                | application/json                   |
 | errors.GetTokenDetailsUnauthorized | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
-
+| errors.SDKError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## postUsersSignInData
 
@@ -260,18 +281,24 @@ Sign in user with username and password and return user data with Plex authentic
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const result = await plexAPI.authentication.postUsersSignInData("gcgzw5rz2xovp84b4vha3a40", {
-    login: "username@email.com",
-    password: "password123",
-    verificationCode: "123456",
+  const result = await plexAPI.authentication.postUsersSignInData({
+    requestBody: {
+      login: "username@email.com",
+      password: "password123",
+      verificationCode: "123456",
+    },
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -288,14 +315,20 @@ import { authenticationPostUsersSignInData } from "@lukehagar/plexjs/funcs/authe
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
-  const res = await authenticationPostUsersSignInData(plexAPI, "gcgzw5rz2xovp84b4vha3a40", {
-    login: "username@email.com",
-    password: "password123",
-    verificationCode: "123456",
+  const res = await authenticationPostUsersSignInData(plexAPI, {
+    requestBody: {
+      login: "username@email.com",
+      password: "password123",
+      verificationCode: "123456",
+    },
   });
 
   if (!res.ok) {
@@ -305,7 +338,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -313,14 +346,13 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `xPlexClientIdentifier`                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The unique identifier for the client application<br/>This is used to track the client application and its usage<br/>(UUID, serial number, or other number unique per device)<br/> | [object Object]                                                                                                                                                                |
-| `requestBody`                                                                                                                                                                  | [operations.PostUsersSignInDataRequestBody](../../sdk/models/operations/postuserssignindatarequestbody.md)                                                                     | :heavy_minus_sign:                                                                                                                                                             | Login credentials                                                                                                                                                              |                                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
-| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 | http://localhost:8080                                                                                                                                                          |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.PostUsersSignInDataRequest](../../sdk/models/operations/postuserssignindatarequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| `options.serverURL`                                                                                                                                                            | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An optional server URL to use.                                                                                                                                                 |
 
 ### Response
 
@@ -328,8 +360,8 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | errors.PostUsersSignInDataBadRequest   | 400                                    | application/json                       |
 | errors.PostUsersSignInDataUnauthorized | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |

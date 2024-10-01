@@ -25,14 +25,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.media.markPlayed(59398);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -50,7 +54,11 @@ import { mediaMarkPlayed } from "@lukehagar/plexjs/funcs/mediaMarkPlayed.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -63,7 +71,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -84,12 +92,11 @@ run();
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | errors.MarkPlayedBadRequest   | 400                           | application/json              |
 | errors.MarkPlayedUnauthorized | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
-
+| errors.SDKError               | 4XX, 5XX                      | \*/\*                         |
 
 ## markUnplayed
 
@@ -102,14 +109,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.media.markUnplayed(59398);
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -127,7 +138,11 @@ import { mediaMarkUnplayed } from "@lukehagar/plexjs/funcs/mediaMarkUnplayed.js"
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -140,7 +155,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -161,12 +176,11 @@ run();
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
+| Error Type                      | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | errors.MarkUnplayedBadRequest   | 400                             | application/json                |
 | errors.MarkUnplayedUnauthorized | 401                             | application/json                |
-| errors.SDKError                 | 4xx-5xx                         | */*                             |
-
+| errors.SDKError                 | 4XX, 5XX                        | \*/\*                           |
 
 ## updatePlayProgress
 
@@ -180,14 +194,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.media.updatePlayProgress("<key>", 90000, "played");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -205,7 +223,11 @@ import { mediaUpdatePlayProgress } from "@lukehagar/plexjs/funcs/mediaUpdatePlay
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -218,7 +240,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -241,12 +263,11 @@ run();
 
 ### Errors
 
-| Error Object                          | Status Code                           | Content Type                          |
+| Error Type                            | Status Code                           | Content Type                          |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | errors.UpdatePlayProgressBadRequest   | 400                                   | application/json                      |
 | errors.UpdatePlayProgressUnauthorized | 401                                   | application/json                      |
-| errors.SDKError                       | 4xx-5xx                               | */*                                   |
-
+| errors.SDKError                       | 4XX, 5XX                              | \*/\*                                 |
 
 ## getBannerImage
 
@@ -259,7 +280,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -271,9 +296,9 @@ async function run() {
     upscale: 1,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -291,7 +316,11 @@ import { mediaGetBannerImage } from "@lukehagar/plexjs/funcs/mediaGetBannerImage
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -311,7 +340,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -332,12 +361,11 @@ run();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | errors.GetBannerImageBadRequest   | 400                               | application/json                  |
 | errors.GetBannerImageUnauthorized | 401                               | application/json                  |
-| errors.SDKError                   | 4xx-5xx                           | */*                               |
-
+| errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |
 
 ## getThumbImage
 
@@ -350,7 +378,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -362,9 +394,9 @@ async function run() {
     upscale: 1,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -382,7 +414,11 @@ import { mediaGetThumbImage } from "@lukehagar/plexjs/funcs/mediaGetThumbImage.j
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -402,7 +438,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -423,8 +459,8 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | errors.GetThumbImageBadRequest   | 400                              | application/json                 |
 | errors.GetThumbImageUnauthorized | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| errors.SDKError                  | 4XX, 5XX                         | \*/\*                            |

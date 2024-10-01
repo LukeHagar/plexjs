@@ -199,7 +199,7 @@ export function resolveGlobalSecurity(
     [
       {
         fieldName: "X-Plex-Token",
-        type: "apiKey:query",
+        type: "apiKey:header",
         value: security?.accessToken,
       },
     ],

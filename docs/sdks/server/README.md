@@ -29,14 +29,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -54,7 +58,11 @@ import { serverGetServerCapabilities } from "@lukehagar/plexjs/funcs/serverGetSe
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -67,7 +75,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -87,12 +95,11 @@ run();
 
 ### Errors
 
-| Error Object                             | Status Code                              | Content Type                             |
+| Error Type                               | Status Code                              | Content Type                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | errors.GetServerCapabilitiesBadRequest   | 400                                      | application/json                         |
 | errors.GetServerCapabilitiesUnauthorized | 401                                      | application/json                         |
-| errors.SDKError                          | 4xx-5xx                                  | */*                                      |
-
+| errors.SDKError                          | 4XX, 5XX                                 | \*/\*                                    |
 
 ## getServerPreferences
 
@@ -105,14 +112,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerPreferences();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -130,7 +141,11 @@ import { serverGetServerPreferences } from "@lukehagar/plexjs/funcs/serverGetSer
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -143,7 +158,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -163,12 +178,11 @@ run();
 
 ### Errors
 
-| Error Object                            | Status Code                             | Content Type                            |
+| Error Type                              | Status Code                             | Content Type                            |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- |
 | errors.GetServerPreferencesBadRequest   | 400                                     | application/json                        |
 | errors.GetServerPreferencesUnauthorized | 401                                     | application/json                        |
-| errors.SDKError                         | 4xx-5xx                                 | */*                                     |
-
+| errors.SDKError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## getAvailableClients
 
@@ -181,14 +195,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.server.getAvailableClients();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -206,7 +224,11 @@ import { serverGetAvailableClients } from "@lukehagar/plexjs/funcs/serverGetAvai
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -219,7 +241,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -239,12 +261,11 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | errors.GetAvailableClientsBadRequest   | 400                                    | application/json                       |
 | errors.GetAvailableClientsUnauthorized | 401                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
-
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
 
 ## getDevices
 
@@ -257,14 +278,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.server.getDevices();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -282,7 +307,11 @@ import { serverGetDevices } from "@lukehagar/plexjs/funcs/serverGetDevices.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -295,7 +324,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -315,12 +344,11 @@ run();
 
 ### Errors
 
-| Error Object                  | Status Code                   | Content Type                  |
+| Error Type                    | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | errors.GetDevicesBadRequest   | 400                           | application/json              |
 | errors.GetDevicesUnauthorized | 401                           | application/json              |
-| errors.SDKError               | 4xx-5xx                       | */*                           |
-
+| errors.SDKError               | 4XX, 5XX                      | \*/\*                         |
 
 ## getServerIdentity
 
@@ -332,14 +360,18 @@ This request is useful to determine if the server is online or offline
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerIdentity();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -356,7 +388,11 @@ import { serverGetServerIdentity } from "@lukehagar/plexjs/funcs/serverGetServer
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -369,7 +405,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -389,11 +425,10 @@ run();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | errors.GetServerIdentityRequestTimeout | 408                                    | application/json                       |
-| errors.SDKError                        | 4xx-5xx                                | */*                                    |
-
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
 
 ## getMyPlexAccount
 
@@ -406,14 +441,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.server.getMyPlexAccount();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -431,7 +470,11 @@ import { serverGetMyPlexAccount } from "@lukehagar/plexjs/funcs/serverGetMyPlexA
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -444,7 +487,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -464,12 +507,11 @@ run();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | errors.GetMyPlexAccountBadRequest   | 400                                 | application/json                    |
 | errors.GetMyPlexAccountUnauthorized | 401                                 | application/json                    |
-| errors.SDKError                     | 4xx-5xx                             | */*                                 |
-
+| errors.SDKError                     | 4XX, 5XX                            | \*/\*                               |
 
 ## getResizedPhoto
 
@@ -484,7 +526,11 @@ import { MinSize, Upscale } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -492,14 +538,14 @@ async function run() {
     width: 110,
     height: 165,
     opacity: 100,
-    blur: 20,
+    blur: 0,
     minSize: MinSize.One,
     upscale: Upscale.One,
     url: "/library/metadata/49564/thumb/1654258204",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -518,7 +564,11 @@ import { MinSize, Upscale } from "@lukehagar/plexjs/sdk/models/operations";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -526,9 +576,9 @@ async function run() {
     width: 110,
     height: 165,
     opacity: 100,
-    blur: 20,
+    blur: 0,
     minSize: MinSize.One,
-    upscale: Upscale.Zero,
+    upscale: Upscale.One,
     url: "/library/metadata/49564/thumb/1654258204",
   });
 
@@ -539,7 +589,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -560,12 +610,11 @@ run();
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.GetResizedPhotoBadRequest   | 400                                | application/json                   |
 | errors.GetResizedPhotoUnauthorized | 401                                | application/json                   |
-| errors.SDKError                    | 4xx-5xx                            | */*                                |
-
+| errors.SDKError                    | 4XX, 5XX                           | \*/\*                              |
 
 ## getMediaProviders
 
@@ -578,14 +627,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.server.getMediaProviders("CV5xoxjTpFKUzBTShsaf");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -603,7 +656,11 @@ import { serverGetMediaProviders } from "@lukehagar/plexjs/funcs/serverGetMediaP
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -616,7 +673,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -637,12 +694,11 @@ run();
 
 ### Errors
 
-| Error Object                         | Status Code                          | Content Type                         |
+| Error Type                           | Status Code                          | Content Type                         |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | errors.GetMediaProvidersBadRequest   | 400                                  | application/json                     |
 | errors.GetMediaProvidersUnauthorized | 401                                  | application/json                     |
-| errors.SDKError                      | 4xx-5xx                              | */*                                  |
-
+| errors.SDKError                      | 4XX, 5XX                             | \*/\*                                |
 
 ## getServerList
 
@@ -655,14 +711,18 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerList();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -680,7 +740,11 @@ import { serverGetServerList } from "@lukehagar/plexjs/funcs/serverGetServerList
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  xPlexClientIdentifier: "gcgzw5rz2xovp84b4vha3a40",
+  clientID: "gcgzw5rz2xovp84b4vha3a40",
+  clientName: "Plex Web",
+  clientVersion: "4.133.0",
+  clientPlatform: "Chrome",
+  deviceName: "Linux",
 });
 
 async function run() {
@@ -693,7 +757,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -713,8 +777,8 @@ run();
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | errors.GetServerListBadRequest   | 400                              | application/json                 |
 | errors.GetServerListUnauthorized | 401                              | application/json                 |
-| errors.SDKError                  | 4xx-5xx                          | */*                              |
+| errors.SDKError                  | 4XX, 5XX                         | \*/\*                            |

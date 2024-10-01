@@ -7,7 +7,7 @@ import { GetServerListResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetServerListResponse = {
   contentType: "<value>",
-  statusCode: 891773,
+  statusCode: 413,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

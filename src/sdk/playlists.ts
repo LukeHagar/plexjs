@@ -180,12 +180,14 @@ export class Playlists extends ClientSDK {
   async uploadPlaylist(
     path: string,
     force: operations.QueryParamForce,
+    sectionID: number | undefined,
     options?: RequestOptions,
   ): Promise<operations.UploadPlaylistResponse> {
     return unwrapAsync(playlistsUploadPlaylist(
       this,
       path,
       force,
+      sectionID,
       options,
     ));
   }

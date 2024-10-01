@@ -7,7 +7,7 @@ import { GetHomeDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetHomeDataResponse = {
   contentType: "<value>",
-  statusCode: 832620,
+  statusCode: 204,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

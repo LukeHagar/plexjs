@@ -38,10 +38,19 @@ export type GetMediaProvidersDirectory = {
   pivot?: Array<Pivot> | undefined;
 };
 
+export type Action = {
+  id: string;
+  key: string;
+};
+
 export type Feature = {
   key?: string | undefined;
-  type?: string | undefined;
+  type: string;
+  flavor?: string | undefined;
+  scrobbleKey?: string | undefined;
+  unscrobbleKey?: string | undefined;
   directory?: Array<GetMediaProvidersDirectory> | undefined;
+  action?: Array<Action> | undefined;
 };
 
 export type MediaProvider = {
@@ -301,23 +310,68 @@ export namespace GetMediaProvidersDirectory$ {
 }
 
 /** @internal */
+export const Action$inboundSchema: z.ZodType<Action, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.string(),
+    key: z.string(),
+  });
+
+/** @internal */
+export type Action$Outbound = {
+  id: string;
+  key: string;
+};
+
+/** @internal */
+export const Action$outboundSchema: z.ZodType<
+  Action$Outbound,
+  z.ZodTypeDef,
+  Action
+> = z.object({
+  id: z.string(),
+  key: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Action$ {
+  /** @deprecated use `Action$inboundSchema` instead. */
+  export const inboundSchema = Action$inboundSchema;
+  /** @deprecated use `Action$outboundSchema` instead. */
+  export const outboundSchema = Action$outboundSchema;
+  /** @deprecated use `Action$Outbound` instead. */
+  export type Outbound = Action$Outbound;
+}
+
+/** @internal */
 export const Feature$inboundSchema: z.ZodType<Feature, z.ZodTypeDef, unknown> =
   z.object({
     key: z.string().optional(),
-    type: z.string().optional(),
+    type: z.string(),
+    flavor: z.string().optional(),
+    scrobbleKey: z.string().optional(),
+    unscrobbleKey: z.string().optional(),
     Directory: z.array(z.lazy(() => GetMediaProvidersDirectory$inboundSchema))
       .optional(),
+    Action: z.array(z.lazy(() => Action$inboundSchema)).optional(),
   }).transform((v) => {
     return remap$(v, {
       "Directory": "directory",
+      "Action": "action",
     });
   });
 
 /** @internal */
 export type Feature$Outbound = {
   key?: string | undefined;
-  type?: string | undefined;
+  type: string;
+  flavor?: string | undefined;
+  scrobbleKey?: string | undefined;
+  unscrobbleKey?: string | undefined;
   Directory?: Array<GetMediaProvidersDirectory$Outbound> | undefined;
+  Action?: Array<Action$Outbound> | undefined;
 };
 
 /** @internal */
@@ -327,12 +381,17 @@ export const Feature$outboundSchema: z.ZodType<
   Feature
 > = z.object({
   key: z.string().optional(),
-  type: z.string().optional(),
+  type: z.string(),
+  flavor: z.string().optional(),
+  scrobbleKey: z.string().optional(),
+  unscrobbleKey: z.string().optional(),
   directory: z.array(z.lazy(() => GetMediaProvidersDirectory$outboundSchema))
     .optional(),
+  action: z.array(z.lazy(() => Action$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     directory: "Directory",
+    action: "Action",
   });
 });
 

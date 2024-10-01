@@ -6,33 +6,33 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 
 export const GetTokenByPinIdServerList = [
-  "https://plex.tv/api/v2/",
+  "https://plex.tv/api/v2",
 ] as const;
 
 export type GetTokenByPinIdGlobals = {
   /**
-   * The unique identifier for the client application
-   *
-   * @remarks
-   * This is used to track the client application and its usage
-   * (UUID, serial number, or other number unique per device)
+   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
    */
-  xPlexClientIdentifier?: string | undefined;
+  clientID?: string | undefined;
+  clientName?: string | undefined;
+  deviceName?: string | undefined;
+  clientVersion?: string | undefined;
+  clientPlatform?: string | undefined;
 };
 
 export type GetTokenByPinIdRequest = {
   /**
-   * The unique identifier for the client application
-   *
-   * @remarks
-   * This is used to track the client application and its usage
-   * (UUID, serial number, or other number unique per device)
-   */
-  xPlexClientIdentifier?: string | undefined;
-  /**
    * The PinID to retrieve an access token for
    */
   pinID: number;
+  /**
+   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+   */
+  clientID?: string | undefined;
+  clientName?: string | undefined;
+  deviceName?: string | undefined;
+  clientVersion?: string | undefined;
+  clientPlatform?: string | undefined;
 };
 
 /**
@@ -66,7 +66,7 @@ export type GetTokenByPinIdGeoData = {
   /**
    * The postal code of the location.
    */
-  postalCode: number;
+  postalCode: string;
   /**
    * Indicates if the country has privacy restrictions.
    */
@@ -108,7 +108,7 @@ export type GetTokenByPinIdAuthPinContainer = {
   expiresIn?: number | undefined;
   createdAt: Date;
   expiresAt: Date;
-  authToken?: any | null | undefined;
+  authToken?: string | null | undefined;
   newRegistration?: any | null | undefined;
 };
 
@@ -137,16 +137,28 @@ export const GetTokenByPinIdGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "X-Plex-Client-Identifier": z.string().optional(),
+  ClientID: z.string().optional(),
+  ClientName: z.string().optional(),
+  DeviceName: z.string().optional(),
+  ClientVersion: z.string().optional(),
+  ClientPlatform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "ClientID": "clientID",
+    "ClientName": "clientName",
+    "DeviceName": "deviceName",
+    "ClientVersion": "clientVersion",
+    "ClientPlatform": "clientPlatform",
   });
 });
 
 /** @internal */
 export type GetTokenByPinIdGlobals$Outbound = {
-  "X-Plex-Client-Identifier"?: string | undefined;
+  ClientID?: string | undefined;
+  ClientName?: string | undefined;
+  DeviceName?: string | undefined;
+  ClientVersion?: string | undefined;
+  ClientPlatform?: string | undefined;
 };
 
 /** @internal */
@@ -155,10 +167,18 @@ export const GetTokenByPinIdGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetTokenByPinIdGlobals
 > = z.object({
-  xPlexClientIdentifier: z.string().optional(),
+  clientID: z.string().optional(),
+  clientName: z.string().optional(),
+  deviceName: z.string().optional(),
+  clientVersion: z.string().optional(),
+  clientPlatform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    clientID: "ClientID",
+    clientName: "ClientName",
+    deviceName: "DeviceName",
+    clientVersion: "ClientVersion",
+    clientPlatform: "ClientPlatform",
   });
 });
 
@@ -181,18 +201,30 @@ export const GetTokenByPinIdRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "X-Plex-Client-Identifier": z.string().optional(),
   pinID: z.number().int(),
+  ClientID: z.string().optional(),
+  ClientName: z.string().optional(),
+  DeviceName: z.string().optional(),
+  ClientVersion: z.string().optional(),
+  ClientPlatform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "ClientID": "clientID",
+    "ClientName": "clientName",
+    "DeviceName": "deviceName",
+    "ClientVersion": "clientVersion",
+    "ClientPlatform": "clientPlatform",
   });
 });
 
 /** @internal */
 export type GetTokenByPinIdRequest$Outbound = {
-  "X-Plex-Client-Identifier"?: string | undefined;
   pinID: number;
+  ClientID?: string | undefined;
+  ClientName?: string | undefined;
+  DeviceName?: string | undefined;
+  ClientVersion?: string | undefined;
+  ClientPlatform?: string | undefined;
 };
 
 /** @internal */
@@ -201,11 +233,19 @@ export const GetTokenByPinIdRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetTokenByPinIdRequest
 > = z.object({
-  xPlexClientIdentifier: z.string().optional(),
   pinID: z.number().int(),
+  clientID: z.string().optional(),
+  clientName: z.string().optional(),
+  deviceName: z.string().optional(),
+  clientVersion: z.string().optional(),
+  clientPlatform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    clientID: "ClientID",
+    clientName: "ClientName",
+    deviceName: "DeviceName",
+    clientVersion: "ClientVersion",
+    clientPlatform: "ClientPlatform",
   });
 });
 
@@ -234,7 +274,7 @@ export const GetTokenByPinIdGeoData$inboundSchema: z.ZodType<
   city: z.string(),
   european_union_member: z.boolean().default(false),
   time_zone: z.string(),
-  postal_code: z.number().int(),
+  postal_code: z.string(),
   in_privacy_restricted_country: z.boolean().default(false),
   in_privacy_restricted_region: z.boolean().default(false),
   subdivisions: z.string(),
@@ -258,7 +298,7 @@ export type GetTokenByPinIdGeoData$Outbound = {
   city: string;
   european_union_member: boolean;
   time_zone: string;
-  postal_code: number;
+  postal_code: string;
   in_privacy_restricted_country: boolean;
   in_privacy_restricted_region: boolean;
   subdivisions: string;
@@ -277,7 +317,7 @@ export const GetTokenByPinIdGeoData$outboundSchema: z.ZodType<
   city: z.string(),
   europeanUnionMember: z.boolean().default(false),
   timeZone: z.string(),
-  postalCode: z.number().int(),
+  postalCode: z.string(),
   inPrivacyRestrictedCountry: z.boolean().default(false),
   inPrivacyRestrictedRegion: z.boolean().default(false),
   subdivisions: z.string(),
@@ -322,7 +362,7 @@ export const GetTokenByPinIdAuthPinContainer$inboundSchema: z.ZodType<
   expiresIn: z.number().int().default(900),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   expiresAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  authToken: z.nullable(z.any()).optional(),
+  authToken: z.nullable(z.string()).optional(),
   newRegistration: z.nullable(z.any()).optional(),
 });
 
@@ -338,7 +378,7 @@ export type GetTokenByPinIdAuthPinContainer$Outbound = {
   expiresIn: number;
   createdAt: string;
   expiresAt: string;
-  authToken?: any | null | undefined;
+  authToken?: string | null | undefined;
   newRegistration?: any | null | undefined;
 };
 
@@ -358,7 +398,7 @@ export const GetTokenByPinIdAuthPinContainer$outboundSchema: z.ZodType<
   expiresIn: z.number().int().default(900),
   createdAt: z.date().transform(v => v.toISOString()),
   expiresAt: z.date().transform(v => v.toISOString()),
-  authToken: z.nullable(z.any()).optional(),
+  authToken: z.nullable(z.string()).optional(),
   newRegistration: z.nullable(z.any()).optional(),
 });
 

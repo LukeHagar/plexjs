@@ -6,7 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 
 export const GetGeoDataServerList = [
-  "https://plex.tv/api/v2/",
+  "https://plex.tv/api/v2",
 ] as const;
 
 /**
@@ -40,7 +40,7 @@ export type GetGeoDataGeoData = {
   /**
    * The postal code of the location.
    */
-  postalCode: number;
+  postalCode: string;
   /**
    * Indicates if the country has privacy restrictions.
    */
@@ -90,7 +90,7 @@ export const GetGeoDataGeoData$inboundSchema: z.ZodType<
   city: z.string(),
   european_union_member: z.boolean().default(false),
   time_zone: z.string(),
-  postal_code: z.number().int(),
+  postal_code: z.string(),
   in_privacy_restricted_country: z.boolean().default(false),
   in_privacy_restricted_region: z.boolean().default(false),
   subdivisions: z.string(),
@@ -114,7 +114,7 @@ export type GetGeoDataGeoData$Outbound = {
   city: string;
   european_union_member: boolean;
   time_zone: string;
-  postal_code: number;
+  postal_code: string;
   in_privacy_restricted_country: boolean;
   in_privacy_restricted_region: boolean;
   subdivisions: string;
@@ -133,7 +133,7 @@ export const GetGeoDataGeoData$outboundSchema: z.ZodType<
   city: z.string(),
   europeanUnionMember: z.boolean().default(false),
   timeZone: z.string(),
-  postalCode: z.number().int(),
+  postalCode: z.string(),
   inPrivacyRestrictedCountry: z.boolean().default(false),
   inPrivacyRestrictedRegion: z.boolean().default(false),
   subdivisions: z.string(),

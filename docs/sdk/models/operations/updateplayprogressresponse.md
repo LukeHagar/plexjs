@@ -7,7 +7,7 @@ import { UpdatePlayProgressResponse } from "@lukehagar/plexjs/sdk/models/operati
 
 let value: UpdatePlayProgressResponse = {
   contentType: "<value>",
-  statusCode: 272656,
+  statusCode: 505,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,10 +7,32 @@ import { GetMediaProvidersResponse } from "@lukehagar/plexjs/sdk/models/operatio
 
 let value: GetMediaProvidersResponse = {
   contentType: "<value>",
-  statusCode: 297534,
+  statusCode: 511,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
+  object: {
+    mediaContainer: {
+      mediaProvider: [
+        {
+          feature: [
+            {
+              type: "<value>",
+              flavor: "global",
+              scrobbleKey: "/:/scrobble/new",
+              unscrobbleKey: "/:/unscrobble/new",
+              action: [
+                {
+                  id: "addToContinueWatching",
+                  key: "/actions/addToContinueWatching",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  },
 };
 ```
 

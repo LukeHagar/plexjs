@@ -6,26 +6,22 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 
 export const GetServerResourcesServerList = [
-  "https://plex.tv/api/v2/",
+  "https://plex.tv/api/v2",
 ] as const;
 
 export type GetServerResourcesGlobals = {
   /**
-   * The unique identifier for the client application
-   *
-   * @remarks
-   * This is used to track the client application and its usage
-   * (UUID, serial number, or other number unique per device)
+   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
    */
-  xPlexClientIdentifier?: string | undefined;
+  clientID?: string | undefined;
 };
 
 /**
  * Include Https entries in the results
  */
 export enum IncludeHttps {
-  Zero = 0,
-  One = 1,
+  Disable = 0,
+  Enable = 1,
 }
 
 /**
@@ -35,27 +31,19 @@ export enum IncludeHttps {
  * E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400
  */
 export enum IncludeRelay {
-  Zero = 0,
-  One = 1,
+  Disable = 0,
+  Enable = 1,
 }
 
 /**
  * Include IPv6 entries in the results
  */
 export enum IncludeIPv6 {
-  Zero = 0,
-  One = 1,
+  Disable = 0,
+  Enable = 1,
 }
 
 export type GetServerResourcesRequest = {
-  /**
-   * The unique identifier for the client application
-   *
-   * @remarks
-   * This is used to track the client application and its usage
-   * (UUID, serial number, or other number unique per device)
-   */
-  xPlexClientIdentifier?: string | undefined;
   /**
    * Include Https entries in the results
    */
@@ -71,15 +59,48 @@ export type GetServerResourcesRequest = {
    * Include IPv6 entries in the results
    */
   includeIPv6?: IncludeIPv6 | undefined;
+  /**
+   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+   */
+  clientID?: string | undefined;
 };
 
+/**
+ * The protocol used for the connection (http, https, etc)
+ */
+export enum Protocol {
+  Http = "http",
+  Https = "https",
+}
+
 export type Connections = {
-  protocol: string;
+  /**
+   * The protocol used for the connection (http, https, etc)
+   */
+  protocol: Protocol;
+  /**
+   * The (ip) address or domain name used for the connection
+   */
   address: string;
+  /**
+   * The port used for the connection
+   */
   port: number;
+  /**
+   * The full URI of the connection
+   */
   uri: string;
+  /**
+   * If the connection is local address
+   */
   local: boolean;
+  /**
+   * If the connection is relayed through plex.direct
+   */
   relay: boolean;
+  /**
+   * If the connection is using IPv6
+   */
   iPv6: boolean;
 };
 
@@ -138,16 +159,16 @@ export const GetServerResourcesGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "X-Plex-Client-Identifier": z.string().optional(),
+  ClientID: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "ClientID": "clientID",
   });
 });
 
 /** @internal */
 export type GetServerResourcesGlobals$Outbound = {
-  "X-Plex-Client-Identifier"?: string | undefined;
+  ClientID?: string | undefined;
 };
 
 /** @internal */
@@ -156,10 +177,10 @@ export const GetServerResourcesGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetServerResourcesGlobals
 > = z.object({
-  xPlexClientIdentifier: z.string().optional(),
+  clientID: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    clientID: "ClientID",
   });
 });
 
@@ -239,22 +260,22 @@ export const GetServerResourcesRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "X-Plex-Client-Identifier": z.string().optional(),
   includeHttps: IncludeHttps$inboundSchema,
   includeRelay: IncludeRelay$inboundSchema,
   includeIPv6: IncludeIPv6$inboundSchema,
+  ClientID: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "ClientID": "clientID",
   });
 });
 
 /** @internal */
 export type GetServerResourcesRequest$Outbound = {
-  "X-Plex-Client-Identifier"?: string | undefined;
   includeHttps: number;
   includeRelay: number;
   includeIPv6: number;
+  ClientID?: string | undefined;
 };
 
 /** @internal */
@@ -263,13 +284,13 @@ export const GetServerResourcesRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetServerResourcesRequest
 > = z.object({
-  xPlexClientIdentifier: z.string().optional(),
-  includeHttps: IncludeHttps$outboundSchema.default(IncludeHttps.Zero),
-  includeRelay: IncludeRelay$outboundSchema.default(IncludeRelay.Zero),
-  includeIPv6: IncludeIPv6$outboundSchema.default(IncludeIPv6.Zero),
+  includeHttps: IncludeHttps$outboundSchema.default(IncludeHttps.Disable),
+  includeRelay: IncludeRelay$outboundSchema.default(IncludeRelay.Disable),
+  includeIPv6: IncludeIPv6$outboundSchema.default(IncludeIPv6.Disable),
+  clientID: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    clientID: "ClientID",
   });
 });
 
@@ -287,14 +308,33 @@ export namespace GetServerResourcesRequest$ {
 }
 
 /** @internal */
+export const Protocol$inboundSchema: z.ZodNativeEnum<typeof Protocol> = z
+  .nativeEnum(Protocol);
+
+/** @internal */
+export const Protocol$outboundSchema: z.ZodNativeEnum<typeof Protocol> =
+  Protocol$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Protocol$ {
+  /** @deprecated use `Protocol$inboundSchema` instead. */
+  export const inboundSchema = Protocol$inboundSchema;
+  /** @deprecated use `Protocol$outboundSchema` instead. */
+  export const outboundSchema = Protocol$outboundSchema;
+}
+
+/** @internal */
 export const Connections$inboundSchema: z.ZodType<
   Connections,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  protocol: z.string(),
+  protocol: Protocol$inboundSchema,
   address: z.string(),
-  port: z.number(),
+  port: z.number().int(),
   uri: z.string(),
   local: z.boolean(),
   relay: z.boolean(),
@@ -322,9 +362,9 @@ export const Connections$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Connections
 > = z.object({
-  protocol: z.string(),
+  protocol: Protocol$outboundSchema,
   address: z.string(),
-  port: z.number(),
+  port: z.number().int(),
   uri: z.string(),
   local: z.boolean(),
   relay: z.boolean(),

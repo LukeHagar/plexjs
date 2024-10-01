@@ -6,7 +6,7 @@
 import { StartTaskRequest, TaskName } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: StartTaskRequest = {
-  taskName: TaskName.RefreshPeriodicMetadata,
+  taskName: TaskName.OptimizeDatabase,
 };
 ```
 

@@ -7,7 +7,7 @@ The name of the task to be started.
 ```typescript
 import { PathParamTaskName } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PathParamTaskName = PathParamTaskName.BackupDatabase;
+let value: PathParamTaskName = PathParamTaskName.BuildGracenoteCollections;
 ```
 
 ## Values

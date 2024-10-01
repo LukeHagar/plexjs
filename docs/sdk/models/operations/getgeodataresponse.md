@@ -7,7 +7,7 @@ import { GetGeoDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetGeoDataResponse = {
   contentType: "<value>",
-  statusCode: 368241,
+  statusCode: 102,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -18,7 +18,7 @@ let value: GetGeoDataResponse = {
     city: "Amsterdam",
     europeanUnionMember: true,
     timeZone: "America/St_Thomas",
-    postalCode: 802,
+    postalCode: "802",
     inPrivacyRestrictedCountry: true,
     inPrivacyRestrictedRegion: true,
     subdivisions: "Saint Thomas",

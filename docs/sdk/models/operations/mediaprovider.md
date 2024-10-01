@@ -5,7 +5,22 @@
 ```typescript
 import { MediaProvider } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: MediaProvider = {};
+let value: MediaProvider = {
+  feature: [
+    {
+      type: "<value>",
+      flavor: "global",
+      scrobbleKey: "/:/scrobble/new",
+      unscrobbleKey: "/:/unscrobble/new",
+      action: [
+        {
+          id: "addToContinueWatching",
+          key: "/actions/addToContinueWatching",
+        },
+      ],
+    },
+  ],
+};
 ```
 
 ## Fields

@@ -15,11 +15,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
  * 4 = episode
  * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
  */
-export enum QueryParamType {
-  One = 1,
-  Two = 2,
-  Three = 3,
-  Four = 4,
+export enum GetSearchLibraryQueryParamType {
+  Movie = 1,
+  TvShow = 2,
+  Season = 3,
+  Episode = 4,
 }
 
 export type GetSearchLibraryRequest = {
@@ -40,7 +40,7 @@ export type GetSearchLibraryRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: QueryParamType;
+  type: GetSearchLibraryQueryParamType;
 };
 
 export type GetSearchLibraryMetadata = {
@@ -109,24 +109,24 @@ export type GetSearchLibraryResponse = {
 };
 
 /** @internal */
-export const QueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamType
-> = z.nativeEnum(QueryParamType);
+export const GetSearchLibraryQueryParamType$inboundSchema: z.ZodNativeEnum<
+  typeof GetSearchLibraryQueryParamType
+> = z.nativeEnum(GetSearchLibraryQueryParamType);
 
 /** @internal */
-export const QueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamType
-> = QueryParamType$inboundSchema;
+export const GetSearchLibraryQueryParamType$outboundSchema: z.ZodNativeEnum<
+  typeof GetSearchLibraryQueryParamType
+> = GetSearchLibraryQueryParamType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace QueryParamType$ {
-  /** @deprecated use `QueryParamType$inboundSchema` instead. */
-  export const inboundSchema = QueryParamType$inboundSchema;
-  /** @deprecated use `QueryParamType$outboundSchema` instead. */
-  export const outboundSchema = QueryParamType$outboundSchema;
+export namespace GetSearchLibraryQueryParamType$ {
+  /** @deprecated use `GetSearchLibraryQueryParamType$inboundSchema` instead. */
+  export const inboundSchema = GetSearchLibraryQueryParamType$inboundSchema;
+  /** @deprecated use `GetSearchLibraryQueryParamType$outboundSchema` instead. */
+  export const outboundSchema = GetSearchLibraryQueryParamType$outboundSchema;
 }
 
 /** @internal */
@@ -136,7 +136,7 @@ export const GetSearchLibraryRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   sectionKey: z.number().int(),
-  type: QueryParamType$inboundSchema,
+  type: GetSearchLibraryQueryParamType$inboundSchema,
 });
 
 /** @internal */
@@ -152,7 +152,7 @@ export const GetSearchLibraryRequest$outboundSchema: z.ZodType<
   GetSearchLibraryRequest
 > = z.object({
   sectionKey: z.number().int(),
-  type: QueryParamType$outboundSchema,
+  type: GetSearchLibraryQueryParamType$outboundSchema,
 });
 
 /**

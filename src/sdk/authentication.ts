@@ -70,14 +70,12 @@ export class Authentication extends ClientSDK {
    * Sign in user with username and password and return user data with Plex authentication token
    */
   async postUsersSignInData(
-    xPlexClientIdentifier?: string | undefined,
-    requestBody?: operations.PostUsersSignInDataRequestBody | undefined,
+    request: operations.PostUsersSignInDataRequest,
     options?: RequestOptions & { serverURL?: string },
   ): Promise<operations.PostUsersSignInDataResponse> {
     return unwrapAsync(authenticationPostUsersSignInData(
       this,
-      xPlexClientIdentifier,
-      requestBody,
+      request,
       options,
     ));
   }

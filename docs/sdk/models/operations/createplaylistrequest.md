@@ -8,8 +8,8 @@ import { CreatePlaylistQueryParamType, CreatePlaylistRequest, Smart } from "@luk
 let value: CreatePlaylistRequest = {
   title: "<value>",
   type: CreatePlaylistQueryParamType.Video,
-  smart: Smart.One,
-  uri: "http://immediate-instructor.info",
+  smart: Smart.Zero,
+  uri: "https://pleased-lox.name",
 };
 ```
 

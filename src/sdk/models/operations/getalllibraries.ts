@@ -6,55 +6,58 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type Location = {
-  id?: number | undefined;
-  path?: string | undefined;
+  id: number;
+  path: string;
 };
 
 export type GetAllLibrariesDirectory = {
-  allowSync?: boolean | undefined;
-  art?: string | undefined;
-  composite?: string | undefined;
-  filters?: boolean | undefined;
-  refreshing?: boolean | undefined;
-  thumb?: string | undefined;
-  key?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
-  agent?: string | undefined;
-  scanner?: string | undefined;
-  language?: string | undefined;
-  uuid?: string | undefined;
+  allowSync: boolean;
+  art: string;
+  composite: string;
+  filters: boolean;
+  refreshing: boolean;
+  thumb: string;
+  key: string;
+  type: string;
+  title: string;
+  agent: string;
+  scanner: string;
+  language: string;
+  uuid: string;
   /**
-   * Unix epoch datetime
+   * Unix epoch datetime in seconds
    */
-  updatedAt?: number | undefined;
+  updatedAt: number;
   /**
-   * Unix epoch datetime
+   * Unix epoch datetime in seconds
    */
-  createdAt?: number | undefined;
+  createdAt: number;
   /**
-   * Unix epoch datetime
+   * Unix epoch datetime in seconds
    */
-  scannedAt?: number | undefined;
-  content?: boolean | undefined;
-  directory?: boolean | undefined;
-  contentChangedAt?: number | undefined;
-  hidden?: number | undefined;
-  location?: Array<Location> | undefined;
+  scannedAt: number;
+  content: boolean;
+  directory: boolean;
+  /**
+   * Unix epoch datetime in seconds
+   */
+  contentChangedAt: number;
+  hidden: number;
+  location: Array<Location>;
 };
 
 export type GetAllLibrariesMediaContainer = {
   size: number;
   allowSync: boolean;
   title1: string;
-  directory?: Array<GetAllLibrariesDirectory> | undefined;
+  directory: Array<GetAllLibrariesDirectory>;
 };
 
 /**
  * The libraries available on the Server
  */
 export type GetAllLibrariesResponseBody = {
-  mediaContainer?: GetAllLibrariesMediaContainer | undefined;
+  mediaContainer: GetAllLibrariesMediaContainer;
 };
 
 export type GetAllLibrariesResponse = {
@@ -82,14 +85,14 @@ export const Location$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.number().int().optional(),
-  path: z.string().optional(),
+  id: z.number().int(),
+  path: z.string(),
 });
 
 /** @internal */
 export type Location$Outbound = {
-  id?: number | undefined;
-  path?: string | undefined;
+  id: number;
+  path: string;
 };
 
 /** @internal */
@@ -98,8 +101,8 @@ export const Location$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Location
 > = z.object({
-  id: z.number().int().optional(),
-  path: z.string().optional(),
+  id: z.number().int(),
+  path: z.string(),
 });
 
 /**
@@ -121,27 +124,27 @@ export const GetAllLibrariesDirectory$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  allowSync: z.boolean().optional(),
-  art: z.string().optional(),
-  composite: z.string().optional(),
-  filters: z.boolean().optional(),
-  refreshing: z.boolean().optional(),
-  thumb: z.string().optional(),
-  key: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
-  agent: z.string().optional(),
-  scanner: z.string().optional(),
-  language: z.string().optional(),
-  uuid: z.string().optional(),
-  updatedAt: z.number().int().optional(),
-  createdAt: z.number().int().optional(),
-  scannedAt: z.number().int().optional(),
-  content: z.boolean().optional(),
-  directory: z.boolean().optional(),
-  contentChangedAt: z.number().int().optional(),
-  hidden: z.number().int().optional(),
-  Location: z.array(z.lazy(() => Location$inboundSchema)).optional(),
+  allowSync: z.boolean(),
+  art: z.string(),
+  composite: z.string(),
+  filters: z.boolean(),
+  refreshing: z.boolean(),
+  thumb: z.string(),
+  key: z.string(),
+  type: z.string(),
+  title: z.string(),
+  agent: z.string(),
+  scanner: z.string(),
+  language: z.string(),
+  uuid: z.string(),
+  updatedAt: z.number().int(),
+  createdAt: z.number().int(),
+  scannedAt: z.number().int(),
+  content: z.boolean(),
+  directory: z.boolean(),
+  contentChangedAt: z.number().int(),
+  hidden: z.number().int(),
+  Location: z.array(z.lazy(() => Location$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Location": "location",
@@ -150,27 +153,27 @@ export const GetAllLibrariesDirectory$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllLibrariesDirectory$Outbound = {
-  allowSync?: boolean | undefined;
-  art?: string | undefined;
-  composite?: string | undefined;
-  filters?: boolean | undefined;
-  refreshing?: boolean | undefined;
-  thumb?: string | undefined;
-  key?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
-  agent?: string | undefined;
-  scanner?: string | undefined;
-  language?: string | undefined;
-  uuid?: string | undefined;
-  updatedAt?: number | undefined;
-  createdAt?: number | undefined;
-  scannedAt?: number | undefined;
-  content?: boolean | undefined;
-  directory?: boolean | undefined;
-  contentChangedAt?: number | undefined;
-  hidden?: number | undefined;
-  Location?: Array<Location$Outbound> | undefined;
+  allowSync: boolean;
+  art: string;
+  composite: string;
+  filters: boolean;
+  refreshing: boolean;
+  thumb: string;
+  key: string;
+  type: string;
+  title: string;
+  agent: string;
+  scanner: string;
+  language: string;
+  uuid: string;
+  updatedAt: number;
+  createdAt: number;
+  scannedAt: number;
+  content: boolean;
+  directory: boolean;
+  contentChangedAt: number;
+  hidden: number;
+  Location: Array<Location$Outbound>;
 };
 
 /** @internal */
@@ -179,27 +182,27 @@ export const GetAllLibrariesDirectory$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllLibrariesDirectory
 > = z.object({
-  allowSync: z.boolean().optional(),
-  art: z.string().optional(),
-  composite: z.string().optional(),
-  filters: z.boolean().optional(),
-  refreshing: z.boolean().optional(),
-  thumb: z.string().optional(),
-  key: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
-  agent: z.string().optional(),
-  scanner: z.string().optional(),
-  language: z.string().optional(),
-  uuid: z.string().optional(),
-  updatedAt: z.number().int().optional(),
-  createdAt: z.number().int().optional(),
-  scannedAt: z.number().int().optional(),
-  content: z.boolean().optional(),
-  directory: z.boolean().optional(),
-  contentChangedAt: z.number().int().optional(),
-  hidden: z.number().int().optional(),
-  location: z.array(z.lazy(() => Location$outboundSchema)).optional(),
+  allowSync: z.boolean(),
+  art: z.string(),
+  composite: z.string(),
+  filters: z.boolean(),
+  refreshing: z.boolean(),
+  thumb: z.string(),
+  key: z.string(),
+  type: z.string(),
+  title: z.string(),
+  agent: z.string(),
+  scanner: z.string(),
+  language: z.string(),
+  uuid: z.string(),
+  updatedAt: z.number().int(),
+  createdAt: z.number().int(),
+  scannedAt: z.number().int(),
+  content: z.boolean(),
+  directory: z.boolean(),
+  contentChangedAt: z.number().int(),
+  hidden: z.number().int(),
+  location: z.array(z.lazy(() => Location$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     location: "Location",
@@ -228,8 +231,7 @@ export const GetAllLibrariesMediaContainer$inboundSchema: z.ZodType<
   size: z.number().int(),
   allowSync: z.boolean(),
   title1: z.string(),
-  Directory: z.array(z.lazy(() => GetAllLibrariesDirectory$inboundSchema))
-    .optional(),
+  Directory: z.array(z.lazy(() => GetAllLibrariesDirectory$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Directory": "directory",
@@ -241,7 +243,7 @@ export type GetAllLibrariesMediaContainer$Outbound = {
   size: number;
   allowSync: boolean;
   title1: string;
-  Directory?: Array<GetAllLibrariesDirectory$Outbound> | undefined;
+  Directory: Array<GetAllLibrariesDirectory$Outbound>;
 };
 
 /** @internal */
@@ -253,8 +255,7 @@ export const GetAllLibrariesMediaContainer$outboundSchema: z.ZodType<
   size: z.number().int(),
   allowSync: z.boolean(),
   title1: z.string(),
-  directory: z.array(z.lazy(() => GetAllLibrariesDirectory$outboundSchema))
-    .optional(),
+  directory: z.array(z.lazy(() => GetAllLibrariesDirectory$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     directory: "Directory",
@@ -280,8 +281,7 @@ export const GetAllLibrariesResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  MediaContainer: z.lazy(() => GetAllLibrariesMediaContainer$inboundSchema)
-    .optional(),
+  MediaContainer: z.lazy(() => GetAllLibrariesMediaContainer$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "MediaContainer": "mediaContainer",
@@ -290,7 +290,7 @@ export const GetAllLibrariesResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllLibrariesResponseBody$Outbound = {
-  MediaContainer?: GetAllLibrariesMediaContainer$Outbound | undefined;
+  MediaContainer: GetAllLibrariesMediaContainer$Outbound;
 };
 
 /** @internal */
@@ -299,8 +299,7 @@ export const GetAllLibrariesResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllLibrariesResponseBody
 > = z.object({
-  mediaContainer: z.lazy(() => GetAllLibrariesMediaContainer$outboundSchema)
-    .optional(),
+  mediaContainer: z.lazy(() => GetAllLibrariesMediaContainer$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     mediaContainer: "MediaContainer",

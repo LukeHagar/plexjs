@@ -3,12 +3,9 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import {
-  encodeFormQuery as encodeFormQuery$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -32,7 +29,7 @@ import { Result } from "../sdk/types/fp.js";
  * This endpoint will return a list of library specific hubs
  */
 export async function hubsGetLibraryHubs(
-  client$: PlexAPICore,
+  client: PlexAPICore,
   sectionId: number,
   count?: number | undefined,
   onlyTransient?: operations.QueryParamOnlyTransient | undefined,
@@ -51,69 +48,69 @@ export async function hubsGetLibraryHubs(
     | ConnectionError
   >
 > {
-  const input$: operations.GetLibraryHubsRequest = {
+  const input: operations.GetLibraryHubsRequest = {
     sectionId: sectionId,
     count: count,
     onlyTransient: onlyTransient,
   };
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => operations.GetLibraryHubsRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.GetLibraryHubsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const pathParams$ = {
-    sectionId: encodeSimple$("sectionId", payload$.sectionId, {
+  const pathParams = {
+    sectionId: encodeSimple("sectionId", payload.sectionId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/hubs/sections/{sectionId}")(pathParams$);
+  const path = pathToFunc("/hubs/sections/{sectionId}")(pathParams);
 
-  const query$ = encodeFormQuery$({
-    "count": payload$.count,
-    "onlyTransient": payload$.onlyTransient,
+  const query = encodeFormQuery({
+    "count": payload.count,
+    "onlyTransient": payload.onlyTransient,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const accessToken$ = await extractSecurity(client$.options$.accessToken);
-  const security$ = accessToken$ == null ? {} : { accessToken: accessToken$ };
+  const secConfig = await extractSecurity(client._options.accessToken);
+  const securityInput = secConfig == null ? {} : { accessToken: secConfig };
   const context = {
     operationID: "getLibraryHubs",
     oAuth2Scopes: [],
-    securitySource: client$.options$.accessToken,
+    securitySource: client._options.accessToken,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -121,7 +118,7 @@ export async function hubsGetLibraryHubs(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -129,7 +126,7 @@ export async function hubsGetLibraryHubs(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GetLibraryHubsResponse,
     | errors.GetLibraryHubsBadRequest
     | errors.GetLibraryHubsUnauthorized
@@ -141,16 +138,16 @@ export async function hubsGetLibraryHubs(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GetLibraryHubsResponse$inboundSchema, {
+    M.json(200, operations.GetLibraryHubsResponse$inboundSchema, {
       key: "object",
     }),
-    m$.jsonErr(400, errors.GetLibraryHubsBadRequest$inboundSchema),
-    m$.jsonErr(401, errors.GetLibraryHubsUnauthorized$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr(400, errors.GetLibraryHubsBadRequest$inboundSchema),
+    M.jsonErr(401, errors.GetLibraryHubsUnauthorized$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

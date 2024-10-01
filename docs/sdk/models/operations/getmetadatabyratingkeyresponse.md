@@ -8,7 +8,7 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetMetaDataByRatingKeyResponse = {
   contentType: "<value>",
-  statusCode: 128926,
+  statusCode: 506,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -4,6 +4,7 @@
 
 import { hubsGetGlobalHubs } from "../funcs/hubsGetGlobalHubs.js";
 import { hubsGetLibraryHubs } from "../funcs/hubsGetLibraryHubs.js";
+import { hubsGetRecentlyAdded } from "../funcs/hubsGetRecentlyAdded.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
@@ -24,6 +25,23 @@ export class Hubs extends ClientSDK {
       this,
       count,
       onlyTransient,
+      options,
+    ));
+  }
+
+  /**
+   * Get Recently Added
+   *
+   * @remarks
+   * This endpoint will return the recently added content.
+   */
+  async getRecentlyAdded(
+    request: operations.GetRecentlyAddedRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetRecentlyAddedResponse> {
+    return unwrapAsync(hubsGetRecentlyAdded(
+      this,
+      request,
       options,
     ));
   }

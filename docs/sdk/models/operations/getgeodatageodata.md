@@ -14,7 +14,7 @@ let value: GetGeoDataGeoData = {
   city: "Amsterdam",
   europeanUnionMember: true,
   timeZone: "America/St_Thomas",
-  postalCode: 802,
+  postalCode: "802",
   inPrivacyRestrictedCountry: true,
   inPrivacyRestrictedRegion: true,
   subdivisions: "Saint Thomas",
@@ -32,7 +32,7 @@ let value: GetGeoDataGeoData = {
 | `city`                                                              | *string*                                                            | :heavy_check_mark:                                                  | The name of the city.                                               | Amsterdam                                                           |
 | `europeanUnionMember`                                               | *boolean*                                                           | :heavy_minus_sign:                                                  | Indicates if the country is a member of the European Union.         | true                                                                |
 | `timeZone`                                                          | *string*                                                            | :heavy_check_mark:                                                  | The time zone of the country.                                       | America/St_Thomas                                                   |
-| `postalCode`                                                        | *number*                                                            | :heavy_check_mark:                                                  | The postal code of the location.                                    | 802                                                                 |
+| `postalCode`                                                        | *string*                                                            | :heavy_check_mark:                                                  | The postal code of the location.                                    | 802                                                                 |
 | `inPrivacyRestrictedCountry`                                        | *boolean*                                                           | :heavy_minus_sign:                                                  | Indicates if the country has privacy restrictions.                  | true                                                                |
 | `inPrivacyRestrictedRegion`                                         | *boolean*                                                           | :heavy_minus_sign:                                                  | Indicates if the region has privacy restrictions.                   | true                                                                |
 | `subdivisions`                                                      | *string*                                                            | :heavy_check_mark:                                                  | The name of the primary administrative subdivision.                 | Saint Thomas                                                        |

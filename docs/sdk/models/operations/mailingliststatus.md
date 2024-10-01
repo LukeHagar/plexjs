@@ -1,13 +1,13 @@
 # MailingListStatus
 
-Your current mailing list status
+Your current mailing list status (active or unsubscribed)
 
 ## Example Usage
 
 ```typescript
 import { MailingListStatus } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: MailingListStatus = MailingListStatus.Unsubscribed;
+let value: MailingListStatus = MailingListStatus.Active;
 ```
 
 ## Values

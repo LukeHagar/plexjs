@@ -8,12 +8,12 @@ Adds the Guids object to the response
 ```typescript
 import { IncludeGuids } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: IncludeGuids = IncludeGuids.One;
+let value: IncludeGuids = IncludeGuids.Enable;
 ```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+| Name      | Value     |
+| --------- | --------- |
+| `Disable` | 0         |
+| `Enable`  | 1         |

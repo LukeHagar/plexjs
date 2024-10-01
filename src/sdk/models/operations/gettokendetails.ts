@@ -4,13 +4,18 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 
 export const GetTokenDetailsServerList = [
-  "https://plex.tv/api/v2/",
+  "https://plex.tv/api/v2",
 ] as const;
 
 /**
- * Your current mailing list status
+ * Your current mailing list status (active or unsubscribed)
  */
 export enum MailingListStatus {
   Active = "active",
@@ -21,34 +26,40 @@ export enum MailingListStatus {
  * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
  */
 export enum AutoSelectSubtitle {
-  Zero = "0",
-  One = "1",
+  Disable = 0,
+  Enable = 1,
 }
 
 /**
- * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
+ * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only show non-SDH subtitles)
  */
 export enum DefaultSubtitleAccessibility {
-  Zero = "0",
-  One = "1",
+  Disable = 0,
+  Enable = 1,
 }
 
 /**
  * The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
  */
 export enum DefaultSubtitleForced {
-  Zero = "0",
-  One = "1",
+  Disable = 0,
+  Enable = 1,
 }
 
+/**
+ * Whether or not media watched indicators are enabled (little orange dot on media)
+ */
 export enum WatchedIndicator {
-  Zero = "0",
-  One = "1",
+  Disable = 0,
+  Enable = 1,
 }
 
+/**
+ * Whether or not the account has media reviews visibility enabled
+ */
 export enum MediaReviewsVisibility {
-  Zero = 0,
-  One = 1,
+  Disable = 0,
+  Enable = 1,
 }
 
 export type UserProfile = {
@@ -64,17 +75,8 @@ export type UserProfile = {
    * The preferred subtitle language for the account
    */
   defaultSubtitleLanguage: string | null;
-  /**
-   * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
-   */
   autoSelectSubtitle?: AutoSelectSubtitle | undefined;
-  /**
-   * The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer non-SDH subtitles, 1 = Prefer SDH subtitles, 2 = Only show SDH subtitles, 3 = Only shown non-SDH subtitles)
-   */
   defaultSubtitleAccessibility?: DefaultSubtitleAccessibility | undefined;
-  /**
-   * The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer forced subtitles, 2 = Only show forced subtitles, 3 = Only show non-forced subtitles)
-   */
   defaultSubtitleForced?: DefaultSubtitleForced | undefined;
   watchedIndicator?: WatchedIndicator | undefined;
   mediaReviewsVisibility?: MediaReviewsVisibility | undefined;
@@ -101,29 +103,44 @@ export enum Features {
   TREBLEShowFeatures = "TREBLE-show-features",
   AdCountdownTimer = "ad-countdown-timer",
   AdaptiveBitrate = "adaptive_bitrate",
+  AlbumTypes = "album-types",
+  AllowDvr = "allow_dvr",
   AmazonLoopDebug = "amazon-loop-debug",
   AvodAdAnalysis = "avod-ad-analysis",
   AvodNewMedia = "avod-new-media",
   BlacklistGetSignin = "blacklist_get_signin",
+  BoostVoices = "boost-voices",
+  CameraUpload = "camera_upload",
   ClientRadioStations = "client-radio-stations",
   CloudflareTurnstileRequired = "cloudflare-turnstile-required",
+  Cloudsync = "cloudsync",
   Collections = "collections",
   CommentsAndRepliesPushNotifications =
     "comments_and_replies_push_notifications",
   CommunityAccessPlexTv = "community_access_plex_tv",
   CompanionsSonos = "companions_sonos",
+  ContentFilter = "content_filter",
   CustomHomeRemoval = "custom-home-removal",
   DisableHomeUserFriendships = "disable_home_user_friendships",
   DisableSharingFriendships = "disable_sharing_friendships",
+  DownloadsGating = "downloads-gating",
   DrmSupport = "drm_support",
+  Dvr = "dvr",
+  DvrBlockUnsupportedCountries = "dvr-block-unsupported-countries",
+  EpgRecentChannels = "epg-recent-channels",
   ExcludeRestrictions = "exclude restrictions",
   FederatedAuth = "federated-auth",
   FriendRequestPushNotifications = "friend_request_push_notifications",
+  GrandfatherSync = "grandfather-sync",
   GuidedUpgrade = "guided-upgrade",
+  HardwareTranscoding = "hardware_transcoding",
   Home = "home",
+  Hwtranscode = "hwtranscode",
+  ImaggaV2 = "imagga-v2",
   IncreasePasswordComplexity = "increase-password-complexity",
   Ios14PrivacyBanner = "ios14-privacy-banner",
   IterableNotificationTokens = "iterable-notification-tokens",
+  ItemClusters = "item_clusters",
   KeepPaymentMethod = "keep-payment-method",
   KevinBacon = "kevin-bacon",
   KoreaConsent = "korea-consent",
@@ -132,29 +149,51 @@ export enum Features {
   LightningDvrPivot = "lightning-dvr-pivot",
   LiveTvSupportIncompleteSegments = "live-tv-support-incomplete-segments",
   Livetv = "livetv",
+  Lyrics = "lyrics",
   MetadataSearch = "metadata_search",
+  MusicAnalysis = "music-analysis",
+  MusicVideos = "music_videos",
   NewPlexPassPrices = "new_plex_pass_prices",
   NewsProviderSunsetModal = "news-provider-sunset-modal",
+  Nominatim = "nominatim",
+  Pass = "pass",
   PhotosFavorites = "photos-favorites",
   PhotosMetadataEdition = "photos-metadata-edition",
+  PhotosV6Edit = "photosV6-edit",
+  PhotosV6TvAlbums = "photosV6-tv-albums",
   PmsHealth = "pms_health",
+  PremiumDashboard = "premium-dashboard",
+  PremiumMusicMetadata = "premium_music_metadata",
   Radio = "radio",
   RateLimitClientToken = "rate-limit-client-token",
   ScrobblingServicePlexTv = "scrobbling-service-plex-tv",
+  SessionBandwidthRestrictions = "session_bandwidth_restrictions",
+  SessionKick = "session_kick",
   SharedServerNotification = "shared_server_notification",
   SharedSourceNotification = "shared_source_notification",
+  SigninNotification = "signin_notification",
   SigninWithApple = "signin_with_apple",
+  SilenceRemoval = "silence-removal",
+  SleepTimer = "sleep-timer",
   SpringServeAdProvider = "spring_serve_ad_provider",
+  Sync = "sync",
+  SweetFades = "sweet-fades",
   TranscoderCache = "transcoder_cache",
+  Trailers = "trailers",
   TunerSharing = "tuner-sharing",
   TwoFactorAuthentication = "two-factor-authentication",
   Unsupportedtuners = "unsupportedtuners",
   Upgrade3ds2 = "upgrade-3ds2",
+  Visualizers = "visualizers",
   VodSchema = "vod-schema",
   VodCloudflare = "vod_cloudflare",
+  VolumeLeveling = "volume-leveling",
   WatchTogetherInvite = "watch-together-invite",
+  WatchlistRss = "watchlist-rss",
   WebServerDashboard = "web_server_dashboard",
+  Webhooks = "webhooks",
 }
+export type FeaturesOpen = OpenEnum<typeof Features>;
 
 /**
  * String representation of subscriptionActive
@@ -171,7 +210,7 @@ export type Subscription = {
   /**
    * List of features allowed on your Plex Pass subscription
    */
-  features?: Array<Features> | undefined;
+  features?: Array<FeaturesOpen> | undefined;
   /**
    * If the account's Plex Pass subscription is active
    */
@@ -202,29 +241,44 @@ export enum GetTokenDetailsFeatures {
   TREBLEShowFeatures = "TREBLE-show-features",
   AdCountdownTimer = "ad-countdown-timer",
   AdaptiveBitrate = "adaptive_bitrate",
+  AlbumTypes = "album-types",
+  AllowDvr = "allow_dvr",
   AmazonLoopDebug = "amazon-loop-debug",
   AvodAdAnalysis = "avod-ad-analysis",
   AvodNewMedia = "avod-new-media",
   BlacklistGetSignin = "blacklist_get_signin",
+  BoostVoices = "boost-voices",
+  CameraUpload = "camera_upload",
   ClientRadioStations = "client-radio-stations",
   CloudflareTurnstileRequired = "cloudflare-turnstile-required",
+  Cloudsync = "cloudsync",
   Collections = "collections",
   CommentsAndRepliesPushNotifications =
     "comments_and_replies_push_notifications",
   CommunityAccessPlexTv = "community_access_plex_tv",
   CompanionsSonos = "companions_sonos",
+  ContentFilter = "content_filter",
   CustomHomeRemoval = "custom-home-removal",
   DisableHomeUserFriendships = "disable_home_user_friendships",
   DisableSharingFriendships = "disable_sharing_friendships",
+  DownloadsGating = "downloads-gating",
   DrmSupport = "drm_support",
+  Dvr = "dvr",
+  DvrBlockUnsupportedCountries = "dvr-block-unsupported-countries",
+  EpgRecentChannels = "epg-recent-channels",
   ExcludeRestrictions = "exclude restrictions",
   FederatedAuth = "federated-auth",
   FriendRequestPushNotifications = "friend_request_push_notifications",
+  GrandfatherSync = "grandfather-sync",
   GuidedUpgrade = "guided-upgrade",
+  HardwareTranscoding = "hardware_transcoding",
   Home = "home",
+  Hwtranscode = "hwtranscode",
+  ImaggaV2 = "imagga-v2",
   IncreasePasswordComplexity = "increase-password-complexity",
   Ios14PrivacyBanner = "ios14-privacy-banner",
   IterableNotificationTokens = "iterable-notification-tokens",
+  ItemClusters = "item_clusters",
   KeepPaymentMethod = "keep-payment-method",
   KevinBacon = "kevin-bacon",
   KoreaConsent = "korea-consent",
@@ -233,29 +287,53 @@ export enum GetTokenDetailsFeatures {
   LightningDvrPivot = "lightning-dvr-pivot",
   LiveTvSupportIncompleteSegments = "live-tv-support-incomplete-segments",
   Livetv = "livetv",
+  Lyrics = "lyrics",
   MetadataSearch = "metadata_search",
+  MusicAnalysis = "music-analysis",
+  MusicVideos = "music_videos",
   NewPlexPassPrices = "new_plex_pass_prices",
   NewsProviderSunsetModal = "news-provider-sunset-modal",
+  Nominatim = "nominatim",
+  Pass = "pass",
   PhotosFavorites = "photos-favorites",
   PhotosMetadataEdition = "photos-metadata-edition",
+  PhotosV6Edit = "photosV6-edit",
+  PhotosV6TvAlbums = "photosV6-tv-albums",
   PmsHealth = "pms_health",
+  PremiumDashboard = "premium-dashboard",
+  PremiumMusicMetadata = "premium_music_metadata",
   Radio = "radio",
   RateLimitClientToken = "rate-limit-client-token",
   ScrobblingServicePlexTv = "scrobbling-service-plex-tv",
+  SessionBandwidthRestrictions = "session_bandwidth_restrictions",
+  SessionKick = "session_kick",
   SharedServerNotification = "shared_server_notification",
   SharedSourceNotification = "shared_source_notification",
+  SigninNotification = "signin_notification",
   SigninWithApple = "signin_with_apple",
+  SilenceRemoval = "silence-removal",
+  SleepTimer = "sleep-timer",
   SpringServeAdProvider = "spring_serve_ad_provider",
+  Sync = "sync",
+  SweetFades = "sweet-fades",
   TranscoderCache = "transcoder_cache",
+  Trailers = "trailers",
   TunerSharing = "tuner-sharing",
   TwoFactorAuthentication = "two-factor-authentication",
   Unsupportedtuners = "unsupportedtuners",
   Upgrade3ds2 = "upgrade-3ds2",
+  Visualizers = "visualizers",
   VodSchema = "vod-schema",
   VodCloudflare = "vod_cloudflare",
+  VolumeLeveling = "volume-leveling",
   WatchTogetherInvite = "watch-together-invite",
+  WatchlistRss = "watchlist-rss",
   WebServerDashboard = "web_server_dashboard",
+  Webhooks = "webhooks",
 }
+export type GetTokenDetailsFeaturesOpen = OpenEnum<
+  typeof GetTokenDetailsFeatures
+>;
 
 /**
  * String representation of subscriptionActive
@@ -269,7 +347,7 @@ export type GetTokenDetailsSubscription = {
   /**
    * List of features allowed on your Plex Pass subscription
    */
-  features?: Array<GetTokenDetailsFeatures> | undefined;
+  features?: Array<GetTokenDetailsFeaturesOpen> | undefined;
   /**
    * If the account's Plex Pass subscription is active
    */
@@ -373,7 +451,7 @@ export type GetTokenDetailsUserPlexAccount = {
    */
   id: number;
   /**
-   * Unix epoch datetime
+   * Unix epoch datetime in seconds
    */
   joinedAt: number;
   /**
@@ -385,7 +463,7 @@ export type GetTokenDetailsUserPlexAccount = {
    */
   mailingListActive?: boolean | undefined;
   /**
-   * Your current mailing list status
+   * Your current mailing list status (active or unsubscribed)
    */
   mailingListStatus: MailingListStatus;
   /**
@@ -404,7 +482,7 @@ export type GetTokenDetailsUserPlexAccount = {
    */
   protected?: boolean | undefined;
   /**
-   * Unix epoch datetime
+   * Unix epoch datetime in seconds
    */
   rememberExpiresAt: number;
   /**
@@ -449,6 +527,7 @@ export type GetTokenDetailsUserPlexAccount = {
    * The account UUID
    */
   uuid: string;
+  attributionPartner: string | null;
 };
 
 export type GetTokenDetailsResponse = {
@@ -605,12 +684,11 @@ export const UserProfile$inboundSchema: z.ZodType<
   autoSelectAudio: z.boolean().default(true),
   defaultAudioLanguage: z.nullable(z.string()),
   defaultSubtitleLanguage: z.nullable(z.string()),
-  autoSelectSubtitle: AutoSelectSubtitle$inboundSchema.optional(),
-  defaultSubtitleAccessibility: DefaultSubtitleAccessibility$inboundSchema
-    .optional(),
-  defaultSubtitleForced: DefaultSubtitleForced$inboundSchema.optional(),
-  watchedIndicator: WatchedIndicator$inboundSchema.optional(),
-  mediaReviewsVisibility: MediaReviewsVisibility$inboundSchema.optional(),
+  autoSelectSubtitle: AutoSelectSubtitle$inboundSchema,
+  defaultSubtitleAccessibility: DefaultSubtitleAccessibility$inboundSchema,
+  defaultSubtitleForced: DefaultSubtitleForced$inboundSchema,
+  watchedIndicator: WatchedIndicator$inboundSchema,
+  mediaReviewsVisibility: MediaReviewsVisibility$inboundSchema,
 });
 
 /** @internal */
@@ -618,11 +696,11 @@ export type UserProfile$Outbound = {
   autoSelectAudio: boolean;
   defaultAudioLanguage: string | null;
   defaultSubtitleLanguage: string | null;
-  autoSelectSubtitle?: string | undefined;
-  defaultSubtitleAccessibility?: string | undefined;
-  defaultSubtitleForced?: string | undefined;
-  watchedIndicator?: string | undefined;
-  mediaReviewsVisibility?: number | undefined;
+  autoSelectSubtitle: number;
+  defaultSubtitleAccessibility: number;
+  defaultSubtitleForced: number;
+  watchedIndicator: number;
+  mediaReviewsVisibility: number;
 };
 
 /** @internal */
@@ -634,12 +712,20 @@ export const UserProfile$outboundSchema: z.ZodType<
   autoSelectAudio: z.boolean().default(true),
   defaultAudioLanguage: z.nullable(z.string()),
   defaultSubtitleLanguage: z.nullable(z.string()),
-  autoSelectSubtitle: AutoSelectSubtitle$outboundSchema.optional(),
+  autoSelectSubtitle: AutoSelectSubtitle$outboundSchema.default(
+    AutoSelectSubtitle.Disable,
+  ),
   defaultSubtitleAccessibility: DefaultSubtitleAccessibility$outboundSchema
-    .optional(),
-  defaultSubtitleForced: DefaultSubtitleForced$outboundSchema.optional(),
-  watchedIndicator: WatchedIndicator$outboundSchema.optional(),
-  mediaReviewsVisibility: MediaReviewsVisibility$outboundSchema.optional(),
+    .default(DefaultSubtitleAccessibility.Disable),
+  defaultSubtitleForced: DefaultSubtitleForced$outboundSchema.default(
+    DefaultSubtitleForced.Disable,
+  ),
+  watchedIndicator: WatchedIndicator$outboundSchema.default(
+    WatchedIndicator.Disable,
+  ),
+  mediaReviewsVisibility: MediaReviewsVisibility$outboundSchema.default(
+    MediaReviewsVisibility.Disable,
+  ),
 });
 
 /**
@@ -725,12 +811,25 @@ export namespace Services$ {
 }
 
 /** @internal */
-export const Features$inboundSchema: z.ZodNativeEnum<typeof Features> = z
-  .nativeEnum(Features);
+export const Features$inboundSchema: z.ZodType<
+  FeaturesOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(Features),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const Features$outboundSchema: z.ZodNativeEnum<typeof Features> =
-  Features$inboundSchema;
+export const Features$outboundSchema: z.ZodType<
+  FeaturesOpen,
+  z.ZodTypeDef,
+  FeaturesOpen
+> = z.union([
+  z.nativeEnum(Features),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -818,14 +917,25 @@ export namespace Subscription$ {
 }
 
 /** @internal */
-export const GetTokenDetailsFeatures$inboundSchema: z.ZodNativeEnum<
-  typeof GetTokenDetailsFeatures
-> = z.nativeEnum(GetTokenDetailsFeatures);
+export const GetTokenDetailsFeatures$inboundSchema: z.ZodType<
+  GetTokenDetailsFeaturesOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetTokenDetailsFeatures),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetTokenDetailsFeatures$outboundSchema: z.ZodNativeEnum<
-  typeof GetTokenDetailsFeatures
-> = GetTokenDetailsFeatures$inboundSchema;
+export const GetTokenDetailsFeatures$outboundSchema: z.ZodType<
+  GetTokenDetailsFeaturesOpen,
+  z.ZodTypeDef,
+  GetTokenDetailsFeaturesOpen
+> = z.union([
+  z.nativeEnum(GetTokenDetailsFeatures),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -964,6 +1074,7 @@ export const GetTokenDetailsUserPlexAccount$inboundSchema: z.ZodType<
   twoFactorEnabled: z.boolean().default(false),
   username: z.string(),
   uuid: z.string(),
+  attributionPartner: z.nullable(z.string()),
 });
 
 /** @internal */
@@ -1008,6 +1119,7 @@ export type GetTokenDetailsUserPlexAccount$Outbound = {
   twoFactorEnabled: boolean;
   username: string;
   uuid: string;
+  attributionPartner: string | null;
 };
 
 /** @internal */
@@ -1058,6 +1170,7 @@ export const GetTokenDetailsUserPlexAccount$outboundSchema: z.ZodType<
   twoFactorEnabled: z.boolean().default(false),
   username: z.string(),
   uuid: z.string(),
+  attributionPartner: z.nullable(z.string()),
 });
 
 /**

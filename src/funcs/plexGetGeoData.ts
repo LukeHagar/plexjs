@@ -3,7 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import * as m$ from "../lib/matchers.js";
+import * as M from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -27,7 +27,7 @@ import { Result } from "../sdk/types/fp.js";
  * Returns the geolocation and locale data of the caller
  */
 export async function plexGetGeoData(
-  client$: PlexAPICore,
+  client: PlexAPICore,
   options?: RequestOptions & { serverURL?: string },
 ): Promise<
   Result<
@@ -43,12 +43,12 @@ export async function plexGetGeoData(
     | ConnectionError
   >
 > {
-  const baseURL$ = options?.serverURL
+  const baseURL = options?.serverURL
     || pathToFunc(GetGeoDataServerList[0], { charEncoding: "percent" })();
 
-  const path$ = pathToFunc("/geoip")();
+  const path = pathToFunc("/geoip")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
@@ -58,23 +58,23 @@ export async function plexGetGeoData(
     securitySource: null,
   };
 
-  const requestRes = client$.createRequest$(context, {
+  const requestRes = client._createRequest(context, {
     method: "GET",
-    baseURL: baseURL$,
-    path: path$,
-    headers: headers$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    baseURL: baseURL,
+    path: path,
+    headers: headers,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -82,7 +82,7 @@ export async function plexGetGeoData(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -90,7 +90,7 @@ export async function plexGetGeoData(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GetGeoDataResponse,
     | errors.GetGeoDataBadRequest
     | errors.GetGeoDataUnauthorized
@@ -102,16 +102,16 @@ export async function plexGetGeoData(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GetGeoDataResponse$inboundSchema, {
+    M.json(200, operations.GetGeoDataResponse$inboundSchema, {
       key: "GeoData",
     }),
-    m$.jsonErr(400, errors.GetGeoDataBadRequest$inboundSchema),
-    m$.jsonErr(401, errors.GetGeoDataUnauthorized$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr(400, errors.GetGeoDataBadRequest$inboundSchema),
+    M.jsonErr(401, errors.GetGeoDataUnauthorized$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

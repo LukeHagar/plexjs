@@ -7,7 +7,7 @@ import { GetAvailableClientsResponse } from "@lukehagar/plexjs/sdk/models/operat
 
 let value: GetAvailableClientsResponse = {
   contentType: "<value>",
-  statusCode: 715190,
+  statusCode: 305,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
