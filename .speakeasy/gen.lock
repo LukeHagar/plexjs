@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: f12b653820ae77ca3b2820bc9459d866
+  docChecksum: 8211d52d43d85f28d036343732de833a
   docVersion: 0.0.3
   speakeasyVersion: 1.405.6
   generationVersion: 2.428.1
-  releaseVersion: 0.24.0
-  configChecksum: 12acbc7182c6906e6ba67c064cf39c2c
+  releaseVersion: 0.24.1
+  configChecksum: 3e2876ee2c8211e7dbed88c3d78e86ed
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs

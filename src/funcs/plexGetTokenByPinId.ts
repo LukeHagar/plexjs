@@ -74,12 +74,12 @@ export async function plexGetTokenByPinId(
   const query = encodeFormQuery({
     "X-Plex-Client-Identifier": client._options.clientID,
     "X-Plex-Client-Identifier": payload.ClientID,
-    "X-Plex-Device": payload.DeviceName,
     "X-Plex-Device": client._options.deviceName,
-    "X-Plex-Platform": client._options.clientPlatform,
+    "X-Plex-Device": payload.DeviceName,
     "X-Plex-Platform": payload.ClientPlatform,
-    "X-Plex-Product": payload.ClientName,
+    "X-Plex-Platform": client._options.clientPlatform,
     "X-Plex-Product": client._options.clientName,
+    "X-Plex-Product": payload.ClientName,
     "X-Plex-Version": payload.ClientVersion,
     "X-Plex-Version": client._options.clientVersion,
   });

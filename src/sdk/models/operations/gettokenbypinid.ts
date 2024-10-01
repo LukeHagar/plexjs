@@ -14,9 +14,21 @@ export type GetTokenByPinIdGlobals = {
    * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
    */
   clientID?: string | undefined;
+  /**
+   * The name of the client application. This is used to track the client application and its usage. (Plex Web, Plex Media Server, etc.)
+   */
   clientName?: string | undefined;
+  /**
+   * The name of the device the client application is running on. This is used to track the client application and its usage. (Linux, iOS, Android, etc.)
+   */
   deviceName?: string | undefined;
+  /**
+   * The version of the client application. This is used to track the client application and its usage. (4.133.0, 5.0.0, etc.)
+   */
   clientVersion?: string | undefined;
+  /**
+   * The platform of the client application. This is used to track the client application and its usage. (Chrome, Safari, etc.)
+   */
   clientPlatform?: string | undefined;
 };
 
@@ -29,9 +41,21 @@ export type GetTokenByPinIdRequest = {
    * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
    */
   clientID?: string | undefined;
+  /**
+   * The name of the client application. This is used to track the client application and its usage. (Plex Web, Plex Media Server, etc.)
+   */
   clientName?: string | undefined;
+  /**
+   * The name of the device the client application is running on. This is used to track the client application and its usage. (Linux, iOS, Android, etc.)
+   */
   deviceName?: string | undefined;
+  /**
+   * The version of the client application. This is used to track the client application and its usage. (4.133.0, 5.0.0, etc.)
+   */
   clientVersion?: string | undefined;
+  /**
+   * The platform of the client application. This is used to track the client application and its usage. (Chrome, Safari, etc.)
+   */
   clientPlatform?: string | undefined;
 };
 

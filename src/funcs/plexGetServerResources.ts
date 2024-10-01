@@ -79,8 +79,8 @@ export async function plexGetServerResources(
     "includeHttps": payload.includeHttps,
     "includeIPv6": payload.includeIPv6,
     "includeRelay": payload.includeRelay,
-    "X-Plex-Client-Identifier": client._options.clientID,
     "X-Plex-Client-Identifier": payload.ClientID,
+    "X-Plex-Client-Identifier": client._options.clientID,
   });
 
   const headers = new Headers({

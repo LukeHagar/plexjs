@@ -630,10 +630,10 @@ The following global parameters are available.
 | Name | Type | Required | Description |
 | ---- | ---- |:--------:| ----------- |
 | clientID | string |  | The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device) |
-| clientName | string |  | The clientName parameter. |
-| clientVersion | string |  | The clientVersion parameter. |
-| clientPlatform | string |  | The clientPlatform parameter. |
-| deviceName | string |  | The deviceName parameter. |
+| clientName | string |  | The name of the client application. This is used to track the client application and its usage. (Plex Web, Plex Media Server, etc.) |
+| clientVersion | string |  | The version of the client application. This is used to track the client application and its usage. (4.133.0, 5.0.0, etc.) |
+| clientPlatform | string |  | The platform of the client application. This is used to track the client application and its usage. (Chrome, Safari, etc.) |
+| deviceName | string |  | The name of the device the client application is running on. This is used to track the client application and its usage. (Linux, iOS, Android, etc.) |
 
 
 ### Example
