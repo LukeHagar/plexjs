@@ -18,19 +18,19 @@ export enum IncludeDetails {
 
 export type GetLibraryDetailsRequest = {
   /**
-   * The unique key of the Plex library.
-   *
-   * @remarks
-   * Note: This is unique in the context of the Plex server.
-   */
-  sectionKey: number;
-  /**
    * Whether or not to include details for a section (types, filters, and sorts).
    *
    * @remarks
    * Only exists for backwards compatibility, media providers other than the server libraries have it on always.
    */
   includeDetails?: IncludeDetails | undefined;
+  /**
+   * The unique key of the Plex library.
+   *
+   * @remarks
+   * Note: This is unique in the context of the Plex server.
+   */
+  sectionKey: number;
 };
 
 export type GetLibraryDetailsDirectory = {
@@ -156,14 +156,14 @@ export const GetLibraryDetailsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  sectionKey: z.number().int(),
   includeDetails: IncludeDetails$inboundSchema,
+  sectionKey: z.number().int(),
 });
 
 /** @internal */
 export type GetLibraryDetailsRequest$Outbound = {
-  sectionKey: number;
   includeDetails: number;
+  sectionKey: number;
 };
 
 /** @internal */
@@ -172,8 +172,8 @@ export const GetLibraryDetailsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryDetailsRequest
 > = z.object({
-  sectionKey: z.number().int(),
   includeDetails: IncludeDetails$outboundSchema.default(IncludeDetails.Zero),
+  sectionKey: z.number().int(),
 });
 
 /**

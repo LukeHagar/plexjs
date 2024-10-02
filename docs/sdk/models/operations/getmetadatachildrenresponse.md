@@ -57,7 +57,7 @@ let value: GetMetadataChildrenResponse = {
           parentKey: "/library/metadata/30072",
           parentTitle: "Reacher",
           summary:
-            "Based on\"Bad Luck and Trouble,\" when members of Reacher's old military unit start turning up dead, Reacher has just one thing on his mind—revenge.",
+            "Based on\"Bad Luck and Trouble,\" when members of Reacher's old military unit start turning up dead, Reacher has just one thing on his mind-revenge.",
           index: 2,
           parentIndex: 1,
           viewCount: 11,

@@ -23,11 +23,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -52,11 +52,11 @@ import { hubsGetGlobalHubs } from "@lukehagar/plexjs/funcs/hubsGetGlobalHubs.js"
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -110,11 +110,11 @@ import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -147,11 +147,11 @@ import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -208,11 +208,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -237,11 +237,11 @@ import { hubsGetLibraryHubs } from "@lukehagar/plexjs/funcs/hubsGetLibraryHubs.j
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {

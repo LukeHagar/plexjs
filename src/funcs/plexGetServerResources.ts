@@ -3,7 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -79,12 +79,20 @@ export async function plexGetServerResources(
     "includeHttps": payload.includeHttps,
     "includeIPv6": payload.includeIPv6,
     "includeRelay": payload.includeRelay,
-    "X-Plex-Client-Identifier": payload.ClientID,
-    "X-Plex-Client-Identifier": client._options.clientID,
   });
 
   const headers = new Headers({
     Accept: "application/json",
+    "X-Plex-Client-Identifier": encodeSimple(
+      "X-Plex-Client-Identifier",
+      payload.ClientID,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Client-Identifier": encodeSimple(
+      "X-Plex-Client-Identifier",
+      client._options.clientID,
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.accessToken);
@@ -115,8 +123,18 @@ export async function plexGetServerResources(
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+      || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 500,
+          maxInterval: 60000,
+          exponent: 1.5,
+          maxElapsedTime: 3600000,
+        },
+        retryConnectionErrors: true,
+      },
+    retryCodes: options?.retryCodes || ["5XX"],
   });
   if (!doResult.ok) {
     return doResult;

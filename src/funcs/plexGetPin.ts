@@ -3,7 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -65,20 +65,56 @@ export async function plexGetPin(
 
   const query = encodeFormQuery({
     "strong": payload.strong,
-    "X-Plex-Client-Identifier": payload.ClientID,
-    "X-Plex-Client-Identifier": client._options.clientID,
-    "X-Plex-Device": client._options.deviceName,
-    "X-Plex-Device": payload.DeviceName,
-    "X-Plex-Platform": payload.ClientPlatform,
-    "X-Plex-Platform": client._options.clientPlatform,
-    "X-Plex-Product": payload.ClientName,
-    "X-Plex-Product": client._options.clientName,
-    "X-Plex-Version": payload.ClientVersion,
-    "X-Plex-Version": client._options.clientVersion,
   });
 
   const headers = new Headers({
     Accept: "application/json",
+    "X-Plex-Client-Identifier": encodeSimple(
+      "X-Plex-Client-Identifier",
+      payload.ClientID,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Product": encodeSimple("X-Plex-Product", payload.ClientName, {
+      explode: false,
+      charEncoding: "none",
+    }),
+    "X-Plex-Version": encodeSimple("X-Plex-Version", payload.ClientVersion, {
+      explode: false,
+      charEncoding: "none",
+    }),
+    "X-Plex-Device": encodeSimple("X-Plex-Device", payload.DeviceNickname, {
+      explode: false,
+      charEncoding: "none",
+    }),
+    "X-Plex-Platform": encodeSimple("X-Plex-Platform", payload.Platform, {
+      explode: false,
+      charEncoding: "none",
+    }),
+    "X-Plex-Client-Identifier": encodeSimple(
+      "X-Plex-Client-Identifier",
+      client._options.clientID,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device": encodeSimple(
+      "X-Plex-Device",
+      client._options.deviceNickname,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Platform": encodeSimple(
+      "X-Plex-Platform",
+      client._options.platform,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Product": encodeSimple(
+      "X-Plex-Product",
+      client._options.clientName,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Version": encodeSimple(
+      "X-Plex-Version",
+      client._options.clientVersion,
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const context = {
@@ -105,8 +141,18 @@ export async function plexGetPin(
     context,
     errorCodes: ["400", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+      || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 500,
+          maxInterval: 60000,
+          exponent: 1.5,
+          maxElapsedTime: 3600000,
+        },
+        retryConnectionErrors: true,
+      },
+    retryCodes: options?.retryCodes || ["5XX"],
   });
   if (!doResult.ok) {
     return doResult;

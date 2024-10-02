@@ -46,7 +46,6 @@ The following SDKs are generated from the OpenAPI Specification. They are automa
 * [SDK Example Usage](#sdk-example-usage)
 * [Available Resources and Operations](#available-resources-and-operations)
 * [Standalone functions](#standalone-functions)
-* [Global Parameters](#global-parameters)
 * [Retries](#retries)
 * [Error Handling](#error-handling)
 * [Server Selection](#server-selection)
@@ -98,11 +97,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -283,11 +282,11 @@ import {
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -347,11 +346,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 const plexAPI = new PlexAPI({
   serverIdx: 0,
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -382,11 +381,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 const plexAPI = new PlexAPI({
   serverURL: "{protocol}://{ip}:{port}",
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -408,11 +407,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -495,11 +494,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -615,63 +614,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
 
-<!-- Start Global Parameters [global-parameters] -->
-## Global Parameters
-
-Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
-
-For example, you can set `ClientID` to `"gcgzw5rz2xovp84b4vha3a40"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getServerResources`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
-
-
-### Available Globals
-
-The following global parameters are available.
-
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| clientID | string |  | The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device) |
-| clientName | string |  | The name of the client application. This is used to track the client application and its usage. (Plex Web, Plex Media Server, etc.) |
-| clientVersion | string |  | The version of the client application. This is used to track the client application and its usage. (4.133.0, 5.0.0, etc.) |
-| clientPlatform | string |  | The platform of the client application. This is used to track the client application and its usage. (Chrome, Safari, etc.) |
-| deviceName | string |  | The name of the device the client application is running on. This is used to track the client application and its usage. (Linux, iOS, Android, etc.) |
-
-
-### Example
-
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import {
-  IncludeHttps,
-  IncludeIPv6,
-  IncludeRelay,
-} from "@lukehagar/plexjs/sdk/models/operations";
-
-const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
-});
-
-async function run() {
-  const result = await plexAPI.plex.getServerResources(
-    IncludeHttps.Enable,
-    IncludeRelay.Enable,
-    IncludeIPv6.Enable,
-    "gcgzw5rz2xovp84b4vha3a40",
-  );
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-<!-- End Global Parameters [global-parameters] -->
-
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -683,11 +625,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -728,11 +670,11 @@ const plexAPI = new PlexAPI({
     retryConnectionErrors: false,
   },
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {

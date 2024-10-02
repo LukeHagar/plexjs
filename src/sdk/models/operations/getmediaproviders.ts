@@ -7,7 +7,7 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type GetMediaProvidersRequest = {
   /**
-   * Plex Authentication Token
+   * An authentication token, obtained from plex.tv
    */
   xPlexToken: string;
 };

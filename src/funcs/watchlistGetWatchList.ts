@@ -80,11 +80,14 @@ export async function watchlistGetWatchList(
     "sort": payload.sort,
     "X-Plex-Container-Size": payload["X-Plex-Container-Size"],
     "X-Plex-Container-Start": payload["X-Plex-Container-Start"],
-    "X-Plex-Token": payload["X-Plex-Token"],
   });
 
   const headers = new Headers({
     Accept: "application/json",
+    "X-Plex-Token": encodeSimple("X-Plex-Token", payload["X-Plex-Token"], {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.accessToken);
@@ -115,8 +118,18 @@ export async function watchlistGetWatchList(
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+      || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 500,
+          maxInterval: 60000,
+          exponent: 1.5,
+          maxElapsedTime: 3600000,
+        },
+        retryConnectionErrors: true,
+      },
+    retryCodes: options?.retryCodes || ["5XX"],
   });
   if (!doResult.ok) {
     return doResult;

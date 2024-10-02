@@ -49,14 +49,14 @@ export type SDKOptions = {
   clientVersion?: string | undefined;
 
   /**
-   * Allows setting the clientPlatform parameter for all supported operations
+   * Allows setting the platform parameter for all supported operations
    */
-  clientPlatform?: string | undefined;
+  platform?: string | undefined;
 
   /**
-   * Allows setting the deviceName parameter for all supported operations
+   * Allows setting the deviceNickname parameter for all supported operations
    */
-  deviceName?: string | undefined;
+  deviceNickname?: string | undefined;
 
   httpClient?: HTTPClient;
   /**
@@ -115,7 +115,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "0.0.3",
-  sdkVersion: "0.24.1",
+  sdkVersion: "0.24.2",
   genVersion: "2.428.1",
-  userAgent: "speakeasy-sdk/typescript 0.24.1 2.428.1 0.0.3 @lukehagar/plexjs",
+  userAgent: "speakeasy-sdk/typescript 0.24.2 2.428.1 0.0.3 @lukehagar/plexjs",
 } as const;

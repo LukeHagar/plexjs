@@ -25,6 +25,12 @@ export enum GetTopWatchedContentQueryParamType {
 
 export type GetTopWatchedContentRequest = {
   /**
+   * Adds the Guids object to the response
+   *
+   * @remarks
+   */
+  includeGuids?: number | undefined;
+  /**
    * The type of media to retrieve.
    *
    * @remarks
@@ -35,12 +41,6 @@ export type GetTopWatchedContentRequest = {
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
   type: GetTopWatchedContentQueryParamType;
-  /**
-   * Adds the Guids object to the response
-   *
-   * @remarks
-   */
-  includeGuids?: number | undefined;
 };
 
 export type GetTopWatchedContentGenre = {
@@ -170,14 +170,14 @@ export const GetTopWatchedContentRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: GetTopWatchedContentQueryParamType$inboundSchema,
   includeGuids: z.number().int().optional(),
+  type: GetTopWatchedContentQueryParamType$inboundSchema,
 });
 
 /** @internal */
 export type GetTopWatchedContentRequest$Outbound = {
-  type: number;
   includeGuids?: number | undefined;
+  type: number;
 };
 
 /** @internal */
@@ -186,8 +186,8 @@ export const GetTopWatchedContentRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetTopWatchedContentRequest
 > = z.object({
-  type: GetTopWatchedContentQueryParamType$outboundSchema,
   includeGuids: z.number().int().optional(),
+  type: GetTopWatchedContentQueryParamType$outboundSchema,
 });
 
 /**

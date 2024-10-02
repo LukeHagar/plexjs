@@ -3,7 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -63,12 +63,12 @@ export async function serverGetMediaProviders(
 
   const path = pathToFunc("/media/providers")();
 
-  const query = encodeFormQuery({
-    "X-Plex-Token": payload["X-Plex-Token"],
-  });
-
   const headers = new Headers({
     Accept: "application/json",
+    "X-Plex-Token": encodeSimple("X-Plex-Token", payload["X-Plex-Token"], {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.accessToken);
@@ -85,7 +85,6 @@ export async function serverGetMediaProviders(
     method: "GET",
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -98,8 +97,18 @@ export async function serverGetMediaProviders(
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
     retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+      || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 500,
+          maxInterval: 60000,
+          exponent: 1.5,
+          maxElapsedTime: 3600000,
+        },
+        retryConnectionErrors: true,
+      },
+    retryCodes: options?.retryCodes || ["5XX"],
   });
   if (!doResult.ok) {
     return doResult;

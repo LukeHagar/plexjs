@@ -4,11 +4,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {

@@ -11,7 +11,7 @@ export const GetServerResourcesServerList = [
 
 export type GetServerResourcesGlobals = {
   /**
-   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
   clientID?: string | undefined;
 };
@@ -60,7 +60,7 @@ export type GetServerResourcesRequest = {
    */
   includeIPv6?: IncludeIPv6 | undefined;
   /**
-   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
   clientID?: string | undefined;
 };

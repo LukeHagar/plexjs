@@ -15,16 +15,16 @@ export enum Force {
 
 export type GetRefreshLibraryMetadataRequest = {
   /**
+   * Force the refresh even if the library is already being refreshed.
+   */
+  force?: Force | undefined;
+  /**
    * The unique key of the Plex library.
    *
    * @remarks
    * Note: This is unique in the context of the Plex server.
    */
   sectionKey: number;
-  /**
-   * Force the refresh even if the library is already being refreshed.
-   */
-  force?: Force | undefined;
 };
 
 export type GetRefreshLibraryMetadataResponse = {
@@ -68,14 +68,14 @@ export const GetRefreshLibraryMetadataRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  sectionKey: z.number().int(),
   force: Force$inboundSchema.optional(),
+  sectionKey: z.number().int(),
 });
 
 /** @internal */
 export type GetRefreshLibraryMetadataRequest$Outbound = {
-  sectionKey: number;
   force?: number | undefined;
+  sectionKey: number;
 };
 
 /** @internal */
@@ -84,8 +84,8 @@ export const GetRefreshLibraryMetadataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetRefreshLibraryMetadataRequest
 > = z.object({
-  sectionKey: z.number().int(),
   force: Force$outboundSchema.optional(),
+  sectionKey: z.number().int(),
 });
 
 /**

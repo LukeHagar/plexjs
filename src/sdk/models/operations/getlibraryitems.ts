@@ -70,13 +70,6 @@ export enum GetLibraryItemsQueryParamIncludeMeta {
 
 export type GetLibraryItemsRequest = {
   /**
-   * The unique key of the Plex library.
-   *
-   * @remarks
-   * Note: This is unique in the context of the Plex server.
-   */
-  sectionKey: number;
-  /**
    * A key representing a specific tag within the section.
    */
   tag: Tag;
@@ -97,6 +90,13 @@ export type GetLibraryItemsRequest = {
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
   type?: GetLibraryItemsQueryParamType | undefined;
+  /**
+   * The unique key of the Plex library.
+   *
+   * @remarks
+   * Note: This is unique in the context of the Plex server.
+   */
+  sectionKey: number;
   /**
    * Adds the Meta object to the response
    *
@@ -873,10 +873,10 @@ export const GetLibraryItemsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  sectionKey: z.number().int(),
   tag: Tag$inboundSchema,
   includeGuids: IncludeGuids$inboundSchema,
   type: GetLibraryItemsQueryParamType$inboundSchema.optional(),
+  sectionKey: z.number().int(),
   includeMeta: GetLibraryItemsQueryParamIncludeMeta$inboundSchema,
   "X-Plex-Container-Start": z.number().int().default(0),
   "X-Plex-Container-Size": z.number().int().default(50),
@@ -889,10 +889,10 @@ export const GetLibraryItemsRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetLibraryItemsRequest$Outbound = {
-  sectionKey: number;
   tag: string;
   includeGuids: number;
   type?: number | undefined;
+  sectionKey: number;
   includeMeta: number;
   "X-Plex-Container-Start": number;
   "X-Plex-Container-Size": number;
@@ -904,10 +904,10 @@ export const GetLibraryItemsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryItemsRequest
 > = z.object({
-  sectionKey: z.number().int(),
   tag: Tag$outboundSchema,
   includeGuids: IncludeGuids$outboundSchema.default(IncludeGuids.Disable),
   type: GetLibraryItemsQueryParamType$outboundSchema.optional(),
+  sectionKey: z.number().int(),
   includeMeta: GetLibraryItemsQueryParamIncludeMeta$outboundSchema.default(
     GetLibraryItemsQueryParamIncludeMeta.Disable,
   ),

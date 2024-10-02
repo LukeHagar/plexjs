@@ -27,11 +27,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -56,11 +56,11 @@ import { plexGetCompanionsData } from "@lukehagar/plexjs/funcs/plexGetCompanions
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -111,11 +111,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -140,11 +140,11 @@ import { plexGetUserFriends } from "@lukehagar/plexjs/funcs/plexGetUserFriends.j
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -194,11 +194,11 @@ Returns the geolocation and locale data of the caller
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -222,11 +222,11 @@ import { plexGetGeoData } from "@lukehagar/plexjs/funcs/plexGetGeoData.js";
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -277,11 +277,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -306,11 +306,11 @@ import { plexGetHomeData } from "@lukehagar/plexjs/funcs/plexGetHomeData.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -361,15 +361,15 @@ import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/m
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
-  const result = await plexAPI.plex.getServerResources(IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable, "gcgzw5rz2xovp84b4vha3a40");
+  const result = await plexAPI.plex.getServerResources(IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable, "3381b62b-9ab7-4e37-827b-203e9809eb58");
 
   // Handle the result
   console.log(result);
@@ -391,15 +391,15 @@ import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/m
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
-  const res = await plexGetServerResources(plexAPI, IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable, "gcgzw5rz2xovp84b4vha3a40");
+  const res = await plexGetServerResources(plexAPI, IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable, "3381b62b-9ab7-4e37-827b-203e9809eb58");
 
   if (!res.ok) {
     throw res.error;
@@ -421,7 +421,7 @@ run();
 | `includeHttps`                                                                                                                                                                 | [operations.IncludeHttps](../../sdk/models/operations/includehttps.md)                                                                                                         | :heavy_minus_sign:                                                                                                                                                             | Include Https entries in the results                                                                                                                                           | [object Object]                                                                                                                                                                |
 | `includeRelay`                                                                                                                                                                 | [operations.IncludeRelay](../../sdk/models/operations/includerelay.md)                                                                                                         | :heavy_minus_sign:                                                                                                                                                             | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/>                                                     | [object Object]                                                                                                                                                                |
 | `includeIPv6`                                                                                                                                                                  | [operations.IncludeIPv6](../../sdk/models/operations/includeipv6.md)                                                                                                           | :heavy_minus_sign:                                                                                                                                                             | Include IPv6 entries in the results                                                                                                                                            | [object Object]                                                                                                                                                                |
-| `clientID`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)         | [object Object]                                                                                                                                                                |
+| `clientID`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | An opaque identifier unique to the client (UUID, serial number, or other unique device ID)                                                                                     | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -449,11 +449,11 @@ Retrieve a Pin ID from Plex.tv to use for authentication flows
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -477,11 +477,11 @@ import { plexGetPin } from "@lukehagar/plexjs/funcs/plexGetPin.js";
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -531,11 +531,11 @@ Retrieve an Access Token from Plex.tv after the Pin has been authenticated
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -561,11 +561,11 @@ import { plexGetTokenByPinId } from "@lukehagar/plexjs/funcs/plexGetTokenByPinId
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {

@@ -107,7 +107,7 @@ export type GetWatchListRequest = {
    */
   xPlexContainerSize?: number | undefined;
   /**
-   * Plex Authentication Token
+   * An authentication token, obtained from plex.tv
    */
   xPlexToken: string;
 };

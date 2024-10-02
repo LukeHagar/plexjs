@@ -26,11 +26,11 @@ import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/sdk/mo
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -56,11 +56,11 @@ import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/sdk/mo
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -114,11 +114,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -143,11 +143,11 @@ import { authenticationGetSourceConnectionInformation } from "@lukehagar/plexjs/
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -198,11 +198,11 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -227,11 +227,11 @@ import { authenticationGetTokenDetails } from "@lukehagar/plexjs/funcs/authentic
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -281,11 +281,11 @@ Sign in user with username and password and return user data with Plex authentic
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -315,11 +315,11 @@ import { authenticationPostUsersSignInData } from "@lukehagar/plexjs/funcs/authe
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  clientID: "gcgzw5rz2xovp84b4vha3a40",
-  clientName: "Plex Web",
-  clientVersion: "4.133.0",
-  clientPlatform: "Chrome",
-  deviceName: "Linux",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
 });
 
 async function run() {

@@ -16,25 +16,25 @@ export const PostUsersSignInDataServerList = [
 
 export type PostUsersSignInDataGlobals = {
   /**
-   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
   clientID?: string | undefined;
   /**
-   * The name of the client application. This is used to track the client application and its usage. (Plex Web, Plex Media Server, etc.)
+   * The name of the client application. (Plex Web, Plex Media Server, etc.)
    */
   clientName?: string | undefined;
   /**
-   * The name of the device the client application is running on. This is used to track the client application and its usage. (Linux, iOS, Android, etc.)
+   * A relatively friendly name for the client device
    */
-  deviceName?: string | undefined;
+  deviceNickname?: string | undefined;
   /**
-   * The version of the client application. This is used to track the client application and its usage. (4.133.0, 5.0.0, etc.)
+   * The version of the client application.
    */
   clientVersion?: string | undefined;
   /**
-   * The platform of the client application. This is used to track the client application and its usage. (Chrome, Safari, etc.)
+   * The platform of the client application.
    */
-  clientPlatform?: string | undefined;
+  platform?: string | undefined;
 };
 
 /**
@@ -49,25 +49,25 @@ export type PostUsersSignInDataRequestBody = {
 
 export type PostUsersSignInDataRequest = {
   /**
-   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
   clientID?: string | undefined;
   /**
-   * The name of the client application. This is used to track the client application and its usage. (Plex Web, Plex Media Server, etc.)
+   * The name of the client application. (Plex Web, Plex Media Server, etc.)
    */
   clientName?: string | undefined;
   /**
-   * The name of the device the client application is running on. This is used to track the client application and its usage. (Linux, iOS, Android, etc.)
+   * A relatively friendly name for the client device
    */
-  deviceName?: string | undefined;
+  deviceNickname?: string | undefined;
   /**
-   * The version of the client application. This is used to track the client application and its usage. (4.133.0, 5.0.0, etc.)
+   * The version of the client application.
    */
   clientVersion?: string | undefined;
   /**
-   * The platform of the client application. This is used to track the client application and its usage. (Chrome, Safari, etc.)
+   * The platform of the client application.
    */
-  clientPlatform?: string | undefined;
+  platform?: string | undefined;
   /**
    * Login credentials
    */
@@ -656,16 +656,16 @@ export const PostUsersSignInDataGlobals$inboundSchema: z.ZodType<
 > = z.object({
   ClientID: z.string().optional(),
   ClientName: z.string().optional(),
-  DeviceName: z.string().optional(),
+  DeviceNickname: z.string().optional(),
   ClientVersion: z.string().optional(),
-  ClientPlatform: z.string().optional(),
+  Platform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "ClientID": "clientID",
     "ClientName": "clientName",
-    "DeviceName": "deviceName",
+    "DeviceNickname": "deviceNickname",
     "ClientVersion": "clientVersion",
-    "ClientPlatform": "clientPlatform",
+    "Platform": "platform",
   });
 });
 
@@ -673,9 +673,9 @@ export const PostUsersSignInDataGlobals$inboundSchema: z.ZodType<
 export type PostUsersSignInDataGlobals$Outbound = {
   ClientID?: string | undefined;
   ClientName?: string | undefined;
-  DeviceName?: string | undefined;
+  DeviceNickname?: string | undefined;
   ClientVersion?: string | undefined;
-  ClientPlatform?: string | undefined;
+  Platform?: string | undefined;
 };
 
 /** @internal */
@@ -686,16 +686,16 @@ export const PostUsersSignInDataGlobals$outboundSchema: z.ZodType<
 > = z.object({
   clientID: z.string().optional(),
   clientName: z.string().optional(),
-  deviceName: z.string().optional(),
+  deviceNickname: z.string().optional(),
   clientVersion: z.string().optional(),
-  clientPlatform: z.string().optional(),
+  platform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientID: "ClientID",
     clientName: "ClientName",
-    deviceName: "DeviceName",
+    deviceNickname: "DeviceNickname",
     clientVersion: "ClientVersion",
-    clientPlatform: "ClientPlatform",
+    platform: "Platform",
   });
 });
 
@@ -765,18 +765,18 @@ export const PostUsersSignInDataRequest$inboundSchema: z.ZodType<
 > = z.object({
   ClientID: z.string().optional(),
   ClientName: z.string().optional(),
-  DeviceName: z.string().optional(),
+  DeviceNickname: z.string().optional(),
   ClientVersion: z.string().optional(),
-  ClientPlatform: z.string().optional(),
+  Platform: z.string().optional(),
   RequestBody: z.lazy(() => PostUsersSignInDataRequestBody$inboundSchema)
     .optional(),
 }).transform((v) => {
   return remap$(v, {
     "ClientID": "clientID",
     "ClientName": "clientName",
-    "DeviceName": "deviceName",
+    "DeviceNickname": "deviceNickname",
     "ClientVersion": "clientVersion",
-    "ClientPlatform": "clientPlatform",
+    "Platform": "platform",
     "RequestBody": "requestBody",
   });
 });
@@ -785,9 +785,9 @@ export const PostUsersSignInDataRequest$inboundSchema: z.ZodType<
 export type PostUsersSignInDataRequest$Outbound = {
   ClientID?: string | undefined;
   ClientName?: string | undefined;
-  DeviceName?: string | undefined;
+  DeviceNickname?: string | undefined;
   ClientVersion?: string | undefined;
-  ClientPlatform?: string | undefined;
+  Platform?: string | undefined;
   RequestBody?: PostUsersSignInDataRequestBody$Outbound | undefined;
 };
 
@@ -799,18 +799,18 @@ export const PostUsersSignInDataRequest$outboundSchema: z.ZodType<
 > = z.object({
   clientID: z.string().optional(),
   clientName: z.string().optional(),
-  deviceName: z.string().optional(),
+  deviceNickname: z.string().optional(),
   clientVersion: z.string().optional(),
-  clientPlatform: z.string().optional(),
+  platform: z.string().optional(),
   requestBody: z.lazy(() => PostUsersSignInDataRequestBody$outboundSchema)
     .optional(),
 }).transform((v) => {
   return remap$(v, {
     clientID: "ClientID",
     clientName: "ClientName",
-    deviceName: "DeviceName",
+    deviceNickname: "DeviceNickname",
     clientVersion: "ClientVersion",
-    clientPlatform: "ClientPlatform",
+    platform: "Platform",
     requestBody: "RequestBody",
   });
 });

@@ -15,7 +15,7 @@ export type GetBannerImageRequest = {
   minSize: number;
   upscale: number;
   /**
-   * Plex Authentication Token
+   * An authentication token, obtained from plex.tv
    */
   xPlexToken: string;
 };

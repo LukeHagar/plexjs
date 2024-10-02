@@ -11,25 +11,25 @@ export const GetPinServerList = [
 
 export type GetPinGlobals = {
   /**
-   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
   clientID?: string | undefined;
   /**
-   * The name of the client application. This is used to track the client application and its usage. (Plex Web, Plex Media Server, etc.)
+   * The name of the client application. (Plex Web, Plex Media Server, etc.)
    */
   clientName?: string | undefined;
   /**
-   * The name of the device the client application is running on. This is used to track the client application and its usage. (Linux, iOS, Android, etc.)
+   * A relatively friendly name for the client device
    */
-  deviceName?: string | undefined;
+  deviceNickname?: string | undefined;
   /**
-   * The version of the client application. This is used to track the client application and its usage. (4.133.0, 5.0.0, etc.)
+   * The version of the client application.
    */
   clientVersion?: string | undefined;
   /**
-   * The platform of the client application. This is used to track the client application and its usage. (Chrome, Safari, etc.)
+   * The platform of the client application.
    */
-  clientPlatform?: string | undefined;
+  platform?: string | undefined;
 };
 
 export type GetPinRequest = {
@@ -42,25 +42,25 @@ export type GetPinRequest = {
    */
   strong?: boolean | undefined;
   /**
-   * The unique identifier for the client application. This is used to track the client application and its usage. (UUID, serial number, or other number unique per device)
+   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
   clientID?: string | undefined;
   /**
-   * The name of the client application. This is used to track the client application and its usage. (Plex Web, Plex Media Server, etc.)
+   * The name of the client application. (Plex Web, Plex Media Server, etc.)
    */
   clientName?: string | undefined;
   /**
-   * The name of the device the client application is running on. This is used to track the client application and its usage. (Linux, iOS, Android, etc.)
+   * A relatively friendly name for the client device
    */
-  deviceName?: string | undefined;
+  deviceNickname?: string | undefined;
   /**
-   * The version of the client application. This is used to track the client application and its usage. (4.133.0, 5.0.0, etc.)
+   * The version of the client application.
    */
   clientVersion?: string | undefined;
   /**
-   * The platform of the client application. This is used to track the client application and its usage. (Chrome, Safari, etc.)
+   * The platform of the client application.
    */
-  clientPlatform?: string | undefined;
+  platform?: string | undefined;
 };
 
 /**
@@ -167,16 +167,16 @@ export const GetPinGlobals$inboundSchema: z.ZodType<
 > = z.object({
   ClientID: z.string().optional(),
   ClientName: z.string().optional(),
-  DeviceName: z.string().optional(),
+  DeviceNickname: z.string().optional(),
   ClientVersion: z.string().optional(),
-  ClientPlatform: z.string().optional(),
+  Platform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "ClientID": "clientID",
     "ClientName": "clientName",
-    "DeviceName": "deviceName",
+    "DeviceNickname": "deviceNickname",
     "ClientVersion": "clientVersion",
-    "ClientPlatform": "clientPlatform",
+    "Platform": "platform",
   });
 });
 
@@ -184,9 +184,9 @@ export const GetPinGlobals$inboundSchema: z.ZodType<
 export type GetPinGlobals$Outbound = {
   ClientID?: string | undefined;
   ClientName?: string | undefined;
-  DeviceName?: string | undefined;
+  DeviceNickname?: string | undefined;
   ClientVersion?: string | undefined;
-  ClientPlatform?: string | undefined;
+  Platform?: string | undefined;
 };
 
 /** @internal */
@@ -197,16 +197,16 @@ export const GetPinGlobals$outboundSchema: z.ZodType<
 > = z.object({
   clientID: z.string().optional(),
   clientName: z.string().optional(),
-  deviceName: z.string().optional(),
+  deviceNickname: z.string().optional(),
   clientVersion: z.string().optional(),
-  clientPlatform: z.string().optional(),
+  platform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientID: "ClientID",
     clientName: "ClientName",
-    deviceName: "DeviceName",
+    deviceNickname: "DeviceNickname",
     clientVersion: "ClientVersion",
-    clientPlatform: "ClientPlatform",
+    platform: "Platform",
   });
 });
 
@@ -232,16 +232,16 @@ export const GetPinRequest$inboundSchema: z.ZodType<
   strong: z.boolean().default(false),
   ClientID: z.string().optional(),
   ClientName: z.string().optional(),
-  DeviceName: z.string().optional(),
+  DeviceNickname: z.string().optional(),
   ClientVersion: z.string().optional(),
-  ClientPlatform: z.string().optional(),
+  Platform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "ClientID": "clientID",
     "ClientName": "clientName",
-    "DeviceName": "deviceName",
+    "DeviceNickname": "deviceNickname",
     "ClientVersion": "clientVersion",
-    "ClientPlatform": "clientPlatform",
+    "Platform": "platform",
   });
 });
 
@@ -250,9 +250,9 @@ export type GetPinRequest$Outbound = {
   strong: boolean;
   ClientID?: string | undefined;
   ClientName?: string | undefined;
-  DeviceName?: string | undefined;
+  DeviceNickname?: string | undefined;
   ClientVersion?: string | undefined;
-  ClientPlatform?: string | undefined;
+  Platform?: string | undefined;
 };
 
 /** @internal */
@@ -264,16 +264,16 @@ export const GetPinRequest$outboundSchema: z.ZodType<
   strong: z.boolean().default(false),
   clientID: z.string().optional(),
   clientName: z.string().optional(),
-  deviceName: z.string().optional(),
+  deviceNickname: z.string().optional(),
   clientVersion: z.string().optional(),
-  clientPlatform: z.string().optional(),
+  platform: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     clientID: "ClientID",
     clientName: "ClientName",
-    deviceName: "DeviceName",
+    deviceNickname: "DeviceNickname",
     clientVersion: "ClientVersion",
-    clientPlatform: "ClientPlatform",
+    platform: "Platform",
   });
 });
 
