@@ -755,7 +755,7 @@ export type GetLibraryItemsMediaContainer = {
   viewGroup: string;
   viewMode?: number | undefined;
   mixedParents?: boolean | undefined;
-  metadata: Array<GetLibraryItemsMetadata>;
+  metadata?: Array<GetLibraryItemsMetadata> | undefined;
   /**
    * The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
    *
@@ -2937,7 +2937,8 @@ export const GetLibraryItemsMediaContainer$inboundSchema: z.ZodType<
   viewGroup: z.string(),
   viewMode: z.number().int().optional(),
   mixedParents: z.boolean().optional(),
-  Metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$inboundSchema)),
+  Metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$inboundSchema))
+    .optional(),
   Meta: z.lazy(() => GetLibraryItemsMeta$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -2971,7 +2972,7 @@ export type GetLibraryItemsMediaContainer$Outbound = {
   viewGroup: string;
   viewMode?: number | undefined;
   mixedParents?: boolean | undefined;
-  Metadata: Array<GetLibraryItemsMetadata$Outbound>;
+  Metadata?: Array<GetLibraryItemsMetadata$Outbound> | undefined;
   Meta?: GetLibraryItemsMeta$Outbound | undefined;
 };
 
@@ -3003,7 +3004,8 @@ export const GetLibraryItemsMediaContainer$outboundSchema: z.ZodType<
   viewGroup: z.string(),
   viewMode: z.number().int().optional(),
   mixedParents: z.boolean().optional(),
-  metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$outboundSchema)),
+  metadata: z.array(z.lazy(() => GetLibraryItemsMetadata$outboundSchema))
+    .optional(),
   meta: z.lazy(() => GetLibraryItemsMeta$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

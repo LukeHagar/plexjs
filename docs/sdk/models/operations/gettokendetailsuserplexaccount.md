@@ -19,33 +19,22 @@ import {
 } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTokenDetailsUserPlexAccount = {
-  adsConsent: true,
-  adsConsentReminderAt: new Date("2019-08-24T14:15:22Z"),
-  adsConsentSetAt: new Date("2019-08-24T14:15:22Z"),
-  anonymous: false,
+  adsConsent: false,
+  adsConsentReminderAt: 1556281940,
+  adsConsentSetAt: 1556281940,
   authToken: "CxoUzBTSV5hsxjTpFKaf",
-  backupCodesCreated: false,
-  confirmed: false,
   country: "US",
   email: "username@email.com",
-  emailOnlyAuth: false,
-  experimentalFeatures: false,
   friendlyName: "friendlyUsername",
   entitlements: [
     "[]",
   ],
-  guest: false,
-  hasPassword: true,
-  home: false,
-  homeAdmin: false,
   homeSize: 1,
   id: 13692262,
-  joinedAt: 1721154902,
-  locale: null,
-  mailingListActive: false,
-  mailingListStatus: MailingListStatus.Unsubscribed,
+  joinedAt: 1556281940,
+  locale: "ar",
+  mailingListStatus: MailingListStatus.Active,
   maxHomeSize: 15,
-  pin: "string",
   profile: {
     autoSelectAudio: true,
     defaultAudioLanguage: "ja",
@@ -56,48 +45,32 @@ let value: GetTokenDetailsUserPlexAccount = {
     watchedIndicator: WatchedIndicator.Enable,
     mediaReviewsVisibility: MediaReviewsVisibility.Enable,
   },
-  protected: false,
-  rememberExpiresAt: 1722364046,
-  restricted: false,
-  roles: [
-    "string",
-  ],
-  scrobbleTypes: "",
+  rememberExpiresAt: 1556281940,
+  scrobbleTypes: "<value>",
   services: [
     {
       identifier: "metadata-dev",
       endpoint: "https://epg.provider.plex.tv",
       token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
-      secret: "string",
+      secret: "<value>",
       status: GetTokenDetailsStatus.Online,
     },
   ],
   subscription: {
-    features: [
-      "Android - Dolby Vision",
-    ],
     active: true,
     subscribedAt: "2021-04-12T18:21:12Z",
     status: GetTokenDetailsAuthenticationStatus.Inactive,
-    paymentService: "string",
-    plan: "string",
   },
-  subscriptionDescription: "string",
+  subscriptionDescription: "<value>",
   subscriptions: [
     {
-      features: [
-        "Android - Dolby Vision",
-      ],
       active: true,
       subscribedAt: "2021-04-12T18:21:12Z",
       status: GetTokenDetailsAuthenticationResponseStatus.Inactive,
-      paymentService: "string",
-      plan: "string",
     },
   ],
   thumb: "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101",
   title: "UsernameTitle",
-  twoFactorEnabled: false,
   username: "Username",
   uuid: "dae343c1f45beb4f",
   attributionPartner: null,
@@ -109,8 +82,8 @@ let value: GetTokenDetailsUserPlexAccount = {
 | Field                                                                                                                                                                 | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           | Example                                                                                                                                                               |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `adsConsent`                                                                                                                                                          | *boolean*                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                    | Unknown                                                                                                                                                               |                                                                                                                                                                       |
-| `adsConsentReminderAt`                                                                                                                                                | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                                         | :heavy_check_mark:                                                                                                                                                    | Unknown                                                                                                                                                               |                                                                                                                                                                       |
-| `adsConsentSetAt`                                                                                                                                                     | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                                         | :heavy_check_mark:                                                                                                                                                    | Unknown                                                                                                                                                               |                                                                                                                                                                       |
+| `adsConsentReminderAt`                                                                                                                                                | *number*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   | 1556281940                                                                                                                                                            |
+| `adsConsentSetAt`                                                                                                                                                     | *number*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | N/A                                                                                                                                                                   | 1556281940                                                                                                                                                            |
 | `anonymous`                                                                                                                                                           | *boolean*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | Unknown                                                                                                                                                               |                                                                                                                                                                       |
 | `authToken`                                                                                                                                                           | *string*                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | The account token                                                                                                                                                     | CxoUzBTSV5hsxjTpFKaf                                                                                                                                                  |
 | `backupCodesCreated`                                                                                                                                                  | *boolean*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                    | If the two-factor authentication backup codes have been created                                                                                                       |                                                                                                                                                                       |

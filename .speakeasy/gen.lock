@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 1ee2e5413af07e886e33659b9b269dd5
+  docChecksum: 23094f3a9fe02710a8628ad5456f5d42
   docVersion: 0.0.3
   speakeasyVersion: 1.405.6
   generationVersion: 2.428.1
-  releaseVersion: 0.25.1
-  configChecksum: fbb6cdc652d55e2fd4686855e1cf4ed7
+  releaseVersion: 0.26.1
+  configChecksum: 60271a6e5ece5e9400f671595bbf9013
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -2166,7 +2166,7 @@ examples:
     speakeasy-default-get-token-details:
       responses:
         "200":
-          application/json: {"adsConsent": true, "adsConsentReminderAt": "2019-08-24T14:15:22Z", "adsConsentSetAt": "2019-08-24T14:15:22Z", "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": ["[]"], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1556281940, "locale": null, "mailingListActive": false, "mailingListStatus": "active", "maxHomeSize": 15, "pin": "string", "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": 1, "defaultSubtitleAccessibility": 1, "defaultSubtitleForced": 1, "watchedIndicator": 1, "mediaReviewsVisibility": 1}, "protected": false, "rememberExpiresAt": 1556281940, "restricted": false, "roles": ["string"], "scrobbleTypes": "", "services": [{"identifier": "metadata-dev", "endpoint": "https://epg.provider.plex.tv", "token": "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv", "secret": "string", "status": "online"}], "subscription": {"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}, "subscriptionDescription": "string", "subscriptions": [{"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f", "attributionPartner": null}
+          application/json: {"adsConsent": true, "adsConsentReminderAt": 1556281940, "adsConsentSetAt": 1556281940, "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": ["[]"], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1556281940, "locale": null, "mailingListActive": false, "mailingListStatus": "active", "maxHomeSize": 15, "pin": "string", "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": 1, "defaultSubtitleAccessibility": 1, "defaultSubtitleForced": 1, "watchedIndicator": 1, "mediaReviewsVisibility": 1}, "protected": false, "rememberExpiresAt": 1556281940, "restricted": false, "roles": ["string"], "scrobbleTypes": "", "services": [{"identifier": "metadata-dev", "endpoint": "https://epg.provider.plex.tv", "token": "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv", "secret": "string", "status": "online"}], "subscription": {"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}, "subscriptionDescription": "string", "subscriptions": [{"features": ["Android - Dolby Vision"], "active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive", "paymentService": "string", "plan": "string"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f", "attributionPartner": null}
         "400":
           application/json: {"errors": []}
         "401":

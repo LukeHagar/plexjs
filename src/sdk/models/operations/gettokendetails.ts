@@ -171,14 +171,8 @@ export type GetTokenDetailsUserPlexAccount = {
    * Unknown
    */
   adsConsent: boolean | null;
-  /**
-   * Unknown
-   */
-  adsConsentReminderAt: Date | null;
-  /**
-   * Unknown
-   */
-  adsConsentSetAt: Date | null;
+  adsConsentReminderAt: number | null;
+  adsConsentSetAt: number | null;
   /**
    * Unknown
    */
@@ -758,12 +752,8 @@ export const GetTokenDetailsUserPlexAccount$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   adsConsent: z.nullable(z.boolean()),
-  adsConsentReminderAt: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ),
-  adsConsentSetAt: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ),
+  adsConsentReminderAt: z.nullable(z.number().int()),
+  adsConsentSetAt: z.nullable(z.number().int()),
   anonymous: z.nullable(z.boolean().default(false)),
   authToken: z.string(),
   backupCodesCreated: z.boolean().default(false),
@@ -809,8 +799,8 @@ export const GetTokenDetailsUserPlexAccount$inboundSchema: z.ZodType<
 /** @internal */
 export type GetTokenDetailsUserPlexAccount$Outbound = {
   adsConsent: boolean | null;
-  adsConsentReminderAt: string | null;
-  adsConsentSetAt: string | null;
+  adsConsentReminderAt: number | null;
+  adsConsentSetAt: number | null;
   anonymous: boolean | null;
   authToken: string;
   backupCodesCreated: boolean;
@@ -858,8 +848,8 @@ export const GetTokenDetailsUserPlexAccount$outboundSchema: z.ZodType<
   GetTokenDetailsUserPlexAccount
 > = z.object({
   adsConsent: z.nullable(z.boolean()),
-  adsConsentReminderAt: z.nullable(z.date().transform(v => v.toISOString())),
-  adsConsentSetAt: z.nullable(z.date().transform(v => v.toISOString())),
+  adsConsentReminderAt: z.nullable(z.number().int()),
+  adsConsentSetAt: z.nullable(z.number().int()),
   anonymous: z.nullable(z.boolean().default(false)),
   authToken: z.string(),
   backupCodesCreated: z.boolean().default(false),
