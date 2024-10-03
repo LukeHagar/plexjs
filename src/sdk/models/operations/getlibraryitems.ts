@@ -388,7 +388,7 @@ export type GetLibraryItemsStream = {
 export type GetLibraryItemsPart = {
   id: number;
   key: string;
-  duration: number;
+  duration?: number | undefined;
   file: string;
   size: number;
   /**
@@ -400,7 +400,7 @@ export type GetLibraryItemsPart = {
   audioProfile?: string | undefined;
   has64bitOffsets?: boolean | undefined;
   optimizedForStreaming?: boolean | undefined;
-  videoProfile: string;
+  videoProfile?: string | undefined;
   indexes?: string | undefined;
   hasThumbnail?: GetLibraryItemsHasThumbnail | undefined;
   stream?: Array<GetLibraryItemsStream> | undefined;
@@ -408,19 +408,19 @@ export type GetLibraryItemsPart = {
 
 export type GetLibraryItemsMedia = {
   id: number;
-  duration: number;
-  bitrate: number;
-  width: number;
-  height: number;
-  aspectRatio: number;
+  duration?: number | undefined;
+  bitrate?: number | undefined;
+  width?: number | undefined;
+  height?: number | undefined;
+  aspectRatio?: number | undefined;
   audioProfile?: string | undefined;
-  audioChannels: number;
-  audioCodec: string;
-  videoCodec: string;
-  videoResolution: string;
+  audioChannels?: number | undefined;
+  audioCodec?: string | undefined;
+  videoCodec?: string | undefined;
+  videoResolution?: string | undefined;
   container: string;
-  videoFrameRate: string;
-  videoProfile: string;
+  videoFrameRate?: string | undefined;
+  videoProfile?: string | undefined;
   hasVoiceActivity?: boolean | undefined;
   optimizedForStreaming?: GetLibraryItemsOptimizedForStreaming | undefined;
   has64bitOffsets?: boolean | undefined;
@@ -472,6 +472,10 @@ export type GetLibraryItemsRole = {
    * The role of the actor or tag in the media.
    */
   role?: string | undefined;
+};
+
+export type GetLibraryItemsLocation = {
+  path?: string | undefined;
 };
 
 export type GetLibraryItemsMediaGuid = {
@@ -599,6 +603,7 @@ export type GetLibraryItemsMetadata = {
   writer?: Array<GetLibraryItemsWriter> | undefined;
   collection?: Array<GetLibraryItemsCollection> | undefined;
   role?: Array<GetLibraryItemsRole> | undefined;
+  location?: Array<GetLibraryItemsLocation> | undefined;
   /**
    * The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
    *
@@ -1549,14 +1554,14 @@ export const GetLibraryItemsPart$inboundSchema: z.ZodType<
 > = z.object({
   id: z.number().int(),
   key: z.string(),
-  duration: z.number().int(),
+  duration: z.number().int().optional(),
   file: z.string(),
   size: z.number().int(),
   container: z.string(),
   audioProfile: z.string().optional(),
   has64bitOffsets: z.boolean().optional(),
   optimizedForStreaming: z.boolean().optional(),
-  videoProfile: z.string(),
+  videoProfile: z.string().optional(),
   indexes: z.string().optional(),
   hasThumbnail: GetLibraryItemsHasThumbnail$inboundSchema.default(
     GetLibraryItemsHasThumbnail.False,
@@ -1572,14 +1577,14 @@ export const GetLibraryItemsPart$inboundSchema: z.ZodType<
 export type GetLibraryItemsPart$Outbound = {
   id: number;
   key: string;
-  duration: number;
+  duration?: number | undefined;
   file: string;
   size: number;
   container: string;
   audioProfile?: string | undefined;
   has64bitOffsets?: boolean | undefined;
   optimizedForStreaming?: boolean | undefined;
-  videoProfile: string;
+  videoProfile?: string | undefined;
   indexes?: string | undefined;
   hasThumbnail: string;
   Stream?: Array<GetLibraryItemsStream$Outbound> | undefined;
@@ -1593,14 +1598,14 @@ export const GetLibraryItemsPart$outboundSchema: z.ZodType<
 > = z.object({
   id: z.number().int(),
   key: z.string(),
-  duration: z.number().int(),
+  duration: z.number().int().optional(),
   file: z.string(),
   size: z.number().int(),
   container: z.string(),
   audioProfile: z.string().optional(),
   has64bitOffsets: z.boolean().optional(),
   optimizedForStreaming: z.boolean().optional(),
-  videoProfile: z.string(),
+  videoProfile: z.string().optional(),
   indexes: z.string().optional(),
   hasThumbnail: GetLibraryItemsHasThumbnail$outboundSchema.default(
     GetLibraryItemsHasThumbnail.False,
@@ -1633,19 +1638,19 @@ export const GetLibraryItemsMedia$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.number().int(),
-  duration: z.number().int(),
-  bitrate: z.number().int(),
-  width: z.number().int(),
-  height: z.number().int(),
-  aspectRatio: z.number(),
+  duration: z.number().int().optional(),
+  bitrate: z.number().int().optional(),
+  width: z.number().int().optional(),
+  height: z.number().int().optional(),
+  aspectRatio: z.number().optional(),
   audioProfile: z.string().optional(),
-  audioChannels: z.number().int(),
-  audioCodec: z.string(),
-  videoCodec: z.string(),
-  videoResolution: z.string(),
+  audioChannels: z.number().int().optional(),
+  audioCodec: z.string().optional(),
+  videoCodec: z.string().optional(),
+  videoResolution: z.string().optional(),
   container: z.string(),
-  videoFrameRate: z.string(),
-  videoProfile: z.string(),
+  videoFrameRate: z.string().optional(),
+  videoProfile: z.string().optional(),
   hasVoiceActivity: z.boolean().optional(),
   optimizedForStreaming: GetLibraryItemsOptimizedForStreaming$inboundSchema,
   has64bitOffsets: z.boolean().optional(),
@@ -1659,19 +1664,19 @@ export const GetLibraryItemsMedia$inboundSchema: z.ZodType<
 /** @internal */
 export type GetLibraryItemsMedia$Outbound = {
   id: number;
-  duration: number;
-  bitrate: number;
-  width: number;
-  height: number;
-  aspectRatio: number;
+  duration?: number | undefined;
+  bitrate?: number | undefined;
+  width?: number | undefined;
+  height?: number | undefined;
+  aspectRatio?: number | undefined;
   audioProfile?: string | undefined;
-  audioChannels: number;
-  audioCodec: string;
-  videoCodec: string;
-  videoResolution: string;
+  audioChannels?: number | undefined;
+  audioCodec?: string | undefined;
+  videoCodec?: string | undefined;
+  videoResolution?: string | undefined;
   container: string;
-  videoFrameRate: string;
-  videoProfile: string;
+  videoFrameRate?: string | undefined;
+  videoProfile?: string | undefined;
   hasVoiceActivity?: boolean | undefined;
   optimizedForStreaming: number;
   has64bitOffsets?: boolean | undefined;
@@ -1685,19 +1690,19 @@ export const GetLibraryItemsMedia$outboundSchema: z.ZodType<
   GetLibraryItemsMedia
 > = z.object({
   id: z.number().int(),
-  duration: z.number().int(),
-  bitrate: z.number().int(),
-  width: z.number().int(),
-  height: z.number().int(),
-  aspectRatio: z.number(),
+  duration: z.number().int().optional(),
+  bitrate: z.number().int().optional(),
+  width: z.number().int().optional(),
+  height: z.number().int().optional(),
+  aspectRatio: z.number().optional(),
   audioProfile: z.string().optional(),
-  audioChannels: z.number().int(),
-  audioCodec: z.string(),
-  videoCodec: z.string(),
-  videoResolution: z.string(),
+  audioChannels: z.number().int().optional(),
+  audioCodec: z.string().optional(),
+  videoCodec: z.string().optional(),
+  videoResolution: z.string().optional(),
   container: z.string(),
-  videoFrameRate: z.string(),
-  videoProfile: z.string(),
+  videoFrameRate: z.string().optional(),
+  videoProfile: z.string().optional(),
   hasVoiceActivity: z.boolean().optional(),
   optimizedForStreaming: GetLibraryItemsOptimizedForStreaming$outboundSchema
     .default(GetLibraryItemsOptimizedForStreaming.Disable),
@@ -1954,6 +1959,42 @@ export namespace GetLibraryItemsRole$ {
 }
 
 /** @internal */
+export const GetLibraryItemsLocation$inboundSchema: z.ZodType<
+  GetLibraryItemsLocation,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  path: z.string().optional(),
+});
+
+/** @internal */
+export type GetLibraryItemsLocation$Outbound = {
+  path?: string | undefined;
+};
+
+/** @internal */
+export const GetLibraryItemsLocation$outboundSchema: z.ZodType<
+  GetLibraryItemsLocation$Outbound,
+  z.ZodTypeDef,
+  GetLibraryItemsLocation
+> = z.object({
+  path: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetLibraryItemsLocation$ {
+  /** @deprecated use `GetLibraryItemsLocation$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryItemsLocation$inboundSchema;
+  /** @deprecated use `GetLibraryItemsLocation$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryItemsLocation$outboundSchema;
+  /** @deprecated use `GetLibraryItemsLocation$Outbound` instead. */
+  export type Outbound = GetLibraryItemsLocation$Outbound;
+}
+
+/** @internal */
 export const GetLibraryItemsMediaGuid$inboundSchema: z.ZodType<
   GetLibraryItemsMediaGuid,
   z.ZodTypeDef,
@@ -2200,6 +2241,8 @@ export const GetLibraryItemsMetadata$inboundSchema: z.ZodType<
   Collection: z.array(z.lazy(() => GetLibraryItemsCollection$inboundSchema))
     .optional(),
   Role: z.array(z.lazy(() => GetLibraryItemsRole$inboundSchema)).optional(),
+  Location: z.array(z.lazy(() => GetLibraryItemsLocation$inboundSchema))
+    .optional(),
   Guid: z.array(z.lazy(() => GetLibraryItemsMediaGuid$inboundSchema))
     .optional(),
   UltraBlurColors: z.lazy(() => GetLibraryItemsUltraBlurColors$inboundSchema)
@@ -2238,6 +2281,7 @@ export const GetLibraryItemsMetadata$inboundSchema: z.ZodType<
     "Writer": "writer",
     "Collection": "collection",
     "Role": "role",
+    "Location": "location",
     "Guid": "mediaGuid",
     "UltraBlurColors": "ultraBlurColors",
     "Rating": "metaDataRating",
@@ -2294,6 +2338,7 @@ export type GetLibraryItemsMetadata$Outbound = {
   Writer?: Array<GetLibraryItemsWriter$Outbound> | undefined;
   Collection?: Array<GetLibraryItemsCollection$Outbound> | undefined;
   Role?: Array<GetLibraryItemsRole$Outbound> | undefined;
+  Location?: Array<GetLibraryItemsLocation$Outbound> | undefined;
   Guid?: Array<GetLibraryItemsMediaGuid$Outbound> | undefined;
   UltraBlurColors?: GetLibraryItemsUltraBlurColors$Outbound | undefined;
   Rating?: Array<GetLibraryItemsMetaDataRating$Outbound> | undefined;
@@ -2382,6 +2427,8 @@ export const GetLibraryItemsMetadata$outboundSchema: z.ZodType<
   collection: z.array(z.lazy(() => GetLibraryItemsCollection$outboundSchema))
     .optional(),
   role: z.array(z.lazy(() => GetLibraryItemsRole$outboundSchema)).optional(),
+  location: z.array(z.lazy(() => GetLibraryItemsLocation$outboundSchema))
+    .optional(),
   mediaGuid: z.array(z.lazy(() => GetLibraryItemsMediaGuid$outboundSchema))
     .optional(),
   ultraBlurColors: z.lazy(() => GetLibraryItemsUltraBlurColors$outboundSchema)
@@ -2421,6 +2468,7 @@ export const GetLibraryItemsMetadata$outboundSchema: z.ZodType<
     writer: "Writer",
     collection: "Collection",
     role: "Role",
+    location: "Location",
     mediaGuid: "Guid",
     ultraBlurColors: "UltraBlurColors",
     metaDataRating: "Rating",

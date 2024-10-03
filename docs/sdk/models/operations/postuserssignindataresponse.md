@@ -4,13 +4,11 @@
 
 ```typescript
 import {
-  PostUsersSignInDataAuthenticationFeatures,
   PostUsersSignInDataAuthenticationResponseStatus,
   PostUsersSignInDataAuthenticationStatus,
   PostUsersSignInDataAutoSelectSubtitle,
   PostUsersSignInDataDefaultSubtitleAccessibility,
   PostUsersSignInDataDefaultSubtitleForced,
-  PostUsersSignInDataFeatures,
   PostUsersSignInDataMailingListStatus,
   PostUsersSignInDataMediaReviewsVisibility,
   PostUsersSignInDataResponse,
@@ -21,7 +19,7 @@ import {
 
 let value: PostUsersSignInDataResponse = {
   contentType: "<value>",
-  statusCode: 100,
+  statusCode: 501,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -50,7 +48,7 @@ let value: PostUsersSignInDataResponse = {
     joinedAt: 1721154902,
     locale: null,
     mailingListActive: false,
-    mailingListStatus: PostUsersSignInDataMailingListStatus.Active,
+    mailingListStatus: PostUsersSignInDataMailingListStatus.Unsubscribed,
     maxHomeSize: 15,
     pin: "string",
     profile: {
@@ -82,7 +80,7 @@ let value: PostUsersSignInDataResponse = {
     ],
     subscription: {
       features: [
-        PostUsersSignInDataFeatures.AndroidDolbyVision,
+        "Android - Dolby Vision",
       ],
       active: true,
       subscribedAt: "2021-04-12T18:21:12Z",
@@ -94,7 +92,7 @@ let value: PostUsersSignInDataResponse = {
     subscriptions: [
       {
         features: [
-          PostUsersSignInDataAuthenticationFeatures.AndroidDolbyVision,
+          "Android - Dolby Vision",
         ],
         active: true,
         subscribedAt: "2021-04-12T18:21:12Z",
@@ -127,7 +125,7 @@ let value: PostUsersSignInDataResponse = {
         state: PostUsersSignInDataState.Ended,
         billing: {
           internalPaymentMethod: {},
-          paymentMethodId: 374170,
+          paymentMethodId: 132068,
         },
       },
     ],

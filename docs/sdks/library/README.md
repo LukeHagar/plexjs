@@ -16,6 +16,7 @@ API Calls interacting with Plex Media Server Libraries
 * [getLibraryItems](#getlibraryitems) - Get Library Items
 * [getRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [getSearchLibrary](#getsearchlibrary) - Search Library
+* [getSearchAllLibraries](#getsearchalllibraries) - Search All Libraries
 * [getMetaDataByRatingKey](#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [getMetadataChildren](#getmetadatachildren) - Get Items Children
 * [getTopWatchedContent](#gettopwatchedcontent) - Get Top Watched Content
@@ -856,6 +857,107 @@ run();
 | errors.GetSearchLibraryBadRequest   | 400                                 | application/json                    |
 | errors.GetSearchLibraryUnauthorized | 401                                 | application/json                    |
 | errors.SDKError                     | 4XX, 5XX                            | \*/\*                               |
+
+## getSearchAllLibraries
+
+Search the provided query across all library sections, or a single section, and return matches as hubs, split up by type.
+
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { QueryParamIncludeCollections, QueryParamIncludeExternalMedia, SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
+});
+
+async function run() {
+  const result = await plexAPI.library.getSearchAllLibraries({
+    query: "<value>",
+    searchTypes: [
+      SearchTypes.People,
+    ],
+    includeCollections: QueryParamIncludeCollections.Enable,
+    includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { libraryGetSearchAllLibraries } from "@lukehagar/plexjs/funcs/libraryGetSearchAllLibraries.js";
+import { QueryParamIncludeCollections, QueryParamIncludeExternalMedia, SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+  clientName: "Plex for Roku",
+  clientVersion: "2.4.1",
+  platform: "Roku",
+  deviceNickname: "Roku 3",
+});
+
+async function run() {
+  const res = await libraryGetSearchAllLibraries(plexAPI, {
+    query: "<value>",
+    searchTypes: [
+      SearchTypes.People,
+    ],
+    includeCollections: QueryParamIncludeCollections.Enable,
+    includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSearchAllLibrariesRequest](../../sdk/models/operations/getsearchalllibrariesrequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetSearchAllLibrariesResponse](../../sdk/models/operations/getsearchalllibrariesresponse.md)\>**
+
+### Errors
+
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.GetSearchAllLibrariesBadRequest   | 400                                      | application/json                         |
+| errors.GetSearchAllLibrariesUnauthorized | 401                                      | application/json                         |
+| errors.SDKError                          | 4XX, 5XX                                 | \*/\*                                    |
 
 ## getMetaDataByRatingKey
 

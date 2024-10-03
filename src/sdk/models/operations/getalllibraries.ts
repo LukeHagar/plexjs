@@ -5,7 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 
-export type Location = {
+export type GetAllLibrariesLocation = {
   id: number;
   path: string;
 };
@@ -43,7 +43,7 @@ export type GetAllLibrariesDirectory = {
    */
   contentChangedAt: number;
   hidden: number;
-  location: Array<Location>;
+  location: Array<GetAllLibrariesLocation>;
 };
 
 export type GetAllLibrariesMediaContainer = {
@@ -80,8 +80,8 @@ export type GetAllLibrariesResponse = {
 };
 
 /** @internal */
-export const Location$inboundSchema: z.ZodType<
-  Location,
+export const GetAllLibrariesLocation$inboundSchema: z.ZodType<
+  GetAllLibrariesLocation,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -90,16 +90,16 @@ export const Location$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Location$Outbound = {
+export type GetAllLibrariesLocation$Outbound = {
   id: number;
   path: string;
 };
 
 /** @internal */
-export const Location$outboundSchema: z.ZodType<
-  Location$Outbound,
+export const GetAllLibrariesLocation$outboundSchema: z.ZodType<
+  GetAllLibrariesLocation$Outbound,
   z.ZodTypeDef,
-  Location
+  GetAllLibrariesLocation
 > = z.object({
   id: z.number().int(),
   path: z.string(),
@@ -109,13 +109,13 @@ export const Location$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Location$ {
-  /** @deprecated use `Location$inboundSchema` instead. */
-  export const inboundSchema = Location$inboundSchema;
-  /** @deprecated use `Location$outboundSchema` instead. */
-  export const outboundSchema = Location$outboundSchema;
-  /** @deprecated use `Location$Outbound` instead. */
-  export type Outbound = Location$Outbound;
+export namespace GetAllLibrariesLocation$ {
+  /** @deprecated use `GetAllLibrariesLocation$inboundSchema` instead. */
+  export const inboundSchema = GetAllLibrariesLocation$inboundSchema;
+  /** @deprecated use `GetAllLibrariesLocation$outboundSchema` instead. */
+  export const outboundSchema = GetAllLibrariesLocation$outboundSchema;
+  /** @deprecated use `GetAllLibrariesLocation$Outbound` instead. */
+  export type Outbound = GetAllLibrariesLocation$Outbound;
 }
 
 /** @internal */
@@ -144,7 +144,7 @@ export const GetAllLibrariesDirectory$inboundSchema: z.ZodType<
   directory: z.boolean(),
   contentChangedAt: z.number().int(),
   hidden: z.number().int(),
-  Location: z.array(z.lazy(() => Location$inboundSchema)),
+  Location: z.array(z.lazy(() => GetAllLibrariesLocation$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "Location": "location",
@@ -173,7 +173,7 @@ export type GetAllLibrariesDirectory$Outbound = {
   directory: boolean;
   contentChangedAt: number;
   hidden: number;
-  Location: Array<Location$Outbound>;
+  Location: Array<GetAllLibrariesLocation$Outbound>;
 };
 
 /** @internal */
@@ -202,7 +202,7 @@ export const GetAllLibrariesDirectory$outboundSchema: z.ZodType<
   directory: z.boolean(),
   contentChangedAt: z.number().int(),
   hidden: z.number().int(),
-  location: z.array(z.lazy(() => Location$outboundSchema)),
+  location: z.array(z.lazy(() => GetAllLibrariesLocation$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     location: "Location",

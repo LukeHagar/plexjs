@@ -4,11 +4,6 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
 
 export const PostUsersSignInDataServerList = [
   "https://plex.tv/api/v2",
@@ -159,108 +154,6 @@ export type PostUsersSignInDataServices = {
   status: PostUsersSignInDataStatus;
 };
 
-export enum PostUsersSignInDataFeatures {
-  AndroidDolbyVision = "Android - Dolby Vision",
-  AndroidPiP = "Android - PiP",
-  CUSunset = "CU Sunset",
-  HRKEnableEUR = "HRK_enable_EUR",
-  TREBLEShowFeatures = "TREBLE-show-features",
-  AdCountdownTimer = "ad-countdown-timer",
-  AdaptiveBitrate = "adaptive_bitrate",
-  AlbumTypes = "album-types",
-  AllowDvr = "allow_dvr",
-  AmazonLoopDebug = "amazon-loop-debug",
-  AvodAdAnalysis = "avod-ad-analysis",
-  AvodNewMedia = "avod-new-media",
-  BlacklistGetSignin = "blacklist_get_signin",
-  BoostVoices = "boost-voices",
-  CameraUpload = "camera_upload",
-  ClientRadioStations = "client-radio-stations",
-  CloudflareTurnstileRequired = "cloudflare-turnstile-required",
-  Cloudsync = "cloudsync",
-  Collections = "collections",
-  CommentsAndRepliesPushNotifications =
-    "comments_and_replies_push_notifications",
-  CommunityAccessPlexTv = "community_access_plex_tv",
-  CompanionsSonos = "companions_sonos",
-  ContentFilter = "content_filter",
-  CustomHomeRemoval = "custom-home-removal",
-  DisableHomeUserFriendships = "disable_home_user_friendships",
-  DisableSharingFriendships = "disable_sharing_friendships",
-  DownloadsGating = "downloads-gating",
-  DrmSupport = "drm_support",
-  Dvr = "dvr",
-  DvrBlockUnsupportedCountries = "dvr-block-unsupported-countries",
-  EpgRecentChannels = "epg-recent-channels",
-  ExcludeRestrictions = "exclude restrictions",
-  FederatedAuth = "federated-auth",
-  FriendRequestPushNotifications = "friend_request_push_notifications",
-  GrandfatherSync = "grandfather-sync",
-  GuidedUpgrade = "guided-upgrade",
-  HardwareTranscoding = "hardware_transcoding",
-  Home = "home",
-  Hwtranscode = "hwtranscode",
-  ImaggaV2 = "imagga-v2",
-  IncreasePasswordComplexity = "increase-password-complexity",
-  Ios14PrivacyBanner = "ios14-privacy-banner",
-  IterableNotificationTokens = "iterable-notification-tokens",
-  ItemClusters = "item_clusters",
-  KeepPaymentMethod = "keep-payment-method",
-  KevinBacon = "kevin-bacon",
-  KoreaConsent = "korea-consent",
-  LeIsrgRootX1 = "le_isrg_root_x1",
-  LetsEncrypt = "lets_encrypt",
-  LightningDvrPivot = "lightning-dvr-pivot",
-  LiveTvSupportIncompleteSegments = "live-tv-support-incomplete-segments",
-  Livetv = "livetv",
-  Lyrics = "lyrics",
-  MetadataSearch = "metadata_search",
-  MusicAnalysis = "music-analysis",
-  MusicVideos = "music_videos",
-  NewPlexPassPrices = "new_plex_pass_prices",
-  NewsProviderSunsetModal = "news-provider-sunset-modal",
-  Nominatim = "nominatim",
-  Pass = "pass",
-  PhotosFavorites = "photos-favorites",
-  PhotosMetadataEdition = "photos-metadata-edition",
-  PhotosV6Edit = "photosV6-edit",
-  PhotosV6TvAlbums = "photosV6-tv-albums",
-  PmsHealth = "pms_health",
-  PremiumDashboard = "premium-dashboard",
-  PremiumMusicMetadata = "premium_music_metadata",
-  Radio = "radio",
-  RateLimitClientToken = "rate-limit-client-token",
-  ScrobblingServicePlexTv = "scrobbling-service-plex-tv",
-  SessionBandwidthRestrictions = "session_bandwidth_restrictions",
-  SessionKick = "session_kick",
-  SharedServerNotification = "shared_server_notification",
-  SharedSourceNotification = "shared_source_notification",
-  SigninNotification = "signin_notification",
-  SigninWithApple = "signin_with_apple",
-  SilenceRemoval = "silence-removal",
-  SleepTimer = "sleep-timer",
-  SpringServeAdProvider = "spring_serve_ad_provider",
-  Sync = "sync",
-  SweetFades = "sweet-fades",
-  TranscoderCache = "transcoder_cache",
-  Trailers = "trailers",
-  TunerSharing = "tuner-sharing",
-  TwoFactorAuthentication = "two-factor-authentication",
-  Unsupportedtuners = "unsupportedtuners",
-  Upgrade3ds2 = "upgrade-3ds2",
-  Visualizers = "visualizers",
-  VodSchema = "vod-schema",
-  VodCloudflare = "vod_cloudflare",
-  VolumeLeveling = "volume-leveling",
-  WatchTogetherInvite = "watch-together-invite",
-  WatchlistRss = "watchlist-rss",
-  WebServerDashboard = "web_server_dashboard",
-  Webhooks = "webhooks",
-}
-export type PostUsersSignInDataFeaturesOpen = OpenEnum<
-  typeof PostUsersSignInDataFeatures
->;
-
 /**
  * String representation of subscriptionActive
  */
@@ -276,7 +169,7 @@ export type PostUsersSignInDataSubscription = {
   /**
    * List of features allowed on your Plex Pass subscription
    */
-  features?: Array<PostUsersSignInDataFeaturesOpen> | undefined;
+  features?: Array<string> | undefined;
   /**
    * If the account's Plex Pass subscription is active
    */
@@ -299,108 +192,6 @@ export type PostUsersSignInDataSubscription = {
   plan?: string | null | undefined;
 };
 
-export enum PostUsersSignInDataAuthenticationFeatures {
-  AndroidDolbyVision = "Android - Dolby Vision",
-  AndroidPiP = "Android - PiP",
-  CUSunset = "CU Sunset",
-  HRKEnableEUR = "HRK_enable_EUR",
-  TREBLEShowFeatures = "TREBLE-show-features",
-  AdCountdownTimer = "ad-countdown-timer",
-  AdaptiveBitrate = "adaptive_bitrate",
-  AlbumTypes = "album-types",
-  AllowDvr = "allow_dvr",
-  AmazonLoopDebug = "amazon-loop-debug",
-  AvodAdAnalysis = "avod-ad-analysis",
-  AvodNewMedia = "avod-new-media",
-  BlacklistGetSignin = "blacklist_get_signin",
-  BoostVoices = "boost-voices",
-  CameraUpload = "camera_upload",
-  ClientRadioStations = "client-radio-stations",
-  CloudflareTurnstileRequired = "cloudflare-turnstile-required",
-  Cloudsync = "cloudsync",
-  Collections = "collections",
-  CommentsAndRepliesPushNotifications =
-    "comments_and_replies_push_notifications",
-  CommunityAccessPlexTv = "community_access_plex_tv",
-  CompanionsSonos = "companions_sonos",
-  ContentFilter = "content_filter",
-  CustomHomeRemoval = "custom-home-removal",
-  DisableHomeUserFriendships = "disable_home_user_friendships",
-  DisableSharingFriendships = "disable_sharing_friendships",
-  DownloadsGating = "downloads-gating",
-  DrmSupport = "drm_support",
-  Dvr = "dvr",
-  DvrBlockUnsupportedCountries = "dvr-block-unsupported-countries",
-  EpgRecentChannels = "epg-recent-channels",
-  ExcludeRestrictions = "exclude restrictions",
-  FederatedAuth = "federated-auth",
-  FriendRequestPushNotifications = "friend_request_push_notifications",
-  GrandfatherSync = "grandfather-sync",
-  GuidedUpgrade = "guided-upgrade",
-  HardwareTranscoding = "hardware_transcoding",
-  Home = "home",
-  Hwtranscode = "hwtranscode",
-  ImaggaV2 = "imagga-v2",
-  IncreasePasswordComplexity = "increase-password-complexity",
-  Ios14PrivacyBanner = "ios14-privacy-banner",
-  IterableNotificationTokens = "iterable-notification-tokens",
-  ItemClusters = "item_clusters",
-  KeepPaymentMethod = "keep-payment-method",
-  KevinBacon = "kevin-bacon",
-  KoreaConsent = "korea-consent",
-  LeIsrgRootX1 = "le_isrg_root_x1",
-  LetsEncrypt = "lets_encrypt",
-  LightningDvrPivot = "lightning-dvr-pivot",
-  LiveTvSupportIncompleteSegments = "live-tv-support-incomplete-segments",
-  Livetv = "livetv",
-  Lyrics = "lyrics",
-  MetadataSearch = "metadata_search",
-  MusicAnalysis = "music-analysis",
-  MusicVideos = "music_videos",
-  NewPlexPassPrices = "new_plex_pass_prices",
-  NewsProviderSunsetModal = "news-provider-sunset-modal",
-  Nominatim = "nominatim",
-  Pass = "pass",
-  PhotosFavorites = "photos-favorites",
-  PhotosMetadataEdition = "photos-metadata-edition",
-  PhotosV6Edit = "photosV6-edit",
-  PhotosV6TvAlbums = "photosV6-tv-albums",
-  PmsHealth = "pms_health",
-  PremiumDashboard = "premium-dashboard",
-  PremiumMusicMetadata = "premium_music_metadata",
-  Radio = "radio",
-  RateLimitClientToken = "rate-limit-client-token",
-  ScrobblingServicePlexTv = "scrobbling-service-plex-tv",
-  SessionBandwidthRestrictions = "session_bandwidth_restrictions",
-  SessionKick = "session_kick",
-  SharedServerNotification = "shared_server_notification",
-  SharedSourceNotification = "shared_source_notification",
-  SigninNotification = "signin_notification",
-  SigninWithApple = "signin_with_apple",
-  SilenceRemoval = "silence-removal",
-  SleepTimer = "sleep-timer",
-  SpringServeAdProvider = "spring_serve_ad_provider",
-  Sync = "sync",
-  SweetFades = "sweet-fades",
-  TranscoderCache = "transcoder_cache",
-  Trailers = "trailers",
-  TunerSharing = "tuner-sharing",
-  TwoFactorAuthentication = "two-factor-authentication",
-  Unsupportedtuners = "unsupportedtuners",
-  Upgrade3ds2 = "upgrade-3ds2",
-  Visualizers = "visualizers",
-  VodSchema = "vod-schema",
-  VodCloudflare = "vod_cloudflare",
-  VolumeLeveling = "volume-leveling",
-  WatchTogetherInvite = "watch-together-invite",
-  WatchlistRss = "watchlist-rss",
-  WebServerDashboard = "web_server_dashboard",
-  Webhooks = "webhooks",
-}
-export type PostUsersSignInDataAuthenticationFeaturesOpen = OpenEnum<
-  typeof PostUsersSignInDataAuthenticationFeatures
->;
-
 /**
  * String representation of subscriptionActive
  */
@@ -413,7 +204,7 @@ export type PostUsersSignInDataAuthenticationSubscription = {
   /**
    * List of features allowed on your Plex Pass subscription
    */
-  features?: Array<PostUsersSignInDataAuthenticationFeaturesOpen> | undefined;
+  features?: Array<string> | undefined;
   /**
    * If the account's Plex Pass subscription is active
    */
@@ -1107,38 +898,6 @@ export namespace PostUsersSignInDataServices$ {
 }
 
 /** @internal */
-export const PostUsersSignInDataFeatures$inboundSchema: z.ZodType<
-  PostUsersSignInDataFeaturesOpen,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(PostUsersSignInDataFeatures),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const PostUsersSignInDataFeatures$outboundSchema: z.ZodType<
-  PostUsersSignInDataFeaturesOpen,
-  z.ZodTypeDef,
-  PostUsersSignInDataFeaturesOpen
-> = z.union([
-  z.nativeEnum(PostUsersSignInDataFeatures),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PostUsersSignInDataFeatures$ {
-  /** @deprecated use `PostUsersSignInDataFeatures$inboundSchema` instead. */
-  export const inboundSchema = PostUsersSignInDataFeatures$inboundSchema;
-  /** @deprecated use `PostUsersSignInDataFeatures$outboundSchema` instead. */
-  export const outboundSchema = PostUsersSignInDataFeatures$outboundSchema;
-}
-
-/** @internal */
 export const PostUsersSignInDataAuthenticationStatus$inboundSchema:
   z.ZodNativeEnum<typeof PostUsersSignInDataAuthenticationStatus> = z
     .nativeEnum(PostUsersSignInDataAuthenticationStatus);
@@ -1167,7 +926,7 @@ export const PostUsersSignInDataSubscription$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  features: z.array(PostUsersSignInDataFeatures$inboundSchema).optional(),
+  features: z.array(z.string()).optional(),
   active: z.boolean().optional(),
   subscribedAt: z.nullable(z.string()).optional(),
   status: PostUsersSignInDataAuthenticationStatus$inboundSchema.optional(),
@@ -1191,7 +950,7 @@ export const PostUsersSignInDataSubscription$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PostUsersSignInDataSubscription
 > = z.object({
-  features: z.array(PostUsersSignInDataFeatures$outboundSchema).optional(),
+  features: z.array(z.string()).optional(),
   active: z.boolean().optional(),
   subscribedAt: z.nullable(z.string()).optional(),
   status: PostUsersSignInDataAuthenticationStatus$outboundSchema.optional(),
@@ -1210,41 +969,6 @@ export namespace PostUsersSignInDataSubscription$ {
   export const outboundSchema = PostUsersSignInDataSubscription$outboundSchema;
   /** @deprecated use `PostUsersSignInDataSubscription$Outbound` instead. */
   export type Outbound = PostUsersSignInDataSubscription$Outbound;
-}
-
-/** @internal */
-export const PostUsersSignInDataAuthenticationFeatures$inboundSchema: z.ZodType<
-  PostUsersSignInDataAuthenticationFeaturesOpen,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(PostUsersSignInDataAuthenticationFeatures),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const PostUsersSignInDataAuthenticationFeatures$outboundSchema:
-  z.ZodType<
-    PostUsersSignInDataAuthenticationFeaturesOpen,
-    z.ZodTypeDef,
-    PostUsersSignInDataAuthenticationFeaturesOpen
-  > = z.union([
-    z.nativeEnum(PostUsersSignInDataAuthenticationFeatures),
-    z.string().and(z.custom<Unrecognized<string>>()),
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PostUsersSignInDataAuthenticationFeatures$ {
-  /** @deprecated use `PostUsersSignInDataAuthenticationFeatures$inboundSchema` instead. */
-  export const inboundSchema =
-    PostUsersSignInDataAuthenticationFeatures$inboundSchema;
-  /** @deprecated use `PostUsersSignInDataAuthenticationFeatures$outboundSchema` instead. */
-  export const outboundSchema =
-    PostUsersSignInDataAuthenticationFeatures$outboundSchema;
 }
 
 /** @internal */
@@ -1277,8 +1001,7 @@ export const PostUsersSignInDataAuthenticationSubscription$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    features: z.array(PostUsersSignInDataAuthenticationFeatures$inboundSchema)
-      .optional(),
+    features: z.array(z.string()).optional(),
     active: z.boolean().optional(),
     subscribedAt: z.nullable(z.string()).optional(),
     status: PostUsersSignInDataAuthenticationResponseStatus$inboundSchema
@@ -1304,8 +1027,7 @@ export const PostUsersSignInDataAuthenticationSubscription$outboundSchema:
     z.ZodTypeDef,
     PostUsersSignInDataAuthenticationSubscription
   > = z.object({
-    features: z.array(PostUsersSignInDataAuthenticationFeatures$outboundSchema)
-      .optional(),
+    features: z.array(z.string()).optional(),
     active: z.boolean().optional(),
     subscribedAt: z.nullable(z.string()).optional(),
     status: PostUsersSignInDataAuthenticationResponseStatus$outboundSchema

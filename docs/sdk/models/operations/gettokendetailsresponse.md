@@ -7,10 +7,8 @@ import {
   AutoSelectSubtitle,
   DefaultSubtitleAccessibility,
   DefaultSubtitleForced,
-  Features,
   GetTokenDetailsAuthenticationResponseStatus,
   GetTokenDetailsAuthenticationStatus,
-  GetTokenDetailsFeatures,
   GetTokenDetailsResponse,
   GetTokenDetailsStatus,
   MailingListStatus,
@@ -20,7 +18,7 @@ import {
 
 let value: GetTokenDetailsResponse = {
   contentType: "<value>",
-  statusCode: 103,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -49,7 +47,7 @@ let value: GetTokenDetailsResponse = {
     joinedAt: 1721154902,
     locale: null,
     mailingListActive: false,
-    mailingListStatus: MailingListStatus.Unsubscribed,
+    mailingListStatus: MailingListStatus.Active,
     maxHomeSize: 15,
     pin: "string",
     profile: {
@@ -80,7 +78,7 @@ let value: GetTokenDetailsResponse = {
     ],
     subscription: {
       features: [
-        Features.AndroidDolbyVision,
+        "Android - Dolby Vision",
       ],
       active: true,
       subscribedAt: "2021-04-12T18:21:12Z",
@@ -92,7 +90,7 @@ let value: GetTokenDetailsResponse = {
     subscriptions: [
       {
         features: [
-          GetTokenDetailsFeatures.AndroidDolbyVision,
+          "Android - Dolby Vision",
         ],
         active: true,
         subscribedAt: "2021-04-12T18:21:12Z",

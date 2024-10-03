@@ -9,10 +9,8 @@ import {
   AutoSelectSubtitle,
   DefaultSubtitleAccessibility,
   DefaultSubtitleForced,
-  Features,
   GetTokenDetailsAuthenticationResponseStatus,
   GetTokenDetailsAuthenticationStatus,
-  GetTokenDetailsFeatures,
   GetTokenDetailsStatus,
   GetTokenDetailsUserPlexAccount,
   MailingListStatus,
@@ -76,7 +74,7 @@ let value: GetTokenDetailsUserPlexAccount = {
   ],
   subscription: {
     features: [
-      Features.AndroidDolbyVision,
+      "Android - Dolby Vision",
     ],
     active: true,
     subscribedAt: "2021-04-12T18:21:12Z",
@@ -88,7 +86,7 @@ let value: GetTokenDetailsUserPlexAccount = {
   subscriptions: [
     {
       features: [
-        GetTokenDetailsFeatures.AndroidDolbyVision,
+        "Android - Dolby Vision",
       ],
       active: true,
       subscribedAt: "2021-04-12T18:21:12Z",

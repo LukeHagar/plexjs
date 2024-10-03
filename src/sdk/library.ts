@@ -12,6 +12,7 @@ import { libraryGetMetadataChildren } from "../funcs/libraryGetMetadataChildren.
 import { libraryGetOnDeck } from "../funcs/libraryGetOnDeck.js";
 import { libraryGetRecentlyAddedLibrary } from "../funcs/libraryGetRecentlyAddedLibrary.js";
 import { libraryGetRefreshLibraryMetadata } from "../funcs/libraryGetRefreshLibraryMetadata.js";
+import { libraryGetSearchAllLibraries } from "../funcs/libraryGetSearchAllLibraries.js";
 import { libraryGetSearchLibrary } from "../funcs/libraryGetSearchLibrary.js";
 import { libraryGetTopWatchedContent } from "../funcs/libraryGetTopWatchedContent.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -236,6 +237,23 @@ export class Library extends ClientSDK {
       this,
       sectionKey,
       type,
+      options,
+    ));
+  }
+
+  /**
+   * Search All Libraries
+   *
+   * @remarks
+   * Search the provided query across all library sections, or a single section, and return matches as hubs, split up by type.
+   */
+  async getSearchAllLibraries(
+    request: operations.GetSearchAllLibrariesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetSearchAllLibrariesResponse> {
+    return unwrapAsync(libraryGetSearchAllLibraries(
+      this,
+      request,
       options,
     ));
   }

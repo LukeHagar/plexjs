@@ -253,6 +253,11 @@ let value: GetLibraryItemsResponse = {
               role: "Self",
             },
           ],
+          location: [
+            {
+              path: "/TV Shows/House",
+            },
+          ],
           mediaGuid: [
             {
               id: "imdb://tt13015952",

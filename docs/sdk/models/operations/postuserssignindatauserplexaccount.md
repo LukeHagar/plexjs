@@ -6,13 +6,11 @@ Returns the user account data with a valid auth token
 
 ```typescript
 import {
-  PostUsersSignInDataAuthenticationFeatures,
   PostUsersSignInDataAuthenticationResponseStatus,
   PostUsersSignInDataAuthenticationStatus,
   PostUsersSignInDataAutoSelectSubtitle,
   PostUsersSignInDataDefaultSubtitleAccessibility,
   PostUsersSignInDataDefaultSubtitleForced,
-  PostUsersSignInDataFeatures,
   PostUsersSignInDataMailingListStatus,
   PostUsersSignInDataMediaReviewsVisibility,
   PostUsersSignInDataState,
@@ -78,7 +76,7 @@ let value: PostUsersSignInDataUserPlexAccount = {
   ],
   subscription: {
     features: [
-      PostUsersSignInDataFeatures.AndroidDolbyVision,
+      "Android - Dolby Vision",
     ],
     active: true,
     subscribedAt: "2021-04-12T18:21:12Z",
@@ -90,7 +88,7 @@ let value: PostUsersSignInDataUserPlexAccount = {
   subscriptions: [
     {
       features: [
-        PostUsersSignInDataAuthenticationFeatures.AndroidDolbyVision,
+        "Android - Dolby Vision",
       ],
       active: true,
       subscribedAt: "2021-04-12T18:21:12Z",
@@ -123,7 +121,7 @@ let value: PostUsersSignInDataUserPlexAccount = {
       state: PostUsersSignInDataState.Ended,
       billing: {
         internalPaymentMethod: {},
-        paymentMethodId: 518201,
+        paymentMethodId: 586784,
       },
     },
   ],

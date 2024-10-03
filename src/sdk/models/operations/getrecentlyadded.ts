@@ -358,7 +358,7 @@ export type Stream = {
 export type Part = {
   id: number;
   key: string;
-  duration: number;
+  duration?: number | undefined;
   file: string;
   size: number;
   /**
@@ -370,7 +370,7 @@ export type Part = {
   audioProfile?: string | undefined;
   has64bitOffsets?: boolean | undefined;
   optimizedForStreaming?: boolean | undefined;
-  videoProfile: string;
+  videoProfile?: string | undefined;
   indexes?: string | undefined;
   hasThumbnail?: HasThumbnail | undefined;
   stream?: Array<Stream> | undefined;
@@ -378,19 +378,19 @@ export type Part = {
 
 export type Media = {
   id: number;
-  duration: number;
-  bitrate: number;
-  width: number;
-  height: number;
-  aspectRatio: number;
+  duration?: number | undefined;
+  bitrate?: number | undefined;
+  width?: number | undefined;
+  height?: number | undefined;
+  aspectRatio?: number | undefined;
   audioProfile?: string | undefined;
-  audioChannels: number;
-  audioCodec: string;
-  videoCodec: string;
-  videoResolution: string;
+  audioChannels?: number | undefined;
+  audioCodec?: string | undefined;
+  videoCodec?: string | undefined;
+  videoResolution?: string | undefined;
   container: string;
-  videoFrameRate: string;
-  videoProfile: string;
+  videoFrameRate?: string | undefined;
+  videoProfile?: string | undefined;
   hasVoiceActivity?: boolean | undefined;
   optimizedForStreaming?: OptimizedForStreaming | undefined;
   has64bitOffsets?: boolean | undefined;
@@ -442,6 +442,10 @@ export type Role = {
    * The role of the actor or tag in the media.
    */
   role?: string | undefined;
+};
+
+export type Location = {
+  path?: string | undefined;
 };
 
 export type MediaGuid = {
@@ -569,6 +573,7 @@ export type GetRecentlyAddedMetadata = {
   writer?: Array<Writer> | undefined;
   collection?: Array<Collection> | undefined;
   role?: Array<Role> | undefined;
+  location?: Array<Location> | undefined;
   /**
    * The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
    *
@@ -1400,14 +1405,14 @@ export const Part$inboundSchema: z.ZodType<Part, z.ZodTypeDef, unknown> = z
   .object({
     id: z.number().int(),
     key: z.string(),
-    duration: z.number().int(),
+    duration: z.number().int().optional(),
     file: z.string(),
     size: z.number().int(),
     container: z.string(),
     audioProfile: z.string().optional(),
     has64bitOffsets: z.boolean().optional(),
     optimizedForStreaming: z.boolean().optional(),
-    videoProfile: z.string(),
+    videoProfile: z.string().optional(),
     indexes: z.string().optional(),
     hasThumbnail: HasThumbnail$inboundSchema.default(HasThumbnail.False),
     Stream: z.array(z.lazy(() => Stream$inboundSchema)).optional(),
@@ -1421,14 +1426,14 @@ export const Part$inboundSchema: z.ZodType<Part, z.ZodTypeDef, unknown> = z
 export type Part$Outbound = {
   id: number;
   key: string;
-  duration: number;
+  duration?: number | undefined;
   file: string;
   size: number;
   container: string;
   audioProfile?: string | undefined;
   has64bitOffsets?: boolean | undefined;
   optimizedForStreaming?: boolean | undefined;
-  videoProfile: string;
+  videoProfile?: string | undefined;
   indexes?: string | undefined;
   hasThumbnail: string;
   Stream?: Array<Stream$Outbound> | undefined;
@@ -1439,14 +1444,14 @@ export const Part$outboundSchema: z.ZodType<Part$Outbound, z.ZodTypeDef, Part> =
   z.object({
     id: z.number().int(),
     key: z.string(),
-    duration: z.number().int(),
+    duration: z.number().int().optional(),
     file: z.string(),
     size: z.number().int(),
     container: z.string(),
     audioProfile: z.string().optional(),
     has64bitOffsets: z.boolean().optional(),
     optimizedForStreaming: z.boolean().optional(),
-    videoProfile: z.string(),
+    videoProfile: z.string().optional(),
     indexes: z.string().optional(),
     hasThumbnail: HasThumbnail$outboundSchema.default(HasThumbnail.False),
     stream: z.array(z.lazy(() => Stream$outboundSchema)).optional(),
@@ -1473,19 +1478,19 @@ export namespace Part$ {
 export const Media$inboundSchema: z.ZodType<Media, z.ZodTypeDef, unknown> = z
   .object({
     id: z.number().int(),
-    duration: z.number().int(),
-    bitrate: z.number().int(),
-    width: z.number().int(),
-    height: z.number().int(),
-    aspectRatio: z.number(),
+    duration: z.number().int().optional(),
+    bitrate: z.number().int().optional(),
+    width: z.number().int().optional(),
+    height: z.number().int().optional(),
+    aspectRatio: z.number().optional(),
     audioProfile: z.string().optional(),
-    audioChannels: z.number().int(),
-    audioCodec: z.string(),
-    videoCodec: z.string(),
-    videoResolution: z.string(),
+    audioChannels: z.number().int().optional(),
+    audioCodec: z.string().optional(),
+    videoCodec: z.string().optional(),
+    videoResolution: z.string().optional(),
     container: z.string(),
-    videoFrameRate: z.string(),
-    videoProfile: z.string(),
+    videoFrameRate: z.string().optional(),
+    videoProfile: z.string().optional(),
     hasVoiceActivity: z.boolean().optional(),
     optimizedForStreaming: OptimizedForStreaming$inboundSchema,
     has64bitOffsets: z.boolean().optional(),
@@ -1499,19 +1504,19 @@ export const Media$inboundSchema: z.ZodType<Media, z.ZodTypeDef, unknown> = z
 /** @internal */
 export type Media$Outbound = {
   id: number;
-  duration: number;
-  bitrate: number;
-  width: number;
-  height: number;
-  aspectRatio: number;
+  duration?: number | undefined;
+  bitrate?: number | undefined;
+  width?: number | undefined;
+  height?: number | undefined;
+  aspectRatio?: number | undefined;
   audioProfile?: string | undefined;
-  audioChannels: number;
-  audioCodec: string;
-  videoCodec: string;
-  videoResolution: string;
+  audioChannels?: number | undefined;
+  audioCodec?: string | undefined;
+  videoCodec?: string | undefined;
+  videoResolution?: string | undefined;
   container: string;
-  videoFrameRate: string;
-  videoProfile: string;
+  videoFrameRate?: string | undefined;
+  videoProfile?: string | undefined;
   hasVoiceActivity?: boolean | undefined;
   optimizedForStreaming: number;
   has64bitOffsets?: boolean | undefined;
@@ -1525,19 +1530,19 @@ export const Media$outboundSchema: z.ZodType<
   Media
 > = z.object({
   id: z.number().int(),
-  duration: z.number().int(),
-  bitrate: z.number().int(),
-  width: z.number().int(),
-  height: z.number().int(),
-  aspectRatio: z.number(),
+  duration: z.number().int().optional(),
+  bitrate: z.number().int().optional(),
+  width: z.number().int().optional(),
+  height: z.number().int().optional(),
+  aspectRatio: z.number().optional(),
   audioProfile: z.string().optional(),
-  audioChannels: z.number().int(),
-  audioCodec: z.string(),
-  videoCodec: z.string(),
-  videoResolution: z.string(),
+  audioChannels: z.number().int().optional(),
+  audioCodec: z.string().optional(),
+  videoCodec: z.string().optional(),
+  videoResolution: z.string().optional(),
   container: z.string(),
-  videoFrameRate: z.string(),
-  videoProfile: z.string(),
+  videoFrameRate: z.string().optional(),
+  videoProfile: z.string().optional(),
   hasVoiceActivity: z.boolean().optional(),
   optimizedForStreaming: OptimizedForStreaming$outboundSchema.default(
     OptimizedForStreaming.Disable,
@@ -1780,6 +1785,42 @@ export namespace Role$ {
 }
 
 /** @internal */
+export const Location$inboundSchema: z.ZodType<
+  Location,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  path: z.string().optional(),
+});
+
+/** @internal */
+export type Location$Outbound = {
+  path?: string | undefined;
+};
+
+/** @internal */
+export const Location$outboundSchema: z.ZodType<
+  Location$Outbound,
+  z.ZodTypeDef,
+  Location
+> = z.object({
+  path: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Location$ {
+  /** @deprecated use `Location$inboundSchema` instead. */
+  export const inboundSchema = Location$inboundSchema;
+  /** @deprecated use `Location$outboundSchema` instead. */
+  export const outboundSchema = Location$outboundSchema;
+  /** @deprecated use `Location$Outbound` instead. */
+  export type Outbound = Location$Outbound;
+}
+
+/** @internal */
 export const MediaGuid$inboundSchema: z.ZodType<
   MediaGuid,
   z.ZodTypeDef,
@@ -2018,6 +2059,7 @@ export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
   Writer: z.array(z.lazy(() => Writer$inboundSchema)).optional(),
   Collection: z.array(z.lazy(() => Collection$inboundSchema)).optional(),
   Role: z.array(z.lazy(() => Role$inboundSchema)).optional(),
+  Location: z.array(z.lazy(() => Location$inboundSchema)).optional(),
   Guid: z.array(z.lazy(() => MediaGuid$inboundSchema)).optional(),
   UltraBlurColors: z.lazy(() => UltraBlurColors$inboundSchema).optional(),
   Rating: z.array(z.lazy(() => MetaDataRating$inboundSchema)).optional(),
@@ -2053,6 +2095,7 @@ export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
     "Writer": "writer",
     "Collection": "collection",
     "Role": "role",
+    "Location": "location",
     "Guid": "mediaGuid",
     "UltraBlurColors": "ultraBlurColors",
     "Rating": "metaDataRating",
@@ -2109,6 +2152,7 @@ export type GetRecentlyAddedMetadata$Outbound = {
   Writer?: Array<Writer$Outbound> | undefined;
   Collection?: Array<Collection$Outbound> | undefined;
   Role?: Array<Role$Outbound> | undefined;
+  Location?: Array<Location$Outbound> | undefined;
   Guid?: Array<MediaGuid$Outbound> | undefined;
   UltraBlurColors?: UltraBlurColors$Outbound | undefined;
   Rating?: Array<MetaDataRating$Outbound> | undefined;
@@ -2191,6 +2235,7 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
   writer: z.array(z.lazy(() => Writer$outboundSchema)).optional(),
   collection: z.array(z.lazy(() => Collection$outboundSchema)).optional(),
   role: z.array(z.lazy(() => Role$outboundSchema)).optional(),
+  location: z.array(z.lazy(() => Location$outboundSchema)).optional(),
   mediaGuid: z.array(z.lazy(() => MediaGuid$outboundSchema)).optional(),
   ultraBlurColors: z.lazy(() => UltraBlurColors$outboundSchema).optional(),
   metaDataRating: z.array(z.lazy(() => MetaDataRating$outboundSchema))
@@ -2227,6 +2272,7 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
     writer: "Writer",
     collection: "Collection",
     role: "Role",
+    location: "Location",
     mediaGuid: "Guid",
     ultraBlurColors: "UltraBlurColors",
     metaDataRating: "Rating",

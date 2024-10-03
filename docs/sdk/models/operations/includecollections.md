@@ -8,7 +8,7 @@ include collections in the results
 ```typescript
 import { IncludeCollections } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: IncludeCollections = IncludeCollections.One;
+let value: IncludeCollections = IncludeCollections.Zero;
 ```
 
 ## Values

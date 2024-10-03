@@ -7,7 +7,7 @@ import { GetSourceConnectionInformationResponse } from "@lukehagar/plexjs/sdk/mo
 
 let value: GetSourceConnectionInformationResponse = {
   contentType: "<value>",
-  statusCode: 506,
+  statusCode: 202,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

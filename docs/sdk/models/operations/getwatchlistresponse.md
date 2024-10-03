@@ -7,7 +7,7 @@ import { GetWatchListResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetWatchListResponse = {
   contentType: "<value>",
-  statusCode: 300,
+  statusCode: 416,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

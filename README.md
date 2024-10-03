@@ -158,6 +158,7 @@ run();
 * [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 * [getRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [getSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
+* [getSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
 * [getMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [getMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [getTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
@@ -558,6 +559,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [libraryGetOnDeck](docs/sdks/library/README.md#getondeck)
 - [libraryGetRecentlyAddedLibrary](docs/sdks/library/README.md#getrecentlyaddedlibrary)
 - [libraryGetRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata)
+- [libraryGetSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries)
 - [libraryGetSearchLibrary](docs/sdks/library/README.md#getsearchlibrary)
 - [libraryGetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent)
 - [logEnablePaperTrail](docs/sdks/log/README.md#enablepapertrail)

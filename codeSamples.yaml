@@ -885,6 +885,39 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/search"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: libraries
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+            import { QueryParamIncludeCollections, QueryParamIncludeExternalMedia, SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+              clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+              clientName: "Plex for Roku",
+              clientVersion: "2.4.1",
+              platform: "Roku",
+              deviceNickname: "Roku 3",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getSearchAllLibraries({
+                query: "<value>",
+                searchTypes: [
+                  SearchTypes.People,
+                ],
+                includeCollections: QueryParamIncludeCollections.Enable,
+                includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections"]["get"]
     update:
       x-codeSamples:

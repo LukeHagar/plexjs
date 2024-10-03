@@ -6,8 +6,7 @@
 import { Location } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Location = {
-  id: 1,
-  path: "/movies",
+  path: "/TV Shows/House",
 };
 ```
 
@@ -15,5 +14,4 @@ let value: Location = {
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *number*           | :heavy_check_mark: | N/A                | 1                  |
-| `path`             | *string*           | :heavy_check_mark: | N/A                | /movies            |
+| `path`             | *string*           | :heavy_minus_sign: | N/A                | /TV Shows/House    |

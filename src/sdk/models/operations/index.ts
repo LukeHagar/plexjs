@@ -39,6 +39,7 @@ export * from "./getrecentlyaddedlibrary.js";
 export * from "./getrefreshlibrarymetadata.js";
 export * from "./getresizedphoto.js";
 export * from "./getresourcesstatistics.js";
+export * from "./getsearchalllibraries.js";
 export * from "./getsearchlibrary.js";
 export * from "./getsearchresults.js";
 export * from "./getserveractivities.js";
