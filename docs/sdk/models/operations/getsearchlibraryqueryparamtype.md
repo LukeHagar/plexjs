@@ -25,3 +25,4 @@ let value: GetSearchLibraryQueryParamType =
 | `TvShow`  | 2         |
 | `Season`  | 3         |
 | `Episode` | 4         |
+| `Audio`   | 8         |

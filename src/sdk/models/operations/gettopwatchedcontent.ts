@@ -21,6 +21,7 @@ export enum GetTopWatchedContentQueryParamType {
   TvShow = 2,
   Season = 3,
   Episode = 4,
+  Audio = 8,
 }
 
 export type GetTopWatchedContentRequest = {
