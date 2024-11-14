@@ -65,7 +65,7 @@ export async function statisticsGetBandwidthStatistics(
   const path = pathToFunc("/statistics/bandwidth")();
 
   const query = encodeFormQuery({
-    "Timespan": payload.Timespan,
+    "timespan": payload.timespan,
   });
 
   const headers = new Headers({

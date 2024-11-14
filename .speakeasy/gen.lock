@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: af45c1ae70f7fc6589adb3f8075cb275
+  docChecksum: 2554ade61ed4d42b8e095168765d7dc0
   docVersion: 0.0.3
   speakeasyVersion: 1.405.6
   generationVersion: 2.428.1
-  releaseVersion: 0.28.0
-  configChecksum: 1558fe481c2d07382c2fdc43c87b9baf
+  releaseVersion: 0.30.0
+  configChecksum: 6c1d7aea15d07bcbf6bfd6eb62f11e35
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -1995,6 +1995,7 @@ examples:
       parameters:
         query:
           Timespan: 4
+          timespan: 4
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 5497, "Device": [], "Account": [], "StatisticsMedia": []}}
@@ -2007,6 +2008,7 @@ examples:
       parameters:
         query:
           Timespan: 4
+          timespan: 4
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 5497, "StatisticsResources": []}}
@@ -2019,6 +2021,7 @@ examples:
       parameters:
         query:
           Timespan: 4
+          timespan: 4
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 5497, "Device": [], "Account": [], "StatisticsBandwidth": []}}

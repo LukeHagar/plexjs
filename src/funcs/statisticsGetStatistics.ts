@@ -64,7 +64,7 @@ export async function statisticsGetStatistics(
   const path = pathToFunc("/statistics/media")();
 
   const query = encodeFormQuery({
-    "Timespan": payload.Timespan,
+    "timespan": payload.timespan,
   });
 
   const headers = new Headers({

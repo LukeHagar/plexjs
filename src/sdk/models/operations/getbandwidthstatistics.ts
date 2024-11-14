@@ -82,16 +82,12 @@ export const GetBandwidthStatisticsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Timespan: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "Timespan": "timespan",
-  });
+  timespan: z.number().int().optional(),
 });
 
 /** @internal */
 export type GetBandwidthStatisticsRequest$Outbound = {
-  Timespan?: number | undefined;
+  timespan?: number | undefined;
 };
 
 /** @internal */
@@ -101,10 +97,6 @@ export const GetBandwidthStatisticsRequest$outboundSchema: z.ZodType<
   GetBandwidthStatisticsRequest
 > = z.object({
   timespan: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    timespan: "Timespan",
-  });
 });
 
 /**

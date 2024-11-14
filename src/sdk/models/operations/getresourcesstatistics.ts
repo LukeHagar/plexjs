@@ -61,16 +61,12 @@ export const GetResourcesStatisticsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Timespan: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "Timespan": "timespan",
-  });
+  timespan: z.number().int().optional(),
 });
 
 /** @internal */
 export type GetResourcesStatisticsRequest$Outbound = {
-  Timespan?: number | undefined;
+  timespan?: number | undefined;
 };
 
 /** @internal */
@@ -80,10 +76,6 @@ export const GetResourcesStatisticsRequest$outboundSchema: z.ZodType<
   GetResourcesStatisticsRequest
 > = z.object({
   timespan: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    timespan: "Timespan",
-  });
 });
 
 /**

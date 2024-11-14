@@ -65,7 +65,7 @@ export async function statisticsGetResourcesStatistics(
   const path = pathToFunc("/statistics/resources")();
 
   const query = encodeFormQuery({
-    "Timespan": payload.Timespan,
+    "timespan": payload.timespan,
   });
 
   const headers = new Headers({
