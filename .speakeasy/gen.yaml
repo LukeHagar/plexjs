@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 0.30.0
+  version: 0.31.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -21,6 +21,7 @@ typescript:
   author: LukeHagar
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
+  enableReactQuery: false
   enumFormat: enum
   flattenGlobalSecurity: true
   flatteningOrder: body-first

@@ -5,8 +5,8 @@ management:
   docVersion: 0.0.3
   speakeasyVersion: 1.405.6
   generationVersion: 2.428.1
-  releaseVersion: 0.30.0
-  configChecksum: 6c1d7aea15d07bcbf6bfd6eb62f11e35
+  releaseVersion: 0.31.1
+  configChecksum: 0842824e4917c8e205902e589a39c6fd
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -2222,3 +2222,4 @@ examples:
           application/json: {"errors": []}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+generatedTests: {}

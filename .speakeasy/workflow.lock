@@ -9,7 +9,7 @@ sources:
             - main
     plexapi:
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:37c6bfb15f4154eb89b112465107f20757411f22bd1cc7d0a04335df7127fcb4
+        sourceRevisionDigest: sha256:96b3b0311346892a8d70f88e27dd59e3cba616e9f79b1662c89e341ebd49a666
         sourceBlobDigest: sha256:290473ebc909cada80ff428c685b897f4621cf121397e1417355e06d334e7206
         tags:
             - latest
@@ -18,10 +18,10 @@ targets:
     plexjs:
         source: plexapi
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:37c6bfb15f4154eb89b112465107f20757411f22bd1cc7d0a04335df7127fcb4
+        sourceRevisionDigest: sha256:96b3b0311346892a8d70f88e27dd59e3cba616e9f79b1662c89e341ebd49a666
         sourceBlobDigest: sha256:290473ebc909cada80ff428c685b897f4621cf121397e1417355e06d334e7206
         codeSamplesNamespace: code-samples-typescript-plexjs
-        codeSamplesRevisionDigest: sha256:1360b0489d1911ecbe6a0e2bcea617dc8c8d8cba49f2d3b505cef056dd668081
+        codeSamplesRevisionDigest: sha256:bb437db16afb78fc5469b890d2e5aecf927949325fa9cbfb091761e460319bfd
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
