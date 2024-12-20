@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetServerListServer = {
   name?: string | undefined;
@@ -96,6 +99,24 @@ export namespace GetServerListServer$ {
   export type Outbound = GetServerListServer$Outbound;
 }
 
+export function getServerListServerToJSON(
+  getServerListServer: GetServerListServer,
+): string {
+  return JSON.stringify(
+    GetServerListServer$outboundSchema.parse(getServerListServer),
+  );
+}
+
+export function getServerListServerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerListServer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerListServer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerListServer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerListMediaContainer$inboundSchema: z.ZodType<
   GetServerListMediaContainer,
@@ -143,6 +164,26 @@ export namespace GetServerListMediaContainer$ {
   export type Outbound = GetServerListMediaContainer$Outbound;
 }
 
+export function getServerListMediaContainerToJSON(
+  getServerListMediaContainer: GetServerListMediaContainer,
+): string {
+  return JSON.stringify(
+    GetServerListMediaContainer$outboundSchema.parse(
+      getServerListMediaContainer,
+    ),
+  );
+}
+
+export function getServerListMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerListMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerListMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerListMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerListResponseBody$inboundSchema: z.ZodType<
   GetServerListResponseBody,
@@ -187,6 +228,24 @@ export namespace GetServerListResponseBody$ {
   export const outboundSchema = GetServerListResponseBody$outboundSchema;
   /** @deprecated use `GetServerListResponseBody$Outbound` instead. */
   export type Outbound = GetServerListResponseBody$Outbound;
+}
+
+export function getServerListResponseBodyToJSON(
+  getServerListResponseBody: GetServerListResponseBody,
+): string {
+  return JSON.stringify(
+    GetServerListResponseBody$outboundSchema.parse(getServerListResponseBody),
+  );
+}
+
+export function getServerListResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerListResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerListResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerListResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -246,4 +305,22 @@ export namespace GetServerListResponse$ {
   export const outboundSchema = GetServerListResponse$outboundSchema;
   /** @deprecated use `GetServerListResponse$Outbound` instead. */
   export type Outbound = GetServerListResponse$Outbound;
+}
+
+export function getServerListResponseToJSON(
+  getServerListResponse: GetServerListResponse,
+): string {
+  return JSON.stringify(
+    GetServerListResponse$outboundSchema.parse(getServerListResponse),
+  );
+}
+
+export function getServerListResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerListResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerListResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerListResponse' from JSON`,
+  );
 }

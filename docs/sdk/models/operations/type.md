@@ -25,3 +25,5 @@ let value: Type = Type.TvShow;
 | `Season`  | 3         |
 | `Episode` | 4         |
 | `Audio`   | 8         |
+| `Album`   | 9         |
+| `Track`   | 10        |

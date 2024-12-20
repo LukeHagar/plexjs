@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type CheckForUpdatesUpdaterErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace CheckForUpdatesUpdaterErrors$ {
   export type Outbound = CheckForUpdatesUpdaterErrors$Outbound;
 }
 
+export function checkForUpdatesUpdaterErrorsToJSON(
+  checkForUpdatesUpdaterErrors: CheckForUpdatesUpdaterErrors,
+): string {
+  return JSON.stringify(
+    CheckForUpdatesUpdaterErrors$outboundSchema.parse(
+      checkForUpdatesUpdaterErrors,
+    ),
+  );
+}
+
+export function checkForUpdatesUpdaterErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<CheckForUpdatesUpdaterErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CheckForUpdatesUpdaterErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckForUpdatesUpdaterErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const CheckForUpdatesUnauthorized$inboundSchema: z.ZodType<
   CheckForUpdatesUnauthorized,
@@ -233,6 +256,24 @@ export namespace CheckForUpdatesErrors$ {
   export const outboundSchema = CheckForUpdatesErrors$outboundSchema;
   /** @deprecated use `CheckForUpdatesErrors$Outbound` instead. */
   export type Outbound = CheckForUpdatesErrors$Outbound;
+}
+
+export function checkForUpdatesErrorsToJSON(
+  checkForUpdatesErrors: CheckForUpdatesErrors,
+): string {
+  return JSON.stringify(
+    CheckForUpdatesErrors$outboundSchema.parse(checkForUpdatesErrors),
+  );
+}
+
+export function checkForUpdatesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<CheckForUpdatesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CheckForUpdatesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckForUpdatesErrors' from JSON`,
+  );
 }
 
 /** @internal */

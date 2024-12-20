@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type StartAllTasksButlerErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace StartAllTasksButlerErrors$ {
   export type Outbound = StartAllTasksButlerErrors$Outbound;
 }
 
+export function startAllTasksButlerErrorsToJSON(
+  startAllTasksButlerErrors: StartAllTasksButlerErrors,
+): string {
+  return JSON.stringify(
+    StartAllTasksButlerErrors$outboundSchema.parse(startAllTasksButlerErrors),
+  );
+}
+
+export function startAllTasksButlerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<StartAllTasksButlerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartAllTasksButlerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartAllTasksButlerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const StartAllTasksUnauthorized$inboundSchema: z.ZodType<
   StartAllTasksUnauthorized,
@@ -233,6 +254,24 @@ export namespace StartAllTasksErrors$ {
   export const outboundSchema = StartAllTasksErrors$outboundSchema;
   /** @deprecated use `StartAllTasksErrors$Outbound` instead. */
   export type Outbound = StartAllTasksErrors$Outbound;
+}
+
+export function startAllTasksErrorsToJSON(
+  startAllTasksErrors: StartAllTasksErrors,
+): string {
+  return JSON.stringify(
+    StartAllTasksErrors$outboundSchema.parse(startAllTasksErrors),
+  );
+}
+
+export function startAllTasksErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<StartAllTasksErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartAllTasksErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartAllTasksErrors' from JSON`,
+  );
 }
 
 /** @internal */

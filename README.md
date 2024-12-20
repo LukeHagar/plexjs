@@ -40,18 +40,26 @@ The following SDKs are generated from the OpenAPI Specification. They are automa
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [@lukehagar/plexjs](#lukehagarplexjs)
+* [Plex Media Server OpenAPI Specification](#plex-media-server-openapi-specification)
+  * [Documentation](#documentation)
+  * [SDKs](#sdks)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Requirements](#requirements)
+  * [Standalone functions](#standalone-functions)
+  * [Retries](#retries)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [Requirements](#requirements)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Standalone functions](#standalone-functions)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Debugging](#debugging)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -97,11 +105,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -253,25 +256,15 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
+Some methods specify known errors which can be thrown. All the known errors are enumerated in the `sdk/models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `getServerCapabilities` method may throw the following errors:
 
-If a HTTP request fails, an operation my also throw an error from the `sdk/models/errors/httpclienterrors.ts` module:
+| Error Type                               | Status Code | Content Type     |
+| ---------------------------------------- | ----------- | ---------------- |
+| errors.GetServerCapabilitiesBadRequest   | 400         | application/json |
+| errors.GetServerCapabilitiesUnauthorized | 401         | application/json |
+| errors.SDKError                          | 4XX, 5XX    | \*/\*            |
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
-
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `getServerCapabilities` method may throw the following errors:
-
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| errors.GetServerCapabilitiesBadRequest   | 400                                      | application/json                         |
-| errors.GetServerCapabilitiesUnauthorized | 401                                      | application/json                         |
-| errors.SDKError                          | 4XX, 5XX                                 | \*/\*                                    |
+If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
@@ -283,11 +276,6 @@ import {
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -299,8 +287,9 @@ async function run() {
     console.log(result);
   } catch (err) {
     switch (true) {
+      // The server response does not match the expected SDK schema
       case (err instanceof SDKValidationError): {
-        // Validation errors can be pretty-printed
+        // Pretty-print will provide a human-readable multi-line error message
         console.error(err.pretty());
         // Raw value may also be inspected
         console.error(err.rawValue);
@@ -317,6 +306,7 @@ async function run() {
         return;
       }
       default: {
+        // Other errors such as network errors, see HTTPClientErrors for more details
         throw err;
       }
     }
@@ -327,66 +317,38 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+
+In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `sdk/models/errors/httpclienterrors.ts` module:
+
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
+### Server Variables
 
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `{protocol}://{ip}:{port}` | `protocol` (default is `https`), `ip` (default is `10.10.10.47`), `port` (default is `32400`) |
-
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-
-const plexAPI = new PlexAPI({
-  serverIdx: 0,
-  accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
-});
-
-async function run() {
-  const result = await plexAPI.server.getServerCapabilities();
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-
-```
-
-#### Variables
-
-Some of the server options above contain variables. If you want to set the values of those variables, the following optional parameters are available when initializing the SDK client instance:
+The default server `{protocol}://{ip}:{port}` contains variables and is set to `https://10.10.10.47:32400` by default. To override default values, the following parameters are available when initializing the SDK client instance:
  * `protocol: models.ServerProtocol`
  * `ip: string`
  * `port: string`
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  serverURL: "{protocol}://{ip}:{port}",
+  serverURL: "https://10.10.10.47:32400",
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -399,20 +361,15 @@ async function run() {
 run();
 
 ```
+
 ### Override Server URL Per-Operation
 
 The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
-
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -485,9 +442,9 @@ const sdk = new PlexAPI({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name          | Type          | Scheme        |
-| ------------- | ------------- | ------------- |
-| `accessToken` | apiKey        | API key       |
+| Name          | Type   | Scheme  |
+| ------------- | ------ | ------- |
+| `accessToken` | apiKey | API key |
 
 To authenticate with the API the `accessToken` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
@@ -495,11 +452,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -535,83 +487,82 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [activitiesCancelServerActivities](docs/sdks/activities/README.md#cancelserveractivities)
-- [activitiesGetServerActivities](docs/sdks/activities/README.md#getserveractivities)
-- [authenticationGetSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation)
-- [authenticationGetTokenDetails](docs/sdks/authentication/README.md#gettokendetails)
-- [authenticationGetTransientToken](docs/sdks/authentication/README.md#gettransienttoken)
-- [authenticationPostUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata)
-- [butlerGetButlerTasks](docs/sdks/butler/README.md#getbutlertasks)
-- [butlerStartAllTasks](docs/sdks/butler/README.md#startalltasks)
-- [butlerStartTask](docs/sdks/butler/README.md#starttask)
-- [butlerStopAllTasks](docs/sdks/butler/README.md#stopalltasks)
-- [butlerStopTask](docs/sdks/butler/README.md#stoptask)
-- [hubsGetGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs)
-- [hubsGetLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs)
-- [hubsGetRecentlyAdded](docs/sdks/hubs/README.md#getrecentlyadded)
-- [libraryDeleteLibrary](docs/sdks/library/README.md#deletelibrary)
-- [libraryGetAllLibraries](docs/sdks/library/README.md#getalllibraries)
-- [libraryGetFileHash](docs/sdks/library/README.md#getfilehash)
-- [libraryGetLibraryDetails](docs/sdks/library/README.md#getlibrarydetails)
-- [libraryGetLibraryItems](docs/sdks/library/README.md#getlibraryitems)
-- [libraryGetMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey)
-- [libraryGetMetadataChildren](docs/sdks/library/README.md#getmetadatachildren)
-- [libraryGetOnDeck](docs/sdks/library/README.md#getondeck)
-- [libraryGetRecentlyAddedLibrary](docs/sdks/library/README.md#getrecentlyaddedlibrary)
-- [libraryGetRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata)
-- [libraryGetSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries)
-- [libraryGetSearchLibrary](docs/sdks/library/README.md#getsearchlibrary)
-- [libraryGetTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent)
-- [logEnablePaperTrail](docs/sdks/log/README.md#enablepapertrail)
-- [logLogLine](docs/sdks/log/README.md#logline)
-- [logLogMultiLine](docs/sdks/log/README.md#logmultiline)
-- [mediaGetBannerImage](docs/sdks/media/README.md#getbannerimage)
-- [mediaGetThumbImage](docs/sdks/media/README.md#getthumbimage)
-- [mediaMarkPlayed](docs/sdks/media/README.md#markplayed)
-- [mediaMarkUnplayed](docs/sdks/media/README.md#markunplayed)
-- [mediaUpdatePlayProgress](docs/sdks/media/README.md#updateplayprogress)
-- [playlistsAddPlaylistContents](docs/sdks/playlists/README.md#addplaylistcontents)
-- [playlistsClearPlaylistContents](docs/sdks/playlists/README.md#clearplaylistcontents)
-- [playlistsCreatePlaylist](docs/sdks/playlists/README.md#createplaylist)
-- [playlistsDeletePlaylist](docs/sdks/playlists/README.md#deleteplaylist)
-- [playlistsGetPlaylistContents](docs/sdks/playlists/README.md#getplaylistcontents)
-- [playlistsGetPlaylist](docs/sdks/playlists/README.md#getplaylist)
-- [playlistsGetPlaylists](docs/sdks/playlists/README.md#getplaylists)
-- [playlistsUpdatePlaylist](docs/sdks/playlists/README.md#updateplaylist)
-- [playlistsUploadPlaylist](docs/sdks/playlists/README.md#uploadplaylist)
-- [plexGetCompanionsData](docs/sdks/plex/README.md#getcompanionsdata)
-- [plexGetGeoData](docs/sdks/plex/README.md#getgeodata)
-- [plexGetHomeData](docs/sdks/plex/README.md#gethomedata)
-- [plexGetPin](docs/sdks/plex/README.md#getpin)
-- [plexGetServerResources](docs/sdks/plex/README.md#getserverresources)
-- [plexGetTokenByPinId](docs/sdks/plex/README.md#gettokenbypinid)
-- [plexGetUserFriends](docs/sdks/plex/README.md#getuserfriends)
-- [searchGetSearchResults](docs/sdks/search/README.md#getsearchresults)
-- [searchPerformSearch](docs/sdks/search/README.md#performsearch)
-- [searchPerformVoiceSearch](docs/sdks/search/README.md#performvoicesearch)
-- [serverGetAvailableClients](docs/sdks/server/README.md#getavailableclients)
-- [serverGetDevices](docs/sdks/server/README.md#getdevices)
-- [serverGetMediaProviders](docs/sdks/server/README.md#getmediaproviders)
-- [serverGetMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount)
-- [serverGetResizedPhoto](docs/sdks/server/README.md#getresizedphoto)
-- [serverGetServerCapabilities](docs/sdks/server/README.md#getservercapabilities)
-- [serverGetServerIdentity](docs/sdks/server/README.md#getserveridentity)
-- [serverGetServerList](docs/sdks/server/README.md#getserverlist)
-- [serverGetServerPreferences](docs/sdks/server/README.md#getserverpreferences)
-- [sessionsGetSessionHistory](docs/sdks/sessions/README.md#getsessionhistory)
-- [sessionsGetSessions](docs/sdks/sessions/README.md#getsessions)
-- [sessionsGetTranscodeSessions](docs/sdks/sessions/README.md#gettranscodesessions)
-- [sessionsStopTranscodeSession](docs/sdks/sessions/README.md#stoptranscodesession)
-- [statisticsGetBandwidthStatistics](docs/sdks/statistics/README.md#getbandwidthstatistics)
-- [statisticsGetResourcesStatistics](docs/sdks/statistics/README.md#getresourcesstatistics)
-- [statisticsGetStatistics](docs/sdks/statistics/README.md#getstatistics)
-- [updaterApplyUpdates](docs/sdks/updater/README.md#applyupdates)
-- [updaterCheckForUpdates](docs/sdks/updater/README.md#checkforupdates)
-- [updaterGetUpdateStatus](docs/sdks/updater/README.md#getupdatestatus)
-- [videoGetTimeline](docs/sdks/video/README.md#gettimeline)
-- [videoStartUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode)
-- [watchlistGetWatchList](docs/sdks/watchlist/README.md#getwatchlist)
-
+- [`activitiesCancelServerActivities`](docs/sdks/activities/README.md#cancelserveractivities) - Cancel Server Activities
+- [`activitiesGetServerActivities`](docs/sdks/activities/README.md#getserveractivities) - Get Server Activities
+- [`authenticationGetSourceConnectionInformation`](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
+- [`authenticationGetTokenDetails`](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
+- [`authenticationGetTransientToken`](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token
+- [`authenticationPostUsersSignInData`](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
+- [`butlerGetButlerTasks`](docs/sdks/butler/README.md#getbutlertasks) - Get Butler tasks
+- [`butlerStartAllTasks`](docs/sdks/butler/README.md#startalltasks) - Start all Butler tasks
+- [`butlerStartTask`](docs/sdks/butler/README.md#starttask) - Start a single Butler task
+- [`butlerStopAllTasks`](docs/sdks/butler/README.md#stopalltasks) - Stop all Butler tasks
+- [`butlerStopTask`](docs/sdks/butler/README.md#stoptask) - Stop a single Butler task
+- [`hubsGetGlobalHubs`](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
+- [`hubsGetLibraryHubs`](docs/sdks/hubs/README.md#getlibraryhubs) - Get library specific hubs
+- [`hubsGetRecentlyAdded`](docs/sdks/hubs/README.md#getrecentlyadded) - Get Recently Added
+- [`libraryDeleteLibrary`](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
+- [`libraryGetAllLibraries`](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
+- [`libraryGetFileHash`](docs/sdks/library/README.md#getfilehash) - Get Hash Value
+- [`libraryGetLibraryDetails`](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
+- [`libraryGetLibraryItems`](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
+- [`libraryGetMetaDataByRatingKey`](docs/sdks/library/README.md#getmetadatabyratingkey) - Get Metadata by RatingKey
+- [`libraryGetMetadataChildren`](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
+- [`libraryGetOnDeck`](docs/sdks/library/README.md#getondeck) - Get On Deck
+- [`libraryGetRecentlyAddedLibrary`](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added
+- [`libraryGetRefreshLibraryMetadata`](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
+- [`libraryGetSearchAllLibraries`](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
+- [`libraryGetSearchLibrary`](docs/sdks/library/README.md#getsearchlibrary) - Search Library
+- [`libraryGetTopWatchedContent`](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
+- [`logEnablePaperTrail`](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
+- [`logLogLine`](docs/sdks/log/README.md#logline) - Logging a single line message.
+- [`logLogMultiLine`](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
+- [`mediaGetBannerImage`](docs/sdks/media/README.md#getbannerimage) - Get Banner Image
+- [`mediaGetThumbImage`](docs/sdks/media/README.md#getthumbimage) - Get Thumb Image
+- [`mediaMarkPlayed`](docs/sdks/media/README.md#markplayed) - Mark Media Played
+- [`mediaMarkUnplayed`](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
+- [`mediaUpdatePlayProgress`](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
+- [`playlistsAddPlaylistContents`](docs/sdks/playlists/README.md#addplaylistcontents) - Adding to a Playlist
+- [`playlistsClearPlaylistContents`](docs/sdks/playlists/README.md#clearplaylistcontents) - Delete Playlist Contents
+- [`playlistsCreatePlaylist`](docs/sdks/playlists/README.md#createplaylist) - Create a Playlist
+- [`playlistsDeletePlaylist`](docs/sdks/playlists/README.md#deleteplaylist) - Deletes a Playlist
+- [`playlistsGetPlaylist`](docs/sdks/playlists/README.md#getplaylist) - Retrieve Playlist
+- [`playlistsGetPlaylistContents`](docs/sdks/playlists/README.md#getplaylistcontents) - Retrieve Playlist Contents
+- [`playlistsGetPlaylists`](docs/sdks/playlists/README.md#getplaylists) - Get All Playlists
+- [`playlistsUpdatePlaylist`](docs/sdks/playlists/README.md#updateplaylist) - Update a Playlist
+- [`playlistsUploadPlaylist`](docs/sdks/playlists/README.md#uploadplaylist) - Upload Playlist
+- [`plexGetCompanionsData`](docs/sdks/plex/README.md#getcompanionsdata) - Get Companions Data
+- [`plexGetGeoData`](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
+- [`plexGetHomeData`](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
+- [`plexGetPin`](docs/sdks/plex/README.md#getpin) - Get a Pin
+- [`plexGetServerResources`](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
+- [`plexGetTokenByPinId`](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
+- [`plexGetUserFriends`](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
+- [`searchGetSearchResults`](docs/sdks/search/README.md#getsearchresults) - Get Search Results
+- [`searchPerformSearch`](docs/sdks/search/README.md#performsearch) - Perform a search
+- [`searchPerformVoiceSearch`](docs/sdks/search/README.md#performvoicesearch) - Perform a voice search
+- [`serverGetAvailableClients`](docs/sdks/server/README.md#getavailableclients) - Get Available Clients
+- [`serverGetDevices`](docs/sdks/server/README.md#getdevices) - Get Devices
+- [`serverGetMediaProviders`](docs/sdks/server/README.md#getmediaproviders) - Get Media Providers
+- [`serverGetMyPlexAccount`](docs/sdks/server/README.md#getmyplexaccount) - Get MyPlex Account
+- [`serverGetResizedPhoto`](docs/sdks/server/README.md#getresizedphoto) - Get a Resized Photo
+- [`serverGetServerCapabilities`](docs/sdks/server/README.md#getservercapabilities) - Get Server Capabilities
+- [`serverGetServerIdentity`](docs/sdks/server/README.md#getserveridentity) - Get Server Identity
+- [`serverGetServerList`](docs/sdks/server/README.md#getserverlist) - Get Server List
+- [`serverGetServerPreferences`](docs/sdks/server/README.md#getserverpreferences) - Get Server Preferences
+- [`sessionsGetSessionHistory`](docs/sdks/sessions/README.md#getsessionhistory) - Get Session History
+- [`sessionsGetSessions`](docs/sdks/sessions/README.md#getsessions) - Get Active Sessions
+- [`sessionsGetTranscodeSessions`](docs/sdks/sessions/README.md#gettranscodesessions) - Get Transcode Sessions
+- [`sessionsStopTranscodeSession`](docs/sdks/sessions/README.md#stoptranscodesession) - Stop a Transcode Session
+- [`statisticsGetBandwidthStatistics`](docs/sdks/statistics/README.md#getbandwidthstatistics) - Get Bandwidth Statistics
+- [`statisticsGetResourcesStatistics`](docs/sdks/statistics/README.md#getresourcesstatistics) - Get Resources Statistics
+- [`statisticsGetStatistics`](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
+- [`updaterApplyUpdates`](docs/sdks/updater/README.md#applyupdates) - Apply Updates
+- [`updaterCheckForUpdates`](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
+- [`updaterGetUpdateStatus`](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
+- [`videoGetTimeline`](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
+- [`videoStartUniversalTranscode`](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
+- [`watchlistGetWatchList`](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -627,11 +578,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -672,11 +618,6 @@ const plexAPI = new PlexAPI({
     retryConnectionErrors: false,
   },
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {

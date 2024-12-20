@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetTopWatchedContentLibraryErrors = {
   code?: number | undefined;
@@ -136,6 +139,26 @@ export namespace GetTopWatchedContentLibraryErrors$ {
   export type Outbound = GetTopWatchedContentLibraryErrors$Outbound;
 }
 
+export function getTopWatchedContentLibraryErrorsToJSON(
+  getTopWatchedContentLibraryErrors: GetTopWatchedContentLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentLibraryErrors$outboundSchema.parse(
+      getTopWatchedContentLibraryErrors,
+    ),
+  );
+}
+
+export function getTopWatchedContentLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTopWatchedContentUnauthorized$inboundSchema: z.ZodType<
   GetTopWatchedContentUnauthorized,
@@ -235,6 +258,24 @@ export namespace GetTopWatchedContentErrors$ {
   export const outboundSchema = GetTopWatchedContentErrors$outboundSchema;
   /** @deprecated use `GetTopWatchedContentErrors$Outbound` instead. */
   export type Outbound = GetTopWatchedContentErrors$Outbound;
+}
+
+export function getTopWatchedContentErrorsToJSON(
+  getTopWatchedContentErrors: GetTopWatchedContentErrors,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentErrors$outboundSchema.parse(getTopWatchedContentErrors),
+  );
+}
+
+export function getTopWatchedContentErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentErrors' from JSON`,
+  );
 }
 
 /** @internal */

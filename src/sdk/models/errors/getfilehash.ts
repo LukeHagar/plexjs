@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetFileHashLibraryErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetFileHashLibraryErrors$ {
   export type Outbound = GetFileHashLibraryErrors$Outbound;
 }
 
+export function getFileHashLibraryErrorsToJSON(
+  getFileHashLibraryErrors: GetFileHashLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetFileHashLibraryErrors$outboundSchema.parse(getFileHashLibraryErrors),
+  );
+}
+
+export function getFileHashLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetFileHashLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFileHashLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFileHashLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetFileHashUnauthorized$inboundSchema: z.ZodType<
   GetFileHashUnauthorized,
@@ -233,6 +254,24 @@ export namespace GetFileHashErrors$ {
   export const outboundSchema = GetFileHashErrors$outboundSchema;
   /** @deprecated use `GetFileHashErrors$Outbound` instead. */
   export type Outbound = GetFileHashErrors$Outbound;
+}
+
+export function getFileHashErrorsToJSON(
+  getFileHashErrors: GetFileHashErrors,
+): string {
+  return JSON.stringify(
+    GetFileHashErrors$outboundSchema.parse(getFileHashErrors),
+  );
+}
+
+export function getFileHashErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetFileHashErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFileHashErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFileHashErrors' from JSON`,
+  );
 }
 
 /** @internal */

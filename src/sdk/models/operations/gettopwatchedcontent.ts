@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of media to retrieve.
@@ -22,6 +25,8 @@ export enum GetTopWatchedContentQueryParamType {
   Season = 3,
   Episode = 4,
   Audio = 8,
+  Album = 9,
+  Track = 10,
 }
 
 export type GetTopWatchedContentRequest = {
@@ -204,6 +209,26 @@ export namespace GetTopWatchedContentRequest$ {
   export type Outbound = GetTopWatchedContentRequest$Outbound;
 }
 
+export function getTopWatchedContentRequestToJSON(
+  getTopWatchedContentRequest: GetTopWatchedContentRequest,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentRequest$outboundSchema.parse(
+      getTopWatchedContentRequest,
+    ),
+  );
+}
+
+export function getTopWatchedContentRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTopWatchedContentGenre$inboundSchema: z.ZodType<
   GetTopWatchedContentGenre,
@@ -244,6 +269,24 @@ export namespace GetTopWatchedContentGenre$ {
   export const outboundSchema = GetTopWatchedContentGenre$outboundSchema;
   /** @deprecated use `GetTopWatchedContentGenre$Outbound` instead. */
   export type Outbound = GetTopWatchedContentGenre$Outbound;
+}
+
+export function getTopWatchedContentGenreToJSON(
+  getTopWatchedContentGenre: GetTopWatchedContentGenre,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentGenre$outboundSchema.parse(getTopWatchedContentGenre),
+  );
+}
+
+export function getTopWatchedContentGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentGenre' from JSON`,
+  );
 }
 
 /** @internal */
@@ -288,6 +331,26 @@ export namespace GetTopWatchedContentCountry$ {
   export type Outbound = GetTopWatchedContentCountry$Outbound;
 }
 
+export function getTopWatchedContentCountryToJSON(
+  getTopWatchedContentCountry: GetTopWatchedContentCountry,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentCountry$outboundSchema.parse(
+      getTopWatchedContentCountry,
+    ),
+  );
+}
+
+export function getTopWatchedContentCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentCountry' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTopWatchedContentGuids$inboundSchema: z.ZodType<
   GetTopWatchedContentGuids,
@@ -322,6 +385,24 @@ export namespace GetTopWatchedContentGuids$ {
   export const outboundSchema = GetTopWatchedContentGuids$outboundSchema;
   /** @deprecated use `GetTopWatchedContentGuids$Outbound` instead. */
   export type Outbound = GetTopWatchedContentGuids$Outbound;
+}
+
+export function getTopWatchedContentGuidsToJSON(
+  getTopWatchedContentGuids: GetTopWatchedContentGuids,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentGuids$outboundSchema.parse(getTopWatchedContentGuids),
+  );
+}
+
+export function getTopWatchedContentGuidsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentGuids, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentGuids$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentGuids' from JSON`,
+  );
 }
 
 /** @internal */
@@ -375,6 +456,24 @@ export namespace GetTopWatchedContentRole$ {
   export type Outbound = GetTopWatchedContentRole$Outbound;
 }
 
+export function getTopWatchedContentRoleToJSON(
+  getTopWatchedContentRole: GetTopWatchedContentRole,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentRole$outboundSchema.parse(getTopWatchedContentRole),
+  );
+}
+
+export function getTopWatchedContentRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentRole' from JSON`,
+  );
+}
+
 /** @internal */
 export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
   .object({
@@ -403,6 +502,20 @@ export namespace User$ {
   export const outboundSchema = User$outboundSchema;
   /** @deprecated use `User$Outbound` instead. */
   export type Outbound = User$Outbound;
+}
+
+export function userToJSON(user: User): string {
+  return JSON.stringify(User$outboundSchema.parse(user));
+}
+
+export function userFromJSON(
+  jsonString: string,
+): SafeParseResult<User, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => User$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'User' from JSON`,
+  );
 }
 
 /** @internal */
@@ -559,6 +672,26 @@ export namespace GetTopWatchedContentMetadata$ {
   export type Outbound = GetTopWatchedContentMetadata$Outbound;
 }
 
+export function getTopWatchedContentMetadataToJSON(
+  getTopWatchedContentMetadata: GetTopWatchedContentMetadata,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentMetadata$outboundSchema.parse(
+      getTopWatchedContentMetadata,
+    ),
+  );
+}
+
+export function getTopWatchedContentMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTopWatchedContentMediaContainer$inboundSchema: z.ZodType<
   GetTopWatchedContentMediaContainer,
@@ -621,6 +754,27 @@ export namespace GetTopWatchedContentMediaContainer$ {
   export type Outbound = GetTopWatchedContentMediaContainer$Outbound;
 }
 
+export function getTopWatchedContentMediaContainerToJSON(
+  getTopWatchedContentMediaContainer: GetTopWatchedContentMediaContainer,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentMediaContainer$outboundSchema.parse(
+      getTopWatchedContentMediaContainer,
+    ),
+  );
+}
+
+export function getTopWatchedContentMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetTopWatchedContentMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTopWatchedContentResponseBody$inboundSchema: z.ZodType<
   GetTopWatchedContentResponseBody,
@@ -666,6 +820,26 @@ export namespace GetTopWatchedContentResponseBody$ {
   export const outboundSchema = GetTopWatchedContentResponseBody$outboundSchema;
   /** @deprecated use `GetTopWatchedContentResponseBody$Outbound` instead. */
   export type Outbound = GetTopWatchedContentResponseBody$Outbound;
+}
+
+export function getTopWatchedContentResponseBodyToJSON(
+  getTopWatchedContentResponseBody: GetTopWatchedContentResponseBody,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentResponseBody$outboundSchema.parse(
+      getTopWatchedContentResponseBody,
+    ),
+  );
+}
+
+export function getTopWatchedContentResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -727,4 +901,24 @@ export namespace GetTopWatchedContentResponse$ {
   export const outboundSchema = GetTopWatchedContentResponse$outboundSchema;
   /** @deprecated use `GetTopWatchedContentResponse$Outbound` instead. */
   export type Outbound = GetTopWatchedContentResponse$Outbound;
+}
+
+export function getTopWatchedContentResponseToJSON(
+  getTopWatchedContentResponse: GetTopWatchedContentResponse,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentResponse$outboundSchema.parse(
+      getTopWatchedContentResponse,
+    ),
+  );
+}
+
+export function getTopWatchedContentResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTopWatchedContentResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTopWatchedContentResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentResponse' from JSON`,
+  );
 }

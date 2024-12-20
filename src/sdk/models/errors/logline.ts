@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type LogLineLogErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace LogLineLogErrors$ {
   export type Outbound = LogLineLogErrors$Outbound;
 }
 
+export function logLineLogErrorsToJSON(
+  logLineLogErrors: LogLineLogErrors,
+): string {
+  return JSON.stringify(
+    LogLineLogErrors$outboundSchema.parse(logLineLogErrors),
+  );
+}
+
+export function logLineLogErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<LogLineLogErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogLineLogErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogLineLogErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const LogLineUnauthorized$inboundSchema: z.ZodType<
   LogLineUnauthorized,
@@ -231,6 +252,20 @@ export namespace LogLineErrors$ {
   export const outboundSchema = LogLineErrors$outboundSchema;
   /** @deprecated use `LogLineErrors$Outbound` instead. */
   export type Outbound = LogLineErrors$Outbound;
+}
+
+export function logLineErrorsToJSON(logLineErrors: LogLineErrors): string {
+  return JSON.stringify(LogLineErrors$outboundSchema.parse(logLineErrors));
+}
+
+export function logLineErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<LogLineErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogLineErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogLineErrors' from JSON`,
+  );
 }
 
 /** @internal */

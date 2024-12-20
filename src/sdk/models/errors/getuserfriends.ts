@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetUserFriendsPlexErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetUserFriendsPlexErrors$ {
   export type Outbound = GetUserFriendsPlexErrors$Outbound;
 }
 
+export function getUserFriendsPlexErrorsToJSON(
+  getUserFriendsPlexErrors: GetUserFriendsPlexErrors,
+): string {
+  return JSON.stringify(
+    GetUserFriendsPlexErrors$outboundSchema.parse(getUserFriendsPlexErrors),
+  );
+}
+
+export function getUserFriendsPlexErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUserFriendsPlexErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUserFriendsPlexErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUserFriendsPlexErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetUserFriendsUnauthorized$inboundSchema: z.ZodType<
   GetUserFriendsUnauthorized,
@@ -233,6 +254,24 @@ export namespace GetUserFriendsErrors$ {
   export const outboundSchema = GetUserFriendsErrors$outboundSchema;
   /** @deprecated use `GetUserFriendsErrors$Outbound` instead. */
   export type Outbound = GetUserFriendsErrors$Outbound;
+}
+
+export function getUserFriendsErrorsToJSON(
+  getUserFriendsErrors: GetUserFriendsErrors,
+): string {
+  return JSON.stringify(
+    GetUserFriendsErrors$outboundSchema.parse(getUserFriendsErrors),
+  );
+}
+
+export function getUserFriendsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUserFriendsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUserFriendsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUserFriendsErrors' from JSON`,
+  );
 }
 
 /** @internal */

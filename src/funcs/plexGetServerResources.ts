@@ -31,11 +31,11 @@ import { Result } from "../sdk/types/fp.js";
  */
 export async function plexGetServerResources(
   client: PlexAPICore,
+  clientID: string,
   includeHttps?: operations.IncludeHttps | undefined,
   includeRelay?: operations.IncludeRelay | undefined,
   includeIPv6?: operations.IncludeIPv6 | undefined,
-  clientID?: string | undefined,
-  options?: RequestOptions & { serverURL?: string },
+  options?: RequestOptions,
 ): Promise<
   Result<
     operations.GetServerResourcesResponse,
@@ -51,10 +51,10 @@ export async function plexGetServerResources(
   >
 > {
   const input: operations.GetServerResourcesRequest = {
+    clientID: clientID,
     includeHttps: includeHttps,
     includeRelay: includeRelay,
     includeIPv6: includeIPv6,
-    clientID: clientID,
   };
 
   const parsed = safeParse(
@@ -88,21 +88,24 @@ export async function plexGetServerResources(
       payload.ClientID,
       { explode: false, charEncoding: "none" },
     ),
-    "X-Plex-Client-Identifier": encodeSimple(
-      "X-Plex-Client-Identifier",
-      client._options.clientID,
-      { explode: false, charEncoding: "none" },
-    ),
   });
 
   const secConfig = await extractSecurity(client._options.accessToken);
   const securityInput = secConfig == null ? {} : { accessToken: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "get-server-resources",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.accessToken,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
@@ -122,9 +125,8 @@ export async function plexGetServerResources(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;

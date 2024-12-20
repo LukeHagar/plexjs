@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetThumbImageRequest = {
   /**
@@ -99,6 +102,24 @@ export namespace GetThumbImageRequest$ {
   export type Outbound = GetThumbImageRequest$Outbound;
 }
 
+export function getThumbImageRequestToJSON(
+  getThumbImageRequest: GetThumbImageRequest,
+): string {
+  return JSON.stringify(
+    GetThumbImageRequest$outboundSchema.parse(getThumbImageRequest),
+  );
+}
+
+export function getThumbImageRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetThumbImageRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetThumbImageRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetThumbImageRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetThumbImageResponse$inboundSchema: z.ZodType<
   GetThumbImageResponse,
@@ -163,4 +184,22 @@ export namespace GetThumbImageResponse$ {
   export const outboundSchema = GetThumbImageResponse$outboundSchema;
   /** @deprecated use `GetThumbImageResponse$Outbound` instead. */
   export type Outbound = GetThumbImageResponse$Outbound;
+}
+
+export function getThumbImageResponseToJSON(
+  getThumbImageResponse: GetThumbImageResponse,
+): string {
+  return JSON.stringify(
+    GetThumbImageResponse$outboundSchema.parse(getThumbImageResponse),
+  );
+}
+
+export function getThumbImageResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetThumbImageResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetThumbImageResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetThumbImageResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const GetUserFriendsServerList = [
   "https://plex.tv/api/v2",
@@ -114,6 +117,20 @@ export namespace SharedServers$ {
   export type Outbound = SharedServers$Outbound;
 }
 
+export function sharedServersToJSON(sharedServers: SharedServers): string {
+  return JSON.stringify(SharedServers$outboundSchema.parse(sharedServers));
+}
+
+export function sharedServersFromJSON(
+  jsonString: string,
+): SafeParseResult<SharedServers, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SharedServers$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SharedServers' from JSON`,
+  );
+}
+
 /** @internal */
 export const SharedSources$inboundSchema: z.ZodType<
   SharedSources,
@@ -142,6 +159,20 @@ export namespace SharedSources$ {
   export const outboundSchema = SharedSources$outboundSchema;
   /** @deprecated use `SharedSources$Outbound` instead. */
   export type Outbound = SharedSources$Outbound;
+}
+
+export function sharedSourcesToJSON(sharedSources: SharedSources): string {
+  return JSON.stringify(SharedSources$outboundSchema.parse(sharedSources));
+}
+
+export function sharedSourcesFromJSON(
+  jsonString: string,
+): SafeParseResult<SharedSources, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SharedSources$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SharedSources' from JSON`,
+  );
 }
 
 /** @internal */
@@ -229,6 +260,20 @@ export namespace Friend$ {
   export type Outbound = Friend$Outbound;
 }
 
+export function friendToJSON(friend: Friend): string {
+  return JSON.stringify(Friend$outboundSchema.parse(friend));
+}
+
+export function friendFromJSON(
+  jsonString: string,
+): SafeParseResult<Friend, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Friend$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Friend' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetUserFriendsResponse$inboundSchema: z.ZodType<
   GetUserFriendsResponse,
@@ -288,4 +333,22 @@ export namespace GetUserFriendsResponse$ {
   export const outboundSchema = GetUserFriendsResponse$outboundSchema;
   /** @deprecated use `GetUserFriendsResponse$Outbound` instead. */
   export type Outbound = GetUserFriendsResponse$Outbound;
+}
+
+export function getUserFriendsResponseToJSON(
+  getUserFriendsResponse: GetUserFriendsResponse,
+): string {
+  return JSON.stringify(
+    GetUserFriendsResponse$outboundSchema.parse(getUserFriendsResponse),
+  );
+}
+
+export function getUserFriendsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUserFriendsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUserFriendsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUserFriendsResponse' from JSON`,
+  );
 }

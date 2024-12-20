@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetMetaDataByRatingKeyLibraryErrors = {
   code?: number | undefined;
@@ -137,6 +140,27 @@ export namespace GetMetaDataByRatingKeyLibraryErrors$ {
   export type Outbound = GetMetaDataByRatingKeyLibraryErrors$Outbound;
 }
 
+export function getMetaDataByRatingKeyLibraryErrorsToJSON(
+  getMetaDataByRatingKeyLibraryErrors: GetMetaDataByRatingKeyLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyLibraryErrors$outboundSchema.parse(
+      getMetaDataByRatingKeyLibraryErrors,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetMetaDataByRatingKeyLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetaDataByRatingKeyUnauthorized$inboundSchema: z.ZodType<
   GetMetaDataByRatingKeyUnauthorized,
@@ -238,6 +262,26 @@ export namespace GetMetaDataByRatingKeyErrors$ {
   export const outboundSchema = GetMetaDataByRatingKeyErrors$outboundSchema;
   /** @deprecated use `GetMetaDataByRatingKeyErrors$Outbound` instead. */
   export type Outbound = GetMetaDataByRatingKeyErrors$Outbound;
+}
+
+export function getMetaDataByRatingKeyErrorsToJSON(
+  getMetaDataByRatingKeyErrors: GetMetaDataByRatingKeyErrors,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyErrors$outboundSchema.parse(
+      getMetaDataByRatingKeyErrors,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyErrors' from JSON`,
+  );
 }
 
 /** @internal */

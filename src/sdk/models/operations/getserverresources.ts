@@ -4,17 +4,13 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const GetServerResourcesServerList = [
   "https://plex.tv/api/v2",
 ] as const;
-
-export type GetServerResourcesGlobals = {
-  /**
-   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-   */
-  clientID?: string | undefined;
-};
 
 /**
  * Include Https entries in the results
@@ -62,7 +58,7 @@ export type GetServerResourcesRequest = {
   /**
    * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
-  clientID?: string | undefined;
+  clientID: string;
 };
 
 /**
@@ -154,50 +150,6 @@ export type GetServerResourcesResponse = {
 };
 
 /** @internal */
-export const GetServerResourcesGlobals$inboundSchema: z.ZodType<
-  GetServerResourcesGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ClientID: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "ClientID": "clientID",
-  });
-});
-
-/** @internal */
-export type GetServerResourcesGlobals$Outbound = {
-  ClientID?: string | undefined;
-};
-
-/** @internal */
-export const GetServerResourcesGlobals$outboundSchema: z.ZodType<
-  GetServerResourcesGlobals$Outbound,
-  z.ZodTypeDef,
-  GetServerResourcesGlobals
-> = z.object({
-  clientID: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientID: "ClientID",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetServerResourcesGlobals$ {
-  /** @deprecated use `GetServerResourcesGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetServerResourcesGlobals$inboundSchema;
-  /** @deprecated use `GetServerResourcesGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetServerResourcesGlobals$outboundSchema;
-  /** @deprecated use `GetServerResourcesGlobals$Outbound` instead. */
-  export type Outbound = GetServerResourcesGlobals$Outbound;
-}
-
-/** @internal */
 export const IncludeHttps$inboundSchema: z.ZodNativeEnum<typeof IncludeHttps> =
   z.nativeEnum(IncludeHttps);
 
@@ -263,7 +215,7 @@ export const GetServerResourcesRequest$inboundSchema: z.ZodType<
   includeHttps: IncludeHttps$inboundSchema,
   includeRelay: IncludeRelay$inboundSchema,
   includeIPv6: IncludeIPv6$inboundSchema,
-  ClientID: z.string().optional(),
+  ClientID: z.string(),
 }).transform((v) => {
   return remap$(v, {
     "ClientID": "clientID",
@@ -275,7 +227,7 @@ export type GetServerResourcesRequest$Outbound = {
   includeHttps: number;
   includeRelay: number;
   includeIPv6: number;
-  ClientID?: string | undefined;
+  ClientID: string;
 };
 
 /** @internal */
@@ -287,7 +239,7 @@ export const GetServerResourcesRequest$outboundSchema: z.ZodType<
   includeHttps: IncludeHttps$outboundSchema.default(IncludeHttps.Disable),
   includeRelay: IncludeRelay$outboundSchema.default(IncludeRelay.Disable),
   includeIPv6: IncludeIPv6$outboundSchema.default(IncludeIPv6.Disable),
-  clientID: z.string().optional(),
+  clientID: z.string(),
 }).transform((v) => {
   return remap$(v, {
     clientID: "ClientID",
@@ -305,6 +257,24 @@ export namespace GetServerResourcesRequest$ {
   export const outboundSchema = GetServerResourcesRequest$outboundSchema;
   /** @deprecated use `GetServerResourcesRequest$Outbound` instead. */
   export type Outbound = GetServerResourcesRequest$Outbound;
+}
+
+export function getServerResourcesRequestToJSON(
+  getServerResourcesRequest: GetServerResourcesRequest,
+): string {
+  return JSON.stringify(
+    GetServerResourcesRequest$outboundSchema.parse(getServerResourcesRequest),
+  );
+}
+
+export function getServerResourcesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerResourcesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerResourcesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerResourcesRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -386,6 +356,20 @@ export namespace Connections$ {
   export const outboundSchema = Connections$outboundSchema;
   /** @deprecated use `Connections$Outbound` instead. */
   export type Outbound = Connections$Outbound;
+}
+
+export function connectionsToJSON(connections: Connections): string {
+  return JSON.stringify(Connections$outboundSchema.parse(connections));
+}
+
+export function connectionsFromJSON(
+  jsonString: string,
+): SafeParseResult<Connections, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Connections$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Connections' from JSON`,
+  );
 }
 
 /** @internal */
@@ -493,6 +477,20 @@ export namespace PlexDevice$ {
   export type Outbound = PlexDevice$Outbound;
 }
 
+export function plexDeviceToJSON(plexDevice: PlexDevice): string {
+  return JSON.stringify(PlexDevice$outboundSchema.parse(plexDevice));
+}
+
+export function plexDeviceFromJSON(
+  jsonString: string,
+): SafeParseResult<PlexDevice, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PlexDevice$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PlexDevice' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerResourcesResponse$inboundSchema: z.ZodType<
   GetServerResourcesResponse,
@@ -552,4 +550,22 @@ export namespace GetServerResourcesResponse$ {
   export const outboundSchema = GetServerResourcesResponse$outboundSchema;
   /** @deprecated use `GetServerResourcesResponse$Outbound` instead. */
   export type Outbound = GetServerResourcesResponse$Outbound;
+}
+
+export function getServerResourcesResponseToJSON(
+  getServerResourcesResponse: GetServerResourcesResponse,
+): string {
+  return JSON.stringify(
+    GetServerResourcesResponse$outboundSchema.parse(getServerResourcesResponse),
+  );
+}
+
+export function getServerResourcesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerResourcesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerResourcesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerResourcesResponse' from JSON`,
+  );
 }

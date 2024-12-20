@@ -40,7 +40,7 @@ let value: GetSearchAllLibrariesMediaContainer = {
         seasonCount: 2022,
         tagline: "Return to Pandora.",
         flattenSeasons: GetSearchAllLibrariesFlattenSeasons.True,
-        showOrdering: GetSearchAllLibrariesShowOrdering.Dvd,
+        showOrdering: GetSearchAllLibrariesShowOrdering.TvdbDvd,
         thumb: "/library/metadata/58683/thumb/1703239236",
         art: "/library/metadata/58683/art/1703239236",
         banner: "/library/metadata/58683/banner/1703239236",

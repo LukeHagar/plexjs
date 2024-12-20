@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The name of the task to be started.
@@ -104,6 +107,22 @@ export namespace StopTaskRequest$ {
   export type Outbound = StopTaskRequest$Outbound;
 }
 
+export function stopTaskRequestToJSON(
+  stopTaskRequest: StopTaskRequest,
+): string {
+  return JSON.stringify(StopTaskRequest$outboundSchema.parse(stopTaskRequest));
+}
+
+export function stopTaskRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<StopTaskRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StopTaskRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StopTaskRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const StopTaskResponse$inboundSchema: z.ZodType<
   StopTaskResponse,
@@ -158,4 +177,22 @@ export namespace StopTaskResponse$ {
   export const outboundSchema = StopTaskResponse$outboundSchema;
   /** @deprecated use `StopTaskResponse$Outbound` instead. */
   export type Outbound = StopTaskResponse$Outbound;
+}
+
+export function stopTaskResponseToJSON(
+  stopTaskResponse: StopTaskResponse,
+): string {
+  return JSON.stringify(
+    StopTaskResponse$outboundSchema.parse(stopTaskResponse),
+  );
+}
+
+export function stopTaskResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<StopTaskResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StopTaskResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StopTaskResponse' from JSON`,
+  );
 }

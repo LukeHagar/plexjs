@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Setting = {
   id?: string | undefined;
@@ -109,6 +112,20 @@ export namespace Setting$ {
   export type Outbound = Setting$Outbound;
 }
 
+export function settingToJSON(setting: Setting): string {
+  return JSON.stringify(Setting$outboundSchema.parse(setting));
+}
+
+export function settingFromJSON(
+  jsonString: string,
+): SafeParseResult<Setting, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Setting$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Setting' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerPreferencesMediaContainer$inboundSchema: z.ZodType<
   GetServerPreferencesMediaContainer,
@@ -157,6 +174,27 @@ export namespace GetServerPreferencesMediaContainer$ {
   export type Outbound = GetServerPreferencesMediaContainer$Outbound;
 }
 
+export function getServerPreferencesMediaContainerToJSON(
+  getServerPreferencesMediaContainer: GetServerPreferencesMediaContainer,
+): string {
+  return JSON.stringify(
+    GetServerPreferencesMediaContainer$outboundSchema.parse(
+      getServerPreferencesMediaContainer,
+    ),
+  );
+}
+
+export function getServerPreferencesMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerPreferencesMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetServerPreferencesMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerPreferencesMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerPreferencesResponseBody$inboundSchema: z.ZodType<
   GetServerPreferencesResponseBody,
@@ -202,6 +240,26 @@ export namespace GetServerPreferencesResponseBody$ {
   export const outboundSchema = GetServerPreferencesResponseBody$outboundSchema;
   /** @deprecated use `GetServerPreferencesResponseBody$Outbound` instead. */
   export type Outbound = GetServerPreferencesResponseBody$Outbound;
+}
+
+export function getServerPreferencesResponseBodyToJSON(
+  getServerPreferencesResponseBody: GetServerPreferencesResponseBody,
+): string {
+  return JSON.stringify(
+    GetServerPreferencesResponseBody$outboundSchema.parse(
+      getServerPreferencesResponseBody,
+    ),
+  );
+}
+
+export function getServerPreferencesResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerPreferencesResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerPreferencesResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerPreferencesResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -263,4 +321,24 @@ export namespace GetServerPreferencesResponse$ {
   export const outboundSchema = GetServerPreferencesResponse$outboundSchema;
   /** @deprecated use `GetServerPreferencesResponse$Outbound` instead. */
   export type Outbound = GetServerPreferencesResponse$Outbound;
+}
+
+export function getServerPreferencesResponseToJSON(
+  getServerPreferencesResponse: GetServerPreferencesResponse,
+): string {
+  return JSON.stringify(
+    GetServerPreferencesResponse$outboundSchema.parse(
+      getServerPreferencesResponse,
+    ),
+  );
+}
+
+export function getServerPreferencesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerPreferencesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerPreferencesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerPreferencesResponse' from JSON`,
+  );
 }

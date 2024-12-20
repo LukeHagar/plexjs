@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetPinErrors = {
   code?: number | undefined;
@@ -89,6 +92,20 @@ export namespace GetPinErrors$ {
   export const outboundSchema = GetPinErrors$outboundSchema;
   /** @deprecated use `GetPinErrors$Outbound` instead. */
   export type Outbound = GetPinErrors$Outbound;
+}
+
+export function getPinErrorsToJSON(getPinErrors: GetPinErrors): string {
+  return JSON.stringify(GetPinErrors$outboundSchema.parse(getPinErrors));
+}
+
+export function getPinErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPinErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPinErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPinErrors' from JSON`,
+  );
 }
 
 /** @internal */

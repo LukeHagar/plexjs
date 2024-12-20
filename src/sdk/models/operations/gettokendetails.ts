@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const GetTokenDetailsServerList = [
   "https://plex.tv/api/v2",
@@ -528,6 +531,20 @@ export namespace UserProfile$ {
   export type Outbound = UserProfile$Outbound;
 }
 
+export function userProfileToJSON(userProfile: UserProfile): string {
+  return JSON.stringify(UserProfile$outboundSchema.parse(userProfile));
+}
+
+export function userProfileFromJSON(
+  jsonString: string,
+): SafeParseResult<UserProfile, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UserProfile$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UserProfile' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTokenDetailsStatus$inboundSchema: z.ZodNativeEnum<
   typeof GetTokenDetailsStatus
@@ -595,6 +612,20 @@ export namespace Services$ {
   export const outboundSchema = Services$outboundSchema;
   /** @deprecated use `Services$Outbound` instead. */
   export type Outbound = Services$Outbound;
+}
+
+export function servicesToJSON(services: Services): string {
+  return JSON.stringify(Services$outboundSchema.parse(services));
+}
+
+export function servicesFromJSON(
+  jsonString: string,
+): SafeParseResult<Services, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Services$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Services' from JSON`,
+  );
 }
 
 /** @internal */
@@ -671,6 +702,20 @@ export namespace Subscription$ {
   export type Outbound = Subscription$Outbound;
 }
 
+export function subscriptionToJSON(subscription: Subscription): string {
+  return JSON.stringify(Subscription$outboundSchema.parse(subscription));
+}
+
+export function subscriptionFromJSON(
+  jsonString: string,
+): SafeParseResult<Subscription, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Subscription$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Subscription' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTokenDetailsAuthenticationResponseStatus$inboundSchema:
   z.ZodNativeEnum<typeof GetTokenDetailsAuthenticationResponseStatus> = z
@@ -743,6 +788,26 @@ export namespace GetTokenDetailsSubscription$ {
   export const outboundSchema = GetTokenDetailsSubscription$outboundSchema;
   /** @deprecated use `GetTokenDetailsSubscription$Outbound` instead. */
   export type Outbound = GetTokenDetailsSubscription$Outbound;
+}
+
+export function getTokenDetailsSubscriptionToJSON(
+  getTokenDetailsSubscription: GetTokenDetailsSubscription,
+): string {
+  return JSON.stringify(
+    GetTokenDetailsSubscription$outboundSchema.parse(
+      getTokenDetailsSubscription,
+    ),
+  );
+}
+
+export function getTokenDetailsSubscriptionFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenDetailsSubscription, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenDetailsSubscription$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenDetailsSubscription' from JSON`,
+  );
 }
 
 /** @internal */
@@ -905,6 +970,26 @@ export namespace GetTokenDetailsUserPlexAccount$ {
   export type Outbound = GetTokenDetailsUserPlexAccount$Outbound;
 }
 
+export function getTokenDetailsUserPlexAccountToJSON(
+  getTokenDetailsUserPlexAccount: GetTokenDetailsUserPlexAccount,
+): string {
+  return JSON.stringify(
+    GetTokenDetailsUserPlexAccount$outboundSchema.parse(
+      getTokenDetailsUserPlexAccount,
+    ),
+  );
+}
+
+export function getTokenDetailsUserPlexAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenDetailsUserPlexAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenDetailsUserPlexAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenDetailsUserPlexAccount' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTokenDetailsResponse$inboundSchema: z.ZodType<
   GetTokenDetailsResponse,
@@ -966,4 +1051,22 @@ export namespace GetTokenDetailsResponse$ {
   export const outboundSchema = GetTokenDetailsResponse$outboundSchema;
   /** @deprecated use `GetTokenDetailsResponse$Outbound` instead. */
   export type Outbound = GetTokenDetailsResponse$Outbound;
+}
+
+export function getTokenDetailsResponseToJSON(
+  getTokenDetailsResponse: GetTokenDetailsResponse,
+): string {
+  return JSON.stringify(
+    GetTokenDetailsResponse$outboundSchema.parse(getTokenDetailsResponse),
+  );
+}
+
+export function getTokenDetailsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenDetailsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenDetailsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenDetailsResponse' from JSON`,
+  );
 }

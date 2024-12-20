@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * A key representing a specific tag within the section.
@@ -29,6 +32,7 @@ export enum Tag {
   Resolution = "resolution",
   FirstCharacter = "firstCharacter",
   Folder = "folder",
+  Albums = "albums",
 }
 
 /**
@@ -57,6 +61,8 @@ export enum GetLibraryItemsQueryParamType {
   Season = 3,
   Episode = 4,
   Audio = 8,
+  Album = 9,
+  Track = 10,
 }
 
 /**
@@ -221,16 +227,16 @@ export enum GetLibraryItemsFlattenSeasons {
  * @remarks
  * None = Library default,
  * tmdbAiring = The Movie Database (Aired),
- * aired = TheTVDB (Aired),
- * dvd = TheTVDB (DVD),
- * absolute = TheTVDB (Absolute)).
+ * tvdbAiring = TheTVDB (Aired),
+ * tvdbDvd = TheTVDB (DVD),
+ * tvdbAbsolute = TheTVDB (Absolute)).
  */
 export enum GetLibraryItemsShowOrdering {
   None = "None",
   TmdbAiring = "tmdbAiring",
-  Aired = "aired",
-  Dvd = "dvd",
-  Absolute = "absolute",
+  TvdbAiring = "tvdbAiring",
+  TvdbDvd = "tvdbDvd",
+  TvdbAbsolute = "tvdbAbsolute",
 }
 
 export enum GetLibraryItemsOptimizedForStreaming {
@@ -561,9 +567,9 @@ export type GetLibraryItemsMetadata = {
    * @remarks
    * None = Library default,
    * tmdbAiring = The Movie Database (Aired),
-   * aired = TheTVDB (Aired),
-   * dvd = TheTVDB (DVD),
-   * absolute = TheTVDB (Absolute)).
+   * tvdbAiring = TheTVDB (Aired),
+   * tvdbDvd = TheTVDB (DVD),
+   * tvdbAbsolute = TheTVDB (Absolute)).
    */
   showOrdering?: GetLibraryItemsShowOrdering | undefined;
   thumb?: string | undefined;
@@ -939,6 +945,24 @@ export namespace GetLibraryItemsRequest$ {
   export type Outbound = GetLibraryItemsRequest$Outbound;
 }
 
+export function getLibraryItemsRequestToJSON(
+  getLibraryItemsRequest: GetLibraryItemsRequest,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsRequest$outboundSchema.parse(getLibraryItemsRequest),
+  );
+}
+
+export function getLibraryItemsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsFilter$inboundSchema: z.ZodType<
   GetLibraryItemsFilter,
@@ -985,6 +1009,24 @@ export namespace GetLibraryItemsFilter$ {
   export const outboundSchema = GetLibraryItemsFilter$outboundSchema;
   /** @deprecated use `GetLibraryItemsFilter$Outbound` instead. */
   export type Outbound = GetLibraryItemsFilter$Outbound;
+}
+
+export function getLibraryItemsFilterToJSON(
+  getLibraryItemsFilter: GetLibraryItemsFilter,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsFilter$outboundSchema.parse(getLibraryItemsFilter),
+  );
+}
+
+export function getLibraryItemsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsFilter' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1094,6 +1136,24 @@ export namespace GetLibraryItemsSort$ {
   export type Outbound = GetLibraryItemsSort$Outbound;
 }
 
+export function getLibraryItemsSortToJSON(
+  getLibraryItemsSort: GetLibraryItemsSort,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsSort$outboundSchema.parse(getLibraryItemsSort),
+  );
+}
+
+export function getLibraryItemsSortFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsSort, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsSort$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsSort' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsField$inboundSchema: z.ZodType<
   GetLibraryItemsField,
@@ -1137,6 +1197,24 @@ export namespace GetLibraryItemsField$ {
   export const outboundSchema = GetLibraryItemsField$outboundSchema;
   /** @deprecated use `GetLibraryItemsField$Outbound` instead. */
   export type Outbound = GetLibraryItemsField$Outbound;
+}
+
+export function getLibraryItemsFieldToJSON(
+  getLibraryItemsField: GetLibraryItemsField,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsField$outboundSchema.parse(getLibraryItemsField),
+  );
+}
+
+export function getLibraryItemsFieldFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsField, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsField$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsField' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1206,6 +1284,24 @@ export namespace GetLibraryItemsType$ {
   export type Outbound = GetLibraryItemsType$Outbound;
 }
 
+export function getLibraryItemsTypeToJSON(
+  getLibraryItemsType: GetLibraryItemsType,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsType$outboundSchema.parse(getLibraryItemsType),
+  );
+}
+
+export function getLibraryItemsTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsType' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsOperator$inboundSchema: z.ZodType<
   GetLibraryItemsOperator,
@@ -1243,6 +1339,24 @@ export namespace GetLibraryItemsOperator$ {
   export const outboundSchema = GetLibraryItemsOperator$outboundSchema;
   /** @deprecated use `GetLibraryItemsOperator$Outbound` instead. */
   export type Outbound = GetLibraryItemsOperator$Outbound;
+}
+
+export function getLibraryItemsOperatorToJSON(
+  getLibraryItemsOperator: GetLibraryItemsOperator,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsOperator$outboundSchema.parse(getLibraryItemsOperator),
+  );
+}
+
+export function getLibraryItemsOperatorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsOperator, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsOperator$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsOperator' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1290,6 +1404,24 @@ export namespace GetLibraryItemsFieldType$ {
   export const outboundSchema = GetLibraryItemsFieldType$outboundSchema;
   /** @deprecated use `GetLibraryItemsFieldType$Outbound` instead. */
   export type Outbound = GetLibraryItemsFieldType$Outbound;
+}
+
+export function getLibraryItemsFieldTypeToJSON(
+  getLibraryItemsFieldType: GetLibraryItemsFieldType,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsFieldType$outboundSchema.parse(getLibraryItemsFieldType),
+  );
+}
+
+export function getLibraryItemsFieldTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsFieldType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsFieldType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsFieldType' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1547,6 +1679,24 @@ export namespace GetLibraryItemsStream$ {
   export type Outbound = GetLibraryItemsStream$Outbound;
 }
 
+export function getLibraryItemsStreamToJSON(
+  getLibraryItemsStream: GetLibraryItemsStream,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsStream$outboundSchema.parse(getLibraryItemsStream),
+  );
+}
+
+export function getLibraryItemsStreamFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsStream, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsStream$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsStream' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsPart$inboundSchema: z.ZodType<
   GetLibraryItemsPart,
@@ -1630,6 +1780,24 @@ export namespace GetLibraryItemsPart$ {
   export const outboundSchema = GetLibraryItemsPart$outboundSchema;
   /** @deprecated use `GetLibraryItemsPart$Outbound` instead. */
   export type Outbound = GetLibraryItemsPart$Outbound;
+}
+
+export function getLibraryItemsPartToJSON(
+  getLibraryItemsPart: GetLibraryItemsPart,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsPart$outboundSchema.parse(getLibraryItemsPart),
+  );
+}
+
+export function getLibraryItemsPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsPart' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1728,6 +1896,24 @@ export namespace GetLibraryItemsMedia$ {
   export type Outbound = GetLibraryItemsMedia$Outbound;
 }
 
+export function getLibraryItemsMediaToJSON(
+  getLibraryItemsMedia: GetLibraryItemsMedia,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsMedia$outboundSchema.parse(getLibraryItemsMedia),
+  );
+}
+
+export function getLibraryItemsMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsGenre$inboundSchema: z.ZodType<
   GetLibraryItemsGenre,
@@ -1762,6 +1948,24 @@ export namespace GetLibraryItemsGenre$ {
   export const outboundSchema = GetLibraryItemsGenre$outboundSchema;
   /** @deprecated use `GetLibraryItemsGenre$Outbound` instead. */
   export type Outbound = GetLibraryItemsGenre$Outbound;
+}
+
+export function getLibraryItemsGenreToJSON(
+  getLibraryItemsGenre: GetLibraryItemsGenre,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsGenre$outboundSchema.parse(getLibraryItemsGenre),
+  );
+}
+
+export function getLibraryItemsGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsGenre' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1800,6 +2004,24 @@ export namespace GetLibraryItemsCountry$ {
   export type Outbound = GetLibraryItemsCountry$Outbound;
 }
 
+export function getLibraryItemsCountryToJSON(
+  getLibraryItemsCountry: GetLibraryItemsCountry,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsCountry$outboundSchema.parse(getLibraryItemsCountry),
+  );
+}
+
+export function getLibraryItemsCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsCountry' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsDirector$inboundSchema: z.ZodType<
   GetLibraryItemsDirector,
@@ -1834,6 +2056,24 @@ export namespace GetLibraryItemsDirector$ {
   export const outboundSchema = GetLibraryItemsDirector$outboundSchema;
   /** @deprecated use `GetLibraryItemsDirector$Outbound` instead. */
   export type Outbound = GetLibraryItemsDirector$Outbound;
+}
+
+export function getLibraryItemsDirectorToJSON(
+  getLibraryItemsDirector: GetLibraryItemsDirector,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsDirector$outboundSchema.parse(getLibraryItemsDirector),
+  );
+}
+
+export function getLibraryItemsDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsDirector' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1872,6 +2112,24 @@ export namespace GetLibraryItemsWriter$ {
   export type Outbound = GetLibraryItemsWriter$Outbound;
 }
 
+export function getLibraryItemsWriterToJSON(
+  getLibraryItemsWriter: GetLibraryItemsWriter,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsWriter$outboundSchema.parse(getLibraryItemsWriter),
+  );
+}
+
+export function getLibraryItemsWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsWriter' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsCollection$inboundSchema: z.ZodType<
   GetLibraryItemsCollection,
@@ -1906,6 +2164,24 @@ export namespace GetLibraryItemsCollection$ {
   export const outboundSchema = GetLibraryItemsCollection$outboundSchema;
   /** @deprecated use `GetLibraryItemsCollection$Outbound` instead. */
   export type Outbound = GetLibraryItemsCollection$Outbound;
+}
+
+export function getLibraryItemsCollectionToJSON(
+  getLibraryItemsCollection: GetLibraryItemsCollection,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsCollection$outboundSchema.parse(getLibraryItemsCollection),
+  );
+}
+
+export function getLibraryItemsCollectionFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsCollection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsCollection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsCollection' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1959,6 +2235,24 @@ export namespace GetLibraryItemsRole$ {
   export type Outbound = GetLibraryItemsRole$Outbound;
 }
 
+export function getLibraryItemsRoleToJSON(
+  getLibraryItemsRole: GetLibraryItemsRole,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsRole$outboundSchema.parse(getLibraryItemsRole),
+  );
+}
+
+export function getLibraryItemsRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsRole' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsLocation$inboundSchema: z.ZodType<
   GetLibraryItemsLocation,
@@ -1995,6 +2289,24 @@ export namespace GetLibraryItemsLocation$ {
   export type Outbound = GetLibraryItemsLocation$Outbound;
 }
 
+export function getLibraryItemsLocationToJSON(
+  getLibraryItemsLocation: GetLibraryItemsLocation,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsLocation$outboundSchema.parse(getLibraryItemsLocation),
+  );
+}
+
+export function getLibraryItemsLocationFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsLocation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsLocation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsLocation' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsMediaGuid$inboundSchema: z.ZodType<
   GetLibraryItemsMediaGuid,
@@ -2029,6 +2341,24 @@ export namespace GetLibraryItemsMediaGuid$ {
   export const outboundSchema = GetLibraryItemsMediaGuid$outboundSchema;
   /** @deprecated use `GetLibraryItemsMediaGuid$Outbound` instead. */
   export type Outbound = GetLibraryItemsMediaGuid$Outbound;
+}
+
+export function getLibraryItemsMediaGuidToJSON(
+  getLibraryItemsMediaGuid: GetLibraryItemsMediaGuid,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsMediaGuid$outboundSchema.parse(getLibraryItemsMediaGuid),
+  );
+}
+
+export function getLibraryItemsMediaGuidFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsMediaGuid, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsMediaGuid$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsMediaGuid' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2076,6 +2406,26 @@ export namespace GetLibraryItemsUltraBlurColors$ {
   export type Outbound = GetLibraryItemsUltraBlurColors$Outbound;
 }
 
+export function getLibraryItemsUltraBlurColorsToJSON(
+  getLibraryItemsUltraBlurColors: GetLibraryItemsUltraBlurColors,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsUltraBlurColors$outboundSchema.parse(
+      getLibraryItemsUltraBlurColors,
+    ),
+  );
+}
+
+export function getLibraryItemsUltraBlurColorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsUltraBlurColors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsUltraBlurColors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsUltraBlurColors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsMetaDataRating$inboundSchema: z.ZodType<
   GetLibraryItemsMetaDataRating,
@@ -2116,6 +2466,26 @@ export namespace GetLibraryItemsMetaDataRating$ {
   export const outboundSchema = GetLibraryItemsMetaDataRating$outboundSchema;
   /** @deprecated use `GetLibraryItemsMetaDataRating$Outbound` instead. */
   export type Outbound = GetLibraryItemsMetaDataRating$Outbound;
+}
+
+export function getLibraryItemsMetaDataRatingToJSON(
+  getLibraryItemsMetaDataRating: GetLibraryItemsMetaDataRating,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsMetaDataRating$outboundSchema.parse(
+      getLibraryItemsMetaDataRating,
+    ),
+  );
+}
+
+export function getLibraryItemsMetaDataRatingFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsMetaDataRating, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsMetaDataRating$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsMetaDataRating' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2182,6 +2552,24 @@ export namespace GetLibraryItemsImage$ {
   export const outboundSchema = GetLibraryItemsImage$outboundSchema;
   /** @deprecated use `GetLibraryItemsImage$Outbound` instead. */
   export type Outbound = GetLibraryItemsImage$Outbound;
+}
+
+export function getLibraryItemsImageToJSON(
+  getLibraryItemsImage: GetLibraryItemsImage,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsImage$outboundSchema.parse(getLibraryItemsImage),
+  );
+}
+
+export function getLibraryItemsImageFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsImage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsImage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsImage' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2490,6 +2878,24 @@ export namespace GetLibraryItemsMetadata$ {
   export type Outbound = GetLibraryItemsMetadata$Outbound;
 }
 
+export function getLibraryItemsMetadataToJSON(
+  getLibraryItemsMetadata: GetLibraryItemsMetadata,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsMetadata$outboundSchema.parse(getLibraryItemsMetadata),
+  );
+}
+
+export function getLibraryItemsMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsLibraryFilter$inboundSchema: z.ZodType<
   GetLibraryItemsLibraryFilter,
@@ -2536,6 +2942,26 @@ export namespace GetLibraryItemsLibraryFilter$ {
   export const outboundSchema = GetLibraryItemsLibraryFilter$outboundSchema;
   /** @deprecated use `GetLibraryItemsLibraryFilter$Outbound` instead. */
   export type Outbound = GetLibraryItemsLibraryFilter$Outbound;
+}
+
+export function getLibraryItemsLibraryFilterToJSON(
+  getLibraryItemsLibraryFilter: GetLibraryItemsLibraryFilter,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsLibraryFilter$outboundSchema.parse(
+      getLibraryItemsLibraryFilter,
+    ),
+  );
+}
+
+export function getLibraryItemsLibraryFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsLibraryFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsLibraryFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsLibraryFilter' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2649,6 +3075,24 @@ export namespace GetLibraryItemsLibrarySort$ {
   export type Outbound = GetLibraryItemsLibrarySort$Outbound;
 }
 
+export function getLibraryItemsLibrarySortToJSON(
+  getLibraryItemsLibrarySort: GetLibraryItemsLibrarySort,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsLibrarySort$outboundSchema.parse(getLibraryItemsLibrarySort),
+  );
+}
+
+export function getLibraryItemsLibrarySortFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsLibrarySort, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsLibrarySort$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsLibrarySort' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsLibraryField$inboundSchema: z.ZodType<
   GetLibraryItemsLibraryField,
@@ -2692,6 +3136,26 @@ export namespace GetLibraryItemsLibraryField$ {
   export const outboundSchema = GetLibraryItemsLibraryField$outboundSchema;
   /** @deprecated use `GetLibraryItemsLibraryField$Outbound` instead. */
   export type Outbound = GetLibraryItemsLibraryField$Outbound;
+}
+
+export function getLibraryItemsLibraryFieldToJSON(
+  getLibraryItemsLibraryField: GetLibraryItemsLibraryField,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsLibraryField$outboundSchema.parse(
+      getLibraryItemsLibraryField,
+    ),
+  );
+}
+
+export function getLibraryItemsLibraryFieldFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsLibraryField, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsLibraryField$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsLibraryField' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2767,6 +3231,27 @@ export namespace GetLibraryItemsLibraryResponseType$ {
   export type Outbound = GetLibraryItemsLibraryResponseType$Outbound;
 }
 
+export function getLibraryItemsLibraryResponseTypeToJSON(
+  getLibraryItemsLibraryResponseType: GetLibraryItemsLibraryResponseType,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsLibraryResponseType$outboundSchema.parse(
+      getLibraryItemsLibraryResponseType,
+    ),
+  );
+}
+
+export function getLibraryItemsLibraryResponseTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsLibraryResponseType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetLibraryItemsLibraryResponseType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsLibraryResponseType' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsLibraryOperator$inboundSchema: z.ZodType<
   GetLibraryItemsLibraryOperator,
@@ -2804,6 +3289,26 @@ export namespace GetLibraryItemsLibraryOperator$ {
   export const outboundSchema = GetLibraryItemsLibraryOperator$outboundSchema;
   /** @deprecated use `GetLibraryItemsLibraryOperator$Outbound` instead. */
   export type Outbound = GetLibraryItemsLibraryOperator$Outbound;
+}
+
+export function getLibraryItemsLibraryOperatorToJSON(
+  getLibraryItemsLibraryOperator: GetLibraryItemsLibraryOperator,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsLibraryOperator$outboundSchema.parse(
+      getLibraryItemsLibraryOperator,
+    ),
+  );
+}
+
+export function getLibraryItemsLibraryOperatorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsLibraryOperator, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsLibraryOperator$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsLibraryOperator' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2853,6 +3358,26 @@ export namespace GetLibraryItemsLibraryFieldType$ {
   export const outboundSchema = GetLibraryItemsLibraryFieldType$outboundSchema;
   /** @deprecated use `GetLibraryItemsLibraryFieldType$Outbound` instead. */
   export type Outbound = GetLibraryItemsLibraryFieldType$Outbound;
+}
+
+export function getLibraryItemsLibraryFieldTypeToJSON(
+  getLibraryItemsLibraryFieldType: GetLibraryItemsLibraryFieldType,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsLibraryFieldType$outboundSchema.parse(
+      getLibraryItemsLibraryFieldType,
+    ),
+  );
+}
+
+export function getLibraryItemsLibraryFieldTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsLibraryFieldType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsLibraryFieldType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsLibraryFieldType' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2908,6 +3433,24 @@ export namespace GetLibraryItemsMeta$ {
   export const outboundSchema = GetLibraryItemsMeta$outboundSchema;
   /** @deprecated use `GetLibraryItemsMeta$Outbound` instead. */
   export type Outbound = GetLibraryItemsMeta$Outbound;
+}
+
+export function getLibraryItemsMetaToJSON(
+  getLibraryItemsMeta: GetLibraryItemsMeta,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsMeta$outboundSchema.parse(getLibraryItemsMeta),
+  );
+}
+
+export function getLibraryItemsMetaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsMeta, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsMeta$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsMeta' from JSON`,
+  );
 }
 
 /** @internal */
@@ -3030,6 +3573,26 @@ export namespace GetLibraryItemsMediaContainer$ {
   export type Outbound = GetLibraryItemsMediaContainer$Outbound;
 }
 
+export function getLibraryItemsMediaContainerToJSON(
+  getLibraryItemsMediaContainer: GetLibraryItemsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsMediaContainer$outboundSchema.parse(
+      getLibraryItemsMediaContainer,
+    ),
+  );
+}
+
+export function getLibraryItemsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryItemsResponseBody$inboundSchema: z.ZodType<
   GetLibraryItemsResponseBody,
@@ -3074,6 +3637,26 @@ export namespace GetLibraryItemsResponseBody$ {
   export const outboundSchema = GetLibraryItemsResponseBody$outboundSchema;
   /** @deprecated use `GetLibraryItemsResponseBody$Outbound` instead. */
   export type Outbound = GetLibraryItemsResponseBody$Outbound;
+}
+
+export function getLibraryItemsResponseBodyToJSON(
+  getLibraryItemsResponseBody: GetLibraryItemsResponseBody,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsResponseBody$outboundSchema.parse(
+      getLibraryItemsResponseBody,
+    ),
+  );
+}
+
+export function getLibraryItemsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -3133,4 +3716,22 @@ export namespace GetLibraryItemsResponse$ {
   export const outboundSchema = GetLibraryItemsResponse$outboundSchema;
   /** @deprecated use `GetLibraryItemsResponse$Outbound` instead. */
   export type Outbound = GetLibraryItemsResponse$Outbound;
+}
+
+export function getLibraryItemsResponseToJSON(
+  getLibraryItemsResponse: GetLibraryItemsResponse,
+): string {
+  return JSON.stringify(
+    GetLibraryItemsResponse$outboundSchema.parse(getLibraryItemsResponse),
+  );
+}
+
+export function getLibraryItemsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryItemsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryItemsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryItemsResponse' from JSON`,
+  );
 }

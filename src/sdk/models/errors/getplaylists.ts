@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetPlaylistsPlaylistsErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetPlaylistsPlaylistsErrors$ {
   export type Outbound = GetPlaylistsPlaylistsErrors$Outbound;
 }
 
+export function getPlaylistsPlaylistsErrorsToJSON(
+  getPlaylistsPlaylistsErrors: GetPlaylistsPlaylistsErrors,
+): string {
+  return JSON.stringify(
+    GetPlaylistsPlaylistsErrors$outboundSchema.parse(
+      getPlaylistsPlaylistsErrors,
+    ),
+  );
+}
+
+export function getPlaylistsPlaylistsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistsPlaylistsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistsPlaylistsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistsPlaylistsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPlaylistsUnauthorized$inboundSchema: z.ZodType<
   GetPlaylistsUnauthorized,
@@ -233,6 +256,24 @@ export namespace GetPlaylistsErrors$ {
   export const outboundSchema = GetPlaylistsErrors$outboundSchema;
   /** @deprecated use `GetPlaylistsErrors$Outbound` instead. */
   export type Outbound = GetPlaylistsErrors$Outbound;
+}
+
+export function getPlaylistsErrorsToJSON(
+  getPlaylistsErrors: GetPlaylistsErrors,
+): string {
+  return JSON.stringify(
+    GetPlaylistsErrors$outboundSchema.parse(getPlaylistsErrors),
+  );
+}
+
+export function getPlaylistsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistsErrors' from JSON`,
+  );
 }
 
 /** @internal */

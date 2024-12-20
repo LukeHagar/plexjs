@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetRefreshLibraryMetadataLibraryErrors = {
   code?: number | undefined;
@@ -137,6 +140,28 @@ export namespace GetRefreshLibraryMetadataLibraryErrors$ {
   export type Outbound = GetRefreshLibraryMetadataLibraryErrors$Outbound;
 }
 
+export function getRefreshLibraryMetadataLibraryErrorsToJSON(
+  getRefreshLibraryMetadataLibraryErrors:
+    GetRefreshLibraryMetadataLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetRefreshLibraryMetadataLibraryErrors$outboundSchema.parse(
+      getRefreshLibraryMetadataLibraryErrors,
+    ),
+  );
+}
+
+export function getRefreshLibraryMetadataLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRefreshLibraryMetadataLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetRefreshLibraryMetadataLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRefreshLibraryMetadataLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRefreshLibraryMetadataUnauthorized$inboundSchema: z.ZodType<
   GetRefreshLibraryMetadataUnauthorized,
@@ -239,6 +264,26 @@ export namespace GetRefreshLibraryMetadataErrors$ {
   export const outboundSchema = GetRefreshLibraryMetadataErrors$outboundSchema;
   /** @deprecated use `GetRefreshLibraryMetadataErrors$Outbound` instead. */
   export type Outbound = GetRefreshLibraryMetadataErrors$Outbound;
+}
+
+export function getRefreshLibraryMetadataErrorsToJSON(
+  getRefreshLibraryMetadataErrors: GetRefreshLibraryMetadataErrors,
+): string {
+  return JSON.stringify(
+    GetRefreshLibraryMetadataErrors$outboundSchema.parse(
+      getRefreshLibraryMetadataErrors,
+    ),
+  );
+}
+
+export function getRefreshLibraryMetadataErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRefreshLibraryMetadataErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRefreshLibraryMetadataErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRefreshLibraryMetadataErrors' from JSON`,
+  );
 }
 
 /** @internal */

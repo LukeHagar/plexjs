@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetGlobalHubsHubsErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetGlobalHubsHubsErrors$ {
   export type Outbound = GetGlobalHubsHubsErrors$Outbound;
 }
 
+export function getGlobalHubsHubsErrorsToJSON(
+  getGlobalHubsHubsErrors: GetGlobalHubsHubsErrors,
+): string {
+  return JSON.stringify(
+    GetGlobalHubsHubsErrors$outboundSchema.parse(getGlobalHubsHubsErrors),
+  );
+}
+
+export function getGlobalHubsHubsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGlobalHubsHubsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGlobalHubsHubsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGlobalHubsHubsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetGlobalHubsUnauthorized$inboundSchema: z.ZodType<
   GetGlobalHubsUnauthorized,
@@ -233,6 +254,24 @@ export namespace GetGlobalHubsErrors$ {
   export const outboundSchema = GetGlobalHubsErrors$outboundSchema;
   /** @deprecated use `GetGlobalHubsErrors$Outbound` instead. */
   export type Outbound = GetGlobalHubsErrors$Outbound;
+}
+
+export function getGlobalHubsErrorsToJSON(
+  getGlobalHubsErrors: GetGlobalHubsErrors,
+): string {
+  return JSON.stringify(
+    GetGlobalHubsErrors$outboundSchema.parse(getGlobalHubsErrors),
+  );
+}
+
+export function getGlobalHubsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGlobalHubsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGlobalHubsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGlobalHubsErrors' from JSON`,
+  );
 }
 
 /** @internal */

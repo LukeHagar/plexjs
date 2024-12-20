@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetBannerImageRequest = {
   /**
@@ -99,6 +102,24 @@ export namespace GetBannerImageRequest$ {
   export type Outbound = GetBannerImageRequest$Outbound;
 }
 
+export function getBannerImageRequestToJSON(
+  getBannerImageRequest: GetBannerImageRequest,
+): string {
+  return JSON.stringify(
+    GetBannerImageRequest$outboundSchema.parse(getBannerImageRequest),
+  );
+}
+
+export function getBannerImageRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBannerImageRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBannerImageRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBannerImageRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetBannerImageResponse$inboundSchema: z.ZodType<
   GetBannerImageResponse,
@@ -163,4 +184,22 @@ export namespace GetBannerImageResponse$ {
   export const outboundSchema = GetBannerImageResponse$outboundSchema;
   /** @deprecated use `GetBannerImageResponse$Outbound` instead. */
   export type Outbound = GetBannerImageResponse$Outbound;
+}
+
+export function getBannerImageResponseToJSON(
+  getBannerImageResponse: GetBannerImageResponse,
+): string {
+  return JSON.stringify(
+    GetBannerImageResponse$outboundSchema.parse(getBannerImageResponse),
+  );
+}
+
+export function getBannerImageResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBannerImageResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBannerImageResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBannerImageResponse' from JSON`,
+  );
 }

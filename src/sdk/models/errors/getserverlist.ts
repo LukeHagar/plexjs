@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetServerListServerErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetServerListServerErrors$ {
   export type Outbound = GetServerListServerErrors$Outbound;
 }
 
+export function getServerListServerErrorsToJSON(
+  getServerListServerErrors: GetServerListServerErrors,
+): string {
+  return JSON.stringify(
+    GetServerListServerErrors$outboundSchema.parse(getServerListServerErrors),
+  );
+}
+
+export function getServerListServerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerListServerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerListServerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerListServerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerListUnauthorized$inboundSchema: z.ZodType<
   GetServerListUnauthorized,
@@ -233,6 +254,24 @@ export namespace GetServerListErrors$ {
   export const outboundSchema = GetServerListErrors$outboundSchema;
   /** @deprecated use `GetServerListErrors$Outbound` instead. */
   export type Outbound = GetServerListErrors$Outbound;
+}
+
+export function getServerListErrorsToJSON(
+  getServerListErrors: GetServerListErrors,
+): string {
+  return JSON.stringify(
+    GetServerListErrors$outboundSchema.parse(getServerListErrors),
+  );
+}
+
+export function getServerListErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerListErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerListErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerListErrors' from JSON`,
+  );
 }
 
 /** @internal */

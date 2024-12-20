@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type LogMultiLineLogErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace LogMultiLineLogErrors$ {
   export type Outbound = LogMultiLineLogErrors$Outbound;
 }
 
+export function logMultiLineLogErrorsToJSON(
+  logMultiLineLogErrors: LogMultiLineLogErrors,
+): string {
+  return JSON.stringify(
+    LogMultiLineLogErrors$outboundSchema.parse(logMultiLineLogErrors),
+  );
+}
+
+export function logMultiLineLogErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<LogMultiLineLogErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogMultiLineLogErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogMultiLineLogErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const LogMultiLineUnauthorized$inboundSchema: z.ZodType<
   LogMultiLineUnauthorized,
@@ -232,6 +253,24 @@ export namespace LogMultiLineErrors$ {
   export const outboundSchema = LogMultiLineErrors$outboundSchema;
   /** @deprecated use `LogMultiLineErrors$Outbound` instead. */
   export type Outbound = LogMultiLineErrors$Outbound;
+}
+
+export function logMultiLineErrorsToJSON(
+  logMultiLineErrors: LogMultiLineErrors,
+): string {
+  return JSON.stringify(
+    LogMultiLineErrors$outboundSchema.parse(logMultiLineErrors),
+  );
+}
+
+export function logMultiLineErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<LogMultiLineErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogMultiLineErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogMultiLineErrors' from JSON`,
+  );
 }
 
 /** @internal */

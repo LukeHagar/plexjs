@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetTokenByPinIdPlexErrors = {
   code?: number | undefined;
@@ -131,6 +134,24 @@ export namespace GetTokenByPinIdPlexErrors$ {
   export type Outbound = GetTokenByPinIdPlexErrors$Outbound;
 }
 
+export function getTokenByPinIdPlexErrorsToJSON(
+  getTokenByPinIdPlexErrors: GetTokenByPinIdPlexErrors,
+): string {
+  return JSON.stringify(
+    GetTokenByPinIdPlexErrors$outboundSchema.parse(getTokenByPinIdPlexErrors),
+  );
+}
+
+export function getTokenByPinIdPlexErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenByPinIdPlexErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenByPinIdPlexErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenByPinIdPlexErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTokenByPinIdResponseBody$inboundSchema: z.ZodType<
   GetTokenByPinIdResponseBody,
@@ -229,6 +250,24 @@ export namespace GetTokenByPinIdErrors$ {
   export const outboundSchema = GetTokenByPinIdErrors$outboundSchema;
   /** @deprecated use `GetTokenByPinIdErrors$Outbound` instead. */
   export type Outbound = GetTokenByPinIdErrors$Outbound;
+}
+
+export function getTokenByPinIdErrorsToJSON(
+  getTokenByPinIdErrors: GetTokenByPinIdErrors,
+): string {
+  return JSON.stringify(
+    GetTokenByPinIdErrors$outboundSchema.parse(getTokenByPinIdErrors),
+  );
+}
+
+export function getTokenByPinIdErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenByPinIdErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenByPinIdErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenByPinIdErrors' from JSON`,
+  );
 }
 
 /** @internal */

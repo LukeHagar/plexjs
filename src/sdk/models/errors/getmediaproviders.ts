@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetMediaProvidersServerErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetMediaProvidersServerErrors$ {
   export type Outbound = GetMediaProvidersServerErrors$Outbound;
 }
 
+export function getMediaProvidersServerErrorsToJSON(
+  getMediaProvidersServerErrors: GetMediaProvidersServerErrors,
+): string {
+  return JSON.stringify(
+    GetMediaProvidersServerErrors$outboundSchema.parse(
+      getMediaProvidersServerErrors,
+    ),
+  );
+}
+
+export function getMediaProvidersServerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaProvidersServerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaProvidersServerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaProvidersServerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMediaProvidersUnauthorized$inboundSchema: z.ZodType<
   GetMediaProvidersUnauthorized,
@@ -234,6 +257,24 @@ export namespace GetMediaProvidersErrors$ {
   export const outboundSchema = GetMediaProvidersErrors$outboundSchema;
   /** @deprecated use `GetMediaProvidersErrors$Outbound` instead. */
   export type Outbound = GetMediaProvidersErrors$Outbound;
+}
+
+export function getMediaProvidersErrorsToJSON(
+  getMediaProvidersErrors: GetMediaProvidersErrors,
+): string {
+  return JSON.stringify(
+    GetMediaProvidersErrors$outboundSchema.parse(getMediaProvidersErrors),
+  );
+}
+
+export function getMediaProvidersErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaProvidersErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaProvidersErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaProvidersErrors' from JSON`,
+  );
 }
 
 /** @internal */

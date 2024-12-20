@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Release = {
   key?: string | undefined;
@@ -97,6 +100,20 @@ export namespace Release$ {
   export type Outbound = Release$Outbound;
 }
 
+export function releaseToJSON(release: Release): string {
+  return JSON.stringify(Release$outboundSchema.parse(release));
+}
+
+export function releaseFromJSON(
+  jsonString: string,
+): SafeParseResult<Release, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Release$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Release' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetUpdateStatusMediaContainer$inboundSchema: z.ZodType<
   GetUpdateStatusMediaContainer,
@@ -156,6 +173,26 @@ export namespace GetUpdateStatusMediaContainer$ {
   export type Outbound = GetUpdateStatusMediaContainer$Outbound;
 }
 
+export function getUpdateStatusMediaContainerToJSON(
+  getUpdateStatusMediaContainer: GetUpdateStatusMediaContainer,
+): string {
+  return JSON.stringify(
+    GetUpdateStatusMediaContainer$outboundSchema.parse(
+      getUpdateStatusMediaContainer,
+    ),
+  );
+}
+
+export function getUpdateStatusMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUpdateStatusMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUpdateStatusMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUpdateStatusMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetUpdateStatusResponseBody$inboundSchema: z.ZodType<
   GetUpdateStatusResponseBody,
@@ -200,6 +237,26 @@ export namespace GetUpdateStatusResponseBody$ {
   export const outboundSchema = GetUpdateStatusResponseBody$outboundSchema;
   /** @deprecated use `GetUpdateStatusResponseBody$Outbound` instead. */
   export type Outbound = GetUpdateStatusResponseBody$Outbound;
+}
+
+export function getUpdateStatusResponseBodyToJSON(
+  getUpdateStatusResponseBody: GetUpdateStatusResponseBody,
+): string {
+  return JSON.stringify(
+    GetUpdateStatusResponseBody$outboundSchema.parse(
+      getUpdateStatusResponseBody,
+    ),
+  );
+}
+
+export function getUpdateStatusResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUpdateStatusResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUpdateStatusResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUpdateStatusResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -259,4 +316,22 @@ export namespace GetUpdateStatusResponse$ {
   export const outboundSchema = GetUpdateStatusResponse$outboundSchema;
   /** @deprecated use `GetUpdateStatusResponse$Outbound` instead. */
   export type Outbound = GetUpdateStatusResponse$Outbound;
+}
+
+export function getUpdateStatusResponseToJSON(
+  getUpdateStatusResponse: GetUpdateStatusResponse,
+): string {
+  return JSON.stringify(
+    GetUpdateStatusResponse$outboundSchema.parse(getUpdateStatusResponse),
+  );
+}
+
+export function getUpdateStatusResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUpdateStatusResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUpdateStatusResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUpdateStatusResponse' from JSON`,
+  );
 }

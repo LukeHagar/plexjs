@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type StartUniversalTranscodeVideoErrors = {
   code?: number | undefined;
@@ -136,6 +139,27 @@ export namespace StartUniversalTranscodeVideoErrors$ {
   export type Outbound = StartUniversalTranscodeVideoErrors$Outbound;
 }
 
+export function startUniversalTranscodeVideoErrorsToJSON(
+  startUniversalTranscodeVideoErrors: StartUniversalTranscodeVideoErrors,
+): string {
+  return JSON.stringify(
+    StartUniversalTranscodeVideoErrors$outboundSchema.parse(
+      startUniversalTranscodeVideoErrors,
+    ),
+  );
+}
+
+export function startUniversalTranscodeVideoErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<StartUniversalTranscodeVideoErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      StartUniversalTranscodeVideoErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartUniversalTranscodeVideoErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const StartUniversalTranscodeUnauthorized$inboundSchema: z.ZodType<
   StartUniversalTranscodeUnauthorized,
@@ -238,6 +262,26 @@ export namespace StartUniversalTranscodeErrors$ {
   export const outboundSchema = StartUniversalTranscodeErrors$outboundSchema;
   /** @deprecated use `StartUniversalTranscodeErrors$Outbound` instead. */
   export type Outbound = StartUniversalTranscodeErrors$Outbound;
+}
+
+export function startUniversalTranscodeErrorsToJSON(
+  startUniversalTranscodeErrors: StartUniversalTranscodeErrors,
+): string {
+  return JSON.stringify(
+    StartUniversalTranscodeErrors$outboundSchema.parse(
+      startUniversalTranscodeErrors,
+    ),
+  );
+}
+
+export function startUniversalTranscodeErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<StartUniversalTranscodeErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartUniversalTranscodeErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartUniversalTranscodeErrors' from JSON`,
+  );
 }
 
 /** @internal */

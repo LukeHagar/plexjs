@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Indicate that you want to start download any updates found.
@@ -90,6 +93,24 @@ export namespace CheckForUpdatesRequest$ {
   export type Outbound = CheckForUpdatesRequest$Outbound;
 }
 
+export function checkForUpdatesRequestToJSON(
+  checkForUpdatesRequest: CheckForUpdatesRequest,
+): string {
+  return JSON.stringify(
+    CheckForUpdatesRequest$outboundSchema.parse(checkForUpdatesRequest),
+  );
+}
+
+export function checkForUpdatesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CheckForUpdatesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CheckForUpdatesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckForUpdatesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CheckForUpdatesResponse$inboundSchema: z.ZodType<
   CheckForUpdatesResponse,
@@ -144,4 +165,22 @@ export namespace CheckForUpdatesResponse$ {
   export const outboundSchema = CheckForUpdatesResponse$outboundSchema;
   /** @deprecated use `CheckForUpdatesResponse$Outbound` instead. */
   export type Outbound = CheckForUpdatesResponse$Outbound;
+}
+
+export function checkForUpdatesResponseToJSON(
+  checkForUpdatesResponse: CheckForUpdatesResponse,
+): string {
+  return JSON.stringify(
+    CheckForUpdatesResponse$outboundSchema.parse(checkForUpdatesResponse),
+  );
+}
+
+export function checkForUpdatesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CheckForUpdatesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CheckForUpdatesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckForUpdatesResponse' from JSON`,
+  );
 }

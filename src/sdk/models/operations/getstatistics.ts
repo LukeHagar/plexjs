@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetStatisticsRequest = {
   /**
@@ -113,6 +116,24 @@ export namespace GetStatisticsRequest$ {
   export type Outbound = GetStatisticsRequest$Outbound;
 }
 
+export function getStatisticsRequestToJSON(
+  getStatisticsRequest: GetStatisticsRequest,
+): string {
+  return JSON.stringify(
+    GetStatisticsRequest$outboundSchema.parse(getStatisticsRequest),
+  );
+}
+
+export function getStatisticsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetStatisticsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetStatisticsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStatisticsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetStatisticsDevice$inboundSchema: z.ZodType<
   GetStatisticsDevice,
@@ -159,6 +180,24 @@ export namespace GetStatisticsDevice$ {
   export const outboundSchema = GetStatisticsDevice$outboundSchema;
   /** @deprecated use `GetStatisticsDevice$Outbound` instead. */
   export type Outbound = GetStatisticsDevice$Outbound;
+}
+
+export function getStatisticsDeviceToJSON(
+  getStatisticsDevice: GetStatisticsDevice,
+): string {
+  return JSON.stringify(
+    GetStatisticsDevice$outboundSchema.parse(getStatisticsDevice),
+  );
+}
+
+export function getStatisticsDeviceFromJSON(
+  jsonString: string,
+): SafeParseResult<GetStatisticsDevice, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetStatisticsDevice$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStatisticsDevice' from JSON`,
+  );
 }
 
 /** @internal */
@@ -215,6 +254,20 @@ export namespace Account$ {
   export type Outbound = Account$Outbound;
 }
 
+export function accountToJSON(account: Account): string {
+  return JSON.stringify(Account$outboundSchema.parse(account));
+}
+
+export function accountFromJSON(
+  jsonString: string,
+): SafeParseResult<Account, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Account$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Account' from JSON`,
+  );
+}
+
 /** @internal */
 export const StatisticsMedia$inboundSchema: z.ZodType<
   StatisticsMedia,
@@ -267,6 +320,22 @@ export namespace StatisticsMedia$ {
   export const outboundSchema = StatisticsMedia$outboundSchema;
   /** @deprecated use `StatisticsMedia$Outbound` instead. */
   export type Outbound = StatisticsMedia$Outbound;
+}
+
+export function statisticsMediaToJSON(
+  statisticsMedia: StatisticsMedia,
+): string {
+  return JSON.stringify(StatisticsMedia$outboundSchema.parse(statisticsMedia));
+}
+
+export function statisticsMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<StatisticsMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StatisticsMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StatisticsMedia' from JSON`,
+  );
 }
 
 /** @internal */
@@ -328,6 +397,26 @@ export namespace GetStatisticsMediaContainer$ {
   export type Outbound = GetStatisticsMediaContainer$Outbound;
 }
 
+export function getStatisticsMediaContainerToJSON(
+  getStatisticsMediaContainer: GetStatisticsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetStatisticsMediaContainer$outboundSchema.parse(
+      getStatisticsMediaContainer,
+    ),
+  );
+}
+
+export function getStatisticsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetStatisticsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetStatisticsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStatisticsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetStatisticsResponseBody$inboundSchema: z.ZodType<
   GetStatisticsResponseBody,
@@ -372,6 +461,24 @@ export namespace GetStatisticsResponseBody$ {
   export const outboundSchema = GetStatisticsResponseBody$outboundSchema;
   /** @deprecated use `GetStatisticsResponseBody$Outbound` instead. */
   export type Outbound = GetStatisticsResponseBody$Outbound;
+}
+
+export function getStatisticsResponseBodyToJSON(
+  getStatisticsResponseBody: GetStatisticsResponseBody,
+): string {
+  return JSON.stringify(
+    GetStatisticsResponseBody$outboundSchema.parse(getStatisticsResponseBody),
+  );
+}
+
+export function getStatisticsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetStatisticsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetStatisticsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStatisticsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -431,4 +538,22 @@ export namespace GetStatisticsResponse$ {
   export const outboundSchema = GetStatisticsResponse$outboundSchema;
   /** @deprecated use `GetStatisticsResponse$Outbound` instead. */
   export type Outbound = GetStatisticsResponse$Outbound;
+}
+
+export function getStatisticsResponseToJSON(
+  getStatisticsResponse: GetStatisticsResponse,
+): string {
+  return JSON.stringify(
+    GetStatisticsResponse$outboundSchema.parse(getStatisticsResponse),
+  );
+}
+
+export function getStatisticsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetStatisticsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetStatisticsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStatisticsResponse' from JSON`,
+  );
 }

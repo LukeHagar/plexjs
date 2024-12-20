@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Server = {
   name?: string | undefined;
@@ -113,6 +116,20 @@ export namespace Server$ {
   export type Outbound = Server$Outbound;
 }
 
+export function serverToJSON(server: Server): string {
+  return JSON.stringify(Server$outboundSchema.parse(server));
+}
+
+export function serverFromJSON(
+  jsonString: string,
+): SafeParseResult<Server, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Server$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Server' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAvailableClientsMediaContainer$inboundSchema: z.ZodType<
   GetAvailableClientsMediaContainer,
@@ -161,6 +178,26 @@ export namespace GetAvailableClientsMediaContainer$ {
   export type Outbound = GetAvailableClientsMediaContainer$Outbound;
 }
 
+export function getAvailableClientsMediaContainerToJSON(
+  getAvailableClientsMediaContainer: GetAvailableClientsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetAvailableClientsMediaContainer$outboundSchema.parse(
+      getAvailableClientsMediaContainer,
+    ),
+  );
+}
+
+export function getAvailableClientsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAvailableClientsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAvailableClientsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAvailableClientsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAvailableClientsResponseBody$inboundSchema: z.ZodType<
   GetAvailableClientsResponseBody,
@@ -205,6 +242,26 @@ export namespace GetAvailableClientsResponseBody$ {
   export const outboundSchema = GetAvailableClientsResponseBody$outboundSchema;
   /** @deprecated use `GetAvailableClientsResponseBody$Outbound` instead. */
   export type Outbound = GetAvailableClientsResponseBody$Outbound;
+}
+
+export function getAvailableClientsResponseBodyToJSON(
+  getAvailableClientsResponseBody: GetAvailableClientsResponseBody,
+): string {
+  return JSON.stringify(
+    GetAvailableClientsResponseBody$outboundSchema.parse(
+      getAvailableClientsResponseBody,
+    ),
+  );
+}
+
+export function getAvailableClientsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAvailableClientsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAvailableClientsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAvailableClientsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -266,4 +323,24 @@ export namespace GetAvailableClientsResponse$ {
   export const outboundSchema = GetAvailableClientsResponse$outboundSchema;
   /** @deprecated use `GetAvailableClientsResponse$Outbound` instead. */
   export type Outbound = GetAvailableClientsResponse$Outbound;
+}
+
+export function getAvailableClientsResponseToJSON(
+  getAvailableClientsResponse: GetAvailableClientsResponse,
+): string {
+  return JSON.stringify(
+    GetAvailableClientsResponse$outboundSchema.parse(
+      getAvailableClientsResponse,
+    ),
+  );
+}
+
+export function getAvailableClientsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAvailableClientsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAvailableClientsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAvailableClientsResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MarkUnplayedRequest = {
   /**
@@ -63,6 +66,24 @@ export namespace MarkUnplayedRequest$ {
   export type Outbound = MarkUnplayedRequest$Outbound;
 }
 
+export function markUnplayedRequestToJSON(
+  markUnplayedRequest: MarkUnplayedRequest,
+): string {
+  return JSON.stringify(
+    MarkUnplayedRequest$outboundSchema.parse(markUnplayedRequest),
+  );
+}
+
+export function markUnplayedRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<MarkUnplayedRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MarkUnplayedRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MarkUnplayedRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const MarkUnplayedResponse$inboundSchema: z.ZodType<
   MarkUnplayedResponse,
@@ -117,4 +138,22 @@ export namespace MarkUnplayedResponse$ {
   export const outboundSchema = MarkUnplayedResponse$outboundSchema;
   /** @deprecated use `MarkUnplayedResponse$Outbound` instead. */
   export type Outbound = MarkUnplayedResponse$Outbound;
+}
+
+export function markUnplayedResponseToJSON(
+  markUnplayedResponse: MarkUnplayedResponse,
+): string {
+  return JSON.stringify(
+    MarkUnplayedResponse$outboundSchema.parse(markUnplayedResponse),
+  );
+}
+
+export function markUnplayedResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<MarkUnplayedResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MarkUnplayedResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MarkUnplayedResponse' from JSON`,
+  );
 }

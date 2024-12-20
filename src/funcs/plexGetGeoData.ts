@@ -28,7 +28,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export async function plexGetGeoData(
   client: PlexAPICore,
-  options?: RequestOptions & { serverURL?: string },
+  options?: RequestOptions,
 ): Promise<
   Result<
     operations.GetGeoDataResponse,
@@ -55,7 +55,14 @@ export async function plexGetGeoData(
   const context = {
     operationID: "getGeoData",
     oAuth2Scopes: [],
+
+    resolvedSecurity: null,
+
     securitySource: null,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -73,9 +80,8 @@ export async function plexGetGeoData(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;

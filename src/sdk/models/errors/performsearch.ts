@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type PerformSearchSearchErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace PerformSearchSearchErrors$ {
   export type Outbound = PerformSearchSearchErrors$Outbound;
 }
 
+export function performSearchSearchErrorsToJSON(
+  performSearchSearchErrors: PerformSearchSearchErrors,
+): string {
+  return JSON.stringify(
+    PerformSearchSearchErrors$outboundSchema.parse(performSearchSearchErrors),
+  );
+}
+
+export function performSearchSearchErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<PerformSearchSearchErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PerformSearchSearchErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PerformSearchSearchErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const PerformSearchUnauthorized$inboundSchema: z.ZodType<
   PerformSearchUnauthorized,
@@ -233,6 +254,24 @@ export namespace PerformSearchErrors$ {
   export const outboundSchema = PerformSearchErrors$outboundSchema;
   /** @deprecated use `PerformSearchErrors$Outbound` instead. */
   export type Outbound = PerformSearchErrors$Outbound;
+}
+
+export function performSearchErrorsToJSON(
+  performSearchErrors: PerformSearchErrors,
+): string {
+  return JSON.stringify(
+    PerformSearchErrors$outboundSchema.parse(performSearchErrors),
+  );
+}
+
+export function performSearchErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<PerformSearchErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PerformSearchErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PerformSearchErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PerformSearchRequest = {
   /**
@@ -77,6 +80,24 @@ export namespace PerformSearchRequest$ {
   export type Outbound = PerformSearchRequest$Outbound;
 }
 
+export function performSearchRequestToJSON(
+  performSearchRequest: PerformSearchRequest,
+): string {
+  return JSON.stringify(
+    PerformSearchRequest$outboundSchema.parse(performSearchRequest),
+  );
+}
+
+export function performSearchRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PerformSearchRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PerformSearchRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PerformSearchRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const PerformSearchResponse$inboundSchema: z.ZodType<
   PerformSearchResponse,
@@ -131,4 +152,22 @@ export namespace PerformSearchResponse$ {
   export const outboundSchema = PerformSearchResponse$outboundSchema;
   /** @deprecated use `PerformSearchResponse$Outbound` instead. */
   export type Outbound = PerformSearchResponse$Outbound;
+}
+
+export function performSearchResponseToJSON(
+  performSearchResponse: PerformSearchResponse,
+): string {
+  return JSON.stringify(
+    PerformSearchResponse$outboundSchema.parse(performSearchResponse),
+  );
+}
+
+export function performSearchResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PerformSearchResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PerformSearchResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PerformSearchResponse' from JSON`,
+  );
 }

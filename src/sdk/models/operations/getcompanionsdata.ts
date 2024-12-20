@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const GetCompanionsDataServerList = [
   "https://plex.tv/api/v2",
@@ -91,6 +94,20 @@ export namespace ResponseBody$ {
   export type Outbound = ResponseBody$Outbound;
 }
 
+export function responseBodyToJSON(responseBody: ResponseBody): string {
+  return JSON.stringify(ResponseBody$outboundSchema.parse(responseBody));
+}
+
+export function responseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<ResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseBody' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetCompanionsDataResponse$inboundSchema: z.ZodType<
   GetCompanionsDataResponse,
@@ -148,4 +165,22 @@ export namespace GetCompanionsDataResponse$ {
   export const outboundSchema = GetCompanionsDataResponse$outboundSchema;
   /** @deprecated use `GetCompanionsDataResponse$Outbound` instead. */
   export type Outbound = GetCompanionsDataResponse$Outbound;
+}
+
+export function getCompanionsDataResponseToJSON(
+  getCompanionsDataResponse: GetCompanionsDataResponse,
+): string {
+  return JSON.stringify(
+    GetCompanionsDataResponse$outboundSchema.parse(getCompanionsDataResponse),
+  );
+}
+
+export function getCompanionsDataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCompanionsDataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCompanionsDataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCompanionsDataResponse' from JSON`,
+  );
 }

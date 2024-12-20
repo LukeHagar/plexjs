@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetServerResourcesPlexErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetServerResourcesPlexErrors$ {
   export type Outbound = GetServerResourcesPlexErrors$Outbound;
 }
 
+export function getServerResourcesPlexErrorsToJSON(
+  getServerResourcesPlexErrors: GetServerResourcesPlexErrors,
+): string {
+  return JSON.stringify(
+    GetServerResourcesPlexErrors$outboundSchema.parse(
+      getServerResourcesPlexErrors,
+    ),
+  );
+}
+
+export function getServerResourcesPlexErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerResourcesPlexErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerResourcesPlexErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerResourcesPlexErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerResourcesUnauthorized$inboundSchema: z.ZodType<
   GetServerResourcesUnauthorized,
@@ -233,6 +256,24 @@ export namespace GetServerResourcesErrors$ {
   export const outboundSchema = GetServerResourcesErrors$outboundSchema;
   /** @deprecated use `GetServerResourcesErrors$Outbound` instead. */
   export type Outbound = GetServerResourcesErrors$Outbound;
+}
+
+export function getServerResourcesErrorsToJSON(
+  getServerResourcesErrors: GetServerResourcesErrors,
+): string {
+  return JSON.stringify(
+    GetServerResourcesErrors$outboundSchema.parse(getServerResourcesErrors),
+  );
+}
+
+export function getServerResourcesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerResourcesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerResourcesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerResourcesErrors' from JSON`,
+  );
 }
 
 /** @internal */

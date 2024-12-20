@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetMediaProvidersRequest = {
   /**
@@ -178,6 +181,24 @@ export namespace GetMediaProvidersRequest$ {
   export type Outbound = GetMediaProvidersRequest$Outbound;
 }
 
+export function getMediaProvidersRequestToJSON(
+  getMediaProvidersRequest: GetMediaProvidersRequest,
+): string {
+  return JSON.stringify(
+    GetMediaProvidersRequest$outboundSchema.parse(getMediaProvidersRequest),
+  );
+}
+
+export function getMediaProvidersRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaProvidersRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaProvidersRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaProvidersRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const Pivot$inboundSchema: z.ZodType<Pivot, z.ZodTypeDef, unknown> = z
   .object({
@@ -224,6 +245,20 @@ export namespace Pivot$ {
   export const outboundSchema = Pivot$outboundSchema;
   /** @deprecated use `Pivot$Outbound` instead. */
   export type Outbound = Pivot$Outbound;
+}
+
+export function pivotToJSON(pivot: Pivot): string {
+  return JSON.stringify(Pivot$outboundSchema.parse(pivot));
+}
+
+export function pivotFromJSON(
+  jsonString: string,
+): SafeParseResult<Pivot, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Pivot$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Pivot' from JSON`,
+  );
 }
 
 /** @internal */
@@ -309,6 +344,24 @@ export namespace GetMediaProvidersDirectory$ {
   export type Outbound = GetMediaProvidersDirectory$Outbound;
 }
 
+export function getMediaProvidersDirectoryToJSON(
+  getMediaProvidersDirectory: GetMediaProvidersDirectory,
+): string {
+  return JSON.stringify(
+    GetMediaProvidersDirectory$outboundSchema.parse(getMediaProvidersDirectory),
+  );
+}
+
+export function getMediaProvidersDirectoryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaProvidersDirectory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaProvidersDirectory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaProvidersDirectory' from JSON`,
+  );
+}
+
 /** @internal */
 export const Action$inboundSchema: z.ZodType<Action, z.ZodTypeDef, unknown> = z
   .object({
@@ -343,6 +396,20 @@ export namespace Action$ {
   export const outboundSchema = Action$outboundSchema;
   /** @deprecated use `Action$Outbound` instead. */
   export type Outbound = Action$Outbound;
+}
+
+export function actionToJSON(action: Action): string {
+  return JSON.stringify(Action$outboundSchema.parse(action));
+}
+
+export function actionFromJSON(
+  jsonString: string,
+): SafeParseResult<Action, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Action$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Action' from JSON`,
+  );
 }
 
 /** @internal */
@@ -408,6 +475,20 @@ export namespace Feature$ {
   export type Outbound = Feature$Outbound;
 }
 
+export function featureToJSON(feature: Feature): string {
+  return JSON.stringify(Feature$outboundSchema.parse(feature));
+}
+
+export function featureFromJSON(
+  jsonString: string,
+): SafeParseResult<Feature, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Feature$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Feature' from JSON`,
+  );
+}
+
 /** @internal */
 export const MediaProvider$inboundSchema: z.ZodType<
   MediaProvider,
@@ -462,6 +543,20 @@ export namespace MediaProvider$ {
   export const outboundSchema = MediaProvider$outboundSchema;
   /** @deprecated use `MediaProvider$Outbound` instead. */
   export type Outbound = MediaProvider$Outbound;
+}
+
+export function mediaProviderToJSON(mediaProvider: MediaProvider): string {
+  return JSON.stringify(MediaProvider$outboundSchema.parse(mediaProvider));
+}
+
+export function mediaProviderFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaProvider, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MediaProvider$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaProvider' from JSON`,
+  );
 }
 
 /** @internal */
@@ -637,6 +732,26 @@ export namespace GetMediaProvidersMediaContainer$ {
   export type Outbound = GetMediaProvidersMediaContainer$Outbound;
 }
 
+export function getMediaProvidersMediaContainerToJSON(
+  getMediaProvidersMediaContainer: GetMediaProvidersMediaContainer,
+): string {
+  return JSON.stringify(
+    GetMediaProvidersMediaContainer$outboundSchema.parse(
+      getMediaProvidersMediaContainer,
+    ),
+  );
+}
+
+export function getMediaProvidersMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaProvidersMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaProvidersMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaProvidersMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMediaProvidersResponseBody$inboundSchema: z.ZodType<
   GetMediaProvidersResponseBody,
@@ -681,6 +796,26 @@ export namespace GetMediaProvidersResponseBody$ {
   export const outboundSchema = GetMediaProvidersResponseBody$outboundSchema;
   /** @deprecated use `GetMediaProvidersResponseBody$Outbound` instead. */
   export type Outbound = GetMediaProvidersResponseBody$Outbound;
+}
+
+export function getMediaProvidersResponseBodyToJSON(
+  getMediaProvidersResponseBody: GetMediaProvidersResponseBody,
+): string {
+  return JSON.stringify(
+    GetMediaProvidersResponseBody$outboundSchema.parse(
+      getMediaProvidersResponseBody,
+    ),
+  );
+}
+
+export function getMediaProvidersResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaProvidersResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaProvidersResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaProvidersResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -740,4 +875,22 @@ export namespace GetMediaProvidersResponse$ {
   export const outboundSchema = GetMediaProvidersResponse$outboundSchema;
   /** @deprecated use `GetMediaProvidersResponse$Outbound` instead. */
   export type Outbound = GetMediaProvidersResponse$Outbound;
+}
+
+export function getMediaProvidersResponseToJSON(
+  getMediaProvidersResponse: GetMediaProvidersResponse,
+): string {
+  return JSON.stringify(
+    GetMediaProvidersResponse$outboundSchema.parse(getMediaProvidersResponse),
+  );
+}
+
+export function getMediaProvidersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaProvidersResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaProvidersResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaProvidersResponse' from JSON`,
+  );
 }

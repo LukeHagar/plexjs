@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetBandwidthStatisticsRequest = {
   /**
@@ -112,6 +115,26 @@ export namespace GetBandwidthStatisticsRequest$ {
   export type Outbound = GetBandwidthStatisticsRequest$Outbound;
 }
 
+export function getBandwidthStatisticsRequestToJSON(
+  getBandwidthStatisticsRequest: GetBandwidthStatisticsRequest,
+): string {
+  return JSON.stringify(
+    GetBandwidthStatisticsRequest$outboundSchema.parse(
+      getBandwidthStatisticsRequest,
+    ),
+  );
+}
+
+export function getBandwidthStatisticsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBandwidthStatisticsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBandwidthStatisticsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBandwidthStatisticsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetBandwidthStatisticsDevice$inboundSchema: z.ZodType<
   GetBandwidthStatisticsDevice,
@@ -158,6 +181,26 @@ export namespace GetBandwidthStatisticsDevice$ {
   export const outboundSchema = GetBandwidthStatisticsDevice$outboundSchema;
   /** @deprecated use `GetBandwidthStatisticsDevice$Outbound` instead. */
   export type Outbound = GetBandwidthStatisticsDevice$Outbound;
+}
+
+export function getBandwidthStatisticsDeviceToJSON(
+  getBandwidthStatisticsDevice: GetBandwidthStatisticsDevice,
+): string {
+  return JSON.stringify(
+    GetBandwidthStatisticsDevice$outboundSchema.parse(
+      getBandwidthStatisticsDevice,
+    ),
+  );
+}
+
+export function getBandwidthStatisticsDeviceFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBandwidthStatisticsDevice, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBandwidthStatisticsDevice$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBandwidthStatisticsDevice' from JSON`,
+  );
 }
 
 /** @internal */
@@ -217,6 +260,26 @@ export namespace GetBandwidthStatisticsAccount$ {
   export type Outbound = GetBandwidthStatisticsAccount$Outbound;
 }
 
+export function getBandwidthStatisticsAccountToJSON(
+  getBandwidthStatisticsAccount: GetBandwidthStatisticsAccount,
+): string {
+  return JSON.stringify(
+    GetBandwidthStatisticsAccount$outboundSchema.parse(
+      getBandwidthStatisticsAccount,
+    ),
+  );
+}
+
+export function getBandwidthStatisticsAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBandwidthStatisticsAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBandwidthStatisticsAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBandwidthStatisticsAccount' from JSON`,
+  );
+}
+
 /** @internal */
 export const StatisticsBandwidth$inboundSchema: z.ZodType<
   StatisticsBandwidth,
@@ -266,6 +329,24 @@ export namespace StatisticsBandwidth$ {
   export const outboundSchema = StatisticsBandwidth$outboundSchema;
   /** @deprecated use `StatisticsBandwidth$Outbound` instead. */
   export type Outbound = StatisticsBandwidth$Outbound;
+}
+
+export function statisticsBandwidthToJSON(
+  statisticsBandwidth: StatisticsBandwidth,
+): string {
+  return JSON.stringify(
+    StatisticsBandwidth$outboundSchema.parse(statisticsBandwidth),
+  );
+}
+
+export function statisticsBandwidthFromJSON(
+  jsonString: string,
+): SafeParseResult<StatisticsBandwidth, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StatisticsBandwidth$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StatisticsBandwidth' from JSON`,
+  );
 }
 
 /** @internal */
@@ -333,6 +414,27 @@ export namespace GetBandwidthStatisticsMediaContainer$ {
   export type Outbound = GetBandwidthStatisticsMediaContainer$Outbound;
 }
 
+export function getBandwidthStatisticsMediaContainerToJSON(
+  getBandwidthStatisticsMediaContainer: GetBandwidthStatisticsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetBandwidthStatisticsMediaContainer$outboundSchema.parse(
+      getBandwidthStatisticsMediaContainer,
+    ),
+  );
+}
+
+export function getBandwidthStatisticsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBandwidthStatisticsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetBandwidthStatisticsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBandwidthStatisticsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetBandwidthStatisticsResponseBody$inboundSchema: z.ZodType<
   GetBandwidthStatisticsResponseBody,
@@ -380,6 +482,27 @@ export namespace GetBandwidthStatisticsResponseBody$ {
     GetBandwidthStatisticsResponseBody$outboundSchema;
   /** @deprecated use `GetBandwidthStatisticsResponseBody$Outbound` instead. */
   export type Outbound = GetBandwidthStatisticsResponseBody$Outbound;
+}
+
+export function getBandwidthStatisticsResponseBodyToJSON(
+  getBandwidthStatisticsResponseBody: GetBandwidthStatisticsResponseBody,
+): string {
+  return JSON.stringify(
+    GetBandwidthStatisticsResponseBody$outboundSchema.parse(
+      getBandwidthStatisticsResponseBody,
+    ),
+  );
+}
+
+export function getBandwidthStatisticsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBandwidthStatisticsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetBandwidthStatisticsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBandwidthStatisticsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -441,4 +564,24 @@ export namespace GetBandwidthStatisticsResponse$ {
   export const outboundSchema = GetBandwidthStatisticsResponse$outboundSchema;
   /** @deprecated use `GetBandwidthStatisticsResponse$Outbound` instead. */
   export type Outbound = GetBandwidthStatisticsResponse$Outbound;
+}
+
+export function getBandwidthStatisticsResponseToJSON(
+  getBandwidthStatisticsResponse: GetBandwidthStatisticsResponse,
+): string {
+  return JSON.stringify(
+    GetBandwidthStatisticsResponse$outboundSchema.parse(
+      getBandwidthStatisticsResponse,
+    ),
+  );
+}
+
+export function getBandwidthStatisticsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBandwidthStatisticsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBandwidthStatisticsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBandwidthStatisticsResponse' from JSON`,
+  );
 }

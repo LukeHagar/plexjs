@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetTimelineVideoErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetTimelineVideoErrors$ {
   export type Outbound = GetTimelineVideoErrors$Outbound;
 }
 
+export function getTimelineVideoErrorsToJSON(
+  getTimelineVideoErrors: GetTimelineVideoErrors,
+): string {
+  return JSON.stringify(
+    GetTimelineVideoErrors$outboundSchema.parse(getTimelineVideoErrors),
+  );
+}
+
+export function getTimelineVideoErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTimelineVideoErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTimelineVideoErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTimelineVideoErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTimelineUnauthorized$inboundSchema: z.ZodType<
   GetTimelineUnauthorized,
@@ -233,6 +254,24 @@ export namespace GetTimelineErrors$ {
   export const outboundSchema = GetTimelineErrors$outboundSchema;
   /** @deprecated use `GetTimelineErrors$Outbound` instead. */
   export type Outbound = GetTimelineErrors$Outbound;
+}
+
+export function getTimelineErrorsToJSON(
+  getTimelineErrors: GetTimelineErrors,
+): string {
+  return JSON.stringify(
+    GetTimelineErrors$outboundSchema.parse(getTimelineErrors),
+  );
+}
+
+export function getTimelineErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTimelineErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTimelineErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTimelineErrors' from JSON`,
+  );
 }
 
 /** @internal */

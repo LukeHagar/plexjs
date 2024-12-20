@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Device = {
   id?: number | undefined;
@@ -90,6 +93,20 @@ export namespace Device$ {
   export type Outbound = Device$Outbound;
 }
 
+export function deviceToJSON(device: Device): string {
+  return JSON.stringify(Device$outboundSchema.parse(device));
+}
+
+export function deviceFromJSON(
+  jsonString: string,
+): SafeParseResult<Device, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Device$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Device' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetDevicesMediaContainer$inboundSchema: z.ZodType<
   GetDevicesMediaContainer,
@@ -140,6 +157,24 @@ export namespace GetDevicesMediaContainer$ {
   export type Outbound = GetDevicesMediaContainer$Outbound;
 }
 
+export function getDevicesMediaContainerToJSON(
+  getDevicesMediaContainer: GetDevicesMediaContainer,
+): string {
+  return JSON.stringify(
+    GetDevicesMediaContainer$outboundSchema.parse(getDevicesMediaContainer),
+  );
+}
+
+export function getDevicesMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDevicesMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDevicesMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDevicesMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetDevicesResponseBody$inboundSchema: z.ZodType<
   GetDevicesResponseBody,
@@ -184,6 +219,24 @@ export namespace GetDevicesResponseBody$ {
   export const outboundSchema = GetDevicesResponseBody$outboundSchema;
   /** @deprecated use `GetDevicesResponseBody$Outbound` instead. */
   export type Outbound = GetDevicesResponseBody$Outbound;
+}
+
+export function getDevicesResponseBodyToJSON(
+  getDevicesResponseBody: GetDevicesResponseBody,
+): string {
+  return JSON.stringify(
+    GetDevicesResponseBody$outboundSchema.parse(getDevicesResponseBody),
+  );
+}
+
+export function getDevicesResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDevicesResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDevicesResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDevicesResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -243,4 +296,22 @@ export namespace GetDevicesResponse$ {
   export const outboundSchema = GetDevicesResponse$outboundSchema;
   /** @deprecated use `GetDevicesResponse$Outbound` instead. */
   export type Outbound = GetDevicesResponse$Outbound;
+}
+
+export function getDevicesResponseToJSON(
+  getDevicesResponse: GetDevicesResponse,
+): string {
+  return JSON.stringify(
+    GetDevicesResponse$outboundSchema.parse(getDevicesResponse),
+  );
+}
+
+export function getDevicesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDevicesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDevicesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDevicesResponse' from JSON`,
+  );
 }

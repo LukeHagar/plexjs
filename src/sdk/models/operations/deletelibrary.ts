@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteLibraryRequest = {
   /**
@@ -66,6 +69,24 @@ export namespace DeleteLibraryRequest$ {
   export type Outbound = DeleteLibraryRequest$Outbound;
 }
 
+export function deleteLibraryRequestToJSON(
+  deleteLibraryRequest: DeleteLibraryRequest,
+): string {
+  return JSON.stringify(
+    DeleteLibraryRequest$outboundSchema.parse(deleteLibraryRequest),
+  );
+}
+
+export function deleteLibraryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteLibraryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteLibraryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteLibraryRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteLibraryResponse$inboundSchema: z.ZodType<
   DeleteLibraryResponse,
@@ -120,4 +141,22 @@ export namespace DeleteLibraryResponse$ {
   export const outboundSchema = DeleteLibraryResponse$outboundSchema;
   /** @deprecated use `DeleteLibraryResponse$Outbound` instead. */
   export type Outbound = DeleteLibraryResponse$Outbound;
+}
+
+export function deleteLibraryResponseToJSON(
+  deleteLibraryResponse: DeleteLibraryResponse,
+): string {
+  return JSON.stringify(
+    DeleteLibraryResponse$outboundSchema.parse(deleteLibraryResponse),
+  );
+}
+
+export function deleteLibraryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteLibraryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteLibraryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteLibraryResponse' from JSON`,
+  );
 }

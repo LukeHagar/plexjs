@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The state of the media item
@@ -155,6 +158,24 @@ export namespace GetTimelineRequest$ {
   export type Outbound = GetTimelineRequest$Outbound;
 }
 
+export function getTimelineRequestToJSON(
+  getTimelineRequest: GetTimelineRequest,
+): string {
+  return JSON.stringify(
+    GetTimelineRequest$outboundSchema.parse(getTimelineRequest),
+  );
+}
+
+export function getTimelineRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTimelineRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTimelineRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTimelineRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTimelineResponse$inboundSchema: z.ZodType<
   GetTimelineResponse,
@@ -209,4 +230,22 @@ export namespace GetTimelineResponse$ {
   export const outboundSchema = GetTimelineResponse$outboundSchema;
   /** @deprecated use `GetTimelineResponse$Outbound` instead. */
   export type Outbound = GetTimelineResponse$Outbound;
+}
+
+export function getTimelineResponseToJSON(
+  getTimelineResponse: GetTimelineResponse,
+): string {
+  return JSON.stringify(
+    GetTimelineResponse$outboundSchema.parse(getTimelineResponse),
+  );
+}
+
+export function getTimelineResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTimelineResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTimelineResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTimelineResponse' from JSON`,
+  );
 }

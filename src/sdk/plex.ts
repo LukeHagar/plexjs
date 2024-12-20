@@ -21,7 +21,7 @@ export class Plex extends ClientSDK {
    * Get Companions Data
    */
   async getCompanionsData(
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.GetCompanionsDataResponse> {
     return unwrapAsync(plexGetCompanionsData(
       this,
@@ -36,7 +36,7 @@ export class Plex extends ClientSDK {
    * Get friends of provided auth token.
    */
   async getUserFriends(
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.GetUserFriendsResponse> {
     return unwrapAsync(plexGetUserFriends(
       this,
@@ -51,7 +51,7 @@ export class Plex extends ClientSDK {
    * Returns the geolocation and locale data of the caller
    */
   async getGeoData(
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.GetGeoDataResponse> {
     return unwrapAsync(plexGetGeoData(
       this,
@@ -81,18 +81,18 @@ export class Plex extends ClientSDK {
    * Get Plex server access tokens and server connections
    */
   async getServerResources(
+    clientID: string,
     includeHttps?: operations.IncludeHttps | undefined,
     includeRelay?: operations.IncludeRelay | undefined,
     includeIPv6?: operations.IncludeIPv6 | undefined,
-    clientID?: string | undefined,
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.GetServerResourcesResponse> {
     return unwrapAsync(plexGetServerResources(
       this,
+      clientID,
       includeHttps,
       includeRelay,
       includeIPv6,
-      clientID,
       options,
     ));
   }
@@ -105,7 +105,7 @@ export class Plex extends ClientSDK {
    */
   async getPin(
     request: operations.GetPinRequest,
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.GetPinResponse> {
     return unwrapAsync(plexGetPin(
       this,
@@ -122,7 +122,7 @@ export class Plex extends ClientSDK {
    */
   async getTokenByPinId(
     request: operations.GetTokenByPinIdRequest,
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.GetTokenByPinIdResponse> {
     return unwrapAsync(plexGetTokenByPinId(
       this,

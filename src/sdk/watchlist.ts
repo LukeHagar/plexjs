@@ -16,7 +16,7 @@ export class Watchlist extends ClientSDK {
    */
   async getWatchList(
     request: operations.GetWatchListRequest,
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.GetWatchListResponse> {
     return unwrapAsync(watchlistGetWatchList(
       this,

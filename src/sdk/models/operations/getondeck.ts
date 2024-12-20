@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetOnDeckStream = {
   id?: number | undefined;
@@ -242,6 +245,22 @@ export namespace GetOnDeckStream$ {
   export type Outbound = GetOnDeckStream$Outbound;
 }
 
+export function getOnDeckStreamToJSON(
+  getOnDeckStream: GetOnDeckStream,
+): string {
+  return JSON.stringify(GetOnDeckStream$outboundSchema.parse(getOnDeckStream));
+}
+
+export function getOnDeckStreamFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckStream, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckStream$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckStream' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetOnDeckPart$inboundSchema: z.ZodType<
   GetOnDeckPart,
@@ -308,6 +327,20 @@ export namespace GetOnDeckPart$ {
   export const outboundSchema = GetOnDeckPart$outboundSchema;
   /** @deprecated use `GetOnDeckPart$Outbound` instead. */
   export type Outbound = GetOnDeckPart$Outbound;
+}
+
+export function getOnDeckPartToJSON(getOnDeckPart: GetOnDeckPart): string {
+  return JSON.stringify(GetOnDeckPart$outboundSchema.parse(getOnDeckPart));
+}
+
+export function getOnDeckPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckPart' from JSON`,
+  );
 }
 
 /** @internal */
@@ -396,6 +429,20 @@ export namespace GetOnDeckMedia$ {
   export type Outbound = GetOnDeckMedia$Outbound;
 }
 
+export function getOnDeckMediaToJSON(getOnDeckMedia: GetOnDeckMedia): string {
+  return JSON.stringify(GetOnDeckMedia$outboundSchema.parse(getOnDeckMedia));
+}
+
+export function getOnDeckMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetOnDeckGuids$inboundSchema: z.ZodType<
   GetOnDeckGuids,
@@ -430,6 +477,20 @@ export namespace GetOnDeckGuids$ {
   export const outboundSchema = GetOnDeckGuids$outboundSchema;
   /** @deprecated use `GetOnDeckGuids$Outbound` instead. */
   export type Outbound = GetOnDeckGuids$Outbound;
+}
+
+export function getOnDeckGuidsToJSON(getOnDeckGuids: GetOnDeckGuids): string {
+  return JSON.stringify(GetOnDeckGuids$outboundSchema.parse(getOnDeckGuids));
+}
+
+export function getOnDeckGuidsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckGuids, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckGuids$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckGuids' from JSON`,
+  );
 }
 
 /** @internal */
@@ -585,6 +646,24 @@ export namespace GetOnDeckMetadata$ {
   export type Outbound = GetOnDeckMetadata$Outbound;
 }
 
+export function getOnDeckMetadataToJSON(
+  getOnDeckMetadata: GetOnDeckMetadata,
+): string {
+  return JSON.stringify(
+    GetOnDeckMetadata$outboundSchema.parse(getOnDeckMetadata),
+  );
+}
+
+export function getOnDeckMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetOnDeckMediaContainer$inboundSchema: z.ZodType<
   GetOnDeckMediaContainer,
@@ -647,6 +726,24 @@ export namespace GetOnDeckMediaContainer$ {
   export type Outbound = GetOnDeckMediaContainer$Outbound;
 }
 
+export function getOnDeckMediaContainerToJSON(
+  getOnDeckMediaContainer: GetOnDeckMediaContainer,
+): string {
+  return JSON.stringify(
+    GetOnDeckMediaContainer$outboundSchema.parse(getOnDeckMediaContainer),
+  );
+}
+
+export function getOnDeckMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetOnDeckResponseBody$inboundSchema: z.ZodType<
   GetOnDeckResponseBody,
@@ -691,6 +788,24 @@ export namespace GetOnDeckResponseBody$ {
   export const outboundSchema = GetOnDeckResponseBody$outboundSchema;
   /** @deprecated use `GetOnDeckResponseBody$Outbound` instead. */
   export type Outbound = GetOnDeckResponseBody$Outbound;
+}
+
+export function getOnDeckResponseBodyToJSON(
+  getOnDeckResponseBody: GetOnDeckResponseBody,
+): string {
+  return JSON.stringify(
+    GetOnDeckResponseBody$outboundSchema.parse(getOnDeckResponseBody),
+  );
+}
+
+export function getOnDeckResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -750,4 +865,22 @@ export namespace GetOnDeckResponse$ {
   export const outboundSchema = GetOnDeckResponse$outboundSchema;
   /** @deprecated use `GetOnDeckResponse$Outbound` instead. */
   export type Outbound = GetOnDeckResponse$Outbound;
+}
+
+export function getOnDeckResponseToJSON(
+  getOnDeckResponse: GetOnDeckResponse,
+): string {
+  return JSON.stringify(
+    GetOnDeckResponse$outboundSchema.parse(getOnDeckResponse),
+  );
+}
+
+export function getOnDeckResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckResponse' from JSON`,
+  );
 }

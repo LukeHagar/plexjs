@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetServerActivitiesActivitiesErrors = {
   code?: number | undefined;
@@ -137,6 +140,27 @@ export namespace GetServerActivitiesActivitiesErrors$ {
   export type Outbound = GetServerActivitiesActivitiesErrors$Outbound;
 }
 
+export function getServerActivitiesActivitiesErrorsToJSON(
+  getServerActivitiesActivitiesErrors: GetServerActivitiesActivitiesErrors,
+): string {
+  return JSON.stringify(
+    GetServerActivitiesActivitiesErrors$outboundSchema.parse(
+      getServerActivitiesActivitiesErrors,
+    ),
+  );
+}
+
+export function getServerActivitiesActivitiesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerActivitiesActivitiesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetServerActivitiesActivitiesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerActivitiesActivitiesErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerActivitiesUnauthorized$inboundSchema: z.ZodType<
   GetServerActivitiesUnauthorized,
@@ -237,6 +261,24 @@ export namespace GetServerActivitiesErrors$ {
   export const outboundSchema = GetServerActivitiesErrors$outboundSchema;
   /** @deprecated use `GetServerActivitiesErrors$Outbound` instead. */
   export type Outbound = GetServerActivitiesErrors$Outbound;
+}
+
+export function getServerActivitiesErrorsToJSON(
+  getServerActivitiesErrors: GetServerActivitiesErrors,
+): string {
+  return JSON.stringify(
+    GetServerActivitiesErrors$outboundSchema.parse(getServerActivitiesErrors),
+  );
+}
+
+export function getServerActivitiesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerActivitiesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerActivitiesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerActivitiesErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -12,7 +12,7 @@ import {
 } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsRequest = {
-  tag: Tag.FirstCharacter,
+  tag: Tag.Folder,
   includeGuids: IncludeGuids.Enable,
   type: GetLibraryItemsQueryParamType.TvShow,
   sectionKey: 9518,

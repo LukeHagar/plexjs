@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LogMultiLineResponse = {
   /**
@@ -74,4 +77,22 @@ export namespace LogMultiLineResponse$ {
   export const outboundSchema = LogMultiLineResponse$outboundSchema;
   /** @deprecated use `LogMultiLineResponse$Outbound` instead. */
   export type Outbound = LogMultiLineResponse$Outbound;
+}
+
+export function logMultiLineResponseToJSON(
+  logMultiLineResponse: LogMultiLineResponse,
+): string {
+  return JSON.stringify(
+    LogMultiLineResponse$outboundSchema.parse(logMultiLineResponse),
+  );
+}
+
+export function logMultiLineResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<LogMultiLineResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogMultiLineResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogMultiLineResponse' from JSON`,
+  );
 }

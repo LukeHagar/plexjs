@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of media to retrieve.
@@ -21,6 +24,8 @@ export enum QueryParamType {
   Season = 3,
   Episode = 4,
   Audio = 8,
+  Album = 9,
+  Track = 10,
 }
 
 /**
@@ -389,6 +394,26 @@ export namespace GetRecentlyAddedLibraryRequest$ {
   export type Outbound = GetRecentlyAddedLibraryRequest$Outbound;
 }
 
+export function getRecentlyAddedLibraryRequestToJSON(
+  getRecentlyAddedLibraryRequest: GetRecentlyAddedLibraryRequest,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryRequest$outboundSchema.parse(
+      getRecentlyAddedLibraryRequest,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedLibraryFilter$inboundSchema: z.ZodType<
   GetRecentlyAddedLibraryFilter,
@@ -435,6 +460,26 @@ export namespace GetRecentlyAddedLibraryFilter$ {
   export const outboundSchema = GetRecentlyAddedLibraryFilter$outboundSchema;
   /** @deprecated use `GetRecentlyAddedLibraryFilter$Outbound` instead. */
   export type Outbound = GetRecentlyAddedLibraryFilter$Outbound;
+}
+
+export function getRecentlyAddedLibraryFilterToJSON(
+  getRecentlyAddedLibraryFilter: GetRecentlyAddedLibraryFilter,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryFilter$outboundSchema.parse(
+      getRecentlyAddedLibraryFilter,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryFilter' from JSON`,
+  );
 }
 
 /** @internal */
@@ -538,6 +583,20 @@ export namespace Sort$ {
   export type Outbound = Sort$Outbound;
 }
 
+export function sortToJSON(sort: Sort): string {
+  return JSON.stringify(Sort$outboundSchema.parse(sort));
+}
+
+export function sortFromJSON(
+  jsonString: string,
+): SafeParseResult<Sort, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Sort$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Sort' from JSON`,
+  );
+}
+
 /** @internal */
 export const Field$inboundSchema: z.ZodType<Field, z.ZodTypeDef, unknown> = z
   .object({
@@ -578,6 +637,20 @@ export namespace Field$ {
   export const outboundSchema = Field$outboundSchema;
   /** @deprecated use `Field$Outbound` instead. */
   export type Outbound = Field$Outbound;
+}
+
+export function fieldToJSON(field: Field): string {
+  return JSON.stringify(Field$outboundSchema.parse(field));
+}
+
+export function fieldFromJSON(
+  jsonString: string,
+): SafeParseResult<Field, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Field$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Field' from JSON`,
+  );
 }
 
 /** @internal */
@@ -648,6 +721,26 @@ export namespace GetRecentlyAddedLibraryType$ {
   export type Outbound = GetRecentlyAddedLibraryType$Outbound;
 }
 
+export function getRecentlyAddedLibraryTypeToJSON(
+  getRecentlyAddedLibraryType: GetRecentlyAddedLibraryType,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryType$outboundSchema.parse(
+      getRecentlyAddedLibraryType,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryType' from JSON`,
+  );
+}
+
 /** @internal */
 export const Operator$inboundSchema: z.ZodType<
   Operator,
@@ -685,6 +778,20 @@ export namespace Operator$ {
   export const outboundSchema = Operator$outboundSchema;
   /** @deprecated use `Operator$Outbound` instead. */
   export type Outbound = Operator$Outbound;
+}
+
+export function operatorToJSON(operator: Operator): string {
+  return JSON.stringify(Operator$outboundSchema.parse(operator));
+}
+
+export function operatorFromJSON(
+  jsonString: string,
+): SafeParseResult<Operator, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Operator$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Operator' from JSON`,
+  );
 }
 
 /** @internal */
@@ -732,6 +839,20 @@ export namespace FieldType$ {
   export const outboundSchema = FieldType$outboundSchema;
   /** @deprecated use `FieldType$Outbound` instead. */
   export type Outbound = FieldType$Outbound;
+}
+
+export function fieldTypeToJSON(fieldType: FieldType): string {
+  return JSON.stringify(FieldType$outboundSchema.parse(fieldType));
+}
+
+export function fieldTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<FieldType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FieldType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FieldType' from JSON`,
+  );
 }
 
 /** @internal */
@@ -795,6 +916,26 @@ export namespace GetRecentlyAddedLibraryPart$ {
   export const outboundSchema = GetRecentlyAddedLibraryPart$outboundSchema;
   /** @deprecated use `GetRecentlyAddedLibraryPart$Outbound` instead. */
   export type Outbound = GetRecentlyAddedLibraryPart$Outbound;
+}
+
+export function getRecentlyAddedLibraryPartToJSON(
+  getRecentlyAddedLibraryPart: GetRecentlyAddedLibraryPart,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryPart$outboundSchema.parse(
+      getRecentlyAddedLibraryPart,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryPart' from JSON`,
+  );
 }
 
 /** @internal */
@@ -888,6 +1029,26 @@ export namespace GetRecentlyAddedLibraryMedia$ {
   export type Outbound = GetRecentlyAddedLibraryMedia$Outbound;
 }
 
+export function getRecentlyAddedLibraryMediaToJSON(
+  getRecentlyAddedLibraryMedia: GetRecentlyAddedLibraryMedia,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryMedia$outboundSchema.parse(
+      getRecentlyAddedLibraryMedia,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedLibraryGenre$inboundSchema: z.ZodType<
   GetRecentlyAddedLibraryGenre,
@@ -922,6 +1083,26 @@ export namespace GetRecentlyAddedLibraryGenre$ {
   export const outboundSchema = GetRecentlyAddedLibraryGenre$outboundSchema;
   /** @deprecated use `GetRecentlyAddedLibraryGenre$Outbound` instead. */
   export type Outbound = GetRecentlyAddedLibraryGenre$Outbound;
+}
+
+export function getRecentlyAddedLibraryGenreToJSON(
+  getRecentlyAddedLibraryGenre: GetRecentlyAddedLibraryGenre,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryGenre$outboundSchema.parse(
+      getRecentlyAddedLibraryGenre,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryGenre' from JSON`,
+  );
 }
 
 /** @internal */
@@ -960,6 +1141,26 @@ export namespace GetRecentlyAddedLibraryDirector$ {
   export type Outbound = GetRecentlyAddedLibraryDirector$Outbound;
 }
 
+export function getRecentlyAddedLibraryDirectorToJSON(
+  getRecentlyAddedLibraryDirector: GetRecentlyAddedLibraryDirector,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryDirector$outboundSchema.parse(
+      getRecentlyAddedLibraryDirector,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryDirector' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedLibraryWriter$inboundSchema: z.ZodType<
   GetRecentlyAddedLibraryWriter,
@@ -994,6 +1195,26 @@ export namespace GetRecentlyAddedLibraryWriter$ {
   export const outboundSchema = GetRecentlyAddedLibraryWriter$outboundSchema;
   /** @deprecated use `GetRecentlyAddedLibraryWriter$Outbound` instead. */
   export type Outbound = GetRecentlyAddedLibraryWriter$Outbound;
+}
+
+export function getRecentlyAddedLibraryWriterToJSON(
+  getRecentlyAddedLibraryWriter: GetRecentlyAddedLibraryWriter,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryWriter$outboundSchema.parse(
+      getRecentlyAddedLibraryWriter,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryWriter' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1032,6 +1253,26 @@ export namespace GetRecentlyAddedLibraryCountry$ {
   export type Outbound = GetRecentlyAddedLibraryCountry$Outbound;
 }
 
+export function getRecentlyAddedLibraryCountryToJSON(
+  getRecentlyAddedLibraryCountry: GetRecentlyAddedLibraryCountry,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryCountry$outboundSchema.parse(
+      getRecentlyAddedLibraryCountry,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryCountry' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedLibraryRole$inboundSchema: z.ZodType<
   GetRecentlyAddedLibraryRole,
@@ -1066,6 +1307,26 @@ export namespace GetRecentlyAddedLibraryRole$ {
   export const outboundSchema = GetRecentlyAddedLibraryRole$outboundSchema;
   /** @deprecated use `GetRecentlyAddedLibraryRole$Outbound` instead. */
   export type Outbound = GetRecentlyAddedLibraryRole$Outbound;
+}
+
+export function getRecentlyAddedLibraryRoleToJSON(
+  getRecentlyAddedLibraryRole: GetRecentlyAddedLibraryRole,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryRole$outboundSchema.parse(
+      getRecentlyAddedLibraryRole,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryRole' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1230,6 +1491,26 @@ export namespace GetRecentlyAddedLibraryMetadata$ {
   export type Outbound = GetRecentlyAddedLibraryMetadata$Outbound;
 }
 
+export function getRecentlyAddedLibraryMetadataToJSON(
+  getRecentlyAddedLibraryMetadata: GetRecentlyAddedLibraryMetadata,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryMetadata$outboundSchema.parse(
+      getRecentlyAddedLibraryMetadata,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedLibraryMediaContainer$inboundSchema: z.ZodType<
   GetRecentlyAddedLibraryMediaContainer,
@@ -1309,6 +1590,27 @@ export namespace GetRecentlyAddedLibraryMediaContainer$ {
   export type Outbound = GetRecentlyAddedLibraryMediaContainer$Outbound;
 }
 
+export function getRecentlyAddedLibraryMediaContainerToJSON(
+  getRecentlyAddedLibraryMediaContainer: GetRecentlyAddedLibraryMediaContainer,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryMediaContainer$outboundSchema.parse(
+      getRecentlyAddedLibraryMediaContainer,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetRecentlyAddedLibraryMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedLibraryResponseBody$inboundSchema: z.ZodType<
   GetRecentlyAddedLibraryResponseBody,
@@ -1357,6 +1659,27 @@ export namespace GetRecentlyAddedLibraryResponseBody$ {
     GetRecentlyAddedLibraryResponseBody$outboundSchema;
   /** @deprecated use `GetRecentlyAddedLibraryResponseBody$Outbound` instead. */
   export type Outbound = GetRecentlyAddedLibraryResponseBody$Outbound;
+}
+
+export function getRecentlyAddedLibraryResponseBodyToJSON(
+  getRecentlyAddedLibraryResponseBody: GetRecentlyAddedLibraryResponseBody,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryResponseBody$outboundSchema.parse(
+      getRecentlyAddedLibraryResponseBody,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetRecentlyAddedLibraryResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1418,4 +1741,24 @@ export namespace GetRecentlyAddedLibraryResponse$ {
   export const outboundSchema = GetRecentlyAddedLibraryResponse$outboundSchema;
   /** @deprecated use `GetRecentlyAddedLibraryResponse$Outbound` instead. */
   export type Outbound = GetRecentlyAddedLibraryResponse$Outbound;
+}
+
+export function getRecentlyAddedLibraryResponseToJSON(
+  getRecentlyAddedLibraryResponse: GetRecentlyAddedLibraryResponse,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryResponse$outboundSchema.parse(
+      getRecentlyAddedLibraryResponse,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryResponse' from JSON`,
+  );
 }

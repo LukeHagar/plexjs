@@ -36,11 +36,6 @@ import { CreatePlaylistQueryParamType, Smart } from "@lukehagar/plexjs/sdk/model
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -71,11 +66,6 @@ import { CreatePlaylistQueryParamType, Smart } from "@lukehagar/plexjs/sdk/model
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -131,11 +121,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -160,11 +145,6 @@ import { playlistsGetPlaylists } from "@lukehagar/plexjs/funcs/playlistsGetPlayl
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -218,11 +198,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -247,11 +222,6 @@ import { playlistsGetPlaylist } from "@lukehagar/plexjs/funcs/playlistsGetPlayli
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -303,11 +273,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -332,11 +297,6 @@ import { playlistsDeletePlaylist } from "@lukehagar/plexjs/funcs/playlistsDelete
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -388,11 +348,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -417,11 +372,6 @@ import { playlistsUpdatePlaylist } from "@lukehagar/plexjs/funcs/playlistsUpdate
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -479,11 +429,6 @@ import { GetPlaylistContentsQueryParamType } from "@lukehagar/plexjs/sdk/models/
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -509,11 +454,6 @@ import { GetPlaylistContentsQueryParamType } from "@lukehagar/plexjs/sdk/models/
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -566,11 +506,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -595,11 +530,6 @@ import { playlistsClearPlaylistContents } from "@lukehagar/plexjs/funcs/playlist
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -652,11 +582,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -681,11 +606,6 @@ import { playlistsAddPlaylistContents } from "@lukehagar/plexjs/funcs/playlistsA
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -740,11 +660,6 @@ import { QueryParamForce } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -770,11 +685,6 @@ import { QueryParamForce } from "@lukehagar/plexjs/sdk/models/operations";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {

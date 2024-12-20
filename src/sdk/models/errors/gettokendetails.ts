@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetTokenDetailsAuthenticationErrors = {
   code?: number | undefined;
@@ -137,6 +140,27 @@ export namespace GetTokenDetailsAuthenticationErrors$ {
   export type Outbound = GetTokenDetailsAuthenticationErrors$Outbound;
 }
 
+export function getTokenDetailsAuthenticationErrorsToJSON(
+  getTokenDetailsAuthenticationErrors: GetTokenDetailsAuthenticationErrors,
+): string {
+  return JSON.stringify(
+    GetTokenDetailsAuthenticationErrors$outboundSchema.parse(
+      getTokenDetailsAuthenticationErrors,
+    ),
+  );
+}
+
+export function getTokenDetailsAuthenticationErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenDetailsAuthenticationErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetTokenDetailsAuthenticationErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenDetailsAuthenticationErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTokenDetailsUnauthorized$inboundSchema: z.ZodType<
   GetTokenDetailsUnauthorized,
@@ -237,6 +261,24 @@ export namespace GetTokenDetailsErrors$ {
   export const outboundSchema = GetTokenDetailsErrors$outboundSchema;
   /** @deprecated use `GetTokenDetailsErrors$Outbound` instead. */
   export type Outbound = GetTokenDetailsErrors$Outbound;
+}
+
+export function getTokenDetailsErrorsToJSON(
+  getTokenDetailsErrors: GetTokenDetailsErrors,
+): string {
+  return JSON.stringify(
+    GetTokenDetailsErrors$outboundSchema.parse(getTokenDetailsErrors),
+  );
+}
+
+export function getTokenDetailsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenDetailsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenDetailsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenDetailsErrors' from JSON`,
+  );
 }
 
 /** @internal */

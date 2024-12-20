@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
@@ -233,6 +236,24 @@ export namespace GetLibraryHubsRequest$ {
   export type Outbound = GetLibraryHubsRequest$Outbound;
 }
 
+export function getLibraryHubsRequestToJSON(
+  getLibraryHubsRequest: GetLibraryHubsRequest,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsRequest$outboundSchema.parse(getLibraryHubsRequest),
+  );
+}
+
+export function getLibraryHubsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryHubsPart$inboundSchema: z.ZodType<
   GetLibraryHubsPart,
@@ -294,6 +315,24 @@ export namespace GetLibraryHubsPart$ {
   export const outboundSchema = GetLibraryHubsPart$outboundSchema;
   /** @deprecated use `GetLibraryHubsPart$Outbound` instead. */
   export type Outbound = GetLibraryHubsPart$Outbound;
+}
+
+export function getLibraryHubsPartToJSON(
+  getLibraryHubsPart: GetLibraryHubsPart,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsPart$outboundSchema.parse(getLibraryHubsPart),
+  );
+}
+
+export function getLibraryHubsPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsPart' from JSON`,
+  );
 }
 
 /** @internal */
@@ -388,6 +427,24 @@ export namespace GetLibraryHubsMedia$ {
   export type Outbound = GetLibraryHubsMedia$Outbound;
 }
 
+export function getLibraryHubsMediaToJSON(
+  getLibraryHubsMedia: GetLibraryHubsMedia,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsMedia$outboundSchema.parse(getLibraryHubsMedia),
+  );
+}
+
+export function getLibraryHubsMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryHubsGenre$inboundSchema: z.ZodType<
   GetLibraryHubsGenre,
@@ -422,6 +479,24 @@ export namespace GetLibraryHubsGenre$ {
   export const outboundSchema = GetLibraryHubsGenre$outboundSchema;
   /** @deprecated use `GetLibraryHubsGenre$Outbound` instead. */
   export type Outbound = GetLibraryHubsGenre$Outbound;
+}
+
+export function getLibraryHubsGenreToJSON(
+  getLibraryHubsGenre: GetLibraryHubsGenre,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsGenre$outboundSchema.parse(getLibraryHubsGenre),
+  );
+}
+
+export function getLibraryHubsGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsGenre' from JSON`,
+  );
 }
 
 /** @internal */
@@ -460,6 +535,24 @@ export namespace GetLibraryHubsCountry$ {
   export type Outbound = GetLibraryHubsCountry$Outbound;
 }
 
+export function getLibraryHubsCountryToJSON(
+  getLibraryHubsCountry: GetLibraryHubsCountry,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsCountry$outboundSchema.parse(getLibraryHubsCountry),
+  );
+}
+
+export function getLibraryHubsCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsCountry' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryHubsDirector$inboundSchema: z.ZodType<
   GetLibraryHubsDirector,
@@ -494,6 +587,24 @@ export namespace GetLibraryHubsDirector$ {
   export const outboundSchema = GetLibraryHubsDirector$outboundSchema;
   /** @deprecated use `GetLibraryHubsDirector$Outbound` instead. */
   export type Outbound = GetLibraryHubsDirector$Outbound;
+}
+
+export function getLibraryHubsDirectorToJSON(
+  getLibraryHubsDirector: GetLibraryHubsDirector,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsDirector$outboundSchema.parse(getLibraryHubsDirector),
+  );
+}
+
+export function getLibraryHubsDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsDirector' from JSON`,
+  );
 }
 
 /** @internal */
@@ -532,6 +643,24 @@ export namespace GetLibraryHubsRole$ {
   export type Outbound = GetLibraryHubsRole$Outbound;
 }
 
+export function getLibraryHubsRoleToJSON(
+  getLibraryHubsRole: GetLibraryHubsRole,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsRole$outboundSchema.parse(getLibraryHubsRole),
+  );
+}
+
+export function getLibraryHubsRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsRole' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryHubsWriter$inboundSchema: z.ZodType<
   GetLibraryHubsWriter,
@@ -566,6 +695,24 @@ export namespace GetLibraryHubsWriter$ {
   export const outboundSchema = GetLibraryHubsWriter$outboundSchema;
   /** @deprecated use `GetLibraryHubsWriter$Outbound` instead. */
   export type Outbound = GetLibraryHubsWriter$Outbound;
+}
+
+export function getLibraryHubsWriterToJSON(
+  getLibraryHubsWriter: GetLibraryHubsWriter,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsWriter$outboundSchema.parse(getLibraryHubsWriter),
+  );
+}
+
+export function getLibraryHubsWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsWriter' from JSON`,
+  );
 }
 
 /** @internal */
@@ -726,6 +873,24 @@ export namespace GetLibraryHubsMetadata$ {
   export type Outbound = GetLibraryHubsMetadata$Outbound;
 }
 
+export function getLibraryHubsMetadataToJSON(
+  getLibraryHubsMetadata: GetLibraryHubsMetadata,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsMetadata$outboundSchema.parse(getLibraryHubsMetadata),
+  );
+}
+
+export function getLibraryHubsMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryHubsHub$inboundSchema: z.ZodType<
   GetLibraryHubsHub,
@@ -805,6 +970,24 @@ export namespace GetLibraryHubsHub$ {
   export type Outbound = GetLibraryHubsHub$Outbound;
 }
 
+export function getLibraryHubsHubToJSON(
+  getLibraryHubsHub: GetLibraryHubsHub,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsHub$outboundSchema.parse(getLibraryHubsHub),
+  );
+}
+
+export function getLibraryHubsHubFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsHub, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsHub$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsHub' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryHubsMediaContainer$inboundSchema: z.ZodType<
   GetLibraryHubsMediaContainer,
@@ -867,6 +1050,26 @@ export namespace GetLibraryHubsMediaContainer$ {
   export type Outbound = GetLibraryHubsMediaContainer$Outbound;
 }
 
+export function getLibraryHubsMediaContainerToJSON(
+  getLibraryHubsMediaContainer: GetLibraryHubsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsMediaContainer$outboundSchema.parse(
+      getLibraryHubsMediaContainer,
+    ),
+  );
+}
+
+export function getLibraryHubsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryHubsResponseBody$inboundSchema: z.ZodType<
   GetLibraryHubsResponseBody,
@@ -911,6 +1114,24 @@ export namespace GetLibraryHubsResponseBody$ {
   export const outboundSchema = GetLibraryHubsResponseBody$outboundSchema;
   /** @deprecated use `GetLibraryHubsResponseBody$Outbound` instead. */
   export type Outbound = GetLibraryHubsResponseBody$Outbound;
+}
+
+export function getLibraryHubsResponseBodyToJSON(
+  getLibraryHubsResponseBody: GetLibraryHubsResponseBody,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsResponseBody$outboundSchema.parse(getLibraryHubsResponseBody),
+  );
+}
+
+export function getLibraryHubsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -970,4 +1191,22 @@ export namespace GetLibraryHubsResponse$ {
   export const outboundSchema = GetLibraryHubsResponse$outboundSchema;
   /** @deprecated use `GetLibraryHubsResponse$Outbound` instead. */
   export type Outbound = GetLibraryHubsResponse$Outbound;
+}
+
+export function getLibraryHubsResponseToJSON(
+  getLibraryHubsResponse: GetLibraryHubsResponse,
+): string {
+  return JSON.stringify(
+    GetLibraryHubsResponse$outboundSchema.parse(getLibraryHubsResponse),
+  );
+}
+
+export function getLibraryHubsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryHubsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryHubsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryHubsResponse' from JSON`,
+  );
 }

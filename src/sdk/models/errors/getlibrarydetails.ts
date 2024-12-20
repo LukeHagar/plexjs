@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetLibraryDetailsLibraryErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetLibraryDetailsLibraryErrors$ {
   export type Outbound = GetLibraryDetailsLibraryErrors$Outbound;
 }
 
+export function getLibraryDetailsLibraryErrorsToJSON(
+  getLibraryDetailsLibraryErrors: GetLibraryDetailsLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetLibraryDetailsLibraryErrors$outboundSchema.parse(
+      getLibraryDetailsLibraryErrors,
+    ),
+  );
+}
+
+export function getLibraryDetailsLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryDetailsLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryDetailsLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryDetailsLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLibraryDetailsUnauthorized$inboundSchema: z.ZodType<
   GetLibraryDetailsUnauthorized,
@@ -234,6 +257,24 @@ export namespace GetLibraryDetailsErrors$ {
   export const outboundSchema = GetLibraryDetailsErrors$outboundSchema;
   /** @deprecated use `GetLibraryDetailsErrors$Outbound` instead. */
   export type Outbound = GetLibraryDetailsErrors$Outbound;
+}
+
+export function getLibraryDetailsErrorsToJSON(
+  getLibraryDetailsErrors: GetLibraryDetailsErrors,
+): string {
+  return JSON.stringify(
+    GetLibraryDetailsErrors$outboundSchema.parse(getLibraryDetailsErrors),
+  );
+}
+
+export function getLibraryDetailsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryDetailsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryDetailsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryDetailsErrors' from JSON`,
+  );
 }
 
 /** @internal */

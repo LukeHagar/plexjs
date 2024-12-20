@@ -7,7 +7,7 @@ A key representing a specific tag within the section.
 ```typescript
 import { Tag } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: Tag = Tag.Unwatched;
+let value: Tag = Tag.Newest;
 ```
 
 ## Values
@@ -33,3 +33,4 @@ let value: Tag = Tag.Unwatched;
 | `Resolution`     | resolution       |
 | `FirstCharacter` | firstCharacter   |
 | `Folder`         | folder           |
+| `Albums`         | albums           |

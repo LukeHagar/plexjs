@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type PostUsersSignInDataAuthenticationErrors = {
   code?: number | undefined;
@@ -137,6 +140,33 @@ export namespace PostUsersSignInDataAuthenticationErrors$ {
   export type Outbound = PostUsersSignInDataAuthenticationErrors$Outbound;
 }
 
+export function postUsersSignInDataAuthenticationErrorsToJSON(
+  postUsersSignInDataAuthenticationErrors:
+    PostUsersSignInDataAuthenticationErrors,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataAuthenticationErrors$outboundSchema.parse(
+      postUsersSignInDataAuthenticationErrors,
+    ),
+  );
+}
+
+export function postUsersSignInDataAuthenticationErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  PostUsersSignInDataAuthenticationErrors,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostUsersSignInDataAuthenticationErrors$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'PostUsersSignInDataAuthenticationErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const PostUsersSignInDataUnauthorized$inboundSchema: z.ZodType<
   PostUsersSignInDataUnauthorized,
@@ -237,6 +267,24 @@ export namespace PostUsersSignInDataErrors$ {
   export const outboundSchema = PostUsersSignInDataErrors$outboundSchema;
   /** @deprecated use `PostUsersSignInDataErrors$Outbound` instead. */
   export type Outbound = PostUsersSignInDataErrors$Outbound;
+}
+
+export function postUsersSignInDataErrorsToJSON(
+  postUsersSignInDataErrors: PostUsersSignInDataErrors,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataErrors$outboundSchema.parse(postUsersSignInDataErrors),
+  );
+}
+
+export function postUsersSignInDataErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<PostUsersSignInDataErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostUsersSignInDataErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostUsersSignInDataErrors' from JSON`,
+  );
 }
 
 /** @internal */

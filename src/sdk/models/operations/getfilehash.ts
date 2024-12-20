@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetFileHashRequest = {
   /**
@@ -70,6 +73,24 @@ export namespace GetFileHashRequest$ {
   export type Outbound = GetFileHashRequest$Outbound;
 }
 
+export function getFileHashRequestToJSON(
+  getFileHashRequest: GetFileHashRequest,
+): string {
+  return JSON.stringify(
+    GetFileHashRequest$outboundSchema.parse(getFileHashRequest),
+  );
+}
+
+export function getFileHashRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetFileHashRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFileHashRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFileHashRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetFileHashResponse$inboundSchema: z.ZodType<
   GetFileHashResponse,
@@ -124,4 +145,22 @@ export namespace GetFileHashResponse$ {
   export const outboundSchema = GetFileHashResponse$outboundSchema;
   /** @deprecated use `GetFileHashResponse$Outbound` instead. */
   export type Outbound = GetFileHashResponse$Outbound;
+}
+
+export function getFileHashResponseToJSON(
+  getFileHashResponse: GetFileHashResponse,
+): string {
+  return JSON.stringify(
+    GetFileHashResponse$outboundSchema.parse(getFileHashResponse),
+  );
+}
+
+export function getFileHashResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetFileHashResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFileHashResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFileHashResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).
@@ -151,6 +154,24 @@ export namespace GetGlobalHubsRequest$ {
   export type Outbound = GetGlobalHubsRequest$Outbound;
 }
 
+export function getGlobalHubsRequestToJSON(
+  getGlobalHubsRequest: GetGlobalHubsRequest,
+): string {
+  return JSON.stringify(
+    GetGlobalHubsRequest$outboundSchema.parse(getGlobalHubsRequest),
+  );
+}
+
+export function getGlobalHubsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGlobalHubsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGlobalHubsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGlobalHubsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetGlobalHubsMetadata$inboundSchema: z.ZodType<
   GetGlobalHubsMetadata,
@@ -235,6 +256,24 @@ export namespace GetGlobalHubsMetadata$ {
   export type Outbound = GetGlobalHubsMetadata$Outbound;
 }
 
+export function getGlobalHubsMetadataToJSON(
+  getGlobalHubsMetadata: GetGlobalHubsMetadata,
+): string {
+  return JSON.stringify(
+    GetGlobalHubsMetadata$outboundSchema.parse(getGlobalHubsMetadata),
+  );
+}
+
+export function getGlobalHubsMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGlobalHubsMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGlobalHubsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGlobalHubsMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const Hub$inboundSchema: z.ZodType<Hub, z.ZodTypeDef, unknown> = z
   .object({
@@ -305,6 +344,20 @@ export namespace Hub$ {
   export type Outbound = Hub$Outbound;
 }
 
+export function hubToJSON(hub: Hub): string {
+  return JSON.stringify(Hub$outboundSchema.parse(hub));
+}
+
+export function hubFromJSON(
+  jsonString: string,
+): SafeParseResult<Hub, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Hub$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Hub' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetGlobalHubsMediaContainer$inboundSchema: z.ZodType<
   GetGlobalHubsMediaContainer,
@@ -358,6 +411,26 @@ export namespace GetGlobalHubsMediaContainer$ {
   export type Outbound = GetGlobalHubsMediaContainer$Outbound;
 }
 
+export function getGlobalHubsMediaContainerToJSON(
+  getGlobalHubsMediaContainer: GetGlobalHubsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetGlobalHubsMediaContainer$outboundSchema.parse(
+      getGlobalHubsMediaContainer,
+    ),
+  );
+}
+
+export function getGlobalHubsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGlobalHubsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGlobalHubsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGlobalHubsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetGlobalHubsResponseBody$inboundSchema: z.ZodType<
   GetGlobalHubsResponseBody,
@@ -402,6 +475,24 @@ export namespace GetGlobalHubsResponseBody$ {
   export const outboundSchema = GetGlobalHubsResponseBody$outboundSchema;
   /** @deprecated use `GetGlobalHubsResponseBody$Outbound` instead. */
   export type Outbound = GetGlobalHubsResponseBody$Outbound;
+}
+
+export function getGlobalHubsResponseBodyToJSON(
+  getGlobalHubsResponseBody: GetGlobalHubsResponseBody,
+): string {
+  return JSON.stringify(
+    GetGlobalHubsResponseBody$outboundSchema.parse(getGlobalHubsResponseBody),
+  );
+}
+
+export function getGlobalHubsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGlobalHubsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGlobalHubsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGlobalHubsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -461,4 +552,22 @@ export namespace GetGlobalHubsResponse$ {
   export const outboundSchema = GetGlobalHubsResponse$outboundSchema;
   /** @deprecated use `GetGlobalHubsResponse$Outbound` instead. */
   export type Outbound = GetGlobalHubsResponse$Outbound;
+}
+
+export function getGlobalHubsResponseToJSON(
+  getGlobalHubsResponse: GetGlobalHubsResponse,
+): string {
+  return JSON.stringify(
+    GetGlobalHubsResponse$outboundSchema.parse(getGlobalHubsResponse),
+  );
+}
+
+export function getGlobalHubsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGlobalHubsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGlobalHubsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGlobalHubsResponse' from JSON`,
+  );
 }

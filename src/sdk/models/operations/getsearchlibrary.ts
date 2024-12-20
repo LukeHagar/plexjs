@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of media to retrieve.
@@ -21,6 +24,8 @@ export enum GetSearchLibraryQueryParamType {
   Season = 3,
   Episode = 4,
   Audio = 8,
+  Album = 9,
+  Track = 10,
 }
 
 export type GetSearchLibraryRequest = {
@@ -169,6 +174,24 @@ export namespace GetSearchLibraryRequest$ {
   export type Outbound = GetSearchLibraryRequest$Outbound;
 }
 
+export function getSearchLibraryRequestToJSON(
+  getSearchLibraryRequest: GetSearchLibraryRequest,
+): string {
+  return JSON.stringify(
+    GetSearchLibraryRequest$outboundSchema.parse(getSearchLibraryRequest),
+  );
+}
+
+export function getSearchLibraryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchLibraryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchLibraryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchLibraryRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchLibraryMetadata$inboundSchema: z.ZodType<
   GetSearchLibraryMetadata,
@@ -262,6 +285,24 @@ export namespace GetSearchLibraryMetadata$ {
   export type Outbound = GetSearchLibraryMetadata$Outbound;
 }
 
+export function getSearchLibraryMetadataToJSON(
+  getSearchLibraryMetadata: GetSearchLibraryMetadata,
+): string {
+  return JSON.stringify(
+    GetSearchLibraryMetadata$outboundSchema.parse(getSearchLibraryMetadata),
+  );
+}
+
+export function getSearchLibraryMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchLibraryMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchLibraryMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchLibraryMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchLibraryMediaContainer$inboundSchema: z.ZodType<
   GetSearchLibraryMediaContainer,
@@ -344,6 +385,26 @@ export namespace GetSearchLibraryMediaContainer$ {
   export type Outbound = GetSearchLibraryMediaContainer$Outbound;
 }
 
+export function getSearchLibraryMediaContainerToJSON(
+  getSearchLibraryMediaContainer: GetSearchLibraryMediaContainer,
+): string {
+  return JSON.stringify(
+    GetSearchLibraryMediaContainer$outboundSchema.parse(
+      getSearchLibraryMediaContainer,
+    ),
+  );
+}
+
+export function getSearchLibraryMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchLibraryMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchLibraryMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchLibraryMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchLibraryResponseBody$inboundSchema: z.ZodType<
   GetSearchLibraryResponseBody,
@@ -388,6 +449,26 @@ export namespace GetSearchLibraryResponseBody$ {
   export const outboundSchema = GetSearchLibraryResponseBody$outboundSchema;
   /** @deprecated use `GetSearchLibraryResponseBody$Outbound` instead. */
   export type Outbound = GetSearchLibraryResponseBody$Outbound;
+}
+
+export function getSearchLibraryResponseBodyToJSON(
+  getSearchLibraryResponseBody: GetSearchLibraryResponseBody,
+): string {
+  return JSON.stringify(
+    GetSearchLibraryResponseBody$outboundSchema.parse(
+      getSearchLibraryResponseBody,
+    ),
+  );
+}
+
+export function getSearchLibraryResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchLibraryResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchLibraryResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchLibraryResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -447,4 +528,22 @@ export namespace GetSearchLibraryResponse$ {
   export const outboundSchema = GetSearchLibraryResponse$outboundSchema;
   /** @deprecated use `GetSearchLibraryResponse$Outbound` instead. */
   export type Outbound = GetSearchLibraryResponse$Outbound;
+}
+
+export function getSearchLibraryResponseToJSON(
+  getSearchLibraryResponse: GetSearchLibraryResponse,
+): string {
+  return JSON.stringify(
+    GetSearchLibraryResponse$outboundSchema.parse(getSearchLibraryResponse),
+  );
+}
+
+export function getSearchLibraryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchLibraryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchLibraryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchLibraryResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type DeleteLibraryLibraryErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace DeleteLibraryLibraryErrors$ {
   export type Outbound = DeleteLibraryLibraryErrors$Outbound;
 }
 
+export function deleteLibraryLibraryErrorsToJSON(
+  deleteLibraryLibraryErrors: DeleteLibraryLibraryErrors,
+): string {
+  return JSON.stringify(
+    DeleteLibraryLibraryErrors$outboundSchema.parse(deleteLibraryLibraryErrors),
+  );
+}
+
+export function deleteLibraryLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteLibraryLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteLibraryLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteLibraryLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteLibraryUnauthorized$inboundSchema: z.ZodType<
   DeleteLibraryUnauthorized,
@@ -233,6 +254,24 @@ export namespace DeleteLibraryErrors$ {
   export const outboundSchema = DeleteLibraryErrors$outboundSchema;
   /** @deprecated use `DeleteLibraryErrors$Outbound` instead. */
   export type Outbound = DeleteLibraryErrors$Outbound;
+}
+
+export function deleteLibraryErrorsToJSON(
+  deleteLibraryErrors: DeleteLibraryErrors,
+): string {
+  return JSON.stringify(
+    DeleteLibraryErrors$outboundSchema.parse(deleteLibraryErrors),
+  );
+}
+
+export function deleteLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteLibraryErrors' from JSON`,
+  );
 }
 
 /** @internal */

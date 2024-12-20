@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetAllLibrariesLibraryErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetAllLibrariesLibraryErrors$ {
   export type Outbound = GetAllLibrariesLibraryErrors$Outbound;
 }
 
+export function getAllLibrariesLibraryErrorsToJSON(
+  getAllLibrariesLibraryErrors: GetAllLibrariesLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetAllLibrariesLibraryErrors$outboundSchema.parse(
+      getAllLibrariesLibraryErrors,
+    ),
+  );
+}
+
+export function getAllLibrariesLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllLibrariesLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllLibrariesLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllLibrariesLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAllLibrariesUnauthorized$inboundSchema: z.ZodType<
   GetAllLibrariesUnauthorized,
@@ -233,6 +256,24 @@ export namespace GetAllLibrariesErrors$ {
   export const outboundSchema = GetAllLibrariesErrors$outboundSchema;
   /** @deprecated use `GetAllLibrariesErrors$Outbound` instead. */
   export type Outbound = GetAllLibrariesErrors$Outbound;
+}
+
+export function getAllLibrariesErrorsToJSON(
+  getAllLibrariesErrors: GetAllLibrariesErrors,
+): string {
+  return JSON.stringify(
+    GetAllLibrariesErrors$outboundSchema.parse(getAllLibrariesErrors),
+  );
+}
+
+export function getAllLibrariesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllLibrariesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllLibrariesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllLibrariesErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetStatisticsStatisticsErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetStatisticsStatisticsErrors$ {
   export type Outbound = GetStatisticsStatisticsErrors$Outbound;
 }
 
+export function getStatisticsStatisticsErrorsToJSON(
+  getStatisticsStatisticsErrors: GetStatisticsStatisticsErrors,
+): string {
+  return JSON.stringify(
+    GetStatisticsStatisticsErrors$outboundSchema.parse(
+      getStatisticsStatisticsErrors,
+    ),
+  );
+}
+
+export function getStatisticsStatisticsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetStatisticsStatisticsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetStatisticsStatisticsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStatisticsStatisticsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetStatisticsUnauthorized$inboundSchema: z.ZodType<
   GetStatisticsUnauthorized,
@@ -234,6 +257,24 @@ export namespace GetStatisticsErrors$ {
   export const outboundSchema = GetStatisticsErrors$outboundSchema;
   /** @deprecated use `GetStatisticsErrors$Outbound` instead. */
   export type Outbound = GetStatisticsErrors$Outbound;
+}
+
+export function getStatisticsErrorsToJSON(
+  getStatisticsErrors: GetStatisticsErrors,
+): string {
+  return JSON.stringify(
+    GetStatisticsErrors$outboundSchema.parse(getStatisticsErrors),
+  );
+}
+
+export function getStatisticsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetStatisticsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetStatisticsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStatisticsErrors' from JSON`,
+  );
 }
 
 /** @internal */

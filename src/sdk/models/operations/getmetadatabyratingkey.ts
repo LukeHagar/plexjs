@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetMetaDataByRatingKeyRequest = {
   /**
@@ -147,6 +150,26 @@ export type GetMetaDataByRatingKeyMetadata = {
   librarySectionTitle?: string | undefined;
   librarySectionID?: number | undefined;
   librarySectionKey?: string | undefined;
+  /**
+   * The name of the album artist for the track when audio, and the name of the TV show for the episode when video.
+   */
+  grandparentTitle?: string | undefined;
+  /**
+   * The name of the album for the track when audio, and the name of the season for the episode when TV show.
+   */
+  parentTitle?: string | undefined;
+  /**
+   * The orginal untranslated name of the media item when non-english.
+   */
+  originalTitle?: string | undefined;
+  /**
+   * The index starting from 0 of this media item in the MetaData array.
+   */
+  index?: number | undefined;
+  /**
+   * The parent index starting from 0 of this media item in the parent MetaData array.
+   */
+  parentIndex?: number | undefined;
   contentRating?: string | undefined;
   summary?: string | undefined;
   rating?: number | undefined;
@@ -245,6 +268,26 @@ export namespace GetMetaDataByRatingKeyRequest$ {
   export const outboundSchema = GetMetaDataByRatingKeyRequest$outboundSchema;
   /** @deprecated use `GetMetaDataByRatingKeyRequest$Outbound` instead. */
   export type Outbound = GetMetaDataByRatingKeyRequest$Outbound;
+}
+
+export function getMetaDataByRatingKeyRequestToJSON(
+  getMetaDataByRatingKeyRequest: GetMetaDataByRatingKeyRequest,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyRequest$outboundSchema.parse(
+      getMetaDataByRatingKeyRequest,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -376,6 +419,26 @@ export namespace GetMetaDataByRatingKeyStream$ {
   export type Outbound = GetMetaDataByRatingKeyStream$Outbound;
 }
 
+export function getMetaDataByRatingKeyStreamToJSON(
+  getMetaDataByRatingKeyStream: GetMetaDataByRatingKeyStream,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyStream$outboundSchema.parse(
+      getMetaDataByRatingKeyStream,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyStreamFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyStream, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyStream$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyStream' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetaDataByRatingKeyPart$inboundSchema: z.ZodType<
   GetMetaDataByRatingKeyPart,
@@ -450,6 +513,24 @@ export namespace GetMetaDataByRatingKeyPart$ {
   export const outboundSchema = GetMetaDataByRatingKeyPart$outboundSchema;
   /** @deprecated use `GetMetaDataByRatingKeyPart$Outbound` instead. */
   export type Outbound = GetMetaDataByRatingKeyPart$Outbound;
+}
+
+export function getMetaDataByRatingKeyPartToJSON(
+  getMetaDataByRatingKeyPart: GetMetaDataByRatingKeyPart,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyPart$outboundSchema.parse(getMetaDataByRatingKeyPart),
+  );
+}
+
+export function getMetaDataByRatingKeyPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyPart' from JSON`,
+  );
 }
 
 /** @internal */
@@ -546,6 +627,26 @@ export namespace GetMetaDataByRatingKeyMedia$ {
   export type Outbound = GetMetaDataByRatingKeyMedia$Outbound;
 }
 
+export function getMetaDataByRatingKeyMediaToJSON(
+  getMetaDataByRatingKeyMedia: GetMetaDataByRatingKeyMedia,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyMedia$outboundSchema.parse(
+      getMetaDataByRatingKeyMedia,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetaDataByRatingKeyGenre$inboundSchema: z.ZodType<
   GetMetaDataByRatingKeyGenre,
@@ -586,6 +687,26 @@ export namespace GetMetaDataByRatingKeyGenre$ {
   export const outboundSchema = GetMetaDataByRatingKeyGenre$outboundSchema;
   /** @deprecated use `GetMetaDataByRatingKeyGenre$Outbound` instead. */
   export type Outbound = GetMetaDataByRatingKeyGenre$Outbound;
+}
+
+export function getMetaDataByRatingKeyGenreToJSON(
+  getMetaDataByRatingKeyGenre: GetMetaDataByRatingKeyGenre,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyGenre$outboundSchema.parse(
+      getMetaDataByRatingKeyGenre,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyGenre' from JSON`,
+  );
 }
 
 /** @internal */
@@ -630,6 +751,26 @@ export namespace GetMetaDataByRatingKeyCountry$ {
   export type Outbound = GetMetaDataByRatingKeyCountry$Outbound;
 }
 
+export function getMetaDataByRatingKeyCountryToJSON(
+  getMetaDataByRatingKeyCountry: GetMetaDataByRatingKeyCountry,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyCountry$outboundSchema.parse(
+      getMetaDataByRatingKeyCountry,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyCountry' from JSON`,
+  );
+}
+
 /** @internal */
 export const Guids$inboundSchema: z.ZodType<Guids, z.ZodTypeDef, unknown> = z
   .object({
@@ -661,6 +802,20 @@ export namespace Guids$ {
   export const outboundSchema = Guids$outboundSchema;
   /** @deprecated use `Guids$Outbound` instead. */
   export type Outbound = Guids$Outbound;
+}
+
+export function guidsToJSON(guids: Guids): string {
+  return JSON.stringify(Guids$outboundSchema.parse(guids));
+}
+
+export function guidsFromJSON(
+  jsonString: string,
+): SafeParseResult<Guids, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Guids$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Guids' from JSON`,
+  );
 }
 
 /** @internal */
@@ -700,6 +855,20 @@ export namespace Ratings$ {
   export const outboundSchema = Ratings$outboundSchema;
   /** @deprecated use `Ratings$Outbound` instead. */
   export type Outbound = Ratings$Outbound;
+}
+
+export function ratingsToJSON(ratings: Ratings): string {
+  return JSON.stringify(Ratings$outboundSchema.parse(ratings));
+}
+
+export function ratingsFromJSON(
+  jsonString: string,
+): SafeParseResult<Ratings, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Ratings$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Ratings' from JSON`,
+  );
 }
 
 /** @internal */
@@ -750,6 +919,26 @@ export namespace GetMetaDataByRatingKeyDirector$ {
   export type Outbound = GetMetaDataByRatingKeyDirector$Outbound;
 }
 
+export function getMetaDataByRatingKeyDirectorToJSON(
+  getMetaDataByRatingKeyDirector: GetMetaDataByRatingKeyDirector,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyDirector$outboundSchema.parse(
+      getMetaDataByRatingKeyDirector,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyDirector' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetaDataByRatingKeyWriter$inboundSchema: z.ZodType<
   GetMetaDataByRatingKeyWriter,
@@ -796,6 +985,26 @@ export namespace GetMetaDataByRatingKeyWriter$ {
   export const outboundSchema = GetMetaDataByRatingKeyWriter$outboundSchema;
   /** @deprecated use `GetMetaDataByRatingKeyWriter$Outbound` instead. */
   export type Outbound = GetMetaDataByRatingKeyWriter$Outbound;
+}
+
+export function getMetaDataByRatingKeyWriterToJSON(
+  getMetaDataByRatingKeyWriter: GetMetaDataByRatingKeyWriter,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyWriter$outboundSchema.parse(
+      getMetaDataByRatingKeyWriter,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyWriter' from JSON`,
+  );
 }
 
 /** @internal */
@@ -849,6 +1058,24 @@ export namespace GetMetaDataByRatingKeyRole$ {
   export type Outbound = GetMetaDataByRatingKeyRole$Outbound;
 }
 
+export function getMetaDataByRatingKeyRoleToJSON(
+  getMetaDataByRatingKeyRole: GetMetaDataByRatingKeyRole,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyRole$outboundSchema.parse(getMetaDataByRatingKeyRole),
+  );
+}
+
+export function getMetaDataByRatingKeyRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyRole' from JSON`,
+  );
+}
+
 /** @internal */
 export const Producer$inboundSchema: z.ZodType<
   Producer,
@@ -897,6 +1124,20 @@ export namespace Producer$ {
   export type Outbound = Producer$Outbound;
 }
 
+export function producerToJSON(producer: Producer): string {
+  return JSON.stringify(Producer$outboundSchema.parse(producer));
+}
+
+export function producerFromJSON(
+  jsonString: string,
+): SafeParseResult<Producer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Producer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Producer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetaDataByRatingKeyMetadata$inboundSchema: z.ZodType<
   GetMetaDataByRatingKeyMetadata,
@@ -912,6 +1153,11 @@ export const GetMetaDataByRatingKeyMetadata$inboundSchema: z.ZodType<
   librarySectionTitle: z.string().optional(),
   librarySectionID: z.number().int().optional(),
   librarySectionKey: z.string().optional(),
+  grandparentTitle: z.string().optional(),
+  parentTitle: z.string().optional(),
+  originalTitle: z.string().optional(),
+  index: z.number().int().optional(),
+  parentIndex: z.number().int().optional(),
   contentRating: z.string().optional(),
   summary: z.string().optional(),
   rating: z.number().optional(),
@@ -967,6 +1213,11 @@ export type GetMetaDataByRatingKeyMetadata$Outbound = {
   librarySectionTitle?: string | undefined;
   librarySectionID?: number | undefined;
   librarySectionKey?: string | undefined;
+  grandparentTitle?: string | undefined;
+  parentTitle?: string | undefined;
+  originalTitle?: string | undefined;
+  index?: number | undefined;
+  parentIndex?: number | undefined;
   contentRating?: string | undefined;
   summary?: string | undefined;
   rating?: number | undefined;
@@ -1008,6 +1259,11 @@ export const GetMetaDataByRatingKeyMetadata$outboundSchema: z.ZodType<
   librarySectionTitle: z.string().optional(),
   librarySectionID: z.number().int().optional(),
   librarySectionKey: z.string().optional(),
+  grandparentTitle: z.string().optional(),
+  parentTitle: z.string().optional(),
+  originalTitle: z.string().optional(),
+  index: z.number().int().optional(),
+  parentIndex: z.number().int().optional(),
   contentRating: z.string().optional(),
   summary: z.string().optional(),
   rating: z.number().optional(),
@@ -1064,6 +1320,26 @@ export namespace GetMetaDataByRatingKeyMetadata$ {
   export const outboundSchema = GetMetaDataByRatingKeyMetadata$outboundSchema;
   /** @deprecated use `GetMetaDataByRatingKeyMetadata$Outbound` instead. */
   export type Outbound = GetMetaDataByRatingKeyMetadata$Outbound;
+}
+
+export function getMetaDataByRatingKeyMetadataToJSON(
+  getMetaDataByRatingKeyMetadata: GetMetaDataByRatingKeyMetadata,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyMetadata$outboundSchema.parse(
+      getMetaDataByRatingKeyMetadata,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1138,6 +1414,27 @@ export namespace GetMetaDataByRatingKeyMediaContainer$ {
   export type Outbound = GetMetaDataByRatingKeyMediaContainer$Outbound;
 }
 
+export function getMetaDataByRatingKeyMediaContainerToJSON(
+  getMetaDataByRatingKeyMediaContainer: GetMetaDataByRatingKeyMediaContainer,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyMediaContainer$outboundSchema.parse(
+      getMetaDataByRatingKeyMediaContainer,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetMetaDataByRatingKeyMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetaDataByRatingKeyResponseBody$inboundSchema: z.ZodType<
   GetMetaDataByRatingKeyResponseBody,
@@ -1185,6 +1482,27 @@ export namespace GetMetaDataByRatingKeyResponseBody$ {
     GetMetaDataByRatingKeyResponseBody$outboundSchema;
   /** @deprecated use `GetMetaDataByRatingKeyResponseBody$Outbound` instead. */
   export type Outbound = GetMetaDataByRatingKeyResponseBody$Outbound;
+}
+
+export function getMetaDataByRatingKeyResponseBodyToJSON(
+  getMetaDataByRatingKeyResponseBody: GetMetaDataByRatingKeyResponseBody,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyResponseBody$outboundSchema.parse(
+      getMetaDataByRatingKeyResponseBody,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetMetaDataByRatingKeyResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1246,4 +1564,24 @@ export namespace GetMetaDataByRatingKeyResponse$ {
   export const outboundSchema = GetMetaDataByRatingKeyResponse$outboundSchema;
   /** @deprecated use `GetMetaDataByRatingKeyResponse$Outbound` instead. */
   export type Outbound = GetMetaDataByRatingKeyResponse$Outbound;
+}
+
+export function getMetaDataByRatingKeyResponseToJSON(
+  getMetaDataByRatingKeyResponse: GetMetaDataByRatingKeyResponse,
+): string {
+  return JSON.stringify(
+    GetMetaDataByRatingKeyResponse$outboundSchema.parse(
+      getMetaDataByRatingKeyResponse,
+    ),
+  );
+}
+
+export function getMetaDataByRatingKeyResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetaDataByRatingKeyResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetaDataByRatingKeyResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetaDataByRatingKeyResponse' from JSON`,
+  );
 }

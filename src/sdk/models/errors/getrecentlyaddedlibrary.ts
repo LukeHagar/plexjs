@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetRecentlyAddedLibraryLibraryErrors = {
   code?: number | undefined;
@@ -137,6 +140,27 @@ export namespace GetRecentlyAddedLibraryLibraryErrors$ {
   export type Outbound = GetRecentlyAddedLibraryLibraryErrors$Outbound;
 }
 
+export function getRecentlyAddedLibraryLibraryErrorsToJSON(
+  getRecentlyAddedLibraryLibraryErrors: GetRecentlyAddedLibraryLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryLibraryErrors$outboundSchema.parse(
+      getRecentlyAddedLibraryLibraryErrors,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetRecentlyAddedLibraryLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedLibraryUnauthorized$inboundSchema: z.ZodType<
   GetRecentlyAddedLibraryUnauthorized,
@@ -239,6 +263,26 @@ export namespace GetRecentlyAddedLibraryErrors$ {
   export const outboundSchema = GetRecentlyAddedLibraryErrors$outboundSchema;
   /** @deprecated use `GetRecentlyAddedLibraryErrors$Outbound` instead. */
   export type Outbound = GetRecentlyAddedLibraryErrors$Outbound;
+}
+
+export function getRecentlyAddedLibraryErrorsToJSON(
+  getRecentlyAddedLibraryErrors: GetRecentlyAddedLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedLibraryErrors$outboundSchema.parse(
+      getRecentlyAddedLibraryErrors,
+    ),
+  );
+}
+
+export function getRecentlyAddedLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedLibraryErrors' from JSON`,
+  );
 }
 
 /** @internal */

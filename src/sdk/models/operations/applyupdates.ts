@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
@@ -125,6 +128,24 @@ export namespace ApplyUpdatesRequest$ {
   export type Outbound = ApplyUpdatesRequest$Outbound;
 }
 
+export function applyUpdatesRequestToJSON(
+  applyUpdatesRequest: ApplyUpdatesRequest,
+): string {
+  return JSON.stringify(
+    ApplyUpdatesRequest$outboundSchema.parse(applyUpdatesRequest),
+  );
+}
+
+export function applyUpdatesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ApplyUpdatesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApplyUpdatesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApplyUpdatesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ApplyUpdatesResponse$inboundSchema: z.ZodType<
   ApplyUpdatesResponse,
@@ -179,4 +200,22 @@ export namespace ApplyUpdatesResponse$ {
   export const outboundSchema = ApplyUpdatesResponse$outboundSchema;
   /** @deprecated use `ApplyUpdatesResponse$Outbound` instead. */
   export type Outbound = ApplyUpdatesResponse$Outbound;
+}
+
+export function applyUpdatesResponseToJSON(
+  applyUpdatesResponse: ApplyUpdatesResponse,
+): string {
+  return JSON.stringify(
+    ApplyUpdatesResponse$outboundSchema.parse(applyUpdatesResponse),
+  );
+}
+
+export function applyUpdatesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ApplyUpdatesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApplyUpdatesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApplyUpdatesResponse' from JSON`,
+  );
 }

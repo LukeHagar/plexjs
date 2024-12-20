@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetTransientTokenAuthenticationErrors = {
   code?: number | undefined;
@@ -137,6 +140,27 @@ export namespace GetTransientTokenAuthenticationErrors$ {
   export type Outbound = GetTransientTokenAuthenticationErrors$Outbound;
 }
 
+export function getTransientTokenAuthenticationErrorsToJSON(
+  getTransientTokenAuthenticationErrors: GetTransientTokenAuthenticationErrors,
+): string {
+  return JSON.stringify(
+    GetTransientTokenAuthenticationErrors$outboundSchema.parse(
+      getTransientTokenAuthenticationErrors,
+    ),
+  );
+}
+
+export function getTransientTokenAuthenticationErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransientTokenAuthenticationErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetTransientTokenAuthenticationErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransientTokenAuthenticationErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTransientTokenUnauthorized$inboundSchema: z.ZodType<
   GetTransientTokenUnauthorized,
@@ -237,6 +261,24 @@ export namespace GetTransientTokenErrors$ {
   export const outboundSchema = GetTransientTokenErrors$outboundSchema;
   /** @deprecated use `GetTransientTokenErrors$Outbound` instead. */
   export type Outbound = GetTransientTokenErrors$Outbound;
+}
+
+export function getTransientTokenErrorsToJSON(
+  getTransientTokenErrors: GetTransientTokenErrors,
+): string {
+  return JSON.stringify(
+    GetTransientTokenErrors$outboundSchema.parse(getTransientTokenErrors),
+  );
+}
+
+export function getTransientTokenErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransientTokenErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransientTokenErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransientTokenErrors' from JSON`,
+  );
 }
 
 /** @internal */

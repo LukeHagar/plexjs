@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type PerformVoiceSearchSearchErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace PerformVoiceSearchSearchErrors$ {
   export type Outbound = PerformVoiceSearchSearchErrors$Outbound;
 }
 
+export function performVoiceSearchSearchErrorsToJSON(
+  performVoiceSearchSearchErrors: PerformVoiceSearchSearchErrors,
+): string {
+  return JSON.stringify(
+    PerformVoiceSearchSearchErrors$outboundSchema.parse(
+      performVoiceSearchSearchErrors,
+    ),
+  );
+}
+
+export function performVoiceSearchSearchErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<PerformVoiceSearchSearchErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PerformVoiceSearchSearchErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PerformVoiceSearchSearchErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const PerformVoiceSearchUnauthorized$inboundSchema: z.ZodType<
   PerformVoiceSearchUnauthorized,
@@ -234,6 +257,24 @@ export namespace PerformVoiceSearchErrors$ {
   export const outboundSchema = PerformVoiceSearchErrors$outboundSchema;
   /** @deprecated use `PerformVoiceSearchErrors$Outbound` instead. */
   export type Outbound = PerformVoiceSearchErrors$Outbound;
+}
+
+export function performVoiceSearchErrorsToJSON(
+  performVoiceSearchErrors: PerformVoiceSearchErrors,
+): string {
+  return JSON.stringify(
+    PerformVoiceSearchErrors$outboundSchema.parse(performVoiceSearchErrors),
+  );
+}
+
+export function performVoiceSearchErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<PerformVoiceSearchErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PerformVoiceSearchErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PerformVoiceSearchErrors' from JSON`,
+  );
 }
 
 /** @internal */

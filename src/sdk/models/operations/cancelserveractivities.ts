@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CancelServerActivitiesRequest = {
   /**
@@ -63,6 +66,26 @@ export namespace CancelServerActivitiesRequest$ {
   export type Outbound = CancelServerActivitiesRequest$Outbound;
 }
 
+export function cancelServerActivitiesRequestToJSON(
+  cancelServerActivitiesRequest: CancelServerActivitiesRequest,
+): string {
+  return JSON.stringify(
+    CancelServerActivitiesRequest$outboundSchema.parse(
+      cancelServerActivitiesRequest,
+    ),
+  );
+}
+
+export function cancelServerActivitiesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CancelServerActivitiesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CancelServerActivitiesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CancelServerActivitiesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CancelServerActivitiesResponse$inboundSchema: z.ZodType<
   CancelServerActivitiesResponse,
@@ -117,4 +140,24 @@ export namespace CancelServerActivitiesResponse$ {
   export const outboundSchema = CancelServerActivitiesResponse$outboundSchema;
   /** @deprecated use `CancelServerActivitiesResponse$Outbound` instead. */
   export type Outbound = CancelServerActivitiesResponse$Outbound;
+}
+
+export function cancelServerActivitiesResponseToJSON(
+  cancelServerActivitiesResponse: CancelServerActivitiesResponse,
+): string {
+  return JSON.stringify(
+    CancelServerActivitiesResponse$outboundSchema.parse(
+      cancelServerActivitiesResponse,
+    ),
+  );
+}
+
+export function cancelServerActivitiesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CancelServerActivitiesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CancelServerActivitiesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CancelServerActivitiesResponse' from JSON`,
+  );
 }

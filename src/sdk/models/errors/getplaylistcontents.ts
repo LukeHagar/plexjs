@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetPlaylistContentsPlaylistsErrors = {
   code?: number | undefined;
@@ -136,6 +139,27 @@ export namespace GetPlaylistContentsPlaylistsErrors$ {
   export type Outbound = GetPlaylistContentsPlaylistsErrors$Outbound;
 }
 
+export function getPlaylistContentsPlaylistsErrorsToJSON(
+  getPlaylistContentsPlaylistsErrors: GetPlaylistContentsPlaylistsErrors,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsPlaylistsErrors$outboundSchema.parse(
+      getPlaylistContentsPlaylistsErrors,
+    ),
+  );
+}
+
+export function getPlaylistContentsPlaylistsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsPlaylistsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetPlaylistContentsPlaylistsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsPlaylistsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPlaylistContentsUnauthorized$inboundSchema: z.ZodType<
   GetPlaylistContentsUnauthorized,
@@ -236,6 +260,24 @@ export namespace GetPlaylistContentsErrors$ {
   export const outboundSchema = GetPlaylistContentsErrors$outboundSchema;
   /** @deprecated use `GetPlaylistContentsErrors$Outbound` instead. */
   export type Outbound = GetPlaylistContentsErrors$Outbound;
+}
+
+export function getPlaylistContentsErrorsToJSON(
+  getPlaylistContentsErrors: GetPlaylistContentsErrors,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsErrors$outboundSchema.parse(getPlaylistContentsErrors),
+  );
+}
+
+export function getPlaylistContentsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsErrors' from JSON`,
+  );
 }
 
 /** @internal */

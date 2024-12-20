@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetServerCapabilitiesErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetServerCapabilitiesErrors$ {
   export type Outbound = GetServerCapabilitiesErrors$Outbound;
 }
 
+export function getServerCapabilitiesErrorsToJSON(
+  getServerCapabilitiesErrors: GetServerCapabilitiesErrors,
+): string {
+  return JSON.stringify(
+    GetServerCapabilitiesErrors$outboundSchema.parse(
+      getServerCapabilitiesErrors,
+    ),
+  );
+}
+
+export function getServerCapabilitiesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerCapabilitiesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerCapabilitiesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerCapabilitiesErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerCapabilitiesUnauthorized$inboundSchema: z.ZodType<
   GetServerCapabilitiesUnauthorized,
@@ -231,6 +254,20 @@ export namespace Errors$ {
   export const outboundSchema = Errors$outboundSchema;
   /** @deprecated use `Errors$Outbound` instead. */
   export type Outbound = Errors$Outbound;
+}
+
+export function errorsToJSON(errors: Errors): string {
+  return JSON.stringify(Errors$outboundSchema.parse(errors));
+}
+
+export function errorsFromJSON(
+  jsonString: string,
+): SafeParseResult<Errors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Errors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Errors' from JSON`,
+  );
 }
 
 /** @internal */

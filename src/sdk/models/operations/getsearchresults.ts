@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetSearchResultsRequest = {
   /**
@@ -175,6 +178,24 @@ export namespace GetSearchResultsRequest$ {
   export type Outbound = GetSearchResultsRequest$Outbound;
 }
 
+export function getSearchResultsRequestToJSON(
+  getSearchResultsRequest: GetSearchResultsRequest,
+): string {
+  return JSON.stringify(
+    GetSearchResultsRequest$outboundSchema.parse(getSearchResultsRequest),
+  );
+}
+
+export function getSearchResultsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchResultsPart$inboundSchema: z.ZodType<
   GetSearchResultsPart,
@@ -230,6 +251,24 @@ export namespace GetSearchResultsPart$ {
   export const outboundSchema = GetSearchResultsPart$outboundSchema;
   /** @deprecated use `GetSearchResultsPart$Outbound` instead. */
   export type Outbound = GetSearchResultsPart$Outbound;
+}
+
+export function getSearchResultsPartToJSON(
+  getSearchResultsPart: GetSearchResultsPart,
+): string {
+  return JSON.stringify(
+    GetSearchResultsPart$outboundSchema.parse(getSearchResultsPart),
+  );
+}
+
+export function getSearchResultsPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsPart' from JSON`,
+  );
 }
 
 /** @internal */
@@ -318,6 +357,24 @@ export namespace GetSearchResultsMedia$ {
   export type Outbound = GetSearchResultsMedia$Outbound;
 }
 
+export function getSearchResultsMediaToJSON(
+  getSearchResultsMedia: GetSearchResultsMedia,
+): string {
+  return JSON.stringify(
+    GetSearchResultsMedia$outboundSchema.parse(getSearchResultsMedia),
+  );
+}
+
+export function getSearchResultsMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchResultsGenre$inboundSchema: z.ZodType<
   GetSearchResultsGenre,
@@ -352,6 +409,24 @@ export namespace GetSearchResultsGenre$ {
   export const outboundSchema = GetSearchResultsGenre$outboundSchema;
   /** @deprecated use `GetSearchResultsGenre$Outbound` instead. */
   export type Outbound = GetSearchResultsGenre$Outbound;
+}
+
+export function getSearchResultsGenreToJSON(
+  getSearchResultsGenre: GetSearchResultsGenre,
+): string {
+  return JSON.stringify(
+    GetSearchResultsGenre$outboundSchema.parse(getSearchResultsGenre),
+  );
+}
+
+export function getSearchResultsGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsGenre' from JSON`,
+  );
 }
 
 /** @internal */
@@ -390,6 +465,24 @@ export namespace GetSearchResultsDirector$ {
   export type Outbound = GetSearchResultsDirector$Outbound;
 }
 
+export function getSearchResultsDirectorToJSON(
+  getSearchResultsDirector: GetSearchResultsDirector,
+): string {
+  return JSON.stringify(
+    GetSearchResultsDirector$outboundSchema.parse(getSearchResultsDirector),
+  );
+}
+
+export function getSearchResultsDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsDirector' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchResultsWriter$inboundSchema: z.ZodType<
   GetSearchResultsWriter,
@@ -424,6 +517,24 @@ export namespace GetSearchResultsWriter$ {
   export const outboundSchema = GetSearchResultsWriter$outboundSchema;
   /** @deprecated use `GetSearchResultsWriter$Outbound` instead. */
   export type Outbound = GetSearchResultsWriter$Outbound;
+}
+
+export function getSearchResultsWriterToJSON(
+  getSearchResultsWriter: GetSearchResultsWriter,
+): string {
+  return JSON.stringify(
+    GetSearchResultsWriter$outboundSchema.parse(getSearchResultsWriter),
+  );
+}
+
+export function getSearchResultsWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsWriter' from JSON`,
+  );
 }
 
 /** @internal */
@@ -462,6 +573,24 @@ export namespace GetSearchResultsCountry$ {
   export type Outbound = GetSearchResultsCountry$Outbound;
 }
 
+export function getSearchResultsCountryToJSON(
+  getSearchResultsCountry: GetSearchResultsCountry,
+): string {
+  return JSON.stringify(
+    GetSearchResultsCountry$outboundSchema.parse(getSearchResultsCountry),
+  );
+}
+
+export function getSearchResultsCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsCountry' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchResultsRole$inboundSchema: z.ZodType<
   GetSearchResultsRole,
@@ -496,6 +625,24 @@ export namespace GetSearchResultsRole$ {
   export const outboundSchema = GetSearchResultsRole$outboundSchema;
   /** @deprecated use `GetSearchResultsRole$Outbound` instead. */
   export type Outbound = GetSearchResultsRole$Outbound;
+}
+
+export function getSearchResultsRoleToJSON(
+  getSearchResultsRole: GetSearchResultsRole,
+): string {
+  return JSON.stringify(
+    GetSearchResultsRole$outboundSchema.parse(getSearchResultsRole),
+  );
+}
+
+export function getSearchResultsRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsRole' from JSON`,
+  );
 }
 
 /** @internal */
@@ -659,6 +806,24 @@ export namespace GetSearchResultsMetadata$ {
   export type Outbound = GetSearchResultsMetadata$Outbound;
 }
 
+export function getSearchResultsMetadataToJSON(
+  getSearchResultsMetadata: GetSearchResultsMetadata,
+): string {
+  return JSON.stringify(
+    GetSearchResultsMetadata$outboundSchema.parse(getSearchResultsMetadata),
+  );
+}
+
+export function getSearchResultsMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const Provider$inboundSchema: z.ZodType<
   Provider,
@@ -699,6 +864,20 @@ export namespace Provider$ {
   export const outboundSchema = Provider$outboundSchema;
   /** @deprecated use `Provider$Outbound` instead. */
   export type Outbound = Provider$Outbound;
+}
+
+export function providerToJSON(provider: Provider): string {
+  return JSON.stringify(Provider$outboundSchema.parse(provider));
+}
+
+export function providerFromJSON(
+  jsonString: string,
+): SafeParseResult<Provider, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Provider$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Provider' from JSON`,
+  );
 }
 
 /** @internal */
@@ -764,6 +943,26 @@ export namespace GetSearchResultsMediaContainer$ {
   export type Outbound = GetSearchResultsMediaContainer$Outbound;
 }
 
+export function getSearchResultsMediaContainerToJSON(
+  getSearchResultsMediaContainer: GetSearchResultsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetSearchResultsMediaContainer$outboundSchema.parse(
+      getSearchResultsMediaContainer,
+    ),
+  );
+}
+
+export function getSearchResultsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchResultsResponseBody$inboundSchema: z.ZodType<
   GetSearchResultsResponseBody,
@@ -808,6 +1007,26 @@ export namespace GetSearchResultsResponseBody$ {
   export const outboundSchema = GetSearchResultsResponseBody$outboundSchema;
   /** @deprecated use `GetSearchResultsResponseBody$Outbound` instead. */
   export type Outbound = GetSearchResultsResponseBody$Outbound;
+}
+
+export function getSearchResultsResponseBodyToJSON(
+  getSearchResultsResponseBody: GetSearchResultsResponseBody,
+): string {
+  return JSON.stringify(
+    GetSearchResultsResponseBody$outboundSchema.parse(
+      getSearchResultsResponseBody,
+    ),
+  );
+}
+
+export function getSearchResultsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -867,4 +1086,22 @@ export namespace GetSearchResultsResponse$ {
   export const outboundSchema = GetSearchResultsResponse$outboundSchema;
   /** @deprecated use `GetSearchResultsResponse$Outbound` instead. */
   export type Outbound = GetSearchResultsResponse$Outbound;
+}
+
+export function getSearchResultsResponseToJSON(
+  getSearchResultsResponse: GetSearchResultsResponse,
+): string {
+  return JSON.stringify(
+    GetSearchResultsResponse$outboundSchema.parse(getSearchResultsResponse),
+  );
+}
+
+export function getSearchResultsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsResponse' from JSON`,
+  );
 }

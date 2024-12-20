@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetCompanionsDataPlexErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetCompanionsDataPlexErrors$ {
   export type Outbound = GetCompanionsDataPlexErrors$Outbound;
 }
 
+export function getCompanionsDataPlexErrorsToJSON(
+  getCompanionsDataPlexErrors: GetCompanionsDataPlexErrors,
+): string {
+  return JSON.stringify(
+    GetCompanionsDataPlexErrors$outboundSchema.parse(
+      getCompanionsDataPlexErrors,
+    ),
+  );
+}
+
+export function getCompanionsDataPlexErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCompanionsDataPlexErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCompanionsDataPlexErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCompanionsDataPlexErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetCompanionsDataUnauthorized$inboundSchema: z.ZodType<
   GetCompanionsDataUnauthorized,
@@ -233,6 +256,24 @@ export namespace GetCompanionsDataErrors$ {
   export const outboundSchema = GetCompanionsDataErrors$outboundSchema;
   /** @deprecated use `GetCompanionsDataErrors$Outbound` instead. */
   export type Outbound = GetCompanionsDataErrors$Outbound;
+}
+
+export function getCompanionsDataErrorsToJSON(
+  getCompanionsDataErrors: GetCompanionsDataErrors,
+): string {
+  return JSON.stringify(
+    GetCompanionsDataErrors$outboundSchema.parse(getCompanionsDataErrors),
+  );
+}
+
+export function getCompanionsDataErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCompanionsDataErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCompanionsDataErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCompanionsDataErrors' from JSON`,
+  );
 }
 
 /** @internal */

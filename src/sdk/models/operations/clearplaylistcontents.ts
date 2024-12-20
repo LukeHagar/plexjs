@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ClearPlaylistContentsRequest = {
   /**
@@ -63,6 +66,26 @@ export namespace ClearPlaylistContentsRequest$ {
   export type Outbound = ClearPlaylistContentsRequest$Outbound;
 }
 
+export function clearPlaylistContentsRequestToJSON(
+  clearPlaylistContentsRequest: ClearPlaylistContentsRequest,
+): string {
+  return JSON.stringify(
+    ClearPlaylistContentsRequest$outboundSchema.parse(
+      clearPlaylistContentsRequest,
+    ),
+  );
+}
+
+export function clearPlaylistContentsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ClearPlaylistContentsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ClearPlaylistContentsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ClearPlaylistContentsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ClearPlaylistContentsResponse$inboundSchema: z.ZodType<
   ClearPlaylistContentsResponse,
@@ -117,4 +140,24 @@ export namespace ClearPlaylistContentsResponse$ {
   export const outboundSchema = ClearPlaylistContentsResponse$outboundSchema;
   /** @deprecated use `ClearPlaylistContentsResponse$Outbound` instead. */
   export type Outbound = ClearPlaylistContentsResponse$Outbound;
+}
+
+export function clearPlaylistContentsResponseToJSON(
+  clearPlaylistContentsResponse: ClearPlaylistContentsResponse,
+): string {
+  return JSON.stringify(
+    ClearPlaylistContentsResponse$outboundSchema.parse(
+      clearPlaylistContentsResponse,
+    ),
+  );
+}
+
+export function clearPlaylistContentsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ClearPlaylistContentsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ClearPlaylistContentsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ClearPlaylistContentsResponse' from JSON`,
+  );
 }

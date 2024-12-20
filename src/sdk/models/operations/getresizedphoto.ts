@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * images are always scaled proportionally. A value of '1' in minSize will make the smaller native dimension the dimension resized against.
@@ -159,6 +162,24 @@ export namespace GetResizedPhotoRequest$ {
   export type Outbound = GetResizedPhotoRequest$Outbound;
 }
 
+export function getResizedPhotoRequestToJSON(
+  getResizedPhotoRequest: GetResizedPhotoRequest,
+): string {
+  return JSON.stringify(
+    GetResizedPhotoRequest$outboundSchema.parse(getResizedPhotoRequest),
+  );
+}
+
+export function getResizedPhotoRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResizedPhotoRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResizedPhotoRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResizedPhotoRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetResizedPhotoResponse$inboundSchema: z.ZodType<
   GetResizedPhotoResponse,
@@ -213,4 +234,22 @@ export namespace GetResizedPhotoResponse$ {
   export const outboundSchema = GetResizedPhotoResponse$outboundSchema;
   /** @deprecated use `GetResizedPhotoResponse$Outbound` instead. */
   export type Outbound = GetResizedPhotoResponse$Outbound;
+}
+
+export function getResizedPhotoResponseToJSON(
+  getResizedPhotoResponse: GetResizedPhotoResponse,
+): string {
+  return JSON.stringify(
+    GetResizedPhotoResponse$outboundSchema.parse(getResizedPhotoResponse),
+  );
+}
+
+export function getResizedPhotoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResizedPhotoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResizedPhotoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResizedPhotoResponse' from JSON`,
+  );
 }

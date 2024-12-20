@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetSessionsStream = {
   albumGain?: string | undefined;
@@ -246,6 +249,24 @@ export namespace GetSessionsStream$ {
   export type Outbound = GetSessionsStream$Outbound;
 }
 
+export function getSessionsStreamToJSON(
+  getSessionsStream: GetSessionsStream,
+): string {
+  return JSON.stringify(
+    GetSessionsStream$outboundSchema.parse(getSessionsStream),
+  );
+}
+
+export function getSessionsStreamFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsStream, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsStream$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsStream' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionsPart$inboundSchema: z.ZodType<
   GetSessionsPart,
@@ -317,6 +338,22 @@ export namespace GetSessionsPart$ {
   export type Outbound = GetSessionsPart$Outbound;
 }
 
+export function getSessionsPartToJSON(
+  getSessionsPart: GetSessionsPart,
+): string {
+  return JSON.stringify(GetSessionsPart$outboundSchema.parse(getSessionsPart));
+}
+
+export function getSessionsPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsPart' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionsMedia$inboundSchema: z.ZodType<
   GetSessionsMedia,
@@ -382,6 +419,24 @@ export namespace GetSessionsMedia$ {
   export type Outbound = GetSessionsMedia$Outbound;
 }
 
+export function getSessionsMediaToJSON(
+  getSessionsMedia: GetSessionsMedia,
+): string {
+  return JSON.stringify(
+    GetSessionsMedia$outboundSchema.parse(getSessionsMedia),
+  );
+}
+
+export function getSessionsMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionsUser$inboundSchema: z.ZodType<
   GetSessionsUser,
@@ -422,6 +477,22 @@ export namespace GetSessionsUser$ {
   export const outboundSchema = GetSessionsUser$outboundSchema;
   /** @deprecated use `GetSessionsUser$Outbound` instead. */
   export type Outbound = GetSessionsUser$Outbound;
+}
+
+export function getSessionsUserToJSON(
+  getSessionsUser: GetSessionsUser,
+): string {
+  return JSON.stringify(GetSessionsUser$outboundSchema.parse(getSessionsUser));
+}
+
+export function getSessionsUserFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsUser, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsUser$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsUser' from JSON`,
+  );
 }
 
 /** @internal */
@@ -499,6 +570,20 @@ export namespace Player$ {
   export type Outbound = Player$Outbound;
 }
 
+export function playerToJSON(player: Player): string {
+  return JSON.stringify(Player$outboundSchema.parse(player));
+}
+
+export function playerFromJSON(
+  jsonString: string,
+): SafeParseResult<Player, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Player$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Player' from JSON`,
+  );
+}
+
 /** @internal */
 export const Session$inboundSchema: z.ZodType<Session, z.ZodTypeDef, unknown> =
   z.object({
@@ -536,6 +621,20 @@ export namespace Session$ {
   export const outboundSchema = Session$outboundSchema;
   /** @deprecated use `Session$Outbound` instead. */
   export type Outbound = Session$Outbound;
+}
+
+export function sessionToJSON(session: Session): string {
+  return JSON.stringify(Session$outboundSchema.parse(session));
+}
+
+export function sessionFromJSON(
+  jsonString: string,
+): SafeParseResult<Session, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Session$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Session' from JSON`,
+  );
 }
 
 /** @internal */
@@ -696,6 +795,24 @@ export namespace GetSessionsMetadata$ {
   export type Outbound = GetSessionsMetadata$Outbound;
 }
 
+export function getSessionsMetadataToJSON(
+  getSessionsMetadata: GetSessionsMetadata,
+): string {
+  return JSON.stringify(
+    GetSessionsMetadata$outboundSchema.parse(getSessionsMetadata),
+  );
+}
+
+export function getSessionsMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionsMediaContainer$inboundSchema: z.ZodType<
   GetSessionsMediaContainer,
@@ -744,6 +861,24 @@ export namespace GetSessionsMediaContainer$ {
   export type Outbound = GetSessionsMediaContainer$Outbound;
 }
 
+export function getSessionsMediaContainerToJSON(
+  getSessionsMediaContainer: GetSessionsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetSessionsMediaContainer$outboundSchema.parse(getSessionsMediaContainer),
+  );
+}
+
+export function getSessionsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionsResponseBody$inboundSchema: z.ZodType<
   GetSessionsResponseBody,
@@ -788,6 +923,24 @@ export namespace GetSessionsResponseBody$ {
   export const outboundSchema = GetSessionsResponseBody$outboundSchema;
   /** @deprecated use `GetSessionsResponseBody$Outbound` instead. */
   export type Outbound = GetSessionsResponseBody$Outbound;
+}
+
+export function getSessionsResponseBodyToJSON(
+  getSessionsResponseBody: GetSessionsResponseBody,
+): string {
+  return JSON.stringify(
+    GetSessionsResponseBody$outboundSchema.parse(getSessionsResponseBody),
+  );
+}
+
+export function getSessionsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -847,4 +1000,22 @@ export namespace GetSessionsResponse$ {
   export const outboundSchema = GetSessionsResponse$outboundSchema;
   /** @deprecated use `GetSessionsResponse$Outbound` instead. */
   export type Outbound = GetSessionsResponse$Outbound;
+}
+
+export function getSessionsResponseToJSON(
+  getSessionsResponse: GetSessionsResponse,
+): string {
+  return JSON.stringify(
+    GetSessionsResponse$outboundSchema.parse(getSessionsResponse),
+  );
+}
+
+export function getSessionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsResponse' from JSON`,
+  );
 }

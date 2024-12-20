@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetServerIdentityMediaContainer = {
   size?: number | undefined;
@@ -83,6 +86,26 @@ export namespace GetServerIdentityMediaContainer$ {
   export type Outbound = GetServerIdentityMediaContainer$Outbound;
 }
 
+export function getServerIdentityMediaContainerToJSON(
+  getServerIdentityMediaContainer: GetServerIdentityMediaContainer,
+): string {
+  return JSON.stringify(
+    GetServerIdentityMediaContainer$outboundSchema.parse(
+      getServerIdentityMediaContainer,
+    ),
+  );
+}
+
+export function getServerIdentityMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerIdentityMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerIdentityMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerIdentityMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerIdentityResponseBody$inboundSchema: z.ZodType<
   GetServerIdentityResponseBody,
@@ -127,6 +150,26 @@ export namespace GetServerIdentityResponseBody$ {
   export const outboundSchema = GetServerIdentityResponseBody$outboundSchema;
   /** @deprecated use `GetServerIdentityResponseBody$Outbound` instead. */
   export type Outbound = GetServerIdentityResponseBody$Outbound;
+}
+
+export function getServerIdentityResponseBodyToJSON(
+  getServerIdentityResponseBody: GetServerIdentityResponseBody,
+): string {
+  return JSON.stringify(
+    GetServerIdentityResponseBody$outboundSchema.parse(
+      getServerIdentityResponseBody,
+    ),
+  );
+}
+
+export function getServerIdentityResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerIdentityResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerIdentityResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerIdentityResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -186,4 +229,22 @@ export namespace GetServerIdentityResponse$ {
   export const outboundSchema = GetServerIdentityResponse$outboundSchema;
   /** @deprecated use `GetServerIdentityResponse$Outbound` instead. */
   export type Outbound = GetServerIdentityResponse$Outbound;
+}
+
+export function getServerIdentityResponseToJSON(
+  getServerIdentityResponse: GetServerIdentityResponse,
+): string {
+  return JSON.stringify(
+    GetServerIdentityResponse$outboundSchema.parse(getServerIdentityResponse),
+  );
+}
+
+export function getServerIdentityResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerIdentityResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerIdentityResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerIdentityResponse' from JSON`,
+  );
 }

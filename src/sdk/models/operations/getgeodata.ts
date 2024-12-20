@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const GetGeoDataServerList = [
   "https://plex.tv/api/v2",
@@ -162,6 +165,24 @@ export namespace GetGeoDataGeoData$ {
   export type Outbound = GetGeoDataGeoData$Outbound;
 }
 
+export function getGeoDataGeoDataToJSON(
+  getGeoDataGeoData: GetGeoDataGeoData,
+): string {
+  return JSON.stringify(
+    GetGeoDataGeoData$outboundSchema.parse(getGeoDataGeoData),
+  );
+}
+
+export function getGeoDataGeoDataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGeoDataGeoData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGeoDataGeoData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGeoDataGeoData' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetGeoDataResponse$inboundSchema: z.ZodType<
   GetGeoDataResponse,
@@ -221,4 +242,22 @@ export namespace GetGeoDataResponse$ {
   export const outboundSchema = GetGeoDataResponse$outboundSchema;
   /** @deprecated use `GetGeoDataResponse$Outbound` instead. */
   export type Outbound = GetGeoDataResponse$Outbound;
+}
+
+export function getGeoDataResponseToJSON(
+  getGeoDataResponse: GetGeoDataResponse,
+): string {
+  return JSON.stringify(
+    GetGeoDataResponse$outboundSchema.parse(getGeoDataResponse),
+  );
+}
+
+export function getGeoDataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGeoDataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGeoDataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGeoDataResponse' from JSON`,
+  );
 }

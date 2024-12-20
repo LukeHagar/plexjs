@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetDevicesServerErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetDevicesServerErrors$ {
   export type Outbound = GetDevicesServerErrors$Outbound;
 }
 
+export function getDevicesServerErrorsToJSON(
+  getDevicesServerErrors: GetDevicesServerErrors,
+): string {
+  return JSON.stringify(
+    GetDevicesServerErrors$outboundSchema.parse(getDevicesServerErrors),
+  );
+}
+
+export function getDevicesServerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDevicesServerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDevicesServerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDevicesServerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetDevicesUnauthorized$inboundSchema: z.ZodType<
   GetDevicesUnauthorized,
@@ -233,6 +254,24 @@ export namespace GetDevicesErrors$ {
   export const outboundSchema = GetDevicesErrors$outboundSchema;
   /** @deprecated use `GetDevicesErrors$Outbound` instead. */
   export type Outbound = GetDevicesErrors$Outbound;
+}
+
+export function getDevicesErrorsToJSON(
+  getDevicesErrors: GetDevicesErrors,
+): string {
+  return JSON.stringify(
+    GetDevicesErrors$outboundSchema.parse(getDevicesErrors),
+  );
+}
+
+export function getDevicesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDevicesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDevicesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDevicesErrors' from JSON`,
+  );
 }
 
 /** @internal */

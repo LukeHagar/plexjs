@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Force overwriting of duplicate playlists.
@@ -123,6 +126,24 @@ export namespace UploadPlaylistRequest$ {
   export type Outbound = UploadPlaylistRequest$Outbound;
 }
 
+export function uploadPlaylistRequestToJSON(
+  uploadPlaylistRequest: UploadPlaylistRequest,
+): string {
+  return JSON.stringify(
+    UploadPlaylistRequest$outboundSchema.parse(uploadPlaylistRequest),
+  );
+}
+
+export function uploadPlaylistRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UploadPlaylistRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UploadPlaylistRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UploadPlaylistRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const UploadPlaylistResponse$inboundSchema: z.ZodType<
   UploadPlaylistResponse,
@@ -177,4 +198,22 @@ export namespace UploadPlaylistResponse$ {
   export const outboundSchema = UploadPlaylistResponse$outboundSchema;
   /** @deprecated use `UploadPlaylistResponse$Outbound` instead. */
   export type Outbound = UploadPlaylistResponse$Outbound;
+}
+
+export function uploadPlaylistResponseToJSON(
+  uploadPlaylistResponse: UploadPlaylistResponse,
+): string {
+  return JSON.stringify(
+    UploadPlaylistResponse$outboundSchema.parse(uploadPlaylistResponse),
+  );
+}
+
+export function uploadPlaylistResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UploadPlaylistResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UploadPlaylistResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UploadPlaylistResponse' from JSON`,
+  );
 }

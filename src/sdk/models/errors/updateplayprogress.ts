@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type UpdatePlayProgressMediaErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace UpdatePlayProgressMediaErrors$ {
   export type Outbound = UpdatePlayProgressMediaErrors$Outbound;
 }
 
+export function updatePlayProgressMediaErrorsToJSON(
+  updatePlayProgressMediaErrors: UpdatePlayProgressMediaErrors,
+): string {
+  return JSON.stringify(
+    UpdatePlayProgressMediaErrors$outboundSchema.parse(
+      updatePlayProgressMediaErrors,
+    ),
+  );
+}
+
+export function updatePlayProgressMediaErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdatePlayProgressMediaErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdatePlayProgressMediaErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdatePlayProgressMediaErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdatePlayProgressUnauthorized$inboundSchema: z.ZodType<
   UpdatePlayProgressUnauthorized,
@@ -234,6 +257,24 @@ export namespace UpdatePlayProgressErrors$ {
   export const outboundSchema = UpdatePlayProgressErrors$outboundSchema;
   /** @deprecated use `UpdatePlayProgressErrors$Outbound` instead. */
   export type Outbound = UpdatePlayProgressErrors$Outbound;
+}
+
+export function updatePlayProgressErrorsToJSON(
+  updatePlayProgressErrors: UpdatePlayProgressErrors,
+): string {
+  return JSON.stringify(
+    UpdatePlayProgressErrors$outboundSchema.parse(updatePlayProgressErrors),
+  );
+}
+
+export function updatePlayProgressErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdatePlayProgressErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdatePlayProgressErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdatePlayProgressErrors' from JSON`,
+  );
 }
 
 /** @internal */

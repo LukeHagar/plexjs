@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetWatchListWatchlistErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetWatchListWatchlistErrors$ {
   export type Outbound = GetWatchListWatchlistErrors$Outbound;
 }
 
+export function getWatchListWatchlistErrorsToJSON(
+  getWatchListWatchlistErrors: GetWatchListWatchlistErrors,
+): string {
+  return JSON.stringify(
+    GetWatchListWatchlistErrors$outboundSchema.parse(
+      getWatchListWatchlistErrors,
+    ),
+  );
+}
+
+export function getWatchListWatchlistErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWatchListWatchlistErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWatchListWatchlistErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWatchListWatchlistErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetWatchListUnauthorized$inboundSchema: z.ZodType<
   GetWatchListUnauthorized,
@@ -233,6 +256,24 @@ export namespace GetWatchListErrors$ {
   export const outboundSchema = GetWatchListErrors$outboundSchema;
   /** @deprecated use `GetWatchListErrors$Outbound` instead. */
   export type Outbound = GetWatchListErrors$Outbound;
+}
+
+export function getWatchListErrorsToJSON(
+  getWatchListErrors: GetWatchListErrors,
+): string {
+  return JSON.stringify(
+    GetWatchListErrors$outboundSchema.parse(getWatchListErrors),
+  );
+}
+
+export function getWatchListErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWatchListErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWatchListErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWatchListErrors' from JSON`,
+  );
 }
 
 /** @internal */

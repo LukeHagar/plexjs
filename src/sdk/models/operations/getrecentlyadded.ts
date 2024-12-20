@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of media to retrieve.
@@ -22,6 +25,8 @@ export enum Type {
   Season = 3,
   Episode = 4,
   Audio = 8,
+  Album = 9,
+  Track = 10,
 }
 
 /**
@@ -191,16 +196,16 @@ export enum FlattenSeasons {
  * @remarks
  * None = Library default,
  * tmdbAiring = The Movie Database (Aired),
- * aired = TheTVDB (Aired),
- * dvd = TheTVDB (DVD),
- * absolute = TheTVDB (Absolute)).
+ * tvdbAiring = TheTVDB (Aired),
+ * tvdbDvd = TheTVDB (DVD),
+ * tvdbAbsolute = TheTVDB (Absolute)).
  */
 export enum ShowOrdering {
   None = "None",
   TmdbAiring = "tmdbAiring",
-  Aired = "aired",
-  Dvd = "dvd",
-  Absolute = "absolute",
+  TvdbAiring = "tvdbAiring",
+  TvdbDvd = "tvdbDvd",
+  TvdbAbsolute = "tvdbAbsolute",
 }
 
 export enum OptimizedForStreaming {
@@ -531,9 +536,9 @@ export type GetRecentlyAddedMetadata = {
    * @remarks
    * None = Library default,
    * tmdbAiring = The Movie Database (Aired),
-   * aired = TheTVDB (Aired),
-   * dvd = TheTVDB (DVD),
-   * absolute = TheTVDB (Absolute)).
+   * tvdbAiring = TheTVDB (Aired),
+   * tvdbDvd = TheTVDB (DVD),
+   * tvdbAbsolute = TheTVDB (Absolute)).
    */
   showOrdering?: ShowOrdering | undefined;
   thumb?: string | undefined;
@@ -757,6 +762,24 @@ export namespace GetRecentlyAddedRequest$ {
   export type Outbound = GetRecentlyAddedRequest$Outbound;
 }
 
+export function getRecentlyAddedRequestToJSON(
+  getRecentlyAddedRequest: GetRecentlyAddedRequest,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedRequest$outboundSchema.parse(getRecentlyAddedRequest),
+  );
+}
+
+export function getRecentlyAddedRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedFilter$inboundSchema: z.ZodType<
   GetRecentlyAddedFilter,
@@ -803,6 +826,24 @@ export namespace GetRecentlyAddedFilter$ {
   export const outboundSchema = GetRecentlyAddedFilter$outboundSchema;
   /** @deprecated use `GetRecentlyAddedFilter$Outbound` instead. */
   export type Outbound = GetRecentlyAddedFilter$Outbound;
+}
+
+export function getRecentlyAddedFilterToJSON(
+  getRecentlyAddedFilter: GetRecentlyAddedFilter,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedFilter$outboundSchema.parse(getRecentlyAddedFilter),
+  );
+}
+
+export function getRecentlyAddedFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedFilter' from JSON`,
+  );
 }
 
 /** @internal */
@@ -912,6 +953,24 @@ export namespace GetRecentlyAddedSort$ {
   export type Outbound = GetRecentlyAddedSort$Outbound;
 }
 
+export function getRecentlyAddedSortToJSON(
+  getRecentlyAddedSort: GetRecentlyAddedSort,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedSort$outboundSchema.parse(getRecentlyAddedSort),
+  );
+}
+
+export function getRecentlyAddedSortFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedSort, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedSort$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedSort' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedField$inboundSchema: z.ZodType<
   GetRecentlyAddedField,
@@ -955,6 +1014,24 @@ export namespace GetRecentlyAddedField$ {
   export const outboundSchema = GetRecentlyAddedField$outboundSchema;
   /** @deprecated use `GetRecentlyAddedField$Outbound` instead. */
   export type Outbound = GetRecentlyAddedField$Outbound;
+}
+
+export function getRecentlyAddedFieldToJSON(
+  getRecentlyAddedField: GetRecentlyAddedField,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedField$outboundSchema.parse(getRecentlyAddedField),
+  );
+}
+
+export function getRecentlyAddedFieldFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedField, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedField$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedField' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1025,6 +1102,24 @@ export namespace GetRecentlyAddedType$ {
   export type Outbound = GetRecentlyAddedType$Outbound;
 }
 
+export function getRecentlyAddedTypeToJSON(
+  getRecentlyAddedType: GetRecentlyAddedType,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedType$outboundSchema.parse(getRecentlyAddedType),
+  );
+}
+
+export function getRecentlyAddedTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedType' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedOperator$inboundSchema: z.ZodType<
   GetRecentlyAddedOperator,
@@ -1062,6 +1157,24 @@ export namespace GetRecentlyAddedOperator$ {
   export const outboundSchema = GetRecentlyAddedOperator$outboundSchema;
   /** @deprecated use `GetRecentlyAddedOperator$Outbound` instead. */
   export type Outbound = GetRecentlyAddedOperator$Outbound;
+}
+
+export function getRecentlyAddedOperatorToJSON(
+  getRecentlyAddedOperator: GetRecentlyAddedOperator,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedOperator$outboundSchema.parse(getRecentlyAddedOperator),
+  );
+}
+
+export function getRecentlyAddedOperatorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedOperator, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedOperator$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedOperator' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1111,6 +1224,24 @@ export namespace GetRecentlyAddedFieldType$ {
   export type Outbound = GetRecentlyAddedFieldType$Outbound;
 }
 
+export function getRecentlyAddedFieldTypeToJSON(
+  getRecentlyAddedFieldType: GetRecentlyAddedFieldType,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedFieldType$outboundSchema.parse(getRecentlyAddedFieldType),
+  );
+}
+
+export function getRecentlyAddedFieldTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedFieldType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedFieldType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedFieldType' from JSON`,
+  );
+}
+
 /** @internal */
 export const Meta$inboundSchema: z.ZodType<Meta, z.ZodTypeDef, unknown> = z
   .object({
@@ -1154,6 +1285,20 @@ export namespace Meta$ {
   export const outboundSchema = Meta$outboundSchema;
   /** @deprecated use `Meta$Outbound` instead. */
   export type Outbound = Meta$Outbound;
+}
+
+export function metaToJSON(meta: Meta): string {
+  return JSON.stringify(Meta$outboundSchema.parse(meta));
+}
+
+export function metaFromJSON(
+  jsonString: string,
+): SafeParseResult<Meta, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Meta$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Meta' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1401,6 +1546,20 @@ export namespace Stream$ {
   export type Outbound = Stream$Outbound;
 }
 
+export function streamToJSON(stream: Stream): string {
+  return JSON.stringify(Stream$outboundSchema.parse(stream));
+}
+
+export function streamFromJSON(
+  jsonString: string,
+): SafeParseResult<Stream, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Stream$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Stream' from JSON`,
+  );
+}
+
 /** @internal */
 export const Part$inboundSchema: z.ZodType<Part, z.ZodTypeDef, unknown> = z
   .object({
@@ -1473,6 +1632,20 @@ export namespace Part$ {
   export const outboundSchema = Part$outboundSchema;
   /** @deprecated use `Part$Outbound` instead. */
   export type Outbound = Part$Outbound;
+}
+
+export function partToJSON(part: Part): string {
+  return JSON.stringify(Part$outboundSchema.parse(part));
+}
+
+export function partFromJSON(
+  jsonString: string,
+): SafeParseResult<Part, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Part$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Part' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1569,6 +1742,20 @@ export namespace Media$ {
   export type Outbound = Media$Outbound;
 }
 
+export function mediaToJSON(media: Media): string {
+  return JSON.stringify(Media$outboundSchema.parse(media));
+}
+
+export function mediaFromJSON(
+  jsonString: string,
+): SafeParseResult<Media, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Media$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Media' from JSON`,
+  );
+}
+
 /** @internal */
 export const Genre$inboundSchema: z.ZodType<Genre, z.ZodTypeDef, unknown> = z
   .object({
@@ -1602,6 +1789,20 @@ export namespace Genre$ {
   export type Outbound = Genre$Outbound;
 }
 
+export function genreToJSON(genre: Genre): string {
+  return JSON.stringify(Genre$outboundSchema.parse(genre));
+}
+
+export function genreFromJSON(
+  jsonString: string,
+): SafeParseResult<Genre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Genre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Genre' from JSON`,
+  );
+}
+
 /** @internal */
 export const Country$inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> =
   z.object({
@@ -1633,6 +1834,20 @@ export namespace Country$ {
   export const outboundSchema = Country$outboundSchema;
   /** @deprecated use `Country$Outbound` instead. */
   export type Outbound = Country$Outbound;
+}
+
+export function countryToJSON(country: Country): string {
+  return JSON.stringify(Country$outboundSchema.parse(country));
+}
+
+export function countryFromJSON(
+  jsonString: string,
+): SafeParseResult<Country, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Country$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Country' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1671,6 +1886,20 @@ export namespace Director$ {
   export type Outbound = Director$Outbound;
 }
 
+export function directorToJSON(director: Director): string {
+  return JSON.stringify(Director$outboundSchema.parse(director));
+}
+
+export function directorFromJSON(
+  jsonString: string,
+): SafeParseResult<Director, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Director$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Director' from JSON`,
+  );
+}
+
 /** @internal */
 export const Writer$inboundSchema: z.ZodType<Writer, z.ZodTypeDef, unknown> = z
   .object({
@@ -1702,6 +1931,20 @@ export namespace Writer$ {
   export const outboundSchema = Writer$outboundSchema;
   /** @deprecated use `Writer$Outbound` instead. */
   export type Outbound = Writer$Outbound;
+}
+
+export function writerToJSON(writer: Writer): string {
+  return JSON.stringify(Writer$outboundSchema.parse(writer));
+}
+
+export function writerFromJSON(
+  jsonString: string,
+): SafeParseResult<Writer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Writer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Writer' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1738,6 +1981,20 @@ export namespace Collection$ {
   export const outboundSchema = Collection$outboundSchema;
   /** @deprecated use `Collection$Outbound` instead. */
   export type Outbound = Collection$Outbound;
+}
+
+export function collectionToJSON(collection: Collection): string {
+  return JSON.stringify(Collection$outboundSchema.parse(collection));
+}
+
+export function collectionFromJSON(
+  jsonString: string,
+): SafeParseResult<Collection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Collection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Collection' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1785,6 +2042,20 @@ export namespace Role$ {
   export type Outbound = Role$Outbound;
 }
 
+export function roleToJSON(role: Role): string {
+  return JSON.stringify(Role$outboundSchema.parse(role));
+}
+
+export function roleFromJSON(
+  jsonString: string,
+): SafeParseResult<Role, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Role$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Role' from JSON`,
+  );
+}
+
 /** @internal */
 export const Location$inboundSchema: z.ZodType<
   Location,
@@ -1821,6 +2092,20 @@ export namespace Location$ {
   export type Outbound = Location$Outbound;
 }
 
+export function locationToJSON(location: Location): string {
+  return JSON.stringify(Location$outboundSchema.parse(location));
+}
+
+export function locationFromJSON(
+  jsonString: string,
+): SafeParseResult<Location, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Location$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Location' from JSON`,
+  );
+}
+
 /** @internal */
 export const MediaGuid$inboundSchema: z.ZodType<
   MediaGuid,
@@ -1855,6 +2140,20 @@ export namespace MediaGuid$ {
   export const outboundSchema = MediaGuid$outboundSchema;
   /** @deprecated use `MediaGuid$Outbound` instead. */
   export type Outbound = MediaGuid$Outbound;
+}
+
+export function mediaGuidToJSON(mediaGuid: MediaGuid): string {
+  return JSON.stringify(MediaGuid$outboundSchema.parse(mediaGuid));
+}
+
+export function mediaGuidFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaGuid, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MediaGuid$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaGuid' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1902,6 +2201,22 @@ export namespace UltraBlurColors$ {
   export type Outbound = UltraBlurColors$Outbound;
 }
 
+export function ultraBlurColorsToJSON(
+  ultraBlurColors: UltraBlurColors,
+): string {
+  return JSON.stringify(UltraBlurColors$outboundSchema.parse(ultraBlurColors));
+}
+
+export function ultraBlurColorsFromJSON(
+  jsonString: string,
+): SafeParseResult<UltraBlurColors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UltraBlurColors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UltraBlurColors' from JSON`,
+  );
+}
+
 /** @internal */
 export const MetaDataRating$inboundSchema: z.ZodType<
   MetaDataRating,
@@ -1942,6 +2257,20 @@ export namespace MetaDataRating$ {
   export const outboundSchema = MetaDataRating$outboundSchema;
   /** @deprecated use `MetaDataRating$Outbound` instead. */
   export type Outbound = MetaDataRating$Outbound;
+}
+
+export function metaDataRatingToJSON(metaDataRating: MetaDataRating): string {
+  return JSON.stringify(MetaDataRating$outboundSchema.parse(metaDataRating));
+}
+
+export function metaDataRatingFromJSON(
+  jsonString: string,
+): SafeParseResult<MetaDataRating, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MetaDataRating$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MetaDataRating' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2005,6 +2334,24 @@ export namespace GetRecentlyAddedImage$ {
   export const outboundSchema = GetRecentlyAddedImage$outboundSchema;
   /** @deprecated use `GetRecentlyAddedImage$Outbound` instead. */
   export type Outbound = GetRecentlyAddedImage$Outbound;
+}
+
+export function getRecentlyAddedImageToJSON(
+  getRecentlyAddedImage: GetRecentlyAddedImage,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedImage$outboundSchema.parse(getRecentlyAddedImage),
+  );
+}
+
+export function getRecentlyAddedImageFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedImage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedImage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedImage' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2294,6 +2641,24 @@ export namespace GetRecentlyAddedMetadata$ {
   export type Outbound = GetRecentlyAddedMetadata$Outbound;
 }
 
+export function getRecentlyAddedMetadataToJSON(
+  getRecentlyAddedMetadata: GetRecentlyAddedMetadata,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedMetadata$outboundSchema.parse(getRecentlyAddedMetadata),
+  );
+}
+
+export function getRecentlyAddedMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedMediaContainer$inboundSchema: z.ZodType<
   GetRecentlyAddedMediaContainer,
@@ -2360,6 +2725,26 @@ export namespace GetRecentlyAddedMediaContainer$ {
   export type Outbound = GetRecentlyAddedMediaContainer$Outbound;
 }
 
+export function getRecentlyAddedMediaContainerToJSON(
+  getRecentlyAddedMediaContainer: GetRecentlyAddedMediaContainer,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedMediaContainer$outboundSchema.parse(
+      getRecentlyAddedMediaContainer,
+    ),
+  );
+}
+
+export function getRecentlyAddedMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRecentlyAddedResponseBody$inboundSchema: z.ZodType<
   GetRecentlyAddedResponseBody,
@@ -2404,6 +2789,26 @@ export namespace GetRecentlyAddedResponseBody$ {
   export const outboundSchema = GetRecentlyAddedResponseBody$outboundSchema;
   /** @deprecated use `GetRecentlyAddedResponseBody$Outbound` instead. */
   export type Outbound = GetRecentlyAddedResponseBody$Outbound;
+}
+
+export function getRecentlyAddedResponseBodyToJSON(
+  getRecentlyAddedResponseBody: GetRecentlyAddedResponseBody,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedResponseBody$outboundSchema.parse(
+      getRecentlyAddedResponseBody,
+    ),
+  );
+}
+
+export function getRecentlyAddedResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2463,4 +2868,22 @@ export namespace GetRecentlyAddedResponse$ {
   export const outboundSchema = GetRecentlyAddedResponse$outboundSchema;
   /** @deprecated use `GetRecentlyAddedResponse$Outbound` instead. */
   export type Outbound = GetRecentlyAddedResponse$Outbound;
+}
+
+export function getRecentlyAddedResponseToJSON(
+  getRecentlyAddedResponse: GetRecentlyAddedResponse,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedResponse$outboundSchema.parse(getRecentlyAddedResponse),
+  );
+}
+
+export function getRecentlyAddedResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRecentlyAddedResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedResponse' from JSON`,
+  );
 }

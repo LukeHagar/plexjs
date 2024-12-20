@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type StartTaskButlerErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace StartTaskButlerErrors$ {
   export type Outbound = StartTaskButlerErrors$Outbound;
 }
 
+export function startTaskButlerErrorsToJSON(
+  startTaskButlerErrors: StartTaskButlerErrors,
+): string {
+  return JSON.stringify(
+    StartTaskButlerErrors$outboundSchema.parse(startTaskButlerErrors),
+  );
+}
+
+export function startTaskButlerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<StartTaskButlerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartTaskButlerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartTaskButlerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const StartTaskUnauthorized$inboundSchema: z.ZodType<
   StartTaskUnauthorized,
@@ -232,6 +253,22 @@ export namespace StartTaskErrors$ {
   export const outboundSchema = StartTaskErrors$outboundSchema;
   /** @deprecated use `StartTaskErrors$Outbound` instead. */
   export type Outbound = StartTaskErrors$Outbound;
+}
+
+export function startTaskErrorsToJSON(
+  startTaskErrors: StartTaskErrors,
+): string {
+  return JSON.stringify(StartTaskErrors$outboundSchema.parse(startTaskErrors));
+}
+
+export function startTaskErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<StartTaskErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartTaskErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartTaskErrors' from JSON`,
+  );
 }
 
 /** @internal */

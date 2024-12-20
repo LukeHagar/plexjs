@@ -4,33 +4,13 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const GetTokenByPinIdServerList = [
   "https://plex.tv/api/v2",
 ] as const;
-
-export type GetTokenByPinIdGlobals = {
-  /**
-   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-   */
-  clientID?: string | undefined;
-  /**
-   * The name of the client application. (Plex Web, Plex Media Server, etc.)
-   */
-  clientName?: string | undefined;
-  /**
-   * A relatively friendly name for the client device
-   */
-  deviceNickname?: string | undefined;
-  /**
-   * The version of the client application.
-   */
-  clientVersion?: string | undefined;
-  /**
-   * The platform of the client application.
-   */
-  platform?: string | undefined;
-};
 
 export type GetTokenByPinIdRequest = {
   /**
@@ -40,7 +20,7 @@ export type GetTokenByPinIdRequest = {
   /**
    * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
-  clientID?: string | undefined;
+  clientID: string;
   /**
    * The name of the client application. (Plex Web, Plex Media Server, etc.)
    */
@@ -156,77 +136,13 @@ export type GetTokenByPinIdResponse = {
 };
 
 /** @internal */
-export const GetTokenByPinIdGlobals$inboundSchema: z.ZodType<
-  GetTokenByPinIdGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ClientID: z.string().optional(),
-  ClientName: z.string().optional(),
-  DeviceNickname: z.string().optional(),
-  ClientVersion: z.string().optional(),
-  Platform: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "ClientID": "clientID",
-    "ClientName": "clientName",
-    "DeviceNickname": "deviceNickname",
-    "ClientVersion": "clientVersion",
-    "Platform": "platform",
-  });
-});
-
-/** @internal */
-export type GetTokenByPinIdGlobals$Outbound = {
-  ClientID?: string | undefined;
-  ClientName?: string | undefined;
-  DeviceNickname?: string | undefined;
-  ClientVersion?: string | undefined;
-  Platform?: string | undefined;
-};
-
-/** @internal */
-export const GetTokenByPinIdGlobals$outboundSchema: z.ZodType<
-  GetTokenByPinIdGlobals$Outbound,
-  z.ZodTypeDef,
-  GetTokenByPinIdGlobals
-> = z.object({
-  clientID: z.string().optional(),
-  clientName: z.string().optional(),
-  deviceNickname: z.string().optional(),
-  clientVersion: z.string().optional(),
-  platform: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientID: "ClientID",
-    clientName: "ClientName",
-    deviceNickname: "DeviceNickname",
-    clientVersion: "ClientVersion",
-    platform: "Platform",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTokenByPinIdGlobals$ {
-  /** @deprecated use `GetTokenByPinIdGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetTokenByPinIdGlobals$inboundSchema;
-  /** @deprecated use `GetTokenByPinIdGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetTokenByPinIdGlobals$outboundSchema;
-  /** @deprecated use `GetTokenByPinIdGlobals$Outbound` instead. */
-  export type Outbound = GetTokenByPinIdGlobals$Outbound;
-}
-
-/** @internal */
 export const GetTokenByPinIdRequest$inboundSchema: z.ZodType<
   GetTokenByPinIdRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
   pinID: z.number().int(),
-  ClientID: z.string().optional(),
+  ClientID: z.string(),
   ClientName: z.string().optional(),
   DeviceNickname: z.string().optional(),
   ClientVersion: z.string().optional(),
@@ -244,7 +160,7 @@ export const GetTokenByPinIdRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetTokenByPinIdRequest$Outbound = {
   pinID: number;
-  ClientID?: string | undefined;
+  ClientID: string;
   ClientName?: string | undefined;
   DeviceNickname?: string | undefined;
   ClientVersion?: string | undefined;
@@ -258,7 +174,7 @@ export const GetTokenByPinIdRequest$outboundSchema: z.ZodType<
   GetTokenByPinIdRequest
 > = z.object({
   pinID: z.number().int(),
-  clientID: z.string().optional(),
+  clientID: z.string(),
   clientName: z.string().optional(),
   deviceNickname: z.string().optional(),
   clientVersion: z.string().optional(),
@@ -284,6 +200,24 @@ export namespace GetTokenByPinIdRequest$ {
   export const outboundSchema = GetTokenByPinIdRequest$outboundSchema;
   /** @deprecated use `GetTokenByPinIdRequest$Outbound` instead. */
   export type Outbound = GetTokenByPinIdRequest$Outbound;
+}
+
+export function getTokenByPinIdRequestToJSON(
+  getTokenByPinIdRequest: GetTokenByPinIdRequest,
+): string {
+  return JSON.stringify(
+    GetTokenByPinIdRequest$outboundSchema.parse(getTokenByPinIdRequest),
+  );
+}
+
+export function getTokenByPinIdRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenByPinIdRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenByPinIdRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenByPinIdRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -370,6 +304,24 @@ export namespace GetTokenByPinIdGeoData$ {
   export type Outbound = GetTokenByPinIdGeoData$Outbound;
 }
 
+export function getTokenByPinIdGeoDataToJSON(
+  getTokenByPinIdGeoData: GetTokenByPinIdGeoData,
+): string {
+  return JSON.stringify(
+    GetTokenByPinIdGeoData$outboundSchema.parse(getTokenByPinIdGeoData),
+  );
+}
+
+export function getTokenByPinIdGeoDataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenByPinIdGeoData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenByPinIdGeoData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenByPinIdGeoData' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTokenByPinIdAuthPinContainer$inboundSchema: z.ZodType<
   GetTokenByPinIdAuthPinContainer,
@@ -439,6 +391,26 @@ export namespace GetTokenByPinIdAuthPinContainer$ {
   export type Outbound = GetTokenByPinIdAuthPinContainer$Outbound;
 }
 
+export function getTokenByPinIdAuthPinContainerToJSON(
+  getTokenByPinIdAuthPinContainer: GetTokenByPinIdAuthPinContainer,
+): string {
+  return JSON.stringify(
+    GetTokenByPinIdAuthPinContainer$outboundSchema.parse(
+      getTokenByPinIdAuthPinContainer,
+    ),
+  );
+}
+
+export function getTokenByPinIdAuthPinContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenByPinIdAuthPinContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenByPinIdAuthPinContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenByPinIdAuthPinContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTokenByPinIdResponse$inboundSchema: z.ZodType<
   GetTokenByPinIdResponse,
@@ -500,4 +472,22 @@ export namespace GetTokenByPinIdResponse$ {
   export const outboundSchema = GetTokenByPinIdResponse$outboundSchema;
   /** @deprecated use `GetTokenByPinIdResponse$Outbound` instead. */
   export type Outbound = GetTokenByPinIdResponse$Outbound;
+}
+
+export function getTokenByPinIdResponseToJSON(
+  getTokenByPinIdResponse: GetTokenByPinIdResponse,
+): string {
+  return JSON.stringify(
+    GetTokenByPinIdResponse$outboundSchema.parse(getTokenByPinIdResponse),
+  );
+}
+
+export function getTokenByPinIdResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTokenByPinIdResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTokenByPinIdResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTokenByPinIdResponse' from JSON`,
+  );
 }

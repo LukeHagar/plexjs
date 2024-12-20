@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type UpdatePlaylistPlaylistsErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace UpdatePlaylistPlaylistsErrors$ {
   export type Outbound = UpdatePlaylistPlaylistsErrors$Outbound;
 }
 
+export function updatePlaylistPlaylistsErrorsToJSON(
+  updatePlaylistPlaylistsErrors: UpdatePlaylistPlaylistsErrors,
+): string {
+  return JSON.stringify(
+    UpdatePlaylistPlaylistsErrors$outboundSchema.parse(
+      updatePlaylistPlaylistsErrors,
+    ),
+  );
+}
+
+export function updatePlaylistPlaylistsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdatePlaylistPlaylistsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdatePlaylistPlaylistsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdatePlaylistPlaylistsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdatePlaylistUnauthorized$inboundSchema: z.ZodType<
   UpdatePlaylistUnauthorized,
@@ -234,6 +257,24 @@ export namespace UpdatePlaylistErrors$ {
   export const outboundSchema = UpdatePlaylistErrors$outboundSchema;
   /** @deprecated use `UpdatePlaylistErrors$Outbound` instead. */
   export type Outbound = UpdatePlaylistErrors$Outbound;
+}
+
+export function updatePlaylistErrorsToJSON(
+  updatePlaylistErrors: UpdatePlaylistErrors,
+): string {
+  return JSON.stringify(
+    UpdatePlaylistErrors$outboundSchema.parse(updatePlaylistErrors),
+  );
+}
+
+export function updatePlaylistErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdatePlaylistErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdatePlaylistErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdatePlaylistErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetBandwidthStatisticsStatisticsErrors = {
   code?: number | undefined;
@@ -137,6 +140,28 @@ export namespace GetBandwidthStatisticsStatisticsErrors$ {
   export type Outbound = GetBandwidthStatisticsStatisticsErrors$Outbound;
 }
 
+export function getBandwidthStatisticsStatisticsErrorsToJSON(
+  getBandwidthStatisticsStatisticsErrors:
+    GetBandwidthStatisticsStatisticsErrors,
+): string {
+  return JSON.stringify(
+    GetBandwidthStatisticsStatisticsErrors$outboundSchema.parse(
+      getBandwidthStatisticsStatisticsErrors,
+    ),
+  );
+}
+
+export function getBandwidthStatisticsStatisticsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBandwidthStatisticsStatisticsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetBandwidthStatisticsStatisticsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBandwidthStatisticsStatisticsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetBandwidthStatisticsUnauthorized$inboundSchema: z.ZodType<
   GetBandwidthStatisticsUnauthorized,
@@ -238,6 +263,26 @@ export namespace GetBandwidthStatisticsErrors$ {
   export const outboundSchema = GetBandwidthStatisticsErrors$outboundSchema;
   /** @deprecated use `GetBandwidthStatisticsErrors$Outbound` instead. */
   export type Outbound = GetBandwidthStatisticsErrors$Outbound;
+}
+
+export function getBandwidthStatisticsErrorsToJSON(
+  getBandwidthStatisticsErrors: GetBandwidthStatisticsErrors,
+): string {
+  return JSON.stringify(
+    GetBandwidthStatisticsErrors$outboundSchema.parse(
+      getBandwidthStatisticsErrors,
+    ),
+  );
+}
+
+export function getBandwidthStatisticsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBandwidthStatisticsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBandwidthStatisticsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBandwidthStatisticsErrors' from JSON`,
+  );
 }
 
 /** @internal */

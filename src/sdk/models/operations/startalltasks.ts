@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StartAllTasksResponse = {
   /**
@@ -74,4 +77,22 @@ export namespace StartAllTasksResponse$ {
   export const outboundSchema = StartAllTasksResponse$outboundSchema;
   /** @deprecated use `StartAllTasksResponse$Outbound` instead. */
   export type Outbound = StartAllTasksResponse$Outbound;
+}
+
+export function startAllTasksResponseToJSON(
+  startAllTasksResponse: StartAllTasksResponse,
+): string {
+  return JSON.stringify(
+    StartAllTasksResponse$outboundSchema.parse(startAllTasksResponse),
+  );
+}
+
+export function startAllTasksResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<StartAllTasksResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartAllTasksResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartAllTasksResponse' from JSON`,
+  );
 }

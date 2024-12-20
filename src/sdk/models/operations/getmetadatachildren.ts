@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetMetadataChildrenRequest = {
   /**
@@ -147,6 +150,24 @@ export namespace GetMetadataChildrenRequest$ {
   export type Outbound = GetMetadataChildrenRequest$Outbound;
 }
 
+export function getMetadataChildrenRequestToJSON(
+  getMetadataChildrenRequest: GetMetadataChildrenRequest,
+): string {
+  return JSON.stringify(
+    GetMetadataChildrenRequest$outboundSchema.parse(getMetadataChildrenRequest),
+  );
+}
+
+export function getMetadataChildrenRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetadataChildrenRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetadataChildrenRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetadataChildrenRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetadataChildrenDirectory$inboundSchema: z.ZodType<
   GetMetadataChildrenDirectory,
@@ -193,6 +214,26 @@ export namespace GetMetadataChildrenDirectory$ {
   export const outboundSchema = GetMetadataChildrenDirectory$outboundSchema;
   /** @deprecated use `GetMetadataChildrenDirectory$Outbound` instead. */
   export type Outbound = GetMetadataChildrenDirectory$Outbound;
+}
+
+export function getMetadataChildrenDirectoryToJSON(
+  getMetadataChildrenDirectory: GetMetadataChildrenDirectory,
+): string {
+  return JSON.stringify(
+    GetMetadataChildrenDirectory$outboundSchema.parse(
+      getMetadataChildrenDirectory,
+    ),
+  );
+}
+
+export function getMetadataChildrenDirectoryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetadataChildrenDirectory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetadataChildrenDirectory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetadataChildrenDirectory' from JSON`,
+  );
 }
 
 /** @internal */
@@ -307,6 +348,26 @@ export namespace GetMetadataChildrenMetadata$ {
   export const outboundSchema = GetMetadataChildrenMetadata$outboundSchema;
   /** @deprecated use `GetMetadataChildrenMetadata$Outbound` instead. */
   export type Outbound = GetMetadataChildrenMetadata$Outbound;
+}
+
+export function getMetadataChildrenMetadataToJSON(
+  getMetadataChildrenMetadata: GetMetadataChildrenMetadata,
+): string {
+  return JSON.stringify(
+    GetMetadataChildrenMetadata$outboundSchema.parse(
+      getMetadataChildrenMetadata,
+    ),
+  );
+}
+
+export function getMetadataChildrenMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetadataChildrenMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetadataChildrenMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetadataChildrenMetadata' from JSON`,
+  );
 }
 
 /** @internal */
@@ -426,6 +487,26 @@ export namespace GetMetadataChildrenMediaContainer$ {
   export type Outbound = GetMetadataChildrenMediaContainer$Outbound;
 }
 
+export function getMetadataChildrenMediaContainerToJSON(
+  getMetadataChildrenMediaContainer: GetMetadataChildrenMediaContainer,
+): string {
+  return JSON.stringify(
+    GetMetadataChildrenMediaContainer$outboundSchema.parse(
+      getMetadataChildrenMediaContainer,
+    ),
+  );
+}
+
+export function getMetadataChildrenMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetadataChildrenMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetadataChildrenMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetadataChildrenMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetadataChildrenResponseBody$inboundSchema: z.ZodType<
   GetMetadataChildrenResponseBody,
@@ -470,6 +551,26 @@ export namespace GetMetadataChildrenResponseBody$ {
   export const outboundSchema = GetMetadataChildrenResponseBody$outboundSchema;
   /** @deprecated use `GetMetadataChildrenResponseBody$Outbound` instead. */
   export type Outbound = GetMetadataChildrenResponseBody$Outbound;
+}
+
+export function getMetadataChildrenResponseBodyToJSON(
+  getMetadataChildrenResponseBody: GetMetadataChildrenResponseBody,
+): string {
+  return JSON.stringify(
+    GetMetadataChildrenResponseBody$outboundSchema.parse(
+      getMetadataChildrenResponseBody,
+    ),
+  );
+}
+
+export function getMetadataChildrenResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetadataChildrenResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetadataChildrenResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetadataChildrenResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -531,4 +632,24 @@ export namespace GetMetadataChildrenResponse$ {
   export const outboundSchema = GetMetadataChildrenResponse$outboundSchema;
   /** @deprecated use `GetMetadataChildrenResponse$Outbound` instead. */
   export type Outbound = GetMetadataChildrenResponse$Outbound;
+}
+
+export function getMetadataChildrenResponseToJSON(
+  getMetadataChildrenResponse: GetMetadataChildrenResponse,
+): string {
+  return JSON.stringify(
+    GetMetadataChildrenResponse$outboundSchema.parse(
+      getMetadataChildrenResponse,
+    ),
+  );
+}
+
+export function getMetadataChildrenResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetadataChildrenResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetadataChildrenResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetadataChildrenResponse' from JSON`,
+  );
 }

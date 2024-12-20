@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Context = {
   librarySectionID?: string | undefined;
@@ -84,6 +87,20 @@ export namespace Context$ {
   export type Outbound = Context$Outbound;
 }
 
+export function contextToJSON(context: Context): string {
+  return JSON.stringify(Context$outboundSchema.parse(context));
+}
+
+export function contextFromJSON(
+  jsonString: string,
+): SafeParseResult<Context, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Context$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Context' from JSON`,
+  );
+}
+
 /** @internal */
 export const Activity$inboundSchema: z.ZodType<
   Activity,
@@ -149,6 +166,20 @@ export namespace Activity$ {
   export type Outbound = Activity$Outbound;
 }
 
+export function activityToJSON(activity: Activity): string {
+  return JSON.stringify(Activity$outboundSchema.parse(activity));
+}
+
+export function activityFromJSON(
+  jsonString: string,
+): SafeParseResult<Activity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Activity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Activity' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerActivitiesMediaContainer$inboundSchema: z.ZodType<
   GetServerActivitiesMediaContainer,
@@ -197,6 +228,26 @@ export namespace GetServerActivitiesMediaContainer$ {
   export type Outbound = GetServerActivitiesMediaContainer$Outbound;
 }
 
+export function getServerActivitiesMediaContainerToJSON(
+  getServerActivitiesMediaContainer: GetServerActivitiesMediaContainer,
+): string {
+  return JSON.stringify(
+    GetServerActivitiesMediaContainer$outboundSchema.parse(
+      getServerActivitiesMediaContainer,
+    ),
+  );
+}
+
+export function getServerActivitiesMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerActivitiesMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerActivitiesMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerActivitiesMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerActivitiesResponseBody$inboundSchema: z.ZodType<
   GetServerActivitiesResponseBody,
@@ -241,6 +292,26 @@ export namespace GetServerActivitiesResponseBody$ {
   export const outboundSchema = GetServerActivitiesResponseBody$outboundSchema;
   /** @deprecated use `GetServerActivitiesResponseBody$Outbound` instead. */
   export type Outbound = GetServerActivitiesResponseBody$Outbound;
+}
+
+export function getServerActivitiesResponseBodyToJSON(
+  getServerActivitiesResponseBody: GetServerActivitiesResponseBody,
+): string {
+  return JSON.stringify(
+    GetServerActivitiesResponseBody$outboundSchema.parse(
+      getServerActivitiesResponseBody,
+    ),
+  );
+}
+
+export function getServerActivitiesResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerActivitiesResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerActivitiesResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerActivitiesResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -302,4 +373,24 @@ export namespace GetServerActivitiesResponse$ {
   export const outboundSchema = GetServerActivitiesResponse$outboundSchema;
   /** @deprecated use `GetServerActivitiesResponse$Outbound` instead. */
   export type Outbound = GetServerActivitiesResponse$Outbound;
+}
+
+export function getServerActivitiesResponseToJSON(
+  getServerActivitiesResponse: GetServerActivitiesResponse,
+): string {
+  return JSON.stringify(
+    GetServerActivitiesResponse$outboundSchema.parse(
+      getServerActivitiesResponse,
+    ),
+  );
+}
+
+export function getServerActivitiesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerActivitiesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerActivitiesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerActivitiesResponse' from JSON`,
+  );
 }

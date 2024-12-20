@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetOnDeckLibraryErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetOnDeckLibraryErrors$ {
   export type Outbound = GetOnDeckLibraryErrors$Outbound;
 }
 
+export function getOnDeckLibraryErrorsToJSON(
+  getOnDeckLibraryErrors: GetOnDeckLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetOnDeckLibraryErrors$outboundSchema.parse(getOnDeckLibraryErrors),
+  );
+}
+
+export function getOnDeckLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetOnDeckUnauthorized$inboundSchema: z.ZodType<
   GetOnDeckUnauthorized,
@@ -233,6 +254,22 @@ export namespace GetOnDeckErrors$ {
   export const outboundSchema = GetOnDeckErrors$outboundSchema;
   /** @deprecated use `GetOnDeckErrors$Outbound` instead. */
   export type Outbound = GetOnDeckErrors$Outbound;
+}
+
+export function getOnDeckErrorsToJSON(
+  getOnDeckErrors: GetOnDeckErrors,
+): string {
+  return JSON.stringify(GetOnDeckErrors$outboundSchema.parse(getOnDeckErrors));
+}
+
+export function getOnDeckErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOnDeckErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOnDeckErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOnDeckErrors' from JSON`,
+  );
 }
 
 /** @internal */

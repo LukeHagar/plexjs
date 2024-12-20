@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetServerPreferencesServerErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetServerPreferencesServerErrors$ {
   export type Outbound = GetServerPreferencesServerErrors$Outbound;
 }
 
+export function getServerPreferencesServerErrorsToJSON(
+  getServerPreferencesServerErrors: GetServerPreferencesServerErrors,
+): string {
+  return JSON.stringify(
+    GetServerPreferencesServerErrors$outboundSchema.parse(
+      getServerPreferencesServerErrors,
+    ),
+  );
+}
+
+export function getServerPreferencesServerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerPreferencesServerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerPreferencesServerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerPreferencesServerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerPreferencesUnauthorized$inboundSchema: z.ZodType<
   GetServerPreferencesUnauthorized,
@@ -234,6 +257,24 @@ export namespace GetServerPreferencesErrors$ {
   export const outboundSchema = GetServerPreferencesErrors$outboundSchema;
   /** @deprecated use `GetServerPreferencesErrors$Outbound` instead. */
   export type Outbound = GetServerPreferencesErrors$Outbound;
+}
+
+export function getServerPreferencesErrorsToJSON(
+  getServerPreferencesErrors: GetServerPreferencesErrors,
+): string {
+  return JSON.stringify(
+    GetServerPreferencesErrors$outboundSchema.parse(getServerPreferencesErrors),
+  );
+}
+
+export function getServerPreferencesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerPreferencesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerPreferencesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerPreferencesErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetResizedPhotoServerErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetResizedPhotoServerErrors$ {
   export type Outbound = GetResizedPhotoServerErrors$Outbound;
 }
 
+export function getResizedPhotoServerErrorsToJSON(
+  getResizedPhotoServerErrors: GetResizedPhotoServerErrors,
+): string {
+  return JSON.stringify(
+    GetResizedPhotoServerErrors$outboundSchema.parse(
+      getResizedPhotoServerErrors,
+    ),
+  );
+}
+
+export function getResizedPhotoServerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResizedPhotoServerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResizedPhotoServerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResizedPhotoServerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetResizedPhotoUnauthorized$inboundSchema: z.ZodType<
   GetResizedPhotoUnauthorized,
@@ -233,6 +256,24 @@ export namespace GetResizedPhotoErrors$ {
   export const outboundSchema = GetResizedPhotoErrors$outboundSchema;
   /** @deprecated use `GetResizedPhotoErrors$Outbound` instead. */
   export type Outbound = GetResizedPhotoErrors$Outbound;
+}
+
+export function getResizedPhotoErrorsToJSON(
+  getResizedPhotoErrors: GetResizedPhotoErrors,
+): string {
+  return JSON.stringify(
+    GetResizedPhotoErrors$outboundSchema.parse(getResizedPhotoErrors),
+  );
+}
+
+export function getResizedPhotoErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResizedPhotoErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResizedPhotoErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResizedPhotoErrors' from JSON`,
+  );
 }
 
 /** @internal */

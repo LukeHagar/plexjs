@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Home Data
@@ -87,6 +90,24 @@ export namespace GetHomeDataResponseBody$ {
   export type Outbound = GetHomeDataResponseBody$Outbound;
 }
 
+export function getHomeDataResponseBodyToJSON(
+  getHomeDataResponseBody: GetHomeDataResponseBody,
+): string {
+  return JSON.stringify(
+    GetHomeDataResponseBody$outboundSchema.parse(getHomeDataResponseBody),
+  );
+}
+
+export function getHomeDataResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetHomeDataResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetHomeDataResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHomeDataResponseBody' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetHomeDataResponse$inboundSchema: z.ZodType<
   GetHomeDataResponse,
@@ -144,4 +165,22 @@ export namespace GetHomeDataResponse$ {
   export const outboundSchema = GetHomeDataResponse$outboundSchema;
   /** @deprecated use `GetHomeDataResponse$Outbound` instead. */
   export type Outbound = GetHomeDataResponse$Outbound;
+}
+
+export function getHomeDataResponseToJSON(
+  getHomeDataResponse: GetHomeDataResponse,
+): string {
+  return JSON.stringify(
+    GetHomeDataResponse$outboundSchema.parse(getHomeDataResponse),
+  );
+}
+
+export function getHomeDataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetHomeDataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetHomeDataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHomeDataResponse' from JSON`,
+  );
 }

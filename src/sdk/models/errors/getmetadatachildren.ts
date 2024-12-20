@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetMetadataChildrenLibraryErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetMetadataChildrenLibraryErrors$ {
   export type Outbound = GetMetadataChildrenLibraryErrors$Outbound;
 }
 
+export function getMetadataChildrenLibraryErrorsToJSON(
+  getMetadataChildrenLibraryErrors: GetMetadataChildrenLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetMetadataChildrenLibraryErrors$outboundSchema.parse(
+      getMetadataChildrenLibraryErrors,
+    ),
+  );
+}
+
+export function getMetadataChildrenLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetadataChildrenLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetadataChildrenLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetadataChildrenLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMetadataChildrenUnauthorized$inboundSchema: z.ZodType<
   GetMetadataChildrenUnauthorized,
@@ -234,6 +257,24 @@ export namespace GetMetadataChildrenErrors$ {
   export const outboundSchema = GetMetadataChildrenErrors$outboundSchema;
   /** @deprecated use `GetMetadataChildrenErrors$Outbound` instead. */
   export type Outbound = GetMetadataChildrenErrors$Outbound;
+}
+
+export function getMetadataChildrenErrorsToJSON(
+  getMetadataChildrenErrors: GetMetadataChildrenErrors,
+): string {
+  return JSON.stringify(
+    GetMetadataChildrenErrors$outboundSchema.parse(getMetadataChildrenErrors),
+  );
+}
+
+export function getMetadataChildrenErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMetadataChildrenErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMetadataChildrenErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMetadataChildrenErrors' from JSON`,
+  );
 }
 
 /** @internal */

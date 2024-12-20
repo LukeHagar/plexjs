@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MyPlex = {
   authToken?: string | undefined;
@@ -112,6 +115,20 @@ export namespace MyPlex$ {
   export type Outbound = MyPlex$Outbound;
 }
 
+export function myPlexToJSON(myPlex: MyPlex): string {
+  return JSON.stringify(MyPlex$outboundSchema.parse(myPlex));
+}
+
+export function myPlexFromJSON(
+  jsonString: string,
+): SafeParseResult<MyPlex, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MyPlex$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MyPlex' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMyPlexAccountResponseBody$inboundSchema: z.ZodType<
   GetMyPlexAccountResponseBody,
@@ -154,6 +171,26 @@ export namespace GetMyPlexAccountResponseBody$ {
   export const outboundSchema = GetMyPlexAccountResponseBody$outboundSchema;
   /** @deprecated use `GetMyPlexAccountResponseBody$Outbound` instead. */
   export type Outbound = GetMyPlexAccountResponseBody$Outbound;
+}
+
+export function getMyPlexAccountResponseBodyToJSON(
+  getMyPlexAccountResponseBody: GetMyPlexAccountResponseBody,
+): string {
+  return JSON.stringify(
+    GetMyPlexAccountResponseBody$outboundSchema.parse(
+      getMyPlexAccountResponseBody,
+    ),
+  );
+}
+
+export function getMyPlexAccountResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMyPlexAccountResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMyPlexAccountResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMyPlexAccountResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -213,4 +250,22 @@ export namespace GetMyPlexAccountResponse$ {
   export const outboundSchema = GetMyPlexAccountResponse$outboundSchema;
   /** @deprecated use `GetMyPlexAccountResponse$Outbound` instead. */
   export type Outbound = GetMyPlexAccountResponse$Outbound;
+}
+
+export function getMyPlexAccountResponseToJSON(
+  getMyPlexAccountResponse: GetMyPlexAccountResponse,
+): string {
+  return JSON.stringify(
+    GetMyPlexAccountResponse$outboundSchema.parse(getMyPlexAccountResponse),
+  );
+}
+
+export function getMyPlexAccountResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMyPlexAccountResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMyPlexAccountResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMyPlexAccountResponse' from JSON`,
+  );
 }

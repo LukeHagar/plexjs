@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const GetWatchListServerList = [
   /**
@@ -340,6 +343,24 @@ export namespace GetWatchListRequest$ {
   export type Outbound = GetWatchListRequest$Outbound;
 }
 
+export function getWatchListRequestToJSON(
+  getWatchListRequest: GetWatchListRequest,
+): string {
+  return JSON.stringify(
+    GetWatchListRequest$outboundSchema.parse(getWatchListRequest),
+  );
+}
+
+export function getWatchListRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWatchListRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWatchListRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWatchListRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const Image$inboundSchema: z.ZodType<Image, z.ZodTypeDef, unknown> = z
   .object({
@@ -377,6 +398,20 @@ export namespace Image$ {
   export const outboundSchema = Image$outboundSchema;
   /** @deprecated use `Image$Outbound` instead. */
   export type Outbound = Image$Outbound;
+}
+
+export function imageToJSON(image: Image): string {
+  return JSON.stringify(Image$outboundSchema.parse(image));
+}
+
+export function imageFromJSON(
+  jsonString: string,
+): SafeParseResult<Image, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Image$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Image' from JSON`,
+  );
 }
 
 /** @internal */
@@ -526,6 +561,20 @@ export namespace Metadata$ {
   export type Outbound = Metadata$Outbound;
 }
 
+export function metadataToJSON(metadata: Metadata): string {
+  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+}
+
+export function metadataFromJSON(
+  jsonString: string,
+): SafeParseResult<Metadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Metadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetWatchListResponseBody$inboundSchema: z.ZodType<
   GetWatchListResponseBody,
@@ -588,6 +637,24 @@ export namespace GetWatchListResponseBody$ {
   export type Outbound = GetWatchListResponseBody$Outbound;
 }
 
+export function getWatchListResponseBodyToJSON(
+  getWatchListResponseBody: GetWatchListResponseBody,
+): string {
+  return JSON.stringify(
+    GetWatchListResponseBody$outboundSchema.parse(getWatchListResponseBody),
+  );
+}
+
+export function getWatchListResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWatchListResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWatchListResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWatchListResponseBody' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetWatchListResponse$inboundSchema: z.ZodType<
   GetWatchListResponse,
@@ -645,4 +712,22 @@ export namespace GetWatchListResponse$ {
   export const outboundSchema = GetWatchListResponse$outboundSchema;
   /** @deprecated use `GetWatchListResponse$Outbound` instead. */
   export type Outbound = GetWatchListResponse$Outbound;
+}
+
+export function getWatchListResponseToJSON(
+  getWatchListResponse: GetWatchListResponse,
+): string {
+  return JSON.stringify(
+    GetWatchListResponse$outboundSchema.parse(getWatchListResponse),
+  );
+}
+
+export function getWatchListResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWatchListResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWatchListResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWatchListResponse' from JSON`,
+  );
 }

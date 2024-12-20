@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ButlerTask = {
   name?: string | undefined;
@@ -95,6 +98,20 @@ export namespace ButlerTask$ {
   export type Outbound = ButlerTask$Outbound;
 }
 
+export function butlerTaskToJSON(butlerTask: ButlerTask): string {
+  return JSON.stringify(ButlerTask$outboundSchema.parse(butlerTask));
+}
+
+export function butlerTaskFromJSON(
+  jsonString: string,
+): SafeParseResult<ButlerTask, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ButlerTask$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ButlerTask' from JSON`,
+  );
+}
+
 /** @internal */
 export const ButlerTasks$inboundSchema: z.ZodType<
   ButlerTasks,
@@ -139,6 +156,20 @@ export namespace ButlerTasks$ {
   export type Outbound = ButlerTasks$Outbound;
 }
 
+export function butlerTasksToJSON(butlerTasks: ButlerTasks): string {
+  return JSON.stringify(ButlerTasks$outboundSchema.parse(butlerTasks));
+}
+
+export function butlerTasksFromJSON(
+  jsonString: string,
+): SafeParseResult<ButlerTasks, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ButlerTasks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ButlerTasks' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetButlerTasksResponseBody$inboundSchema: z.ZodType<
   GetButlerTasksResponseBody,
@@ -181,6 +212,24 @@ export namespace GetButlerTasksResponseBody$ {
   export const outboundSchema = GetButlerTasksResponseBody$outboundSchema;
   /** @deprecated use `GetButlerTasksResponseBody$Outbound` instead. */
   export type Outbound = GetButlerTasksResponseBody$Outbound;
+}
+
+export function getButlerTasksResponseBodyToJSON(
+  getButlerTasksResponseBody: GetButlerTasksResponseBody,
+): string {
+  return JSON.stringify(
+    GetButlerTasksResponseBody$outboundSchema.parse(getButlerTasksResponseBody),
+  );
+}
+
+export function getButlerTasksResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetButlerTasksResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetButlerTasksResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetButlerTasksResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -240,4 +289,22 @@ export namespace GetButlerTasksResponse$ {
   export const outboundSchema = GetButlerTasksResponse$outboundSchema;
   /** @deprecated use `GetButlerTasksResponse$Outbound` instead. */
   export type Outbound = GetButlerTasksResponse$Outbound;
+}
+
+export function getButlerTasksResponseToJSON(
+  getButlerTasksResponse: GetButlerTasksResponse,
+): string {
+  return JSON.stringify(
+    GetButlerTasksResponse$outboundSchema.parse(getButlerTasksResponse),
+  );
+}
+
+export function getButlerTasksResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetButlerTasksResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetButlerTasksResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetButlerTasksResponse' from JSON`,
+  );
 }

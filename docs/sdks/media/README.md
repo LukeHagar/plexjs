@@ -25,11 +25,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -54,11 +49,6 @@ import { mediaMarkPlayed } from "@lukehagar/plexjs/funcs/mediaMarkPlayed.js";
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -109,11 +99,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -138,11 +123,6 @@ import { mediaMarkUnplayed } from "@lukehagar/plexjs/funcs/mediaMarkUnplayed.js"
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -194,11 +174,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -223,11 +198,6 @@ import { mediaUpdatePlayProgress } from "@lukehagar/plexjs/funcs/mediaUpdatePlay
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -280,11 +250,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -316,11 +281,6 @@ import { mediaGetBannerImage } from "@lukehagar/plexjs/funcs/mediaGetBannerImage
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -378,11 +338,6 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {
@@ -414,11 +369,6 @@ import { mediaGetThumbImage } from "@lukehagar/plexjs/funcs/mediaGetThumbImage.j
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
   accessToken: "<YOUR_API_KEY_HERE>",
-  clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
-  clientName: "Plex for Roku",
-  clientVersion: "2.4.1",
-  platform: "Roku",
-  deviceNickname: "Roku 3",
 });
 
 async function run() {

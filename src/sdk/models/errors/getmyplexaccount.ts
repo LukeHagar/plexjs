@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetMyPlexAccountServerErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetMyPlexAccountServerErrors$ {
   export type Outbound = GetMyPlexAccountServerErrors$Outbound;
 }
 
+export function getMyPlexAccountServerErrorsToJSON(
+  getMyPlexAccountServerErrors: GetMyPlexAccountServerErrors,
+): string {
+  return JSON.stringify(
+    GetMyPlexAccountServerErrors$outboundSchema.parse(
+      getMyPlexAccountServerErrors,
+    ),
+  );
+}
+
+export function getMyPlexAccountServerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMyPlexAccountServerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMyPlexAccountServerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMyPlexAccountServerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMyPlexAccountUnauthorized$inboundSchema: z.ZodType<
   GetMyPlexAccountUnauthorized,
@@ -233,6 +256,24 @@ export namespace GetMyPlexAccountErrors$ {
   export const outboundSchema = GetMyPlexAccountErrors$outboundSchema;
   /** @deprecated use `GetMyPlexAccountErrors$Outbound` instead. */
   export type Outbound = GetMyPlexAccountErrors$Outbound;
+}
+
+export function getMyPlexAccountErrorsToJSON(
+  getMyPlexAccountErrors: GetMyPlexAccountErrors,
+): string {
+  return JSON.stringify(
+    GetMyPlexAccountErrors$outboundSchema.parse(getMyPlexAccountErrors),
+  );
+}
+
+export function getMyPlexAccountErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMyPlexAccountErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMyPlexAccountErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMyPlexAccountErrors' from JSON`,
+  );
 }
 
 /** @internal */

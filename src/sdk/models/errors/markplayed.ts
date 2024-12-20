@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type MarkPlayedMediaErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace MarkPlayedMediaErrors$ {
   export type Outbound = MarkPlayedMediaErrors$Outbound;
 }
 
+export function markPlayedMediaErrorsToJSON(
+  markPlayedMediaErrors: MarkPlayedMediaErrors,
+): string {
+  return JSON.stringify(
+    MarkPlayedMediaErrors$outboundSchema.parse(markPlayedMediaErrors),
+  );
+}
+
+export function markPlayedMediaErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<MarkPlayedMediaErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MarkPlayedMediaErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MarkPlayedMediaErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const MarkPlayedUnauthorized$inboundSchema: z.ZodType<
   MarkPlayedUnauthorized,
@@ -232,6 +253,24 @@ export namespace MarkPlayedErrors$ {
   export const outboundSchema = MarkPlayedErrors$outboundSchema;
   /** @deprecated use `MarkPlayedErrors$Outbound` instead. */
   export type Outbound = MarkPlayedErrors$Outbound;
+}
+
+export function markPlayedErrorsToJSON(
+  markPlayedErrors: MarkPlayedErrors,
+): string {
+  return JSON.stringify(
+    MarkPlayedErrors$outboundSchema.parse(markPlayedErrors),
+  );
+}
+
+export function markPlayedErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<MarkPlayedErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MarkPlayedErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MarkPlayedErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetTranscodeSessionsSessionsErrors = {
   code?: number | undefined;
@@ -136,6 +139,27 @@ export namespace GetTranscodeSessionsSessionsErrors$ {
   export type Outbound = GetTranscodeSessionsSessionsErrors$Outbound;
 }
 
+export function getTranscodeSessionsSessionsErrorsToJSON(
+  getTranscodeSessionsSessionsErrors: GetTranscodeSessionsSessionsErrors,
+): string {
+  return JSON.stringify(
+    GetTranscodeSessionsSessionsErrors$outboundSchema.parse(
+      getTranscodeSessionsSessionsErrors,
+    ),
+  );
+}
+
+export function getTranscodeSessionsSessionsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTranscodeSessionsSessionsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetTranscodeSessionsSessionsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTranscodeSessionsSessionsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTranscodeSessionsUnauthorized$inboundSchema: z.ZodType<
   GetTranscodeSessionsUnauthorized,
@@ -236,6 +260,24 @@ export namespace GetTranscodeSessionsErrors$ {
   export const outboundSchema = GetTranscodeSessionsErrors$outboundSchema;
   /** @deprecated use `GetTranscodeSessionsErrors$Outbound` instead. */
   export type Outbound = GetTranscodeSessionsErrors$Outbound;
+}
+
+export function getTranscodeSessionsErrorsToJSON(
+  getTranscodeSessionsErrors: GetTranscodeSessionsErrors,
+): string {
+  return JSON.stringify(
+    GetTranscodeSessionsErrors$outboundSchema.parse(getTranscodeSessionsErrors),
+  );
+}
+
+export function getTranscodeSessionsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTranscodeSessionsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTranscodeSessionsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTranscodeSessionsErrors' from JSON`,
+  );
 }
 
 /** @internal */

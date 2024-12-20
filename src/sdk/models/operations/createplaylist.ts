@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * type of playlist to create
@@ -184,6 +187,24 @@ export namespace CreatePlaylistRequest$ {
   export type Outbound = CreatePlaylistRequest$Outbound;
 }
 
+export function createPlaylistRequestToJSON(
+  createPlaylistRequest: CreatePlaylistRequest,
+): string {
+  return JSON.stringify(
+    CreatePlaylistRequest$outboundSchema.parse(createPlaylistRequest),
+  );
+}
+
+export function createPlaylistRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePlaylistRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePlaylistRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePlaylistRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreatePlaylistMetadata$inboundSchema: z.ZodType<
   CreatePlaylistMetadata,
@@ -265,6 +286,24 @@ export namespace CreatePlaylistMetadata$ {
   export type Outbound = CreatePlaylistMetadata$Outbound;
 }
 
+export function createPlaylistMetadataToJSON(
+  createPlaylistMetadata: CreatePlaylistMetadata,
+): string {
+  return JSON.stringify(
+    CreatePlaylistMetadata$outboundSchema.parse(createPlaylistMetadata),
+  );
+}
+
+export function createPlaylistMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePlaylistMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePlaylistMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePlaylistMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreatePlaylistMediaContainer$inboundSchema: z.ZodType<
   CreatePlaylistMediaContainer,
@@ -314,6 +353,26 @@ export namespace CreatePlaylistMediaContainer$ {
   export type Outbound = CreatePlaylistMediaContainer$Outbound;
 }
 
+export function createPlaylistMediaContainerToJSON(
+  createPlaylistMediaContainer: CreatePlaylistMediaContainer,
+): string {
+  return JSON.stringify(
+    CreatePlaylistMediaContainer$outboundSchema.parse(
+      createPlaylistMediaContainer,
+    ),
+  );
+}
+
+export function createPlaylistMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePlaylistMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePlaylistMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePlaylistMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreatePlaylistResponseBody$inboundSchema: z.ZodType<
   CreatePlaylistResponseBody,
@@ -358,6 +417,24 @@ export namespace CreatePlaylistResponseBody$ {
   export const outboundSchema = CreatePlaylistResponseBody$outboundSchema;
   /** @deprecated use `CreatePlaylistResponseBody$Outbound` instead. */
   export type Outbound = CreatePlaylistResponseBody$Outbound;
+}
+
+export function createPlaylistResponseBodyToJSON(
+  createPlaylistResponseBody: CreatePlaylistResponseBody,
+): string {
+  return JSON.stringify(
+    CreatePlaylistResponseBody$outboundSchema.parse(createPlaylistResponseBody),
+  );
+}
+
+export function createPlaylistResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePlaylistResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePlaylistResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePlaylistResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -417,4 +494,22 @@ export namespace CreatePlaylistResponse$ {
   export const outboundSchema = CreatePlaylistResponse$outboundSchema;
   /** @deprecated use `CreatePlaylistResponse$Outbound` instead. */
   export type Outbound = CreatePlaylistResponse$Outbound;
+}
+
+export function createPlaylistResponseToJSON(
+  createPlaylistResponse: CreatePlaylistResponse,
+): string {
+  return JSON.stringify(
+    CreatePlaylistResponse$outboundSchema.parse(createPlaylistResponse),
+  );
+}
+
+export function createPlaylistResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePlaylistResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePlaylistResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePlaylistResponse' from JSON`,
+  );
 }

@@ -50,11 +50,19 @@ export async function serverGetServerIdentity(
   const context = {
     operationID: "get-server-identity",
     oAuth2Scopes: [],
+
+    resolvedSecurity: null,
+
     securitySource: null,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
 
   const requestRes = client._createRequest(context, {
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
@@ -67,9 +75,8 @@ export async function serverGetServerIdentity(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["408", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;

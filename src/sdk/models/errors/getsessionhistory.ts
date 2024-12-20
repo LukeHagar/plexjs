@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSessionHistorySessionsErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetSessionHistorySessionsErrors$ {
   export type Outbound = GetSessionHistorySessionsErrors$Outbound;
 }
 
+export function getSessionHistorySessionsErrorsToJSON(
+  getSessionHistorySessionsErrors: GetSessionHistorySessionsErrors,
+): string {
+  return JSON.stringify(
+    GetSessionHistorySessionsErrors$outboundSchema.parse(
+      getSessionHistorySessionsErrors,
+    ),
+  );
+}
+
+export function getSessionHistorySessionsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionHistorySessionsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionHistorySessionsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionHistorySessionsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionHistoryUnauthorized$inboundSchema: z.ZodType<
   GetSessionHistoryUnauthorized,
@@ -234,6 +257,24 @@ export namespace GetSessionHistoryErrors$ {
   export const outboundSchema = GetSessionHistoryErrors$outboundSchema;
   /** @deprecated use `GetSessionHistoryErrors$Outbound` instead. */
   export type Outbound = GetSessionHistoryErrors$Outbound;
+}
+
+export function getSessionHistoryErrorsToJSON(
+  getSessionHistoryErrors: GetSessionHistoryErrors,
+): string {
+  return JSON.stringify(
+    GetSessionHistoryErrors$outboundSchema.parse(getSessionHistoryErrors),
+  );
+}
+
+export function getSessionHistoryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionHistoryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionHistoryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionHistoryErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSessionsSessionsErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetSessionsSessionsErrors$ {
   export type Outbound = GetSessionsSessionsErrors$Outbound;
 }
 
+export function getSessionsSessionsErrorsToJSON(
+  getSessionsSessionsErrors: GetSessionsSessionsErrors,
+): string {
+  return JSON.stringify(
+    GetSessionsSessionsErrors$outboundSchema.parse(getSessionsSessionsErrors),
+  );
+}
+
+export function getSessionsSessionsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsSessionsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsSessionsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsSessionsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionsUnauthorized$inboundSchema: z.ZodType<
   GetSessionsUnauthorized,
@@ -233,6 +254,24 @@ export namespace GetSessionsErrors$ {
   export const outboundSchema = GetSessionsErrors$outboundSchema;
   /** @deprecated use `GetSessionsErrors$Outbound` instead. */
   export type Outbound = GetSessionsErrors$Outbound;
+}
+
+export function getSessionsErrorsToJSON(
+  getSessionsErrors: GetSessionsErrors,
+): string {
+  return JSON.stringify(
+    GetSessionsErrors$outboundSchema.parse(getSessionsErrors),
+  );
+}
+
+export function getSessionsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionsErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type CancelServerActivitiesActivitiesErrors = {
   code?: number | undefined;
@@ -137,6 +140,28 @@ export namespace CancelServerActivitiesActivitiesErrors$ {
   export type Outbound = CancelServerActivitiesActivitiesErrors$Outbound;
 }
 
+export function cancelServerActivitiesActivitiesErrorsToJSON(
+  cancelServerActivitiesActivitiesErrors:
+    CancelServerActivitiesActivitiesErrors,
+): string {
+  return JSON.stringify(
+    CancelServerActivitiesActivitiesErrors$outboundSchema.parse(
+      cancelServerActivitiesActivitiesErrors,
+    ),
+  );
+}
+
+export function cancelServerActivitiesActivitiesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<CancelServerActivitiesActivitiesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CancelServerActivitiesActivitiesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CancelServerActivitiesActivitiesErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const CancelServerActivitiesUnauthorized$inboundSchema: z.ZodType<
   CancelServerActivitiesUnauthorized,
@@ -238,6 +263,26 @@ export namespace CancelServerActivitiesErrors$ {
   export const outboundSchema = CancelServerActivitiesErrors$outboundSchema;
   /** @deprecated use `CancelServerActivitiesErrors$Outbound` instead. */
   export type Outbound = CancelServerActivitiesErrors$Outbound;
+}
+
+export function cancelServerActivitiesErrorsToJSON(
+  cancelServerActivitiesErrors: CancelServerActivitiesErrors,
+): string {
+  return JSON.stringify(
+    CancelServerActivitiesErrors$outboundSchema.parse(
+      cancelServerActivitiesErrors,
+    ),
+  );
+}
+
+export function cancelServerActivitiesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<CancelServerActivitiesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CancelServerActivitiesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CancelServerActivitiesErrors' from JSON`,
+  );
 }
 
 /** @internal */

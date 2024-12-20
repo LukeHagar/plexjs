@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetResourcesStatisticsRequest = {
   /**
@@ -91,6 +94,26 @@ export namespace GetResourcesStatisticsRequest$ {
   export type Outbound = GetResourcesStatisticsRequest$Outbound;
 }
 
+export function getResourcesStatisticsRequestToJSON(
+  getResourcesStatisticsRequest: GetResourcesStatisticsRequest,
+): string {
+  return JSON.stringify(
+    GetResourcesStatisticsRequest$outboundSchema.parse(
+      getResourcesStatisticsRequest,
+    ),
+  );
+}
+
+export function getResourcesStatisticsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesStatisticsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResourcesStatisticsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesStatisticsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const StatisticsResources$inboundSchema: z.ZodType<
   StatisticsResources,
@@ -140,6 +163,24 @@ export namespace StatisticsResources$ {
   export const outboundSchema = StatisticsResources$outboundSchema;
   /** @deprecated use `StatisticsResources$Outbound` instead. */
   export type Outbound = StatisticsResources$Outbound;
+}
+
+export function statisticsResourcesToJSON(
+  statisticsResources: StatisticsResources,
+): string {
+  return JSON.stringify(
+    StatisticsResources$outboundSchema.parse(statisticsResources),
+  );
+}
+
+export function statisticsResourcesFromJSON(
+  jsonString: string,
+): SafeParseResult<StatisticsResources, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StatisticsResources$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StatisticsResources' from JSON`,
+  );
 }
 
 /** @internal */
@@ -193,6 +234,27 @@ export namespace GetResourcesStatisticsMediaContainer$ {
   export type Outbound = GetResourcesStatisticsMediaContainer$Outbound;
 }
 
+export function getResourcesStatisticsMediaContainerToJSON(
+  getResourcesStatisticsMediaContainer: GetResourcesStatisticsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetResourcesStatisticsMediaContainer$outboundSchema.parse(
+      getResourcesStatisticsMediaContainer,
+    ),
+  );
+}
+
+export function getResourcesStatisticsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesStatisticsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResourcesStatisticsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesStatisticsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetResourcesStatisticsResponseBody$inboundSchema: z.ZodType<
   GetResourcesStatisticsResponseBody,
@@ -240,6 +302,27 @@ export namespace GetResourcesStatisticsResponseBody$ {
     GetResourcesStatisticsResponseBody$outboundSchema;
   /** @deprecated use `GetResourcesStatisticsResponseBody$Outbound` instead. */
   export type Outbound = GetResourcesStatisticsResponseBody$Outbound;
+}
+
+export function getResourcesStatisticsResponseBodyToJSON(
+  getResourcesStatisticsResponseBody: GetResourcesStatisticsResponseBody,
+): string {
+  return JSON.stringify(
+    GetResourcesStatisticsResponseBody$outboundSchema.parse(
+      getResourcesStatisticsResponseBody,
+    ),
+  );
+}
+
+export function getResourcesStatisticsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesStatisticsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResourcesStatisticsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesStatisticsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -301,4 +384,24 @@ export namespace GetResourcesStatisticsResponse$ {
   export const outboundSchema = GetResourcesStatisticsResponse$outboundSchema;
   /** @deprecated use `GetResourcesStatisticsResponse$Outbound` instead. */
   export type Outbound = GetResourcesStatisticsResponse$Outbound;
+}
+
+export function getResourcesStatisticsResponseToJSON(
+  getResourcesStatisticsResponse: GetResourcesStatisticsResponse,
+): string {
+  return JSON.stringify(
+    GetResourcesStatisticsResponse$outboundSchema.parse(
+      getResourcesStatisticsResponse,
+    ),
+  );
+}
+
+export function getResourcesStatisticsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesStatisticsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResourcesStatisticsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesStatisticsResponse' from JSON`,
+  );
 }

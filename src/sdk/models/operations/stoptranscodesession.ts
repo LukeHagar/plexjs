@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StopTranscodeSessionRequest = {
   /**
@@ -63,6 +66,26 @@ export namespace StopTranscodeSessionRequest$ {
   export type Outbound = StopTranscodeSessionRequest$Outbound;
 }
 
+export function stopTranscodeSessionRequestToJSON(
+  stopTranscodeSessionRequest: StopTranscodeSessionRequest,
+): string {
+  return JSON.stringify(
+    StopTranscodeSessionRequest$outboundSchema.parse(
+      stopTranscodeSessionRequest,
+    ),
+  );
+}
+
+export function stopTranscodeSessionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<StopTranscodeSessionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StopTranscodeSessionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StopTranscodeSessionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const StopTranscodeSessionResponse$inboundSchema: z.ZodType<
   StopTranscodeSessionResponse,
@@ -117,4 +140,24 @@ export namespace StopTranscodeSessionResponse$ {
   export const outboundSchema = StopTranscodeSessionResponse$outboundSchema;
   /** @deprecated use `StopTranscodeSessionResponse$Outbound` instead. */
   export type Outbound = StopTranscodeSessionResponse$Outbound;
+}
+
+export function stopTranscodeSessionResponseToJSON(
+  stopTranscodeSessionResponse: StopTranscodeSessionResponse,
+): string {
+  return JSON.stringify(
+    StopTranscodeSessionResponse$outboundSchema.parse(
+      stopTranscodeSessionResponse,
+    ),
+  );
+}
+
+export function stopTranscodeSessionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<StopTranscodeSessionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StopTranscodeSessionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StopTranscodeSessionResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type ClearPlaylistContentsPlaylistsErrors = {
   code?: number | undefined;
@@ -137,6 +140,27 @@ export namespace ClearPlaylistContentsPlaylistsErrors$ {
   export type Outbound = ClearPlaylistContentsPlaylistsErrors$Outbound;
 }
 
+export function clearPlaylistContentsPlaylistsErrorsToJSON(
+  clearPlaylistContentsPlaylistsErrors: ClearPlaylistContentsPlaylistsErrors,
+): string {
+  return JSON.stringify(
+    ClearPlaylistContentsPlaylistsErrors$outboundSchema.parse(
+      clearPlaylistContentsPlaylistsErrors,
+    ),
+  );
+}
+
+export function clearPlaylistContentsPlaylistsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<ClearPlaylistContentsPlaylistsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ClearPlaylistContentsPlaylistsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ClearPlaylistContentsPlaylistsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const ClearPlaylistContentsUnauthorized$inboundSchema: z.ZodType<
   ClearPlaylistContentsUnauthorized,
@@ -238,6 +262,26 @@ export namespace ClearPlaylistContentsErrors$ {
   export const outboundSchema = ClearPlaylistContentsErrors$outboundSchema;
   /** @deprecated use `ClearPlaylistContentsErrors$Outbound` instead. */
   export type Outbound = ClearPlaylistContentsErrors$Outbound;
+}
+
+export function clearPlaylistContentsErrorsToJSON(
+  clearPlaylistContentsErrors: ClearPlaylistContentsErrors,
+): string {
+  return JSON.stringify(
+    ClearPlaylistContentsErrors$outboundSchema.parse(
+      clearPlaylistContentsErrors,
+    ),
+  );
+}
+
+export function clearPlaylistContentsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<ClearPlaylistContentsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ClearPlaylistContentsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ClearPlaylistContentsErrors' from JSON`,
+  );
 }
 
 /** @internal */

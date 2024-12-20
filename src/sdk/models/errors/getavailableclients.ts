@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetAvailableClientsServerErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetAvailableClientsServerErrors$ {
   export type Outbound = GetAvailableClientsServerErrors$Outbound;
 }
 
+export function getAvailableClientsServerErrorsToJSON(
+  getAvailableClientsServerErrors: GetAvailableClientsServerErrors,
+): string {
+  return JSON.stringify(
+    GetAvailableClientsServerErrors$outboundSchema.parse(
+      getAvailableClientsServerErrors,
+    ),
+  );
+}
+
+export function getAvailableClientsServerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAvailableClientsServerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAvailableClientsServerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAvailableClientsServerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAvailableClientsUnauthorized$inboundSchema: z.ZodType<
   GetAvailableClientsUnauthorized,
@@ -234,6 +257,24 @@ export namespace GetAvailableClientsErrors$ {
   export const outboundSchema = GetAvailableClientsErrors$outboundSchema;
   /** @deprecated use `GetAvailableClientsErrors$Outbound` instead. */
   export type Outbound = GetAvailableClientsErrors$Outbound;
+}
+
+export function getAvailableClientsErrorsToJSON(
+  getAvailableClientsErrors: GetAvailableClientsErrors,
+): string {
+  return JSON.stringify(
+    GetAvailableClientsErrors$outboundSchema.parse(getAvailableClientsErrors),
+  );
+}
+
+export function getAvailableClientsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAvailableClientsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAvailableClientsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAvailableClientsErrors' from JSON`,
+  );
 }
 
 /** @internal */

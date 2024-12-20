@@ -4,33 +4,13 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const PostUsersSignInDataServerList = [
   "https://plex.tv/api/v2",
 ] as const;
-
-export type PostUsersSignInDataGlobals = {
-  /**
-   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-   */
-  clientID?: string | undefined;
-  /**
-   * The name of the client application. (Plex Web, Plex Media Server, etc.)
-   */
-  clientName?: string | undefined;
-  /**
-   * A relatively friendly name for the client device
-   */
-  deviceNickname?: string | undefined;
-  /**
-   * The version of the client application.
-   */
-  clientVersion?: string | undefined;
-  /**
-   * The platform of the client application.
-   */
-  platform?: string | undefined;
-};
 
 /**
  * Login credentials
@@ -46,7 +26,7 @@ export type PostUsersSignInDataRequest = {
   /**
    * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
-  clientID?: string | undefined;
+  clientID: string;
   /**
    * The name of the client application. (Plex Web, Plex Media Server, etc.)
    */
@@ -434,70 +414,6 @@ export type PostUsersSignInDataResponse = {
 };
 
 /** @internal */
-export const PostUsersSignInDataGlobals$inboundSchema: z.ZodType<
-  PostUsersSignInDataGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ClientID: z.string().optional(),
-  ClientName: z.string().optional(),
-  DeviceNickname: z.string().optional(),
-  ClientVersion: z.string().optional(),
-  Platform: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "ClientID": "clientID",
-    "ClientName": "clientName",
-    "DeviceNickname": "deviceNickname",
-    "ClientVersion": "clientVersion",
-    "Platform": "platform",
-  });
-});
-
-/** @internal */
-export type PostUsersSignInDataGlobals$Outbound = {
-  ClientID?: string | undefined;
-  ClientName?: string | undefined;
-  DeviceNickname?: string | undefined;
-  ClientVersion?: string | undefined;
-  Platform?: string | undefined;
-};
-
-/** @internal */
-export const PostUsersSignInDataGlobals$outboundSchema: z.ZodType<
-  PostUsersSignInDataGlobals$Outbound,
-  z.ZodTypeDef,
-  PostUsersSignInDataGlobals
-> = z.object({
-  clientID: z.string().optional(),
-  clientName: z.string().optional(),
-  deviceNickname: z.string().optional(),
-  clientVersion: z.string().optional(),
-  platform: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientID: "ClientID",
-    clientName: "ClientName",
-    deviceNickname: "DeviceNickname",
-    clientVersion: "ClientVersion",
-    platform: "Platform",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PostUsersSignInDataGlobals$ {
-  /** @deprecated use `PostUsersSignInDataGlobals$inboundSchema` instead. */
-  export const inboundSchema = PostUsersSignInDataGlobals$inboundSchema;
-  /** @deprecated use `PostUsersSignInDataGlobals$outboundSchema` instead. */
-  export const outboundSchema = PostUsersSignInDataGlobals$outboundSchema;
-  /** @deprecated use `PostUsersSignInDataGlobals$Outbound` instead. */
-  export type Outbound = PostUsersSignInDataGlobals$Outbound;
-}
-
-/** @internal */
 export const PostUsersSignInDataRequestBody$inboundSchema: z.ZodType<
   PostUsersSignInDataRequestBody,
   z.ZodTypeDef,
@@ -542,13 +458,33 @@ export namespace PostUsersSignInDataRequestBody$ {
   export type Outbound = PostUsersSignInDataRequestBody$Outbound;
 }
 
+export function postUsersSignInDataRequestBodyToJSON(
+  postUsersSignInDataRequestBody: PostUsersSignInDataRequestBody,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataRequestBody$outboundSchema.parse(
+      postUsersSignInDataRequestBody,
+    ),
+  );
+}
+
+export function postUsersSignInDataRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<PostUsersSignInDataRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostUsersSignInDataRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostUsersSignInDataRequestBody' from JSON`,
+  );
+}
+
 /** @internal */
 export const PostUsersSignInDataRequest$inboundSchema: z.ZodType<
   PostUsersSignInDataRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  ClientID: z.string().optional(),
+  ClientID: z.string(),
   ClientName: z.string().optional(),
   DeviceNickname: z.string().optional(),
   ClientVersion: z.string().optional(),
@@ -568,7 +504,7 @@ export const PostUsersSignInDataRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PostUsersSignInDataRequest$Outbound = {
-  ClientID?: string | undefined;
+  ClientID: string;
   ClientName?: string | undefined;
   DeviceNickname?: string | undefined;
   ClientVersion?: string | undefined;
@@ -582,7 +518,7 @@ export const PostUsersSignInDataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PostUsersSignInDataRequest
 > = z.object({
-  clientID: z.string().optional(),
+  clientID: z.string(),
   clientName: z.string().optional(),
   deviceNickname: z.string().optional(),
   clientVersion: z.string().optional(),
@@ -611,6 +547,24 @@ export namespace PostUsersSignInDataRequest$ {
   export const outboundSchema = PostUsersSignInDataRequest$outboundSchema;
   /** @deprecated use `PostUsersSignInDataRequest$Outbound` instead. */
   export type Outbound = PostUsersSignInDataRequest$Outbound;
+}
+
+export function postUsersSignInDataRequestToJSON(
+  postUsersSignInDataRequest: PostUsersSignInDataRequest,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataRequest$outboundSchema.parse(postUsersSignInDataRequest),
+  );
+}
+
+export function postUsersSignInDataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PostUsersSignInDataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostUsersSignInDataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostUsersSignInDataRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -822,6 +776,26 @@ export namespace PostUsersSignInDataUserProfile$ {
   export type Outbound = PostUsersSignInDataUserProfile$Outbound;
 }
 
+export function postUsersSignInDataUserProfileToJSON(
+  postUsersSignInDataUserProfile: PostUsersSignInDataUserProfile,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataUserProfile$outboundSchema.parse(
+      postUsersSignInDataUserProfile,
+    ),
+  );
+}
+
+export function postUsersSignInDataUserProfileFromJSON(
+  jsonString: string,
+): SafeParseResult<PostUsersSignInDataUserProfile, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostUsersSignInDataUserProfile$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostUsersSignInDataUserProfile' from JSON`,
+  );
+}
+
 /** @internal */
 export const PostUsersSignInDataStatus$inboundSchema: z.ZodNativeEnum<
   typeof PostUsersSignInDataStatus
@@ -889,6 +863,26 @@ export namespace PostUsersSignInDataServices$ {
   export const outboundSchema = PostUsersSignInDataServices$outboundSchema;
   /** @deprecated use `PostUsersSignInDataServices$Outbound` instead. */
   export type Outbound = PostUsersSignInDataServices$Outbound;
+}
+
+export function postUsersSignInDataServicesToJSON(
+  postUsersSignInDataServices: PostUsersSignInDataServices,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataServices$outboundSchema.parse(
+      postUsersSignInDataServices,
+    ),
+  );
+}
+
+export function postUsersSignInDataServicesFromJSON(
+  jsonString: string,
+): SafeParseResult<PostUsersSignInDataServices, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostUsersSignInDataServices$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostUsersSignInDataServices' from JSON`,
+  );
 }
 
 /** @internal */
@@ -963,6 +957,26 @@ export namespace PostUsersSignInDataSubscription$ {
   export const outboundSchema = PostUsersSignInDataSubscription$outboundSchema;
   /** @deprecated use `PostUsersSignInDataSubscription$Outbound` instead. */
   export type Outbound = PostUsersSignInDataSubscription$Outbound;
+}
+
+export function postUsersSignInDataSubscriptionToJSON(
+  postUsersSignInDataSubscription: PostUsersSignInDataSubscription,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataSubscription$outboundSchema.parse(
+      postUsersSignInDataSubscription,
+    ),
+  );
+}
+
+export function postUsersSignInDataSubscriptionFromJSON(
+  jsonString: string,
+): SafeParseResult<PostUsersSignInDataSubscription, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostUsersSignInDataSubscription$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostUsersSignInDataSubscription' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1045,6 +1059,33 @@ export namespace PostUsersSignInDataAuthenticationSubscription$ {
   export type Outbound = PostUsersSignInDataAuthenticationSubscription$Outbound;
 }
 
+export function postUsersSignInDataAuthenticationSubscriptionToJSON(
+  postUsersSignInDataAuthenticationSubscription:
+    PostUsersSignInDataAuthenticationSubscription,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataAuthenticationSubscription$outboundSchema.parse(
+      postUsersSignInDataAuthenticationSubscription,
+    ),
+  );
+}
+
+export function postUsersSignInDataAuthenticationSubscriptionFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  PostUsersSignInDataAuthenticationSubscription,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostUsersSignInDataAuthenticationSubscription$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'PostUsersSignInDataAuthenticationSubscription' from JSON`,
+  );
+}
+
 /** @internal */
 export const PostUsersSignInDataState$inboundSchema: z.ZodNativeEnum<
   typeof PostUsersSignInDataState
@@ -1096,6 +1137,24 @@ export namespace InternalPaymentMethod$ {
   export type Outbound = InternalPaymentMethod$Outbound;
 }
 
+export function internalPaymentMethodToJSON(
+  internalPaymentMethod: InternalPaymentMethod,
+): string {
+  return JSON.stringify(
+    InternalPaymentMethod$outboundSchema.parse(internalPaymentMethod),
+  );
+}
+
+export function internalPaymentMethodFromJSON(
+  jsonString: string,
+): SafeParseResult<InternalPaymentMethod, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InternalPaymentMethod$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InternalPaymentMethod' from JSON`,
+  );
+}
+
 /** @internal */
 export const Billing$inboundSchema: z.ZodType<Billing, z.ZodTypeDef, unknown> =
   z.object({
@@ -1130,6 +1189,20 @@ export namespace Billing$ {
   export const outboundSchema = Billing$outboundSchema;
   /** @deprecated use `Billing$Outbound` instead. */
   export type Outbound = Billing$Outbound;
+}
+
+export function billingToJSON(billing: Billing): string {
+  return JSON.stringify(Billing$outboundSchema.parse(billing));
+}
+
+export function billingFromJSON(
+  jsonString: string,
+): SafeParseResult<Billing, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Billing$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Billing' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1210,6 +1283,24 @@ export namespace PastSubscription$ {
   export type Outbound = PastSubscription$Outbound;
 }
 
+export function pastSubscriptionToJSON(
+  pastSubscription: PastSubscription,
+): string {
+  return JSON.stringify(
+    PastSubscription$outboundSchema.parse(pastSubscription),
+  );
+}
+
+export function pastSubscriptionFromJSON(
+  jsonString: string,
+): SafeParseResult<PastSubscription, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PastSubscription$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PastSubscription' from JSON`,
+  );
+}
+
 /** @internal */
 export const Trials$inboundSchema: z.ZodType<Trials, z.ZodTypeDef, unknown> = z
   .object({});
@@ -1235,6 +1326,20 @@ export namespace Trials$ {
   export const outboundSchema = Trials$outboundSchema;
   /** @deprecated use `Trials$Outbound` instead. */
   export type Outbound = Trials$Outbound;
+}
+
+export function trialsToJSON(trials: Trials): string {
+  return JSON.stringify(Trials$outboundSchema.parse(trials));
+}
+
+export function trialsFromJSON(
+  jsonString: string,
+): SafeParseResult<Trials, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Trials$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Trials' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1404,6 +1509,27 @@ export namespace PostUsersSignInDataUserPlexAccount$ {
   export type Outbound = PostUsersSignInDataUserPlexAccount$Outbound;
 }
 
+export function postUsersSignInDataUserPlexAccountToJSON(
+  postUsersSignInDataUserPlexAccount: PostUsersSignInDataUserPlexAccount,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataUserPlexAccount$outboundSchema.parse(
+      postUsersSignInDataUserPlexAccount,
+    ),
+  );
+}
+
+export function postUsersSignInDataUserPlexAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<PostUsersSignInDataUserPlexAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostUsersSignInDataUserPlexAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostUsersSignInDataUserPlexAccount' from JSON`,
+  );
+}
+
 /** @internal */
 export const PostUsersSignInDataResponse$inboundSchema: z.ZodType<
   PostUsersSignInDataResponse,
@@ -1467,4 +1593,24 @@ export namespace PostUsersSignInDataResponse$ {
   export const outboundSchema = PostUsersSignInDataResponse$outboundSchema;
   /** @deprecated use `PostUsersSignInDataResponse$Outbound` instead. */
   export type Outbound = PostUsersSignInDataResponse$Outbound;
+}
+
+export function postUsersSignInDataResponseToJSON(
+  postUsersSignInDataResponse: PostUsersSignInDataResponse,
+): string {
+  return JSON.stringify(
+    PostUsersSignInDataResponse$outboundSchema.parse(
+      postUsersSignInDataResponse,
+    ),
+  );
+}
+
+export function postUsersSignInDataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PostUsersSignInDataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostUsersSignInDataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostUsersSignInDataResponse' from JSON`,
+  );
 }

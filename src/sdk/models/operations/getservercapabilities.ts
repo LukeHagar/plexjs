@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Directory = {
   count?: number | undefined;
@@ -131,6 +134,20 @@ export namespace Directory$ {
   export const outboundSchema = Directory$outboundSchema;
   /** @deprecated use `Directory$Outbound` instead. */
   export type Outbound = Directory$Outbound;
+}
+
+export function directoryToJSON(directory: Directory): string {
+  return JSON.stringify(Directory$outboundSchema.parse(directory));
+}
+
+export function directoryFromJSON(
+  jsonString: string,
+): SafeParseResult<Directory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Directory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Directory' from JSON`,
+  );
 }
 
 /** @internal */
@@ -327,6 +344,20 @@ export namespace MediaContainer$ {
   export type Outbound = MediaContainer$Outbound;
 }
 
+export function mediaContainerToJSON(mediaContainer: MediaContainer): string {
+  return JSON.stringify(MediaContainer$outboundSchema.parse(mediaContainer));
+}
+
+export function mediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetServerCapabilitiesResponseBody$inboundSchema: z.ZodType<
   GetServerCapabilitiesResponseBody,
@@ -370,6 +401,26 @@ export namespace GetServerCapabilitiesResponseBody$ {
     GetServerCapabilitiesResponseBody$outboundSchema;
   /** @deprecated use `GetServerCapabilitiesResponseBody$Outbound` instead. */
   export type Outbound = GetServerCapabilitiesResponseBody$Outbound;
+}
+
+export function getServerCapabilitiesResponseBodyToJSON(
+  getServerCapabilitiesResponseBody: GetServerCapabilitiesResponseBody,
+): string {
+  return JSON.stringify(
+    GetServerCapabilitiesResponseBody$outboundSchema.parse(
+      getServerCapabilitiesResponseBody,
+    ),
+  );
+}
+
+export function getServerCapabilitiesResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerCapabilitiesResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerCapabilitiesResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerCapabilitiesResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -431,4 +482,24 @@ export namespace GetServerCapabilitiesResponse$ {
   export const outboundSchema = GetServerCapabilitiesResponse$outboundSchema;
   /** @deprecated use `GetServerCapabilitiesResponse$Outbound` instead. */
   export type Outbound = GetServerCapabilitiesResponse$Outbound;
+}
+
+export function getServerCapabilitiesResponseToJSON(
+  getServerCapabilitiesResponse: GetServerCapabilitiesResponse,
+): string {
+  return JSON.stringify(
+    GetServerCapabilitiesResponse$outboundSchema.parse(
+      getServerCapabilitiesResponse,
+    ),
+  );
+}
+
+export function getServerCapabilitiesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetServerCapabilitiesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetServerCapabilitiesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetServerCapabilitiesResponse' from JSON`,
+  );
 }

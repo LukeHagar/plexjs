@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TranscodeSession = {
   key?: string | undefined;
@@ -168,6 +171,24 @@ export namespace TranscodeSession$ {
   export type Outbound = TranscodeSession$Outbound;
 }
 
+export function transcodeSessionToJSON(
+  transcodeSession: TranscodeSession,
+): string {
+  return JSON.stringify(
+    TranscodeSession$outboundSchema.parse(transcodeSession),
+  );
+}
+
+export function transcodeSessionFromJSON(
+  jsonString: string,
+): SafeParseResult<TranscodeSession, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TranscodeSession$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TranscodeSession' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTranscodeSessionsMediaContainer$inboundSchema: z.ZodType<
   GetTranscodeSessionsMediaContainer,
@@ -218,6 +239,27 @@ export namespace GetTranscodeSessionsMediaContainer$ {
   export type Outbound = GetTranscodeSessionsMediaContainer$Outbound;
 }
 
+export function getTranscodeSessionsMediaContainerToJSON(
+  getTranscodeSessionsMediaContainer: GetTranscodeSessionsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetTranscodeSessionsMediaContainer$outboundSchema.parse(
+      getTranscodeSessionsMediaContainer,
+    ),
+  );
+}
+
+export function getTranscodeSessionsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTranscodeSessionsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetTranscodeSessionsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTranscodeSessionsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTranscodeSessionsResponseBody$inboundSchema: z.ZodType<
   GetTranscodeSessionsResponseBody,
@@ -263,6 +305,26 @@ export namespace GetTranscodeSessionsResponseBody$ {
   export const outboundSchema = GetTranscodeSessionsResponseBody$outboundSchema;
   /** @deprecated use `GetTranscodeSessionsResponseBody$Outbound` instead. */
   export type Outbound = GetTranscodeSessionsResponseBody$Outbound;
+}
+
+export function getTranscodeSessionsResponseBodyToJSON(
+  getTranscodeSessionsResponseBody: GetTranscodeSessionsResponseBody,
+): string {
+  return JSON.stringify(
+    GetTranscodeSessionsResponseBody$outboundSchema.parse(
+      getTranscodeSessionsResponseBody,
+    ),
+  );
+}
+
+export function getTranscodeSessionsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTranscodeSessionsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTranscodeSessionsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTranscodeSessionsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -324,4 +386,24 @@ export namespace GetTranscodeSessionsResponse$ {
   export const outboundSchema = GetTranscodeSessionsResponse$outboundSchema;
   /** @deprecated use `GetTranscodeSessionsResponse$Outbound` instead. */
   export type Outbound = GetTranscodeSessionsResponse$Outbound;
+}
+
+export function getTranscodeSessionsResponseToJSON(
+  getTranscodeSessionsResponse: GetTranscodeSessionsResponse,
+): string {
+  return JSON.stringify(
+    GetTranscodeSessionsResponse$outboundSchema.parse(
+      getTranscodeSessionsResponse,
+    ),
+  );
+}
+
+export function getTranscodeSessionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTranscodeSessionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTranscodeSessionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTranscodeSessionsResponse' from JSON`,
+  );
 }

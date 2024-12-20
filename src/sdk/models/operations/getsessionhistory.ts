@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Filters content by field and direction/equality
@@ -125,6 +128,24 @@ export namespace QueryParamFilter$ {
   export type Outbound = QueryParamFilter$Outbound;
 }
 
+export function queryParamFilterToJSON(
+  queryParamFilter: QueryParamFilter,
+): string {
+  return JSON.stringify(
+    QueryParamFilter$outboundSchema.parse(queryParamFilter),
+  );
+}
+
+export function queryParamFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<QueryParamFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => QueryParamFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'QueryParamFilter' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionHistoryRequest$inboundSchema: z.ZodType<
   GetSessionHistoryRequest,
@@ -168,6 +189,24 @@ export namespace GetSessionHistoryRequest$ {
   export const outboundSchema = GetSessionHistoryRequest$outboundSchema;
   /** @deprecated use `GetSessionHistoryRequest$Outbound` instead. */
   export type Outbound = GetSessionHistoryRequest$Outbound;
+}
+
+export function getSessionHistoryRequestToJSON(
+  getSessionHistoryRequest: GetSessionHistoryRequest,
+): string {
+  return JSON.stringify(
+    GetSessionHistoryRequest$outboundSchema.parse(getSessionHistoryRequest),
+  );
+}
+
+export function getSessionHistoryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionHistoryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionHistoryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionHistoryRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -261,6 +300,24 @@ export namespace GetSessionHistoryMetadata$ {
   export type Outbound = GetSessionHistoryMetadata$Outbound;
 }
 
+export function getSessionHistoryMetadataToJSON(
+  getSessionHistoryMetadata: GetSessionHistoryMetadata,
+): string {
+  return JSON.stringify(
+    GetSessionHistoryMetadata$outboundSchema.parse(getSessionHistoryMetadata),
+  );
+}
+
+export function getSessionHistoryMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionHistoryMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionHistoryMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionHistoryMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionHistoryMediaContainer$inboundSchema: z.ZodType<
   GetSessionHistoryMediaContainer,
@@ -310,6 +367,26 @@ export namespace GetSessionHistoryMediaContainer$ {
   export type Outbound = GetSessionHistoryMediaContainer$Outbound;
 }
 
+export function getSessionHistoryMediaContainerToJSON(
+  getSessionHistoryMediaContainer: GetSessionHistoryMediaContainer,
+): string {
+  return JSON.stringify(
+    GetSessionHistoryMediaContainer$outboundSchema.parse(
+      getSessionHistoryMediaContainer,
+    ),
+  );
+}
+
+export function getSessionHistoryMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionHistoryMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionHistoryMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionHistoryMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSessionHistoryResponseBody$inboundSchema: z.ZodType<
   GetSessionHistoryResponseBody,
@@ -354,6 +431,26 @@ export namespace GetSessionHistoryResponseBody$ {
   export const outboundSchema = GetSessionHistoryResponseBody$outboundSchema;
   /** @deprecated use `GetSessionHistoryResponseBody$Outbound` instead. */
   export type Outbound = GetSessionHistoryResponseBody$Outbound;
+}
+
+export function getSessionHistoryResponseBodyToJSON(
+  getSessionHistoryResponseBody: GetSessionHistoryResponseBody,
+): string {
+  return JSON.stringify(
+    GetSessionHistoryResponseBody$outboundSchema.parse(
+      getSessionHistoryResponseBody,
+    ),
+  );
+}
+
+export function getSessionHistoryResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionHistoryResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionHistoryResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionHistoryResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -413,4 +510,22 @@ export namespace GetSessionHistoryResponse$ {
   export const outboundSchema = GetSessionHistoryResponse$outboundSchema;
   /** @deprecated use `GetSessionHistoryResponse$Outbound` instead. */
   export type Outbound = GetSessionHistoryResponse$Outbound;
+}
+
+export function getSessionHistoryResponseToJSON(
+  getSessionHistoryResponse: GetSessionHistoryResponse,
+): string {
+  return JSON.stringify(
+    GetSessionHistoryResponse$outboundSchema.parse(getSessionHistoryResponse),
+  );
+}
+
+export function getSessionHistoryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSessionHistoryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSessionHistoryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSessionHistoryResponse' from JSON`,
+  );
 }

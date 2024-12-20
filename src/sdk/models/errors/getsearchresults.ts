@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSearchResultsSearchErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetSearchResultsSearchErrors$ {
   export type Outbound = GetSearchResultsSearchErrors$Outbound;
 }
 
+export function getSearchResultsSearchErrorsToJSON(
+  getSearchResultsSearchErrors: GetSearchResultsSearchErrors,
+): string {
+  return JSON.stringify(
+    GetSearchResultsSearchErrors$outboundSchema.parse(
+      getSearchResultsSearchErrors,
+    ),
+  );
+}
+
+export function getSearchResultsSearchErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsSearchErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsSearchErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsSearchErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchResultsUnauthorized$inboundSchema: z.ZodType<
   GetSearchResultsUnauthorized,
@@ -233,6 +256,24 @@ export namespace GetSearchResultsErrors$ {
   export const outboundSchema = GetSearchResultsErrors$outboundSchema;
   /** @deprecated use `GetSearchResultsErrors$Outbound` instead. */
   export type Outbound = GetSearchResultsErrors$Outbound;
+}
+
+export function getSearchResultsErrorsToJSON(
+  getSearchResultsErrors: GetSearchResultsErrors,
+): string {
+  return JSON.stringify(
+    GetSearchResultsErrors$outboundSchema.parse(getSearchResultsErrors),
+  );
+}
+
+export function getSearchResultsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchResultsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchResultsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchResultsErrors' from JSON`,
+  );
 }
 
 /** @internal */

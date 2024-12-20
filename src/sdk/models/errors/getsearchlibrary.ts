@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSearchLibraryLibraryErrors = {
   code?: number | undefined;
@@ -135,6 +138,26 @@ export namespace GetSearchLibraryLibraryErrors$ {
   export type Outbound = GetSearchLibraryLibraryErrors$Outbound;
 }
 
+export function getSearchLibraryLibraryErrorsToJSON(
+  getSearchLibraryLibraryErrors: GetSearchLibraryLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetSearchLibraryLibraryErrors$outboundSchema.parse(
+      getSearchLibraryLibraryErrors,
+    ),
+  );
+}
+
+export function getSearchLibraryLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchLibraryLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchLibraryLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchLibraryLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchLibraryUnauthorized$inboundSchema: z.ZodType<
   GetSearchLibraryUnauthorized,
@@ -234,6 +257,24 @@ export namespace GetSearchLibraryErrors$ {
   export const outboundSchema = GetSearchLibraryErrors$outboundSchema;
   /** @deprecated use `GetSearchLibraryErrors$Outbound` instead. */
   export type Outbound = GetSearchLibraryErrors$Outbound;
+}
+
+export function getSearchLibraryErrorsToJSON(
+  getSearchLibraryErrors: GetSearchLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetSearchLibraryErrors$outboundSchema.parse(getSearchLibraryErrors),
+  );
+}
+
+export function getSearchLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchLibraryErrors' from JSON`,
+  );
 }
 
 /** @internal */

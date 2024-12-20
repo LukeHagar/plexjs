@@ -4,14 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
-
-export type GetSearchAllLibrariesGlobals = {
-  /**
-   * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
-   */
-  clientID?: string | undefined;
-};
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export enum SearchTypes {
   Movies = "movies",
@@ -45,7 +41,7 @@ export type GetSearchAllLibrariesRequest = {
   /**
    * An opaque identifier unique to the client (UUID, serial number, or other unique device ID)
    */
-  clientID?: string | undefined;
+  clientID: string;
   /**
    * Limit the number of results returned.
    */
@@ -89,16 +85,16 @@ export enum GetSearchAllLibrariesFlattenSeasons {
  * @remarks
  * None = Library default,
  * tmdbAiring = The Movie Database (Aired),
- * aired = TheTVDB (Aired),
- * dvd = TheTVDB (DVD),
- * absolute = TheTVDB (Absolute)).
+ * tvdbAiring = TheTVDB (Aired),
+ * tvdbDvd = TheTVDB (DVD),
+ * tvdbAbsolute = TheTVDB (Absolute)).
  */
 export enum GetSearchAllLibrariesShowOrdering {
   None = "None",
   TmdbAiring = "tmdbAiring",
-  Aired = "aired",
-  Dvd = "dvd",
-  Absolute = "absolute",
+  TvdbAiring = "tvdbAiring",
+  TvdbDvd = "tvdbDvd",
+  TvdbAbsolute = "tvdbAbsolute",
 }
 
 export enum GetSearchAllLibrariesOptimizedForStreaming {
@@ -431,9 +427,9 @@ export type GetSearchAllLibrariesMetadata = {
    * @remarks
    * None = Library default,
    * tmdbAiring = The Movie Database (Aired),
-   * aired = TheTVDB (Aired),
-   * dvd = TheTVDB (DVD),
-   * absolute = TheTVDB (Absolute)).
+   * tvdbAiring = TheTVDB (Aired),
+   * tvdbDvd = TheTVDB (DVD),
+   * tvdbAbsolute = TheTVDB (Absolute)).
    */
   showOrdering?: GetSearchAllLibrariesShowOrdering | undefined;
   thumb?: string | undefined;
@@ -550,50 +546,6 @@ export type GetSearchAllLibrariesResponse = {
 };
 
 /** @internal */
-export const GetSearchAllLibrariesGlobals$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ClientID: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "ClientID": "clientID",
-  });
-});
-
-/** @internal */
-export type GetSearchAllLibrariesGlobals$Outbound = {
-  ClientID?: string | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesGlobals$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesGlobals$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesGlobals
-> = z.object({
-  clientID: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientID: "ClientID",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesGlobals$ {
-  /** @deprecated use `GetSearchAllLibrariesGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesGlobals$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesGlobals$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesGlobals$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesGlobals$Outbound;
-}
-
-/** @internal */
 export const SearchTypes$inboundSchema: z.ZodNativeEnum<typeof SearchTypes> = z
   .nativeEnum(SearchTypes);
 
@@ -661,7 +613,7 @@ export const GetSearchAllLibrariesRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   query: z.string(),
-  ClientID: z.string().optional(),
+  ClientID: z.string(),
   limit: z.number().int().optional(),
   searchTypes: z.array(SearchTypes$inboundSchema).optional(),
   includeCollections: QueryParamIncludeCollections$inboundSchema,
@@ -675,7 +627,7 @@ export const GetSearchAllLibrariesRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetSearchAllLibrariesRequest$Outbound = {
   query: string;
-  ClientID?: string | undefined;
+  ClientID: string;
   limit?: number | undefined;
   searchTypes?: Array<string> | undefined;
   includeCollections: number;
@@ -689,7 +641,7 @@ export const GetSearchAllLibrariesRequest$outboundSchema: z.ZodType<
   GetSearchAllLibrariesRequest
 > = z.object({
   query: z.string(),
-  clientID: z.string().optional(),
+  clientID: z.string(),
   limit: z.number().int().optional(),
   searchTypes: z.array(SearchTypes$outboundSchema).optional(),
   includeCollections: QueryParamIncludeCollections$outboundSchema.default(
@@ -715,6 +667,26 @@ export namespace GetSearchAllLibrariesRequest$ {
   export const outboundSchema = GetSearchAllLibrariesRequest$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesRequest$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesRequest$Outbound;
+}
+
+export function getSearchAllLibrariesRequestToJSON(
+  getSearchAllLibrariesRequest: GetSearchAllLibrariesRequest,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesRequest$outboundSchema.parse(
+      getSearchAllLibrariesRequest,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -975,6 +947,26 @@ export namespace GetSearchAllLibrariesStream$ {
   export type Outbound = GetSearchAllLibrariesStream$Outbound;
 }
 
+export function getSearchAllLibrariesStreamToJSON(
+  getSearchAllLibrariesStream: GetSearchAllLibrariesStream,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesStream$outboundSchema.parse(
+      getSearchAllLibrariesStream,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesStreamFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesStream, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesStream$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesStream' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesPart$inboundSchema: z.ZodType<
   GetSearchAllLibrariesPart,
@@ -1059,6 +1051,24 @@ export namespace GetSearchAllLibrariesPart$ {
   export const outboundSchema = GetSearchAllLibrariesPart$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesPart$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesPart$Outbound;
+}
+
+export function getSearchAllLibrariesPartToJSON(
+  getSearchAllLibrariesPart: GetSearchAllLibrariesPart,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesPart$outboundSchema.parse(getSearchAllLibrariesPart),
+  );
+}
+
+export function getSearchAllLibrariesPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesPart' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1160,6 +1170,24 @@ export namespace GetSearchAllLibrariesMedia$ {
   export type Outbound = GetSearchAllLibrariesMedia$Outbound;
 }
 
+export function getSearchAllLibrariesMediaToJSON(
+  getSearchAllLibrariesMedia: GetSearchAllLibrariesMedia,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesMedia$outboundSchema.parse(getSearchAllLibrariesMedia),
+  );
+}
+
+export function getSearchAllLibrariesMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesGenre$inboundSchema: z.ZodType<
   GetSearchAllLibrariesGenre,
@@ -1194,6 +1222,24 @@ export namespace GetSearchAllLibrariesGenre$ {
   export const outboundSchema = GetSearchAllLibrariesGenre$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesGenre$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesGenre$Outbound;
+}
+
+export function getSearchAllLibrariesGenreToJSON(
+  getSearchAllLibrariesGenre: GetSearchAllLibrariesGenre,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesGenre$outboundSchema.parse(getSearchAllLibrariesGenre),
+  );
+}
+
+export function getSearchAllLibrariesGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesGenre' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1232,6 +1278,26 @@ export namespace GetSearchAllLibrariesCountry$ {
   export type Outbound = GetSearchAllLibrariesCountry$Outbound;
 }
 
+export function getSearchAllLibrariesCountryToJSON(
+  getSearchAllLibrariesCountry: GetSearchAllLibrariesCountry,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesCountry$outboundSchema.parse(
+      getSearchAllLibrariesCountry,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesCountry' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesDirector$inboundSchema: z.ZodType<
   GetSearchAllLibrariesDirector,
@@ -1266,6 +1332,26 @@ export namespace GetSearchAllLibrariesDirector$ {
   export const outboundSchema = GetSearchAllLibrariesDirector$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesDirector$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesDirector$Outbound;
+}
+
+export function getSearchAllLibrariesDirectorToJSON(
+  getSearchAllLibrariesDirector: GetSearchAllLibrariesDirector,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesDirector$outboundSchema.parse(
+      getSearchAllLibrariesDirector,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesDirector' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1304,6 +1390,26 @@ export namespace GetSearchAllLibrariesWriter$ {
   export type Outbound = GetSearchAllLibrariesWriter$Outbound;
 }
 
+export function getSearchAllLibrariesWriterToJSON(
+  getSearchAllLibrariesWriter: GetSearchAllLibrariesWriter,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesWriter$outboundSchema.parse(
+      getSearchAllLibrariesWriter,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesWriter' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesCollection$inboundSchema: z.ZodType<
   GetSearchAllLibrariesCollection,
@@ -1338,6 +1444,26 @@ export namespace GetSearchAllLibrariesCollection$ {
   export const outboundSchema = GetSearchAllLibrariesCollection$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesCollection$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesCollection$Outbound;
+}
+
+export function getSearchAllLibrariesCollectionToJSON(
+  getSearchAllLibrariesCollection: GetSearchAllLibrariesCollection,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesCollection$outboundSchema.parse(
+      getSearchAllLibrariesCollection,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesCollectionFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesCollection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesCollection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesCollection' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1391,6 +1517,24 @@ export namespace GetSearchAllLibrariesRole$ {
   export type Outbound = GetSearchAllLibrariesRole$Outbound;
 }
 
+export function getSearchAllLibrariesRoleToJSON(
+  getSearchAllLibrariesRole: GetSearchAllLibrariesRole,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesRole$outboundSchema.parse(getSearchAllLibrariesRole),
+  );
+}
+
+export function getSearchAllLibrariesRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesRole' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesLocation$inboundSchema: z.ZodType<
   GetSearchAllLibrariesLocation,
@@ -1427,6 +1571,26 @@ export namespace GetSearchAllLibrariesLocation$ {
   export type Outbound = GetSearchAllLibrariesLocation$Outbound;
 }
 
+export function getSearchAllLibrariesLocationToJSON(
+  getSearchAllLibrariesLocation: GetSearchAllLibrariesLocation,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesLocation$outboundSchema.parse(
+      getSearchAllLibrariesLocation,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesLocationFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesLocation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesLocation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesLocation' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesMediaGuid$inboundSchema: z.ZodType<
   GetSearchAllLibrariesMediaGuid,
@@ -1461,6 +1625,26 @@ export namespace GetSearchAllLibrariesMediaGuid$ {
   export const outboundSchema = GetSearchAllLibrariesMediaGuid$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesMediaGuid$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesMediaGuid$Outbound;
+}
+
+export function getSearchAllLibrariesMediaGuidToJSON(
+  getSearchAllLibrariesMediaGuid: GetSearchAllLibrariesMediaGuid,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesMediaGuid$outboundSchema.parse(
+      getSearchAllLibrariesMediaGuid,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesMediaGuidFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesMediaGuid, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesMediaGuid$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesMediaGuid' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1510,6 +1694,27 @@ export namespace GetSearchAllLibrariesUltraBlurColors$ {
   export type Outbound = GetSearchAllLibrariesUltraBlurColors$Outbound;
 }
 
+export function getSearchAllLibrariesUltraBlurColorsToJSON(
+  getSearchAllLibrariesUltraBlurColors: GetSearchAllLibrariesUltraBlurColors,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesUltraBlurColors$outboundSchema.parse(
+      getSearchAllLibrariesUltraBlurColors,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesUltraBlurColorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesUltraBlurColors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSearchAllLibrariesUltraBlurColors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesUltraBlurColors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesMetaDataRating$inboundSchema: z.ZodType<
   GetSearchAllLibrariesMetaDataRating,
@@ -1552,6 +1757,27 @@ export namespace GetSearchAllLibrariesMetaDataRating$ {
     GetSearchAllLibrariesMetaDataRating$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesMetaDataRating$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesMetaDataRating$Outbound;
+}
+
+export function getSearchAllLibrariesMetaDataRatingToJSON(
+  getSearchAllLibrariesMetaDataRating: GetSearchAllLibrariesMetaDataRating,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesMetaDataRating$outboundSchema.parse(
+      getSearchAllLibrariesMetaDataRating,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesMetaDataRatingFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesMetaDataRating, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSearchAllLibrariesMetaDataRating$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesMetaDataRating' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1615,6 +1841,24 @@ export namespace GetSearchAllLibrariesImage$ {
   export const outboundSchema = GetSearchAllLibrariesImage$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesImage$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesImage$Outbound;
+}
+
+export function getSearchAllLibrariesImageToJSON(
+  getSearchAllLibrariesImage: GetSearchAllLibrariesImage,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesImage$outboundSchema.parse(getSearchAllLibrariesImage),
+  );
+}
+
+export function getSearchAllLibrariesImageFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesImage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesImage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesImage' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1938,6 +2182,26 @@ export namespace GetSearchAllLibrariesMetadata$ {
   export type Outbound = GetSearchAllLibrariesMetadata$Outbound;
 }
 
+export function getSearchAllLibrariesMetadataToJSON(
+  getSearchAllLibrariesMetadata: GetSearchAllLibrariesMetadata,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesMetadata$outboundSchema.parse(
+      getSearchAllLibrariesMetadata,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const SearchResult$inboundSchema: z.ZodType<
   SearchResult,
@@ -1983,6 +2247,20 @@ export namespace SearchResult$ {
   export const outboundSchema = SearchResult$outboundSchema;
   /** @deprecated use `SearchResult$Outbound` instead. */
   export type Outbound = SearchResult$Outbound;
+}
+
+export function searchResultToJSON(searchResult: SearchResult): string {
+  return JSON.stringify(SearchResult$outboundSchema.parse(searchResult));
+}
+
+export function searchResultFromJSON(
+  jsonString: string,
+): SafeParseResult<SearchResult, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SearchResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SearchResult' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2034,6 +2312,27 @@ export namespace GetSearchAllLibrariesMediaContainer$ {
   export type Outbound = GetSearchAllLibrariesMediaContainer$Outbound;
 }
 
+export function getSearchAllLibrariesMediaContainerToJSON(
+  getSearchAllLibrariesMediaContainer: GetSearchAllLibrariesMediaContainer,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesMediaContainer$outboundSchema.parse(
+      getSearchAllLibrariesMediaContainer,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSearchAllLibrariesMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesResponseBody$inboundSchema: z.ZodType<
   GetSearchAllLibrariesResponseBody,
@@ -2081,6 +2380,26 @@ export namespace GetSearchAllLibrariesResponseBody$ {
     GetSearchAllLibrariesResponseBody$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesResponseBody$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesResponseBody$Outbound;
+}
+
+export function getSearchAllLibrariesResponseBodyToJSON(
+  getSearchAllLibrariesResponseBody: GetSearchAllLibrariesResponseBody,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesResponseBody$outboundSchema.parse(
+      getSearchAllLibrariesResponseBody,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -2142,4 +2461,24 @@ export namespace GetSearchAllLibrariesResponse$ {
   export const outboundSchema = GetSearchAllLibrariesResponse$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesResponse$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesResponse$Outbound;
+}
+
+export function getSearchAllLibrariesResponseToJSON(
+  getSearchAllLibrariesResponse: GetSearchAllLibrariesResponse,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesResponse$outboundSchema.parse(
+      getSearchAllLibrariesResponse,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesResponse' from JSON`,
+  );
 }

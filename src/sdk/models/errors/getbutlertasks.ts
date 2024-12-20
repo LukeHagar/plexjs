@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetButlerTasksButlerErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetButlerTasksButlerErrors$ {
   export type Outbound = GetButlerTasksButlerErrors$Outbound;
 }
 
+export function getButlerTasksButlerErrorsToJSON(
+  getButlerTasksButlerErrors: GetButlerTasksButlerErrors,
+): string {
+  return JSON.stringify(
+    GetButlerTasksButlerErrors$outboundSchema.parse(getButlerTasksButlerErrors),
+  );
+}
+
+export function getButlerTasksButlerErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetButlerTasksButlerErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetButlerTasksButlerErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetButlerTasksButlerErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetButlerTasksUnauthorized$inboundSchema: z.ZodType<
   GetButlerTasksUnauthorized,
@@ -233,6 +254,24 @@ export namespace GetButlerTasksErrors$ {
   export const outboundSchema = GetButlerTasksErrors$outboundSchema;
   /** @deprecated use `GetButlerTasksErrors$Outbound` instead. */
   export type Outbound = GetButlerTasksErrors$Outbound;
+}
+
+export function getButlerTasksErrorsToJSON(
+  getButlerTasksErrors: GetButlerTasksErrors,
+): string {
+  return JSON.stringify(
+    GetButlerTasksErrors$outboundSchema.parse(getButlerTasksErrors),
+  );
+}
+
+export function getButlerTasksErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetButlerTasksErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetButlerTasksErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetButlerTasksErrors' from JSON`,
+  );
 }
 
 /** @internal */

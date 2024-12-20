@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetSourceConnectionInformationRequest = {
   /**
@@ -65,6 +68,27 @@ export namespace GetSourceConnectionInformationRequest$ {
   export type Outbound = GetSourceConnectionInformationRequest$Outbound;
 }
 
+export function getSourceConnectionInformationRequestToJSON(
+  getSourceConnectionInformationRequest: GetSourceConnectionInformationRequest,
+): string {
+  return JSON.stringify(
+    GetSourceConnectionInformationRequest$outboundSchema.parse(
+      getSourceConnectionInformationRequest,
+    ),
+  );
+}
+
+export function getSourceConnectionInformationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSourceConnectionInformationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSourceConnectionInformationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSourceConnectionInformationRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSourceConnectionInformationResponse$inboundSchema: z.ZodType<
   GetSourceConnectionInformationResponse,
@@ -121,4 +145,26 @@ export namespace GetSourceConnectionInformationResponse$ {
     GetSourceConnectionInformationResponse$outboundSchema;
   /** @deprecated use `GetSourceConnectionInformationResponse$Outbound` instead. */
   export type Outbound = GetSourceConnectionInformationResponse$Outbound;
+}
+
+export function getSourceConnectionInformationResponseToJSON(
+  getSourceConnectionInformationResponse:
+    GetSourceConnectionInformationResponse,
+): string {
+  return JSON.stringify(
+    GetSourceConnectionInformationResponse$outboundSchema.parse(
+      getSourceConnectionInformationResponse,
+    ),
+  );
+}
+
+export function getSourceConnectionInformationResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSourceConnectionInformationResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSourceConnectionInformationResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSourceConnectionInformationResponse' from JSON`,
+  );
 }

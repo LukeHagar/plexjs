@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * An integer log level to write to the PMS log with.
@@ -122,6 +125,20 @@ export namespace LogLineRequest$ {
   export type Outbound = LogLineRequest$Outbound;
 }
 
+export function logLineRequestToJSON(logLineRequest: LogLineRequest): string {
+  return JSON.stringify(LogLineRequest$outboundSchema.parse(logLineRequest));
+}
+
+export function logLineRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<LogLineRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogLineRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogLineRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const LogLineResponse$inboundSchema: z.ZodType<
   LogLineResponse,
@@ -176,4 +193,20 @@ export namespace LogLineResponse$ {
   export const outboundSchema = LogLineResponse$outboundSchema;
   /** @deprecated use `LogLineResponse$Outbound` instead. */
   export type Outbound = LogLineResponse$Outbound;
+}
+
+export function logLineResponseToJSON(
+  logLineResponse: LogLineResponse,
+): string {
+  return JSON.stringify(LogLineResponse$outboundSchema.parse(logLineResponse));
+}
+
+export function logLineResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<LogLineResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogLineResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogLineResponse' from JSON`,
+  );
 }

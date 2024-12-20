@@ -55,7 +55,7 @@ export class Authentication extends ClientSDK {
    * Get the User data from the provided X-Plex-Token
    */
   async getTokenDetails(
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.GetTokenDetailsResponse> {
     return unwrapAsync(authenticationGetTokenDetails(
       this,
@@ -71,7 +71,7 @@ export class Authentication extends ClientSDK {
    */
   async postUsersSignInData(
     request: operations.PostUsersSignInDataRequest,
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.PostUsersSignInDataResponse> {
     return unwrapAsync(authenticationPostUsersSignInData(
       this,

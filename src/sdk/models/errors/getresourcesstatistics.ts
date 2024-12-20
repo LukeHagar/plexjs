@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetResourcesStatisticsStatisticsErrors = {
   code?: number | undefined;
@@ -137,6 +140,28 @@ export namespace GetResourcesStatisticsStatisticsErrors$ {
   export type Outbound = GetResourcesStatisticsStatisticsErrors$Outbound;
 }
 
+export function getResourcesStatisticsStatisticsErrorsToJSON(
+  getResourcesStatisticsStatisticsErrors:
+    GetResourcesStatisticsStatisticsErrors,
+): string {
+  return JSON.stringify(
+    GetResourcesStatisticsStatisticsErrors$outboundSchema.parse(
+      getResourcesStatisticsStatisticsErrors,
+    ),
+  );
+}
+
+export function getResourcesStatisticsStatisticsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesStatisticsStatisticsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetResourcesStatisticsStatisticsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesStatisticsStatisticsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetResourcesStatisticsUnauthorized$inboundSchema: z.ZodType<
   GetResourcesStatisticsUnauthorized,
@@ -238,6 +263,26 @@ export namespace GetResourcesStatisticsErrors$ {
   export const outboundSchema = GetResourcesStatisticsErrors$outboundSchema;
   /** @deprecated use `GetResourcesStatisticsErrors$Outbound` instead. */
   export type Outbound = GetResourcesStatisticsErrors$Outbound;
+}
+
+export function getResourcesStatisticsErrorsToJSON(
+  getResourcesStatisticsErrors: GetResourcesStatisticsErrors,
+): string {
+  return JSON.stringify(
+    GetResourcesStatisticsErrors$outboundSchema.parse(
+      getResourcesStatisticsErrors,
+    ),
+  );
+}
+
+export function getResourcesStatisticsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesStatisticsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResourcesStatisticsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesStatisticsErrors' from JSON`,
+  );
 }
 
 /** @internal */

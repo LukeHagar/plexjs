@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetGeoDataPlexErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace GetGeoDataPlexErrors$ {
   export type Outbound = GetGeoDataPlexErrors$Outbound;
 }
 
+export function getGeoDataPlexErrorsToJSON(
+  getGeoDataPlexErrors: GetGeoDataPlexErrors,
+): string {
+  return JSON.stringify(
+    GetGeoDataPlexErrors$outboundSchema.parse(getGeoDataPlexErrors),
+  );
+}
+
+export function getGeoDataPlexErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGeoDataPlexErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGeoDataPlexErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGeoDataPlexErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetGeoDataUnauthorized$inboundSchema: z.ZodType<
   GetGeoDataUnauthorized,
@@ -232,6 +253,24 @@ export namespace GetGeoDataErrors$ {
   export const outboundSchema = GetGeoDataErrors$outboundSchema;
   /** @deprecated use `GetGeoDataErrors$Outbound` instead. */
   export type Outbound = GetGeoDataErrors$Outbound;
+}
+
+export function getGeoDataErrorsToJSON(
+  getGeoDataErrors: GetGeoDataErrors,
+): string {
+  return JSON.stringify(
+    GetGeoDataErrors$outboundSchema.parse(getGeoDataErrors),
+  );
+}
+
+export function getGeoDataErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGeoDataErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGeoDataErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGeoDataErrors' from JSON`,
+  );
 }
 
 /** @internal */

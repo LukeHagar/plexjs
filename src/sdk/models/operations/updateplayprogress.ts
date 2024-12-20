@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdatePlayProgressRequest = {
   /**
@@ -77,6 +80,24 @@ export namespace UpdatePlayProgressRequest$ {
   export type Outbound = UpdatePlayProgressRequest$Outbound;
 }
 
+export function updatePlayProgressRequestToJSON(
+  updatePlayProgressRequest: UpdatePlayProgressRequest,
+): string {
+  return JSON.stringify(
+    UpdatePlayProgressRequest$outboundSchema.parse(updatePlayProgressRequest),
+  );
+}
+
+export function updatePlayProgressRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdatePlayProgressRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdatePlayProgressRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdatePlayProgressRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdatePlayProgressResponse$inboundSchema: z.ZodType<
   UpdatePlayProgressResponse,
@@ -131,4 +152,22 @@ export namespace UpdatePlayProgressResponse$ {
   export const outboundSchema = UpdatePlayProgressResponse$outboundSchema;
   /** @deprecated use `UpdatePlayProgressResponse$Outbound` instead. */
   export type Outbound = UpdatePlayProgressResponse$Outbound;
+}
+
+export function updatePlayProgressResponseToJSON(
+  updatePlayProgressResponse: UpdatePlayProgressResponse,
+): string {
+  return JSON.stringify(
+    UpdatePlayProgressResponse$outboundSchema.parse(updatePlayProgressResponse),
+  );
+}
+
+export function updatePlayProgressResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdatePlayProgressResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdatePlayProgressResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdatePlayProgressResponse' from JSON`,
+  );
 }

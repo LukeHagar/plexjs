@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StopAllTasksResponse = {
   /**
@@ -74,4 +77,22 @@ export namespace StopAllTasksResponse$ {
   export const outboundSchema = StopAllTasksResponse$outboundSchema;
   /** @deprecated use `StopAllTasksResponse$Outbound` instead. */
   export type Outbound = StopAllTasksResponse$Outbound;
+}
+
+export function stopAllTasksResponseToJSON(
+  stopAllTasksResponse: StopAllTasksResponse,
+): string {
+  return JSON.stringify(
+    StopAllTasksResponse$outboundSchema.parse(stopAllTasksResponse),
+  );
+}
+
+export function stopAllTasksResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<StopAllTasksResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StopAllTasksResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StopAllTasksResponse' from JSON`,
+  );
 }

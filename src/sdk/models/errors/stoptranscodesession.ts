@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type StopTranscodeSessionSessionsErrors = {
   code?: number | undefined;
@@ -136,6 +139,27 @@ export namespace StopTranscodeSessionSessionsErrors$ {
   export type Outbound = StopTranscodeSessionSessionsErrors$Outbound;
 }
 
+export function stopTranscodeSessionSessionsErrorsToJSON(
+  stopTranscodeSessionSessionsErrors: StopTranscodeSessionSessionsErrors,
+): string {
+  return JSON.stringify(
+    StopTranscodeSessionSessionsErrors$outboundSchema.parse(
+      stopTranscodeSessionSessionsErrors,
+    ),
+  );
+}
+
+export function stopTranscodeSessionSessionsErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<StopTranscodeSessionSessionsErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      StopTranscodeSessionSessionsErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StopTranscodeSessionSessionsErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const StopTranscodeSessionUnauthorized$inboundSchema: z.ZodType<
   StopTranscodeSessionUnauthorized,
@@ -236,6 +260,24 @@ export namespace StopTranscodeSessionErrors$ {
   export const outboundSchema = StopTranscodeSessionErrors$outboundSchema;
   /** @deprecated use `StopTranscodeSessionErrors$Outbound` instead. */
   export type Outbound = StopTranscodeSessionErrors$Outbound;
+}
+
+export function stopTranscodeSessionErrorsToJSON(
+  stopTranscodeSessionErrors: StopTranscodeSessionErrors,
+): string {
+  return JSON.stringify(
+    StopTranscodeSessionErrors$outboundSchema.parse(stopTranscodeSessionErrors),
+  );
+}
+
+export function stopTranscodeSessionErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<StopTranscodeSessionErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StopTranscodeSessionErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StopTranscodeSessionErrors' from JSON`,
+  );
 }
 
 /** @internal */

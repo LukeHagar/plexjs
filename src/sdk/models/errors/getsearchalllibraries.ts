@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSearchAllLibrariesLibraryErrors = {
   code?: number | undefined;
@@ -136,6 +139,27 @@ export namespace GetSearchAllLibrariesLibraryErrors$ {
   export type Outbound = GetSearchAllLibrariesLibraryErrors$Outbound;
 }
 
+export function getSearchAllLibrariesLibraryErrorsToJSON(
+  getSearchAllLibrariesLibraryErrors: GetSearchAllLibrariesLibraryErrors,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesLibraryErrors$outboundSchema.parse(
+      getSearchAllLibrariesLibraryErrors,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesLibraryErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesLibraryErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSearchAllLibrariesLibraryErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesLibraryErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSearchAllLibrariesUnauthorized$inboundSchema: z.ZodType<
   GetSearchAllLibrariesUnauthorized,
@@ -237,6 +261,26 @@ export namespace GetSearchAllLibrariesErrors$ {
   export const outboundSchema = GetSearchAllLibrariesErrors$outboundSchema;
   /** @deprecated use `GetSearchAllLibrariesErrors$Outbound` instead. */
   export type Outbound = GetSearchAllLibrariesErrors$Outbound;
+}
+
+export function getSearchAllLibrariesErrorsToJSON(
+  getSearchAllLibrariesErrors: GetSearchAllLibrariesErrors,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesErrors$outboundSchema.parse(
+      getSearchAllLibrariesErrors,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Force the refresh even if the library is already being refreshed.
@@ -101,6 +104,26 @@ export namespace GetRefreshLibraryMetadataRequest$ {
   export type Outbound = GetRefreshLibraryMetadataRequest$Outbound;
 }
 
+export function getRefreshLibraryMetadataRequestToJSON(
+  getRefreshLibraryMetadataRequest: GetRefreshLibraryMetadataRequest,
+): string {
+  return JSON.stringify(
+    GetRefreshLibraryMetadataRequest$outboundSchema.parse(
+      getRefreshLibraryMetadataRequest,
+    ),
+  );
+}
+
+export function getRefreshLibraryMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRefreshLibraryMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRefreshLibraryMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRefreshLibraryMetadataRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRefreshLibraryMetadataResponse$inboundSchema: z.ZodType<
   GetRefreshLibraryMetadataResponse,
@@ -156,4 +179,24 @@ export namespace GetRefreshLibraryMetadataResponse$ {
     GetRefreshLibraryMetadataResponse$outboundSchema;
   /** @deprecated use `GetRefreshLibraryMetadataResponse$Outbound` instead. */
   export type Outbound = GetRefreshLibraryMetadataResponse$Outbound;
+}
+
+export function getRefreshLibraryMetadataResponseToJSON(
+  getRefreshLibraryMetadataResponse: GetRefreshLibraryMetadataResponse,
+): string {
+  return JSON.stringify(
+    GetRefreshLibraryMetadataResponse$outboundSchema.parse(
+      getRefreshLibraryMetadataResponse,
+    ),
+  );
+}
+
+export function getRefreshLibraryMetadataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRefreshLibraryMetadataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRefreshLibraryMetadataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRefreshLibraryMetadataResponse' from JSON`,
+  );
 }

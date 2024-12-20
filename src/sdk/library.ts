@@ -174,6 +174,7 @@ export class Library extends ClientSDK {
    * - `resolution`: Items categorized by resolution.
    * - `firstCharacter`: Items categorized by the first letter.
    * - `folder`: Items categorized by folder.
+   * - `albums`: Items categorized by album.
    */
   async getLibraryItems(
     request: operations.GetLibraryItemsRequest,

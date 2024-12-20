@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetAllLibrariesLocation = {
   id: number;
@@ -118,6 +121,24 @@ export namespace GetAllLibrariesLocation$ {
   export type Outbound = GetAllLibrariesLocation$Outbound;
 }
 
+export function getAllLibrariesLocationToJSON(
+  getAllLibrariesLocation: GetAllLibrariesLocation,
+): string {
+  return JSON.stringify(
+    GetAllLibrariesLocation$outboundSchema.parse(getAllLibrariesLocation),
+  );
+}
+
+export function getAllLibrariesLocationFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllLibrariesLocation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllLibrariesLocation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllLibrariesLocation' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAllLibrariesDirectory$inboundSchema: z.ZodType<
   GetAllLibrariesDirectory,
@@ -222,6 +243,24 @@ export namespace GetAllLibrariesDirectory$ {
   export type Outbound = GetAllLibrariesDirectory$Outbound;
 }
 
+export function getAllLibrariesDirectoryToJSON(
+  getAllLibrariesDirectory: GetAllLibrariesDirectory,
+): string {
+  return JSON.stringify(
+    GetAllLibrariesDirectory$outboundSchema.parse(getAllLibrariesDirectory),
+  );
+}
+
+export function getAllLibrariesDirectoryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllLibrariesDirectory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllLibrariesDirectory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllLibrariesDirectory' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAllLibrariesMediaContainer$inboundSchema: z.ZodType<
   GetAllLibrariesMediaContainer,
@@ -275,6 +314,26 @@ export namespace GetAllLibrariesMediaContainer$ {
   export type Outbound = GetAllLibrariesMediaContainer$Outbound;
 }
 
+export function getAllLibrariesMediaContainerToJSON(
+  getAllLibrariesMediaContainer: GetAllLibrariesMediaContainer,
+): string {
+  return JSON.stringify(
+    GetAllLibrariesMediaContainer$outboundSchema.parse(
+      getAllLibrariesMediaContainer,
+    ),
+  );
+}
+
+export function getAllLibrariesMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllLibrariesMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllLibrariesMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllLibrariesMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAllLibrariesResponseBody$inboundSchema: z.ZodType<
   GetAllLibrariesResponseBody,
@@ -317,6 +376,26 @@ export namespace GetAllLibrariesResponseBody$ {
   export const outboundSchema = GetAllLibrariesResponseBody$outboundSchema;
   /** @deprecated use `GetAllLibrariesResponseBody$Outbound` instead. */
   export type Outbound = GetAllLibrariesResponseBody$Outbound;
+}
+
+export function getAllLibrariesResponseBodyToJSON(
+  getAllLibrariesResponseBody: GetAllLibrariesResponseBody,
+): string {
+  return JSON.stringify(
+    GetAllLibrariesResponseBody$outboundSchema.parse(
+      getAllLibrariesResponseBody,
+    ),
+  );
+}
+
+export function getAllLibrariesResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllLibrariesResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllLibrariesResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllLibrariesResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -376,4 +455,22 @@ export namespace GetAllLibrariesResponse$ {
   export const outboundSchema = GetAllLibrariesResponse$outboundSchema;
   /** @deprecated use `GetAllLibrariesResponse$Outbound` instead. */
   export type Outbound = GetAllLibrariesResponse$Outbound;
+}
+
+export function getAllLibrariesResponseToJSON(
+  getAllLibrariesResponse: GetAllLibrariesResponse,
+): string {
+  return JSON.stringify(
+    GetAllLibrariesResponse$outboundSchema.parse(getAllLibrariesResponse),
+  );
+}
+
+export function getAllLibrariesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAllLibrariesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAllLibrariesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllLibrariesResponse' from JSON`,
+  );
 }

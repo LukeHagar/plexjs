@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StartUniversalTranscodeRequest = {
   /**
@@ -168,6 +171,26 @@ export namespace StartUniversalTranscodeRequest$ {
   export type Outbound = StartUniversalTranscodeRequest$Outbound;
 }
 
+export function startUniversalTranscodeRequestToJSON(
+  startUniversalTranscodeRequest: StartUniversalTranscodeRequest,
+): string {
+  return JSON.stringify(
+    StartUniversalTranscodeRequest$outboundSchema.parse(
+      startUniversalTranscodeRequest,
+    ),
+  );
+}
+
+export function startUniversalTranscodeRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<StartUniversalTranscodeRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartUniversalTranscodeRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartUniversalTranscodeRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const StartUniversalTranscodeResponse$inboundSchema: z.ZodType<
   StartUniversalTranscodeResponse,
@@ -222,4 +245,24 @@ export namespace StartUniversalTranscodeResponse$ {
   export const outboundSchema = StartUniversalTranscodeResponse$outboundSchema;
   /** @deprecated use `StartUniversalTranscodeResponse$Outbound` instead. */
   export type Outbound = StartUniversalTranscodeResponse$Outbound;
+}
+
+export function startUniversalTranscodeResponseToJSON(
+  startUniversalTranscodeResponse: StartUniversalTranscodeResponse,
+): string {
+  return JSON.stringify(
+    StartUniversalTranscodeResponse$outboundSchema.parse(
+      startUniversalTranscodeResponse,
+    ),
+  );
+}
+
+export function startUniversalTranscodeResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<StartUniversalTranscodeResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StartUniversalTranscodeResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StartUniversalTranscodeResponse' from JSON`,
+  );
 }

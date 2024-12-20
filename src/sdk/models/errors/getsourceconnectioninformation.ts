@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSourceConnectionInformationAuthenticationErrors = {
   code?: number | undefined;
@@ -144,6 +147,33 @@ export namespace GetSourceConnectionInformationAuthenticationErrors$ {
     GetSourceConnectionInformationAuthenticationErrors$Outbound;
 }
 
+export function getSourceConnectionInformationAuthenticationErrorsToJSON(
+  getSourceConnectionInformationAuthenticationErrors:
+    GetSourceConnectionInformationAuthenticationErrors,
+): string {
+  return JSON.stringify(
+    GetSourceConnectionInformationAuthenticationErrors$outboundSchema.parse(
+      getSourceConnectionInformationAuthenticationErrors,
+    ),
+  );
+}
+
+export function getSourceConnectionInformationAuthenticationErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetSourceConnectionInformationAuthenticationErrors,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSourceConnectionInformationAuthenticationErrors$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetSourceConnectionInformationAuthenticationErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetSourceConnectionInformationUnauthorized$inboundSchema:
   z.ZodType<GetSourceConnectionInformationUnauthorized, z.ZodTypeDef, unknown> =
@@ -251,6 +281,27 @@ export namespace GetSourceConnectionInformationErrors$ {
     GetSourceConnectionInformationErrors$outboundSchema;
   /** @deprecated use `GetSourceConnectionInformationErrors$Outbound` instead. */
   export type Outbound = GetSourceConnectionInformationErrors$Outbound;
+}
+
+export function getSourceConnectionInformationErrorsToJSON(
+  getSourceConnectionInformationErrors: GetSourceConnectionInformationErrors,
+): string {
+  return JSON.stringify(
+    GetSourceConnectionInformationErrors$outboundSchema.parse(
+      getSourceConnectionInformationErrors,
+    ),
+  );
+}
+
+export function getSourceConnectionInformationErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSourceConnectionInformationErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSourceConnectionInformationErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSourceConnectionInformationErrors' from JSON`,
+  );
 }
 
 /** @internal */

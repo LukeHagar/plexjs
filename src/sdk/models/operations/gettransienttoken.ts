@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * `delegation` - This is the only supported `type` parameter.
@@ -125,6 +128,24 @@ export namespace GetTransientTokenRequest$ {
   export type Outbound = GetTransientTokenRequest$Outbound;
 }
 
+export function getTransientTokenRequestToJSON(
+  getTransientTokenRequest: GetTransientTokenRequest,
+): string {
+  return JSON.stringify(
+    GetTransientTokenRequest$outboundSchema.parse(getTransientTokenRequest),
+  );
+}
+
+export function getTransientTokenRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransientTokenRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransientTokenRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransientTokenRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTransientTokenResponse$inboundSchema: z.ZodType<
   GetTransientTokenResponse,
@@ -179,4 +200,22 @@ export namespace GetTransientTokenResponse$ {
   export const outboundSchema = GetTransientTokenResponse$outboundSchema;
   /** @deprecated use `GetTransientTokenResponse$Outbound` instead. */
   export type Outbound = GetTransientTokenResponse$Outbound;
+}
+
+export function getTransientTokenResponseToJSON(
+  getTransientTokenResponse: GetTransientTokenResponse,
+): string {
+  return JSON.stringify(
+    GetTransientTokenResponse$outboundSchema.parse(getTransientTokenResponse),
+  );
+}
+
+export function getTransientTokenResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransientTokenResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransientTokenResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransientTokenResponse' from JSON`,
+  );
 }

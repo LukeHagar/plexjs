@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type EnablePaperTrailLogErrors = {
   code?: number | undefined;
@@ -135,6 +138,24 @@ export namespace EnablePaperTrailLogErrors$ {
   export type Outbound = EnablePaperTrailLogErrors$Outbound;
 }
 
+export function enablePaperTrailLogErrorsToJSON(
+  enablePaperTrailLogErrors: EnablePaperTrailLogErrors,
+): string {
+  return JSON.stringify(
+    EnablePaperTrailLogErrors$outboundSchema.parse(enablePaperTrailLogErrors),
+  );
+}
+
+export function enablePaperTrailLogErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<EnablePaperTrailLogErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EnablePaperTrailLogErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EnablePaperTrailLogErrors' from JSON`,
+  );
+}
+
 /** @internal */
 export const EnablePaperTrailUnauthorized$inboundSchema: z.ZodType<
   EnablePaperTrailUnauthorized,
@@ -233,6 +254,24 @@ export namespace EnablePaperTrailErrors$ {
   export const outboundSchema = EnablePaperTrailErrors$outboundSchema;
   /** @deprecated use `EnablePaperTrailErrors$Outbound` instead. */
   export type Outbound = EnablePaperTrailErrors$Outbound;
+}
+
+export function enablePaperTrailErrorsToJSON(
+  enablePaperTrailErrors: EnablePaperTrailErrors,
+): string {
+  return JSON.stringify(
+    EnablePaperTrailErrors$outboundSchema.parse(enablePaperTrailErrors),
+  );
+}
+
+export function enablePaperTrailErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<EnablePaperTrailErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EnablePaperTrailErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EnablePaperTrailErrors' from JSON`,
+  );
 }
 
 /** @internal */

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of media to retrieve.
@@ -22,6 +25,8 @@ export enum GetPlaylistContentsQueryParamType {
   Season = 3,
   Episode = 4,
   Audio = 8,
+  Album = 9,
+  Track = 10,
 }
 
 export type GetPlaylistContentsRequest = {
@@ -229,6 +234,24 @@ export namespace GetPlaylistContentsRequest$ {
   export type Outbound = GetPlaylistContentsRequest$Outbound;
 }
 
+export function getPlaylistContentsRequestToJSON(
+  getPlaylistContentsRequest: GetPlaylistContentsRequest,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsRequest$outboundSchema.parse(getPlaylistContentsRequest),
+  );
+}
+
+export function getPlaylistContentsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPlaylistContentsPart$inboundSchema: z.ZodType<
   GetPlaylistContentsPart,
@@ -290,6 +313,24 @@ export namespace GetPlaylistContentsPart$ {
   export const outboundSchema = GetPlaylistContentsPart$outboundSchema;
   /** @deprecated use `GetPlaylistContentsPart$Outbound` instead. */
   export type Outbound = GetPlaylistContentsPart$Outbound;
+}
+
+export function getPlaylistContentsPartToJSON(
+  getPlaylistContentsPart: GetPlaylistContentsPart,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsPart$outboundSchema.parse(getPlaylistContentsPart),
+  );
+}
+
+export function getPlaylistContentsPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsPart' from JSON`,
+  );
 }
 
 /** @internal */
@@ -385,6 +426,24 @@ export namespace GetPlaylistContentsMedia$ {
   export type Outbound = GetPlaylistContentsMedia$Outbound;
 }
 
+export function getPlaylistContentsMediaToJSON(
+  getPlaylistContentsMedia: GetPlaylistContentsMedia,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsMedia$outboundSchema.parse(getPlaylistContentsMedia),
+  );
+}
+
+export function getPlaylistContentsMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsMedia' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPlaylistContentsGenre$inboundSchema: z.ZodType<
   GetPlaylistContentsGenre,
@@ -419,6 +478,24 @@ export namespace GetPlaylistContentsGenre$ {
   export const outboundSchema = GetPlaylistContentsGenre$outboundSchema;
   /** @deprecated use `GetPlaylistContentsGenre$Outbound` instead. */
   export type Outbound = GetPlaylistContentsGenre$Outbound;
+}
+
+export function getPlaylistContentsGenreToJSON(
+  getPlaylistContentsGenre: GetPlaylistContentsGenre,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsGenre$outboundSchema.parse(getPlaylistContentsGenre),
+  );
+}
+
+export function getPlaylistContentsGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsGenre' from JSON`,
+  );
 }
 
 /** @internal */
@@ -457,6 +534,24 @@ export namespace GetPlaylistContentsCountry$ {
   export type Outbound = GetPlaylistContentsCountry$Outbound;
 }
 
+export function getPlaylistContentsCountryToJSON(
+  getPlaylistContentsCountry: GetPlaylistContentsCountry,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsCountry$outboundSchema.parse(getPlaylistContentsCountry),
+  );
+}
+
+export function getPlaylistContentsCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsCountry' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPlaylistContentsDirector$inboundSchema: z.ZodType<
   GetPlaylistContentsDirector,
@@ -491,6 +586,26 @@ export namespace GetPlaylistContentsDirector$ {
   export const outboundSchema = GetPlaylistContentsDirector$outboundSchema;
   /** @deprecated use `GetPlaylistContentsDirector$Outbound` instead. */
   export type Outbound = GetPlaylistContentsDirector$Outbound;
+}
+
+export function getPlaylistContentsDirectorToJSON(
+  getPlaylistContentsDirector: GetPlaylistContentsDirector,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsDirector$outboundSchema.parse(
+      getPlaylistContentsDirector,
+    ),
+  );
+}
+
+export function getPlaylistContentsDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsDirector' from JSON`,
+  );
 }
 
 /** @internal */
@@ -529,6 +644,24 @@ export namespace GetPlaylistContentsWriter$ {
   export type Outbound = GetPlaylistContentsWriter$Outbound;
 }
 
+export function getPlaylistContentsWriterToJSON(
+  getPlaylistContentsWriter: GetPlaylistContentsWriter,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsWriter$outboundSchema.parse(getPlaylistContentsWriter),
+  );
+}
+
+export function getPlaylistContentsWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsWriter' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPlaylistContentsRole$inboundSchema: z.ZodType<
   GetPlaylistContentsRole,
@@ -563,6 +696,24 @@ export namespace GetPlaylistContentsRole$ {
   export const outboundSchema = GetPlaylistContentsRole$outboundSchema;
   /** @deprecated use `GetPlaylistContentsRole$Outbound` instead. */
   export type Outbound = GetPlaylistContentsRole$Outbound;
+}
+
+export function getPlaylistContentsRoleToJSON(
+  getPlaylistContentsRole: GetPlaylistContentsRole,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsRole$outboundSchema.parse(getPlaylistContentsRole),
+  );
+}
+
+export function getPlaylistContentsRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsRole' from JSON`,
+  );
 }
 
 /** @internal */
@@ -724,6 +875,26 @@ export namespace GetPlaylistContentsMetadata$ {
   export type Outbound = GetPlaylistContentsMetadata$Outbound;
 }
 
+export function getPlaylistContentsMetadataToJSON(
+  getPlaylistContentsMetadata: GetPlaylistContentsMetadata,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsMetadata$outboundSchema.parse(
+      getPlaylistContentsMetadata,
+    ),
+  );
+}
+
+export function getPlaylistContentsMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPlaylistContentsMediaContainer$inboundSchema: z.ZodType<
   GetPlaylistContentsMediaContainer,
@@ -795,6 +966,26 @@ export namespace GetPlaylistContentsMediaContainer$ {
   export type Outbound = GetPlaylistContentsMediaContainer$Outbound;
 }
 
+export function getPlaylistContentsMediaContainerToJSON(
+  getPlaylistContentsMediaContainer: GetPlaylistContentsMediaContainer,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsMediaContainer$outboundSchema.parse(
+      getPlaylistContentsMediaContainer,
+    ),
+  );
+}
+
+export function getPlaylistContentsMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsMediaContainer' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPlaylistContentsResponseBody$inboundSchema: z.ZodType<
   GetPlaylistContentsResponseBody,
@@ -839,6 +1030,26 @@ export namespace GetPlaylistContentsResponseBody$ {
   export const outboundSchema = GetPlaylistContentsResponseBody$outboundSchema;
   /** @deprecated use `GetPlaylistContentsResponseBody$Outbound` instead. */
   export type Outbound = GetPlaylistContentsResponseBody$Outbound;
+}
+
+export function getPlaylistContentsResponseBodyToJSON(
+  getPlaylistContentsResponseBody: GetPlaylistContentsResponseBody,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsResponseBody$outboundSchema.parse(
+      getPlaylistContentsResponseBody,
+    ),
+  );
+}
+
+export function getPlaylistContentsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -900,4 +1111,24 @@ export namespace GetPlaylistContentsResponse$ {
   export const outboundSchema = GetPlaylistContentsResponse$outboundSchema;
   /** @deprecated use `GetPlaylistContentsResponse$Outbound` instead. */
   export type Outbound = GetPlaylistContentsResponse$Outbound;
+}
+
+export function getPlaylistContentsResponseToJSON(
+  getPlaylistContentsResponse: GetPlaylistContentsResponse,
+): string {
+  return JSON.stringify(
+    GetPlaylistContentsResponse$outboundSchema.parse(
+      getPlaylistContentsResponse,
+    ),
+  );
+}
+
+export function getPlaylistContentsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPlaylistContentsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPlaylistContentsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPlaylistContentsResponse' from JSON`,
+  );
 }

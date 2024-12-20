@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EnablePaperTrailResponse = {
   /**
@@ -74,4 +77,22 @@ export namespace EnablePaperTrailResponse$ {
   export const outboundSchema = EnablePaperTrailResponse$outboundSchema;
   /** @deprecated use `EnablePaperTrailResponse$Outbound` instead. */
   export type Outbound = EnablePaperTrailResponse$Outbound;
+}
+
+export function enablePaperTrailResponseToJSON(
+  enablePaperTrailResponse: EnablePaperTrailResponse,
+): string {
+  return JSON.stringify(
+    EnablePaperTrailResponse$outboundSchema.parse(enablePaperTrailResponse),
+  );
+}
+
+export function enablePaperTrailResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<EnablePaperTrailResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EnablePaperTrailResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EnablePaperTrailResponse' from JSON`,
+  );
 }

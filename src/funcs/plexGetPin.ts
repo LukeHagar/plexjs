@@ -31,7 +31,7 @@ import { Result } from "../sdk/types/fp.js";
 export async function plexGetPin(
   client: PlexAPICore,
   request: operations.GetPinRequest,
-  options?: RequestOptions & { serverURL?: string },
+  options?: RequestOptions,
 ): Promise<
   Result<
     operations.GetPinResponse,
@@ -45,10 +45,8 @@ export async function plexGetPin(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.GetPinRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
@@ -90,37 +88,19 @@ export async function plexGetPin(
       explode: false,
       charEncoding: "none",
     }),
-    "X-Plex-Client-Identifier": encodeSimple(
-      "X-Plex-Client-Identifier",
-      client._options.clientID,
-      { explode: false, charEncoding: "none" },
-    ),
-    "X-Plex-Device": encodeSimple(
-      "X-Plex-Device",
-      client._options.deviceNickname,
-      { explode: false, charEncoding: "none" },
-    ),
-    "X-Plex-Platform": encodeSimple(
-      "X-Plex-Platform",
-      client._options.platform,
-      { explode: false, charEncoding: "none" },
-    ),
-    "X-Plex-Product": encodeSimple(
-      "X-Plex-Product",
-      client._options.clientName,
-      { explode: false, charEncoding: "none" },
-    ),
-    "X-Plex-Version": encodeSimple(
-      "X-Plex-Version",
-      client._options.clientVersion,
-      { explode: false, charEncoding: "none" },
-    ),
   });
 
   const context = {
     operationID: "getPin",
     oAuth2Scopes: [],
+
+    resolvedSecurity: null,
+
     securitySource: null,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -140,9 +120,8 @@ export async function plexGetPin(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
