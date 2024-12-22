@@ -32,6 +32,7 @@ let value: GetSessionsResponse = {
           librarySectionKey: "/library/sections/3",
           librarySectionTitle: "Music",
           musicAnalysisVersion: "1",
+          originalTitle: "The American Dream Is Killing Me",
           parentGuid: "plex://album/65394d6d472b8ab03ef47f12",
           parentIndex: 1,
           parentKey: "/library/metadata/67084",

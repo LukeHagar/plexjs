@@ -102,6 +102,10 @@ export type GetSessionsMetadata = {
   librarySectionKey?: string | undefined;
   librarySectionTitle?: string | undefined;
   musicAnalysisVersion?: string | undefined;
+  /**
+   * The original untranslated name of the media item when non-english, or the track artist if an audio Item has an album artist
+   */
+  originalTitle?: string | undefined;
   parentGuid?: string | undefined;
   parentIndex?: number | undefined;
   parentKey?: string | undefined;
@@ -659,6 +663,7 @@ export const GetSessionsMetadata$inboundSchema: z.ZodType<
   librarySectionKey: z.string().optional(),
   librarySectionTitle: z.string().optional(),
   musicAnalysisVersion: z.string().optional(),
+  originalTitle: z.string().optional(),
   parentGuid: z.string().optional(),
   parentIndex: z.number().int().optional(),
   parentKey: z.string().optional(),
@@ -707,6 +712,7 @@ export type GetSessionsMetadata$Outbound = {
   librarySectionKey?: string | undefined;
   librarySectionTitle?: string | undefined;
   musicAnalysisVersion?: string | undefined;
+  originalTitle?: string | undefined;
   parentGuid?: string | undefined;
   parentIndex?: number | undefined;
   parentKey?: string | undefined;
@@ -752,6 +758,7 @@ export const GetSessionsMetadata$outboundSchema: z.ZodType<
   librarySectionKey: z.string().optional(),
   librarySectionTitle: z.string().optional(),
   musicAnalysisVersion: z.string().optional(),
+  originalTitle: z.string().optional(),
   parentGuid: z.string().optional(),
   parentIndex: z.number().int().optional(),
   parentKey: z.string().optional(),
