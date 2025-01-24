@@ -185,9 +185,30 @@ export enum GetRecentlyAddedHubsType {
   Episode = "episode",
 }
 
+/**
+ * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+ */
 export enum FlattenSeasons {
-  False = "0",
-  True = "1",
+  LibraryDefault = "-1",
+  Hide = "0",
+  Show = "1",
+}
+
+/**
+ * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+ */
+export enum EpisodeSort {
+  LibraryDefault = "-1",
+  OldestFirst = "0",
+  NewestFirst = "1",
+}
+
+/**
+ * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+ */
+export enum EnableCreditsMarkerGeneration {
+  LibraryDefault = "-1",
+  Disabled = "0",
 }
 
 /**
@@ -529,7 +550,18 @@ export type GetRecentlyAddedMetadata = {
   year?: number | undefined;
   seasonCount?: number | undefined;
   tagline?: string | undefined;
+  /**
+   * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+   */
   flattenSeasons?: FlattenSeasons | undefined;
+  /**
+   * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+   */
+  episodeSort?: EpisodeSort | undefined;
+  /**
+   * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+   */
+  enableCreditsMarkerGeneration?: EnableCreditsMarkerGeneration | undefined;
   /**
    * Setting that indicates the episode ordering for the show
    *
@@ -1341,6 +1373,46 @@ export namespace FlattenSeasons$ {
   export const inboundSchema = FlattenSeasons$inboundSchema;
   /** @deprecated use `FlattenSeasons$outboundSchema` instead. */
   export const outboundSchema = FlattenSeasons$outboundSchema;
+}
+
+/** @internal */
+export const EpisodeSort$inboundSchema: z.ZodNativeEnum<typeof EpisodeSort> = z
+  .nativeEnum(EpisodeSort);
+
+/** @internal */
+export const EpisodeSort$outboundSchema: z.ZodNativeEnum<typeof EpisodeSort> =
+  EpisodeSort$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EpisodeSort$ {
+  /** @deprecated use `EpisodeSort$inboundSchema` instead. */
+  export const inboundSchema = EpisodeSort$inboundSchema;
+  /** @deprecated use `EpisodeSort$outboundSchema` instead. */
+  export const outboundSchema = EpisodeSort$outboundSchema;
+}
+
+/** @internal */
+export const EnableCreditsMarkerGeneration$inboundSchema: z.ZodNativeEnum<
+  typeof EnableCreditsMarkerGeneration
+> = z.nativeEnum(EnableCreditsMarkerGeneration);
+
+/** @internal */
+export const EnableCreditsMarkerGeneration$outboundSchema: z.ZodNativeEnum<
+  typeof EnableCreditsMarkerGeneration
+> = EnableCreditsMarkerGeneration$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EnableCreditsMarkerGeneration$ {
+  /** @deprecated use `EnableCreditsMarkerGeneration$inboundSchema` instead. */
+  export const inboundSchema = EnableCreditsMarkerGeneration$inboundSchema;
+  /** @deprecated use `EnableCreditsMarkerGeneration$outboundSchema` instead. */
+  export const outboundSchema = EnableCreditsMarkerGeneration$outboundSchema;
 }
 
 /** @internal */
@@ -2378,7 +2450,10 @@ export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
   year: z.number().int().optional(),
   seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
-  flattenSeasons: FlattenSeasons$inboundSchema.default(FlattenSeasons.False),
+  flattenSeasons: FlattenSeasons$inboundSchema.optional(),
+  episodeSort: EpisodeSort$inboundSchema.optional(),
+  enableCreditsMarkerGeneration: EnableCreditsMarkerGeneration$inboundSchema
+    .optional(),
   showOrdering: ShowOrdering$inboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
@@ -2471,7 +2546,9 @@ export type GetRecentlyAddedMetadata$Outbound = {
   year?: number | undefined;
   seasonCount?: number | undefined;
   tagline?: string | undefined;
-  flattenSeasons: string;
+  flattenSeasons?: string | undefined;
+  episodeSort?: string | undefined;
+  enableCreditsMarkerGeneration?: string | undefined;
   showOrdering?: string | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
@@ -2553,7 +2630,10 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
   year: z.number().int().optional(),
   seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
-  flattenSeasons: FlattenSeasons$outboundSchema.default(FlattenSeasons.False),
+  flattenSeasons: FlattenSeasons$outboundSchema.optional(),
+  episodeSort: EpisodeSort$outboundSchema.optional(),
+  enableCreditsMarkerGeneration: EnableCreditsMarkerGeneration$outboundSchema
+    .optional(),
   showOrdering: ShowOrdering$outboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),

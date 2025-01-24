@@ -11,12 +11,8 @@ let value: Friend = {
   home: true,
   id: 0,
   restricted: false,
-  sharedServers: [
-    {},
-  ],
-  sharedSources: [
-    {},
-  ],
+  sharedServers: [],
+  sharedSources: [],
   status: Status.Accepted,
   thumb: "https://plex.tv/users/7d1916e0d8f6e76b/avatar?c=1694481578",
   title: "username123",

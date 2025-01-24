@@ -4,6 +4,7 @@
 
 import { PlexAPICore } from "../core.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -48,9 +49,9 @@ export async function plexGetGeoData(
 
   const path = pathToFunc("/geoip")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const context = {
     operationID: "getGeoData",
@@ -113,7 +114,8 @@ export async function plexGetGeoData(
     }),
     M.jsonErr(400, errors.GetGeoDataBadRequest$inboundSchema),
     M.jsonErr(401, errors.GetGeoDataUnauthorized$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

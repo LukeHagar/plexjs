@@ -342,13 +342,14 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { IncludeDetails } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await plexAPI.library.getLibraryDetails(9518);
+  const result = await plexAPI.library.getLibraryDetails(9518, IncludeDetails.Zero);
 
   // Handle the result
   console.log(result);
@@ -364,6 +365,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetLibraryDetails } from "@lukehagar/plexjs/funcs/libraryGetLibraryDetails.js";
+import { IncludeDetails } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -372,7 +374,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryGetLibraryDetails(plexAPI, 9518);
+  const res = await libraryGetLibraryDetails(plexAPI, 9518, IncludeDetails.Zero);
 
   if (!res.ok) {
     throw res.error;

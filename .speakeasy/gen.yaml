@@ -13,7 +13,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.32.1
+  version: 0.32.2
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -22,6 +22,7 @@ typescript:
   author: LukeHagar
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
+  enableCustomCodeRegions: false
   enableReactQuery: false
   enumFormat: enum
   flattenGlobalSecurity: true

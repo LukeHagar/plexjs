@@ -5,6 +5,7 @@
 import { PlexAPICore } from "../core.js";
 import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -63,13 +64,13 @@ export async function serverGetMediaProviders(
 
   const path = pathToFunc("/media/providers")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
     "X-Plex-Token": encodeSimple("X-Plex-Token", payload["X-Plex-Token"], {
       explode: false,
       charEncoding: "none",
     }),
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.accessToken);
   const securityInput = secConfig == null ? {} : { accessToken: secConfig };
@@ -138,7 +139,8 @@ export async function serverGetMediaProviders(
     }),
     M.jsonErr(400, errors.GetMediaProvidersBadRequest$inboundSchema),
     M.jsonErr(401, errors.GetMediaProvidersUnauthorized$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

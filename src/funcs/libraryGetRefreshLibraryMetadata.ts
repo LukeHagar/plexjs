@@ -5,6 +5,7 @@
 import { PlexAPICore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -77,9 +78,9 @@ export async function libraryGetRefreshLibraryMetadata(
     "force": payload.force,
   });
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.accessToken);
   const securityInput = secConfig == null ? {} : { accessToken: secConfig };
@@ -147,7 +148,8 @@ export async function libraryGetRefreshLibraryMetadata(
     M.nil(200, operations.GetRefreshLibraryMetadataResponse$inboundSchema),
     M.jsonErr(400, errors.GetRefreshLibraryMetadataBadRequest$inboundSchema),
     M.jsonErr(401, errors.GetRefreshLibraryMetadataUnauthorized$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

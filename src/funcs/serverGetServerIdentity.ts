@@ -4,6 +4,7 @@
 
 import { PlexAPICore } from "../core.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -43,9 +44,9 @@ export async function serverGetServerIdentity(
 > {
   const path = pathToFunc("/identity")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const context = {
     operationID: "get-server-identity",
@@ -106,7 +107,8 @@ export async function serverGetServerIdentity(
       key: "object",
     }),
     M.jsonErr(408, errors.GetServerIdentityRequestTimeout$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

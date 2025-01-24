@@ -4,6 +4,8 @@
 
 ```typescript
 import {
+  GetSearchAllLibrariesEnableCreditsMarkerGeneration,
+  GetSearchAllLibrariesEpisodeSort,
   GetSearchAllLibrariesFlattenSeasons,
   GetSearchAllLibrariesHasThumbnail,
   GetSearchAllLibrariesLibraryType,
@@ -36,7 +38,10 @@ let value: SearchResult = {
     year: 2022,
     seasonCount: 2022,
     tagline: "Return to Pandora.",
-    flattenSeasons: GetSearchAllLibrariesFlattenSeasons.True,
+    flattenSeasons: GetSearchAllLibrariesFlattenSeasons.Show,
+    episodeSort: GetSearchAllLibrariesEpisodeSort.OldestFirst,
+    enableCreditsMarkerGeneration:
+      GetSearchAllLibrariesEnableCreditsMarkerGeneration.LibraryDefault,
     showOrdering: GetSearchAllLibrariesShowOrdering.TvdbDvd,
     thumb: "/library/metadata/58683/thumb/1703239236",
     art: "/library/metadata/58683/art/1703239236",

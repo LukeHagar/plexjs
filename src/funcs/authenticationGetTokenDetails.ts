@@ -4,6 +4,7 @@
 
 import { PlexAPICore } from "../core.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -49,9 +50,9 @@ export async function authenticationGetTokenDetails(
 
   const path = pathToFunc("/user")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.accessToken);
   const securityInput = secConfig == null ? {} : { accessToken: secConfig };
@@ -119,7 +120,8 @@ export async function authenticationGetTokenDetails(
     }),
     M.jsonErr(400, errors.GetTokenDetailsBadRequest$inboundSchema),
     M.jsonErr(401, errors.GetTokenDetailsUnauthorized$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

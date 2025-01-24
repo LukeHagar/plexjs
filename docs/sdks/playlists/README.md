@@ -43,7 +43,7 @@ async function run() {
     title: "<value>",
     type: CreatePlaylistQueryParamType.Photo,
     smart: Smart.One,
-    uri: "https://inborn-brochure.biz",
+    uri: "https://hoarse-testing.info/",
   });
 
   // Handle the result
@@ -73,7 +73,7 @@ async function run() {
     title: "<value>",
     type: CreatePlaylistQueryParamType.Photo,
     smart: Smart.One,
-    uri: "https://inborn-brochure.biz",
+    uri: "https://hoarse-testing.info/",
   });
 
   if (!res.ok) {

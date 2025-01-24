@@ -6,6 +6,8 @@ A successful response with recently added content.
 
 ```typescript
 import {
+  EnableCreditsMarkerGeneration,
+  EpisodeSort,
   FlattenSeasons,
   GetRecentlyAddedActiveDirection,
   GetRecentlyAddedDefaultDirection,
@@ -93,7 +95,10 @@ let value: GetRecentlyAddedResponseBody = {
         year: 2022,
         seasonCount: 2022,
         tagline: "Return to Pandora.",
-        flattenSeasons: FlattenSeasons.True,
+        flattenSeasons: FlattenSeasons.Show,
+        episodeSort: EpisodeSort.OldestFirst,
+        enableCreditsMarkerGeneration:
+          EnableCreditsMarkerGeneration.LibraryDefault,
         showOrdering: ShowOrdering.TvdbDvd,
         thumb: "/library/metadata/58683/thumb/1703239236",
         art: "/library/metadata/58683/art/1703239236",

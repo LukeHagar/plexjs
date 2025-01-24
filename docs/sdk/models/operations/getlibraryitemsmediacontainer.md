@@ -9,6 +9,8 @@ The Meta object is only included in the response if the `includeMeta` parameter 
 import {
   GetLibraryItemsActiveDirection,
   GetLibraryItemsDefaultDirection,
+  GetLibraryItemsEnableCreditsMarkerGeneration,
+  GetLibraryItemsEpisodeSort,
   GetLibraryItemsFlattenSeasons,
   GetLibraryItemsHasThumbnail,
   GetLibraryItemsLibraryActiveDirection,
@@ -110,7 +112,10 @@ let value: GetLibraryItemsMediaContainer = {
       year: 2022,
       seasonCount: 2022,
       tagline: "Return to Pandora.",
-      flattenSeasons: GetLibraryItemsFlattenSeasons.True,
+      flattenSeasons: GetLibraryItemsFlattenSeasons.Show,
+      episodeSort: GetLibraryItemsEpisodeSort.OldestFirst,
+      enableCreditsMarkerGeneration:
+        GetLibraryItemsEnableCreditsMarkerGeneration.LibraryDefault,
       showOrdering: GetLibraryItemsShowOrdering.TvdbDvd,
       thumb: "/library/metadata/58683/thumb/1703239236",
       art: "/library/metadata/58683/art/1703239236",

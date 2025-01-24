@@ -400,6 +400,7 @@ const plexAPI = new PlexAPI();
 
 async function run() {
   const result = await plexAPI.plex.getPin({
+    strong: false,
     clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
     clientName: "Plex for Roku",
     deviceNickname: "Roku 3",
@@ -428,6 +429,7 @@ const plexAPI = new PlexAPICore();
 
 async function run() {
   const res = await plexGetPin(plexAPI, {
+    strong: false,
     clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
     clientName: "Plex for Roku",
     deviceNickname: "Roku 3",

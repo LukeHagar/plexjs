@@ -5,6 +5,7 @@
 import { PlexAPICore } from "../core.js";
 import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -69,9 +70,9 @@ export async function serverGetResizedPhoto(
     "width": payload.width,
   });
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.accessToken);
   const securityInput = secConfig == null ? {} : { accessToken: secConfig };
@@ -139,7 +140,8 @@ export async function serverGetResizedPhoto(
     M.nil(200, operations.GetResizedPhotoResponse$inboundSchema),
     M.jsonErr(400, errors.GetResizedPhotoBadRequest$inboundSchema),
     M.jsonErr(401, errors.GetResizedPhotoUnauthorized$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

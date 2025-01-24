@@ -74,9 +74,30 @@ export enum GetSearchAllLibrariesType {
   Episode = "episode",
 }
 
+/**
+ * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+ */
 export enum GetSearchAllLibrariesFlattenSeasons {
-  False = "0",
-  True = "1",
+  LibraryDefault = "-1",
+  Hide = "0",
+  Show = "1",
+}
+
+/**
+ * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+ */
+export enum GetSearchAllLibrariesEpisodeSort {
+  LibraryDefault = "-1",
+  OldestFirst = "0",
+  NewestFirst = "1",
+}
+
+/**
+ * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+ */
+export enum GetSearchAllLibrariesEnableCreditsMarkerGeneration {
+  LibraryDefault = "-1",
+  Disabled = "0",
 }
 
 /**
@@ -420,7 +441,20 @@ export type GetSearchAllLibrariesMetadata = {
   year?: number | undefined;
   seasonCount?: number | undefined;
   tagline?: string | undefined;
+  /**
+   * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+   */
   flattenSeasons?: GetSearchAllLibrariesFlattenSeasons | undefined;
+  /**
+   * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+   */
+  episodeSort?: GetSearchAllLibrariesEpisodeSort | undefined;
+  /**
+   * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+   */
+  enableCreditsMarkerGeneration?:
+    | GetSearchAllLibrariesEnableCreditsMarkerGeneration
+    | undefined;
   /**
    * Setting that indicates the episode ordering for the show
    *
@@ -731,6 +765,50 @@ export namespace GetSearchAllLibrariesFlattenSeasons$ {
   /** @deprecated use `GetSearchAllLibrariesFlattenSeasons$outboundSchema` instead. */
   export const outboundSchema =
     GetSearchAllLibrariesFlattenSeasons$outboundSchema;
+}
+
+/** @internal */
+export const GetSearchAllLibrariesEpisodeSort$inboundSchema: z.ZodNativeEnum<
+  typeof GetSearchAllLibrariesEpisodeSort
+> = z.nativeEnum(GetSearchAllLibrariesEpisodeSort);
+
+/** @internal */
+export const GetSearchAllLibrariesEpisodeSort$outboundSchema: z.ZodNativeEnum<
+  typeof GetSearchAllLibrariesEpisodeSort
+> = GetSearchAllLibrariesEpisodeSort$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesEpisodeSort$ {
+  /** @deprecated use `GetSearchAllLibrariesEpisodeSort$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesEpisodeSort$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesEpisodeSort$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesEpisodeSort$outboundSchema;
+}
+
+/** @internal */
+export const GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesEnableCreditsMarkerGeneration> = z
+    .nativeEnum(GetSearchAllLibrariesEnableCreditsMarkerGeneration);
+
+/** @internal */
+export const GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesEnableCreditsMarkerGeneration> =
+    GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesEnableCreditsMarkerGeneration$ {
+  /** @deprecated use `GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema;
 }
 
 /** @internal */
@@ -1885,9 +1963,10 @@ export const GetSearchAllLibrariesMetadata$inboundSchema: z.ZodType<
   year: z.number().int().optional(),
   seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
-  flattenSeasons: GetSearchAllLibrariesFlattenSeasons$inboundSchema.default(
-    GetSearchAllLibrariesFlattenSeasons.False,
-  ),
+  flattenSeasons: GetSearchAllLibrariesFlattenSeasons$inboundSchema.optional(),
+  episodeSort: GetSearchAllLibrariesEpisodeSort$inboundSchema.optional(),
+  enableCreditsMarkerGeneration:
+    GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema.optional(),
   showOrdering: GetSearchAllLibrariesShowOrdering$inboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
@@ -1995,7 +2074,9 @@ export type GetSearchAllLibrariesMetadata$Outbound = {
   year?: number | undefined;
   seasonCount?: number | undefined;
   tagline?: string | undefined;
-  flattenSeasons: string;
+  flattenSeasons?: string | undefined;
+  episodeSort?: string | undefined;
+  enableCreditsMarkerGeneration?: string | undefined;
   showOrdering?: string | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
@@ -2077,9 +2158,11 @@ export const GetSearchAllLibrariesMetadata$outboundSchema: z.ZodType<
   year: z.number().int().optional(),
   seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
-  flattenSeasons: GetSearchAllLibrariesFlattenSeasons$outboundSchema.default(
-    GetSearchAllLibrariesFlattenSeasons.False,
-  ),
+  flattenSeasons: GetSearchAllLibrariesFlattenSeasons$outboundSchema.optional(),
+  episodeSort: GetSearchAllLibrariesEpisodeSort$outboundSchema.optional(),
+  enableCreditsMarkerGeneration:
+    GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema
+      .optional(),
   showOrdering: GetSearchAllLibrariesShowOrdering$outboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
