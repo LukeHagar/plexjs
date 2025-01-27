@@ -103,7 +103,7 @@ let value: GetRecentlyAddedResponse = {
           episodeSort: EpisodeSort.OldestFirst,
           enableCreditsMarkerGeneration:
             EnableCreditsMarkerGeneration.LibraryDefault,
-          showOrdering: ShowOrdering.TvdbDvd,
+          showOrdering: ShowOrdering.TvdbAbsolute,
           thumb: "/library/metadata/58683/thumb/1703239236",
           art: "/library/metadata/58683/art/1703239236",
           banner: "/library/metadata/58683/banner/1703239236",

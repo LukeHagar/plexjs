@@ -1,11 +1,11 @@
 # GetSearchAllLibrariesShowOrdering
 
-Setting that indicates the episode ordering for the show
+Setting that indicates the episode ordering for the show.
 None = Library default,
 tmdbAiring = The Movie Database (Aired),
-tvdbAiring = TheTVDB (Aired),
-tvdbDvd = TheTVDB (DVD),
-tvdbAbsolute = TheTVDB (Absolute)).
+aired = TheTVDB (Aired),
+dvd = TheTVDB (DVD),
+absolute = TheTVDB (Absolute)).
 
 
 ## Example Usage
@@ -14,7 +14,7 @@ tvdbAbsolute = TheTVDB (Absolute)).
 import { GetSearchAllLibrariesShowOrdering } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchAllLibrariesShowOrdering =
-  GetSearchAllLibrariesShowOrdering.TvdbDvd;
+  GetSearchAllLibrariesShowOrdering.TvdbAbsolute;
 ```
 
 ## Values
@@ -23,6 +23,6 @@ let value: GetSearchAllLibrariesShowOrdering =
 | -------------- | -------------- |
 | `None`         | None           |
 | `TmdbAiring`   | tmdbAiring     |
-| `TvdbAiring`   | tvdbAiring     |
-| `TvdbDvd`      | tvdbDvd        |
-| `TvdbAbsolute` | tvdbAbsolute   |
+| `TvdbAired`    | aired          |
+| `TvdbDvd`      | dvd            |
+| `TvdbAbsolute` | absolute       |

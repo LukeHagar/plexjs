@@ -101,21 +101,21 @@ export enum GetSearchAllLibrariesEnableCreditsMarkerGeneration {
 }
 
 /**
- * Setting that indicates the episode ordering for the show
+ * Setting that indicates the episode ordering for the show.
  *
  * @remarks
  * None = Library default,
  * tmdbAiring = The Movie Database (Aired),
- * tvdbAiring = TheTVDB (Aired),
- * tvdbDvd = TheTVDB (DVD),
- * tvdbAbsolute = TheTVDB (Absolute)).
+ * aired = TheTVDB (Aired),
+ * dvd = TheTVDB (DVD),
+ * absolute = TheTVDB (Absolute)).
  */
 export enum GetSearchAllLibrariesShowOrdering {
   None = "None",
   TmdbAiring = "tmdbAiring",
-  TvdbAiring = "tvdbAiring",
-  TvdbDvd = "tvdbDvd",
-  TvdbAbsolute = "tvdbAbsolute",
+  TvdbAired = "aired",
+  TvdbDvd = "dvd",
+  TvdbAbsolute = "absolute",
 }
 
 export enum GetSearchAllLibrariesOptimizedForStreaming {
@@ -456,14 +456,14 @@ export type GetSearchAllLibrariesMetadata = {
     | GetSearchAllLibrariesEnableCreditsMarkerGeneration
     | undefined;
   /**
-   * Setting that indicates the episode ordering for the show
+   * Setting that indicates the episode ordering for the show.
    *
    * @remarks
    * None = Library default,
    * tmdbAiring = The Movie Database (Aired),
-   * tvdbAiring = TheTVDB (Aired),
-   * tvdbDvd = TheTVDB (DVD),
-   * tvdbAbsolute = TheTVDB (Absolute)).
+   * aired = TheTVDB (Aired),
+   * dvd = TheTVDB (DVD),
+   * absolute = TheTVDB (Absolute)).
    */
   showOrdering?: GetSearchAllLibrariesShowOrdering | undefined;
   thumb?: string | undefined;

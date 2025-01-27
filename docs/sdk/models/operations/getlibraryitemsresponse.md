@@ -120,7 +120,7 @@ let value: GetLibraryItemsResponse = {
           episodeSort: GetLibraryItemsEpisodeSort.OldestFirst,
           enableCreditsMarkerGeneration:
             GetLibraryItemsEnableCreditsMarkerGeneration.LibraryDefault,
-          showOrdering: GetLibraryItemsShowOrdering.TvdbDvd,
+          showOrdering: GetLibraryItemsShowOrdering.TvdbAbsolute,
           thumb: "/library/metadata/58683/thumb/1703239236",
           art: "/library/metadata/58683/art/1703239236",
           banner: "/library/metadata/58683/banner/1703239236",

@@ -48,7 +48,7 @@ let value: GetSearchAllLibrariesResponseBody = {
           episodeSort: GetSearchAllLibrariesEpisodeSort.OldestFirst,
           enableCreditsMarkerGeneration:
             GetSearchAllLibrariesEnableCreditsMarkerGeneration.LibraryDefault,
-          showOrdering: GetSearchAllLibrariesShowOrdering.TvdbDvd,
+          showOrdering: GetSearchAllLibrariesShowOrdering.TvdbAbsolute,
           thumb: "/library/metadata/58683/thumb/1703239236",
           art: "/library/metadata/58683/art/1703239236",
           banner: "/library/metadata/58683/banner/1703239236",
