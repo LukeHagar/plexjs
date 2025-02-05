@@ -27,8 +27,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.watchlist.getWatchList({
     filter: Filter.Available,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
 
@@ -57,8 +55,6 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await watchlistGetWatchList(plexAPI, {
     filter: Filter.Available,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
 

@@ -3,11 +3,7 @@
 ## Example Usage
 
 ```typescript
-import {
-  GetSearchAllLibrariesHasThumbnail,
-  GetSearchAllLibrariesMedia,
-  GetSearchAllLibrariesOptimizedForStreaming,
-} from "@lukehagar/plexjs/sdk/models/operations";
+import { GetSearchAllLibrariesMedia } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchAllLibrariesMedia = {
   id: 119534,
@@ -25,7 +21,6 @@ let value: GetSearchAllLibrariesMedia = {
   videoFrameRate: "24p",
   videoProfile: "main 10",
   hasVoiceActivity: false,
-  optimizedForStreaming: GetSearchAllLibrariesOptimizedForStreaming.Enable,
   has64bitOffsets: false,
   part: [
     {
@@ -41,7 +36,6 @@ let value: GetSearchAllLibrariesMedia = {
       optimizedForStreaming: false,
       videoProfile: "main 10",
       indexes: "sd",
-      hasThumbnail: GetSearchAllLibrariesHasThumbnail.True,
       stream: [
         {
           id: 272796,

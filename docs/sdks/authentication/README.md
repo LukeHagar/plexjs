@@ -262,7 +262,6 @@ async function run() {
     requestBody: {
       login: "username@email.com",
       password: "password123",
-      rememberMe: false,
       verificationCode: "123456",
     },
   });
@@ -296,7 +295,6 @@ async function run() {
     requestBody: {
       login: "username@email.com",
       password: "password123",
-      rememberMe: false,
       verificationCode: "123456",
     },
   });

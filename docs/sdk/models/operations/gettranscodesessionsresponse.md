@@ -7,7 +7,7 @@ import { GetTranscodeSessionsResponse } from "@lukehagar/plexjs/sdk/models/opera
 
 let value: GetTranscodeSessionsResponse = {
   contentType: "<value>",
-  statusCode: 500,
+  statusCode: 503,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,11 +7,9 @@ import {
   GetLibraryItemsEnableCreditsMarkerGeneration,
   GetLibraryItemsEpisodeSort,
   GetLibraryItemsFlattenSeasons,
-  GetLibraryItemsHasThumbnail,
   GetLibraryItemsLibraryResponse200Type,
   GetLibraryItemsLibraryType,
   GetLibraryItemsMetadata,
-  GetLibraryItemsOptimizedForStreaming,
   GetLibraryItemsShowOrdering,
 } from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
@@ -78,7 +76,6 @@ let value: GetLibraryItemsMetadata = {
       videoFrameRate: "24p",
       videoProfile: "main 10",
       hasVoiceActivity: false,
-      optimizedForStreaming: GetLibraryItemsOptimizedForStreaming.Enable,
       has64bitOffsets: false,
       part: [
         {
@@ -94,7 +91,6 @@ let value: GetLibraryItemsMetadata = {
           optimizedForStreaming: false,
           videoProfile: "main 10",
           indexes: "sd",
-          hasThumbnail: GetLibraryItemsHasThumbnail.True,
           stream: [
             {
               id: 272796,

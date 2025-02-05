@@ -5,7 +5,7 @@
 ```typescript
 import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: SearchTypes = SearchTypes.Tv;
+let value: SearchTypes = SearchTypes.People;
 ```
 
 ## Values

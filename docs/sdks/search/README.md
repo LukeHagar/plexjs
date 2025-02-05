@@ -38,7 +38,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.search.performSearch("dylan", 5);
+  const result = await plexAPI.search.performSearch("dylan");
 
   // Handle the result
   console.log(result);
@@ -62,7 +62,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await searchPerformSearch(plexAPI, "dylan", 5);
+  const res = await searchPerformSearch(plexAPI, "dylan");
 
   if (!res.ok) {
     throw res.error;
@@ -118,7 +118,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.search.performVoiceSearch("dead+poop", 5);
+  const result = await plexAPI.search.performVoiceSearch("dead+poop");
 
   // Handle the result
   console.log(result);
@@ -142,7 +142,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await searchPerformVoiceSearch(plexAPI, "dead+poop", 5);
+  const res = await searchPerformVoiceSearch(plexAPI, "dead+poop");
 
   if (!res.ok) {
     throw res.error;

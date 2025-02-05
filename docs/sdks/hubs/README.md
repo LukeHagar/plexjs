@@ -96,7 +96,7 @@ This endpoint will return the recently added content.
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
+import { Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -107,9 +107,6 @@ async function run() {
     contentDirectoryID: 470161,
     sectionID: 2,
     type: Type.TvShow,
-    includeMeta: IncludeMeta.Enable,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
   });
 
   // Handle the result
@@ -126,7 +123,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { hubsGetRecentlyAdded } from "@lukehagar/plexjs/funcs/hubsGetRecentlyAdded.js";
-import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
+import { Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -139,9 +136,6 @@ async function run() {
     contentDirectoryID: 470161,
     sectionID: 2,
     type: Type.TvShow,
-    includeMeta: IncludeMeta.Enable,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
   });
 
   if (!res.ok) {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ActiveDirection, DefaultDirection, GetRecentlyAddedLibraryResponse } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetRecentlyAddedLibraryResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetRecentlyAddedLibraryResponse = {
   contentType: "<value>",
@@ -32,8 +32,6 @@ let value: GetRecentlyAddedLibraryResponse = {
             {
               default: "asc",
               active: false,
-              activeDirection: ActiveDirection.Ascending,
-              defaultDirection: DefaultDirection.Ascending,
               descKey: "titleSort:desc",
               firstCharacterKey: "/library/sections/2/firstCharacter",
               key: "titleSort",

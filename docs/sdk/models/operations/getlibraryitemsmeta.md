@@ -6,11 +6,7 @@ The Meta object is only included in the response if the `includeMeta` parameter 
 ## Example Usage
 
 ```typescript
-import {
-  GetLibraryItemsLibraryActiveDirection,
-  GetLibraryItemsLibraryDefaultDirection,
-  GetLibraryItemsMeta,
-} from "@lukehagar/plexjs/sdk/models/operations";
+import { GetLibraryItemsMeta } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsMeta = {
   type: [
@@ -32,8 +28,6 @@ let value: GetLibraryItemsMeta = {
         {
           default: "asc",
           active: false,
-          activeDirection: GetLibraryItemsLibraryActiveDirection.Ascending,
-          defaultDirection: GetLibraryItemsLibraryDefaultDirection.Ascending,
           descKey: "titleSort:desc",
           firstCharacterKey: "/library/sections/2/firstCharacter",
           key: "titleSort",

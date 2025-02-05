@@ -10,7 +10,6 @@ let value: Friend = {
   friendlyName: "exampleUser",
   home: true,
   id: 0,
-  restricted: false,
   sharedServers: [],
   sharedSources: [],
   status: Status.Accepted,

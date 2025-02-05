@@ -10,19 +10,12 @@ let value: PastSubscription = {
   mode: "<value>",
   renewsAt: 1556281940,
   endsAt: 1556281940,
-  canceled: false,
-  gracePeriod: false,
-  onHold: false,
-  canReactivate: false,
-  canUpgrade: false,
-  canDowngrade: false,
-  canConvert: false,
   type: "plexpass",
   transfer: "<value>",
   state: PostUsersSignInDataState.Ended,
   billing: {
     internalPaymentMethod: {},
-    paymentMethodId: 463575,
+    paymentMethodId: 117531,
   },
 };
 ```

@@ -9,13 +9,9 @@ import {
   EnableCreditsMarkerGeneration,
   EpisodeSort,
   FlattenSeasons,
-  GetRecentlyAddedActiveDirection,
-  GetRecentlyAddedDefaultDirection,
   GetRecentlyAddedHubsResponseType,
   GetRecentlyAddedHubsType,
   GetRecentlyAddedResponseBody,
-  HasThumbnail,
-  OptimizedForStreaming,
   ShowOrdering,
 } from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
@@ -24,6 +20,7 @@ let value: GetRecentlyAddedResponseBody = {
   mediaContainer: {
     size: 50,
     identifier: "com.plexapp.plugins.library",
+    allowSync: false,
     meta: {
       type: [
         {
@@ -44,8 +41,6 @@ let value: GetRecentlyAddedResponseBody = {
             {
               default: "asc",
               active: false,
-              activeDirection: GetRecentlyAddedActiveDirection.Ascending,
-              defaultDirection: GetRecentlyAddedDefaultDirection.Ascending,
               descKey: "titleSort:desc",
               firstCharacterKey: "/library/sections/2/firstCharacter",
               key: "titleSort",
@@ -137,7 +132,6 @@ let value: GetRecentlyAddedResponseBody = {
             videoFrameRate: "24p",
             videoProfile: "main 10",
             hasVoiceActivity: false,
-            optimizedForStreaming: OptimizedForStreaming.Enable,
             has64bitOffsets: false,
             part: [
               {
@@ -153,7 +147,6 @@ let value: GetRecentlyAddedResponseBody = {
                 optimizedForStreaming: false,
                 videoProfile: "main 10",
                 indexes: "sd",
-                hasThumbnail: HasThumbnail.True,
                 stream: [
                   {
                     id: 272796,

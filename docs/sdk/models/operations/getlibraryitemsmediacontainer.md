@@ -7,18 +7,12 @@ The Meta object is only included in the response if the `includeMeta` parameter 
 
 ```typescript
 import {
-  GetLibraryItemsActiveDirection,
-  GetLibraryItemsDefaultDirection,
   GetLibraryItemsEnableCreditsMarkerGeneration,
   GetLibraryItemsEpisodeSort,
   GetLibraryItemsFlattenSeasons,
-  GetLibraryItemsHasThumbnail,
-  GetLibraryItemsLibraryActiveDirection,
-  GetLibraryItemsLibraryDefaultDirection,
   GetLibraryItemsLibraryResponse200Type,
   GetLibraryItemsLibraryType,
   GetLibraryItemsMediaContainer,
-  GetLibraryItemsOptimizedForStreaming,
   GetLibraryItemsShowOrdering,
 } from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
@@ -43,8 +37,6 @@ let value: GetLibraryItemsMediaContainer = {
         {
           default: "asc",
           active: false,
-          activeDirection: GetLibraryItemsActiveDirection.Ascending,
-          defaultDirection: GetLibraryItemsDefaultDirection.Ascending,
           descKey: "titleSort:desc",
           firstCharacterKey: "/library/sections/2/firstCharacter",
           key: "titleSort",
@@ -154,7 +146,6 @@ let value: GetLibraryItemsMediaContainer = {
           videoFrameRate: "24p",
           videoProfile: "main 10",
           hasVoiceActivity: false,
-          optimizedForStreaming: GetLibraryItemsOptimizedForStreaming.Enable,
           has64bitOffsets: false,
           part: [
             {
@@ -170,7 +161,6 @@ let value: GetLibraryItemsMediaContainer = {
               optimizedForStreaming: false,
               videoProfile: "main 10",
               indexes: "sd",
-              hasThumbnail: GetLibraryItemsHasThumbnail.True,
               stream: [
                 {
                   id: 272796,
@@ -327,8 +317,6 @@ let value: GetLibraryItemsMediaContainer = {
           {
             default: "asc",
             active: false,
-            activeDirection: GetLibraryItemsLibraryActiveDirection.Ascending,
-            defaultDirection: GetLibraryItemsLibraryDefaultDirection.Ascending,
             descKey: "titleSort:desc",
             firstCharacterKey: "/library/sections/2/firstCharacter",
             key: "titleSort",

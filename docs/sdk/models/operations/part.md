@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HasThumbnail, Part } from "@lukehagar/plexjs/sdk/models/operations";
+import { Part } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Part = {
   id: 119542,
@@ -18,7 +18,6 @@ let value: Part = {
   optimizedForStreaming: false,
   videoProfile: "main 10",
   indexes: "sd",
-  hasThumbnail: HasThumbnail.True,
   stream: [
     {
       id: 272796,

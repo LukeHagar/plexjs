@@ -7,7 +7,6 @@ import { PerformVoiceSearchRequest } from "@lukehagar/plexjs/sdk/models/operatio
 
 let value: PerformVoiceSearchRequest = {
   query: "dead+poop",
-  limit: 5,
 };
 ```
 

@@ -3,17 +3,11 @@
 ## Example Usage
 
 ```typescript
-import {
-  GetRecentlyAddedActiveDirection,
-  GetRecentlyAddedDefaultDirection,
-  GetRecentlyAddedSort,
-} from "@lukehagar/plexjs/sdk/models/operations";
+import { GetRecentlyAddedSort } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetRecentlyAddedSort = {
   default: "asc",
   active: false,
-  activeDirection: GetRecentlyAddedActiveDirection.Ascending,
-  defaultDirection: GetRecentlyAddedDefaultDirection.Ascending,
   descKey: "titleSort:desc",
   firstCharacterKey: "/library/sections/2/firstCharacter",
   key: "titleSort",

@@ -7,7 +7,7 @@ import { GetUpdateStatusResponse } from "@lukehagar/plexjs/sdk/models/operations
 
 let value: GetUpdateStatusResponse = {
   contentType: "<value>",
-  statusCode: 503,
+  statusCode: 103,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

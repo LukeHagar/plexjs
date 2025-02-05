@@ -422,7 +422,7 @@ actions:
           label: added
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
+            import { Type } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -433,9 +433,6 @@ actions:
                 contentDirectoryID: 470161,
                 sectionID: 2,
                 type: Type.TvShow,
-                includeMeta: IncludeMeta.Enable,
-                xPlexContainerStart: 0,
-                xPlexContainerSize: 50,
               });
 
               // Handle the result
@@ -456,7 +453,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.search.performSearch("dylan", 5);
+              const result = await plexAPI.search.performSearch("dylan");
 
               // Handle the result
               console.log(result);
@@ -476,7 +473,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.search.performVoiceSearch("dead+poop", 5);
+              const result = await plexAPI.search.performVoiceSearch("dead+poop");
 
               // Handle the result
               console.log(result);
@@ -683,7 +680,7 @@ actions:
           label: library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+            import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -708,9 +705,6 @@ actions:
                 ],
                 sectionID: 2,
                 type: QueryParamType.TvShow,
-                includeMeta: QueryParamIncludeMeta.Enable,
-                xPlexContainerStart: 0,
-                xPlexContainerSize: 50,
               });
 
               // Handle the result
@@ -725,7 +719,7 @@ actions:
           label: libraries
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { QueryParamIncludeCollections, QueryParamIncludeExternalMedia, SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+            import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -738,8 +732,6 @@ actions:
                 searchTypes: [
                   SearchTypes.People,
                 ],
-                includeCollections: QueryParamIncludeCollections.Enable,
-                includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
               });
 
               // Handle the result
@@ -783,8 +775,6 @@ actions:
             async function run() {
               const result = await plexAPI.watchlist.getWatchList({
                 filter: Filter.Available,
-                xPlexContainerStart: 0,
-                xPlexContainerSize: 50,
                 xPlexToken: "CV5xoxjTpFKUzBTShsaf",
               });
 
@@ -820,14 +810,53 @@ actions:
           label: details
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { IncludeDetails } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.library.getLibraryDetails(9518, IncludeDetails.Zero);
+              const result = await plexAPI.library.getLibraryDetails(9518);
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionKey}/country"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: library
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getCountriesLibrary(9518);
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/sections/{sectionKey}/genre"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: library
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getGenresLibrary(9518);
 
               // Handle the result
               console.log(result);
@@ -883,12 +912,7 @@ actions:
           label: items
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import {
-              GetLibraryItemsQueryParamIncludeMeta,
-              GetLibraryItemsQueryParamType,
-              IncludeGuids,
-              Tag,
-            } from "@lukehagar/plexjs/sdk/models/operations";
+            import { GetLibraryItemsQueryParamType, Tag } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -897,12 +921,8 @@ actions:
             async function run() {
               const result = await plexAPI.library.getLibraryItems({
                 tag: Tag.Edition,
-                includeGuids: IncludeGuids.Enable,
                 type: GetLibraryItemsQueryParamType.TvShow,
                 sectionKey: 9518,
-                includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
-                xPlexContainerStart: 0,
-                xPlexContainerSize: 50,
               });
 
               // Handle the result
@@ -1054,7 +1074,6 @@ actions:
 
             async function run() {
               const result = await plexAPI.plex.getPin({
-                strong: false,
                 clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
                 clientName: "Plex for Roku",
                 deviceNickname: "Roku 3",
@@ -1287,14 +1306,13 @@ actions:
           label: resources
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.plex.getServerResources("3381b62b-9ab7-4e37-827b-203e9809eb58", IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable);
+              const result = await plexAPI.plex.getServerResources("3381b62b-9ab7-4e37-827b-203e9809eb58");
 
               // Handle the result
               console.log(result);
@@ -1624,7 +1642,6 @@ actions:
                 requestBody: {
                   login: "username@email.com",
                   password: "password123",
-                  rememberMe: false,
                   verificationCode: "123456",
                 },
               });

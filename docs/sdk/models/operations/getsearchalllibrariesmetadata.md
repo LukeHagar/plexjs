@@ -7,10 +7,8 @@ import {
   GetSearchAllLibrariesEnableCreditsMarkerGeneration,
   GetSearchAllLibrariesEpisodeSort,
   GetSearchAllLibrariesFlattenSeasons,
-  GetSearchAllLibrariesHasThumbnail,
   GetSearchAllLibrariesLibraryType,
   GetSearchAllLibrariesMetadata,
-  GetSearchAllLibrariesOptimizedForStreaming,
   GetSearchAllLibrariesShowOrdering,
   GetSearchAllLibrariesType,
 } from "@lukehagar/plexjs/sdk/models/operations";
@@ -78,7 +76,6 @@ let value: GetSearchAllLibrariesMetadata = {
       videoFrameRate: "24p",
       videoProfile: "main 10",
       hasVoiceActivity: false,
-      optimizedForStreaming: GetSearchAllLibrariesOptimizedForStreaming.Enable,
       has64bitOffsets: false,
       part: [
         {
@@ -94,7 +91,6 @@ let value: GetSearchAllLibrariesMetadata = {
           optimizedForStreaming: false,
           videoProfile: "main 10",
           indexes: "sd",
-          hasThumbnail: GetSearchAllLibrariesHasThumbnail.True,
           stream: [
             {
               id: 272796,

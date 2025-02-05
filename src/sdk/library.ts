@@ -4,7 +4,9 @@
 
 import { libraryDeleteLibrary } from "../funcs/libraryDeleteLibrary.js";
 import { libraryGetAllLibraries } from "../funcs/libraryGetAllLibraries.js";
+import { libraryGetCountriesLibrary } from "../funcs/libraryGetCountriesLibrary.js";
 import { libraryGetFileHash } from "../funcs/libraryGetFileHash.js";
+import { libraryGetGenresLibrary } from "../funcs/libraryGetGenresLibrary.js";
 import { libraryGetLibraryDetails } from "../funcs/libraryGetLibraryDetails.js";
 import { libraryGetLibraryItems } from "../funcs/libraryGetLibraryItems.js";
 import { libraryGetMetaDataByRatingKey } from "../funcs/libraryGetMetaDataByRatingKey.js";
@@ -238,6 +240,40 @@ export class Library extends ClientSDK {
       this,
       sectionKey,
       type,
+      options,
+    ));
+  }
+
+  /**
+   * Get Genres of library media
+   *
+   * @remarks
+   * Retrieves a list of all the genres that are found for the media in this library.
+   */
+  async getGenresLibrary(
+    sectionKey: number,
+    options?: RequestOptions,
+  ): Promise<operations.GetGenresLibraryResponse> {
+    return unwrapAsync(libraryGetGenresLibrary(
+      this,
+      sectionKey,
+      options,
+    ));
+  }
+
+  /**
+   * Get Countries of library media
+   *
+   * @remarks
+   * Retrieves a list of all the countries that are found for the media in this library.
+   */
+  async getCountriesLibrary(
+    sectionKey: number,
+    options?: RequestOptions,
+  ): Promise<operations.GetCountriesLibraryResponse> {
+    return unwrapAsync(libraryGetCountriesLibrary(
+      this,
+      sectionKey,
       options,
     ));
   }

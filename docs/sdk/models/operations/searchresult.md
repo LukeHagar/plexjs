@@ -7,9 +7,7 @@ import {
   GetSearchAllLibrariesEnableCreditsMarkerGeneration,
   GetSearchAllLibrariesEpisodeSort,
   GetSearchAllLibrariesFlattenSeasons,
-  GetSearchAllLibrariesHasThumbnail,
   GetSearchAllLibrariesLibraryType,
-  GetSearchAllLibrariesOptimizedForStreaming,
   GetSearchAllLibrariesShowOrdering,
   GetSearchAllLibrariesType,
   SearchResult,
@@ -17,7 +15,7 @@ import {
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: SearchResult = {
-  score: 4071.83,
+  score: 7220.56,
   metadata: {
     ratingKey: "58683",
     key: "/library/metadata/58683",
@@ -80,8 +78,6 @@ let value: SearchResult = {
         videoFrameRate: "24p",
         videoProfile: "main 10",
         hasVoiceActivity: false,
-        optimizedForStreaming:
-          GetSearchAllLibrariesOptimizedForStreaming.Enable,
         has64bitOffsets: false,
         part: [
           {
@@ -97,7 +93,6 @@ let value: SearchResult = {
             optimizedForStreaming: false,
             videoProfile: "main 10",
             indexes: "sd",
-            hasThumbnail: GetSearchAllLibrariesHasThumbnail.True,
             stream: [
               {
                 id: 272796,

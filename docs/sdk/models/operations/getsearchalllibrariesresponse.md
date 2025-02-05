@@ -7,9 +7,7 @@ import {
   GetSearchAllLibrariesEnableCreditsMarkerGeneration,
   GetSearchAllLibrariesEpisodeSort,
   GetSearchAllLibrariesFlattenSeasons,
-  GetSearchAllLibrariesHasThumbnail,
   GetSearchAllLibrariesLibraryType,
-  GetSearchAllLibrariesOptimizedForStreaming,
   GetSearchAllLibrariesResponse,
   GetSearchAllLibrariesShowOrdering,
   GetSearchAllLibrariesType,
@@ -18,16 +16,16 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetSearchAllLibrariesResponse = {
   contentType: "<value>",
-  statusCode: 511,
+  statusCode: 207,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   object: {
     mediaContainer: {
-      size: 8558.04,
+      size: 1716.29,
       searchResult: [
         {
-          score: 117.14,
+          score: 5210.37,
           metadata: {
             ratingKey: "58683",
             key: "/library/metadata/58683",
@@ -90,8 +88,6 @@ let value: GetSearchAllLibrariesResponse = {
                 videoFrameRate: "24p",
                 videoProfile: "main 10",
                 hasVoiceActivity: false,
-                optimizedForStreaming:
-                  GetSearchAllLibrariesOptimizedForStreaming.Enable,
                 has64bitOffsets: false,
                 part: [
                   {
@@ -107,7 +103,6 @@ let value: GetSearchAllLibrariesResponse = {
                     optimizedForStreaming: false,
                     videoProfile: "main 10",
                     indexes: "sd",
-                    hasThumbnail: GetSearchAllLibrariesHasThumbnail.True,
                     stream: [
                       {
                         id: 272796,

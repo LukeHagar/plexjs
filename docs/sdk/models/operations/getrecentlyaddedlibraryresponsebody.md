@@ -5,7 +5,7 @@ The recently added content
 ## Example Usage
 
 ```typescript
-import { ActiveDirection, DefaultDirection, GetRecentlyAddedLibraryResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetRecentlyAddedLibraryResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetRecentlyAddedLibraryResponseBody = {
   mediaContainer: {
@@ -28,8 +28,6 @@ let value: GetRecentlyAddedLibraryResponseBody = {
           {
             default: "asc",
             active: false,
-            activeDirection: ActiveDirection.Ascending,
-            defaultDirection: DefaultDirection.Ascending,
             descKey: "titleSort:desc",
             firstCharacterKey: "/library/sections/2/firstCharacter",
             key: "titleSort",

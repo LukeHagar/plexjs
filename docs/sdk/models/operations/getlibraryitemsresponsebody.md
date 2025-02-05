@@ -6,17 +6,11 @@ The contents of the library by section and tag
 
 ```typescript
 import {
-  GetLibraryItemsActiveDirection,
-  GetLibraryItemsDefaultDirection,
   GetLibraryItemsEnableCreditsMarkerGeneration,
   GetLibraryItemsEpisodeSort,
   GetLibraryItemsFlattenSeasons,
-  GetLibraryItemsHasThumbnail,
-  GetLibraryItemsLibraryActiveDirection,
-  GetLibraryItemsLibraryDefaultDirection,
   GetLibraryItemsLibraryResponse200Type,
   GetLibraryItemsLibraryType,
-  GetLibraryItemsOptimizedForStreaming,
   GetLibraryItemsResponseBody,
   GetLibraryItemsShowOrdering,
 } from "@lukehagar/plexjs/sdk/models/operations";
@@ -43,8 +37,6 @@ let value: GetLibraryItemsResponseBody = {
           {
             default: "asc",
             active: false,
-            activeDirection: GetLibraryItemsActiveDirection.Ascending,
-            defaultDirection: GetLibraryItemsDefaultDirection.Ascending,
             descKey: "titleSort:desc",
             firstCharacterKey: "/library/sections/2/firstCharacter",
             key: "titleSort",
@@ -154,7 +146,6 @@ let value: GetLibraryItemsResponseBody = {
             videoFrameRate: "24p",
             videoProfile: "main 10",
             hasVoiceActivity: false,
-            optimizedForStreaming: GetLibraryItemsOptimizedForStreaming.Enable,
             has64bitOffsets: false,
             part: [
               {
@@ -170,7 +161,6 @@ let value: GetLibraryItemsResponseBody = {
                 optimizedForStreaming: false,
                 videoProfile: "main 10",
                 indexes: "sd",
-                hasThumbnail: GetLibraryItemsHasThumbnail.True,
                 stream: [
                   {
                     id: 272796,
@@ -327,9 +317,6 @@ let value: GetLibraryItemsResponseBody = {
             {
               default: "asc",
               active: false,
-              activeDirection: GetLibraryItemsLibraryActiveDirection.Ascending,
-              defaultDirection:
-                GetLibraryItemsLibraryDefaultDirection.Ascending,
               descKey: "titleSort:desc",
               firstCharacterKey: "/library/sections/2/firstCharacter",
               key: "titleSort",

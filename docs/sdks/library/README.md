@@ -16,6 +16,8 @@ API Calls interacting with Plex Media Server Libraries
 * [getLibraryItems](#getlibraryitems) - Get Library Items
 * [getRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [getSearchLibrary](#getsearchlibrary) - Search Library
+* [getGenresLibrary](#getgenreslibrary) - Get Genres of library media
+* [getCountriesLibrary](#getcountrieslibrary) - Get Countries of library media
 * [getSearchAllLibraries](#getsearchalllibraries) - Search All Libraries
 * [getMetaDataByRatingKey](#getmetadatabyratingkey) - Get Metadata by RatingKey
 * [getMetadataChildren](#getmetadatachildren) - Get Items Children
@@ -106,7 +108,7 @@ This endpoint will return the recently added content.
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -131,9 +133,6 @@ async function run() {
     ],
     sectionID: 2,
     type: QueryParamType.TvShow,
-    includeMeta: QueryParamIncludeMeta.Enable,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
   });
 
   // Handle the result
@@ -150,7 +149,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetRecentlyAddedLibrary } from "@lukehagar/plexjs/funcs/libraryGetRecentlyAddedLibrary.js";
-import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -177,9 +176,6 @@ async function run() {
     ],
     sectionID: 2,
     type: QueryParamType.TvShow,
-    includeMeta: QueryParamIncludeMeta.Enable,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
   });
 
   if (!res.ok) {
@@ -342,14 +338,13 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { IncludeDetails } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await plexAPI.library.getLibraryDetails(9518, IncludeDetails.Zero);
+  const result = await plexAPI.library.getLibraryDetails(9518);
 
   // Handle the result
   console.log(result);
@@ -365,7 +360,6 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetLibraryDetails } from "@lukehagar/plexjs/funcs/libraryGetLibraryDetails.js";
-import { IncludeDetails } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -374,7 +368,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryGetLibraryDetails(plexAPI, 9518, IncludeDetails.Zero);
+  const res = await libraryGetLibraryDetails(plexAPI, 9518);
 
   if (!res.ok) {
     throw res.error;
@@ -514,12 +508,7 @@ Fetches details from a specific section of the library identified by a section k
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import {
-  GetLibraryItemsQueryParamIncludeMeta,
-  GetLibraryItemsQueryParamType,
-  IncludeGuids,
-  Tag,
-} from "@lukehagar/plexjs/sdk/models/operations";
+import { GetLibraryItemsQueryParamType, Tag } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -528,12 +517,8 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getLibraryItems({
     tag: Tag.Edition,
-    includeGuids: IncludeGuids.Enable,
     type: GetLibraryItemsQueryParamType.TvShow,
     sectionKey: 9518,
-    includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
   });
 
   // Handle the result
@@ -550,12 +535,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetLibraryItems } from "@lukehagar/plexjs/funcs/libraryGetLibraryItems.js";
-import {
-  GetLibraryItemsQueryParamIncludeMeta,
-  GetLibraryItemsQueryParamType,
-  IncludeGuids,
-  Tag,
-} from "@lukehagar/plexjs/sdk/models/operations";
+import { GetLibraryItemsQueryParamType, Tag } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -566,12 +546,8 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await libraryGetLibraryItems(plexAPI, {
     tag: Tag.Edition,
-    includeGuids: IncludeGuids.Enable,
     type: GetLibraryItemsQueryParamType.TvShow,
     sectionKey: 9518,
-    includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
-    xPlexContainerStart: 0,
-    xPlexContainerSize: 50,
   });
 
   if (!res.ok) {
@@ -781,6 +757,156 @@ run();
 | errors.GetSearchLibraryUnauthorized | 401                                 | application/json                    |
 | errors.SDKError                     | 4XX, 5XX                            | \*/\*                               |
 
+## getGenresLibrary
+
+Retrieves a list of all the genres that are found for the media in this library.
+
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getGenresLibrary(9518);
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { libraryGetGenresLibrary } from "@lukehagar/plexjs/funcs/libraryGetGenresLibrary.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetGenresLibrary(plexAPI, 9518);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `sectionKey`                                                                                                                                                                   | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                          | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.GetGenresLibraryResponse](../../sdk/models/operations/getgenreslibraryresponse.md)\>**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| errors.GetGenresLibraryBadRequest   | 400                                 | application/json                    |
+| errors.GetGenresLibraryUnauthorized | 401                                 | application/json                    |
+| errors.SDKError                     | 4XX, 5XX                            | \*/\*                               |
+
+## getCountriesLibrary
+
+Retrieves a list of all the countries that are found for the media in this library.
+
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getCountriesLibrary(9518);
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { libraryGetCountriesLibrary } from "@lukehagar/plexjs/funcs/libraryGetCountriesLibrary.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetCountriesLibrary(plexAPI, 9518);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `sectionKey`                                                                                                                                                                   | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique key of the Plex library. <br/>Note: This is unique in the context of the Plex server.<br/>                                                                          | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.GetCountriesLibraryResponse](../../sdk/models/operations/getcountrieslibraryresponse.md)\>**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| errors.GetCountriesLibraryBadRequest   | 400                                    | application/json                       |
+| errors.GetCountriesLibraryUnauthorized | 401                                    | application/json                       |
+| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+
 ## getSearchAllLibraries
 
 Search the provided query across all library sections, or a single section, and return matches as hubs, split up by type.
@@ -790,7 +916,7 @@ Search the provided query across all library sections, or a single section, and 
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { QueryParamIncludeCollections, QueryParamIncludeExternalMedia, SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -803,8 +929,6 @@ async function run() {
     searchTypes: [
       SearchTypes.People,
     ],
-    includeCollections: QueryParamIncludeCollections.Enable,
-    includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
   });
 
   // Handle the result
@@ -821,7 +945,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetSearchAllLibraries } from "@lukehagar/plexjs/funcs/libraryGetSearchAllLibraries.js";
-import { QueryParamIncludeCollections, QueryParamIncludeExternalMedia, SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -836,8 +960,6 @@ async function run() {
     searchTypes: [
       SearchTypes.People,
     ],
-    includeCollections: QueryParamIncludeCollections.Enable,
-    includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
   });
 
   if (!res.ok) {

@@ -3,12 +3,7 @@
 ## Example Usage
 
 ```typescript
-import {
-  GetSearchAllLibrariesRequest,
-  QueryParamIncludeCollections,
-  QueryParamIncludeExternalMedia,
-  SearchTypes,
-} from "@lukehagar/plexjs/sdk/models/operations";
+import { GetSearchAllLibrariesRequest, SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchAllLibrariesRequest = {
   query: "<value>",
@@ -16,8 +11,6 @@ let value: GetSearchAllLibrariesRequest = {
   searchTypes: [
     SearchTypes.OtherVideos,
   ],
-  includeCollections: QueryParamIncludeCollections.Enable,
-  includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
 };
 ```
 

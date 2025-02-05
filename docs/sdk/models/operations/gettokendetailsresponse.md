@@ -4,21 +4,16 @@
 
 ```typescript
 import {
-  AutoSelectSubtitle,
-  DefaultSubtitleAccessibility,
-  DefaultSubtitleForced,
   GetTokenDetailsAuthenticationResponseStatus,
   GetTokenDetailsAuthenticationStatus,
   GetTokenDetailsResponse,
   GetTokenDetailsStatus,
   MailingListStatus,
-  MediaReviewsVisibility,
-  WatchedIndicator,
 } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTokenDetailsResponse = {
   contentType: "<value>",
-  statusCode: 100,
+  statusCode: 302,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -36,18 +31,12 @@ let value: GetTokenDetailsResponse = {
     homeSize: 1,
     id: 13692262,
     joinedAt: 1556281940,
-    locale: "ko",
+    locale: "hi",
     mailingListStatus: MailingListStatus.Active,
     maxHomeSize: 15,
     profile: {
-      autoSelectAudio: true,
       defaultAudioLanguage: "ja",
       defaultSubtitleLanguage: "en",
-      autoSelectSubtitle: AutoSelectSubtitle.Enable,
-      defaultSubtitleAccessibility: DefaultSubtitleAccessibility.Enable,
-      defaultSubtitleForced: DefaultSubtitleForced.Enable,
-      watchedIndicator: WatchedIndicator.Enable,
-      mediaReviewsVisibility: MediaReviewsVisibility.Enable,
     },
     rememberExpiresAt: 1556281940,
     scrobbleTypes: "<value>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HasThumbnail, Media, OptimizedForStreaming } from "@lukehagar/plexjs/sdk/models/operations";
+import { Media } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Media = {
   id: 119534,
@@ -21,7 +21,6 @@ let value: Media = {
   videoFrameRate: "24p",
   videoProfile: "main 10",
   hasVoiceActivity: false,
-  optimizedForStreaming: OptimizedForStreaming.Enable,
   has64bitOffsets: false,
   part: [
     {
@@ -37,7 +36,6 @@ let value: Media = {
       optimizedForStreaming: false,
       videoProfile: "main 10",
       indexes: "sd",
-      hasThumbnail: HasThumbnail.True,
       stream: [
         {
           id: 272796,

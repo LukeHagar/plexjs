@@ -315,14 +315,13 @@ Get Plex server access tokens and server connections
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await plexAPI.plex.getServerResources("3381b62b-9ab7-4e37-827b-203e9809eb58", IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable);
+  const result = await plexAPI.plex.getServerResources("3381b62b-9ab7-4e37-827b-203e9809eb58");
 
   // Handle the result
   console.log(result);
@@ -338,7 +337,6 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { plexGetServerResources } from "@lukehagar/plexjs/funcs/plexGetServerResources.js";
-import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -347,7 +345,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await plexGetServerResources(plexAPI, "3381b62b-9ab7-4e37-827b-203e9809eb58", IncludeHttps.Enable, IncludeRelay.Enable, IncludeIPv6.Enable);
+  const res = await plexGetServerResources(plexAPI, "3381b62b-9ab7-4e37-827b-203e9809eb58");
 
   if (!res.ok) {
     throw res.error;
@@ -400,7 +398,6 @@ const plexAPI = new PlexAPI();
 
 async function run() {
   const result = await plexAPI.plex.getPin({
-    strong: false,
     clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
     clientName: "Plex for Roku",
     deviceNickname: "Roku 3",
@@ -429,7 +426,6 @@ const plexAPI = new PlexAPICore();
 
 async function run() {
   const res = await plexGetPin(plexAPI, {
-    strong: false,
     clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
     clientName: "Plex for Roku",
     deviceNickname: "Roku 3",

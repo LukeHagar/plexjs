@@ -3,22 +3,12 @@
 ## Example Usage
 
 ```typescript
-import {
-  GetLibraryItemsQueryParamIncludeMeta,
-  GetLibraryItemsQueryParamType,
-  GetLibraryItemsRequest,
-  IncludeGuids,
-  Tag,
-} from "@lukehagar/plexjs/sdk/models/operations";
+import { GetLibraryItemsQueryParamType, GetLibraryItemsRequest, Tag } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsRequest = {
   tag: Tag.Folder,
-  includeGuids: IncludeGuids.Enable,
   type: GetLibraryItemsQueryParamType.TvShow,
   sectionKey: 9518,
-  includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
-  xPlexContainerStart: 0,
-  xPlexContainerSize: 50,
 };
 ```
 

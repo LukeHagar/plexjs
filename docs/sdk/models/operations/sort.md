@@ -3,13 +3,11 @@
 ## Example Usage
 
 ```typescript
-import { ActiveDirection, DefaultDirection, Sort } from "@lukehagar/plexjs/sdk/models/operations";
+import { Sort } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Sort = {
   default: "asc",
   active: false,
-  activeDirection: ActiveDirection.Ascending,
-  defaultDirection: DefaultDirection.Ascending,
   descKey: "titleSort:desc",
   firstCharacterKey: "/library/sections/2/firstCharacter",
   key: "titleSort",
