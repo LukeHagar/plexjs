@@ -1622,6 +1622,38 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/users"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: users
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI();
+
+            async function run() {
+              const result = await plexAPI.users.getUsers({
+                clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
+                clientName: "Plex for Roku",
+                deviceNickname: "Roku 3",
+                deviceName: "Chrome",
+                deviceScreenResolution: "1487x1165,2560x1440",
+                clientVersion: "2.4.1",
+                platform: "Roku",
+                clientFeatures: "external-media,indirect-media,hub-style-list",
+                model: "4200X",
+                xPlexSessionId: "97e136ef-4ddd-4ff3-89a7-a5820c96c2ca",
+                xPlexLanguage: "en",
+                platformVersion: "4.3 build 1057",
+                xPlexToken: "CV5xoxjTpFKUzBTShsaf",
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/users/signin"]["post"]
     update:
       x-codeSamples:

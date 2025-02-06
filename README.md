@@ -243,6 +243,10 @@ run();
 * [checkForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 * [applyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
 
+### [users](docs/sdks/users/README.md)
+
+* [getUsers](docs/sdks/users/README.md#getusers) - Get list of all connected users
+
 ### [video](docs/sdks/video/README.md)
 
 * [getTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
@@ -564,6 +568,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`updaterApplyUpdates`](docs/sdks/updater/README.md#applyupdates) - Apply Updates
 - [`updaterCheckForUpdates`](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
 - [`updaterGetUpdateStatus`](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
+- [`usersGetUsers`](docs/sdks/users/README.md#getusers) - Get list of all connected users
 - [`videoGetTimeline`](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
 - [`videoStartUniversalTranscode`](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
 - [`watchlistGetWatchList`](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist

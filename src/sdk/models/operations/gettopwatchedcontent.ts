@@ -74,7 +74,7 @@ export type GetTopWatchedContentRole = {
   thumb?: string | undefined;
 };
 
-export type User = {
+export type GetTopWatchedContentUser = {
   id?: number | undefined;
 };
 
@@ -110,7 +110,7 @@ export type GetTopWatchedContentMetadata = {
   country?: Array<GetTopWatchedContentCountry> | undefined;
   guids?: Array<GetTopWatchedContentGuids> | undefined;
   role?: Array<GetTopWatchedContentRole> | undefined;
-  user?: Array<User> | undefined;
+  user?: Array<GetTopWatchedContentUser> | undefined;
 };
 
 export type GetTopWatchedContentMediaContainer = {
@@ -475,46 +475,56 @@ export function getTopWatchedContentRoleFromJSON(
 }
 
 /** @internal */
-export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.number().int().optional(),
-  });
+export const GetTopWatchedContentUser$inboundSchema: z.ZodType<
+  GetTopWatchedContentUser,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int().optional(),
+});
 
 /** @internal */
-export type User$Outbound = {
+export type GetTopWatchedContentUser$Outbound = {
   id?: number | undefined;
 };
 
 /** @internal */
-export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> =
-  z.object({
-    id: z.number().int().optional(),
-  });
+export const GetTopWatchedContentUser$outboundSchema: z.ZodType<
+  GetTopWatchedContentUser$Outbound,
+  z.ZodTypeDef,
+  GetTopWatchedContentUser
+> = z.object({
+  id: z.number().int().optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace User$ {
-  /** @deprecated use `User$inboundSchema` instead. */
-  export const inboundSchema = User$inboundSchema;
-  /** @deprecated use `User$outboundSchema` instead. */
-  export const outboundSchema = User$outboundSchema;
-  /** @deprecated use `User$Outbound` instead. */
-  export type Outbound = User$Outbound;
+export namespace GetTopWatchedContentUser$ {
+  /** @deprecated use `GetTopWatchedContentUser$inboundSchema` instead. */
+  export const inboundSchema = GetTopWatchedContentUser$inboundSchema;
+  /** @deprecated use `GetTopWatchedContentUser$outboundSchema` instead. */
+  export const outboundSchema = GetTopWatchedContentUser$outboundSchema;
+  /** @deprecated use `GetTopWatchedContentUser$Outbound` instead. */
+  export type Outbound = GetTopWatchedContentUser$Outbound;
 }
 
-export function userToJSON(user: User): string {
-  return JSON.stringify(User$outboundSchema.parse(user));
+export function getTopWatchedContentUserToJSON(
+  getTopWatchedContentUser: GetTopWatchedContentUser,
+): string {
+  return JSON.stringify(
+    GetTopWatchedContentUser$outboundSchema.parse(getTopWatchedContentUser),
+  );
 }
 
-export function userFromJSON(
+export function getTopWatchedContentUserFromJSON(
   jsonString: string,
-): SafeParseResult<User, SDKValidationError> {
+): SafeParseResult<GetTopWatchedContentUser, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => User$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'User' from JSON`,
+    (x) => GetTopWatchedContentUser$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTopWatchedContentUser' from JSON`,
   );
 }
 
@@ -559,7 +569,8 @@ export const GetTopWatchedContentMetadata$inboundSchema: z.ZodType<
     .optional(),
   Role: z.array(z.lazy(() => GetTopWatchedContentRole$inboundSchema))
     .optional(),
-  User: z.array(z.lazy(() => User$inboundSchema)).optional(),
+  User: z.array(z.lazy(() => GetTopWatchedContentUser$inboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "Genre": "genre",
@@ -603,7 +614,7 @@ export type GetTopWatchedContentMetadata$Outbound = {
   Country?: Array<GetTopWatchedContentCountry$Outbound> | undefined;
   Guid?: Array<GetTopWatchedContentGuids$Outbound> | undefined;
   Role?: Array<GetTopWatchedContentRole$Outbound> | undefined;
-  User?: Array<User$Outbound> | undefined;
+  User?: Array<GetTopWatchedContentUser$Outbound> | undefined;
 };
 
 /** @internal */
@@ -648,7 +659,8 @@ export const GetTopWatchedContentMetadata$outboundSchema: z.ZodType<
     .optional(),
   role: z.array(z.lazy(() => GetTopWatchedContentRole$outboundSchema))
     .optional(),
-  user: z.array(z.lazy(() => User$outboundSchema)).optional(),
+  user: z.array(z.lazy(() => GetTopWatchedContentUser$outboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     genre: "Genre",

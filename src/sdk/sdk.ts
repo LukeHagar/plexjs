@@ -17,6 +17,7 @@ import { Server } from "./server.js";
 import { Sessions } from "./sessions.js";
 import { Statistics } from "./statistics.js";
 import { Updater } from "./updater.js";
+import { Users } from "./users.js";
 import { Video } from "./video.js";
 import { Watchlist } from "./watchlist.js";
 
@@ -99,5 +100,10 @@ export class PlexAPI extends ClientSDK {
   private _updater?: Updater;
   get updater(): Updater {
     return (this._updater ??= new Updater(this._options));
+  }
+
+  private _users?: Users;
+  get users(): Users {
+    return (this._users ??= new Users(this._options));
   }
 }

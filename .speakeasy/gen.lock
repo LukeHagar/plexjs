@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: c43b19369db7bd8d09eade562cd4268f
+  docChecksum: 36c9d80c203ab86cde2de03991949259
   docVersion: 0.0.3
   speakeasyVersion: 1.484.1
   generationVersion: 2.503.2
-  releaseVersion: 0.32.4
-  configChecksum: 6c86c5fcb9c283a387bf93aaf260bee6
+  releaseVersion: 0.32.5
+  configChecksum: df3297b335ae5be90b5d2d5181fc74ed
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -276,6 +276,10 @@ generatedFiles:
   - docs/sdk/models/errors/getuserfriendserrors.md
   - docs/sdk/models/errors/getuserfriendsplexerrors.md
   - docs/sdk/models/errors/getuserfriendsunauthorized.md
+  - docs/sdk/models/errors/getusersbadrequest.md
+  - docs/sdk/models/errors/getuserserrors.md
+  - docs/sdk/models/errors/getusersunauthorized.md
+  - docs/sdk/models/errors/getusersuserserrors.md
   - docs/sdk/models/errors/getwatchlistbadrequest.md
   - docs/sdk/models/errors/getwatchlisterrors.md
   - docs/sdk/models/errors/getwatchlistunauthorized.md
@@ -353,6 +357,12 @@ generatedFiles:
   - docs/sdk/models/operations/addplaylistcontentsrequest.md
   - docs/sdk/models/operations/addplaylistcontentsresponse.md
   - docs/sdk/models/operations/addplaylistcontentsresponsebody.md
+  - docs/sdk/models/operations/alllibraries.md
+  - docs/sdk/models/operations/allowcameraupload.md
+  - docs/sdk/models/operations/allowchannels.md
+  - docs/sdk/models/operations/allowsubtitleadmin.md
+  - docs/sdk/models/operations/allowsync.md
+  - docs/sdk/models/operations/allowtuners.md
   - docs/sdk/models/operations/applyupdatesrequest.md
   - docs/sdk/models/operations/applyupdatesresponse.md
   - docs/sdk/models/operations/autoselectsubtitle.md
@@ -715,6 +725,7 @@ generatedFiles:
   - docs/sdk/models/operations/gettopwatchedcontentresponse.md
   - docs/sdk/models/operations/gettopwatchedcontentresponsebody.md
   - docs/sdk/models/operations/gettopwatchedcontentrole.md
+  - docs/sdk/models/operations/gettopwatchedcontentuser.md
   - docs/sdk/models/operations/gettranscodesessionsmediacontainer.md
   - docs/sdk/models/operations/gettranscodesessionsresponse.md
   - docs/sdk/models/operations/gettranscodesessionsresponsebody.md
@@ -725,11 +736,17 @@ generatedFiles:
   - docs/sdk/models/operations/getupdatestatusresponse.md
   - docs/sdk/models/operations/getupdatestatusresponsebody.md
   - docs/sdk/models/operations/getuserfriendsresponse.md
+  - docs/sdk/models/operations/getusersmediacontainer.md
+  - docs/sdk/models/operations/getusersrequest.md
+  - docs/sdk/models/operations/getusersresponse.md
+  - docs/sdk/models/operations/getusersresponsebody.md
+  - docs/sdk/models/operations/getusersserver.md
   - docs/sdk/models/operations/getwatchlistrequest.md
   - docs/sdk/models/operations/getwatchlistresponse.md
   - docs/sdk/models/operations/getwatchlistresponsebody.md
   - docs/sdk/models/operations/guids.md
   - docs/sdk/models/operations/hasthumbnail.md
+  - docs/sdk/models/operations/home.md
   - docs/sdk/models/operations/hub.md
   - docs/sdk/models/operations/image.md
   - docs/sdk/models/operations/includecollections.md
@@ -765,9 +782,11 @@ generatedFiles:
   - docs/sdk/models/operations/onlytransient.md
   - docs/sdk/models/operations/operator.md
   - docs/sdk/models/operations/optimizedforstreaming.md
+  - docs/sdk/models/operations/owned.md
   - docs/sdk/models/operations/part.md
   - docs/sdk/models/operations/pastsubscription.md
   - docs/sdk/models/operations/pathparamtaskname.md
+  - docs/sdk/models/operations/pending.md
   - docs/sdk/models/operations/performsearchrequest.md
   - docs/sdk/models/operations/performsearchresponse.md
   - docs/sdk/models/operations/performvoicesearchrequest.md
@@ -795,6 +814,7 @@ generatedFiles:
   - docs/sdk/models/operations/postuserssignindatauserprofile.md
   - docs/sdk/models/operations/postuserssignindatawatchedindicator.md
   - docs/sdk/models/operations/producer.md
+  - docs/sdk/models/operations/protected.md
   - docs/sdk/models/operations/protocol.md
   - docs/sdk/models/operations/provider.md
   - docs/sdk/models/operations/queryparamfilter.md
@@ -808,6 +828,7 @@ generatedFiles:
   - docs/sdk/models/operations/ratings.md
   - docs/sdk/models/operations/release.md
   - docs/sdk/models/operations/responsebody.md
+  - docs/sdk/models/operations/restricted.md
   - docs/sdk/models/operations/role.md
   - docs/sdk/models/operations/scope.md
   - docs/sdk/models/operations/searchresult.md
@@ -873,6 +894,7 @@ generatedFiles:
   - docs/sdks/sessions/README.md
   - docs/sdks/statistics/README.md
   - docs/sdks/updater/README.md
+  - docs/sdks/users/README.md
   - docs/sdks/video/README.md
   - docs/sdks/watchlist/README.md
   - docs/types/rfcdate.md
@@ -955,6 +977,7 @@ generatedFiles:
   - src/funcs/updaterApplyUpdates.ts
   - src/funcs/updaterCheckForUpdates.ts
   - src/funcs/updaterGetUpdateStatus.ts
+  - src/funcs/usersGetUsers.ts
   - src/funcs/videoGetTimeline.ts
   - src/funcs/videoStartUniversalTranscode.ts
   - src/funcs/watchlistGetWatchList.ts
@@ -1045,6 +1068,7 @@ generatedFiles:
   - src/sdk/models/errors/gettransienttoken.ts
   - src/sdk/models/errors/getupdatestatus.ts
   - src/sdk/models/errors/getuserfriends.ts
+  - src/sdk/models/errors/getusers.ts
   - src/sdk/models/errors/getwatchlist.ts
   - src/sdk/models/errors/httpclienterrors.ts
   - src/sdk/models/errors/index.ts
@@ -1127,6 +1151,7 @@ generatedFiles:
   - src/sdk/models/operations/gettransienttoken.ts
   - src/sdk/models/operations/getupdatestatus.ts
   - src/sdk/models/operations/getuserfriends.ts
+  - src/sdk/models/operations/getusers.ts
   - src/sdk/models/operations/getwatchlist.ts
   - src/sdk/models/operations/index.ts
   - src/sdk/models/operations/logline.ts
@@ -1163,6 +1188,7 @@ generatedFiles:
   - src/sdk/types/rfcdate.ts
   - src/sdk/types/streams.ts
   - src/sdk/updater.ts
+  - src/sdk/users.ts
   - src/sdk/video.ts
   - src/sdk/watchlist.ts
   - tsconfig.json
@@ -2176,5 +2202,29 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+  get-users:
+    "":
+      parameters:
+        header:
+          X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"
+          X-Plex-Product: "Plex for Roku"
+          X-Plex-Device: "Roku 3"
+          X-Plex-Device-Name: "Chrome"
+          X-Plex-Device-Screen-Resolution: "1487x1165,2560x1440"
+          X-Plex-Version: "2.4.1"
+          X-Plex-Platform: "Roku"
+          X-Plex-Features: "external-media,indirect-media,hub-style-list"
+          X-Plex-Model: "4200X"
+          X-Plex-Session-Id: "97e136ef-4ddd-4ff3-89a7-a5820c96c2ca"
+          X-Plex-Language: "en"
+          X-Plex-Platform-Version: "4.3 build 1057"
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+      responses:
+        "200":
+          application/xml: "0xa9CdebeF9E"
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
 examplesVersion: 1.0.0
 generatedTests: {}

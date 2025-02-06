@@ -62,6 +62,7 @@ export * from "./gettranscodesessions.js";
 export * from "./gettransienttoken.js";
 export * from "./getupdatestatus.js";
 export * from "./getuserfriends.js";
+export * from "./getusers.js";
 export * from "./getwatchlist.js";
 export * from "./httpclienterrors.js";
 export * from "./logline.js";
