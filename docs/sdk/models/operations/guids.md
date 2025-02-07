@@ -6,7 +6,7 @@
 import { Guids } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Guids = {
-  id: "tvdb://2337",
+  id: "imdb://tt3032476",
 };
 ```
 
@@ -14,4 +14,4 @@ let value: Guids = {
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *string*           | :heavy_minus_sign: | N/A                | tvdb://2337        |
+| `id`               | *string*           | :heavy_check_mark: | The GUID value.    | imdb://tt3032476   |

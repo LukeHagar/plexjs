@@ -3,13 +3,14 @@
  */
 
 import { libraryDeleteLibrary } from "../funcs/libraryDeleteLibrary.js";
+import { libraryGetActorsLibrary } from "../funcs/libraryGetActorsLibrary.js";
 import { libraryGetAllLibraries } from "../funcs/libraryGetAllLibraries.js";
 import { libraryGetCountriesLibrary } from "../funcs/libraryGetCountriesLibrary.js";
 import { libraryGetFileHash } from "../funcs/libraryGetFileHash.js";
 import { libraryGetGenresLibrary } from "../funcs/libraryGetGenresLibrary.js";
 import { libraryGetLibraryDetails } from "../funcs/libraryGetLibraryDetails.js";
 import { libraryGetLibraryItems } from "../funcs/libraryGetLibraryItems.js";
-import { libraryGetMetaDataByRatingKey } from "../funcs/libraryGetMetaDataByRatingKey.js";
+import { libraryGetMediaMetaData } from "../funcs/libraryGetMediaMetaData.js";
 import { libraryGetMetadataChildren } from "../funcs/libraryGetMetadataChildren.js";
 import { libraryGetOnDeck } from "../funcs/libraryGetOnDeck.js";
 import { libraryGetRecentlyAddedLibrary } from "../funcs/libraryGetRecentlyAddedLibrary.js";
@@ -252,11 +253,13 @@ export class Library extends ClientSDK {
    */
   async getGenresLibrary(
     sectionKey: number,
+    type: operations.GetGenresLibraryQueryParamType,
     options?: RequestOptions,
   ): Promise<operations.GetGenresLibraryResponse> {
     return unwrapAsync(libraryGetGenresLibrary(
       this,
       sectionKey,
+      type,
       options,
     ));
   }
@@ -269,11 +272,32 @@ export class Library extends ClientSDK {
    */
   async getCountriesLibrary(
     sectionKey: number,
+    type: operations.GetCountriesLibraryQueryParamType,
     options?: RequestOptions,
   ): Promise<operations.GetCountriesLibraryResponse> {
     return unwrapAsync(libraryGetCountriesLibrary(
       this,
       sectionKey,
+      type,
+      options,
+    ));
+  }
+
+  /**
+   * Get Actors of library media
+   *
+   * @remarks
+   * Retrieves a list of all the actors that are found for the media in this library.
+   */
+  async getActorsLibrary(
+    sectionKey: number,
+    type: operations.GetActorsLibraryQueryParamType,
+    options?: RequestOptions,
+  ): Promise<operations.GetActorsLibraryResponse> {
+    return unwrapAsync(libraryGetActorsLibrary(
+      this,
+      sectionKey,
+      type,
       options,
     ));
   }
@@ -296,18 +320,18 @@ export class Library extends ClientSDK {
   }
 
   /**
-   * Get Metadata by RatingKey
+   * Get Media Metadata
    *
    * @remarks
-   * This endpoint will return the metadata of a library item specified with the ratingKey.
+   * This endpoint will return all the (meta)data of a library item specified with by the ratingKey.
    */
-  async getMetaDataByRatingKey(
-    ratingKey: number,
+  async getMediaMetaData(
+    request: operations.GetMediaMetaDataRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetMetaDataByRatingKeyResponse> {
-    return unwrapAsync(libraryGetMetaDataByRatingKey(
+  ): Promise<operations.GetMediaMetaDataResponse> {
+    return unwrapAsync(libraryGetMediaMetaData(
       this,
-      ratingKey,
+      request,
       options,
     ));
   }

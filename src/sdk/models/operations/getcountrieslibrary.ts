@@ -8,6 +8,26 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export enum GetCountriesLibraryQueryParamType {
+  Movie = 1,
+  TvShow = 2,
+  Season = 3,
+  Episode = 4,
+  Audio = 8,
+  Album = 9,
+  Track = 10,
+}
+
 export type GetCountriesLibraryRequest = {
   /**
    * The unique key of the Plex library.
@@ -16,6 +36,17 @@ export type GetCountriesLibraryRequest = {
    * Note: This is unique in the context of the Plex server.
    */
   sectionKey: number;
+  /**
+   * The type of media to retrieve or filter by.
+   *
+   * @remarks
+   * 1 = movie
+   * 2 = show
+   * 3 = season
+   * 4 = episode
+   * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+   */
+  type: GetCountriesLibraryQueryParamType;
 };
 
 export type GetCountriesLibraryDirectory = {
@@ -69,17 +100,41 @@ export type GetCountriesLibraryResponse = {
 };
 
 /** @internal */
+export const GetCountriesLibraryQueryParamType$inboundSchema: z.ZodNativeEnum<
+  typeof GetCountriesLibraryQueryParamType
+> = z.nativeEnum(GetCountriesLibraryQueryParamType);
+
+/** @internal */
+export const GetCountriesLibraryQueryParamType$outboundSchema: z.ZodNativeEnum<
+  typeof GetCountriesLibraryQueryParamType
+> = GetCountriesLibraryQueryParamType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetCountriesLibraryQueryParamType$ {
+  /** @deprecated use `GetCountriesLibraryQueryParamType$inboundSchema` instead. */
+  export const inboundSchema = GetCountriesLibraryQueryParamType$inboundSchema;
+  /** @deprecated use `GetCountriesLibraryQueryParamType$outboundSchema` instead. */
+  export const outboundSchema =
+    GetCountriesLibraryQueryParamType$outboundSchema;
+}
+
+/** @internal */
 export const GetCountriesLibraryRequest$inboundSchema: z.ZodType<
   GetCountriesLibraryRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
   sectionKey: z.number().int(),
+  type: GetCountriesLibraryQueryParamType$inboundSchema,
 });
 
 /** @internal */
 export type GetCountriesLibraryRequest$Outbound = {
   sectionKey: number;
+  type: number;
 };
 
 /** @internal */
@@ -89,6 +144,7 @@ export const GetCountriesLibraryRequest$outboundSchema: z.ZodType<
   GetCountriesLibraryRequest
 > = z.object({
   sectionKey: z.number().int(),
+  type: GetCountriesLibraryQueryParamType$outboundSchema,
 });
 
 /**

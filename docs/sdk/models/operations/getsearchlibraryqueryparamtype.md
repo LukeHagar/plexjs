@@ -1,6 +1,6 @@
 # GetSearchLibraryQueryParamType
 
-The type of media to retrieve.
+The type of media to retrieve or filter by.
 1 = movie
 2 = show
 3 = season

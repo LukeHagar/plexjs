@@ -7,7 +7,7 @@ import { Billing } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Billing = {
   internalPaymentMethod: {},
-  paymentMethodId: 863856,
+  paymentMethodId: 517379,
 };
 ```
 

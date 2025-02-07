@@ -7,7 +7,7 @@ import { ClearPlaylistContentsResponse } from "@lukehagar/plexjs/sdk/models/oper
 
 let value: ClearPlaylistContentsResponse = {
   contentType: "<value>",
-  statusCode: 207,
+  statusCode: 103,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

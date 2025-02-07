@@ -1,11 +1,11 @@
-# GetMetaDataByRatingKeyErrors
+# GetActorsLibraryErrors
 
 ## Example Usage
 
 ```typescript
-import { GetMetaDataByRatingKeyErrors } from "@lukehagar/plexjs/sdk/models/errors";
+import { GetActorsLibraryErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
-let value: GetMetaDataByRatingKeyErrors = {
+let value: GetActorsLibraryErrors = {
   code: 1000,
   message: "X-Plex-Client-Identifier is missing",
   status: 400,

@@ -13,7 +13,7 @@ import {
 
 let value: GetTokenDetailsResponse = {
   contentType: "<value>",
-  statusCode: 302,
+  statusCode: 307,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -31,7 +31,7 @@ let value: GetTokenDetailsResponse = {
     homeSize: 1,
     id: 13692262,
     joinedAt: 1556281940,
-    locale: "hi",
+    locale: "fr",
     mailingListStatus: MailingListStatus.Active,
     maxHomeSize: 15,
     profile: {

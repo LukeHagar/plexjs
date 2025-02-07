@@ -3,7 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -32,6 +32,7 @@ import { Result } from "../sdk/types/fp.js";
 export async function libraryGetCountriesLibrary(
   client: PlexAPICore,
   sectionKey: number,
+  type: operations.GetCountriesLibraryQueryParamType,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -49,6 +50,7 @@ export async function libraryGetCountriesLibrary(
 > {
   const input: operations.GetCountriesLibraryRequest = {
     sectionKey: sectionKey,
+    type: type,
   };
 
   const parsed = safeParse(
@@ -71,6 +73,10 @@ export async function libraryGetCountriesLibrary(
   };
 
   const path = pathToFunc("/library/sections/{sectionKey}/country")(pathParams);
+
+  const query = encodeFormQuery({
+    "type": payload.type,
+  });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -99,6 +105,7 @@ export async function libraryGetCountriesLibrary(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

@@ -8,6 +8,26 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export enum GetGenresLibraryQueryParamType {
+  Movie = 1,
+  TvShow = 2,
+  Season = 3,
+  Episode = 4,
+  Audio = 8,
+  Album = 9,
+  Track = 10,
+}
+
 export type GetGenresLibraryRequest = {
   /**
    * The unique key of the Plex library.
@@ -16,6 +36,17 @@ export type GetGenresLibraryRequest = {
    * Note: This is unique in the context of the Plex server.
    */
   sectionKey: number;
+  /**
+   * The type of media to retrieve or filter by.
+   *
+   * @remarks
+   * 1 = movie
+   * 2 = show
+   * 3 = season
+   * 4 = episode
+   * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+   */
+  type: GetGenresLibraryQueryParamType;
 };
 
 export type GetGenresLibraryDirectory = {
@@ -70,17 +101,40 @@ export type GetGenresLibraryResponse = {
 };
 
 /** @internal */
+export const GetGenresLibraryQueryParamType$inboundSchema: z.ZodNativeEnum<
+  typeof GetGenresLibraryQueryParamType
+> = z.nativeEnum(GetGenresLibraryQueryParamType);
+
+/** @internal */
+export const GetGenresLibraryQueryParamType$outboundSchema: z.ZodNativeEnum<
+  typeof GetGenresLibraryQueryParamType
+> = GetGenresLibraryQueryParamType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGenresLibraryQueryParamType$ {
+  /** @deprecated use `GetGenresLibraryQueryParamType$inboundSchema` instead. */
+  export const inboundSchema = GetGenresLibraryQueryParamType$inboundSchema;
+  /** @deprecated use `GetGenresLibraryQueryParamType$outboundSchema` instead. */
+  export const outboundSchema = GetGenresLibraryQueryParamType$outboundSchema;
+}
+
+/** @internal */
 export const GetGenresLibraryRequest$inboundSchema: z.ZodType<
   GetGenresLibraryRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
   sectionKey: z.number().int(),
+  type: GetGenresLibraryQueryParamType$inboundSchema,
 });
 
 /** @internal */
 export type GetGenresLibraryRequest$Outbound = {
   sectionKey: number;
+  type: number;
 };
 
 /** @internal */
@@ -90,6 +144,7 @@ export const GetGenresLibraryRequest$outboundSchema: z.ZodType<
   GetGenresLibraryRequest
 > = z.object({
   sectionKey: z.number().int(),
+  type: GetGenresLibraryQueryParamType$outboundSchema,
 });
 
 /**

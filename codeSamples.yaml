@@ -563,7 +563,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: key
+          label: data
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -572,7 +572,22 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getMetaDataByRatingKey(9518);
+              const result = await plexAPI.library.getMediaMetaData({
+                ratingKey: 9518,
+                includeConcerts: true,
+                includeExtras: true,
+                includeOnDeck: true,
+                includePopularLeaves: true,
+                includePreferences: true,
+                includeReviews: true,
+                includeChapters: true,
+                includeStations: true,
+                includeExternalMedia: true,
+                asyncAugmentMetadata: true,
+                asyncCheckFiles: true,
+                asyncRefreshAnalysis: true,
+                asyncRefreshLocalMediaAgent: true,
+              });
 
               // Handle the result
               console.log(result);
@@ -823,6 +838,27 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionKey}/actor"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: library
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+            import { GetActorsLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getActorsLibrary(9518, GetActorsLibraryQueryParamType.TvShow);
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionKey}/country"]["get"]
     update:
       x-codeSamples:
@@ -830,13 +866,14 @@ actions:
           label: library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
+            import { GetCountriesLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.library.getCountriesLibrary(9518);
+              const result = await plexAPI.library.getCountriesLibrary(9518, GetCountriesLibraryQueryParamType.TvShow);
 
               // Handle the result
               console.log(result);
@@ -850,13 +887,14 @@ actions:
           label: library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
+            import { GetGenresLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.library.getGenresLibrary(9518);
+              const result = await plexAPI.library.getGenresLibrary(9518, GetGenresLibraryQueryParamType.TvShow);
 
               // Handle the result
               console.log(result);

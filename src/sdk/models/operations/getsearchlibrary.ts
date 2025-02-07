@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * The type of media to retrieve.
+ * The type of media to retrieve or filter by.
  *
  * @remarks
  * 1 = movie
@@ -37,7 +37,7 @@ export type GetSearchLibraryRequest = {
    */
   sectionKey: number;
   /**
-   * The type of media to retrieve.
+   * The type of media to retrieve or filter by.
    *
    * @remarks
    * 1 = movie

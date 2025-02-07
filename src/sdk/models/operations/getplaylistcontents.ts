@@ -10,7 +10,7 @@ import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * The type of media to retrieve.
+ * The type of media to retrieve or filter by.
  *
  * @remarks
  * 1 = movie
@@ -35,7 +35,7 @@ export type GetPlaylistContentsRequest = {
    */
   playlistID: number;
   /**
-   * The type of media to retrieve.
+   * The type of media to retrieve or filter by.
    *
    * @remarks
    * 1 = movie

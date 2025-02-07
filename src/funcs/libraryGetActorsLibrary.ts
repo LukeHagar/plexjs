@@ -3,7 +3,7 @@
  */
 
 import { PlexAPICore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -24,20 +24,21 @@ import * as operations from "../sdk/models/operations/index.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
- * Get Metadata by RatingKey
+ * Get Actors of library media
  *
  * @remarks
- * This endpoint will return the metadata of a library item specified with the ratingKey.
+ * Retrieves a list of all the actors that are found for the media in this library.
  */
-export async function libraryGetMetaDataByRatingKey(
+export async function libraryGetActorsLibrary(
   client: PlexAPICore,
-  ratingKey: number,
+  sectionKey: number,
+  type: operations.GetActorsLibraryQueryParamType,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.GetMetaDataByRatingKeyResponse,
-    | errors.GetMetaDataByRatingKeyBadRequest
-    | errors.GetMetaDataByRatingKeyUnauthorized
+    operations.GetActorsLibraryResponse,
+    | errors.GetActorsLibraryBadRequest
+    | errors.GetActorsLibraryUnauthorized
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -47,14 +48,14 @@ export async function libraryGetMetaDataByRatingKey(
     | ConnectionError
   >
 > {
-  const input: operations.GetMetaDataByRatingKeyRequest = {
-    ratingKey: ratingKey,
+  const input: operations.GetActorsLibraryRequest = {
+    sectionKey: sectionKey,
+    type: type,
   };
 
   const parsed = safeParse(
     input,
-    (value) =>
-      operations.GetMetaDataByRatingKeyRequest$outboundSchema.parse(value),
+    (value) => operations.GetActorsLibraryRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -64,13 +65,17 @@ export async function libraryGetMetaDataByRatingKey(
   const body = null;
 
   const pathParams = {
-    ratingKey: encodeSimple("ratingKey", payload.ratingKey, {
+    sectionKey: encodeSimple("sectionKey", payload.sectionKey, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc("/library/metadata/{ratingKey}")(pathParams);
+  const path = pathToFunc("/library/sections/{sectionKey}/actor")(pathParams);
+
+  const query = encodeFormQuery({
+    "type": payload.type,
+  });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -81,7 +86,7 @@ export async function libraryGetMetaDataByRatingKey(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "get-meta-data-by-rating-key",
+    operationID: "get-actors-library",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -99,6 +104,7 @@ export async function libraryGetMetaDataByRatingKey(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -109,7 +115,7 @@ export async function libraryGetMetaDataByRatingKey(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "4XX", "5XX"],
+    errorCodes: ["400", "401", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -127,9 +133,9 @@ export async function libraryGetMetaDataByRatingKey(
   };
 
   const [result] = await M.match<
-    operations.GetMetaDataByRatingKeyResponse,
-    | errors.GetMetaDataByRatingKeyBadRequest
-    | errors.GetMetaDataByRatingKeyUnauthorized
+    operations.GetActorsLibraryResponse,
+    | errors.GetActorsLibraryBadRequest
+    | errors.GetActorsLibraryUnauthorized
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -138,12 +144,12 @@ export async function libraryGetMetaDataByRatingKey(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.GetMetaDataByRatingKeyResponse$inboundSchema, {
+    M.json(200, operations.GetActorsLibraryResponse$inboundSchema, {
       key: "object",
     }),
-    M.jsonErr(400, errors.GetMetaDataByRatingKeyBadRequest$inboundSchema),
-    M.jsonErr(401, errors.GetMetaDataByRatingKeyUnauthorized$inboundSchema),
-    M.fail("4XX"),
+    M.jsonErr(400, errors.GetActorsLibraryBadRequest$inboundSchema),
+    M.jsonErr(401, errors.GetActorsLibraryUnauthorized$inboundSchema),
+    M.fail([404, "4XX"]),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {

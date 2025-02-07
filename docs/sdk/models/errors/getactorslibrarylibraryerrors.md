@@ -1,11 +1,11 @@
-# GetMetaDataByRatingKeyLibraryErrors
+# GetActorsLibraryLibraryErrors
 
 ## Example Usage
 
 ```typescript
-import { GetMetaDataByRatingKeyLibraryErrors } from "@lukehagar/plexjs/sdk/models/errors";
+import { GetActorsLibraryLibraryErrors } from "@lukehagar/plexjs/sdk/models/errors";
 
-let value: GetMetaDataByRatingKeyLibraryErrors = {
+let value: GetActorsLibraryLibraryErrors = {
   code: 1001,
   message: "User could not be authenticated",
   status: 401,

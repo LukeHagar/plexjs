@@ -46,7 +46,7 @@ export enum IncludeGuids {
 }
 
 /**
- * The type of media to retrieve.
+ * The type of media to retrieve or filter by.
  *
  * @remarks
  * 1 = movie
@@ -87,7 +87,7 @@ export type GetLibraryItemsRequest = {
    */
   includeGuids?: IncludeGuids | undefined;
   /**
-   * The type of media to retrieve.
+   * The type of media to retrieve or filter by.
    *
    * @remarks
    * 1 = movie
@@ -96,7 +96,7 @@ export type GetLibraryItemsRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type?: GetLibraryItemsQueryParamType | undefined;
+  type: GetLibraryItemsQueryParamType;
   /**
    * The unique key of the Plex library.
    *
@@ -921,7 +921,7 @@ export const GetLibraryItemsRequest$inboundSchema: z.ZodType<
 > = z.object({
   tag: Tag$inboundSchema,
   includeGuids: IncludeGuids$inboundSchema,
-  type: GetLibraryItemsQueryParamType$inboundSchema.optional(),
+  type: GetLibraryItemsQueryParamType$inboundSchema,
   sectionKey: z.number().int(),
   includeMeta: GetLibraryItemsQueryParamIncludeMeta$inboundSchema,
   "X-Plex-Container-Start": z.number().int().default(0),
@@ -937,7 +937,7 @@ export const GetLibraryItemsRequest$inboundSchema: z.ZodType<
 export type GetLibraryItemsRequest$Outbound = {
   tag: string;
   includeGuids: number;
-  type?: number | undefined;
+  type: number;
   sectionKey: number;
   includeMeta: number;
   "X-Plex-Container-Start": number;
@@ -952,7 +952,7 @@ export const GetLibraryItemsRequest$outboundSchema: z.ZodType<
 > = z.object({
   tag: Tag$outboundSchema,
   includeGuids: IncludeGuids$outboundSchema.default(IncludeGuids.Disable),
-  type: GetLibraryItemsQueryParamType$outboundSchema.optional(),
+  type: GetLibraryItemsQueryParamType$outboundSchema,
   sectionKey: z.number().int(),
   includeMeta: GetLibraryItemsQueryParamIncludeMeta$outboundSchema.default(
     GetLibraryItemsQueryParamIncludeMeta.Disable,

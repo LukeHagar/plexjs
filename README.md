@@ -163,8 +163,9 @@ run();
 * [getSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
 * [getGenresLibrary](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
 * [getCountriesLibrary](docs/sdks/library/README.md#getcountrieslibrary) - Get Countries of library media
+* [getActorsLibrary](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
 * [getSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
-* [getMetaDataByRatingKey](docs/sdks/library/README.md#getmetadatabyratingkey) - Get Metadata by RatingKey
+* [getMediaMetaData](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
 * [getMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [getTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
 * [getOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
@@ -508,13 +509,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`hubsGetLibraryHubs`](docs/sdks/hubs/README.md#getlibraryhubs) - Get library specific hubs
 - [`hubsGetRecentlyAdded`](docs/sdks/hubs/README.md#getrecentlyadded) - Get Recently Added
 - [`libraryDeleteLibrary`](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
+- [`libraryGetActorsLibrary`](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
 - [`libraryGetAllLibraries`](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
 - [`libraryGetCountriesLibrary`](docs/sdks/library/README.md#getcountrieslibrary) - Get Countries of library media
 - [`libraryGetFileHash`](docs/sdks/library/README.md#getfilehash) - Get Hash Value
 - [`libraryGetGenresLibrary`](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
 - [`libraryGetLibraryDetails`](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 - [`libraryGetLibraryItems`](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
-- [`libraryGetMetaDataByRatingKey`](docs/sdks/library/README.md#getmetadatabyratingkey) - Get Metadata by RatingKey
+- [`libraryGetMediaMetaData`](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
 - [`libraryGetMetadataChildren`](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 - [`libraryGetOnDeck`](docs/sdks/library/README.md#getondeck) - Get On Deck
 - [`libraryGetRecentlyAddedLibrary`](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added

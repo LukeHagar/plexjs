@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 36c9d80c203ab86cde2de03991949259
+  docChecksum: 406db0d2227dc88ed9d449bb30b37091
   docVersion: 0.0.3
-  speakeasyVersion: 1.484.1
-  generationVersion: 2.503.2
-  releaseVersion: 0.32.5
-  configChecksum: df3297b335ae5be90b5d2d5181fc74ed
+  speakeasyVersion: 1.487.0
+  generationVersion: 2.506.0
+  releaseVersion: 0.33.0
+  configChecksum: b426017b55ad6e8489789b24a9365a67
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.22
+    core: 3.19.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
@@ -78,6 +78,10 @@ generatedFiles:
   - docs/sdk/models/errors/enablepapertraillogerrors.md
   - docs/sdk/models/errors/enablepapertrailunauthorized.md
   - docs/sdk/models/errors/errors.md
+  - docs/sdk/models/errors/getactorslibrarybadrequest.md
+  - docs/sdk/models/errors/getactorslibraryerrors.md
+  - docs/sdk/models/errors/getactorslibrarylibraryerrors.md
+  - docs/sdk/models/errors/getactorslibraryunauthorized.md
   - docs/sdk/models/errors/getalllibrariesbadrequest.md
   - docs/sdk/models/errors/getalllibrarieserrors.md
   - docs/sdk/models/errors/getalllibrarieslibraryerrors.md
@@ -142,14 +146,14 @@ generatedFiles:
   - docs/sdk/models/errors/getlibraryitemserrors.md
   - docs/sdk/models/errors/getlibraryitemslibraryerrors.md
   - docs/sdk/models/errors/getlibraryitemsunauthorized.md
+  - docs/sdk/models/errors/getmediametadatabadrequest.md
+  - docs/sdk/models/errors/getmediametadataerrors.md
+  - docs/sdk/models/errors/getmediametadatalibraryerrors.md
+  - docs/sdk/models/errors/getmediametadataunauthorized.md
   - docs/sdk/models/errors/getmediaprovidersbadrequest.md
   - docs/sdk/models/errors/getmediaproviderserrors.md
   - docs/sdk/models/errors/getmediaprovidersservererrors.md
   - docs/sdk/models/errors/getmediaprovidersunauthorized.md
-  - docs/sdk/models/errors/getmetadatabyratingkeybadrequest.md
-  - docs/sdk/models/errors/getmetadatabyratingkeyerrors.md
-  - docs/sdk/models/errors/getmetadatabyratingkeylibraryerrors.md
-  - docs/sdk/models/errors/getmetadatabyratingkeyunauthorized.md
   - docs/sdk/models/errors/getmetadatachildrenbadrequest.md
   - docs/sdk/models/errors/getmetadatachildrenerrors.md
   - docs/sdk/models/errors/getmetadatachildrenlibraryerrors.md
@@ -408,6 +412,12 @@ generatedFiles:
   - docs/sdk/models/operations/friend.md
   - docs/sdk/models/operations/genre.md
   - docs/sdk/models/operations/geodata.md
+  - docs/sdk/models/operations/getactorslibrarydirectory.md
+  - docs/sdk/models/operations/getactorslibrarymediacontainer.md
+  - docs/sdk/models/operations/getactorslibraryqueryparamtype.md
+  - docs/sdk/models/operations/getactorslibraryrequest.md
+  - docs/sdk/models/operations/getactorslibraryresponse.md
+  - docs/sdk/models/operations/getactorslibraryresponsebody.md
   - docs/sdk/models/operations/getalllibrariesdirectory.md
   - docs/sdk/models/operations/getalllibrarieslocation.md
   - docs/sdk/models/operations/getalllibrariesmediacontainer.md
@@ -429,6 +439,7 @@ generatedFiles:
   - docs/sdk/models/operations/getcompanionsdataresponse.md
   - docs/sdk/models/operations/getcountrieslibrarydirectory.md
   - docs/sdk/models/operations/getcountrieslibrarymediacontainer.md
+  - docs/sdk/models/operations/getcountrieslibraryqueryparamtype.md
   - docs/sdk/models/operations/getcountrieslibraryrequest.md
   - docs/sdk/models/operations/getcountrieslibraryresponse.md
   - docs/sdk/models/operations/getcountrieslibraryresponsebody.md
@@ -439,6 +450,7 @@ generatedFiles:
   - docs/sdk/models/operations/getfilehashresponse.md
   - docs/sdk/models/operations/getgenreslibrarydirectory.md
   - docs/sdk/models/operations/getgenreslibrarymediacontainer.md
+  - docs/sdk/models/operations/getgenreslibraryqueryparamtype.md
   - docs/sdk/models/operations/getgenreslibraryrequest.md
   - docs/sdk/models/operations/getgenreslibraryresponse.md
   - docs/sdk/models/operations/getgenreslibraryresponsebody.md
@@ -521,24 +533,27 @@ generatedFiles:
   - docs/sdk/models/operations/getlibraryitemstype.md
   - docs/sdk/models/operations/getlibraryitemsultrablurcolors.md
   - docs/sdk/models/operations/getlibraryitemswriter.md
+  - docs/sdk/models/operations/getmediametadatacountry.md
+  - docs/sdk/models/operations/getmediametadatadirector.md
+  - docs/sdk/models/operations/getmediametadatagenre.md
+  - docs/sdk/models/operations/getmediametadataimage.md
+  - docs/sdk/models/operations/getmediametadatalocation.md
+  - docs/sdk/models/operations/getmediametadatamedia.md
+  - docs/sdk/models/operations/getmediametadatamediacontainer.md
+  - docs/sdk/models/operations/getmediametadatametadata.md
+  - docs/sdk/models/operations/getmediametadatapart.md
+  - docs/sdk/models/operations/getmediametadatarequest.md
+  - docs/sdk/models/operations/getmediametadataresponse.md
+  - docs/sdk/models/operations/getmediametadataresponsebody.md
+  - docs/sdk/models/operations/getmediametadatarole.md
+  - docs/sdk/models/operations/getmediametadatastream.md
+  - docs/sdk/models/operations/getmediametadataultrablurcolors.md
+  - docs/sdk/models/operations/getmediametadatawriter.md
   - docs/sdk/models/operations/getmediaprovidersdirectory.md
   - docs/sdk/models/operations/getmediaprovidersmediacontainer.md
   - docs/sdk/models/operations/getmediaprovidersrequest.md
   - docs/sdk/models/operations/getmediaprovidersresponse.md
   - docs/sdk/models/operations/getmediaprovidersresponsebody.md
-  - docs/sdk/models/operations/getmetadatabyratingkeycountry.md
-  - docs/sdk/models/operations/getmetadatabyratingkeydirector.md
-  - docs/sdk/models/operations/getmetadatabyratingkeygenre.md
-  - docs/sdk/models/operations/getmetadatabyratingkeymedia.md
-  - docs/sdk/models/operations/getmetadatabyratingkeymediacontainer.md
-  - docs/sdk/models/operations/getmetadatabyratingkeymetadata.md
-  - docs/sdk/models/operations/getmetadatabyratingkeypart.md
-  - docs/sdk/models/operations/getmetadatabyratingkeyrequest.md
-  - docs/sdk/models/operations/getmetadatabyratingkeyresponse.md
-  - docs/sdk/models/operations/getmetadatabyratingkeyresponsebody.md
-  - docs/sdk/models/operations/getmetadatabyratingkeyrole.md
-  - docs/sdk/models/operations/getmetadatabyratingkeystream.md
-  - docs/sdk/models/operations/getmetadatabyratingkeywriter.md
   - docs/sdk/models/operations/getmetadatachildrendirectory.md
   - docs/sdk/models/operations/getmetadatachildrenmediacontainer.md
   - docs/sdk/models/operations/getmetadatachildrenmetadata.md
@@ -825,7 +840,7 @@ generatedFiles:
   - docs/sdk/models/operations/queryparamonlytransient.md
   - docs/sdk/models/operations/queryparamsmart.md
   - docs/sdk/models/operations/queryparamtype.md
-  - docs/sdk/models/operations/ratings.md
+  - docs/sdk/models/operations/rating.md
   - docs/sdk/models/operations/release.md
   - docs/sdk/models/operations/responsebody.md
   - docs/sdk/models/operations/restricted.md
@@ -840,6 +855,7 @@ generatedFiles:
   - docs/sdk/models/operations/sharedservers.md
   - docs/sdk/models/operations/sharedsources.md
   - docs/sdk/models/operations/showordering.md
+  - docs/sdk/models/operations/similar.md
   - docs/sdk/models/operations/skip.md
   - docs/sdk/models/operations/smart.md
   - docs/sdk/models/operations/sort.md
@@ -917,13 +933,14 @@ generatedFiles:
   - src/funcs/hubsGetLibraryHubs.ts
   - src/funcs/hubsGetRecentlyAdded.ts
   - src/funcs/libraryDeleteLibrary.ts
+  - src/funcs/libraryGetActorsLibrary.ts
   - src/funcs/libraryGetAllLibraries.ts
   - src/funcs/libraryGetCountriesLibrary.ts
   - src/funcs/libraryGetFileHash.ts
   - src/funcs/libraryGetGenresLibrary.ts
   - src/funcs/libraryGetLibraryDetails.ts
   - src/funcs/libraryGetLibraryItems.ts
-  - src/funcs/libraryGetMetaDataByRatingKey.ts
+  - src/funcs/libraryGetMediaMetaData.ts
   - src/funcs/libraryGetMetadataChildren.ts
   - src/funcs/libraryGetOnDeck.ts
   - src/funcs/libraryGetRecentlyAddedLibrary.ts
@@ -1017,6 +1034,7 @@ generatedFiles:
   - src/sdk/models/errors/deletelibrary.ts
   - src/sdk/models/errors/deleteplaylist.ts
   - src/sdk/models/errors/enablepapertrail.ts
+  - src/sdk/models/errors/getactorslibrary.ts
   - src/sdk/models/errors/getalllibraries.ts
   - src/sdk/models/errors/getavailableclients.ts
   - src/sdk/models/errors/getbandwidthstatistics.ts
@@ -1033,8 +1051,8 @@ generatedFiles:
   - src/sdk/models/errors/getlibrarydetails.ts
   - src/sdk/models/errors/getlibraryhubs.ts
   - src/sdk/models/errors/getlibraryitems.ts
+  - src/sdk/models/errors/getmediametadata.ts
   - src/sdk/models/errors/getmediaproviders.ts
-  - src/sdk/models/errors/getmetadatabyratingkey.ts
   - src/sdk/models/errors/getmetadatachildren.ts
   - src/sdk/models/errors/getmyplexaccount.ts
   - src/sdk/models/errors/getondeck.ts
@@ -1099,6 +1117,7 @@ generatedFiles:
   - src/sdk/models/operations/deletelibrary.ts
   - src/sdk/models/operations/deleteplaylist.ts
   - src/sdk/models/operations/enablepapertrail.ts
+  - src/sdk/models/operations/getactorslibrary.ts
   - src/sdk/models/operations/getalllibraries.ts
   - src/sdk/models/operations/getavailableclients.ts
   - src/sdk/models/operations/getbandwidthstatistics.ts
@@ -1115,8 +1134,8 @@ generatedFiles:
   - src/sdk/models/operations/getlibrarydetails.ts
   - src/sdk/models/operations/getlibraryhubs.ts
   - src/sdk/models/operations/getlibraryitems.ts
+  - src/sdk/models/operations/getmediametadata.ts
   - src/sdk/models/operations/getmediaproviders.ts
-  - src/sdk/models/operations/getmetadatabyratingkey.ts
   - src/sdk/models/operations/getmetadatachildren.ts
   - src/sdk/models/operations/getmyplexaccount.ts
   - src/sdk/models/operations/getondeck.ts
@@ -2183,6 +2202,8 @@ examples:
       parameters:
         path:
           sectionKey: 9518
+        query:
+          type: 2
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 50, "identifier": "com.plexapp.plugins.library", "allowSync": false, "art": "/:/resources/show-fanart.jpg", "content": "secondary", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1734362201, "nocache": true, "thumb": "/:/resources/show.png", "title1": "TV Shows (Reality)", "title2": "By Genre", "viewGroup": "secondary", "Directory": [{"fastKey": "/library/sections/10/all?genre=89", "key": "89", "title": "Action", "type": "genre"}]}}
@@ -2195,6 +2216,8 @@ examples:
       parameters:
         path:
           sectionKey: 9518
+        query:
+          type: 2
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 50, "identifier": "com.plexapp.plugins.library", "allowSync": false, "art": "/:/resources/show-fanart.jpg", "content": "secondary", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1734362201, "nocache": true, "thumb": "/:/resources/show.png", "title1": "TV Series", "title2": "By Country", "viewGroup": "secondary", "Directory": [{"fastKey": "/library/sections/2/all?country=15491", "key": "15491", "title": "Japan"}]}}
@@ -2222,6 +2245,46 @@ examples:
       responses:
         "200":
           application/xml: "0xa9CdebeF9E"
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+  get-actors-library:
+    speakeasy-default-get-actors-library:
+      parameters:
+        path:
+          sectionKey: 9518
+        query:
+          type: 2
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 50, "allowSync": false, "art": "/:/resources/show-fanart.jpg", "identifier": "com.plexapp.plugins.library", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1734362201, "nocache": true, "thumb": "/:/resources/show.png", "title1": "TV Series", "title2": "By Starring Actor", "viewGroup": "secondary", "viewMode": "131131", "Directory": [{"fastKey": "/library/sections/2/all?actor=134671", "thumb": "https://metadata-static.plex.tv/e/people/e2a915b537ef720252b6d408bc1f91b3.jpg", "key": "134671", "title": "Aaron Paul"}, {"fastKey": "/library/sections/2/all?actor=134671", "thumb": "https://metadata-static.plex.tv/e/people/e2a915b537ef720252b6d408bc1f91b3.jpg", "key": "134671", "title": "Aaron Paul"}]}}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+  get-media-meta-data:
+    speakeasy-default-get-media-meta-data:
+      parameters:
+        path:
+          ratingKey: 9518
+        query:
+          includeConcerts: true
+          includeExtras: true
+          includeOnDeck: true
+          includePopularLeaves: true
+          includePreferences: true
+          includeReviews: true
+          includeChapters: true
+          includeStations: true
+          includeExternalMedia: true
+          asyncAugmentMetadata: true
+          asyncCheckFiles: true
+          asyncRefreshAnalysis: true
+          asyncRefreshLocalMediaAgent: true
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 50, "allowSync": false, "identifier": "com.plexapp.plugins.library", "librarySectionID": 2, "librarySectionTitle": "TV Series", "librarySectionUUID": "e69655a2-ef48-4aba-bb19-0cc34d1e7d36", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1734362201, "Metadata": [{"ratingKey": "44288", "parentRatingKey": "48047", "grandparentRatingKey": "45520", "parentGuid": "plex://season/618b89208dde18df707ad15c", "grandparentGuid": "plex://show/5e16253691c20300412003a8", "grandparentSlug": "alice-in-borderland-2020", "grandparentKey": "/library/metadata/45520", "parentKey": "/library/metadata/48047", "key": "/library/metadata/44288/children", "guid": "plex://show/5d9c08254eefaa001f5d6dcb", "slug": "better-call-saul", "studio": "Sony Pictures Television", "type": "show", "title": "Better Call Saul", "originalTitle": "Wicked: Part I", "librarySectionTitle": "TV Series ", "librarySectionID": 2, "librarySectionKey": "/library/sections/2", "contentRating": "TV-MA", "summary": "Before Saul Goodman, he was Jimmy McGill. And if you're calling Jimmy, you're in real trouble. The prequel to \"Breaking Bad\" follows small-time attorney, Jimmy McGill, as he transforms into Walter White's morally challenged lawyer, Saul Goodman.", "index": 1, "grandparentTitle": "Alice in Borderland", "parentTitle": "Season 2", "audienceRating": 8.7, "viewCount": 4, "skipCount": 1, "lastViewedAt": 1625764795, "year": 2015, "tagline": "Make the call", "chapterSource": "media", "primaryExtraKey": "/library/metadata/134704", "thumb": "/library/metadata/44288/thumb/1736487993", "art": "/library/metadata/44288/art/1736487993", "theme": "/library/metadata/44288/theme/1736487993", "duration": 2700000, "originallyAvailableAt": "2015-02-08", "leafCount": 63, "viewedLeafCount": 4, "childCount": 6, "addedAt": 1625505101, "updatedAt": 1736487993, "audienceRatingImage": "themoviedb://image.rating", "parentIndex": 2, "parentThumb": "/library/metadata/48047/thumb/1671800243", "grandparentThumb": "/library/metadata/45520/thumb/1736488003", "grandparentArt": "/library/metadata/45520/art/1736488003", "Media": [{"id": 387322, "duration": 9610350, "bitrate": 25512, "width": 3840, "height": 1602, "aspectRatio": 2.35, "audioChannels": 6, "audioCodec": "eac3", "videoCodec": "hevc", "videoResolution": "4k", "container": "mkv", "videoFrameRate": "24p", "videoProfile": "main 10", "hasVoiceActivity": false, "Part": [{"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": [{"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}]}]}, {"id": 387322, "duration": 9610350, "bitrate": 25512, "width": 3840, "height": 1602, "aspectRatio": 2.35, "audioChannels": 6, "audioCodec": "eac3", "videoCodec": "hevc", "videoResolution": "4k", "container": "mkv", "videoFrameRate": "24p", "videoProfile": "main 10", "hasVoiceActivity": false, "Part": [{"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": []}, {"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": [{"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}]}, {"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": [{"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}]}]}, {"id": 387322, "duration": 9610350, "bitrate": 25512, "width": 3840, "height": 1602, "aspectRatio": 2.35, "audioChannels": 6, "audioCodec": "eac3", "videoCodec": "hevc", "videoResolution": "4k", "container": "mkv", "videoFrameRate": "24p", "videoProfile": "main 10", "hasVoiceActivity": false, "Part": []}], "Image": [{"alt": "Better Call Saul", "type": "coverPoster", "url": "/library/metadata/44288/thumb/1736487993"}, {"alt": "Better Call Saul", "type": "coverPoster", "url": "/library/metadata/44288/thumb/1736487993"}], "UltraBlurColors": {"topLeft": "11333a", "topRight": "1d2721", "bottomRight": "5c451d", "bottomLeft": "372c10"}, "Genre": [{"id": 1057, "filter": "genre=1057", "tag": "Crime"}], "Country": [{"id": 58591, "filter": "country=58591", "tag": "United States of America"}, {"id": 58591, "filter": "country=58591", "tag": "United States of America"}], "Guid": [{"id": "imdb://tt3032476"}], "Rating": [{"image": "imdb://image.rating", "value": 9, "type": "audience"}], "Role": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Director": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Writer": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Producer": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Similar": [{"id": 26, "filter": "similar=26", "tag": "Breaking Bad"}, {"id": 26, "filter": "similar=26", "tag": "Breaking Bad"}, {"id": 26, "filter": "similar=26", "tag": "Breaking Bad"}], "Location": [{"path": "/TV Shows/Better Call Saul"}]}, {"ratingKey": "44288", "parentRatingKey": "48047", "grandparentRatingKey": "45520", "parentGuid": "plex://season/618b89208dde18df707ad15c", "grandparentGuid": "plex://show/5e16253691c20300412003a8", "grandparentSlug": "alice-in-borderland-2020", "grandparentKey": "/library/metadata/45520", "parentKey": "/library/metadata/48047", "key": "/library/metadata/44288/children", "guid": "plex://show/5d9c08254eefaa001f5d6dcb", "slug": "better-call-saul", "studio": "Sony Pictures Television", "type": "show", "title": "Better Call Saul", "originalTitle": "Wicked: Part I", "librarySectionTitle": "TV Series ", "librarySectionID": 2, "librarySectionKey": "/library/sections/2", "contentRating": "TV-MA", "summary": "Before Saul Goodman, he was Jimmy McGill. And if you're calling Jimmy, you're in real trouble. The prequel to \"Breaking Bad\" follows small-time attorney, Jimmy McGill, as he transforms into Walter White's morally challenged lawyer, Saul Goodman.", "index": 1, "grandparentTitle": "Alice in Borderland", "parentTitle": "Season 2", "audienceRating": 8.7, "viewCount": 4, "skipCount": 1, "lastViewedAt": 1625764795, "year": 2015, "tagline": "Make the call", "chapterSource": "media", "primaryExtraKey": "/library/metadata/134704", "thumb": "/library/metadata/44288/thumb/1736487993", "art": "/library/metadata/44288/art/1736487993", "theme": "/library/metadata/44288/theme/1736487993", "duration": 2700000, "originallyAvailableAt": "2015-02-08", "leafCount": 63, "viewedLeafCount": 4, "childCount": 6, "addedAt": 1625505101, "updatedAt": 1736487993, "audienceRatingImage": "themoviedb://image.rating", "parentIndex": 2, "parentThumb": "/library/metadata/48047/thumb/1671800243", "grandparentThumb": "/library/metadata/45520/thumb/1736488003", "grandparentArt": "/library/metadata/45520/art/1736488003", "Media": [{"id": 387322, "duration": 9610350, "bitrate": 25512, "width": 3840, "height": 1602, "aspectRatio": 2.35, "audioChannels": 6, "audioCodec": "eac3", "videoCodec": "hevc", "videoResolution": "4k", "container": "mkv", "videoFrameRate": "24p", "videoProfile": "main 10", "hasVoiceActivity": false, "Part": [{"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": [{"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}]}]}, {"id": 387322, "duration": 9610350, "bitrate": 25512, "width": 3840, "height": 1602, "aspectRatio": 2.35, "audioChannels": 6, "audioCodec": "eac3", "videoCodec": "hevc", "videoResolution": "4k", "container": "mkv", "videoFrameRate": "24p", "videoProfile": "main 10", "hasVoiceActivity": false, "Part": []}], "Image": [], "UltraBlurColors": {"topLeft": "11333a", "topRight": "1d2721", "bottomRight": "5c451d", "bottomLeft": "372c10"}, "Genre": [{"id": 1057, "filter": "genre=1057", "tag": "Crime"}], "Country": [{"id": 58591, "filter": "country=58591", "tag": "United States of America"}, {"id": 58591, "filter": "country=58591", "tag": "United States of America"}], "Guid": [{"id": "imdb://tt3032476"}, {"id": "imdb://tt3032476"}], "Rating": [], "Role": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Director": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Writer": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Producer": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Similar": [{"id": 26, "filter": "similar=26", "tag": "Breaking Bad"}, {"id": 26, "filter": "similar=26", "tag": "Breaking Bad"}], "Location": [{"path": "/TV Shows/Better Call Saul"}, {"path": "/TV Shows/Better Call Saul"}]}, {"ratingKey": "44288", "parentRatingKey": "48047", "grandparentRatingKey": "45520", "parentGuid": "plex://season/618b89208dde18df707ad15c", "grandparentGuid": "plex://show/5e16253691c20300412003a8", "grandparentSlug": "alice-in-borderland-2020", "grandparentKey": "/library/metadata/45520", "parentKey": "/library/metadata/48047", "key": "/library/metadata/44288/children", "guid": "plex://show/5d9c08254eefaa001f5d6dcb", "slug": "better-call-saul", "studio": "Sony Pictures Television", "type": "show", "title": "Better Call Saul", "originalTitle": "Wicked: Part I", "librarySectionTitle": "TV Series ", "librarySectionID": 2, "librarySectionKey": "/library/sections/2", "contentRating": "TV-MA", "summary": "Before Saul Goodman, he was Jimmy McGill. And if you're calling Jimmy, you're in real trouble. The prequel to \"Breaking Bad\" follows small-time attorney, Jimmy McGill, as he transforms into Walter White's morally challenged lawyer, Saul Goodman.", "index": 1, "grandparentTitle": "Alice in Borderland", "parentTitle": "Season 2", "audienceRating": 8.7, "viewCount": 4, "skipCount": 1, "lastViewedAt": 1625764795, "year": 2015, "tagline": "Make the call", "chapterSource": "media", "primaryExtraKey": "/library/metadata/134704", "thumb": "/library/metadata/44288/thumb/1736487993", "art": "/library/metadata/44288/art/1736487993", "theme": "/library/metadata/44288/theme/1736487993", "duration": 2700000, "originallyAvailableAt": "2015-02-08", "leafCount": 63, "viewedLeafCount": 4, "childCount": 6, "addedAt": 1625505101, "updatedAt": 1736487993, "audienceRatingImage": "themoviedb://image.rating", "parentIndex": 2, "parentThumb": "/library/metadata/48047/thumb/1671800243", "grandparentThumb": "/library/metadata/45520/thumb/1736488003", "grandparentArt": "/library/metadata/45520/art/1736488003", "Media": [{"id": 387322, "duration": 9610350, "bitrate": 25512, "width": 3840, "height": 1602, "aspectRatio": 2.35, "audioChannels": 6, "audioCodec": "eac3", "videoCodec": "hevc", "videoResolution": "4k", "container": "mkv", "videoFrameRate": "24p", "videoProfile": "main 10", "hasVoiceActivity": false, "Part": [{"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": []}, {"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": [{"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}]}, {"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": [{"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}]}]}, {"id": 387322, "duration": 9610350, "bitrate": 25512, "width": 3840, "height": 1602, "aspectRatio": 2.35, "audioChannels": 6, "audioCodec": "eac3", "videoCodec": "hevc", "videoResolution": "4k", "container": "mkv", "videoFrameRate": "24p", "videoProfile": "main 10", "hasVoiceActivity": false, "Part": [{"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": [{"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}]}, {"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "container": "mkv", "videoProfile": "main 10", "Stream": [{"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}, {"id": 1002625, "streamType": 1, "default": true, "codec": "hevc", "index": 0, "bitrate": 24743, "language": "English", "languageTag": "en", "languageCode": "eng", "DOVIBLCompatID": 1, "DOVIBLPresent": true, "DOVIELPresent": false, "DOVILevel": 6, "DOVIPresent": true, "DOVIProfile": 8, "DOVIRPUPresent": true, "DOVIVersion": "1.0", "bitDepth": 10, "chromaLocation": "topleft", "chromaSubsampling": "4:2:0", "codedHeight": 1608, "codedWidth": 3840, "colorPrimaries": "bt2020", "colorRange": "tv", "colorSpace": "bt2020nc", "colorTrc": "smpte2084", "frameRate": 23.976, "height": 1602, "level": 150, "original": true, "hasScalingMatrix": false, "profile": "main 10", "scanType": "progressive", "refFrames": 1, "width": 3840, "displayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "extendedDisplayTitle": "4K DoVi/HDR10 (HEVC Main 10)", "selected": true, "forced": true, "channels": 6, "audioChannelLayout": "5.1(side)", "samplingRate": 48000, "canAutoSync": false, "hearingImpaired": true, "dub": true, "title": "SDH"}]}]}], "Image": [{"alt": "Better Call Saul", "type": "coverPoster", "url": "/library/metadata/44288/thumb/1736487993"}], "UltraBlurColors": {"topLeft": "11333a", "topRight": "1d2721", "bottomRight": "5c451d", "bottomLeft": "372c10"}, "Genre": [{"id": 1057, "filter": "genre=1057", "tag": "Crime"}], "Country": [{"id": 58591, "filter": "country=58591", "tag": "United States of America"}, {"id": 58591, "filter": "country=58591", "tag": "United States of America"}], "Guid": [], "Rating": [{"image": "imdb://image.rating", "value": 9, "type": "audience"}, {"image": "imdb://image.rating", "value": 9, "type": "audience"}], "Role": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Director": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Writer": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Producer": [{"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}, {"id": 109501, "filter": "actor=109501", "tag": "Bob Odenkirk", "tagKey": "5d77683254f42c001f8c3f69", "role": "Jimmy McGill", "thumb": "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg"}], "Similar": [{"id": 26, "filter": "similar=26", "tag": "Breaking Bad"}, {"id": 26, "filter": "similar=26", "tag": "Breaking Bad"}], "Location": [{"path": "/TV Shows/Better Call Saul"}]}]}}
         "400":
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}, {"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":

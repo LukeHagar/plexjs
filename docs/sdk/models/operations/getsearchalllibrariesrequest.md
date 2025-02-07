@@ -9,7 +9,7 @@ let value: GetSearchAllLibrariesRequest = {
   query: "<value>",
   clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
   searchTypes: [
-    SearchTypes.OtherVideos,
+    SearchTypes.Tv,
   ],
 };
 ```

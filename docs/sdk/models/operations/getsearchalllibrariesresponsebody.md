@@ -18,10 +18,10 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetSearchAllLibrariesResponseBody = {
   mediaContainer: {
-    size: 8558.04,
+    size: 3599.78,
     searchResult: [
       {
-        score: 117.14,
+        score: 7299.91,
         metadata: {
           ratingKey: "58683",
           key: "/library/metadata/58683",

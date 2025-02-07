@@ -7,7 +7,7 @@ import { GetPlaylistResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPlaylistResponse = {
   contentType: "<value>",
-  statusCode: 502,
+  statusCode: 407,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
