@@ -1,11 +1,11 @@
-# Rating
+# Ratings
 
 ## Example Usage
 
 ```typescript
-import { Rating } from "@lukehagar/plexjs/sdk/models/operations";
+import { Ratings } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: Rating = {
+let value: Ratings = {
   image: "imdb://image.rating",
   value: 9,
   type: "audience",

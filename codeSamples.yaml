@@ -859,6 +859,30 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/sections/{sectionKey}/all"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: library
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+            import { GetAllMediaLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getAllMediaLibrary({
+                sectionKey: 9518,
+                type: GetAllMediaLibraryQueryParamType.TvShow,
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/sections/{sectionKey}/country"]["get"]
     update:
       x-codeSamples:

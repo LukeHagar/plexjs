@@ -22,7 +22,8 @@ let value: GetRecentlyAddedMediaContainer = {
     type: [
       {
         key: "/library/sections/2/all?type=2",
-        type: "show",
+        type: "filter",
+        subtype: "clip",
         title: "TV Shows",
         active: false,
         filter: [
@@ -32,6 +33,7 @@ let value: GetRecentlyAddedMediaContainer = {
             key: "/library/sections/2/genre?type=2",
             title: "Genre",
             type: "filter",
+            advanced: true,
           },
         ],
         sort: [

@@ -93,6 +93,7 @@ export type GetRecentlyAddedFilter = {
   key: string;
   title: string;
   type: string;
+  advanced?: boolean | undefined;
 };
 
 /**
@@ -146,6 +147,7 @@ export type GetRecentlyAddedField = {
 export type GetRecentlyAddedType = {
   key: string;
   type: string;
+  subtype?: string | undefined;
   title: string;
   active: boolean;
   filter?: Array<GetRecentlyAddedFilter> | undefined;
@@ -183,6 +185,8 @@ export enum GetRecentlyAddedHubsType {
   TvShow = "show",
   Season = "season",
   Episode = "episode",
+  Artist = "artist",
+  Album = "album",
 }
 
 /**
@@ -823,6 +827,7 @@ export const GetRecentlyAddedFilter$inboundSchema: z.ZodType<
   key: z.string(),
   title: z.string(),
   type: z.string(),
+  advanced: z.boolean().optional(),
 });
 
 /** @internal */
@@ -832,6 +837,7 @@ export type GetRecentlyAddedFilter$Outbound = {
   key: string;
   title: string;
   type: string;
+  advanced?: boolean | undefined;
 };
 
 /** @internal */
@@ -845,6 +851,7 @@ export const GetRecentlyAddedFilter$outboundSchema: z.ZodType<
   key: z.string(),
   title: z.string(),
   type: z.string(),
+  advanced: z.boolean().optional(),
 });
 
 /**
@@ -1074,6 +1081,7 @@ export const GetRecentlyAddedType$inboundSchema: z.ZodType<
 > = z.object({
   key: z.string(),
   type: z.string(),
+  subtype: z.string().optional(),
   title: z.string(),
   active: z.boolean(),
   Filter: z.array(z.lazy(() => GetRecentlyAddedFilter$inboundSchema))
@@ -1092,6 +1100,7 @@ export const GetRecentlyAddedType$inboundSchema: z.ZodType<
 export type GetRecentlyAddedType$Outbound = {
   key: string;
   type: string;
+  subtype?: string | undefined;
   title: string;
   active: boolean;
   Filter?: Array<GetRecentlyAddedFilter$Outbound> | undefined;
@@ -1107,6 +1116,7 @@ export const GetRecentlyAddedType$outboundSchema: z.ZodType<
 > = z.object({
   key: z.string(),
   type: z.string(),
+  subtype: z.string().optional(),
   title: z.string(),
   active: z.boolean(),
   filter: z.array(z.lazy(() => GetRecentlyAddedFilter$outboundSchema))
@@ -2745,7 +2755,7 @@ export const GetRecentlyAddedMediaContainer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  size: z.number(),
+  size: z.number().int(),
   offset: z.number().int().optional(),
   totalSize: z.number().int().optional(),
   identifier: z.string().optional(),
@@ -2777,7 +2787,7 @@ export const GetRecentlyAddedMediaContainer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetRecentlyAddedMediaContainer
 > = z.object({
-  size: z.number(),
+  size: z.number().int(),
   offset: z.number().int().optional(),
   totalSize: z.number().int().optional(),
   identifier: z.string().optional(),

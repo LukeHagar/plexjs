@@ -86,6 +86,7 @@ export type GetRecentlyAddedLibraryFilter = {
   key: string;
   title: string;
   type: string;
+  advanced?: boolean | undefined;
 };
 
 /**
@@ -139,6 +140,7 @@ export type Field = {
 export type GetRecentlyAddedLibraryType = {
   key: string;
   type: string;
+  subtype?: string | undefined;
   title: string;
   active: boolean;
   filter?: Array<GetRecentlyAddedLibraryFilter> | undefined;
@@ -425,6 +427,7 @@ export const GetRecentlyAddedLibraryFilter$inboundSchema: z.ZodType<
   key: z.string(),
   title: z.string(),
   type: z.string(),
+  advanced: z.boolean().optional(),
 });
 
 /** @internal */
@@ -434,6 +437,7 @@ export type GetRecentlyAddedLibraryFilter$Outbound = {
   key: string;
   title: string;
   type: string;
+  advanced?: boolean | undefined;
 };
 
 /** @internal */
@@ -447,6 +451,7 @@ export const GetRecentlyAddedLibraryFilter$outboundSchema: z.ZodType<
   key: z.string(),
   title: z.string(),
   type: z.string(),
+  advanced: z.boolean().optional(),
 });
 
 /**
@@ -661,6 +666,7 @@ export const GetRecentlyAddedLibraryType$inboundSchema: z.ZodType<
 > = z.object({
   key: z.string(),
   type: z.string(),
+  subtype: z.string().optional(),
   title: z.string(),
   active: z.boolean(),
   Filter: z.array(z.lazy(() => GetRecentlyAddedLibraryFilter$inboundSchema))
@@ -679,6 +685,7 @@ export const GetRecentlyAddedLibraryType$inboundSchema: z.ZodType<
 export type GetRecentlyAddedLibraryType$Outbound = {
   key: string;
   type: string;
+  subtype?: string | undefined;
   title: string;
   active: boolean;
   Filter?: Array<GetRecentlyAddedLibraryFilter$Outbound> | undefined;
@@ -694,6 +701,7 @@ export const GetRecentlyAddedLibraryType$outboundSchema: z.ZodType<
 > = z.object({
   key: z.string(),
   type: z.string(),
+  subtype: z.string().optional(),
   title: z.string(),
   active: z.boolean(),
   filter: z.array(z.lazy(() => GetRecentlyAddedLibraryFilter$outboundSchema))

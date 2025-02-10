@@ -46,6 +46,8 @@ let value: GetMediaMetaDataMediaContainer = {
       skipCount: 1,
       lastViewedAt: 1625764795,
       year: 2015,
+      rating: 6,
+      ratingImage: "rottentomatoes://image.rating.ripe",
       tagline: "Make the call",
       chapterSource: "media",
       primaryExtraKey: "/library/metadata/134704",
@@ -57,8 +59,8 @@ let value: GetMediaMetaDataMediaContainer = {
       leafCount: 63,
       viewedLeafCount: 4,
       childCount: 6,
-      addedAt: 1625505101,
-      updatedAt: 1736487993,
+      addedAt: 1556281940,
+      updatedAt: 1556281940,
       audienceRatingImage: "themoviedb://image.rating",
       parentIndex: 2,
       parentThumb: "/library/metadata/48047/thumb/1671800243",
@@ -73,6 +75,7 @@ let value: GetMediaMetaDataMediaContainer = {
           height: 1602,
           aspectRatio: 2.35,
           audioChannels: 6,
+          displayOffset: 50,
           audioCodec: "eac3",
           videoCodec: "hevc",
           videoResolution: "4k",
@@ -80,6 +83,8 @@ let value: GetMediaMetaDataMediaContainer = {
           videoFrameRate: "24p",
           videoProfile: "main 10",
           hasVoiceActivity: false,
+          audioProfile: "dts",
+          has64bitOffsets: false,
           part: [
             {
               accessible: true,
@@ -90,8 +95,11 @@ let value: GetMediaMetaDataMediaContainer = {
               duration: 9610350,
               file: "/mnt/Movies_1/W/Wicked (2024).mkv",
               size: 30649952104,
+              packetLength: 188,
               container: "mkv",
               videoProfile: "main 10",
+              audioProfile: "dts",
+              has64bitOffsets: false,
               stream: [
                 {
                   id: 1002625,
@@ -103,6 +111,7 @@ let value: GetMediaMetaDataMediaContainer = {
                   language: "English",
                   languageTag: "en",
                   languageCode: "eng",
+                  headerCompression: true,
                   doviblCompatID: 1,
                   doviblPresent: true,
                   dovielPresent: false,
@@ -178,7 +187,7 @@ let value: GetMediaMetaDataMediaContainer = {
           id: "imdb://tt3032476",
         },
       ],
-      rating: [
+      ratings: [
         {
           image: "imdb://image.rating",
           value: 9,
@@ -250,7 +259,7 @@ let value: GetMediaMetaDataMediaContainer = {
 
 | Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `size`                                                                                              | *number*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 | 50                                                                                                  |
+| `size`                                                                                              | *number*                                                                                            | :heavy_check_mark:                                                                                  | Number of media items returned in this response.                                                    | 50                                                                                                  |
 | `allowSync`                                                                                         | *boolean*                                                                                           | :heavy_check_mark:                                                                                  | Indicates whether syncing is allowed.                                                               | false                                                                                               |
 | `identifier`                                                                                        | *string*                                                                                            | :heavy_check_mark:                                                                                  | An plugin identifier for the media container.                                                       | com.plexapp.plugins.library                                                                         |
 | `librarySectionID`                                                                                  | *number*                                                                                            | :heavy_check_mark:                                                                                  | The unique identifier for the library section.                                                      | 2                                                                                                   |

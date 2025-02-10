@@ -69,6 +69,9 @@ export type GetActorsLibraryDirectory = {
 };
 
 export type GetActorsLibraryMediaContainer = {
+  /**
+   * Number of media items returned in this response.
+   */
   size: number;
   /**
    * Indicates whether syncing is allowed.
@@ -293,7 +296,7 @@ export const GetActorsLibraryMediaContainer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  size: z.number(),
+  size: z.number().int(),
   allowSync: z.boolean(),
   art: z.string(),
   identifier: z.string(),
@@ -336,7 +339,7 @@ export const GetActorsLibraryMediaContainer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetActorsLibraryMediaContainer
 > = z.object({
-  size: z.number(),
+  size: z.number().int(),
   allowSync: z.boolean(),
   art: z.string(),
   identifier: z.string(),

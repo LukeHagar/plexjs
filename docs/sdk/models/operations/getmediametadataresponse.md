@@ -8,7 +8,7 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetMediaMetaDataResponse = {
   contentType: "<value>",
-  statusCode: 103,
+  statusCode: 226,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -53,6 +53,8 @@ let value: GetMediaMetaDataResponse = {
           skipCount: 1,
           lastViewedAt: 1625764795,
           year: 2015,
+          rating: 6,
+          ratingImage: "rottentomatoes://image.rating.ripe",
           tagline: "Make the call",
           chapterSource: "media",
           primaryExtraKey: "/library/metadata/134704",
@@ -64,8 +66,8 @@ let value: GetMediaMetaDataResponse = {
           leafCount: 63,
           viewedLeafCount: 4,
           childCount: 6,
-          addedAt: 1625505101,
-          updatedAt: 1736487993,
+          addedAt: 1556281940,
+          updatedAt: 1556281940,
           audienceRatingImage: "themoviedb://image.rating",
           parentIndex: 2,
           parentThumb: "/library/metadata/48047/thumb/1671800243",
@@ -80,6 +82,7 @@ let value: GetMediaMetaDataResponse = {
               height: 1602,
               aspectRatio: 2.35,
               audioChannels: 6,
+              displayOffset: 50,
               audioCodec: "eac3",
               videoCodec: "hevc",
               videoResolution: "4k",
@@ -87,6 +90,8 @@ let value: GetMediaMetaDataResponse = {
               videoFrameRate: "24p",
               videoProfile: "main 10",
               hasVoiceActivity: false,
+              audioProfile: "dts",
+              has64bitOffsets: false,
               part: [
                 {
                   accessible: true,
@@ -97,8 +102,11 @@ let value: GetMediaMetaDataResponse = {
                   duration: 9610350,
                   file: "/mnt/Movies_1/W/Wicked (2024).mkv",
                   size: 30649952104,
+                  packetLength: 188,
                   container: "mkv",
                   videoProfile: "main 10",
+                  audioProfile: "dts",
+                  has64bitOffsets: false,
                   stream: [
                     {
                       id: 1002625,
@@ -110,6 +118,7 @@ let value: GetMediaMetaDataResponse = {
                       language: "English",
                       languageTag: "en",
                       languageCode: "eng",
+                      headerCompression: true,
                       doviblCompatID: 1,
                       doviblPresent: true,
                       dovielPresent: false,
@@ -185,7 +194,7 @@ let value: GetMediaMetaDataResponse = {
               id: "imdb://tt3032476",
             },
           ],
-          rating: [
+          ratings: [
             {
               image: "imdb://image.rating",
               value: 9,

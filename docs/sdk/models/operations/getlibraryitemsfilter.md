@@ -11,6 +11,7 @@ let value: GetLibraryItemsFilter = {
   key: "/library/sections/2/genre?type=2",
   title: "Genre",
   type: "filter",
+  advanced: true,
 };
 ```
 
@@ -23,3 +24,4 @@ let value: GetLibraryItemsFilter = {
 | `key`                            | *string*                         | :heavy_check_mark:               | N/A                              | /library/sections/2/genre?type=2 |
 | `title`                          | *string*                         | :heavy_check_mark:               | N/A                              | Genre                            |
 | `type`                           | *string*                         | :heavy_check_mark:               | N/A                              | filter                           |
+| `advanced`                       | *boolean*                        | :heavy_minus_sign:               | N/A                              | true                             |

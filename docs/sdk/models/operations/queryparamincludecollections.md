@@ -1,7 +1,5 @@
 # QueryParamIncludeCollections
 
-Whether to include collections in the search results.
-
 ## Example Usage
 
 ```typescript

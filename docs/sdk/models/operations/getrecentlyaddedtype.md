@@ -7,7 +7,8 @@ import { GetRecentlyAddedType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetRecentlyAddedType = {
   key: "/library/sections/2/all?type=2",
-  type: "show",
+  type: "filter",
+  subtype: "clip",
   title: "TV Shows",
   active: false,
   filter: [
@@ -17,6 +18,7 @@ let value: GetRecentlyAddedType = {
       key: "/library/sections/2/genre?type=2",
       title: "Genre",
       type: "filter",
+      advanced: true,
     },
   ],
   sort: [
@@ -45,7 +47,8 @@ let value: GetRecentlyAddedType = {
 | Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `key`                                                                                           | *string*                                                                                        | :heavy_check_mark:                                                                              | N/A                                                                                             | /library/sections/2/all?type=2                                                                  |
-| `type`                                                                                          | *string*                                                                                        | :heavy_check_mark:                                                                              | N/A                                                                                             | show                                                                                            |
+| `type`                                                                                          | *string*                                                                                        | :heavy_check_mark:                                                                              | N/A                                                                                             | filter                                                                                          |
+| `subtype`                                                                                       | *string*                                                                                        | :heavy_minus_sign:                                                                              | N/A                                                                                             | clip                                                                                            |
 | `title`                                                                                         | *string*                                                                                        | :heavy_check_mark:                                                                              | N/A                                                                                             | TV Shows                                                                                        |
 | `active`                                                                                        | *boolean*                                                                                       | :heavy_check_mark:                                                                              | N/A                                                                                             | false                                                                                           |
 | `filter`                                                                                        | [operations.GetRecentlyAddedFilter](../../../sdk/models/operations/getrecentlyaddedfilter.md)[] | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |

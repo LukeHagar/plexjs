@@ -14,6 +14,7 @@ API Calls interacting with Plex Media Server Libraries
 * [getLibraryDetails](#getlibrarydetails) - Get Library Details
 * [deleteLibrary](#deletelibrary) - Delete Library Section
 * [getLibraryItems](#getlibraryitems) - Get Library Items
+* [getAllMediaLibrary](#getallmedialibrary) - Get all media of library
 * [getRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [getSearchLibrary](#getsearchlibrary) - Search Library
 * [getGenresLibrary](#getgenreslibrary) - Get Genres of library media
@@ -584,6 +585,89 @@ run();
 | errors.GetLibraryItemsBadRequest   | 400                                | application/json                   |
 | errors.GetLibraryItemsUnauthorized | 401                                | application/json                   |
 | errors.SDKError                    | 4XX, 5XX                           | \*/\*                              |
+
+## getAllMediaLibrary
+
+Retrieves a list of all general media data for this library.
+
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { GetAllMediaLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getAllMediaLibrary({
+    sectionKey: 9518,
+    type: GetAllMediaLibraryQueryParamType.TvShow,
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { libraryGetAllMediaLibrary } from "@lukehagar/plexjs/funcs/libraryGetAllMediaLibrary.js";
+import { GetAllMediaLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetAllMediaLibrary(plexAPI, {
+    sectionKey: 9518,
+    type: GetAllMediaLibraryQueryParamType.TvShow,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetAllMediaLibraryRequest](../../sdk/models/operations/getallmedialibraryrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetAllMediaLibraryResponse](../../sdk/models/operations/getallmedialibraryresponse.md)\>**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| errors.GetAllMediaLibraryBadRequest   | 400                                   | application/json                      |
+| errors.GetAllMediaLibraryUnauthorized | 401                                   | application/json                      |
+| errors.SDKError                       | 4XX, 5XX                              | \*/\*                                 |
 
 ## getRefreshLibraryMetadata
 

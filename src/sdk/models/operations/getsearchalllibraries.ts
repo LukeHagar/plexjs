@@ -20,7 +20,7 @@ export enum SearchTypes {
 /**
  * Whether to include collections in the search results.
  */
-export enum QueryParamIncludeCollections {
+export enum GetSearchAllLibrariesQueryParamIncludeCollections {
   Disable = 0,
   Enable = 1,
 }
@@ -28,7 +28,7 @@ export enum QueryParamIncludeCollections {
 /**
  * Whether to include external media in the search results.
  */
-export enum QueryParamIncludeExternalMedia {
+export enum GetSearchAllLibrariesQueryParamIncludeExternalMedia {
   Disable = 0,
   Enable = 1,
 }
@@ -55,11 +55,15 @@ export type GetSearchAllLibrariesRequest = {
   /**
    * Whether to include collections in the search results.
    */
-  includeCollections?: QueryParamIncludeCollections | undefined;
+  includeCollections?:
+    | GetSearchAllLibrariesQueryParamIncludeCollections
+    | undefined;
   /**
    * Whether to include external media in the search results.
    */
-  includeExternalMedia?: QueryParamIncludeExternalMedia | undefined;
+  includeExternalMedia?:
+    | GetSearchAllLibrariesQueryParamIncludeExternalMedia
+    | undefined;
 };
 
 /**
@@ -72,6 +76,8 @@ export enum GetSearchAllLibrariesType {
   TvShow = "show",
   Season = "season",
   Episode = "episode",
+  Artist = "artist",
+  Album = "album",
 }
 
 /**
@@ -599,45 +605,49 @@ export namespace SearchTypes$ {
 }
 
 /** @internal */
-export const QueryParamIncludeCollections$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamIncludeCollections
-> = z.nativeEnum(QueryParamIncludeCollections);
+export const GetSearchAllLibrariesQueryParamIncludeCollections$inboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesQueryParamIncludeCollections> = z
+    .nativeEnum(GetSearchAllLibrariesQueryParamIncludeCollections);
 
 /** @internal */
-export const QueryParamIncludeCollections$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamIncludeCollections
-> = QueryParamIncludeCollections$inboundSchema;
+export const GetSearchAllLibrariesQueryParamIncludeCollections$outboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesQueryParamIncludeCollections> =
+    GetSearchAllLibrariesQueryParamIncludeCollections$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace QueryParamIncludeCollections$ {
-  /** @deprecated use `QueryParamIncludeCollections$inboundSchema` instead. */
-  export const inboundSchema = QueryParamIncludeCollections$inboundSchema;
-  /** @deprecated use `QueryParamIncludeCollections$outboundSchema` instead. */
-  export const outboundSchema = QueryParamIncludeCollections$outboundSchema;
+export namespace GetSearchAllLibrariesQueryParamIncludeCollections$ {
+  /** @deprecated use `GetSearchAllLibrariesQueryParamIncludeCollections$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesQueryParamIncludeCollections$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesQueryParamIncludeCollections$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesQueryParamIncludeCollections$outboundSchema;
 }
 
 /** @internal */
-export const QueryParamIncludeExternalMedia$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamIncludeExternalMedia
-> = z.nativeEnum(QueryParamIncludeExternalMedia);
+export const GetSearchAllLibrariesQueryParamIncludeExternalMedia$inboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesQueryParamIncludeExternalMedia> =
+    z.nativeEnum(GetSearchAllLibrariesQueryParamIncludeExternalMedia);
 
 /** @internal */
-export const QueryParamIncludeExternalMedia$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamIncludeExternalMedia
-> = QueryParamIncludeExternalMedia$inboundSchema;
+export const GetSearchAllLibrariesQueryParamIncludeExternalMedia$outboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesQueryParamIncludeExternalMedia> =
+    GetSearchAllLibrariesQueryParamIncludeExternalMedia$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace QueryParamIncludeExternalMedia$ {
-  /** @deprecated use `QueryParamIncludeExternalMedia$inboundSchema` instead. */
-  export const inboundSchema = QueryParamIncludeExternalMedia$inboundSchema;
-  /** @deprecated use `QueryParamIncludeExternalMedia$outboundSchema` instead. */
-  export const outboundSchema = QueryParamIncludeExternalMedia$outboundSchema;
+export namespace GetSearchAllLibrariesQueryParamIncludeExternalMedia$ {
+  /** @deprecated use `GetSearchAllLibrariesQueryParamIncludeExternalMedia$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesQueryParamIncludeExternalMedia$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesQueryParamIncludeExternalMedia$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesQueryParamIncludeExternalMedia$outboundSchema;
 }
 
 /** @internal */
@@ -650,8 +660,10 @@ export const GetSearchAllLibrariesRequest$inboundSchema: z.ZodType<
   ClientID: z.string(),
   limit: z.number().int().optional(),
   searchTypes: z.array(SearchTypes$inboundSchema).optional(),
-  includeCollections: QueryParamIncludeCollections$inboundSchema,
-  includeExternalMedia: QueryParamIncludeExternalMedia$inboundSchema,
+  includeCollections:
+    GetSearchAllLibrariesQueryParamIncludeCollections$inboundSchema,
+  includeExternalMedia:
+    GetSearchAllLibrariesQueryParamIncludeExternalMedia$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "ClientID": "clientID",
@@ -678,12 +690,14 @@ export const GetSearchAllLibrariesRequest$outboundSchema: z.ZodType<
   clientID: z.string(),
   limit: z.number().int().optional(),
   searchTypes: z.array(SearchTypes$outboundSchema).optional(),
-  includeCollections: QueryParamIncludeCollections$outboundSchema.default(
-    QueryParamIncludeCollections.Disable,
-  ),
-  includeExternalMedia: QueryParamIncludeExternalMedia$outboundSchema.default(
-    QueryParamIncludeExternalMedia.Disable,
-  ),
+  includeCollections:
+    GetSearchAllLibrariesQueryParamIncludeCollections$outboundSchema.default(
+      GetSearchAllLibrariesQueryParamIncludeCollections.Disable,
+    ),
+  includeExternalMedia:
+    GetSearchAllLibrariesQueryParamIncludeExternalMedia$outboundSchema.default(
+      GetSearchAllLibrariesQueryParamIncludeExternalMedia.Disable,
+    ),
 }).transform((v) => {
   return remap$(v, {
     clientID: "ClientID",

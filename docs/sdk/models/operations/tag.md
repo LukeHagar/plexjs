@@ -14,7 +14,6 @@ let value: Tag = Tag.Newest;
 
 | Name             | Value            |
 | ---------------- | ---------------- |
-| `All`            | all              |
 | `Unwatched`      | unwatched        |
 | `Newest`         | newest           |
 | `RecentlyAdded`  | recentlyAdded    |
@@ -22,12 +21,9 @@ let value: Tag = Tag.Newest;
 | `OnDeck`         | onDeck           |
 | `Collection`     | collection       |
 | `Edition`        | edition          |
-| `Genre`          | genre            |
 | `Year`           | year             |
 | `Decade`         | decade           |
 | `Director`       | director         |
-| `Actor`          | actor            |
-| `Country`        | country          |
 | `ContentRating`  | contentRating    |
 | `Rating`         | rating           |
 | `Resolution`     | resolution       |

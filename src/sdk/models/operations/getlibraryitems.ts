@@ -13,7 +13,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * A key representing a specific tag within the section.
  */
 export enum Tag {
-  All = "all",
   Unwatched = "unwatched",
   Newest = "newest",
   RecentlyAdded = "recentlyAdded",
@@ -21,12 +20,9 @@ export enum Tag {
   OnDeck = "onDeck",
   Collection = "collection",
   Edition = "edition",
-  Genre = "genre",
   Year = "year",
   Decade = "decade",
   Director = "director",
-  Actor = "actor",
-  Country = "country",
   ContentRating = "contentRating",
   Rating = "rating",
   Resolution = "resolution",
@@ -134,6 +130,7 @@ export type GetLibraryItemsFilter = {
   key: string;
   title: string;
   type: string;
+  advanced?: boolean | undefined;
 };
 
 /**
@@ -187,6 +184,7 @@ export type GetLibraryItemsField = {
 export type GetLibraryItemsType = {
   key: string;
   type: string;
+  subtype?: string | undefined;
   title: string;
   active: boolean;
   filter?: Array<GetLibraryItemsFilter> | undefined;
@@ -214,6 +212,8 @@ export enum GetLibraryItemsLibraryType {
   TvShow = "show",
   Season = "season",
   Episode = "episode",
+  Artist = "artist",
+  Album = "album",
 }
 
 /**
@@ -1008,6 +1008,7 @@ export const GetLibraryItemsFilter$inboundSchema: z.ZodType<
   key: z.string(),
   title: z.string(),
   type: z.string(),
+  advanced: z.boolean().optional(),
 });
 
 /** @internal */
@@ -1017,6 +1018,7 @@ export type GetLibraryItemsFilter$Outbound = {
   key: string;
   title: string;
   type: string;
+  advanced?: boolean | undefined;
 };
 
 /** @internal */
@@ -1030,6 +1032,7 @@ export const GetLibraryItemsFilter$outboundSchema: z.ZodType<
   key: z.string(),
   title: z.string(),
   type: z.string(),
+  advanced: z.boolean().optional(),
 });
 
 /**
@@ -1259,6 +1262,7 @@ export const GetLibraryItemsType$inboundSchema: z.ZodType<
 > = z.object({
   key: z.string(),
   type: z.string(),
+  subtype: z.string().optional(),
   title: z.string(),
   active: z.boolean(),
   Filter: z.array(z.lazy(() => GetLibraryItemsFilter$inboundSchema)).optional(),
@@ -1276,6 +1280,7 @@ export const GetLibraryItemsType$inboundSchema: z.ZodType<
 export type GetLibraryItemsType$Outbound = {
   key: string;
   type: string;
+  subtype?: string | undefined;
   title: string;
   active: boolean;
   Filter?: Array<GetLibraryItemsFilter$Outbound> | undefined;
@@ -1291,6 +1296,7 @@ export const GetLibraryItemsType$outboundSchema: z.ZodType<
 > = z.object({
   key: z.string(),
   type: z.string(),
+  subtype: z.string().optional(),
   title: z.string(),
   active: z.boolean(),
   filter: z.array(z.lazy(() => GetLibraryItemsFilter$outboundSchema))

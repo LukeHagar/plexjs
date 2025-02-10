@@ -7,7 +7,7 @@ import { LogLineResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: LogLineResponse = {
   contentType: "<value>",
-  statusCode: 201,
+  statusCode: 410,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

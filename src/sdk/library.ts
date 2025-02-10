@@ -5,6 +5,7 @@
 import { libraryDeleteLibrary } from "../funcs/libraryDeleteLibrary.js";
 import { libraryGetActorsLibrary } from "../funcs/libraryGetActorsLibrary.js";
 import { libraryGetAllLibraries } from "../funcs/libraryGetAllLibraries.js";
+import { libraryGetAllMediaLibrary } from "../funcs/libraryGetAllMediaLibrary.js";
 import { libraryGetCountriesLibrary } from "../funcs/libraryGetCountriesLibrary.js";
 import { libraryGetFileHash } from "../funcs/libraryGetFileHash.js";
 import { libraryGetGenresLibrary } from "../funcs/libraryGetGenresLibrary.js";
@@ -184,6 +185,23 @@ export class Library extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GetLibraryItemsResponse> {
     return unwrapAsync(libraryGetLibraryItems(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get all media of library
+   *
+   * @remarks
+   * Retrieves a list of all general media data for this library.
+   */
+  async getAllMediaLibrary(
+    request: operations.GetAllMediaLibraryRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetAllMediaLibraryResponse> {
+    return unwrapAsync(libraryGetAllMediaLibrary(
       this,
       request,
       options,

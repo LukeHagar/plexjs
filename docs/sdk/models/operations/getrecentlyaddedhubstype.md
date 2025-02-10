@@ -19,3 +19,5 @@ let value: GetRecentlyAddedHubsType = GetRecentlyAddedHubsType.Movie;
 | `TvShow`  | show      |
 | `Season`  | season    |
 | `Episode` | episode   |
+| `Artist`  | artist    |
+| `Album`   | album     |

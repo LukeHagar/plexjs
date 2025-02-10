@@ -19,3 +19,5 @@ let value: GetLibraryItemsLibraryType = GetLibraryItemsLibraryType.Movie;
 | `TvShow`  | show      |
 | `Season`  | season    |
 | `Episode` | episode   |
+| `Artist`  | artist    |
+| `Album`   | album     |

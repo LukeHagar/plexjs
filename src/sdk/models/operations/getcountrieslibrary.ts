@@ -56,19 +56,53 @@ export type GetCountriesLibraryDirectory = {
 };
 
 export type GetCountriesLibraryMediaContainer = {
+  /**
+   * Number of media items returned in this response.
+   */
   size: number;
-  offset?: number | undefined;
-  totalSize?: number | undefined;
-  identifier: string;
+  /**
+   * Indicates whether syncing is allowed.
+   */
   allowSync: boolean;
+  /**
+   * URL for the background artwork of the media container.
+   */
   art: string;
+  /**
+   * The content type or mode.
+   */
   content: string;
+  /**
+   * An plugin identifier for the media container.
+   */
+  identifier: string;
+  /**
+   * The prefix used for media tag resource paths.
+   */
   mediaTagPrefix: string;
+  /**
+   * The version number for media tags.
+   */
   mediaTagVersion: number;
+  /**
+   * Specifies whether caching is disabled.
+   */
   nocache: boolean;
+  /**
+   * URL for the thumbnail image of the media container.
+   */
   thumb: string;
+  /**
+   * The primary title of the media container.
+   */
   title1: string;
+  /**
+   * The secondary title of the media container.
+   */
   title2: string;
+  /**
+   * Identifier for the view group layout.
+   */
   viewGroup: string;
   directory?: Array<GetCountriesLibraryDirectory> | undefined;
 };
@@ -246,13 +280,11 @@ export const GetCountriesLibraryMediaContainer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  size: z.number(),
-  offset: z.number().int().optional(),
-  totalSize: z.number().int().optional(),
-  identifier: z.string(),
+  size: z.number().int(),
   allowSync: z.boolean(),
   art: z.string(),
   content: z.string(),
+  identifier: z.string(),
   mediaTagPrefix: z.string(),
   mediaTagVersion: z.number().int(),
   nocache: z.boolean(),
@@ -271,12 +303,10 @@ export const GetCountriesLibraryMediaContainer$inboundSchema: z.ZodType<
 /** @internal */
 export type GetCountriesLibraryMediaContainer$Outbound = {
   size: number;
-  offset?: number | undefined;
-  totalSize?: number | undefined;
-  identifier: string;
   allowSync: boolean;
   art: string;
   content: string;
+  identifier: string;
   mediaTagPrefix: string;
   mediaTagVersion: number;
   nocache: boolean;
@@ -293,13 +323,11 @@ export const GetCountriesLibraryMediaContainer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetCountriesLibraryMediaContainer
 > = z.object({
-  size: z.number(),
-  offset: z.number().int().optional(),
-  totalSize: z.number().int().optional(),
-  identifier: z.string(),
+  size: z.number().int(),
   allowSync: z.boolean(),
   art: z.string(),
   content: z.string(),
+  identifier: z.string(),
   mediaTagPrefix: z.string(),
   mediaTagVersion: z.number().int(),
   nocache: z.boolean(),

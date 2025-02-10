@@ -13,6 +13,7 @@ export * from "./deleteplaylist.js";
 export * from "./enablepapertrail.js";
 export * from "./getactorslibrary.js";
 export * from "./getalllibraries.js";
+export * from "./getallmedialibrary.js";
 export * from "./getavailableclients.js";
 export * from "./getbandwidthstatistics.js";
 export * from "./getbannerimage.js";

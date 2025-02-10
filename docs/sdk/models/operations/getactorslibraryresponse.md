@@ -7,7 +7,7 @@ import { GetActorsLibraryResponse } from "@lukehagar/plexjs/sdk/models/operation
 
 let value: GetActorsLibraryResponse = {
   contentType: "<value>",
-  statusCode: 413,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

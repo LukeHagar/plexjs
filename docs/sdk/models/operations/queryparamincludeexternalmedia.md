@@ -1,7 +1,5 @@
 # QueryParamIncludeExternalMedia
 
-Whether to include external media in the search results.
-
 ## Example Usage
 
 ```typescript

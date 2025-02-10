@@ -7,23 +7,23 @@ import { GetGenresLibraryResponse } from "@lukehagar/plexjs/sdk/models/operation
 
 let value: GetGenresLibraryResponse = {
   contentType: "<value>",
-  statusCode: 506,
+  statusCode: 428,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   object: {
     mediaContainer: {
       size: 50,
-      identifier: "com.plexapp.plugins.library",
       allowSync: false,
       art: "/:/resources/show-fanart.jpg",
       content: "secondary",
+      identifier: "com.plexapp.plugins.library",
       mediaTagPrefix: "/system/bundle/media/flags/",
       mediaTagVersion: 1734362201,
       nocache: true,
       thumb: "/:/resources/show.png",
-      title1: "TV Shows (Reality)",
-      title2: "By Genre",
+      title1: "TV Series",
+      title2: "By Starring Actor",
       viewGroup: "secondary",
       directory: [
         {

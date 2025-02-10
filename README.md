@@ -159,6 +159,7 @@ run();
 * [getLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 * [deleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 * [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
+* [getAllMediaLibrary](docs/sdks/library/README.md#getallmedialibrary) - Get all media of library
 * [getRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [getSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
 * [getGenresLibrary](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
@@ -511,6 +512,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`libraryDeleteLibrary`](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 - [`libraryGetActorsLibrary`](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
 - [`libraryGetAllLibraries`](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
+- [`libraryGetAllMediaLibrary`](docs/sdks/library/README.md#getallmedialibrary) - Get all media of library
 - [`libraryGetCountriesLibrary`](docs/sdks/library/README.md#getcountrieslibrary) - Get Countries of library media
 - [`libraryGetFileHash`](docs/sdks/library/README.md#getfilehash) - Get Hash Value
 - [`libraryGetGenresLibrary`](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media

@@ -14,7 +14,7 @@ import {
 
 let value: PostUsersSignInDataResponse = {
   contentType: "<value>",
-  statusCode: 301,
+  statusCode: 305,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -32,7 +32,7 @@ let value: PostUsersSignInDataResponse = {
     homeSize: 1,
     id: 13692262,
     joinedAt: 1556281940,
-    locale: "fr",
+    locale: "el",
     mailingListStatus: PostUsersSignInDataMailingListStatus.Active,
     maxHomeSize: 15,
     profile: {
@@ -79,7 +79,7 @@ let value: PostUsersSignInDataResponse = {
         state: PostUsersSignInDataState.Ended,
         billing: {
           internalPaymentMethod: {},
-          paymentMethodId: 488056,
+          paymentMethodId: 292147,
         },
       },
     ],
