@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -67,12 +68,12 @@ import { Result } from "../sdk/types/fp.js";
  *
  * > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
  */
-export async function libraryGetLibraryDetails(
+export function libraryGetLibraryDetails(
   client: PlexAPICore,
   sectionKey: number,
   includeDetails?: operations.IncludeDetails | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetLibraryDetailsResponse,
     | errors.GetLibraryDetailsBadRequest
@@ -86,6 +87,36 @@ export async function libraryGetLibraryDetails(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    sectionKey,
+    includeDetails,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  sectionKey: number,
+  includeDetails?: operations.IncludeDetails | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetLibraryDetailsResponse,
+      | errors.GetLibraryDetailsBadRequest
+      | errors.GetLibraryDetailsUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.GetLibraryDetailsRequest = {
     sectionKey: sectionKey,
     includeDetails: includeDetails,
@@ -97,7 +128,7 @@ export async function libraryGetLibraryDetails(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -124,6 +155,7 @@ export async function libraryGetLibraryDetails(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get-library-details",
     oAuth2Scopes: [],
 
@@ -147,7 +179,7 @@ export async function libraryGetLibraryDetails(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -158,7 +190,7 @@ export async function libraryGetLibraryDetails(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -191,8 +223,8 @@ export async function libraryGetLibraryDetails(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

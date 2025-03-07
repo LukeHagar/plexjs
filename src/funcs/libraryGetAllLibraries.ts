@@ -19,6 +19,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -32,10 +33,10 @@ import { Result } from "../sdk/types/fp.js";
  * Libraries have features beyond just being a collection of media; for starters, they include information about supported types, filters and sorts.
  * This allows a client to provide a rich interface around the media (e.g. allow sorting movies by release year).
  */
-export async function libraryGetAllLibraries(
+export function libraryGetAllLibraries(
   client: PlexAPICore,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetAllLibrariesResponse,
     | errors.GetAllLibrariesBadRequest
@@ -49,6 +50,32 @@ export async function libraryGetAllLibraries(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetAllLibrariesResponse,
+      | errors.GetAllLibrariesBadRequest
+      | errors.GetAllLibrariesUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const path = pathToFunc("/library/sections")();
 
   const headers = new Headers(compactMap({
@@ -60,6 +87,7 @@ export async function libraryGetAllLibraries(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get-all-libraries",
     oAuth2Scopes: [],
 
@@ -81,7 +109,7 @@ export async function libraryGetAllLibraries(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -92,7 +120,7 @@ export async function libraryGetAllLibraries(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -125,8 +153,8 @@ export async function libraryGetAllLibraries(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

@@ -368,7 +368,9 @@ export type PostUsersSignInDataUserPlexAccount = {
    * Description of the Plex Pass subscription
    */
   subscriptionDescription: string | null;
-  subscriptions: Array<PostUsersSignInDataAuthenticationSubscription>;
+  subscriptions?:
+    | Array<PostUsersSignInDataAuthenticationSubscription>
+    | undefined;
   /**
    * URL of the account thumbnail
    */
@@ -1384,7 +1386,7 @@ export const PostUsersSignInDataUserPlexAccount$inboundSchema: z.ZodType<
   subscriptionDescription: z.nullable(z.string()),
   subscriptions: z.array(
     z.lazy(() => PostUsersSignInDataAuthenticationSubscription$inboundSchema),
-  ),
+  ).optional(),
   thumb: z.string(),
   title: z.string(),
   twoFactorEnabled: z.boolean().default(false),
@@ -1431,7 +1433,9 @@ export type PostUsersSignInDataUserPlexAccount$Outbound = {
   services: Array<PostUsersSignInDataServices$Outbound>;
   subscription: PostUsersSignInDataSubscription$Outbound;
   subscriptionDescription: string | null;
-  subscriptions: Array<PostUsersSignInDataAuthenticationSubscription$Outbound>;
+  subscriptions?:
+    | Array<PostUsersSignInDataAuthenticationSubscription$Outbound>
+    | undefined;
   thumb: string;
   title: string;
   twoFactorEnabled: boolean;
@@ -1484,7 +1488,7 @@ export const PostUsersSignInDataUserPlexAccount$outboundSchema: z.ZodType<
   subscriptionDescription: z.nullable(z.string()),
   subscriptions: z.array(
     z.lazy(() => PostUsersSignInDataAuthenticationSubscription$outboundSchema),
-  ),
+  ).optional(),
   thumb: z.string(),
   title: z.string(),
   twoFactorEnabled: z.boolean().default(false),

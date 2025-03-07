@@ -22,6 +22,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import { GetServerResourcesServerList } from "../sdk/models/operations/getserverresources.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -30,14 +31,14 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Get Plex server access tokens and server connections
  */
-export async function plexGetServerResources(
+export function plexGetServerResources(
   client: PlexAPICore,
   clientID: string,
   includeHttps?: operations.IncludeHttps | undefined,
   includeRelay?: operations.IncludeRelay | undefined,
   includeIPv6?: operations.IncludeIPv6 | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetServerResourcesResponse,
     | errors.GetServerResourcesBadRequest
@@ -50,6 +51,40 @@ export async function plexGetServerResources(
     | RequestTimeoutError
     | ConnectionError
   >
+> {
+  return new APIPromise($do(
+    client,
+    clientID,
+    includeHttps,
+    includeRelay,
+    includeIPv6,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  clientID: string,
+  includeHttps?: operations.IncludeHttps | undefined,
+  includeRelay?: operations.IncludeRelay | undefined,
+  includeIPv6?: operations.IncludeIPv6 | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetServerResourcesResponse,
+      | errors.GetServerResourcesBadRequest
+      | errors.GetServerResourcesUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
 > {
   const input: operations.GetServerResourcesRequest = {
     clientID: clientID,
@@ -64,7 +99,7 @@ export async function plexGetServerResources(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -96,6 +131,7 @@ export async function plexGetServerResources(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "get-server-resources",
     oAuth2Scopes: [],
 
@@ -119,7 +155,7 @@ export async function plexGetServerResources(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -130,7 +166,7 @@ export async function plexGetServerResources(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -163,8 +199,8 @@ export async function plexGetServerResources(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

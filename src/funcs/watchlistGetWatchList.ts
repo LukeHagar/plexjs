@@ -22,6 +22,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import { GetWatchListServerList } from "../sdk/models/operations/getwatchlist.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -30,11 +31,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Get User Watchlist
  */
-export async function watchlistGetWatchList(
+export function watchlistGetWatchList(
   client: PlexAPICore,
   request: operations.GetWatchListRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetWatchListResponse,
     | errors.GetWatchListBadRequest
@@ -48,13 +49,41 @@ export async function watchlistGetWatchList(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  request: operations.GetWatchListRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetWatchListResponse,
+      | errors.GetWatchListBadRequest
+      | errors.GetWatchListUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.GetWatchListRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -94,6 +123,7 @@ export async function watchlistGetWatchList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "get-watch-list",
     oAuth2Scopes: [],
 
@@ -117,7 +147,7 @@ export async function watchlistGetWatchList(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -128,7 +158,7 @@ export async function watchlistGetWatchList(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -161,8 +191,8 @@ export async function watchlistGetWatchList(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

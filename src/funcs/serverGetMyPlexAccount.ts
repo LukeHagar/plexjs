@@ -19,6 +19,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -27,10 +28,10 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Returns MyPlex Account Information
  */
-export async function serverGetMyPlexAccount(
+export function serverGetMyPlexAccount(
   client: PlexAPICore,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetMyPlexAccountResponse,
     | errors.GetMyPlexAccountBadRequest
@@ -44,6 +45,32 @@ export async function serverGetMyPlexAccount(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetMyPlexAccountResponse,
+      | errors.GetMyPlexAccountBadRequest
+      | errors.GetMyPlexAccountUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const path = pathToFunc("/myplex/account")();
 
   const headers = new Headers(compactMap({
@@ -55,6 +82,7 @@ export async function serverGetMyPlexAccount(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getMyPlexAccount",
     oAuth2Scopes: [],
 
@@ -76,7 +104,7 @@ export async function serverGetMyPlexAccount(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -87,7 +115,7 @@ export async function serverGetMyPlexAccount(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -120,8 +148,8 @@ export async function serverGetMyPlexAccount(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

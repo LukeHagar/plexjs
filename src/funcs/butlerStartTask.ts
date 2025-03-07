@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -33,11 +34,11 @@ import { Result } from "../sdk/types/fp.js";
  * 3. If a task is configured to run at a random time during the configured window and we are within that window, the task will be scheduled at a random time within the window.
  * 4. If we are outside the configured window, the task will start immediately.
  */
-export async function butlerStartTask(
+export function butlerStartTask(
   client: PlexAPICore,
   taskName: operations.TaskName,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.StartTaskResponse,
     | errors.StartTaskBadRequest
@@ -51,6 +52,34 @@ export async function butlerStartTask(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    taskName,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  taskName: operations.TaskName,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.StartTaskResponse,
+      | errors.StartTaskBadRequest
+      | errors.StartTaskUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.StartTaskRequest = {
     taskName: taskName,
   };
@@ -61,7 +90,7 @@ export async function butlerStartTask(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -84,6 +113,7 @@ export async function butlerStartTask(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "startTask",
     oAuth2Scopes: [],
 
@@ -106,7 +136,7 @@ export async function butlerStartTask(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -117,7 +147,7 @@ export async function butlerStartTask(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -148,8 +178,8 @@ export async function butlerStartTask(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

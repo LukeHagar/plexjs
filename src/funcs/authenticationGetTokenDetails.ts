@@ -20,6 +20,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import { GetTokenDetailsServerList } from "../sdk/models/operations/gettokendetails.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -28,10 +29,10 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Get the User data from the provided X-Plex-Token
  */
-export async function authenticationGetTokenDetails(
+export function authenticationGetTokenDetails(
   client: PlexAPICore,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetTokenDetailsResponse,
     | errors.GetTokenDetailsBadRequest
@@ -44,6 +45,32 @@ export async function authenticationGetTokenDetails(
     | RequestTimeoutError
     | ConnectionError
   >
+> {
+  return new APIPromise($do(
+    client,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetTokenDetailsResponse,
+      | errors.GetTokenDetailsBadRequest
+      | errors.GetTokenDetailsUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
 > {
   const baseURL = options?.serverURL
     || pathToFunc(GetTokenDetailsServerList[0], { charEncoding: "percent" })();
@@ -59,6 +86,7 @@ export async function authenticationGetTokenDetails(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getTokenDetails",
     oAuth2Scopes: [],
 
@@ -80,7 +108,7 @@ export async function authenticationGetTokenDetails(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -91,7 +119,7 @@ export async function authenticationGetTokenDetails(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -124,8 +152,8 @@ export async function authenticationGetTokenDetails(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

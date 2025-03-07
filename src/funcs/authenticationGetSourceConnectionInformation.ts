@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -30,11 +31,11 @@ import { Result } from "../sdk/types/fp.js";
  * If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token.
  * Note: requires Plex Media Server >= 1.15.4.
  */
-export async function authenticationGetSourceConnectionInformation(
+export function authenticationGetSourceConnectionInformation(
   client: PlexAPICore,
   source: string,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetSourceConnectionInformationResponse,
     | errors.GetSourceConnectionInformationBadRequest
@@ -47,6 +48,34 @@ export async function authenticationGetSourceConnectionInformation(
     | RequestTimeoutError
     | ConnectionError
   >
+> {
+  return new APIPromise($do(
+    client,
+    source,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  source: string,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetSourceConnectionInformationResponse,
+      | errors.GetSourceConnectionInformationBadRequest
+      | errors.GetSourceConnectionInformationUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
 > {
   const input: operations.GetSourceConnectionInformationRequest = {
     source: source,
@@ -61,7 +90,7 @@ export async function authenticationGetSourceConnectionInformation(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -81,6 +110,7 @@ export async function authenticationGetSourceConnectionInformation(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getSourceConnectionInformation",
     oAuth2Scopes: [],
 
@@ -104,7 +134,7 @@ export async function authenticationGetSourceConnectionInformation(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -115,7 +145,7 @@ export async function authenticationGetSourceConnectionInformation(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -152,8 +182,8 @@ export async function authenticationGetSourceConnectionInformation(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

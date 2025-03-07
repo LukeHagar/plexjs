@@ -21,6 +21,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import { GetPinServerList } from "../sdk/models/operations/getpin.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Retrieve a Pin ID from Plex.tv to use for authentication flows
  */
-export async function plexGetPin(
+export function plexGetPin(
   client: PlexAPICore,
   request: operations.GetPinRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetPinResponse,
     | errors.GetPinBadRequest
@@ -46,13 +47,40 @@ export async function plexGetPin(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  request: operations.GetPinRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetPinResponse,
+      | errors.GetPinBadRequest
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.GetPinRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -92,6 +120,7 @@ export async function plexGetPin(
   }));
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getPin",
     oAuth2Scopes: [],
 
@@ -114,7 +143,7 @@ export async function plexGetPin(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -125,7 +154,7 @@ export async function plexGetPin(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -156,8 +185,8 @@ export async function plexGetPin(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

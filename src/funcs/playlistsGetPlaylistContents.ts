@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -32,12 +33,12 @@ import { Result } from "../sdk/types/fp.js";
  * For example, you could use this to display a list of recently added albums vis a smart playlist.
  * Note that for dumb playlists, items have a `playlistItemID` attribute which is used for deleting or moving items.
  */
-export async function playlistsGetPlaylistContents(
+export function playlistsGetPlaylistContents(
   client: PlexAPICore,
   playlistID: number,
   type: operations.GetPlaylistContentsQueryParamType,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetPlaylistContentsResponse,
     | errors.GetPlaylistContentsBadRequest
@@ -51,6 +52,36 @@ export async function playlistsGetPlaylistContents(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    playlistID,
+    type,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  playlistID: number,
+  type: operations.GetPlaylistContentsQueryParamType,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetPlaylistContentsResponse,
+      | errors.GetPlaylistContentsBadRequest
+      | errors.GetPlaylistContentsUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.GetPlaylistContentsRequest = {
     playlistID: playlistID,
     type: type,
@@ -63,7 +94,7 @@ export async function playlistsGetPlaylistContents(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -90,6 +121,7 @@ export async function playlistsGetPlaylistContents(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getPlaylistContents",
     oAuth2Scopes: [],
 
@@ -113,7 +145,7 @@ export async function playlistsGetPlaylistContents(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -124,7 +156,7 @@ export async function playlistsGetPlaylistContents(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -157,8 +189,8 @@ export async function playlistsGetPlaylistContents(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

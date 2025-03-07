@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,13 +30,13 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
  */
-export async function logLogLine(
+export function logLogLine(
   client: PlexAPICore,
   level: operations.Level,
   message: string,
   source: string,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.LogLineResponse,
     | errors.LogLineBadRequest
@@ -49,6 +50,38 @@ export async function logLogLine(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    level,
+    message,
+    source,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  level: operations.Level,
+  message: string,
+  source: string,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.LogLineResponse,
+      | errors.LogLineBadRequest
+      | errors.LogLineUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.LogLineRequest = {
     level: level,
     message: message,
@@ -61,7 +94,7 @@ export async function logLogLine(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -83,6 +116,7 @@ export async function logLogLine(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "logLine",
     oAuth2Scopes: [],
 
@@ -106,7 +140,7 @@ export async function logLogLine(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -117,7 +151,7 @@ export async function logLogLine(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -148,8 +182,8 @@ export async function logLogLine(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

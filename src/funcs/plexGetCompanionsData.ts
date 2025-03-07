@@ -20,6 +20,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import { GetCompanionsDataServerList } from "../sdk/models/operations/getcompanionsdata.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -28,10 +29,10 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Get Companions Data
  */
-export async function plexGetCompanionsData(
+export function plexGetCompanionsData(
   client: PlexAPICore,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetCompanionsDataResponse,
     | errors.GetCompanionsDataBadRequest
@@ -44,6 +45,32 @@ export async function plexGetCompanionsData(
     | RequestTimeoutError
     | ConnectionError
   >
+> {
+  return new APIPromise($do(
+    client,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetCompanionsDataResponse,
+      | errors.GetCompanionsDataBadRequest
+      | errors.GetCompanionsDataUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
 > {
   const baseURL = options?.serverURL
     || pathToFunc(GetCompanionsDataServerList[0], {
@@ -61,6 +88,7 @@ export async function plexGetCompanionsData(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getCompanionsData",
     oAuth2Scopes: [],
 
@@ -82,7 +110,7 @@ export async function plexGetCompanionsData(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -93,7 +121,7 @@ export async function plexGetCompanionsData(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -126,8 +154,8 @@ export async function plexGetCompanionsData(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

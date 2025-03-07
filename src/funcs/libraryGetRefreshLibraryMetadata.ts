@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,12 +30,12 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * This endpoint Refreshes all the Metadata of the library.
  */
-export async function libraryGetRefreshLibraryMetadata(
+export function libraryGetRefreshLibraryMetadata(
   client: PlexAPICore,
   sectionKey: number,
   force?: operations.Force | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetRefreshLibraryMetadataResponse,
     | errors.GetRefreshLibraryMetadataBadRequest
@@ -48,6 +49,36 @@ export async function libraryGetRefreshLibraryMetadata(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    sectionKey,
+    force,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  sectionKey: number,
+  force?: operations.Force | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetRefreshLibraryMetadataResponse,
+      | errors.GetRefreshLibraryMetadataBadRequest
+      | errors.GetRefreshLibraryMetadataUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.GetRefreshLibraryMetadataRequest = {
     sectionKey: sectionKey,
     force: force,
@@ -60,7 +91,7 @@ export async function libraryGetRefreshLibraryMetadata(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -87,6 +118,7 @@ export async function libraryGetRefreshLibraryMetadata(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get-refresh-library-metadata",
     oAuth2Scopes: [],
 
@@ -110,7 +142,7 @@ export async function libraryGetRefreshLibraryMetadata(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -121,7 +153,7 @@ export async function libraryGetRefreshLibraryMetadata(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -152,8 +184,8 @@ export async function libraryGetRefreshLibraryMetadata(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

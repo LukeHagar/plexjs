@@ -344,13 +344,39 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 ### Server Variables
 
 The default server `{protocol}://{ip}:{port}` contains variables and is set to `https://10.10.10.47:32400` by default. To override default values, the following parameters are available when initializing the SDK client instance:
- * `protocol: models.ServerProtocol`
- * `ip: string`
- * `port: string`
+
+| Variable   | Parameter                         | Supported Values           | Default         | Description                                    |
+| ---------- | --------------------------------- | -------------------------- | --------------- | ---------------------------------------------- |
+| `protocol` | `protocol: models.ServerProtocol` | - `"http"`<br/>- `"https"` | `"https"`       | The protocol to use for the server connection  |
+| `ip`       | `ip: string`                      | string                     | `"10.10.10.47"` | The IP address or hostname of your Plex Server |
+| `port`     | `port: string`                    | string                     | `"32400"`       | The port of your Plex Server                   |
+
+#### Example
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  protocol: "https",
+  ip: "e0c3:bcc0:6bac:dccc:c4ec:34b1:ca98:4cb9",
+  port: "40311",
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.server.getServerCapabilities();
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

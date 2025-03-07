@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,13 +30,13 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * This endpoint will return a list of library specific hubs
  */
-export async function hubsGetLibraryHubs(
+export function hubsGetLibraryHubs(
   client: PlexAPICore,
   sectionId: number,
   count?: number | undefined,
   onlyTransient?: operations.QueryParamOnlyTransient | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetLibraryHubsResponse,
     | errors.GetLibraryHubsBadRequest
@@ -49,6 +50,38 @@ export async function hubsGetLibraryHubs(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    sectionId,
+    count,
+    onlyTransient,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  sectionId: number,
+  count?: number | undefined,
+  onlyTransient?: operations.QueryParamOnlyTransient | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetLibraryHubsResponse,
+      | errors.GetLibraryHubsBadRequest
+      | errors.GetLibraryHubsUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.GetLibraryHubsRequest = {
     sectionId: sectionId,
     count: count,
@@ -61,7 +94,7 @@ export async function hubsGetLibraryHubs(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -89,6 +122,7 @@ export async function hubsGetLibraryHubs(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getLibraryHubs",
     oAuth2Scopes: [],
 
@@ -112,7 +146,7 @@ export async function hubsGetLibraryHubs(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -123,7 +157,7 @@ export async function hubsGetLibraryHubs(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -156,8 +190,8 @@ export async function hubsGetLibraryHubs(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

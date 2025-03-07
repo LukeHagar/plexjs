@@ -296,7 +296,7 @@ export type GetTokenDetailsUserPlexAccount = {
    * Description of the Plex Pass subscription
    */
   subscriptionDescription: string | null;
-  subscriptions: Array<GetTokenDetailsSubscription>;
+  subscriptions?: Array<GetTokenDetailsSubscription> | undefined;
   /**
    * URL of the account thumbnail
    */
@@ -852,7 +852,7 @@ export const GetTokenDetailsUserPlexAccount$inboundSchema: z.ZodType<
   subscriptionDescription: z.nullable(z.string()),
   subscriptions: z.array(
     z.lazy(() => GetTokenDetailsSubscription$inboundSchema),
-  ),
+  ).optional(),
   thumb: z.string(),
   title: z.string(),
   twoFactorEnabled: z.boolean().default(false),
@@ -897,7 +897,7 @@ export type GetTokenDetailsUserPlexAccount$Outbound = {
   services: Array<Services$Outbound>;
   subscription: Subscription$Outbound;
   subscriptionDescription: string | null;
-  subscriptions: Array<GetTokenDetailsSubscription$Outbound>;
+  subscriptions?: Array<GetTokenDetailsSubscription$Outbound> | undefined;
   thumb: string;
   title: string;
   twoFactorEnabled: boolean;
@@ -948,7 +948,7 @@ export const GetTokenDetailsUserPlexAccount$outboundSchema: z.ZodType<
   subscriptionDescription: z.nullable(z.string()),
   subscriptions: z.array(
     z.lazy(() => GetTokenDetailsSubscription$outboundSchema),
-  ),
+  ).optional(),
   thumb: z.string(),
   title: z.string(),
   twoFactorEnabled: z.boolean().default(false),

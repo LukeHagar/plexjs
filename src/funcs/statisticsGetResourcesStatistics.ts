@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * This will return the resources for the server
  */
-export async function statisticsGetResourcesStatistics(
+export function statisticsGetResourcesStatistics(
   client: PlexAPICore,
   timespan?: number | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetResourcesStatisticsResponse,
     | errors.GetResourcesStatisticsBadRequest
@@ -47,6 +48,34 @@ export async function statisticsGetResourcesStatistics(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    timespan,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  timespan?: number | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetResourcesStatisticsResponse,
+      | errors.GetResourcesStatisticsBadRequest
+      | errors.GetResourcesStatisticsUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.GetResourcesStatisticsRequest = {
     timespan: timespan,
   };
@@ -58,7 +87,7 @@ export async function statisticsGetResourcesStatistics(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -78,6 +107,7 @@ export async function statisticsGetResourcesStatistics(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getResourcesStatistics",
     oAuth2Scopes: [],
 
@@ -101,7 +131,7 @@ export async function statisticsGetResourcesStatistics(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -112,7 +142,7 @@ export async function statisticsGetResourcesStatistics(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -145,8 +175,8 @@ export async function statisticsGetResourcesStatistics(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

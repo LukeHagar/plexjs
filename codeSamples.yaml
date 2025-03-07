@@ -419,7 +419,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: added
+          label: get-recently-added
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Type } from "@lukehagar/plexjs/sdk/models/operations";
@@ -504,7 +504,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: identity
+          label: get-server-identity
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -563,7 +563,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: data
+          label: get-media-meta-data
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -598,7 +598,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: image
+          label: get-banner-image
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -645,7 +645,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: image
+          label: get-thumb-image
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -692,7 +692,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: library
+          label: get-recently-added-library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -731,7 +731,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: libraries
+          label: get-search-all-libraries
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
@@ -758,7 +758,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: libraries
+          label: get-all-libraries
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -778,7 +778,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: list
+          label: get-watch-list
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Filter } from "@lukehagar/plexjs/sdk/models/operations";
@@ -822,7 +822,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: details
+          label: get-library-details
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -842,7 +842,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: library
+          label: get-actors-library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetActorsLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -863,7 +863,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: library
+          label: get-all-media-library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetAllMediaLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -887,7 +887,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: library
+          label: get-countries-library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetCountriesLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -908,7 +908,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: library
+          label: get-genres-library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetGenresLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -929,7 +929,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: metadata
+          label: get-refresh-library-metadata
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Force } from "@lukehagar/plexjs/sdk/models/operations";
@@ -950,7 +950,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: library
+          label: get-search-library
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetSearchLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -971,7 +971,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: items
+          label: get-library-items
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetLibraryItemsQueryParamType, Tag } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1059,7 +1059,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: providers
+          label: get-media-providers
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1365,7 +1365,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: resources
+          label: get-server-resources
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1688,7 +1688,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: users
+          label: get-users
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1720,7 +1720,7 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: data
+          label: post-users-sign-in-data
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 

@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,12 +30,12 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * This resource returns hash values for local files
  */
-export async function libraryGetFileHash(
+export function libraryGetFileHash(
   client: PlexAPICore,
   url: string,
   type?: number | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetFileHashResponse,
     | errors.GetFileHashBadRequest
@@ -48,6 +49,36 @@ export async function libraryGetFileHash(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    url,
+    type,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  url: string,
+  type?: number | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetFileHashResponse,
+      | errors.GetFileHashBadRequest
+      | errors.GetFileHashUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.GetFileHashRequest = {
     url: url,
     type: type,
@@ -59,7 +90,7 @@ export async function libraryGetFileHash(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -80,6 +111,7 @@ export async function libraryGetFileHash(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getFileHash",
     oAuth2Scopes: [],
 
@@ -103,7 +135,7 @@ export async function libraryGetFileHash(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -114,7 +146,7 @@ export async function libraryGetFileHash(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -145,8 +177,8 @@ export async function libraryGetFileHash(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

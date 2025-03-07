@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,13 +30,13 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Imports m3u playlists by passing a path on the server to scan for m3u-formatted playlist files, or a path to a single playlist file.
  */
-export async function playlistsUploadPlaylist(
+export function playlistsUploadPlaylist(
   client: PlexAPICore,
   path: string,
   force: operations.QueryParamForce,
   sectionID: number | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.UploadPlaylistResponse,
     | errors.UploadPlaylistBadRequest
@@ -49,6 +50,38 @@ export async function playlistsUploadPlaylist(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    path,
+    force,
+    sectionID,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  path: string,
+  force: operations.QueryParamForce,
+  sectionID: number | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.UploadPlaylistResponse,
+      | errors.UploadPlaylistBadRequest
+      | errors.UploadPlaylistUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.UploadPlaylistRequest = {
     path: path,
     force: force,
@@ -61,7 +94,7 @@ export async function playlistsUploadPlaylist(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -83,6 +116,7 @@ export async function playlistsUploadPlaylist(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "uploadPlaylist",
     oAuth2Scopes: [],
 
@@ -106,7 +140,7 @@ export async function playlistsUploadPlaylist(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -117,7 +151,7 @@ export async function playlistsUploadPlaylist(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -148,8 +182,8 @@ export async function playlistsUploadPlaylist(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

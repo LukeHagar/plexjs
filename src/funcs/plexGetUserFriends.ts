@@ -20,6 +20,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import { GetUserFriendsServerList } from "../sdk/models/operations/getuserfriends.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -28,10 +29,10 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Get friends of provided auth token.
  */
-export async function plexGetUserFriends(
+export function plexGetUserFriends(
   client: PlexAPICore,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetUserFriendsResponse,
     | errors.GetUserFriendsBadRequest
@@ -44,6 +45,32 @@ export async function plexGetUserFriends(
     | RequestTimeoutError
     | ConnectionError
   >
+> {
+  return new APIPromise($do(
+    client,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetUserFriendsResponse,
+      | errors.GetUserFriendsBadRequest
+      | errors.GetUserFriendsUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
 > {
   const baseURL = options?.serverURL
     || pathToFunc(GetUserFriendsServerList[0], { charEncoding: "percent" })();
@@ -59,6 +86,7 @@ export async function plexGetUserFriends(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "getUserFriends",
     oAuth2Scopes: [],
 
@@ -80,7 +108,7 @@ export async function plexGetUserFriends(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -91,7 +119,7 @@ export async function plexGetUserFriends(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -124,8 +152,8 @@ export async function plexGetUserFriends(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

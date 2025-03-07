@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Search the provided query across all library sections, or a single section, and return matches as hubs, split up by type.
  */
-export async function libraryGetSearchAllLibraries(
+export function libraryGetSearchAllLibraries(
   client: PlexAPICore,
   request: operations.GetSearchAllLibrariesRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetSearchAllLibrariesResponse,
     | errors.GetSearchAllLibrariesBadRequest
@@ -47,6 +48,34 @@ export async function libraryGetSearchAllLibraries(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  request: operations.GetSearchAllLibrariesRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetSearchAllLibrariesResponse,
+      | errors.GetSearchAllLibrariesBadRequest
+      | errors.GetSearchAllLibrariesUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -54,7 +83,7 @@ export async function libraryGetSearchAllLibraries(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -87,6 +116,7 @@ export async function libraryGetSearchAllLibraries(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get-search-all-libraries",
     oAuth2Scopes: [],
 
@@ -110,7 +140,7 @@ export async function libraryGetSearchAllLibraries(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -121,7 +151,7 @@ export async function libraryGetSearchAllLibraries(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -154,8 +184,8 @@ export async function libraryGetSearchAllLibraries(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

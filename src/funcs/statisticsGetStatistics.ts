@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * This will return the media statistics for the server
  */
-export async function statisticsGetStatistics(
+export function statisticsGetStatistics(
   client: PlexAPICore,
   timespan?: number | undefined,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetStatisticsResponse,
     | errors.GetStatisticsBadRequest
@@ -47,6 +48,34 @@ export async function statisticsGetStatistics(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    timespan,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  timespan?: number | undefined,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetStatisticsResponse,
+      | errors.GetStatisticsBadRequest
+      | errors.GetStatisticsUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const input: operations.GetStatisticsRequest = {
     timespan: timespan,
   };
@@ -57,7 +86,7 @@ export async function statisticsGetStatistics(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -77,6 +106,7 @@ export async function statisticsGetStatistics(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getStatistics",
     oAuth2Scopes: [],
 
@@ -100,7 +130,7 @@ export async function statisticsGetStatistics(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -111,7 +141,7 @@ export async function statisticsGetStatistics(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -144,8 +174,8 @@ export async function statisticsGetStatistics(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

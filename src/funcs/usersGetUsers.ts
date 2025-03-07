@@ -21,6 +21,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import { GetUsersServerList } from "../sdk/models/operations/getusers.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Get list of all users that are friends and have library access with the provided Plex authentication token
  */
-export async function usersGetUsers(
+export function usersGetUsers(
   client: PlexAPICore,
   request: operations.GetUsersRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetUsersResponse,
     | errors.GetUsersBadRequest
@@ -47,13 +48,41 @@ export async function usersGetUsers(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  request: operations.GetUsersRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetUsersResponse,
+      | errors.GetUsersBadRequest
+      | errors.GetUsersUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.GetUsersRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -126,6 +155,7 @@ export async function usersGetUsers(
   }));
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "get-users",
     oAuth2Scopes: [],
 
@@ -147,7 +177,7 @@ export async function usersGetUsers(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -158,7 +188,7 @@ export async function usersGetUsers(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -192,8 +222,8 @@ export async function usersGetUsers(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

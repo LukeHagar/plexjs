@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * This endpoint will return all the (meta)data of a library item specified with by the ratingKey.
  */
-export async function libraryGetMediaMetaData(
+export function libraryGetMediaMetaData(
   client: PlexAPICore,
   request: operations.GetMediaMetaDataRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GetMediaMetaDataResponse,
     | errors.GetMediaMetaDataBadRequest
@@ -47,13 +48,41 @@ export async function libraryGetMediaMetaData(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: PlexAPICore,
+  request: operations.GetMediaMetaDataRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GetMediaMetaDataResponse,
+      | errors.GetMediaMetaDataBadRequest
+      | errors.GetMediaMetaDataUnauthorized
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.GetMediaMetaDataRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -92,6 +121,7 @@ export async function libraryGetMediaMetaData(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get-media-meta-data",
     oAuth2Scopes: [],
 
@@ -115,7 +145,7 @@ export async function libraryGetMediaMetaData(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -126,7 +156,7 @@ export async function libraryGetMediaMetaData(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -159,8 +189,8 @@ export async function libraryGetMediaMetaData(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

@@ -31,29 +31,29 @@ export const ServerProtocol = {
 export type ServerProtocol = ClosedEnum<typeof ServerProtocol>;
 
 export type SDKOptions = {
-  accessToken?: string | (() => Promise<string>);
+  accessToken?: string | (() => Promise<string>) | undefined;
 
   httpClient?: HTTPClient;
   /**
    * Allows overriding the default server used by the SDK
    */
-  serverIdx?: number;
+  serverIdx?: number | undefined;
   /**
    * Sets the protocol variable for url substitution
    */
-  protocol?: ServerProtocol;
+  protocol?: ServerProtocol | undefined;
   /**
    * Sets the ip variable for url substitution
    */
-  ip?: string;
+  ip?: string | undefined;
   /**
    * Sets the port variable for url substitution
    */
-  port?: string;
+  port?: string | undefined;
   /**
    * Allows overriding the default server URL used by the SDK
    */
-  serverURL?: string;
+  serverURL?: string | undefined;
   /**
    * Allows overriding the default retry config used by the SDK
    */
@@ -90,7 +90,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "0.0.3",
-  sdkVersion: "0.34.0",
-  genVersion: "2.506.0",
-  userAgent: "speakeasy-sdk/typescript 0.34.0 2.506.0 0.0.3 @lukehagar/plexjs",
+  sdkVersion: "0.35.0",
+  genVersion: "2.545.2",
+  userAgent: "speakeasy-sdk/typescript 0.35.0 2.545.2 0.0.3 @lukehagar/plexjs",
 } as const;
