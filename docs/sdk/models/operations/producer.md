@@ -6,23 +6,21 @@
 import { Producer } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Producer = {
-  id: 109501,
-  filter: "actor=109501",
-  tag: "Bob Odenkirk",
-  tagKey: "5d77683254f42c001f8c3f69",
-  role: "Jimmy McGill",
+  id: 126522,
+  filter: "producer=126522",
+  tag: "Amelia Knapp",
+  tagKey: "5d77683d85719b001f3a535e",
   thumb:
-    "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg",
+    "https://metadata-static.plex.tv/7/people/708568fd018d7aa8b1032dcf867747e8.jpg",
 };
 ```
 
 ## Fields
 
-| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   | Example                                                                       |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `id`                                                                          | *number*                                                                      | :heavy_check_mark:                                                            | The unique role identifier.                                                   | 109501                                                                        |
-| `filter`                                                                      | *string*                                                                      | :heavy_check_mark:                                                            | The filter string for the role.                                               | actor=109501                                                                  |
-| `tag`                                                                         | *string*                                                                      | :heavy_check_mark:                                                            | The actor's name.                                                             | Bob Odenkirk                                                                  |
-| `tagKey`                                                                      | *string*                                                                      | :heavy_check_mark:                                                            | A key associated with the actor tag.                                          | 5d77683254f42c001f8c3f69                                                      |
-| `role`                                                                        | *string*                                                                      | :heavy_minus_sign:                                                            | The character name or role.                                                   | Jimmy McGill                                                                  |
-| `thumb`                                                                       | *string*                                                                      | :heavy_minus_sign:                                                            | URL for the role thumbnail image.                                             | https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `id`                                                                               | *number*                                                                           | :heavy_check_mark:                                                                 | Unique identifier for the producer.                                                | 126522                                                                             |
+| `filter`                                                                           | *string*                                                                           | :heavy_check_mark:                                                                 | The filter string used to query this producer.                                     | producer=126522                                                                    |
+| `tag`                                                                              | *string*                                                                           | :heavy_check_mark:                                                                 | The name of the producer                                                           | Amelia Knapp                                                                       |
+| `tagKey`                                                                           | *string*                                                                           | :heavy_minus_sign:                                                                 | A unique key associated with the producer's tag, used for internal identification. | 5d77683d85719b001f3a535e                                                           |
+| `thumb`                                                                            | *string*                                                                           | :heavy_minus_sign:                                                                 | The URL of the thumbnail image for the actor.                                      | https://metadata-static.plex.tv/7/people/708568fd018d7aa8b1032dcf867747e8.jpg      |

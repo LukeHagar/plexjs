@@ -6,7 +6,7 @@
 import { GetMediaMetaDataOptimizedForStreaming1 } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMediaMetaDataOptimizedForStreaming1 =
-  GetMediaMetaDataOptimizedForStreaming1.One;
+  GetMediaMetaDataOptimizedForStreaming1.Zero;
 ```
 
 ## Values

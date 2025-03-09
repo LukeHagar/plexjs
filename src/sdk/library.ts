@@ -13,7 +13,6 @@ import { libraryGetLibraryDetails } from "../funcs/libraryGetLibraryDetails.js";
 import { libraryGetLibraryItems } from "../funcs/libraryGetLibraryItems.js";
 import { libraryGetMediaMetaData } from "../funcs/libraryGetMediaMetaData.js";
 import { libraryGetMetadataChildren } from "../funcs/libraryGetMetadataChildren.js";
-import { libraryGetOnDeck } from "../funcs/libraryGetOnDeck.js";
 import { libraryGetRecentlyAddedLibrary } from "../funcs/libraryGetRecentlyAddedLibrary.js";
 import { libraryGetRefreshLibraryMetadata } from "../funcs/libraryGetRefreshLibraryMetadata.js";
 import { libraryGetSearchAllLibraries } from "../funcs/libraryGetSearchAllLibraries.js";
@@ -388,21 +387,6 @@ export class Library extends ClientSDK {
       this,
       type,
       includeGuids,
-      options,
-    ));
-  }
-
-  /**
-   * Get On Deck
-   *
-   * @remarks
-   * This endpoint will return the on deck content.
-   */
-  async getOnDeck(
-    options?: RequestOptions,
-  ): Promise<operations.GetOnDeckResponse> {
-    return unwrapAsync(libraryGetOnDeck(
-      this,
       options,
     ));
   }

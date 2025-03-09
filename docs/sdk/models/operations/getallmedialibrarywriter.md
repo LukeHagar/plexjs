@@ -6,7 +6,7 @@
 import { GetAllMediaLibraryWriter } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetAllMediaLibraryWriter = {
-  tag: "Danny Boyle",
+  tag: "Jamie P. Hanson",
 };
 ```
 
@@ -14,4 +14,4 @@ let value: GetAllMediaLibraryWriter = {
 
 | Field              | Type               | Required           | Description        | Example            |
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `tag`              | *string*           | :heavy_check_mark: | The role of Writer | Danny Boyle        |
+| `tag`              | *string*           | :heavy_check_mark: | The role of Writer | Jamie P. Hanson    |

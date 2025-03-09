@@ -28,7 +28,7 @@ let value: PostUsersSignInDataUserPlexAccount = {
   homeSize: 1,
   id: 13692262,
   joinedAt: 1556281940,
-  locale: "no",
+  locale: "hi",
   mailingListStatus: PostUsersSignInDataMailingListStatus.Active,
   maxHomeSize: 15,
   profile: {
@@ -75,7 +75,7 @@ let value: PostUsersSignInDataUserPlexAccount = {
       state: PostUsersSignInDataState.Ended,
       billing: {
         internalPaymentMethod: {},
-        paymentMethodId: 83422,
+        paymentMethodId: 584476,
       },
     },
   ],

@@ -7,7 +7,7 @@ import { GetFileHashResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetFileHashResponse = {
   contentType: "<value>",
-  statusCode: 305,
+  statusCode: 308,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

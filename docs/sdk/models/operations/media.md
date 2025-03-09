@@ -6,14 +6,14 @@
 import { Media } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Media = {
-  id: 119534,
-  duration: 11558112,
-  bitrate: 25025,
+  id: 387322,
+  duration: 9610350,
+  bitrate: 25512,
   width: 3840,
-  height: 2072,
-  aspectRatio: 1.85,
-  audioProfile: "dts",
+  height: 1602,
+  aspectRatio: 2.35,
   audioChannels: 6,
+  displayOffset: 50,
   audioCodec: "eac3",
   videoCodec: "hevc",
   videoResolution: "4k",
@@ -21,61 +21,74 @@ let value: Media = {
   videoFrameRate: "24p",
   videoProfile: "main 10",
   hasVoiceActivity: false,
+  audioProfile: "dts",
   has64bitOffsets: false,
   part: [
     {
-      id: 119542,
-      key: "/library/parts/119542/1680457526/file.mkv",
-      duration: 11558112,
-      file:
-        "/movies/Avatar The Way of Water (2022)/Avatar.The.Way.of.Water.2022.2160p.WEB-DL.DDP5.1.Atmos.DV.HDR10.HEVC-CMRG.mkv",
-      size: 36158371307,
+      accessible: true,
+      exists: true,
+      id: 418385,
+      key: "/library/parts/418385/1735864239/file.mkv",
+      indexes: "sd",
+      duration: 9610350,
+      file: "/mnt/Movies_1/W/Wicked (2024).mkv",
+      size: 30649952104,
+      packetLength: 188,
       container: "mkv",
+      videoProfile: "main 10",
       audioProfile: "dts",
       has64bitOffsets: false,
-      optimizedForStreaming: false,
-      videoProfile: "main 10",
-      indexes: "sd",
       stream: [
         {
-          id: 272796,
+          id: 1002625,
           streamType: 1,
           default: true,
-          selected: true,
-          codec: "h264",
+          codec: "hevc",
           index: 0,
-          bitrate: 6273,
-          colorPrimaries: "bt709",
-          colorRange: "tv",
-          colorSpace: "bt709",
-          colorTrc: "bt709",
-          bitDepth: 8,
-          chromaLocation: "left",
-          streamIdentifier: "2",
-          chromaSubsampling: "4:2:0",
-          codedHeight: 1088,
-          codedWidth: 1920,
-          frameRate: 29.97,
-          hasScalingMatrix: false,
-          hearingImpaired: false,
-          closedCaptions: false,
-          embeddedInVideo: "1",
-          height: 1080,
-          level: 40,
-          profile: "main",
-          refFrames: 4,
-          scanType: "progressive",
-          width: 1920,
-          displayTitle: "1080p (H.264)",
-          extendedDisplayTitle: "1080p (H.264)",
-          channels: 2,
+          bitrate: 24743,
           language: "English",
           languageTag: "en",
           languageCode: "eng",
-          audioChannelLayout: "stereo",
+          headerCompression: true,
+          doviblCompatID: 1,
+          doviblPresent: true,
+          dovielPresent: false,
+          doviLevel: 6,
+          doviPresent: true,
+          doviProfile: 8,
+          dovirpuPresent: true,
+          doviVersion: "1.0",
+          bitDepth: 10,
+          chromaLocation: "topleft",
+          chromaSubsampling: "4:2:0",
+          codedHeight: 1608,
+          codedWidth: 3840,
+          closedCaptions: true,
+          colorPrimaries: "bt2020",
+          colorRange: "tv",
+          colorSpace: "bt2020nc",
+          colorTrc: "smpte2084",
+          frameRate: 23.976,
+          height: 1602,
+          level: 150,
+          original: true,
+          hasScalingMatrix: false,
+          profile: "main 10",
+          scanType: "progressive",
+          embeddedInVideo: "progressive",
+          refFrames: 1,
+          width: 3840,
+          displayTitle: "4K DoVi/HDR10 (HEVC Main 10)",
+          extendedDisplayTitle: "4K DoVi/HDR10 (HEVC Main 10)",
+          selected: true,
+          forced: true,
+          channels: 6,
+          audioChannelLayout: "5.1(side)",
           samplingRate: 48000,
-          title: "English",
           canAutoSync: false,
+          hearingImpaired: true,
+          dub: true,
+          title: "SDH",
         },
       ],
     },
@@ -85,23 +98,24 @@ let value: Media = {
 
 ## Fields
 
-| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `id`                                                                                        | *number*                                                                                    | :heavy_check_mark:                                                                          | N/A                                                                                         | 119534                                                                                      |
-| `duration`                                                                                  | *number*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | 11558112                                                                                    |
-| `bitrate`                                                                                   | *number*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | 25025                                                                                       |
-| `width`                                                                                     | *number*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | 3840                                                                                        |
-| `height`                                                                                    | *number*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | 2072                                                                                        |
-| `aspectRatio`                                                                               | *number*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | 1.85                                                                                        |
-| `audioProfile`                                                                              | *string*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | dts                                                                                         |
-| `audioChannels`                                                                             | *number*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | 6                                                                                           |
-| `audioCodec`                                                                                | *string*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | eac3                                                                                        |
-| `videoCodec`                                                                                | *string*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | hevc                                                                                        |
-| `videoResolution`                                                                           | *string*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | 4k                                                                                          |
-| `container`                                                                                 | *string*                                                                                    | :heavy_check_mark:                                                                          | N/A                                                                                         | mkv                                                                                         |
-| `videoFrameRate`                                                                            | *string*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | 24p                                                                                         |
-| `videoProfile`                                                                              | *string*                                                                                    | :heavy_minus_sign:                                                                          | N/A                                                                                         | main 10                                                                                     |
-| `hasVoiceActivity`                                                                          | *boolean*                                                                                   | :heavy_minus_sign:                                                                          | N/A                                                                                         | false                                                                                       |
-| `optimizedForStreaming`                                                                     | [operations.OptimizedForStreaming](../../../sdk/models/operations/optimizedforstreaming.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         | 1                                                                                           |
-| `has64bitOffsets`                                                                           | *boolean*                                                                                   | :heavy_minus_sign:                                                                          | N/A                                                                                         | false                                                                                       |
-| `part`                                                                                      | [operations.Part](../../../sdk/models/operations/part.md)[]                                 | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `id`                                                                               | *number*                                                                           | :heavy_check_mark:                                                                 | Unique media identifier.                                                           | 387322                                                                             |
+| `duration`                                                                         | *number*                                                                           | :heavy_minus_sign:                                                                 | Duration of the media in milliseconds.                                             | 9610350                                                                            |
+| `bitrate`                                                                          | *number*                                                                           | :heavy_minus_sign:                                                                 | Bitrate in bits per second.                                                        | 25512                                                                              |
+| `width`                                                                            | *number*                                                                           | :heavy_minus_sign:                                                                 | Video width in pixels.                                                             | 3840                                                                               |
+| `height`                                                                           | *number*                                                                           | :heavy_minus_sign:                                                                 | Video height in pixels.                                                            | 1602                                                                               |
+| `aspectRatio`                                                                      | *number*                                                                           | :heavy_minus_sign:                                                                 | Aspect ratio of the video.                                                         | 2.35                                                                               |
+| `audioChannels`                                                                    | *number*                                                                           | :heavy_minus_sign:                                                                 | Number of audio channels.                                                          | 6                                                                                  |
+| `displayOffset`                                                                    | *number*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                | 50                                                                                 |
+| `audioCodec`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | Audio codec used.                                                                  | eac3                                                                               |
+| `videoCodec`                                                                       | *string*                                                                           | :heavy_minus_sign:                                                                 | Video codec used.                                                                  | hevc                                                                               |
+| `videoResolution`                                                                  | *string*                                                                           | :heavy_minus_sign:                                                                 | Video resolution (e.g., 4k).                                                       | 4k                                                                                 |
+| `container`                                                                        | *string*                                                                           | :heavy_minus_sign:                                                                 | File container type.                                                               | mkv                                                                                |
+| `videoFrameRate`                                                                   | *string*                                                                           | :heavy_minus_sign:                                                                 | Frame rate of the video. Values found include NTSC, PAL, 24p<br/>                  | 24p                                                                                |
+| `videoProfile`                                                                     | *string*                                                                           | :heavy_minus_sign:                                                                 | Video profile (e.g., main 10).                                                     | main 10                                                                            |
+| `hasVoiceActivity`                                                                 | *boolean*                                                                          | :heavy_minus_sign:                                                                 | Indicates whether voice activity is detected.                                      | false                                                                              |
+| `audioProfile`                                                                     | *string*                                                                           | :heavy_minus_sign:                                                                 | The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).             | dts                                                                                |
+| `optimizedForStreaming`                                                            | *operations.OptimizedForStreaming*                                                 | :heavy_minus_sign:                                                                 | Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true |                                                                                    |
+| `has64bitOffsets`                                                                  | *boolean*                                                                          | :heavy_minus_sign:                                                                 | N/A                                                                                | false                                                                              |
+| `part`                                                                             | [operations.Part](../../../sdk/models/operations/part.md)[]                        | :heavy_minus_sign:                                                                 | An array of parts for this media item.                                             |                                                                                    |

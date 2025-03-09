@@ -33,7 +33,6 @@ export * from "./getmediametadata.js";
 export * from "./getmediaproviders.js";
 export * from "./getmetadatachildren.js";
 export * from "./getmyplexaccount.js";
-export * from "./getondeck.js";
 export * from "./getpin.js";
 export * from "./getplaylist.js";
 export * from "./getplaylistcontents.js";

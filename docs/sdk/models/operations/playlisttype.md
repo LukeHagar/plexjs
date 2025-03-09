@@ -7,7 +7,7 @@ limit to a type of playlist.
 ```typescript
 import { PlaylistType } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PlaylistType = PlaylistType.Video;
+let value: PlaylistType = PlaylistType.Photo;
 ```
 
 ## Values

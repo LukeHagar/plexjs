@@ -1,16 +1,19 @@
 # OptimizedForStreaming
 
-## Example Usage
+Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+
+
+## Supported Types
+
+### `operations.One`
 
 ```typescript
-import { OptimizedForStreaming } from "@lukehagar/plexjs/sdk/models/operations";
-
-let value: OptimizedForStreaming = OptimizedForStreaming.Enable;
+const value: operations.One = One.One;
 ```
 
-## Values
+### `boolean`
 
-| Name      | Value     |
-| --------- | --------- |
-| `Disable` | 0         |
-| `Enable`  | 1         |
+```typescript
+const value: boolean = false;
+```
+

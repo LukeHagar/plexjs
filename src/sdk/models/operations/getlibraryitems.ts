@@ -219,7 +219,7 @@ export enum GetLibraryItemsLibraryType {
 /**
  * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
  */
-export enum GetLibraryItemsFlattenSeasons {
+export enum FlattenSeasons {
   LibraryDefault = "-1",
   Hide = "0",
   Show = "1",
@@ -228,7 +228,7 @@ export enum GetLibraryItemsFlattenSeasons {
 /**
  * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
  */
-export enum GetLibraryItemsEpisodeSort {
+export enum EpisodeSort {
   LibraryDefault = "-1",
   OldestFirst = "0",
   NewestFirst = "1",
@@ -237,7 +237,7 @@ export enum GetLibraryItemsEpisodeSort {
 /**
  * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
  */
-export enum GetLibraryItemsEnableCreditsMarkerGeneration {
+export enum EnableCreditsMarkerGeneration {
   LibraryDefault = "-1",
   Disabled = "0",
 }
@@ -252,7 +252,7 @@ export enum GetLibraryItemsEnableCreditsMarkerGeneration {
  * dvd = TheTVDB (DVD),
  * absolute = TheTVDB (Absolute)).
  */
-export enum GetLibraryItemsShowOrdering {
+export enum ShowOrdering {
   None = "None",
   TmdbAiring = "tmdbAiring",
   TvdbAired = "aired",
@@ -506,7 +506,7 @@ export type GetLibraryItemsLocation = {
   path?: string | undefined;
 };
 
-export type GetLibraryItemsMediaGuid = {
+export type MediaGuid = {
   /**
    * Can be one of the following formats:
    *
@@ -523,7 +523,7 @@ export type GetLibraryItemsUltraBlurColors = {
   bottomLeft: string;
 };
 
-export type GetLibraryItemsMetaDataRating = {
+export type MetaDataRating = {
   /**
    * A URI or path to the rating image.
    */
@@ -584,17 +584,15 @@ export type GetLibraryItemsMetadata = {
   /**
    * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
    */
-  flattenSeasons?: GetLibraryItemsFlattenSeasons | undefined;
+  flattenSeasons?: FlattenSeasons | undefined;
   /**
    * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
    */
-  episodeSort?: GetLibraryItemsEpisodeSort | undefined;
+  episodeSort?: EpisodeSort | undefined;
   /**
    * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
    */
-  enableCreditsMarkerGeneration?:
-    | GetLibraryItemsEnableCreditsMarkerGeneration
-    | undefined;
+  enableCreditsMarkerGeneration?: EnableCreditsMarkerGeneration | undefined;
   /**
    * Setting that indicates the episode ordering for the show.
    *
@@ -605,7 +603,7 @@ export type GetLibraryItemsMetadata = {
    * dvd = TheTVDB (DVD),
    * absolute = TheTVDB (Absolute)).
    */
-  showOrdering?: GetLibraryItemsShowOrdering | undefined;
+  showOrdering?: ShowOrdering | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
   banner?: string | undefined;
@@ -650,9 +648,9 @@ export type GetLibraryItemsMetadata = {
    *
    * @remarks
    */
-  mediaGuid?: Array<GetLibraryItemsMediaGuid> | undefined;
+  mediaGuid?: Array<MediaGuid> | undefined;
   ultraBlurColors?: GetLibraryItemsUltraBlurColors | undefined;
-  metaDataRating?: Array<GetLibraryItemsMetaDataRating> | undefined;
+  metaDataRating?: Array<MetaDataRating> | undefined;
   image?: Array<GetLibraryItemsImage> | undefined;
   titleSort?: string | undefined;
   viewCount?: number | undefined;
@@ -1486,89 +1484,83 @@ export namespace GetLibraryItemsLibraryType$ {
 }
 
 /** @internal */
-export const GetLibraryItemsFlattenSeasons$inboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsFlattenSeasons
-> = z.nativeEnum(GetLibraryItemsFlattenSeasons);
+export const FlattenSeasons$inboundSchema: z.ZodNativeEnum<
+  typeof FlattenSeasons
+> = z.nativeEnum(FlattenSeasons);
 
 /** @internal */
-export const GetLibraryItemsFlattenSeasons$outboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsFlattenSeasons
-> = GetLibraryItemsFlattenSeasons$inboundSchema;
+export const FlattenSeasons$outboundSchema: z.ZodNativeEnum<
+  typeof FlattenSeasons
+> = FlattenSeasons$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetLibraryItemsFlattenSeasons$ {
-  /** @deprecated use `GetLibraryItemsFlattenSeasons$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryItemsFlattenSeasons$inboundSchema;
-  /** @deprecated use `GetLibraryItemsFlattenSeasons$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryItemsFlattenSeasons$outboundSchema;
+export namespace FlattenSeasons$ {
+  /** @deprecated use `FlattenSeasons$inboundSchema` instead. */
+  export const inboundSchema = FlattenSeasons$inboundSchema;
+  /** @deprecated use `FlattenSeasons$outboundSchema` instead. */
+  export const outboundSchema = FlattenSeasons$outboundSchema;
 }
 
 /** @internal */
-export const GetLibraryItemsEpisodeSort$inboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsEpisodeSort
-> = z.nativeEnum(GetLibraryItemsEpisodeSort);
+export const EpisodeSort$inboundSchema: z.ZodNativeEnum<typeof EpisodeSort> = z
+  .nativeEnum(EpisodeSort);
 
 /** @internal */
-export const GetLibraryItemsEpisodeSort$outboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsEpisodeSort
-> = GetLibraryItemsEpisodeSort$inboundSchema;
+export const EpisodeSort$outboundSchema: z.ZodNativeEnum<typeof EpisodeSort> =
+  EpisodeSort$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetLibraryItemsEpisodeSort$ {
-  /** @deprecated use `GetLibraryItemsEpisodeSort$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryItemsEpisodeSort$inboundSchema;
-  /** @deprecated use `GetLibraryItemsEpisodeSort$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryItemsEpisodeSort$outboundSchema;
+export namespace EpisodeSort$ {
+  /** @deprecated use `EpisodeSort$inboundSchema` instead. */
+  export const inboundSchema = EpisodeSort$inboundSchema;
+  /** @deprecated use `EpisodeSort$outboundSchema` instead. */
+  export const outboundSchema = EpisodeSort$outboundSchema;
 }
 
 /** @internal */
-export const GetLibraryItemsEnableCreditsMarkerGeneration$inboundSchema:
-  z.ZodNativeEnum<typeof GetLibraryItemsEnableCreditsMarkerGeneration> = z
-    .nativeEnum(GetLibraryItemsEnableCreditsMarkerGeneration);
+export const EnableCreditsMarkerGeneration$inboundSchema: z.ZodNativeEnum<
+  typeof EnableCreditsMarkerGeneration
+> = z.nativeEnum(EnableCreditsMarkerGeneration);
 
 /** @internal */
-export const GetLibraryItemsEnableCreditsMarkerGeneration$outboundSchema:
-  z.ZodNativeEnum<typeof GetLibraryItemsEnableCreditsMarkerGeneration> =
-    GetLibraryItemsEnableCreditsMarkerGeneration$inboundSchema;
+export const EnableCreditsMarkerGeneration$outboundSchema: z.ZodNativeEnum<
+  typeof EnableCreditsMarkerGeneration
+> = EnableCreditsMarkerGeneration$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetLibraryItemsEnableCreditsMarkerGeneration$ {
-  /** @deprecated use `GetLibraryItemsEnableCreditsMarkerGeneration$inboundSchema` instead. */
-  export const inboundSchema =
-    GetLibraryItemsEnableCreditsMarkerGeneration$inboundSchema;
-  /** @deprecated use `GetLibraryItemsEnableCreditsMarkerGeneration$outboundSchema` instead. */
-  export const outboundSchema =
-    GetLibraryItemsEnableCreditsMarkerGeneration$outboundSchema;
+export namespace EnableCreditsMarkerGeneration$ {
+  /** @deprecated use `EnableCreditsMarkerGeneration$inboundSchema` instead. */
+  export const inboundSchema = EnableCreditsMarkerGeneration$inboundSchema;
+  /** @deprecated use `EnableCreditsMarkerGeneration$outboundSchema` instead. */
+  export const outboundSchema = EnableCreditsMarkerGeneration$outboundSchema;
 }
 
 /** @internal */
-export const GetLibraryItemsShowOrdering$inboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsShowOrdering
-> = z.nativeEnum(GetLibraryItemsShowOrdering);
+export const ShowOrdering$inboundSchema: z.ZodNativeEnum<typeof ShowOrdering> =
+  z.nativeEnum(ShowOrdering);
 
 /** @internal */
-export const GetLibraryItemsShowOrdering$outboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsShowOrdering
-> = GetLibraryItemsShowOrdering$inboundSchema;
+export const ShowOrdering$outboundSchema: z.ZodNativeEnum<typeof ShowOrdering> =
+  ShowOrdering$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetLibraryItemsShowOrdering$ {
-  /** @deprecated use `GetLibraryItemsShowOrdering$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryItemsShowOrdering$inboundSchema;
-  /** @deprecated use `GetLibraryItemsShowOrdering$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryItemsShowOrdering$outboundSchema;
+export namespace ShowOrdering$ {
+  /** @deprecated use `ShowOrdering$inboundSchema` instead. */
+  export const inboundSchema = ShowOrdering$inboundSchema;
+  /** @deprecated use `ShowOrdering$outboundSchema` instead. */
+  export const outboundSchema = ShowOrdering$outboundSchema;
 }
 
 /** @internal */
@@ -2392,8 +2384,8 @@ export function getLibraryItemsLocationFromJSON(
 }
 
 /** @internal */
-export const GetLibraryItemsMediaGuid$inboundSchema: z.ZodType<
-  GetLibraryItemsMediaGuid,
+export const MediaGuid$inboundSchema: z.ZodType<
+  MediaGuid,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -2401,15 +2393,15 @@ export const GetLibraryItemsMediaGuid$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetLibraryItemsMediaGuid$Outbound = {
+export type MediaGuid$Outbound = {
   id: string;
 };
 
 /** @internal */
-export const GetLibraryItemsMediaGuid$outboundSchema: z.ZodType<
-  GetLibraryItemsMediaGuid$Outbound,
+export const MediaGuid$outboundSchema: z.ZodType<
+  MediaGuid$Outbound,
   z.ZodTypeDef,
-  GetLibraryItemsMediaGuid
+  MediaGuid
 > = z.object({
   id: z.string(),
 });
@@ -2418,30 +2410,26 @@ export const GetLibraryItemsMediaGuid$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetLibraryItemsMediaGuid$ {
-  /** @deprecated use `GetLibraryItemsMediaGuid$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryItemsMediaGuid$inboundSchema;
-  /** @deprecated use `GetLibraryItemsMediaGuid$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryItemsMediaGuid$outboundSchema;
-  /** @deprecated use `GetLibraryItemsMediaGuid$Outbound` instead. */
-  export type Outbound = GetLibraryItemsMediaGuid$Outbound;
+export namespace MediaGuid$ {
+  /** @deprecated use `MediaGuid$inboundSchema` instead. */
+  export const inboundSchema = MediaGuid$inboundSchema;
+  /** @deprecated use `MediaGuid$outboundSchema` instead. */
+  export const outboundSchema = MediaGuid$outboundSchema;
+  /** @deprecated use `MediaGuid$Outbound` instead. */
+  export type Outbound = MediaGuid$Outbound;
 }
 
-export function getLibraryItemsMediaGuidToJSON(
-  getLibraryItemsMediaGuid: GetLibraryItemsMediaGuid,
-): string {
-  return JSON.stringify(
-    GetLibraryItemsMediaGuid$outboundSchema.parse(getLibraryItemsMediaGuid),
-  );
+export function mediaGuidToJSON(mediaGuid: MediaGuid): string {
+  return JSON.stringify(MediaGuid$outboundSchema.parse(mediaGuid));
 }
 
-export function getLibraryItemsMediaGuidFromJSON(
+export function mediaGuidFromJSON(
   jsonString: string,
-): SafeParseResult<GetLibraryItemsMediaGuid, SDKValidationError> {
+): SafeParseResult<MediaGuid, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetLibraryItemsMediaGuid$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryItemsMediaGuid' from JSON`,
+    (x) => MediaGuid$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaGuid' from JSON`,
   );
 }
 
@@ -2511,8 +2499,8 @@ export function getLibraryItemsUltraBlurColorsFromJSON(
 }
 
 /** @internal */
-export const GetLibraryItemsMetaDataRating$inboundSchema: z.ZodType<
-  GetLibraryItemsMetaDataRating,
+export const MetaDataRating$inboundSchema: z.ZodType<
+  MetaDataRating,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -2522,17 +2510,17 @@ export const GetLibraryItemsMetaDataRating$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type GetLibraryItemsMetaDataRating$Outbound = {
+export type MetaDataRating$Outbound = {
   image: string;
   value: number;
   type: string;
 };
 
 /** @internal */
-export const GetLibraryItemsMetaDataRating$outboundSchema: z.ZodType<
-  GetLibraryItemsMetaDataRating$Outbound,
+export const MetaDataRating$outboundSchema: z.ZodType<
+  MetaDataRating$Outbound,
   z.ZodTypeDef,
-  GetLibraryItemsMetaDataRating
+  MetaDataRating
 > = z.object({
   image: z.string(),
   value: z.number(),
@@ -2543,32 +2531,26 @@ export const GetLibraryItemsMetaDataRating$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetLibraryItemsMetaDataRating$ {
-  /** @deprecated use `GetLibraryItemsMetaDataRating$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryItemsMetaDataRating$inboundSchema;
-  /** @deprecated use `GetLibraryItemsMetaDataRating$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryItemsMetaDataRating$outboundSchema;
-  /** @deprecated use `GetLibraryItemsMetaDataRating$Outbound` instead. */
-  export type Outbound = GetLibraryItemsMetaDataRating$Outbound;
+export namespace MetaDataRating$ {
+  /** @deprecated use `MetaDataRating$inboundSchema` instead. */
+  export const inboundSchema = MetaDataRating$inboundSchema;
+  /** @deprecated use `MetaDataRating$outboundSchema` instead. */
+  export const outboundSchema = MetaDataRating$outboundSchema;
+  /** @deprecated use `MetaDataRating$Outbound` instead. */
+  export type Outbound = MetaDataRating$Outbound;
 }
 
-export function getLibraryItemsMetaDataRatingToJSON(
-  getLibraryItemsMetaDataRating: GetLibraryItemsMetaDataRating,
-): string {
-  return JSON.stringify(
-    GetLibraryItemsMetaDataRating$outboundSchema.parse(
-      getLibraryItemsMetaDataRating,
-    ),
-  );
+export function metaDataRatingToJSON(metaDataRating: MetaDataRating): string {
+  return JSON.stringify(MetaDataRating$outboundSchema.parse(metaDataRating));
 }
 
-export function getLibraryItemsMetaDataRatingFromJSON(
+export function metaDataRatingFromJSON(
   jsonString: string,
-): SafeParseResult<GetLibraryItemsMetaDataRating, SDKValidationError> {
+): SafeParseResult<MetaDataRating, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => GetLibraryItemsMetaDataRating$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryItemsMetaDataRating' from JSON`,
+    (x) => MetaDataRating$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MetaDataRating' from JSON`,
   );
 }
 
@@ -2680,11 +2662,11 @@ export const GetLibraryItemsMetadata$inboundSchema: z.ZodType<
   year: z.number().int().optional(),
   seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
-  flattenSeasons: GetLibraryItemsFlattenSeasons$inboundSchema.optional(),
-  episodeSort: GetLibraryItemsEpisodeSort$inboundSchema.optional(),
-  enableCreditsMarkerGeneration:
-    GetLibraryItemsEnableCreditsMarkerGeneration$inboundSchema.optional(),
-  showOrdering: GetLibraryItemsShowOrdering$inboundSchema.optional(),
+  flattenSeasons: FlattenSeasons$inboundSchema.optional(),
+  episodeSort: EpisodeSort$inboundSchema.optional(),
+  enableCreditsMarkerGeneration: EnableCreditsMarkerGeneration$inboundSchema
+    .optional(),
+  showOrdering: ShowOrdering$inboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
   banner: z.string().optional(),
@@ -2717,12 +2699,10 @@ export const GetLibraryItemsMetadata$inboundSchema: z.ZodType<
   Role: z.array(z.lazy(() => GetLibraryItemsRole$inboundSchema)).optional(),
   Location: z.array(z.lazy(() => GetLibraryItemsLocation$inboundSchema))
     .optional(),
-  Guid: z.array(z.lazy(() => GetLibraryItemsMediaGuid$inboundSchema))
-    .optional(),
+  Guid: z.array(z.lazy(() => MediaGuid$inboundSchema)).optional(),
   UltraBlurColors: z.lazy(() => GetLibraryItemsUltraBlurColors$inboundSchema)
     .optional(),
-  Rating: z.array(z.lazy(() => GetLibraryItemsMetaDataRating$inboundSchema))
-    .optional(),
+  Rating: z.array(z.lazy(() => MetaDataRating$inboundSchema)).optional(),
   Image: z.array(z.lazy(() => GetLibraryItemsImage$inboundSchema)).optional(),
   titleSort: z.string().optional(),
   viewCount: z.number().int().optional(),
@@ -2815,9 +2795,9 @@ export type GetLibraryItemsMetadata$Outbound = {
   Collection?: Array<GetLibraryItemsCollection$Outbound> | undefined;
   Role?: Array<GetLibraryItemsRole$Outbound> | undefined;
   Location?: Array<GetLibraryItemsLocation$Outbound> | undefined;
-  Guid?: Array<GetLibraryItemsMediaGuid$Outbound> | undefined;
+  Guid?: Array<MediaGuid$Outbound> | undefined;
   UltraBlurColors?: GetLibraryItemsUltraBlurColors$Outbound | undefined;
-  Rating?: Array<GetLibraryItemsMetaDataRating$Outbound> | undefined;
+  Rating?: Array<MetaDataRating$Outbound> | undefined;
   Image?: Array<GetLibraryItemsImage$Outbound> | undefined;
   titleSort?: string | undefined;
   viewCount?: number | undefined;
@@ -2867,11 +2847,11 @@ export const GetLibraryItemsMetadata$outboundSchema: z.ZodType<
   year: z.number().int().optional(),
   seasonCount: z.number().int().optional(),
   tagline: z.string().optional(),
-  flattenSeasons: GetLibraryItemsFlattenSeasons$outboundSchema.optional(),
-  episodeSort: GetLibraryItemsEpisodeSort$outboundSchema.optional(),
-  enableCreditsMarkerGeneration:
-    GetLibraryItemsEnableCreditsMarkerGeneration$outboundSchema.optional(),
-  showOrdering: GetLibraryItemsShowOrdering$outboundSchema.optional(),
+  flattenSeasons: FlattenSeasons$outboundSchema.optional(),
+  episodeSort: EpisodeSort$outboundSchema.optional(),
+  enableCreditsMarkerGeneration: EnableCreditsMarkerGeneration$outboundSchema
+    .optional(),
+  showOrdering: ShowOrdering$outboundSchema.optional(),
   thumb: z.string().optional(),
   art: z.string().optional(),
   banner: z.string().optional(),
@@ -2906,13 +2886,11 @@ export const GetLibraryItemsMetadata$outboundSchema: z.ZodType<
   role: z.array(z.lazy(() => GetLibraryItemsRole$outboundSchema)).optional(),
   location: z.array(z.lazy(() => GetLibraryItemsLocation$outboundSchema))
     .optional(),
-  mediaGuid: z.array(z.lazy(() => GetLibraryItemsMediaGuid$outboundSchema))
-    .optional(),
+  mediaGuid: z.array(z.lazy(() => MediaGuid$outboundSchema)).optional(),
   ultraBlurColors: z.lazy(() => GetLibraryItemsUltraBlurColors$outboundSchema)
     .optional(),
-  metaDataRating: z.array(
-    z.lazy(() => GetLibraryItemsMetaDataRating$outboundSchema),
-  ).optional(),
+  metaDataRating: z.array(z.lazy(() => MetaDataRating$outboundSchema))
+    .optional(),
   image: z.array(z.lazy(() => GetLibraryItemsImage$outboundSchema)).optional(),
   titleSort: z.string().optional(),
   viewCount: z.number().int().optional(),

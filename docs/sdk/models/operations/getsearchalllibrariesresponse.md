@@ -16,16 +16,16 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetSearchAllLibrariesResponse = {
   contentType: "<value>",
-  statusCode: 203,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   object: {
     mediaContainer: {
-      size: 9280.82,
+      size: 6214.79,
       searchResult: [
         {
-          score: 7044.15,
+          score: 5772.29,
           metadata: {
             ratingKey: "58683",
             key: "/library/metadata/58683",

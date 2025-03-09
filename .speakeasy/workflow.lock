@@ -1,4 +1,4 @@
-speakeasyVersion: 1.513.2
+speakeasyVersion: 1.513.4
 sources:
     my-source:
         sourceNamespace: my-source
@@ -9,20 +9,20 @@ sources:
             - main
     plexapi:
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:bf7001af017ce5072c503bfbaf60793f94549163b517489dc53e4f7b685659c0
-        sourceBlobDigest: sha256:ed2b29043c84f32d2efa92a126083fd9a81644a7ce9c6ac86d9aeb3493cbd6f8
+        sourceRevisionDigest: sha256:2066ba94b55e21d651c79003e3cf402fb77c52a0969fc52310b3383fbed038f4
+        sourceBlobDigest: sha256:1737023e29cd9cf36c07ccd8c8c48c47e14f47ce22b4d6ba9ee241afbbd8f351
         tags:
             - latest
-            - speakeasy-sdk-regen-1741306213
+            - speakeasy-sdk-regen-1741478971
             - 0.0.3
 targets:
     plexjs:
         source: plexapi
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:bf7001af017ce5072c503bfbaf60793f94549163b517489dc53e4f7b685659c0
-        sourceBlobDigest: sha256:ed2b29043c84f32d2efa92a126083fd9a81644a7ce9c6ac86d9aeb3493cbd6f8
+        sourceRevisionDigest: sha256:2066ba94b55e21d651c79003e3cf402fb77c52a0969fc52310b3383fbed038f4
+        sourceBlobDigest: sha256:1737023e29cd9cf36c07ccd8c8c48c47e14f47ce22b4d6ba9ee241afbbd8f351
         codeSamplesNamespace: code-samples-typescript-plexjs
-        codeSamplesRevisionDigest: sha256:e9663ecbdaaaaaf3f7ff17e00365dc176eda813f06e83bae125af65c9ab34453
+        codeSamplesRevisionDigest: sha256:562c355ca997be7103dd50d641d9264002668b79ccbed1d1c259a98c653ce99a
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

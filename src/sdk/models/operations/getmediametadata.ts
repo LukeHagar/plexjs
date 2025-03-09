@@ -68,18 +68,6 @@ export type GetMediaMetaDataRequest = {
   asyncRefreshLocalMediaAgent?: boolean | undefined;
 };
 
-export enum OptimizedForStreaming1 {
-  Zero = 0,
-  One = 1,
-}
-
-/**
- * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
- */
-export type GetMediaMetaDataOptimizedForStreaming =
-  | OptimizedForStreaming1
-  | boolean;
-
 export enum GetMediaMetaDataOptimizedForStreaming1 {
   Zero = 0,
   One = 1,
@@ -88,8 +76,20 @@ export enum GetMediaMetaDataOptimizedForStreaming1 {
 /**
  * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
  */
-export type GetMediaMetaDataLibraryOptimizedForStreaming =
+export type GetMediaMetaDataOptimizedForStreaming =
   | GetMediaMetaDataOptimizedForStreaming1
+  | boolean;
+
+export enum GetMediaMetaDataOptimizedForStreamingLibrary1 {
+  Zero = 0,
+  One = 1,
+}
+
+/**
+ * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+ */
+export type GetMediaMetaDataLibraryOptimizedForStreaming =
+  | GetMediaMetaDataOptimizedForStreamingLibrary1
   | boolean;
 
 /**
@@ -128,15 +128,15 @@ export type GetMediaMetaDataStream = {
   /**
    * Language of the stream.
    */
-  language: string;
+  language?: string | undefined;
   /**
    * Language tag (e.g., en).
    */
-  languageTag: string;
+  languageTag?: string | undefined;
   /**
    * ISO language code.
    */
-  languageCode: string;
+  languageCode?: string | undefined;
   /**
    * Indicates whether header compression is enabled.
    */
@@ -193,6 +193,7 @@ export type GetMediaMetaDataStream = {
    * Coded video width.
    */
   codedWidth?: number | undefined;
+  closedCaptions?: boolean | undefined;
   /**
    * Color primaries used.
    */
@@ -231,6 +232,7 @@ export type GetMediaMetaDataStream = {
    */
   profile?: string | undefined;
   scanType?: string | undefined;
+  embeddedInVideo?: string | undefined;
   /**
    * Number of reference frames.
    */
@@ -330,7 +332,7 @@ export type GetMediaMetaDataPart = {
    * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
    */
   optimizedForStreaming?:
-    | GetMediaMetaDataOptimizedForStreaming1
+    | GetMediaMetaDataOptimizedForStreamingLibrary1
     | boolean
     | undefined;
   hasThumbnail?: GetMediaMetaDataHasThumbnail | undefined;
@@ -399,7 +401,7 @@ export type GetMediaMetaDataMedia = {
   /**
    * Indicates whether voice activity is detected.
    */
-  hasVoiceActivity: boolean;
+  hasVoiceActivity?: boolean | undefined;
   /**
    * The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
    */
@@ -407,12 +409,15 @@ export type GetMediaMetaDataMedia = {
   /**
    * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
    */
-  optimizedForStreaming?: OptimizedForStreaming1 | boolean | undefined;
+  optimizedForStreaming?:
+    | GetMediaMetaDataOptimizedForStreaming1
+    | boolean
+    | undefined;
   has64bitOffsets?: boolean | undefined;
   /**
    * An array of parts for this media item.
    */
-  part: Array<GetMediaMetaDataPart>;
+  part?: Array<GetMediaMetaDataPart> | undefined;
 };
 
 export type GetMediaMetaDataImage = {
@@ -582,7 +587,7 @@ export type GetMediaMetaDataWriter = {
   thumb?: string | undefined;
 };
 
-export type Producer = {
+export type GetMediaMetaDataProducer = {
   /**
    * The unique role identifier.
    */
@@ -609,7 +614,7 @@ export type Producer = {
   thumb?: string | undefined;
 };
 
-export type Similar = {
+export type GetMediaMetaDataSimilar = {
   /**
    * The unique similar item identifier.
    */
@@ -849,11 +854,11 @@ export type GetMediaMetaDataMetadata = {
   /**
    * An array of Writer roles.
    */
-  producer?: Array<Producer> | undefined;
+  producer?: Array<GetMediaMetaDataProducer> | undefined;
   /**
    * An array of similar content objects.
    */
-  similar?: Array<Similar> | undefined;
+  similar?: Array<GetMediaMetaDataSimilar> | undefined;
   /**
    * An array of location objects.
    */
@@ -1019,24 +1024,27 @@ export function getMediaMetaDataRequestFromJSON(
 }
 
 /** @internal */
-export const OptimizedForStreaming1$inboundSchema: z.ZodNativeEnum<
-  typeof OptimizedForStreaming1
-> = z.nativeEnum(OptimizedForStreaming1);
+export const GetMediaMetaDataOptimizedForStreaming1$inboundSchema:
+  z.ZodNativeEnum<typeof GetMediaMetaDataOptimizedForStreaming1> = z.nativeEnum(
+    GetMediaMetaDataOptimizedForStreaming1,
+  );
 
 /** @internal */
-export const OptimizedForStreaming1$outboundSchema: z.ZodNativeEnum<
-  typeof OptimizedForStreaming1
-> = OptimizedForStreaming1$inboundSchema;
+export const GetMediaMetaDataOptimizedForStreaming1$outboundSchema:
+  z.ZodNativeEnum<typeof GetMediaMetaDataOptimizedForStreaming1> =
+    GetMediaMetaDataOptimizedForStreaming1$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OptimizedForStreaming1$ {
-  /** @deprecated use `OptimizedForStreaming1$inboundSchema` instead. */
-  export const inboundSchema = OptimizedForStreaming1$inboundSchema;
-  /** @deprecated use `OptimizedForStreaming1$outboundSchema` instead. */
-  export const outboundSchema = OptimizedForStreaming1$outboundSchema;
+export namespace GetMediaMetaDataOptimizedForStreaming1$ {
+  /** @deprecated use `GetMediaMetaDataOptimizedForStreaming1$inboundSchema` instead. */
+  export const inboundSchema =
+    GetMediaMetaDataOptimizedForStreaming1$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataOptimizedForStreaming1$outboundSchema` instead. */
+  export const outboundSchema =
+    GetMediaMetaDataOptimizedForStreaming1$outboundSchema;
 }
 
 /** @internal */
@@ -1044,7 +1052,10 @@ export const GetMediaMetaDataOptimizedForStreaming$inboundSchema: z.ZodType<
   GetMediaMetaDataOptimizedForStreaming,
   z.ZodTypeDef,
   unknown
-> = z.union([OptimizedForStreaming1$inboundSchema, z.boolean()]);
+> = z.union([
+  GetMediaMetaDataOptimizedForStreaming1$inboundSchema,
+  z.boolean(),
+]);
 
 /** @internal */
 export type GetMediaMetaDataOptimizedForStreaming$Outbound = number | boolean;
@@ -1054,7 +1065,10 @@ export const GetMediaMetaDataOptimizedForStreaming$outboundSchema: z.ZodType<
   GetMediaMetaDataOptimizedForStreaming$Outbound,
   z.ZodTypeDef,
   GetMediaMetaDataOptimizedForStreaming
-> = z.union([OptimizedForStreaming1$outboundSchema, z.boolean()]);
+> = z.union([
+  GetMediaMetaDataOptimizedForStreaming1$outboundSchema,
+  z.boolean(),
+]);
 
 /**
  * @internal
@@ -1093,27 +1107,26 @@ export function getMediaMetaDataOptimizedForStreamingFromJSON(
 }
 
 /** @internal */
-export const GetMediaMetaDataOptimizedForStreaming1$inboundSchema:
-  z.ZodNativeEnum<typeof GetMediaMetaDataOptimizedForStreaming1> = z.nativeEnum(
-    GetMediaMetaDataOptimizedForStreaming1,
-  );
+export const GetMediaMetaDataOptimizedForStreamingLibrary1$inboundSchema:
+  z.ZodNativeEnum<typeof GetMediaMetaDataOptimizedForStreamingLibrary1> = z
+    .nativeEnum(GetMediaMetaDataOptimizedForStreamingLibrary1);
 
 /** @internal */
-export const GetMediaMetaDataOptimizedForStreaming1$outboundSchema:
-  z.ZodNativeEnum<typeof GetMediaMetaDataOptimizedForStreaming1> =
-    GetMediaMetaDataOptimizedForStreaming1$inboundSchema;
+export const GetMediaMetaDataOptimizedForStreamingLibrary1$outboundSchema:
+  z.ZodNativeEnum<typeof GetMediaMetaDataOptimizedForStreamingLibrary1> =
+    GetMediaMetaDataOptimizedForStreamingLibrary1$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetMediaMetaDataOptimizedForStreaming1$ {
-  /** @deprecated use `GetMediaMetaDataOptimizedForStreaming1$inboundSchema` instead. */
+export namespace GetMediaMetaDataOptimizedForStreamingLibrary1$ {
+  /** @deprecated use `GetMediaMetaDataOptimizedForStreamingLibrary1$inboundSchema` instead. */
   export const inboundSchema =
-    GetMediaMetaDataOptimizedForStreaming1$inboundSchema;
-  /** @deprecated use `GetMediaMetaDataOptimizedForStreaming1$outboundSchema` instead. */
+    GetMediaMetaDataOptimizedForStreamingLibrary1$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataOptimizedForStreamingLibrary1$outboundSchema` instead. */
   export const outboundSchema =
-    GetMediaMetaDataOptimizedForStreaming1$outboundSchema;
+    GetMediaMetaDataOptimizedForStreamingLibrary1$outboundSchema;
 }
 
 /** @internal */
@@ -1123,7 +1136,7 @@ export const GetMediaMetaDataLibraryOptimizedForStreaming$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.union([
-    GetMediaMetaDataOptimizedForStreaming1$inboundSchema,
+    GetMediaMetaDataOptimizedForStreamingLibrary1$inboundSchema,
     z.boolean(),
   ]);
 
@@ -1139,7 +1152,7 @@ export const GetMediaMetaDataLibraryOptimizedForStreaming$outboundSchema:
     z.ZodTypeDef,
     GetMediaMetaDataLibraryOptimizedForStreaming
   > = z.union([
-    GetMediaMetaDataOptimizedForStreaming1$outboundSchema,
+    GetMediaMetaDataOptimizedForStreamingLibrary1$outboundSchema,
     z.boolean(),
   ]);
 
@@ -1218,9 +1231,9 @@ export const GetMediaMetaDataStream$inboundSchema: z.ZodType<
   codec: z.string(),
   index: z.number().int(),
   bitrate: z.number().int().optional(),
-  language: z.string(),
-  languageTag: z.string(),
-  languageCode: z.string(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
   headerCompression: z.boolean().optional(),
   DOVIBLCompatID: z.number().int().optional(),
   DOVIBLPresent: z.boolean().optional(),
@@ -1235,6 +1248,7 @@ export const GetMediaMetaDataStream$inboundSchema: z.ZodType<
   chromaSubsampling: z.string().optional(),
   codedHeight: z.number().int().optional(),
   codedWidth: z.number().int().optional(),
+  closedCaptions: z.boolean().optional(),
   colorPrimaries: z.string().optional(),
   colorRange: z.string().optional(),
   colorSpace: z.string().optional(),
@@ -1246,6 +1260,7 @@ export const GetMediaMetaDataStream$inboundSchema: z.ZodType<
   hasScalingMatrix: z.boolean().optional(),
   profile: z.string().optional(),
   scanType: z.string().optional(),
+  embeddedInVideo: z.string().optional(),
   refFrames: z.number().int().optional(),
   width: z.number().int().optional(),
   displayTitle: z.string(),
@@ -1280,9 +1295,9 @@ export type GetMediaMetaDataStream$Outbound = {
   codec: string;
   index: number;
   bitrate?: number | undefined;
-  language: string;
-  languageTag: string;
-  languageCode: string;
+  language?: string | undefined;
+  languageTag?: string | undefined;
+  languageCode?: string | undefined;
   headerCompression?: boolean | undefined;
   DOVIBLCompatID?: number | undefined;
   DOVIBLPresent?: boolean | undefined;
@@ -1297,6 +1312,7 @@ export type GetMediaMetaDataStream$Outbound = {
   chromaSubsampling?: string | undefined;
   codedHeight?: number | undefined;
   codedWidth?: number | undefined;
+  closedCaptions?: boolean | undefined;
   colorPrimaries?: string | undefined;
   colorRange?: string | undefined;
   colorSpace?: string | undefined;
@@ -1308,6 +1324,7 @@ export type GetMediaMetaDataStream$Outbound = {
   hasScalingMatrix?: boolean | undefined;
   profile?: string | undefined;
   scanType?: string | undefined;
+  embeddedInVideo?: string | undefined;
   refFrames?: number | undefined;
   width?: number | undefined;
   displayTitle: string;
@@ -1335,9 +1352,9 @@ export const GetMediaMetaDataStream$outboundSchema: z.ZodType<
   codec: z.string(),
   index: z.number().int(),
   bitrate: z.number().int().optional(),
-  language: z.string(),
-  languageTag: z.string(),
-  languageCode: z.string(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
   headerCompression: z.boolean().optional(),
   doviblCompatID: z.number().int().optional(),
   doviblPresent: z.boolean().optional(),
@@ -1352,6 +1369,7 @@ export const GetMediaMetaDataStream$outboundSchema: z.ZodType<
   chromaSubsampling: z.string().optional(),
   codedHeight: z.number().int().optional(),
   codedWidth: z.number().int().optional(),
+  closedCaptions: z.boolean().optional(),
   colorPrimaries: z.string().optional(),
   colorRange: z.string().optional(),
   colorSpace: z.string().optional(),
@@ -1363,6 +1381,7 @@ export const GetMediaMetaDataStream$outboundSchema: z.ZodType<
   hasScalingMatrix: z.boolean().optional(),
   profile: z.string().optional(),
   scanType: z.string().optional(),
+  embeddedInVideo: z.string().optional(),
   refFrames: z.number().int().optional(),
   width: z.number().int().optional(),
   displayTitle: z.string(),
@@ -1440,7 +1459,7 @@ export const GetMediaMetaDataPart$inboundSchema: z.ZodType<
   audioProfile: z.string().optional(),
   has64bitOffsets: z.boolean().optional(),
   optimizedForStreaming: z.union([
-    GetMediaMetaDataOptimizedForStreaming1$inboundSchema,
+    GetMediaMetaDataOptimizedForStreamingLibrary1$inboundSchema,
     z.boolean(),
   ]).optional(),
   hasThumbnail: GetMediaMetaDataHasThumbnail$inboundSchema.default(
@@ -1494,7 +1513,7 @@ export const GetMediaMetaDataPart$outboundSchema: z.ZodType<
   audioProfile: z.string().optional(),
   has64bitOffsets: z.boolean().optional(),
   optimizedForStreaming: z.union([
-    GetMediaMetaDataOptimizedForStreaming1$outboundSchema,
+    GetMediaMetaDataOptimizedForStreamingLibrary1$outboundSchema,
     z.boolean(),
   ]).optional(),
   hasThumbnail: GetMediaMetaDataHasThumbnail$outboundSchema.default(
@@ -1559,14 +1578,14 @@ export const GetMediaMetaDataMedia$inboundSchema: z.ZodType<
   container: z.string().optional(),
   videoFrameRate: z.string().optional(),
   videoProfile: z.string().optional(),
-  hasVoiceActivity: z.boolean(),
+  hasVoiceActivity: z.boolean().optional(),
   audioProfile: z.string().optional(),
   optimizedForStreaming: z.union([
-    OptimizedForStreaming1$inboundSchema,
+    GetMediaMetaDataOptimizedForStreaming1$inboundSchema,
     z.boolean(),
   ]).optional(),
   has64bitOffsets: z.boolean().optional(),
-  Part: z.array(z.lazy(() => GetMediaMetaDataPart$inboundSchema)),
+  Part: z.array(z.lazy(() => GetMediaMetaDataPart$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "Part": "part",
@@ -1589,11 +1608,11 @@ export type GetMediaMetaDataMedia$Outbound = {
   container?: string | undefined;
   videoFrameRate?: string | undefined;
   videoProfile?: string | undefined;
-  hasVoiceActivity: boolean;
+  hasVoiceActivity?: boolean | undefined;
   audioProfile?: string | undefined;
   optimizedForStreaming?: number | boolean | undefined;
   has64bitOffsets?: boolean | undefined;
-  Part: Array<GetMediaMetaDataPart$Outbound>;
+  Part?: Array<GetMediaMetaDataPart$Outbound> | undefined;
 };
 
 /** @internal */
@@ -1616,14 +1635,14 @@ export const GetMediaMetaDataMedia$outboundSchema: z.ZodType<
   container: z.string().optional(),
   videoFrameRate: z.string().optional(),
   videoProfile: z.string().optional(),
-  hasVoiceActivity: z.boolean(),
+  hasVoiceActivity: z.boolean().optional(),
   audioProfile: z.string().optional(),
   optimizedForStreaming: z.union([
-    OptimizedForStreaming1$outboundSchema,
+    GetMediaMetaDataOptimizedForStreaming1$outboundSchema,
     z.boolean(),
   ]).optional(),
   has64bitOffsets: z.boolean().optional(),
-  part: z.array(z.lazy(() => GetMediaMetaDataPart$outboundSchema)),
+  part: z.array(z.lazy(() => GetMediaMetaDataPart$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     part: "Part",
@@ -2221,8 +2240,8 @@ export function getMediaMetaDataWriterFromJSON(
 }
 
 /** @internal */
-export const Producer$inboundSchema: z.ZodType<
-  Producer,
+export const GetMediaMetaDataProducer$inboundSchema: z.ZodType<
+  GetMediaMetaDataProducer,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -2235,7 +2254,7 @@ export const Producer$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Producer$Outbound = {
+export type GetMediaMetaDataProducer$Outbound = {
   id: number;
   filter: string;
   tag: string;
@@ -2245,10 +2264,10 @@ export type Producer$Outbound = {
 };
 
 /** @internal */
-export const Producer$outboundSchema: z.ZodType<
-  Producer$Outbound,
+export const GetMediaMetaDataProducer$outboundSchema: z.ZodType<
+  GetMediaMetaDataProducer$Outbound,
   z.ZodTypeDef,
-  Producer
+  GetMediaMetaDataProducer
 > = z.object({
   id: z.number().int(),
   filter: z.string(),
@@ -2262,49 +2281,56 @@ export const Producer$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Producer$ {
-  /** @deprecated use `Producer$inboundSchema` instead. */
-  export const inboundSchema = Producer$inboundSchema;
-  /** @deprecated use `Producer$outboundSchema` instead. */
-  export const outboundSchema = Producer$outboundSchema;
-  /** @deprecated use `Producer$Outbound` instead. */
-  export type Outbound = Producer$Outbound;
+export namespace GetMediaMetaDataProducer$ {
+  /** @deprecated use `GetMediaMetaDataProducer$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataProducer$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataProducer$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataProducer$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataProducer$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataProducer$Outbound;
 }
 
-export function producerToJSON(producer: Producer): string {
-  return JSON.stringify(Producer$outboundSchema.parse(producer));
+export function getMediaMetaDataProducerToJSON(
+  getMediaMetaDataProducer: GetMediaMetaDataProducer,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataProducer$outboundSchema.parse(getMediaMetaDataProducer),
+  );
 }
 
-export function producerFromJSON(
+export function getMediaMetaDataProducerFromJSON(
   jsonString: string,
-): SafeParseResult<Producer, SDKValidationError> {
+): SafeParseResult<GetMediaMetaDataProducer, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Producer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Producer' from JSON`,
+    (x) => GetMediaMetaDataProducer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataProducer' from JSON`,
   );
 }
 
 /** @internal */
-export const Similar$inboundSchema: z.ZodType<Similar, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.number().int(),
-    filter: z.string(),
-    tag: z.string(),
-  });
+export const GetMediaMetaDataSimilar$inboundSchema: z.ZodType<
+  GetMediaMetaDataSimilar,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  tag: z.string(),
+});
 
 /** @internal */
-export type Similar$Outbound = {
+export type GetMediaMetaDataSimilar$Outbound = {
   id: number;
   filter: string;
   tag: string;
 };
 
 /** @internal */
-export const Similar$outboundSchema: z.ZodType<
-  Similar$Outbound,
+export const GetMediaMetaDataSimilar$outboundSchema: z.ZodType<
+  GetMediaMetaDataSimilar$Outbound,
   z.ZodTypeDef,
-  Similar
+  GetMediaMetaDataSimilar
 > = z.object({
   id: z.number().int(),
   filter: z.string(),
@@ -2315,26 +2341,30 @@ export const Similar$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Similar$ {
-  /** @deprecated use `Similar$inboundSchema` instead. */
-  export const inboundSchema = Similar$inboundSchema;
-  /** @deprecated use `Similar$outboundSchema` instead. */
-  export const outboundSchema = Similar$outboundSchema;
-  /** @deprecated use `Similar$Outbound` instead. */
-  export type Outbound = Similar$Outbound;
+export namespace GetMediaMetaDataSimilar$ {
+  /** @deprecated use `GetMediaMetaDataSimilar$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataSimilar$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataSimilar$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataSimilar$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataSimilar$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataSimilar$Outbound;
 }
 
-export function similarToJSON(similar: Similar): string {
-  return JSON.stringify(Similar$outboundSchema.parse(similar));
+export function getMediaMetaDataSimilarToJSON(
+  getMediaMetaDataSimilar: GetMediaMetaDataSimilar,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataSimilar$outboundSchema.parse(getMediaMetaDataSimilar),
+  );
 }
 
-export function similarFromJSON(
+export function getMediaMetaDataSimilarFromJSON(
   jsonString: string,
-): SafeParseResult<Similar, SDKValidationError> {
+): SafeParseResult<GetMediaMetaDataSimilar, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Similar$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Similar' from JSON`,
+    (x) => GetMediaMetaDataSimilar$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataSimilar' from JSON`,
   );
 }
 
@@ -2459,8 +2489,10 @@ export const GetMediaMetaDataMetadata$inboundSchema: z.ZodType<
     .optional(),
   Writer: z.array(z.lazy(() => GetMediaMetaDataWriter$inboundSchema))
     .optional(),
-  Producer: z.array(z.lazy(() => Producer$inboundSchema)).optional(),
-  Similar: z.array(z.lazy(() => Similar$inboundSchema)).optional(),
+  Producer: z.array(z.lazy(() => GetMediaMetaDataProducer$inboundSchema))
+    .optional(),
+  Similar: z.array(z.lazy(() => GetMediaMetaDataSimilar$inboundSchema))
+    .optional(),
   Location: z.array(z.lazy(() => GetMediaMetaDataLocation$inboundSchema))
     .optional(),
 }).transform((v) => {
@@ -2541,8 +2573,8 @@ export type GetMediaMetaDataMetadata$Outbound = {
   Role?: Array<GetMediaMetaDataRole$Outbound> | undefined;
   Director?: Array<GetMediaMetaDataDirector$Outbound> | undefined;
   Writer?: Array<GetMediaMetaDataWriter$Outbound> | undefined;
-  Producer?: Array<Producer$Outbound> | undefined;
-  Similar?: Array<Similar$Outbound> | undefined;
+  Producer?: Array<GetMediaMetaDataProducer$Outbound> | undefined;
+  Similar?: Array<GetMediaMetaDataSimilar$Outbound> | undefined;
   Location?: Array<GetMediaMetaDataLocation$Outbound> | undefined;
 };
 
@@ -2614,8 +2646,10 @@ export const GetMediaMetaDataMetadata$outboundSchema: z.ZodType<
     .optional(),
   writer: z.array(z.lazy(() => GetMediaMetaDataWriter$outboundSchema))
     .optional(),
-  producer: z.array(z.lazy(() => Producer$outboundSchema)).optional(),
-  similar: z.array(z.lazy(() => Similar$outboundSchema)).optional(),
+  producer: z.array(z.lazy(() => GetMediaMetaDataProducer$outboundSchema))
+    .optional(),
+  similar: z.array(z.lazy(() => GetMediaMetaDataSimilar$outboundSchema))
+    .optional(),
   location: z.array(z.lazy(() => GetMediaMetaDataLocation$outboundSchema))
     .optional(),
 }).transform((v) => {

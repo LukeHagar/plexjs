@@ -6,12 +6,12 @@
 import { GetAllMediaLibraryRole } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetAllMediaLibraryRole = {
-  tag: "Danny Boyle",
+  tag: "Teller",
 };
 ```
 
 ## Fields
 
-| Field                               | Type                                | Required                            | Description                         | Example                             |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| `tag`                               | *string*                            | :heavy_check_mark:                  | The name of the actor for this role | Danny Boyle                         |
+| Field                                                       | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `tag`                                                       | *string*                                                    | :heavy_check_mark:                                          | The display tag for the actor (typically the actor's name). | Teller                                                      |

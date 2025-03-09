@@ -5,11 +5,11 @@ Has this media been optimized for streaming. NOTE: This can be 0, 1, false or tr
 
 ## Supported Types
 
-### `operations.GetMediaMetaDataOptimizedForStreaming1`
+### `operations.GetMediaMetaDataOptimizedForStreamingLibrary1`
 
 ```typescript
-const value: operations.GetMediaMetaDataOptimizedForStreaming1 =
-  GetMediaMetaDataOptimizedForStreaming1.One;
+const value: operations.GetMediaMetaDataOptimizedForStreamingLibrary1 =
+  GetMediaMetaDataOptimizedForStreamingLibrary1.One;
 ```
 
 ### `boolean`

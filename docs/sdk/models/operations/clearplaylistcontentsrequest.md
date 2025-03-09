@@ -6,7 +6,7 @@
 import { ClearPlaylistContentsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: ClearPlaylistContentsRequest = {
-  playlistID: 256.62,
+  playlistID: 4246.85,
 };
 ```
 

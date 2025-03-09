@@ -169,7 +169,6 @@ run();
 * [getMediaMetaData](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
 * [getMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [getTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
-* [getOnDeck](docs/sdks/library/README.md#getondeck) - Get On Deck
 
 ### [log](docs/sdks/log/README.md)
 
@@ -546,7 +545,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`libraryGetLibraryItems`](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
 - [`libraryGetMediaMetaData`](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
 - [`libraryGetMetadataChildren`](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
-- [`libraryGetOnDeck`](docs/sdks/library/README.md#getondeck) - Get On Deck
 - [`libraryGetRecentlyAddedLibrary`](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added
 - [`libraryGetRefreshLibraryMetadata`](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 - [`libraryGetSearchAllLibraries`](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries

@@ -7,7 +7,7 @@ Only return hubs which are "transient", meaning those which are prone to changin
 ```typescript
 import { QueryParamOnlyTransient } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: QueryParamOnlyTransient = QueryParamOnlyTransient.Zero;
+let value: QueryParamOnlyTransient = QueryParamOnlyTransient.One;
 ```
 
 ## Values

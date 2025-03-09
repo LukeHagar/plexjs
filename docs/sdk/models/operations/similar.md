@@ -1,21 +1,23 @@
 # Similar
 
+The display tag for the similar item, typically the title.
+
 ## Example Usage
 
 ```typescript
 import { Similar } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Similar = {
-  id: 26,
-  filter: "similar=26",
-  tag: "Breaking Bad",
+  id: 259,
+  filter: "similar=259",
+  tag: "Criss Angel Mindfreak",
 };
 ```
 
 ## Fields
 
-| Field                                    | Type                                     | Required                                 | Description                              | Example                                  |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `id`                                     | *number*                                 | :heavy_check_mark:                       | The unique similar item identifier.      | 26                                       |
-| `filter`                                 | *string*                                 | :heavy_check_mark:                       | The filter string for similar items.     | similar=26                               |
-| `tag`                                    | *string*                                 | :heavy_check_mark:                       | The tag or title of the similar content. | Breaking Bad                             |
+| Field                 | Type                  | Required              | Description           | Example               |
+| --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
+| `id`                  | *number*              | :heavy_check_mark:    | N/A                   | 259                   |
+| `filter`              | *string*              | :heavy_check_mark:    | N/A                   | similar=259           |
+| `tag`                 | *string*              | :heavy_check_mark:    | N/A                   | Criss Angel Mindfreak |

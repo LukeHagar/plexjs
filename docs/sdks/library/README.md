@@ -24,7 +24,6 @@ API Calls interacting with Plex Media Server Libraries
 * [getMediaMetaData](#getmediametadata) - Get Media Metadata
 * [getMetadataChildren](#getmetadatachildren) - Get Items Children
 * [getTopWatchedContent](#gettopwatchedcontent) - Get Top Watched Content
-* [getOnDeck](#getondeck) - Get On Deck
 
 ## getFileHash
 
@@ -1423,77 +1422,3 @@ run();
 | errors.GetTopWatchedContentBadRequest   | 400                                     | application/json                        |
 | errors.GetTopWatchedContentUnauthorized | 401                                     | application/json                        |
 | errors.SDKError                         | 4XX, 5XX                                | \*/\*                                   |
-
-## getOnDeck
-
-This endpoint will return the on deck content.
-
-
-### Example Usage
-
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-
-const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await plexAPI.library.getOnDeck();
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryGetOnDeck } from "@lukehagar/plexjs/funcs/libraryGetOnDeck.js";
-
-// Use `PlexAPICore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await libraryGetOnDeck(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.GetOnDeckResponse](../../sdk/models/operations/getondeckresponse.md)\>**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.GetOnDeckBadRequest   | 400                          | application/json             |
-| errors.GetOnDeckUnauthorized | 401                          | application/json             |
-| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |

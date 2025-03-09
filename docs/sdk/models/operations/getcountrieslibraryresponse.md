@@ -7,7 +7,7 @@ import { GetCountriesLibraryResponse } from "@lukehagar/plexjs/sdk/models/operat
 
 let value: GetCountriesLibraryResponse = {
   contentType: "<value>",
-  statusCode: 510,
+  statusCode: 404,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

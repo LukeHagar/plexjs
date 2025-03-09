@@ -6,7 +6,7 @@
 import { GetPlaylistRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPlaylistRequest = {
-  playlistID: 8726.51,
+  playlistID: 7980.47,
 };
 ```
 

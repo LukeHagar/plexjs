@@ -6,7 +6,7 @@
 import { GetAllMediaLibraryOptimizedForStreaming1 } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetAllMediaLibraryOptimizedForStreaming1 =
-  GetAllMediaLibraryOptimizedForStreaming1.Zero;
+  GetAllMediaLibraryOptimizedForStreaming1.One;
 ```
 
 ## Values

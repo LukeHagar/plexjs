@@ -238,7 +238,7 @@ export type GetAllMediaLibraryUltraBlurColors = {
   bottomLeft: string;
 };
 
-export enum One {
+export enum OptimizedForStreaming1 {
   Zero = 0,
   One = 1,
 }
@@ -246,7 +246,9 @@ export enum One {
 /**
  * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
  */
-export type GetAllMediaLibraryOptimizedForStreaming = One | boolean;
+export type GetAllMediaLibraryOptimizedForStreaming =
+  | OptimizedForStreaming1
+  | boolean;
 
 export enum GetAllMediaLibraryOptimizedForStreaming1 {
   Zero = 0,
@@ -296,15 +298,15 @@ export type GetAllMediaLibraryStream = {
   /**
    * Language of the stream.
    */
-  language: string;
+  language?: string | undefined;
   /**
    * Language tag (e.g., en).
    */
-  languageTag: string;
+  languageTag?: string | undefined;
   /**
    * ISO language code.
    */
-  languageCode: string;
+  languageCode?: string | undefined;
   /**
    * Indicates whether header compression is enabled.
    */
@@ -361,6 +363,7 @@ export type GetAllMediaLibraryStream = {
    * Coded video width.
    */
   codedWidth?: number | undefined;
+  closedCaptions?: boolean | undefined;
   /**
    * Color primaries used.
    */
@@ -399,6 +402,7 @@ export type GetAllMediaLibraryStream = {
    */
   profile?: string | undefined;
   scanType?: string | undefined;
+  embeddedInVideo?: string | undefined;
   /**
    * Number of reference frames.
    */
@@ -567,7 +571,7 @@ export type GetAllMediaLibraryMedia = {
   /**
    * Indicates whether voice activity is detected.
    */
-  hasVoiceActivity: boolean;
+  hasVoiceActivity?: boolean | undefined;
   /**
    * The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
    */
@@ -575,17 +579,19 @@ export type GetAllMediaLibraryMedia = {
   /**
    * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
    */
-  optimizedForStreaming?: One | boolean | undefined;
+  optimizedForStreaming?: OptimizedForStreaming1 | boolean | undefined;
   has64bitOffsets?: boolean | undefined;
   /**
    * An array of parts for this media item.
    */
-  part: Array<GetAllMediaLibraryPart>;
+  part?: Array<GetAllMediaLibraryPart> | undefined;
 };
 
 export type GetAllMediaLibraryGenre = {
   /**
-   * The country of origin of this media item
+   * The genre name of this media-item
+   *
+   * @remarks
    */
   tag: string;
 };
@@ -613,12 +619,12 @@ export type GetAllMediaLibraryWriter = {
 
 export type GetAllMediaLibraryRole = {
   /**
-   * The name of the actor for this role
+   * The display tag for the actor (typically the actor's name).
    */
   tag: string;
 };
 
-export type Guids = {
+export type GetAllMediaLibraryGuids = {
   /**
    * The unique identifier for the Guid. Can be imdb://tt0286347, tmdb://1763, tvdb://2337
    *
@@ -688,7 +694,7 @@ export type GetAllMediaLibraryMetadata = {
   /**
    * The release year of the media item.
    */
-  year: number;
+  year?: number | undefined;
   /**
    * A brief tagline for the media item.
    */
@@ -858,7 +864,7 @@ export type GetAllMediaLibraryMetadata = {
   director?: Array<GetAllMediaLibraryDirector> | undefined;
   writer?: Array<GetAllMediaLibraryWriter> | undefined;
   role?: Array<GetAllMediaLibraryRole> | undefined;
-  guids?: Array<Guids> | undefined;
+  guids?: Array<GetAllMediaLibraryGuids> | undefined;
   collection?: Array<GetAllMediaLibraryCollection> | undefined;
 };
 
@@ -1910,21 +1916,24 @@ export function getAllMediaLibraryUltraBlurColorsFromJSON(
 }
 
 /** @internal */
-export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
+export const OptimizedForStreaming1$inboundSchema: z.ZodNativeEnum<
+  typeof OptimizedForStreaming1
+> = z.nativeEnum(OptimizedForStreaming1);
 
 /** @internal */
-export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
-  One$inboundSchema;
+export const OptimizedForStreaming1$outboundSchema: z.ZodNativeEnum<
+  typeof OptimizedForStreaming1
+> = OptimizedForStreaming1$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
+export namespace OptimizedForStreaming1$ {
+  /** @deprecated use `OptimizedForStreaming1$inboundSchema` instead. */
+  export const inboundSchema = OptimizedForStreaming1$inboundSchema;
+  /** @deprecated use `OptimizedForStreaming1$outboundSchema` instead. */
+  export const outboundSchema = OptimizedForStreaming1$outboundSchema;
 }
 
 /** @internal */
@@ -1932,7 +1941,7 @@ export const GetAllMediaLibraryOptimizedForStreaming$inboundSchema: z.ZodType<
   GetAllMediaLibraryOptimizedForStreaming,
   z.ZodTypeDef,
   unknown
-> = z.union([One$inboundSchema, z.boolean()]);
+> = z.union([OptimizedForStreaming1$inboundSchema, z.boolean()]);
 
 /** @internal */
 export type GetAllMediaLibraryOptimizedForStreaming$Outbound = number | boolean;
@@ -1942,7 +1951,7 @@ export const GetAllMediaLibraryOptimizedForStreaming$outboundSchema: z.ZodType<
   GetAllMediaLibraryOptimizedForStreaming$Outbound,
   z.ZodTypeDef,
   GetAllMediaLibraryOptimizedForStreaming
-> = z.union([One$outboundSchema, z.boolean()]);
+> = z.union([OptimizedForStreaming1$outboundSchema, z.boolean()]);
 
 /**
  * @internal
@@ -2112,9 +2121,9 @@ export const GetAllMediaLibraryStream$inboundSchema: z.ZodType<
   codec: z.string(),
   index: z.number().int(),
   bitrate: z.number().int().optional(),
-  language: z.string(),
-  languageTag: z.string(),
-  languageCode: z.string(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
   headerCompression: z.boolean().optional(),
   DOVIBLCompatID: z.number().int().optional(),
   DOVIBLPresent: z.boolean().optional(),
@@ -2129,6 +2138,7 @@ export const GetAllMediaLibraryStream$inboundSchema: z.ZodType<
   chromaSubsampling: z.string().optional(),
   codedHeight: z.number().int().optional(),
   codedWidth: z.number().int().optional(),
+  closedCaptions: z.boolean().optional(),
   colorPrimaries: z.string().optional(),
   colorRange: z.string().optional(),
   colorSpace: z.string().optional(),
@@ -2140,6 +2150,7 @@ export const GetAllMediaLibraryStream$inboundSchema: z.ZodType<
   hasScalingMatrix: z.boolean().optional(),
   profile: z.string().optional(),
   scanType: z.string().optional(),
+  embeddedInVideo: z.string().optional(),
   refFrames: z.number().int().optional(),
   width: z.number().int().optional(),
   displayTitle: z.string(),
@@ -2174,9 +2185,9 @@ export type GetAllMediaLibraryStream$Outbound = {
   codec: string;
   index: number;
   bitrate?: number | undefined;
-  language: string;
-  languageTag: string;
-  languageCode: string;
+  language?: string | undefined;
+  languageTag?: string | undefined;
+  languageCode?: string | undefined;
   headerCompression?: boolean | undefined;
   DOVIBLCompatID?: number | undefined;
   DOVIBLPresent?: boolean | undefined;
@@ -2191,6 +2202,7 @@ export type GetAllMediaLibraryStream$Outbound = {
   chromaSubsampling?: string | undefined;
   codedHeight?: number | undefined;
   codedWidth?: number | undefined;
+  closedCaptions?: boolean | undefined;
   colorPrimaries?: string | undefined;
   colorRange?: string | undefined;
   colorSpace?: string | undefined;
@@ -2202,6 +2214,7 @@ export type GetAllMediaLibraryStream$Outbound = {
   hasScalingMatrix?: boolean | undefined;
   profile?: string | undefined;
   scanType?: string | undefined;
+  embeddedInVideo?: string | undefined;
   refFrames?: number | undefined;
   width?: number | undefined;
   displayTitle: string;
@@ -2229,9 +2242,9 @@ export const GetAllMediaLibraryStream$outboundSchema: z.ZodType<
   codec: z.string(),
   index: z.number().int(),
   bitrate: z.number().int().optional(),
-  language: z.string(),
-  languageTag: z.string(),
-  languageCode: z.string(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
   headerCompression: z.boolean().optional(),
   doviblCompatID: z.number().int().optional(),
   doviblPresent: z.boolean().optional(),
@@ -2246,6 +2259,7 @@ export const GetAllMediaLibraryStream$outboundSchema: z.ZodType<
   chromaSubsampling: z.string().optional(),
   codedHeight: z.number().int().optional(),
   codedWidth: z.number().int().optional(),
+  closedCaptions: z.boolean().optional(),
   colorPrimaries: z.string().optional(),
   colorRange: z.string().optional(),
   colorSpace: z.string().optional(),
@@ -2257,6 +2271,7 @@ export const GetAllMediaLibraryStream$outboundSchema: z.ZodType<
   hasScalingMatrix: z.boolean().optional(),
   profile: z.string().optional(),
   scanType: z.string().optional(),
+  embeddedInVideo: z.string().optional(),
   refFrames: z.number().int().optional(),
   width: z.number().int().optional(),
   displayTitle: z.string(),
@@ -2453,11 +2468,14 @@ export const GetAllMediaLibraryMedia$inboundSchema: z.ZodType<
   container: z.string().optional(),
   videoFrameRate: z.string().optional(),
   videoProfile: z.string().optional(),
-  hasVoiceActivity: z.boolean(),
+  hasVoiceActivity: z.boolean().optional(),
   audioProfile: z.string().optional(),
-  optimizedForStreaming: z.union([One$inboundSchema, z.boolean()]).optional(),
+  optimizedForStreaming: z.union([
+    OptimizedForStreaming1$inboundSchema,
+    z.boolean(),
+  ]).optional(),
   has64bitOffsets: z.boolean().optional(),
-  Part: z.array(z.lazy(() => GetAllMediaLibraryPart$inboundSchema)),
+  Part: z.array(z.lazy(() => GetAllMediaLibraryPart$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "Part": "part",
@@ -2480,11 +2498,11 @@ export type GetAllMediaLibraryMedia$Outbound = {
   container?: string | undefined;
   videoFrameRate?: string | undefined;
   videoProfile?: string | undefined;
-  hasVoiceActivity: boolean;
+  hasVoiceActivity?: boolean | undefined;
   audioProfile?: string | undefined;
   optimizedForStreaming?: number | boolean | undefined;
   has64bitOffsets?: boolean | undefined;
-  Part: Array<GetAllMediaLibraryPart$Outbound>;
+  Part?: Array<GetAllMediaLibraryPart$Outbound> | undefined;
 };
 
 /** @internal */
@@ -2507,11 +2525,14 @@ export const GetAllMediaLibraryMedia$outboundSchema: z.ZodType<
   container: z.string().optional(),
   videoFrameRate: z.string().optional(),
   videoProfile: z.string().optional(),
-  hasVoiceActivity: z.boolean(),
+  hasVoiceActivity: z.boolean().optional(),
   audioProfile: z.string().optional(),
-  optimizedForStreaming: z.union([One$outboundSchema, z.boolean()]).optional(),
+  optimizedForStreaming: z.union([
+    OptimizedForStreaming1$outboundSchema,
+    z.boolean(),
+  ]).optional(),
   has64bitOffsets: z.boolean().optional(),
-  part: z.array(z.lazy(() => GetAllMediaLibraryPart$outboundSchema)),
+  part: z.array(z.lazy(() => GetAllMediaLibraryPart$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     part: "Part",
@@ -2820,21 +2841,24 @@ export function getAllMediaLibraryRoleFromJSON(
 }
 
 /** @internal */
-export const Guids$inboundSchema: z.ZodType<Guids, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.string().optional(),
-  });
+export const GetAllMediaLibraryGuids$inboundSchema: z.ZodType<
+  GetAllMediaLibraryGuids,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+});
 
 /** @internal */
-export type Guids$Outbound = {
+export type GetAllMediaLibraryGuids$Outbound = {
   id?: string | undefined;
 };
 
 /** @internal */
-export const Guids$outboundSchema: z.ZodType<
-  Guids$Outbound,
+export const GetAllMediaLibraryGuids$outboundSchema: z.ZodType<
+  GetAllMediaLibraryGuids$Outbound,
   z.ZodTypeDef,
-  Guids
+  GetAllMediaLibraryGuids
 > = z.object({
   id: z.string().optional(),
 });
@@ -2843,26 +2867,30 @@ export const Guids$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Guids$ {
-  /** @deprecated use `Guids$inboundSchema` instead. */
-  export const inboundSchema = Guids$inboundSchema;
-  /** @deprecated use `Guids$outboundSchema` instead. */
-  export const outboundSchema = Guids$outboundSchema;
-  /** @deprecated use `Guids$Outbound` instead. */
-  export type Outbound = Guids$Outbound;
+export namespace GetAllMediaLibraryGuids$ {
+  /** @deprecated use `GetAllMediaLibraryGuids$inboundSchema` instead. */
+  export const inboundSchema = GetAllMediaLibraryGuids$inboundSchema;
+  /** @deprecated use `GetAllMediaLibraryGuids$outboundSchema` instead. */
+  export const outboundSchema = GetAllMediaLibraryGuids$outboundSchema;
+  /** @deprecated use `GetAllMediaLibraryGuids$Outbound` instead. */
+  export type Outbound = GetAllMediaLibraryGuids$Outbound;
 }
 
-export function guidsToJSON(guids: Guids): string {
-  return JSON.stringify(Guids$outboundSchema.parse(guids));
+export function getAllMediaLibraryGuidsToJSON(
+  getAllMediaLibraryGuids: GetAllMediaLibraryGuids,
+): string {
+  return JSON.stringify(
+    GetAllMediaLibraryGuids$outboundSchema.parse(getAllMediaLibraryGuids),
+  );
 }
 
-export function guidsFromJSON(
+export function getAllMediaLibraryGuidsFromJSON(
   jsonString: string,
-): SafeParseResult<Guids, SDKValidationError> {
+): SafeParseResult<GetAllMediaLibraryGuids, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Guids$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Guids' from JSON`,
+    (x) => GetAllMediaLibraryGuids$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAllMediaLibraryGuids' from JSON`,
   );
 }
 
@@ -2940,7 +2968,7 @@ export const GetAllMediaLibraryMetadata$inboundSchema: z.ZodType<
   summary: z.string(),
   rating: z.number(),
   audienceRating: z.number(),
-  year: z.number().int(),
+  year: z.number().int().optional(),
   tagline: z.string(),
   thumb: z.string(),
   art: z.string(),
@@ -2997,7 +3025,7 @@ export const GetAllMediaLibraryMetadata$inboundSchema: z.ZodType<
   Writer: z.array(z.lazy(() => GetAllMediaLibraryWriter$inboundSchema))
     .optional(),
   Role: z.array(z.lazy(() => GetAllMediaLibraryRole$inboundSchema)).optional(),
-  Guid: z.array(z.lazy(() => Guids$inboundSchema)).optional(),
+  Guid: z.array(z.lazy(() => GetAllMediaLibraryGuids$inboundSchema)).optional(),
   Collection: z.array(z.lazy(() => GetAllMediaLibraryCollection$inboundSchema))
     .optional(),
 }).transform((v) => {
@@ -3029,7 +3057,7 @@ export type GetAllMediaLibraryMetadata$Outbound = {
   summary: string;
   rating: number;
   audienceRating: number;
-  year: number;
+  year?: number | undefined;
   tagline: string;
   thumb: string;
   art: string;
@@ -3079,7 +3107,7 @@ export type GetAllMediaLibraryMetadata$Outbound = {
   Director?: Array<GetAllMediaLibraryDirector$Outbound> | undefined;
   Writer?: Array<GetAllMediaLibraryWriter$Outbound> | undefined;
   Role?: Array<GetAllMediaLibraryRole$Outbound> | undefined;
-  Guid?: Array<Guids$Outbound> | undefined;
+  Guid?: Array<GetAllMediaLibraryGuids$Outbound> | undefined;
   Collection?: Array<GetAllMediaLibraryCollection$Outbound> | undefined;
 };
 
@@ -3101,7 +3129,7 @@ export const GetAllMediaLibraryMetadata$outboundSchema: z.ZodType<
   summary: z.string(),
   rating: z.number(),
   audienceRating: z.number(),
-  year: z.number().int(),
+  year: z.number().int().optional(),
   tagline: z.string(),
   thumb: z.string(),
   art: z.string(),
@@ -3159,7 +3187,8 @@ export const GetAllMediaLibraryMetadata$outboundSchema: z.ZodType<
   writer: z.array(z.lazy(() => GetAllMediaLibraryWriter$outboundSchema))
     .optional(),
   role: z.array(z.lazy(() => GetAllMediaLibraryRole$outboundSchema)).optional(),
-  guids: z.array(z.lazy(() => Guids$outboundSchema)).optional(),
+  guids: z.array(z.lazy(() => GetAllMediaLibraryGuids$outboundSchema))
+    .optional(),
   collection: z.array(z.lazy(() => GetAllMediaLibraryCollection$outboundSchema))
     .optional(),
 }).transform((v) => {

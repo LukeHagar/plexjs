@@ -4,19 +4,19 @@
 
 ```typescript
 import {
-  GetLibraryItemsEnableCreditsMarkerGeneration,
-  GetLibraryItemsEpisodeSort,
-  GetLibraryItemsFlattenSeasons,
+  EnableCreditsMarkerGeneration,
+  EpisodeSort,
+  FlattenSeasons,
   GetLibraryItemsLibraryResponse200Type,
   GetLibraryItemsLibraryType,
   GetLibraryItemsResponse,
-  GetLibraryItemsShowOrdering,
+  ShowOrdering,
 } from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetLibraryItemsResponse = {
   contentType: "<value>",
-  statusCode: 451,
+  statusCode: 102,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -110,11 +110,11 @@ let value: GetLibraryItemsResponse = {
           year: 2022,
           seasonCount: 2022,
           tagline: "Return to Pandora.",
-          flattenSeasons: GetLibraryItemsFlattenSeasons.Show,
-          episodeSort: GetLibraryItemsEpisodeSort.OldestFirst,
+          flattenSeasons: FlattenSeasons.Show,
+          episodeSort: EpisodeSort.OldestFirst,
           enableCreditsMarkerGeneration:
-            GetLibraryItemsEnableCreditsMarkerGeneration.LibraryDefault,
-          showOrdering: GetLibraryItemsShowOrdering.TvdbAbsolute,
+            EnableCreditsMarkerGeneration.LibraryDefault,
+          showOrdering: ShowOrdering.TvdbAbsolute,
           thumb: "/library/metadata/58683/thumb/1703239236",
           art: "/library/metadata/58683/art/1703239236",
           banner: "/library/metadata/58683/banner/1703239236",

@@ -8,7 +8,7 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetMediaMetaDataResponse = {
   contentType: "<value>",
-  statusCode: 226,
+  statusCode: 306,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -132,6 +132,7 @@ let value: GetMediaMetaDataResponse = {
                       chromaSubsampling: "4:2:0",
                       codedHeight: 1608,
                       codedWidth: 3840,
+                      closedCaptions: true,
                       colorPrimaries: "bt2020",
                       colorRange: "tv",
                       colorSpace: "bt2020nc",
@@ -143,6 +144,7 @@ let value: GetMediaMetaDataResponse = {
                       hasScalingMatrix: false,
                       profile: "main 10",
                       scanType: "progressive",
+                      embeddedInVideo: "progressive",
                       refFrames: 1,
                       width: 3840,
                       displayTitle: "4K DoVi/HDR10 (HEVC Main 10)",

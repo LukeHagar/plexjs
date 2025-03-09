@@ -6,58 +6,70 @@
 import { Part } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Part = {
-  id: 119542,
-  key: "/library/parts/119542/1680457526/file.mkv",
-  duration: 11558112,
-  file:
-    "/movies/Avatar The Way of Water (2022)/Avatar.The.Way.of.Water.2022.2160p.WEB-DL.DDP5.1.Atmos.DV.HDR10.HEVC-CMRG.mkv",
-  size: 36158371307,
+  accessible: true,
+  exists: true,
+  id: 418385,
+  key: "/library/parts/418385/1735864239/file.mkv",
+  indexes: "sd",
+  duration: 9610350,
+  file: "/mnt/Movies_1/W/Wicked (2024).mkv",
+  size: 30649952104,
+  packetLength: 188,
   container: "mkv",
+  videoProfile: "main 10",
   audioProfile: "dts",
   has64bitOffsets: false,
-  optimizedForStreaming: false,
-  videoProfile: "main 10",
-  indexes: "sd",
   stream: [
     {
-      id: 272796,
+      id: 1002625,
       streamType: 1,
       default: true,
-      selected: true,
-      codec: "h264",
+      codec: "hevc",
       index: 0,
-      bitrate: 6273,
-      colorPrimaries: "bt709",
-      colorRange: "tv",
-      colorSpace: "bt709",
-      colorTrc: "bt709",
-      bitDepth: 8,
-      chromaLocation: "left",
-      streamIdentifier: "2",
-      chromaSubsampling: "4:2:0",
-      codedHeight: 1088,
-      codedWidth: 1920,
-      frameRate: 29.97,
-      hasScalingMatrix: false,
-      hearingImpaired: false,
-      closedCaptions: false,
-      embeddedInVideo: "1",
-      height: 1080,
-      level: 40,
-      profile: "main",
-      refFrames: 4,
-      scanType: "progressive",
-      width: 1920,
-      displayTitle: "1080p (H.264)",
-      extendedDisplayTitle: "1080p (H.264)",
-      channels: 2,
+      bitrate: 24743,
       language: "English",
       languageTag: "en",
       languageCode: "eng",
-      audioChannelLayout: "stereo",
+      headerCompression: true,
+      doviblCompatID: 1,
+      doviblPresent: true,
+      dovielPresent: false,
+      doviLevel: 6,
+      doviPresent: true,
+      doviProfile: 8,
+      dovirpuPresent: true,
+      doviVersion: "1.0",
+      bitDepth: 10,
+      chromaLocation: "topleft",
+      chromaSubsampling: "4:2:0",
+      codedHeight: 1608,
+      codedWidth: 3840,
+      closedCaptions: true,
+      colorPrimaries: "bt2020",
+      colorRange: "tv",
+      colorSpace: "bt2020nc",
+      colorTrc: "smpte2084",
+      frameRate: 23.976,
+      height: 1602,
+      level: 150,
+      original: true,
+      hasScalingMatrix: false,
+      profile: "main 10",
+      scanType: "progressive",
+      embeddedInVideo: "progressive",
+      refFrames: 1,
+      width: 3840,
+      displayTitle: "4K DoVi/HDR10 (HEVC Main 10)",
+      extendedDisplayTitle: "4K DoVi/HDR10 (HEVC Main 10)",
+      selected: true,
+      forced: true,
+      channels: 6,
+      audioChannelLayout: "5.1(side)",
       samplingRate: 48000,
-      title: "English",
       canAutoSync: false,
+      hearingImpaired: true,
+      dub: true,
+      title: "SDH",
     },
   ],
 };
@@ -65,18 +77,21 @@ let value: Part = {
 
 ## Fields
 
-| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          | Example                                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                                 | *number*                                                                                                             | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  | 119542                                                                                                               |
-| `key`                                                                                                                | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  | /library/parts/119542/1680457526/file.mkv                                                                            |
-| `duration`                                                                                                           | *number*                                                                                                             | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  | 11558112                                                                                                             |
-| `file`                                                                                                               | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  | /movies/Avatar The Way of Water (2022)/Avatar.The.Way.of.Water.2022.2160p.WEB-DL.DDP5.1.Atmos.DV.HDR10.HEVC-CMRG.mkv |
-| `size`                                                                                                               | *number*                                                                                                             | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  | 36158371307                                                                                                          |
-| `container`                                                                                                          | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | The container format of the media file.<br/>                                                                         | mkv                                                                                                                  |
-| `audioProfile`                                                                                                       | *string*                                                                                                             | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  | dts                                                                                                                  |
-| `has64bitOffsets`                                                                                                    | *boolean*                                                                                                            | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  | false                                                                                                                |
-| `optimizedForStreaming`                                                                                              | *boolean*                                                                                                            | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  | false                                                                                                                |
-| `videoProfile`                                                                                                       | *string*                                                                                                             | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  | main 10                                                                                                              |
-| `indexes`                                                                                                            | *string*                                                                                                             | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  | sd                                                                                                                   |
-| `hasThumbnail`                                                                                                       | [operations.HasThumbnail](../../../sdk/models/operations/hasthumbnail.md)                                            | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  | 1                                                                                                                    |
-| `stream`                                                                                                             | [operations.Stream](../../../sdk/models/operations/stream.md)[]                                                      | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |                                                                                                                      |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `accessible`                                                                       | *boolean*                                                                          | :heavy_minus_sign:                                                                 | Indicates if the part is accessible.                                               | true                                                                               |
+| `exists`                                                                           | *boolean*                                                                          | :heavy_minus_sign:                                                                 | Indicates if the part exists.                                                      | true                                                                               |
+| `id`                                                                               | *number*                                                                           | :heavy_check_mark:                                                                 | Unique part identifier.                                                            | 418385                                                                             |
+| `key`                                                                              | *string*                                                                           | :heavy_check_mark:                                                                 | Key to access this part.                                                           | /library/parts/418385/1735864239/file.mkv                                          |
+| `indexes`                                                                          | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                | sd                                                                                 |
+| `duration`                                                                         | *number*                                                                           | :heavy_minus_sign:                                                                 | Duration of the part in milliseconds.                                              | 9610350                                                                            |
+| `file`                                                                             | *string*                                                                           | :heavy_check_mark:                                                                 | File path for the part.                                                            | /mnt/Movies_1/W/Wicked (2024).mkv                                                  |
+| `size`                                                                             | *number*                                                                           | :heavy_check_mark:                                                                 | File size in bytes.                                                                | 30649952104                                                                        |
+| `packetLength`                                                                     | *number*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                | 188                                                                                |
+| `container`                                                                        | *string*                                                                           | :heavy_minus_sign:                                                                 | Container format of the part.                                                      | mkv                                                                                |
+| `videoProfile`                                                                     | *string*                                                                           | :heavy_minus_sign:                                                                 | Video profile for the part.                                                        | main 10                                                                            |
+| `audioProfile`                                                                     | *string*                                                                           | :heavy_minus_sign:                                                                 | The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).             | dts                                                                                |
+| `has64bitOffsets`                                                                  | *boolean*                                                                          | :heavy_minus_sign:                                                                 | N/A                                                                                | false                                                                              |
+| `optimizedForStreaming`                                                            | *operations.GetRecentlyAddedOptimizedForStreaming*                                 | :heavy_minus_sign:                                                                 | Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true |                                                                                    |
+| `hasThumbnail`                                                                     | [operations.HasThumbnail](../../../sdk/models/operations/hasthumbnail.md)          | :heavy_minus_sign:                                                                 | N/A                                                                                | 1                                                                                  |
+| `stream`                                                                           | [operations.Stream](../../../sdk/models/operations/stream.md)[]                    | :heavy_minus_sign:                                                                 | An array of streams for this part.                                                 |                                                                                    |

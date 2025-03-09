@@ -7,7 +7,7 @@ Filter
 ```typescript
 import { Filter } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: Filter = Filter.All;
+let value: Filter = Filter.Released;
 ```
 
 ## Values

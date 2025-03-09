@@ -9,7 +9,7 @@ Only exists for backwards compatibility, media providers other than the server l
 ```typescript
 import { IncludeDetails } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: IncludeDetails = IncludeDetails.Zero;
+let value: IncludeDetails = IncludeDetails.One;
 ```
 
 ## Values

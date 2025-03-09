@@ -63,6 +63,7 @@ let value: GetMediaMetaDataMedia = {
           chromaSubsampling: "4:2:0",
           codedHeight: 1608,
           codedWidth: 3840,
+          closedCaptions: true,
           colorPrimaries: "bt2020",
           colorRange: "tv",
           colorSpace: "bt2020nc",
@@ -74,6 +75,7 @@ let value: GetMediaMetaDataMedia = {
           hasScalingMatrix: false,
           profile: "main 10",
           scanType: "progressive",
+          embeddedInVideo: "progressive",
           refFrames: 1,
           width: 3840,
           displayTitle: "4K DoVi/HDR10 (HEVC Main 10)",
@@ -112,8 +114,8 @@ let value: GetMediaMetaDataMedia = {
 | `container`                                                                                 | *string*                                                                                    | :heavy_minus_sign:                                                                          | File container type.                                                                        | mkv                                                                                         |
 | `videoFrameRate`                                                                            | *string*                                                                                    | :heavy_minus_sign:                                                                          | Frame rate of the video. Values found include NTSC, PAL, 24p<br/>                           | 24p                                                                                         |
 | `videoProfile`                                                                              | *string*                                                                                    | :heavy_minus_sign:                                                                          | Video profile (e.g., main 10).                                                              | main 10                                                                                     |
-| `hasVoiceActivity`                                                                          | *boolean*                                                                                   | :heavy_check_mark:                                                                          | Indicates whether voice activity is detected.                                               | false                                                                                       |
+| `hasVoiceActivity`                                                                          | *boolean*                                                                                   | :heavy_minus_sign:                                                                          | Indicates whether voice activity is detected.                                               | false                                                                                       |
 | `audioProfile`                                                                              | *string*                                                                                    | :heavy_minus_sign:                                                                          | The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).                      | dts                                                                                         |
 | `optimizedForStreaming`                                                                     | *operations.GetMediaMetaDataOptimizedForStreaming*                                          | :heavy_minus_sign:                                                                          | Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true          |                                                                                             |
 | `has64bitOffsets`                                                                           | *boolean*                                                                                   | :heavy_minus_sign:                                                                          | N/A                                                                                         | false                                                                                       |
-| `part`                                                                                      | [operations.GetMediaMetaDataPart](../../../sdk/models/operations/getmediametadatapart.md)[] | :heavy_check_mark:                                                                          | An array of parts for this media item.                                                      |                                                                                             |
+| `part`                                                                                      | [operations.GetMediaMetaDataPart](../../../sdk/models/operations/getmediametadatapart.md)[] | :heavy_minus_sign:                                                                          | An array of parts for this media item.                                                      |                                                                                             |

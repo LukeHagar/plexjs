@@ -213,6 +213,7 @@ let value: GetAllMediaLibraryResponseBody = {
                     chromaSubsampling: "4:2:0",
                     codedHeight: 1608,
                     codedWidth: 3840,
+                    closedCaptions: true,
                     colorPrimaries: "bt2020",
                     colorRange: "tv",
                     colorSpace: "bt2020nc",
@@ -224,6 +225,7 @@ let value: GetAllMediaLibraryResponseBody = {
                     hasScalingMatrix: false,
                     profile: "main 10",
                     scanType: "progressive",
+                    embeddedInVideo: "progressive",
                     refFrames: 1,
                     width: 3840,
                     displayTitle: "4K DoVi/HDR10 (HEVC Main 10)",
@@ -245,7 +247,7 @@ let value: GetAllMediaLibraryResponseBody = {
         ],
         genre: [
           {
-            tag: "United States of America",
+            tag: "Crime",
           },
         ],
         country: [
@@ -260,12 +262,12 @@ let value: GetAllMediaLibraryResponseBody = {
         ],
         writer: [
           {
-            tag: "Danny Boyle",
+            tag: "Jamie P. Hanson",
           },
         ],
         role: [
           {
-            tag: "Danny Boyle",
+            tag: "Teller",
           },
         ],
         guids: [

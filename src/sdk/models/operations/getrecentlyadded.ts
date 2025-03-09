@@ -189,328 +189,6 @@ export enum GetRecentlyAddedHubsType {
   Album = "album",
 }
 
-/**
- * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
- */
-export enum FlattenSeasons {
-  LibraryDefault = "-1",
-  Hide = "0",
-  Show = "1",
-}
-
-/**
- * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
- */
-export enum EpisodeSort {
-  LibraryDefault = "-1",
-  OldestFirst = "0",
-  NewestFirst = "1",
-}
-
-/**
- * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
- */
-export enum EnableCreditsMarkerGeneration {
-  LibraryDefault = "-1",
-  Disabled = "0",
-}
-
-/**
- * Setting that indicates the episode ordering for the show.
- *
- * @remarks
- * None = Library default,
- * tmdbAiring = The Movie Database (Aired),
- * aired = TheTVDB (Aired),
- * dvd = TheTVDB (DVD),
- * absolute = TheTVDB (Absolute)).
- */
-export enum ShowOrdering {
-  None = "None",
-  TmdbAiring = "tmdbAiring",
-  TvdbAired = "aired",
-  TvdbDvd = "dvd",
-  TvdbAbsolute = "absolute",
-}
-
-export enum OptimizedForStreaming {
-  Disable = 0,
-  Enable = 1,
-}
-
-export enum HasThumbnail {
-  False = "0",
-  True = "1",
-}
-
-export type Stream = {
-  id: number;
-  /**
-   * Type of stream (1 = video, 2 = audio, 3 = subtitle)
-   */
-  streamType: number;
-  /**
-   * Indicates if this is the default stream
-   */
-  default?: boolean | undefined;
-  /**
-   * Indicates if the stream is selected
-   */
-  selected?: boolean | undefined;
-  /**
-   * Codec used by the stream
-   */
-  codec: string;
-  /**
-   * The index of the stream
-   */
-  index: number;
-  /**
-   * The bitrate of the stream in kbps
-   */
-  bitrate?: number | undefined;
-  /**
-   * The color primaries of the video stream
-   */
-  colorPrimaries?: string | undefined;
-  /**
-   * The color range of the video stream
-   */
-  colorRange?: string | undefined;
-  /**
-   * The color space of the video stream
-   */
-  colorSpace?: string | undefined;
-  /**
-   * The transfer characteristics (TRC) of the video stream
-   */
-  colorTrc?: string | undefined;
-  /**
-   * The bit depth of the video stream
-   */
-  bitDepth?: number | undefined;
-  /**
-   * The chroma location of the video stream
-   */
-  chromaLocation?: string | undefined;
-  /**
-   * The identifier of the video stream
-   */
-  streamIdentifier?: string | undefined;
-  /**
-   * The chroma subsampling format
-   */
-  chromaSubsampling?: string | undefined;
-  /**
-   * The coded height of the video stream
-   */
-  codedHeight?: number | undefined;
-  /**
-   * The coded width of the video stream
-   */
-  codedWidth?: number | undefined;
-  /**
-   * The frame rate of the video stream
-   */
-  frameRate?: number | undefined;
-  /**
-   * Indicates if the stream has a scaling matrix
-   */
-  hasScalingMatrix?: boolean | undefined;
-  hearingImpaired?: boolean | undefined;
-  closedCaptions?: boolean | undefined;
-  embeddedInVideo?: string | undefined;
-  /**
-   * The height of the video stream
-   */
-  height?: number | undefined;
-  /**
-   * The level of the video codec
-   */
-  level?: number | undefined;
-  /**
-   * The profile of the video codec
-   */
-  profile?: string | undefined;
-  /**
-   * Number of reference frames
-   */
-  refFrames?: number | undefined;
-  /**
-   * The scan type (progressive or interlaced)
-   */
-  scanType?: string | undefined;
-  /**
-   * The width of the video stream
-   */
-  width?: number | undefined;
-  /**
-   * Display title of the stream
-   */
-  displayTitle?: string | undefined;
-  /**
-   * Extended display title of the stream
-   */
-  extendedDisplayTitle?: string | undefined;
-  /**
-   * Number of audio channels (for audio streams)
-   */
-  channels?: number | undefined;
-  /**
-   * The language of the stream (for audio/subtitle streams)
-   */
-  language?: string | undefined;
-  /**
-   * Language tag of the stream
-   */
-  languageTag?: string | undefined;
-  /**
-   * Language code of the stream
-   */
-  languageCode?: string | undefined;
-  /**
-   * The audio channel layout
-   */
-  audioChannelLayout?: string | undefined;
-  /**
-   * Sampling rate of the audio stream in Hz
-   */
-  samplingRate?: number | undefined;
-  /**
-   * Title of the subtitle track (for subtitle streams)
-   */
-  title?: string | undefined;
-  /**
-   * Indicates if the subtitle stream can auto-sync
-   */
-  canAutoSync?: boolean | undefined;
-};
-
-export type Part = {
-  id: number;
-  key: string;
-  duration?: number | undefined;
-  file: string;
-  size: number;
-  /**
-   * The container format of the media file.
-   *
-   * @remarks
-   */
-  container: string;
-  audioProfile?: string | undefined;
-  has64bitOffsets?: boolean | undefined;
-  optimizedForStreaming?: boolean | undefined;
-  videoProfile?: string | undefined;
-  indexes?: string | undefined;
-  hasThumbnail?: HasThumbnail | undefined;
-  stream?: Array<Stream> | undefined;
-};
-
-export type Media = {
-  id: number;
-  duration?: number | undefined;
-  bitrate?: number | undefined;
-  width?: number | undefined;
-  height?: number | undefined;
-  aspectRatio?: number | undefined;
-  audioProfile?: string | undefined;
-  audioChannels?: number | undefined;
-  audioCodec?: string | undefined;
-  videoCodec?: string | undefined;
-  videoResolution?: string | undefined;
-  container: string;
-  videoFrameRate?: string | undefined;
-  videoProfile?: string | undefined;
-  hasVoiceActivity?: boolean | undefined;
-  optimizedForStreaming?: OptimizedForStreaming | undefined;
-  has64bitOffsets?: boolean | undefined;
-  part: Array<Part>;
-};
-
-export type Genre = {
-  tag?: string | undefined;
-};
-
-export type Country = {
-  tag?: string | undefined;
-};
-
-export type Director = {
-  tag?: string | undefined;
-};
-
-export type Writer = {
-  tag?: string | undefined;
-};
-
-export type Collection = {
-  tag?: string | undefined;
-};
-
-export type Role = {
-  /**
-   * The ID of the tag or actor.
-   */
-  id?: number | undefined;
-  /**
-   * The filter used to find the actor or tag.
-   */
-  filter?: string | undefined;
-  /**
-   * The thumbnail of the actor
-   */
-  thumb?: string | undefined;
-  /**
-   * The name of the tag or actor.
-   */
-  tag?: string | undefined;
-  /**
-   * Unique identifier for the tag.
-   */
-  tagKey?: string | undefined;
-  /**
-   * The role of the actor or tag in the media.
-   */
-  role?: string | undefined;
-};
-
-export type Location = {
-  path?: string | undefined;
-};
-
-export type MediaGuid = {
-  /**
-   * Can be one of the following formats:
-   *
-   * @remarks
-   * imdb://tt13015952, tmdb://2434012, tvdb://7945991
-   */
-  id: string;
-};
-
-export type UltraBlurColors = {
-  topLeft: string;
-  topRight: string;
-  bottomRight: string;
-  bottomLeft: string;
-};
-
-export type MetaDataRating = {
-  /**
-   * A URI or path to the rating image.
-   */
-  image: string;
-  /**
-   * The value of the rating.
-   */
-  value: number;
-  /**
-   * The type of rating (e.g., audience, critic).
-   */
-  type: string;
-};
-
 export enum GetRecentlyAddedHubsResponseType {
   CoverPoster = "coverPoster",
   Background = "background",
@@ -524,148 +202,793 @@ export type GetRecentlyAddedImage = {
   url: string;
 };
 
-export type GetRecentlyAddedMetadata = {
+export type UltraBlurColors = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+export enum One {
+  Zero = 0,
+  One = 1,
+}
+
+/**
+ * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+ */
+export type OptimizedForStreaming = One | boolean;
+
+export enum GetRecentlyAddedOptimizedForStreaming1 {
+  Zero = 0,
+  One = 1,
+}
+
+/**
+ * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+ */
+export type GetRecentlyAddedOptimizedForStreaming =
+  | GetRecentlyAddedOptimizedForStreaming1
+  | boolean;
+
+/**
+ * Indicates if the part has a thumbnail.
+ */
+export enum HasThumbnail {
+  False = "0",
+  True = "1",
+}
+
+export type Stream = {
   /**
-   * The rating key (Media ID) of this media item.
+   * Unique stream identifier.
+   */
+  id: number;
+  /**
+   * Stream type (1=video, 2=audio, 3=subtitle).
+   */
+  streamType: number;
+  /**
+   * Indicates if this stream is default.
+   */
+  default?: boolean | undefined;
+  /**
+   * Codec used by the stream.
+   */
+  codec: string;
+  /**
+   * Index of the stream.
+   */
+  index: number;
+  /**
+   * Bitrate of the stream.
+   */
+  bitrate?: number | undefined;
+  /**
+   * Language of the stream.
+   */
+  language?: string | undefined;
+  /**
+   * Language tag (e.g., en).
+   */
+  languageTag?: string | undefined;
+  /**
+   * ISO language code.
+   */
+  languageCode?: string | undefined;
+  /**
+   * Indicates whether header compression is enabled.
+   */
+  headerCompression?: boolean | undefined;
+  /**
+   * Dolby Vision BL compatibility ID.
+   */
+  doviblCompatID?: number | undefined;
+  /**
+   * Indicates if Dolby Vision BL is present.
+   */
+  doviblPresent?: boolean | undefined;
+  /**
+   * Indicates if Dolby Vision EL is present.
+   */
+  dovielPresent?: boolean | undefined;
+  /**
+   * Dolby Vision level.
+   */
+  doviLevel?: number | undefined;
+  /**
+   * Indicates if Dolby Vision is present.
+   */
+  doviPresent?: boolean | undefined;
+  /**
+   * Dolby Vision profile.
+   */
+  doviProfile?: number | undefined;
+  /**
+   * Indicates if Dolby Vision RPU is present.
+   */
+  dovirpuPresent?: boolean | undefined;
+  /**
+   * Dolby Vision version.
+   */
+  doviVersion?: string | undefined;
+  /**
+   * Bit depth of the video stream.
+   */
+  bitDepth?: number | undefined;
+  /**
+   * Chroma sample location.
+   */
+  chromaLocation?: string | undefined;
+  /**
+   * Chroma subsampling format.
+   */
+  chromaSubsampling?: string | undefined;
+  /**
+   * Coded video height.
+   */
+  codedHeight?: number | undefined;
+  /**
+   * Coded video width.
+   */
+  codedWidth?: number | undefined;
+  closedCaptions?: boolean | undefined;
+  /**
+   * Color primaries used.
+   */
+  colorPrimaries?: string | undefined;
+  /**
+   * Color range (e.g., tv).
+   */
+  colorRange?: string | undefined;
+  /**
+   * Color space.
+   */
+  colorSpace?: string | undefined;
+  /**
+   * Color transfer characteristics.
+   */
+  colorTrc?: string | undefined;
+  /**
+   * Frame rate of the stream.
+   */
+  frameRate?: number | undefined;
+  /**
+   * Height of the video stream.
+   */
+  height?: number | undefined;
+  /**
+   * Video level.
+   */
+  level?: number | undefined;
+  /**
+   * Indicates if this is the original stream.
+   */
+  original?: boolean | undefined;
+  hasScalingMatrix?: boolean | undefined;
+  /**
+   * Video profile.
+   */
+  profile?: string | undefined;
+  scanType?: string | undefined;
+  embeddedInVideo?: string | undefined;
+  /**
+   * Number of reference frames.
+   */
+  refFrames?: number | undefined;
+  /**
+   * Width of the video stream.
+   */
+  width?: number | undefined;
+  /**
+   * Display title for the stream.
+   */
+  displayTitle: string;
+  /**
+   * Extended display title for the stream.
+   */
+  extendedDisplayTitle: string;
+  /**
+   * Indicates if this stream is selected (applicable for audio streams).
+   */
+  selected?: boolean | undefined;
+  forced?: boolean | undefined;
+  /**
+   * Number of audio channels (for audio streams).
+   */
+  channels?: number | undefined;
+  /**
+   * Audio channel layout.
+   */
+  audioChannelLayout?: string | undefined;
+  /**
+   * Sampling rate for the audio stream.
+   */
+  samplingRate?: number | undefined;
+  /**
+   * Indicates if the stream can auto-sync.
+   */
+  canAutoSync?: boolean | undefined;
+  /**
+   * Indicates if the stream is for the hearing impaired.
+   */
+  hearingImpaired?: boolean | undefined;
+  /**
+   * Indicates if the stream is a dub.
+   */
+  dub?: boolean | undefined;
+  /**
+   * Optional title for the stream (e.g., language variant).
+   */
+  title?: string | undefined;
+};
+
+export type Part = {
+  /**
+   * Indicates if the part is accessible.
+   */
+  accessible?: boolean | undefined;
+  /**
+   * Indicates if the part exists.
+   */
+  exists?: boolean | undefined;
+  /**
+   * Unique part identifier.
+   */
+  id: number;
+  /**
+   * Key to access this part.
+   */
+  key: string;
+  indexes?: string | undefined;
+  /**
+   * Duration of the part in milliseconds.
+   */
+  duration?: number | undefined;
+  /**
+   * File path for the part.
+   */
+  file: string;
+  /**
+   * File size in bytes.
+   */
+  size: number;
+  packetLength?: number | undefined;
+  /**
+   * Container format of the part.
+   */
+  container?: string | undefined;
+  /**
+   * Video profile for the part.
+   */
+  videoProfile?: string | undefined;
+  /**
+   * The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
+   */
+  audioProfile?: string | undefined;
+  has64bitOffsets?: boolean | undefined;
+  /**
+   * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+   */
+  optimizedForStreaming?:
+    | GetRecentlyAddedOptimizedForStreaming1
+    | boolean
+    | undefined;
+  hasThumbnail?: HasThumbnail | undefined;
+  /**
+   * An array of streams for this part.
+   */
+  stream?: Array<Stream> | undefined;
+};
+
+export type Media = {
+  /**
+   * Unique media identifier.
+   */
+  id: number;
+  /**
+   * Duration of the media in milliseconds.
+   */
+  duration?: number | undefined;
+  /**
+   * Bitrate in bits per second.
+   */
+  bitrate?: number | undefined;
+  /**
+   * Video width in pixels.
+   */
+  width?: number | undefined;
+  /**
+   * Video height in pixels.
+   */
+  height?: number | undefined;
+  /**
+   * Aspect ratio of the video.
+   */
+  aspectRatio?: number | undefined;
+  /**
+   * Number of audio channels.
+   */
+  audioChannels?: number | undefined;
+  displayOffset?: number | undefined;
+  /**
+   * Audio codec used.
+   */
+  audioCodec?: string | undefined;
+  /**
+   * Video codec used.
+   */
+  videoCodec?: string | undefined;
+  /**
+   * Video resolution (e.g., 4k).
+   */
+  videoResolution?: string | undefined;
+  /**
+   * File container type.
+   */
+  container?: string | undefined;
+  /**
+   * Frame rate of the video. Values found include NTSC, PAL, 24p
    *
    * @remarks
-   * Note: This is always an integer, but is represented as a string in the API.
+   */
+  videoFrameRate?: string | undefined;
+  /**
+   * Video profile (e.g., main 10).
+   */
+  videoProfile?: string | undefined;
+  /**
+   * Indicates whether voice activity is detected.
+   */
+  hasVoiceActivity?: boolean | undefined;
+  /**
+   * The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
+   */
+  audioProfile?: string | undefined;
+  /**
+   * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+   */
+  optimizedForStreaming?: One | boolean | undefined;
+  has64bitOffsets?: boolean | undefined;
+  /**
+   * An array of parts for this media item.
+   */
+  part?: Array<Part> | undefined;
+};
+
+/**
+ * The filter query string for similar items.
+ */
+export type Genre = {
+  id: number;
+  filter: string;
+  /**
+   * The genre name of this media-item
+   *
+   * @remarks
+   */
+  tag: string;
+};
+
+/**
+ * The filter query string for country media items.
+ */
+export type Country = {
+  id: number;
+  /**
+   * The country of origin of this media item
+   */
+  tag: string;
+  filter?: string | undefined;
+};
+
+export type Director = {
+  /**
+   * The role of Director
+   */
+  tag: string;
+};
+
+export type Writer = {
+  /**
+   * Unique identifier for the writer.
+   */
+  id: number;
+  /**
+   * The filter string used to query this writer.
+   */
+  filter: string;
+  /**
+   * The role of Writer
+   */
+  tag: string;
+  /**
+   * A unique key associated with the writers tag, used for internal identification.
+   */
+  tagKey?: string | undefined;
+};
+
+export type Role = {
+  /**
+   * Unique identifier for the actor or role.
+   */
+  id: number;
+  /**
+   * The filter string used to query this actor. For example, it may indicate that this is an actor with a given key.
+   */
+  filter: string;
+  /**
+   * The display tag for the actor (typically the actor's name).
+   */
+  tag: string;
+  /**
+   * A unique key associated with the actor's tag, used for internal identification.
+   */
+  tagKey?: string | undefined;
+  /**
+   * The role played by the actor in the media item.
+   */
+  role?: string | undefined;
+  /**
+   * The URL of the thumbnail image for the actor.
+   */
+  thumb?: string | undefined;
+};
+
+export type Producer = {
+  /**
+   * Unique identifier for the producer.
+   */
+  id: number;
+  /**
+   * The filter string used to query this producer.
+   */
+  filter: string;
+  /**
+   * The name of the producer
+   */
+  tag: string;
+  /**
+   * A unique key associated with the producer's tag, used for internal identification.
+   */
+  tagKey?: string | undefined;
+  /**
+   * The URL of the thumbnail image for the actor.
+   */
+  thumb?: string | undefined;
+};
+
+/**
+ * The type of rating, for example 'audience' or 'critic'.
+ */
+export type Rating = {
+  image: string;
+  value: number;
+  type: string;
+};
+
+/**
+ * The display tag for the similar item, typically the title.
+ */
+export type Similar = {
+  id: number;
+  filter: string;
+  tag: string;
+};
+
+/**
+ * The folder path for the media item.
+ */
+export type Location = {
+  path: string;
+};
+
+export type Guids = {
+  /**
+   * The unique identifier for the Guid. Can be imdb://tt0286347, tmdb://1763, tvdb://2337
+   *
+   * @remarks
+   */
+  id?: string | undefined;
+};
+
+export type Collection = {
+  /**
+   * The user-made collection this media item belongs to
+   */
+  tag: string;
+};
+
+/**
+ * Unknown
+ *
+ * @remarks
+ */
+export type GetRecentlyAddedMetadata = {
+  addedAt: number;
+  /**
+   * The art image URL for the media item.
+   */
+  art: string;
+  /**
+   * The URL for the audience rating image.
+   */
+  audienceRatingImage?: string | undefined;
+  /**
+   * The audience rating for the media item.
+   */
+  audienceRating: number;
+  /**
+   * The source from which chapter data is derived.
+   */
+  chapterSource?: string | undefined;
+  /**
+   * The number of child items associated with this media item.
+   */
+  childCount: number;
+  /**
+   * The content rating for the media item.
+   */
+  contentRating?: string | undefined;
+  /**
+   * The accuracy of the creation timestamp. This value indicates the format(s) provided (for example, 'epoch,local' means both epoch and local time formats are available).
+   */
+  createdAtAccuracy?: string | undefined;
+  /**
+   * The time zone offset for the creation timestamp, represented as a string. This offset indicates the difference from UTC.
+   */
+  createdAtTZOffset?: string | undefined;
+  /**
+   * The duration of the media item in milliseconds.
+   */
+  duration: number;
+  /**
+   * The art URL for the grandparent media item.
+   */
+  grandparentArt?: string | undefined;
+  /**
+   * The GUID of the grandparent media item.
+   */
+  grandparentGuid?: string | undefined;
+  /**
+   * The key of the grandparent media item.
+   */
+  grandparentKey?: string | undefined;
+  /**
+   * The rating key of the grandparent media item.
+   */
+  grandparentRatingKey?: string | undefined;
+  /**
+   * The slug for the grandparent media item.
+   */
+  grandparentSlug?: string | undefined;
+  /**
+   * The theme URL for the grandparent media item.
+   */
+  grandparentTheme?: string | undefined;
+  /**
+   * The thumbnail URL for the grandparent media item.
+   */
+  grandparentThumb?: string | undefined;
+  /**
+   * The title of the grandparent media item.
+   */
+  grandparentTitle?: string | undefined;
+  /**
+   * The globally unique identifier for the media item.
+   */
+  guid: string;
+  /**
+   * The index position of the media item.
+   */
+  index: number;
+  /**
+   * The unique key for the media item.
+   */
+  key: string;
+  /**
+   * The Unix timestamp representing the last time the item was rated.
+   */
+  lastRatedAt?: number | undefined;
+  /**
+   * Unix timestamp for when the media item was last viewed.
+   */
+  lastViewedAt?: number | undefined;
+  /**
+   * The number of leaf items (end nodes) under this media item.
+   */
+  leafCount?: number | undefined;
+  /**
+   * The identifier for the library section.
+   */
+  librarySectionID: number;
+  /**
+   * The key corresponding to the library section.
+   */
+  librarySectionKey: string;
+  /**
+   * The title of the library section.
+   */
+  librarySectionTitle: string;
+  /**
+   * The original title of the media item (if different).
+   */
+  originalTitle?: string | undefined;
+  /**
+   * The original release date of the media item.
+   */
+  originallyAvailableAt: RFCDate;
+  /**
+   * The GUID of the parent media item.
+   */
+  parentGuid?: string | undefined;
+  /**
+   * The index position of the parent media item.
+   */
+  parentIndex?: number | undefined;
+  /**
+   * The key of the parent media item.
+   */
+  parentKey?: string | undefined;
+  /**
+   * The rating key of the parent media item.
+   */
+  parentRatingKey?: string | undefined;
+  /**
+   * The slug for the parent media item.
+   */
+  parentSlug?: string | undefined;
+  /**
+   * The studio of the parent media item.
+   */
+  parentStudio: string;
+  /**
+   * The theme URL for the parent media item.
+   */
+  parentTheme: string;
+  /**
+   * The thumbnail URL for the parent media item.
+   */
+  parentThumb?: string | undefined;
+  /**
+   * The title of the parent media item.
+   */
+  parentTitle?: string | undefined;
+  /**
+   * The release year of the parent media item.
+   */
+  parentYear?: number | undefined;
+  /**
+   * The primary extra key associated with this media item.
+   */
+  primaryExtraKey?: string | undefined;
+  /**
+   * The URL for the rating image.
+   */
+  ratingImage?: string | undefined;
+  /**
+   * The rating key (Media ID) of this media item. Note: Although this is always an integer, it is represented as a string in the API.
    */
   ratingKey: string;
-  key: string;
-  guid: string;
+  /**
+   * The critic rating for the media item.
+   */
+  rating: number;
+  /**
+   * The total number of seasons (for TV shows).
+   */
+  seasonCount: number;
+  /**
+   * The number of times this media item has been skipped.
+   */
+  skipCount?: number | undefined;
+  /**
+   * A URL‐friendly version of the media title.
+   */
+  slug: string;
+  /**
+   * The studio that produced the media item.
+   */
   studio?: string | undefined;
-  skipChildren?: boolean | undefined;
-  librarySectionID?: number | undefined;
-  librarySectionTitle?: string | undefined;
-  librarySectionKey?: string | undefined;
   /**
-   * The type of media content
-   *
-   * @remarks
+   * A classification that further describes the type of media item. For example, 'clip' indicates that the item is a short video clip.
    */
-  type: GetRecentlyAddedHubsType;
-  title: string;
-  slug?: string | undefined;
-  contentRating?: string | undefined;
+  subtype?: string | undefined;
+  /**
+   * A synopsis of the media item.
+   */
   summary: string;
-  rating?: number | undefined;
-  audienceRating?: number | undefined;
-  year?: number | undefined;
-  seasonCount?: number | undefined;
-  tagline?: string | undefined;
   /**
-   * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+   * A brief tagline for the media item.
    */
-  flattenSeasons?: FlattenSeasons | undefined;
+  tagline: string;
   /**
-   * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+   * The theme URL for the media item.
    */
-  episodeSort?: EpisodeSort | undefined;
+  theme: string;
   /**
-   * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+   * The thumbnail image URL for the media item.
    */
-  enableCreditsMarkerGeneration?: EnableCreditsMarkerGeneration | undefined;
+  thumb: string;
   /**
-   * Setting that indicates the episode ordering for the show.
-   *
-   * @remarks
-   * None = Library default,
-   * tmdbAiring = The Movie Database (Aired),
-   * aired = TheTVDB (Aired),
-   * dvd = TheTVDB (DVD),
-   * absolute = TheTVDB (Absolute)).
+   * The sort title used for ordering media items.
    */
-  showOrdering?: ShowOrdering | undefined;
-  thumb?: string | undefined;
-  art?: string | undefined;
-  banner?: string | undefined;
-  duration?: number | undefined;
-  originallyAvailableAt?: RFCDate | undefined;
+  titleSort: string;
   /**
-   * Unix epoch datetime in seconds
+   * The title of the media item.
    */
-  addedAt: number;
+  title: string;
+  type: GetRecentlyAddedHubsType;
   /**
    * Unix epoch datetime in seconds
    */
   updatedAt?: number | undefined;
-  audienceRatingImage?: string | undefined;
-  chapterSource?: string | undefined;
-  primaryExtraKey?: string | undefined;
-  ratingImage?: string | undefined;
-  grandparentRatingKey?: string | undefined;
-  grandparentGuid?: string | undefined;
-  grandparentKey?: string | undefined;
-  grandparentTitle?: string | undefined;
-  grandparentThumb?: string | undefined;
-  parentSlug?: string | undefined;
-  grandparentSlug?: string | undefined;
-  grandparentArt?: string | undefined;
-  grandparentTheme?: string | undefined;
   /**
-   * The Media object is only included when type query is `4` or higher.
-   *
-   * @remarks
+   * The rating provided by a user for the item. This value is expressed as a decimal number.
    */
+  userRating?: number | undefined;
+  /**
+   * The number of times this media item has been viewed.
+   */
+  viewCount?: number | undefined;
+  /**
+   * The current playback offset (in milliseconds).
+   */
+  viewOffset?: number | undefined;
+  /**
+   * The number of leaf items that have been viewed.
+   */
+  viewedLeafCount?: number | undefined;
+  /**
+   * The release year of the media item.
+   */
+  year?: number | undefined;
+  image?: Array<GetRecentlyAddedImage> | undefined;
+  ultraBlurColors?: UltraBlurColors | undefined;
   media?: Array<Media> | undefined;
   genre?: Array<Genre> | undefined;
   country?: Array<Country> | undefined;
   director?: Array<Director> | undefined;
   writer?: Array<Writer> | undefined;
-  collection?: Array<Collection> | undefined;
   role?: Array<Role> | undefined;
+  producer?: Array<Producer> | undefined;
+  rating1?: Array<Rating> | undefined;
+  similar?: Array<Similar> | undefined;
   location?: Array<Location> | undefined;
-  /**
-   * The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
-   *
-   * @remarks
-   */
-  mediaGuid?: Array<MediaGuid> | undefined;
-  ultraBlurColors?: UltraBlurColors | undefined;
-  metaDataRating?: Array<MetaDataRating> | undefined;
-  image?: Array<GetRecentlyAddedImage> | undefined;
-  titleSort?: string | undefined;
-  viewCount?: number | undefined;
-  lastViewedAt?: number | undefined;
-  originalTitle?: string | undefined;
-  viewOffset?: number | undefined;
-  skipCount?: number | undefined;
-  index?: number | undefined;
-  theme?: string | undefined;
-  leafCount?: number | undefined;
-  viewedLeafCount?: number | undefined;
-  childCount?: number | undefined;
-  hasPremiumExtras?: string | undefined;
-  hasPremiumPrimaryExtra?: string | undefined;
-  /**
-   * The rating key of the parent item.
-   *
-   * @remarks
-   */
-  parentRatingKey?: string | undefined;
-  parentGuid?: string | undefined;
-  parentStudio?: string | undefined;
-  parentKey?: string | undefined;
-  parentTitle?: string | undefined;
-  parentIndex?: number | undefined;
-  parentYear?: number | undefined;
-  parentThumb?: string | undefined;
-  parentTheme?: string | undefined;
+  guids?: Array<Guids> | undefined;
+  collection?: Array<Collection> | undefined;
 };
 
 export type GetRecentlyAddedMediaContainer = {
+  /**
+   * Number of media items returned in this response.
+   */
   size: number;
-  offset?: number | undefined;
-  totalSize?: number | undefined;
-  identifier?: string | undefined;
-  allowSync?: boolean | undefined;
+  /**
+   * Total number of media items in the library.
+   */
+  totalSize: number;
+  /**
+   * Offset value for pagination.
+   */
+  offset: number;
+  /**
+   * Indicates whether syncing is allowed.
+   */
+  allowSync: boolean;
+  /**
+   * An plugin identifier for the media container.
+   */
+  identifier: string;
   /**
    * The Meta object is only included in the response if the `includeMeta` parameter is set to `1`.
    *
    * @remarks
    */
   meta?: Meta | undefined;
+  /**
+   * An array of metadata items.
+   */
   metadata?: Array<GetRecentlyAddedMetadata> | undefined;
 };
 
@@ -1365,997 +1688,6 @@ export namespace GetRecentlyAddedHubsType$ {
 }
 
 /** @internal */
-export const FlattenSeasons$inboundSchema: z.ZodNativeEnum<
-  typeof FlattenSeasons
-> = z.nativeEnum(FlattenSeasons);
-
-/** @internal */
-export const FlattenSeasons$outboundSchema: z.ZodNativeEnum<
-  typeof FlattenSeasons
-> = FlattenSeasons$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FlattenSeasons$ {
-  /** @deprecated use `FlattenSeasons$inboundSchema` instead. */
-  export const inboundSchema = FlattenSeasons$inboundSchema;
-  /** @deprecated use `FlattenSeasons$outboundSchema` instead. */
-  export const outboundSchema = FlattenSeasons$outboundSchema;
-}
-
-/** @internal */
-export const EpisodeSort$inboundSchema: z.ZodNativeEnum<typeof EpisodeSort> = z
-  .nativeEnum(EpisodeSort);
-
-/** @internal */
-export const EpisodeSort$outboundSchema: z.ZodNativeEnum<typeof EpisodeSort> =
-  EpisodeSort$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EpisodeSort$ {
-  /** @deprecated use `EpisodeSort$inboundSchema` instead. */
-  export const inboundSchema = EpisodeSort$inboundSchema;
-  /** @deprecated use `EpisodeSort$outboundSchema` instead. */
-  export const outboundSchema = EpisodeSort$outboundSchema;
-}
-
-/** @internal */
-export const EnableCreditsMarkerGeneration$inboundSchema: z.ZodNativeEnum<
-  typeof EnableCreditsMarkerGeneration
-> = z.nativeEnum(EnableCreditsMarkerGeneration);
-
-/** @internal */
-export const EnableCreditsMarkerGeneration$outboundSchema: z.ZodNativeEnum<
-  typeof EnableCreditsMarkerGeneration
-> = EnableCreditsMarkerGeneration$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnableCreditsMarkerGeneration$ {
-  /** @deprecated use `EnableCreditsMarkerGeneration$inboundSchema` instead. */
-  export const inboundSchema = EnableCreditsMarkerGeneration$inboundSchema;
-  /** @deprecated use `EnableCreditsMarkerGeneration$outboundSchema` instead. */
-  export const outboundSchema = EnableCreditsMarkerGeneration$outboundSchema;
-}
-
-/** @internal */
-export const ShowOrdering$inboundSchema: z.ZodNativeEnum<typeof ShowOrdering> =
-  z.nativeEnum(ShowOrdering);
-
-/** @internal */
-export const ShowOrdering$outboundSchema: z.ZodNativeEnum<typeof ShowOrdering> =
-  ShowOrdering$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ShowOrdering$ {
-  /** @deprecated use `ShowOrdering$inboundSchema` instead. */
-  export const inboundSchema = ShowOrdering$inboundSchema;
-  /** @deprecated use `ShowOrdering$outboundSchema` instead. */
-  export const outboundSchema = ShowOrdering$outboundSchema;
-}
-
-/** @internal */
-export const OptimizedForStreaming$inboundSchema: z.ZodNativeEnum<
-  typeof OptimizedForStreaming
-> = z.nativeEnum(OptimizedForStreaming);
-
-/** @internal */
-export const OptimizedForStreaming$outboundSchema: z.ZodNativeEnum<
-  typeof OptimizedForStreaming
-> = OptimizedForStreaming$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OptimizedForStreaming$ {
-  /** @deprecated use `OptimizedForStreaming$inboundSchema` instead. */
-  export const inboundSchema = OptimizedForStreaming$inboundSchema;
-  /** @deprecated use `OptimizedForStreaming$outboundSchema` instead. */
-  export const outboundSchema = OptimizedForStreaming$outboundSchema;
-}
-
-/** @internal */
-export const HasThumbnail$inboundSchema: z.ZodNativeEnum<typeof HasThumbnail> =
-  z.nativeEnum(HasThumbnail);
-
-/** @internal */
-export const HasThumbnail$outboundSchema: z.ZodNativeEnum<typeof HasThumbnail> =
-  HasThumbnail$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HasThumbnail$ {
-  /** @deprecated use `HasThumbnail$inboundSchema` instead. */
-  export const inboundSchema = HasThumbnail$inboundSchema;
-  /** @deprecated use `HasThumbnail$outboundSchema` instead. */
-  export const outboundSchema = HasThumbnail$outboundSchema;
-}
-
-/** @internal */
-export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.number().int(),
-    streamType: z.number().int(),
-    default: z.boolean().optional(),
-    selected: z.boolean().optional(),
-    codec: z.string(),
-    index: z.number().int(),
-    bitrate: z.number().int().optional(),
-    colorPrimaries: z.string().optional(),
-    colorRange: z.string().optional(),
-    colorSpace: z.string().optional(),
-    colorTrc: z.string().optional(),
-    bitDepth: z.number().int().optional(),
-    chromaLocation: z.string().optional(),
-    streamIdentifier: z.string().optional(),
-    chromaSubsampling: z.string().optional(),
-    codedHeight: z.number().int().optional(),
-    codedWidth: z.number().int().optional(),
-    frameRate: z.number().optional(),
-    hasScalingMatrix: z.boolean().optional(),
-    hearingImpaired: z.boolean().optional(),
-    closedCaptions: z.boolean().optional(),
-    embeddedInVideo: z.string().optional(),
-    height: z.number().int().optional(),
-    level: z.number().int().optional(),
-    profile: z.string().optional(),
-    refFrames: z.number().int().optional(),
-    scanType: z.string().optional(),
-    width: z.number().int().optional(),
-    displayTitle: z.string().optional(),
-    extendedDisplayTitle: z.string().optional(),
-    channels: z.number().int().optional(),
-    language: z.string().optional(),
-    languageTag: z.string().optional(),
-    languageCode: z.string().optional(),
-    audioChannelLayout: z.string().optional(),
-    samplingRate: z.number().int().optional(),
-    title: z.string().optional(),
-    canAutoSync: z.boolean().optional(),
-  });
-
-/** @internal */
-export type Stream$Outbound = {
-  id: number;
-  streamType: number;
-  default?: boolean | undefined;
-  selected?: boolean | undefined;
-  codec: string;
-  index: number;
-  bitrate?: number | undefined;
-  colorPrimaries?: string | undefined;
-  colorRange?: string | undefined;
-  colorSpace?: string | undefined;
-  colorTrc?: string | undefined;
-  bitDepth?: number | undefined;
-  chromaLocation?: string | undefined;
-  streamIdentifier?: string | undefined;
-  chromaSubsampling?: string | undefined;
-  codedHeight?: number | undefined;
-  codedWidth?: number | undefined;
-  frameRate?: number | undefined;
-  hasScalingMatrix?: boolean | undefined;
-  hearingImpaired?: boolean | undefined;
-  closedCaptions?: boolean | undefined;
-  embeddedInVideo?: string | undefined;
-  height?: number | undefined;
-  level?: number | undefined;
-  profile?: string | undefined;
-  refFrames?: number | undefined;
-  scanType?: string | undefined;
-  width?: number | undefined;
-  displayTitle?: string | undefined;
-  extendedDisplayTitle?: string | undefined;
-  channels?: number | undefined;
-  language?: string | undefined;
-  languageTag?: string | undefined;
-  languageCode?: string | undefined;
-  audioChannelLayout?: string | undefined;
-  samplingRate?: number | undefined;
-  title?: string | undefined;
-  canAutoSync?: boolean | undefined;
-};
-
-/** @internal */
-export const Stream$outboundSchema: z.ZodType<
-  Stream$Outbound,
-  z.ZodTypeDef,
-  Stream
-> = z.object({
-  id: z.number().int(),
-  streamType: z.number().int(),
-  default: z.boolean().optional(),
-  selected: z.boolean().optional(),
-  codec: z.string(),
-  index: z.number().int(),
-  bitrate: z.number().int().optional(),
-  colorPrimaries: z.string().optional(),
-  colorRange: z.string().optional(),
-  colorSpace: z.string().optional(),
-  colorTrc: z.string().optional(),
-  bitDepth: z.number().int().optional(),
-  chromaLocation: z.string().optional(),
-  streamIdentifier: z.string().optional(),
-  chromaSubsampling: z.string().optional(),
-  codedHeight: z.number().int().optional(),
-  codedWidth: z.number().int().optional(),
-  frameRate: z.number().optional(),
-  hasScalingMatrix: z.boolean().optional(),
-  hearingImpaired: z.boolean().optional(),
-  closedCaptions: z.boolean().optional(),
-  embeddedInVideo: z.string().optional(),
-  height: z.number().int().optional(),
-  level: z.number().int().optional(),
-  profile: z.string().optional(),
-  refFrames: z.number().int().optional(),
-  scanType: z.string().optional(),
-  width: z.number().int().optional(),
-  displayTitle: z.string().optional(),
-  extendedDisplayTitle: z.string().optional(),
-  channels: z.number().int().optional(),
-  language: z.string().optional(),
-  languageTag: z.string().optional(),
-  languageCode: z.string().optional(),
-  audioChannelLayout: z.string().optional(),
-  samplingRate: z.number().int().optional(),
-  title: z.string().optional(),
-  canAutoSync: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Stream$ {
-  /** @deprecated use `Stream$inboundSchema` instead. */
-  export const inboundSchema = Stream$inboundSchema;
-  /** @deprecated use `Stream$outboundSchema` instead. */
-  export const outboundSchema = Stream$outboundSchema;
-  /** @deprecated use `Stream$Outbound` instead. */
-  export type Outbound = Stream$Outbound;
-}
-
-export function streamToJSON(stream: Stream): string {
-  return JSON.stringify(Stream$outboundSchema.parse(stream));
-}
-
-export function streamFromJSON(
-  jsonString: string,
-): SafeParseResult<Stream, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Stream$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Stream' from JSON`,
-  );
-}
-
-/** @internal */
-export const Part$inboundSchema: z.ZodType<Part, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.number().int(),
-    key: z.string(),
-    duration: z.number().int().optional(),
-    file: z.string(),
-    size: z.number().int(),
-    container: z.string(),
-    audioProfile: z.string().optional(),
-    has64bitOffsets: z.boolean().optional(),
-    optimizedForStreaming: z.boolean().optional(),
-    videoProfile: z.string().optional(),
-    indexes: z.string().optional(),
-    hasThumbnail: HasThumbnail$inboundSchema.default(HasThumbnail.False),
-    Stream: z.array(z.lazy(() => Stream$inboundSchema)).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "Stream": "stream",
-    });
-  });
-
-/** @internal */
-export type Part$Outbound = {
-  id: number;
-  key: string;
-  duration?: number | undefined;
-  file: string;
-  size: number;
-  container: string;
-  audioProfile?: string | undefined;
-  has64bitOffsets?: boolean | undefined;
-  optimizedForStreaming?: boolean | undefined;
-  videoProfile?: string | undefined;
-  indexes?: string | undefined;
-  hasThumbnail: string;
-  Stream?: Array<Stream$Outbound> | undefined;
-};
-
-/** @internal */
-export const Part$outboundSchema: z.ZodType<Part$Outbound, z.ZodTypeDef, Part> =
-  z.object({
-    id: z.number().int(),
-    key: z.string(),
-    duration: z.number().int().optional(),
-    file: z.string(),
-    size: z.number().int(),
-    container: z.string(),
-    audioProfile: z.string().optional(),
-    has64bitOffsets: z.boolean().optional(),
-    optimizedForStreaming: z.boolean().optional(),
-    videoProfile: z.string().optional(),
-    indexes: z.string().optional(),
-    hasThumbnail: HasThumbnail$outboundSchema.default(HasThumbnail.False),
-    stream: z.array(z.lazy(() => Stream$outboundSchema)).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      stream: "Stream",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Part$ {
-  /** @deprecated use `Part$inboundSchema` instead. */
-  export const inboundSchema = Part$inboundSchema;
-  /** @deprecated use `Part$outboundSchema` instead. */
-  export const outboundSchema = Part$outboundSchema;
-  /** @deprecated use `Part$Outbound` instead. */
-  export type Outbound = Part$Outbound;
-}
-
-export function partToJSON(part: Part): string {
-  return JSON.stringify(Part$outboundSchema.parse(part));
-}
-
-export function partFromJSON(
-  jsonString: string,
-): SafeParseResult<Part, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Part$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Part' from JSON`,
-  );
-}
-
-/** @internal */
-export const Media$inboundSchema: z.ZodType<Media, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.number().int(),
-    duration: z.number().int().optional(),
-    bitrate: z.number().int().optional(),
-    width: z.number().int().optional(),
-    height: z.number().int().optional(),
-    aspectRatio: z.number().optional(),
-    audioProfile: z.string().optional(),
-    audioChannels: z.number().int().optional(),
-    audioCodec: z.string().optional(),
-    videoCodec: z.string().optional(),
-    videoResolution: z.string().optional(),
-    container: z.string(),
-    videoFrameRate: z.string().optional(),
-    videoProfile: z.string().optional(),
-    hasVoiceActivity: z.boolean().optional(),
-    optimizedForStreaming: OptimizedForStreaming$inboundSchema,
-    has64bitOffsets: z.boolean().optional(),
-    Part: z.array(z.lazy(() => Part$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "Part": "part",
-    });
-  });
-
-/** @internal */
-export type Media$Outbound = {
-  id: number;
-  duration?: number | undefined;
-  bitrate?: number | undefined;
-  width?: number | undefined;
-  height?: number | undefined;
-  aspectRatio?: number | undefined;
-  audioProfile?: string | undefined;
-  audioChannels?: number | undefined;
-  audioCodec?: string | undefined;
-  videoCodec?: string | undefined;
-  videoResolution?: string | undefined;
-  container: string;
-  videoFrameRate?: string | undefined;
-  videoProfile?: string | undefined;
-  hasVoiceActivity?: boolean | undefined;
-  optimizedForStreaming: number;
-  has64bitOffsets?: boolean | undefined;
-  Part: Array<Part$Outbound>;
-};
-
-/** @internal */
-export const Media$outboundSchema: z.ZodType<
-  Media$Outbound,
-  z.ZodTypeDef,
-  Media
-> = z.object({
-  id: z.number().int(),
-  duration: z.number().int().optional(),
-  bitrate: z.number().int().optional(),
-  width: z.number().int().optional(),
-  height: z.number().int().optional(),
-  aspectRatio: z.number().optional(),
-  audioProfile: z.string().optional(),
-  audioChannels: z.number().int().optional(),
-  audioCodec: z.string().optional(),
-  videoCodec: z.string().optional(),
-  videoResolution: z.string().optional(),
-  container: z.string(),
-  videoFrameRate: z.string().optional(),
-  videoProfile: z.string().optional(),
-  hasVoiceActivity: z.boolean().optional(),
-  optimizedForStreaming: OptimizedForStreaming$outboundSchema.default(
-    OptimizedForStreaming.Disable,
-  ),
-  has64bitOffsets: z.boolean().optional(),
-  part: z.array(z.lazy(() => Part$outboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    part: "Part",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Media$ {
-  /** @deprecated use `Media$inboundSchema` instead. */
-  export const inboundSchema = Media$inboundSchema;
-  /** @deprecated use `Media$outboundSchema` instead. */
-  export const outboundSchema = Media$outboundSchema;
-  /** @deprecated use `Media$Outbound` instead. */
-  export type Outbound = Media$Outbound;
-}
-
-export function mediaToJSON(media: Media): string {
-  return JSON.stringify(Media$outboundSchema.parse(media));
-}
-
-export function mediaFromJSON(
-  jsonString: string,
-): SafeParseResult<Media, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Media$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Media' from JSON`,
-  );
-}
-
-/** @internal */
-export const Genre$inboundSchema: z.ZodType<Genre, z.ZodTypeDef, unknown> = z
-  .object({
-    tag: z.string().optional(),
-  });
-
-/** @internal */
-export type Genre$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const Genre$outboundSchema: z.ZodType<
-  Genre$Outbound,
-  z.ZodTypeDef,
-  Genre
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Genre$ {
-  /** @deprecated use `Genre$inboundSchema` instead. */
-  export const inboundSchema = Genre$inboundSchema;
-  /** @deprecated use `Genre$outboundSchema` instead. */
-  export const outboundSchema = Genre$outboundSchema;
-  /** @deprecated use `Genre$Outbound` instead. */
-  export type Outbound = Genre$Outbound;
-}
-
-export function genreToJSON(genre: Genre): string {
-  return JSON.stringify(Genre$outboundSchema.parse(genre));
-}
-
-export function genreFromJSON(
-  jsonString: string,
-): SafeParseResult<Genre, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Genre$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Genre' from JSON`,
-  );
-}
-
-/** @internal */
-export const Country$inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> =
-  z.object({
-    tag: z.string().optional(),
-  });
-
-/** @internal */
-export type Country$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const Country$outboundSchema: z.ZodType<
-  Country$Outbound,
-  z.ZodTypeDef,
-  Country
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Country$ {
-  /** @deprecated use `Country$inboundSchema` instead. */
-  export const inboundSchema = Country$inboundSchema;
-  /** @deprecated use `Country$outboundSchema` instead. */
-  export const outboundSchema = Country$outboundSchema;
-  /** @deprecated use `Country$Outbound` instead. */
-  export type Outbound = Country$Outbound;
-}
-
-export function countryToJSON(country: Country): string {
-  return JSON.stringify(Country$outboundSchema.parse(country));
-}
-
-export function countryFromJSON(
-  jsonString: string,
-): SafeParseResult<Country, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Country$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Country' from JSON`,
-  );
-}
-
-/** @internal */
-export const Director$inboundSchema: z.ZodType<
-  Director,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/** @internal */
-export type Director$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const Director$outboundSchema: z.ZodType<
-  Director$Outbound,
-  z.ZodTypeDef,
-  Director
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Director$ {
-  /** @deprecated use `Director$inboundSchema` instead. */
-  export const inboundSchema = Director$inboundSchema;
-  /** @deprecated use `Director$outboundSchema` instead. */
-  export const outboundSchema = Director$outboundSchema;
-  /** @deprecated use `Director$Outbound` instead. */
-  export type Outbound = Director$Outbound;
-}
-
-export function directorToJSON(director: Director): string {
-  return JSON.stringify(Director$outboundSchema.parse(director));
-}
-
-export function directorFromJSON(
-  jsonString: string,
-): SafeParseResult<Director, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Director$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Director' from JSON`,
-  );
-}
-
-/** @internal */
-export const Writer$inboundSchema: z.ZodType<Writer, z.ZodTypeDef, unknown> = z
-  .object({
-    tag: z.string().optional(),
-  });
-
-/** @internal */
-export type Writer$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const Writer$outboundSchema: z.ZodType<
-  Writer$Outbound,
-  z.ZodTypeDef,
-  Writer
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Writer$ {
-  /** @deprecated use `Writer$inboundSchema` instead. */
-  export const inboundSchema = Writer$inboundSchema;
-  /** @deprecated use `Writer$outboundSchema` instead. */
-  export const outboundSchema = Writer$outboundSchema;
-  /** @deprecated use `Writer$Outbound` instead. */
-  export type Outbound = Writer$Outbound;
-}
-
-export function writerToJSON(writer: Writer): string {
-  return JSON.stringify(Writer$outboundSchema.parse(writer));
-}
-
-export function writerFromJSON(
-  jsonString: string,
-): SafeParseResult<Writer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Writer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Writer' from JSON`,
-  );
-}
-
-/** @internal */
-export const Collection$inboundSchema: z.ZodType<
-  Collection,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/** @internal */
-export type Collection$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const Collection$outboundSchema: z.ZodType<
-  Collection$Outbound,
-  z.ZodTypeDef,
-  Collection
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Collection$ {
-  /** @deprecated use `Collection$inboundSchema` instead. */
-  export const inboundSchema = Collection$inboundSchema;
-  /** @deprecated use `Collection$outboundSchema` instead. */
-  export const outboundSchema = Collection$outboundSchema;
-  /** @deprecated use `Collection$Outbound` instead. */
-  export type Outbound = Collection$Outbound;
-}
-
-export function collectionToJSON(collection: Collection): string {
-  return JSON.stringify(Collection$outboundSchema.parse(collection));
-}
-
-export function collectionFromJSON(
-  jsonString: string,
-): SafeParseResult<Collection, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Collection$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Collection' from JSON`,
-  );
-}
-
-/** @internal */
-export const Role$inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.number().int().optional(),
-    filter: z.string().optional(),
-    thumb: z.string().optional(),
-    tag: z.string().optional(),
-    tagKey: z.string().optional(),
-    role: z.string().optional(),
-  });
-
-/** @internal */
-export type Role$Outbound = {
-  id?: number | undefined;
-  filter?: string | undefined;
-  thumb?: string | undefined;
-  tag?: string | undefined;
-  tagKey?: string | undefined;
-  role?: string | undefined;
-};
-
-/** @internal */
-export const Role$outboundSchema: z.ZodType<Role$Outbound, z.ZodTypeDef, Role> =
-  z.object({
-    id: z.number().int().optional(),
-    filter: z.string().optional(),
-    thumb: z.string().optional(),
-    tag: z.string().optional(),
-    tagKey: z.string().optional(),
-    role: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Role$ {
-  /** @deprecated use `Role$inboundSchema` instead. */
-  export const inboundSchema = Role$inboundSchema;
-  /** @deprecated use `Role$outboundSchema` instead. */
-  export const outboundSchema = Role$outboundSchema;
-  /** @deprecated use `Role$Outbound` instead. */
-  export type Outbound = Role$Outbound;
-}
-
-export function roleToJSON(role: Role): string {
-  return JSON.stringify(Role$outboundSchema.parse(role));
-}
-
-export function roleFromJSON(
-  jsonString: string,
-): SafeParseResult<Role, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Role$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Role' from JSON`,
-  );
-}
-
-/** @internal */
-export const Location$inboundSchema: z.ZodType<
-  Location,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  path: z.string().optional(),
-});
-
-/** @internal */
-export type Location$Outbound = {
-  path?: string | undefined;
-};
-
-/** @internal */
-export const Location$outboundSchema: z.ZodType<
-  Location$Outbound,
-  z.ZodTypeDef,
-  Location
-> = z.object({
-  path: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Location$ {
-  /** @deprecated use `Location$inboundSchema` instead. */
-  export const inboundSchema = Location$inboundSchema;
-  /** @deprecated use `Location$outboundSchema` instead. */
-  export const outboundSchema = Location$outboundSchema;
-  /** @deprecated use `Location$Outbound` instead. */
-  export type Outbound = Location$Outbound;
-}
-
-export function locationToJSON(location: Location): string {
-  return JSON.stringify(Location$outboundSchema.parse(location));
-}
-
-export function locationFromJSON(
-  jsonString: string,
-): SafeParseResult<Location, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Location$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Location' from JSON`,
-  );
-}
-
-/** @internal */
-export const MediaGuid$inboundSchema: z.ZodType<
-  MediaGuid,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
-export type MediaGuid$Outbound = {
-  id: string;
-};
-
-/** @internal */
-export const MediaGuid$outboundSchema: z.ZodType<
-  MediaGuid$Outbound,
-  z.ZodTypeDef,
-  MediaGuid
-> = z.object({
-  id: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MediaGuid$ {
-  /** @deprecated use `MediaGuid$inboundSchema` instead. */
-  export const inboundSchema = MediaGuid$inboundSchema;
-  /** @deprecated use `MediaGuid$outboundSchema` instead. */
-  export const outboundSchema = MediaGuid$outboundSchema;
-  /** @deprecated use `MediaGuid$Outbound` instead. */
-  export type Outbound = MediaGuid$Outbound;
-}
-
-export function mediaGuidToJSON(mediaGuid: MediaGuid): string {
-  return JSON.stringify(MediaGuid$outboundSchema.parse(mediaGuid));
-}
-
-export function mediaGuidFromJSON(
-  jsonString: string,
-): SafeParseResult<MediaGuid, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MediaGuid$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MediaGuid' from JSON`,
-  );
-}
-
-/** @internal */
-export const UltraBlurColors$inboundSchema: z.ZodType<
-  UltraBlurColors,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  topLeft: z.string(),
-  topRight: z.string(),
-  bottomRight: z.string(),
-  bottomLeft: z.string(),
-});
-
-/** @internal */
-export type UltraBlurColors$Outbound = {
-  topLeft: string;
-  topRight: string;
-  bottomRight: string;
-  bottomLeft: string;
-};
-
-/** @internal */
-export const UltraBlurColors$outboundSchema: z.ZodType<
-  UltraBlurColors$Outbound,
-  z.ZodTypeDef,
-  UltraBlurColors
-> = z.object({
-  topLeft: z.string(),
-  topRight: z.string(),
-  bottomRight: z.string(),
-  bottomLeft: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UltraBlurColors$ {
-  /** @deprecated use `UltraBlurColors$inboundSchema` instead. */
-  export const inboundSchema = UltraBlurColors$inboundSchema;
-  /** @deprecated use `UltraBlurColors$outboundSchema` instead. */
-  export const outboundSchema = UltraBlurColors$outboundSchema;
-  /** @deprecated use `UltraBlurColors$Outbound` instead. */
-  export type Outbound = UltraBlurColors$Outbound;
-}
-
-export function ultraBlurColorsToJSON(
-  ultraBlurColors: UltraBlurColors,
-): string {
-  return JSON.stringify(UltraBlurColors$outboundSchema.parse(ultraBlurColors));
-}
-
-export function ultraBlurColorsFromJSON(
-  jsonString: string,
-): SafeParseResult<UltraBlurColors, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UltraBlurColors$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UltraBlurColors' from JSON`,
-  );
-}
-
-/** @internal */
-export const MetaDataRating$inboundSchema: z.ZodType<
-  MetaDataRating,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  image: z.string(),
-  value: z.number(),
-  type: z.string(),
-});
-
-/** @internal */
-export type MetaDataRating$Outbound = {
-  image: string;
-  value: number;
-  type: string;
-};
-
-/** @internal */
-export const MetaDataRating$outboundSchema: z.ZodType<
-  MetaDataRating$Outbound,
-  z.ZodTypeDef,
-  MetaDataRating
-> = z.object({
-  image: z.string(),
-  value: z.number(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MetaDataRating$ {
-  /** @deprecated use `MetaDataRating$inboundSchema` instead. */
-  export const inboundSchema = MetaDataRating$inboundSchema;
-  /** @deprecated use `MetaDataRating$outboundSchema` instead. */
-  export const outboundSchema = MetaDataRating$outboundSchema;
-  /** @deprecated use `MetaDataRating$Outbound` instead. */
-  export type Outbound = MetaDataRating$Outbound;
-}
-
-export function metaDataRatingToJSON(metaDataRating: MetaDataRating): string {
-  return JSON.stringify(MetaDataRating$outboundSchema.parse(metaDataRating));
-}
-
-export function metaDataRatingFromJSON(
-  jsonString: string,
-): SafeParseResult<MetaDataRating, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MetaDataRating$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MetaDataRating' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetRecentlyAddedHubsResponseType$inboundSchema: z.ZodNativeEnum<
   typeof GetRecentlyAddedHubsResponseType
 > = z.nativeEnum(GetRecentlyAddedHubsResponseType);
@@ -2437,183 +1769,1422 @@ export function getRecentlyAddedImageFromJSON(
 }
 
 /** @internal */
+export const UltraBlurColors$inboundSchema: z.ZodType<
+  UltraBlurColors,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/** @internal */
+export type UltraBlurColors$Outbound = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+/** @internal */
+export const UltraBlurColors$outboundSchema: z.ZodType<
+  UltraBlurColors$Outbound,
+  z.ZodTypeDef,
+  UltraBlurColors
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UltraBlurColors$ {
+  /** @deprecated use `UltraBlurColors$inboundSchema` instead. */
+  export const inboundSchema = UltraBlurColors$inboundSchema;
+  /** @deprecated use `UltraBlurColors$outboundSchema` instead. */
+  export const outboundSchema = UltraBlurColors$outboundSchema;
+  /** @deprecated use `UltraBlurColors$Outbound` instead. */
+  export type Outbound = UltraBlurColors$Outbound;
+}
+
+export function ultraBlurColorsToJSON(
+  ultraBlurColors: UltraBlurColors,
+): string {
+  return JSON.stringify(UltraBlurColors$outboundSchema.parse(ultraBlurColors));
+}
+
+export function ultraBlurColorsFromJSON(
+  jsonString: string,
+): SafeParseResult<UltraBlurColors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UltraBlurColors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UltraBlurColors' from JSON`,
+  );
+}
+
+/** @internal */
+export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
+
+/** @internal */
+export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
+  One$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace One$ {
+  /** @deprecated use `One$inboundSchema` instead. */
+  export const inboundSchema = One$inboundSchema;
+  /** @deprecated use `One$outboundSchema` instead. */
+  export const outboundSchema = One$outboundSchema;
+}
+
+/** @internal */
+export const OptimizedForStreaming$inboundSchema: z.ZodType<
+  OptimizedForStreaming,
+  z.ZodTypeDef,
+  unknown
+> = z.union([One$inboundSchema, z.boolean()]);
+
+/** @internal */
+export type OptimizedForStreaming$Outbound = number | boolean;
+
+/** @internal */
+export const OptimizedForStreaming$outboundSchema: z.ZodType<
+  OptimizedForStreaming$Outbound,
+  z.ZodTypeDef,
+  OptimizedForStreaming
+> = z.union([One$outboundSchema, z.boolean()]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace OptimizedForStreaming$ {
+  /** @deprecated use `OptimizedForStreaming$inboundSchema` instead. */
+  export const inboundSchema = OptimizedForStreaming$inboundSchema;
+  /** @deprecated use `OptimizedForStreaming$outboundSchema` instead. */
+  export const outboundSchema = OptimizedForStreaming$outboundSchema;
+  /** @deprecated use `OptimizedForStreaming$Outbound` instead. */
+  export type Outbound = OptimizedForStreaming$Outbound;
+}
+
+export function optimizedForStreamingToJSON(
+  optimizedForStreaming: OptimizedForStreaming,
+): string {
+  return JSON.stringify(
+    OptimizedForStreaming$outboundSchema.parse(optimizedForStreaming),
+  );
+}
+
+export function optimizedForStreamingFromJSON(
+  jsonString: string,
+): SafeParseResult<OptimizedForStreaming, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OptimizedForStreaming$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OptimizedForStreaming' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetRecentlyAddedOptimizedForStreaming1$inboundSchema:
+  z.ZodNativeEnum<typeof GetRecentlyAddedOptimizedForStreaming1> = z.nativeEnum(
+    GetRecentlyAddedOptimizedForStreaming1,
+  );
+
+/** @internal */
+export const GetRecentlyAddedOptimizedForStreaming1$outboundSchema:
+  z.ZodNativeEnum<typeof GetRecentlyAddedOptimizedForStreaming1> =
+    GetRecentlyAddedOptimizedForStreaming1$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedOptimizedForStreaming1$ {
+  /** @deprecated use `GetRecentlyAddedOptimizedForStreaming1$inboundSchema` instead. */
+  export const inboundSchema =
+    GetRecentlyAddedOptimizedForStreaming1$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedOptimizedForStreaming1$outboundSchema` instead. */
+  export const outboundSchema =
+    GetRecentlyAddedOptimizedForStreaming1$outboundSchema;
+}
+
+/** @internal */
+export const GetRecentlyAddedOptimizedForStreaming$inboundSchema: z.ZodType<
+  GetRecentlyAddedOptimizedForStreaming,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  GetRecentlyAddedOptimizedForStreaming1$inboundSchema,
+  z.boolean(),
+]);
+
+/** @internal */
+export type GetRecentlyAddedOptimizedForStreaming$Outbound = number | boolean;
+
+/** @internal */
+export const GetRecentlyAddedOptimizedForStreaming$outboundSchema: z.ZodType<
+  GetRecentlyAddedOptimizedForStreaming$Outbound,
+  z.ZodTypeDef,
+  GetRecentlyAddedOptimizedForStreaming
+> = z.union([
+  GetRecentlyAddedOptimizedForStreaming1$outboundSchema,
+  z.boolean(),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRecentlyAddedOptimizedForStreaming$ {
+  /** @deprecated use `GetRecentlyAddedOptimizedForStreaming$inboundSchema` instead. */
+  export const inboundSchema =
+    GetRecentlyAddedOptimizedForStreaming$inboundSchema;
+  /** @deprecated use `GetRecentlyAddedOptimizedForStreaming$outboundSchema` instead. */
+  export const outboundSchema =
+    GetRecentlyAddedOptimizedForStreaming$outboundSchema;
+  /** @deprecated use `GetRecentlyAddedOptimizedForStreaming$Outbound` instead. */
+  export type Outbound = GetRecentlyAddedOptimizedForStreaming$Outbound;
+}
+
+export function getRecentlyAddedOptimizedForStreamingToJSON(
+  getRecentlyAddedOptimizedForStreaming: GetRecentlyAddedOptimizedForStreaming,
+): string {
+  return JSON.stringify(
+    GetRecentlyAddedOptimizedForStreaming$outboundSchema.parse(
+      getRecentlyAddedOptimizedForStreaming,
+    ),
+  );
+}
+
+export function getRecentlyAddedOptimizedForStreamingFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRecentlyAddedOptimizedForStreaming, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetRecentlyAddedOptimizedForStreaming$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRecentlyAddedOptimizedForStreaming' from JSON`,
+  );
+}
+
+/** @internal */
+export const HasThumbnail$inboundSchema: z.ZodNativeEnum<typeof HasThumbnail> =
+  z.nativeEnum(HasThumbnail);
+
+/** @internal */
+export const HasThumbnail$outboundSchema: z.ZodNativeEnum<typeof HasThumbnail> =
+  HasThumbnail$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace HasThumbnail$ {
+  /** @deprecated use `HasThumbnail$inboundSchema` instead. */
+  export const inboundSchema = HasThumbnail$inboundSchema;
+  /** @deprecated use `HasThumbnail$outboundSchema` instead. */
+  export const outboundSchema = HasThumbnail$outboundSchema;
+}
+
+/** @internal */
+export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.number().int(),
+    streamType: z.number().int(),
+    default: z.boolean().optional(),
+    codec: z.string(),
+    index: z.number().int(),
+    bitrate: z.number().int().optional(),
+    language: z.string().optional(),
+    languageTag: z.string().optional(),
+    languageCode: z.string().optional(),
+    headerCompression: z.boolean().optional(),
+    DOVIBLCompatID: z.number().int().optional(),
+    DOVIBLPresent: z.boolean().optional(),
+    DOVIELPresent: z.boolean().optional(),
+    DOVILevel: z.number().int().optional(),
+    DOVIPresent: z.boolean().optional(),
+    DOVIProfile: z.number().int().optional(),
+    DOVIRPUPresent: z.boolean().optional(),
+    DOVIVersion: z.string().optional(),
+    bitDepth: z.number().int().optional(),
+    chromaLocation: z.string().optional(),
+    chromaSubsampling: z.string().optional(),
+    codedHeight: z.number().int().optional(),
+    codedWidth: z.number().int().optional(),
+    closedCaptions: z.boolean().optional(),
+    colorPrimaries: z.string().optional(),
+    colorRange: z.string().optional(),
+    colorSpace: z.string().optional(),
+    colorTrc: z.string().optional(),
+    frameRate: z.number().optional(),
+    height: z.number().int().optional(),
+    level: z.number().int().optional(),
+    original: z.boolean().optional(),
+    hasScalingMatrix: z.boolean().optional(),
+    profile: z.string().optional(),
+    scanType: z.string().optional(),
+    embeddedInVideo: z.string().optional(),
+    refFrames: z.number().int().optional(),
+    width: z.number().int().optional(),
+    displayTitle: z.string(),
+    extendedDisplayTitle: z.string(),
+    selected: z.boolean().optional(),
+    forced: z.boolean().optional(),
+    channels: z.number().int().optional(),
+    audioChannelLayout: z.string().optional(),
+    samplingRate: z.number().int().optional(),
+    canAutoSync: z.boolean().optional(),
+    hearingImpaired: z.boolean().optional(),
+    dub: z.boolean().optional(),
+    title: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "DOVIBLCompatID": "doviblCompatID",
+      "DOVIBLPresent": "doviblPresent",
+      "DOVIELPresent": "dovielPresent",
+      "DOVILevel": "doviLevel",
+      "DOVIPresent": "doviPresent",
+      "DOVIProfile": "doviProfile",
+      "DOVIRPUPresent": "dovirpuPresent",
+      "DOVIVersion": "doviVersion",
+    });
+  });
+
+/** @internal */
+export type Stream$Outbound = {
+  id: number;
+  streamType: number;
+  default?: boolean | undefined;
+  codec: string;
+  index: number;
+  bitrate?: number | undefined;
+  language?: string | undefined;
+  languageTag?: string | undefined;
+  languageCode?: string | undefined;
+  headerCompression?: boolean | undefined;
+  DOVIBLCompatID?: number | undefined;
+  DOVIBLPresent?: boolean | undefined;
+  DOVIELPresent?: boolean | undefined;
+  DOVILevel?: number | undefined;
+  DOVIPresent?: boolean | undefined;
+  DOVIProfile?: number | undefined;
+  DOVIRPUPresent?: boolean | undefined;
+  DOVIVersion?: string | undefined;
+  bitDepth?: number | undefined;
+  chromaLocation?: string | undefined;
+  chromaSubsampling?: string | undefined;
+  codedHeight?: number | undefined;
+  codedWidth?: number | undefined;
+  closedCaptions?: boolean | undefined;
+  colorPrimaries?: string | undefined;
+  colorRange?: string | undefined;
+  colorSpace?: string | undefined;
+  colorTrc?: string | undefined;
+  frameRate?: number | undefined;
+  height?: number | undefined;
+  level?: number | undefined;
+  original?: boolean | undefined;
+  hasScalingMatrix?: boolean | undefined;
+  profile?: string | undefined;
+  scanType?: string | undefined;
+  embeddedInVideo?: string | undefined;
+  refFrames?: number | undefined;
+  width?: number | undefined;
+  displayTitle: string;
+  extendedDisplayTitle: string;
+  selected?: boolean | undefined;
+  forced?: boolean | undefined;
+  channels?: number | undefined;
+  audioChannelLayout?: string | undefined;
+  samplingRate?: number | undefined;
+  canAutoSync?: boolean | undefined;
+  hearingImpaired?: boolean | undefined;
+  dub?: boolean | undefined;
+  title?: string | undefined;
+};
+
+/** @internal */
+export const Stream$outboundSchema: z.ZodType<
+  Stream$Outbound,
+  z.ZodTypeDef,
+  Stream
+> = z.object({
+  id: z.number().int(),
+  streamType: z.number().int(),
+  default: z.boolean().optional(),
+  codec: z.string(),
+  index: z.number().int(),
+  bitrate: z.number().int().optional(),
+  language: z.string().optional(),
+  languageTag: z.string().optional(),
+  languageCode: z.string().optional(),
+  headerCompression: z.boolean().optional(),
+  doviblCompatID: z.number().int().optional(),
+  doviblPresent: z.boolean().optional(),
+  dovielPresent: z.boolean().optional(),
+  doviLevel: z.number().int().optional(),
+  doviPresent: z.boolean().optional(),
+  doviProfile: z.number().int().optional(),
+  dovirpuPresent: z.boolean().optional(),
+  doviVersion: z.string().optional(),
+  bitDepth: z.number().int().optional(),
+  chromaLocation: z.string().optional(),
+  chromaSubsampling: z.string().optional(),
+  codedHeight: z.number().int().optional(),
+  codedWidth: z.number().int().optional(),
+  closedCaptions: z.boolean().optional(),
+  colorPrimaries: z.string().optional(),
+  colorRange: z.string().optional(),
+  colorSpace: z.string().optional(),
+  colorTrc: z.string().optional(),
+  frameRate: z.number().optional(),
+  height: z.number().int().optional(),
+  level: z.number().int().optional(),
+  original: z.boolean().optional(),
+  hasScalingMatrix: z.boolean().optional(),
+  profile: z.string().optional(),
+  scanType: z.string().optional(),
+  embeddedInVideo: z.string().optional(),
+  refFrames: z.number().int().optional(),
+  width: z.number().int().optional(),
+  displayTitle: z.string(),
+  extendedDisplayTitle: z.string(),
+  selected: z.boolean().optional(),
+  forced: z.boolean().optional(),
+  channels: z.number().int().optional(),
+  audioChannelLayout: z.string().optional(),
+  samplingRate: z.number().int().optional(),
+  canAutoSync: z.boolean().optional(),
+  hearingImpaired: z.boolean().optional(),
+  dub: z.boolean().optional(),
+  title: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    doviblCompatID: "DOVIBLCompatID",
+    doviblPresent: "DOVIBLPresent",
+    dovielPresent: "DOVIELPresent",
+    doviLevel: "DOVILevel",
+    doviPresent: "DOVIPresent",
+    doviProfile: "DOVIProfile",
+    dovirpuPresent: "DOVIRPUPresent",
+    doviVersion: "DOVIVersion",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Stream$ {
+  /** @deprecated use `Stream$inboundSchema` instead. */
+  export const inboundSchema = Stream$inboundSchema;
+  /** @deprecated use `Stream$outboundSchema` instead. */
+  export const outboundSchema = Stream$outboundSchema;
+  /** @deprecated use `Stream$Outbound` instead. */
+  export type Outbound = Stream$Outbound;
+}
+
+export function streamToJSON(stream: Stream): string {
+  return JSON.stringify(Stream$outboundSchema.parse(stream));
+}
+
+export function streamFromJSON(
+  jsonString: string,
+): SafeParseResult<Stream, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Stream$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Stream' from JSON`,
+  );
+}
+
+/** @internal */
+export const Part$inboundSchema: z.ZodType<Part, z.ZodTypeDef, unknown> = z
+  .object({
+    accessible: z.boolean().optional(),
+    exists: z.boolean().optional(),
+    id: z.number().int(),
+    key: z.string(),
+    indexes: z.string().optional(),
+    duration: z.number().int().optional(),
+    file: z.string(),
+    size: z.number().int(),
+    packetLength: z.number().int().optional(),
+    container: z.string().optional(),
+    videoProfile: z.string().optional(),
+    audioProfile: z.string().optional(),
+    has64bitOffsets: z.boolean().optional(),
+    optimizedForStreaming: z.union([
+      GetRecentlyAddedOptimizedForStreaming1$inboundSchema,
+      z.boolean(),
+    ]).optional(),
+    hasThumbnail: HasThumbnail$inboundSchema.default(HasThumbnail.False),
+    Stream: z.array(z.lazy(() => Stream$inboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Stream": "stream",
+    });
+  });
+
+/** @internal */
+export type Part$Outbound = {
+  accessible?: boolean | undefined;
+  exists?: boolean | undefined;
+  id: number;
+  key: string;
+  indexes?: string | undefined;
+  duration?: number | undefined;
+  file: string;
+  size: number;
+  packetLength?: number | undefined;
+  container?: string | undefined;
+  videoProfile?: string | undefined;
+  audioProfile?: string | undefined;
+  has64bitOffsets?: boolean | undefined;
+  optimizedForStreaming?: number | boolean | undefined;
+  hasThumbnail: string;
+  Stream?: Array<Stream$Outbound> | undefined;
+};
+
+/** @internal */
+export const Part$outboundSchema: z.ZodType<Part$Outbound, z.ZodTypeDef, Part> =
+  z.object({
+    accessible: z.boolean().optional(),
+    exists: z.boolean().optional(),
+    id: z.number().int(),
+    key: z.string(),
+    indexes: z.string().optional(),
+    duration: z.number().int().optional(),
+    file: z.string(),
+    size: z.number().int(),
+    packetLength: z.number().int().optional(),
+    container: z.string().optional(),
+    videoProfile: z.string().optional(),
+    audioProfile: z.string().optional(),
+    has64bitOffsets: z.boolean().optional(),
+    optimizedForStreaming: z.union([
+      GetRecentlyAddedOptimizedForStreaming1$outboundSchema,
+      z.boolean(),
+    ]).optional(),
+    hasThumbnail: HasThumbnail$outboundSchema.default(HasThumbnail.False),
+    stream: z.array(z.lazy(() => Stream$outboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      stream: "Stream",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Part$ {
+  /** @deprecated use `Part$inboundSchema` instead. */
+  export const inboundSchema = Part$inboundSchema;
+  /** @deprecated use `Part$outboundSchema` instead. */
+  export const outboundSchema = Part$outboundSchema;
+  /** @deprecated use `Part$Outbound` instead. */
+  export type Outbound = Part$Outbound;
+}
+
+export function partToJSON(part: Part): string {
+  return JSON.stringify(Part$outboundSchema.parse(part));
+}
+
+export function partFromJSON(
+  jsonString: string,
+): SafeParseResult<Part, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Part$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Part' from JSON`,
+  );
+}
+
+/** @internal */
+export const Media$inboundSchema: z.ZodType<Media, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.number().int(),
+    duration: z.number().int().optional(),
+    bitrate: z.number().int().optional(),
+    width: z.number().int().optional(),
+    height: z.number().int().optional(),
+    aspectRatio: z.number().optional(),
+    audioChannels: z.number().int().optional(),
+    displayOffset: z.number().int().optional(),
+    audioCodec: z.string().optional(),
+    videoCodec: z.string().optional(),
+    videoResolution: z.string().optional(),
+    container: z.string().optional(),
+    videoFrameRate: z.string().optional(),
+    videoProfile: z.string().optional(),
+    hasVoiceActivity: z.boolean().optional(),
+    audioProfile: z.string().optional(),
+    optimizedForStreaming: z.union([One$inboundSchema, z.boolean()]).optional(),
+    has64bitOffsets: z.boolean().optional(),
+    Part: z.array(z.lazy(() => Part$inboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Part": "part",
+    });
+  });
+
+/** @internal */
+export type Media$Outbound = {
+  id: number;
+  duration?: number | undefined;
+  bitrate?: number | undefined;
+  width?: number | undefined;
+  height?: number | undefined;
+  aspectRatio?: number | undefined;
+  audioChannels?: number | undefined;
+  displayOffset?: number | undefined;
+  audioCodec?: string | undefined;
+  videoCodec?: string | undefined;
+  videoResolution?: string | undefined;
+  container?: string | undefined;
+  videoFrameRate?: string | undefined;
+  videoProfile?: string | undefined;
+  hasVoiceActivity?: boolean | undefined;
+  audioProfile?: string | undefined;
+  optimizedForStreaming?: number | boolean | undefined;
+  has64bitOffsets?: boolean | undefined;
+  Part?: Array<Part$Outbound> | undefined;
+};
+
+/** @internal */
+export const Media$outboundSchema: z.ZodType<
+  Media$Outbound,
+  z.ZodTypeDef,
+  Media
+> = z.object({
+  id: z.number().int(),
+  duration: z.number().int().optional(),
+  bitrate: z.number().int().optional(),
+  width: z.number().int().optional(),
+  height: z.number().int().optional(),
+  aspectRatio: z.number().optional(),
+  audioChannels: z.number().int().optional(),
+  displayOffset: z.number().int().optional(),
+  audioCodec: z.string().optional(),
+  videoCodec: z.string().optional(),
+  videoResolution: z.string().optional(),
+  container: z.string().optional(),
+  videoFrameRate: z.string().optional(),
+  videoProfile: z.string().optional(),
+  hasVoiceActivity: z.boolean().optional(),
+  audioProfile: z.string().optional(),
+  optimizedForStreaming: z.union([One$outboundSchema, z.boolean()]).optional(),
+  has64bitOffsets: z.boolean().optional(),
+  part: z.array(z.lazy(() => Part$outboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    part: "Part",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Media$ {
+  /** @deprecated use `Media$inboundSchema` instead. */
+  export const inboundSchema = Media$inboundSchema;
+  /** @deprecated use `Media$outboundSchema` instead. */
+  export const outboundSchema = Media$outboundSchema;
+  /** @deprecated use `Media$Outbound` instead. */
+  export type Outbound = Media$Outbound;
+}
+
+export function mediaToJSON(media: Media): string {
+  return JSON.stringify(Media$outboundSchema.parse(media));
+}
+
+export function mediaFromJSON(
+  jsonString: string,
+): SafeParseResult<Media, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Media$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Media' from JSON`,
+  );
+}
+
+/** @internal */
+export const Genre$inboundSchema: z.ZodType<Genre, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.number().int(),
+    filter: z.string(),
+    tag: z.string(),
+  });
+
+/** @internal */
+export type Genre$Outbound = {
+  id: number;
+  filter: string;
+  tag: string;
+};
+
+/** @internal */
+export const Genre$outboundSchema: z.ZodType<
+  Genre$Outbound,
+  z.ZodTypeDef,
+  Genre
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  tag: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Genre$ {
+  /** @deprecated use `Genre$inboundSchema` instead. */
+  export const inboundSchema = Genre$inboundSchema;
+  /** @deprecated use `Genre$outboundSchema` instead. */
+  export const outboundSchema = Genre$outboundSchema;
+  /** @deprecated use `Genre$Outbound` instead. */
+  export type Outbound = Genre$Outbound;
+}
+
+export function genreToJSON(genre: Genre): string {
+  return JSON.stringify(Genre$outboundSchema.parse(genre));
+}
+
+export function genreFromJSON(
+  jsonString: string,
+): SafeParseResult<Genre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Genre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Genre' from JSON`,
+  );
+}
+
+/** @internal */
+export const Country$inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> =
+  z.object({
+    id: z.number().int(),
+    tag: z.string(),
+    filter: z.string().optional(),
+  });
+
+/** @internal */
+export type Country$Outbound = {
+  id: number;
+  tag: string;
+  filter?: string | undefined;
+};
+
+/** @internal */
+export const Country$outboundSchema: z.ZodType<
+  Country$Outbound,
+  z.ZodTypeDef,
+  Country
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  filter: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Country$ {
+  /** @deprecated use `Country$inboundSchema` instead. */
+  export const inboundSchema = Country$inboundSchema;
+  /** @deprecated use `Country$outboundSchema` instead. */
+  export const outboundSchema = Country$outboundSchema;
+  /** @deprecated use `Country$Outbound` instead. */
+  export type Outbound = Country$Outbound;
+}
+
+export function countryToJSON(country: Country): string {
+  return JSON.stringify(Country$outboundSchema.parse(country));
+}
+
+export function countryFromJSON(
+  jsonString: string,
+): SafeParseResult<Country, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Country$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Country' from JSON`,
+  );
+}
+
+/** @internal */
+export const Director$inboundSchema: z.ZodType<
+  Director,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  tag: z.string(),
+});
+
+/** @internal */
+export type Director$Outbound = {
+  tag: string;
+};
+
+/** @internal */
+export const Director$outboundSchema: z.ZodType<
+  Director$Outbound,
+  z.ZodTypeDef,
+  Director
+> = z.object({
+  tag: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Director$ {
+  /** @deprecated use `Director$inboundSchema` instead. */
+  export const inboundSchema = Director$inboundSchema;
+  /** @deprecated use `Director$outboundSchema` instead. */
+  export const outboundSchema = Director$outboundSchema;
+  /** @deprecated use `Director$Outbound` instead. */
+  export type Outbound = Director$Outbound;
+}
+
+export function directorToJSON(director: Director): string {
+  return JSON.stringify(Director$outboundSchema.parse(director));
+}
+
+export function directorFromJSON(
+  jsonString: string,
+): SafeParseResult<Director, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Director$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Director' from JSON`,
+  );
+}
+
+/** @internal */
+export const Writer$inboundSchema: z.ZodType<Writer, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.number().int(),
+    filter: z.string(),
+    tag: z.string(),
+    tagKey: z.string().optional(),
+  });
+
+/** @internal */
+export type Writer$Outbound = {
+  id: number;
+  filter: string;
+  tag: string;
+  tagKey?: string | undefined;
+};
+
+/** @internal */
+export const Writer$outboundSchema: z.ZodType<
+  Writer$Outbound,
+  z.ZodTypeDef,
+  Writer
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  tag: z.string(),
+  tagKey: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Writer$ {
+  /** @deprecated use `Writer$inboundSchema` instead. */
+  export const inboundSchema = Writer$inboundSchema;
+  /** @deprecated use `Writer$outboundSchema` instead. */
+  export const outboundSchema = Writer$outboundSchema;
+  /** @deprecated use `Writer$Outbound` instead. */
+  export type Outbound = Writer$Outbound;
+}
+
+export function writerToJSON(writer: Writer): string {
+  return JSON.stringify(Writer$outboundSchema.parse(writer));
+}
+
+export function writerFromJSON(
+  jsonString: string,
+): SafeParseResult<Writer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Writer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Writer' from JSON`,
+  );
+}
+
+/** @internal */
+export const Role$inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.number().int(),
+    filter: z.string(),
+    tag: z.string(),
+    tagKey: z.string().optional(),
+    role: z.string().optional(),
+    thumb: z.string().optional(),
+  });
+
+/** @internal */
+export type Role$Outbound = {
+  id: number;
+  filter: string;
+  tag: string;
+  tagKey?: string | undefined;
+  role?: string | undefined;
+  thumb?: string | undefined;
+};
+
+/** @internal */
+export const Role$outboundSchema: z.ZodType<Role$Outbound, z.ZodTypeDef, Role> =
+  z.object({
+    id: z.number().int(),
+    filter: z.string(),
+    tag: z.string(),
+    tagKey: z.string().optional(),
+    role: z.string().optional(),
+    thumb: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Role$ {
+  /** @deprecated use `Role$inboundSchema` instead. */
+  export const inboundSchema = Role$inboundSchema;
+  /** @deprecated use `Role$outboundSchema` instead. */
+  export const outboundSchema = Role$outboundSchema;
+  /** @deprecated use `Role$Outbound` instead. */
+  export type Outbound = Role$Outbound;
+}
+
+export function roleToJSON(role: Role): string {
+  return JSON.stringify(Role$outboundSchema.parse(role));
+}
+
+export function roleFromJSON(
+  jsonString: string,
+): SafeParseResult<Role, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Role$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Role' from JSON`,
+  );
+}
+
+/** @internal */
+export const Producer$inboundSchema: z.ZodType<
+  Producer,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  tag: z.string(),
+  tagKey: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/** @internal */
+export type Producer$Outbound = {
+  id: number;
+  filter: string;
+  tag: string;
+  tagKey?: string | undefined;
+  thumb?: string | undefined;
+};
+
+/** @internal */
+export const Producer$outboundSchema: z.ZodType<
+  Producer$Outbound,
+  z.ZodTypeDef,
+  Producer
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  tag: z.string(),
+  tagKey: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Producer$ {
+  /** @deprecated use `Producer$inboundSchema` instead. */
+  export const inboundSchema = Producer$inboundSchema;
+  /** @deprecated use `Producer$outboundSchema` instead. */
+  export const outboundSchema = Producer$outboundSchema;
+  /** @deprecated use `Producer$Outbound` instead. */
+  export type Outbound = Producer$Outbound;
+}
+
+export function producerToJSON(producer: Producer): string {
+  return JSON.stringify(Producer$outboundSchema.parse(producer));
+}
+
+export function producerFromJSON(
+  jsonString: string,
+): SafeParseResult<Producer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Producer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Producer' from JSON`,
+  );
+}
+
+/** @internal */
+export const Rating$inboundSchema: z.ZodType<Rating, z.ZodTypeDef, unknown> = z
+  .object({
+    image: z.string(),
+    value: z.number(),
+    type: z.string(),
+  });
+
+/** @internal */
+export type Rating$Outbound = {
+  image: string;
+  value: number;
+  type: string;
+};
+
+/** @internal */
+export const Rating$outboundSchema: z.ZodType<
+  Rating$Outbound,
+  z.ZodTypeDef,
+  Rating
+> = z.object({
+  image: z.string(),
+  value: z.number(),
+  type: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Rating$ {
+  /** @deprecated use `Rating$inboundSchema` instead. */
+  export const inboundSchema = Rating$inboundSchema;
+  /** @deprecated use `Rating$outboundSchema` instead. */
+  export const outboundSchema = Rating$outboundSchema;
+  /** @deprecated use `Rating$Outbound` instead. */
+  export type Outbound = Rating$Outbound;
+}
+
+export function ratingToJSON(rating: Rating): string {
+  return JSON.stringify(Rating$outboundSchema.parse(rating));
+}
+
+export function ratingFromJSON(
+  jsonString: string,
+): SafeParseResult<Rating, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Rating$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Rating' from JSON`,
+  );
+}
+
+/** @internal */
+export const Similar$inboundSchema: z.ZodType<Similar, z.ZodTypeDef, unknown> =
+  z.object({
+    id: z.number().int(),
+    filter: z.string(),
+    tag: z.string(),
+  });
+
+/** @internal */
+export type Similar$Outbound = {
+  id: number;
+  filter: string;
+  tag: string;
+};
+
+/** @internal */
+export const Similar$outboundSchema: z.ZodType<
+  Similar$Outbound,
+  z.ZodTypeDef,
+  Similar
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  tag: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Similar$ {
+  /** @deprecated use `Similar$inboundSchema` instead. */
+  export const inboundSchema = Similar$inboundSchema;
+  /** @deprecated use `Similar$outboundSchema` instead. */
+  export const outboundSchema = Similar$outboundSchema;
+  /** @deprecated use `Similar$Outbound` instead. */
+  export type Outbound = Similar$Outbound;
+}
+
+export function similarToJSON(similar: Similar): string {
+  return JSON.stringify(Similar$outboundSchema.parse(similar));
+}
+
+export function similarFromJSON(
+  jsonString: string,
+): SafeParseResult<Similar, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Similar$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Similar' from JSON`,
+  );
+}
+
+/** @internal */
+export const Location$inboundSchema: z.ZodType<
+  Location,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  path: z.string(),
+});
+
+/** @internal */
+export type Location$Outbound = {
+  path: string;
+};
+
+/** @internal */
+export const Location$outboundSchema: z.ZodType<
+  Location$Outbound,
+  z.ZodTypeDef,
+  Location
+> = z.object({
+  path: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Location$ {
+  /** @deprecated use `Location$inboundSchema` instead. */
+  export const inboundSchema = Location$inboundSchema;
+  /** @deprecated use `Location$outboundSchema` instead. */
+  export const outboundSchema = Location$outboundSchema;
+  /** @deprecated use `Location$Outbound` instead. */
+  export type Outbound = Location$Outbound;
+}
+
+export function locationToJSON(location: Location): string {
+  return JSON.stringify(Location$outboundSchema.parse(location));
+}
+
+export function locationFromJSON(
+  jsonString: string,
+): SafeParseResult<Location, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Location$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Location' from JSON`,
+  );
+}
+
+/** @internal */
+export const Guids$inboundSchema: z.ZodType<Guids, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.string().optional(),
+  });
+
+/** @internal */
+export type Guids$Outbound = {
+  id?: string | undefined;
+};
+
+/** @internal */
+export const Guids$outboundSchema: z.ZodType<
+  Guids$Outbound,
+  z.ZodTypeDef,
+  Guids
+> = z.object({
+  id: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Guids$ {
+  /** @deprecated use `Guids$inboundSchema` instead. */
+  export const inboundSchema = Guids$inboundSchema;
+  /** @deprecated use `Guids$outboundSchema` instead. */
+  export const outboundSchema = Guids$outboundSchema;
+  /** @deprecated use `Guids$Outbound` instead. */
+  export type Outbound = Guids$Outbound;
+}
+
+export function guidsToJSON(guids: Guids): string {
+  return JSON.stringify(Guids$outboundSchema.parse(guids));
+}
+
+export function guidsFromJSON(
+  jsonString: string,
+): SafeParseResult<Guids, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Guids$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Guids' from JSON`,
+  );
+}
+
+/** @internal */
+export const Collection$inboundSchema: z.ZodType<
+  Collection,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  tag: z.string(),
+});
+
+/** @internal */
+export type Collection$Outbound = {
+  tag: string;
+};
+
+/** @internal */
+export const Collection$outboundSchema: z.ZodType<
+  Collection$Outbound,
+  z.ZodTypeDef,
+  Collection
+> = z.object({
+  tag: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Collection$ {
+  /** @deprecated use `Collection$inboundSchema` instead. */
+  export const inboundSchema = Collection$inboundSchema;
+  /** @deprecated use `Collection$outboundSchema` instead. */
+  export const outboundSchema = Collection$outboundSchema;
+  /** @deprecated use `Collection$Outbound` instead. */
+  export type Outbound = Collection$Outbound;
+}
+
+export function collectionToJSON(collection: Collection): string {
+  return JSON.stringify(Collection$outboundSchema.parse(collection));
+}
+
+export function collectionFromJSON(
+  jsonString: string,
+): SafeParseResult<Collection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Collection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Collection' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
   GetRecentlyAddedMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  ratingKey: z.string(),
-  key: z.string(),
-  guid: z.string(),
-  studio: z.string().optional(),
-  skipChildren: z.boolean().optional(),
-  librarySectionID: z.number().int().optional(),
-  librarySectionTitle: z.string().optional(),
-  librarySectionKey: z.string().optional(),
-  type: GetRecentlyAddedHubsType$inboundSchema,
-  title: z.string(),
-  slug: z.string().optional(),
-  contentRating: z.string().optional(),
-  summary: z.string(),
-  rating: z.number().optional(),
-  audienceRating: z.number().optional(),
-  year: z.number().int().optional(),
-  seasonCount: z.number().int().optional(),
-  tagline: z.string().optional(),
-  flattenSeasons: FlattenSeasons$inboundSchema.optional(),
-  episodeSort: EpisodeSort$inboundSchema.optional(),
-  enableCreditsMarkerGeneration: EnableCreditsMarkerGeneration$inboundSchema
-    .optional(),
-  showOrdering: ShowOrdering$inboundSchema.optional(),
-  thumb: z.string().optional(),
-  art: z.string().optional(),
-  banner: z.string().optional(),
-  duration: z.number().int().optional(),
-  originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
   addedAt: z.number().int(),
-  updatedAt: z.number().int().optional(),
+  art: z.string(),
   audienceRatingImage: z.string().optional(),
+  audienceRating: z.number(),
   chapterSource: z.string().optional(),
-  primaryExtraKey: z.string().optional(),
-  ratingImage: z.string().optional(),
-  grandparentRatingKey: z.string().optional(),
+  childCount: z.number().int(),
+  contentRating: z.string().optional(),
+  createdAtAccuracy: z.string().optional(),
+  createdAtTZOffset: z.string().optional(),
+  duration: z.number().int(),
+  grandparentArt: z.string().optional(),
   grandparentGuid: z.string().optional(),
   grandparentKey: z.string().optional(),
-  grandparentTitle: z.string().optional(),
-  grandparentThumb: z.string().optional(),
-  parentSlug: z.string().optional(),
+  grandparentRatingKey: z.string().optional(),
   grandparentSlug: z.string().optional(),
-  grandparentArt: z.string().optional(),
   grandparentTheme: z.string().optional(),
+  grandparentThumb: z.string().optional(),
+  grandparentTitle: z.string().optional(),
+  guid: z.string(),
+  index: z.number().int(),
+  key: z.string(),
+  lastRatedAt: z.number().int().optional(),
+  lastViewedAt: z.number().int().optional(),
+  leafCount: z.number().int().optional(),
+  librarySectionID: z.number().int(),
+  librarySectionKey: z.string(),
+  librarySectionTitle: z.string(),
+  originalTitle: z.string().optional(),
+  originallyAvailableAt: z.string().transform(v => new RFCDate(v)),
+  parentGuid: z.string().optional(),
+  parentIndex: z.number().int().optional(),
+  parentKey: z.string().optional(),
+  parentRatingKey: z.string().optional(),
+  parentSlug: z.string().optional(),
+  parentStudio: z.string(),
+  parentTheme: z.string(),
+  parentThumb: z.string().optional(),
+  parentTitle: z.string().optional(),
+  parentYear: z.number().int().optional(),
+  primaryExtraKey: z.string().optional(),
+  ratingImage: z.string().optional(),
+  ratingKey: z.string(),
+  rating: z.number(),
+  seasonCount: z.number().int(),
+  skipCount: z.number().int().optional(),
+  slug: z.string(),
+  studio: z.string().optional(),
+  subtype: z.string().optional(),
+  summary: z.string(),
+  tagline: z.string(),
+  theme: z.string(),
+  thumb: z.string(),
+  titleSort: z.string(),
+  title: z.string(),
+  type: GetRecentlyAddedHubsType$inboundSchema,
+  updatedAt: z.number().int().optional(),
+  userRating: z.number().optional(),
+  viewCount: z.number().int().optional(),
+  viewOffset: z.number().int().optional(),
+  viewedLeafCount: z.number().int().optional(),
+  year: z.number().int().optional(),
+  Image: z.array(z.lazy(() => GetRecentlyAddedImage$inboundSchema)).optional(),
+  UltraBlurColors: z.lazy(() => UltraBlurColors$inboundSchema).optional(),
   Media: z.array(z.lazy(() => Media$inboundSchema)).optional(),
   Genre: z.array(z.lazy(() => Genre$inboundSchema)).optional(),
   Country: z.array(z.lazy(() => Country$inboundSchema)).optional(),
   Director: z.array(z.lazy(() => Director$inboundSchema)).optional(),
   Writer: z.array(z.lazy(() => Writer$inboundSchema)).optional(),
-  Collection: z.array(z.lazy(() => Collection$inboundSchema)).optional(),
   Role: z.array(z.lazy(() => Role$inboundSchema)).optional(),
+  Producer: z.array(z.lazy(() => Producer$inboundSchema)).optional(),
+  Rating: z.array(z.lazy(() => Rating$inboundSchema)).optional(),
+  Similar: z.array(z.lazy(() => Similar$inboundSchema)).optional(),
   Location: z.array(z.lazy(() => Location$inboundSchema)).optional(),
-  Guid: z.array(z.lazy(() => MediaGuid$inboundSchema)).optional(),
-  UltraBlurColors: z.lazy(() => UltraBlurColors$inboundSchema).optional(),
-  Rating: z.array(z.lazy(() => MetaDataRating$inboundSchema)).optional(),
-  Image: z.array(z.lazy(() => GetRecentlyAddedImage$inboundSchema)).optional(),
-  titleSort: z.string().optional(),
-  viewCount: z.number().int().optional(),
-  lastViewedAt: z.number().int().optional(),
-  originalTitle: z.string().optional(),
-  viewOffset: z.number().int().optional(),
-  skipCount: z.number().int().optional(),
-  index: z.number().int().optional(),
-  theme: z.string().optional(),
-  leafCount: z.number().int().optional(),
-  viewedLeafCount: z.number().int().optional(),
-  childCount: z.number().int().optional(),
-  hasPremiumExtras: z.string().optional(),
-  hasPremiumPrimaryExtra: z.string().optional(),
-  parentRatingKey: z.string().optional(),
-  parentGuid: z.string().optional(),
-  parentStudio: z.string().optional(),
-  parentKey: z.string().optional(),
-  parentTitle: z.string().optional(),
-  parentIndex: z.number().int().optional(),
-  parentYear: z.number().int().optional(),
-  parentThumb: z.string().optional(),
-  parentTheme: z.string().optional(),
+  Guid: z.array(z.lazy(() => Guids$inboundSchema)).optional(),
+  Collection: z.array(z.lazy(() => Collection$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "Image": "image",
+    "UltraBlurColors": "ultraBlurColors",
     "Media": "media",
     "Genre": "genre",
     "Country": "country",
     "Director": "director",
     "Writer": "writer",
-    "Collection": "collection",
     "Role": "role",
+    "Producer": "producer",
+    "Rating": "rating1",
+    "Similar": "similar",
     "Location": "location",
-    "Guid": "mediaGuid",
-    "UltraBlurColors": "ultraBlurColors",
-    "Rating": "metaDataRating",
-    "Image": "image",
+    "Guid": "guids",
+    "Collection": "collection",
   });
 });
 
 /** @internal */
 export type GetRecentlyAddedMetadata$Outbound = {
-  ratingKey: string;
-  key: string;
-  guid: string;
-  studio?: string | undefined;
-  skipChildren?: boolean | undefined;
-  librarySectionID?: number | undefined;
-  librarySectionTitle?: string | undefined;
-  librarySectionKey?: string | undefined;
-  type: string;
-  title: string;
-  slug?: string | undefined;
-  contentRating?: string | undefined;
-  summary: string;
-  rating?: number | undefined;
-  audienceRating?: number | undefined;
-  year?: number | undefined;
-  seasonCount?: number | undefined;
-  tagline?: string | undefined;
-  flattenSeasons?: string | undefined;
-  episodeSort?: string | undefined;
-  enableCreditsMarkerGeneration?: string | undefined;
-  showOrdering?: string | undefined;
-  thumb?: string | undefined;
-  art?: string | undefined;
-  banner?: string | undefined;
-  duration?: number | undefined;
-  originallyAvailableAt?: string | undefined;
   addedAt: number;
-  updatedAt?: number | undefined;
+  art: string;
   audienceRatingImage?: string | undefined;
+  audienceRating: number;
   chapterSource?: string | undefined;
-  primaryExtraKey?: string | undefined;
-  ratingImage?: string | undefined;
-  grandparentRatingKey?: string | undefined;
+  childCount: number;
+  contentRating?: string | undefined;
+  createdAtAccuracy?: string | undefined;
+  createdAtTZOffset?: string | undefined;
+  duration: number;
+  grandparentArt?: string | undefined;
   grandparentGuid?: string | undefined;
   grandparentKey?: string | undefined;
-  grandparentTitle?: string | undefined;
-  grandparentThumb?: string | undefined;
-  parentSlug?: string | undefined;
+  grandparentRatingKey?: string | undefined;
   grandparentSlug?: string | undefined;
-  grandparentArt?: string | undefined;
   grandparentTheme?: string | undefined;
+  grandparentThumb?: string | undefined;
+  grandparentTitle?: string | undefined;
+  guid: string;
+  index: number;
+  key: string;
+  lastRatedAt?: number | undefined;
+  lastViewedAt?: number | undefined;
+  leafCount?: number | undefined;
+  librarySectionID: number;
+  librarySectionKey: string;
+  librarySectionTitle: string;
+  originalTitle?: string | undefined;
+  originallyAvailableAt: string;
+  parentGuid?: string | undefined;
+  parentIndex?: number | undefined;
+  parentKey?: string | undefined;
+  parentRatingKey?: string | undefined;
+  parentSlug?: string | undefined;
+  parentStudio: string;
+  parentTheme: string;
+  parentThumb?: string | undefined;
+  parentTitle?: string | undefined;
+  parentYear?: number | undefined;
+  primaryExtraKey?: string | undefined;
+  ratingImage?: string | undefined;
+  ratingKey: string;
+  rating: number;
+  seasonCount: number;
+  skipCount?: number | undefined;
+  slug: string;
+  studio?: string | undefined;
+  subtype?: string | undefined;
+  summary: string;
+  tagline: string;
+  theme: string;
+  thumb: string;
+  titleSort: string;
+  title: string;
+  type: string;
+  updatedAt?: number | undefined;
+  userRating?: number | undefined;
+  viewCount?: number | undefined;
+  viewOffset?: number | undefined;
+  viewedLeafCount?: number | undefined;
+  year?: number | undefined;
+  Image?: Array<GetRecentlyAddedImage$Outbound> | undefined;
+  UltraBlurColors?: UltraBlurColors$Outbound | undefined;
   Media?: Array<Media$Outbound> | undefined;
   Genre?: Array<Genre$Outbound> | undefined;
   Country?: Array<Country$Outbound> | undefined;
   Director?: Array<Director$Outbound> | undefined;
   Writer?: Array<Writer$Outbound> | undefined;
-  Collection?: Array<Collection$Outbound> | undefined;
   Role?: Array<Role$Outbound> | undefined;
+  Producer?: Array<Producer$Outbound> | undefined;
+  Rating?: Array<Rating$Outbound> | undefined;
+  Similar?: Array<Similar$Outbound> | undefined;
   Location?: Array<Location$Outbound> | undefined;
-  Guid?: Array<MediaGuid$Outbound> | undefined;
-  UltraBlurColors?: UltraBlurColors$Outbound | undefined;
-  Rating?: Array<MetaDataRating$Outbound> | undefined;
-  Image?: Array<GetRecentlyAddedImage$Outbound> | undefined;
-  titleSort?: string | undefined;
-  viewCount?: number | undefined;
-  lastViewedAt?: number | undefined;
-  originalTitle?: string | undefined;
-  viewOffset?: number | undefined;
-  skipCount?: number | undefined;
-  index?: number | undefined;
-  theme?: string | undefined;
-  leafCount?: number | undefined;
-  viewedLeafCount?: number | undefined;
-  childCount?: number | undefined;
-  hasPremiumExtras?: string | undefined;
-  hasPremiumPrimaryExtra?: string | undefined;
-  parentRatingKey?: string | undefined;
-  parentGuid?: string | undefined;
-  parentStudio?: string | undefined;
-  parentKey?: string | undefined;
-  parentTitle?: string | undefined;
-  parentIndex?: number | undefined;
-  parentYear?: number | undefined;
-  parentThumb?: string | undefined;
-  parentTheme?: string | undefined;
+  Guid?: Array<Guids$Outbound> | undefined;
+  Collection?: Array<Collection$Outbound> | undefined;
 };
 
 /** @internal */
@@ -2622,99 +3193,97 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetRecentlyAddedMetadata
 > = z.object({
-  ratingKey: z.string(),
-  key: z.string(),
-  guid: z.string(),
-  studio: z.string().optional(),
-  skipChildren: z.boolean().optional(),
-  librarySectionID: z.number().int().optional(),
-  librarySectionTitle: z.string().optional(),
-  librarySectionKey: z.string().optional(),
-  type: GetRecentlyAddedHubsType$outboundSchema,
-  title: z.string(),
-  slug: z.string().optional(),
-  contentRating: z.string().optional(),
-  summary: z.string(),
-  rating: z.number().optional(),
-  audienceRating: z.number().optional(),
-  year: z.number().int().optional(),
-  seasonCount: z.number().int().optional(),
-  tagline: z.string().optional(),
-  flattenSeasons: FlattenSeasons$outboundSchema.optional(),
-  episodeSort: EpisodeSort$outboundSchema.optional(),
-  enableCreditsMarkerGeneration: EnableCreditsMarkerGeneration$outboundSchema
-    .optional(),
-  showOrdering: ShowOrdering$outboundSchema.optional(),
-  thumb: z.string().optional(),
-  art: z.string().optional(),
-  banner: z.string().optional(),
-  duration: z.number().int().optional(),
-  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString())
-    .optional(),
   addedAt: z.number().int(),
-  updatedAt: z.number().int().optional(),
+  art: z.string(),
   audienceRatingImage: z.string().optional(),
+  audienceRating: z.number(),
   chapterSource: z.string().optional(),
-  primaryExtraKey: z.string().optional(),
-  ratingImage: z.string().optional(),
-  grandparentRatingKey: z.string().optional(),
+  childCount: z.number().int(),
+  contentRating: z.string().optional(),
+  createdAtAccuracy: z.string().optional(),
+  createdAtTZOffset: z.string().optional(),
+  duration: z.number().int(),
+  grandparentArt: z.string().optional(),
   grandparentGuid: z.string().optional(),
   grandparentKey: z.string().optional(),
-  grandparentTitle: z.string().optional(),
-  grandparentThumb: z.string().optional(),
-  parentSlug: z.string().optional(),
+  grandparentRatingKey: z.string().optional(),
   grandparentSlug: z.string().optional(),
-  grandparentArt: z.string().optional(),
   grandparentTheme: z.string().optional(),
+  grandparentThumb: z.string().optional(),
+  grandparentTitle: z.string().optional(),
+  guid: z.string(),
+  index: z.number().int(),
+  key: z.string(),
+  lastRatedAt: z.number().int().optional(),
+  lastViewedAt: z.number().int().optional(),
+  leafCount: z.number().int().optional(),
+  librarySectionID: z.number().int(),
+  librarySectionKey: z.string(),
+  librarySectionTitle: z.string(),
+  originalTitle: z.string().optional(),
+  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString()),
+  parentGuid: z.string().optional(),
+  parentIndex: z.number().int().optional(),
+  parentKey: z.string().optional(),
+  parentRatingKey: z.string().optional(),
+  parentSlug: z.string().optional(),
+  parentStudio: z.string(),
+  parentTheme: z.string(),
+  parentThumb: z.string().optional(),
+  parentTitle: z.string().optional(),
+  parentYear: z.number().int().optional(),
+  primaryExtraKey: z.string().optional(),
+  ratingImage: z.string().optional(),
+  ratingKey: z.string(),
+  rating: z.number(),
+  seasonCount: z.number().int(),
+  skipCount: z.number().int().optional(),
+  slug: z.string(),
+  studio: z.string().optional(),
+  subtype: z.string().optional(),
+  summary: z.string(),
+  tagline: z.string(),
+  theme: z.string(),
+  thumb: z.string(),
+  titleSort: z.string(),
+  title: z.string(),
+  type: GetRecentlyAddedHubsType$outboundSchema,
+  updatedAt: z.number().int().optional(),
+  userRating: z.number().optional(),
+  viewCount: z.number().int().optional(),
+  viewOffset: z.number().int().optional(),
+  viewedLeafCount: z.number().int().optional(),
+  year: z.number().int().optional(),
+  image: z.array(z.lazy(() => GetRecentlyAddedImage$outboundSchema)).optional(),
+  ultraBlurColors: z.lazy(() => UltraBlurColors$outboundSchema).optional(),
   media: z.array(z.lazy(() => Media$outboundSchema)).optional(),
   genre: z.array(z.lazy(() => Genre$outboundSchema)).optional(),
   country: z.array(z.lazy(() => Country$outboundSchema)).optional(),
   director: z.array(z.lazy(() => Director$outboundSchema)).optional(),
   writer: z.array(z.lazy(() => Writer$outboundSchema)).optional(),
-  collection: z.array(z.lazy(() => Collection$outboundSchema)).optional(),
   role: z.array(z.lazy(() => Role$outboundSchema)).optional(),
+  producer: z.array(z.lazy(() => Producer$outboundSchema)).optional(),
+  rating1: z.array(z.lazy(() => Rating$outboundSchema)).optional(),
+  similar: z.array(z.lazy(() => Similar$outboundSchema)).optional(),
   location: z.array(z.lazy(() => Location$outboundSchema)).optional(),
-  mediaGuid: z.array(z.lazy(() => MediaGuid$outboundSchema)).optional(),
-  ultraBlurColors: z.lazy(() => UltraBlurColors$outboundSchema).optional(),
-  metaDataRating: z.array(z.lazy(() => MetaDataRating$outboundSchema))
-    .optional(),
-  image: z.array(z.lazy(() => GetRecentlyAddedImage$outboundSchema)).optional(),
-  titleSort: z.string().optional(),
-  viewCount: z.number().int().optional(),
-  lastViewedAt: z.number().int().optional(),
-  originalTitle: z.string().optional(),
-  viewOffset: z.number().int().optional(),
-  skipCount: z.number().int().optional(),
-  index: z.number().int().optional(),
-  theme: z.string().optional(),
-  leafCount: z.number().int().optional(),
-  viewedLeafCount: z.number().int().optional(),
-  childCount: z.number().int().optional(),
-  hasPremiumExtras: z.string().optional(),
-  hasPremiumPrimaryExtra: z.string().optional(),
-  parentRatingKey: z.string().optional(),
-  parentGuid: z.string().optional(),
-  parentStudio: z.string().optional(),
-  parentKey: z.string().optional(),
-  parentTitle: z.string().optional(),
-  parentIndex: z.number().int().optional(),
-  parentYear: z.number().int().optional(),
-  parentThumb: z.string().optional(),
-  parentTheme: z.string().optional(),
+  guids: z.array(z.lazy(() => Guids$outboundSchema)).optional(),
+  collection: z.array(z.lazy(() => Collection$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
+    image: "Image",
+    ultraBlurColors: "UltraBlurColors",
     media: "Media",
     genre: "Genre",
     country: "Country",
     director: "Director",
     writer: "Writer",
-    collection: "Collection",
     role: "Role",
+    producer: "Producer",
+    rating1: "Rating",
+    similar: "Similar",
     location: "Location",
-    mediaGuid: "Guid",
-    ultraBlurColors: "UltraBlurColors",
-    metaDataRating: "Rating",
-    image: "Image",
+    guids: "Guid",
+    collection: "Collection",
   });
 });
 
@@ -2756,10 +3325,10 @@ export const GetRecentlyAddedMediaContainer$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   size: z.number().int(),
-  offset: z.number().int().optional(),
-  totalSize: z.number().int().optional(),
-  identifier: z.string().optional(),
-  allowSync: z.boolean().optional(),
+  totalSize: z.number().int(),
+  offset: z.number().int(),
+  allowSync: z.boolean(),
+  identifier: z.string(),
   Meta: z.lazy(() => Meta$inboundSchema).optional(),
   Metadata: z.array(z.lazy(() => GetRecentlyAddedMetadata$inboundSchema))
     .optional(),
@@ -2773,10 +3342,10 @@ export const GetRecentlyAddedMediaContainer$inboundSchema: z.ZodType<
 /** @internal */
 export type GetRecentlyAddedMediaContainer$Outbound = {
   size: number;
-  offset?: number | undefined;
-  totalSize?: number | undefined;
-  identifier?: string | undefined;
-  allowSync?: boolean | undefined;
+  totalSize: number;
+  offset: number;
+  allowSync: boolean;
+  identifier: string;
   Meta?: Meta$Outbound | undefined;
   Metadata?: Array<GetRecentlyAddedMetadata$Outbound> | undefined;
 };
@@ -2788,10 +3357,10 @@ export const GetRecentlyAddedMediaContainer$outboundSchema: z.ZodType<
   GetRecentlyAddedMediaContainer
 > = z.object({
   size: z.number().int(),
-  offset: z.number().int().optional(),
-  totalSize: z.number().int().optional(),
-  identifier: z.string().optional(),
-  allowSync: z.boolean().optional(),
+  totalSize: z.number().int(),
+  offset: z.number().int(),
+  allowSync: z.boolean(),
+  identifier: z.string(),
   meta: z.lazy(() => Meta$outboundSchema).optional(),
   metadata: z.array(z.lazy(() => GetRecentlyAddedMetadata$outboundSchema))
     .optional(),
