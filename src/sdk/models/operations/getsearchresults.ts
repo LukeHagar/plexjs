@@ -24,6 +24,7 @@ export type GetSearchResultsPart = {
   audioProfile?: string | undefined;
   container?: string | undefined;
   videoProfile?: string | undefined;
+  optimizedForStreaming?: boolean | number | undefined;
 };
 
 export type GetSearchResultsMedia = {
@@ -36,11 +37,12 @@ export type GetSearchResultsMedia = {
   audioChannels?: number | undefined;
   audioCodec?: string | undefined;
   videoCodec?: string | undefined;
-  videoResolution?: number | undefined;
+  videoResolution?: string | undefined;
   container?: string | undefined;
   videoFrameRate?: string | undefined;
   audioProfile?: string | undefined;
   videoProfile?: string | undefined;
+  optimizedForStreaming?: boolean | number | undefined;
   part?: Array<GetSearchResultsPart> | undefined;
 };
 
@@ -86,7 +88,7 @@ export type GetSearchResultsMetadata = {
   thumb?: string | undefined;
   art?: string | undefined;
   duration?: number | undefined;
-  originallyAvailableAt?: Date | undefined;
+  originallyAvailableAt?: string | undefined;
   addedAt?: number | undefined;
   updatedAt?: number | undefined;
   audienceRatingImage?: string | undefined;
@@ -210,6 +212,7 @@ export const GetSearchResultsPart$inboundSchema: z.ZodType<
   audioProfile: z.string().optional(),
   container: z.string().optional(),
   videoProfile: z.string().optional(),
+  optimizedForStreaming: z.union([z.boolean(), z.number()]).optional(),
 });
 
 /** @internal */
@@ -222,6 +225,7 @@ export type GetSearchResultsPart$Outbound = {
   audioProfile?: string | undefined;
   container?: string | undefined;
   videoProfile?: string | undefined;
+  optimizedForStreaming?: boolean | number | undefined;
 };
 
 /** @internal */
@@ -238,6 +242,7 @@ export const GetSearchResultsPart$outboundSchema: z.ZodType<
   audioProfile: z.string().optional(),
   container: z.string().optional(),
   videoProfile: z.string().optional(),
+  optimizedForStreaming: z.union([z.boolean(), z.number()]).optional(),
 });
 
 /**
@@ -286,11 +291,12 @@ export const GetSearchResultsMedia$inboundSchema: z.ZodType<
   audioChannels: z.number().optional(),
   audioCodec: z.string().optional(),
   videoCodec: z.string().optional(),
-  videoResolution: z.number().optional(),
+  videoResolution: z.string().optional(),
   container: z.string().optional(),
   videoFrameRate: z.string().optional(),
   audioProfile: z.string().optional(),
   videoProfile: z.string().optional(),
+  optimizedForStreaming: z.union([z.boolean(), z.number()]).optional(),
   Part: z.array(z.lazy(() => GetSearchResultsPart$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -309,11 +315,12 @@ export type GetSearchResultsMedia$Outbound = {
   audioChannels?: number | undefined;
   audioCodec?: string | undefined;
   videoCodec?: string | undefined;
-  videoResolution?: number | undefined;
+  videoResolution?: string | undefined;
   container?: string | undefined;
   videoFrameRate?: string | undefined;
   audioProfile?: string | undefined;
   videoProfile?: string | undefined;
+  optimizedForStreaming?: boolean | number | undefined;
   Part?: Array<GetSearchResultsPart$Outbound> | undefined;
 };
 
@@ -332,11 +339,12 @@ export const GetSearchResultsMedia$outboundSchema: z.ZodType<
   audioChannels: z.number().optional(),
   audioCodec: z.string().optional(),
   videoCodec: z.string().optional(),
-  videoResolution: z.number().optional(),
+  videoResolution: z.string().optional(),
   container: z.string().optional(),
   videoFrameRate: z.string().optional(),
   audioProfile: z.string().optional(),
   videoProfile: z.string().optional(),
+  optimizedForStreaming: z.union([z.boolean(), z.number()]).optional(),
   part: z.array(z.lazy(() => GetSearchResultsPart$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -672,9 +680,7 @@ export const GetSearchResultsMetadata$inboundSchema: z.ZodType<
   thumb: z.string().optional(),
   art: z.string().optional(),
   duration: z.number().optional(),
-  originallyAvailableAt: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
+  originallyAvailableAt: z.string().optional(),
   addedAt: z.number().optional(),
   updatedAt: z.number().optional(),
   audienceRatingImage: z.string().optional(),
@@ -766,7 +772,7 @@ export const GetSearchResultsMetadata$outboundSchema: z.ZodType<
   thumb: z.string().optional(),
   art: z.string().optional(),
   duration: z.number().optional(),
-  originallyAvailableAt: z.date().transform(v => v.toISOString()).optional(),
+  originallyAvailableAt: z.string().optional(),
   addedAt: z.number().optional(),
   updatedAt: z.number().optional(),
   audienceRatingImage: z.string().optional(),
