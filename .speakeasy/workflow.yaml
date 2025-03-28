@@ -14,6 +14,8 @@ targets:
             npm:
                 token: $npm_token
         codeSamples:
+            langOverride: TypeScript
+            labelOverride: PlexJS
             output: codeSamples.yaml
             registry:
                 location: registry.speakeasyapi.dev/plexapi/plexapi/code-samples-typescript-plexjs
