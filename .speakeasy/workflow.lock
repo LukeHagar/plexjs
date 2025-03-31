@@ -9,20 +9,20 @@ sources:
             - main
     plexapi:
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:277010613dd132c4b785bacddcba720038318ae87b0ce5e1eea3887cf8f22df4
+        sourceRevisionDigest: sha256:6c0205c8a839cc77b987174c66dde7f7304e15e2b1c99d565ff86711d7d7998a
         sourceBlobDigest: sha256:1737023e29cd9cf36c07ccd8c8c48c47e14f47ce22b4d6ba9ee241afbbd8f351
         tags:
             - latest
-            - speakeasy-sdk-regen-1743449645
+            - speakeasy-sdk-regen-1743450163
             - 0.0.3
 targets:
     plexjs:
         source: plexapi
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:277010613dd132c4b785bacddcba720038318ae87b0ce5e1eea3887cf8f22df4
+        sourceRevisionDigest: sha256:6c0205c8a839cc77b987174c66dde7f7304e15e2b1c99d565ff86711d7d7998a
         sourceBlobDigest: sha256:1737023e29cd9cf36c07ccd8c8c48c47e14f47ce22b4d6ba9ee241afbbd8f351
         codeSamplesNamespace: code-samples-typescript-plexjs
-        codeSamplesRevisionDigest: sha256:f99618862675a8c5993740b2acb9b573110d9b506d2bc70e3180f0f7f393798f
+        codeSamplesRevisionDigest: sha256:3929f5f1f37157fffc47c423c6f361958bf1c9665d3d6f6774aea3b745b59f13
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -43,6 +43,5 @@ workflow:
                 output: codeSamples.yaml
                 registry:
                     location: registry.speakeasyapi.dev/plexapi/plexapi/code-samples-typescript-plexjs
-                langOverride: TypeScript
                 labelOverride:
                     fixedValue: PlexJS
