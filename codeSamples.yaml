@@ -6,8 +6,8 @@ actions:
   - target: $["paths"]["/"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getServerCapabilities
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -26,8 +26,8 @@ actions:
   - target: $["paths"]["/:/prefs"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getServerPreferences
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -46,8 +46,8 @@ actions:
   - target: $["paths"]["/:/progress"]["post"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: updatePlayProgress
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -66,8 +66,8 @@ actions:
   - target: $["paths"]["/:/scrobble"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: markPlayed
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -86,8 +86,8 @@ actions:
   - target: $["paths"]["/:/timeline"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getTimeline
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { State } from "@lukehagar/plexjs/sdk/models/operations";
@@ -118,8 +118,8 @@ actions:
   - target: $["paths"]["/:/unscrobble"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: markUnplayed
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -138,8 +138,8 @@ actions:
   - target: $["paths"]["/activities"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getServerActivities
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -158,8 +158,8 @@ actions:
   - target: $["paths"]["/activities/{activityUUID}"]["delete"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: cancelServerActivities
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -178,8 +178,8 @@ actions:
   - target: $["paths"]["/butler"]["delete"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: stopAllTasks
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -198,8 +198,8 @@ actions:
   - target: $["paths"]["/butler"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getButlerTasks
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -218,8 +218,8 @@ actions:
   - target: $["paths"]["/butler"]["post"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: startAllTasks
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -238,8 +238,8 @@ actions:
   - target: $["paths"]["/butler/{taskName}"]["delete"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: stopTask
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { PathParamTaskName } from "@lukehagar/plexjs/sdk/models/operations";
@@ -259,8 +259,8 @@ actions:
   - target: $["paths"]["/butler/{taskName}"]["post"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: startTask
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { TaskName } from "@lukehagar/plexjs/sdk/models/operations";
@@ -280,8 +280,8 @@ actions:
   - target: $["paths"]["/clients"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getAvailableClients
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -300,8 +300,8 @@ actions:
   - target: $["paths"]["/companions"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getCompanionsData
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -320,8 +320,8 @@ actions:
   - target: $["paths"]["/devices"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getDevices
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -340,8 +340,8 @@ actions:
   - target: $["paths"]["/friends"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getUserFriends
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -360,8 +360,8 @@ actions:
   - target: $["paths"]["/geoip"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getGeoData
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -378,8 +378,8 @@ actions:
   - target: $["paths"]["/home"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getHomeData
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -398,8 +398,8 @@ actions:
   - target: $["paths"]["/hubs"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getGlobalHubs
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -418,8 +418,8 @@ actions:
   - target: $["paths"]["/hubs/home/recentlyAdded"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-recently-added
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Type } from "@lukehagar/plexjs/sdk/models/operations";
@@ -443,8 +443,8 @@ actions:
   - target: $["paths"]["/hubs/search"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: performSearch
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -463,8 +463,8 @@ actions:
   - target: $["paths"]["/hubs/search/voice"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: performVoiceSearch
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -483,8 +483,8 @@ actions:
   - target: $["paths"]["/hubs/sections/{sectionId}"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getLibraryHubs
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -503,8 +503,8 @@ actions:
   - target: $["paths"]["/identity"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-server-identity
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -521,8 +521,8 @@ actions:
   - target: $["paths"]["/library/all/top"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getTopWatchedContent
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetTopWatchedContentQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -542,8 +542,8 @@ actions:
   - target: $["paths"]["/library/hashes"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getFileHash
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -562,8 +562,8 @@ actions:
   - target: $["paths"]["/library/metadata/{ratingKey}"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-media-meta-data
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -597,8 +597,8 @@ actions:
   - target: $["paths"]["/library/metadata/{ratingKey}/banner"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-banner-image
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -624,8 +624,8 @@ actions:
   - target: $["paths"]["/library/metadata/{ratingKey}/children"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getMetadataChildren
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -644,8 +644,8 @@ actions:
   - target: $["paths"]["/library/metadata/{ratingKey}/thumb"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-thumb-image
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -671,8 +671,8 @@ actions:
   - target: $["paths"]["/library/recentlyAdded"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-recently-added-library
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -710,8 +710,8 @@ actions:
   - target: $["paths"]["/library/search"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-search-all-libraries
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
@@ -737,8 +737,8 @@ actions:
   - target: $["paths"]["/library/sections"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-all-libraries
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -757,8 +757,8 @@ actions:
   - target: $["paths"]["/library/sections/watchlist/{filter}"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-watch-list
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Filter } from "@lukehagar/plexjs/sdk/models/operations";
@@ -781,8 +781,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}"]["delete"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: deleteLibrary
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -801,8 +801,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-library-details
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -821,8 +821,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}/actor"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-actors-library
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetActorsLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -842,8 +842,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}/all"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-all-media-library
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetAllMediaLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -866,8 +866,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}/country"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-countries-library
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetCountriesLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -887,8 +887,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}/genre"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-genres-library
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetGenresLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -908,8 +908,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}/refresh"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-refresh-library-metadata
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Force } from "@lukehagar/plexjs/sdk/models/operations";
@@ -929,8 +929,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}/search"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-search-library
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetSearchLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -950,8 +950,8 @@ actions:
   - target: $["paths"]["/library/sections/{sectionKey}/{tag}"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-library-items
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetLibraryItemsQueryParamType, Tag } from "@lukehagar/plexjs/sdk/models/operations";
@@ -975,8 +975,8 @@ actions:
   - target: $["paths"]["/log"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: logLine
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Level } from "@lukehagar/plexjs/sdk/models/operations";
@@ -996,8 +996,8 @@ actions:
   - target: $["paths"]["/log"]["post"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: logMultiLine
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1018,8 +1018,8 @@ actions:
   - target: $["paths"]["/log/networked"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: enablePaperTrail
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1038,8 +1038,8 @@ actions:
   - target: $["paths"]["/media/providers"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-media-providers
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1058,8 +1058,8 @@ actions:
   - target: $["paths"]["/myplex/account"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getMyPlexAccount
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1078,8 +1078,8 @@ actions:
   - target: $["paths"]["/photo/:/transcode"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getResizedPhoto
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { MinSize, Upscale } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1107,8 +1107,8 @@ actions:
   - target: $["paths"]["/pins"]["post"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getPin
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1131,8 +1131,8 @@ actions:
   - target: $["paths"]["/pins/{pinID}"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getTokenByPinId
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1156,8 +1156,8 @@ actions:
   - target: $["paths"]["/playlists"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getPlaylists
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1176,8 +1176,8 @@ actions:
   - target: $["paths"]["/playlists"]["post"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: createPlaylist
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { CreatePlaylistQueryParamType, Smart } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1202,8 +1202,8 @@ actions:
   - target: $["paths"]["/playlists/upload"]["post"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: uploadPlaylist
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { QueryParamForce } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1223,8 +1223,8 @@ actions:
   - target: $["paths"]["/playlists/{playlistID}"]["delete"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: deletePlaylist
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1243,8 +1243,8 @@ actions:
   - target: $["paths"]["/playlists/{playlistID}"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getPlaylist
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1263,8 +1263,8 @@ actions:
   - target: $["paths"]["/playlists/{playlistID}"]["put"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: updatePlaylist
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1283,8 +1283,8 @@ actions:
   - target: $["paths"]["/playlists/{playlistID}/items"]["delete"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: clearPlaylistContents
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1303,8 +1303,8 @@ actions:
   - target: $["paths"]["/playlists/{playlistID}/items"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getPlaylistContents
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetPlaylistContentsQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1324,8 +1324,8 @@ actions:
   - target: $["paths"]["/playlists/{playlistID}/items"]["put"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: addPlaylistContents
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1344,8 +1344,8 @@ actions:
   - target: $["paths"]["/resources"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-server-resources
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1364,8 +1364,8 @@ actions:
   - target: $["paths"]["/search"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getSearchResults
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1384,8 +1384,8 @@ actions:
   - target: $["paths"]["/security/resources"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getSourceConnectionInformation
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1404,8 +1404,8 @@ actions:
   - target: $["paths"]["/security/token"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getTransientToken
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1425,8 +1425,8 @@ actions:
   - target: $["paths"]["/servers"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getServerList
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1445,8 +1445,8 @@ actions:
   - target: $["paths"]["/statistics/bandwidth"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getBandwidthStatistics
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1465,8 +1465,8 @@ actions:
   - target: $["paths"]["/statistics/media"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getStatistics
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1485,8 +1485,8 @@ actions:
   - target: $["paths"]["/statistics/resources"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getResourcesStatistics
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1505,8 +1505,8 @@ actions:
   - target: $["paths"]["/status/sessions"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getSessions
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1525,8 +1525,8 @@ actions:
   - target: $["paths"]["/status/sessions/history/all"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getSessionHistory
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1545,8 +1545,8 @@ actions:
   - target: $["paths"]["/transcode/sessions"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getTranscodeSessions
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1565,8 +1565,8 @@ actions:
   - target: $["paths"]["/transcode/sessions/{sessionKey}"]["delete"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: stopTranscodeSession
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1585,8 +1585,8 @@ actions:
   - target: $["paths"]["/updater/apply"]["put"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: applyUpdates
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Skip, Tonight } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1606,8 +1606,8 @@ actions:
   - target: $["paths"]["/updater/check"]["put"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: checkForUpdates
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
             import { Download } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1627,8 +1627,8 @@ actions:
   - target: $["paths"]["/updater/status"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getUpdateStatus
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1647,8 +1647,8 @@ actions:
   - target: $["paths"]["/user"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: getTokenDetails
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1667,8 +1667,8 @@ actions:
   - target: $["paths"]["/users"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: get-users
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1699,8 +1699,8 @@ actions:
   - target: $["paths"]["/users/signin"]["post"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: post-users-sign-in-data
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1728,8 +1728,8 @@ actions:
   - target: $["paths"]["/video/:/transcode/universal/start.mpd"]["get"]
     update:
       x-codeSamples:
-        - lang: typescript
-          label: startUniversalTranscode
+        - lang: TypeScript
+          label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
 
