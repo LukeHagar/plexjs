@@ -17,6 +17,5 @@ targets:
             output: codeSamples.yaml
             registry:
                 location: registry.speakeasyapi.dev/plexapi/plexapi/code-samples-typescript-plexjs
-            langOverride: TypeScript
             labelOverride:
                 fixedValue: PlexJS
