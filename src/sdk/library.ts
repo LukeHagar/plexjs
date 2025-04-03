@@ -11,13 +11,17 @@ import { libraryGetFileHash } from "../funcs/libraryGetFileHash.js";
 import { libraryGetGenresLibrary } from "../funcs/libraryGetGenresLibrary.js";
 import { libraryGetLibraryDetails } from "../funcs/libraryGetLibraryDetails.js";
 import { libraryGetLibraryItems } from "../funcs/libraryGetLibraryItems.js";
+import { libraryGetMediaArts } from "../funcs/libraryGetMediaArts.js";
 import { libraryGetMediaMetaData } from "../funcs/libraryGetMediaMetaData.js";
+import { libraryGetMediaPosters } from "../funcs/libraryGetMediaPosters.js";
 import { libraryGetMetadataChildren } from "../funcs/libraryGetMetadataChildren.js";
 import { libraryGetRecentlyAddedLibrary } from "../funcs/libraryGetRecentlyAddedLibrary.js";
 import { libraryGetRefreshLibraryMetadata } from "../funcs/libraryGetRefreshLibraryMetadata.js";
 import { libraryGetSearchAllLibraries } from "../funcs/libraryGetSearchAllLibraries.js";
 import { libraryGetSearchLibrary } from "../funcs/libraryGetSearchLibrary.js";
 import { libraryGetTopWatchedContent } from "../funcs/libraryGetTopWatchedContent.js";
+import { libraryPostMediaArts } from "../funcs/libraryPostMediaArts.js";
+import { libraryPostMediaPoster } from "../funcs/libraryPostMediaPoster.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
@@ -349,6 +353,92 @@ export class Library extends ClientSDK {
     return unwrapAsync(libraryGetMediaMetaData(
       this,
       request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Media Background Artwork
+   *
+   * @remarks
+   * Returns the background artwork for a library item.
+   */
+  async getMediaArts(
+    ratingKey: number,
+    options?: RequestOptions,
+  ): Promise<operations.GetMediaArtsResponse> {
+    return unwrapAsync(libraryGetMediaArts(
+      this,
+      ratingKey,
+      options,
+    ));
+  }
+
+  /**
+   * Upload Media Background Artwork
+   *
+   * @remarks
+   * Uploads an image to use as the background artwork for a library item, either from a local file or a remote URL
+   */
+  async postMediaArts(
+    ratingKey: number,
+    requestBody?:
+      | ReadableStream<Uint8Array>
+      | Blob
+      | ArrayBuffer
+      | Uint8Array
+      | undefined,
+    url?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.PostMediaArtsResponse> {
+    return unwrapAsync(libraryPostMediaArts(
+      this,
+      ratingKey,
+      requestBody,
+      url,
+      options,
+    ));
+  }
+
+  /**
+   * Get Media Posters
+   *
+   * @remarks
+   * Returns the available posters for a library item.
+   */
+  async getMediaPosters(
+    ratingKey: number,
+    options?: RequestOptions,
+  ): Promise<operations.GetMediaPostersResponse> {
+    return unwrapAsync(libraryGetMediaPosters(
+      this,
+      ratingKey,
+      options,
+    ));
+  }
+
+  /**
+   * Upload Media Poster
+   *
+   * @remarks
+   * Uploads a poster to a library item, either from a local file or a remote URL
+   */
+  async postMediaPoster(
+    ratingKey: number,
+    requestBody?:
+      | ReadableStream<Uint8Array>
+      | Blob
+      | ArrayBuffer
+      | Uint8Array
+      | undefined,
+    url?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.PostMediaPosterResponse> {
+    return unwrapAsync(libraryPostMediaPoster(
+      this,
+      ratingKey,
+      requestBody,
+      url,
       options,
     ));
   }

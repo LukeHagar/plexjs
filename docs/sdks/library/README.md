@@ -22,6 +22,10 @@ API Calls interacting with Plex Media Server Libraries
 * [getActorsLibrary](#getactorslibrary) - Get Actors of library media
 * [getSearchAllLibraries](#getsearchalllibraries) - Search All Libraries
 * [getMediaMetaData](#getmediametadata) - Get Media Metadata
+* [getMediaArts](#getmediaarts) - Get Media Background Artwork
+* [postMediaArts](#postmediaarts) - Upload Media Background Artwork
+* [getMediaPosters](#getmediaposters) - Get Media Posters
+* [postMediaPoster](#postmediaposter) - Upload Media Poster
 * [getMetadataChildren](#getmetadatachildren) - Get Items Children
 * [getTopWatchedContent](#gettopwatchedcontent) - Get Top Watched Content
 
@@ -1268,6 +1272,298 @@ run();
 | errors.GetMediaMetaDataBadRequest   | 400                                 | application/json                    |
 | errors.GetMediaMetaDataUnauthorized | 401                                 | application/json                    |
 | errors.SDKError                     | 4XX, 5XX                            | \*/\*                               |
+
+## getMediaArts
+
+Returns the background artwork for a library item.
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMediaArts(16099);
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { libraryGetMediaArts } from "@lukehagar/plexjs/funcs/libraryGetMediaArts.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMediaArts(plexAPI, 16099);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ratingKey`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the id of the library item to return the artwork of.                                                                                                                           | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.GetMediaArtsResponse](../../sdk/models/operations/getmediaartsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## postMediaArts
+
+Uploads an image to use as the background artwork for a library item, either from a local file or a remote URL
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.postMediaArts(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { libraryPostMediaArts } from "@lukehagar/plexjs/funcs/libraryPostMediaArts.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryPostMediaArts(plexAPI, 2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ratingKey`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the id of the library item to return the posters of.                                                                                                                           | [object Object]                                                                                                                                                                |
+| `url`                                                                                                                                                                          | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The URL of the image, if uploading a remote image                                                                                                                              | [object Object]                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | *ReadableStream<Uint8Array>*                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                             | The contents of the image, if uploading a local file                                                                                                                           |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.PostMediaArtsResponse](../../sdk/models/operations/postmediaartsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getMediaPosters
+
+Returns the available posters for a library item.
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.getMediaPosters(16099);
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { libraryGetMediaPosters } from "@lukehagar/plexjs/funcs/libraryGetMediaPosters.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryGetMediaPosters(plexAPI, 16099);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ratingKey`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the id of the library item to return the posters of.                                                                                                                           | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.GetMediaPostersResponse](../../sdk/models/operations/getmediapostersresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## postMediaPoster
+
+Uploads a poster to a library item, either from a local file or a remote URL
+
+### Example Usage
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.postMediaPoster(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { libraryPostMediaPoster } from "@lukehagar/plexjs/funcs/libraryPostMediaPoster.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await libraryPostMediaPoster(plexAPI, 2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ratingKey`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the id of the library item to return the posters of.                                                                                                                           | [object Object]                                                                                                                                                                |
+| `url`                                                                                                                                                                          | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The URL of the image, if uploading a remote image                                                                                                                              | [object Object]                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | *ReadableStream<Uint8Array>*                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                             | The contents of the image, if uploading a local file                                                                                                                           |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.PostMediaPosterResponse](../../sdk/models/operations/postmediaposterresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## getMetadataChildren
 

@@ -54,6 +54,7 @@ The following SDKs are generated from the OpenAPI Specification. They are automa
   * [Authentication](#authentication)
   * [Requirements](#requirements)
   * [Standalone functions](#standalone-functions)
+  * [File uploads](#file-uploads)
   * [Retries](#retries)
   * [Debugging](#debugging)
 * [Development](#development)
@@ -167,6 +168,10 @@ run();
 * [getActorsLibrary](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
 * [getSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
 * [getMediaMetaData](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
+* [getMediaArts](docs/sdks/library/README.md#getmediaarts) - Get Media Background Artwork
+* [postMediaArts](docs/sdks/library/README.md#postmediaarts) - Upload Media Background Artwork
+* [getMediaPosters](docs/sdks/library/README.md#getmediaposters) - Get Media Posters
+* [postMediaPoster](docs/sdks/library/README.md#postmediaposter) - Upload Media Poster
 * [getMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 * [getTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
 
@@ -543,13 +548,17 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`libraryGetGenresLibrary`](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
 - [`libraryGetLibraryDetails`](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 - [`libraryGetLibraryItems`](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
+- [`libraryGetMediaArts`](docs/sdks/library/README.md#getmediaarts) - Get Media Background Artwork
 - [`libraryGetMediaMetaData`](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
+- [`libraryGetMediaPosters`](docs/sdks/library/README.md#getmediaposters) - Get Media Posters
 - [`libraryGetMetadataChildren`](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
 - [`libraryGetRecentlyAddedLibrary`](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added
 - [`libraryGetRefreshLibraryMetadata`](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 - [`libraryGetSearchAllLibraries`](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
 - [`libraryGetSearchLibrary`](docs/sdks/library/README.md#getsearchlibrary) - Search Library
 - [`libraryGetTopWatchedContent`](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
+- [`libraryPostMediaArts`](docs/sdks/library/README.md#postmediaarts) - Upload Media Background Artwork
+- [`libraryPostMediaPoster`](docs/sdks/library/README.md#postmediaposter) - Upload Media Poster
 - [`logEnablePaperTrail`](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
 - [`logLogLine`](docs/sdks/log/README.md#logline) - Logging a single line message.
 - [`logLogMultiLine`](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
@@ -603,6 +612,42 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start File uploads [file-upload] -->
+## File uploads
+
+Certain SDK methods accept files as part of a multi-part request. It is possible and typically recommended to upload files as a stream rather than reading the entire contents into memory. This avoids excessive memory consumption and potentially crashing with out-of-memory errors when working with very large files. The following example demonstrates how to attach a file stream to a request.
+
+> [!TIP]
+>
+> Depending on your JavaScript runtime, there are convenient utilities that return a handle to a file without reading the entire contents into memory:
+>
+> - **Node.js v20+:** Since v20, Node.js comes with a native `openAsBlob` function in [`node:fs`](https://nodejs.org/docs/latest-v20.x/api/fs.html#fsopenasblobpath-options).
+> - **Bun:** The native [`Bun.file`](https://bun.sh/docs/api/file-io#reading-files-bun-file) function produces a file handle that can be used for streaming file uploads.
+> - **Browsers:** All supported browsers return an instance to a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
+> - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
+
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  accessToken: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.library.postMediaArts(
+    2268,
+    "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b",
+  );
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+<!-- End File uploads [file-upload] -->
 
 <!-- Start Retries [retries] -->
 ## Retries

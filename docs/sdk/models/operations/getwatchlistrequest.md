@@ -6,7 +6,7 @@
 import { Filter, GetWatchListRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetWatchListRequest = {
-  filter: Filter.All,
+  filter: Filter.Released,
   xPlexToken: "CV5xoxjTpFKUzBTShsaf",
 };
 ```

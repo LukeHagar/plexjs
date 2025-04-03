@@ -7,7 +7,7 @@ import { GetBandwidthStatisticsResponse } from "@lukehagar/plexjs/sdk/models/ope
 
 let value: GetBandwidthStatisticsResponse = {
   contentType: "<value>",
-  statusCode: 205,
+  statusCode: 226,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

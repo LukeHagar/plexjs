@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 25cb9a6c3c7e2e859211c588b8281b5b
+  docChecksum: 25fd5807db652903ccf5955fa06cf3ac
   docVersion: 0.0.3
-  speakeasyVersion: 1.526.6
-  generationVersion: 2.563.1
-  releaseVersion: 0.35.4
-  configChecksum: bab7ec3c43c4ac8db5b96c3e16ff5569
+  speakeasyVersion: 1.528.1
+  generationVersion: 2.565.1
+  releaseVersion: 0.36.0
+  configChecksum: 22f00b600e146350a70b9857438cc1be
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -35,6 +35,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.2.0
     unions: 2.85.8
+    uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
   - .npmignore
@@ -562,6 +563,11 @@ generatedFiles:
   - docs/sdk/models/operations/getlibraryitemstype.md
   - docs/sdk/models/operations/getlibraryitemsultrablurcolors.md
   - docs/sdk/models/operations/getlibraryitemswriter.md
+  - docs/sdk/models/operations/getmediaartsmediacontainer.md
+  - docs/sdk/models/operations/getmediaartsmetadata.md
+  - docs/sdk/models/operations/getmediaartsrequest.md
+  - docs/sdk/models/operations/getmediaartsresponse.md
+  - docs/sdk/models/operations/getmediaartsresponsebody.md
   - docs/sdk/models/operations/getmediametadatacountry.md
   - docs/sdk/models/operations/getmediametadatadirector.md
   - docs/sdk/models/operations/getmediametadatagenre.md
@@ -586,6 +592,11 @@ generatedFiles:
   - docs/sdk/models/operations/getmediametadatastream.md
   - docs/sdk/models/operations/getmediametadataultrablurcolors.md
   - docs/sdk/models/operations/getmediametadatawriter.md
+  - docs/sdk/models/operations/getmediapostersmediacontainer.md
+  - docs/sdk/models/operations/getmediapostersmetadata.md
+  - docs/sdk/models/operations/getmediapostersrequest.md
+  - docs/sdk/models/operations/getmediapostersresponse.md
+  - docs/sdk/models/operations/getmediapostersresponsebody.md
   - docs/sdk/models/operations/getmediaprovidersdirectory.md
   - docs/sdk/models/operations/getmediaprovidersmediacontainer.md
   - docs/sdk/models/operations/getmediaprovidersrequest.md
@@ -846,6 +857,10 @@ generatedFiles:
   - docs/sdk/models/operations/player.md
   - docs/sdk/models/operations/playlisttype.md
   - docs/sdk/models/operations/plexdevice.md
+  - docs/sdk/models/operations/postmediaartsrequest.md
+  - docs/sdk/models/operations/postmediaartsresponse.md
+  - docs/sdk/models/operations/postmediaposterrequest.md
+  - docs/sdk/models/operations/postmediaposterresponse.md
   - docs/sdk/models/operations/postuserssignindataauthenticationresponsestatus.md
   - docs/sdk/models/operations/postuserssignindataauthenticationstatus.md
   - docs/sdk/models/operations/postuserssignindataauthenticationsubscription.md
@@ -979,13 +994,17 @@ generatedFiles:
   - src/funcs/libraryGetGenresLibrary.ts
   - src/funcs/libraryGetLibraryDetails.ts
   - src/funcs/libraryGetLibraryItems.ts
+  - src/funcs/libraryGetMediaArts.ts
   - src/funcs/libraryGetMediaMetaData.ts
+  - src/funcs/libraryGetMediaPosters.ts
   - src/funcs/libraryGetMetadataChildren.ts
   - src/funcs/libraryGetRecentlyAddedLibrary.ts
   - src/funcs/libraryGetRefreshLibraryMetadata.ts
   - src/funcs/libraryGetSearchAllLibraries.ts
   - src/funcs/libraryGetSearchLibrary.ts
   - src/funcs/libraryGetTopWatchedContent.ts
+  - src/funcs/libraryPostMediaArts.ts
+  - src/funcs/libraryPostMediaPoster.ts
   - src/funcs/logEnablePaperTrail.ts
   - src/funcs/logLogLine.ts
   - src/funcs/logLogMultiLine.ts
@@ -1173,7 +1192,9 @@ generatedFiles:
   - src/sdk/models/operations/getlibrarydetails.ts
   - src/sdk/models/operations/getlibraryhubs.ts
   - src/sdk/models/operations/getlibraryitems.ts
+  - src/sdk/models/operations/getmediaarts.ts
   - src/sdk/models/operations/getmediametadata.ts
+  - src/sdk/models/operations/getmediaposters.ts
   - src/sdk/models/operations/getmediaproviders.ts
   - src/sdk/models/operations/getmetadatachildren.ts
   - src/sdk/models/operations/getmyplexaccount.ts
@@ -1217,6 +1238,8 @@ generatedFiles:
   - src/sdk/models/operations/markunplayed.ts
   - src/sdk/models/operations/performsearch.ts
   - src/sdk/models/operations/performvoicesearch.ts
+  - src/sdk/models/operations/postmediaarts.ts
+  - src/sdk/models/operations/postmediaposter.ts
   - src/sdk/models/operations/postuserssignindata.ts
   - src/sdk/models/operations/startalltasks.ts
   - src/sdk/models/operations/starttask.ts
@@ -2349,5 +2372,35 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}, {"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+  get-media-arts:
+    speakeasy-default-get-media-arts:
+      parameters:
+        path:
+          ratingKey: 16099
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 50, "mediaTagVersion": 1734362201, "mediaTagPrefix": "/system/bundle/media/flags/", "identifier": "com.plexapp.plugins.library", "Metadata": [{"key": "https://image.tmdb.org/t/p/original/ixgFmf1X59PUZam2qbAfskx2gQr.jpg", "provider": "tmdb", "ratingKey": "https://image.tmdb.org/t/p/original/ixgFmf1X59PUZam2qbAfskx2gQr.jpg", "selected": true, "thumb": "https://images.plex.tv/photo?height=270&width=480&minSize=1&upscale=1&url=https%3A%2F%2Fimage%2Etmdb%2Eorg%2Ft%2Fp%2Foriginal%2FixgFmf1X59PUZam2qbAfskx2gQr%2Ejpg"}, {"key": "https://image.tmdb.org/t/p/original/ixgFmf1X59PUZam2qbAfskx2gQr.jpg", "provider": "tmdb", "ratingKey": "https://image.tmdb.org/t/p/original/ixgFmf1X59PUZam2qbAfskx2gQr.jpg", "selected": true, "thumb": "https://images.plex.tv/photo?height=270&width=480&minSize=1&upscale=1&url=https%3A%2F%2Fimage%2Etmdb%2Eorg%2Ft%2Fp%2Foriginal%2FixgFmf1X59PUZam2qbAfskx2gQr%2Ejpg"}, {"key": "https://image.tmdb.org/t/p/original/ixgFmf1X59PUZam2qbAfskx2gQr.jpg", "provider": "tmdb", "ratingKey": "https://image.tmdb.org/t/p/original/ixgFmf1X59PUZam2qbAfskx2gQr.jpg", "selected": true, "thumb": "https://images.plex.tv/photo?height=270&width=480&minSize=1&upscale=1&url=https%3A%2F%2Fimage%2Etmdb%2Eorg%2Ft%2Fp%2Foriginal%2FixgFmf1X59PUZam2qbAfskx2gQr%2Ejpg"}]}}
+  post-media-arts:
+    speakeasy-default-post-media-arts:
+      parameters:
+        path:
+          ratingKey: 2268
+        query:
+          url: "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"
+  get-media-posters:
+    speakeasy-default-get-media-posters:
+      parameters:
+        path:
+          ratingKey: 16099
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 50, "mediaTagVersion": 1734362201, "mediaTagPrefix": "/system/bundle/media/flags/", "identifier": "com.plexapp.plugins.library", "Metadata": [{"key": "https://image.tmdb.org/t/p/original/hntBJjqbv4m0Iyniqaztv9xaudI.jpg", "provider": "tmdb", "ratingKey": "https://image.tmdb.org/t/p/original/hntBJjqbv4m0Iyniqaztv9xaudI.jpg", "selected": true, "thumb": "https://images.plex.tv/photo?height=336&width=225&minSize=1&upscale=1&url=https%3A%2F%2Fimage%2Etmdb%2Eorg%2Ft%2Fp%2Foriginal%2FhntBJjqbv4m0Iyniqaztv9xaudI%2Ejpg"}, {"key": "https://image.tmdb.org/t/p/original/hntBJjqbv4m0Iyniqaztv9xaudI.jpg", "provider": "tmdb", "ratingKey": "https://image.tmdb.org/t/p/original/hntBJjqbv4m0Iyniqaztv9xaudI.jpg", "selected": true, "thumb": "https://images.plex.tv/photo?height=336&width=225&minSize=1&upscale=1&url=https%3A%2F%2Fimage%2Etmdb%2Eorg%2Ft%2Fp%2Foriginal%2FhntBJjqbv4m0Iyniqaztv9xaudI%2Ejpg"}]}}
+  post-media-poster:
+    speakeasy-default-post-media-poster:
+      parameters:
+        path:
+          ratingKey: 2268
+        query:
+          url: "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b"
 examplesVersion: 1.0.0
 generatedTests: {}

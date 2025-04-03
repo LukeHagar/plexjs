@@ -594,6 +594,46 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/library/metadata/{ratingKey}/arts"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMediaArts(16099);
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{ratingKey}/arts"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.postMediaArts(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/library/metadata/{ratingKey}/banner"]["get"]
     update:
       x-codeSamples:
@@ -635,6 +675,46 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.getMetadataChildren(1539.14, "Stream");
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{ratingKey}/posters"]["get"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.getMediaPosters(16099);
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/library/metadata/{ratingKey}/posters"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: PlexJS
+          source: |-
+            import { PlexAPI } from "@lukehagar/plexjs";
+
+            const plexAPI = new PlexAPI({
+              accessToken: "<YOUR_API_KEY_HERE>",
+            });
+
+            async function run() {
+              const result = await plexAPI.library.postMediaPoster(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
               // Handle the result
               console.log(result);

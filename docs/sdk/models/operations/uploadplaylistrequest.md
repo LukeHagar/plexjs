@@ -7,7 +7,7 @@ import { QueryParamForce, UploadPlaylistRequest } from "@lukehagar/plexjs/sdk/mo
 
 let value: UploadPlaylistRequest = {
   path: "/home/barkley/playlist.m3u",
-  force: QueryParamForce.One,
+  force: QueryParamForce.Zero,
   sectionID: 1,
 };
 ```
