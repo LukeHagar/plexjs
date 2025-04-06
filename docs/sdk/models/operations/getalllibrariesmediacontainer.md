@@ -3,38 +3,37 @@
 ## Example Usage
 
 ```typescript
-import { GetAllLibrariesMediaContainer } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetAllLibrariesMediaContainer, GetAllLibrariesType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetAllLibrariesMediaContainer = {
-  size: 5,
+  size: 50,
   allowSync: false,
-  title1: "Plex Library",
+  title1: "TV Series",
   directory: [
     {
-      allowSync: true,
-      art: "/:/resources/movie-fanart.jpg",
-      composite: "/library/sections/1/composite/1705615584",
+      allowSync: false,
+      art: "/:/resources/show-fanart.jpg",
+      composite: "/library/sections/1/composite/1743824484",
       filters: true,
-      refreshing: false,
-      thumb: "/:/resources/movie.png",
+      refreshing: true,
+      thumb: "/:/resources/show.png",
       key: "1",
-      type: "movie",
+      type: GetAllLibrariesType.Movie,
       title: "Movies",
       agent: "tv.plex.agents.movie",
       scanner: "Plex Movie",
       language: "en-US",
-      uuid: "322a231a-b7f7-49f5-920f-14c61199cd30",
+      uuid: "e69655a2-ef48-4aba-bb19-01e7d3cc34d6",
       updatedAt: 1556281940,
       createdAt: 1556281940,
       scannedAt: 1556281940,
       content: true,
       directory: true,
-      contentChangedAt: 1556281940,
-      hidden: 0,
+      contentChangedAt: 9173960,
       location: [
         {
           id: 1,
-          path: "/movies",
+          path: "/Movies",
         },
       ],
     },
@@ -46,7 +45,7 @@ let value: GetAllLibrariesMediaContainer = {
 
 | Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `size`                                                                                              | *number*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 | 5                                                                                                   |
-| `allowSync`                                                                                         | *boolean*                                                                                           | :heavy_check_mark:                                                                                  | N/A                                                                                                 | false                                                                                               |
-| `title1`                                                                                            | *string*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 | Plex Library                                                                                        |
-| `directory`                                                                                         | [operations.GetAllLibrariesDirectory](../../../sdk/models/operations/getalllibrariesdirectory.md)[] | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
+| `size`                                                                                              | *number*                                                                                            | :heavy_check_mark:                                                                                  | Number of media items returned in this response.                                                    | 50                                                                                                  |
+| `allowSync`                                                                                         | *boolean*                                                                                           | :heavy_check_mark:                                                                                  | Indicates whether syncing is allowed.                                                               | false                                                                                               |
+| `title1`                                                                                            | *string*                                                                                            | :heavy_check_mark:                                                                                  | The primary title of the media container.                                                           | TV Series                                                                                           |
+| `directory`                                                                                         | [operations.GetAllLibrariesDirectory](../../../sdk/models/operations/getalllibrariesdirectory.md)[] | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |                                                                                                     |

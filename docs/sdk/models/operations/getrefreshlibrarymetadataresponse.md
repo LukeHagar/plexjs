@@ -7,7 +7,7 @@ import { GetRefreshLibraryMetadataResponse } from "@lukehagar/plexjs/sdk/models/
 
 let value: GetRefreshLibraryMetadataResponse = {
   contentType: "<value>",
-  statusCode: 428,
+  statusCode: 204,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

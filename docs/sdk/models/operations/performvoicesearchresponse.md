@@ -7,7 +7,7 @@ import { PerformVoiceSearchResponse } from "@lukehagar/plexjs/sdk/models/operati
 
 let value: PerformVoiceSearchResponse = {
   contentType: "<value>",
-  statusCode: 305,
+  statusCode: 308,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

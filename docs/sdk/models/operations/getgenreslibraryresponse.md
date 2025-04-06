@@ -7,7 +7,7 @@ import { GetGenresLibraryResponse } from "@lukehagar/plexjs/sdk/models/operation
 
 let value: GetGenresLibraryResponse = {
   contentType: "<value>",
-  statusCode: 101,
+  statusCode: 301,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

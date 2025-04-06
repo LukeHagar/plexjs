@@ -6,7 +6,7 @@
 import { DeletePlaylistRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: DeletePlaylistRequest = {
-  playlistID: 2074.7,
+  playlistID: 5840.32,
 };
 ```
 

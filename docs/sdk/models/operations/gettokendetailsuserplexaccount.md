@@ -27,7 +27,7 @@ let value: GetTokenDetailsUserPlexAccount = {
   homeSize: 1,
   id: 13692262,
   joinedAt: 1556281940,
-  locale: "el",
+  locale: "zh",
   mailingListStatus: MailingListStatus.Active,
   maxHomeSize: 15,
   profile: {

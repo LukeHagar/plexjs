@@ -6,7 +6,7 @@
 import { PerformSearchRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PerformSearchRequest = {
-  query: "arnold",
+  query: "dylan",
 };
 ```
 

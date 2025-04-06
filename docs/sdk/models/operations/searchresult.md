@@ -15,7 +15,7 @@ import {
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: SearchResult = {
-  score: 7936.98,
+  score: 922.83,
   metadata: {
     ratingKey: "58683",
     key: "/library/metadata/58683",

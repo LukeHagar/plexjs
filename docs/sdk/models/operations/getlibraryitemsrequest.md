@@ -6,7 +6,7 @@
 import { GetLibraryItemsQueryParamType, GetLibraryItemsRequest, Tag } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsRequest = {
-  tag: Tag.FirstCharacter,
+  tag: Tag.OnDeck,
   type: GetLibraryItemsQueryParamType.TvShow,
   sectionKey: 9518,
 };

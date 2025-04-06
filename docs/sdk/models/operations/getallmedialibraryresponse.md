@@ -12,7 +12,7 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetAllMediaLibraryResponse = {
   contentType: "<value>",
-  statusCode: 300,
+  statusCode: 505,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

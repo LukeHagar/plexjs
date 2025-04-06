@@ -9,7 +9,7 @@ Has this media been optimized for streaming. NOTE: This can be 0, 1, false or tr
 
 ```typescript
 const value: operations.GetMediaMetaDataOptimizedForStreamingLibrary1 =
-  GetMediaMetaDataOptimizedForStreamingLibrary1.One;
+  GetMediaMetaDataOptimizedForStreamingLibrary1.Zero;
 ```
 
 ### `boolean`

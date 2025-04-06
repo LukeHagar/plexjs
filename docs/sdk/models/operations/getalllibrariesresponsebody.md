@@ -5,39 +5,38 @@ The libraries available on the Server
 ## Example Usage
 
 ```typescript
-import { GetAllLibrariesResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetAllLibrariesResponseBody, GetAllLibrariesType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetAllLibrariesResponseBody = {
   mediaContainer: {
-    size: 5,
+    size: 50,
     allowSync: false,
-    title1: "Plex Library",
+    title1: "TV Series",
     directory: [
       {
-        allowSync: true,
-        art: "/:/resources/movie-fanart.jpg",
-        composite: "/library/sections/1/composite/1705615584",
+        allowSync: false,
+        art: "/:/resources/show-fanart.jpg",
+        composite: "/library/sections/1/composite/1743824484",
         filters: true,
-        refreshing: false,
-        thumb: "/:/resources/movie.png",
+        refreshing: true,
+        thumb: "/:/resources/show.png",
         key: "1",
-        type: "movie",
+        type: GetAllLibrariesType.Movie,
         title: "Movies",
         agent: "tv.plex.agents.movie",
         scanner: "Plex Movie",
         language: "en-US",
-        uuid: "322a231a-b7f7-49f5-920f-14c61199cd30",
+        uuid: "e69655a2-ef48-4aba-bb19-01e7d3cc34d6",
         updatedAt: 1556281940,
         createdAt: 1556281940,
         scannedAt: 1556281940,
         content: true,
         directory: true,
-        contentChangedAt: 1556281940,
-        hidden: 0,
+        contentChangedAt: 9173960,
         location: [
           {
             id: 1,
-            path: "/movies",
+            path: "/Movies",
           },
         ],
       },
@@ -50,4 +49,4 @@ let value: GetAllLibrariesResponseBody = {
 
 | Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `mediaContainer`                                                                                            | [operations.GetAllLibrariesMediaContainer](../../../sdk/models/operations/getalllibrariesmediacontainer.md) | :heavy_check_mark:                                                                                          | N/A                                                                                                         |
+| `mediaContainer`                                                                                            | [operations.GetAllLibrariesMediaContainer](../../../sdk/models/operations/getalllibrariesmediacontainer.md) | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |

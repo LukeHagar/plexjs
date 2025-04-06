@@ -7,7 +7,7 @@ import { GetTimelineResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTimelineResponse = {
   contentType: "<value>",
-  statusCode: 302,
+  statusCode: 502,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

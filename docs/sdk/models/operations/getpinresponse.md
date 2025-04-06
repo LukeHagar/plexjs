@@ -7,7 +7,7 @@ import { GetPinResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetPinResponse = {
   contentType: "<value>",
-  statusCode: 208,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

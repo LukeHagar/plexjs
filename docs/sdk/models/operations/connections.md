@@ -7,9 +7,9 @@ import { Connections, Protocol } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Connections = {
   protocol: Protocol.Http,
-  address: "21611 Schuster Cliffs",
-  port: 54915,
-  uri: "https://wobbly-instance.org/",
+  address: "84577 W 9th Street",
+  port: 40036,
+  uri: "https://dearest-custom.net",
   local: false,
   relay: false,
   iPv6: false,

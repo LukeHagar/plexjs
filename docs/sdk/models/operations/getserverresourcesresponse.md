@@ -7,14 +7,14 @@ import { GetServerResourcesResponse, Protocol } from "@lukehagar/plexjs/sdk/mode
 
 let value: GetServerResourcesResponse = {
   contentType: "<value>",
-  statusCode: 102,
+  statusCode: 303,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   plexDevices: [
     {
       name: "<value>",
-      product: "Generic Cotton Pants",
+      product: "Gorgeous Steel Chair",
       productVersion: "<value>",
       platform: "<value>",
       platformVersion: "<value>",
@@ -23,7 +23,7 @@ let value: GetServerResourcesResponse = {
       createdAt: new Date("2019-06-24T11:38:02Z"),
       lastSeenAt: new Date("2019-06-24T11:38:02Z"),
       provides: "<value>",
-      ownerId: 828940,
+      ownerId: 399166,
       sourceTitle: "<value>",
       publicAddress: "<value>",
       accessToken: "<value>",
@@ -39,9 +39,9 @@ let value: GetServerResourcesResponse = {
       connections: [
         {
           protocol: Protocol.Http,
-          address: "72792 Medhurst Mountains",
-          port: 14619,
-          uri: "https://kaleidoscopic-status.net",
+          address: "29059 Ward Lake",
+          port: 52102,
+          uri: "https://old-validity.info",
           local: false,
           relay: false,
           iPv6: false,

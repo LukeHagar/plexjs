@@ -12,7 +12,7 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetRecentlyAddedResponse = {
   contentType: "<value>",
-  statusCode: 101,
+  statusCode: 301,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

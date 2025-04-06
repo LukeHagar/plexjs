@@ -8,59 +8,133 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The library type
+ */
+export enum GetAllLibrariesType {
+  Movie = "movie",
+  TvShow = "show",
+  Season = "season",
+  Episode = "episode",
+  Artist = "artist",
+  Album = "album",
+}
+
+/**
+ * UNKNOWN
+ */
+export enum Hidden {
+  Disable = 0,
+  Enable = 1,
+}
+
 export type GetAllLibrariesLocation = {
+  /**
+   * The ID of the location.
+   */
   id: number;
+  /**
+   * The path to the media item.
+   */
   path: string;
 };
 
 export type GetAllLibrariesDirectory = {
+  /**
+   * Indicates whether syncing is allowed.
+   */
   allowSync: boolean;
+  /**
+   * URL for the background artwork of the media container.
+   */
   art: string;
+  /**
+   * The relative path to the composite media item.
+   */
   composite: string;
+  /**
+   * UNKNOWN
+   */
   filters: boolean;
+  /**
+   * Indicates whether the library is currently being refreshed or updated
+   */
   refreshing: boolean;
+  /**
+   * URL for the thumbnail image of the media container.
+   */
   thumb: string;
+  /**
+   * The library key representing the unique identifier
+   */
   key: string;
-  type: string;
+  type: GetAllLibrariesType;
+  /**
+   * The title of the library
+   */
   title: string;
+  /**
+   * The Plex agent used to match and retrieve media metadata.
+   */
   agent: string;
+  /**
+   * UNKNOWN
+   */
   scanner: string;
+  /**
+   * The Plex library language that has been set
+   */
   language: string;
+  /**
+   * The universally unique identifier for the library.
+   */
   uuid: string;
   /**
    * Unix epoch datetime in seconds
    */
   updatedAt: number;
-  /**
-   * Unix epoch datetime in seconds
-   */
-  createdAt: number;
+  createdAt?: number | undefined;
   /**
    * Unix epoch datetime in seconds
    */
   scannedAt: number;
+  /**
+   * UNKNOWN
+   */
   content: boolean;
+  /**
+   * UNKNOWN
+   */
   directory: boolean;
   /**
-   * Unix epoch datetime in seconds
+   * The number of seconds since the content was last changed relative to now.
    */
   contentChangedAt: number;
-  hidden: number;
+  hidden?: Hidden | undefined;
   location: Array<GetAllLibrariesLocation>;
 };
 
 export type GetAllLibrariesMediaContainer = {
+  /**
+   * Number of media items returned in this response.
+   */
   size: number;
+  /**
+   * Indicates whether syncing is allowed.
+   */
   allowSync: boolean;
+  /**
+   * The primary title of the media container.
+   */
   title1: string;
-  directory: Array<GetAllLibrariesDirectory>;
+  directory?: Array<GetAllLibrariesDirectory> | undefined;
 };
 
 /**
  * The libraries available on the Server
  */
 export type GetAllLibrariesResponseBody = {
-  mediaContainer: GetAllLibrariesMediaContainer;
+  mediaContainer?: GetAllLibrariesMediaContainer | undefined;
 };
 
 export type GetAllLibrariesResponse = {
@@ -81,6 +155,46 @@ export type GetAllLibrariesResponse = {
    */
   object?: GetAllLibrariesResponseBody | undefined;
 };
+
+/** @internal */
+export const GetAllLibrariesType$inboundSchema: z.ZodNativeEnum<
+  typeof GetAllLibrariesType
+> = z.nativeEnum(GetAllLibrariesType);
+
+/** @internal */
+export const GetAllLibrariesType$outboundSchema: z.ZodNativeEnum<
+  typeof GetAllLibrariesType
+> = GetAllLibrariesType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllLibrariesType$ {
+  /** @deprecated use `GetAllLibrariesType$inboundSchema` instead. */
+  export const inboundSchema = GetAllLibrariesType$inboundSchema;
+  /** @deprecated use `GetAllLibrariesType$outboundSchema` instead. */
+  export const outboundSchema = GetAllLibrariesType$outboundSchema;
+}
+
+/** @internal */
+export const Hidden$inboundSchema: z.ZodNativeEnum<typeof Hidden> = z
+  .nativeEnum(Hidden);
+
+/** @internal */
+export const Hidden$outboundSchema: z.ZodNativeEnum<typeof Hidden> =
+  Hidden$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Hidden$ {
+  /** @deprecated use `Hidden$inboundSchema` instead. */
+  export const inboundSchema = Hidden$inboundSchema;
+  /** @deprecated use `Hidden$outboundSchema` instead. */
+  export const outboundSchema = Hidden$outboundSchema;
+}
 
 /** @internal */
 export const GetAllLibrariesLocation$inboundSchema: z.ZodType<
@@ -152,19 +266,19 @@ export const GetAllLibrariesDirectory$inboundSchema: z.ZodType<
   refreshing: z.boolean(),
   thumb: z.string(),
   key: z.string(),
-  type: z.string(),
+  type: GetAllLibrariesType$inboundSchema,
   title: z.string(),
   agent: z.string(),
   scanner: z.string(),
   language: z.string(),
   uuid: z.string(),
   updatedAt: z.number().int(),
-  createdAt: z.number().int(),
+  createdAt: z.number().int().optional(),
   scannedAt: z.number().int(),
   content: z.boolean(),
   directory: z.boolean(),
   contentChangedAt: z.number().int(),
-  hidden: z.number().int(),
+  hidden: Hidden$inboundSchema,
   Location: z.array(z.lazy(() => GetAllLibrariesLocation$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
@@ -188,7 +302,7 @@ export type GetAllLibrariesDirectory$Outbound = {
   language: string;
   uuid: string;
   updatedAt: number;
-  createdAt: number;
+  createdAt?: number | undefined;
   scannedAt: number;
   content: boolean;
   directory: boolean;
@@ -210,19 +324,19 @@ export const GetAllLibrariesDirectory$outboundSchema: z.ZodType<
   refreshing: z.boolean(),
   thumb: z.string(),
   key: z.string(),
-  type: z.string(),
+  type: GetAllLibrariesType$outboundSchema,
   title: z.string(),
   agent: z.string(),
   scanner: z.string(),
   language: z.string(),
   uuid: z.string(),
   updatedAt: z.number().int(),
-  createdAt: z.number().int(),
+  createdAt: z.number().int().optional(),
   scannedAt: z.number().int(),
   content: z.boolean(),
   directory: z.boolean(),
   contentChangedAt: z.number().int(),
-  hidden: z.number().int(),
+  hidden: Hidden$outboundSchema.default(Hidden.Disable),
   location: z.array(z.lazy(() => GetAllLibrariesLocation$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {
@@ -270,7 +384,8 @@ export const GetAllLibrariesMediaContainer$inboundSchema: z.ZodType<
   size: z.number().int(),
   allowSync: z.boolean(),
   title1: z.string(),
-  Directory: z.array(z.lazy(() => GetAllLibrariesDirectory$inboundSchema)),
+  Directory: z.array(z.lazy(() => GetAllLibrariesDirectory$inboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "Directory": "directory",
@@ -282,7 +397,7 @@ export type GetAllLibrariesMediaContainer$Outbound = {
   size: number;
   allowSync: boolean;
   title1: string;
-  Directory: Array<GetAllLibrariesDirectory$Outbound>;
+  Directory?: Array<GetAllLibrariesDirectory$Outbound> | undefined;
 };
 
 /** @internal */
@@ -294,7 +409,8 @@ export const GetAllLibrariesMediaContainer$outboundSchema: z.ZodType<
   size: z.number().int(),
   allowSync: z.boolean(),
   title1: z.string(),
-  directory: z.array(z.lazy(() => GetAllLibrariesDirectory$outboundSchema)),
+  directory: z.array(z.lazy(() => GetAllLibrariesDirectory$outboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     directory: "Directory",
@@ -340,7 +456,8 @@ export const GetAllLibrariesResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  MediaContainer: z.lazy(() => GetAllLibrariesMediaContainer$inboundSchema),
+  MediaContainer: z.lazy(() => GetAllLibrariesMediaContainer$inboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "MediaContainer": "mediaContainer",
@@ -349,7 +466,7 @@ export const GetAllLibrariesResponseBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetAllLibrariesResponseBody$Outbound = {
-  MediaContainer: GetAllLibrariesMediaContainer$Outbound;
+  MediaContainer?: GetAllLibrariesMediaContainer$Outbound | undefined;
 };
 
 /** @internal */
@@ -358,7 +475,8 @@ export const GetAllLibrariesResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetAllLibrariesResponseBody
 > = z.object({
-  mediaContainer: z.lazy(() => GetAllLibrariesMediaContainer$outboundSchema),
+  mediaContainer: z.lazy(() => GetAllLibrariesMediaContainer$outboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     mediaContainer: "MediaContainer",

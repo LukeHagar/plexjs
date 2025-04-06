@@ -9,7 +9,7 @@ Has this media been optimized for streaming. NOTE: This can be 0, 1, false or tr
 
 ```typescript
 const value: operations.GetRecentlyAddedOptimizedForStreaming1 =
-  GetRecentlyAddedOptimizedForStreaming1.One;
+  GetRecentlyAddedOptimizedForStreaming1.Zero;
 ```
 
 ### `boolean`

@@ -7,7 +7,7 @@ import { GetMediaPostersResponse } from "@lukehagar/plexjs/sdk/models/operations
 
 let value: GetMediaPostersResponse = {
   contentType: "<value>",
-  statusCode: 508,
+  statusCode: 307,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

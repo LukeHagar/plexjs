@@ -7,7 +7,7 @@ import { GetServerCapabilitiesResponse } from "@lukehagar/plexjs/sdk/models/oper
 
 let value: GetServerCapabilitiesResponse = {
   contentType: "<value>",
-  statusCode: 306,
+  statusCode: 503,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -5,7 +5,7 @@
 ```typescript
 import { One } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: One = One.One;
+let value: One = One.Zero;
 ```
 
 ## Values

@@ -7,7 +7,7 @@ import { EnablePaperTrailResponse } from "@lukehagar/plexjs/sdk/models/operation
 
 let value: EnablePaperTrailResponse = {
   contentType: "<value>",
-  statusCode: 409,
+  statusCode: 416,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

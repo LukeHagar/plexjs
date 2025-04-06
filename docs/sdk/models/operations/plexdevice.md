@@ -7,16 +7,16 @@ import { PlexDevice, Protocol } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PlexDevice = {
   name: "<value>",
-  product: "Modern Rubber Bacon",
+  product: "Incredible Steel Chair",
   productVersion: "<value>",
   platform: "<value>",
   platformVersion: "<value>",
-  device: "Desktop",
+  device: "Mobile",
   clientIdentifier: "<value>",
   createdAt: new Date("2019-06-24T11:38:02Z"),
   lastSeenAt: new Date("2019-06-24T11:38:02Z"),
   provides: "<value>",
-  ownerId: 120196,
+  ownerId: 341028,
   sourceTitle: "<value>",
   publicAddress: "<value>",
   accessToken: "<value>",
@@ -32,9 +32,9 @@ let value: PlexDevice = {
   connections: [
     {
       protocol: Protocol.Http,
-      address: "23406 Gleason Meadow",
-      port: 6156,
-      uri: "https://vengeful-farmer.net",
+      address: "40779 Shields Turnpike",
+      port: 44844,
+      uri: "https://artistic-creator.org",
       local: false,
       relay: false,
       iPv6: false,

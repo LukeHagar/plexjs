@@ -7,7 +7,7 @@ import { StartUniversalTranscodeResponse } from "@lukehagar/plexjs/sdk/models/op
 
 let value: StartUniversalTranscodeResponse = {
   contentType: "<value>",
-  statusCode: 413,
+  statusCode: 207,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

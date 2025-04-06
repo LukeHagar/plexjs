@@ -7,7 +7,7 @@ Only return hubs which are "transient", meaning those which are prone to changin
 ```typescript
 import { OnlyTransient } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: OnlyTransient = OnlyTransient.One;
+let value: OnlyTransient = OnlyTransient.Zero;
 ```
 
 ## Values

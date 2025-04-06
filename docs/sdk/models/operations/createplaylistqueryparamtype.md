@@ -7,7 +7,7 @@ type of playlist to create
 ```typescript
 import { CreatePlaylistQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: CreatePlaylistQueryParamType = CreatePlaylistQueryParamType.Video;
+let value: CreatePlaylistQueryParamType = CreatePlaylistQueryParamType.Photo;
 ```
 
 ## Values

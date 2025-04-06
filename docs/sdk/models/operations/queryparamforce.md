@@ -11,7 +11,7 @@ If the `force` argument is set to 0, a new playlist will be created suffixed wit
 ```typescript
 import { QueryParamForce } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: QueryParamForce = QueryParamForce.Zero;
+let value: QueryParamForce = QueryParamForce.One;
 ```
 
 ## Values

@@ -7,7 +7,7 @@ import { PostMediaArtsResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostMediaArtsResponse = {
   contentType: "<value>",
-  statusCode: 201,
+  statusCode: 502,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

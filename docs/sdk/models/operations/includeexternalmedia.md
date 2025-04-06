@@ -8,7 +8,7 @@ include external media in the results
 ```typescript
 import { IncludeExternalMedia } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: IncludeExternalMedia = IncludeExternalMedia.One;
+let value: IncludeExternalMedia = IncludeExternalMedia.Zero;
 ```
 
 ## Values

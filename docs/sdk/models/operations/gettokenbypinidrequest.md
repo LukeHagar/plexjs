@@ -6,7 +6,7 @@
 import { GetTokenByPinIdRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetTokenByPinIdRequest = {
-  pinID: 396506,
+  pinID: 721343,
   clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
   clientName: "Plex for Roku",
   deviceNickname: "Roku 3",

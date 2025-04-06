@@ -7,7 +7,7 @@ import { GetLibraryDetailsResponse } from "@lukehagar/plexjs/sdk/models/operatio
 
 let value: GetLibraryDetailsResponse = {
   contentType: "<value>",
-  statusCode: 103,
+  statusCode: 206,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

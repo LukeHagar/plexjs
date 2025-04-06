@@ -7,7 +7,7 @@ import { DeleteLibraryResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: DeleteLibraryResponse = {
   contentType: "<value>",
-  statusCode: 451,
+  statusCode: 102,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

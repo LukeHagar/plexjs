@@ -15,7 +15,7 @@ let value: PastSubscription = {
   state: PostUsersSignInDataState.Ended,
   billing: {
     internalPaymentMethod: {},
-    paymentMethodId: 929530,
+    paymentMethodId: 602004,
   },
 };
 ```

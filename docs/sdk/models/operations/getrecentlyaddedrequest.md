@@ -6,7 +6,7 @@
 import { GetRecentlyAddedRequest, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetRecentlyAddedRequest = {
-  contentDirectoryID: 501324,
+  contentDirectoryID: 995290,
   sectionID: 2,
   type: Type.TvShow,
 };
