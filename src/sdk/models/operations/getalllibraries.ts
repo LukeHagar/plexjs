@@ -107,7 +107,10 @@ export type GetAllLibrariesDirectory = {
    */
   directory: boolean;
   /**
-   * The number of seconds since the content was last changed relative to now.
+   * Timestamp (in seconds) representing the last time the content was modified.
+   *
+   * @remarks
+   * NOTE: Some Plex server have some absurd values for this field, like 8457612157633039800 so it should be int64
    */
   contentChangedAt: number;
   hidden?: Hidden | undefined;
