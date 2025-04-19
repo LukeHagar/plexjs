@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,6 +32,19 @@ export enum GetActorsLibraryQueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type GetActorsLibraryQueryParamTypeOpen = OpenEnum<
+  typeof GetActorsLibraryQueryParamType
+>;
 
 export type GetActorsLibraryRequest = {
   /**
@@ -46,7 +64,7 @@ export type GetActorsLibraryRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: GetActorsLibraryQueryParamType;
+  type: GetActorsLibraryQueryParamTypeOpen;
 };
 
 export type GetActorsLibraryDirectory = {
@@ -150,14 +168,25 @@ export type GetActorsLibraryResponse = {
 };
 
 /** @internal */
-export const GetActorsLibraryQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetActorsLibraryQueryParamType
-> = z.nativeEnum(GetActorsLibraryQueryParamType);
+export const GetActorsLibraryQueryParamType$inboundSchema: z.ZodType<
+  GetActorsLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetActorsLibraryQueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetActorsLibraryQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetActorsLibraryQueryParamType
-> = GetActorsLibraryQueryParamType$inboundSchema;
+export const GetActorsLibraryQueryParamType$outboundSchema: z.ZodType<
+  GetActorsLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  GetActorsLibraryQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(GetActorsLibraryQueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

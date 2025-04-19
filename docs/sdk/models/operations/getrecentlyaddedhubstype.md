@@ -13,11 +13,14 @@ let value: GetRecentlyAddedHubsType = GetRecentlyAddedHubsType.Movie;
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Movie`   | movie     |
-| `TvShow`  | show      |
-| `Season`  | season    |
-| `Episode` | episode   |
-| `Artist`  | artist    |
-| `Album`   | album     |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Movie`                | movie                  |
+| `TvShow`               | show                   |
+| `Season`               | season                 |
+| `Episode`              | episode                |
+| `Artist`               | artist                 |
+| `Album`                | album                  |
+| -                      | `Unrecognized<string>` |

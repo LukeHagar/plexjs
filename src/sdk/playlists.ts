@@ -42,8 +42,8 @@ export class Playlists extends ClientSDK {
    * Get All Playlists given the specified filters.
    */
   async getPlaylists(
-    playlistType?: operations.PlaylistType | undefined,
-    smart?: operations.QueryParamSmart | undefined,
+    playlistType?: operations.PlaylistTypeOpen | undefined,
+    smart?: operations.QueryParamSmartOpen | undefined,
     options?: RequestOptions,
   ): Promise<operations.GetPlaylistsResponse> {
     return unwrapAsync(playlistsGetPlaylists(
@@ -121,7 +121,7 @@ export class Playlists extends ClientSDK {
    */
   async getPlaylistContents(
     playlistID: number,
-    type: operations.GetPlaylistContentsQueryParamType,
+    type: operations.GetPlaylistContentsQueryParamTypeOpen,
     options?: RequestOptions,
   ): Promise<operations.GetPlaylistContentsResponse> {
     return unwrapAsync(playlistsGetPlaylistContents(

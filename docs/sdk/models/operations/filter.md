@@ -12,8 +12,11 @@ let value: Filter = Filter.Available;
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `All`       | all         |
-| `Available` | available   |
-| `Released`  | released    |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `All`                  | all                    |
+| `Available`            | available              |
+| `Released`             | released               |
+| -                      | `Unrecognized<string>` |

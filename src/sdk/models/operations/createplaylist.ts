@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -16,6 +21,12 @@ export enum CreatePlaylistQueryParamType {
   Video = "video",
   Photo = "photo",
 }
+/**
+ * type of playlist to create
+ */
+export type CreatePlaylistQueryParamTypeOpen = OpenEnum<
+  typeof CreatePlaylistQueryParamType
+>;
 
 /**
  * whether the playlist is smart or not
@@ -33,7 +44,7 @@ export type CreatePlaylistRequest = {
   /**
    * type of playlist to create
    */
-  type: CreatePlaylistQueryParamType;
+  type: CreatePlaylistQueryParamTypeOpen;
   /**
    * whether the playlist is smart or not
    */
@@ -99,14 +110,25 @@ export type CreatePlaylistResponse = {
 };
 
 /** @internal */
-export const CreatePlaylistQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof CreatePlaylistQueryParamType
-> = z.nativeEnum(CreatePlaylistQueryParamType);
+export const CreatePlaylistQueryParamType$inboundSchema: z.ZodType<
+  CreatePlaylistQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(CreatePlaylistQueryParamType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const CreatePlaylistQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof CreatePlaylistQueryParamType
-> = CreatePlaylistQueryParamType$inboundSchema;
+export const CreatePlaylistQueryParamType$outboundSchema: z.ZodType<
+  CreatePlaylistQueryParamTypeOpen,
+  z.ZodTypeDef,
+  CreatePlaylistQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(CreatePlaylistQueryParamType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

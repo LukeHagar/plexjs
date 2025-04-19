@@ -13,7 +13,10 @@ let value: PostUsersSignInDataMailingListStatus =
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `Active`       | active         |
-| `Unsubscribed` | unsubscribed   |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Active`               | active                 |
+| `Unsubscribed`         | unsubscribed           |
+| -                      | `Unrecognized<string>` |

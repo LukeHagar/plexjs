@@ -13,7 +13,10 @@ let value: GetTokenDetailsAuthenticationStatus =
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Inactive` | Inactive   |
-| `Active`   | Active     |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Inactive`             | Inactive               |
+| `Active`               | Active                 |
+| -                      | `Unrecognized<string>` |

@@ -12,21 +12,24 @@ let value: Tag = Tag.RecentlyViewed;
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `Unwatched`      | unwatched        |
-| `Newest`         | newest           |
-| `RecentlyAdded`  | recentlyAdded    |
-| `RecentlyViewed` | recentlyViewed   |
-| `OnDeck`         | onDeck           |
-| `Collection`     | collection       |
-| `Edition`        | edition          |
-| `Year`           | year             |
-| `Decade`         | decade           |
-| `Director`       | director         |
-| `ContentRating`  | contentRating    |
-| `Rating`         | rating           |
-| `Resolution`     | resolution       |
-| `FirstCharacter` | firstCharacter   |
-| `Folder`         | folder           |
-| `Albums`         | albums           |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Unwatched`            | unwatched              |
+| `Newest`               | newest                 |
+| `RecentlyAdded`        | recentlyAdded          |
+| `RecentlyViewed`       | recentlyViewed         |
+| `OnDeck`               | onDeck                 |
+| `Collection`           | collection             |
+| `Edition`              | edition                |
+| `Year`                 | year                   |
+| `Decade`               | decade                 |
+| `Director`             | director               |
+| `ContentRating`        | contentRating          |
+| `Rating`               | rating                 |
+| `Resolution`           | resolution             |
+| `FirstCharacter`       | firstCharacter         |
+| `Folder`               | folder                 |
+| `Albums`               | albums                 |
+| -                      | `Unrecognized<string>` |

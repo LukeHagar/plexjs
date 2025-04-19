@@ -12,8 +12,11 @@ let value: State = State.Playing;
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Playing` | playing   |
-| `Paused`  | paused    |
-| `Stopped` | stopped   |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Playing`              | playing                |
+| `Paused`               | paused                 |
+| `Stopped`              | stopped                |
+| -                      | `Unrecognized<string>` |

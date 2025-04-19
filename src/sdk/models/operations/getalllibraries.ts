@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,6 +24,10 @@ export enum GetAllLibrariesType {
   Artist = "artist",
   Album = "album",
 }
+/**
+ * The library type
+ */
+export type GetAllLibrariesTypeOpen = OpenEnum<typeof GetAllLibrariesType>;
 
 /**
  * UNKNOWN
@@ -68,7 +77,7 @@ export type GetAllLibrariesDirectory = {
    * The library key representing the unique identifier
    */
   key: string;
-  type: GetAllLibrariesType;
+  type: GetAllLibrariesTypeOpen;
   /**
    * The title of the library
    */
@@ -160,14 +169,25 @@ export type GetAllLibrariesResponse = {
 };
 
 /** @internal */
-export const GetAllLibrariesType$inboundSchema: z.ZodNativeEnum<
-  typeof GetAllLibrariesType
-> = z.nativeEnum(GetAllLibrariesType);
+export const GetAllLibrariesType$inboundSchema: z.ZodType<
+  GetAllLibrariesTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetAllLibrariesType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetAllLibrariesType$outboundSchema: z.ZodNativeEnum<
-  typeof GetAllLibrariesType
-> = GetAllLibrariesType$inboundSchema;
+export const GetAllLibrariesType$outboundSchema: z.ZodType<
+  GetAllLibrariesTypeOpen,
+  z.ZodTypeDef,
+  GetAllLibrariesTypeOpen
+> = z.union([
+  z.nativeEnum(GetAllLibrariesType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

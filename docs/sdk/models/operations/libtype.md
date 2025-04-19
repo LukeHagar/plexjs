@@ -13,7 +13,10 @@ let value: Libtype = Libtype.Show;
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `Movie` | movie   |
-| `Show`  | show    |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Movie`                | movie                  |
+| `Show`                 | show                   |
+| -                      | `Unrecognized<string>` |

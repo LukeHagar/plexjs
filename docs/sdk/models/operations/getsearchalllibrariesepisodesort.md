@@ -13,8 +13,11 @@ let value: GetSearchAllLibrariesEpisodeSort =
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `LibraryDefault` | -1               |
-| `OldestFirst`    | 0                |
-| `NewestFirst`    | 1                |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `LibraryDefault`       | -1                     |
+| `OldestFirst`          | 0                      |
+| `NewestFirst`          | 1                      |
+| -                      | `Unrecognized<string>` |

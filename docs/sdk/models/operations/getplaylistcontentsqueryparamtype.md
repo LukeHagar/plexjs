@@ -19,12 +19,15 @@ let value: GetPlaylistContentsQueryParamType =
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Movie`   | 1         |
-| `TvShow`  | 2         |
-| `Season`  | 3         |
-| `Episode` | 4         |
-| `Audio`   | 8         |
-| `Album`   | 9         |
-| `Track`   | 10        |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<number>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Movie`                | 1                      |
+| `TvShow`               | 2                      |
+| `Season`               | 3                      |
+| `Episode`              | 4                      |
+| `Audio`                | 8                      |
+| `Album`                | 9                      |
+| `Track`                | 10                     |
+| -                      | `Unrecognized<number>` |

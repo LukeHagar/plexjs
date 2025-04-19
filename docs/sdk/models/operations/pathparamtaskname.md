@@ -12,6 +12,8 @@ let value: PathParamTaskName = PathParamTaskName.RefreshPeriodicMetadata;
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 | Name                        | Value                       |
 | --------------------------- | --------------------------- |
 | `BackupDatabase`            | BackupDatabase              |
@@ -28,3 +30,4 @@ let value: PathParamTaskName = PathParamTaskName.RefreshPeriodicMetadata;
 | `RefreshLocalMedia`         | RefreshLocalMedia           |
 | `RefreshPeriodicMetadata`   | RefreshPeriodicMetadata     |
 | `UpgradeMediaAnalysis`      | UpgradeMediaAnalysis        |
+| -                           | `Unrecognized<string>`      |

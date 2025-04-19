@@ -50,7 +50,7 @@ import { Result } from "../sdk/types/fp.js";
 export function libraryGetSearchLibrary(
   client: PlexAPICore,
   sectionKey: number,
-  type: operations.GetSearchLibraryQueryParamType,
+  type: operations.GetSearchLibraryQueryParamTypeOpen,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -77,7 +77,7 @@ export function libraryGetSearchLibrary(
 async function $do(
   client: PlexAPICore,
   sectionKey: number,
-  type: operations.GetSearchLibraryQueryParamType,
+  type: operations.GetSearchLibraryQueryParamTypeOpen,
   options?: RequestOptions,
 ): Promise<
   [

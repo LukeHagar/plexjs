@@ -17,7 +17,7 @@ export class Log extends ClientSDK {
    * This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
    */
   async logLine(
-    level: operations.Level,
+    level: operations.LevelOpen,
     message: string,
     source: string,
     options?: RequestOptions,

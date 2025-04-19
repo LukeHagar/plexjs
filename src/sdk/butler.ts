@@ -72,7 +72,7 @@ export class Butler extends ClientSDK {
    * 4. If we are outside the configured window, the task will start immediately.
    */
   async startTask(
-    taskName: operations.TaskName,
+    taskName: operations.TaskNameOpen,
     options?: RequestOptions,
   ): Promise<operations.StartTaskResponse> {
     return unwrapAsync(butlerStartTask(
@@ -89,7 +89,7 @@ export class Butler extends ClientSDK {
    * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
    */
   async stopTask(
-    taskName: operations.PathParamTaskName,
+    taskName: operations.PathParamTaskNameOpen,
     options?: RequestOptions,
   ): Promise<operations.StopTaskResponse> {
     return unwrapAsync(butlerStopTask(

@@ -32,8 +32,8 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function playlistsGetPlaylists(
   client: PlexAPICore,
-  playlistType?: operations.PlaylistType | undefined,
-  smart?: operations.QueryParamSmart | undefined,
+  playlistType?: operations.PlaylistTypeOpen | undefined,
+  smart?: operations.QueryParamSmartOpen | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -59,8 +59,8 @@ export function playlistsGetPlaylists(
 
 async function $do(
   client: PlexAPICore,
-  playlistType?: operations.PlaylistType | undefined,
-  smart?: operations.QueryParamSmart | undefined,
+  playlistType?: operations.PlaylistTypeOpen | undefined,
+  smart?: operations.QueryParamSmartOpen | undefined,
   options?: RequestOptions,
 ): Promise<
   [

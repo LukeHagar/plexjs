@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,6 +32,17 @@ export enum QueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type QueryParamTypeOpen = OpenEnum<typeof QueryParamType>;
 
 /**
  * Adds the Meta object to the response
@@ -55,7 +71,7 @@ export type GetRecentlyAddedLibraryRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: QueryParamType;
+  type: QueryParamTypeOpen;
   /**
    * Adds the Meta object to the response
    *
@@ -289,14 +305,25 @@ export type GetRecentlyAddedLibraryResponse = {
 };
 
 /** @internal */
-export const QueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamType
-> = z.nativeEnum(QueryParamType);
+export const QueryParamType$inboundSchema: z.ZodType<
+  QueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(QueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const QueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamType
-> = QueryParamType$inboundSchema;
+export const QueryParamType$outboundSchema: z.ZodType<
+  QueryParamTypeOpen,
+  z.ZodTypeDef,
+  QueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(QueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

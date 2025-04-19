@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -28,6 +33,19 @@ export enum GetAllMediaLibraryQueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type GetAllMediaLibraryQueryParamTypeOpen = OpenEnum<
+  typeof GetAllMediaLibraryQueryParamType
+>;
 
 /**
  * Adds the Meta object to the response
@@ -82,7 +100,7 @@ export type GetAllMediaLibraryRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: GetAllMediaLibraryQueryParamType;
+  type: GetAllMediaLibraryQueryParamTypeOpen;
   /**
    * Adds the Meta object to the response
    *
@@ -217,6 +235,14 @@ export enum GetAllMediaLibraryLibraryType {
   Artist = "artist",
   Album = "album",
 }
+/**
+ * The type of media content
+ *
+ * @remarks
+ */
+export type GetAllMediaLibraryLibraryTypeOpen = OpenEnum<
+  typeof GetAllMediaLibraryLibraryType
+>;
 
 export enum GetAllMediaLibraryLibraryResponseType {
   CoverPoster = "coverPoster",
@@ -224,10 +250,13 @@ export enum GetAllMediaLibraryLibraryResponseType {
   Snapshot = "snapshot",
   ClearLogo = "clearLogo",
 }
+export type GetAllMediaLibraryLibraryResponseTypeOpen = OpenEnum<
+  typeof GetAllMediaLibraryLibraryResponseType
+>;
 
 export type GetAllMediaLibraryImage = {
   alt: string;
-  type: GetAllMediaLibraryLibraryResponseType;
+  type: GetAllMediaLibraryLibraryResponseTypeOpen;
   url: string;
 };
 
@@ -666,7 +695,7 @@ export type GetAllMediaLibraryMetadata = {
    * The studio that produced the media item.
    */
   studio?: string | undefined;
-  type: GetAllMediaLibraryLibraryType;
+  type: GetAllMediaLibraryLibraryTypeOpen;
   /**
    * The title of the media item.
    */
@@ -976,14 +1005,25 @@ export type GetAllMediaLibraryResponse = {
 };
 
 /** @internal */
-export const GetAllMediaLibraryQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetAllMediaLibraryQueryParamType
-> = z.nativeEnum(GetAllMediaLibraryQueryParamType);
+export const GetAllMediaLibraryQueryParamType$inboundSchema: z.ZodType<
+  GetAllMediaLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetAllMediaLibraryQueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetAllMediaLibraryQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetAllMediaLibraryQueryParamType
-> = GetAllMediaLibraryQueryParamType$inboundSchema;
+export const GetAllMediaLibraryQueryParamType$outboundSchema: z.ZodType<
+  GetAllMediaLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  GetAllMediaLibraryQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(GetAllMediaLibraryQueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal
@@ -1745,14 +1785,25 @@ export function getAllMediaLibraryMetaFromJSON(
 }
 
 /** @internal */
-export const GetAllMediaLibraryLibraryType$inboundSchema: z.ZodNativeEnum<
-  typeof GetAllMediaLibraryLibraryType
-> = z.nativeEnum(GetAllMediaLibraryLibraryType);
+export const GetAllMediaLibraryLibraryType$inboundSchema: z.ZodType<
+  GetAllMediaLibraryLibraryTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetAllMediaLibraryLibraryType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetAllMediaLibraryLibraryType$outboundSchema: z.ZodNativeEnum<
-  typeof GetAllMediaLibraryLibraryType
-> = GetAllMediaLibraryLibraryType$inboundSchema;
+export const GetAllMediaLibraryLibraryType$outboundSchema: z.ZodType<
+  GetAllMediaLibraryLibraryTypeOpen,
+  z.ZodTypeDef,
+  GetAllMediaLibraryLibraryTypeOpen
+> = z.union([
+  z.nativeEnum(GetAllMediaLibraryLibraryType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -1766,15 +1817,25 @@ export namespace GetAllMediaLibraryLibraryType$ {
 }
 
 /** @internal */
-export const GetAllMediaLibraryLibraryResponseType$inboundSchema:
-  z.ZodNativeEnum<typeof GetAllMediaLibraryLibraryResponseType> = z.nativeEnum(
-    GetAllMediaLibraryLibraryResponseType,
-  );
+export const GetAllMediaLibraryLibraryResponseType$inboundSchema: z.ZodType<
+  GetAllMediaLibraryLibraryResponseTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetAllMediaLibraryLibraryResponseType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetAllMediaLibraryLibraryResponseType$outboundSchema:
-  z.ZodNativeEnum<typeof GetAllMediaLibraryLibraryResponseType> =
-    GetAllMediaLibraryLibraryResponseType$inboundSchema;
+export const GetAllMediaLibraryLibraryResponseType$outboundSchema: z.ZodType<
+  GetAllMediaLibraryLibraryResponseTypeOpen,
+  z.ZodTypeDef,
+  GetAllMediaLibraryLibraryResponseTypeOpen
+> = z.union([
+  z.nativeEnum(GetAllMediaLibraryLibraryResponseType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

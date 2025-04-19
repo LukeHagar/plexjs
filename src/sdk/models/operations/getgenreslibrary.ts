@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,6 +32,19 @@ export enum GetGenresLibraryQueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type GetGenresLibraryQueryParamTypeOpen = OpenEnum<
+  typeof GetGenresLibraryQueryParamType
+>;
 
 export type GetGenresLibraryRequest = {
   /**
@@ -46,7 +64,7 @@ export type GetGenresLibraryRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: GetGenresLibraryQueryParamType;
+  type: GetGenresLibraryQueryParamTypeOpen;
 };
 
 export type GetGenresLibraryDirectory = {
@@ -135,14 +153,25 @@ export type GetGenresLibraryResponse = {
 };
 
 /** @internal */
-export const GetGenresLibraryQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetGenresLibraryQueryParamType
-> = z.nativeEnum(GetGenresLibraryQueryParamType);
+export const GetGenresLibraryQueryParamType$inboundSchema: z.ZodType<
+  GetGenresLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetGenresLibraryQueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetGenresLibraryQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetGenresLibraryQueryParamType
-> = GetGenresLibraryQueryParamType$inboundSchema;
+export const GetGenresLibraryQueryParamType$outboundSchema: z.ZodType<
+  GetGenresLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  GetGenresLibraryQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(GetGenresLibraryQueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

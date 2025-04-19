@@ -19,10 +19,13 @@ let value: GetSearchAllLibrariesShowOrdering =
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `None`         | None           |
-| `TmdbAiring`   | tmdbAiring     |
-| `TvdbAired`    | aired          |
-| `TvdbDvd`      | dvd            |
-| `TvdbAbsolute` | absolute       |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `None`                 | None                   |
+| `TmdbAiring`           | tmdbAiring             |
+| `TvdbAired`            | aired                  |
+| `TvdbDvd`              | dvd                    |
+| `TvdbAbsolute`         | absolute               |
+| -                      | `Unrecognized<string>` |

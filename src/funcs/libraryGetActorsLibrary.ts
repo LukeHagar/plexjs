@@ -33,7 +33,7 @@ import { Result } from "../sdk/types/fp.js";
 export function libraryGetActorsLibrary(
   client: PlexAPICore,
   sectionKey: number,
-  type: operations.GetActorsLibraryQueryParamType,
+  type: operations.GetActorsLibraryQueryParamTypeOpen,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,7 +60,7 @@ export function libraryGetActorsLibrary(
 async function $do(
   client: PlexAPICore,
   sectionKey: number,
-  type: operations.GetActorsLibraryQueryParamType,
+  type: operations.GetActorsLibraryQueryParamTypeOpen,
   options?: RequestOptions,
 ): Promise<
   [

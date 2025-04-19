@@ -10,7 +10,10 @@ let value: GetTokenDetailsStatus = GetTokenDetailsStatus.Online;
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Online`  | online    |
-| `Offline` | offline   |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Online`               | online                 |
+| `Offline`              | offline                |
+| -                      | `Unrecognized<string>` |

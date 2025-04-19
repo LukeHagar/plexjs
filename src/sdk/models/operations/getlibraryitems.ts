@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -30,6 +35,10 @@ export enum Tag {
   Folder = "folder",
   Albums = "albums",
 }
+/**
+ * A key representing a specific tag within the section.
+ */
+export type TagOpen = OpenEnum<typeof Tag>;
 
 /**
  * Adds the Guids object to the response
@@ -60,6 +69,19 @@ export enum GetLibraryItemsQueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type GetLibraryItemsQueryParamTypeOpen = OpenEnum<
+  typeof GetLibraryItemsQueryParamType
+>;
 
 /**
  * Adds the Meta object to the response
@@ -75,7 +97,7 @@ export type GetLibraryItemsRequest = {
   /**
    * A key representing a specific tag within the section.
    */
-  tag: Tag;
+  tag: TagOpen;
   /**
    * Adds the Guids object to the response
    *
@@ -92,7 +114,7 @@ export type GetLibraryItemsRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: GetLibraryItemsQueryParamType;
+  type: GetLibraryItemsQueryParamTypeOpen;
   /**
    * The unique key of the Plex library.
    *
@@ -215,6 +237,14 @@ export enum GetLibraryItemsLibraryType {
   Artist = "artist",
   Album = "album",
 }
+/**
+ * The type of media content
+ *
+ * @remarks
+ */
+export type GetLibraryItemsLibraryTypeOpen = OpenEnum<
+  typeof GetLibraryItemsLibraryType
+>;
 
 /**
  * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
@@ -224,6 +254,10 @@ export enum FlattenSeasons {
   Hide = "0",
   Show = "1",
 }
+/**
+ * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+ */
+export type FlattenSeasonsOpen = OpenEnum<typeof FlattenSeasons>;
 
 /**
  * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
@@ -233,6 +267,10 @@ export enum EpisodeSort {
   OldestFirst = "0",
   NewestFirst = "1",
 }
+/**
+ * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+ */
+export type EpisodeSortOpen = OpenEnum<typeof EpisodeSort>;
 
 /**
  * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
@@ -241,6 +279,12 @@ export enum EnableCreditsMarkerGeneration {
   LibraryDefault = "-1",
   Disabled = "0",
 }
+/**
+ * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+ */
+export type EnableCreditsMarkerGenerationOpen = OpenEnum<
+  typeof EnableCreditsMarkerGeneration
+>;
 
 /**
  * Setting that indicates the episode ordering for the show.
@@ -259,6 +303,17 @@ export enum ShowOrdering {
   TvdbDvd = "dvd",
   TvdbAbsolute = "absolute",
 }
+/**
+ * Setting that indicates the episode ordering for the show.
+ *
+ * @remarks
+ * None = Library default,
+ * tmdbAiring = The Movie Database (Aired),
+ * aired = TheTVDB (Aired),
+ * dvd = TheTVDB (DVD),
+ * absolute = TheTVDB (Absolute)).
+ */
+export type ShowOrderingOpen = OpenEnum<typeof ShowOrdering>;
 
 export enum GetLibraryItemsOptimizedForStreaming {
   Disable = 0,
@@ -544,10 +599,13 @@ export enum GetLibraryItemsLibraryResponse200Type {
   Snapshot = "snapshot",
   ClearLogo = "clearLogo",
 }
+export type GetLibraryItemsLibraryResponse200TypeOpen = OpenEnum<
+  typeof GetLibraryItemsLibraryResponse200Type
+>;
 
 export type GetLibraryItemsImage = {
   alt: string;
-  type: GetLibraryItemsLibraryResponse200Type;
+  type: GetLibraryItemsLibraryResponse200TypeOpen;
   url: string;
 };
 
@@ -571,7 +629,7 @@ export type GetLibraryItemsMetadata = {
    *
    * @remarks
    */
-  type: GetLibraryItemsLibraryType;
+  type: GetLibraryItemsLibraryTypeOpen;
   title: string;
   slug?: string | undefined;
   contentRating?: string | undefined;
@@ -584,15 +642,15 @@ export type GetLibraryItemsMetadata = {
   /**
    * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
    */
-  flattenSeasons?: FlattenSeasons | undefined;
+  flattenSeasons?: FlattenSeasonsOpen | undefined;
   /**
    * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
    */
-  episodeSort?: EpisodeSort | undefined;
+  episodeSort?: EpisodeSortOpen | undefined;
   /**
    * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
    */
-  enableCreditsMarkerGeneration?: EnableCreditsMarkerGeneration | undefined;
+  enableCreditsMarkerGeneration?: EnableCreditsMarkerGenerationOpen | undefined;
   /**
    * Setting that indicates the episode ordering for the show.
    *
@@ -603,7 +661,7 @@ export type GetLibraryItemsMetadata = {
    * dvd = TheTVDB (DVD),
    * absolute = TheTVDB (Absolute)).
    */
-  showOrdering?: ShowOrdering | undefined;
+  showOrdering?: ShowOrderingOpen | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
   banner?: string | undefined;
@@ -830,11 +888,18 @@ export type GetLibraryItemsResponse = {
 };
 
 /** @internal */
-export const Tag$inboundSchema: z.ZodNativeEnum<typeof Tag> = z.nativeEnum(Tag);
+export const Tag$inboundSchema: z.ZodType<TagOpen, z.ZodTypeDef, unknown> = z
+  .union([
+    z.nativeEnum(Tag),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const Tag$outboundSchema: z.ZodNativeEnum<typeof Tag> =
-  Tag$inboundSchema;
+export const Tag$outboundSchema: z.ZodType<TagOpen, z.ZodTypeDef, TagOpen> = z
+  .union([
+    z.nativeEnum(Tag),
+    z.string().and(z.custom<Unrecognized<string>>()),
+  ]);
 
 /**
  * @internal
@@ -867,14 +932,25 @@ export namespace IncludeGuids$ {
 }
 
 /** @internal */
-export const GetLibraryItemsQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsQueryParamType
-> = z.nativeEnum(GetLibraryItemsQueryParamType);
+export const GetLibraryItemsQueryParamType$inboundSchema: z.ZodType<
+  GetLibraryItemsQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetLibraryItemsQueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetLibraryItemsQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsQueryParamType
-> = GetLibraryItemsQueryParamType$inboundSchema;
+export const GetLibraryItemsQueryParamType$outboundSchema: z.ZodType<
+  GetLibraryItemsQueryParamTypeOpen,
+  z.ZodTypeDef,
+  GetLibraryItemsQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(GetLibraryItemsQueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal
@@ -1463,14 +1539,25 @@ export function getLibraryItemsFieldTypeFromJSON(
 }
 
 /** @internal */
-export const GetLibraryItemsLibraryType$inboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsLibraryType
-> = z.nativeEnum(GetLibraryItemsLibraryType);
+export const GetLibraryItemsLibraryType$inboundSchema: z.ZodType<
+  GetLibraryItemsLibraryTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetLibraryItemsLibraryType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetLibraryItemsLibraryType$outboundSchema: z.ZodNativeEnum<
-  typeof GetLibraryItemsLibraryType
-> = GetLibraryItemsLibraryType$inboundSchema;
+export const GetLibraryItemsLibraryType$outboundSchema: z.ZodType<
+  GetLibraryItemsLibraryTypeOpen,
+  z.ZodTypeDef,
+  GetLibraryItemsLibraryTypeOpen
+> = z.union([
+  z.nativeEnum(GetLibraryItemsLibraryType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -1484,14 +1571,25 @@ export namespace GetLibraryItemsLibraryType$ {
 }
 
 /** @internal */
-export const FlattenSeasons$inboundSchema: z.ZodNativeEnum<
-  typeof FlattenSeasons
-> = z.nativeEnum(FlattenSeasons);
+export const FlattenSeasons$inboundSchema: z.ZodType<
+  FlattenSeasonsOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(FlattenSeasons),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const FlattenSeasons$outboundSchema: z.ZodNativeEnum<
-  typeof FlattenSeasons
-> = FlattenSeasons$inboundSchema;
+export const FlattenSeasons$outboundSchema: z.ZodType<
+  FlattenSeasonsOpen,
+  z.ZodTypeDef,
+  FlattenSeasonsOpen
+> = z.union([
+  z.nativeEnum(FlattenSeasons),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -1505,12 +1603,25 @@ export namespace FlattenSeasons$ {
 }
 
 /** @internal */
-export const EpisodeSort$inboundSchema: z.ZodNativeEnum<typeof EpisodeSort> = z
-  .nativeEnum(EpisodeSort);
+export const EpisodeSort$inboundSchema: z.ZodType<
+  EpisodeSortOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(EpisodeSort),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const EpisodeSort$outboundSchema: z.ZodNativeEnum<typeof EpisodeSort> =
-  EpisodeSort$inboundSchema;
+export const EpisodeSort$outboundSchema: z.ZodType<
+  EpisodeSortOpen,
+  z.ZodTypeDef,
+  EpisodeSortOpen
+> = z.union([
+  z.nativeEnum(EpisodeSort),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -1524,14 +1635,25 @@ export namespace EpisodeSort$ {
 }
 
 /** @internal */
-export const EnableCreditsMarkerGeneration$inboundSchema: z.ZodNativeEnum<
-  typeof EnableCreditsMarkerGeneration
-> = z.nativeEnum(EnableCreditsMarkerGeneration);
+export const EnableCreditsMarkerGeneration$inboundSchema: z.ZodType<
+  EnableCreditsMarkerGenerationOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(EnableCreditsMarkerGeneration),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const EnableCreditsMarkerGeneration$outboundSchema: z.ZodNativeEnum<
-  typeof EnableCreditsMarkerGeneration
-> = EnableCreditsMarkerGeneration$inboundSchema;
+export const EnableCreditsMarkerGeneration$outboundSchema: z.ZodType<
+  EnableCreditsMarkerGenerationOpen,
+  z.ZodTypeDef,
+  EnableCreditsMarkerGenerationOpen
+> = z.union([
+  z.nativeEnum(EnableCreditsMarkerGeneration),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -1545,12 +1667,25 @@ export namespace EnableCreditsMarkerGeneration$ {
 }
 
 /** @internal */
-export const ShowOrdering$inboundSchema: z.ZodNativeEnum<typeof ShowOrdering> =
-  z.nativeEnum(ShowOrdering);
+export const ShowOrdering$inboundSchema: z.ZodType<
+  ShowOrderingOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(ShowOrdering),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const ShowOrdering$outboundSchema: z.ZodNativeEnum<typeof ShowOrdering> =
-  ShowOrdering$inboundSchema;
+export const ShowOrdering$outboundSchema: z.ZodType<
+  ShowOrderingOpen,
+  z.ZodTypeDef,
+  ShowOrderingOpen
+> = z.union([
+  z.nativeEnum(ShowOrdering),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -2555,15 +2690,25 @@ export function metaDataRatingFromJSON(
 }
 
 /** @internal */
-export const GetLibraryItemsLibraryResponse200Type$inboundSchema:
-  z.ZodNativeEnum<typeof GetLibraryItemsLibraryResponse200Type> = z.nativeEnum(
-    GetLibraryItemsLibraryResponse200Type,
-  );
+export const GetLibraryItemsLibraryResponse200Type$inboundSchema: z.ZodType<
+  GetLibraryItemsLibraryResponse200TypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetLibraryItemsLibraryResponse200Type),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetLibraryItemsLibraryResponse200Type$outboundSchema:
-  z.ZodNativeEnum<typeof GetLibraryItemsLibraryResponse200Type> =
-    GetLibraryItemsLibraryResponse200Type$inboundSchema;
+export const GetLibraryItemsLibraryResponse200Type$outboundSchema: z.ZodType<
+  GetLibraryItemsLibraryResponse200TypeOpen,
+  z.ZodTypeDef,
+  GetLibraryItemsLibraryResponse200TypeOpen
+> = z.union([
+  z.nativeEnum(GetLibraryItemsLibraryResponse200Type),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

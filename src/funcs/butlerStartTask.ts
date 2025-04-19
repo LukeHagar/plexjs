@@ -36,7 +36,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function butlerStartTask(
   client: PlexAPICore,
-  taskName: operations.TaskName,
+  taskName: operations.TaskNameOpen,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -61,7 +61,7 @@ export function butlerStartTask(
 
 async function $do(
   client: PlexAPICore,
-  taskName: operations.TaskName,
+  taskName: operations.TaskNameOpen,
   options?: RequestOptions,
 ): Promise<
   [

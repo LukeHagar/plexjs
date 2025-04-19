@@ -36,7 +36,7 @@ import { Result } from "../sdk/types/fp.js";
 export function playlistsGetPlaylistContents(
   client: PlexAPICore,
   playlistID: number,
-  type: operations.GetPlaylistContentsQueryParamType,
+  type: operations.GetPlaylistContentsQueryParamTypeOpen,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -63,7 +63,7 @@ export function playlistsGetPlaylistContents(
 async function $do(
   client: PlexAPICore,
   playlistID: number,
-  type: operations.GetPlaylistContentsQueryParamType,
+  type: operations.GetPlaylistContentsQueryParamTypeOpen,
   options?: RequestOptions,
 ): Promise<
   [

@@ -12,8 +12,11 @@ let value: CreatePlaylistQueryParamType = CreatePlaylistQueryParamType.Photo;
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `Audio` | audio   |
-| `Video` | video   |
-| `Photo` | photo   |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Audio`                | audio                  |
+| `Video`                | video                  |
+| `Photo`                | photo                  |
+| -                      | `Unrecognized<string>` |

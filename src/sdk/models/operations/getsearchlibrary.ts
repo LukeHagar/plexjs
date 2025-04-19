@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,6 +32,19 @@ export enum GetSearchLibraryQueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type GetSearchLibraryQueryParamTypeOpen = OpenEnum<
+  typeof GetSearchLibraryQueryParamType
+>;
 
 export type GetSearchLibraryRequest = {
   /**
@@ -46,7 +64,7 @@ export type GetSearchLibraryRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: GetSearchLibraryQueryParamType;
+  type: GetSearchLibraryQueryParamTypeOpen;
 };
 
 export type GetSearchLibraryMetadata = {
@@ -115,14 +133,25 @@ export type GetSearchLibraryResponse = {
 };
 
 /** @internal */
-export const GetSearchLibraryQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetSearchLibraryQueryParamType
-> = z.nativeEnum(GetSearchLibraryQueryParamType);
+export const GetSearchLibraryQueryParamType$inboundSchema: z.ZodType<
+  GetSearchLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetSearchLibraryQueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetSearchLibraryQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetSearchLibraryQueryParamType
-> = GetSearchLibraryQueryParamType$inboundSchema;
+export const GetSearchLibraryQueryParamType$outboundSchema: z.ZodType<
+  GetSearchLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  GetSearchLibraryQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(GetSearchLibraryQueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

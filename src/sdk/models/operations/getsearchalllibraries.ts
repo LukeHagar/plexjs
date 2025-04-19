@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -16,6 +21,7 @@ export enum SearchTypes {
   People = "people",
   Tv = "tv",
 }
+export type SearchTypesOpen = OpenEnum<typeof SearchTypes>;
 
 /**
  * Whether to include collections in the search results.
@@ -51,7 +57,7 @@ export type GetSearchAllLibrariesRequest = {
    *
    * @remarks
    */
-  searchTypes?: Array<SearchTypes> | undefined;
+  searchTypes?: Array<SearchTypesOpen> | undefined;
   /**
    * Whether to include collections in the search results.
    */
@@ -79,6 +85,14 @@ export enum GetSearchAllLibrariesType {
   Artist = "artist",
   Album = "album",
 }
+/**
+ * The type of media content
+ *
+ * @remarks
+ */
+export type GetSearchAllLibrariesTypeOpen = OpenEnum<
+  typeof GetSearchAllLibrariesType
+>;
 
 /**
  * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
@@ -88,6 +102,12 @@ export enum GetSearchAllLibrariesFlattenSeasons {
   Hide = "0",
   Show = "1",
 }
+/**
+ * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+ */
+export type GetSearchAllLibrariesFlattenSeasonsOpen = OpenEnum<
+  typeof GetSearchAllLibrariesFlattenSeasons
+>;
 
 /**
  * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
@@ -97,6 +117,12 @@ export enum GetSearchAllLibrariesEpisodeSort {
   OldestFirst = "0",
   NewestFirst = "1",
 }
+/**
+ * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+ */
+export type GetSearchAllLibrariesEpisodeSortOpen = OpenEnum<
+  typeof GetSearchAllLibrariesEpisodeSort
+>;
 
 /**
  * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
@@ -105,6 +131,12 @@ export enum GetSearchAllLibrariesEnableCreditsMarkerGeneration {
   LibraryDefault = "-1",
   Disabled = "0",
 }
+/**
+ * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+ */
+export type GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen = OpenEnum<
+  typeof GetSearchAllLibrariesEnableCreditsMarkerGeneration
+>;
 
 /**
  * Setting that indicates the episode ordering for the show.
@@ -123,6 +155,19 @@ export enum GetSearchAllLibrariesShowOrdering {
   TvdbDvd = "dvd",
   TvdbAbsolute = "absolute",
 }
+/**
+ * Setting that indicates the episode ordering for the show.
+ *
+ * @remarks
+ * None = Library default,
+ * tmdbAiring = The Movie Database (Aired),
+ * aired = TheTVDB (Aired),
+ * dvd = TheTVDB (DVD),
+ * absolute = TheTVDB (Absolute)).
+ */
+export type GetSearchAllLibrariesShowOrderingOpen = OpenEnum<
+  typeof GetSearchAllLibrariesShowOrdering
+>;
 
 export enum GetSearchAllLibrariesOptimizedForStreaming {
   Disable = 0,
@@ -410,10 +455,13 @@ export enum GetSearchAllLibrariesLibraryType {
   Snapshot = "snapshot",
   ClearLogo = "clearLogo",
 }
+export type GetSearchAllLibrariesLibraryTypeOpen = OpenEnum<
+  typeof GetSearchAllLibrariesLibraryType
+>;
 
 export type GetSearchAllLibrariesImage = {
   alt: string;
-  type: GetSearchAllLibrariesLibraryType;
+  type: GetSearchAllLibrariesLibraryTypeOpen;
   url: string;
 };
 
@@ -437,7 +485,7 @@ export type GetSearchAllLibrariesMetadata = {
    *
    * @remarks
    */
-  type: GetSearchAllLibrariesType;
+  type: GetSearchAllLibrariesTypeOpen;
   title: string;
   slug?: string | undefined;
   contentRating?: string | undefined;
@@ -450,16 +498,16 @@ export type GetSearchAllLibrariesMetadata = {
   /**
    * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
    */
-  flattenSeasons?: GetSearchAllLibrariesFlattenSeasons | undefined;
+  flattenSeasons?: GetSearchAllLibrariesFlattenSeasonsOpen | undefined;
   /**
    * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
    */
-  episodeSort?: GetSearchAllLibrariesEpisodeSort | undefined;
+  episodeSort?: GetSearchAllLibrariesEpisodeSortOpen | undefined;
   /**
    * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
    */
   enableCreditsMarkerGeneration?:
-    | GetSearchAllLibrariesEnableCreditsMarkerGeneration
+    | GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen
     | undefined;
   /**
    * Setting that indicates the episode ordering for the show.
@@ -471,7 +519,7 @@ export type GetSearchAllLibrariesMetadata = {
    * dvd = TheTVDB (DVD),
    * absolute = TheTVDB (Absolute)).
    */
-  showOrdering?: GetSearchAllLibrariesShowOrdering | undefined;
+  showOrdering?: GetSearchAllLibrariesShowOrderingOpen | undefined;
   thumb?: string | undefined;
   art?: string | undefined;
   banner?: string | undefined;
@@ -586,12 +634,25 @@ export type GetSearchAllLibrariesResponse = {
 };
 
 /** @internal */
-export const SearchTypes$inboundSchema: z.ZodNativeEnum<typeof SearchTypes> = z
-  .nativeEnum(SearchTypes);
+export const SearchTypes$inboundSchema: z.ZodType<
+  SearchTypesOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(SearchTypes),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const SearchTypes$outboundSchema: z.ZodNativeEnum<typeof SearchTypes> =
-  SearchTypes$inboundSchema;
+export const SearchTypes$outboundSchema: z.ZodType<
+  SearchTypesOpen,
+  z.ZodTypeDef,
+  SearchTypesOpen
+> = z.union([
+  z.nativeEnum(SearchTypes),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -738,14 +799,25 @@ export function getSearchAllLibrariesRequestFromJSON(
 }
 
 /** @internal */
-export const GetSearchAllLibrariesType$inboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesType
-> = z.nativeEnum(GetSearchAllLibrariesType);
+export const GetSearchAllLibrariesType$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetSearchAllLibrariesType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetSearchAllLibrariesType$outboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesType
-> = GetSearchAllLibrariesType$inboundSchema;
+export const GetSearchAllLibrariesType$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesTypeOpen,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesTypeOpen
+> = z.union([
+  z.nativeEnum(GetSearchAllLibrariesType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -759,14 +831,25 @@ export namespace GetSearchAllLibrariesType$ {
 }
 
 /** @internal */
-export const GetSearchAllLibrariesFlattenSeasons$inboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesFlattenSeasons
-> = z.nativeEnum(GetSearchAllLibrariesFlattenSeasons);
+export const GetSearchAllLibrariesFlattenSeasons$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesFlattenSeasonsOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetSearchAllLibrariesFlattenSeasons),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetSearchAllLibrariesFlattenSeasons$outboundSchema:
-  z.ZodNativeEnum<typeof GetSearchAllLibrariesFlattenSeasons> =
-    GetSearchAllLibrariesFlattenSeasons$inboundSchema;
+export const GetSearchAllLibrariesFlattenSeasons$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesFlattenSeasonsOpen,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesFlattenSeasonsOpen
+> = z.union([
+  z.nativeEnum(GetSearchAllLibrariesFlattenSeasons),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -782,14 +865,25 @@ export namespace GetSearchAllLibrariesFlattenSeasons$ {
 }
 
 /** @internal */
-export const GetSearchAllLibrariesEpisodeSort$inboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesEpisodeSort
-> = z.nativeEnum(GetSearchAllLibrariesEpisodeSort);
+export const GetSearchAllLibrariesEpisodeSort$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesEpisodeSortOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetSearchAllLibrariesEpisodeSort),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetSearchAllLibrariesEpisodeSort$outboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesEpisodeSort
-> = GetSearchAllLibrariesEpisodeSort$inboundSchema;
+export const GetSearchAllLibrariesEpisodeSort$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesEpisodeSortOpen,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesEpisodeSortOpen
+> = z.union([
+  z.nativeEnum(GetSearchAllLibrariesEpisodeSort),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -804,13 +898,26 @@ export namespace GetSearchAllLibrariesEpisodeSort$ {
 
 /** @internal */
 export const GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema:
-  z.ZodNativeEnum<typeof GetSearchAllLibrariesEnableCreditsMarkerGeneration> = z
-    .nativeEnum(GetSearchAllLibrariesEnableCreditsMarkerGeneration);
+  z.ZodType<
+    GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen,
+    z.ZodTypeDef,
+    unknown
+  > = z
+    .union([
+      z.nativeEnum(GetSearchAllLibrariesEnableCreditsMarkerGeneration),
+      z.string().transform(catchUnrecognizedEnum),
+    ]);
 
 /** @internal */
 export const GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema:
-  z.ZodNativeEnum<typeof GetSearchAllLibrariesEnableCreditsMarkerGeneration> =
-    GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema;
+  z.ZodType<
+    GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen,
+    z.ZodTypeDef,
+    GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen
+  > = z.union([
+    z.nativeEnum(GetSearchAllLibrariesEnableCreditsMarkerGeneration),
+    z.string().and(z.custom<Unrecognized<string>>()),
+  ]);
 
 /**
  * @internal
@@ -826,14 +933,25 @@ export namespace GetSearchAllLibrariesEnableCreditsMarkerGeneration$ {
 }
 
 /** @internal */
-export const GetSearchAllLibrariesShowOrdering$inboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesShowOrdering
-> = z.nativeEnum(GetSearchAllLibrariesShowOrdering);
+export const GetSearchAllLibrariesShowOrdering$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesShowOrderingOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetSearchAllLibrariesShowOrdering),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetSearchAllLibrariesShowOrdering$outboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesShowOrdering
-> = GetSearchAllLibrariesShowOrdering$inboundSchema;
+export const GetSearchAllLibrariesShowOrdering$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesShowOrderingOpen,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesShowOrderingOpen
+> = z.union([
+  z.nativeEnum(GetSearchAllLibrariesShowOrdering),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -1873,14 +1991,25 @@ export function getSearchAllLibrariesMetaDataRatingFromJSON(
 }
 
 /** @internal */
-export const GetSearchAllLibrariesLibraryType$inboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesLibraryType
-> = z.nativeEnum(GetSearchAllLibrariesLibraryType);
+export const GetSearchAllLibrariesLibraryType$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesLibraryTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetSearchAllLibrariesLibraryType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetSearchAllLibrariesLibraryType$outboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesLibraryType
-> = GetSearchAllLibrariesLibraryType$inboundSchema;
+export const GetSearchAllLibrariesLibraryType$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesLibraryTypeOpen,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesLibraryTypeOpen
+> = z.union([
+  z.nativeEnum(GetSearchAllLibrariesLibraryType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

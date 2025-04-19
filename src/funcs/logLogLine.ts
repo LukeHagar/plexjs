@@ -32,7 +32,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function logLogLine(
   client: PlexAPICore,
-  level: operations.Level,
+  level: operations.LevelOpen,
   message: string,
   source: string,
   options?: RequestOptions,
@@ -61,7 +61,7 @@ export function logLogLine(
 
 async function $do(
   client: PlexAPICore,
-  level: operations.Level,
+  level: operations.LevelOpen,
   message: string,
   source: string,
   options?: RequestOptions,

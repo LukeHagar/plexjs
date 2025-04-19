@@ -33,7 +33,7 @@ import { Result } from "../sdk/types/fp.js";
 export function libraryGetCountriesLibrary(
   client: PlexAPICore,
   sectionKey: number,
-  type: operations.GetCountriesLibraryQueryParamType,
+  type: operations.GetCountriesLibraryQueryParamTypeOpen,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,7 +60,7 @@ export function libraryGetCountriesLibrary(
 async function $do(
   client: PlexAPICore,
   sectionKey: number,
-  type: operations.GetCountriesLibraryQueryParamType,
+  type: operations.GetCountriesLibraryQueryParamTypeOpen,
   options?: RequestOptions,
 ): Promise<
   [

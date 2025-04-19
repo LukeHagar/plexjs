@@ -12,8 +12,11 @@ let value: FlattenSeasons = FlattenSeasons.Show;
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `LibraryDefault` | -1               |
-| `Hide`           | 0                |
-| `Show`           | 1                |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `LibraryDefault`       | -1                     |
+| `Hide`                 | 0                      |
+| `Show`                 | 1                      |
+| -                      | `Unrecognized<string>` |

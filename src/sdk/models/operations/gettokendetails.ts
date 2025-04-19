@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,6 +24,10 @@ export enum MailingListStatus {
   Active = "active",
   Unsubscribed = "unsubscribed",
 }
+/**
+ * Your current mailing list status (active or unsubscribed)
+ */
+export type MailingListStatusOpen = OpenEnum<typeof MailingListStatus>;
 
 /**
  * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
@@ -84,13 +93,14 @@ export enum GetTokenDetailsStatus {
   Online = "online",
   Offline = "offline",
 }
+export type GetTokenDetailsStatusOpen = OpenEnum<typeof GetTokenDetailsStatus>;
 
 export type Services = {
   identifier: string;
   endpoint: string;
   token: string | null;
   secret: string | null;
-  status: GetTokenDetailsStatus;
+  status: GetTokenDetailsStatusOpen;
 };
 
 /**
@@ -100,6 +110,12 @@ export enum GetTokenDetailsAuthenticationStatus {
   Inactive = "Inactive",
   Active = "Active",
 }
+/**
+ * String representation of subscriptionActive
+ */
+export type GetTokenDetailsAuthenticationStatusOpen = OpenEnum<
+  typeof GetTokenDetailsAuthenticationStatus
+>;
 
 /**
  * If the account’s Plex Pass subscription is active
@@ -120,7 +136,7 @@ export type Subscription = {
   /**
    * String representation of subscriptionActive
    */
-  status?: GetTokenDetailsAuthenticationStatus | undefined;
+  status?: GetTokenDetailsAuthenticationStatusOpen | undefined;
   /**
    * Payment service used for your Plex Pass subscription
    */
@@ -138,6 +154,12 @@ export enum GetTokenDetailsAuthenticationResponseStatus {
   Inactive = "Inactive",
   Active = "Active",
 }
+/**
+ * String representation of subscriptionActive
+ */
+export type GetTokenDetailsAuthenticationResponseStatusOpen = OpenEnum<
+  typeof GetTokenDetailsAuthenticationResponseStatus
+>;
 
 export type GetTokenDetailsSubscription = {
   /**
@@ -155,7 +177,7 @@ export type GetTokenDetailsSubscription = {
   /**
    * String representation of subscriptionActive
    */
-  status?: GetTokenDetailsAuthenticationResponseStatus | undefined;
+  status?: GetTokenDetailsAuthenticationResponseStatusOpen | undefined;
   /**
    * Payment service used for your Plex Pass subscription
    */
@@ -255,7 +277,7 @@ export type GetTokenDetailsUserPlexAccount = {
   /**
    * Your current mailing list status (active or unsubscribed)
    */
-  mailingListStatus: MailingListStatus;
+  mailingListStatus: MailingListStatusOpen;
   /**
    * The maximum number of accounts allowed in the Plex Home
    */
@@ -340,14 +362,25 @@ export type GetTokenDetailsResponse = {
 };
 
 /** @internal */
-export const MailingListStatus$inboundSchema: z.ZodNativeEnum<
-  typeof MailingListStatus
-> = z.nativeEnum(MailingListStatus);
+export const MailingListStatus$inboundSchema: z.ZodType<
+  MailingListStatusOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(MailingListStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const MailingListStatus$outboundSchema: z.ZodNativeEnum<
-  typeof MailingListStatus
-> = MailingListStatus$inboundSchema;
+export const MailingListStatus$outboundSchema: z.ZodType<
+  MailingListStatusOpen,
+  z.ZodTypeDef,
+  MailingListStatusOpen
+> = z.union([
+  z.nativeEnum(MailingListStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -546,14 +579,25 @@ export function userProfileFromJSON(
 }
 
 /** @internal */
-export const GetTokenDetailsStatus$inboundSchema: z.ZodNativeEnum<
-  typeof GetTokenDetailsStatus
-> = z.nativeEnum(GetTokenDetailsStatus);
+export const GetTokenDetailsStatus$inboundSchema: z.ZodType<
+  GetTokenDetailsStatusOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetTokenDetailsStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetTokenDetailsStatus$outboundSchema: z.ZodNativeEnum<
-  typeof GetTokenDetailsStatus
-> = GetTokenDetailsStatus$inboundSchema;
+export const GetTokenDetailsStatus$outboundSchema: z.ZodType<
+  GetTokenDetailsStatusOpen,
+  z.ZodTypeDef,
+  GetTokenDetailsStatusOpen
+> = z.union([
+  z.nativeEnum(GetTokenDetailsStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -629,14 +673,25 @@ export function servicesFromJSON(
 }
 
 /** @internal */
-export const GetTokenDetailsAuthenticationStatus$inboundSchema: z.ZodNativeEnum<
-  typeof GetTokenDetailsAuthenticationStatus
-> = z.nativeEnum(GetTokenDetailsAuthenticationStatus);
+export const GetTokenDetailsAuthenticationStatus$inboundSchema: z.ZodType<
+  GetTokenDetailsAuthenticationStatusOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetTokenDetailsAuthenticationStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetTokenDetailsAuthenticationStatus$outboundSchema:
-  z.ZodNativeEnum<typeof GetTokenDetailsAuthenticationStatus> =
-    GetTokenDetailsAuthenticationStatus$inboundSchema;
+export const GetTokenDetailsAuthenticationStatus$outboundSchema: z.ZodType<
+  GetTokenDetailsAuthenticationStatusOpen,
+  z.ZodTypeDef,
+  GetTokenDetailsAuthenticationStatusOpen
+> = z.union([
+  z.nativeEnum(GetTokenDetailsAuthenticationStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -718,13 +773,26 @@ export function subscriptionFromJSON(
 
 /** @internal */
 export const GetTokenDetailsAuthenticationResponseStatus$inboundSchema:
-  z.ZodNativeEnum<typeof GetTokenDetailsAuthenticationResponseStatus> = z
-    .nativeEnum(GetTokenDetailsAuthenticationResponseStatus);
+  z.ZodType<
+    GetTokenDetailsAuthenticationResponseStatusOpen,
+    z.ZodTypeDef,
+    unknown
+  > = z
+    .union([
+      z.nativeEnum(GetTokenDetailsAuthenticationResponseStatus),
+      z.string().transform(catchUnrecognizedEnum),
+    ]);
 
 /** @internal */
 export const GetTokenDetailsAuthenticationResponseStatus$outboundSchema:
-  z.ZodNativeEnum<typeof GetTokenDetailsAuthenticationResponseStatus> =
-    GetTokenDetailsAuthenticationResponseStatus$inboundSchema;
+  z.ZodType<
+    GetTokenDetailsAuthenticationResponseStatusOpen,
+    z.ZodTypeDef,
+    GetTokenDetailsAuthenticationResponseStatusOpen
+  > = z.union([
+    z.nativeEnum(GetTokenDetailsAuthenticationResponseStatus),
+    z.string().and(z.custom<Unrecognized<string>>()),
+  ]);
 
 /**
  * @internal

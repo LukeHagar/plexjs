@@ -33,7 +33,7 @@ import { Result } from "../sdk/types/fp.js";
 export function libraryGetGenresLibrary(
   client: PlexAPICore,
   sectionKey: number,
-  type: operations.GetGenresLibraryQueryParamType,
+  type: operations.GetGenresLibraryQueryParamTypeOpen,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,7 +60,7 @@ export function libraryGetGenresLibrary(
 async function $do(
   client: PlexAPICore,
   sectionKey: number,
-  type: operations.GetGenresLibraryQueryParamType,
+  type: operations.GetGenresLibraryQueryParamTypeOpen,
   options?: RequestOptions,
 ): Promise<
   [

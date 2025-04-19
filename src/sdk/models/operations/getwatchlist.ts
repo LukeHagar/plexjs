@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -24,6 +29,10 @@ export enum Filter {
   Available = "available",
   Released = "released",
 }
+/**
+ * Filter
+ */
+export type FilterOpen = OpenEnum<typeof Filter>;
 
 /**
  * The type of library to filter. Can be "movie" or "show", or all if not present.
@@ -34,6 +43,12 @@ export enum Libtype {
   Movie = "movie",
   Show = "show",
 }
+/**
+ * The type of library to filter. Can be "movie" or "show", or all if not present.
+ *
+ * @remarks
+ */
+export type LibtypeOpen = OpenEnum<typeof Libtype>;
 
 /**
  * include collections in the results
@@ -59,7 +74,7 @@ export type GetWatchListRequest = {
   /**
    * Filter
    */
-  filter: Filter;
+  filter: FilterOpen;
   /**
    * In the format "field:dir". Available fields are "watchlistedAt" (Added At),
    *
@@ -73,7 +88,7 @@ export type GetWatchListRequest = {
    *
    * @remarks
    */
-  libtype?: Libtype | undefined;
+  libtype?: LibtypeOpen | undefined;
   /**
    * The number of items to return. If not specified, all items will be returned.
    *
@@ -192,12 +207,25 @@ export type GetWatchListResponse = {
 };
 
 /** @internal */
-export const Filter$inboundSchema: z.ZodNativeEnum<typeof Filter> = z
-  .nativeEnum(Filter);
+export const Filter$inboundSchema: z.ZodType<
+  FilterOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(Filter),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const Filter$outboundSchema: z.ZodNativeEnum<typeof Filter> =
-  Filter$inboundSchema;
+export const Filter$outboundSchema: z.ZodType<
+  FilterOpen,
+  z.ZodTypeDef,
+  FilterOpen
+> = z.union([
+  z.nativeEnum(Filter),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -211,12 +239,25 @@ export namespace Filter$ {
 }
 
 /** @internal */
-export const Libtype$inboundSchema: z.ZodNativeEnum<typeof Libtype> = z
-  .nativeEnum(Libtype);
+export const Libtype$inboundSchema: z.ZodType<
+  LibtypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(Libtype),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const Libtype$outboundSchema: z.ZodNativeEnum<typeof Libtype> =
-  Libtype$inboundSchema;
+export const Libtype$outboundSchema: z.ZodType<
+  LibtypeOpen,
+  z.ZodTypeDef,
+  LibtypeOpen
+> = z.union([
+  z.nativeEnum(Libtype),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

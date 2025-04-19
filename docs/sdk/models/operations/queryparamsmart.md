@@ -12,7 +12,10 @@ let value: QueryParamSmart = QueryParamSmart.Zero;
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<number>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Zero`                 | 0                      |
+| `One`                  | 1                      |
+| -                      | `Unrecognized<number>` |

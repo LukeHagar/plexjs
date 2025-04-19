@@ -32,7 +32,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function libraryGetTopWatchedContent(
   client: PlexAPICore,
-  type: operations.GetTopWatchedContentQueryParamType,
+  type: operations.GetTopWatchedContentQueryParamTypeOpen,
   includeGuids?: number | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -59,7 +59,7 @@ export function libraryGetTopWatchedContent(
 
 async function $do(
   client: PlexAPICore,
-  type: operations.GetTopWatchedContentQueryParamType,
+  type: operations.GetTopWatchedContentQueryParamTypeOpen,
   includeGuids?: number | undefined,
   options?: RequestOptions,
 ): Promise<

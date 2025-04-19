@@ -15,7 +15,7 @@ export const ServerList = [
   /**
    * The full address of your Plex Server
    */
-  "{protocol}://{ip}:{port}",
+  "https://10.10.10.47:32400",
 ] as const;
 
 /**
@@ -90,7 +90,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "0.0.3",
-  sdkVersion: "0.36.2",
-  genVersion: "2.570.4",
-  userAgent: "speakeasy-sdk/typescript 0.36.2 2.570.4 0.0.3 @lukehagar/plexjs",
+  sdkVersion: "0.37.0",
+  genVersion: "2.585.2",
+  userAgent: "speakeasy-sdk/typescript 0.37.0 2.585.2 0.0.3 @lukehagar/plexjs",
 } as const;

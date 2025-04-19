@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -16,6 +21,10 @@ export enum State {
   Paused = "paused",
   Stopped = "stopped",
 }
+/**
+ * The state of the media item
+ */
+export type StateOpen = OpenEnum<typeof State>;
 
 export type GetTimelineRequest = {
   /**
@@ -29,7 +38,7 @@ export type GetTimelineRequest = {
   /**
    * The state of the media item
    */
-  state: State;
+  state: StateOpen;
   /**
    * Whether the media item has MDE
    */
@@ -76,13 +85,22 @@ export type GetTimelineResponse = {
 };
 
 /** @internal */
-export const State$inboundSchema: z.ZodNativeEnum<typeof State> = z.nativeEnum(
-  State,
-);
+export const State$inboundSchema: z.ZodType<StateOpen, z.ZodTypeDef, unknown> =
+  z
+    .union([
+      z.nativeEnum(State),
+      z.string().transform(catchUnrecognizedEnum),
+    ]);
 
 /** @internal */
-export const State$outboundSchema: z.ZodNativeEnum<typeof State> =
-  State$inboundSchema;
+export const State$outboundSchema: z.ZodType<
+  StateOpen,
+  z.ZodTypeDef,
+  StateOpen
+> = z.union([
+  z.nativeEnum(State),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

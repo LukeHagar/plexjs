@@ -10,6 +10,9 @@ let value: PostUsersSignInDataState = PostUsersSignInDataState.Ended;
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `Ended` | ended   |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Ended`                | ended                  |
+| -                      | `Unrecognized<string>` |

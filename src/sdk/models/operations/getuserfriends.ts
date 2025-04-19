@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -22,6 +27,10 @@ export type SharedSources = {};
 export enum Status {
   Accepted = "accepted",
 }
+/**
+ * Current friend request status
+ */
+export type StatusOpen = OpenEnum<typeof Status>;
 
 export type Friend = {
   /**
@@ -49,7 +58,7 @@ export type Friend = {
   /**
    * Current friend request status
    */
-  status: Status;
+  status: StatusOpen;
   /**
    * URL of the account thumbnail
    */
@@ -176,12 +185,25 @@ export function sharedSourcesFromJSON(
 }
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const Status$inboundSchema: z.ZodType<
+  StatusOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(Status),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
+export const Status$outboundSchema: z.ZodType<
+  StatusOpen,
+  z.ZodTypeDef,
+  StatusOpen
+> = z.union([
+  z.nativeEnum(Status),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -28,6 +33,19 @@ export enum GetPlaylistContentsQueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type GetPlaylistContentsQueryParamTypeOpen = OpenEnum<
+  typeof GetPlaylistContentsQueryParamType
+>;
 
 export type GetPlaylistContentsRequest = {
   /**
@@ -44,7 +62,7 @@ export type GetPlaylistContentsRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: GetPlaylistContentsQueryParamType;
+  type: GetPlaylistContentsQueryParamTypeOpen;
 };
 
 export type GetPlaylistContentsPart = {
@@ -174,14 +192,25 @@ export type GetPlaylistContentsResponse = {
 };
 
 /** @internal */
-export const GetPlaylistContentsQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetPlaylistContentsQueryParamType
-> = z.nativeEnum(GetPlaylistContentsQueryParamType);
+export const GetPlaylistContentsQueryParamType$inboundSchema: z.ZodType<
+  GetPlaylistContentsQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetPlaylistContentsQueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetPlaylistContentsQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetPlaylistContentsQueryParamType
-> = GetPlaylistContentsQueryParamType$inboundSchema;
+export const GetPlaylistContentsQueryParamType$outboundSchema: z.ZodType<
+  GetPlaylistContentsQueryParamTypeOpen,
+  z.ZodTypeDef,
+  GetPlaylistContentsQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(GetPlaylistContentsQueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

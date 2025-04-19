@@ -13,7 +13,10 @@ let value: GetSearchAllLibrariesEnableCreditsMarkerGeneration =
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `LibraryDefault` | -1               |
-| `Disabled`       | 0                |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `LibraryDefault`       | -1                     |
+| `Disabled`             | 0                      |
+| -                      | `Unrecognized<string>` |

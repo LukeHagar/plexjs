@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -28,6 +33,19 @@ export enum GetTopWatchedContentQueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type GetTopWatchedContentQueryParamTypeOpen = OpenEnum<
+  typeof GetTopWatchedContentQueryParamType
+>;
 
 export type GetTopWatchedContentRequest = {
   /**
@@ -46,7 +64,7 @@ export type GetTopWatchedContentRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: GetTopWatchedContentQueryParamType;
+  type: GetTopWatchedContentQueryParamTypeOpen;
 };
 
 export type GetTopWatchedContentGenre = {
@@ -149,14 +167,25 @@ export type GetTopWatchedContentResponse = {
 };
 
 /** @internal */
-export const GetTopWatchedContentQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetTopWatchedContentQueryParamType
-> = z.nativeEnum(GetTopWatchedContentQueryParamType);
+export const GetTopWatchedContentQueryParamType$inboundSchema: z.ZodType<
+  GetTopWatchedContentQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetTopWatchedContentQueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetTopWatchedContentQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetTopWatchedContentQueryParamType
-> = GetTopWatchedContentQueryParamType$inboundSchema;
+export const GetTopWatchedContentQueryParamType$outboundSchema: z.ZodType<
+  GetTopWatchedContentQueryParamTypeOpen,
+  z.ZodTypeDef,
+  GetTopWatchedContentQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(GetTopWatchedContentQueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -16,6 +21,10 @@ export enum PlaylistType {
   Video = "video",
   Photo = "photo",
 }
+/**
+ * limit to a type of playlist.
+ */
+export type PlaylistTypeOpen = OpenEnum<typeof PlaylistType>;
 
 /**
  * type of playlists to return (default is all).
@@ -24,16 +33,20 @@ export enum QueryParamSmart {
   Zero = 0,
   One = 1,
 }
+/**
+ * type of playlists to return (default is all).
+ */
+export type QueryParamSmartOpen = OpenEnum<typeof QueryParamSmart>;
 
 export type GetPlaylistsRequest = {
   /**
    * limit to a type of playlist.
    */
-  playlistType?: PlaylistType | undefined;
+  playlistType?: PlaylistTypeOpen | undefined;
   /**
    * type of playlists to return (default is all).
    */
-  smart?: QueryParamSmart | undefined;
+  smart?: QueryParamSmartOpen | undefined;
 };
 
 export type GetPlaylistsMetadata = {
@@ -87,12 +100,25 @@ export type GetPlaylistsResponse = {
 };
 
 /** @internal */
-export const PlaylistType$inboundSchema: z.ZodNativeEnum<typeof PlaylistType> =
-  z.nativeEnum(PlaylistType);
+export const PlaylistType$inboundSchema: z.ZodType<
+  PlaylistTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(PlaylistType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const PlaylistType$outboundSchema: z.ZodNativeEnum<typeof PlaylistType> =
-  PlaylistType$inboundSchema;
+export const PlaylistType$outboundSchema: z.ZodType<
+  PlaylistTypeOpen,
+  z.ZodTypeDef,
+  PlaylistTypeOpen
+> = z.union([
+  z.nativeEnum(PlaylistType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -106,14 +132,25 @@ export namespace PlaylistType$ {
 }
 
 /** @internal */
-export const QueryParamSmart$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamSmart
-> = z.nativeEnum(QueryParamSmart);
+export const QueryParamSmart$inboundSchema: z.ZodType<
+  QueryParamSmartOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(QueryParamSmart),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const QueryParamSmart$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamSmart
-> = QueryParamSmart$inboundSchema;
+export const QueryParamSmart$outboundSchema: z.ZodType<
+  QueryParamSmartOpen,
+  z.ZodTypeDef,
+  QueryParamSmartOpen
+> = z.union([
+  z.nativeEnum(QueryParamSmart),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

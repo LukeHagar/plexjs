@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -56,6 +61,12 @@ export enum PostUsersSignInDataMailingListStatus {
   Active = "active",
   Unsubscribed = "unsubscribed",
 }
+/**
+ * Your current mailing list status (active or unsubscribed)
+ */
+export type PostUsersSignInDataMailingListStatusOpen = OpenEnum<
+  typeof PostUsersSignInDataMailingListStatus
+>;
 
 /**
  * The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign audio, 2 = Always enabled)
@@ -125,13 +136,16 @@ export enum PostUsersSignInDataStatus {
   Online = "online",
   Offline = "offline",
 }
+export type PostUsersSignInDataStatusOpen = OpenEnum<
+  typeof PostUsersSignInDataStatus
+>;
 
 export type PostUsersSignInDataServices = {
   identifier: string;
   endpoint: string;
   token: string | null;
   secret: string | null;
-  status: PostUsersSignInDataStatus;
+  status: PostUsersSignInDataStatusOpen;
 };
 
 /**
@@ -141,6 +155,12 @@ export enum PostUsersSignInDataAuthenticationStatus {
   Inactive = "Inactive",
   Active = "Active",
 }
+/**
+ * String representation of subscriptionActive
+ */
+export type PostUsersSignInDataAuthenticationStatusOpen = OpenEnum<
+  typeof PostUsersSignInDataAuthenticationStatus
+>;
 
 /**
  * If the account’s Plex Pass subscription is active
@@ -161,7 +181,7 @@ export type PostUsersSignInDataSubscription = {
   /**
    * String representation of subscriptionActive
    */
-  status?: PostUsersSignInDataAuthenticationStatus | undefined;
+  status?: PostUsersSignInDataAuthenticationStatusOpen | undefined;
   /**
    * Payment service used for your Plex Pass subscription
    */
@@ -179,6 +199,12 @@ export enum PostUsersSignInDataAuthenticationResponseStatus {
   Inactive = "Inactive",
   Active = "Active",
 }
+/**
+ * String representation of subscriptionActive
+ */
+export type PostUsersSignInDataAuthenticationResponseStatusOpen = OpenEnum<
+  typeof PostUsersSignInDataAuthenticationResponseStatus
+>;
 
 export type PostUsersSignInDataAuthenticationSubscription = {
   /**
@@ -196,7 +222,7 @@ export type PostUsersSignInDataAuthenticationSubscription = {
   /**
    * String representation of subscriptionActive
    */
-  status?: PostUsersSignInDataAuthenticationResponseStatus | undefined;
+  status?: PostUsersSignInDataAuthenticationResponseStatusOpen | undefined;
   /**
    * Payment service used for your Plex Pass subscription
    */
@@ -210,6 +236,9 @@ export type PostUsersSignInDataAuthenticationSubscription = {
 export enum PostUsersSignInDataState {
   Ended = "ended",
 }
+export type PostUsersSignInDataStateOpen = OpenEnum<
+  typeof PostUsersSignInDataState
+>;
 
 export type InternalPaymentMethod = {};
 
@@ -232,7 +261,7 @@ export type PastSubscription = {
   canConvert?: boolean | undefined;
   type: string;
   transfer: string | null;
-  state: PostUsersSignInDataState;
+  state: PostUsersSignInDataStateOpen;
   billing: Billing;
 };
 
@@ -327,7 +356,7 @@ export type PostUsersSignInDataUserPlexAccount = {
   /**
    * Your current mailing list status (active or unsubscribed)
    */
-  mailingListStatus: PostUsersSignInDataMailingListStatus;
+  mailingListStatus: PostUsersSignInDataMailingListStatusOpen;
   /**
    * The maximum number of accounts allowed in the Plex Home
    */
@@ -570,15 +599,25 @@ export function postUsersSignInDataRequestFromJSON(
 }
 
 /** @internal */
-export const PostUsersSignInDataMailingListStatus$inboundSchema:
-  z.ZodNativeEnum<typeof PostUsersSignInDataMailingListStatus> = z.nativeEnum(
-    PostUsersSignInDataMailingListStatus,
-  );
+export const PostUsersSignInDataMailingListStatus$inboundSchema: z.ZodType<
+  PostUsersSignInDataMailingListStatusOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(PostUsersSignInDataMailingListStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const PostUsersSignInDataMailingListStatus$outboundSchema:
-  z.ZodNativeEnum<typeof PostUsersSignInDataMailingListStatus> =
-    PostUsersSignInDataMailingListStatus$inboundSchema;
+export const PostUsersSignInDataMailingListStatus$outboundSchema: z.ZodType<
+  PostUsersSignInDataMailingListStatusOpen,
+  z.ZodTypeDef,
+  PostUsersSignInDataMailingListStatusOpen
+> = z.union([
+  z.nativeEnum(PostUsersSignInDataMailingListStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -799,14 +838,25 @@ export function postUsersSignInDataUserProfileFromJSON(
 }
 
 /** @internal */
-export const PostUsersSignInDataStatus$inboundSchema: z.ZodNativeEnum<
-  typeof PostUsersSignInDataStatus
-> = z.nativeEnum(PostUsersSignInDataStatus);
+export const PostUsersSignInDataStatus$inboundSchema: z.ZodType<
+  PostUsersSignInDataStatusOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(PostUsersSignInDataStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const PostUsersSignInDataStatus$outboundSchema: z.ZodNativeEnum<
-  typeof PostUsersSignInDataStatus
-> = PostUsersSignInDataStatus$inboundSchema;
+export const PostUsersSignInDataStatus$outboundSchema: z.ZodType<
+  PostUsersSignInDataStatusOpen,
+  z.ZodTypeDef,
+  PostUsersSignInDataStatusOpen
+> = z.union([
+  z.nativeEnum(PostUsersSignInDataStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -888,14 +938,25 @@ export function postUsersSignInDataServicesFromJSON(
 }
 
 /** @internal */
-export const PostUsersSignInDataAuthenticationStatus$inboundSchema:
-  z.ZodNativeEnum<typeof PostUsersSignInDataAuthenticationStatus> = z
-    .nativeEnum(PostUsersSignInDataAuthenticationStatus);
+export const PostUsersSignInDataAuthenticationStatus$inboundSchema: z.ZodType<
+  PostUsersSignInDataAuthenticationStatusOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(PostUsersSignInDataAuthenticationStatus),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const PostUsersSignInDataAuthenticationStatus$outboundSchema:
-  z.ZodNativeEnum<typeof PostUsersSignInDataAuthenticationStatus> =
-    PostUsersSignInDataAuthenticationStatus$inboundSchema;
+export const PostUsersSignInDataAuthenticationStatus$outboundSchema: z.ZodType<
+  PostUsersSignInDataAuthenticationStatusOpen,
+  z.ZodTypeDef,
+  PostUsersSignInDataAuthenticationStatusOpen
+> = z.union([
+  z.nativeEnum(PostUsersSignInDataAuthenticationStatus),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -983,13 +1044,26 @@ export function postUsersSignInDataSubscriptionFromJSON(
 
 /** @internal */
 export const PostUsersSignInDataAuthenticationResponseStatus$inboundSchema:
-  z.ZodNativeEnum<typeof PostUsersSignInDataAuthenticationResponseStatus> = z
-    .nativeEnum(PostUsersSignInDataAuthenticationResponseStatus);
+  z.ZodType<
+    PostUsersSignInDataAuthenticationResponseStatusOpen,
+    z.ZodTypeDef,
+    unknown
+  > = z
+    .union([
+      z.nativeEnum(PostUsersSignInDataAuthenticationResponseStatus),
+      z.string().transform(catchUnrecognizedEnum),
+    ]);
 
 /** @internal */
 export const PostUsersSignInDataAuthenticationResponseStatus$outboundSchema:
-  z.ZodNativeEnum<typeof PostUsersSignInDataAuthenticationResponseStatus> =
-    PostUsersSignInDataAuthenticationResponseStatus$inboundSchema;
+  z.ZodType<
+    PostUsersSignInDataAuthenticationResponseStatusOpen,
+    z.ZodTypeDef,
+    PostUsersSignInDataAuthenticationResponseStatusOpen
+  > = z.union([
+    z.nativeEnum(PostUsersSignInDataAuthenticationResponseStatus),
+    z.string().and(z.custom<Unrecognized<string>>()),
+  ]);
 
 /**
  * @internal
@@ -1089,14 +1163,25 @@ export function postUsersSignInDataAuthenticationSubscriptionFromJSON(
 }
 
 /** @internal */
-export const PostUsersSignInDataState$inboundSchema: z.ZodNativeEnum<
-  typeof PostUsersSignInDataState
-> = z.nativeEnum(PostUsersSignInDataState);
+export const PostUsersSignInDataState$inboundSchema: z.ZodType<
+  PostUsersSignInDataStateOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(PostUsersSignInDataState),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const PostUsersSignInDataState$outboundSchema: z.ZodNativeEnum<
-  typeof PostUsersSignInDataState
-> = PostUsersSignInDataState$inboundSchema;
+export const PostUsersSignInDataState$outboundSchema: z.ZodType<
+  PostUsersSignInDataStateOpen,
+  z.ZodTypeDef,
+  PostUsersSignInDataStateOpen
+> = z.union([
+  z.nativeEnum(PostUsersSignInDataState),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

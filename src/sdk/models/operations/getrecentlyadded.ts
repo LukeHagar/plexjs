@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -28,6 +33,17 @@ export enum Type {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type TypeOpen = OpenEnum<typeof Type>;
 
 /**
  * Adds the Meta object to the response
@@ -62,7 +78,7 @@ export type GetRecentlyAddedRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: Type;
+  type: TypeOpen;
   /**
    * Adds the Meta object to the response
    *
@@ -188,6 +204,14 @@ export enum GetRecentlyAddedHubsType {
   Artist = "artist",
   Album = "album",
 }
+/**
+ * The type of media content
+ *
+ * @remarks
+ */
+export type GetRecentlyAddedHubsTypeOpen = OpenEnum<
+  typeof GetRecentlyAddedHubsType
+>;
 
 export enum GetRecentlyAddedHubsResponseType {
   CoverPoster = "coverPoster",
@@ -195,10 +219,13 @@ export enum GetRecentlyAddedHubsResponseType {
   Snapshot = "snapshot",
   ClearLogo = "clearLogo",
 }
+export type GetRecentlyAddedHubsResponseTypeOpen = OpenEnum<
+  typeof GetRecentlyAddedHubsResponseType
+>;
 
 export type GetRecentlyAddedImage = {
   alt: string;
-  type: GetRecentlyAddedHubsResponseType;
+  type: GetRecentlyAddedHubsResponseTypeOpen;
   url: string;
 };
 
@@ -918,7 +945,7 @@ export type GetRecentlyAddedMetadata = {
    * The title of the media item.
    */
   title: string;
-  type: GetRecentlyAddedHubsType;
+  type: GetRecentlyAddedHubsTypeOpen;
   /**
    * Unix epoch datetime in seconds
    */
@@ -1019,13 +1046,18 @@ export type GetRecentlyAddedResponse = {
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const Type$inboundSchema: z.ZodType<TypeOpen, z.ZodTypeDef, unknown> = z
+  .union([
+    z.nativeEnum(Type),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
+export const Type$outboundSchema: z.ZodType<TypeOpen, z.ZodTypeDef, TypeOpen> =
+  z.union([
+    z.nativeEnum(Type),
+    z.number().and(z.custom<Unrecognized<number>>()),
+  ]);
 
 /**
  * @internal
@@ -1667,14 +1699,25 @@ export function metaFromJSON(
 }
 
 /** @internal */
-export const GetRecentlyAddedHubsType$inboundSchema: z.ZodNativeEnum<
-  typeof GetRecentlyAddedHubsType
-> = z.nativeEnum(GetRecentlyAddedHubsType);
+export const GetRecentlyAddedHubsType$inboundSchema: z.ZodType<
+  GetRecentlyAddedHubsTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetRecentlyAddedHubsType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetRecentlyAddedHubsType$outboundSchema: z.ZodNativeEnum<
-  typeof GetRecentlyAddedHubsType
-> = GetRecentlyAddedHubsType$inboundSchema;
+export const GetRecentlyAddedHubsType$outboundSchema: z.ZodType<
+  GetRecentlyAddedHubsTypeOpen,
+  z.ZodTypeDef,
+  GetRecentlyAddedHubsTypeOpen
+> = z.union([
+  z.nativeEnum(GetRecentlyAddedHubsType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal
@@ -1688,14 +1731,25 @@ export namespace GetRecentlyAddedHubsType$ {
 }
 
 /** @internal */
-export const GetRecentlyAddedHubsResponseType$inboundSchema: z.ZodNativeEnum<
-  typeof GetRecentlyAddedHubsResponseType
-> = z.nativeEnum(GetRecentlyAddedHubsResponseType);
+export const GetRecentlyAddedHubsResponseType$inboundSchema: z.ZodType<
+  GetRecentlyAddedHubsResponseTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetRecentlyAddedHubsResponseType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetRecentlyAddedHubsResponseType$outboundSchema: z.ZodNativeEnum<
-  typeof GetRecentlyAddedHubsResponseType
-> = GetRecentlyAddedHubsResponseType$inboundSchema;
+export const GetRecentlyAddedHubsResponseType$outboundSchema: z.ZodType<
+  GetRecentlyAddedHubsResponseTypeOpen,
+  z.ZodTypeDef,
+  GetRecentlyAddedHubsResponseTypeOpen
+> = z.union([
+  z.nativeEnum(GetRecentlyAddedHubsResponseType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

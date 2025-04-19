@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,6 +32,19 @@ export enum GetCountriesLibraryQueryParamType {
   Album = 9,
   Track = 10,
 }
+/**
+ * The type of media to retrieve or filter by.
+ *
+ * @remarks
+ * 1 = movie
+ * 2 = show
+ * 3 = season
+ * 4 = episode
+ * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+ */
+export type GetCountriesLibraryQueryParamTypeOpen = OpenEnum<
+  typeof GetCountriesLibraryQueryParamType
+>;
 
 export type GetCountriesLibraryRequest = {
   /**
@@ -46,7 +64,7 @@ export type GetCountriesLibraryRequest = {
    * 4 = episode
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type: GetCountriesLibraryQueryParamType;
+  type: GetCountriesLibraryQueryParamTypeOpen;
 };
 
 export type GetCountriesLibraryDirectory = {
@@ -134,14 +152,25 @@ export type GetCountriesLibraryResponse = {
 };
 
 /** @internal */
-export const GetCountriesLibraryQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetCountriesLibraryQueryParamType
-> = z.nativeEnum(GetCountriesLibraryQueryParamType);
+export const GetCountriesLibraryQueryParamType$inboundSchema: z.ZodType<
+  GetCountriesLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetCountriesLibraryQueryParamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const GetCountriesLibraryQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetCountriesLibraryQueryParamType
-> = GetCountriesLibraryQueryParamType$inboundSchema;
+export const GetCountriesLibraryQueryParamType$outboundSchema: z.ZodType<
+  GetCountriesLibraryQueryParamTypeOpen,
+  z.ZodTypeDef,
+  GetCountriesLibraryQueryParamTypeOpen
+> = z.union([
+  z.nativeEnum(GetCountriesLibraryQueryParamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

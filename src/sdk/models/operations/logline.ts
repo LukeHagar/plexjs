@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -25,6 +30,17 @@ export enum Level {
   Three = 3,
   Four = 4,
 }
+/**
+ * An integer log level to write to the PMS log with.
+ *
+ * @remarks
+ * 0: Error
+ * 1: Warning
+ * 2: Info
+ * 3: Debug
+ * 4: Verbose
+ */
+export type LevelOpen = OpenEnum<typeof Level>;
 
 export type LogLineRequest = {
   /**
@@ -37,7 +53,7 @@ export type LogLineRequest = {
    * 3: Debug
    * 4: Verbose
    */
-  level: Level;
+  level: LevelOpen;
   /**
    * The text of the message to write to the log.
    */
@@ -64,13 +80,22 @@ export type LogLineResponse = {
 };
 
 /** @internal */
-export const Level$inboundSchema: z.ZodNativeEnum<typeof Level> = z.nativeEnum(
-  Level,
-);
+export const Level$inboundSchema: z.ZodType<LevelOpen, z.ZodTypeDef, unknown> =
+  z
+    .union([
+      z.nativeEnum(Level),
+      z.number().transform(catchUnrecognizedEnum),
+    ]);
 
 /** @internal */
-export const Level$outboundSchema: z.ZodNativeEnum<typeof Level> =
-  Level$inboundSchema;
+export const Level$outboundSchema: z.ZodType<
+  LevelOpen,
+  z.ZodTypeDef,
+  LevelOpen
+> = z.union([
+  z.nativeEnum(Level),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
 
 /**
  * @internal

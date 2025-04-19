@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -27,12 +32,16 @@ export enum TaskName {
   RefreshPeriodicMetadata = "RefreshPeriodicMetadata",
   UpgradeMediaAnalysis = "UpgradeMediaAnalysis",
 }
+/**
+ * the name of the task to be started.
+ */
+export type TaskNameOpen = OpenEnum<typeof TaskName>;
 
 export type StartTaskRequest = {
   /**
    * the name of the task to be started.
    */
-  taskName: TaskName;
+  taskName: TaskNameOpen;
 };
 
 export type StartTaskResponse = {
@@ -51,12 +60,25 @@ export type StartTaskResponse = {
 };
 
 /** @internal */
-export const TaskName$inboundSchema: z.ZodNativeEnum<typeof TaskName> = z
-  .nativeEnum(TaskName);
+export const TaskName$inboundSchema: z.ZodType<
+  TaskNameOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(TaskName),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
 
 /** @internal */
-export const TaskName$outboundSchema: z.ZodNativeEnum<typeof TaskName> =
-  TaskName$inboundSchema;
+export const TaskName$outboundSchema: z.ZodType<
+  TaskNameOpen,
+  z.ZodTypeDef,
+  TaskNameOpen
+> = z.union([
+  z.nativeEnum(TaskName),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
 
 /**
  * @internal

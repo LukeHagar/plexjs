@@ -32,7 +32,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function butlerStopTask(
   client: PlexAPICore,
-  taskName: operations.PathParamTaskName,
+  taskName: operations.PathParamTaskNameOpen,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -57,7 +57,7 @@ export function butlerStopTask(
 
 async function $do(
   client: PlexAPICore,
-  taskName: operations.PathParamTaskName,
+  taskName: operations.PathParamTaskNameOpen,
   options?: RequestOptions,
 ): Promise<
   [

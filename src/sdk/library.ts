@@ -255,7 +255,7 @@ export class Library extends ClientSDK {
    */
   async getSearchLibrary(
     sectionKey: number,
-    type: operations.GetSearchLibraryQueryParamType,
+    type: operations.GetSearchLibraryQueryParamTypeOpen,
     options?: RequestOptions,
   ): Promise<operations.GetSearchLibraryResponse> {
     return unwrapAsync(libraryGetSearchLibrary(
@@ -274,7 +274,7 @@ export class Library extends ClientSDK {
    */
   async getGenresLibrary(
     sectionKey: number,
-    type: operations.GetGenresLibraryQueryParamType,
+    type: operations.GetGenresLibraryQueryParamTypeOpen,
     options?: RequestOptions,
   ): Promise<operations.GetGenresLibraryResponse> {
     return unwrapAsync(libraryGetGenresLibrary(
@@ -293,7 +293,7 @@ export class Library extends ClientSDK {
    */
   async getCountriesLibrary(
     sectionKey: number,
-    type: operations.GetCountriesLibraryQueryParamType,
+    type: operations.GetCountriesLibraryQueryParamTypeOpen,
     options?: RequestOptions,
   ): Promise<operations.GetCountriesLibraryResponse> {
     return unwrapAsync(libraryGetCountriesLibrary(
@@ -312,7 +312,7 @@ export class Library extends ClientSDK {
    */
   async getActorsLibrary(
     sectionKey: number,
-    type: operations.GetActorsLibraryQueryParamType,
+    type: operations.GetActorsLibraryQueryParamTypeOpen,
     options?: RequestOptions,
   ): Promise<operations.GetActorsLibraryResponse> {
     return unwrapAsync(libraryGetActorsLibrary(
@@ -469,7 +469,7 @@ export class Library extends ClientSDK {
    * This endpoint will return the top watched content from libraries of a certain type
    */
   async getTopWatchedContent(
-    type: operations.GetTopWatchedContentQueryParamType,
+    type: operations.GetTopWatchedContentQueryParamTypeOpen,
     includeGuids?: number | undefined,
     options?: RequestOptions,
   ): Promise<operations.GetTopWatchedContentResponse> {
