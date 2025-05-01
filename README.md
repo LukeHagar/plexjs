@@ -629,6 +629,7 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { openAsBlob } from "node:fs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -637,6 +638,7 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.postMediaArts(
     2268,
+    await openAsBlob("example.file"),
     "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b",
   );
 

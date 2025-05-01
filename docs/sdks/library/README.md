@@ -1353,13 +1353,14 @@ Uploads an image to use as the background artwork for a library item, either fro
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { openAsBlob } from "node:fs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await plexAPI.library.postMediaArts(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+  const result = await plexAPI.library.postMediaArts(2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
   // Handle the result
   console.log(result);
@@ -1375,6 +1376,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryPostMediaArts } from "@lukehagar/plexjs/funcs/libraryPostMediaArts.js";
+import { openAsBlob } from "node:fs";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1383,7 +1385,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryPostMediaArts(plexAPI, 2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+  const res = await libraryPostMediaArts(plexAPI, 2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
   if (!res.ok) {
     throw res.error;
@@ -1499,13 +1501,14 @@ Uploads a poster to a library item, either from a local file or a remote URL
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { openAsBlob } from "node:fs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await plexAPI.library.postMediaPoster(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+  const result = await plexAPI.library.postMediaPoster(2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
   // Handle the result
   console.log(result);
@@ -1521,6 +1524,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryPostMediaPoster } from "@lukehagar/plexjs/funcs/libraryPostMediaPoster.js";
+import { openAsBlob } from "node:fs";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1529,7 +1533,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryPostMediaPoster(plexAPI, 2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+  const res = await libraryPostMediaPoster(plexAPI, 2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
   if (!res.ok) {
     throw res.error;

@@ -3,7 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { GetMediaMetaDataMediaContainer } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetMediaMetaDataLibraryType,
+  GetMediaMetaDataMediaContainer,
+  GetMediaMetaDataStreamType,
+  GetMediaMetaDataType,
+} from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetMediaMetaDataMediaContainer = {
@@ -17,55 +22,80 @@ let value: GetMediaMetaDataMediaContainer = {
   mediaTagVersion: 1734362201,
   metadata: [
     {
-      ratingKey: "44288",
-      parentRatingKey: "48047",
-      grandparentRatingKey: "45520",
-      parentGuid: "plex://season/618b89208dde18df707ad15c",
-      grandparentGuid: "plex://show/5e16253691c20300412003a8",
-      grandparentSlug: "alice-in-borderland-2020",
-      grandparentKey: "/library/metadata/45520",
-      parentKey: "/library/metadata/48047",
-      key: "/library/metadata/44288/children",
-      guid: "plex://show/5d9c08254eefaa001f5d6dcb",
-      slug: "better-call-saul",
-      studio: "Sony Pictures Television",
-      type: "show",
-      title: "Better Call Saul",
-      originalTitle: "Wicked: Part I",
-      librarySectionTitle: "TV Series ",
-      librarySectionID: 2,
-      librarySectionKey: "/library/sections/2",
-      contentRating: "TV-MA",
+      ratingKey: "58683",
+      key: "/library/metadata/58683",
+      guid: "plex://movie/5d7768ba96b655001fdc0408",
+      slug: "4-for-texas",
+      studio: "20th Century Studios",
+      type: GetMediaMetaDataType.Movie,
+      title: "Avatar: The Way of Water",
+      titleSort: "Whale",
+      contentRating: "PG-13",
       summary:
-        "Before Saul Goodman, he was Jimmy McGill. And if you're calling Jimmy, you're in real trouble. The prequel to \"Breaking Bad\" follows small-time attorney, Jimmy McGill, as he transforms into Walter White's morally challenged lawyer, Saul Goodman.",
+        "Jake Sully lives with his newfound family formed on the extrasolar moon Pandora.\n"
+        + "Once a familiar threat returns to finish what was previously started, Jake must\n"
+        + "work with Neytiri and the army of the Na'vi race to protect their home.\n"
+        + "",
+      rating: 7.6,
+      audienceRating: 9.2,
+      year: 2022,
+      tagline: "Return to Pandora.",
+      thumb: "/library/metadata/58683/thumb/1703239236",
+      art: "/library/metadata/58683/art/1703239236",
+      theme: "/library/metadata/1/theme/1705636920",
       index: 1,
-      grandparentTitle: "Alice in Borderland",
-      parentTitle: "Season 2",
-      audienceRating: 8.7,
-      viewCount: 4,
-      skipCount: 1,
-      lastViewedAt: 1625764795,
-      year: 2015,
-      rating: 6,
-      ratingImage: "rottentomatoes://image.rating.ripe",
-      tagline: "Make the call",
-      chapterSource: "media",
-      primaryExtraKey: "/library/metadata/134704",
-      thumb: "/library/metadata/44288/thumb/1736487993",
-      art: "/library/metadata/44288/art/1736487993",
-      theme: "/library/metadata/44288/theme/1736487993",
-      duration: 2700000,
-      originallyAvailableAt: new RFCDate("2015-02-08"),
-      leafCount: 63,
-      viewedLeafCount: 4,
-      childCount: 6,
+      leafCount: 14,
+      viewedLeafCount: 0,
+      childCount: 1,
+      seasonCount: 2022,
+      duration: 11558112,
+      originallyAvailableAt: new RFCDate("2022-12-14"),
       addedAt: 1556281940,
       updatedAt: 1556281940,
-      audienceRatingImage: "themoviedb://image.rating",
-      parentIndex: 2,
-      parentThumb: "/library/metadata/48047/thumb/1671800243",
-      grandparentThumb: "/library/metadata/45520/thumb/1736488003",
-      grandparentArt: "/library/metadata/45520/art/1736488003",
+      audienceRatingImage: "rottentomatoes://image.rating.upright",
+      chapterSource: "media",
+      primaryExtraKey: "/library/metadata/58684",
+      originalTitle: "映画 ブラッククローバー 魔法帝の剣",
+      parentRatingKey: "66",
+      grandparentRatingKey: "66",
+      parentGuid: "plex://show/5d9c081b170e24001f2a7be4",
+      grandparentGuid: "plex://show/5d9c081b170e24001f2a7be4",
+      grandparentSlug: "alice-in-borderland-2020",
+      grandparentKey: "/library/metadata/66",
+      parentKey: "/library/metadata/66",
+      grandparentTitle: "Caprica",
+      grandparentThumb: "/library/metadata/66/thumb/1705716261",
+      grandparentTheme: "/library/metadata/66/theme/1705716261",
+      grandparentArt: "/library/metadata/66/art/1705716261",
+      parentTitle: "Caprica",
+      parentIndex: 1,
+      parentThumb: "/library/metadata/66/thumb/1705716261",
+      ratingImage: "rottentomatoes://image.rating.ripe",
+      viewCount: 1,
+      viewOffset: 5222500,
+      skipCount: 1,
+      subtype: "clip",
+      lastRatedAt: 1721813113,
+      createdAtAccuracy: "epoch,local",
+      createdAtTZOffset: "0",
+      lastViewedAt: 1682752242,
+      userRating: 10,
+      image: [
+        {
+          alt: "Episode 1",
+          type: GetMediaMetaDataLibraryType.Background,
+          url: "/library/metadata/45521/thumb/1644710589",
+        },
+      ],
+      ultraBlurColors: {
+        topLeft: "11333b",
+        topRight: "0a232d",
+        bottomRight: "73958",
+        bottomLeft: "1f5066",
+      },
+      librarySectionID: 1,
+      librarySectionTitle: "Movies",
+      librarySectionKey: "/library/sections/1",
       media: [
         {
           id: 387322,
@@ -103,7 +133,8 @@ let value: GetMediaMetaDataMediaContainer = {
               stream: [
                 {
                   id: 1002625,
-                  streamType: 1,
+                  streamType: GetMediaMetaDataStreamType.Video,
+                  format: "srt",
                   default: true,
                   codec: "hevc",
                   index: 0,
@@ -131,6 +162,7 @@ let value: GetMediaMetaDataMediaContainer = {
                   colorSpace: "bt2020nc",
                   colorTrc: "smpte2084",
                   frameRate: 23.976,
+                  key: "/library/streams/216389",
                   height: 1602,
                   level: 150,
                   original: true,
@@ -157,31 +189,60 @@ let value: GetMediaMetaDataMediaContainer = {
           ],
         },
       ],
-      image: [
-        {
-          alt: "Better Call Saul",
-          type: "coverPoster",
-          url: "/library/metadata/44288/thumb/1736487993",
-        },
-      ],
-      ultraBlurColors: {
-        topLeft: "11333a",
-        topRight: "1d2721",
-        bottomRight: "5c451d",
-        bottomLeft: "372c10",
-      },
       genre: [
         {
-          id: 1057,
-          filter: "genre=1057",
+          id: 259,
           tag: "Crime",
+          filter: "genre=19",
         },
       ],
       country: [
         {
-          id: 58591,
-          filter: "country=58591",
+          id: 259,
           tag: "United States of America",
+          filter: "country=19",
+        },
+      ],
+      director: [
+        {
+          id: 126522,
+          tag: "Danny Boyle",
+          filter: "director=235876",
+          tagKey: "5d776831151a60001f24d031",
+          thumb:
+            "https://metadata-static.plex.tv/8/people/8d65fa96804802e08f2de09fe014408e.jpg",
+        },
+      ],
+      writer: [
+        {
+          id: 126522,
+          tag: "Jamie P. Hanson",
+          filter: "writer=126522",
+          thumb:
+            "https://metadata-static.plex.tv/8/people/8d65fa96804802e08f2de09fe014408e.jpg",
+          tagKey: "5d77683d85719b001f3a535e",
+        },
+      ],
+      producer: [
+        {
+          id: 109501,
+          filter: "actor=109501",
+          tag: "Bob Odenkirk",
+          tagKey: "5d77683254f42c001f8c3f69",
+          role: "Jimmy McGill",
+          thumb:
+            "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg",
+        },
+      ],
+      role: [
+        {
+          id: 126522,
+          tag: "Teller",
+          role: "Self - Judge",
+          filter: "actor=126522",
+          tagKey: "5d77683d85719b001f3a535e",
+          thumb:
+            "https://metadata-static.plex.tv/7/people/708568fd018d7aa8b1032dcf867747e8.jpg",
         },
       ],
       guids: [
@@ -196,50 +257,6 @@ let value: GetMediaMetaDataMediaContainer = {
           type: "audience",
         },
       ],
-      role: [
-        {
-          id: 109501,
-          filter: "actor=109501",
-          tag: "Bob Odenkirk",
-          tagKey: "5d77683254f42c001f8c3f69",
-          role: "Jimmy McGill",
-          thumb:
-            "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg",
-        },
-      ],
-      director: [
-        {
-          id: 109501,
-          filter: "actor=109501",
-          tag: "Bob Odenkirk",
-          tagKey: "5d77683254f42c001f8c3f69",
-          role: "Jimmy McGill",
-          thumb:
-            "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg",
-        },
-      ],
-      writer: [
-        {
-          id: 109501,
-          filter: "actor=109501",
-          tag: "Bob Odenkirk",
-          tagKey: "5d77683254f42c001f8c3f69",
-          role: "Jimmy McGill",
-          thumb:
-            "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg",
-        },
-      ],
-      producer: [
-        {
-          id: 109501,
-          filter: "actor=109501",
-          tag: "Bob Odenkirk",
-          tagKey: "5d77683254f42c001f8c3f69",
-          role: "Jimmy McGill",
-          thumb:
-            "https://metadata-static.plex.tv/f/people/f2ca7b474cc984efbdd5c503a096285a.jpg",
-        },
-      ],
       similar: [
         {
           id: 26,
@@ -252,6 +269,32 @@ let value: GetMediaMetaDataMediaContainer = {
           path: "/TV Shows/Better Call Saul",
         },
       ],
+      chapter: [
+        {
+          id: 4,
+          filter: "thumb=4",
+          index: 1,
+          startTimeOffset: 0,
+          endTimeOffset: 100100,
+          thumb: "/library/media/46883/chapterImages/1",
+        },
+      ],
+      marker: [
+        {
+          id: 306970,
+          type: "credits",
+          startTimeOffset: 4176050,
+          endTimeOffset: 4393389,
+          final: true,
+          attributes: {
+            id: 306970,
+            version: 4,
+          },
+        },
+      ],
+      extras: {
+        size: 1,
+      },
     },
   ],
 };

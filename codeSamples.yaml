@@ -621,13 +621,14 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
+            import { openAsBlob } from "node:fs";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.library.postMediaArts(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+              const result = await plexAPI.library.postMediaArts(2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
               // Handle the result
               console.log(result);
@@ -708,13 +709,14 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
+            import { openAsBlob } from "node:fs";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.library.postMediaPoster(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+              const result = await plexAPI.library.postMediaPoster(2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
               // Handle the result
               console.log(result);

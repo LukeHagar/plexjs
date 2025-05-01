@@ -5,6 +5,11 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import {
+  catchUnrecognizedEnum,
+  OpenEnum,
+  Unrecognized,
+} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -68,6 +73,49 @@ export type GetMediaMetaDataRequest = {
   asyncRefreshLocalMediaAgent?: boolean | undefined;
 };
 
+/**
+ * The type of media content
+ *
+ * @remarks
+ */
+export enum GetMediaMetaDataType {
+  Movie = "movie",
+  TvShow = "show",
+  Season = "season",
+  Episode = "episode",
+  Artist = "artist",
+  Album = "album",
+}
+/**
+ * The type of media content
+ *
+ * @remarks
+ */
+export type GetMediaMetaDataTypeOpen = OpenEnum<typeof GetMediaMetaDataType>;
+
+export enum GetMediaMetaDataLibraryType {
+  CoverPoster = "coverPoster",
+  Background = "background",
+  Snapshot = "snapshot",
+  ClearLogo = "clearLogo",
+}
+export type GetMediaMetaDataLibraryTypeOpen = OpenEnum<
+  typeof GetMediaMetaDataLibraryType
+>;
+
+export type GetMediaMetaDataImage = {
+  alt: string;
+  type: GetMediaMetaDataLibraryTypeOpen;
+  url: string;
+};
+
+export type GetMediaMetaDataUltraBlurColors = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
 export enum GetMediaMetaDataOptimizedForStreaming1 {
   Zero = 0,
   One = 1,
@@ -100,15 +148,49 @@ export enum GetMediaMetaDataHasThumbnail {
   True = "1",
 }
 
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - 1 = video
+ *   - 2 = audio
+ *   - 3 = subtitle
+ */
+export enum GetMediaMetaDataStreamType {
+  Video = 1,
+  Audio = 2,
+  Subtitle = 3,
+}
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - 1 = video
+ *   - 2 = audio
+ *   - 3 = subtitle
+ */
+export type GetMediaMetaDataStreamTypeOpen = OpenEnum<
+  typeof GetMediaMetaDataStreamType
+>;
+
 export type GetMediaMetaDataStream = {
   /**
    * Unique stream identifier.
    */
   id: number;
   /**
-   * Stream type (1=video, 2=audio, 3=subtitle).
+   * Stream type:
+   *
+   * @remarks
+   *   - 1 = video
+   *   - 2 = audio
+   *   - 3 = subtitle
    */
-  streamType: number;
+  streamType: GetMediaMetaDataStreamTypeOpen;
+  /**
+   * Format of the stream (e.g., srt).
+   */
+  format?: string | undefined;
   /**
    * Indicates if this stream is default.
    */
@@ -120,7 +202,7 @@ export type GetMediaMetaDataStream = {
   /**
    * Index of the stream.
    */
-  index: number;
+  index?: number | undefined;
   /**
    * Bitrate of the stream.
    */
@@ -214,6 +296,10 @@ export type GetMediaMetaDataStream = {
    * Frame rate of the stream.
    */
   frameRate?: number | undefined;
+  /**
+   * Key to access this stream part.
+   */
+  key?: string | undefined;
   /**
    * Height of the video stream.
    */
@@ -420,171 +506,76 @@ export type GetMediaMetaDataMedia = {
   part?: Array<GetMediaMetaDataPart> | undefined;
 };
 
-export type GetMediaMetaDataImage = {
-  /**
-   * Alternate text for the image.
-   */
-  alt: string;
-  /**
-   * The type of image (e.g., coverPoster, background, clearLogo).
-   */
-  type: string;
-  /**
-   * The URL of the image.
-   */
-  url: string;
-};
-
-export type GetMediaMetaDataUltraBlurColors = {
-  /**
-   * The top-left color value.
-   */
-  topLeft: string;
-  /**
-   * The top-right color value.
-   */
-  topRight: string;
-  /**
-   * The bottom-right color value.
-   */
-  bottomRight: string;
-  /**
-   * The bottom-left color value.
-   */
-  bottomLeft: string;
-};
-
+/**
+ * The filter query string for similar items.
+ */
 export type GetMediaMetaDataGenre = {
-  /**
-   * The unique genre identifier.
-   */
   id: number;
   /**
-   * The filter string for the genre.
-   */
-  filter: string;
-  /**
-   * The genre name.
+   * The genre name of this media-item
+   *
+   * @remarks
    */
   tag: string;
+  filter: string;
 };
 
+/**
+ * The filter query string for country media items.
+ */
 export type GetMediaMetaDataCountry = {
-  /**
-   * The unique country identifier.
-   */
   id: number;
   /**
-   * The filter string for the country.
-   */
-  filter: string;
-  /**
-   * The country name.
+   * The country of origin of this media item
    */
   tag: string;
-};
-
-export type GetMediaMetaDataGuids = {
-  /**
-   * The GUID value.
-   */
-  id: string;
-};
-
-export type Ratings = {
-  /**
-   * The image or reference for the rating.
-   */
-  image: string;
-  /**
-   * The rating value.
-   */
-  value: number;
-  /**
-   * The type of rating (e.g., audience, critic).
-   */
-  type: string;
-};
-
-export type GetMediaMetaDataRole = {
-  /**
-   * The unique role identifier.
-   */
-  id: number;
-  /**
-   * The filter string for the role.
-   */
-  filter: string;
-  /**
-   * The actor's name.
-   */
-  tag: string;
-  /**
-   * A key associated with the actor tag.
-   */
-  tagKey: string;
-  /**
-   * The character name or role.
-   */
-  role?: string | undefined;
-  /**
-   * URL for the role thumbnail image.
-   */
-  thumb?: string | undefined;
+  filter?: string | undefined;
 };
 
 export type GetMediaMetaDataDirector = {
   /**
-   * The unique role identifier.
+   * Unique identifier for the director.
    */
   id: number;
   /**
-   * The filter string for the role.
-   */
-  filter: string;
-  /**
-   * The actor's name.
+   * The role of Director
    */
   tag: string;
   /**
-   * A key associated with the actor tag.
+   * The filter string used to query this director.
    */
-  tagKey: string;
+  filter: string;
   /**
-   * The character name or role.
+   * A unique key associated with the director's tag, used for internal identification.
    */
-  role?: string | undefined;
+  tagKey?: string | undefined;
   /**
-   * URL for the role thumbnail image.
+   * The URL of the thumbnail image for the director.
    */
   thumb?: string | undefined;
 };
 
 export type GetMediaMetaDataWriter = {
   /**
-   * The unique role identifier.
+   * Unique identifier for the writer.
    */
   id: number;
   /**
-   * The filter string for the role.
-   */
-  filter: string;
-  /**
-   * The actor's name.
+   * The role of Writer
    */
   tag: string;
   /**
-   * A key associated with the actor tag.
+   * The filter string used to query this writer.
    */
-  tagKey: string;
+  filter: string;
   /**
-   * The character name or role.
-   */
-  role?: string | undefined;
-  /**
-   * URL for the role thumbnail image.
+   * The URL of the thumbnail image for the writer.
    */
   thumb?: string | undefined;
+  /**
+   * A unique key associated with the writers tag, used for internal identification.
+   */
+  tagKey?: string | undefined;
 };
 
 export type GetMediaMetaDataProducer = {
@@ -614,6 +605,55 @@ export type GetMediaMetaDataProducer = {
   thumb?: string | undefined;
 };
 
+export type GetMediaMetaDataRole = {
+  /**
+   * Unique identifier for the actor or role.
+   */
+  id: number;
+  /**
+   * The display tag for the actor (typically the actor's name).
+   */
+  tag: string;
+  /**
+   * The role played by the actor in the media item.
+   */
+  role?: string | undefined;
+  /**
+   * The filter string used to query this actor. For example, it may indicate that this is an actor with a given key.
+   */
+  filter: string;
+  /**
+   * A unique key associated with the actor's tag, used for internal identification.
+   */
+  tagKey?: string | undefined;
+  /**
+   * The URL of the thumbnail image for the actor.
+   */
+  thumb?: string | undefined;
+};
+
+export type GetMediaMetaDataGuids = {
+  /**
+   * The GUID value.
+   */
+  id: string;
+};
+
+export type Ratings = {
+  /**
+   * The image or reference for the rating.
+   */
+  image: string;
+  /**
+   * The rating value.
+   */
+  value: number;
+  /**
+   * The type of rating (e.g., audience, critic).
+   */
+  type: string;
+};
+
 export type GetMediaMetaDataSimilar = {
   /**
    * The unique similar item identifier.
@@ -636,233 +676,298 @@ export type GetMediaMetaDataLocation = {
   path: string;
 };
 
+/**
+ * The thumbnail for the chapter
+ */
+export type Chapter = {
+  id: number;
+  filter: string;
+  index: number;
+  startTimeOffset: number;
+  endTimeOffset: number;
+  thumb: string;
+};
+
+/**
+ * Attributes associated with the marker.
+ */
+export type Attributes = {
+  /**
+   * The identifier for the attributes.
+   */
+  id: number;
+  /**
+   * The version number of the marker attributes.
+   */
+  version?: number | undefined;
+};
+
+/**
+ * The final status of the marker
+ */
+export type Marker = {
+  id: number;
+  type: string;
+  startTimeOffset: number;
+  endTimeOffset: number;
+  final?: boolean | undefined;
+  /**
+   * Attributes associated with the marker.
+   */
+  attributes?: Attributes | undefined;
+};
+
+export type Extras = {
+  /**
+   * The size of the extras.
+   */
+  size?: number | undefined;
+};
+
+/**
+ * Unknown
+ *
+ * @remarks
+ */
 export type GetMediaMetaDataMetadata = {
   /**
-   * The rating key of the metadata item.
+   * The rating key (Media ID) of this media item. Note: Although this is always an integer, it is represented as a string in the API.
    */
   ratingKey: string;
   /**
-   * The rating key of the parent of this metadata item.
-   */
-  parentRatingKey?: string | undefined;
-  /**
-   * The rating key of the grandparent of this metadata item.
-   */
-  grandparentRatingKey?: string | undefined;
-  /**
-   * A GUID identifying the parent entity (e.g., season) for the item.
-   */
-  parentGuid?: string | undefined;
-  /**
-   * A GUID identifying the grandparent entity (e.g., show).
-   */
-  grandparentGuid?: string | undefined;
-  /**
-   * A URL-friendly identifier (slug) for the grandparent entity.
-   */
-  grandparentSlug?: string | undefined;
-  /**
-   * A key identifying the grandparent metadata in the library.
-   */
-  grandparentKey?: string | undefined;
-  /**
-   * A key identifying the parent metadata in the library.
-   */
-  parentKey?: string | undefined;
-  /**
-   * The API key to access metadata details.
+   * The unique key for the media item.
    */
   key: string;
   /**
-   * The globally unique identifier for the item.
+   * The globally unique identifier for the media item.
    */
   guid: string;
   /**
-   * A URL-friendly identifier for the item.
+   * A URL‐friendly version of the media title.
    */
-  slug?: string | undefined;
+  slug: string;
   /**
-   * The studio that produced the content.
+   * The studio that produced the media item.
    */
   studio?: string | undefined;
+  type: GetMediaMetaDataTypeOpen;
   /**
-   * The type of content (e.g., show, movie).
-   */
-  type: string;
-  /**
-   * The title of the content.
+   * The title of the media item.
    */
   title: string;
   /**
-   * The original title of the content.
+   * The sort title used for ordering media items.
    */
-  originalTitle?: string | undefined;
+  titleSort: string;
   /**
-   * The title of the library section.
-   */
-  librarySectionTitle: string;
-  /**
-   * The ID of the library section.
-   */
-  librarySectionID: number;
-  /**
-   * The key of the library section.
-   */
-  librarySectionKey: string;
-  /**
-   * The content rating (e.g., TV-MA).
+   * The content rating for the media item.
    */
   contentRating?: string | undefined;
   /**
-   * A summary of the content.
+   * A synopsis of the media item.
    */
   summary: string;
   /**
-   * The index or order of the item.
+   * The critic rating for the media item.
    */
-  index?: number | undefined;
+  rating: number;
   /**
-   * The title of the grandparent entity (typically the show's title).
+   * The audience rating for the media item.
    */
-  grandparentTitle?: string | undefined;
+  audienceRating: number;
   /**
-   * The title of the parent entity (typically the season's title).
+   * The release year of the media item.
    */
-  parentTitle?: string | undefined;
+  year?: number | undefined;
   /**
-   * The audience rating for the content.
+   * A brief tagline for the media item.
    */
-  audienceRating?: number | undefined;
+  tagline: string;
   /**
-   * The number of times the item has been viewed.
-   */
-  viewCount?: number | undefined;
-  /**
-   * The number of times the item has been skipped.
-   */
-  skipCount?: number | undefined;
-  /**
-   * Unix timestamp of when the item was last viewed.
-   */
-  lastViewedAt?: number | undefined;
-  /**
-   * The release year.
-   */
-  year: number;
-  /**
-   * The general rating
-   */
-  rating?: number | undefined;
-  /**
-   * The URL or identifier for the rating image (e.g., Rotten Tomatoes rating image).
-   */
-  ratingImage?: string | undefined;
-  /**
-   * The tagline of the content.
-   */
-  tagline?: string | undefined;
-  chapterSource?: string | undefined;
-  primaryExtraKey?: string | undefined;
-  /**
-   * URL of the thumbnail image.
+   * The thumbnail image URL for the media item.
    */
   thumb: string;
   /**
-   * URL of the art image.
+   * The art image URL for the media item.
    */
   art: string;
   /**
-   * URL of the theme image.
+   * The theme URL for the media item.
    */
-  theme?: string | undefined;
+  theme: string;
   /**
-   * Duration of the content in milliseconds.
+   * The index position of the media item.
    */
-  duration: number;
+  index: number;
   /**
-   * The original release date.
-   */
-  originallyAvailableAt?: RFCDate | undefined;
-  /**
-   * The total number of episodes (or leaves).
+   * The number of leaf items (end nodes) under this media item.
    */
   leafCount?: number | undefined;
   /**
-   * The number of episodes that have been viewed.
+   * The number of leaf items that have been viewed.
    */
   viewedLeafCount?: number | undefined;
   /**
-   * The number of child items.
+   * The number of child items associated with this media item.
    */
-  childCount?: number | undefined;
+  childCount: number;
+  /**
+   * The total number of seasons (for TV shows).
+   */
+  seasonCount: number;
+  /**
+   * The duration of the media item in milliseconds.
+   */
+  duration: number;
+  /**
+   * The original release date of the media item.
+   */
+  originallyAvailableAt: RFCDate;
   addedAt: number;
-  updatedAt: number;
+  /**
+   * Unix epoch datetime in seconds
+   */
+  updatedAt?: number | undefined;
   /**
    * The URL for the audience rating image.
    */
   audienceRatingImage?: string | undefined;
   /**
-   * The index number of the parent entity, which could indicate its order or position.
+   * The source from which chapter data is derived.
    */
-  parentIndex?: number | undefined;
+  chapterSource?: string | undefined;
   /**
-   * The URL of the parent's thumbnail image.
+   * The primary extra key associated with this media item.
    */
-  parentThumb?: string | undefined;
+  primaryExtraKey?: string | undefined;
   /**
-   * The URL of the grandparent's thumbnail image.
+   * The original title of the media item (if different).
+   */
+  originalTitle?: string | undefined;
+  /**
+   * The rating key of the parent media item.
+   */
+  parentRatingKey?: string | undefined;
+  /**
+   * The rating key of the grandparent media item.
+   */
+  grandparentRatingKey?: string | undefined;
+  /**
+   * The GUID of the parent media item.
+   */
+  parentGuid?: string | undefined;
+  /**
+   * The GUID of the grandparent media item.
+   */
+  grandparentGuid?: string | undefined;
+  /**
+   * The slug for the grandparent media item.
+   */
+  grandparentSlug?: string | undefined;
+  /**
+   * The key of the grandparent media item.
+   */
+  grandparentKey?: string | undefined;
+  /**
+   * The key of the parent media item.
+   */
+  parentKey?: string | undefined;
+  /**
+   * The title of the grandparent media item.
+   */
+  grandparentTitle?: string | undefined;
+  /**
+   * The thumbnail URL for the grandparent media item.
    */
   grandparentThumb?: string | undefined;
   /**
-   * The URL of the grandparent's art image.
+   * The theme URL for the grandparent media item.
+   */
+  grandparentTheme?: string | undefined;
+  /**
+   * The art URL for the grandparent media item.
    */
   grandparentArt?: string | undefined;
+  /**
+   * The title of the parent media item.
+   */
+  parentTitle?: string | undefined;
+  /**
+   * The index position of the parent media item.
+   */
+  parentIndex?: number | undefined;
+  /**
+   * The thumbnail URL for the parent media item.
+   */
+  parentThumb?: string | undefined;
+  /**
+   * The URL for the rating image.
+   */
+  ratingImage?: string | undefined;
+  /**
+   * The number of times this media item has been viewed.
+   */
+  viewCount?: number | undefined;
+  /**
+   * The current playback offset (in milliseconds).
+   */
+  viewOffset?: number | undefined;
+  /**
+   * The number of times this media item has been skipped.
+   */
+  skipCount?: number | undefined;
+  /**
+   * A classification that further describes the type of media item. For example, 'clip' indicates that the item is a short video clip.
+   */
+  subtype?: string | undefined;
+  /**
+   * The Unix timestamp representing the last time the item was rated.
+   */
+  lastRatedAt?: number | undefined;
+  /**
+   * The accuracy of the creation timestamp. This value indicates the format(s) provided (for example, 'epoch,local' means both epoch and local time formats are available).
+   */
+  createdAtAccuracy?: string | undefined;
+  /**
+   * The time zone offset for the creation timestamp, represented as a string. This offset indicates the difference from UTC.
+   */
+  createdAtTZOffset?: string | undefined;
+  /**
+   * Unix timestamp for when the media item was last viewed.
+   */
+  lastViewedAt?: number | undefined;
+  /**
+   * The rating provided by a user for the item. This value is expressed as a decimal number.
+   */
+  userRating?: number | undefined;
+  image?: Array<GetMediaMetaDataImage> | undefined;
+  ultraBlurColors?: GetMediaMetaDataUltraBlurColors | undefined;
+  /**
+   * The identifier for the library section.
+   */
+  librarySectionID: number;
+  /**
+   * The title of the library section.
+   */
+  librarySectionTitle: string;
+  /**
+   * The key corresponding to the library section.
+   */
+  librarySectionKey: string;
   media?: Array<GetMediaMetaDataMedia> | undefined;
-  /**
-   * An array of image objects.
-   */
-  image: Array<GetMediaMetaDataImage>;
-  ultraBlurColors: GetMediaMetaDataUltraBlurColors;
-  /**
-   * An array of genre tags.
-   */
   genre?: Array<GetMediaMetaDataGenre> | undefined;
-  /**
-   * An array of country tags.
-   */
   country?: Array<GetMediaMetaDataCountry> | undefined;
-  /**
-   * An array of GUID objects.
-   */
-  guids?: Array<GetMediaMetaDataGuids> | undefined;
-  /**
-   * An array of rating objects.
-   */
-  ratings?: Array<Ratings> | undefined;
-  /**
-   * An array of Actor roles.
-   */
-  role?: Array<GetMediaMetaDataRole> | undefined;
-  /**
-   * An array of Director roles.
-   */
   director?: Array<GetMediaMetaDataDirector> | undefined;
-  /**
-   * An array of Writer roles.
-   */
   writer?: Array<GetMediaMetaDataWriter> | undefined;
-  /**
-   * An array of Writer roles.
-   */
   producer?: Array<GetMediaMetaDataProducer> | undefined;
-  /**
-   * An array of similar content objects.
-   */
+  role?: Array<GetMediaMetaDataRole> | undefined;
+  guids?: Array<GetMediaMetaDataGuids> | undefined;
+  ratings?: Array<Ratings> | undefined;
   similar?: Array<GetMediaMetaDataSimilar> | undefined;
-  /**
-   * An array of location objects.
-   */
   location?: Array<GetMediaMetaDataLocation> | undefined;
+  chapter?: Array<Chapter> | undefined;
+  marker?: Array<Marker> | undefined;
+  extras?: Extras | undefined;
 };
 
 export type GetMediaMetaDataMediaContainer = {
@@ -1020,6 +1125,195 @@ export function getMediaMetaDataRequestFromJSON(
     jsonString,
     (x) => GetMediaMetaDataRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetMediaMetaDataRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetMediaMetaDataType$inboundSchema: z.ZodType<
+  GetMediaMetaDataTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetMediaMetaDataType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const GetMediaMetaDataType$outboundSchema: z.ZodType<
+  GetMediaMetaDataTypeOpen,
+  z.ZodTypeDef,
+  GetMediaMetaDataTypeOpen
+> = z.union([
+  z.nativeEnum(GetMediaMetaDataType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataType$ {
+  /** @deprecated use `GetMediaMetaDataType$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataType$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataType$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataType$outboundSchema;
+}
+
+/** @internal */
+export const GetMediaMetaDataLibraryType$inboundSchema: z.ZodType<
+  GetMediaMetaDataLibraryTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetMediaMetaDataLibraryType),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const GetMediaMetaDataLibraryType$outboundSchema: z.ZodType<
+  GetMediaMetaDataLibraryTypeOpen,
+  z.ZodTypeDef,
+  GetMediaMetaDataLibraryTypeOpen
+> = z.union([
+  z.nativeEnum(GetMediaMetaDataLibraryType),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataLibraryType$ {
+  /** @deprecated use `GetMediaMetaDataLibraryType$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataLibraryType$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataLibraryType$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataLibraryType$outboundSchema;
+}
+
+/** @internal */
+export const GetMediaMetaDataImage$inboundSchema: z.ZodType<
+  GetMediaMetaDataImage,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  alt: z.string(),
+  type: GetMediaMetaDataLibraryType$inboundSchema,
+  url: z.string(),
+});
+
+/** @internal */
+export type GetMediaMetaDataImage$Outbound = {
+  alt: string;
+  type: string;
+  url: string;
+};
+
+/** @internal */
+export const GetMediaMetaDataImage$outboundSchema: z.ZodType<
+  GetMediaMetaDataImage$Outbound,
+  z.ZodTypeDef,
+  GetMediaMetaDataImage
+> = z.object({
+  alt: z.string(),
+  type: GetMediaMetaDataLibraryType$outboundSchema,
+  url: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataImage$ {
+  /** @deprecated use `GetMediaMetaDataImage$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataImage$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataImage$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataImage$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataImage$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataImage$Outbound;
+}
+
+export function getMediaMetaDataImageToJSON(
+  getMediaMetaDataImage: GetMediaMetaDataImage,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataImage$outboundSchema.parse(getMediaMetaDataImage),
+  );
+}
+
+export function getMediaMetaDataImageFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaMetaDataImage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaMetaDataImage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataImage' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetMediaMetaDataUltraBlurColors$inboundSchema: z.ZodType<
+  GetMediaMetaDataUltraBlurColors,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/** @internal */
+export type GetMediaMetaDataUltraBlurColors$Outbound = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+/** @internal */
+export const GetMediaMetaDataUltraBlurColors$outboundSchema: z.ZodType<
+  GetMediaMetaDataUltraBlurColors$Outbound,
+  z.ZodTypeDef,
+  GetMediaMetaDataUltraBlurColors
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataUltraBlurColors$ {
+  /** @deprecated use `GetMediaMetaDataUltraBlurColors$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataUltraBlurColors$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataUltraBlurColors$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataUltraBlurColors$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataUltraBlurColors$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataUltraBlurColors$Outbound;
+}
+
+export function getMediaMetaDataUltraBlurColorsToJSON(
+  getMediaMetaDataUltraBlurColors: GetMediaMetaDataUltraBlurColors,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataUltraBlurColors$outboundSchema.parse(
+      getMediaMetaDataUltraBlurColors,
+    ),
+  );
+}
+
+export function getMediaMetaDataUltraBlurColorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaMetaDataUltraBlurColors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaMetaDataUltraBlurColors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataUltraBlurColors' from JSON`,
   );
 }
 
@@ -1220,16 +1514,49 @@ export namespace GetMediaMetaDataHasThumbnail$ {
 }
 
 /** @internal */
+export const GetMediaMetaDataStreamType$inboundSchema: z.ZodType<
+  GetMediaMetaDataStreamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetMediaMetaDataStreamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const GetMediaMetaDataStreamType$outboundSchema: z.ZodType<
+  GetMediaMetaDataStreamTypeOpen,
+  z.ZodTypeDef,
+  GetMediaMetaDataStreamTypeOpen
+> = z.union([
+  z.nativeEnum(GetMediaMetaDataStreamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataStreamType$ {
+  /** @deprecated use `GetMediaMetaDataStreamType$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataStreamType$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataStreamType$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataStreamType$outboundSchema;
+}
+
+/** @internal */
 export const GetMediaMetaDataStream$inboundSchema: z.ZodType<
   GetMediaMetaDataStream,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.number().int(),
-  streamType: z.number().int(),
+  streamType: GetMediaMetaDataStreamType$inboundSchema,
+  format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),
-  index: z.number().int(),
+  index: z.number().int().optional(),
   bitrate: z.number().int().optional(),
   language: z.string().optional(),
   languageTag: z.string().optional(),
@@ -1254,6 +1581,7 @@ export const GetMediaMetaDataStream$inboundSchema: z.ZodType<
   colorSpace: z.string().optional(),
   colorTrc: z.string().optional(),
   frameRate: z.number().optional(),
+  key: z.string().optional(),
   height: z.number().int().optional(),
   level: z.number().int().optional(),
   original: z.boolean().optional(),
@@ -1291,9 +1619,10 @@ export const GetMediaMetaDataStream$inboundSchema: z.ZodType<
 export type GetMediaMetaDataStream$Outbound = {
   id: number;
   streamType: number;
+  format?: string | undefined;
   default?: boolean | undefined;
   codec: string;
-  index: number;
+  index?: number | undefined;
   bitrate?: number | undefined;
   language?: string | undefined;
   languageTag?: string | undefined;
@@ -1318,6 +1647,7 @@ export type GetMediaMetaDataStream$Outbound = {
   colorSpace?: string | undefined;
   colorTrc?: string | undefined;
   frameRate?: number | undefined;
+  key?: string | undefined;
   height?: number | undefined;
   level?: number | undefined;
   original?: boolean | undefined;
@@ -1347,10 +1677,11 @@ export const GetMediaMetaDataStream$outboundSchema: z.ZodType<
   GetMediaMetaDataStream
 > = z.object({
   id: z.number().int(),
-  streamType: z.number().int(),
+  streamType: GetMediaMetaDataStreamType$outboundSchema,
+  format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),
-  index: z.number().int(),
+  index: z.number().int().optional(),
   bitrate: z.number().int().optional(),
   language: z.string().optional(),
   languageTag: z.string().optional(),
@@ -1375,6 +1706,7 @@ export const GetMediaMetaDataStream$outboundSchema: z.ZodType<
   colorSpace: z.string().optional(),
   colorTrc: z.string().optional(),
   frameRate: z.number().optional(),
+  key: z.string().optional(),
   height: z.number().int().optional(),
   level: z.number().int().optional(),
   original: z.boolean().optional(),
@@ -1681,146 +2013,21 @@ export function getMediaMetaDataMediaFromJSON(
 }
 
 /** @internal */
-export const GetMediaMetaDataImage$inboundSchema: z.ZodType<
-  GetMediaMetaDataImage,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  alt: z.string(),
-  type: z.string(),
-  url: z.string(),
-});
-
-/** @internal */
-export type GetMediaMetaDataImage$Outbound = {
-  alt: string;
-  type: string;
-  url: string;
-};
-
-/** @internal */
-export const GetMediaMetaDataImage$outboundSchema: z.ZodType<
-  GetMediaMetaDataImage$Outbound,
-  z.ZodTypeDef,
-  GetMediaMetaDataImage
-> = z.object({
-  alt: z.string(),
-  type: z.string(),
-  url: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMediaMetaDataImage$ {
-  /** @deprecated use `GetMediaMetaDataImage$inboundSchema` instead. */
-  export const inboundSchema = GetMediaMetaDataImage$inboundSchema;
-  /** @deprecated use `GetMediaMetaDataImage$outboundSchema` instead. */
-  export const outboundSchema = GetMediaMetaDataImage$outboundSchema;
-  /** @deprecated use `GetMediaMetaDataImage$Outbound` instead. */
-  export type Outbound = GetMediaMetaDataImage$Outbound;
-}
-
-export function getMediaMetaDataImageToJSON(
-  getMediaMetaDataImage: GetMediaMetaDataImage,
-): string {
-  return JSON.stringify(
-    GetMediaMetaDataImage$outboundSchema.parse(getMediaMetaDataImage),
-  );
-}
-
-export function getMediaMetaDataImageFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMediaMetaDataImage, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMediaMetaDataImage$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMediaMetaDataImage' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetMediaMetaDataUltraBlurColors$inboundSchema: z.ZodType<
-  GetMediaMetaDataUltraBlurColors,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  topLeft: z.string(),
-  topRight: z.string(),
-  bottomRight: z.string(),
-  bottomLeft: z.string(),
-});
-
-/** @internal */
-export type GetMediaMetaDataUltraBlurColors$Outbound = {
-  topLeft: string;
-  topRight: string;
-  bottomRight: string;
-  bottomLeft: string;
-};
-
-/** @internal */
-export const GetMediaMetaDataUltraBlurColors$outboundSchema: z.ZodType<
-  GetMediaMetaDataUltraBlurColors$Outbound,
-  z.ZodTypeDef,
-  GetMediaMetaDataUltraBlurColors
-> = z.object({
-  topLeft: z.string(),
-  topRight: z.string(),
-  bottomRight: z.string(),
-  bottomLeft: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMediaMetaDataUltraBlurColors$ {
-  /** @deprecated use `GetMediaMetaDataUltraBlurColors$inboundSchema` instead. */
-  export const inboundSchema = GetMediaMetaDataUltraBlurColors$inboundSchema;
-  /** @deprecated use `GetMediaMetaDataUltraBlurColors$outboundSchema` instead. */
-  export const outboundSchema = GetMediaMetaDataUltraBlurColors$outboundSchema;
-  /** @deprecated use `GetMediaMetaDataUltraBlurColors$Outbound` instead. */
-  export type Outbound = GetMediaMetaDataUltraBlurColors$Outbound;
-}
-
-export function getMediaMetaDataUltraBlurColorsToJSON(
-  getMediaMetaDataUltraBlurColors: GetMediaMetaDataUltraBlurColors,
-): string {
-  return JSON.stringify(
-    GetMediaMetaDataUltraBlurColors$outboundSchema.parse(
-      getMediaMetaDataUltraBlurColors,
-    ),
-  );
-}
-
-export function getMediaMetaDataUltraBlurColorsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMediaMetaDataUltraBlurColors, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMediaMetaDataUltraBlurColors$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMediaMetaDataUltraBlurColors' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetMediaMetaDataGenre$inboundSchema: z.ZodType<
   GetMediaMetaDataGenre,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.number().int(),
-  filter: z.string(),
   tag: z.string(),
+  filter: z.string(),
 });
 
 /** @internal */
 export type GetMediaMetaDataGenre$Outbound = {
   id: number;
-  filter: string;
   tag: string;
+  filter: string;
 };
 
 /** @internal */
@@ -1830,8 +2037,8 @@ export const GetMediaMetaDataGenre$outboundSchema: z.ZodType<
   GetMediaMetaDataGenre
 > = z.object({
   id: z.number().int(),
-  filter: z.string(),
   tag: z.string(),
+  filter: z.string(),
 });
 
 /**
@@ -1872,15 +2079,15 @@ export const GetMediaMetaDataCountry$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.number().int(),
-  filter: z.string(),
   tag: z.string(),
+  filter: z.string().optional(),
 });
 
 /** @internal */
 export type GetMediaMetaDataCountry$Outbound = {
   id: number;
-  filter: string;
   tag: string;
+  filter?: string | undefined;
 };
 
 /** @internal */
@@ -1890,8 +2097,8 @@ export const GetMediaMetaDataCountry$outboundSchema: z.ZodType<
   GetMediaMetaDataCountry
 > = z.object({
   id: z.number().int(),
-  filter: z.string(),
   tag: z.string(),
+  filter: z.string().optional(),
 });
 
 /**
@@ -1922,6 +2129,276 @@ export function getMediaMetaDataCountryFromJSON(
     jsonString,
     (x) => GetMediaMetaDataCountry$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetMediaMetaDataCountry' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetMediaMetaDataDirector$inboundSchema: z.ZodType<
+  GetMediaMetaDataDirector,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  filter: z.string(),
+  tagKey: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/** @internal */
+export type GetMediaMetaDataDirector$Outbound = {
+  id: number;
+  tag: string;
+  filter: string;
+  tagKey?: string | undefined;
+  thumb?: string | undefined;
+};
+
+/** @internal */
+export const GetMediaMetaDataDirector$outboundSchema: z.ZodType<
+  GetMediaMetaDataDirector$Outbound,
+  z.ZodTypeDef,
+  GetMediaMetaDataDirector
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  filter: z.string(),
+  tagKey: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataDirector$ {
+  /** @deprecated use `GetMediaMetaDataDirector$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataDirector$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataDirector$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataDirector$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataDirector$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataDirector$Outbound;
+}
+
+export function getMediaMetaDataDirectorToJSON(
+  getMediaMetaDataDirector: GetMediaMetaDataDirector,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataDirector$outboundSchema.parse(getMediaMetaDataDirector),
+  );
+}
+
+export function getMediaMetaDataDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaMetaDataDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaMetaDataDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataDirector' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetMediaMetaDataWriter$inboundSchema: z.ZodType<
+  GetMediaMetaDataWriter,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  filter: z.string(),
+  thumb: z.string().optional(),
+  tagKey: z.string().optional(),
+});
+
+/** @internal */
+export type GetMediaMetaDataWriter$Outbound = {
+  id: number;
+  tag: string;
+  filter: string;
+  thumb?: string | undefined;
+  tagKey?: string | undefined;
+};
+
+/** @internal */
+export const GetMediaMetaDataWriter$outboundSchema: z.ZodType<
+  GetMediaMetaDataWriter$Outbound,
+  z.ZodTypeDef,
+  GetMediaMetaDataWriter
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  filter: z.string(),
+  thumb: z.string().optional(),
+  tagKey: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataWriter$ {
+  /** @deprecated use `GetMediaMetaDataWriter$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataWriter$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataWriter$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataWriter$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataWriter$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataWriter$Outbound;
+}
+
+export function getMediaMetaDataWriterToJSON(
+  getMediaMetaDataWriter: GetMediaMetaDataWriter,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataWriter$outboundSchema.parse(getMediaMetaDataWriter),
+  );
+}
+
+export function getMediaMetaDataWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaMetaDataWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaMetaDataWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataWriter' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetMediaMetaDataProducer$inboundSchema: z.ZodType<
+  GetMediaMetaDataProducer,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  tag: z.string(),
+  tagKey: z.string(),
+  role: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/** @internal */
+export type GetMediaMetaDataProducer$Outbound = {
+  id: number;
+  filter: string;
+  tag: string;
+  tagKey: string;
+  role?: string | undefined;
+  thumb?: string | undefined;
+};
+
+/** @internal */
+export const GetMediaMetaDataProducer$outboundSchema: z.ZodType<
+  GetMediaMetaDataProducer$Outbound,
+  z.ZodTypeDef,
+  GetMediaMetaDataProducer
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  tag: z.string(),
+  tagKey: z.string(),
+  role: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataProducer$ {
+  /** @deprecated use `GetMediaMetaDataProducer$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataProducer$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataProducer$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataProducer$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataProducer$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataProducer$Outbound;
+}
+
+export function getMediaMetaDataProducerToJSON(
+  getMediaMetaDataProducer: GetMediaMetaDataProducer,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataProducer$outboundSchema.parse(getMediaMetaDataProducer),
+  );
+}
+
+export function getMediaMetaDataProducerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaMetaDataProducer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaMetaDataProducer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataProducer' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetMediaMetaDataRole$inboundSchema: z.ZodType<
+  GetMediaMetaDataRole,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  role: z.string().optional(),
+  filter: z.string(),
+  tagKey: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/** @internal */
+export type GetMediaMetaDataRole$Outbound = {
+  id: number;
+  tag: string;
+  role?: string | undefined;
+  filter: string;
+  tagKey?: string | undefined;
+  thumb?: string | undefined;
+};
+
+/** @internal */
+export const GetMediaMetaDataRole$outboundSchema: z.ZodType<
+  GetMediaMetaDataRole$Outbound,
+  z.ZodTypeDef,
+  GetMediaMetaDataRole
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  role: z.string().optional(),
+  filter: z.string(),
+  tagKey: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataRole$ {
+  /** @deprecated use `GetMediaMetaDataRole$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataRole$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataRole$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataRole$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataRole$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataRole$Outbound;
+}
+
+export function getMediaMetaDataRoleToJSON(
+  getMediaMetaDataRole: GetMediaMetaDataRole,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataRole$outboundSchema.parse(getMediaMetaDataRole),
+  );
+}
+
+export function getMediaMetaDataRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaMetaDataRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaMetaDataRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataRole' from JSON`,
   );
 }
 
@@ -2029,282 +2506,6 @@ export function ratingsFromJSON(
     jsonString,
     (x) => Ratings$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Ratings' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetMediaMetaDataRole$inboundSchema: z.ZodType<
-  GetMediaMetaDataRole,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.number().int(),
-  filter: z.string(),
-  tag: z.string(),
-  tagKey: z.string(),
-  role: z.string().optional(),
-  thumb: z.string().optional(),
-});
-
-/** @internal */
-export type GetMediaMetaDataRole$Outbound = {
-  id: number;
-  filter: string;
-  tag: string;
-  tagKey: string;
-  role?: string | undefined;
-  thumb?: string | undefined;
-};
-
-/** @internal */
-export const GetMediaMetaDataRole$outboundSchema: z.ZodType<
-  GetMediaMetaDataRole$Outbound,
-  z.ZodTypeDef,
-  GetMediaMetaDataRole
-> = z.object({
-  id: z.number().int(),
-  filter: z.string(),
-  tag: z.string(),
-  tagKey: z.string(),
-  role: z.string().optional(),
-  thumb: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMediaMetaDataRole$ {
-  /** @deprecated use `GetMediaMetaDataRole$inboundSchema` instead. */
-  export const inboundSchema = GetMediaMetaDataRole$inboundSchema;
-  /** @deprecated use `GetMediaMetaDataRole$outboundSchema` instead. */
-  export const outboundSchema = GetMediaMetaDataRole$outboundSchema;
-  /** @deprecated use `GetMediaMetaDataRole$Outbound` instead. */
-  export type Outbound = GetMediaMetaDataRole$Outbound;
-}
-
-export function getMediaMetaDataRoleToJSON(
-  getMediaMetaDataRole: GetMediaMetaDataRole,
-): string {
-  return JSON.stringify(
-    GetMediaMetaDataRole$outboundSchema.parse(getMediaMetaDataRole),
-  );
-}
-
-export function getMediaMetaDataRoleFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMediaMetaDataRole, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMediaMetaDataRole$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMediaMetaDataRole' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetMediaMetaDataDirector$inboundSchema: z.ZodType<
-  GetMediaMetaDataDirector,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.number().int(),
-  filter: z.string(),
-  tag: z.string(),
-  tagKey: z.string(),
-  role: z.string().optional(),
-  thumb: z.string().optional(),
-});
-
-/** @internal */
-export type GetMediaMetaDataDirector$Outbound = {
-  id: number;
-  filter: string;
-  tag: string;
-  tagKey: string;
-  role?: string | undefined;
-  thumb?: string | undefined;
-};
-
-/** @internal */
-export const GetMediaMetaDataDirector$outboundSchema: z.ZodType<
-  GetMediaMetaDataDirector$Outbound,
-  z.ZodTypeDef,
-  GetMediaMetaDataDirector
-> = z.object({
-  id: z.number().int(),
-  filter: z.string(),
-  tag: z.string(),
-  tagKey: z.string(),
-  role: z.string().optional(),
-  thumb: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMediaMetaDataDirector$ {
-  /** @deprecated use `GetMediaMetaDataDirector$inboundSchema` instead. */
-  export const inboundSchema = GetMediaMetaDataDirector$inboundSchema;
-  /** @deprecated use `GetMediaMetaDataDirector$outboundSchema` instead. */
-  export const outboundSchema = GetMediaMetaDataDirector$outboundSchema;
-  /** @deprecated use `GetMediaMetaDataDirector$Outbound` instead. */
-  export type Outbound = GetMediaMetaDataDirector$Outbound;
-}
-
-export function getMediaMetaDataDirectorToJSON(
-  getMediaMetaDataDirector: GetMediaMetaDataDirector,
-): string {
-  return JSON.stringify(
-    GetMediaMetaDataDirector$outboundSchema.parse(getMediaMetaDataDirector),
-  );
-}
-
-export function getMediaMetaDataDirectorFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMediaMetaDataDirector, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMediaMetaDataDirector$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMediaMetaDataDirector' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetMediaMetaDataWriter$inboundSchema: z.ZodType<
-  GetMediaMetaDataWriter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.number().int(),
-  filter: z.string(),
-  tag: z.string(),
-  tagKey: z.string(),
-  role: z.string().optional(),
-  thumb: z.string().optional(),
-});
-
-/** @internal */
-export type GetMediaMetaDataWriter$Outbound = {
-  id: number;
-  filter: string;
-  tag: string;
-  tagKey: string;
-  role?: string | undefined;
-  thumb?: string | undefined;
-};
-
-/** @internal */
-export const GetMediaMetaDataWriter$outboundSchema: z.ZodType<
-  GetMediaMetaDataWriter$Outbound,
-  z.ZodTypeDef,
-  GetMediaMetaDataWriter
-> = z.object({
-  id: z.number().int(),
-  filter: z.string(),
-  tag: z.string(),
-  tagKey: z.string(),
-  role: z.string().optional(),
-  thumb: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMediaMetaDataWriter$ {
-  /** @deprecated use `GetMediaMetaDataWriter$inboundSchema` instead. */
-  export const inboundSchema = GetMediaMetaDataWriter$inboundSchema;
-  /** @deprecated use `GetMediaMetaDataWriter$outboundSchema` instead. */
-  export const outboundSchema = GetMediaMetaDataWriter$outboundSchema;
-  /** @deprecated use `GetMediaMetaDataWriter$Outbound` instead. */
-  export type Outbound = GetMediaMetaDataWriter$Outbound;
-}
-
-export function getMediaMetaDataWriterToJSON(
-  getMediaMetaDataWriter: GetMediaMetaDataWriter,
-): string {
-  return JSON.stringify(
-    GetMediaMetaDataWriter$outboundSchema.parse(getMediaMetaDataWriter),
-  );
-}
-
-export function getMediaMetaDataWriterFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMediaMetaDataWriter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMediaMetaDataWriter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMediaMetaDataWriter' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetMediaMetaDataProducer$inboundSchema: z.ZodType<
-  GetMediaMetaDataProducer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.number().int(),
-  filter: z.string(),
-  tag: z.string(),
-  tagKey: z.string(),
-  role: z.string().optional(),
-  thumb: z.string().optional(),
-});
-
-/** @internal */
-export type GetMediaMetaDataProducer$Outbound = {
-  id: number;
-  filter: string;
-  tag: string;
-  tagKey: string;
-  role?: string | undefined;
-  thumb?: string | undefined;
-};
-
-/** @internal */
-export const GetMediaMetaDataProducer$outboundSchema: z.ZodType<
-  GetMediaMetaDataProducer$Outbound,
-  z.ZodTypeDef,
-  GetMediaMetaDataProducer
-> = z.object({
-  id: z.number().int(),
-  filter: z.string(),
-  tag: z.string(),
-  tagKey: z.string(),
-  role: z.string().optional(),
-  thumb: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMediaMetaDataProducer$ {
-  /** @deprecated use `GetMediaMetaDataProducer$inboundSchema` instead. */
-  export const inboundSchema = GetMediaMetaDataProducer$inboundSchema;
-  /** @deprecated use `GetMediaMetaDataProducer$outboundSchema` instead. */
-  export const outboundSchema = GetMediaMetaDataProducer$outboundSchema;
-  /** @deprecated use `GetMediaMetaDataProducer$Outbound` instead. */
-  export type Outbound = GetMediaMetaDataProducer$Outbound;
-}
-
-export function getMediaMetaDataProducerToJSON(
-  getMediaMetaDataProducer: GetMediaMetaDataProducer,
-): string {
-  return JSON.stringify(
-    GetMediaMetaDataProducer$outboundSchema.parse(getMediaMetaDataProducer),
-  );
-}
-
-export function getMediaMetaDataProducerFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMediaMetaDataProducer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMediaMetaDataProducer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMediaMetaDataProducer' from JSON`,
   );
 }
 
@@ -2423,12 +2624,273 @@ export function getMediaMetaDataLocationFromJSON(
 }
 
 /** @internal */
+export const Chapter$inboundSchema: z.ZodType<Chapter, z.ZodTypeDef, unknown> =
+  z.object({
+    id: z.number().int(),
+    filter: z.string(),
+    index: z.number().int(),
+    startTimeOffset: z.number().int(),
+    endTimeOffset: z.number().int(),
+    thumb: z.string(),
+  });
+
+/** @internal */
+export type Chapter$Outbound = {
+  id: number;
+  filter: string;
+  index: number;
+  startTimeOffset: number;
+  endTimeOffset: number;
+  thumb: string;
+};
+
+/** @internal */
+export const Chapter$outboundSchema: z.ZodType<
+  Chapter$Outbound,
+  z.ZodTypeDef,
+  Chapter
+> = z.object({
+  id: z.number().int(),
+  filter: z.string(),
+  index: z.number().int(),
+  startTimeOffset: z.number().int(),
+  endTimeOffset: z.number().int(),
+  thumb: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Chapter$ {
+  /** @deprecated use `Chapter$inboundSchema` instead. */
+  export const inboundSchema = Chapter$inboundSchema;
+  /** @deprecated use `Chapter$outboundSchema` instead. */
+  export const outboundSchema = Chapter$outboundSchema;
+  /** @deprecated use `Chapter$Outbound` instead. */
+  export type Outbound = Chapter$Outbound;
+}
+
+export function chapterToJSON(chapter: Chapter): string {
+  return JSON.stringify(Chapter$outboundSchema.parse(chapter));
+}
+
+export function chapterFromJSON(
+  jsonString: string,
+): SafeParseResult<Chapter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Chapter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Chapter' from JSON`,
+  );
+}
+
+/** @internal */
+export const Attributes$inboundSchema: z.ZodType<
+  Attributes,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  version: z.number().int().optional(),
+});
+
+/** @internal */
+export type Attributes$Outbound = {
+  id: number;
+  version?: number | undefined;
+};
+
+/** @internal */
+export const Attributes$outboundSchema: z.ZodType<
+  Attributes$Outbound,
+  z.ZodTypeDef,
+  Attributes
+> = z.object({
+  id: z.number().int(),
+  version: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Attributes$ {
+  /** @deprecated use `Attributes$inboundSchema` instead. */
+  export const inboundSchema = Attributes$inboundSchema;
+  /** @deprecated use `Attributes$outboundSchema` instead. */
+  export const outboundSchema = Attributes$outboundSchema;
+  /** @deprecated use `Attributes$Outbound` instead. */
+  export type Outbound = Attributes$Outbound;
+}
+
+export function attributesToJSON(attributes: Attributes): string {
+  return JSON.stringify(Attributes$outboundSchema.parse(attributes));
+}
+
+export function attributesFromJSON(
+  jsonString: string,
+): SafeParseResult<Attributes, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Attributes$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Attributes' from JSON`,
+  );
+}
+
+/** @internal */
+export const Marker$inboundSchema: z.ZodType<Marker, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.number().int(),
+    type: z.string(),
+    startTimeOffset: z.number().int(),
+    endTimeOffset: z.number().int(),
+    final: z.boolean().optional(),
+    Attributes: z.lazy(() => Attributes$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Attributes": "attributes",
+    });
+  });
+
+/** @internal */
+export type Marker$Outbound = {
+  id: number;
+  type: string;
+  startTimeOffset: number;
+  endTimeOffset: number;
+  final?: boolean | undefined;
+  Attributes?: Attributes$Outbound | undefined;
+};
+
+/** @internal */
+export const Marker$outboundSchema: z.ZodType<
+  Marker$Outbound,
+  z.ZodTypeDef,
+  Marker
+> = z.object({
+  id: z.number().int(),
+  type: z.string(),
+  startTimeOffset: z.number().int(),
+  endTimeOffset: z.number().int(),
+  final: z.boolean().optional(),
+  attributes: z.lazy(() => Attributes$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    attributes: "Attributes",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Marker$ {
+  /** @deprecated use `Marker$inboundSchema` instead. */
+  export const inboundSchema = Marker$inboundSchema;
+  /** @deprecated use `Marker$outboundSchema` instead. */
+  export const outboundSchema = Marker$outboundSchema;
+  /** @deprecated use `Marker$Outbound` instead. */
+  export type Outbound = Marker$Outbound;
+}
+
+export function markerToJSON(marker: Marker): string {
+  return JSON.stringify(Marker$outboundSchema.parse(marker));
+}
+
+export function markerFromJSON(
+  jsonString: string,
+): SafeParseResult<Marker, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Marker$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Marker' from JSON`,
+  );
+}
+
+/** @internal */
+export const Extras$inboundSchema: z.ZodType<Extras, z.ZodTypeDef, unknown> = z
+  .object({
+    size: z.number().int().optional(),
+  });
+
+/** @internal */
+export type Extras$Outbound = {
+  size?: number | undefined;
+};
+
+/** @internal */
+export const Extras$outboundSchema: z.ZodType<
+  Extras$Outbound,
+  z.ZodTypeDef,
+  Extras
+> = z.object({
+  size: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Extras$ {
+  /** @deprecated use `Extras$inboundSchema` instead. */
+  export const inboundSchema = Extras$inboundSchema;
+  /** @deprecated use `Extras$outboundSchema` instead. */
+  export const outboundSchema = Extras$outboundSchema;
+  /** @deprecated use `Extras$Outbound` instead. */
+  export type Outbound = Extras$Outbound;
+}
+
+export function extrasToJSON(extras: Extras): string {
+  return JSON.stringify(Extras$outboundSchema.parse(extras));
+}
+
+export function extrasFromJSON(
+  jsonString: string,
+): SafeParseResult<Extras, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Extras$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Extras' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetMediaMetaDataMetadata$inboundSchema: z.ZodType<
   GetMediaMetaDataMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({
   ratingKey: z.string(),
+  key: z.string(),
+  guid: z.string(),
+  slug: z.string(),
+  studio: z.string().optional(),
+  type: GetMediaMetaDataType$inboundSchema,
+  title: z.string(),
+  titleSort: z.string(),
+  contentRating: z.string().optional(),
+  summary: z.string(),
+  rating: z.number(),
+  audienceRating: z.number(),
+  year: z.number().int().optional(),
+  tagline: z.string(),
+  thumb: z.string(),
+  art: z.string(),
+  theme: z.string(),
+  index: z.number().int(),
+  leafCount: z.number().int().optional(),
+  viewedLeafCount: z.number().int().optional(),
+  childCount: z.number().int(),
+  seasonCount: z.number().int(),
+  duration: z.number().int(),
+  originallyAvailableAt: z.string().transform(v => new RFCDate(v)),
+  addedAt: z.number().int(),
+  updatedAt: z.number().int().optional(),
+  audienceRatingImage: z.string().optional(),
+  chapterSource: z.string().optional(),
+  primaryExtraKey: z.string().optional(),
+  originalTitle: z.string().optional(),
   parentRatingKey: z.string().optional(),
   grandparentRatingKey: z.string().optional(),
   parentGuid: z.string().optional(),
@@ -2436,86 +2898,102 @@ export const GetMediaMetaDataMetadata$inboundSchema: z.ZodType<
   grandparentSlug: z.string().optional(),
   grandparentKey: z.string().optional(),
   parentKey: z.string().optional(),
-  key: z.string(),
-  guid: z.string(),
-  slug: z.string().optional(),
-  studio: z.string().optional(),
-  type: z.string(),
-  title: z.string(),
-  originalTitle: z.string().optional(),
-  librarySectionTitle: z.string(),
-  librarySectionID: z.number().int(),
-  librarySectionKey: z.string(),
-  contentRating: z.string().optional(),
-  summary: z.string(),
-  index: z.number().int().optional(),
   grandparentTitle: z.string().optional(),
+  grandparentThumb: z.string().optional(),
+  grandparentTheme: z.string().optional(),
+  grandparentArt: z.string().optional(),
   parentTitle: z.string().optional(),
-  audienceRating: z.number().optional(),
-  viewCount: z.number().int().optional(),
-  skipCount: z.number().int().optional(),
-  lastViewedAt: z.number().int().optional(),
-  year: z.number().int(),
-  rating: z.number().optional(),
-  ratingImage: z.string().optional(),
-  tagline: z.string().optional(),
-  chapterSource: z.string().optional(),
-  primaryExtraKey: z.string().optional(),
-  thumb: z.string(),
-  art: z.string(),
-  theme: z.string().optional(),
-  duration: z.number().int(),
-  originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
-  leafCount: z.number().int().optional(),
-  viewedLeafCount: z.number().int().optional(),
-  childCount: z.number().int().optional(),
-  addedAt: z.number().int(),
-  updatedAt: z.number().int(),
-  audienceRatingImage: z.string().optional(),
   parentIndex: z.number().int().optional(),
   parentThumb: z.string().optional(),
-  grandparentThumb: z.string().optional(),
-  grandparentArt: z.string().optional(),
+  ratingImage: z.string().optional(),
+  viewCount: z.number().int().optional(),
+  viewOffset: z.number().int().optional(),
+  skipCount: z.number().int().optional(),
+  subtype: z.string().optional(),
+  lastRatedAt: z.number().int().optional(),
+  createdAtAccuracy: z.string().optional(),
+  createdAtTZOffset: z.string().optional(),
+  lastViewedAt: z.number().int().optional(),
+  userRating: z.number().optional(),
+  Image: z.array(z.lazy(() => GetMediaMetaDataImage$inboundSchema)).optional(),
+  UltraBlurColors: z.lazy(() => GetMediaMetaDataUltraBlurColors$inboundSchema)
+    .optional(),
+  librarySectionID: z.number().int(),
+  librarySectionTitle: z.string(),
+  librarySectionKey: z.string(),
   Media: z.array(z.lazy(() => GetMediaMetaDataMedia$inboundSchema)).optional(),
-  Image: z.array(z.lazy(() => GetMediaMetaDataImage$inboundSchema)),
-  UltraBlurColors: z.lazy(() => GetMediaMetaDataUltraBlurColors$inboundSchema),
   Genre: z.array(z.lazy(() => GetMediaMetaDataGenre$inboundSchema)).optional(),
   Country: z.array(z.lazy(() => GetMediaMetaDataCountry$inboundSchema))
     .optional(),
-  Guid: z.array(z.lazy(() => GetMediaMetaDataGuids$inboundSchema)).optional(),
-  Rating: z.array(z.lazy(() => Ratings$inboundSchema)).optional(),
-  Role: z.array(z.lazy(() => GetMediaMetaDataRole$inboundSchema)).optional(),
   Director: z.array(z.lazy(() => GetMediaMetaDataDirector$inboundSchema))
     .optional(),
   Writer: z.array(z.lazy(() => GetMediaMetaDataWriter$inboundSchema))
     .optional(),
   Producer: z.array(z.lazy(() => GetMediaMetaDataProducer$inboundSchema))
     .optional(),
+  Role: z.array(z.lazy(() => GetMediaMetaDataRole$inboundSchema)).optional(),
+  Guid: z.array(z.lazy(() => GetMediaMetaDataGuids$inboundSchema)).optional(),
+  Rating: z.array(z.lazy(() => Ratings$inboundSchema)).optional(),
   Similar: z.array(z.lazy(() => GetMediaMetaDataSimilar$inboundSchema))
     .optional(),
   Location: z.array(z.lazy(() => GetMediaMetaDataLocation$inboundSchema))
     .optional(),
+  Chapter: z.array(z.lazy(() => Chapter$inboundSchema)).optional(),
+  Marker: z.array(z.lazy(() => Marker$inboundSchema)).optional(),
+  Extras: z.lazy(() => Extras$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
-    "Media": "media",
     "Image": "image",
     "UltraBlurColors": "ultraBlurColors",
+    "Media": "media",
     "Genre": "genre",
     "Country": "country",
-    "Guid": "guids",
-    "Rating": "ratings",
-    "Role": "role",
     "Director": "director",
     "Writer": "writer",
     "Producer": "producer",
+    "Role": "role",
+    "Guid": "guids",
+    "Rating": "ratings",
     "Similar": "similar",
     "Location": "location",
+    "Chapter": "chapter",
+    "Marker": "marker",
+    "Extras": "extras",
   });
 });
 
 /** @internal */
 export type GetMediaMetaDataMetadata$Outbound = {
   ratingKey: string;
+  key: string;
+  guid: string;
+  slug: string;
+  studio?: string | undefined;
+  type: string;
+  title: string;
+  titleSort: string;
+  contentRating?: string | undefined;
+  summary: string;
+  rating: number;
+  audienceRating: number;
+  year?: number | undefined;
+  tagline: string;
+  thumb: string;
+  art: string;
+  theme: string;
+  index: number;
+  leafCount?: number | undefined;
+  viewedLeafCount?: number | undefined;
+  childCount: number;
+  seasonCount: number;
+  duration: number;
+  originallyAvailableAt: string;
+  addedAt: number;
+  updatedAt?: number | undefined;
+  audienceRatingImage?: string | undefined;
+  chapterSource?: string | undefined;
+  primaryExtraKey?: string | undefined;
+  originalTitle?: string | undefined;
   parentRatingKey?: string | undefined;
   grandparentRatingKey?: string | undefined;
   parentGuid?: string | undefined;
@@ -2523,59 +3001,42 @@ export type GetMediaMetaDataMetadata$Outbound = {
   grandparentSlug?: string | undefined;
   grandparentKey?: string | undefined;
   parentKey?: string | undefined;
-  key: string;
-  guid: string;
-  slug?: string | undefined;
-  studio?: string | undefined;
-  type: string;
-  title: string;
-  originalTitle?: string | undefined;
-  librarySectionTitle: string;
-  librarySectionID: number;
-  librarySectionKey: string;
-  contentRating?: string | undefined;
-  summary: string;
-  index?: number | undefined;
   grandparentTitle?: string | undefined;
+  grandparentThumb?: string | undefined;
+  grandparentTheme?: string | undefined;
+  grandparentArt?: string | undefined;
   parentTitle?: string | undefined;
-  audienceRating?: number | undefined;
-  viewCount?: number | undefined;
-  skipCount?: number | undefined;
-  lastViewedAt?: number | undefined;
-  year: number;
-  rating?: number | undefined;
-  ratingImage?: string | undefined;
-  tagline?: string | undefined;
-  chapterSource?: string | undefined;
-  primaryExtraKey?: string | undefined;
-  thumb: string;
-  art: string;
-  theme?: string | undefined;
-  duration: number;
-  originallyAvailableAt?: string | undefined;
-  leafCount?: number | undefined;
-  viewedLeafCount?: number | undefined;
-  childCount?: number | undefined;
-  addedAt: number;
-  updatedAt: number;
-  audienceRatingImage?: string | undefined;
   parentIndex?: number | undefined;
   parentThumb?: string | undefined;
-  grandparentThumb?: string | undefined;
-  grandparentArt?: string | undefined;
+  ratingImage?: string | undefined;
+  viewCount?: number | undefined;
+  viewOffset?: number | undefined;
+  skipCount?: number | undefined;
+  subtype?: string | undefined;
+  lastRatedAt?: number | undefined;
+  createdAtAccuracy?: string | undefined;
+  createdAtTZOffset?: string | undefined;
+  lastViewedAt?: number | undefined;
+  userRating?: number | undefined;
+  Image?: Array<GetMediaMetaDataImage$Outbound> | undefined;
+  UltraBlurColors?: GetMediaMetaDataUltraBlurColors$Outbound | undefined;
+  librarySectionID: number;
+  librarySectionTitle: string;
+  librarySectionKey: string;
   Media?: Array<GetMediaMetaDataMedia$Outbound> | undefined;
-  Image: Array<GetMediaMetaDataImage$Outbound>;
-  UltraBlurColors: GetMediaMetaDataUltraBlurColors$Outbound;
   Genre?: Array<GetMediaMetaDataGenre$Outbound> | undefined;
   Country?: Array<GetMediaMetaDataCountry$Outbound> | undefined;
-  Guid?: Array<GetMediaMetaDataGuids$Outbound> | undefined;
-  Rating?: Array<Ratings$Outbound> | undefined;
-  Role?: Array<GetMediaMetaDataRole$Outbound> | undefined;
   Director?: Array<GetMediaMetaDataDirector$Outbound> | undefined;
   Writer?: Array<GetMediaMetaDataWriter$Outbound> | undefined;
   Producer?: Array<GetMediaMetaDataProducer$Outbound> | undefined;
+  Role?: Array<GetMediaMetaDataRole$Outbound> | undefined;
+  Guid?: Array<GetMediaMetaDataGuids$Outbound> | undefined;
+  Rating?: Array<Ratings$Outbound> | undefined;
   Similar?: Array<GetMediaMetaDataSimilar$Outbound> | undefined;
   Location?: Array<GetMediaMetaDataLocation$Outbound> | undefined;
+  Chapter?: Array<Chapter$Outbound> | undefined;
+  Marker?: Array<Marker$Outbound> | undefined;
+  Extras?: Extras$Outbound | undefined;
 };
 
 /** @internal */
@@ -2585,6 +3046,35 @@ export const GetMediaMetaDataMetadata$outboundSchema: z.ZodType<
   GetMediaMetaDataMetadata
 > = z.object({
   ratingKey: z.string(),
+  key: z.string(),
+  guid: z.string(),
+  slug: z.string(),
+  studio: z.string().optional(),
+  type: GetMediaMetaDataType$outboundSchema,
+  title: z.string(),
+  titleSort: z.string(),
+  contentRating: z.string().optional(),
+  summary: z.string(),
+  rating: z.number(),
+  audienceRating: z.number(),
+  year: z.number().int().optional(),
+  tagline: z.string(),
+  thumb: z.string(),
+  art: z.string(),
+  theme: z.string(),
+  index: z.number().int(),
+  leafCount: z.number().int().optional(),
+  viewedLeafCount: z.number().int().optional(),
+  childCount: z.number().int(),
+  seasonCount: z.number().int(),
+  duration: z.number().int(),
+  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString()),
+  addedAt: z.number().int(),
+  updatedAt: z.number().int().optional(),
+  audienceRatingImage: z.string().optional(),
+  chapterSource: z.string().optional(),
+  primaryExtraKey: z.string().optional(),
+  originalTitle: z.string().optional(),
   parentRatingKey: z.string().optional(),
   grandparentRatingKey: z.string().optional(),
   parentGuid: z.string().optional(),
@@ -2592,81 +3082,67 @@ export const GetMediaMetaDataMetadata$outboundSchema: z.ZodType<
   grandparentSlug: z.string().optional(),
   grandparentKey: z.string().optional(),
   parentKey: z.string().optional(),
-  key: z.string(),
-  guid: z.string(),
-  slug: z.string().optional(),
-  studio: z.string().optional(),
-  type: z.string(),
-  title: z.string(),
-  originalTitle: z.string().optional(),
-  librarySectionTitle: z.string(),
-  librarySectionID: z.number().int(),
-  librarySectionKey: z.string(),
-  contentRating: z.string().optional(),
-  summary: z.string(),
-  index: z.number().int().optional(),
   grandparentTitle: z.string().optional(),
+  grandparentThumb: z.string().optional(),
+  grandparentTheme: z.string().optional(),
+  grandparentArt: z.string().optional(),
   parentTitle: z.string().optional(),
-  audienceRating: z.number().optional(),
-  viewCount: z.number().int().optional(),
-  skipCount: z.number().int().optional(),
-  lastViewedAt: z.number().int().optional(),
-  year: z.number().int(),
-  rating: z.number().optional(),
-  ratingImage: z.string().optional(),
-  tagline: z.string().optional(),
-  chapterSource: z.string().optional(),
-  primaryExtraKey: z.string().optional(),
-  thumb: z.string(),
-  art: z.string(),
-  theme: z.string().optional(),
-  duration: z.number().int(),
-  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString())
-    .optional(),
-  leafCount: z.number().int().optional(),
-  viewedLeafCount: z.number().int().optional(),
-  childCount: z.number().int().optional(),
-  addedAt: z.number().int(),
-  updatedAt: z.number().int(),
-  audienceRatingImage: z.string().optional(),
   parentIndex: z.number().int().optional(),
   parentThumb: z.string().optional(),
-  grandparentThumb: z.string().optional(),
-  grandparentArt: z.string().optional(),
+  ratingImage: z.string().optional(),
+  viewCount: z.number().int().optional(),
+  viewOffset: z.number().int().optional(),
+  skipCount: z.number().int().optional(),
+  subtype: z.string().optional(),
+  lastRatedAt: z.number().int().optional(),
+  createdAtAccuracy: z.string().optional(),
+  createdAtTZOffset: z.string().optional(),
+  lastViewedAt: z.number().int().optional(),
+  userRating: z.number().optional(),
+  image: z.array(z.lazy(() => GetMediaMetaDataImage$outboundSchema)).optional(),
+  ultraBlurColors: z.lazy(() => GetMediaMetaDataUltraBlurColors$outboundSchema)
+    .optional(),
+  librarySectionID: z.number().int(),
+  librarySectionTitle: z.string(),
+  librarySectionKey: z.string(),
   media: z.array(z.lazy(() => GetMediaMetaDataMedia$outboundSchema)).optional(),
-  image: z.array(z.lazy(() => GetMediaMetaDataImage$outboundSchema)),
-  ultraBlurColors: z.lazy(() => GetMediaMetaDataUltraBlurColors$outboundSchema),
   genre: z.array(z.lazy(() => GetMediaMetaDataGenre$outboundSchema)).optional(),
   country: z.array(z.lazy(() => GetMediaMetaDataCountry$outboundSchema))
     .optional(),
-  guids: z.array(z.lazy(() => GetMediaMetaDataGuids$outboundSchema)).optional(),
-  ratings: z.array(z.lazy(() => Ratings$outboundSchema)).optional(),
-  role: z.array(z.lazy(() => GetMediaMetaDataRole$outboundSchema)).optional(),
   director: z.array(z.lazy(() => GetMediaMetaDataDirector$outboundSchema))
     .optional(),
   writer: z.array(z.lazy(() => GetMediaMetaDataWriter$outboundSchema))
     .optional(),
   producer: z.array(z.lazy(() => GetMediaMetaDataProducer$outboundSchema))
     .optional(),
+  role: z.array(z.lazy(() => GetMediaMetaDataRole$outboundSchema)).optional(),
+  guids: z.array(z.lazy(() => GetMediaMetaDataGuids$outboundSchema)).optional(),
+  ratings: z.array(z.lazy(() => Ratings$outboundSchema)).optional(),
   similar: z.array(z.lazy(() => GetMediaMetaDataSimilar$outboundSchema))
     .optional(),
   location: z.array(z.lazy(() => GetMediaMetaDataLocation$outboundSchema))
     .optional(),
+  chapter: z.array(z.lazy(() => Chapter$outboundSchema)).optional(),
+  marker: z.array(z.lazy(() => Marker$outboundSchema)).optional(),
+  extras: z.lazy(() => Extras$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
-    media: "Media",
     image: "Image",
     ultraBlurColors: "UltraBlurColors",
+    media: "Media",
     genre: "Genre",
     country: "Country",
-    guids: "Guid",
-    ratings: "Rating",
-    role: "Role",
     director: "Director",
     writer: "Writer",
     producer: "Producer",
+    role: "Role",
+    guids: "Guid",
+    ratings: "Rating",
     similar: "Similar",
     location: "Location",
+    chapter: "Chapter",
+    marker: "Marker",
+    extras: "Extras",
   });
 });
 

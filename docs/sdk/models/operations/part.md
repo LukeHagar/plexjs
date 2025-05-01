@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Part } from "@lukehagar/plexjs/sdk/models/operations";
+import { Part, StreamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Part = {
   accessible: true,
@@ -22,7 +22,8 @@ let value: Part = {
   stream: [
     {
       id: 1002625,
-      streamType: 1,
+      streamType: StreamType.Video,
+      format: "srt",
       default: true,
       codec: "hevc",
       index: 0,
@@ -50,6 +51,7 @@ let value: Part = {
       colorSpace: "bt2020nc",
       colorTrc: "smpte2084",
       frameRate: 23.976,
+      key: "/library/streams/216389",
       height: 1602,
       level: 150,
       original: true,

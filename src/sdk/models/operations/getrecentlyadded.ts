@@ -266,15 +266,47 @@ export enum HasThumbnail {
   True = "1",
 }
 
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - 1 = video
+ *   - 2 = audio
+ *   - 3 = subtitle
+ */
+export enum StreamType {
+  Video = 1,
+  Audio = 2,
+  Subtitle = 3,
+}
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - 1 = video
+ *   - 2 = audio
+ *   - 3 = subtitle
+ */
+export type StreamTypeOpen = OpenEnum<typeof StreamType>;
+
 export type Stream = {
   /**
    * Unique stream identifier.
    */
   id: number;
   /**
-   * Stream type (1=video, 2=audio, 3=subtitle).
+   * Stream type:
+   *
+   * @remarks
+   *   - 1 = video
+   *   - 2 = audio
+   *   - 3 = subtitle
    */
-  streamType: number;
+  streamType: StreamTypeOpen;
+  /**
+   * Format of the stream (e.g., srt).
+   */
+  format?: string | undefined;
   /**
    * Indicates if this stream is default.
    */
@@ -286,7 +318,7 @@ export type Stream = {
   /**
    * Index of the stream.
    */
-  index: number;
+  index?: number | undefined;
   /**
    * Bitrate of the stream.
    */
@@ -380,6 +412,10 @@ export type Stream = {
    * Frame rate of the stream.
    */
   frameRate?: number | undefined;
+  /**
+   * Key to access this stream part.
+   */
+  key?: string | undefined;
   /**
    * Height of the video stream.
    */
@@ -2052,13 +2088,46 @@ export namespace HasThumbnail$ {
 }
 
 /** @internal */
+export const StreamType$inboundSchema: z.ZodType<
+  StreamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(StreamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const StreamType$outboundSchema: z.ZodType<
+  StreamTypeOpen,
+  z.ZodTypeDef,
+  StreamTypeOpen
+> = z.union([
+  z.nativeEnum(StreamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StreamType$ {
+  /** @deprecated use `StreamType$inboundSchema` instead. */
+  export const inboundSchema = StreamType$inboundSchema;
+  /** @deprecated use `StreamType$outboundSchema` instead. */
+  export const outboundSchema = StreamType$outboundSchema;
+}
+
+/** @internal */
 export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
   .object({
     id: z.number().int(),
-    streamType: z.number().int(),
+    streamType: StreamType$inboundSchema,
+    format: z.string().optional(),
     default: z.boolean().optional(),
     codec: z.string(),
-    index: z.number().int(),
+    index: z.number().int().optional(),
     bitrate: z.number().int().optional(),
     language: z.string().optional(),
     languageTag: z.string().optional(),
@@ -2083,6 +2152,7 @@ export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
     colorSpace: z.string().optional(),
     colorTrc: z.string().optional(),
     frameRate: z.number().optional(),
+    key: z.string().optional(),
     height: z.number().int().optional(),
     level: z.number().int().optional(),
     original: z.boolean().optional(),
@@ -2120,9 +2190,10 @@ export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
 export type Stream$Outbound = {
   id: number;
   streamType: number;
+  format?: string | undefined;
   default?: boolean | undefined;
   codec: string;
-  index: number;
+  index?: number | undefined;
   bitrate?: number | undefined;
   language?: string | undefined;
   languageTag?: string | undefined;
@@ -2147,6 +2218,7 @@ export type Stream$Outbound = {
   colorSpace?: string | undefined;
   colorTrc?: string | undefined;
   frameRate?: number | undefined;
+  key?: string | undefined;
   height?: number | undefined;
   level?: number | undefined;
   original?: boolean | undefined;
@@ -2176,10 +2248,11 @@ export const Stream$outboundSchema: z.ZodType<
   Stream
 > = z.object({
   id: z.number().int(),
-  streamType: z.number().int(),
+  streamType: StreamType$outboundSchema,
+  format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),
-  index: z.number().int(),
+  index: z.number().int().optional(),
   bitrate: z.number().int().optional(),
   language: z.string().optional(),
   languageTag: z.string().optional(),
@@ -2204,6 +2277,7 @@ export const Stream$outboundSchema: z.ZodType<
   colorSpace: z.string().optional(),
   colorTrc: z.string().optional(),
   frameRate: z.number().optional(),
+  key: z.string().optional(),
   height: z.number().int().optional(),
   level: z.number().int().optional(),
   original: z.boolean().optional(),

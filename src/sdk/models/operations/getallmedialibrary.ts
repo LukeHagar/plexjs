@@ -299,15 +299,49 @@ export enum GetAllMediaLibraryHasThumbnail {
   True = "1",
 }
 
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - 1 = video
+ *   - 2 = audio
+ *   - 3 = subtitle
+ */
+export enum GetAllMediaLibraryStreamType {
+  Video = 1,
+  Audio = 2,
+  Subtitle = 3,
+}
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - 1 = video
+ *   - 2 = audio
+ *   - 3 = subtitle
+ */
+export type GetAllMediaLibraryStreamTypeOpen = OpenEnum<
+  typeof GetAllMediaLibraryStreamType
+>;
+
 export type GetAllMediaLibraryStream = {
   /**
    * Unique stream identifier.
    */
   id: number;
   /**
-   * Stream type (1=video, 2=audio, 3=subtitle).
+   * Stream type:
+   *
+   * @remarks
+   *   - 1 = video
+   *   - 2 = audio
+   *   - 3 = subtitle
    */
-  streamType: number;
+  streamType: GetAllMediaLibraryStreamTypeOpen;
+  /**
+   * Format of the stream (e.g., srt).
+   */
+  format?: string | undefined;
   /**
    * Indicates if this stream is default.
    */
@@ -319,7 +353,7 @@ export type GetAllMediaLibraryStream = {
   /**
    * Index of the stream.
    */
-  index: number;
+  index?: number | undefined;
   /**
    * Bitrate of the stream.
    */
@@ -413,6 +447,10 @@ export type GetAllMediaLibraryStream = {
    * Frame rate of the stream.
    */
   frameRate?: number | undefined;
+  /**
+   * Key to access this stream part.
+   */
+  key?: string | undefined;
   /**
    * Height of the video stream.
    */
@@ -2171,16 +2209,49 @@ export namespace GetAllMediaLibraryHasThumbnail$ {
 }
 
 /** @internal */
+export const GetAllMediaLibraryStreamType$inboundSchema: z.ZodType<
+  GetAllMediaLibraryStreamTypeOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetAllMediaLibraryStreamType),
+    z.number().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const GetAllMediaLibraryStreamType$outboundSchema: z.ZodType<
+  GetAllMediaLibraryStreamTypeOpen,
+  z.ZodTypeDef,
+  GetAllMediaLibraryStreamTypeOpen
+> = z.union([
+  z.nativeEnum(GetAllMediaLibraryStreamType),
+  z.number().and(z.custom<Unrecognized<number>>()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetAllMediaLibraryStreamType$ {
+  /** @deprecated use `GetAllMediaLibraryStreamType$inboundSchema` instead. */
+  export const inboundSchema = GetAllMediaLibraryStreamType$inboundSchema;
+  /** @deprecated use `GetAllMediaLibraryStreamType$outboundSchema` instead. */
+  export const outboundSchema = GetAllMediaLibraryStreamType$outboundSchema;
+}
+
+/** @internal */
 export const GetAllMediaLibraryStream$inboundSchema: z.ZodType<
   GetAllMediaLibraryStream,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.number().int(),
-  streamType: z.number().int(),
+  streamType: GetAllMediaLibraryStreamType$inboundSchema,
+  format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),
-  index: z.number().int(),
+  index: z.number().int().optional(),
   bitrate: z.number().int().optional(),
   language: z.string().optional(),
   languageTag: z.string().optional(),
@@ -2205,6 +2276,7 @@ export const GetAllMediaLibraryStream$inboundSchema: z.ZodType<
   colorSpace: z.string().optional(),
   colorTrc: z.string().optional(),
   frameRate: z.number().optional(),
+  key: z.string().optional(),
   height: z.number().int().optional(),
   level: z.number().int().optional(),
   original: z.boolean().optional(),
@@ -2242,9 +2314,10 @@ export const GetAllMediaLibraryStream$inboundSchema: z.ZodType<
 export type GetAllMediaLibraryStream$Outbound = {
   id: number;
   streamType: number;
+  format?: string | undefined;
   default?: boolean | undefined;
   codec: string;
-  index: number;
+  index?: number | undefined;
   bitrate?: number | undefined;
   language?: string | undefined;
   languageTag?: string | undefined;
@@ -2269,6 +2342,7 @@ export type GetAllMediaLibraryStream$Outbound = {
   colorSpace?: string | undefined;
   colorTrc?: string | undefined;
   frameRate?: number | undefined;
+  key?: string | undefined;
   height?: number | undefined;
   level?: number | undefined;
   original?: boolean | undefined;
@@ -2298,10 +2372,11 @@ export const GetAllMediaLibraryStream$outboundSchema: z.ZodType<
   GetAllMediaLibraryStream
 > = z.object({
   id: z.number().int(),
-  streamType: z.number().int(),
+  streamType: GetAllMediaLibraryStreamType$outboundSchema,
+  format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),
-  index: z.number().int(),
+  index: z.number().int().optional(),
   bitrate: z.number().int().optional(),
   language: z.string().optional(),
   languageTag: z.string().optional(),
@@ -2326,6 +2401,7 @@ export const GetAllMediaLibraryStream$outboundSchema: z.ZodType<
   colorSpace: z.string().optional(),
   colorTrc: z.string().optional(),
   frameRate: z.number().optional(),
+  key: z.string().optional(),
   height: z.number().int().optional(),
   level: z.number().int().optional(),
   original: z.boolean().optional(),
