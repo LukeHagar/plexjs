@@ -30,11 +30,12 @@ export enum GetAllLibrariesType {
 export type GetAllLibrariesTypeOpen = OpenEnum<typeof GetAllLibrariesType>;
 
 /**
- * UNKNOWN
+ * The Plex library visibility setting
  */
 export enum Hidden {
-  Disable = 0,
-  Enable = 1,
+  Visible = 0,
+  ExcludeHomeScreen = 1,
+  ExcludeHomeScreenAndGlobalSearch = 2,
 }
 
 export type GetAllLibrariesLocation = {
@@ -122,6 +123,9 @@ export type GetAllLibrariesDirectory = {
    * NOTE: Some Plex server have some absurd values for this field, like 8457612157633039800 so it should be int64
    */
   contentChangedAt: number;
+  /**
+   * The Plex library visibility setting
+   */
   hidden?: Hidden | undefined;
   location: Array<GetAllLibrariesLocation>;
 };
@@ -359,7 +363,7 @@ export const GetAllLibrariesDirectory$outboundSchema: z.ZodType<
   content: z.boolean(),
   directory: z.boolean(),
   contentChangedAt: z.number().int(),
-  hidden: Hidden$outboundSchema.default(Hidden.Disable),
+  hidden: Hidden$outboundSchema.default(Hidden.Visible),
   location: z.array(z.lazy(() => GetAllLibrariesLocation$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {
