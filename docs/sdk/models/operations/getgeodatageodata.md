@@ -12,8 +12,11 @@ let value: GetGeoDataGeoData = {
   continentCode: "NA",
   country: "United States Virgin Islands",
   city: "Amsterdam",
+  europeanUnionMember: true,
   timeZone: "America/St_Thomas",
   postalCode: "802",
+  inPrivacyRestrictedCountry: true,
+  inPrivacyRestrictedRegion: true,
   subdivisions: "Saint Thomas",
   coordinates: "18.3381, -64.8941",
 };

@@ -29,9 +29,11 @@ export enum Type {
   TvShow = 2,
   Season = 3,
   Episode = 4,
-  Audio = 8,
-  Album = 9,
-  Track = 10,
+  Artist = 5,
+  Album = 6,
+  Track = 7,
+  PhotoAlbum = 8,
+  Photo = 9,
 }
 /**
  * The type of media to retrieve or filter by.
@@ -192,7 +194,7 @@ export type Meta = {
 };
 
 /**
- * The type of media content
+ * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
  * @remarks
  */
@@ -203,9 +205,13 @@ export enum GetRecentlyAddedHubsType {
   Episode = "episode",
   Artist = "artist",
   Album = "album",
+  Track = "track",
+  PhotoAlbum = "photoalbum",
+  Photo = "photo",
+  Collection = "collection",
 }
 /**
- * The type of media content
+ * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
  * @remarks
  */
@@ -234,6 +240,15 @@ export type UltraBlurColors = {
   topRight: string;
   bottomRight: string;
   bottomLeft: string;
+};
+
+export type Guids = {
+  /**
+   * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+   *
+   * @remarks
+   */
+  id: string;
 };
 
 export enum One {
@@ -623,6 +638,12 @@ export type Media = {
  * The filter query string for similar items.
  */
 export type Genre = {
+  /**
+   * The unique identifier for the genre.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
+   */
   id: number;
   filter: string;
   /**
@@ -637,19 +658,41 @@ export type Genre = {
  * The filter query string for country media items.
  */
 export type Country = {
+  /**
+   * The unique identifier for the country.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
+   */
   id: number;
   /**
    * The country of origin of this media item
    */
   tag: string;
-  filter?: string | undefined;
+  filter: string;
 };
 
 export type Director = {
   /**
+   * Unique identifier for the director.
+   */
+  id: number;
+  /**
+   * The filter string used to query this director.
+   */
+  filter: string;
+  /**
    * The role of Director
    */
   tag: string;
+  /**
+   * A unique 24-character hexadecimal key associated with the director's tag, used for internal identification.
+   */
+  tagKey: string;
+  /**
+   * The absolute URL of the thumbnail image for the director.
+   */
+  thumb?: string | undefined;
 };
 
 export type Writer = {
@@ -666,14 +709,21 @@ export type Writer = {
    */
   tag: string;
   /**
-   * A unique key associated with the writers tag, used for internal identification.
+   * A 24-character hexadecimal unique key associated with the writer’s tag, used for internal identification.
    */
   tagKey?: string | undefined;
+  /**
+   * The absolute URL of the thumbnail image for the writer.
+   */
+  thumb?: string | undefined;
 };
 
 export type Role = {
   /**
-   * Unique identifier for the actor or role.
+   * The unique identifier for the role.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
    */
   id: number;
   /**
@@ -685,15 +735,18 @@ export type Role = {
    */
   tag: string;
   /**
-   * A unique key associated with the actor's tag, used for internal identification.
+   * A 24-character hexadecimal unique key associated with the actor's tag, used for internal identification.
+   *
+   * @remarks
+   * NOTE: This is globally unique across all Plex Servers.
    */
-  tagKey?: string | undefined;
+  tagKey: string;
   /**
    * The role played by the actor in the media item.
    */
   role?: string | undefined;
   /**
-   * The URL of the thumbnail image for the actor.
+   * The absolute URL of the thumbnail image for the actor.
    */
   thumb?: string | undefined;
 };
@@ -712,11 +765,13 @@ export type Producer = {
    */
   tag: string;
   /**
-   * A unique key associated with the producer's tag, used for internal identification.
+   * A 24-character hexadecimal unique key associated with the producer's tag, used for internal identification.
+   *
+   * @remarks
    */
-  tagKey?: string | undefined;
+  tagKey: string;
   /**
-   * The URL of the thumbnail image for the actor.
+   * The absolute URL of the thumbnail image for the producer.
    */
   thumb?: string | undefined;
 };
@@ -725,6 +780,9 @@ export type Producer = {
  * The type of rating, for example 'audience' or 'critic'.
  */
 export type Rating = {
+  /**
+   * The URL for the rating image, for example from IMDb.
+   */
   image: string;
   value: number;
   type: string;
@@ -744,15 +802,6 @@ export type Similar = {
  */
 export type Location = {
   path: string;
-};
-
-export type Guids = {
-  /**
-   * The unique identifier for the Guid. Can be imdb://tt0286347, tmdb://1763, tvdb://2337
-   *
-   * @remarks
-   */
-  id?: string | undefined;
 };
 
 export type Collection = {
@@ -1008,6 +1057,7 @@ export type GetRecentlyAddedMetadata = {
   year?: number | undefined;
   image?: Array<GetRecentlyAddedImage> | undefined;
   ultraBlurColors?: UltraBlurColors | undefined;
+  guids?: Array<Guids> | undefined;
   media?: Array<Media> | undefined;
   genre?: Array<Genre> | undefined;
   country?: Array<Country> | undefined;
@@ -1018,7 +1068,6 @@ export type GetRecentlyAddedMetadata = {
   rating1?: Array<Rating> | undefined;
   similar?: Array<Similar> | undefined;
   location?: Array<Location> | undefined;
-  guids?: Array<Guids> | undefined;
   collection?: Array<Collection> | undefined;
 };
 
@@ -1920,6 +1969,53 @@ export function ultraBlurColorsFromJSON(
 }
 
 /** @internal */
+export const Guids$inboundSchema: z.ZodType<Guids, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.string(),
+  });
+
+/** @internal */
+export type Guids$Outbound = {
+  id: string;
+};
+
+/** @internal */
+export const Guids$outboundSchema: z.ZodType<
+  Guids$Outbound,
+  z.ZodTypeDef,
+  Guids
+> = z.object({
+  id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Guids$ {
+  /** @deprecated use `Guids$inboundSchema` instead. */
+  export const inboundSchema = Guids$inboundSchema;
+  /** @deprecated use `Guids$outboundSchema` instead. */
+  export const outboundSchema = Guids$outboundSchema;
+  /** @deprecated use `Guids$Outbound` instead. */
+  export type Outbound = Guids$Outbound;
+}
+
+export function guidsToJSON(guids: Guids): string {
+  return JSON.stringify(Guids$outboundSchema.parse(guids));
+}
+
+export function guidsFromJSON(
+  jsonString: string,
+): SafeParseResult<Guids, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Guids$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Guids' from JSON`,
+  );
+}
+
+/** @internal */
 export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
 
 /** @internal */
@@ -2608,14 +2704,14 @@ export const Country$inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> =
   z.object({
     id: z.number().int(),
     tag: z.string(),
-    filter: z.string().optional(),
+    filter: z.string(),
   });
 
 /** @internal */
 export type Country$Outbound = {
   id: number;
   tag: string;
-  filter?: string | undefined;
+  filter: string;
 };
 
 /** @internal */
@@ -2626,7 +2722,7 @@ export const Country$outboundSchema: z.ZodType<
 > = z.object({
   id: z.number().int(),
   tag: z.string(),
-  filter: z.string().optional(),
+  filter: z.string(),
 });
 
 /**
@@ -2662,12 +2758,20 @@ export const Director$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  id: z.number().int(),
+  filter: z.string(),
   tag: z.string(),
+  tagKey: z.string(),
+  thumb: z.string().optional(),
 });
 
 /** @internal */
 export type Director$Outbound = {
+  id: number;
+  filter: string;
   tag: string;
+  tagKey: string;
+  thumb?: string | undefined;
 };
 
 /** @internal */
@@ -2676,7 +2780,11 @@ export const Director$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Director
 > = z.object({
+  id: z.number().int(),
+  filter: z.string(),
   tag: z.string(),
+  tagKey: z.string(),
+  thumb: z.string().optional(),
 });
 
 /**
@@ -2713,6 +2821,7 @@ export const Writer$inboundSchema: z.ZodType<Writer, z.ZodTypeDef, unknown> = z
     filter: z.string(),
     tag: z.string(),
     tagKey: z.string().optional(),
+    thumb: z.string().optional(),
   });
 
 /** @internal */
@@ -2721,6 +2830,7 @@ export type Writer$Outbound = {
   filter: string;
   tag: string;
   tagKey?: string | undefined;
+  thumb?: string | undefined;
 };
 
 /** @internal */
@@ -2733,6 +2843,7 @@ export const Writer$outboundSchema: z.ZodType<
   filter: z.string(),
   tag: z.string(),
   tagKey: z.string().optional(),
+  thumb: z.string().optional(),
 });
 
 /**
@@ -2768,7 +2879,7 @@ export const Role$inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z
     id: z.number().int(),
     filter: z.string(),
     tag: z.string(),
-    tagKey: z.string().optional(),
+    tagKey: z.string(),
     role: z.string().optional(),
     thumb: z.string().optional(),
   });
@@ -2778,7 +2889,7 @@ export type Role$Outbound = {
   id: number;
   filter: string;
   tag: string;
-  tagKey?: string | undefined;
+  tagKey: string;
   role?: string | undefined;
   thumb?: string | undefined;
 };
@@ -2789,7 +2900,7 @@ export const Role$outboundSchema: z.ZodType<Role$Outbound, z.ZodTypeDef, Role> =
     id: z.number().int(),
     filter: z.string(),
     tag: z.string(),
-    tagKey: z.string().optional(),
+    tagKey: z.string(),
     role: z.string().optional(),
     thumb: z.string().optional(),
   });
@@ -2830,7 +2941,7 @@ export const Producer$inboundSchema: z.ZodType<
   id: z.number().int(),
   filter: z.string(),
   tag: z.string(),
-  tagKey: z.string().optional(),
+  tagKey: z.string(),
   thumb: z.string().optional(),
 });
 
@@ -2839,7 +2950,7 @@ export type Producer$Outbound = {
   id: number;
   filter: string;
   tag: string;
-  tagKey?: string | undefined;
+  tagKey: string;
   thumb?: string | undefined;
 };
 
@@ -2852,7 +2963,7 @@ export const Producer$outboundSchema: z.ZodType<
   id: z.number().int(),
   filter: z.string(),
   tag: z.string(),
-  tagKey: z.string().optional(),
+  tagKey: z.string(),
   thumb: z.string().optional(),
 });
 
@@ -3040,53 +3151,6 @@ export function locationFromJSON(
 }
 
 /** @internal */
-export const Guids$inboundSchema: z.ZodType<Guids, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.string().optional(),
-  });
-
-/** @internal */
-export type Guids$Outbound = {
-  id?: string | undefined;
-};
-
-/** @internal */
-export const Guids$outboundSchema: z.ZodType<
-  Guids$Outbound,
-  z.ZodTypeDef,
-  Guids
-> = z.object({
-  id: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Guids$ {
-  /** @deprecated use `Guids$inboundSchema` instead. */
-  export const inboundSchema = Guids$inboundSchema;
-  /** @deprecated use `Guids$outboundSchema` instead. */
-  export const outboundSchema = Guids$outboundSchema;
-  /** @deprecated use `Guids$Outbound` instead. */
-  export type Outbound = Guids$Outbound;
-}
-
-export function guidsToJSON(guids: Guids): string {
-  return JSON.stringify(Guids$outboundSchema.parse(guids));
-}
-
-export function guidsFromJSON(
-  jsonString: string,
-): SafeParseResult<Guids, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Guids$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Guids' from JSON`,
-  );
-}
-
-/** @internal */
 export const Collection$inboundSchema: z.ZodType<
   Collection,
   z.ZodTypeDef,
@@ -3205,6 +3269,7 @@ export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
   year: z.number().int().optional(),
   Image: z.array(z.lazy(() => GetRecentlyAddedImage$inboundSchema)).optional(),
   UltraBlurColors: z.lazy(() => UltraBlurColors$inboundSchema).optional(),
+  Guid: z.array(z.lazy(() => Guids$inboundSchema)).optional(),
   Media: z.array(z.lazy(() => Media$inboundSchema)).optional(),
   Genre: z.array(z.lazy(() => Genre$inboundSchema)).optional(),
   Country: z.array(z.lazy(() => Country$inboundSchema)).optional(),
@@ -3215,12 +3280,12 @@ export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
   Rating: z.array(z.lazy(() => Rating$inboundSchema)).optional(),
   Similar: z.array(z.lazy(() => Similar$inboundSchema)).optional(),
   Location: z.array(z.lazy(() => Location$inboundSchema)).optional(),
-  Guid: z.array(z.lazy(() => Guids$inboundSchema)).optional(),
   Collection: z.array(z.lazy(() => Collection$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "Image": "image",
     "UltraBlurColors": "ultraBlurColors",
+    "Guid": "guids",
     "Media": "media",
     "Genre": "genre",
     "Country": "country",
@@ -3231,7 +3296,6 @@ export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
     "Rating": "rating1",
     "Similar": "similar",
     "Location": "location",
-    "Guid": "guids",
     "Collection": "collection",
   });
 });
@@ -3301,6 +3365,7 @@ export type GetRecentlyAddedMetadata$Outbound = {
   year?: number | undefined;
   Image?: Array<GetRecentlyAddedImage$Outbound> | undefined;
   UltraBlurColors?: UltraBlurColors$Outbound | undefined;
+  Guid?: Array<Guids$Outbound> | undefined;
   Media?: Array<Media$Outbound> | undefined;
   Genre?: Array<Genre$Outbound> | undefined;
   Country?: Array<Country$Outbound> | undefined;
@@ -3311,7 +3376,6 @@ export type GetRecentlyAddedMetadata$Outbound = {
   Rating?: Array<Rating$Outbound> | undefined;
   Similar?: Array<Similar$Outbound> | undefined;
   Location?: Array<Location$Outbound> | undefined;
-  Guid?: Array<Guids$Outbound> | undefined;
   Collection?: Array<Collection$Outbound> | undefined;
 };
 
@@ -3384,6 +3448,7 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
   year: z.number().int().optional(),
   image: z.array(z.lazy(() => GetRecentlyAddedImage$outboundSchema)).optional(),
   ultraBlurColors: z.lazy(() => UltraBlurColors$outboundSchema).optional(),
+  guids: z.array(z.lazy(() => Guids$outboundSchema)).optional(),
   media: z.array(z.lazy(() => Media$outboundSchema)).optional(),
   genre: z.array(z.lazy(() => Genre$outboundSchema)).optional(),
   country: z.array(z.lazy(() => Country$outboundSchema)).optional(),
@@ -3394,12 +3459,12 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
   rating1: z.array(z.lazy(() => Rating$outboundSchema)).optional(),
   similar: z.array(z.lazy(() => Similar$outboundSchema)).optional(),
   location: z.array(z.lazy(() => Location$outboundSchema)).optional(),
-  guids: z.array(z.lazy(() => Guids$outboundSchema)).optional(),
   collection: z.array(z.lazy(() => Collection$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     image: "Image",
     ultraBlurColors: "UltraBlurColors",
+    guids: "Guid",
     media: "Media",
     genre: "Genre",
     country: "Country",
@@ -3410,7 +3475,6 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
     rating1: "Rating",
     similar: "Similar",
     location: "Location",
-    guids: "Guid",
     collection: "Collection",
   });
 });

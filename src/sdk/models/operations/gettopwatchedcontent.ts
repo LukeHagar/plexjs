@@ -29,9 +29,11 @@ export enum GetTopWatchedContentQueryParamType {
   TvShow = 2,
   Season = 3,
   Episode = 4,
-  Audio = 8,
-  Album = 9,
-  Track = 10,
+  Artist = 5,
+  Album = 6,
+  Track = 7,
+  PhotoAlbum = 8,
+  Photo = 9,
 }
 /**
  * The type of media to retrieve or filter by.
@@ -47,13 +49,17 @@ export type GetTopWatchedContentQueryParamTypeOpen = OpenEnum<
   typeof GetTopWatchedContentQueryParamType
 >;
 
+/**
+ * Adds the Guid object to the response
+ *
+ * @remarks
+ */
+export enum GetTopWatchedContentQueryParamIncludeGuids {
+  Disable = 0,
+  Enable = 1,
+}
+
 export type GetTopWatchedContentRequest = {
-  /**
-   * Adds the Guids object to the response
-   *
-   * @remarks
-   */
-  includeGuids?: number | undefined;
   /**
    * The type of media to retrieve or filter by.
    *
@@ -65,6 +71,12 @@ export type GetTopWatchedContentRequest = {
    * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
   type: GetTopWatchedContentQueryParamTypeOpen;
+  /**
+   * Adds the Guid object to the response
+   *
+   * @remarks
+   */
+  includeGuids?: GetTopWatchedContentQueryParamIncludeGuids | undefined;
 };
 
 export type GetTopWatchedContentGenre = {
@@ -132,11 +144,26 @@ export type GetTopWatchedContentMetadata = {
 };
 
 export type GetTopWatchedContentMediaContainer = {
-  size?: number | undefined;
-  allowSync?: boolean | undefined;
-  identifier?: string | undefined;
-  mediaTagPrefix?: string | undefined;
-  mediaTagVersion?: number | undefined;
+  /**
+   * Number of media items returned in this response.
+   */
+  size: number;
+  /**
+   * Indicates whether syncing is allowed.
+   */
+  allowSync: boolean;
+  /**
+   * An plugin identifier for the media container.
+   */
+  identifier: string;
+  /**
+   * The prefix used for media tag resource paths.
+   */
+  mediaTagPrefix: string;
+  /**
+   * The version number for media tags.
+   */
+  mediaTagVersion: number;
   metadata?: Array<GetTopWatchedContentMetadata> | undefined;
 };
 
@@ -200,19 +227,42 @@ export namespace GetTopWatchedContentQueryParamType$ {
 }
 
 /** @internal */
+export const GetTopWatchedContentQueryParamIncludeGuids$inboundSchema:
+  z.ZodNativeEnum<typeof GetTopWatchedContentQueryParamIncludeGuids> = z
+    .nativeEnum(GetTopWatchedContentQueryParamIncludeGuids);
+
+/** @internal */
+export const GetTopWatchedContentQueryParamIncludeGuids$outboundSchema:
+  z.ZodNativeEnum<typeof GetTopWatchedContentQueryParamIncludeGuids> =
+    GetTopWatchedContentQueryParamIncludeGuids$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTopWatchedContentQueryParamIncludeGuids$ {
+  /** @deprecated use `GetTopWatchedContentQueryParamIncludeGuids$inboundSchema` instead. */
+  export const inboundSchema =
+    GetTopWatchedContentQueryParamIncludeGuids$inboundSchema;
+  /** @deprecated use `GetTopWatchedContentQueryParamIncludeGuids$outboundSchema` instead. */
+  export const outboundSchema =
+    GetTopWatchedContentQueryParamIncludeGuids$outboundSchema;
+}
+
+/** @internal */
 export const GetTopWatchedContentRequest$inboundSchema: z.ZodType<
   GetTopWatchedContentRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  includeGuids: z.number().int().optional(),
   type: GetTopWatchedContentQueryParamType$inboundSchema,
+  includeGuids: GetTopWatchedContentQueryParamIncludeGuids$inboundSchema,
 });
 
 /** @internal */
 export type GetTopWatchedContentRequest$Outbound = {
-  includeGuids?: number | undefined;
   type: number;
+  includeGuids: number;
 };
 
 /** @internal */
@@ -221,8 +271,9 @@ export const GetTopWatchedContentRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetTopWatchedContentRequest
 > = z.object({
-  includeGuids: z.number().int().optional(),
   type: GetTopWatchedContentQueryParamType$outboundSchema,
+  includeGuids: GetTopWatchedContentQueryParamIncludeGuids$outboundSchema
+    .default(GetTopWatchedContentQueryParamIncludeGuids.Disable),
 });
 
 /**
@@ -739,11 +790,11 @@ export const GetTopWatchedContentMediaContainer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  size: z.number().int().optional(),
-  allowSync: z.boolean().optional(),
-  identifier: z.string().optional(),
-  mediaTagPrefix: z.string().optional(),
-  mediaTagVersion: z.number().int().optional(),
+  size: z.number().int(),
+  allowSync: z.boolean(),
+  identifier: z.string(),
+  mediaTagPrefix: z.string(),
+  mediaTagVersion: z.number().int(),
   Metadata: z.array(z.lazy(() => GetTopWatchedContentMetadata$inboundSchema))
     .optional(),
 }).transform((v) => {
@@ -754,11 +805,11 @@ export const GetTopWatchedContentMediaContainer$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetTopWatchedContentMediaContainer$Outbound = {
-  size?: number | undefined;
-  allowSync?: boolean | undefined;
-  identifier?: string | undefined;
-  mediaTagPrefix?: string | undefined;
-  mediaTagVersion?: number | undefined;
+  size: number;
+  allowSync: boolean;
+  identifier: string;
+  mediaTagPrefix: string;
+  mediaTagVersion: number;
   Metadata?: Array<GetTopWatchedContentMetadata$Outbound> | undefined;
 };
 
@@ -768,11 +819,11 @@ export const GetTopWatchedContentMediaContainer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetTopWatchedContentMediaContainer
 > = z.object({
-  size: z.number().int().optional(),
-  allowSync: z.boolean().optional(),
-  identifier: z.string().optional(),
-  mediaTagPrefix: z.string().optional(),
-  mediaTagVersion: z.number().int().optional(),
+  size: z.number().int(),
+  allowSync: z.boolean(),
+  identifier: z.string(),
+  mediaTagPrefix: z.string(),
+  mediaTagVersion: z.number().int(),
   metadata: z.array(z.lazy(() => GetTopWatchedContentMetadata$outboundSchema))
     .optional(),
 }).transform((v) => {

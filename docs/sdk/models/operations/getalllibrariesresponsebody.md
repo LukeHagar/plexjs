@@ -5,7 +5,7 @@ The libraries available on the Server
 ## Example Usage
 
 ```typescript
-import { GetAllLibrariesResponseBody, GetAllLibrariesType } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetAllLibrariesResponseBody, GetAllLibrariesType, Hidden } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetAllLibrariesResponseBody = {
   mediaContainer: {
@@ -33,6 +33,7 @@ let value: GetAllLibrariesResponseBody = {
         content: true,
         directory: true,
         contentChangedAt: 9173960,
+        hidden: Hidden.ExcludeHomeScreen,
         location: [
           {
             id: 1,

@@ -30,7 +30,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.butler.getButlerTasks();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -53,15 +52,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await butlerGetButlerTasks(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("butlerGetButlerTasks failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -108,7 +104,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.butler.startAllTasks();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -131,15 +126,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await butlerStartAllTasks(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("butlerStartAllTasks failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -182,7 +174,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.butler.stopAllTasks();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -205,15 +196,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await butlerStopAllTasks(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("butlerStopAllTasks failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -259,9 +247,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.butler.startTask(TaskName.CleanOldBundles);
+  const result = await plexAPI.butler.startTask(TaskName.RefreshPeriodicMetadata);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -284,16 +271,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await butlerStartTask(plexAPI, TaskName.CleanOldBundles);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await butlerStartTask(plexAPI, TaskName.RefreshPeriodicMetadata);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("butlerStartTask failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -336,9 +320,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.butler.stopTask(PathParamTaskName.BackupDatabase);
+  const result = await plexAPI.butler.stopTask(PathParamTaskName.CleanOldCacheFiles);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -361,16 +344,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await butlerStopTask(plexAPI, PathParamTaskName.BackupDatabase);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await butlerStopTask(plexAPI, PathParamTaskName.CleanOldCacheFiles);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("butlerStopTask failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

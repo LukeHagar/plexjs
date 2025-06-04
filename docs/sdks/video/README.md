@@ -39,7 +39,6 @@ async function run() {
     row: 1,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -74,15 +73,12 @@ async function run() {
     playBackTime: 2000,
     row: 1,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("videoGetTimeline failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -142,7 +138,6 @@ async function run() {
     autoAdjustQuality: 0,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -182,15 +177,12 @@ async function run() {
     addDebugOverlay: 0,
     autoAdjustQuality: 0,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("videoStartUniversalTranscode failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

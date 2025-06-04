@@ -29,7 +29,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.updater.getUpdateStatus();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -52,15 +51,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await updaterGetUpdateStatus(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("updaterGetUpdateStatus failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -103,7 +99,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.updater.checkForUpdates(Download.One);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -127,15 +122,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await updaterCheckForUpdates(plexAPI, Download.One);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("updaterCheckForUpdates failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -180,7 +172,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.updater.applyUpdates(Tonight.One, Skip.One);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -204,15 +195,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await updaterApplyUpdates(plexAPI, Tonight.One, Skip.One);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("updaterApplyUpdates failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

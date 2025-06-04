@@ -5,13 +5,7 @@
 ```typescript
 import { GetRefreshLibraryMetadataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetRefreshLibraryMetadataResponse = {
-  contentType: "<value>",
-  statusCode: 204,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetRefreshLibraryMetadataResponse = {};
 ```
 
 ## Fields

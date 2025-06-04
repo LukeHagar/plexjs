@@ -3,9 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { GetServerResourcesRequest } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetServerResourcesRequest, IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetServerResourcesRequest = {
+  includeHttps: IncludeHttps.Enable,
+  includeRelay: IncludeRelay.Enable,
+  includeIPv6: IncludeIPv6.Enable,
   clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
 };
 ```

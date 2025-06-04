@@ -26,11 +26,10 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.watchlist.getWatchList({
-    filter: Filter.Available,
+    filter: Filter.Released,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -54,18 +53,15 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await watchlistGetWatchList(plexAPI, {
-    filter: Filter.Available,
+    filter: Filter.Released,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("watchlistGetWatchList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

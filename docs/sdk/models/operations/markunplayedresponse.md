@@ -5,13 +5,7 @@
 ```typescript
 import { MarkUnplayedResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: MarkUnplayedResponse = {
-  contentType: "<value>",
-  statusCode: 401,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: MarkUnplayedResponse = {};
 ```
 
 ## Fields

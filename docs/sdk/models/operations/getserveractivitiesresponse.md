@@ -5,13 +5,7 @@
 ```typescript
 import { GetServerActivitiesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetServerActivitiesResponse = {
-  contentType: "<value>",
-  statusCode: 428,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetServerActivitiesResponse = {};
 ```
 
 ## Fields

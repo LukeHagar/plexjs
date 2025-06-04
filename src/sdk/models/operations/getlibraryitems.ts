@@ -65,9 +65,11 @@ export enum GetLibraryItemsQueryParamType {
   TvShow = 2,
   Season = 3,
   Episode = 4,
-  Audio = 8,
-  Album = 9,
-  Track = 10,
+  Artist = 5,
+  Album = 6,
+  Track = 7,
+  PhotoAlbum = 8,
+  Photo = 9,
 }
 /**
  * The type of media to retrieve or filter by.
@@ -225,7 +227,7 @@ export type GetLibraryItemsFieldType = {
 };
 
 /**
- * The type of media content
+ * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
  * @remarks
  */
@@ -236,9 +238,13 @@ export enum GetLibraryItemsLibraryType {
   Episode = "episode",
   Artist = "artist",
   Album = "album",
+  Track = "track",
+  PhotoAlbum = "photoalbum",
+  Photo = "photo",
+  Collection = "collection",
 }
 /**
- * The type of media content
+ * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
  * @remarks
  */
@@ -625,7 +631,7 @@ export type GetLibraryItemsMetadata = {
   librarySectionTitle?: string | undefined;
   librarySectionKey?: string | undefined;
   /**
-   * The type of media content
+   * The type of media content in the Plex library. This can represent videos, music, or photos.
    *
    * @remarks
    */

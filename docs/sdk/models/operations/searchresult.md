@@ -7,7 +7,9 @@ import {
   GetSearchAllLibrariesEnableCreditsMarkerGeneration,
   GetSearchAllLibrariesEpisodeSort,
   GetSearchAllLibrariesFlattenSeasons,
+  GetSearchAllLibrariesHasThumbnail,
   GetSearchAllLibrariesLibraryType,
+  GetSearchAllLibrariesOptimizedForStreaming,
   GetSearchAllLibrariesShowOrdering,
   GetSearchAllLibrariesType,
   SearchResult,
@@ -78,6 +80,8 @@ let value: SearchResult = {
         videoFrameRate: "24p",
         videoProfile: "main 10",
         hasVoiceActivity: false,
+        optimizedForStreaming:
+          GetSearchAllLibrariesOptimizedForStreaming.Enable,
         has64bitOffsets: false,
         part: [
           {
@@ -93,6 +97,7 @@ let value: SearchResult = {
             optimizedForStreaming: false,
             videoProfile: "main 10",
             indexes: "sd",
+            hasThumbnail: GetSearchAllLibrariesHasThumbnail.True,
             stream: [
               {
                 id: 272796,

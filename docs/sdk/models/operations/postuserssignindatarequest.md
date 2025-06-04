@@ -11,11 +11,6 @@ let value: PostUsersSignInDataRequest = {
   deviceNickname: "Roku 3",
   clientVersion: "2.4.1",
   platform: "Roku",
-  requestBody: {
-    login: "username@email.com",
-    password: "password123",
-    verificationCode: "123456",
-  },
 };
 ```
 

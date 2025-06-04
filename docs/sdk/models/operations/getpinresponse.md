@@ -5,34 +5,7 @@
 ```typescript
 import { GetPinResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetPinResponse = {
-  contentType: "<value>",
-  statusCode: 101,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  authPinContainer: {
-    id: 308667304,
-    code: "7RQZ",
-    product: "0",
-    qr: "https://plex.tv/api/v2/pins/qr/7RQZ",
-    clientIdentifier: "string",
-    location: {
-      code: "VI",
-      continentCode: "NA",
-      country: "United States Virgin Islands",
-      city: "Amsterdam",
-      timeZone: "America/St_Thomas",
-      postalCode: "802",
-      subdivisions: "Saint Thomas",
-      coordinates: "18.3381, -64.8941",
-    },
-    createdAt: new Date("2024-07-16T17:03:05Z"),
-    expiresAt: new Date("2024-07-16T17:18:05Z"),
-    authToken: null,
-    newRegistration: null,
-  },
-};
+let value: GetPinResponse = {};
 ```
 
 ## Fields

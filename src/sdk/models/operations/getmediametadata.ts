@@ -16,9 +16,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetMediaMetaDataRequest = {
   /**
-   * the id of the library item to return the children of.
+   * The id(s) of the library item(s) to return metadata for. Can be a single ID or comma-separated list of IDs.
    */
-  ratingKey: number;
+  ratingKey: string;
   /**
    * Include concerts data if set to true.
    */
@@ -74,7 +74,7 @@ export type GetMediaMetaDataRequest = {
 };
 
 /**
- * The type of media content
+ * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
  * @remarks
  */
@@ -85,9 +85,13 @@ export enum GetMediaMetaDataType {
   Episode = "episode",
   Artist = "artist",
   Album = "album",
+  Track = "track",
+  PhotoAlbum = "photoalbum",
+  Photo = "photo",
+  Collection = "collection",
 }
 /**
- * The type of media content
+ * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
  * @remarks
  */
@@ -114,6 +118,15 @@ export type GetMediaMetaDataUltraBlurColors = {
   topRight: string;
   bottomRight: string;
   bottomLeft: string;
+};
+
+export type GetMediaMetaDataGuids = {
+  /**
+   * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+   *
+   * @remarks
+   */
+  id: string;
 };
 
 export enum GetMediaMetaDataOptimizedForStreaming1 {
@@ -510,6 +523,12 @@ export type GetMediaMetaDataMedia = {
  * The filter query string for similar items.
  */
 export type GetMediaMetaDataGenre = {
+  /**
+   * The unique identifier for the genre.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
+   */
   id: number;
   /**
    * The genre name of this media-item
@@ -524,12 +543,18 @@ export type GetMediaMetaDataGenre = {
  * The filter query string for country media items.
  */
 export type GetMediaMetaDataCountry = {
+  /**
+   * The unique identifier for the country.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
+   */
   id: number;
   /**
    * The country of origin of this media item
    */
   tag: string;
-  filter?: string | undefined;
+  filter: string;
 };
 
 export type GetMediaMetaDataDirector = {
@@ -546,11 +571,11 @@ export type GetMediaMetaDataDirector = {
    */
   filter: string;
   /**
-   * A unique key associated with the director's tag, used for internal identification.
+   * A unique 24-character hexadecimal key associated with the director's tag, used for internal identification.
    */
-  tagKey?: string | undefined;
+  tagKey: string;
   /**
-   * The URL of the thumbnail image for the director.
+   * The absolute URL of the thumbnail image for the director.
    */
   thumb?: string | undefined;
 };
@@ -569,11 +594,11 @@ export type GetMediaMetaDataWriter = {
    */
   filter: string;
   /**
-   * The URL of the thumbnail image for the writer.
+   * The absolute URL of the thumbnail image for the writer.
    */
   thumb?: string | undefined;
   /**
-   * A unique key associated with the writers tag, used for internal identification.
+   * A 24-character hexadecimal unique key associated with the writer’s tag, used for internal identification.
    */
   tagKey?: string | undefined;
 };
@@ -607,7 +632,10 @@ export type GetMediaMetaDataProducer = {
 
 export type GetMediaMetaDataRole = {
   /**
-   * Unique identifier for the actor or role.
+   * The unique identifier for the role.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
    */
   id: number;
   /**
@@ -623,20 +651,16 @@ export type GetMediaMetaDataRole = {
    */
   filter: string;
   /**
-   * A unique key associated with the actor's tag, used for internal identification.
+   * A 24-character hexadecimal unique key associated with the actor's tag, used for internal identification.
+   *
+   * @remarks
+   * NOTE: This is globally unique across all Plex Servers.
    */
-  tagKey?: string | undefined;
+  tagKey: string;
   /**
-   * The URL of the thumbnail image for the actor.
+   * The absolute URL of the thumbnail image for the actor.
    */
   thumb?: string | undefined;
-};
-
-export type GetMediaMetaDataGuids = {
-  /**
-   * The GUID value.
-   */
-  id: string;
 };
 
 export type Ratings = {
@@ -954,6 +978,7 @@ export type GetMediaMetaDataMetadata = {
    * The key corresponding to the library section.
    */
   librarySectionKey: string;
+  guids?: Array<GetMediaMetaDataGuids> | undefined;
   media?: Array<GetMediaMetaDataMedia> | undefined;
   genre?: Array<GetMediaMetaDataGenre> | undefined;
   country?: Array<GetMediaMetaDataCountry> | undefined;
@@ -961,7 +986,6 @@ export type GetMediaMetaDataMetadata = {
   writer?: Array<GetMediaMetaDataWriter> | undefined;
   producer?: Array<GetMediaMetaDataProducer> | undefined;
   role?: Array<GetMediaMetaDataRole> | undefined;
-  guids?: Array<GetMediaMetaDataGuids> | undefined;
   ratings?: Array<Ratings> | undefined;
   similar?: Array<GetMediaMetaDataSimilar> | undefined;
   location?: Array<GetMediaMetaDataLocation> | undefined;
@@ -1041,7 +1065,7 @@ export const GetMediaMetaDataRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  ratingKey: z.number().int(),
+  ratingKey: z.string(),
   includeConcerts: z.boolean().optional(),
   includeExtras: z.boolean().optional(),
   includeOnDeck: z.boolean().optional(),
@@ -1059,7 +1083,7 @@ export const GetMediaMetaDataRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetMediaMetaDataRequest$Outbound = {
-  ratingKey: number;
+  ratingKey: string;
   includeConcerts?: boolean | undefined;
   includeExtras?: boolean | undefined;
   includeOnDeck?: boolean | undefined;
@@ -1081,7 +1105,7 @@ export const GetMediaMetaDataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetMediaMetaDataRequest
 > = z.object({
-  ratingKey: z.number().int(),
+  ratingKey: z.string(),
   includeConcerts: z.boolean().optional(),
   includeExtras: z.boolean().optional(),
   includeOnDeck: z.boolean().optional(),
@@ -1314,6 +1338,60 @@ export function getMediaMetaDataUltraBlurColorsFromJSON(
     jsonString,
     (x) => GetMediaMetaDataUltraBlurColors$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetMediaMetaDataUltraBlurColors' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetMediaMetaDataGuids$inboundSchema: z.ZodType<
+  GetMediaMetaDataGuids,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+});
+
+/** @internal */
+export type GetMediaMetaDataGuids$Outbound = {
+  id: string;
+};
+
+/** @internal */
+export const GetMediaMetaDataGuids$outboundSchema: z.ZodType<
+  GetMediaMetaDataGuids$Outbound,
+  z.ZodTypeDef,
+  GetMediaMetaDataGuids
+> = z.object({
+  id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetMediaMetaDataGuids$ {
+  /** @deprecated use `GetMediaMetaDataGuids$inboundSchema` instead. */
+  export const inboundSchema = GetMediaMetaDataGuids$inboundSchema;
+  /** @deprecated use `GetMediaMetaDataGuids$outboundSchema` instead. */
+  export const outboundSchema = GetMediaMetaDataGuids$outboundSchema;
+  /** @deprecated use `GetMediaMetaDataGuids$Outbound` instead. */
+  export type Outbound = GetMediaMetaDataGuids$Outbound;
+}
+
+export function getMediaMetaDataGuidsToJSON(
+  getMediaMetaDataGuids: GetMediaMetaDataGuids,
+): string {
+  return JSON.stringify(
+    GetMediaMetaDataGuids$outboundSchema.parse(getMediaMetaDataGuids),
+  );
+}
+
+export function getMediaMetaDataGuidsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMediaMetaDataGuids, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMediaMetaDataGuids$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMediaMetaDataGuids' from JSON`,
   );
 }
 
@@ -2080,14 +2158,14 @@ export const GetMediaMetaDataCountry$inboundSchema: z.ZodType<
 > = z.object({
   id: z.number().int(),
   tag: z.string(),
-  filter: z.string().optional(),
+  filter: z.string(),
 });
 
 /** @internal */
 export type GetMediaMetaDataCountry$Outbound = {
   id: number;
   tag: string;
-  filter?: string | undefined;
+  filter: string;
 };
 
 /** @internal */
@@ -2098,7 +2176,7 @@ export const GetMediaMetaDataCountry$outboundSchema: z.ZodType<
 > = z.object({
   id: z.number().int(),
   tag: z.string(),
-  filter: z.string().optional(),
+  filter: z.string(),
 });
 
 /**
@@ -2141,7 +2219,7 @@ export const GetMediaMetaDataDirector$inboundSchema: z.ZodType<
   id: z.number().int(),
   tag: z.string(),
   filter: z.string(),
-  tagKey: z.string().optional(),
+  tagKey: z.string(),
   thumb: z.string().optional(),
 });
 
@@ -2150,7 +2228,7 @@ export type GetMediaMetaDataDirector$Outbound = {
   id: number;
   tag: string;
   filter: string;
-  tagKey?: string | undefined;
+  tagKey: string;
   thumb?: string | undefined;
 };
 
@@ -2163,7 +2241,7 @@ export const GetMediaMetaDataDirector$outboundSchema: z.ZodType<
   id: z.number().int(),
   tag: z.string(),
   filter: z.string(),
-  tagKey: z.string().optional(),
+  tagKey: z.string(),
   thumb: z.string().optional(),
 });
 
@@ -2343,7 +2421,7 @@ export const GetMediaMetaDataRole$inboundSchema: z.ZodType<
   tag: z.string(),
   role: z.string().optional(),
   filter: z.string(),
-  tagKey: z.string().optional(),
+  tagKey: z.string(),
   thumb: z.string().optional(),
 });
 
@@ -2353,7 +2431,7 @@ export type GetMediaMetaDataRole$Outbound = {
   tag: string;
   role?: string | undefined;
   filter: string;
-  tagKey?: string | undefined;
+  tagKey: string;
   thumb?: string | undefined;
 };
 
@@ -2367,7 +2445,7 @@ export const GetMediaMetaDataRole$outboundSchema: z.ZodType<
   tag: z.string(),
   role: z.string().optional(),
   filter: z.string(),
-  tagKey: z.string().optional(),
+  tagKey: z.string(),
   thumb: z.string().optional(),
 });
 
@@ -2399,60 +2477,6 @@ export function getMediaMetaDataRoleFromJSON(
     jsonString,
     (x) => GetMediaMetaDataRole$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetMediaMetaDataRole' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetMediaMetaDataGuids$inboundSchema: z.ZodType<
-  GetMediaMetaDataGuids,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
-export type GetMediaMetaDataGuids$Outbound = {
-  id: string;
-};
-
-/** @internal */
-export const GetMediaMetaDataGuids$outboundSchema: z.ZodType<
-  GetMediaMetaDataGuids$Outbound,
-  z.ZodTypeDef,
-  GetMediaMetaDataGuids
-> = z.object({
-  id: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMediaMetaDataGuids$ {
-  /** @deprecated use `GetMediaMetaDataGuids$inboundSchema` instead. */
-  export const inboundSchema = GetMediaMetaDataGuids$inboundSchema;
-  /** @deprecated use `GetMediaMetaDataGuids$outboundSchema` instead. */
-  export const outboundSchema = GetMediaMetaDataGuids$outboundSchema;
-  /** @deprecated use `GetMediaMetaDataGuids$Outbound` instead. */
-  export type Outbound = GetMediaMetaDataGuids$Outbound;
-}
-
-export function getMediaMetaDataGuidsToJSON(
-  getMediaMetaDataGuids: GetMediaMetaDataGuids,
-): string {
-  return JSON.stringify(
-    GetMediaMetaDataGuids$outboundSchema.parse(getMediaMetaDataGuids),
-  );
-}
-
-export function getMediaMetaDataGuidsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetMediaMetaDataGuids, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetMediaMetaDataGuids$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetMediaMetaDataGuids' from JSON`,
   );
 }
 
@@ -2921,6 +2945,7 @@ export const GetMediaMetaDataMetadata$inboundSchema: z.ZodType<
   librarySectionID: z.number().int(),
   librarySectionTitle: z.string(),
   librarySectionKey: z.string(),
+  Guid: z.array(z.lazy(() => GetMediaMetaDataGuids$inboundSchema)).optional(),
   Media: z.array(z.lazy(() => GetMediaMetaDataMedia$inboundSchema)).optional(),
   Genre: z.array(z.lazy(() => GetMediaMetaDataGenre$inboundSchema)).optional(),
   Country: z.array(z.lazy(() => GetMediaMetaDataCountry$inboundSchema))
@@ -2932,7 +2957,6 @@ export const GetMediaMetaDataMetadata$inboundSchema: z.ZodType<
   Producer: z.array(z.lazy(() => GetMediaMetaDataProducer$inboundSchema))
     .optional(),
   Role: z.array(z.lazy(() => GetMediaMetaDataRole$inboundSchema)).optional(),
-  Guid: z.array(z.lazy(() => GetMediaMetaDataGuids$inboundSchema)).optional(),
   Rating: z.array(z.lazy(() => Ratings$inboundSchema)).optional(),
   Similar: z.array(z.lazy(() => GetMediaMetaDataSimilar$inboundSchema))
     .optional(),
@@ -2945,6 +2969,7 @@ export const GetMediaMetaDataMetadata$inboundSchema: z.ZodType<
   return remap$(v, {
     "Image": "image",
     "UltraBlurColors": "ultraBlurColors",
+    "Guid": "guids",
     "Media": "media",
     "Genre": "genre",
     "Country": "country",
@@ -2952,7 +2977,6 @@ export const GetMediaMetaDataMetadata$inboundSchema: z.ZodType<
     "Writer": "writer",
     "Producer": "producer",
     "Role": "role",
-    "Guid": "guids",
     "Rating": "ratings",
     "Similar": "similar",
     "Location": "location",
@@ -3023,6 +3047,7 @@ export type GetMediaMetaDataMetadata$Outbound = {
   librarySectionID: number;
   librarySectionTitle: string;
   librarySectionKey: string;
+  Guid?: Array<GetMediaMetaDataGuids$Outbound> | undefined;
   Media?: Array<GetMediaMetaDataMedia$Outbound> | undefined;
   Genre?: Array<GetMediaMetaDataGenre$Outbound> | undefined;
   Country?: Array<GetMediaMetaDataCountry$Outbound> | undefined;
@@ -3030,7 +3055,6 @@ export type GetMediaMetaDataMetadata$Outbound = {
   Writer?: Array<GetMediaMetaDataWriter$Outbound> | undefined;
   Producer?: Array<GetMediaMetaDataProducer$Outbound> | undefined;
   Role?: Array<GetMediaMetaDataRole$Outbound> | undefined;
-  Guid?: Array<GetMediaMetaDataGuids$Outbound> | undefined;
   Rating?: Array<Ratings$Outbound> | undefined;
   Similar?: Array<GetMediaMetaDataSimilar$Outbound> | undefined;
   Location?: Array<GetMediaMetaDataLocation$Outbound> | undefined;
@@ -3105,6 +3129,7 @@ export const GetMediaMetaDataMetadata$outboundSchema: z.ZodType<
   librarySectionID: z.number().int(),
   librarySectionTitle: z.string(),
   librarySectionKey: z.string(),
+  guids: z.array(z.lazy(() => GetMediaMetaDataGuids$outboundSchema)).optional(),
   media: z.array(z.lazy(() => GetMediaMetaDataMedia$outboundSchema)).optional(),
   genre: z.array(z.lazy(() => GetMediaMetaDataGenre$outboundSchema)).optional(),
   country: z.array(z.lazy(() => GetMediaMetaDataCountry$outboundSchema))
@@ -3116,7 +3141,6 @@ export const GetMediaMetaDataMetadata$outboundSchema: z.ZodType<
   producer: z.array(z.lazy(() => GetMediaMetaDataProducer$outboundSchema))
     .optional(),
   role: z.array(z.lazy(() => GetMediaMetaDataRole$outboundSchema)).optional(),
-  guids: z.array(z.lazy(() => GetMediaMetaDataGuids$outboundSchema)).optional(),
   ratings: z.array(z.lazy(() => Ratings$outboundSchema)).optional(),
   similar: z.array(z.lazy(() => GetMediaMetaDataSimilar$outboundSchema))
     .optional(),
@@ -3129,6 +3153,7 @@ export const GetMediaMetaDataMetadata$outboundSchema: z.ZodType<
   return remap$(v, {
     image: "Image",
     ultraBlurColors: "UltraBlurColors",
+    guids: "Guid",
     media: "Media",
     genre: "Genre",
     country: "Country",
@@ -3136,7 +3161,6 @@ export const GetMediaMetaDataMetadata$outboundSchema: z.ZodType<
     writer: "Writer",
     producer: "Producer",
     role: "Role",
-    guids: "Guid",
     ratings: "Rating",
     similar: "Similar",
     location: "Location",

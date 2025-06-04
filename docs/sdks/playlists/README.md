@@ -41,12 +41,11 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.playlists.createPlaylist({
     title: "<value>",
-    type: CreatePlaylistQueryParamType.Photo,
+    type: CreatePlaylistQueryParamType.Audio,
     smart: Smart.One,
-    uri: "https://hoarse-testing.info/",
+    uri: "https://short-term-disconnection.name/",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -71,19 +70,16 @@ const plexAPI = new PlexAPICore({
 async function run() {
   const res = await playlistsCreatePlaylist(plexAPI, {
     title: "<value>",
-    type: CreatePlaylistQueryParamType.Photo,
+    type: CreatePlaylistQueryParamType.Audio,
     smart: Smart.One,
-    uri: "https://hoarse-testing.info/",
+    uri: "https://short-term-disconnection.name/",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsCreatePlaylist failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -126,7 +122,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.playlists.getPlaylists();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -149,15 +144,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await playlistsGetPlaylists(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsGetPlaylists failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -201,9 +193,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.playlists.getPlaylist(4109.48);
+  const result = await plexAPI.playlists.getPlaylist(8419.53);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -225,16 +216,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await playlistsGetPlaylist(plexAPI, 4109.48);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await playlistsGetPlaylist(plexAPI, 8419.53);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsGetPlaylist failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -276,9 +264,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.playlists.deletePlaylist(216.22);
+  const result = await plexAPI.playlists.deletePlaylist(3432.93);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -300,16 +287,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await playlistsDeletePlaylist(plexAPI, 216.22);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await playlistsDeletePlaylist(plexAPI, 3432.93);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsDeletePlaylist failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -351,9 +335,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.playlists.updatePlaylist(3915);
+  const result = await plexAPI.playlists.updatePlaylist(1579.66);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -375,16 +358,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await playlistsUpdatePlaylist(plexAPI, 3915);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await playlistsUpdatePlaylist(plexAPI, 1579.66);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsUpdatePlaylist failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -432,9 +412,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.playlists.getPlaylistContents(5004.46, GetPlaylistContentsQueryParamType.TvShow);
+  const result = await plexAPI.playlists.getPlaylistContents(5535.42, GetPlaylistContentsQueryParamType.TvShow);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -457,16 +436,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await playlistsGetPlaylistContents(plexAPI, 5004.46, GetPlaylistContentsQueryParamType.TvShow);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await playlistsGetPlaylistContents(plexAPI, 5535.42, GetPlaylistContentsQueryParamType.TvShow);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsGetPlaylistContents failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -509,9 +485,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.playlists.clearPlaylistContents(1893.18);
+  const result = await plexAPI.playlists.clearPlaylistContents(4137.37);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -533,16 +508,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await playlistsClearPlaylistContents(plexAPI, 1893.18);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await playlistsClearPlaylistContents(plexAPI, 4137.37);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsClearPlaylistContents failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -585,9 +557,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.playlists.addPlaylistContents(8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
+  const result = await plexAPI.playlists.addPlaylistContents(7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -609,16 +580,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await playlistsAddPlaylistContents(plexAPI, 8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await playlistsAddPlaylistContents(plexAPI, 7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsAddPlaylistContents failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -663,9 +631,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.playlists.uploadPlaylist("/home/barkley/playlist.m3u", QueryParamForce.Zero, 1);
+  const result = await plexAPI.playlists.uploadPlaylist("/home/barkley/playlist.m3u", QueryParamForce.One, 1);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -689,15 +656,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await playlistsUploadPlaylist(plexAPI, "/home/barkley/playlist.m3u", QueryParamForce.One, 1);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("playlistsUploadPlaylist failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

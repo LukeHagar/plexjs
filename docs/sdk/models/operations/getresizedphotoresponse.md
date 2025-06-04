@@ -5,13 +5,7 @@
 ```typescript
 import { GetResizedPhotoResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetResizedPhotoResponse = {
-  contentType: "<value>",
-  statusCode: 508,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetResizedPhotoResponse = {};
 ```
 
 ## Fields

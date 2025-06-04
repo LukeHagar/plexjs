@@ -10,11 +10,11 @@ import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
 let value: GetTopWatchedContentResponseBody = {
   mediaContainer: {
-    size: 1,
-    allowSync: true,
+    size: 50,
+    allowSync: false,
     identifier: "com.plexapp.plugins.library",
     mediaTagPrefix: "/system/bundle/media/flags/",
-    mediaTagVersion: 1698860922,
+    mediaTagVersion: 1734362201,
     metadata: [
       {
         ratingKey: "17",

@@ -5,35 +5,7 @@
 ```typescript
 import { GetMediaProvidersResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetMediaProvidersResponse = {
-  contentType: "<value>",
-  statusCode: 102,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  object: {
-    mediaContainer: {
-      mediaProvider: [
-        {
-          feature: [
-            {
-              type: "<value>",
-              flavor: "global",
-              scrobbleKey: "/:/scrobble/new",
-              unscrobbleKey: "/:/unscrobble/new",
-              action: [
-                {
-                  id: "addToContinueWatching",
-                  key: "/actions/addToContinueWatching",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  },
-};
+let value: GetMediaProvidersResponse = {};
 ```
 
 ## Fields

@@ -5,7 +5,20 @@ Successful response with media container data in XML
 ## Example Usage
 
 ```typescript
-import { GetUsersResponseBody } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  AllLibraries,
+  AllowCameraUpload,
+  AllowChannels,
+  AllowSubtitleAdmin,
+  AllowSync,
+  AllowTuners,
+  GetUsersResponseBody,
+  Home,
+  Owned,
+  Pending,
+  Protected,
+  Restricted,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetUsersResponseBody = {
   mediaContainer: {
@@ -22,11 +35,19 @@ let value: GetUsersResponseBody = {
         email: "zgfuc7krcqfimrmb9lsl5j@protonmail.com",
         recommendationsPlaylistId: "",
         thumb: "https://plex.tv/users/3346028014e93acd/avatar?c=1731605021",
+        protected: Protected.Enable,
+        home: Home.Enable,
+        allowTuners: AllowTuners.Enable,
+        allowSync: AllowSync.Enable,
+        allowCameraUpload: AllowCameraUpload.Enable,
+        allowChannels: AllowChannels.Enable,
+        allowSubtitleAdmin: AllowSubtitleAdmin.Enable,
         filterAll: "",
         filterMovies: "",
         filterMusic: "",
         filterPhotos: "",
         filterTelevision: "",
+        restricted: Restricted.Enable,
         server: [
           {
             id: 907759180,
@@ -35,6 +56,9 @@ let value: GetUsersResponseBody = {
             name: "ConnectedUserFlix",
             lastSeenAt: 1556281940,
             numLibraries: 16,
+            allLibraries: AllLibraries.Enable,
+            owned: Owned.Enable,
+            pending: Pending.Enable,
           },
         ],
       },

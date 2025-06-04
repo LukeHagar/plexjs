@@ -14,6 +14,6 @@ const value: operations.One = One.One;
 ### `boolean`
 
 ```typescript
-const value: boolean = false;
+const value: boolean = true;
 ```
 

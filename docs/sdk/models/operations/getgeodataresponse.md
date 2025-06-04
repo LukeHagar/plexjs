@@ -5,23 +5,7 @@
 ```typescript
 import { GetGeoDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetGeoDataResponse = {
-  contentType: "<value>",
-  statusCode: 103,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  geoData: {
-    code: "VI",
-    continentCode: "NA",
-    country: "United States Virgin Islands",
-    city: "Amsterdam",
-    timeZone: "America/St_Thomas",
-    postalCode: "802",
-    subdivisions: "Saint Thomas",
-    coordinates: "18.3381, -64.8941",
-  },
-};
+let value: GetGeoDataResponse = {};
 ```
 
 ## Fields

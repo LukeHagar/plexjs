@@ -33,7 +33,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.activities.getServerActivities();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -56,15 +55,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await activitiesGetServerActivities(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("activitiesGetServerActivities failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -106,7 +102,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.activities.cancelServerActivities("25b71ed5-0f9d-461c-baa7-d404e9e10d3e");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -129,15 +124,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await activitiesCancelServerActivities(plexAPI, "25b71ed5-0f9d-461c-baa7-d404e9e10d3e");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("activitiesCancelServerActivities failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

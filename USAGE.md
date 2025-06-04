@@ -9,7 +9,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
 
-  // Handle the result
   console.log(result);
 }
 

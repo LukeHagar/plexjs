@@ -30,7 +30,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.media.markPlayed(59398);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -53,15 +52,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await mediaMarkPlayed(plexAPI, 59398);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("mediaMarkPlayed failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -104,7 +100,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.media.markUnplayed(59398);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -127,15 +122,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await mediaMarkUnplayed(plexAPI, 59398);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("mediaMarkUnplayed failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -179,7 +171,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.media.updatePlayProgress("<key>", 90000, "played");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -202,15 +193,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await mediaUpdatePlayProgress(plexAPI, "<key>", 90000, "played");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("mediaUpdatePlayProgress failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -262,7 +250,6 @@ async function run() {
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -292,15 +279,12 @@ async function run() {
     upscale: 1,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("mediaGetBannerImage failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -350,7 +334,6 @@ async function run() {
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -380,15 +363,12 @@ async function run() {
     upscale: 1,
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("mediaGetThumbImage failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

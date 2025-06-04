@@ -5,13 +5,7 @@
 ```typescript
 import { StartAllTasksResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: StartAllTasksResponse = {
-  contentType: "<value>",
-  statusCode: 301,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: StartAllTasksResponse = {};
 ```
 
 ## Fields

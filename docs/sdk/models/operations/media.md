@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Media, StreamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { HasThumbnail, Media, StreamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Media = {
   id: 387322,
@@ -38,6 +38,7 @@ let value: Media = {
       videoProfile: "main 10",
       audioProfile: "dts",
       has64bitOffsets: false,
+      hasThumbnail: HasThumbnail.True,
       stream: [
         {
           id: 1002625,

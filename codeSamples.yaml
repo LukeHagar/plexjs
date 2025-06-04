@@ -18,7 +18,6 @@ actions:
             async function run() {
               const result = await plexAPI.server.getServerCapabilities();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -38,7 +37,6 @@ actions:
             async function run() {
               const result = await plexAPI.server.getServerPreferences();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -58,7 +56,6 @@ actions:
             async function run() {
               const result = await plexAPI.media.updatePlayProgress("<key>", 90000, "played");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -78,7 +75,6 @@ actions:
             async function run() {
               const result = await plexAPI.media.markPlayed(59398);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -110,7 +106,6 @@ actions:
                 row: 1,
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -130,7 +125,6 @@ actions:
             async function run() {
               const result = await plexAPI.media.markUnplayed(59398);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -150,7 +144,6 @@ actions:
             async function run() {
               const result = await plexAPI.activities.getServerActivities();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -170,7 +163,6 @@ actions:
             async function run() {
               const result = await plexAPI.activities.cancelServerActivities("25b71ed5-0f9d-461c-baa7-d404e9e10d3e");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -190,7 +182,6 @@ actions:
             async function run() {
               const result = await plexAPI.butler.stopAllTasks();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -210,7 +201,6 @@ actions:
             async function run() {
               const result = await plexAPI.butler.getButlerTasks();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -230,7 +220,6 @@ actions:
             async function run() {
               const result = await plexAPI.butler.startAllTasks();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -249,9 +238,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.butler.stopTask(PathParamTaskName.BackupDatabase);
+              const result = await plexAPI.butler.stopTask(PathParamTaskName.CleanOldCacheFiles);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -270,9 +258,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.butler.startTask(TaskName.CleanOldBundles);
+              const result = await plexAPI.butler.startTask(TaskName.RefreshPeriodicMetadata);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -292,7 +279,6 @@ actions:
             async function run() {
               const result = await plexAPI.server.getAvailableClients();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -312,7 +298,6 @@ actions:
             async function run() {
               const result = await plexAPI.plex.getCompanionsData();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -332,7 +317,6 @@ actions:
             async function run() {
               const result = await plexAPI.server.getDevices();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -352,7 +336,6 @@ actions:
             async function run() {
               const result = await plexAPI.plex.getUserFriends();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -370,7 +353,6 @@ actions:
             async function run() {
               const result = await plexAPI.plex.getGeoData();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -390,7 +372,6 @@ actions:
             async function run() {
               const result = await plexAPI.plex.getHomeData();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -410,7 +391,6 @@ actions:
             async function run() {
               const result = await plexAPI.hubs.getGlobalHubs();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -422,7 +402,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Type } from "@lukehagar/plexjs/sdk/models/operations";
+            import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -430,12 +410,12 @@ actions:
 
             async function run() {
               const result = await plexAPI.hubs.getRecentlyAdded({
-                contentDirectoryID: 470161,
+                contentDirectoryID: 39486,
                 sectionID: 2,
                 type: Type.TvShow,
+                includeMeta: IncludeMeta.Enable,
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -453,9 +433,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.search.performSearch("dylan");
+              const result = await plexAPI.search.performSearch("arnold");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -475,7 +454,6 @@ actions:
             async function run() {
               const result = await plexAPI.search.performVoiceSearch("dead+poop");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -493,9 +471,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.hubs.getLibraryHubs(6728.76);
+              const result = await plexAPI.hubs.getLibraryHubs(492.74);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -513,7 +490,6 @@ actions:
             async function run() {
               const result = await plexAPI.server.getServerIdentity();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -532,9 +508,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getTopWatchedContent(GetTopWatchedContentQueryParamType.TvShow, 1);
+              const result = await plexAPI.library.getTopWatchedContent(GetTopWatchedContentQueryParamType.TvShow);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -554,7 +529,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getFileHash("file://C:\Image.png&type=13");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -573,7 +547,7 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.getMediaMetaData({
-                ratingKey: 9518,
+                ratingKey: "21119,21617",
                 includeConcerts: true,
                 includeExtras: true,
                 includeOnDeck: true,
@@ -589,7 +563,6 @@ actions:
                 asyncRefreshLocalMediaAgent: true,
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -609,7 +582,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getMediaArts(16099);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -621,16 +593,14 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { openAsBlob } from "node:fs";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.library.postMediaArts(2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+              const result = await plexAPI.library.postMediaArts(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -657,7 +627,6 @@ actions:
                 xPlexToken: "CV5xoxjTpFKUzBTShsaf",
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -675,9 +644,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getMetadataChildren(1539.14, "Stream");
+              const result = await plexAPI.library.getMetadataChildren(2403.67, "Stream");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -697,7 +665,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getMediaPosters(16099);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -709,16 +676,14 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { openAsBlob } from "node:fs";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.library.postMediaPoster(2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+              const result = await plexAPI.library.postMediaPoster(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -745,7 +710,6 @@ actions:
                 xPlexToken: "CV5xoxjTpFKUzBTShsaf",
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -757,7 +721,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+            import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -782,9 +746,9 @@ actions:
                 ],
                 sectionID: 2,
                 type: QueryParamType.TvShow,
+                includeMeta: QueryParamIncludeMeta.Enable,
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -796,7 +760,11 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+            import {
+              GetSearchAllLibrariesQueryParamIncludeCollections,
+              GetSearchAllLibrariesQueryParamIncludeExternalMedia,
+              SearchTypes,
+            } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -809,9 +777,10 @@ actions:
                 searchTypes: [
                   SearchTypes.People,
                 ],
+                includeCollections: GetSearchAllLibrariesQueryParamIncludeCollections.Enable,
+                includeExternalMedia: GetSearchAllLibrariesQueryParamIncludeExternalMedia.Enable,
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -831,7 +800,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getAllLibraries();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -851,11 +819,10 @@ actions:
 
             async function run() {
               const result = await plexAPI.watchlist.getWatchList({
-                filter: Filter.Available,
+                filter: Filter.Released,
                 xPlexToken: "CV5xoxjTpFKUzBTShsaf",
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -875,7 +842,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.deleteLibrary(9518);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -895,7 +861,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getLibraryDetails(9518);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -916,7 +881,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getActorsLibrary(9518, GetActorsLibraryQueryParamType.TvShow);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -928,19 +892,30 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { GetAllMediaLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+            import {
+              GetLibrarySectionsAllQueryParamIncludeMeta,
+              GetLibrarySectionsAllQueryParamType,
+              IncludeAdvanced,
+              QueryParamIncludeCollections,
+              QueryParamIncludeExternalMedia,
+              QueryParamIncludeGuids,
+            } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
             });
 
             async function run() {
-              const result = await plexAPI.library.getAllMediaLibrary({
+              const result = await plexAPI.library.getLibrarySectionsAll({
                 sectionKey: 9518,
-                type: GetAllMediaLibraryQueryParamType.TvShow,
+                type: GetLibrarySectionsAllQueryParamType.TvShow,
+                includeMeta: GetLibrarySectionsAllQueryParamIncludeMeta.Enable,
+                includeGuids: QueryParamIncludeGuids.Enable,
+                includeAdvanced: IncludeAdvanced.Enable,
+                includeCollections: QueryParamIncludeCollections.Enable,
+                includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -961,7 +936,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getCountriesLibrary(9518, GetCountriesLibraryQueryParamType.TvShow);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -982,7 +956,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getGenresLibrary(9518, GetGenresLibraryQueryParamType.TvShow);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1001,9 +974,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getRefreshLibraryMetadata(9518, Force.One);
+              const result = await plexAPI.library.getRefreshLibraryMetadata(9518, Force.Zero);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1024,7 +996,6 @@ actions:
             async function run() {
               const result = await plexAPI.library.getSearchLibrary(9518, GetSearchLibraryQueryParamType.TvShow);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1036,7 +1007,12 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { GetLibraryItemsQueryParamType, Tag } from "@lukehagar/plexjs/sdk/models/operations";
+            import {
+              GetLibraryItemsQueryParamIncludeMeta,
+              GetLibraryItemsQueryParamType,
+              IncludeGuids,
+              Tag,
+            } from "@lukehagar/plexjs/sdk/models/operations";
 
             const plexAPI = new PlexAPI({
               accessToken: "<YOUR_API_KEY_HERE>",
@@ -1044,12 +1020,13 @@ actions:
 
             async function run() {
               const result = await plexAPI.library.getLibraryItems({
-                tag: Tag.Edition,
+                tag: Tag.Newest,
+                includeGuids: IncludeGuids.Enable,
                 type: GetLibraryItemsQueryParamType.TvShow,
                 sectionKey: 9518,
+                includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1070,7 +1047,6 @@ actions:
             async function run() {
               const result = await plexAPI.log.logLine(Level.Three, "Test log message", "Postman");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1092,7 +1068,6 @@ actions:
               "level=3&message=Test%20message%202&source=postman\n" +
               "level=1&message=Test%20message%203&source=postman");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1112,7 +1087,6 @@ actions:
             async function run() {
               const result = await plexAPI.log.enablePaperTrail();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1132,7 +1106,6 @@ actions:
             async function run() {
               const result = await plexAPI.server.getMediaProviders("CV5xoxjTpFKUzBTShsaf");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1152,7 +1125,6 @@ actions:
             async function run() {
               const result = await plexAPI.server.getMyPlexAccount();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1174,14 +1146,12 @@ actions:
               const result = await plexAPI.server.getResizedPhoto({
                 width: 110,
                 height: 165,
-                opacity: 100,
                 blur: 0,
-                minSize: MinSize.One,
-                upscale: Upscale.One,
+                minSize: MinSize.Zero,
+                upscale: Upscale.Zero,
                 url: "/library/metadata/49564/thumb/1654258204",
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1205,7 +1175,6 @@ actions:
                 platform: "Roku",
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1222,7 +1191,7 @@ actions:
 
             async function run() {
               const result = await plexAPI.plex.getTokenByPinId({
-                pinID: 408895,
+                pinID: 232248,
                 clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
                 clientName: "Plex for Roku",
                 deviceNickname: "Roku 3",
@@ -1230,7 +1199,6 @@ actions:
                 platform: "Roku",
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1250,7 +1218,6 @@ actions:
             async function run() {
               const result = await plexAPI.playlists.getPlaylists();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1271,12 +1238,11 @@ actions:
             async function run() {
               const result = await plexAPI.playlists.createPlaylist({
                 title: "<value>",
-                type: CreatePlaylistQueryParamType.Photo,
+                type: CreatePlaylistQueryParamType.Audio,
                 smart: Smart.One,
-                uri: "https://hoarse-testing.info/",
+                uri: "https://short-term-disconnection.name/",
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1295,9 +1261,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.playlists.uploadPlaylist("/home/barkley/playlist.m3u", QueryParamForce.Zero, 1);
+              const result = await plexAPI.playlists.uploadPlaylist("/home/barkley/playlist.m3u", QueryParamForce.One, 1);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1315,9 +1280,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.playlists.deletePlaylist(216.22);
+              const result = await plexAPI.playlists.deletePlaylist(3432.93);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1335,9 +1299,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.playlists.getPlaylist(4109.48);
+              const result = await plexAPI.playlists.getPlaylist(8419.53);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1355,9 +1318,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.playlists.updatePlaylist(3915);
+              const result = await plexAPI.playlists.updatePlaylist(1579.66);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1375,9 +1337,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.playlists.clearPlaylistContents(1893.18);
+              const result = await plexAPI.playlists.clearPlaylistContents(4137.37);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1396,9 +1357,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.playlists.getPlaylistContents(5004.46, GetPlaylistContentsQueryParamType.TvShow);
+              const result = await plexAPI.playlists.getPlaylistContents(5535.42, GetPlaylistContentsQueryParamType.TvShow);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1416,9 +1376,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.playlists.addPlaylistContents(8502.01, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
+              const result = await plexAPI.playlists.addPlaylistContents(7013.44, "server://12345/com.plexapp.plugins.library/library/metadata/1", 123);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1438,7 +1397,6 @@ actions:
             async function run() {
               const result = await plexAPI.plex.getServerResources("3381b62b-9ab7-4e37-827b-203e9809eb58");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1458,7 +1416,6 @@ actions:
             async function run() {
               const result = await plexAPI.search.getSearchResults("110");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1476,9 +1433,8 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.authentication.getSourceConnectionInformation("provider://provider-identifier");
+              const result = await plexAPI.authentication.getSourceConnectionInformation("server://client-identifier");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1499,7 +1455,6 @@ actions:
             async function run() {
               const result = await plexAPI.authentication.getTransientToken(GetTransientTokenQueryParamType.Delegation, Scope.All);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1519,7 +1474,6 @@ actions:
             async function run() {
               const result = await plexAPI.server.getServerList();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1539,7 +1493,6 @@ actions:
             async function run() {
               const result = await plexAPI.statistics.getBandwidthStatistics(4);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1559,7 +1512,6 @@ actions:
             async function run() {
               const result = await plexAPI.statistics.getStatistics(4);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1579,7 +1531,6 @@ actions:
             async function run() {
               const result = await plexAPI.statistics.getResourcesStatistics(4);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1599,7 +1550,6 @@ actions:
             async function run() {
               const result = await plexAPI.sessions.getSessions();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1619,7 +1569,6 @@ actions:
             async function run() {
               const result = await plexAPI.sessions.getSessionHistory("viewedAt:desc", 1, {}, 12);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1639,7 +1588,6 @@ actions:
             async function run() {
               const result = await plexAPI.sessions.getTranscodeSessions();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1659,7 +1607,6 @@ actions:
             async function run() {
               const result = await plexAPI.sessions.stopTranscodeSession("zz7llzqlx8w9vnrsbnwhbmep");
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1680,7 +1627,6 @@ actions:
             async function run() {
               const result = await plexAPI.updater.applyUpdates(Tonight.One, Skip.One);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1701,7 +1647,6 @@ actions:
             async function run() {
               const result = await plexAPI.updater.checkForUpdates(Download.One);
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1721,7 +1666,6 @@ actions:
             async function run() {
               const result = await plexAPI.updater.getUpdateStatus();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1741,7 +1685,6 @@ actions:
             async function run() {
               const result = await plexAPI.authentication.getTokenDetails();
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1773,7 +1716,6 @@ actions:
                 xPlexToken: "CV5xoxjTpFKUzBTShsaf",
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1802,7 +1744,6 @@ actions:
                 },
               });
 
-              // Handle the result
               console.log(result);
             }
 
@@ -1839,7 +1780,6 @@ actions:
                 autoAdjustQuality: 0,
               });
 
-              // Handle the result
               console.log(result);
             }
 

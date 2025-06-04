@@ -31,7 +31,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.authentication.getTransientToken(GetTransientTokenQueryParamType.Delegation, Scope.All);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -55,15 +54,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await authenticationGetTransientToken(plexAPI, GetTransientTokenQueryParamType.Delegation, Scope.All);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("authenticationGetTransientToken failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -107,9 +103,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.authentication.getSourceConnectionInformation("provider://provider-identifier");
+  const result = await plexAPI.authentication.getSourceConnectionInformation("server://client-identifier");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -131,16 +126,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await authenticationGetSourceConnectionInformation(plexAPI, "provider://provider-identifier");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await authenticationGetSourceConnectionInformation(plexAPI, "server://client-identifier");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("authenticationGetSourceConnectionInformation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -183,7 +175,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.authentication.getTokenDetails();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -206,15 +197,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await authenticationGetTokenDetails(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("authenticationGetTokenDetails failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -266,7 +254,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -298,15 +285,12 @@ async function run() {
       verificationCode: "123456",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("authenticationPostUsersSignInData failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

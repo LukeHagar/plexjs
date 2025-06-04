@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetAllLibrariesDirectory, GetAllLibrariesType } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetAllLibrariesDirectory, GetAllLibrariesType, Hidden } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetAllLibrariesDirectory = {
   allowSync: false,
@@ -25,12 +25,8 @@ let value: GetAllLibrariesDirectory = {
   content: true,
   directory: true,
   contentChangedAt: 9173960,
-  location: [
-    {
-      id: 1,
-      path: "/Movies",
-    },
-  ],
+  hidden: Hidden.ExcludeHomeScreen,
+  location: [],
 };
 ```
 

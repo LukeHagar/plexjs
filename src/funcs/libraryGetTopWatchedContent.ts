@@ -33,7 +33,9 @@ import { Result } from "../sdk/types/fp.js";
 export function libraryGetTopWatchedContent(
   client: PlexAPICore,
   type: operations.GetTopWatchedContentQueryParamTypeOpen,
-  includeGuids?: number | undefined,
+  includeGuids?:
+    | operations.GetTopWatchedContentQueryParamIncludeGuids
+    | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -60,7 +62,9 @@ export function libraryGetTopWatchedContent(
 async function $do(
   client: PlexAPICore,
   type: operations.GetTopWatchedContentQueryParamTypeOpen,
-  includeGuids?: number | undefined,
+  includeGuids?:
+    | operations.GetTopWatchedContentQueryParamIncludeGuids
+    | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -112,6 +116,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getTopWatchedContent",
     oAuth2Scopes: [],
@@ -133,6 +138,7 @@ async function $do(
     headers: headers,
     query: query,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {

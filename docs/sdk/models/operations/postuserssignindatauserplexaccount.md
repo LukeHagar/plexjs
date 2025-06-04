@@ -8,14 +8,17 @@ Returns the user account data with a valid auth token
 import {
   PostUsersSignInDataAuthenticationResponseStatus,
   PostUsersSignInDataAuthenticationStatus,
+  PostUsersSignInDataAutoSelectSubtitle,
+  PostUsersSignInDataDefaultSubtitleAccessibility,
+  PostUsersSignInDataDefaultSubtitleForced,
   PostUsersSignInDataMailingListStatus,
-  PostUsersSignInDataState,
-  PostUsersSignInDataStatus,
+  PostUsersSignInDataMediaReviewsVisibility,
   PostUsersSignInDataUserPlexAccount,
+  PostUsersSignInDataWatchedIndicator,
 } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: PostUsersSignInDataUserPlexAccount = {
-  adsConsent: false,
+  adsConsent: true,
   adsConsentReminderAt: 1556281940,
   adsConsentSetAt: 1556281940,
   authToken: "CxoUzBTSV5hsxjTpFKaf",
@@ -28,24 +31,22 @@ let value: PostUsersSignInDataUserPlexAccount = {
   homeSize: 1,
   id: 13692262,
   joinedAt: 1556281940,
-  locale: "sv",
+  locale: "zh",
   mailingListStatus: PostUsersSignInDataMailingListStatus.Active,
   maxHomeSize: 15,
   profile: {
     defaultAudioLanguage: "ja",
     defaultSubtitleLanguage: "en",
+    autoSelectSubtitle: PostUsersSignInDataAutoSelectSubtitle.Enable,
+    defaultSubtitleAccessibility:
+      PostUsersSignInDataDefaultSubtitleAccessibility.Enable,
+    defaultSubtitleForced: PostUsersSignInDataDefaultSubtitleForced.Enable,
+    watchedIndicator: PostUsersSignInDataWatchedIndicator.Enable,
+    mediaReviewsVisibility: PostUsersSignInDataMediaReviewsVisibility.Enable,
   },
   rememberExpiresAt: 1556281940,
   scrobbleTypes: "<value>",
-  services: [
-    {
-      identifier: "metadata-dev",
-      endpoint: "https://epg.provider.plex.tv",
-      token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
-      secret: "<value>",
-      status: PostUsersSignInDataStatus.Online,
-    },
-  ],
+  services: [],
   subscription: {
     active: true,
     subscribedAt: "2021-04-12T18:21:12Z",
@@ -64,21 +65,7 @@ let value: PostUsersSignInDataUserPlexAccount = {
   username: "Username",
   uuid: "dae343c1f45beb4f",
   attributionPartner: null,
-  pastSubscriptions: [
-    {
-      id: "<id>",
-      mode: "<value>",
-      renewsAt: 1556281940,
-      endsAt: 1556281940,
-      type: "plexpass",
-      transfer: "<value>",
-      state: PostUsersSignInDataState.Ended,
-      billing: {
-        internalPaymentMethod: {},
-        paymentMethodId: 154499,
-      },
-    },
-  ],
+  pastSubscriptions: [],
   trials: [
     {},
   ],

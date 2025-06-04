@@ -15,6 +15,6 @@ const value: operations.GetRecentlyAddedOptimizedForStreaming1 =
 ### `boolean`
 
 ```typescript
-const value: boolean = false;
+const value: boolean = true;
 ```
 

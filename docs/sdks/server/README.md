@@ -34,7 +34,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -57,15 +56,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await serverGetServerCapabilities(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetServerCapabilities failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -107,7 +103,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getServerPreferences();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -130,15 +125,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await serverGetServerPreferences(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetServerPreferences failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -180,7 +172,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getAvailableClients();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -203,15 +194,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await serverGetAvailableClients(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetAvailableClients failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -253,7 +241,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getDevices();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -276,15 +263,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await serverGetDevices(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetDevices failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -324,7 +308,6 @@ const plexAPI = new PlexAPI();
 async function run() {
   const result = await plexAPI.server.getServerIdentity();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -345,15 +328,12 @@ const plexAPI = new PlexAPICore();
 
 async function run() {
   const res = await serverGetServerIdentity(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetServerIdentity failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -394,7 +374,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getMyPlexAccount();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -417,15 +396,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await serverGetMyPlexAccount(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetMyPlexAccount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -470,14 +446,12 @@ async function run() {
   const result = await plexAPI.server.getResizedPhoto({
     width: 110,
     height: 165,
-    opacity: 100,
     blur: 0,
-    minSize: MinSize.One,
-    upscale: Upscale.One,
+    minSize: MinSize.Zero,
+    upscale: Upscale.Zero,
     url: "/library/metadata/49564/thumb/1654258204",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -503,21 +477,17 @@ async function run() {
   const res = await serverGetResizedPhoto(plexAPI, {
     width: 110,
     height: 165,
-    opacity: 100,
     blur: 0,
-    minSize: MinSize.One,
-    upscale: Upscale.One,
+    minSize: MinSize.Zero,
+    upscale: Upscale.Zero,
     url: "/library/metadata/49564/thumb/1654258204",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetResizedPhoto failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -560,7 +530,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getMediaProviders("CV5xoxjTpFKUzBTShsaf");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -583,15 +552,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await serverGetMediaProviders(plexAPI, "CV5xoxjTpFKUzBTShsaf");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetMediaProviders failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -634,7 +600,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getServerList();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -657,15 +622,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await serverGetServerList(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serverGetServerList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

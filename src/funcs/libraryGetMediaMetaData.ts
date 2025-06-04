@@ -28,7 +28,8 @@ import { Result } from "../sdk/types/fp.js";
  * Get Media Metadata
  *
  * @remarks
- * This endpoint will return all the (meta)data of a library item specified with by the ratingKey.
+ * This endpoint will return all the (meta)data of one or more library items specified by the ratingKey.
+ * Multiple rating keys can be provided as a comma-separated list (e.g., "21119,21617").
  */
 export function libraryGetMediaMetaData(
   client: PlexAPICore,
@@ -121,6 +122,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get-media-meta-data",
     oAuth2Scopes: [],
@@ -142,6 +144,7 @@ async function $do(
     headers: headers,
     query: query,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {

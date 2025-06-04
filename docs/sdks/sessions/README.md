@@ -29,7 +29,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.sessions.getSessions();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -52,15 +51,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await sessionsGetSessions(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsGetSessions failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -102,7 +98,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.sessions.getSessionHistory("viewedAt:desc", 1, {}, 12);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -125,15 +120,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await sessionsGetSessionHistory(plexAPI, "viewedAt:desc", 1, {}, 12);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsGetSessionHistory failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -179,7 +171,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.sessions.getTranscodeSessions();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -202,15 +193,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await sessionsGetTranscodeSessions(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsGetTranscodeSessions failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -252,7 +240,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.sessions.stopTranscodeSession("zz7llzqlx8w9vnrsbnwhbmep");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -275,15 +262,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await sessionsStopTranscodeSession(plexAPI, "zz7llzqlx8w9vnrsbnwhbmep");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsStopTranscodeSession failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -5,13 +5,7 @@
 ```typescript
 import { PerformSearchResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PerformSearchResponse = {
-  contentType: "<value>",
-  statusCode: 306,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: PerformSearchResponse = {};
 ```
 
 ## Fields

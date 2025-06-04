@@ -32,7 +32,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.plex.getCompanionsData();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -55,15 +54,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await plexGetCompanionsData(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("plexGetCompanionsData failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -106,7 +102,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.plex.getUserFriends();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -129,15 +124,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await plexGetUserFriends(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("plexGetUserFriends failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -178,7 +170,6 @@ const plexAPI = new PlexAPI();
 async function run() {
   const result = await plexAPI.plex.getGeoData();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -199,15 +190,12 @@ const plexAPI = new PlexAPICore();
 
 async function run() {
   const res = await plexGetGeoData(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("plexGetGeoData failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -250,7 +238,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.plex.getHomeData();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -273,15 +260,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await plexGetHomeData(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("plexGetHomeData failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -323,7 +307,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.plex.getServerResources("3381b62b-9ab7-4e37-827b-203e9809eb58");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -346,15 +329,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await plexGetServerResources(plexAPI, "3381b62b-9ab7-4e37-827b-203e9809eb58");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("plexGetServerResources failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -405,7 +385,6 @@ async function run() {
     platform: "Roku",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -432,15 +411,12 @@ async function run() {
     clientVersion: "2.4.1",
     platform: "Roku",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("plexGetPin failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -480,7 +456,7 @@ const plexAPI = new PlexAPI();
 
 async function run() {
   const result = await plexAPI.plex.getTokenByPinId({
-    pinID: 408895,
+    pinID: 232248,
     clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
     clientName: "Plex for Roku",
     deviceNickname: "Roku 3",
@@ -488,7 +464,6 @@ async function run() {
     platform: "Roku",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -509,22 +484,19 @@ const plexAPI = new PlexAPICore();
 
 async function run() {
   const res = await plexGetTokenByPinId(plexAPI, {
-    pinID: 408895,
+    pinID: 232248,
     clientID: "3381b62b-9ab7-4e37-827b-203e9809eb58",
     clientName: "Plex for Roku",
     deviceNickname: "Roku 3",
     clientVersion: "2.4.1",
     platform: "Roku",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("plexGetTokenByPinId failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

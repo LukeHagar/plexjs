@@ -5,12 +5,12 @@
 import { libraryDeleteLibrary } from "../funcs/libraryDeleteLibrary.js";
 import { libraryGetActorsLibrary } from "../funcs/libraryGetActorsLibrary.js";
 import { libraryGetAllLibraries } from "../funcs/libraryGetAllLibraries.js";
-import { libraryGetAllMediaLibrary } from "../funcs/libraryGetAllMediaLibrary.js";
 import { libraryGetCountriesLibrary } from "../funcs/libraryGetCountriesLibrary.js";
 import { libraryGetFileHash } from "../funcs/libraryGetFileHash.js";
 import { libraryGetGenresLibrary } from "../funcs/libraryGetGenresLibrary.js";
 import { libraryGetLibraryDetails } from "../funcs/libraryGetLibraryDetails.js";
 import { libraryGetLibraryItems } from "../funcs/libraryGetLibraryItems.js";
+import { libraryGetLibrarySectionsAll } from "../funcs/libraryGetLibrarySectionsAll.js";
 import { libraryGetMediaArts } from "../funcs/libraryGetMediaArts.js";
 import { libraryGetMediaMetaData } from "../funcs/libraryGetMediaMetaData.js";
 import { libraryGetMediaPosters } from "../funcs/libraryGetMediaPosters.js";
@@ -195,16 +195,16 @@ export class Library extends ClientSDK {
   }
 
   /**
-   * Get all media of library
+   * Get Library section media by tag ALL
    *
    * @remarks
    * Retrieves a list of all general media data for this library.
    */
-  async getAllMediaLibrary(
-    request: operations.GetAllMediaLibraryRequest,
+  async getLibrarySectionsAll(
+    request: operations.GetLibrarySectionsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetAllMediaLibraryResponse> {
-    return unwrapAsync(libraryGetAllMediaLibrary(
+  ): Promise<operations.GetLibrarySectionsAllResponse> {
+    return unwrapAsync(libraryGetLibrarySectionsAll(
       this,
       request,
       options,
@@ -344,7 +344,8 @@ export class Library extends ClientSDK {
    * Get Media Metadata
    *
    * @remarks
-   * This endpoint will return all the (meta)data of a library item specified with by the ratingKey.
+   * This endpoint will return all the (meta)data of one or more library items specified by the ratingKey.
+   * Multiple rating keys can be provided as a comma-separated list (e.g., "21119,21617").
    */
   async getMediaMetaData(
     request: operations.GetMediaMetaDataRequest,
@@ -470,7 +471,9 @@ export class Library extends ClientSDK {
    */
   async getTopWatchedContent(
     type: operations.GetTopWatchedContentQueryParamTypeOpen,
-    includeGuids?: number | undefined,
+    includeGuids?:
+      | operations.GetTopWatchedContentQueryParamIncludeGuids
+      | undefined,
     options?: RequestOptions,
   ): Promise<operations.GetTopWatchedContentResponse> {
     return unwrapAsync(libraryGetTopWatchedContent(

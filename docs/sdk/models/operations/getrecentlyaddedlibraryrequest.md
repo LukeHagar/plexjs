@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetRecentlyAddedLibraryRequest, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetRecentlyAddedLibraryRequest, QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetRecentlyAddedLibraryRequest = {
   contentDirectoryID: 2,
@@ -23,6 +23,7 @@ let value: GetRecentlyAddedLibraryRequest = {
   ],
   sectionID: 2,
   type: QueryParamType.TvShow,
+  includeMeta: QueryParamIncludeMeta.Enable,
 };
 ```
 

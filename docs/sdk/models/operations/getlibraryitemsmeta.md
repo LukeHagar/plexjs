@@ -47,12 +47,7 @@ let value: GetLibraryItemsMeta = {
   fieldType: [
     {
       type: "tag",
-      operator: [
-        {
-          key: "=",
-          title: "is",
-        },
-      ],
+      operator: [],
     },
   ],
 };

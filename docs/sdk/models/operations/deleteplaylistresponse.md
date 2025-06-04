@@ -5,13 +5,7 @@
 ```typescript
 import { DeletePlaylistResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: DeletePlaylistResponse = {
-  contentType: "<value>",
-  statusCode: 101,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: DeletePlaylistResponse = {};
 ```
 
 ## Fields

@@ -8,11 +8,11 @@ import { Connections, Protocol } from "@lukehagar/plexjs/sdk/models/operations";
 let value: Connections = {
   protocol: Protocol.Http,
   address: "84577 W 9th Street",
-  port: 40036,
+  port: 610910,
   uri: "https://dearest-custom.net",
-  local: false,
-  relay: false,
-  iPv6: false,
+  local: true,
+  relay: true,
+  iPv6: true,
 };
 ```
 

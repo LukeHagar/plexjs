@@ -35,7 +35,6 @@ async function run() {
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -70,15 +69,12 @@ async function run() {
     platformVersion: "4.3 build 1057",
     xPlexToken: "CV5xoxjTpFKUzBTShsaf",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("usersGetUsers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -30,7 +30,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.log.logLine(Level.Three, "Test log message", "Postman");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -54,15 +53,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await logLogLine(plexAPI, Level.Three, "Test log message", "Postman");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("logLogLine failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -130,7 +126,6 @@ async function run() {
   "level=3&message=Test%20message%202&source=postman\n" +
   "level=1&message=Test%20message%203&source=postman");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -155,15 +150,12 @@ async function run() {
   const res = await logLogMultiLine(plexAPI, "level=4&message=Test%20message%201&source=postman\n" +
   "level=3&message=Test%20message%202&source=postman\n" +
   "level=1&message=Test%20message%203&source=postman");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("logLogMultiLine failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -207,7 +199,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.log.enablePaperTrail();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -230,15 +221,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await logEnablePaperTrail(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("logEnablePaperTrail failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

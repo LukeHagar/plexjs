@@ -3,11 +3,23 @@
 ## Example Usage
 
 ```typescript
-import { UserProfile } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  AutoSelectSubtitle,
+  DefaultSubtitleAccessibility,
+  DefaultSubtitleForced,
+  MediaReviewsVisibility,
+  UserProfile,
+  WatchedIndicator,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: UserProfile = {
   defaultAudioLanguage: "ja",
   defaultSubtitleLanguage: "en",
+  autoSelectSubtitle: AutoSelectSubtitle.Enable,
+  defaultSubtitleAccessibility: DefaultSubtitleAccessibility.Enable,
+  defaultSubtitleForced: DefaultSubtitleForced.Enable,
+  watchedIndicator: WatchedIndicator.Enable,
+  mediaReviewsVisibility: MediaReviewsVisibility.Enable,
 };
 ```
 

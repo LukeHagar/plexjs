@@ -73,7 +73,7 @@ export type GetSearchAllLibrariesRequest = {
 };
 
 /**
- * The type of media content
+ * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
  * @remarks
  */
@@ -84,9 +84,13 @@ export enum GetSearchAllLibrariesType {
   Episode = "episode",
   Artist = "artist",
   Album = "album",
+  Track = "track",
+  PhotoAlbum = "photoalbum",
+  Photo = "photo",
+  Collection = "collection",
 }
 /**
- * The type of media content
+ * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
  * @remarks
  */
@@ -481,7 +485,7 @@ export type GetSearchAllLibrariesMetadata = {
   librarySectionTitle?: string | undefined;
   librarySectionKey?: string | undefined;
   /**
-   * The type of media content
+   * The type of media content in the Plex library. This can represent videos, music, or photos.
    *
    * @remarks
    */

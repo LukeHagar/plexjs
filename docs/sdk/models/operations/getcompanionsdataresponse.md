@@ -5,23 +5,7 @@
 ```typescript
 import { GetCompanionsDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetCompanionsDataResponse = {
-  contentType: "<value>",
-  statusCode: 301,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  responseBodies: [
-    {
-      identifier: "tv.plex.sonos",
-      baseURL: "https://sonos.plex.tv",
-      title: "Sonos",
-      linkURL: "https://sonos.plex.tv/link",
-      provides: "client,player",
-      token: "<value>",
-    },
-  ],
-};
+let value: GetCompanionsDataResponse = {};
 ```
 
 ## Fields

@@ -8,10 +8,9 @@ import { GetResizedPhotoRequest, MinSize, Upscale } from "@lukehagar/plexjs/sdk/
 let value: GetResizedPhotoRequest = {
   width: 110,
   height: 165,
-  opacity: 100,
-  blur: 20,
-  minSize: MinSize.Zero,
-  upscale: Upscale.One,
+  blur: 0,
+  minSize: MinSize.One,
+  upscale: Upscale.Zero,
   url: "/library/metadata/49564/thumb/1654258204",
 };
 ```

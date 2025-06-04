@@ -6,7 +6,7 @@
 import { GetSourceConnectionInformationRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSourceConnectionInformationRequest = {
-  source: "provider://provider-identifier",
+  source: "server://client-identifier",
 };
 ```
 

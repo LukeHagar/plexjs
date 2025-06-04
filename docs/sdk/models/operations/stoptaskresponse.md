@@ -5,13 +5,7 @@
 ```typescript
 import { StopTaskResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: StopTaskResponse = {
-  contentType: "<value>",
-  statusCode: 411,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: StopTaskResponse = {};
 ```
 
 ## Fields

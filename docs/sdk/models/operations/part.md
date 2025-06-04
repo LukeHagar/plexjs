@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Part, StreamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { HasThumbnail, Part, StreamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Part = {
   accessible: true,
@@ -19,6 +19,7 @@ let value: Part = {
   videoProfile: "main 10",
   audioProfile: "dts",
   has64bitOffsets: false,
+  hasThumbnail: HasThumbnail.True,
   stream: [
     {
       id: 1002625,

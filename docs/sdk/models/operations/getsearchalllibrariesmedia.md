@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSearchAllLibrariesMedia } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetSearchAllLibrariesMedia, GetSearchAllLibrariesOptimizedForStreaming } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchAllLibrariesMedia = {
   id: 119534,
@@ -21,65 +21,9 @@ let value: GetSearchAllLibrariesMedia = {
   videoFrameRate: "24p",
   videoProfile: "main 10",
   hasVoiceActivity: false,
+  optimizedForStreaming: GetSearchAllLibrariesOptimizedForStreaming.Enable,
   has64bitOffsets: false,
-  part: [
-    {
-      id: 119542,
-      key: "/library/parts/119542/1680457526/file.mkv",
-      duration: 11558112,
-      file:
-        "/movies/Avatar The Way of Water (2022)/Avatar.The.Way.of.Water.2022.2160p.WEB-DL.DDP5.1.Atmos.DV.HDR10.HEVC-CMRG.mkv",
-      size: 36158371307,
-      container: "mkv",
-      audioProfile: "dts",
-      has64bitOffsets: false,
-      optimizedForStreaming: false,
-      videoProfile: "main 10",
-      indexes: "sd",
-      stream: [
-        {
-          id: 272796,
-          streamType: 1,
-          default: true,
-          selected: true,
-          codec: "h264",
-          index: 0,
-          bitrate: 6273,
-          colorPrimaries: "bt709",
-          colorRange: "tv",
-          colorSpace: "bt709",
-          colorTrc: "bt709",
-          bitDepth: 8,
-          chromaLocation: "left",
-          streamIdentifier: "2",
-          chromaSubsampling: "4:2:0",
-          codedHeight: 1088,
-          codedWidth: 1920,
-          frameRate: 29.97,
-          hasScalingMatrix: false,
-          hearingImpaired: false,
-          closedCaptions: false,
-          embeddedInVideo: "1",
-          height: 1080,
-          level: 40,
-          profile: "main",
-          refFrames: 4,
-          scanType: "progressive",
-          width: 1920,
-          displayTitle: "1080p (H.264)",
-          extendedDisplayTitle: "1080p (H.264)",
-          channels: 2,
-          language: "English",
-          languageTag: "en",
-          languageCode: "eng",
-          audioChannelLayout: "stereo",
-          samplingRate: 48000,
-          title: "English",
-          canAutoSync: false,
-        },
-      ],
-    },
-  ],
+  part: [],
 };
 ```
 

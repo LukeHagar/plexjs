@@ -7,12 +7,7 @@ import { GetLibraryItemsFieldType } from "@lukehagar/plexjs/sdk/models/operation
 
 let value: GetLibraryItemsFieldType = {
   type: "tag",
-  operator: [
-    {
-      key: "=",
-      title: "is",
-    },
-  ],
+  operator: [],
 };
 ```
 

@@ -14,7 +14,7 @@ API Calls interacting with Plex Media Server Libraries
 * [getLibraryDetails](#getlibrarydetails) - Get Library Details
 * [deleteLibrary](#deletelibrary) - Delete Library Section
 * [getLibraryItems](#getlibraryitems) - Get Library Items
-* [getAllMediaLibrary](#getallmedialibrary) - Get all media of library
+* [getLibrarySectionsAll](#getlibrarysectionsall) - Get Library section media by tag ALL
 * [getRefreshLibraryMetadata](#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [getSearchLibrary](#getsearchlibrary) - Search Library
 * [getGenresLibrary](#getgenreslibrary) - Get Genres of library media
@@ -45,7 +45,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getFileHash("file://C:\Image.png&type=13");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -68,15 +67,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetFileHash(plexAPI, "file://C:\Image.png&type=13");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetFileHash failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -113,7 +109,7 @@ This endpoint will return the recently added content.
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -138,9 +134,9 @@ async function run() {
     ],
     sectionID: 2,
     type: QueryParamType.TvShow,
+    includeMeta: QueryParamIncludeMeta.Enable,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -154,7 +150,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetRecentlyAddedLibrary } from "@lukehagar/plexjs/funcs/libraryGetRecentlyAddedLibrary.js";
-import { QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -181,16 +177,14 @@ async function run() {
     ],
     sectionID: 2,
     type: QueryParamType.TvShow,
+    includeMeta: QueryParamIncludeMeta.Enable,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetRecentlyAddedLibrary failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -239,7 +233,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getAllLibraries();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -262,15 +255,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetAllLibraries(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetAllLibraries failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -351,7 +341,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getLibraryDetails(9518);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -374,15 +363,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetLibraryDetails(plexAPI, 9518);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetLibraryDetails failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -426,7 +412,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.deleteLibrary(9518);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -449,15 +434,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryDeleteLibrary(plexAPI, 9518);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryDeleteLibrary failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -513,7 +495,12 @@ Fetches details from a specific section of the library identified by a section k
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { GetLibraryItemsQueryParamType, Tag } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetLibraryItemsQueryParamIncludeMeta,
+  GetLibraryItemsQueryParamType,
+  IncludeGuids,
+  Tag,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -521,12 +508,13 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getLibraryItems({
-    tag: Tag.Edition,
+    tag: Tag.Newest,
+    includeGuids: IncludeGuids.Enable,
     type: GetLibraryItemsQueryParamType.TvShow,
     sectionKey: 9518,
+    includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -540,7 +528,12 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetLibraryItems } from "@lukehagar/plexjs/funcs/libraryGetLibraryItems.js";
-import { GetLibraryItemsQueryParamType, Tag } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetLibraryItemsQueryParamIncludeMeta,
+  GetLibraryItemsQueryParamType,
+  IncludeGuids,
+  Tag,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -550,19 +543,18 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetLibraryItems(plexAPI, {
-    tag: Tag.Edition,
+    tag: Tag.Newest,
+    includeGuids: IncludeGuids.Enable,
     type: GetLibraryItemsQueryParamType.TvShow,
     sectionKey: 9518,
+    includeMeta: GetLibraryItemsQueryParamIncludeMeta.Enable,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetLibraryItems failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -589,7 +581,7 @@ run();
 | errors.GetLibraryItemsUnauthorized | 401                                | application/json                   |
 | errors.SDKError                    | 4XX, 5XX                           | \*/\*                              |
 
-## getAllMediaLibrary
+## getLibrarySectionsAll
 
 Retrieves a list of all general media data for this library.
 
@@ -598,19 +590,30 @@ Retrieves a list of all general media data for this library.
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { GetAllMediaLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetLibrarySectionsAllQueryParamIncludeMeta,
+  GetLibrarySectionsAllQueryParamType,
+  IncludeAdvanced,
+  QueryParamIncludeCollections,
+  QueryParamIncludeExternalMedia,
+  QueryParamIncludeGuids,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await plexAPI.library.getAllMediaLibrary({
+  const result = await plexAPI.library.getLibrarySectionsAll({
     sectionKey: 9518,
-    type: GetAllMediaLibraryQueryParamType.TvShow,
+    type: GetLibrarySectionsAllQueryParamType.TvShow,
+    includeMeta: GetLibrarySectionsAllQueryParamIncludeMeta.Enable,
+    includeGuids: QueryParamIncludeGuids.Enable,
+    includeAdvanced: IncludeAdvanced.Enable,
+    includeCollections: QueryParamIncludeCollections.Enable,
+    includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -623,8 +626,15 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryGetAllMediaLibrary } from "@lukehagar/plexjs/funcs/libraryGetAllMediaLibrary.js";
-import { GetAllMediaLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { libraryGetLibrarySectionsAll } from "@lukehagar/plexjs/funcs/libraryGetLibrarySectionsAll.js";
+import {
+  GetLibrarySectionsAllQueryParamIncludeMeta,
+  GetLibrarySectionsAllQueryParamType,
+  IncludeAdvanced,
+  QueryParamIncludeCollections,
+  QueryParamIncludeExternalMedia,
+  QueryParamIncludeGuids,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -633,19 +643,21 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryGetAllMediaLibrary(plexAPI, {
+  const res = await libraryGetLibrarySectionsAll(plexAPI, {
     sectionKey: 9518,
-    type: GetAllMediaLibraryQueryParamType.TvShow,
+    type: GetLibrarySectionsAllQueryParamType.TvShow,
+    includeMeta: GetLibrarySectionsAllQueryParamIncludeMeta.Enable,
+    includeGuids: QueryParamIncludeGuids.Enable,
+    includeAdvanced: IncludeAdvanced.Enable,
+    includeCollections: QueryParamIncludeCollections.Enable,
+    includeExternalMedia: QueryParamIncludeExternalMedia.Enable,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetLibrarySectionsAll failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -655,22 +667,22 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetAllMediaLibraryRequest](../../sdk/models/operations/getallmedialibraryrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetLibrarySectionsAllRequest](../../sdk/models/operations/getlibrarysectionsallrequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetAllMediaLibraryResponse](../../sdk/models/operations/getallmedialibraryresponse.md)\>**
+**Promise\<[operations.GetLibrarySectionsAllResponse](../../sdk/models/operations/getlibrarysectionsallresponse.md)\>**
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| errors.GetAllMediaLibraryBadRequest   | 400                                   | application/json                      |
-| errors.GetAllMediaLibraryUnauthorized | 401                                   | application/json                      |
-| errors.SDKError                       | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| errors.GetLibrarySectionsAllBadRequest   | 400                                      | application/json                         |
+| errors.GetLibrarySectionsAllUnauthorized | 401                                      | application/json                         |
+| errors.SDKError                          | 4XX, 5XX                                 | \*/\*                                    |
 
 ## getRefreshLibraryMetadata
 
@@ -688,9 +700,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.library.getRefreshLibraryMetadata(9518, Force.One);
+  const result = await plexAPI.library.getRefreshLibraryMetadata(9518, Force.Zero);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -714,15 +725,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetRefreshLibraryMetadata(plexAPI, 9518, Force.Zero);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetRefreshLibraryMetadata failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -785,7 +793,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getSearchLibrary(9518, GetSearchLibraryQueryParamType.TvShow);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -809,15 +816,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetSearchLibrary(plexAPI, 9518, GetSearchLibraryQueryParamType.TvShow);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSearchLibrary failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -863,7 +867,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getGenresLibrary(9518, GetGenresLibraryQueryParamType.TvShow);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -887,15 +890,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetGenresLibrary(plexAPI, 9518, GetGenresLibraryQueryParamType.TvShow);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetGenresLibrary failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -941,7 +941,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getCountriesLibrary(9518, GetCountriesLibraryQueryParamType.TvShow);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -965,15 +964,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetCountriesLibrary(plexAPI, 9518, GetCountriesLibraryQueryParamType.TvShow);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetCountriesLibrary failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1019,7 +1015,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getActorsLibrary(9518, GetActorsLibraryQueryParamType.TvShow);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1043,15 +1038,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetActorsLibrary(plexAPI, 9518, GetActorsLibraryQueryParamType.TvShow);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetActorsLibrary failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1088,7 +1080,11 @@ Search the provided query across all library sections, or a single section, and 
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetSearchAllLibrariesQueryParamIncludeCollections,
+  GetSearchAllLibrariesQueryParamIncludeExternalMedia,
+  SearchTypes,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -1101,9 +1097,10 @@ async function run() {
     searchTypes: [
       SearchTypes.People,
     ],
+    includeCollections: GetSearchAllLibrariesQueryParamIncludeCollections.Enable,
+    includeExternalMedia: GetSearchAllLibrariesQueryParamIncludeExternalMedia.Enable,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1117,7 +1114,11 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryGetSearchAllLibraries } from "@lukehagar/plexjs/funcs/libraryGetSearchAllLibraries.js";
-import { SearchTypes } from "@lukehagar/plexjs/sdk/models/operations";
+import {
+  GetSearchAllLibrariesQueryParamIncludeCollections,
+  GetSearchAllLibrariesQueryParamIncludeExternalMedia,
+  SearchTypes,
+} from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1132,16 +1133,15 @@ async function run() {
     searchTypes: [
       SearchTypes.People,
     ],
+    includeCollections: GetSearchAllLibrariesQueryParamIncludeCollections.Enable,
+    includeExternalMedia: GetSearchAllLibrariesQueryParamIncludeExternalMedia.Enable,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetSearchAllLibraries failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1170,7 +1170,8 @@ run();
 
 ## getMediaMetaData
 
-This endpoint will return all the (meta)data of a library item specified with by the ratingKey.
+This endpoint will return all the (meta)data of one or more library items specified by the ratingKey.
+Multiple rating keys can be provided as a comma-separated list (e.g., "21119,21617").
 
 
 ### Example Usage
@@ -1184,7 +1185,7 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.library.getMediaMetaData({
-    ratingKey: 9518,
+    ratingKey: "21119,21617",
     includeConcerts: true,
     includeExtras: true,
     includeOnDeck: true,
@@ -1200,7 +1201,6 @@ async function run() {
     asyncRefreshLocalMediaAgent: true,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1223,7 +1223,7 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetMediaMetaData(plexAPI, {
-    ratingKey: 9518,
+    ratingKey: "21119,21617",
     includeConcerts: true,
     includeExtras: true,
     includeOnDeck: true,
@@ -1238,15 +1238,12 @@ async function run() {
     asyncRefreshAnalysis: true,
     asyncRefreshLocalMediaAgent: true,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMediaMetaData failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1289,7 +1286,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getMediaArts(16099);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1312,15 +1308,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetMediaArts(plexAPI, 16099);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMediaArts failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1353,16 +1346,14 @@ Uploads an image to use as the background artwork for a library item, either fro
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { openAsBlob } from "node:fs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await plexAPI.library.postMediaArts(2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+  const result = await plexAPI.library.postMediaArts(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1376,7 +1367,6 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryPostMediaArts } from "@lukehagar/plexjs/funcs/libraryPostMediaArts.js";
-import { openAsBlob } from "node:fs";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1385,16 +1375,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryPostMediaArts(plexAPI, 2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await libraryPostMediaArts(plexAPI, 2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryPostMediaArts failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1437,7 +1424,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.getMediaPosters(16099);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1460,15 +1446,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await libraryGetMediaPosters(plexAPI, 16099);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMediaPosters failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1501,16 +1484,14 @@ Uploads a poster to a library item, either from a local file or a remote URL
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { openAsBlob } from "node:fs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await plexAPI.library.postMediaPoster(2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+  const result = await plexAPI.library.postMediaPoster(2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1524,7 +1505,6 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { libraryPostMediaPoster } from "@lukehagar/plexjs/funcs/libraryPostMediaPoster.js";
-import { openAsBlob } from "node:fs";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1533,16 +1513,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryPostMediaPoster(plexAPI, 2268, await openAsBlob("example.file"), "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await libraryPostMediaPoster(plexAPI, 2268, "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryPostMediaPoster failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1584,9 +1561,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.library.getMetadataChildren(1539.14, "Stream");
+  const result = await plexAPI.library.getMetadataChildren(2403.67, "Stream");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1608,16 +1584,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryGetMetadataChildren(plexAPI, 1539.14, "Stream");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await libraryGetMetadataChildren(plexAPI, 2403.67, "Stream");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetMetadataChildren failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1661,9 +1634,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.library.getTopWatchedContent(GetTopWatchedContentQueryParamType.TvShow, 1);
+  const result = await plexAPI.library.getTopWatchedContent(GetTopWatchedContentQueryParamType.TvShow);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1686,16 +1658,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryGetTopWatchedContent(plexAPI, GetTopWatchedContentQueryParamType.TvShow, 1);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await libraryGetTopWatchedContent(plexAPI, GetTopWatchedContentQueryParamType.TvShow);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("libraryGetTopWatchedContent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1706,7 +1675,7 @@ run();
 | Parameter                                                                                                                                                                                    | Type                                                                                                                                                                                         | Required                                                                                                                                                                                     | Description                                                                                                                                                                                  | Example                                                                                                                                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`                                                                                                                                                                                       | [operations.GetTopWatchedContentQueryParamType](../../sdk/models/operations/gettopwatchedcontentqueryparamtype.md)                                                                           | :heavy_check_mark:                                                                                                                                                                           | The type of media to retrieve or filter by.<br/>1 = movie<br/>2 = show<br/>3 = season<br/>4 = episode<br/>E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries<br/> | [object Object]                                                                                                                                                                              |
-| `includeGuids`                                                                                                                                                                               | *number*                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                           | Adds the Guids object to the response<br/>                                                                                                                                                   | [object Object]                                                                                                                                                                              |
+| `includeGuids`                                                                                                                                                                               | [operations.GetTopWatchedContentQueryParamIncludeGuids](../../sdk/models/operations/gettopwatchedcontentqueryparamincludeguids.md)                                                           | :heavy_minus_sign:                                                                                                                                                                           | Adds the Guid object to the response<br/>                                                                                                                                                    | [object Object]                                                                                                                                                                              |
 | `options`                                                                                                                                                                                    | RequestOptions                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                           | Used to set various options for making HTTP requests.                                                                                                                                        |                                                                                                                                                                                              |
 | `options.fetchOptions`                                                                                                                                                                       | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                      | :heavy_minus_sign:                                                                                                                                                                           | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.               |                                                                                                                                                                                              |
 | `options.retries`                                                                                                                                                                            | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                           | Enables retrying HTTP requests under certain failure conditions.                                                                                                                             |                                                                                                                                                                                              |

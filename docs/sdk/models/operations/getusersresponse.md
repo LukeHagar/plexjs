@@ -5,13 +5,7 @@
 ```typescript
 import { GetUsersResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetUsersResponse = {
-  contentType: "<value>",
-  statusCode: 207,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetUsersResponse = {};
 ```
 
 ## Fields

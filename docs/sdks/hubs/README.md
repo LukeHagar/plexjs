@@ -28,7 +28,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.hubs.getGlobalHubs();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -51,15 +50,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await hubsGetGlobalHubs(plexAPI);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetGlobalHubs failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -96,7 +92,7 @@ This endpoint will return the recently added content.
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Type } from "@lukehagar/plexjs/sdk/models/operations";
+import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -104,12 +100,12 @@ const plexAPI = new PlexAPI({
 
 async function run() {
   const result = await plexAPI.hubs.getRecentlyAdded({
-    contentDirectoryID: 470161,
+    contentDirectoryID: 39486,
     sectionID: 2,
     type: Type.TvShow,
+    includeMeta: IncludeMeta.Enable,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -123,7 +119,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { hubsGetRecentlyAdded } from "@lukehagar/plexjs/funcs/hubsGetRecentlyAdded.js";
-import { Type } from "@lukehagar/plexjs/sdk/models/operations";
+import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -133,19 +129,17 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await hubsGetRecentlyAdded(plexAPI, {
-    contentDirectoryID: 470161,
+    contentDirectoryID: 39486,
     sectionID: 2,
     type: Type.TvShow,
+    includeMeta: IncludeMeta.Enable,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetRecentlyAdded failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -185,9 +179,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.hubs.getLibraryHubs(6728.76);
+  const result = await plexAPI.hubs.getLibraryHubs(492.74);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -209,16 +202,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await hubsGetLibraryHubs(plexAPI, 6728.76);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await hubsGetLibraryHubs(plexAPI, 492.74);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetLibraryHubs failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

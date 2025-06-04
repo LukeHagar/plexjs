@@ -28,7 +28,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.statistics.getStatistics(4);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -51,15 +50,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await statisticsGetStatistics(plexAPI, 4);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("statisticsGetStatistics failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -102,7 +98,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.statistics.getResourcesStatistics(4);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -125,15 +120,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await statisticsGetResourcesStatistics(plexAPI, 4);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("statisticsGetResourcesStatistics failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -176,7 +168,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.statistics.getBandwidthStatistics(4);
 
-  // Handle the result
   console.log(result);
 }
 
@@ -199,15 +190,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await statisticsGetBandwidthStatistics(plexAPI, 4);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("statisticsGetBandwidthStatistics failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

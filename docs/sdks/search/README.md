@@ -38,9 +38,8 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.search.performSearch("dylan");
+  const result = await plexAPI.search.performSearch("arnold");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -62,16 +61,13 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await searchPerformSearch(plexAPI, "dylan");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await searchPerformSearch(plexAPI, "arnold");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("searchPerformSearch failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -120,7 +116,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.search.performVoiceSearch("dead+poop");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -143,15 +138,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await searchPerformVoiceSearch(plexAPI, "dead+poop");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("searchPerformVoiceSearch failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -196,7 +188,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.search.getSearchResults("110");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -219,15 +210,12 @@ const plexAPI = new PlexAPICore({
 
 async function run() {
   const res = await searchGetSearchResults(plexAPI, "110");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("searchGetSearchResults failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -5,13 +5,7 @@
 ```typescript
 import { ClearPlaylistContentsResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: ClearPlaylistContentsResponse = {
-  contentType: "<value>",
-  statusCode: 504,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ClearPlaylistContentsResponse = {};
 ```
 
 ## Fields

@@ -5,13 +5,7 @@
 ```typescript
 import { GetFileHashResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetFileHashResponse = {
-  contentType: "<value>",
-  statusCode: 102,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetFileHashResponse = {};
 ```
 
 ## Fields

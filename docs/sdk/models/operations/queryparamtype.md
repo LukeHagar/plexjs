@@ -26,7 +26,9 @@ This is an open enum. Unrecognized values will be captured as the `Unrecognized<
 | `TvShow`               | 2                      |
 | `Season`               | 3                      |
 | `Episode`              | 4                      |
-| `Audio`                | 8                      |
-| `Album`                | 9                      |
-| `Track`                | 10                     |
+| `Artist`               | 5                      |
+| `Album`                | 6                      |
+| `Track`                | 7                      |
+| `PhotoAlbum`           | 8                      |
+| `Photo`                | 9                      |
 | -                      | `Unrecognized<number>` |

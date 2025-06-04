@@ -5,13 +5,7 @@
 ```typescript
 import { GetTransientTokenResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetTransientTokenResponse = {
-  contentType: "<value>",
-  statusCode: 203,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetTransientTokenResponse = {};
 ```
 
 ## Fields

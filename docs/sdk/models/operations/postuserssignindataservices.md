@@ -9,7 +9,7 @@ let value: PostUsersSignInDataServices = {
   identifier: "metadata-dev",
   endpoint: "https://epg.provider.plex.tv",
   token: "DjoMtqFAGRL1uVtCyF1dKIorTbShJeqv",
-  secret: "<value>",
+  secret: null,
   status: PostUsersSignInDataStatus.Online,
 };
 ```

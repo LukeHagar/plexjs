@@ -3,12 +3,13 @@
 ## Example Usage
 
 ```typescript
-import { GetRecentlyAddedRequest, Type } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetRecentlyAddedRequest, IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetRecentlyAddedRequest = {
   contentDirectoryID: 995290,
   sectionID: 2,
   type: Type.TvShow,
+  includeMeta: IncludeMeta.Enable,
 };
 ```
 

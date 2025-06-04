@@ -5,13 +5,7 @@
 ```typescript
 import { GetServerCapabilitiesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetServerCapabilitiesResponse = {
-  contentType: "<value>",
-  statusCode: 503,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetServerCapabilitiesResponse = {};
 ```
 
 ## Fields

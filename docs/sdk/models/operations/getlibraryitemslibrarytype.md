@@ -1,6 +1,6 @@
 # GetLibraryItemsLibraryType
 
-The type of media content
+The type of media content in the Plex library. This can represent videos, music, or photos.
 
 
 ## Example Usage
@@ -23,4 +23,8 @@ This is an open enum. Unrecognized values will be captured as the `Unrecognized<
 | `Episode`              | episode                |
 | `Artist`               | artist                 |
 | `Album`                | album                  |
+| `Track`                | track                  |
+| `PhotoAlbum`           | photoalbum             |
+| `Photo`                | photo                  |
+| `Collection`           | collection             |
 | -                      | `Unrecognized<string>` |

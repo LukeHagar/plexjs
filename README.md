@@ -111,7 +111,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -160,7 +159,7 @@ run();
 * [getLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 * [deleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 * [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
-* [getAllMediaLibrary](docs/sdks/library/README.md#getallmedialibrary) - Get all media of library
+* [getLibrarySectionsAll](docs/sdks/library/README.md#getlibrarysectionsall) - Get Library section media by tag ALL
 * [getRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
 * [getSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
 * [getGenresLibrary](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
@@ -268,59 +267,46 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `sdk/models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `getServerCapabilities` method may throw the following errors:
+This table shows properties which are common on error classes. For full details see [error classes](#error-classes).
 
-| Error Type                               | Status Code | Content Type     |
-| ---------------------------------------- | ----------- | ---------------- |
-| errors.GetServerCapabilitiesBadRequest   | 400         | application/json |
-| errors.GetServerCapabilitiesUnauthorized | 401         | application/json |
-| errors.SDKError                          | 4XX, 5XX    | \*/\*            |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.name`        | `string`   | Error class name eg `SDKError`                                                          |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP status code eg `404`                                                               |
+| `error.contentType` | `string`   | HTTP content type eg `application/json`                                                 |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response. Access to headers and more.                                          |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
-
+### Example
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import {
-  GetServerCapabilitiesBadRequest,
-  GetServerCapabilitiesUnauthorized,
-  SDKValidationError,
-} from "@lukehagar/plexjs/sdk/models/errors";
+import * as errors from "@lukehagar/plexjs/sdk/models/errors";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  let result;
   try {
-    result = await plexAPI.server.getServerCapabilities();
+    const result = await plexAPI.server.getServerCapabilities();
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof GetServerCapabilitiesBadRequest): {
-        // Handle err.data$: GetServerCapabilitiesBadRequestData
-        console.error(err);
-        return;
-      }
-      case (err instanceof GetServerCapabilitiesUnauthorized): {
-        // Handle err.data$: GetServerCapabilitiesUnauthorizedData
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
-      }
+  } catch (error) {
+    // Depending on the method different errors may be thrown
+    if (error instanceof errors.GetServerCapabilitiesBadRequest) {
+      console.log(error.message);
+      console.log(error.data$.errors); // Errors[]
+      console.log(error.data$.rawResponse); // Response
+    }
+
+    // Fallback error class, if no other more specific error class is matched
+    if (error instanceof errors.SDKError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.rawResponse.headers);
     }
   }
 }
@@ -329,17 +315,178 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+* `SDKError`: The fallback error class, if no other more specific error class is matched.
+* `SDKValidationError`: Type mismatch between the data returned from the server and the structure expected by the SDK. This can also be thrown for invalid method arguments. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+* Network errors:
+    * `ConnectionError`: HTTP client was unable to make a request to a server.
+    * `RequestTimeoutError`: HTTP request timed out due to an AbortSignal signal.
+    * `RequestAbortedError`: HTTP request was aborted by the client.
+    * `InvalidRequestError`: Any input used to create a request is invalid.
+    * `UnexpectedClientError`: Unrecognised or unexpected error.
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `sdk/models/errors/httpclienterrors.ts` module:
+<details><summary>Less common errors, applicable to a subset of methods (156)</summary>
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+* [`GetServerCapabilitiesBadRequest`](docs/sdk/models/errors/getservercapabilitiesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetServerPreferencesBadRequest`](docs/sdk/models/errors/getserverpreferencesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetAvailableClientsBadRequest`](docs/sdk/models/errors/getavailableclientsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetDevicesBadRequest`](docs/sdk/models/errors/getdevicesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetMyPlexAccountBadRequest`](docs/sdk/models/errors/getmyplexaccountbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetResizedPhotoBadRequest`](docs/sdk/models/errors/getresizedphotobadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetMediaProvidersBadRequest`](docs/sdk/models/errors/getmediaprovidersbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetServerListBadRequest`](docs/sdk/models/errors/getserverlistbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`MarkPlayedBadRequest`](docs/sdk/models/errors/markplayedbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`MarkUnplayedBadRequest`](docs/sdk/models/errors/markunplayedbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`UpdatePlayProgressBadRequest`](docs/sdk/models/errors/updateplayprogressbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetBannerImageBadRequest`](docs/sdk/models/errors/getbannerimagebadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetThumbImageBadRequest`](docs/sdk/models/errors/getthumbimagebadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetTimelineBadRequest`](docs/sdk/models/errors/gettimelinebadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`StartUniversalTranscodeBadRequest`](docs/sdk/models/errors/startuniversaltranscodebadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetServerActivitiesBadRequest`](docs/sdk/models/errors/getserveractivitiesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`CancelServerActivitiesBadRequest`](docs/sdk/models/errors/cancelserveractivitiesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetButlerTasksBadRequest`](docs/sdk/models/errors/getbutlertasksbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`StartAllTasksBadRequest`](docs/sdk/models/errors/startalltasksbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`StopAllTasksBadRequest`](docs/sdk/models/errors/stopalltasksbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`StartTaskBadRequest`](docs/sdk/models/errors/starttaskbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`StopTaskBadRequest`](docs/sdk/models/errors/stoptaskbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetCompanionsDataBadRequest`](docs/sdk/models/errors/getcompanionsdatabadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetUserFriendsBadRequest`](docs/sdk/models/errors/getuserfriendsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetGeoDataBadRequest`](docs/sdk/models/errors/getgeodatabadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetHomeDataBadRequest`](docs/sdk/models/errors/gethomedatabadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetServerResourcesBadRequest`](docs/sdk/models/errors/getserverresourcesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetPinBadRequest`](docs/sdk/models/errors/getpinbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetTokenByPinIdBadRequest`](docs/sdk/models/errors/gettokenbypinidbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetGlobalHubsBadRequest`](docs/sdk/models/errors/getglobalhubsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetLibraryHubsBadRequest`](docs/sdk/models/errors/getlibraryhubsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`PerformSearchBadRequest`](docs/sdk/models/errors/performsearchbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`PerformVoiceSearchBadRequest`](docs/sdk/models/errors/performvoicesearchbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetSearchResultsBadRequest`](docs/sdk/models/errors/getsearchresultsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetFileHashBadRequest`](docs/sdk/models/errors/getfilehashbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetRecentlyAddedLibraryBadRequest`](docs/sdk/models/errors/getrecentlyaddedlibrarybadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetAllLibrariesBadRequest`](docs/sdk/models/errors/getalllibrariesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetLibraryDetailsBadRequest`](docs/sdk/models/errors/getlibrarydetailsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`DeleteLibraryBadRequest`](docs/sdk/models/errors/deletelibrarybadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetLibraryItemsBadRequest`](docs/sdk/models/errors/getlibraryitemsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetLibrarySectionsAllBadRequest`](docs/sdk/models/errors/getlibrarysectionsallbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetRefreshLibraryMetadataBadRequest`](docs/sdk/models/errors/getrefreshlibrarymetadatabadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetSearchLibraryBadRequest`](docs/sdk/models/errors/getsearchlibrarybadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetGenresLibraryBadRequest`](docs/sdk/models/errors/getgenreslibrarybadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetCountriesLibraryBadRequest`](docs/sdk/models/errors/getcountrieslibrarybadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetActorsLibraryBadRequest`](docs/sdk/models/errors/getactorslibrarybadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetSearchAllLibrariesBadRequest`](docs/sdk/models/errors/getsearchalllibrariesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetMediaMetaDataBadRequest`](docs/sdk/models/errors/getmediametadatabadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetMetadataChildrenBadRequest`](docs/sdk/models/errors/getmetadatachildrenbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetTopWatchedContentBadRequest`](docs/sdk/models/errors/gettopwatchedcontentbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetWatchListBadRequest`](docs/sdk/models/errors/getwatchlistbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`LogLineBadRequest`](docs/sdk/models/errors/loglinebadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`LogMultiLineBadRequest`](docs/sdk/models/errors/logmultilinebadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`EnablePaperTrailBadRequest`](docs/sdk/models/errors/enablepapertrailbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`CreatePlaylistBadRequest`](docs/sdk/models/errors/createplaylistbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetPlaylistsBadRequest`](docs/sdk/models/errors/getplaylistsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetPlaylistBadRequest`](docs/sdk/models/errors/getplaylistbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`DeletePlaylistBadRequest`](docs/sdk/models/errors/deleteplaylistbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`UpdatePlaylistBadRequest`](docs/sdk/models/errors/updateplaylistbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetPlaylistContentsBadRequest`](docs/sdk/models/errors/getplaylistcontentsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`ClearPlaylistContentsBadRequest`](docs/sdk/models/errors/clearplaylistcontentsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`AddPlaylistContentsBadRequest`](docs/sdk/models/errors/addplaylistcontentsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`UploadPlaylistBadRequest`](docs/sdk/models/errors/uploadplaylistbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetTransientTokenBadRequest`](docs/sdk/models/errors/gettransienttokenbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetSourceConnectionInformationBadRequest`](docs/sdk/models/errors/getsourceconnectioninformationbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetTokenDetailsBadRequest`](docs/sdk/models/errors/gettokendetailsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`PostUsersSignInDataBadRequest`](docs/sdk/models/errors/postuserssignindatabadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetStatisticsBadRequest`](docs/sdk/models/errors/getstatisticsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetResourcesStatisticsBadRequest`](docs/sdk/models/errors/getresourcesstatisticsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetBandwidthStatisticsBadRequest`](docs/sdk/models/errors/getbandwidthstatisticsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetSessionsBadRequest`](docs/sdk/models/errors/getsessionsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetSessionHistoryBadRequest`](docs/sdk/models/errors/getsessionhistorybadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetTranscodeSessionsBadRequest`](docs/sdk/models/errors/gettranscodesessionsbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`StopTranscodeSessionBadRequest`](docs/sdk/models/errors/stoptranscodesessionbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetUpdateStatusBadRequest`](docs/sdk/models/errors/getupdatestatusbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`CheckForUpdatesBadRequest`](docs/sdk/models/errors/checkforupdatesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`ApplyUpdatesBadRequest`](docs/sdk/models/errors/applyupdatesbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetUsersBadRequest`](docs/sdk/models/errors/getusersbadrequest.md): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
+* [`GetServerCapabilitiesUnauthorized`](docs/sdk/models/errors/getservercapabilitiesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetServerPreferencesUnauthorized`](docs/sdk/models/errors/getserverpreferencesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetAvailableClientsUnauthorized`](docs/sdk/models/errors/getavailableclientsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetDevicesUnauthorized`](docs/sdk/models/errors/getdevicesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetMyPlexAccountUnauthorized`](docs/sdk/models/errors/getmyplexaccountunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetResizedPhotoUnauthorized`](docs/sdk/models/errors/getresizedphotounauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetMediaProvidersUnauthorized`](docs/sdk/models/errors/getmediaprovidersunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetServerListUnauthorized`](docs/sdk/models/errors/getserverlistunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`MarkPlayedUnauthorized`](docs/sdk/models/errors/markplayedunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`MarkUnplayedUnauthorized`](docs/sdk/models/errors/markunplayedunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`UpdatePlayProgressUnauthorized`](docs/sdk/models/errors/updateplayprogressunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetBannerImageUnauthorized`](docs/sdk/models/errors/getbannerimageunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetThumbImageUnauthorized`](docs/sdk/models/errors/getthumbimageunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetTimelineUnauthorized`](docs/sdk/models/errors/gettimelineunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`StartUniversalTranscodeUnauthorized`](docs/sdk/models/errors/startuniversaltranscodeunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetServerActivitiesUnauthorized`](docs/sdk/models/errors/getserveractivitiesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`CancelServerActivitiesUnauthorized`](docs/sdk/models/errors/cancelserveractivitiesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetButlerTasksUnauthorized`](docs/sdk/models/errors/getbutlertasksunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`StartAllTasksUnauthorized`](docs/sdk/models/errors/startalltasksunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`StopAllTasksUnauthorized`](docs/sdk/models/errors/stopalltasksunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`StartTaskUnauthorized`](docs/sdk/models/errors/starttaskunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`StopTaskUnauthorized`](docs/sdk/models/errors/stoptaskunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetCompanionsDataUnauthorized`](docs/sdk/models/errors/getcompanionsdataunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetUserFriendsUnauthorized`](docs/sdk/models/errors/getuserfriendsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetGeoDataUnauthorized`](docs/sdk/models/errors/getgeodataunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetHomeDataUnauthorized`](docs/sdk/models/errors/gethomedataunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetServerResourcesUnauthorized`](docs/sdk/models/errors/getserverresourcesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetGlobalHubsUnauthorized`](docs/sdk/models/errors/getglobalhubsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetLibraryHubsUnauthorized`](docs/sdk/models/errors/getlibraryhubsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`PerformSearchUnauthorized`](docs/sdk/models/errors/performsearchunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`PerformVoiceSearchUnauthorized`](docs/sdk/models/errors/performvoicesearchunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetSearchResultsUnauthorized`](docs/sdk/models/errors/getsearchresultsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetFileHashUnauthorized`](docs/sdk/models/errors/getfilehashunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetRecentlyAddedLibraryUnauthorized`](docs/sdk/models/errors/getrecentlyaddedlibraryunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetAllLibrariesUnauthorized`](docs/sdk/models/errors/getalllibrariesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetLibraryDetailsUnauthorized`](docs/sdk/models/errors/getlibrarydetailsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`DeleteLibraryUnauthorized`](docs/sdk/models/errors/deletelibraryunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetLibraryItemsUnauthorized`](docs/sdk/models/errors/getlibraryitemsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetLibrarySectionsAllUnauthorized`](docs/sdk/models/errors/getlibrarysectionsallunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetRefreshLibraryMetadataUnauthorized`](docs/sdk/models/errors/getrefreshlibrarymetadataunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetSearchLibraryUnauthorized`](docs/sdk/models/errors/getsearchlibraryunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetGenresLibraryUnauthorized`](docs/sdk/models/errors/getgenreslibraryunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetCountriesLibraryUnauthorized`](docs/sdk/models/errors/getcountrieslibraryunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetActorsLibraryUnauthorized`](docs/sdk/models/errors/getactorslibraryunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetSearchAllLibrariesUnauthorized`](docs/sdk/models/errors/getsearchalllibrariesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetMediaMetaDataUnauthorized`](docs/sdk/models/errors/getmediametadataunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetMetadataChildrenUnauthorized`](docs/sdk/models/errors/getmetadatachildrenunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetTopWatchedContentUnauthorized`](docs/sdk/models/errors/gettopwatchedcontentunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetWatchListUnauthorized`](docs/sdk/models/errors/getwatchlistunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`LogLineUnauthorized`](docs/sdk/models/errors/loglineunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`LogMultiLineUnauthorized`](docs/sdk/models/errors/logmultilineunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`EnablePaperTrailUnauthorized`](docs/sdk/models/errors/enablepapertrailunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`CreatePlaylistUnauthorized`](docs/sdk/models/errors/createplaylistunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetPlaylistsUnauthorized`](docs/sdk/models/errors/getplaylistsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetPlaylistUnauthorized`](docs/sdk/models/errors/getplaylistunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`DeletePlaylistUnauthorized`](docs/sdk/models/errors/deleteplaylistunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`UpdatePlaylistUnauthorized`](docs/sdk/models/errors/updateplaylistunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetPlaylistContentsUnauthorized`](docs/sdk/models/errors/getplaylistcontentsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`ClearPlaylistContentsUnauthorized`](docs/sdk/models/errors/clearplaylistcontentsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`AddPlaylistContentsUnauthorized`](docs/sdk/models/errors/addplaylistcontentsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`UploadPlaylistUnauthorized`](docs/sdk/models/errors/uploadplaylistunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetTransientTokenUnauthorized`](docs/sdk/models/errors/gettransienttokenunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetSourceConnectionInformationUnauthorized`](docs/sdk/models/errors/getsourceconnectioninformationunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetTokenDetailsUnauthorized`](docs/sdk/models/errors/gettokendetailsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`PostUsersSignInDataUnauthorized`](docs/sdk/models/errors/postuserssignindataunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetStatisticsUnauthorized`](docs/sdk/models/errors/getstatisticsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetResourcesStatisticsUnauthorized`](docs/sdk/models/errors/getresourcesstatisticsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetBandwidthStatisticsUnauthorized`](docs/sdk/models/errors/getbandwidthstatisticsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetSessionsUnauthorized`](docs/sdk/models/errors/getsessionsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetSessionHistoryUnauthorized`](docs/sdk/models/errors/getsessionhistoryunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetTranscodeSessionsUnauthorized`](docs/sdk/models/errors/gettranscodesessionsunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`StopTranscodeSessionUnauthorized`](docs/sdk/models/errors/stoptranscodesessionunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetUpdateStatusUnauthorized`](docs/sdk/models/errors/getupdatestatusunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`CheckForUpdatesUnauthorized`](docs/sdk/models/errors/checkforupdatesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`ApplyUpdatesUnauthorized`](docs/sdk/models/errors/applyupdatesunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetUsersUnauthorized`](docs/sdk/models/errors/getusersunauthorized.md): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
+* [`GetTokenByPinIdResponseBody`](docs/sdk/models/errors/gettokenbypinidresponsebody.md): Not Found or Expired. Status code `404`. Applicable to 1 of 84 methods.*
+* [`GetServerIdentityRequestTimeout`](docs/sdk/models/errors/getserveridentityrequesttimeout.md): Request Timeout. Status code `408`. Applicable to 1 of 84 methods.*
+</details>
+
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -362,15 +509,14 @@ import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
   protocol: "https",
-  ip: "e0c3:bcc0:6bac:dccc:c4ec:34b1:ca98:4cb9",
-  port: "40311",
+  ip: "4982:bc2a:b4f8:efb5:2394:5bc3:ab4f:0e6d",
+  port: "44765",
   accessToken: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -392,7 +538,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -415,7 +560,6 @@ async function run() {
     serverURL: "https://plex.tv/api/v2",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -495,7 +639,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -542,12 +685,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`libraryDeleteLibrary`](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
 - [`libraryGetActorsLibrary`](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
 - [`libraryGetAllLibraries`](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
-- [`libraryGetAllMediaLibrary`](docs/sdks/library/README.md#getallmedialibrary) - Get all media of library
 - [`libraryGetCountriesLibrary`](docs/sdks/library/README.md#getcountrieslibrary) - Get Countries of library media
 - [`libraryGetFileHash`](docs/sdks/library/README.md#getfilehash) - Get Hash Value
 - [`libraryGetGenresLibrary`](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
 - [`libraryGetLibraryDetails`](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
 - [`libraryGetLibraryItems`](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
+- [`libraryGetLibrarySectionsAll`](docs/sdks/library/README.md#getlibrarysectionsall) - Get Library section media by tag ALL
 - [`libraryGetMediaArts`](docs/sdks/library/README.md#getmediaarts) - Get Media Background Artwork
 - [`libraryGetMediaMetaData`](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
 - [`libraryGetMediaPosters`](docs/sdks/library/README.md#getmediaposters) - Get Media Posters
@@ -629,7 +772,6 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { openAsBlob } from "node:fs";
 
 const plexAPI = new PlexAPI({
   accessToken: "<YOUR_API_KEY_HERE>",
@@ -638,11 +780,9 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.library.postMediaArts(
     2268,
-    await openAsBlob("example.file"),
     "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b",
   );
 
-  // Handle the result
   console.log(result);
 }
 
@@ -678,7 +818,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -707,7 +846,6 @@ const plexAPI = new PlexAPI({
 async function run() {
   const result = await plexAPI.server.getServerCapabilities();
 
-  // Handle the result
   console.log(result);
 }
 

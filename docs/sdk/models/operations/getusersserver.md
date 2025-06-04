@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetUsersServer } from "@lukehagar/plexjs/sdk/models/operations";
+import { AllLibraries, GetUsersServer, Owned, Pending } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetUsersServer = {
   id: 907759180,
@@ -12,6 +12,9 @@ let value: GetUsersServer = {
   name: "ConnectedUserFlix",
   lastSeenAt: 1556281940,
   numLibraries: 16,
+  allLibraries: AllLibraries.Enable,
+  owned: Owned.Enable,
+  pending: Pending.Enable,
 };
 ```
 

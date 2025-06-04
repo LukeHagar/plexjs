@@ -5,19 +5,7 @@
 ```typescript
 import { GetHomeDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetHomeDataResponse = {
-  contentType: "<value>",
-  statusCode: 404,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  object: {
-    id: 1841489,
-    name: "Blindkitty38's home",
-    guestUserID: 58815432,
-    guestUserUUID: "f3df4e01bfca0787",
-  },
-};
+let value: GetHomeDataResponse = {};
 ```
 
 ## Fields

@@ -23,6 +23,10 @@ export enum GetAllLibrariesType {
   Episode = "episode",
   Artist = "artist",
   Album = "album",
+  Track = "track",
+  PhotoAlbum = "photoalbum",
+  Photo = "photo",
+  Collection = "collection",
 }
 /**
  * The library type

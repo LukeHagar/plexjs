@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetAllLibrariesMediaContainer, GetAllLibrariesType } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetAllLibrariesMediaContainer, GetAllLibrariesType, Hidden } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetAllLibrariesMediaContainer = {
   size: 50,
@@ -30,6 +30,7 @@ let value: GetAllLibrariesMediaContainer = {
       content: true,
       directory: true,
       contentChangedAt: 9173960,
+      hidden: Hidden.ExcludeHomeScreen,
       location: [
         {
           id: 1,

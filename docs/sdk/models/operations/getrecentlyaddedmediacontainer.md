@@ -7,6 +7,7 @@ import {
   GetRecentlyAddedHubsResponseType,
   GetRecentlyAddedHubsType,
   GetRecentlyAddedMediaContainer,
+  HasThumbnail,
   StreamType,
 } from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
@@ -147,6 +148,12 @@ let value: GetRecentlyAddedMediaContainer = {
         bottomRight: "73958",
         bottomLeft: "1f5066",
       },
+      guids: [
+        {
+          id:
+            "{\"imdbExample\":{\"summary\":\"IMDB example\",\"value\":\"imdb://tt13015952\"},\"tmdbExample\":{\"summary\":\"TMDB example\",\"value\":\"tmdb://2434012\"},\"tvdbExample\":{\"summary\":\"TVDB example\",\"value\":\"tvdb://7945991\"}}",
+        },
+      ],
       media: [
         {
           id: 387322,
@@ -181,6 +188,7 @@ let value: GetRecentlyAddedMediaContainer = {
               videoProfile: "main 10",
               audioProfile: "dts",
               has64bitOffsets: false,
+              hasThumbnail: HasThumbnail.True,
               stream: [
                 {
                   id: 1002625,
@@ -256,7 +264,12 @@ let value: GetRecentlyAddedMediaContainer = {
       ],
       director: [
         {
+          id: 126522,
+          filter: "director=235876",
           tag: "Danny Boyle",
+          tagKey: "5d776831151a60001f24d031",
+          thumb:
+            "https://metadata-static.plex.tv/8/people/8d65fa96804802e08f2de09fe014408e.jpg",
         },
       ],
       writer: [
@@ -265,6 +278,8 @@ let value: GetRecentlyAddedMediaContainer = {
           filter: "writer=126522",
           tag: "Jamie P. Hanson",
           tagKey: "5d77683d85719b001f3a535e",
+          thumb:
+            "https://metadata-static.plex.tv/8/people/8d65fa96804802e08f2de09fe014408e.jpg",
         },
       ],
       role: [
@@ -305,11 +320,6 @@ let value: GetRecentlyAddedMediaContainer = {
       location: [
         {
           path: "/TV Shows/Clarkson's Farm",
-        },
-      ],
-      guids: [
-        {
-          id: "tvdb://2337",
         },
       ],
       collection: [

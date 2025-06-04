@@ -5,13 +5,7 @@
 ```typescript
 import { ApplyUpdatesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: ApplyUpdatesResponse = {
-  contentType: "<value>",
-  statusCode: 200,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ApplyUpdatesResponse = {};
 ```
 
 ## Fields

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetMediaMetaDataMedia, GetMediaMetaDataStreamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetMediaMetaDataHasThumbnail, GetMediaMetaDataMedia, GetMediaMetaDataStreamType } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetMediaMetaDataMedia = {
   id: 387322,
@@ -38,6 +38,7 @@ let value: GetMediaMetaDataMedia = {
       videoProfile: "main 10",
       audioProfile: "dts",
       has64bitOffsets: false,
+      hasThumbnail: GetMediaMetaDataHasThumbnail.True,
       stream: [
         {
           id: 1002625,
