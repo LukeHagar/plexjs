@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetHomeDataPlexErrors = {
@@ -28,25 +29,22 @@ export type GetHomeDataUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetHomeDataUnauthorized extends Error {
+export class GetHomeDataUnauthorized extends PlexAPIError {
   errors?: Array<GetHomeDataPlexErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetHomeDataUnauthorizedData;
 
-  constructor(err: GetHomeDataUnauthorizedData) {
+  constructor(
+    err: GetHomeDataUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetHomeDataUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetHomeDataBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetHomeDataBadRequest extends Error {
+export class GetHomeDataBadRequest extends PlexAPIError {
   errors?: Array<GetHomeDataErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetHomeDataBadRequestData;
 
-  constructor(err: GetHomeDataBadRequestData) {
+  constructor(
+    err: GetHomeDataBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetHomeDataBadRequest";
   }
@@ -164,13 +159,20 @@ export const GetHomeDataUnauthorized$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => GetHomeDataPlexErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetHomeDataUnauthorized(remapped);
+    return new GetHomeDataUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -281,13 +283,20 @@ export const GetHomeDataBadRequest$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => GetHomeDataErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetHomeDataBadRequest(remapped);
+    return new GetHomeDataBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -8,7 +8,6 @@ import {
   GetRecentlyAddedHubsType,
   GetRecentlyAddedMediaContainer,
   HasThumbnail,
-  StreamType,
 } from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
@@ -192,7 +191,6 @@ let value: GetRecentlyAddedMediaContainer = {
               stream: [
                 {
                   id: 1002625,
-                  streamType: StreamType.Video,
                   format: "srt",
                   default: true,
                   codec: "hevc",

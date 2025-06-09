@@ -281,29 +281,6 @@ export enum HasThumbnail {
   True = "1",
 }
 
-/**
- * Stream type:
- *
- * @remarks
- *   - 1 = video
- *   - 2 = audio
- *   - 3 = subtitle
- */
-export enum StreamType {
-  Video = 1,
-  Audio = 2,
-  Subtitle = 3,
-}
-/**
- * Stream type:
- *
- * @remarks
- *   - 1 = video
- *   - 2 = audio
- *   - 3 = subtitle
- */
-export type StreamTypeOpen = OpenEnum<typeof StreamType>;
-
 export type Stream = {
   /**
    * Unique stream identifier.
@@ -313,11 +290,11 @@ export type Stream = {
    * Stream type:
    *
    * @remarks
-   *   - 1 = video
-   *   - 2 = audio
-   *   - 3 = subtitle
+   *   - VIDEO = 1
+   *   - AUDIO = 2
+   *   - SUBTITLE = 3
    */
-  streamType: StreamTypeOpen;
+  streamType?: 1 | undefined;
   /**
    * Format of the stream (e.g., srt).
    */
@@ -913,15 +890,15 @@ export type GetRecentlyAddedMetadata = {
   /**
    * The identifier for the library section.
    */
-  librarySectionID: number;
+  librarySectionID?: number | undefined;
   /**
    * The key corresponding to the library section.
    */
-  librarySectionKey: string;
+  librarySectionKey?: string | undefined;
   /**
    * The title of the library section.
    */
-  librarySectionTitle: string;
+  librarySectionTitle?: string | undefined;
   /**
    * The original title of the media item (if different).
    */
@@ -929,7 +906,7 @@ export type GetRecentlyAddedMetadata = {
   /**
    * The original release date of the media item.
    */
-  originallyAvailableAt: RFCDate;
+  originallyAvailableAt?: RFCDate | undefined;
   /**
    * The GUID of the parent media item.
    */
@@ -2184,42 +2161,10 @@ export namespace HasThumbnail$ {
 }
 
 /** @internal */
-export const StreamType$inboundSchema: z.ZodType<
-  StreamTypeOpen,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(StreamType),
-    z.number().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const StreamType$outboundSchema: z.ZodType<
-  StreamTypeOpen,
-  z.ZodTypeDef,
-  StreamTypeOpen
-> = z.union([
-  z.nativeEnum(StreamType),
-  z.number().and(z.custom<Unrecognized<number>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StreamType$ {
-  /** @deprecated use `StreamType$inboundSchema` instead. */
-  export const inboundSchema = StreamType$inboundSchema;
-  /** @deprecated use `StreamType$outboundSchema` instead. */
-  export const outboundSchema = StreamType$outboundSchema;
-}
-
-/** @internal */
 export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
   .object({
     id: z.number().int(),
-    streamType: StreamType$inboundSchema,
+    streamType: z.literal(1).optional(),
     format: z.string().optional(),
     default: z.boolean().optional(),
     codec: z.string(),
@@ -2285,7 +2230,7 @@ export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> = z
 /** @internal */
 export type Stream$Outbound = {
   id: number;
-  streamType: number;
+  streamType: 1;
   format?: string | undefined;
   default?: boolean | undefined;
   codec: string;
@@ -2344,7 +2289,7 @@ export const Stream$outboundSchema: z.ZodType<
   Stream
 > = z.object({
   id: z.number().int(),
-  streamType: StreamType$outboundSchema,
+  streamType: z.literal(1).default(1 as const),
   format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),
@@ -3230,11 +3175,11 @@ export const GetRecentlyAddedMetadata$inboundSchema: z.ZodType<
   lastRatedAt: z.number().int().optional(),
   lastViewedAt: z.number().int().optional(),
   leafCount: z.number().int().optional(),
-  librarySectionID: z.number().int(),
-  librarySectionKey: z.string(),
-  librarySectionTitle: z.string(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionKey: z.string().optional(),
+  librarySectionTitle: z.string().optional(),
   originalTitle: z.string().optional(),
-  originallyAvailableAt: z.string().transform(v => new RFCDate(v)),
+  originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
   parentGuid: z.string().optional(),
   parentIndex: z.number().int().optional(),
   parentKey: z.string().optional(),
@@ -3326,11 +3271,11 @@ export type GetRecentlyAddedMetadata$Outbound = {
   lastRatedAt?: number | undefined;
   lastViewedAt?: number | undefined;
   leafCount?: number | undefined;
-  librarySectionID: number;
-  librarySectionKey: string;
-  librarySectionTitle: string;
+  librarySectionID?: number | undefined;
+  librarySectionKey?: string | undefined;
+  librarySectionTitle?: string | undefined;
   originalTitle?: string | undefined;
-  originallyAvailableAt: string;
+  originallyAvailableAt?: string | undefined;
   parentGuid?: string | undefined;
   parentIndex?: number | undefined;
   parentKey?: string | undefined;
@@ -3409,11 +3354,12 @@ export const GetRecentlyAddedMetadata$outboundSchema: z.ZodType<
   lastRatedAt: z.number().int().optional(),
   lastViewedAt: z.number().int().optional(),
   leafCount: z.number().int().optional(),
-  librarySectionID: z.number().int(),
-  librarySectionKey: z.string(),
-  librarySectionTitle: z.string(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionKey: z.string().optional(),
+  librarySectionTitle: z.string().optional(),
   originalTitle: z.string().optional(),
-  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString()),
+  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString())
+    .optional(),
   parentGuid: z.string().optional(),
   parentIndex: z.number().int().optional(),
   parentKey: z.string().optional(),

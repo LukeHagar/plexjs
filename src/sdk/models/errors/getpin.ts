@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetPinErrors = {
@@ -28,25 +29,22 @@ export type GetPinBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetPinBadRequest extends Error {
+export class GetPinBadRequest extends PlexAPIError {
   errors?: Array<GetPinErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetPinBadRequestData;
 
-  constructor(err: GetPinBadRequestData) {
+  constructor(
+    err: GetPinBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetPinBadRequest";
   }
@@ -116,13 +114,20 @@ export const GetPinBadRequest$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => GetPinErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetPinBadRequest(remapped);
+    return new GetPinBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

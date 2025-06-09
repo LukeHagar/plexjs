@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type StopAllTasksButlerErrors = {
@@ -28,25 +29,22 @@ export type StopAllTasksUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class StopAllTasksUnauthorized extends Error {
+export class StopAllTasksUnauthorized extends PlexAPIError {
   errors?: Array<StopAllTasksButlerErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: StopAllTasksUnauthorizedData;
 
-  constructor(err: StopAllTasksUnauthorizedData) {
+  constructor(
+    err: StopAllTasksUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "StopAllTasksUnauthorized";
   }
@@ -72,25 +70,22 @@ export type StopAllTasksBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class StopAllTasksBadRequest extends Error {
+export class StopAllTasksBadRequest extends PlexAPIError {
   errors?: Array<StopAllTasksErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: StopAllTasksBadRequestData;
 
-  constructor(err: StopAllTasksBadRequestData) {
+  constructor(
+    err: StopAllTasksBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "StopAllTasksBadRequest";
   }
@@ -165,13 +160,20 @@ export const StopAllTasksUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => StopAllTasksButlerErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new StopAllTasksUnauthorized(remapped);
+    return new StopAllTasksUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -282,13 +284,20 @@ export const StopAllTasksBadRequest$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => StopAllTasksErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new StopAllTasksBadRequest(remapped);
+    return new StopAllTasksBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

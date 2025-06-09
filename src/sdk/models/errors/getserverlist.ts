@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetServerListServerErrors = {
@@ -28,25 +29,22 @@ export type GetServerListUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetServerListUnauthorized extends Error {
+export class GetServerListUnauthorized extends PlexAPIError {
   errors?: Array<GetServerListServerErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetServerListUnauthorizedData;
 
-  constructor(err: GetServerListUnauthorizedData) {
+  constructor(
+    err: GetServerListUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetServerListUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetServerListBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetServerListBadRequest extends Error {
+export class GetServerListBadRequest extends PlexAPIError {
   errors?: Array<GetServerListErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetServerListBadRequestData;
 
-  constructor(err: GetServerListBadRequestData) {
+  constructor(
+    err: GetServerListBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetServerListBadRequest";
   }
@@ -165,13 +160,20 @@ export const GetServerListUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetServerListServerErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetServerListUnauthorized(remapped);
+    return new GetServerListUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -282,13 +284,20 @@ export const GetServerListBadRequest$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => GetServerListErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetServerListBadRequest(remapped);
+    return new GetServerListBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

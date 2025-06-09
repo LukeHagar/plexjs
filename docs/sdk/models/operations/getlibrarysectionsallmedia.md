@@ -3,11 +3,7 @@
 ## Example Usage
 
 ```typescript
-import {
-  GetLibrarySectionsAllHasThumbnail,
-  GetLibrarySectionsAllMedia,
-  GetLibrarySectionsAllStreamType,
-} from "@lukehagar/plexjs/sdk/models/operations";
+import { GetLibrarySectionsAllHasThumbnail, GetLibrarySectionsAllMedia } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibrarySectionsAllMedia = {
   id: 387322,
@@ -46,7 +42,6 @@ let value: GetLibrarySectionsAllMedia = {
       stream: [
         {
           id: 1002625,
-          streamType: GetLibrarySectionsAllStreamType.Video,
           format: "srt",
           default: true,
           codec: "hevc",

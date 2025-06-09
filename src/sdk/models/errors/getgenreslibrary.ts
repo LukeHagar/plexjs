@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetGenresLibraryLibraryErrors = {
@@ -28,25 +29,22 @@ export type GetGenresLibraryUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetGenresLibraryUnauthorized extends Error {
+export class GetGenresLibraryUnauthorized extends PlexAPIError {
   errors?: Array<GetGenresLibraryLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetGenresLibraryUnauthorizedData;
 
-  constructor(err: GetGenresLibraryUnauthorizedData) {
+  constructor(
+    err: GetGenresLibraryUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetGenresLibraryUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetGenresLibraryBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetGenresLibraryBadRequest extends Error {
+export class GetGenresLibraryBadRequest extends PlexAPIError {
   errors?: Array<GetGenresLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetGenresLibraryBadRequestData;
 
-  constructor(err: GetGenresLibraryBadRequestData) {
+  constructor(
+    err: GetGenresLibraryBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetGenresLibraryBadRequest";
   }
@@ -167,13 +162,20 @@ export const GetGenresLibraryUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetGenresLibraryLibraryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetGenresLibraryUnauthorized(remapped);
+    return new GetGenresLibraryUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -286,13 +288,20 @@ export const GetGenresLibraryBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetGenresLibraryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetGenresLibraryBadRequest(remapped);
+    return new GetGenresLibraryBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

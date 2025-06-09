@@ -1,5 +1,8 @@
 # GetLibraryItemsHasThumbnail
 
+Indicates if the part has a thumbnail.
+
+
 ## Example Usage
 
 ```typescript

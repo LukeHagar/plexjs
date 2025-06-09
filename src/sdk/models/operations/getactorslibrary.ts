@@ -136,7 +136,7 @@ export type GetActorsLibraryMediaContainer = {
   /**
    * Identifier for the view mode.
    */
-  viewMode: string;
+  viewMode?: string | undefined;
   /**
    * An array of actor entries for media items.
    */
@@ -338,7 +338,7 @@ export const GetActorsLibraryMediaContainer$inboundSchema: z.ZodType<
   title1: z.string(),
   title2: z.string(),
   viewGroup: z.string(),
-  viewMode: z.string(),
+  viewMode: z.string().optional(),
   Directory: z.array(z.lazy(() => GetActorsLibraryDirectory$inboundSchema))
     .optional(),
 }).transform((v) => {
@@ -360,7 +360,7 @@ export type GetActorsLibraryMediaContainer$Outbound = {
   title1: string;
   title2: string;
   viewGroup: string;
-  viewMode: string;
+  viewMode?: string | undefined;
   Directory?: Array<GetActorsLibraryDirectory$Outbound> | undefined;
 };
 
@@ -381,7 +381,7 @@ export const GetActorsLibraryMediaContainer$outboundSchema: z.ZodType<
   title1: z.string(),
   title2: z.string(),
   viewGroup: z.string(),
-  viewMode: z.string(),
+  viewMode: z.string().optional(),
   directory: z.array(z.lazy(() => GetActorsLibraryDirectory$outboundSchema))
     .optional(),
 }).transform((v) => {

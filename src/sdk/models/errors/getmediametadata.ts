@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetMediaMetaDataLibraryErrors = {
@@ -28,25 +29,22 @@ export type GetMediaMetaDataUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetMediaMetaDataUnauthorized extends Error {
+export class GetMediaMetaDataUnauthorized extends PlexAPIError {
   errors?: Array<GetMediaMetaDataLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetMediaMetaDataUnauthorizedData;
 
-  constructor(err: GetMediaMetaDataUnauthorizedData) {
+  constructor(
+    err: GetMediaMetaDataUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetMediaMetaDataUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetMediaMetaDataBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetMediaMetaDataBadRequest extends Error {
+export class GetMediaMetaDataBadRequest extends PlexAPIError {
   errors?: Array<GetMediaMetaDataErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetMediaMetaDataBadRequestData;
 
-  constructor(err: GetMediaMetaDataBadRequestData) {
+  constructor(
+    err: GetMediaMetaDataBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetMediaMetaDataBadRequest";
   }
@@ -167,13 +162,20 @@ export const GetMediaMetaDataUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetMediaMetaDataLibraryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetMediaMetaDataUnauthorized(remapped);
+    return new GetMediaMetaDataUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -286,13 +288,20 @@ export const GetMediaMetaDataBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetMediaMetaDataErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetMediaMetaDataBadRequest(remapped);
+    return new GetMediaMetaDataBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

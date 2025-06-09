@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetLibraryHubsHubsErrors = {
@@ -28,25 +29,22 @@ export type GetLibraryHubsUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetLibraryHubsUnauthorized extends Error {
+export class GetLibraryHubsUnauthorized extends PlexAPIError {
   errors?: Array<GetLibraryHubsHubsErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetLibraryHubsUnauthorizedData;
 
-  constructor(err: GetLibraryHubsUnauthorizedData) {
+  constructor(
+    err: GetLibraryHubsUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetLibraryHubsUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetLibraryHubsBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetLibraryHubsBadRequest extends Error {
+export class GetLibraryHubsBadRequest extends PlexAPIError {
   errors?: Array<GetLibraryHubsErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetLibraryHubsBadRequestData;
 
-  constructor(err: GetLibraryHubsBadRequestData) {
+  constructor(
+    err: GetLibraryHubsBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetLibraryHubsBadRequest";
   }
@@ -165,13 +160,20 @@ export const GetLibraryHubsUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetLibraryHubsHubsErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetLibraryHubsUnauthorized(remapped);
+    return new GetLibraryHubsUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -282,13 +284,20 @@ export const GetLibraryHubsBadRequest$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => GetLibraryHubsErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetLibraryHubsBadRequest(remapped);
+    return new GetLibraryHubsBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

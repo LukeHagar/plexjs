@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSourceConnectionInformationAuthenticationErrors = {
@@ -30,27 +31,24 @@ export type GetSourceConnectionInformationUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetSourceConnectionInformationUnauthorized extends Error {
+export class GetSourceConnectionInformationUnauthorized extends PlexAPIError {
   errors?:
     | Array<GetSourceConnectionInformationAuthenticationErrors>
     | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetSourceConnectionInformationUnauthorizedData;
 
-  constructor(err: GetSourceConnectionInformationUnauthorizedData) {
+  constructor(
+    err: GetSourceConnectionInformationUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetSourceConnectionInformationUnauthorized";
   }
@@ -76,25 +74,22 @@ export type GetSourceConnectionInformationBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetSourceConnectionInformationBadRequest extends Error {
+export class GetSourceConnectionInformationBadRequest extends PlexAPIError {
   errors?: Array<GetSourceConnectionInformationErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetSourceConnectionInformationBadRequestData;
 
-  constructor(err: GetSourceConnectionInformationBadRequestData) {
+  constructor(
+    err: GetSourceConnectionInformationBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetSourceConnectionInformationBadRequest";
   }
@@ -184,13 +179,20 @@ export const GetSourceConnectionInformationUnauthorized$inboundSchema:
         ),
       ).optional(),
       RawResponse: z.instanceof(Response).optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
     })
       .transform((v) => {
         const remapped = remap$(v, {
           "RawResponse": "rawResponse",
         });
 
-        return new GetSourceConnectionInformationUnauthorized(remapped);
+        return new GetSourceConnectionInformationUnauthorized(remapped, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
       });
 
 /** @internal */
@@ -314,13 +316,20 @@ export const GetSourceConnectionInformationBadRequest$inboundSchema: z.ZodType<
     z.lazy(() => GetSourceConnectionInformationErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetSourceConnectionInformationBadRequest(remapped);
+    return new GetSourceConnectionInformationBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -1,13 +1,13 @@
-# MetaDataRating
+# GetMediaMetaDataRatings
 
 ## Example Usage
 
 ```typescript
-import { MetaDataRating } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetMediaMetaDataRatings } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: MetaDataRating = {
-  image: "themoviedb://image.rating",
-  value: 3,
+let value: GetMediaMetaDataRatings = {
+  image: "imdb://image.rating",
+  value: 9,
   type: "audience",
 };
 ```
@@ -16,6 +16,6 @@ let value: MetaDataRating = {
 
 | Field                                        | Type                                         | Required                                     | Description                                  | Example                                      |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| `image`                                      | *string*                                     | :heavy_check_mark:                           | A URI or path to the rating image.           | themoviedb://image.rating                    |
-| `value`                                      | *number*                                     | :heavy_check_mark:                           | The value of the rating.                     | 3                                            |
+| `image`                                      | *string*                                     | :heavy_check_mark:                           | The image or reference for the rating.       | imdb://image.rating                          |
+| `value`                                      | *number*                                     | :heavy_check_mark:                           | The rating value.                            | 9                                            |
 | `type`                                       | *string*                                     | :heavy_check_mark:                           | The type of rating (e.g., audience, critic). | audience                                     |

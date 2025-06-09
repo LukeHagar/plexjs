@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type DeletePlaylistPlaylistsErrors = {
@@ -28,25 +29,22 @@ export type DeletePlaylistUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class DeletePlaylistUnauthorized extends Error {
+export class DeletePlaylistUnauthorized extends PlexAPIError {
   errors?: Array<DeletePlaylistPlaylistsErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: DeletePlaylistUnauthorizedData;
 
-  constructor(err: DeletePlaylistUnauthorizedData) {
+  constructor(
+    err: DeletePlaylistUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "DeletePlaylistUnauthorized";
   }
@@ -72,25 +70,22 @@ export type DeletePlaylistBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class DeletePlaylistBadRequest extends Error {
+export class DeletePlaylistBadRequest extends PlexAPIError {
   errors?: Array<DeletePlaylistErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: DeletePlaylistBadRequestData;
 
-  constructor(err: DeletePlaylistBadRequestData) {
+  constructor(
+    err: DeletePlaylistBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "DeletePlaylistBadRequest";
   }
@@ -167,13 +162,20 @@ export const DeletePlaylistUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => DeletePlaylistPlaylistsErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new DeletePlaylistUnauthorized(remapped);
+    return new DeletePlaylistUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -285,13 +287,20 @@ export const DeletePlaylistBadRequest$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => DeletePlaylistErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new DeletePlaylistBadRequest(remapped);
+    return new DeletePlaylistBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetRecentlyAddedLibraryLibraryErrors = {
@@ -28,25 +29,22 @@ export type GetRecentlyAddedLibraryUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetRecentlyAddedLibraryUnauthorized extends Error {
+export class GetRecentlyAddedLibraryUnauthorized extends PlexAPIError {
   errors?: Array<GetRecentlyAddedLibraryLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetRecentlyAddedLibraryUnauthorizedData;
 
-  constructor(err: GetRecentlyAddedLibraryUnauthorizedData) {
+  constructor(
+    err: GetRecentlyAddedLibraryUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetRecentlyAddedLibraryUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetRecentlyAddedLibraryBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetRecentlyAddedLibraryBadRequest extends Error {
+export class GetRecentlyAddedLibraryBadRequest extends PlexAPIError {
   errors?: Array<GetRecentlyAddedLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetRecentlyAddedLibraryBadRequestData;
 
-  constructor(err: GetRecentlyAddedLibraryBadRequestData) {
+  constructor(
+    err: GetRecentlyAddedLibraryBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetRecentlyAddedLibraryBadRequest";
   }
@@ -171,13 +166,20 @@ export const GetRecentlyAddedLibraryUnauthorized$inboundSchema: z.ZodType<
     z.lazy(() => GetRecentlyAddedLibraryLibraryErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetRecentlyAddedLibraryUnauthorized(remapped);
+    return new GetRecentlyAddedLibraryUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -294,13 +296,20 @@ export const GetRecentlyAddedLibraryBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetRecentlyAddedLibraryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetRecentlyAddedLibraryBadRequest(remapped);
+    return new GetRecentlyAddedLibraryBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

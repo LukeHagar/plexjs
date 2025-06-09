@@ -1,56 +1,30 @@
 # GetLibraryItemsType
 
+The type of media content in the Plex library. This can represent videos, music, or photos.
+
+
 ## Example Usage
 
 ```typescript
 import { GetLibraryItemsType } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetLibraryItemsType = {
-  key: "/library/sections/2/all?type=2",
-  type: "filter",
-  subtype: "clip",
-  title: "TV Shows",
-  active: false,
-  filter: [
-    {
-      filter: "genre",
-      filterType: "string",
-      key: "/library/sections/2/genre?type=2",
-      title: "Genre",
-      type: "filter",
-      advanced: true,
-    },
-  ],
-  sort: [
-    {
-      default: "asc",
-      active: false,
-      descKey: "titleSort:desc",
-      firstCharacterKey: "/library/sections/2/firstCharacter",
-      key: "titleSort",
-      title: "Title",
-    },
-  ],
-  field: [
-    {
-      key: "show.title",
-      title: "Show Title",
-      type: "string",
-      subType: "rating",
-    },
-  ],
-};
+let value: GetLibraryItemsType = GetLibraryItemsType.Movie;
 ```
 
-## Fields
+## Values
 
-| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `key`                                                                                         | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | /library/sections/2/all?type=2                                                                |
-| `type`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | filter                                                                                        |
-| `subtype`                                                                                     | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | clip                                                                                          |
-| `title`                                                                                       | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | TV Shows                                                                                      |
-| `active`                                                                                      | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           | false                                                                                         |
-| `filter`                                                                                      | [operations.GetLibraryItemsFilter](../../../sdk/models/operations/getlibraryitemsfilter.md)[] | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
-| `sort`                                                                                        | [operations.GetLibraryItemsSort](../../../sdk/models/operations/getlibraryitemssort.md)[]     | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
-| `field`                                                                                       | [operations.GetLibraryItemsField](../../../sdk/models/operations/getlibraryitemsfield.md)[]   | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
+| Name                   | Value                  |
+| ---------------------- | ---------------------- |
+| `Movie`                | movie                  |
+| `TvShow`               | show                   |
+| `Season`               | season                 |
+| `Episode`              | episode                |
+| `Artist`               | artist                 |
+| `Album`                | album                  |
+| `Track`                | track                  |
+| `PhotoAlbum`           | photoalbum             |
+| `Photo`                | photo                  |
+| `Collection`           | collection             |
+| -                      | `Unrecognized<string>` |

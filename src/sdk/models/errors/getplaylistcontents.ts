@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetPlaylistContentsPlaylistsErrors = {
@@ -28,25 +29,22 @@ export type GetPlaylistContentsUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetPlaylistContentsUnauthorized extends Error {
+export class GetPlaylistContentsUnauthorized extends PlexAPIError {
   errors?: Array<GetPlaylistContentsPlaylistsErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetPlaylistContentsUnauthorizedData;
 
-  constructor(err: GetPlaylistContentsUnauthorizedData) {
+  constructor(
+    err: GetPlaylistContentsUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetPlaylistContentsUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetPlaylistContentsBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetPlaylistContentsBadRequest extends Error {
+export class GetPlaylistContentsBadRequest extends PlexAPIError {
   errors?: Array<GetPlaylistContentsErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetPlaylistContentsBadRequestData;
 
-  constructor(err: GetPlaylistContentsBadRequestData) {
+  constructor(
+    err: GetPlaylistContentsBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetPlaylistContentsBadRequest";
   }
@@ -170,13 +165,20 @@ export const GetPlaylistContentsUnauthorized$inboundSchema: z.ZodType<
     z.lazy(() => GetPlaylistContentsPlaylistsErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetPlaylistContentsUnauthorized(remapped);
+    return new GetPlaylistContentsUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -289,13 +291,20 @@ export const GetPlaylistContentsBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetPlaylistContentsErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetPlaylistContentsBadRequest(remapped);
+    return new GetPlaylistContentsBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

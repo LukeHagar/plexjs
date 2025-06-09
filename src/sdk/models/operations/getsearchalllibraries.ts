@@ -72,6 +72,52 @@ export type GetSearchAllLibrariesRequest = {
     | undefined;
 };
 
+export type GetSearchAllLibrariesDirectory = {
+  /**
+   * The unique identifier path for the search result item.
+   */
+  key: string;
+  /**
+   * The identifier for the library section.
+   */
+  librarySectionID: number;
+  /**
+   * The key corresponding to the library section.
+   */
+  librarySectionKey: string;
+  /**
+   * The title of the library section.
+   */
+  librarySectionTitle: string;
+  librarySectionType?: 1 | undefined;
+  /**
+   * The type of the directory.
+   */
+  type: string;
+  id: number;
+  /**
+   * The filter string used to query this specific item in the library.
+   */
+  filter?: string | undefined;
+  tag: string;
+  /**
+   * The type of tag associated with this search result (e.g., Director, Actor).
+   */
+  tagType?: 4 | undefined;
+  /**
+   * The unique identifier for the tag associated with this search result.
+   */
+  tagKey?: string | undefined;
+  /**
+   * The URL to the thumbnail image associated with this search result.
+   */
+  thumb?: string | undefined;
+  /**
+   * The number of items associated with this search result.
+   */
+  count?: number | undefined;
+};
+
 /**
  * The type of media content in the Plex library. This can represent videos, music, or photos.
  *
@@ -98,361 +144,6 @@ export type GetSearchAllLibrariesTypeOpen = OpenEnum<
   typeof GetSearchAllLibrariesType
 >;
 
-/**
- * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
- */
-export enum GetSearchAllLibrariesFlattenSeasons {
-  LibraryDefault = "-1",
-  Hide = "0",
-  Show = "1",
-}
-/**
- * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
- */
-export type GetSearchAllLibrariesFlattenSeasonsOpen = OpenEnum<
-  typeof GetSearchAllLibrariesFlattenSeasons
->;
-
-/**
- * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
- */
-export enum GetSearchAllLibrariesEpisodeSort {
-  LibraryDefault = "-1",
-  OldestFirst = "0",
-  NewestFirst = "1",
-}
-/**
- * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
- */
-export type GetSearchAllLibrariesEpisodeSortOpen = OpenEnum<
-  typeof GetSearchAllLibrariesEpisodeSort
->;
-
-/**
- * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
- */
-export enum GetSearchAllLibrariesEnableCreditsMarkerGeneration {
-  LibraryDefault = "-1",
-  Disabled = "0",
-}
-/**
- * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
- */
-export type GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen = OpenEnum<
-  typeof GetSearchAllLibrariesEnableCreditsMarkerGeneration
->;
-
-/**
- * Setting that indicates the episode ordering for the show.
- *
- * @remarks
- * None = Library default,
- * tmdbAiring = The Movie Database (Aired),
- * aired = TheTVDB (Aired),
- * dvd = TheTVDB (DVD),
- * absolute = TheTVDB (Absolute)).
- */
-export enum GetSearchAllLibrariesShowOrdering {
-  None = "None",
-  TmdbAiring = "tmdbAiring",
-  TvdbAired = "aired",
-  TvdbDvd = "dvd",
-  TvdbAbsolute = "absolute",
-}
-/**
- * Setting that indicates the episode ordering for the show.
- *
- * @remarks
- * None = Library default,
- * tmdbAiring = The Movie Database (Aired),
- * aired = TheTVDB (Aired),
- * dvd = TheTVDB (DVD),
- * absolute = TheTVDB (Absolute)).
- */
-export type GetSearchAllLibrariesShowOrderingOpen = OpenEnum<
-  typeof GetSearchAllLibrariesShowOrdering
->;
-
-export enum GetSearchAllLibrariesOptimizedForStreaming {
-  Disable = 0,
-  Enable = 1,
-}
-
-export enum GetSearchAllLibrariesHasThumbnail {
-  False = "0",
-  True = "1",
-}
-
-export type GetSearchAllLibrariesStream = {
-  id: number;
-  /**
-   * Type of stream (1 = video, 2 = audio, 3 = subtitle)
-   */
-  streamType: number;
-  /**
-   * Indicates if this is the default stream
-   */
-  default?: boolean | undefined;
-  /**
-   * Indicates if the stream is selected
-   */
-  selected?: boolean | undefined;
-  /**
-   * Codec used by the stream
-   */
-  codec: string;
-  /**
-   * The index of the stream
-   */
-  index: number;
-  /**
-   * The bitrate of the stream in kbps
-   */
-  bitrate?: number | undefined;
-  /**
-   * The color primaries of the video stream
-   */
-  colorPrimaries?: string | undefined;
-  /**
-   * The color range of the video stream
-   */
-  colorRange?: string | undefined;
-  /**
-   * The color space of the video stream
-   */
-  colorSpace?: string | undefined;
-  /**
-   * The transfer characteristics (TRC) of the video stream
-   */
-  colorTrc?: string | undefined;
-  /**
-   * The bit depth of the video stream
-   */
-  bitDepth?: number | undefined;
-  /**
-   * The chroma location of the video stream
-   */
-  chromaLocation?: string | undefined;
-  /**
-   * The identifier of the video stream
-   */
-  streamIdentifier?: string | undefined;
-  /**
-   * The chroma subsampling format
-   */
-  chromaSubsampling?: string | undefined;
-  /**
-   * The coded height of the video stream
-   */
-  codedHeight?: number | undefined;
-  /**
-   * The coded width of the video stream
-   */
-  codedWidth?: number | undefined;
-  /**
-   * The frame rate of the video stream
-   */
-  frameRate?: number | undefined;
-  /**
-   * Indicates if the stream has a scaling matrix
-   */
-  hasScalingMatrix?: boolean | undefined;
-  hearingImpaired?: boolean | undefined;
-  closedCaptions?: boolean | undefined;
-  embeddedInVideo?: string | undefined;
-  /**
-   * The height of the video stream
-   */
-  height?: number | undefined;
-  /**
-   * The level of the video codec
-   */
-  level?: number | undefined;
-  /**
-   * The profile of the video codec
-   */
-  profile?: string | undefined;
-  /**
-   * Number of reference frames
-   */
-  refFrames?: number | undefined;
-  /**
-   * The scan type (progressive or interlaced)
-   */
-  scanType?: string | undefined;
-  /**
-   * The width of the video stream
-   */
-  width?: number | undefined;
-  /**
-   * Display title of the stream
-   */
-  displayTitle?: string | undefined;
-  /**
-   * Extended display title of the stream
-   */
-  extendedDisplayTitle?: string | undefined;
-  /**
-   * Number of audio channels (for audio streams)
-   */
-  channels?: number | undefined;
-  /**
-   * The language of the stream (for audio/subtitle streams)
-   */
-  language?: string | undefined;
-  /**
-   * Language tag of the stream
-   */
-  languageTag?: string | undefined;
-  /**
-   * Language code of the stream
-   */
-  languageCode?: string | undefined;
-  /**
-   * The audio channel layout
-   */
-  audioChannelLayout?: string | undefined;
-  /**
-   * Sampling rate of the audio stream in Hz
-   */
-  samplingRate?: number | undefined;
-  /**
-   * Title of the subtitle track (for subtitle streams)
-   */
-  title?: string | undefined;
-  /**
-   * Indicates if the subtitle stream can auto-sync
-   */
-  canAutoSync?: boolean | undefined;
-};
-
-export type GetSearchAllLibrariesPart = {
-  id: number;
-  key: string;
-  duration?: number | undefined;
-  file: string;
-  size: number;
-  /**
-   * The container format of the media file.
-   *
-   * @remarks
-   */
-  container: string;
-  audioProfile?: string | undefined;
-  has64bitOffsets?: boolean | undefined;
-  optimizedForStreaming?: boolean | undefined;
-  videoProfile?: string | undefined;
-  indexes?: string | undefined;
-  hasThumbnail?: GetSearchAllLibrariesHasThumbnail | undefined;
-  stream?: Array<GetSearchAllLibrariesStream> | undefined;
-};
-
-export type GetSearchAllLibrariesMedia = {
-  id: number;
-  duration?: number | undefined;
-  bitrate?: number | undefined;
-  width?: number | undefined;
-  height?: number | undefined;
-  aspectRatio?: number | undefined;
-  audioProfile?: string | undefined;
-  audioChannels?: number | undefined;
-  audioCodec?: string | undefined;
-  videoCodec?: string | undefined;
-  videoResolution?: string | undefined;
-  container: string;
-  videoFrameRate?: string | undefined;
-  videoProfile?: string | undefined;
-  hasVoiceActivity?: boolean | undefined;
-  optimizedForStreaming?:
-    | GetSearchAllLibrariesOptimizedForStreaming
-    | undefined;
-  has64bitOffsets?: boolean | undefined;
-  part: Array<GetSearchAllLibrariesPart>;
-};
-
-export type GetSearchAllLibrariesGenre = {
-  tag?: string | undefined;
-};
-
-export type GetSearchAllLibrariesCountry = {
-  tag?: string | undefined;
-};
-
-export type GetSearchAllLibrariesDirector = {
-  tag?: string | undefined;
-};
-
-export type GetSearchAllLibrariesWriter = {
-  tag?: string | undefined;
-};
-
-export type GetSearchAllLibrariesCollection = {
-  tag?: string | undefined;
-};
-
-export type GetSearchAllLibrariesRole = {
-  /**
-   * The ID of the tag or actor.
-   */
-  id?: number | undefined;
-  /**
-   * The filter used to find the actor or tag.
-   */
-  filter?: string | undefined;
-  /**
-   * The thumbnail of the actor
-   */
-  thumb?: string | undefined;
-  /**
-   * The name of the tag or actor.
-   */
-  tag?: string | undefined;
-  /**
-   * Unique identifier for the tag.
-   */
-  tagKey?: string | undefined;
-  /**
-   * The role of the actor or tag in the media.
-   */
-  role?: string | undefined;
-};
-
-export type GetSearchAllLibrariesLocation = {
-  path?: string | undefined;
-};
-
-export type GetSearchAllLibrariesMediaGuid = {
-  /**
-   * Can be one of the following formats:
-   *
-   * @remarks
-   * imdb://tt13015952, tmdb://2434012, tvdb://7945991
-   */
-  id: string;
-};
-
-export type GetSearchAllLibrariesUltraBlurColors = {
-  topLeft: string;
-  topRight: string;
-  bottomRight: string;
-  bottomLeft: string;
-};
-
-export type GetSearchAllLibrariesMetaDataRating = {
-  /**
-   * A URI or path to the rating image.
-   */
-  image: string;
-  /**
-   * The value of the rating.
-   */
-  value: number;
-  /**
-   * The type of rating (e.g., audience, critic).
-   */
-  type: string;
-};
-
 export enum GetSearchAllLibrariesLibraryType {
   CoverPoster = "coverPoster",
   Background = "background",
@@ -469,145 +160,648 @@ export type GetSearchAllLibrariesImage = {
   url: string;
 };
 
-export type GetSearchAllLibrariesMetadata = {
+export type GetSearchAllLibrariesUltraBlurColors = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+export type GetSearchAllLibrariesGuids = {
   /**
-   * The rating key (Media ID) of this media item.
-   *
-   * @remarks
-   * Note: This is always an integer, but is represented as a string in the API.
-   */
-  ratingKey: string;
-  key: string;
-  guid: string;
-  studio?: string | undefined;
-  skipChildren?: boolean | undefined;
-  librarySectionID?: number | undefined;
-  librarySectionTitle?: string | undefined;
-  librarySectionKey?: string | undefined;
-  /**
-   * The type of media content in the Plex library. This can represent videos, music, or photos.
+   * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
    *
    * @remarks
    */
-  type: GetSearchAllLibrariesTypeOpen;
-  title: string;
-  slug?: string | undefined;
-  contentRating?: string | undefined;
-  summary: string;
-  rating?: number | undefined;
-  audienceRating?: number | undefined;
-  year?: number | undefined;
-  seasonCount?: number | undefined;
-  tagline?: string | undefined;
+  id: string;
+};
+
+/**
+ * Setting that indicates the episode ordering for the show.
+ *
+ * @remarks
+ * Options:
+ *   - None = Library default
+ *   - tmdbAiring = The Movie Database (Aired)
+ *   - aired = TheTVDB (Aired)
+ *   - dvd = TheTVDB (DVD)
+ *   - absolute = TheTVDB (Absolute)
+ */
+export enum GetSearchAllLibrariesShowOrdering {
+  None = "None",
+  TmdbAiring = "tmdbAiring",
+  TvdbAired = "aired",
+  TvdbDvd = "dvd",
+  TvdbAbsolute = "absolute",
+}
+/**
+ * Setting that indicates the episode ordering for the show.
+ *
+ * @remarks
+ * Options:
+ *   - None = Library default
+ *   - tmdbAiring = The Movie Database (Aired)
+ *   - aired = TheTVDB (Aired)
+ *   - dvd = TheTVDB (DVD)
+ *   - absolute = TheTVDB (Absolute)
+ */
+export type GetSearchAllLibrariesShowOrderingOpen = OpenEnum<
+  typeof GetSearchAllLibrariesShowOrdering
+>;
+
+/**
+ * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+ *
+ * @remarks
+ */
+export enum GetSearchAllLibrariesFlattenSeasons {
+  LibraryDefault = "-1",
+  Hide = "0",
+  Show = "1",
+}
+/**
+ * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+ *
+ * @remarks
+ */
+export type GetSearchAllLibrariesFlattenSeasonsOpen = OpenEnum<
+  typeof GetSearchAllLibrariesFlattenSeasons
+>;
+
+export enum GetSearchAllLibrariesOptimizedForStreaming1 {
+  Zero = 0,
+  One = 1,
+}
+
+/**
+ * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+ */
+export type GetSearchAllLibrariesOptimizedForStreaming =
+  | GetSearchAllLibrariesOptimizedForStreaming1
+  | boolean;
+
+export enum GetSearchAllLibrariesOptimizedForStreamingLibrary1 {
+  Zero = 0,
+  One = 1,
+}
+
+/**
+ * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+ *
+ * @remarks
+ */
+export type GetSearchAllLibrariesLibraryOptimizedForStreaming =
+  | GetSearchAllLibrariesOptimizedForStreamingLibrary1
+  | boolean;
+
+/**
+ * Indicates if the part has a thumbnail.
+ *
+ * @remarks
+ */
+export enum GetSearchAllLibrariesHasThumbnail {
+  False = "0",
+  True = "1",
+}
+
+export type GetSearchAllLibrariesPart = {
   /**
-   * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
+   * Indicates if the part is accessible.
    */
-  flattenSeasons?: GetSearchAllLibrariesFlattenSeasonsOpen | undefined;
+  accessible?: boolean | undefined;
   /**
-   * Setting that indicates how episodes are sorted for the show. (-1 = Library default, 0 = Oldest first, 1 = Newest first).
+   * Indicates if the part exists.
    */
-  episodeSort?: GetSearchAllLibrariesEpisodeSortOpen | undefined;
+  exists?: boolean | undefined;
   /**
-   * Setting that indicates if credits markers detection is enabled. (-1 = Library default, 0 = Disabled).
+   * Unique part identifier.
    */
-  enableCreditsMarkerGeneration?:
-    | GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen
+  id: number;
+  /**
+   * Key to access this part.
+   */
+  key?: string | undefined;
+  indexes?: string | undefined;
+  /**
+   * Duration of the part in milliseconds.
+   */
+  duration?: number | undefined;
+  /**
+   * File path for the part.
+   */
+  file?: string | undefined;
+  /**
+   * File size in bytes.
+   */
+  size?: number | undefined;
+  packetLength?: number | undefined;
+  /**
+   * Container format of the part.
+   */
+  container?: string | undefined;
+  /**
+   * Video profile for the part.
+   */
+  videoProfile?: string | undefined;
+  /**
+   * The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
+   */
+  audioProfile?: string | undefined;
+  has64bitOffsets?: boolean | undefined;
+  /**
+   * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+   *
+   * @remarks
+   */
+  optimizedForStreaming?:
+    | GetSearchAllLibrariesOptimizedForStreamingLibrary1
+    | boolean
+    | undefined;
+  hasThumbnail?: GetSearchAllLibrariesHasThumbnail | undefined;
+};
+
+export type GetSearchAllLibrariesMedia = {
+  /**
+   * Unique media identifier.
+   */
+  id: number;
+  /**
+   * Duration of the media in milliseconds.
+   */
+  duration?: number | undefined;
+  /**
+   * Bitrate in bits per second.
+   */
+  bitrate?: number | undefined;
+  /**
+   * Video width in pixels.
+   */
+  width?: number | undefined;
+  /**
+   * Video height in pixels.
+   */
+  height?: number | undefined;
+  /**
+   * Aspect ratio of the video.
+   */
+  aspectRatio?: number | undefined;
+  /**
+   * Number of audio channels.
+   */
+  audioChannels?: number | undefined;
+  displayOffset?: number | undefined;
+  /**
+   * Audio codec used.
+   */
+  audioCodec?: string | undefined;
+  /**
+   * Video codec used.
+   */
+  videoCodec?: string | undefined;
+  /**
+   * Video resolution (e.g., 4k).
+   */
+  videoResolution?: string | undefined;
+  /**
+   * Container format of the media.
+   */
+  container?: string | undefined;
+  /**
+   * Frame rate of the video. Values found include NTSC, PAL, 24p
+   *
+   * @remarks
+   */
+  videoFrameRate?: string | undefined;
+  /**
+   * Video profile (e.g., main 10).
+   */
+  videoProfile?: string | undefined;
+  /**
+   * Indicates whether voice activity is detected.
+   */
+  hasVoiceActivity?: boolean | undefined;
+  /**
+   * The audio profile used for the media (e.g., DTS, Dolby Digital, etc.).
+   */
+  audioProfile?: string | undefined;
+  /**
+   * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+   */
+  optimizedForStreaming?:
+    | GetSearchAllLibrariesOptimizedForStreaming1
+    | boolean
     | undefined;
   /**
-   * Setting that indicates the episode ordering for the show.
+   * Indicates whether the media has 64-bit offsets.
    *
    * @remarks
-   * None = Library default,
-   * tmdbAiring = The Movie Database (Aired),
-   * aired = TheTVDB (Aired),
-   * dvd = TheTVDB (DVD),
-   * absolute = TheTVDB (Absolute)).
+   * This is relevant for media files that may require larger offsets than what 32-bit integers can provide.
    */
-  showOrdering?: GetSearchAllLibrariesShowOrderingOpen | undefined;
-  thumb?: string | undefined;
-  art?: string | undefined;
-  banner?: string | undefined;
-  duration?: number | undefined;
-  originallyAvailableAt?: RFCDate | undefined;
+  has64bitOffsets?: boolean | undefined;
+  part?: Array<GetSearchAllLibrariesPart> | undefined;
+};
+
+export type GetSearchAllLibrariesGenre = {
   /**
-   * Unix epoch datetime in seconds
+   * The unique identifier for the genre.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
    */
+  id: number;
+  /**
+   * The genre name of this media-item
+   *
+   * @remarks
+   */
+  tag: string;
+};
+
+export type GetSearchAllLibrariesCountry = {
+  /**
+   * The unique identifier for the country.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
+   */
+  id: number;
+  /**
+   * The country of origin of this media item
+   */
+  tag: string;
+};
+
+export type GetSearchAllLibrariesDirector = {
+  /**
+   * Unique identifier for the director.
+   */
+  id: number;
+  /**
+   * The role of Director
+   */
+  tag: string;
+  /**
+   * The absolute URL of the thumbnail image for the director.
+   */
+  thumb?: string | undefined;
+};
+
+export type GetSearchAllLibrariesWriter = {
+  /**
+   * Unique identifier for the writer.
+   */
+  id: number;
+  /**
+   * The role of Writer
+   */
+  tag: string;
+  /**
+   * The absolute URL of the thumbnail image for the writer.
+   */
+  thumb?: string | undefined;
+};
+
+export type GetSearchAllLibrariesRole = {
+  /**
+   * The unique identifier for the role.
+   *
+   * @remarks
+   * NOTE: This is different for each Plex server and is not globally unique.
+   */
+  id: number;
+  /**
+   * The display tag for the actor (typically the actor's name).
+   */
+  tag: string;
+  /**
+   * The role played by the actor in the media item.
+   */
+  role?: string | undefined;
+  /**
+   * The absolute URL of the thumbnail image for the actor.
+   */
+  thumb?: string | undefined;
+};
+
+/**
+ * The folder path for the media item.
+ */
+export type GetSearchAllLibrariesLocation = {
+  path: string;
+};
+
+/**
+ * Unknown
+ *
+ * @remarks
+ */
+export type GetSearchAllLibrariesMetadata = {
+  /**
+   * The rating key (Media ID) of this media item. Note: Although this is always an integer, it is represented as a string in the API.
+   */
+  ratingKey: string;
+  /**
+   * The unique key for the media item.
+   */
+  key: string;
+  /**
+   * The globally unique identifier for the media item.
+   */
+  guid: string;
+  /**
+   * A URL‐friendly version of the media title.
+   */
+  slug: string;
+  /**
+   * The studio that produced the media item.
+   */
+  studio?: string | undefined;
+  type: GetSearchAllLibrariesTypeOpen;
+  /**
+   * The title of the media item.
+   */
+  title: string;
+  /**
+   * The banner image URL for the media item.
+   */
+  banner: string;
+  /**
+   * The sort title used for ordering media items.
+   */
+  titleSort: string;
+  /**
+   * The content rating for the media item.
+   */
+  contentRating?: string | undefined;
+  /**
+   * A synopsis of the media item.
+   */
+  summary: string;
+  /**
+   * The critic rating for the media item.
+   */
+  rating: number;
+  /**
+   * The audience rating for the media item.
+   */
+  audienceRating: number;
+  /**
+   * The release year of the media item.
+   */
+  year?: number | undefined;
+  /**
+   * A brief tagline for the media item.
+   */
+  tagline: string;
+  /**
+   * The thumbnail image URL for the media item.
+   */
+  thumb: string;
+  /**
+   * The art image URL for the media item.
+   */
+  art: string;
+  /**
+   * The theme URL for the media item.
+   */
+  theme: string;
+  /**
+   * The index position of the media item.
+   */
+  index: number;
+  /**
+   * The number of leaf items (end nodes) under this media item.
+   */
+  leafCount?: number | undefined;
+  /**
+   * The number of leaf items that have been viewed.
+   */
+  viewedLeafCount?: number | undefined;
+  /**
+   * The number of child items associated with this media item.
+   */
+  childCount: number;
+  /**
+   * The total number of seasons (for TV shows).
+   */
+  seasonCount: number;
+  /**
+   * The duration of the media item in milliseconds.
+   */
+  duration: number;
+  /**
+   * The original release date of the media item.
+   */
+  originallyAvailableAt?: RFCDate | undefined;
   addedAt: number;
   /**
    * Unix epoch datetime in seconds
    */
   updatedAt?: number | undefined;
+  /**
+   * The release year of the parent media item.
+   */
+  parentYear?: number | undefined;
+  /**
+   * The URL for the audience rating image.
+   */
   audienceRatingImage?: string | undefined;
+  /**
+   * The source from which chapter data is derived.
+   */
   chapterSource?: string | undefined;
+  /**
+   * The primary extra key associated with this media item.
+   */
   primaryExtraKey?: string | undefined;
-  ratingImage?: string | undefined;
+  /**
+   * The original title of the media item (if different).
+   */
+  originalTitle?: string | undefined;
+  /**
+   * The rating key of the parent media item.
+   */
+  parentRatingKey?: string | undefined;
+  /**
+   * The rating key of the grandparent media item.
+   */
   grandparentRatingKey?: string | undefined;
+  /**
+   * The GUID of the parent media item.
+   */
+  parentGuid?: string | undefined;
+  /**
+   * The GUID of the grandparent media item.
+   */
   grandparentGuid?: string | undefined;
-  grandparentKey?: string | undefined;
-  grandparentTitle?: string | undefined;
-  grandparentThumb?: string | undefined;
-  parentSlug?: string | undefined;
+  /**
+   * The slug for the grandparent media item.
+   */
   grandparentSlug?: string | undefined;
-  grandparentArt?: string | undefined;
+  /**
+   * The key of the grandparent media item.
+   */
+  grandparentKey?: string | undefined;
+  /**
+   * The key of the parent media item.
+   */
+  parentKey?: string | undefined;
+  /**
+   * The title of the grandparent media item.
+   */
+  grandparentTitle?: string | undefined;
+  /**
+   * The thumbnail URL for the grandparent media item.
+   */
+  grandparentThumb?: string | undefined;
+  /**
+   * The theme URL for the grandparent media item.
+   */
   grandparentTheme?: string | undefined;
   /**
-   * The Media object is only included when type query is `4` or higher.
+   * The art URL for the grandparent media item.
+   */
+  grandparentArt?: string | undefined;
+  /**
+   * The title of the parent media item.
+   */
+  parentTitle?: string | undefined;
+  /**
+   * The index position of the parent media item.
+   */
+  parentIndex?: number | undefined;
+  /**
+   * The thumbnail URL for the parent media item.
+   */
+  parentThumb?: string | undefined;
+  /**
+   * The URL for the rating image.
+   */
+  ratingImage?: string | undefined;
+  /**
+   * The number of times this media item has been viewed.
+   */
+  viewCount?: number | undefined;
+  /**
+   * The current playback offset (in milliseconds).
+   */
+  viewOffset?: number | undefined;
+  /**
+   * The number of times this media item has been skipped.
+   */
+  skipCount?: number | undefined;
+  /**
+   * A classification that further describes the type of media item. For example, 'clip' indicates that the item is a short video clip.
+   */
+  subtype?: string | undefined;
+  /**
+   * The Unix timestamp representing the last time the item was rated.
+   */
+  lastRatedAt?: number | undefined;
+  /**
+   * The accuracy of the creation timestamp. This value indicates the format(s) provided (for example, 'epoch,local' means both epoch and local time formats are available).
+   */
+  createdAtAccuracy?: string | undefined;
+  /**
+   * The time zone offset for the creation timestamp, represented as a string. This offset indicates the difference from UTC.
+   */
+  createdAtTZOffset?: string | undefined;
+  /**
+   * Unix timestamp for when the media item was last viewed.
+   */
+  lastViewedAt?: number | undefined;
+  /**
+   * The rating provided by a user for the item. This value is expressed as a decimal number.
+   */
+  userRating?: number | undefined;
+  image?: Array<GetSearchAllLibrariesImage> | undefined;
+  ultraBlurColors?: GetSearchAllLibrariesUltraBlurColors | undefined;
+  guids?: Array<GetSearchAllLibrariesGuids> | undefined;
+  /**
+   * The identifier for the library section.
+   */
+  librarySectionID?: number | undefined;
+  /**
+   * The title of the library section.
+   */
+  librarySectionTitle?: string | undefined;
+  /**
+   * The key corresponding to the library section.
+   */
+  librarySectionKey?: string | undefined;
+  /**
+   * Setting that indicates the episode ordering for the show.
+   *
+   * @remarks
+   * Options:
+   *   - None = Library default
+   *   - tmdbAiring = The Movie Database (Aired)
+   *   - aired = TheTVDB (Aired)
+   *   - dvd = TheTVDB (DVD)
+   *   - absolute = TheTVDB (Absolute)
+   */
+  showOrdering?: GetSearchAllLibrariesShowOrderingOpen | undefined;
+  /**
+   * Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
    *
    * @remarks
    */
+  flattenSeasons?: GetSearchAllLibrariesFlattenSeasonsOpen | undefined;
+  /**
+   * Indicates whether child items should be skipped.
+   */
+  skipChildren?: boolean | undefined;
   media?: Array<GetSearchAllLibrariesMedia> | undefined;
   genre?: Array<GetSearchAllLibrariesGenre> | undefined;
   country?: Array<GetSearchAllLibrariesCountry> | undefined;
   director?: Array<GetSearchAllLibrariesDirector> | undefined;
   writer?: Array<GetSearchAllLibrariesWriter> | undefined;
-  collection?: Array<GetSearchAllLibrariesCollection> | undefined;
   role?: Array<GetSearchAllLibrariesRole> | undefined;
   location?: Array<GetSearchAllLibrariesLocation> | undefined;
-  /**
-   * The Guid object is only included in the response if the `includeGuids` parameter is set to `1`.
-   *
-   * @remarks
-   */
-  mediaGuid?: Array<GetSearchAllLibrariesMediaGuid> | undefined;
-  ultraBlurColors?: GetSearchAllLibrariesUltraBlurColors | undefined;
-  metaDataRating?: Array<GetSearchAllLibrariesMetaDataRating> | undefined;
-  image?: Array<GetSearchAllLibrariesImage> | undefined;
-  titleSort?: string | undefined;
-  viewCount?: number | undefined;
-  lastViewedAt?: number | undefined;
-  originalTitle?: string | undefined;
-  viewOffset?: number | undefined;
-  skipCount?: number | undefined;
-  index?: number | undefined;
-  theme?: string | undefined;
-  leafCount?: number | undefined;
-  viewedLeafCount?: number | undefined;
-  childCount?: number | undefined;
-  hasPremiumExtras?: string | undefined;
-  hasPremiumPrimaryExtra?: string | undefined;
-  /**
-   * The rating key of the parent item.
-   *
-   * @remarks
-   */
-  parentRatingKey?: string | undefined;
-  parentGuid?: string | undefined;
-  parentStudio?: string | undefined;
-  parentKey?: string | undefined;
-  parentTitle?: string | undefined;
-  parentIndex?: number | undefined;
-  parentYear?: number | undefined;
-  parentThumb?: string | undefined;
-  parentTheme?: string | undefined;
 };
 
 export type SearchResult = {
+  /**
+   * The score of the search result, typically a float value between 0 and 1.
+   */
   score: number;
-  metadata: GetSearchAllLibrariesMetadata;
+  directory?: GetSearchAllLibrariesDirectory | undefined;
+  metadata?: GetSearchAllLibrariesMetadata | undefined;
 };
 
 export type GetSearchAllLibrariesMediaContainer = {
+  /**
+   * Number of media items returned in this response.
+   */
   size: number;
+  /**
+   * Indicates whether syncing is allowed.
+   */
+  allowSync: boolean;
+  /**
+   * An plugin identifier for the media container.
+   */
+  identifier: string;
+  /**
+   * The unique identifier for the library section.
+   */
+  librarySectionID?: number | undefined;
+  /**
+   * The title of the library section.
+   */
+  librarySectionTitle?: string | undefined;
+  /**
+   * The universally unique identifier for the library section.
+   */
+  librarySectionUUID?: string | undefined;
+  /**
+   * The prefix used for media tag resource paths.
+   */
+  mediaTagPrefix: string;
+  /**
+   * The version number for media tags.
+   */
+  mediaTagVersion: number;
   searchResult: Array<SearchResult>;
 };
 
@@ -803,6 +997,98 @@ export function getSearchAllLibrariesRequestFromJSON(
 }
 
 /** @internal */
+export const GetSearchAllLibrariesDirectory$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesDirectory,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string(),
+  librarySectionID: z.number().int(),
+  librarySectionKey: z.string(),
+  librarySectionTitle: z.string(),
+  librarySectionType: z.literal(1).optional(),
+  type: z.string(),
+  id: z.number().int(),
+  filter: z.string().optional(),
+  tag: z.string(),
+  tagType: z.literal(4).optional(),
+  tagKey: z.string().optional(),
+  thumb: z.string().optional(),
+  count: z.number().int().optional(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesDirectory$Outbound = {
+  key: string;
+  librarySectionID: number;
+  librarySectionKey: string;
+  librarySectionTitle: string;
+  librarySectionType: 1;
+  type: string;
+  id: number;
+  filter?: string | undefined;
+  tag: string;
+  tagType: 4;
+  tagKey?: string | undefined;
+  thumb?: string | undefined;
+  count?: number | undefined;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesDirectory$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesDirectory$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesDirectory
+> = z.object({
+  key: z.string(),
+  librarySectionID: z.number().int(),
+  librarySectionKey: z.string(),
+  librarySectionTitle: z.string(),
+  librarySectionType: z.literal(1).default(1 as const),
+  type: z.string(),
+  id: z.number().int(),
+  filter: z.string().optional(),
+  tag: z.string(),
+  tagType: z.literal(4).default(4 as const),
+  tagKey: z.string().optional(),
+  thumb: z.string().optional(),
+  count: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesDirectory$ {
+  /** @deprecated use `GetSearchAllLibrariesDirectory$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesDirectory$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesDirectory$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesDirectory$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesDirectory$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesDirectory$Outbound;
+}
+
+export function getSearchAllLibrariesDirectoryToJSON(
+  getSearchAllLibrariesDirectory: GetSearchAllLibrariesDirectory,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesDirectory$outboundSchema.parse(
+      getSearchAllLibrariesDirectory,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesDirectoryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesDirectory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesDirectory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesDirectory' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetSearchAllLibrariesType$inboundSchema: z.ZodType<
   GetSearchAllLibrariesTypeOpen,
   z.ZodTypeDef,
@@ -832,1166 +1118,6 @@ export namespace GetSearchAllLibrariesType$ {
   export const inboundSchema = GetSearchAllLibrariesType$inboundSchema;
   /** @deprecated use `GetSearchAllLibrariesType$outboundSchema` instead. */
   export const outboundSchema = GetSearchAllLibrariesType$outboundSchema;
-}
-
-/** @internal */
-export const GetSearchAllLibrariesFlattenSeasons$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesFlattenSeasonsOpen,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(GetSearchAllLibrariesFlattenSeasons),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const GetSearchAllLibrariesFlattenSeasons$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesFlattenSeasonsOpen,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesFlattenSeasonsOpen
-> = z.union([
-  z.nativeEnum(GetSearchAllLibrariesFlattenSeasons),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesFlattenSeasons$ {
-  /** @deprecated use `GetSearchAllLibrariesFlattenSeasons$inboundSchema` instead. */
-  export const inboundSchema =
-    GetSearchAllLibrariesFlattenSeasons$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesFlattenSeasons$outboundSchema` instead. */
-  export const outboundSchema =
-    GetSearchAllLibrariesFlattenSeasons$outboundSchema;
-}
-
-/** @internal */
-export const GetSearchAllLibrariesEpisodeSort$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesEpisodeSortOpen,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(GetSearchAllLibrariesEpisodeSort),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const GetSearchAllLibrariesEpisodeSort$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesEpisodeSortOpen,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesEpisodeSortOpen
-> = z.union([
-  z.nativeEnum(GetSearchAllLibrariesEpisodeSort),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesEpisodeSort$ {
-  /** @deprecated use `GetSearchAllLibrariesEpisodeSort$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesEpisodeSort$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesEpisodeSort$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesEpisodeSort$outboundSchema;
-}
-
-/** @internal */
-export const GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema:
-  z.ZodType<
-    GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen,
-    z.ZodTypeDef,
-    unknown
-  > = z
-    .union([
-      z.nativeEnum(GetSearchAllLibrariesEnableCreditsMarkerGeneration),
-      z.string().transform(catchUnrecognizedEnum),
-    ]);
-
-/** @internal */
-export const GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema:
-  z.ZodType<
-    GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen,
-    z.ZodTypeDef,
-    GetSearchAllLibrariesEnableCreditsMarkerGenerationOpen
-  > = z.union([
-    z.nativeEnum(GetSearchAllLibrariesEnableCreditsMarkerGeneration),
-    z.string().and(z.custom<Unrecognized<string>>()),
-  ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesEnableCreditsMarkerGeneration$ {
-  /** @deprecated use `GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema` instead. */
-  export const inboundSchema =
-    GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema` instead. */
-  export const outboundSchema =
-    GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema;
-}
-
-/** @internal */
-export const GetSearchAllLibrariesShowOrdering$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesShowOrderingOpen,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(GetSearchAllLibrariesShowOrdering),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const GetSearchAllLibrariesShowOrdering$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesShowOrderingOpen,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesShowOrderingOpen
-> = z.union([
-  z.nativeEnum(GetSearchAllLibrariesShowOrdering),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesShowOrdering$ {
-  /** @deprecated use `GetSearchAllLibrariesShowOrdering$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesShowOrdering$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesShowOrdering$outboundSchema` instead. */
-  export const outboundSchema =
-    GetSearchAllLibrariesShowOrdering$outboundSchema;
-}
-
-/** @internal */
-export const GetSearchAllLibrariesOptimizedForStreaming$inboundSchema:
-  z.ZodNativeEnum<typeof GetSearchAllLibrariesOptimizedForStreaming> = z
-    .nativeEnum(GetSearchAllLibrariesOptimizedForStreaming);
-
-/** @internal */
-export const GetSearchAllLibrariesOptimizedForStreaming$outboundSchema:
-  z.ZodNativeEnum<typeof GetSearchAllLibrariesOptimizedForStreaming> =
-    GetSearchAllLibrariesOptimizedForStreaming$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesOptimizedForStreaming$ {
-  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreaming$inboundSchema` instead. */
-  export const inboundSchema =
-    GetSearchAllLibrariesOptimizedForStreaming$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreaming$outboundSchema` instead. */
-  export const outboundSchema =
-    GetSearchAllLibrariesOptimizedForStreaming$outboundSchema;
-}
-
-/** @internal */
-export const GetSearchAllLibrariesHasThumbnail$inboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesHasThumbnail
-> = z.nativeEnum(GetSearchAllLibrariesHasThumbnail);
-
-/** @internal */
-export const GetSearchAllLibrariesHasThumbnail$outboundSchema: z.ZodNativeEnum<
-  typeof GetSearchAllLibrariesHasThumbnail
-> = GetSearchAllLibrariesHasThumbnail$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesHasThumbnail$ {
-  /** @deprecated use `GetSearchAllLibrariesHasThumbnail$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesHasThumbnail$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesHasThumbnail$outboundSchema` instead. */
-  export const outboundSchema =
-    GetSearchAllLibrariesHasThumbnail$outboundSchema;
-}
-
-/** @internal */
-export const GetSearchAllLibrariesStream$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesStream,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.number().int(),
-  streamType: z.number().int(),
-  default: z.boolean().optional(),
-  selected: z.boolean().optional(),
-  codec: z.string(),
-  index: z.number().int(),
-  bitrate: z.number().int().optional(),
-  colorPrimaries: z.string().optional(),
-  colorRange: z.string().optional(),
-  colorSpace: z.string().optional(),
-  colorTrc: z.string().optional(),
-  bitDepth: z.number().int().optional(),
-  chromaLocation: z.string().optional(),
-  streamIdentifier: z.string().optional(),
-  chromaSubsampling: z.string().optional(),
-  codedHeight: z.number().int().optional(),
-  codedWidth: z.number().int().optional(),
-  frameRate: z.number().optional(),
-  hasScalingMatrix: z.boolean().optional(),
-  hearingImpaired: z.boolean().optional(),
-  closedCaptions: z.boolean().optional(),
-  embeddedInVideo: z.string().optional(),
-  height: z.number().int().optional(),
-  level: z.number().int().optional(),
-  profile: z.string().optional(),
-  refFrames: z.number().int().optional(),
-  scanType: z.string().optional(),
-  width: z.number().int().optional(),
-  displayTitle: z.string().optional(),
-  extendedDisplayTitle: z.string().optional(),
-  channels: z.number().int().optional(),
-  language: z.string().optional(),
-  languageTag: z.string().optional(),
-  languageCode: z.string().optional(),
-  audioChannelLayout: z.string().optional(),
-  samplingRate: z.number().int().optional(),
-  title: z.string().optional(),
-  canAutoSync: z.boolean().optional(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesStream$Outbound = {
-  id: number;
-  streamType: number;
-  default?: boolean | undefined;
-  selected?: boolean | undefined;
-  codec: string;
-  index: number;
-  bitrate?: number | undefined;
-  colorPrimaries?: string | undefined;
-  colorRange?: string | undefined;
-  colorSpace?: string | undefined;
-  colorTrc?: string | undefined;
-  bitDepth?: number | undefined;
-  chromaLocation?: string | undefined;
-  streamIdentifier?: string | undefined;
-  chromaSubsampling?: string | undefined;
-  codedHeight?: number | undefined;
-  codedWidth?: number | undefined;
-  frameRate?: number | undefined;
-  hasScalingMatrix?: boolean | undefined;
-  hearingImpaired?: boolean | undefined;
-  closedCaptions?: boolean | undefined;
-  embeddedInVideo?: string | undefined;
-  height?: number | undefined;
-  level?: number | undefined;
-  profile?: string | undefined;
-  refFrames?: number | undefined;
-  scanType?: string | undefined;
-  width?: number | undefined;
-  displayTitle?: string | undefined;
-  extendedDisplayTitle?: string | undefined;
-  channels?: number | undefined;
-  language?: string | undefined;
-  languageTag?: string | undefined;
-  languageCode?: string | undefined;
-  audioChannelLayout?: string | undefined;
-  samplingRate?: number | undefined;
-  title?: string | undefined;
-  canAutoSync?: boolean | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesStream$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesStream$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesStream
-> = z.object({
-  id: z.number().int(),
-  streamType: z.number().int(),
-  default: z.boolean().optional(),
-  selected: z.boolean().optional(),
-  codec: z.string(),
-  index: z.number().int(),
-  bitrate: z.number().int().optional(),
-  colorPrimaries: z.string().optional(),
-  colorRange: z.string().optional(),
-  colorSpace: z.string().optional(),
-  colorTrc: z.string().optional(),
-  bitDepth: z.number().int().optional(),
-  chromaLocation: z.string().optional(),
-  streamIdentifier: z.string().optional(),
-  chromaSubsampling: z.string().optional(),
-  codedHeight: z.number().int().optional(),
-  codedWidth: z.number().int().optional(),
-  frameRate: z.number().optional(),
-  hasScalingMatrix: z.boolean().optional(),
-  hearingImpaired: z.boolean().optional(),
-  closedCaptions: z.boolean().optional(),
-  embeddedInVideo: z.string().optional(),
-  height: z.number().int().optional(),
-  level: z.number().int().optional(),
-  profile: z.string().optional(),
-  refFrames: z.number().int().optional(),
-  scanType: z.string().optional(),
-  width: z.number().int().optional(),
-  displayTitle: z.string().optional(),
-  extendedDisplayTitle: z.string().optional(),
-  channels: z.number().int().optional(),
-  language: z.string().optional(),
-  languageTag: z.string().optional(),
-  languageCode: z.string().optional(),
-  audioChannelLayout: z.string().optional(),
-  samplingRate: z.number().int().optional(),
-  title: z.string().optional(),
-  canAutoSync: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesStream$ {
-  /** @deprecated use `GetSearchAllLibrariesStream$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesStream$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesStream$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesStream$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesStream$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesStream$Outbound;
-}
-
-export function getSearchAllLibrariesStreamToJSON(
-  getSearchAllLibrariesStream: GetSearchAllLibrariesStream,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesStream$outboundSchema.parse(
-      getSearchAllLibrariesStream,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesStreamFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesStream, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesStream$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesStream' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesPart$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesPart,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.number().int(),
-  key: z.string(),
-  duration: z.number().int().optional(),
-  file: z.string(),
-  size: z.number().int(),
-  container: z.string(),
-  audioProfile: z.string().optional(),
-  has64bitOffsets: z.boolean().optional(),
-  optimizedForStreaming: z.boolean().optional(),
-  videoProfile: z.string().optional(),
-  indexes: z.string().optional(),
-  hasThumbnail: GetSearchAllLibrariesHasThumbnail$inboundSchema.default(
-    GetSearchAllLibrariesHasThumbnail.False,
-  ),
-  Stream: z.array(z.lazy(() => GetSearchAllLibrariesStream$inboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "Stream": "stream",
-  });
-});
-
-/** @internal */
-export type GetSearchAllLibrariesPart$Outbound = {
-  id: number;
-  key: string;
-  duration?: number | undefined;
-  file: string;
-  size: number;
-  container: string;
-  audioProfile?: string | undefined;
-  has64bitOffsets?: boolean | undefined;
-  optimizedForStreaming?: boolean | undefined;
-  videoProfile?: string | undefined;
-  indexes?: string | undefined;
-  hasThumbnail: string;
-  Stream?: Array<GetSearchAllLibrariesStream$Outbound> | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesPart$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesPart$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesPart
-> = z.object({
-  id: z.number().int(),
-  key: z.string(),
-  duration: z.number().int().optional(),
-  file: z.string(),
-  size: z.number().int(),
-  container: z.string(),
-  audioProfile: z.string().optional(),
-  has64bitOffsets: z.boolean().optional(),
-  optimizedForStreaming: z.boolean().optional(),
-  videoProfile: z.string().optional(),
-  indexes: z.string().optional(),
-  hasThumbnail: GetSearchAllLibrariesHasThumbnail$outboundSchema.default(
-    GetSearchAllLibrariesHasThumbnail.False,
-  ),
-  stream: z.array(z.lazy(() => GetSearchAllLibrariesStream$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    stream: "Stream",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesPart$ {
-  /** @deprecated use `GetSearchAllLibrariesPart$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesPart$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesPart$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesPart$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesPart$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesPart$Outbound;
-}
-
-export function getSearchAllLibrariesPartToJSON(
-  getSearchAllLibrariesPart: GetSearchAllLibrariesPart,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesPart$outboundSchema.parse(getSearchAllLibrariesPart),
-  );
-}
-
-export function getSearchAllLibrariesPartFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesPart, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesPart$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesPart' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesMedia$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesMedia,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.number().int(),
-  duration: z.number().int().optional(),
-  bitrate: z.number().int().optional(),
-  width: z.number().int().optional(),
-  height: z.number().int().optional(),
-  aspectRatio: z.number().optional(),
-  audioProfile: z.string().optional(),
-  audioChannels: z.number().int().optional(),
-  audioCodec: z.string().optional(),
-  videoCodec: z.string().optional(),
-  videoResolution: z.string().optional(),
-  container: z.string(),
-  videoFrameRate: z.string().optional(),
-  videoProfile: z.string().optional(),
-  hasVoiceActivity: z.boolean().optional(),
-  optimizedForStreaming:
-    GetSearchAllLibrariesOptimizedForStreaming$inboundSchema,
-  has64bitOffsets: z.boolean().optional(),
-  Part: z.array(z.lazy(() => GetSearchAllLibrariesPart$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "Part": "part",
-  });
-});
-
-/** @internal */
-export type GetSearchAllLibrariesMedia$Outbound = {
-  id: number;
-  duration?: number | undefined;
-  bitrate?: number | undefined;
-  width?: number | undefined;
-  height?: number | undefined;
-  aspectRatio?: number | undefined;
-  audioProfile?: string | undefined;
-  audioChannels?: number | undefined;
-  audioCodec?: string | undefined;
-  videoCodec?: string | undefined;
-  videoResolution?: string | undefined;
-  container: string;
-  videoFrameRate?: string | undefined;
-  videoProfile?: string | undefined;
-  hasVoiceActivity?: boolean | undefined;
-  optimizedForStreaming: number;
-  has64bitOffsets?: boolean | undefined;
-  Part: Array<GetSearchAllLibrariesPart$Outbound>;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesMedia$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesMedia$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesMedia
-> = z.object({
-  id: z.number().int(),
-  duration: z.number().int().optional(),
-  bitrate: z.number().int().optional(),
-  width: z.number().int().optional(),
-  height: z.number().int().optional(),
-  aspectRatio: z.number().optional(),
-  audioProfile: z.string().optional(),
-  audioChannels: z.number().int().optional(),
-  audioCodec: z.string().optional(),
-  videoCodec: z.string().optional(),
-  videoResolution: z.string().optional(),
-  container: z.string(),
-  videoFrameRate: z.string().optional(),
-  videoProfile: z.string().optional(),
-  hasVoiceActivity: z.boolean().optional(),
-  optimizedForStreaming:
-    GetSearchAllLibrariesOptimizedForStreaming$outboundSchema.default(
-      GetSearchAllLibrariesOptimizedForStreaming.Disable,
-    ),
-  has64bitOffsets: z.boolean().optional(),
-  part: z.array(z.lazy(() => GetSearchAllLibrariesPart$outboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    part: "Part",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesMedia$ {
-  /** @deprecated use `GetSearchAllLibrariesMedia$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesMedia$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesMedia$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesMedia$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesMedia$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesMedia$Outbound;
-}
-
-export function getSearchAllLibrariesMediaToJSON(
-  getSearchAllLibrariesMedia: GetSearchAllLibrariesMedia,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesMedia$outboundSchema.parse(getSearchAllLibrariesMedia),
-  );
-}
-
-export function getSearchAllLibrariesMediaFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesMedia, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesMedia$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesMedia' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesGenre$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesGenre,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesGenre$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesGenre$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesGenre$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesGenre
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesGenre$ {
-  /** @deprecated use `GetSearchAllLibrariesGenre$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesGenre$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesGenre$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesGenre$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesGenre$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesGenre$Outbound;
-}
-
-export function getSearchAllLibrariesGenreToJSON(
-  getSearchAllLibrariesGenre: GetSearchAllLibrariesGenre,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesGenre$outboundSchema.parse(getSearchAllLibrariesGenre),
-  );
-}
-
-export function getSearchAllLibrariesGenreFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesGenre, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesGenre$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesGenre' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesCountry$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesCountry,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesCountry$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesCountry$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesCountry$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesCountry
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesCountry$ {
-  /** @deprecated use `GetSearchAllLibrariesCountry$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesCountry$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesCountry$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesCountry$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesCountry$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesCountry$Outbound;
-}
-
-export function getSearchAllLibrariesCountryToJSON(
-  getSearchAllLibrariesCountry: GetSearchAllLibrariesCountry,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesCountry$outboundSchema.parse(
-      getSearchAllLibrariesCountry,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesCountryFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesCountry, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesCountry$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesCountry' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesDirector$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesDirector,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesDirector$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesDirector$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesDirector$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesDirector
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesDirector$ {
-  /** @deprecated use `GetSearchAllLibrariesDirector$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesDirector$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesDirector$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesDirector$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesDirector$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesDirector$Outbound;
-}
-
-export function getSearchAllLibrariesDirectorToJSON(
-  getSearchAllLibrariesDirector: GetSearchAllLibrariesDirector,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesDirector$outboundSchema.parse(
-      getSearchAllLibrariesDirector,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesDirectorFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesDirector, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesDirector$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesDirector' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesWriter$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesWriter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesWriter$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesWriter$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesWriter$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesWriter
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesWriter$ {
-  /** @deprecated use `GetSearchAllLibrariesWriter$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesWriter$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesWriter$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesWriter$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesWriter$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesWriter$Outbound;
-}
-
-export function getSearchAllLibrariesWriterToJSON(
-  getSearchAllLibrariesWriter: GetSearchAllLibrariesWriter,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesWriter$outboundSchema.parse(
-      getSearchAllLibrariesWriter,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesWriterFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesWriter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesWriter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesWriter' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesCollection$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesCollection,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesCollection$Outbound = {
-  tag?: string | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesCollection$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesCollection$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesCollection
-> = z.object({
-  tag: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesCollection$ {
-  /** @deprecated use `GetSearchAllLibrariesCollection$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesCollection$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesCollection$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesCollection$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesCollection$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesCollection$Outbound;
-}
-
-export function getSearchAllLibrariesCollectionToJSON(
-  getSearchAllLibrariesCollection: GetSearchAllLibrariesCollection,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesCollection$outboundSchema.parse(
-      getSearchAllLibrariesCollection,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesCollectionFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesCollection, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesCollection$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesCollection' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesRole$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesRole,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.number().int().optional(),
-  filter: z.string().optional(),
-  thumb: z.string().optional(),
-  tag: z.string().optional(),
-  tagKey: z.string().optional(),
-  role: z.string().optional(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesRole$Outbound = {
-  id?: number | undefined;
-  filter?: string | undefined;
-  thumb?: string | undefined;
-  tag?: string | undefined;
-  tagKey?: string | undefined;
-  role?: string | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesRole$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesRole$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesRole
-> = z.object({
-  id: z.number().int().optional(),
-  filter: z.string().optional(),
-  thumb: z.string().optional(),
-  tag: z.string().optional(),
-  tagKey: z.string().optional(),
-  role: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesRole$ {
-  /** @deprecated use `GetSearchAllLibrariesRole$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesRole$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesRole$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesRole$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesRole$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesRole$Outbound;
-}
-
-export function getSearchAllLibrariesRoleToJSON(
-  getSearchAllLibrariesRole: GetSearchAllLibrariesRole,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesRole$outboundSchema.parse(getSearchAllLibrariesRole),
-  );
-}
-
-export function getSearchAllLibrariesRoleFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesRole, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesRole$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesRole' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesLocation$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesLocation,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  path: z.string().optional(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesLocation$Outbound = {
-  path?: string | undefined;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesLocation$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesLocation$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesLocation
-> = z.object({
-  path: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesLocation$ {
-  /** @deprecated use `GetSearchAllLibrariesLocation$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesLocation$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesLocation$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesLocation$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesLocation$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesLocation$Outbound;
-}
-
-export function getSearchAllLibrariesLocationToJSON(
-  getSearchAllLibrariesLocation: GetSearchAllLibrariesLocation,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesLocation$outboundSchema.parse(
-      getSearchAllLibrariesLocation,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesLocationFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesLocation, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesLocation$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesLocation' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesMediaGuid$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesMediaGuid,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesMediaGuid$Outbound = {
-  id: string;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesMediaGuid$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesMediaGuid$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesMediaGuid
-> = z.object({
-  id: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesMediaGuid$ {
-  /** @deprecated use `GetSearchAllLibrariesMediaGuid$inboundSchema` instead. */
-  export const inboundSchema = GetSearchAllLibrariesMediaGuid$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesMediaGuid$outboundSchema` instead. */
-  export const outboundSchema = GetSearchAllLibrariesMediaGuid$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesMediaGuid$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesMediaGuid$Outbound;
-}
-
-export function getSearchAllLibrariesMediaGuidToJSON(
-  getSearchAllLibrariesMediaGuid: GetSearchAllLibrariesMediaGuid,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesMediaGuid$outboundSchema.parse(
-      getSearchAllLibrariesMediaGuid,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesMediaGuidFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesMediaGuid, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetSearchAllLibrariesMediaGuid$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesMediaGuid' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesUltraBlurColors$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesUltraBlurColors,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  topLeft: z.string(),
-  topRight: z.string(),
-  bottomRight: z.string(),
-  bottomLeft: z.string(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesUltraBlurColors$Outbound = {
-  topLeft: string;
-  topRight: string;
-  bottomRight: string;
-  bottomLeft: string;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesUltraBlurColors$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesUltraBlurColors$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesUltraBlurColors
-> = z.object({
-  topLeft: z.string(),
-  topRight: z.string(),
-  bottomRight: z.string(),
-  bottomLeft: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesUltraBlurColors$ {
-  /** @deprecated use `GetSearchAllLibrariesUltraBlurColors$inboundSchema` instead. */
-  export const inboundSchema =
-    GetSearchAllLibrariesUltraBlurColors$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesUltraBlurColors$outboundSchema` instead. */
-  export const outboundSchema =
-    GetSearchAllLibrariesUltraBlurColors$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesUltraBlurColors$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesUltraBlurColors$Outbound;
-}
-
-export function getSearchAllLibrariesUltraBlurColorsToJSON(
-  getSearchAllLibrariesUltraBlurColors: GetSearchAllLibrariesUltraBlurColors,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesUltraBlurColors$outboundSchema.parse(
-      getSearchAllLibrariesUltraBlurColors,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesUltraBlurColorsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesUltraBlurColors, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetSearchAllLibrariesUltraBlurColors$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesUltraBlurColors' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetSearchAllLibrariesMetaDataRating$inboundSchema: z.ZodType<
-  GetSearchAllLibrariesMetaDataRating,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  image: z.string(),
-  value: z.number(),
-  type: z.string(),
-});
-
-/** @internal */
-export type GetSearchAllLibrariesMetaDataRating$Outbound = {
-  image: string;
-  value: number;
-  type: string;
-};
-
-/** @internal */
-export const GetSearchAllLibrariesMetaDataRating$outboundSchema: z.ZodType<
-  GetSearchAllLibrariesMetaDataRating$Outbound,
-  z.ZodTypeDef,
-  GetSearchAllLibrariesMetaDataRating
-> = z.object({
-  image: z.string(),
-  value: z.number(),
-  type: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSearchAllLibrariesMetaDataRating$ {
-  /** @deprecated use `GetSearchAllLibrariesMetaDataRating$inboundSchema` instead. */
-  export const inboundSchema =
-    GetSearchAllLibrariesMetaDataRating$inboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesMetaDataRating$outboundSchema` instead. */
-  export const outboundSchema =
-    GetSearchAllLibrariesMetaDataRating$outboundSchema;
-  /** @deprecated use `GetSearchAllLibrariesMetaDataRating$Outbound` instead. */
-  export type Outbound = GetSearchAllLibrariesMetaDataRating$Outbound;
-}
-
-export function getSearchAllLibrariesMetaDataRatingToJSON(
-  getSearchAllLibrariesMetaDataRating: GetSearchAllLibrariesMetaDataRating,
-): string {
-  return JSON.stringify(
-    GetSearchAllLibrariesMetaDataRating$outboundSchema.parse(
-      getSearchAllLibrariesMetaDataRating,
-    ),
-  );
-}
-
-export function getSearchAllLibrariesMetaDataRatingFromJSON(
-  jsonString: string,
-): SafeParseResult<GetSearchAllLibrariesMetaDataRating, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      GetSearchAllLibrariesMetaDataRating$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetSearchAllLibrariesMetaDataRating' from JSON`,
-  );
 }
 
 /** @internal */
@@ -2087,6 +1213,988 @@ export function getSearchAllLibrariesImageFromJSON(
 }
 
 /** @internal */
+export const GetSearchAllLibrariesUltraBlurColors$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesUltraBlurColors,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesUltraBlurColors$Outbound = {
+  topLeft: string;
+  topRight: string;
+  bottomRight: string;
+  bottomLeft: string;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesUltraBlurColors$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesUltraBlurColors$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesUltraBlurColors
+> = z.object({
+  topLeft: z.string(),
+  topRight: z.string(),
+  bottomRight: z.string(),
+  bottomLeft: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesUltraBlurColors$ {
+  /** @deprecated use `GetSearchAllLibrariesUltraBlurColors$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesUltraBlurColors$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesUltraBlurColors$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesUltraBlurColors$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesUltraBlurColors$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesUltraBlurColors$Outbound;
+}
+
+export function getSearchAllLibrariesUltraBlurColorsToJSON(
+  getSearchAllLibrariesUltraBlurColors: GetSearchAllLibrariesUltraBlurColors,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesUltraBlurColors$outboundSchema.parse(
+      getSearchAllLibrariesUltraBlurColors,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesUltraBlurColorsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesUltraBlurColors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSearchAllLibrariesUltraBlurColors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesUltraBlurColors' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesGuids$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesGuids,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesGuids$Outbound = {
+  id: string;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesGuids$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesGuids$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesGuids
+> = z.object({
+  id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesGuids$ {
+  /** @deprecated use `GetSearchAllLibrariesGuids$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesGuids$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesGuids$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesGuids$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesGuids$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesGuids$Outbound;
+}
+
+export function getSearchAllLibrariesGuidsToJSON(
+  getSearchAllLibrariesGuids: GetSearchAllLibrariesGuids,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesGuids$outboundSchema.parse(getSearchAllLibrariesGuids),
+  );
+}
+
+export function getSearchAllLibrariesGuidsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesGuids, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesGuids$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesGuids' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesShowOrdering$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesShowOrderingOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetSearchAllLibrariesShowOrdering),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const GetSearchAllLibrariesShowOrdering$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesShowOrderingOpen,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesShowOrderingOpen
+> = z.union([
+  z.nativeEnum(GetSearchAllLibrariesShowOrdering),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesShowOrdering$ {
+  /** @deprecated use `GetSearchAllLibrariesShowOrdering$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesShowOrdering$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesShowOrdering$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesShowOrdering$outboundSchema;
+}
+
+/** @internal */
+export const GetSearchAllLibrariesFlattenSeasons$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesFlattenSeasonsOpen,
+  z.ZodTypeDef,
+  unknown
+> = z
+  .union([
+    z.nativeEnum(GetSearchAllLibrariesFlattenSeasons),
+    z.string().transform(catchUnrecognizedEnum),
+  ]);
+
+/** @internal */
+export const GetSearchAllLibrariesFlattenSeasons$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesFlattenSeasonsOpen,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesFlattenSeasonsOpen
+> = z.union([
+  z.nativeEnum(GetSearchAllLibrariesFlattenSeasons),
+  z.string().and(z.custom<Unrecognized<string>>()),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesFlattenSeasons$ {
+  /** @deprecated use `GetSearchAllLibrariesFlattenSeasons$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesFlattenSeasons$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesFlattenSeasons$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesFlattenSeasons$outboundSchema;
+}
+
+/** @internal */
+export const GetSearchAllLibrariesOptimizedForStreaming1$inboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesOptimizedForStreaming1> = z
+    .nativeEnum(GetSearchAllLibrariesOptimizedForStreaming1);
+
+/** @internal */
+export const GetSearchAllLibrariesOptimizedForStreaming1$outboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesOptimizedForStreaming1> =
+    GetSearchAllLibrariesOptimizedForStreaming1$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesOptimizedForStreaming1$ {
+  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreaming1$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesOptimizedForStreaming1$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreaming1$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesOptimizedForStreaming1$outboundSchema;
+}
+
+/** @internal */
+export const GetSearchAllLibrariesOptimizedForStreaming$inboundSchema:
+  z.ZodType<GetSearchAllLibrariesOptimizedForStreaming, z.ZodTypeDef, unknown> =
+    z.union([
+      GetSearchAllLibrariesOptimizedForStreaming1$inboundSchema,
+      z.boolean(),
+    ]);
+
+/** @internal */
+export type GetSearchAllLibrariesOptimizedForStreaming$Outbound =
+  | number
+  | boolean;
+
+/** @internal */
+export const GetSearchAllLibrariesOptimizedForStreaming$outboundSchema:
+  z.ZodType<
+    GetSearchAllLibrariesOptimizedForStreaming$Outbound,
+    z.ZodTypeDef,
+    GetSearchAllLibrariesOptimizedForStreaming
+  > = z.union([
+    GetSearchAllLibrariesOptimizedForStreaming1$outboundSchema,
+    z.boolean(),
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesOptimizedForStreaming$ {
+  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreaming$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesOptimizedForStreaming$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreaming$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesOptimizedForStreaming$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreaming$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesOptimizedForStreaming$Outbound;
+}
+
+export function getSearchAllLibrariesOptimizedForStreamingToJSON(
+  getSearchAllLibrariesOptimizedForStreaming:
+    GetSearchAllLibrariesOptimizedForStreaming,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesOptimizedForStreaming$outboundSchema.parse(
+      getSearchAllLibrariesOptimizedForStreaming,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesOptimizedForStreamingFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetSearchAllLibrariesOptimizedForStreaming,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSearchAllLibrariesOptimizedForStreaming$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetSearchAllLibrariesOptimizedForStreaming' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesOptimizedForStreamingLibrary1$inboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesOptimizedForStreamingLibrary1> = z
+    .nativeEnum(GetSearchAllLibrariesOptimizedForStreamingLibrary1);
+
+/** @internal */
+export const GetSearchAllLibrariesOptimizedForStreamingLibrary1$outboundSchema:
+  z.ZodNativeEnum<typeof GetSearchAllLibrariesOptimizedForStreamingLibrary1> =
+    GetSearchAllLibrariesOptimizedForStreamingLibrary1$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesOptimizedForStreamingLibrary1$ {
+  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreamingLibrary1$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesOptimizedForStreamingLibrary1$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesOptimizedForStreamingLibrary1$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesOptimizedForStreamingLibrary1$outboundSchema;
+}
+
+/** @internal */
+export const GetSearchAllLibrariesLibraryOptimizedForStreaming$inboundSchema:
+  z.ZodType<
+    GetSearchAllLibrariesLibraryOptimizedForStreaming,
+    z.ZodTypeDef,
+    unknown
+  > = z.union([
+    GetSearchAllLibrariesOptimizedForStreamingLibrary1$inboundSchema,
+    z.boolean(),
+  ]);
+
+/** @internal */
+export type GetSearchAllLibrariesLibraryOptimizedForStreaming$Outbound =
+  | number
+  | boolean;
+
+/** @internal */
+export const GetSearchAllLibrariesLibraryOptimizedForStreaming$outboundSchema:
+  z.ZodType<
+    GetSearchAllLibrariesLibraryOptimizedForStreaming$Outbound,
+    z.ZodTypeDef,
+    GetSearchAllLibrariesLibraryOptimizedForStreaming
+  > = z.union([
+    GetSearchAllLibrariesOptimizedForStreamingLibrary1$outboundSchema,
+    z.boolean(),
+  ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesLibraryOptimizedForStreaming$ {
+  /** @deprecated use `GetSearchAllLibrariesLibraryOptimizedForStreaming$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSearchAllLibrariesLibraryOptimizedForStreaming$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesLibraryOptimizedForStreaming$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesLibraryOptimizedForStreaming$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesLibraryOptimizedForStreaming$Outbound` instead. */
+  export type Outbound =
+    GetSearchAllLibrariesLibraryOptimizedForStreaming$Outbound;
+}
+
+export function getSearchAllLibrariesLibraryOptimizedForStreamingToJSON(
+  getSearchAllLibrariesLibraryOptimizedForStreaming:
+    GetSearchAllLibrariesLibraryOptimizedForStreaming,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesLibraryOptimizedForStreaming$outboundSchema.parse(
+      getSearchAllLibrariesLibraryOptimizedForStreaming,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesLibraryOptimizedForStreamingFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetSearchAllLibrariesLibraryOptimizedForStreaming,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSearchAllLibrariesLibraryOptimizedForStreaming$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetSearchAllLibrariesLibraryOptimizedForStreaming' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesHasThumbnail$inboundSchema: z.ZodNativeEnum<
+  typeof GetSearchAllLibrariesHasThumbnail
+> = z.nativeEnum(GetSearchAllLibrariesHasThumbnail);
+
+/** @internal */
+export const GetSearchAllLibrariesHasThumbnail$outboundSchema: z.ZodNativeEnum<
+  typeof GetSearchAllLibrariesHasThumbnail
+> = GetSearchAllLibrariesHasThumbnail$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesHasThumbnail$ {
+  /** @deprecated use `GetSearchAllLibrariesHasThumbnail$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesHasThumbnail$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesHasThumbnail$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSearchAllLibrariesHasThumbnail$outboundSchema;
+}
+
+/** @internal */
+export const GetSearchAllLibrariesPart$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesPart,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  accessible: z.boolean().optional(),
+  exists: z.boolean().optional(),
+  id: z.number().int(),
+  key: z.string().optional(),
+  indexes: z.string().optional(),
+  duration: z.number().int().optional(),
+  file: z.string().optional(),
+  size: z.number().int().optional(),
+  packetLength: z.number().int().optional(),
+  container: z.string().optional(),
+  videoProfile: z.string().optional(),
+  audioProfile: z.string().optional(),
+  has64bitOffsets: z.boolean().optional(),
+  optimizedForStreaming: z.union([
+    GetSearchAllLibrariesOptimizedForStreamingLibrary1$inboundSchema,
+    z.boolean(),
+  ]).optional(),
+  hasThumbnail: GetSearchAllLibrariesHasThumbnail$inboundSchema.default(
+    GetSearchAllLibrariesHasThumbnail.False,
+  ),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesPart$Outbound = {
+  accessible?: boolean | undefined;
+  exists?: boolean | undefined;
+  id: number;
+  key?: string | undefined;
+  indexes?: string | undefined;
+  duration?: number | undefined;
+  file?: string | undefined;
+  size?: number | undefined;
+  packetLength?: number | undefined;
+  container?: string | undefined;
+  videoProfile?: string | undefined;
+  audioProfile?: string | undefined;
+  has64bitOffsets?: boolean | undefined;
+  optimizedForStreaming?: number | boolean | undefined;
+  hasThumbnail: string;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesPart$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesPart$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesPart
+> = z.object({
+  accessible: z.boolean().optional(),
+  exists: z.boolean().optional(),
+  id: z.number().int(),
+  key: z.string().optional(),
+  indexes: z.string().optional(),
+  duration: z.number().int().optional(),
+  file: z.string().optional(),
+  size: z.number().int().optional(),
+  packetLength: z.number().int().optional(),
+  container: z.string().optional(),
+  videoProfile: z.string().optional(),
+  audioProfile: z.string().optional(),
+  has64bitOffsets: z.boolean().optional(),
+  optimizedForStreaming: z.union([
+    GetSearchAllLibrariesOptimizedForStreamingLibrary1$outboundSchema,
+    z.boolean(),
+  ]).optional(),
+  hasThumbnail: GetSearchAllLibrariesHasThumbnail$outboundSchema.default(
+    GetSearchAllLibrariesHasThumbnail.False,
+  ),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesPart$ {
+  /** @deprecated use `GetSearchAllLibrariesPart$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesPart$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesPart$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesPart$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesPart$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesPart$Outbound;
+}
+
+export function getSearchAllLibrariesPartToJSON(
+  getSearchAllLibrariesPart: GetSearchAllLibrariesPart,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesPart$outboundSchema.parse(getSearchAllLibrariesPart),
+  );
+}
+
+export function getSearchAllLibrariesPartFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesPart, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesPart$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesPart' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesMedia$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesMedia,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  duration: z.number().int().optional(),
+  bitrate: z.number().int().optional(),
+  width: z.number().int().optional(),
+  height: z.number().int().optional(),
+  aspectRatio: z.number().optional(),
+  audioChannels: z.number().int().optional(),
+  displayOffset: z.number().int().optional(),
+  audioCodec: z.string().optional(),
+  videoCodec: z.string().optional(),
+  videoResolution: z.string().optional(),
+  container: z.string().optional(),
+  videoFrameRate: z.string().optional(),
+  videoProfile: z.string().optional(),
+  hasVoiceActivity: z.boolean().optional(),
+  audioProfile: z.string().optional(),
+  optimizedForStreaming: z.union([
+    GetSearchAllLibrariesOptimizedForStreaming1$inboundSchema,
+    z.boolean(),
+  ]).optional(),
+  has64bitOffsets: z.boolean().optional(),
+  Part: z.array(z.lazy(() => GetSearchAllLibrariesPart$inboundSchema))
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Part": "part",
+  });
+});
+
+/** @internal */
+export type GetSearchAllLibrariesMedia$Outbound = {
+  id: number;
+  duration?: number | undefined;
+  bitrate?: number | undefined;
+  width?: number | undefined;
+  height?: number | undefined;
+  aspectRatio?: number | undefined;
+  audioChannels?: number | undefined;
+  displayOffset?: number | undefined;
+  audioCodec?: string | undefined;
+  videoCodec?: string | undefined;
+  videoResolution?: string | undefined;
+  container?: string | undefined;
+  videoFrameRate?: string | undefined;
+  videoProfile?: string | undefined;
+  hasVoiceActivity?: boolean | undefined;
+  audioProfile?: string | undefined;
+  optimizedForStreaming?: number | boolean | undefined;
+  has64bitOffsets?: boolean | undefined;
+  Part?: Array<GetSearchAllLibrariesPart$Outbound> | undefined;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesMedia$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesMedia$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesMedia
+> = z.object({
+  id: z.number().int(),
+  duration: z.number().int().optional(),
+  bitrate: z.number().int().optional(),
+  width: z.number().int().optional(),
+  height: z.number().int().optional(),
+  aspectRatio: z.number().optional(),
+  audioChannels: z.number().int().optional(),
+  displayOffset: z.number().int().optional(),
+  audioCodec: z.string().optional(),
+  videoCodec: z.string().optional(),
+  videoResolution: z.string().optional(),
+  container: z.string().optional(),
+  videoFrameRate: z.string().optional(),
+  videoProfile: z.string().optional(),
+  hasVoiceActivity: z.boolean().optional(),
+  audioProfile: z.string().optional(),
+  optimizedForStreaming: z.union([
+    GetSearchAllLibrariesOptimizedForStreaming1$outboundSchema,
+    z.boolean(),
+  ]).optional(),
+  has64bitOffsets: z.boolean().optional(),
+  part: z.array(z.lazy(() => GetSearchAllLibrariesPart$outboundSchema))
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    part: "Part",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesMedia$ {
+  /** @deprecated use `GetSearchAllLibrariesMedia$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesMedia$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesMedia$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesMedia$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesMedia$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesMedia$Outbound;
+}
+
+export function getSearchAllLibrariesMediaToJSON(
+  getSearchAllLibrariesMedia: GetSearchAllLibrariesMedia,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesMedia$outboundSchema.parse(getSearchAllLibrariesMedia),
+  );
+}
+
+export function getSearchAllLibrariesMediaFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesMedia, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesMedia$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesMedia' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesGenre$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesGenre,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesGenre$Outbound = {
+  id: number;
+  tag: string;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesGenre$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesGenre$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesGenre
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesGenre$ {
+  /** @deprecated use `GetSearchAllLibrariesGenre$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesGenre$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesGenre$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesGenre$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesGenre$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesGenre$Outbound;
+}
+
+export function getSearchAllLibrariesGenreToJSON(
+  getSearchAllLibrariesGenre: GetSearchAllLibrariesGenre,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesGenre$outboundSchema.parse(getSearchAllLibrariesGenre),
+  );
+}
+
+export function getSearchAllLibrariesGenreFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesGenre, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesGenre$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesGenre' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesCountry$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesCountry,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesCountry$Outbound = {
+  id: number;
+  tag: string;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesCountry$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesCountry$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesCountry
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesCountry$ {
+  /** @deprecated use `GetSearchAllLibrariesCountry$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesCountry$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesCountry$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesCountry$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesCountry$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesCountry$Outbound;
+}
+
+export function getSearchAllLibrariesCountryToJSON(
+  getSearchAllLibrariesCountry: GetSearchAllLibrariesCountry,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesCountry$outboundSchema.parse(
+      getSearchAllLibrariesCountry,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesCountryFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesCountry, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesCountry$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesCountry' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesDirector$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesDirector,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  thumb: z.string().optional(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesDirector$Outbound = {
+  id: number;
+  tag: string;
+  thumb?: string | undefined;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesDirector$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesDirector$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesDirector
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  thumb: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesDirector$ {
+  /** @deprecated use `GetSearchAllLibrariesDirector$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesDirector$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesDirector$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesDirector$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesDirector$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesDirector$Outbound;
+}
+
+export function getSearchAllLibrariesDirectorToJSON(
+  getSearchAllLibrariesDirector: GetSearchAllLibrariesDirector,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesDirector$outboundSchema.parse(
+      getSearchAllLibrariesDirector,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesDirectorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesDirector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesDirector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesDirector' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesWriter$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesWriter,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  thumb: z.string().optional(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesWriter$Outbound = {
+  id: number;
+  tag: string;
+  thumb?: string | undefined;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesWriter$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesWriter$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesWriter
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  thumb: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesWriter$ {
+  /** @deprecated use `GetSearchAllLibrariesWriter$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesWriter$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesWriter$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesWriter$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesWriter$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesWriter$Outbound;
+}
+
+export function getSearchAllLibrariesWriterToJSON(
+  getSearchAllLibrariesWriter: GetSearchAllLibrariesWriter,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesWriter$outboundSchema.parse(
+      getSearchAllLibrariesWriter,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesWriterFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesWriter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesWriter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesWriter' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesRole$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesRole,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  role: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesRole$Outbound = {
+  id: number;
+  tag: string;
+  role?: string | undefined;
+  thumb?: string | undefined;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesRole$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesRole$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesRole
+> = z.object({
+  id: z.number().int(),
+  tag: z.string(),
+  role: z.string().optional(),
+  thumb: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesRole$ {
+  /** @deprecated use `GetSearchAllLibrariesRole$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesRole$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesRole$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesRole$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesRole$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesRole$Outbound;
+}
+
+export function getSearchAllLibrariesRoleToJSON(
+  getSearchAllLibrariesRole: GetSearchAllLibrariesRole,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesRole$outboundSchema.parse(getSearchAllLibrariesRole),
+  );
+}
+
+export function getSearchAllLibrariesRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesRole' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSearchAllLibrariesLocation$inboundSchema: z.ZodType<
+  GetSearchAllLibrariesLocation,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  path: z.string(),
+});
+
+/** @internal */
+export type GetSearchAllLibrariesLocation$Outbound = {
+  path: string;
+};
+
+/** @internal */
+export const GetSearchAllLibrariesLocation$outboundSchema: z.ZodType<
+  GetSearchAllLibrariesLocation$Outbound,
+  z.ZodTypeDef,
+  GetSearchAllLibrariesLocation
+> = z.object({
+  path: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSearchAllLibrariesLocation$ {
+  /** @deprecated use `GetSearchAllLibrariesLocation$inboundSchema` instead. */
+  export const inboundSchema = GetSearchAllLibrariesLocation$inboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesLocation$outboundSchema` instead. */
+  export const outboundSchema = GetSearchAllLibrariesLocation$outboundSchema;
+  /** @deprecated use `GetSearchAllLibrariesLocation$Outbound` instead. */
+  export type Outbound = GetSearchAllLibrariesLocation$Outbound;
+}
+
+export function getSearchAllLibrariesLocationToJSON(
+  getSearchAllLibrariesLocation: GetSearchAllLibrariesLocation,
+): string {
+  return JSON.stringify(
+    GetSearchAllLibrariesLocation$outboundSchema.parse(
+      getSearchAllLibrariesLocation,
+    ),
+  );
+}
+
+export function getSearchAllLibrariesLocationFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSearchAllLibrariesLocation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSearchAllLibrariesLocation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSearchAllLibrariesLocation' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetSearchAllLibrariesMetadata$inboundSchema: z.ZodType<
   GetSearchAllLibrariesMetadata,
   z.ZodTypeDef,
@@ -2095,46 +2203,72 @@ export const GetSearchAllLibrariesMetadata$inboundSchema: z.ZodType<
   ratingKey: z.string(),
   key: z.string(),
   guid: z.string(),
+  slug: z.string(),
   studio: z.string().optional(),
-  skipChildren: z.boolean().optional(),
-  librarySectionID: z.number().int().optional(),
-  librarySectionTitle: z.string().optional(),
-  librarySectionKey: z.string().optional(),
   type: GetSearchAllLibrariesType$inboundSchema,
   title: z.string(),
-  slug: z.string().optional(),
+  banner: z.string(),
+  titleSort: z.string(),
   contentRating: z.string().optional(),
   summary: z.string(),
-  rating: z.number().optional(),
-  audienceRating: z.number().optional(),
+  rating: z.number(),
+  audienceRating: z.number(),
   year: z.number().int().optional(),
-  seasonCount: z.number().int().optional(),
-  tagline: z.string().optional(),
-  flattenSeasons: GetSearchAllLibrariesFlattenSeasons$inboundSchema.optional(),
-  episodeSort: GetSearchAllLibrariesEpisodeSort$inboundSchema.optional(),
-  enableCreditsMarkerGeneration:
-    GetSearchAllLibrariesEnableCreditsMarkerGeneration$inboundSchema.optional(),
-  showOrdering: GetSearchAllLibrariesShowOrdering$inboundSchema.optional(),
-  thumb: z.string().optional(),
-  art: z.string().optional(),
-  banner: z.string().optional(),
-  duration: z.number().int().optional(),
+  tagline: z.string(),
+  thumb: z.string(),
+  art: z.string(),
+  theme: z.string(),
+  index: z.number().int(),
+  leafCount: z.number().int().optional(),
+  viewedLeafCount: z.number().int().optional(),
+  childCount: z.number().int(),
+  seasonCount: z.number().int(),
+  duration: z.number().int(),
   originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
   addedAt: z.number().int(),
   updatedAt: z.number().int().optional(),
+  parentYear: z.number().int().optional(),
   audienceRatingImage: z.string().optional(),
   chapterSource: z.string().optional(),
   primaryExtraKey: z.string().optional(),
-  ratingImage: z.string().optional(),
+  originalTitle: z.string().optional(),
+  parentRatingKey: z.string().optional(),
   grandparentRatingKey: z.string().optional(),
+  parentGuid: z.string().optional(),
   grandparentGuid: z.string().optional(),
+  grandparentSlug: z.string().optional(),
   grandparentKey: z.string().optional(),
+  parentKey: z.string().optional(),
   grandparentTitle: z.string().optional(),
   grandparentThumb: z.string().optional(),
-  parentSlug: z.string().optional(),
-  grandparentSlug: z.string().optional(),
-  grandparentArt: z.string().optional(),
   grandparentTheme: z.string().optional(),
+  grandparentArt: z.string().optional(),
+  parentTitle: z.string().optional(),
+  parentIndex: z.number().int().optional(),
+  parentThumb: z.string().optional(),
+  ratingImage: z.string().optional(),
+  viewCount: z.number().int().optional(),
+  viewOffset: z.number().int().optional(),
+  skipCount: z.number().int().optional(),
+  subtype: z.string().optional(),
+  lastRatedAt: z.number().int().optional(),
+  createdAtAccuracy: z.string().optional(),
+  createdAtTZOffset: z.string().optional(),
+  lastViewedAt: z.number().int().optional(),
+  userRating: z.number().optional(),
+  Image: z.array(z.lazy(() => GetSearchAllLibrariesImage$inboundSchema))
+    .optional(),
+  UltraBlurColors: z.lazy(() =>
+    GetSearchAllLibrariesUltraBlurColors$inboundSchema
+  ).optional(),
+  Guid: z.array(z.lazy(() => GetSearchAllLibrariesGuids$inboundSchema))
+    .optional(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
+  librarySectionKey: z.string().optional(),
+  showOrdering: GetSearchAllLibrariesShowOrdering$inboundSchema.optional(),
+  flattenSeasons: GetSearchAllLibrariesFlattenSeasons$inboundSchema.optional(),
+  skipChildren: z.boolean().optional(),
   Media: z.array(z.lazy(() => GetSearchAllLibrariesMedia$inboundSchema))
     .optional(),
   Genre: z.array(z.lazy(() => GetSearchAllLibrariesGenre$inboundSchema))
@@ -2145,59 +2279,22 @@ export const GetSearchAllLibrariesMetadata$inboundSchema: z.ZodType<
     .optional(),
   Writer: z.array(z.lazy(() => GetSearchAllLibrariesWriter$inboundSchema))
     .optional(),
-  Collection: z.array(
-    z.lazy(() => GetSearchAllLibrariesCollection$inboundSchema),
-  ).optional(),
   Role: z.array(z.lazy(() => GetSearchAllLibrariesRole$inboundSchema))
     .optional(),
   Location: z.array(z.lazy(() => GetSearchAllLibrariesLocation$inboundSchema))
     .optional(),
-  Guid: z.array(z.lazy(() => GetSearchAllLibrariesMediaGuid$inboundSchema))
-    .optional(),
-  UltraBlurColors: z.lazy(() =>
-    GetSearchAllLibrariesUltraBlurColors$inboundSchema
-  ).optional(),
-  Rating: z.array(
-    z.lazy(() => GetSearchAllLibrariesMetaDataRating$inboundSchema),
-  ).optional(),
-  Image: z.array(z.lazy(() => GetSearchAllLibrariesImage$inboundSchema))
-    .optional(),
-  titleSort: z.string().optional(),
-  viewCount: z.number().int().optional(),
-  lastViewedAt: z.number().int().optional(),
-  originalTitle: z.string().optional(),
-  viewOffset: z.number().int().optional(),
-  skipCount: z.number().int().optional(),
-  index: z.number().int().optional(),
-  theme: z.string().optional(),
-  leafCount: z.number().int().optional(),
-  viewedLeafCount: z.number().int().optional(),
-  childCount: z.number().int().optional(),
-  hasPremiumExtras: z.string().optional(),
-  hasPremiumPrimaryExtra: z.string().optional(),
-  parentRatingKey: z.string().optional(),
-  parentGuid: z.string().optional(),
-  parentStudio: z.string().optional(),
-  parentKey: z.string().optional(),
-  parentTitle: z.string().optional(),
-  parentIndex: z.number().int().optional(),
-  parentYear: z.number().int().optional(),
-  parentThumb: z.string().optional(),
-  parentTheme: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
+    "Image": "image",
+    "UltraBlurColors": "ultraBlurColors",
+    "Guid": "guids",
     "Media": "media",
     "Genre": "genre",
     "Country": "country",
     "Director": "director",
     "Writer": "writer",
-    "Collection": "collection",
     "Role": "role",
     "Location": "location",
-    "Guid": "mediaGuid",
-    "UltraBlurColors": "ultraBlurColors",
-    "Rating": "metaDataRating",
-    "Image": "image",
   });
 });
 
@@ -2206,79 +2303,75 @@ export type GetSearchAllLibrariesMetadata$Outbound = {
   ratingKey: string;
   key: string;
   guid: string;
+  slug: string;
   studio?: string | undefined;
-  skipChildren?: boolean | undefined;
-  librarySectionID?: number | undefined;
-  librarySectionTitle?: string | undefined;
-  librarySectionKey?: string | undefined;
   type: string;
   title: string;
-  slug?: string | undefined;
+  banner: string;
+  titleSort: string;
   contentRating?: string | undefined;
   summary: string;
-  rating?: number | undefined;
-  audienceRating?: number | undefined;
+  rating: number;
+  audienceRating: number;
   year?: number | undefined;
-  seasonCount?: number | undefined;
-  tagline?: string | undefined;
-  flattenSeasons?: string | undefined;
-  episodeSort?: string | undefined;
-  enableCreditsMarkerGeneration?: string | undefined;
-  showOrdering?: string | undefined;
-  thumb?: string | undefined;
-  art?: string | undefined;
-  banner?: string | undefined;
-  duration?: number | undefined;
+  tagline: string;
+  thumb: string;
+  art: string;
+  theme: string;
+  index: number;
+  leafCount?: number | undefined;
+  viewedLeafCount?: number | undefined;
+  childCount: number;
+  seasonCount: number;
+  duration: number;
   originallyAvailableAt?: string | undefined;
   addedAt: number;
   updatedAt?: number | undefined;
+  parentYear?: number | undefined;
   audienceRatingImage?: string | undefined;
   chapterSource?: string | undefined;
   primaryExtraKey?: string | undefined;
-  ratingImage?: string | undefined;
+  originalTitle?: string | undefined;
+  parentRatingKey?: string | undefined;
   grandparentRatingKey?: string | undefined;
+  parentGuid?: string | undefined;
   grandparentGuid?: string | undefined;
+  grandparentSlug?: string | undefined;
   grandparentKey?: string | undefined;
+  parentKey?: string | undefined;
   grandparentTitle?: string | undefined;
   grandparentThumb?: string | undefined;
-  parentSlug?: string | undefined;
-  grandparentSlug?: string | undefined;
-  grandparentArt?: string | undefined;
   grandparentTheme?: string | undefined;
+  grandparentArt?: string | undefined;
+  parentTitle?: string | undefined;
+  parentIndex?: number | undefined;
+  parentThumb?: string | undefined;
+  ratingImage?: string | undefined;
+  viewCount?: number | undefined;
+  viewOffset?: number | undefined;
+  skipCount?: number | undefined;
+  subtype?: string | undefined;
+  lastRatedAt?: number | undefined;
+  createdAtAccuracy?: string | undefined;
+  createdAtTZOffset?: string | undefined;
+  lastViewedAt?: number | undefined;
+  userRating?: number | undefined;
+  Image?: Array<GetSearchAllLibrariesImage$Outbound> | undefined;
+  UltraBlurColors?: GetSearchAllLibrariesUltraBlurColors$Outbound | undefined;
+  Guid?: Array<GetSearchAllLibrariesGuids$Outbound> | undefined;
+  librarySectionID?: number | undefined;
+  librarySectionTitle?: string | undefined;
+  librarySectionKey?: string | undefined;
+  showOrdering?: string | undefined;
+  flattenSeasons?: string | undefined;
+  skipChildren?: boolean | undefined;
   Media?: Array<GetSearchAllLibrariesMedia$Outbound> | undefined;
   Genre?: Array<GetSearchAllLibrariesGenre$Outbound> | undefined;
   Country?: Array<GetSearchAllLibrariesCountry$Outbound> | undefined;
   Director?: Array<GetSearchAllLibrariesDirector$Outbound> | undefined;
   Writer?: Array<GetSearchAllLibrariesWriter$Outbound> | undefined;
-  Collection?: Array<GetSearchAllLibrariesCollection$Outbound> | undefined;
   Role?: Array<GetSearchAllLibrariesRole$Outbound> | undefined;
   Location?: Array<GetSearchAllLibrariesLocation$Outbound> | undefined;
-  Guid?: Array<GetSearchAllLibrariesMediaGuid$Outbound> | undefined;
-  UltraBlurColors?: GetSearchAllLibrariesUltraBlurColors$Outbound | undefined;
-  Rating?: Array<GetSearchAllLibrariesMetaDataRating$Outbound> | undefined;
-  Image?: Array<GetSearchAllLibrariesImage$Outbound> | undefined;
-  titleSort?: string | undefined;
-  viewCount?: number | undefined;
-  lastViewedAt?: number | undefined;
-  originalTitle?: string | undefined;
-  viewOffset?: number | undefined;
-  skipCount?: number | undefined;
-  index?: number | undefined;
-  theme?: string | undefined;
-  leafCount?: number | undefined;
-  viewedLeafCount?: number | undefined;
-  childCount?: number | undefined;
-  hasPremiumExtras?: string | undefined;
-  hasPremiumPrimaryExtra?: string | undefined;
-  parentRatingKey?: string | undefined;
-  parentGuid?: string | undefined;
-  parentStudio?: string | undefined;
-  parentKey?: string | undefined;
-  parentTitle?: string | undefined;
-  parentIndex?: number | undefined;
-  parentYear?: number | undefined;
-  parentThumb?: string | undefined;
-  parentTheme?: string | undefined;
 };
 
 /** @internal */
@@ -2290,48 +2383,73 @@ export const GetSearchAllLibrariesMetadata$outboundSchema: z.ZodType<
   ratingKey: z.string(),
   key: z.string(),
   guid: z.string(),
+  slug: z.string(),
   studio: z.string().optional(),
-  skipChildren: z.boolean().optional(),
-  librarySectionID: z.number().int().optional(),
-  librarySectionTitle: z.string().optional(),
-  librarySectionKey: z.string().optional(),
   type: GetSearchAllLibrariesType$outboundSchema,
   title: z.string(),
-  slug: z.string().optional(),
+  banner: z.string(),
+  titleSort: z.string(),
   contentRating: z.string().optional(),
   summary: z.string(),
-  rating: z.number().optional(),
-  audienceRating: z.number().optional(),
+  rating: z.number(),
+  audienceRating: z.number(),
   year: z.number().int().optional(),
-  seasonCount: z.number().int().optional(),
-  tagline: z.string().optional(),
-  flattenSeasons: GetSearchAllLibrariesFlattenSeasons$outboundSchema.optional(),
-  episodeSort: GetSearchAllLibrariesEpisodeSort$outboundSchema.optional(),
-  enableCreditsMarkerGeneration:
-    GetSearchAllLibrariesEnableCreditsMarkerGeneration$outboundSchema
-      .optional(),
-  showOrdering: GetSearchAllLibrariesShowOrdering$outboundSchema.optional(),
-  thumb: z.string().optional(),
-  art: z.string().optional(),
-  banner: z.string().optional(),
-  duration: z.number().int().optional(),
+  tagline: z.string(),
+  thumb: z.string(),
+  art: z.string(),
+  theme: z.string(),
+  index: z.number().int(),
+  leafCount: z.number().int().optional(),
+  viewedLeafCount: z.number().int().optional(),
+  childCount: z.number().int(),
+  seasonCount: z.number().int(),
+  duration: z.number().int(),
   originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString())
     .optional(),
   addedAt: z.number().int(),
   updatedAt: z.number().int().optional(),
+  parentYear: z.number().int().optional(),
   audienceRatingImage: z.string().optional(),
   chapterSource: z.string().optional(),
   primaryExtraKey: z.string().optional(),
-  ratingImage: z.string().optional(),
+  originalTitle: z.string().optional(),
+  parentRatingKey: z.string().optional(),
   grandparentRatingKey: z.string().optional(),
+  parentGuid: z.string().optional(),
   grandparentGuid: z.string().optional(),
+  grandparentSlug: z.string().optional(),
   grandparentKey: z.string().optional(),
+  parentKey: z.string().optional(),
   grandparentTitle: z.string().optional(),
   grandparentThumb: z.string().optional(),
-  parentSlug: z.string().optional(),
-  grandparentSlug: z.string().optional(),
-  grandparentArt: z.string().optional(),
   grandparentTheme: z.string().optional(),
+  grandparentArt: z.string().optional(),
+  parentTitle: z.string().optional(),
+  parentIndex: z.number().int().optional(),
+  parentThumb: z.string().optional(),
+  ratingImage: z.string().optional(),
+  viewCount: z.number().int().optional(),
+  viewOffset: z.number().int().optional(),
+  skipCount: z.number().int().optional(),
+  subtype: z.string().optional(),
+  lastRatedAt: z.number().int().optional(),
+  createdAtAccuracy: z.string().optional(),
+  createdAtTZOffset: z.string().optional(),
+  lastViewedAt: z.number().int().optional(),
+  userRating: z.number().optional(),
+  image: z.array(z.lazy(() => GetSearchAllLibrariesImage$outboundSchema))
+    .optional(),
+  ultraBlurColors: z.lazy(() =>
+    GetSearchAllLibrariesUltraBlurColors$outboundSchema
+  ).optional(),
+  guids: z.array(z.lazy(() => GetSearchAllLibrariesGuids$outboundSchema))
+    .optional(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
+  librarySectionKey: z.string().optional(),
+  showOrdering: GetSearchAllLibrariesShowOrdering$outboundSchema.optional(),
+  flattenSeasons: GetSearchAllLibrariesFlattenSeasons$outboundSchema.optional(),
+  skipChildren: z.boolean().optional(),
   media: z.array(z.lazy(() => GetSearchAllLibrariesMedia$outboundSchema))
     .optional(),
   genre: z.array(z.lazy(() => GetSearchAllLibrariesGenre$outboundSchema))
@@ -2342,60 +2460,22 @@ export const GetSearchAllLibrariesMetadata$outboundSchema: z.ZodType<
     .optional(),
   writer: z.array(z.lazy(() => GetSearchAllLibrariesWriter$outboundSchema))
     .optional(),
-  collection: z.array(
-    z.lazy(() => GetSearchAllLibrariesCollection$outboundSchema),
-  ).optional(),
   role: z.array(z.lazy(() => GetSearchAllLibrariesRole$outboundSchema))
     .optional(),
   location: z.array(z.lazy(() => GetSearchAllLibrariesLocation$outboundSchema))
     .optional(),
-  mediaGuid: z.array(
-    z.lazy(() => GetSearchAllLibrariesMediaGuid$outboundSchema),
-  ).optional(),
-  ultraBlurColors: z.lazy(() =>
-    GetSearchAllLibrariesUltraBlurColors$outboundSchema
-  ).optional(),
-  metaDataRating: z.array(
-    z.lazy(() => GetSearchAllLibrariesMetaDataRating$outboundSchema),
-  ).optional(),
-  image: z.array(z.lazy(() => GetSearchAllLibrariesImage$outboundSchema))
-    .optional(),
-  titleSort: z.string().optional(),
-  viewCount: z.number().int().optional(),
-  lastViewedAt: z.number().int().optional(),
-  originalTitle: z.string().optional(),
-  viewOffset: z.number().int().optional(),
-  skipCount: z.number().int().optional(),
-  index: z.number().int().optional(),
-  theme: z.string().optional(),
-  leafCount: z.number().int().optional(),
-  viewedLeafCount: z.number().int().optional(),
-  childCount: z.number().int().optional(),
-  hasPremiumExtras: z.string().optional(),
-  hasPremiumPrimaryExtra: z.string().optional(),
-  parentRatingKey: z.string().optional(),
-  parentGuid: z.string().optional(),
-  parentStudio: z.string().optional(),
-  parentKey: z.string().optional(),
-  parentTitle: z.string().optional(),
-  parentIndex: z.number().int().optional(),
-  parentYear: z.number().int().optional(),
-  parentThumb: z.string().optional(),
-  parentTheme: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
+    image: "Image",
+    ultraBlurColors: "UltraBlurColors",
+    guids: "Guid",
     media: "Media",
     genre: "Genre",
     country: "Country",
     director: "Director",
     writer: "Writer",
-    collection: "Collection",
     role: "Role",
     location: "Location",
-    mediaGuid: "Guid",
-    ultraBlurColors: "UltraBlurColors",
-    metaDataRating: "Rating",
-    image: "Image",
   });
 });
 
@@ -2439,9 +2519,13 @@ export const SearchResult$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   score: z.number(),
-  Metadata: z.lazy(() => GetSearchAllLibrariesMetadata$inboundSchema),
+  Directory: z.lazy(() => GetSearchAllLibrariesDirectory$inboundSchema)
+    .optional(),
+  Metadata: z.lazy(() => GetSearchAllLibrariesMetadata$inboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
+    "Directory": "directory",
     "Metadata": "metadata",
   });
 });
@@ -2449,7 +2533,8 @@ export const SearchResult$inboundSchema: z.ZodType<
 /** @internal */
 export type SearchResult$Outbound = {
   score: number;
-  Metadata: GetSearchAllLibrariesMetadata$Outbound;
+  Directory?: GetSearchAllLibrariesDirectory$Outbound | undefined;
+  Metadata?: GetSearchAllLibrariesMetadata$Outbound | undefined;
 };
 
 /** @internal */
@@ -2459,9 +2544,13 @@ export const SearchResult$outboundSchema: z.ZodType<
   SearchResult
 > = z.object({
   score: z.number(),
-  metadata: z.lazy(() => GetSearchAllLibrariesMetadata$outboundSchema),
+  directory: z.lazy(() => GetSearchAllLibrariesDirectory$outboundSchema)
+    .optional(),
+  metadata: z.lazy(() => GetSearchAllLibrariesMetadata$outboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
+    directory: "Directory",
     metadata: "Metadata",
   });
 });
@@ -2499,7 +2588,14 @@ export const GetSearchAllLibrariesMediaContainer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  size: z.number(),
+  size: z.number().int(),
+  allowSync: z.boolean(),
+  identifier: z.string(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
+  librarySectionUUID: z.string().optional(),
+  mediaTagPrefix: z.string(),
+  mediaTagVersion: z.number().int(),
   SearchResult: z.array(z.lazy(() => SearchResult$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
@@ -2510,6 +2606,13 @@ export const GetSearchAllLibrariesMediaContainer$inboundSchema: z.ZodType<
 /** @internal */
 export type GetSearchAllLibrariesMediaContainer$Outbound = {
   size: number;
+  allowSync: boolean;
+  identifier: string;
+  librarySectionID?: number | undefined;
+  librarySectionTitle?: string | undefined;
+  librarySectionUUID?: string | undefined;
+  mediaTagPrefix: string;
+  mediaTagVersion: number;
   SearchResult: Array<SearchResult$Outbound>;
 };
 
@@ -2519,7 +2622,14 @@ export const GetSearchAllLibrariesMediaContainer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetSearchAllLibrariesMediaContainer
 > = z.object({
-  size: z.number(),
+  size: z.number().int(),
+  allowSync: z.boolean(),
+  identifier: z.string(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
+  librarySectionUUID: z.string().optional(),
+  mediaTagPrefix: z.string(),
+  mediaTagVersion: z.number().int(),
   searchResult: z.array(z.lazy(() => SearchResult$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {

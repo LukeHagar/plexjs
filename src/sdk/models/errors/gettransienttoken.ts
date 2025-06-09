@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetTransientTokenAuthenticationErrors = {
@@ -28,25 +29,22 @@ export type GetTransientTokenUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetTransientTokenUnauthorized extends Error {
+export class GetTransientTokenUnauthorized extends PlexAPIError {
   errors?: Array<GetTransientTokenAuthenticationErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetTransientTokenUnauthorizedData;
 
-  constructor(err: GetTransientTokenUnauthorizedData) {
+  constructor(
+    err: GetTransientTokenUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetTransientTokenUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetTransientTokenBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetTransientTokenBadRequest extends Error {
+export class GetTransientTokenBadRequest extends PlexAPIError {
   errors?: Array<GetTransientTokenErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetTransientTokenBadRequestData;
 
-  constructor(err: GetTransientTokenBadRequestData) {
+  constructor(
+    err: GetTransientTokenBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetTransientTokenBadRequest";
   }
@@ -171,13 +166,20 @@ export const GetTransientTokenUnauthorized$inboundSchema: z.ZodType<
     z.lazy(() => GetTransientTokenAuthenticationErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetTransientTokenUnauthorized(remapped);
+    return new GetTransientTokenUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -290,13 +292,20 @@ export const GetTransientTokenBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetTransientTokenErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetTransientTokenBadRequest(remapped);
+    return new GetTransientTokenBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetMyPlexAccountServerErrors = {
@@ -28,25 +29,22 @@ export type GetMyPlexAccountUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetMyPlexAccountUnauthorized extends Error {
+export class GetMyPlexAccountUnauthorized extends PlexAPIError {
   errors?: Array<GetMyPlexAccountServerErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetMyPlexAccountUnauthorizedData;
 
-  constructor(err: GetMyPlexAccountUnauthorizedData) {
+  constructor(
+    err: GetMyPlexAccountUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetMyPlexAccountUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetMyPlexAccountBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetMyPlexAccountBadRequest extends Error {
+export class GetMyPlexAccountBadRequest extends PlexAPIError {
   errors?: Array<GetMyPlexAccountErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetMyPlexAccountBadRequestData;
 
-  constructor(err: GetMyPlexAccountBadRequestData) {
+  constructor(
+    err: GetMyPlexAccountBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetMyPlexAccountBadRequest";
   }
@@ -167,13 +162,20 @@ export const GetMyPlexAccountUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetMyPlexAccountServerErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetMyPlexAccountUnauthorized(remapped);
+    return new GetMyPlexAccountUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -285,13 +287,20 @@ export const GetMyPlexAccountBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetMyPlexAccountErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetMyPlexAccountBadRequest(remapped);
+    return new GetMyPlexAccountBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type ClearPlaylistContentsPlaylistsErrors = {
@@ -28,25 +29,22 @@ export type ClearPlaylistContentsUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class ClearPlaylistContentsUnauthorized extends Error {
+export class ClearPlaylistContentsUnauthorized extends PlexAPIError {
   errors?: Array<ClearPlaylistContentsPlaylistsErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ClearPlaylistContentsUnauthorizedData;
 
-  constructor(err: ClearPlaylistContentsUnauthorizedData) {
+  constructor(
+    err: ClearPlaylistContentsUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "ClearPlaylistContentsUnauthorized";
   }
@@ -72,25 +70,22 @@ export type ClearPlaylistContentsBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class ClearPlaylistContentsBadRequest extends Error {
+export class ClearPlaylistContentsBadRequest extends PlexAPIError {
   errors?: Array<ClearPlaylistContentsErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ClearPlaylistContentsBadRequestData;
 
-  constructor(err: ClearPlaylistContentsBadRequestData) {
+  constructor(
+    err: ClearPlaylistContentsBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "ClearPlaylistContentsBadRequest";
   }
@@ -171,13 +166,20 @@ export const ClearPlaylistContentsUnauthorized$inboundSchema: z.ZodType<
     z.lazy(() => ClearPlaylistContentsPlaylistsErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new ClearPlaylistContentsUnauthorized(remapped);
+    return new ClearPlaylistContentsUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -293,13 +295,20 @@ export const ClearPlaylistContentsBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => ClearPlaylistContentsErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new ClearPlaylistContentsBadRequest(remapped);
+    return new ClearPlaylistContentsBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -10,7 +10,6 @@ import {
   GetLibrarySectionsAllLibraryResponseType,
   GetLibrarySectionsAllLibraryType,
   GetLibrarySectionsAllResponseBody,
-  GetLibrarySectionsAllStreamType,
 } from "@lukehagar/plexjs/sdk/models/operations";
 import { RFCDate } from "@lukehagar/plexjs/sdk/types";
 
@@ -200,7 +199,6 @@ let value: GetLibrarySectionsAllResponseBody = {
                 stream: [
                   {
                     id: 1002625,
-                    streamType: GetLibrarySectionsAllStreamType.Video,
                     format: "srt",
                     default: true,
                     codec: "hevc",

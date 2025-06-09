@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type EnablePaperTrailLogErrors = {
@@ -28,25 +29,22 @@ export type EnablePaperTrailUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class EnablePaperTrailUnauthorized extends Error {
+export class EnablePaperTrailUnauthorized extends PlexAPIError {
   errors?: Array<EnablePaperTrailLogErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: EnablePaperTrailUnauthorizedData;
 
-  constructor(err: EnablePaperTrailUnauthorizedData) {
+  constructor(
+    err: EnablePaperTrailUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "EnablePaperTrailUnauthorized";
   }
@@ -72,25 +70,22 @@ export type EnablePaperTrailBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class EnablePaperTrailBadRequest extends Error {
+export class EnablePaperTrailBadRequest extends PlexAPIError {
   errors?: Array<EnablePaperTrailErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: EnablePaperTrailBadRequestData;
 
-  constructor(err: EnablePaperTrailBadRequestData) {
+  constructor(
+    err: EnablePaperTrailBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "EnablePaperTrailBadRequest";
   }
@@ -165,13 +160,20 @@ export const EnablePaperTrailUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => EnablePaperTrailLogErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new EnablePaperTrailUnauthorized(remapped);
+    return new EnablePaperTrailUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -283,13 +285,20 @@ export const EnablePaperTrailBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => EnablePaperTrailErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new EnablePaperTrailBadRequest(remapped);
+    return new EnablePaperTrailBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

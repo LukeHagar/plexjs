@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type PostUsersSignInDataAuthenticationErrors = {
@@ -28,25 +29,22 @@ export type PostUsersSignInDataUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class PostUsersSignInDataUnauthorized extends Error {
+export class PostUsersSignInDataUnauthorized extends PlexAPIError {
   errors?: Array<PostUsersSignInDataAuthenticationErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: PostUsersSignInDataUnauthorizedData;
 
-  constructor(err: PostUsersSignInDataUnauthorizedData) {
+  constructor(
+    err: PostUsersSignInDataUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "PostUsersSignInDataUnauthorized";
   }
@@ -72,25 +70,22 @@ export type PostUsersSignInDataBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class PostUsersSignInDataBadRequest extends Error {
+export class PostUsersSignInDataBadRequest extends PlexAPIError {
   errors?: Array<PostUsersSignInDataErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: PostUsersSignInDataBadRequestData;
 
-  constructor(err: PostUsersSignInDataBadRequestData) {
+  constructor(
+    err: PostUsersSignInDataBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "PostUsersSignInDataBadRequest";
   }
@@ -177,13 +172,20 @@ export const PostUsersSignInDataUnauthorized$inboundSchema: z.ZodType<
     z.lazy(() => PostUsersSignInDataAuthenticationErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new PostUsersSignInDataUnauthorized(remapped);
+    return new PostUsersSignInDataUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -296,13 +298,20 @@ export const PostUsersSignInDataBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => PostUsersSignInDataErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new PostUsersSignInDataBadRequest(remapped);
+    return new PostUsersSignInDataBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

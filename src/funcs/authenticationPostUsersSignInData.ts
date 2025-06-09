@@ -17,7 +17,8 @@ import {
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
-import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
+import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
 import { PostUsersSignInDataServerList } from "../sdk/models/operations/postuserssignindata.js";
@@ -39,13 +40,14 @@ export function authenticationPostUsersSignInData(
     operations.PostUsersSignInDataResponse,
     | errors.PostUsersSignInDataBadRequest
     | errors.PostUsersSignInDataUnauthorized
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | PlexAPIError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -65,13 +67,14 @@ async function $do(
       operations.PostUsersSignInDataResponse,
       | errors.PostUsersSignInDataBadRequest
       | errors.PostUsersSignInDataUnauthorized
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | PlexAPIError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -176,13 +179,14 @@ async function $do(
     operations.PostUsersSignInDataResponse,
     | errors.PostUsersSignInDataBadRequest
     | errors.PostUsersSignInDataUnauthorized
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | PlexAPIError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(201, operations.PostUsersSignInDataResponse$inboundSchema, {
       key: "UserPlexAccount",
@@ -191,7 +195,7 @@ async function $do(
     M.jsonErr(401, errors.PostUsersSignInDataUnauthorized$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { PlexAPIError } from "./plexapierror.js";
 
 /**
  * Request Timeout
@@ -20,23 +21,20 @@ export type GetServerIdentityRequestTimeoutData = {
 /**
  * Request Timeout
  */
-export class GetServerIdentityRequestTimeout extends Error {
+export class GetServerIdentityRequestTimeout extends PlexAPIError {
   code?: number | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetServerIdentityRequestTimeoutData;
 
-  constructor(err: GetServerIdentityRequestTimeoutData) {
+  constructor(
+    err: GetServerIdentityRequestTimeoutData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = err.message || "API error occurred";
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.code != null) this.code = err.code;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetServerIdentityRequestTimeout";
   }
@@ -51,13 +49,20 @@ export const GetServerIdentityRequestTimeout$inboundSchema: z.ZodType<
   code: z.number().int().optional(),
   message: z.string().optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetServerIdentityRequestTimeout(remapped);
+    return new GetServerIdentityRequestTimeout(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

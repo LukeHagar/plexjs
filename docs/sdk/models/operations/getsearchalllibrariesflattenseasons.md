@@ -2,6 +2,7 @@
 
 Setting that indicates if seasons are set to hidden for the show. (-1 = Library default, 0 = Hide, 1 = Show).
 
+
 ## Example Usage
 
 ```typescript

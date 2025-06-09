@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type CheckForUpdatesUpdaterErrors = {
@@ -28,25 +29,22 @@ export type CheckForUpdatesUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class CheckForUpdatesUnauthorized extends Error {
+export class CheckForUpdatesUnauthorized extends PlexAPIError {
   errors?: Array<CheckForUpdatesUpdaterErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: CheckForUpdatesUnauthorizedData;
 
-  constructor(err: CheckForUpdatesUnauthorizedData) {
+  constructor(
+    err: CheckForUpdatesUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "CheckForUpdatesUnauthorized";
   }
@@ -72,25 +70,22 @@ export type CheckForUpdatesBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class CheckForUpdatesBadRequest extends Error {
+export class CheckForUpdatesBadRequest extends PlexAPIError {
   errors?: Array<CheckForUpdatesErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: CheckForUpdatesBadRequestData;
 
-  constructor(err: CheckForUpdatesBadRequestData) {
+  constructor(
+    err: CheckForUpdatesBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "CheckForUpdatesBadRequest";
   }
@@ -167,13 +162,20 @@ export const CheckForUpdatesUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => CheckForUpdatesUpdaterErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new CheckForUpdatesUnauthorized(remapped);
+    return new CheckForUpdatesUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -284,13 +286,20 @@ export const CheckForUpdatesBadRequest$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => CheckForUpdatesErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new CheckForUpdatesBadRequest(remapped);
+    return new CheckForUpdatesBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

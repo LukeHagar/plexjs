@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetLibrarySectionsAllLibraryErrors = {
@@ -28,25 +29,22 @@ export type GetLibrarySectionsAllUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetLibrarySectionsAllUnauthorized extends Error {
+export class GetLibrarySectionsAllUnauthorized extends PlexAPIError {
   errors?: Array<GetLibrarySectionsAllLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetLibrarySectionsAllUnauthorizedData;
 
-  constructor(err: GetLibrarySectionsAllUnauthorizedData) {
+  constructor(
+    err: GetLibrarySectionsAllUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetLibrarySectionsAllUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetLibrarySectionsAllBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetLibrarySectionsAllBadRequest extends Error {
+export class GetLibrarySectionsAllBadRequest extends PlexAPIError {
   errors?: Array<GetLibrarySectionsAllErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetLibrarySectionsAllBadRequestData;
 
-  constructor(err: GetLibrarySectionsAllBadRequestData) {
+  constructor(
+    err: GetLibrarySectionsAllBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetLibrarySectionsAllBadRequest";
   }
@@ -170,13 +165,20 @@ export const GetLibrarySectionsAllUnauthorized$inboundSchema: z.ZodType<
     z.lazy(() => GetLibrarySectionsAllLibraryErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetLibrarySectionsAllUnauthorized(remapped);
+    return new GetLibrarySectionsAllUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -292,13 +294,20 @@ export const GetLibrarySectionsAllBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetLibrarySectionsAllErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetLibrarySectionsAllBadRequest(remapped);
+    return new GetLibrarySectionsAllBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

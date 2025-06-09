@@ -1,17 +1,20 @@
 # GetSearchAllLibrariesOptimizedForStreaming
 
-## Example Usage
+Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+
+
+## Supported Types
+
+### `operations.GetSearchAllLibrariesOptimizedForStreaming1`
 
 ```typescript
-import { GetSearchAllLibrariesOptimizedForStreaming } from "@lukehagar/plexjs/sdk/models/operations";
-
-let value: GetSearchAllLibrariesOptimizedForStreaming =
-  GetSearchAllLibrariesOptimizedForStreaming.Enable;
+const value: operations.GetSearchAllLibrariesOptimizedForStreaming1 =
+  GetSearchAllLibrariesOptimizedForStreaming1.One;
 ```
 
-## Values
+### `boolean`
 
-| Name      | Value     |
-| --------- | --------- |
-| `Disable` | 0         |
-| `Enable`  | 1         |
+```typescript
+const value: boolean = true;
+```
+

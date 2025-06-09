@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSearchLibraryLibraryErrors = {
@@ -28,25 +29,22 @@ export type GetSearchLibraryUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetSearchLibraryUnauthorized extends Error {
+export class GetSearchLibraryUnauthorized extends PlexAPIError {
   errors?: Array<GetSearchLibraryLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetSearchLibraryUnauthorizedData;
 
-  constructor(err: GetSearchLibraryUnauthorizedData) {
+  constructor(
+    err: GetSearchLibraryUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetSearchLibraryUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetSearchLibraryBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetSearchLibraryBadRequest extends Error {
+export class GetSearchLibraryBadRequest extends PlexAPIError {
   errors?: Array<GetSearchLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetSearchLibraryBadRequestData;
 
-  constructor(err: GetSearchLibraryBadRequestData) {
+  constructor(
+    err: GetSearchLibraryBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetSearchLibraryBadRequest";
   }
@@ -167,13 +162,20 @@ export const GetSearchLibraryUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetSearchLibraryLibraryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetSearchLibraryUnauthorized(remapped);
+    return new GetSearchLibraryUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -286,13 +288,20 @@ export const GetSearchLibraryBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetSearchLibraryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetSearchLibraryBadRequest(remapped);
+    return new GetSearchLibraryBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

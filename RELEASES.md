@@ -1349,3 +1349,13 @@ Based on:
 - [typescript v0.38.0] .
 ### Releases
 - [NPM v0.38.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.38.0 - .
+
+## 2025-06-09 00:12:06
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.557.0 (2.623.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.39.0] .
+### Releases
+- [NPM v0.39.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.39.0 - .

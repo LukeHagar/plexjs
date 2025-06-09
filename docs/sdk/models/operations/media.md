@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HasThumbnail, Media, StreamType } from "@lukehagar/plexjs/sdk/models/operations";
+import { HasThumbnail, Media } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: Media = {
   id: 387322,
@@ -42,7 +42,6 @@ let value: Media = {
       stream: [
         {
           id: 1002625,
-          streamType: StreamType.Video,
           format: "srt",
           default: true,
           codec: "hevc",

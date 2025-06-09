@@ -16,7 +16,8 @@ import {
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
-import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
+import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -40,13 +41,14 @@ export function butlerStartAllTasks(
     operations.StartAllTasksResponse,
     | errors.StartAllTasksBadRequest
     | errors.StartAllTasksUnauthorized
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | PlexAPIError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -64,13 +66,14 @@ async function $do(
       operations.StartAllTasksResponse,
       | errors.StartAllTasksBadRequest
       | errors.StartAllTasksUnauthorized
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | PlexAPIError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -137,20 +140,21 @@ async function $do(
     operations.StartAllTasksResponse,
     | errors.StartAllTasksBadRequest
     | errors.StartAllTasksUnauthorized
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | PlexAPIError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.nil(200, operations.StartAllTasksResponse$inboundSchema),
     M.jsonErr(400, errors.StartAllTasksBadRequest$inboundSchema),
     M.jsonErr(401, errors.StartAllTasksUnauthorized$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

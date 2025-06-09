@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type UpdatePlayProgressMediaErrors = {
@@ -28,25 +29,22 @@ export type UpdatePlayProgressUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class UpdatePlayProgressUnauthorized extends Error {
+export class UpdatePlayProgressUnauthorized extends PlexAPIError {
   errors?: Array<UpdatePlayProgressMediaErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: UpdatePlayProgressUnauthorizedData;
 
-  constructor(err: UpdatePlayProgressUnauthorizedData) {
+  constructor(
+    err: UpdatePlayProgressUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "UpdatePlayProgressUnauthorized";
   }
@@ -72,25 +70,22 @@ export type UpdatePlayProgressBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class UpdatePlayProgressBadRequest extends Error {
+export class UpdatePlayProgressBadRequest extends PlexAPIError {
   errors?: Array<UpdatePlayProgressErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: UpdatePlayProgressBadRequestData;
 
-  constructor(err: UpdatePlayProgressBadRequestData) {
+  constructor(
+    err: UpdatePlayProgressBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "UpdatePlayProgressBadRequest";
   }
@@ -167,13 +162,20 @@ export const UpdatePlayProgressUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => UpdatePlayProgressMediaErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new UpdatePlayProgressUnauthorized(remapped);
+    return new UpdatePlayProgressUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -286,13 +288,20 @@ export const UpdatePlayProgressBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => UpdatePlayProgressErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new UpdatePlayProgressBadRequest(remapped);
+    return new UpdatePlayProgressBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

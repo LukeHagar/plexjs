@@ -6,12 +6,12 @@
 import { GetLibraryItemsCollection } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetLibraryItemsCollection = {
-  tag: "Working NL Subs",
+  tag: "My Awesome Collection",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `tag`              | *string*           | :heavy_minus_sign: | N/A                | Working NL Subs    |
+| Field                                               | Type                                                | Required                                            | Description                                         | Example                                             |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `tag`                                               | *string*                                            | :heavy_check_mark:                                  | The user-made collection this media item belongs to | My Awesome Collection                               |

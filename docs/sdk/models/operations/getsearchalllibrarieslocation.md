@@ -1,17 +1,19 @@
 # GetSearchAllLibrariesLocation
 
+The folder path for the media item.
+
 ## Example Usage
 
 ```typescript
 import { GetSearchAllLibrariesLocation } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetSearchAllLibrariesLocation = {
-  path: "/TV Shows/House",
+  path: "/TV Shows/Clarkson's Farm",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `path`             | *string*           | :heavy_minus_sign: | N/A                | /TV Shows/House    |
+| Field                     | Type                      | Required                  | Description               | Example                   |
+| ------------------------- | ------------------------- | ------------------------- | ------------------------- | ------------------------- |
+| `path`                    | *string*                  | :heavy_check_mark:        | N/A                       | /TV Shows/Clarkson's Farm |

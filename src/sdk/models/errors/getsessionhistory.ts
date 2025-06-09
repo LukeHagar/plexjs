@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetSessionHistorySessionsErrors = {
@@ -28,25 +29,22 @@ export type GetSessionHistoryUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetSessionHistoryUnauthorized extends Error {
+export class GetSessionHistoryUnauthorized extends PlexAPIError {
   errors?: Array<GetSessionHistorySessionsErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetSessionHistoryUnauthorizedData;
 
-  constructor(err: GetSessionHistoryUnauthorizedData) {
+  constructor(
+    err: GetSessionHistoryUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetSessionHistoryUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetSessionHistoryBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetSessionHistoryBadRequest extends Error {
+export class GetSessionHistoryBadRequest extends PlexAPIError {
   errors?: Array<GetSessionHistoryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetSessionHistoryBadRequestData;
 
-  constructor(err: GetSessionHistoryBadRequestData) {
+  constructor(
+    err: GetSessionHistoryBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetSessionHistoryBadRequest";
   }
@@ -167,13 +162,20 @@ export const GetSessionHistoryUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetSessionHistorySessionsErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetSessionHistoryUnauthorized(remapped);
+    return new GetSessionHistoryUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -286,13 +288,20 @@ export const GetSessionHistoryBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetSessionHistoryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetSessionHistoryBadRequest(remapped);
+    return new GetSessionHistoryBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

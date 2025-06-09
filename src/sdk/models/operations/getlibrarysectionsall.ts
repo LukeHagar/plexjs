@@ -282,18 +282,6 @@ export type GetLibrarySectionsAllGuids = {
   id: string;
 };
 
-export enum OptimizedForStreaming1 {
-  Zero = 0,
-  One = 1,
-}
-
-/**
- * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
- */
-export type GetLibrarySectionsAllOptimizedForStreaming =
-  | OptimizedForStreaming1
-  | boolean;
-
 export enum GetLibrarySectionsAllOptimizedForStreaming1 {
   Zero = 0,
   One = 1,
@@ -302,8 +290,20 @@ export enum GetLibrarySectionsAllOptimizedForStreaming1 {
 /**
  * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
  */
-export type GetLibrarySectionsAllLibraryOptimizedForStreaming =
+export type GetLibrarySectionsAllOptimizedForStreaming =
   | GetLibrarySectionsAllOptimizedForStreaming1
+  | boolean;
+
+export enum GetLibrarySectionsAllOptimizedForStreamingLibrary1 {
+  Zero = 0,
+  One = 1,
+}
+
+/**
+ * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
+ */
+export type GetLibrarySectionsAllLibraryOptimizedForStreaming =
+  | GetLibrarySectionsAllOptimizedForStreamingLibrary1
   | boolean;
 
 /**
@@ -314,31 +314,6 @@ export enum GetLibrarySectionsAllHasThumbnail {
   True = "1",
 }
 
-/**
- * Stream type:
- *
- * @remarks
- *   - 1 = video
- *   - 2 = audio
- *   - 3 = subtitle
- */
-export enum GetLibrarySectionsAllStreamType {
-  Video = 1,
-  Audio = 2,
-  Subtitle = 3,
-}
-/**
- * Stream type:
- *
- * @remarks
- *   - 1 = video
- *   - 2 = audio
- *   - 3 = subtitle
- */
-export type GetLibrarySectionsAllStreamTypeOpen = OpenEnum<
-  typeof GetLibrarySectionsAllStreamType
->;
-
 export type GetLibrarySectionsAllStream = {
   /**
    * Unique stream identifier.
@@ -348,11 +323,11 @@ export type GetLibrarySectionsAllStream = {
    * Stream type:
    *
    * @remarks
-   *   - 1 = video
-   *   - 2 = audio
-   *   - 3 = subtitle
+   *   - VIDEO = 1
+   *   - AUDIO = 2
+   *   - SUBTITLE = 3
    */
-  streamType: GetLibrarySectionsAllStreamTypeOpen;
+  streamType?: 1 | undefined;
   /**
    * Format of the stream (e.g., srt).
    */
@@ -584,7 +559,7 @@ export type GetLibrarySectionsAllPart = {
    * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
    */
   optimizedForStreaming?:
-    | GetLibrarySectionsAllOptimizedForStreaming1
+    | GetLibrarySectionsAllOptimizedForStreamingLibrary1
     | boolean
     | undefined;
   hasThumbnail?: GetLibrarySectionsAllHasThumbnail | undefined;
@@ -661,7 +636,10 @@ export type GetLibrarySectionsAllMedia = {
   /**
    * Has this media been optimized for streaming. NOTE: This can be 0, 1, false or true
    */
-  optimizedForStreaming?: OptimizedForStreaming1 | boolean | undefined;
+  optimizedForStreaming?:
+    | GetLibrarySectionsAllOptimizedForStreaming1
+    | boolean
+    | undefined;
   has64bitOffsets?: boolean | undefined;
   /**
    * An array of parts for this media item.
@@ -811,7 +789,7 @@ export type GetLibrarySectionsAllMetadata = {
   /**
    * The original release date of the media item.
    */
-  originallyAvailableAt: RFCDate;
+  originallyAvailableAt?: RFCDate | undefined;
   addedAt: number;
   /**
    * Unix epoch datetime in seconds
@@ -973,11 +951,11 @@ export type GetLibrarySectionsAllMediaContainer = {
   /**
    * The unique identifier for the library section.
    */
-  librarySectionID: number;
+  librarySectionID?: number | undefined;
   /**
    * The title of the library section.
    */
-  librarySectionTitle: string;
+  librarySectionTitle?: string | undefined;
   /**
    * The universally unique identifier for the library section.
    */
@@ -2092,30 +2070,35 @@ export function getLibrarySectionsAllGuidsFromJSON(
 }
 
 /** @internal */
-export const OptimizedForStreaming1$inboundSchema: z.ZodNativeEnum<
-  typeof OptimizedForStreaming1
-> = z.nativeEnum(OptimizedForStreaming1);
+export const GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema:
+  z.ZodNativeEnum<typeof GetLibrarySectionsAllOptimizedForStreaming1> = z
+    .nativeEnum(GetLibrarySectionsAllOptimizedForStreaming1);
 
 /** @internal */
-export const OptimizedForStreaming1$outboundSchema: z.ZodNativeEnum<
-  typeof OptimizedForStreaming1
-> = OptimizedForStreaming1$inboundSchema;
+export const GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema:
+  z.ZodNativeEnum<typeof GetLibrarySectionsAllOptimizedForStreaming1> =
+    GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OptimizedForStreaming1$ {
-  /** @deprecated use `OptimizedForStreaming1$inboundSchema` instead. */
-  export const inboundSchema = OptimizedForStreaming1$inboundSchema;
-  /** @deprecated use `OptimizedForStreaming1$outboundSchema` instead. */
-  export const outboundSchema = OptimizedForStreaming1$outboundSchema;
+export namespace GetLibrarySectionsAllOptimizedForStreaming1$ {
+  /** @deprecated use `GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema` instead. */
+  export const inboundSchema =
+    GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema;
+  /** @deprecated use `GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema` instead. */
+  export const outboundSchema =
+    GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema;
 }
 
 /** @internal */
 export const GetLibrarySectionsAllOptimizedForStreaming$inboundSchema:
   z.ZodType<GetLibrarySectionsAllOptimizedForStreaming, z.ZodTypeDef, unknown> =
-    z.union([OptimizedForStreaming1$inboundSchema, z.boolean()]);
+    z.union([
+      GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema,
+      z.boolean(),
+    ]);
 
 /** @internal */
 export type GetLibrarySectionsAllOptimizedForStreaming$Outbound =
@@ -2128,7 +2111,10 @@ export const GetLibrarySectionsAllOptimizedForStreaming$outboundSchema:
     GetLibrarySectionsAllOptimizedForStreaming$Outbound,
     z.ZodTypeDef,
     GetLibrarySectionsAllOptimizedForStreaming
-  > = z.union([OptimizedForStreaming1$outboundSchema, z.boolean()]);
+  > = z.union([
+    GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema,
+    z.boolean(),
+  ]);
 
 /**
  * @internal
@@ -2173,26 +2159,26 @@ export function getLibrarySectionsAllOptimizedForStreamingFromJSON(
 }
 
 /** @internal */
-export const GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema:
-  z.ZodNativeEnum<typeof GetLibrarySectionsAllOptimizedForStreaming1> = z
-    .nativeEnum(GetLibrarySectionsAllOptimizedForStreaming1);
+export const GetLibrarySectionsAllOptimizedForStreamingLibrary1$inboundSchema:
+  z.ZodNativeEnum<typeof GetLibrarySectionsAllOptimizedForStreamingLibrary1> = z
+    .nativeEnum(GetLibrarySectionsAllOptimizedForStreamingLibrary1);
 
 /** @internal */
-export const GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema:
-  z.ZodNativeEnum<typeof GetLibrarySectionsAllOptimizedForStreaming1> =
-    GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema;
+export const GetLibrarySectionsAllOptimizedForStreamingLibrary1$outboundSchema:
+  z.ZodNativeEnum<typeof GetLibrarySectionsAllOptimizedForStreamingLibrary1> =
+    GetLibrarySectionsAllOptimizedForStreamingLibrary1$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetLibrarySectionsAllOptimizedForStreaming1$ {
-  /** @deprecated use `GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema` instead. */
+export namespace GetLibrarySectionsAllOptimizedForStreamingLibrary1$ {
+  /** @deprecated use `GetLibrarySectionsAllOptimizedForStreamingLibrary1$inboundSchema` instead. */
   export const inboundSchema =
-    GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema;
-  /** @deprecated use `GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema` instead. */
+    GetLibrarySectionsAllOptimizedForStreamingLibrary1$inboundSchema;
+  /** @deprecated use `GetLibrarySectionsAllOptimizedForStreamingLibrary1$outboundSchema` instead. */
   export const outboundSchema =
-    GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema;
+    GetLibrarySectionsAllOptimizedForStreamingLibrary1$outboundSchema;
 }
 
 /** @internal */
@@ -2202,7 +2188,7 @@ export const GetLibrarySectionsAllLibraryOptimizedForStreaming$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.union([
-    GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema,
+    GetLibrarySectionsAllOptimizedForStreamingLibrary1$inboundSchema,
     z.boolean(),
   ]);
 
@@ -2218,7 +2204,7 @@ export const GetLibrarySectionsAllLibraryOptimizedForStreaming$outboundSchema:
     z.ZodTypeDef,
     GetLibrarySectionsAllLibraryOptimizedForStreaming
   > = z.union([
-    GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema,
+    GetLibrarySectionsAllOptimizedForStreamingLibrary1$outboundSchema,
     z.boolean(),
   ]);
 
@@ -2288,45 +2274,13 @@ export namespace GetLibrarySectionsAllHasThumbnail$ {
 }
 
 /** @internal */
-export const GetLibrarySectionsAllStreamType$inboundSchema: z.ZodType<
-  GetLibrarySectionsAllStreamTypeOpen,
-  z.ZodTypeDef,
-  unknown
-> = z
-  .union([
-    z.nativeEnum(GetLibrarySectionsAllStreamType),
-    z.number().transform(catchUnrecognizedEnum),
-  ]);
-
-/** @internal */
-export const GetLibrarySectionsAllStreamType$outboundSchema: z.ZodType<
-  GetLibrarySectionsAllStreamTypeOpen,
-  z.ZodTypeDef,
-  GetLibrarySectionsAllStreamTypeOpen
-> = z.union([
-  z.nativeEnum(GetLibrarySectionsAllStreamType),
-  z.number().and(z.custom<Unrecognized<number>>()),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLibrarySectionsAllStreamType$ {
-  /** @deprecated use `GetLibrarySectionsAllStreamType$inboundSchema` instead. */
-  export const inboundSchema = GetLibrarySectionsAllStreamType$inboundSchema;
-  /** @deprecated use `GetLibrarySectionsAllStreamType$outboundSchema` instead. */
-  export const outboundSchema = GetLibrarySectionsAllStreamType$outboundSchema;
-}
-
-/** @internal */
 export const GetLibrarySectionsAllStream$inboundSchema: z.ZodType<
   GetLibrarySectionsAllStream,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.number().int(),
-  streamType: GetLibrarySectionsAllStreamType$inboundSchema,
+  streamType: z.literal(1).optional(),
   format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),
@@ -2392,7 +2346,7 @@ export const GetLibrarySectionsAllStream$inboundSchema: z.ZodType<
 /** @internal */
 export type GetLibrarySectionsAllStream$Outbound = {
   id: number;
-  streamType: number;
+  streamType: 1;
   format?: string | undefined;
   default?: boolean | undefined;
   codec: string;
@@ -2451,7 +2405,7 @@ export const GetLibrarySectionsAllStream$outboundSchema: z.ZodType<
   GetLibrarySectionsAllStream
 > = z.object({
   id: z.number().int(),
-  streamType: GetLibrarySectionsAllStreamType$outboundSchema,
+  streamType: z.literal(1).default(1 as const),
   format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),
@@ -2567,7 +2521,7 @@ export const GetLibrarySectionsAllPart$inboundSchema: z.ZodType<
   audioProfile: z.string().optional(),
   has64bitOffsets: z.boolean().optional(),
   optimizedForStreaming: z.union([
-    GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema,
+    GetLibrarySectionsAllOptimizedForStreamingLibrary1$inboundSchema,
     z.boolean(),
   ]).optional(),
   hasThumbnail: GetLibrarySectionsAllHasThumbnail$inboundSchema.default(
@@ -2621,7 +2575,7 @@ export const GetLibrarySectionsAllPart$outboundSchema: z.ZodType<
   audioProfile: z.string().optional(),
   has64bitOffsets: z.boolean().optional(),
   optimizedForStreaming: z.union([
-    GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema,
+    GetLibrarySectionsAllOptimizedForStreamingLibrary1$outboundSchema,
     z.boolean(),
   ]).optional(),
   hasThumbnail: GetLibrarySectionsAllHasThumbnail$outboundSchema.default(
@@ -2689,7 +2643,7 @@ export const GetLibrarySectionsAllMedia$inboundSchema: z.ZodType<
   hasVoiceActivity: z.boolean().optional(),
   audioProfile: z.string().optional(),
   optimizedForStreaming: z.union([
-    OptimizedForStreaming1$inboundSchema,
+    GetLibrarySectionsAllOptimizedForStreaming1$inboundSchema,
     z.boolean(),
   ]).optional(),
   has64bitOffsets: z.boolean().optional(),
@@ -2747,7 +2701,7 @@ export const GetLibrarySectionsAllMedia$outboundSchema: z.ZodType<
   hasVoiceActivity: z.boolean().optional(),
   audioProfile: z.string().optional(),
   optimizedForStreaming: z.union([
-    OptimizedForStreaming1$outboundSchema,
+    GetLibrarySectionsAllOptimizedForStreaming1$outboundSchema,
     z.boolean(),
   ]).optional(),
   has64bitOffsets: z.boolean().optional(),
@@ -3151,7 +3105,7 @@ export const GetLibrarySectionsAllMetadata$inboundSchema: z.ZodType<
   childCount: z.number().int(),
   seasonCount: z.number().int(),
   duration: z.number().int(),
-  originallyAvailableAt: z.string().transform(v => new RFCDate(v)),
+  originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
   addedAt: z.number().int(),
   updatedAt: z.number().int().optional(),
   audienceRatingImage: z.string().optional(),
@@ -3244,7 +3198,7 @@ export type GetLibrarySectionsAllMetadata$Outbound = {
   childCount: number;
   seasonCount: number;
   duration: number;
-  originallyAvailableAt: string;
+  originallyAvailableAt?: string | undefined;
   addedAt: number;
   updatedAt?: number | undefined;
   audienceRatingImage?: string | undefined;
@@ -3316,7 +3270,8 @@ export const GetLibrarySectionsAllMetadata$outboundSchema: z.ZodType<
   childCount: z.number().int(),
   seasonCount: z.number().int(),
   duration: z.number().int(),
-  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString()),
+  originallyAvailableAt: z.instanceof(RFCDate).transform(v => v.toString())
+    .optional(),
   addedAt: z.number().int(),
   updatedAt: z.number().int().optional(),
   audienceRatingImage: z.string().optional(),
@@ -3430,8 +3385,8 @@ export const GetLibrarySectionsAllMediaContainer$inboundSchema: z.ZodType<
   art: z.string(),
   content: z.string(),
   identifier: z.string(),
-  librarySectionID: z.number().int(),
-  librarySectionTitle: z.string(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
   librarySectionUUID: z.string().optional(),
   mediaTagPrefix: z.string(),
   mediaTagVersion: z.number().int(),
@@ -3459,8 +3414,8 @@ export type GetLibrarySectionsAllMediaContainer$Outbound = {
   art: string;
   content: string;
   identifier: string;
-  librarySectionID: number;
-  librarySectionTitle: string;
+  librarySectionID?: number | undefined;
+  librarySectionTitle?: string | undefined;
   librarySectionUUID?: string | undefined;
   mediaTagPrefix: string;
   mediaTagVersion: number;
@@ -3486,8 +3441,8 @@ export const GetLibrarySectionsAllMediaContainer$outboundSchema: z.ZodType<
   art: z.string(),
   content: z.string(),
   identifier: z.string(),
-  librarySectionID: z.number().int(),
-  librarySectionTitle: z.string(),
+  librarySectionID: z.number().int().optional(),
+  librarySectionTitle: z.string().optional(),
   librarySectionUUID: z.string().optional(),
   mediaTagPrefix: z.string(),
   mediaTagVersion: z.number().int(),

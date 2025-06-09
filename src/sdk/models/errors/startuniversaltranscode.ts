@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type StartUniversalTranscodeVideoErrors = {
@@ -28,25 +29,22 @@ export type StartUniversalTranscodeUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class StartUniversalTranscodeUnauthorized extends Error {
+export class StartUniversalTranscodeUnauthorized extends PlexAPIError {
   errors?: Array<StartUniversalTranscodeVideoErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: StartUniversalTranscodeUnauthorizedData;
 
-  constructor(err: StartUniversalTranscodeUnauthorizedData) {
+  constructor(
+    err: StartUniversalTranscodeUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "StartUniversalTranscodeUnauthorized";
   }
@@ -72,25 +70,22 @@ export type StartUniversalTranscodeBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class StartUniversalTranscodeBadRequest extends Error {
+export class StartUniversalTranscodeBadRequest extends PlexAPIError {
   errors?: Array<StartUniversalTranscodeErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: StartUniversalTranscodeBadRequestData;
 
-  constructor(err: StartUniversalTranscodeBadRequestData) {
+  constructor(
+    err: StartUniversalTranscodeBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "StartUniversalTranscodeBadRequest";
   }
@@ -170,13 +165,20 @@ export const StartUniversalTranscodeUnauthorized$inboundSchema: z.ZodType<
     z.lazy(() => StartUniversalTranscodeVideoErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new StartUniversalTranscodeUnauthorized(remapped);
+    return new StartUniversalTranscodeUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -293,13 +295,20 @@ export const StartUniversalTranscodeBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => StartUniversalTranscodeErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new StartUniversalTranscodeBadRequest(remapped);
+    return new StartUniversalTranscodeBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

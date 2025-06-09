@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetServerPreferencesServerErrors = {
@@ -28,25 +29,22 @@ export type GetServerPreferencesUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetServerPreferencesUnauthorized extends Error {
+export class GetServerPreferencesUnauthorized extends PlexAPIError {
   errors?: Array<GetServerPreferencesServerErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetServerPreferencesUnauthorizedData;
 
-  constructor(err: GetServerPreferencesUnauthorizedData) {
+  constructor(
+    err: GetServerPreferencesUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetServerPreferencesUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetServerPreferencesBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetServerPreferencesBadRequest extends Error {
+export class GetServerPreferencesBadRequest extends PlexAPIError {
   errors?: Array<GetServerPreferencesErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetServerPreferencesBadRequestData;
 
-  constructor(err: GetServerPreferencesBadRequestData) {
+  constructor(
+    err: GetServerPreferencesBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetServerPreferencesBadRequest";
   }
@@ -167,13 +162,20 @@ export const GetServerPreferencesUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetServerPreferencesServerErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetServerPreferencesUnauthorized(remapped);
+    return new GetServerPreferencesUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -286,13 +288,20 @@ export const GetServerPreferencesBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetServerPreferencesErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetServerPreferencesBadRequest(remapped);
+    return new GetServerPreferencesBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type ApplyUpdatesUpdaterErrors = {
@@ -28,25 +29,22 @@ export type ApplyUpdatesUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class ApplyUpdatesUnauthorized extends Error {
+export class ApplyUpdatesUnauthorized extends PlexAPIError {
   errors?: Array<ApplyUpdatesUpdaterErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ApplyUpdatesUnauthorizedData;
 
-  constructor(err: ApplyUpdatesUnauthorizedData) {
+  constructor(
+    err: ApplyUpdatesUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "ApplyUpdatesUnauthorized";
   }
@@ -72,25 +70,22 @@ export type ApplyUpdatesBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class ApplyUpdatesBadRequest extends Error {
+export class ApplyUpdatesBadRequest extends PlexAPIError {
   errors?: Array<ApplyUpdatesErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: ApplyUpdatesBadRequestData;
 
-  constructor(err: ApplyUpdatesBadRequestData) {
+  constructor(
+    err: ApplyUpdatesBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "ApplyUpdatesBadRequest";
   }
@@ -165,13 +160,20 @@ export const ApplyUpdatesUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => ApplyUpdatesUpdaterErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new ApplyUpdatesUnauthorized(remapped);
+    return new ApplyUpdatesUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -282,13 +284,20 @@ export const ApplyUpdatesBadRequest$inboundSchema: z.ZodType<
 > = z.object({
   errors: z.array(z.lazy(() => ApplyUpdatesErrors$inboundSchema)).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new ApplyUpdatesBadRequest(remapped);
+    return new ApplyUpdatesBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

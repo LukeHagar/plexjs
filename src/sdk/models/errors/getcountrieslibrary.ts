@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetCountriesLibraryLibraryErrors = {
@@ -28,25 +29,22 @@ export type GetCountriesLibraryUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetCountriesLibraryUnauthorized extends Error {
+export class GetCountriesLibraryUnauthorized extends PlexAPIError {
   errors?: Array<GetCountriesLibraryLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetCountriesLibraryUnauthorizedData;
 
-  constructor(err: GetCountriesLibraryUnauthorizedData) {
+  constructor(
+    err: GetCountriesLibraryUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetCountriesLibraryUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetCountriesLibraryBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetCountriesLibraryBadRequest extends Error {
+export class GetCountriesLibraryBadRequest extends PlexAPIError {
   errors?: Array<GetCountriesLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetCountriesLibraryBadRequestData;
 
-  constructor(err: GetCountriesLibraryBadRequestData) {
+  constructor(
+    err: GetCountriesLibraryBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetCountriesLibraryBadRequest";
   }
@@ -167,13 +162,20 @@ export const GetCountriesLibraryUnauthorized$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetCountriesLibraryLibraryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetCountriesLibraryUnauthorized(remapped);
+    return new GetCountriesLibraryUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -286,13 +288,20 @@ export const GetCountriesLibraryBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetCountriesLibraryErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetCountriesLibraryBadRequest(remapped);
+    return new GetCountriesLibraryBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

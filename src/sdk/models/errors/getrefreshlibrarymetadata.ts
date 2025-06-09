@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { PlexAPIError } from "./plexapierror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 export type GetRefreshLibraryMetadataLibraryErrors = {
@@ -28,25 +29,22 @@ export type GetRefreshLibraryMetadataUnauthorizedData = {
 /**
  * Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
  */
-export class GetRefreshLibraryMetadataUnauthorized extends Error {
+export class GetRefreshLibraryMetadataUnauthorized extends PlexAPIError {
   errors?: Array<GetRefreshLibraryMetadataLibraryErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetRefreshLibraryMetadataUnauthorizedData;
 
-  constructor(err: GetRefreshLibraryMetadataUnauthorizedData) {
+  constructor(
+    err: GetRefreshLibraryMetadataUnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetRefreshLibraryMetadataUnauthorized";
   }
@@ -72,25 +70,22 @@ export type GetRefreshLibraryMetadataBadRequestData = {
 /**
  * Bad Request - A parameter was not specified, or was specified incorrectly.
  */
-export class GetRefreshLibraryMetadataBadRequest extends Error {
+export class GetRefreshLibraryMetadataBadRequest extends PlexAPIError {
   errors?: Array<GetRefreshLibraryMetadataErrors> | undefined;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse?: Response | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: GetRefreshLibraryMetadataBadRequestData;
 
-  constructor(err: GetRefreshLibraryMetadataBadRequestData) {
+  constructor(
+    err: GetRefreshLibraryMetadataBadRequestData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.errors != null) this.errors = err.errors;
-    if (err.rawResponse != null) this.rawResponse = err.rawResponse;
 
     this.name = "GetRefreshLibraryMetadataBadRequest";
   }
@@ -172,13 +167,20 @@ export const GetRefreshLibraryMetadataUnauthorized$inboundSchema: z.ZodType<
     z.lazy(() => GetRefreshLibraryMetadataLibraryErrors$inboundSchema),
   ).optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetRefreshLibraryMetadataUnauthorized(remapped);
+    return new GetRefreshLibraryMetadataUnauthorized(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -295,13 +297,20 @@ export const GetRefreshLibraryMetadataBadRequest$inboundSchema: z.ZodType<
   errors: z.array(z.lazy(() => GetRefreshLibraryMetadataErrors$inboundSchema))
     .optional(),
   RawResponse: z.instanceof(Response).optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
       "RawResponse": "rawResponse",
     });
 
-    return new GetRefreshLibraryMetadataBadRequest(remapped);
+    return new GetRefreshLibraryMetadataBadRequest(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

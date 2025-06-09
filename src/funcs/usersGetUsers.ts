@@ -17,7 +17,8 @@ import {
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
-import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
+import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import { GetUsersServerList } from "../sdk/models/operations/getusers.js";
 import * as operations from "../sdk/models/operations/index.js";
@@ -39,13 +40,14 @@ export function usersGetUsers(
     operations.GetUsersResponse,
     | errors.GetUsersBadRequest
     | errors.GetUsersUnauthorized
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | PlexAPIError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -65,13 +67,14 @@ async function $do(
       operations.GetUsersResponse,
       | errors.GetUsersBadRequest
       | errors.GetUsersUnauthorized
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | PlexAPIError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -206,13 +209,14 @@ async function $do(
     operations.GetUsersResponse,
     | errors.GetUsersBadRequest
     | errors.GetUsersUnauthorized
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | PlexAPIError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.bytes(200, operations.GetUsersResponse$inboundSchema, {
       ctype: "application/xml",
@@ -222,7 +226,7 @@ async function $do(
     M.jsonErr(401, errors.GetUsersUnauthorized$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

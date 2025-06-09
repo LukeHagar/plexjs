@@ -73,6 +73,7 @@ export * from "./markunplayed.js";
 export * from "./performsearch.js";
 export * from "./performvoicesearch.js";
 export * from "./postuserssignindata.js";
+export * from "./responsevalidationerror.js";
 export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";
 export * from "./startalltasks.js";
