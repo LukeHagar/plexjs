@@ -5,7 +5,10 @@
 ```typescript
 import { GetGeoDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetGeoDataResponse = {};
+let value: GetGeoDataResponse = {
+  contentType: "<value>",
+  statusCode: 752880,
+};
 ```
 
 ## Fields

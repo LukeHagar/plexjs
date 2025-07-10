@@ -5,7 +5,10 @@
 ```typescript
 import { DeleteLibraryResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: DeleteLibraryResponse = {};
+let value: DeleteLibraryResponse = {
+  contentType: "<value>",
+  statusCode: 536997,
+};
 ```
 
 ## Fields

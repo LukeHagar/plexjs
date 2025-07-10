@@ -5,7 +5,10 @@
 ```typescript
 import { GetMyPlexAccountResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetMyPlexAccountResponse = {};
+let value: GetMyPlexAccountResponse = {
+  contentType: "<value>",
+  statusCode: 419547,
+};
 ```
 
 ## Fields

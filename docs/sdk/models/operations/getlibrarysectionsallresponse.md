@@ -5,7 +5,10 @@
 ```typescript
 import { GetLibrarySectionsAllResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetLibrarySectionsAllResponse = {};
+let value: GetLibrarySectionsAllResponse = {
+  contentType: "<value>",
+  statusCode: 118591,
+};
 ```
 
 ## Fields

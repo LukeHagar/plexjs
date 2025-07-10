@@ -5,7 +5,10 @@
 ```typescript
 import { GetUserFriendsResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetUserFriendsResponse = {};
+let value: GetUserFriendsResponse = {
+  contentType: "<value>",
+  statusCode: 640770,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { GetSourceConnectionInformationResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetSourceConnectionInformationResponse = {};
+let value: GetSourceConnectionInformationResponse = {
+  contentType: "<value>",
+  statusCode: 862180,
+};
 ```
 
 ## Fields

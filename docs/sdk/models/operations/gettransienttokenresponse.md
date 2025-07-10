@@ -5,7 +5,10 @@
 ```typescript
 import { GetTransientTokenResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetTransientTokenResponse = {};
+let value: GetTransientTokenResponse = {
+  contentType: "<value>",
+  statusCode: 305461,
+};
 ```
 
 ## Fields

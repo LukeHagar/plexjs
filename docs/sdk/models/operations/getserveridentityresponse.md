@@ -5,7 +5,10 @@
 ```typescript
 import { GetServerIdentityResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetServerIdentityResponse = {};
+let value: GetServerIdentityResponse = {
+  contentType: "<value>",
+  statusCode: 828949,
+};
 ```
 
 ## Fields

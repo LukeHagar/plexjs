@@ -5,7 +5,10 @@
 ```typescript
 import { LogLineResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: LogLineResponse = {};
+let value: LogLineResponse = {
+  contentType: "<value>",
+  statusCode: 280494,
+};
 ```
 
 ## Fields

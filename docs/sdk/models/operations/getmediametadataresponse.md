@@ -5,7 +5,10 @@
 ```typescript
 import { GetMediaMetaDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetMediaMetaDataResponse = {};
+let value: GetMediaMetaDataResponse = {
+  contentType: "<value>",
+  statusCode: 114115,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { DeletePlaylistResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: DeletePlaylistResponse = {};
+let value: DeletePlaylistResponse = {
+  contentType: "<value>",
+  statusCode: 447001,
+};
 ```
 
 ## Fields

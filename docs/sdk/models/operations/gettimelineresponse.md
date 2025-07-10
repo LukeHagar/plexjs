@@ -5,7 +5,10 @@
 ```typescript
 import { GetTimelineResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetTimelineResponse = {};
+let value: GetTimelineResponse = {
+  contentType: "<value>",
+  statusCode: 227259,
+};
 ```
 
 ## Fields

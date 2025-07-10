@@ -5,7 +5,10 @@
 ```typescript
 import { GetServerPreferencesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetServerPreferencesResponse = {};
+let value: GetServerPreferencesResponse = {
+  contentType: "<value>",
+  statusCode: 480617,
+};
 ```
 
 ## Fields

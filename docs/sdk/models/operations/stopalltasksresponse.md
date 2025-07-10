@@ -5,7 +5,10 @@
 ```typescript
 import { StopAllTasksResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: StopAllTasksResponse = {};
+let value: StopAllTasksResponse = {
+  contentType: "<value>",
+  statusCode: 641040,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { GetButlerTasksResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetButlerTasksResponse = {};
+let value: GetButlerTasksResponse = {
+  contentType: "<value>",
+  statusCode: 73689,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { GetDevicesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetDevicesResponse = {};
+let value: GetDevicesResponse = {
+  contentType: "<value>",
+  statusCode: 113704,
+};
 ```
 
 ## Fields

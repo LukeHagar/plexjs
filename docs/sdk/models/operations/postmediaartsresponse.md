@@ -5,7 +5,10 @@
 ```typescript
 import { PostMediaArtsResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PostMediaArtsResponse = {};
+let value: PostMediaArtsResponse = {
+  contentType: "<value>",
+  statusCode: 230593,
+};
 ```
 
 ## Fields

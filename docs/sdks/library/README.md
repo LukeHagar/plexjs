@@ -43,7 +43,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.library.getFileHash("file://C:\Image.png&type=13");
+  const result = await plexAPI.library.getFileHash("file://C:\\Image.png&type=13");
 
   console.log(result);
 }
@@ -66,7 +66,7 @@ const plexAPI = new PlexAPICore({
 });
 
 async function run() {
-  const res = await libraryGetFileHash(plexAPI, "file://C:\Image.png&type=13");
+  const res = await libraryGetFileHash(plexAPI, "file://C:\\Image.png&type=13");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

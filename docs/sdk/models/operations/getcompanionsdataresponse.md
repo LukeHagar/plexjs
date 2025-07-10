@@ -5,7 +5,10 @@
 ```typescript
 import { GetCompanionsDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetCompanionsDataResponse = {};
+let value: GetCompanionsDataResponse = {
+  contentType: "<value>",
+  statusCode: 133605,
+};
 ```
 
 ## Fields

@@ -527,7 +527,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getFileHash("file://C:\Image.png&type=13");
+              const result = await plexAPI.library.getFileHash("file://C:\\Image.png&type=13");
 
               console.log(result);
             }

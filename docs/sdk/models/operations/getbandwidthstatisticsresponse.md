@@ -5,7 +5,10 @@
 ```typescript
 import { GetBandwidthStatisticsResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetBandwidthStatisticsResponse = {};
+let value: GetBandwidthStatisticsResponse = {
+  contentType: "<value>",
+  statusCode: 430843,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { StartUniversalTranscodeResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: StartUniversalTranscodeResponse = {};
+let value: StartUniversalTranscodeResponse = {
+  contentType: "<value>",
+  statusCode: 708111,
+};
 ```
 
 ## Fields

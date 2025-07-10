@@ -5,7 +5,10 @@
 ```typescript
 import { GetMediaPostersResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetMediaPostersResponse = {};
+let value: GetMediaPostersResponse = {
+  contentType: "<value>",
+  statusCode: 802181,
+};
 ```
 
 ## Fields

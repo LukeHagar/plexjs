@@ -5,7 +5,10 @@
 ```typescript
 import { GetRefreshLibraryMetadataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetRefreshLibraryMetadataResponse = {};
+let value: GetRefreshLibraryMetadataResponse = {
+  contentType: "<value>",
+  statusCode: 452576,
+};
 ```
 
 ## Fields

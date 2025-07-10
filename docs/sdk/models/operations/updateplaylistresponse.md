@@ -5,7 +5,10 @@
 ```typescript
 import { UpdatePlaylistResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: UpdatePlaylistResponse = {};
+let value: UpdatePlaylistResponse = {
+  contentType: "<value>",
+  statusCode: 379815,
+};
 ```
 
 ## Fields

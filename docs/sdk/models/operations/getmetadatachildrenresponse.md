@@ -5,7 +5,10 @@
 ```typescript
 import { GetMetadataChildrenResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetMetadataChildrenResponse = {};
+let value: GetMetadataChildrenResponse = {
+  contentType: "<value>",
+  statusCode: 590251,
+};
 ```
 
 ## Fields

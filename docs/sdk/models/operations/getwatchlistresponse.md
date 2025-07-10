@@ -5,7 +5,10 @@
 ```typescript
 import { GetWatchListResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetWatchListResponse = {};
+let value: GetWatchListResponse = {
+  contentType: "<value>",
+  statusCode: 283331,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { PostUsersSignInDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PostUsersSignInDataResponse = {};
+let value: PostUsersSignInDataResponse = {
+  contentType: "<value>",
+  statusCode: 43555,
+};
 ```
 
 ## Fields

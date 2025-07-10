@@ -16,8 +16,12 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
 typescript:
-  version: 0.39.0
+  version: 0.40.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -26,6 +30,7 @@ typescript:
   author: LukeHagar
   baseErrorName: PlexAPIError
   clientServerStatusCodesAsErrors: true
+  constFieldsAlwaysOptional: true
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
   enableMCPServer: true
@@ -33,6 +38,7 @@ typescript:
   enumFormat: enum
   flattenGlobalSecurity: true
   flatteningOrder: body-first
+  generateExamples: true
   imports:
     option: openapi
     paths:

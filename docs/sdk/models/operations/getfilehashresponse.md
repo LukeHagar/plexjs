@@ -5,7 +5,10 @@
 ```typescript
 import { GetFileHashResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetFileHashResponse = {};
+let value: GetFileHashResponse = {
+  contentType: "<value>",
+  statusCode: 537323,
+};
 ```
 
 ## Fields

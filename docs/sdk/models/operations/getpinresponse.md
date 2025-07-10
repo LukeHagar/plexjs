@@ -5,7 +5,10 @@
 ```typescript
 import { GetPinResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetPinResponse = {};
+let value: GetPinResponse = {
+  contentType: "<value>",
+  statusCode: 252396,
+};
 ```
 
 ## Fields

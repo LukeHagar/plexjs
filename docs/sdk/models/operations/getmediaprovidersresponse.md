@@ -5,7 +5,10 @@
 ```typescript
 import { GetMediaProvidersResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetMediaProvidersResponse = {};
+let value: GetMediaProvidersResponse = {
+  contentType: "<value>",
+  statusCode: 674530,
+};
 ```
 
 ## Fields

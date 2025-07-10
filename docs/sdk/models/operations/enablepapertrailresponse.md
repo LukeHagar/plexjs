@@ -5,7 +5,10 @@
 ```typescript
 import { EnablePaperTrailResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: EnablePaperTrailResponse = {};
+let value: EnablePaperTrailResponse = {
+  contentType: "<value>",
+  statusCode: 561624,
+};
 ```
 
 ## Fields

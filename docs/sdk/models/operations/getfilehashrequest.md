@@ -6,7 +6,7 @@
 import { GetFileHashRequest } from "@lukehagar/plexjs/sdk/models/operations";
 
 let value: GetFileHashRequest = {
-  url: "file://C:\Image.png&type=13",
+  url: "file://C:\\Image.png&type=13",
 };
 ```
 

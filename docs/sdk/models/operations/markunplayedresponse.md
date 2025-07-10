@@ -5,7 +5,10 @@
 ```typescript
 import { MarkUnplayedResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: MarkUnplayedResponse = {};
+let value: MarkUnplayedResponse = {
+  contentType: "<value>",
+  statusCode: 49382,
+};
 ```
 
 ## Fields

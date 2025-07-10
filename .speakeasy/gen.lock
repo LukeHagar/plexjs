@@ -3,10 +3,10 @@ id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
   docChecksum: 4a7c64e455521ea3ac1e4957e621f694
   docVersion: 0.0.3
-  speakeasyVersion: 1.557.0
-  generationVersion: 2.623.0
-  releaseVersion: 0.39.0
-  configChecksum: c9d9bac185a14ad9101fd40b22d08017
+  speakeasyVersion: 1.580.1
+  generationVersion: 2.656.3
+  releaseVersion: 0.40.0
+  configChecksum: 3e8220b93e9fb4f5d3c6500daf058fae
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -14,15 +14,15 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.11
-    core: 3.21.10
+    constsAndDefaults: 0.1.12
+    core: 3.21.14
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     enums: 2.82.1
     envVarSecurityUsage: 0.1.2
-    errors: 2.85.0
+    errors: 2.86.0
     flattening: 2.82.1
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
@@ -35,7 +35,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.8
+    unions: 2.85.11
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -975,6 +975,10 @@ generatedFiles:
   - docs/sdks/watchlist/README.md
   - docs/types/rfcdate.md
   - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/package.json
+  - examples/serverGetServerCapabilities.example.ts
   - jsr.json
   - package.json
   - src/core.ts
@@ -1404,6 +1408,17 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-update-play-progress:
+      parameters:
+        query:
+          key: "<key>"
+          time: 90000
+          state: "played"
+      responses:
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   get-banner-image:
     speakeasy-default-get-banner-image:
       parameters:
@@ -1461,8 +1476,50 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-get-timeline:
+      parameters:
+        query:
+          ratingKey: 23409
+          key: "/library/metadata/23409"
+          state: "playing"
+          hasMDE: 1
+          time: 2000
+          duration: 10000
+          context: "home:hub.continueWatching"
+          playQueueItemID: 1
+          playBackTime: 2000
+          row: 1
+      responses:
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   startUniversalTranscode:
     "":
+      parameters:
+        query:
+          hasMDE: 1
+          path: "/library/metadata/23409"
+          mediaIndex: 0
+          partIndex: 0
+          protocol: "hls"
+          fastSeek: 0
+          directPlay: 0
+          directStream: 0
+          subtitleSize: 100
+          subtites: "burn"
+          audioBoost: 100
+          location: "lan"
+          mediaBufferSize: 102400
+          session: "zvcage8b7rkioqcm8f4uns4c"
+          addDebugOverlay: 0
+          autoAdjustQuality: 0
+      responses:
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-start-universal-transcode:
       parameters:
         query:
           hasMDE: 1
@@ -1497,6 +1554,15 @@ examples:
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   cancelServerActivities:
     "":
+      parameters:
+        path:
+          activityUUID: "25b71ed5-0f9d-461c-baa7-d404e9e10d3e"
+      responses:
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-cancel-server-activities:
       parameters:
         path:
           activityUUID: "25b71ed5-0f9d-461c-baa7-d404e9e10d3e"
@@ -1600,8 +1666,38 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-get-server-resources:
+      parameters:
+        query:
+          includeHttps: 1
+          includeRelay: 1
+          includeIPv6: 1
+        header:
+          X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"
+      responses:
+        "200":
+          application/json: [{"name": "<value>", "product": "Ergonomic Plastic Hat", "productVersion": "<value>", "platform": "<value>", "platformVersion": "<value>", "device": "Mobile", "clientIdentifier": "<value>", "createdAt": "2019-06-24T11:38:02Z", "lastSeenAt": "2019-06-24T11:38:02Z", "provides": "<value>", "ownerId": null, "sourceTitle": "<value>", "publicAddress": "<value>", "accessToken": "<value>", "owned": true, "home": false, "synced": false, "relay": true, "presence": false, "httpsRequired": true, "publicAddressMatches": false, "dnsRebindingProtection": true, "natLoopbackSupported": false, "connections": [{"protocol": "http", "address": "5746 Mount Street", "port": 441996, "uri": "https://wide-kick.name/", "local": false, "relay": true, "IPv6": true}]}]
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   getPin:
     "":
+      parameters:
+        query:
+          strong: false
+        header:
+          X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"
+          X-Plex-Product: "Plex for Roku"
+          X-Plex-Device: "Roku 3"
+          X-Plex-Version: "2.4.1"
+          X-Plex-Platform: "Roku"
+      responses:
+        "201":
+          application/json: {"id": 308667304, "code": "7RQZ", "product": "0", "trusted": false, "qr": "https://plex.tv/api/v2/pins/qr/7RQZ", "clientIdentifier": "string", "location": {"code": "VI", "continent_code": "NA", "country": "United States Virgin Islands", "city": "Amsterdam", "european_union_member": true, "time_zone": "America/St_Thomas", "postal_code": "802", "in_privacy_restricted_country": true, "in_privacy_restricted_region": true, "subdivisions": "Saint Thomas", "coordinates": "18.3381, -64.8941"}, "expiresIn": 876, "createdAt": "2024-07-16T17:03:05Z", "expiresAt": "2024-07-16T17:18:05Z", "authToken": null, "newRegistration": null}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+    speakeasy-default-get-pin:
       parameters:
         query:
           strong: false
@@ -1628,6 +1724,23 @@ examples:
           X-Plex-Version: "2.4.1"
           X-Plex-Platform: "Roku"
       responses:
+        "404":
+          application/json: {"errors": [{"code": 1020, "message": "Code not found or expired"}]}
+    speakeasy-default-get-token-by-pin-id:
+      parameters:
+        path:
+          pinID: 232248
+        header:
+          X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"
+          X-Plex-Product: "Plex for Roku"
+          X-Plex-Device: "Roku 3"
+          X-Plex-Version: "2.4.1"
+          X-Plex-Platform: "Roku"
+      responses:
+        "200":
+          application/json: {"id": 308667304, "code": "7RQZ", "product": "0", "trusted": false, "qr": "https://plex.tv/api/v2/pins/qr/7RQZ", "clientIdentifier": "string", "location": {"code": "VI", "continent_code": "NA", "country": "United States Virgin Islands", "city": "Amsterdam", "european_union_member": true, "time_zone": "America/St_Thomas", "postal_code": "802", "in_privacy_restricted_country": true, "in_privacy_restricted_region": true, "subdivisions": "Saint Thomas", "coordinates": "18.3381, -64.8941"}, "expiresIn": 876, "createdAt": "2024-07-16T17:03:05Z", "expiresAt": "2024-07-16T17:18:05Z", "authToken": null, "newRegistration": null}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "404":
           application/json: {"errors": [{"code": 1020, "message": "Code not found or expired"}]}
   getGlobalHubs:
@@ -1880,6 +1993,22 @@ examples:
       responses:
         "200":
           application/json: {"MediaContainer": {"size": 50, "allowSync": false, "identifier": "com.plexapp.plugins.library", "librarySectionID": 2, "librarySectionTitle": "TV Series", "librarySectionUUID": "e69655a2-ef48-4aba-bb19-0cc34d1e7d36", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1734362201, "SearchResult": []}}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-get-search-all-libraries:
+      parameters:
+        query:
+          query: "<value>"
+          searchTypes: ["people"]
+          includeCollections: 1
+          includeExternalMedia: 1
+        header:
+          X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 50, "allowSync": false, "identifier": "com.plexapp.plugins.library", "librarySectionID": 2, "librarySectionTitle": "TV Series", "librarySectionUUID": "e69655a2-ef48-4aba-bb19-0cc34d1e7d36", "mediaTagPrefix": "/system/bundle/media/flags/", "mediaTagVersion": 1734362201, "SearchResult": [{"score": 0.92, "Directory": {"key": "/library/sections/3/all?actor=197429", "librarySectionID": 1, "librarySectionKey": "/library/sections/1", "librarySectionTitle": "Movies", "librarySectionType": 1, "type": "tag", "id": 197429, "filter": "actor=197429", "tag": "Ben Stiller", "tagType": 4, "tagKey": "5d776826999c64001ec2c606", "thumb": "https://metadata-static.plex.tv/5/people/57bd7c7d6c5c9e2881251b30e5603d3d.jpg", "count": 10}, "Metadata": {"ratingKey": "58683", "key": "/library/metadata/58683", "guid": "plex://movie/5d7768ba96b655001fdc0408", "slug": "4-for-texas", "studio": "20th Century Studios", "type": "movie", "title": "Avatar: The Way of Water", "banner": "/library/metadata/58683/banner/1703239236", "titleSort": "Whale", "contentRating": "PG-13", "summary": "Jake Sully lives with his newfound family formed on the extrasolar moon Pandora.\nOnce a familiar threat returns to finish what was previously started, Jake must\nwork with Neytiri and the army of the Na'vi race to protect their home.\n", "rating": 7.6, "audienceRating": 9.2, "year": 2022, "tagline": "Return to Pandora.", "thumb": "/library/metadata/58683/thumb/1703239236", "art": "/library/metadata/58683/art/1703239236", "theme": "/library/metadata/1/theme/1705636920", "index": 1, "leafCount": 14, "viewedLeafCount": 0, "childCount": 1, "seasonCount": 2022, "duration": 11558112, "originallyAvailableAt": "2022-12-14", "addedAt": 1556281940, "updatedAt": 1556281940, "parentYear": 2010, "audienceRatingImage": "rottentomatoes://image.rating.upright", "chapterSource": "media", "primaryExtraKey": "/library/metadata/58684", "originalTitle": "映画 ブラッククローバー 魔法帝の剣", "parentRatingKey": "66", "grandparentRatingKey": "66", "parentGuid": "plex://show/5d9c081b170e24001f2a7be4", "grandparentGuid": "plex://show/5d9c081b170e24001f2a7be4", "grandparentSlug": "alice-in-borderland-2020", "grandparentKey": "/library/metadata/66", "parentKey": "/library/metadata/66", "grandparentTitle": "Caprica", "grandparentThumb": "/library/metadata/66/thumb/1705716261", "grandparentTheme": "/library/metadata/66/theme/1705716261", "grandparentArt": "/library/metadata/66/art/1705716261", "parentTitle": "Caprica", "parentIndex": 1, "parentThumb": "/library/metadata/66/thumb/1705716261", "ratingImage": "rottentomatoes://image.rating.ripe", "viewCount": 1, "viewOffset": 5222500, "skipCount": 1, "subtype": "clip", "lastRatedAt": 1721813113, "createdAtAccuracy": "epoch,local", "createdAtTZOffset": "0", "lastViewedAt": 1682752242, "userRating": 10, "Image": [{"alt": "Episode 1", "type": "background", "url": "/library/metadata/45521/thumb/1644710589"}], "UltraBlurColors": {"topLeft": "11333b", "topRight": "0a232d", "bottomRight": "73958", "bottomLeft": "1f5066"}, "Guid": [{"id": "{\"imdbExample\":{\"summary\":\"IMDB example\",\"value\":\"imdb://tt13015952\"},\"tmdbExample\":{\"summary\":\"TMDB example\",\"value\":\"tmdb://2434012\"},\"tvdbExample\":{\"summary\":\"TVDB example\",\"value\":\"tvdb://7945991\"}}"}], "librarySectionID": 1, "librarySectionTitle": "Movies", "librarySectionKey": "/library/sections/1", "showOrdering": "absolute", "flattenSeasons": "1", "skipChildren": false, "Media": [{"id": 387322, "duration": 9610350, "bitrate": 25512, "width": 3840, "height": 1602, "aspectRatio": 2.35, "audioChannels": 6, "displayOffset": 50, "audioCodec": "aac", "videoCodec": "hevc", "videoResolution": "4k", "container": "mp4", "videoFrameRate": "24p", "videoProfile": "main 10", "hasVoiceActivity": false, "audioProfile": "dts", "has64bitOffsets": false, "Part": [{"accessible": true, "exists": true, "id": 418385, "key": "/library/parts/418385/1735864239/file.mkv", "indexes": "sd", "duration": 9610350, "file": "/mnt/Movies_1/W/Wicked (2024).mkv", "size": 30649952104, "packetLength": 188, "container": "mkv", "videoProfile": "main 10", "audioProfile": "dts", "has64bitOffsets": false, "hasThumbnail": "1"}]}], "Genre": [{"id": 259, "tag": "Crime"}], "Country": [{"id": 259, "tag": "United States of America"}], "Director": [{"id": 126522, "tag": "Danny Boyle", "thumb": "https://metadata-static.plex.tv/8/people/8d65fa96804802e08f2de09fe014408e.jpg"}], "Writer": [{"id": 126522, "tag": "Jamie P. Hanson", "thumb": "https://metadata-static.plex.tv/8/people/8d65fa96804802e08f2de09fe014408e.jpg"}], "Role": [{"id": 126522, "tag": "Teller", "role": "Self - Judge", "thumb": "https://metadata-static.plex.tv/7/people/708568fd018d7aa8b1032dcf867747e8.jpg"}], "Location": [{"path": "/TV Shows/Clarkson's Farm"}]}}]}}
         "400":
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
@@ -2193,8 +2322,36 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-post-users-sign-in-data:
+      parameters:
+        header:
+          X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"
+          X-Plex-Product: "Plex for Roku"
+          X-Plex-Device: "Roku 3"
+          X-Plex-Version: "2.4.1"
+          X-Plex-Platform: "Roku"
+      requestBody:
+        application/x-www-form-urlencoded: {"login": "username@email.com", "password": "password123", "rememberMe": false, "verificationCode": "123456"}
+      responses:
+        "201":
+          application/json: {"adsConsent": null, "adsConsentReminderAt": 1556281940, "adsConsentSetAt": 1556281940, "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": ["[]"], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1556281940, "locale": "ru", "mailingListActive": false, "mailingListStatus": "active", "maxHomeSize": 15, "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": 1, "defaultSubtitleAccessibility": 1, "defaultSubtitleForced": 1, "watchedIndicator": 1, "mediaReviewsVisibility": 1}, "protected": false, "rememberExpiresAt": 1556281940, "restricted": false, "scrobbleTypes": "<value>", "services": [], "subscription": {"active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive"}, "subscriptionDescription": "<value>", "subscriptions": [{"active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f", "attributionPartner": null, "pastSubscriptions": [], "trials": []}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   getStatistics:
     "":
+      parameters:
+        query:
+          timespan: 4
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 5497, "Device": [{"id": 208, "name": "Roku Express", "platform": "Roku", "clientIdentifier": "793095d235660625108ef785cc7646e9", "createdAt": 1706470556}], "Account": [{"id": 238960586, "key": "/accounts/238960586", "name": "Diane", "defaultAudioLanguage": "en", "autoSelectAudio": true, "defaultSubtitleLanguage": "en", "subtitleMode": 1, "thumb": "https://plex.tv/users/50d83634246da1de/avatar?c=1707110967"}], "StatisticsMedia": [{"accountID": 1, "deviceID": 13, "timespan": 4, "at": 1707141600, "metadataType": 4, "count": 1, "duration": 1555}]}}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-get-statistics:
       parameters:
         query:
           timespan: 4
@@ -2217,8 +2374,30 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-get-resources-statistics:
+      parameters:
+        query:
+          timespan: 4
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 5497, "StatisticsResources": [{"timespan": 6, "at": 1718384427, "hostCpuUtilization": 1.276, "processCpuUtilization": 0.025, "hostMemoryUtilization": 17.026, "processMemoryUtilization": 0.493}]}}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   getBandwidthStatistics:
     "":
+      parameters:
+        query:
+          timespan: 4
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 5497, "Device": [{"id": 208, "name": "Roku Express", "platform": "Roku", "clientIdentifier": "793095d235660625108ef785cc7646e9", "createdAt": 1706470556}], "Account": [{"id": 238960586, "key": "/accounts/238960586", "name": "Diane", "defaultAudioLanguage": "en", "autoSelectAudio": true, "defaultSubtitleLanguage": "en", "subtitleMode": 1, "thumb": "https://plex.tv/users/50d83634246da1de/avatar?c=1707110967"}], "StatisticsBandwidth": [{"accountID": 238960586, "deviceID": 208, "timespan": 6, "at": 1718387650, "lan": true, "bytes": 22}]}}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-get-bandwidth-statistics:
       parameters:
         query:
           timespan: 4
@@ -2321,6 +2500,19 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-get-session-history:
+      parameters:
+        query:
+          accountId: 1
+          filter: {}
+          librarySectionID: 12
+      responses:
+        "200":
+          application/json: {"MediaContainer": {"size": 10855, "Metadata": [{"historyKey": "/status/sessions/history/1", "key": "/library/metadata/32171", "ratingKey": "32171", "librarySectionID": "2", "parentKey": "/library/metadata/32170", "grandparentKey": "/library/metadata/32132", "title": "The Noise That Blue Makes", "grandparentTitle": "Taskmaster", "type": "episode", "thumb": "/library/metadata/32171/thumb/-1", "parentThumb": "/library/metadata/32170/thumb/1654134301", "grandparentThumb": "/library/metadata/32132/thumb/1703933346", "grandparentArt": "/library/metadata/32132/art/1703933346", "index": 1, "parentIndex": 13, "originallyAvailableAt": "2022-04-14T00:00:00Z", "viewedAt": 1654139223, "accountID": 1, "deviceID": 5}]}}
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   getTranscodeSessions:
     speakeasy-default-get-transcode-sessions:
       responses:
@@ -2359,6 +2551,15 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-check-for-updates:
+      parameters:
+        query:
+          download: 1
+      responses:
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   applyUpdates:
     "":
       parameters:
@@ -2370,8 +2571,41 @@ examples:
           application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
         "401":
           application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-apply-updates:
+      parameters:
+        query:
+          tonight: 1
+          skip: 1
+      responses:
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
   get-users:
     "":
+      parameters:
+        header:
+          X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"
+          X-Plex-Product: "Plex for Roku"
+          X-Plex-Device: "Roku 3"
+          X-Plex-Device-Name: "Chrome"
+          X-Plex-Device-Screen-Resolution: "1487x1165,2560x1440"
+          X-Plex-Version: "2.4.1"
+          X-Plex-Platform: "Roku"
+          X-Plex-Features: "external-media,indirect-media,hub-style-list"
+          X-Plex-Model: "4200X"
+          X-Plex-Session-Id: "97e136ef-4ddd-4ff3-89a7-a5820c96c2ca"
+          X-Plex-Language: "en"
+          X-Plex-Platform-Version: "4.3 build 1057"
+          X-Plex-Token: "CV5xoxjTpFKUzBTShsaf"
+      responses:
+        "200":
+          application/xml: "0xfD5052DbD1"
+        "400":
+          application/json: {"errors": [{"code": 1000, "message": "X-Plex-Client-Identifier is missing", "status": 400}]}
+        "401":
+          application/json: {"errors": [{"code": 1001, "message": "User could not be authenticated", "status": 401}]}
+    speakeasy-default-get-users:
       parameters:
         header:
           X-Plex-Client-Identifier: "3381b62b-9ab7-4e37-827b-203e9809eb58"

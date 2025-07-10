@@ -5,7 +5,10 @@
 ```typescript
 import { GetResizedPhotoResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetResizedPhotoResponse = {};
+let value: GetResizedPhotoResponse = {
+  contentType: "<value>",
+  statusCode: 790843,
+};
 ```
 
 ## Fields

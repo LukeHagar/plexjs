@@ -5,7 +5,10 @@
 ```typescript
 import { UploadPlaylistResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: UploadPlaylistResponse = {};
+let value: UploadPlaylistResponse = {
+  contentType: "<value>",
+  statusCode: 525326,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { StopTranscodeSessionResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: StopTranscodeSessionResponse = {};
+let value: StopTranscodeSessionResponse = {
+  contentType: "<value>",
+  statusCode: 527,
+};
 ```
 
 ## Fields

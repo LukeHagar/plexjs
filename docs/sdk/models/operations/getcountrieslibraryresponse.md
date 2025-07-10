@@ -5,7 +5,10 @@
 ```typescript
 import { GetCountriesLibraryResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetCountriesLibraryResponse = {};
+let value: GetCountriesLibraryResponse = {
+  contentType: "<value>",
+  statusCode: 138249,
+};
 ```
 
 ## Fields

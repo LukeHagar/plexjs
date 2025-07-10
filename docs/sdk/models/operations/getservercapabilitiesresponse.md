@@ -5,7 +5,10 @@
 ```typescript
 import { GetServerCapabilitiesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetServerCapabilitiesResponse = {};
+let value: GetServerCapabilitiesResponse = {
+  contentType: "<value>",
+  statusCode: 281810,
+};
 ```
 
 ## Fields

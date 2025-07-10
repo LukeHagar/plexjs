@@ -5,7 +5,10 @@
 ```typescript
 import { GetGlobalHubsResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetGlobalHubsResponse = {};
+let value: GetGlobalHubsResponse = {
+  contentType: "<value>",
+  statusCode: 711048,
+};
 ```
 
 ## Fields

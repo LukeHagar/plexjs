@@ -5,7 +5,10 @@
 ```typescript
 import { CancelServerActivitiesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: CancelServerActivitiesResponse = {};
+let value: CancelServerActivitiesResponse = {
+  contentType: "<value>",
+  statusCode: 192797,
+};
 ```
 
 ## Fields

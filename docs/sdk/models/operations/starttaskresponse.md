@@ -5,7 +5,10 @@
 ```typescript
 import { StartTaskResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: StartTaskResponse = {};
+let value: StartTaskResponse = {
+  contentType: "<value>",
+  statusCode: 493804,
+};
 ```
 
 ## Fields

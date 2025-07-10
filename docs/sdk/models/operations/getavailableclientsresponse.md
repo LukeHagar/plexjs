@@ -5,7 +5,10 @@
 ```typescript
 import { GetAvailableClientsResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetAvailableClientsResponse = {};
+let value: GetAvailableClientsResponse = {
+  contentType: "<value>",
+  statusCode: 927142,
+};
 ```
 
 ## Fields

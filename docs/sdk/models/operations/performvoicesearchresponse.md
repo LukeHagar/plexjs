@@ -5,7 +5,10 @@
 ```typescript
 import { PerformVoiceSearchResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: PerformVoiceSearchResponse = {};
+let value: PerformVoiceSearchResponse = {
+  contentType: "<value>",
+  statusCode: 944456,
+};
 ```
 
 ## Fields

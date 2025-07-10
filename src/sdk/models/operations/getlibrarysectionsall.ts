@@ -2280,7 +2280,7 @@ export const GetLibrarySectionsAllStream$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.number().int(),
-  streamType: z.literal(1).optional(),
+  streamType: z.literal(1).default(1).optional(),
   format: z.string().optional(),
   default: z.boolean().optional(),
   codec: z.string(),

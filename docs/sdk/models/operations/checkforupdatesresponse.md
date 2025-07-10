@@ -5,7 +5,10 @@
 ```typescript
 import { CheckForUpdatesResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: CheckForUpdatesResponse = {};
+let value: CheckForUpdatesResponse = {
+  contentType: "<value>",
+  statusCode: 395012,
+};
 ```
 
 ## Fields

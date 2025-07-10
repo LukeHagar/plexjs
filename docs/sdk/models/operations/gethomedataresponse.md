@@ -5,7 +5,10 @@
 ```typescript
 import { GetHomeDataResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetHomeDataResponse = {};
+let value: GetHomeDataResponse = {
+  contentType: "<value>",
+  statusCode: 145217,
+};
 ```
 
 ## Fields

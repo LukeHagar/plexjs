@@ -5,7 +5,10 @@
 ```typescript
 import { GetTopWatchedContentResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: GetTopWatchedContentResponse = {};
+let value: GetTopWatchedContentResponse = {
+  contentType: "<value>",
+  statusCode: 478842,
+};
 ```
 
 ## Fields
