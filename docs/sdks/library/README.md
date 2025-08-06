@@ -35,6 +35,7 @@ This resource returns hash values for local files
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getFileHash" method="get" path="/library/hashes" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -107,6 +108,7 @@ This endpoint will return the recently added content.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-recently-added-library" method="get" path="/library/recentlyAdded" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { QueryParamIncludeMeta, QueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -223,6 +225,7 @@ This allows a client to provide a rich interface around the media (e.g. allow so
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-all-libraries" method="get" path="/library/sections" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -331,6 +334,7 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-library-details" method="get" path="/library/sections/{sectionKey}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -402,6 +406,7 @@ Delete a library using a specific section id
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteLibrary" method="delete" path="/library/sections/{sectionKey}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -493,6 +498,7 @@ Fetches details from a specific section of the library identified by a section k
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-library-items" method="get" path="/library/sections/{sectionKey}/{tag}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import {
@@ -588,6 +594,7 @@ Retrieves a list of all general media data for this library.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-library-sections-all" method="get" path="/library/sections/{sectionKey}/all" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import {
@@ -691,6 +698,7 @@ This endpoint Refreshes all the Metadata of the library.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-refresh-library-metadata" method="get" path="/library/sections/{sectionKey}/refresh" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Force } from "@lukehagar/plexjs/sdk/models/operations";
@@ -782,6 +790,7 @@ Each type in the library comes with a set of filters and sorts, aiding in buildi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-search-library" method="get" path="/library/sections/{sectionKey}/search" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { GetSearchLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -856,6 +865,7 @@ Retrieves a list of all the genres that are found for the media in this library.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-genres-library" method="get" path="/library/sections/{sectionKey}/genre" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { GetGenresLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -930,6 +940,7 @@ Retrieves a list of all the countries that are found for the media in this libra
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-countries-library" method="get" path="/library/sections/{sectionKey}/country" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { GetCountriesLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1004,6 +1015,7 @@ Retrieves a list of all the actors that are found for the media in this library.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-actors-library" method="get" path="/library/sections/{sectionKey}/actor" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { GetActorsLibraryQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -1078,6 +1090,7 @@ Search the provided query across all library sections, or a single section, and 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-search-all-libraries" method="get" path="/library/search" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import {
@@ -1176,6 +1189,7 @@ Multiple rating keys can be provided as a comma-separated list (e.g., "21119,216
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-media-meta-data" method="get" path="/library/metadata/{ratingKey}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1276,6 +1290,7 @@ Returns the background artwork for a library item.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-media-arts" method="get" path="/library/metadata/{ratingKey}/arts" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1344,6 +1359,7 @@ Uploads an image to use as the background artwork for a library item, either fro
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="post-media-arts" method="post" path="/library/metadata/{ratingKey}/arts" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1414,6 +1430,7 @@ Returns the available posters for a library item.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-media-posters" method="get" path="/library/metadata/{ratingKey}/posters" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1482,6 +1499,7 @@ Uploads a poster to a library item, either from a local file or a remote URL
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="post-media-poster" method="post" path="/library/metadata/{ratingKey}/posters" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1553,6 +1571,7 @@ This endpoint will return the children of of a library item specified with the r
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getMetadataChildren" method="get" path="/library/metadata/{ratingKey}/children" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -1625,6 +1644,7 @@ This endpoint will return the top watched content from libraries of a certain ty
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTopWatchedContent" method="get" path="/library/all/top" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { GetTopWatchedContentQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";

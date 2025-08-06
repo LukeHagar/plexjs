@@ -20,6 +20,7 @@ This will mark the provided media key as Played.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="markPlayed" method="get" path="/:/scrobble" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -90,6 +91,7 @@ This will mark the provided media key as Unplayed.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="markUnplayed" method="get" path="/:/unscrobble" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -161,6 +163,7 @@ This API command can be used to update the play progress of a media item.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updatePlayProgress" method="post" path="/:/progress" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -233,6 +236,7 @@ Gets the banner image of the media item
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-banner-image" method="get" path="/library/metadata/{ratingKey}/banner" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -317,6 +321,7 @@ Gets the thumbnail image of the media item
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-thumb-image" method="get" path="/library/metadata/{ratingKey}/thumb" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

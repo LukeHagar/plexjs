@@ -19,6 +19,7 @@ Querying status of updates
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getUpdateStatus" method="get" path="/updater/status" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -88,6 +89,7 @@ Checking for updates
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="checkForUpdates" method="put" path="/updater/check" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Download } from "@lukehagar/plexjs/sdk/models/operations";
@@ -161,6 +163,7 @@ Note that these two parameters are effectively mutually exclusive. The `tonight`
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="applyUpdates" method="put" path="/updater/apply" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Skip, Tonight } from "@lukehagar/plexjs/sdk/models/operations";

@@ -23,6 +23,7 @@ Get Server Activities
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getServerActivities" method="get" path="/activities" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -92,6 +93,7 @@ Cancel Server Activities
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="cancelServerActivities" method="delete" path="/activities/{activityUUID}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

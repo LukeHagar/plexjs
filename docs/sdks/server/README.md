@@ -24,6 +24,7 @@ Get Server Capabilities
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getServerCapabilities" method="get" path="/" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -93,6 +94,7 @@ Get Server Preferences
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getServerPreferences" method="get" path="/:/prefs" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -162,6 +164,7 @@ Get Available Clients
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAvailableClients" method="get" path="/clients" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -231,6 +234,7 @@ Get Devices
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getDevices" method="get" path="/devices" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -300,6 +304,7 @@ This request is useful to determine if the server is online or offline
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-server-identity" method="get" path="/identity" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -364,6 +369,7 @@ Returns MyPlex Account Information
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getMyPlexAccount" method="get" path="/myplex/account" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -434,6 +440,7 @@ Plex's Photo transcoder is used throughout the service to serve images at specif
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResizedPhoto" method="get" path="/photo/:/transcode" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { MinSize, Upscale } from "@lukehagar/plexjs/sdk/models/operations";
@@ -520,6 +527,7 @@ Retrieves media providers and their features from the Plex server.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-media-providers" method="get" path="/media/providers" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -590,6 +598,7 @@ Get Server List
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getServerList" method="get" path="/servers" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

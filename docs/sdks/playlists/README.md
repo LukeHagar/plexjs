@@ -30,6 +30,7 @@ Create a new playlist. By default the playlist is blank. To create a playlist al
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createPlaylist" method="post" path="/playlists" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { CreatePlaylistQueryParamType, Smart } from "@lukehagar/plexjs/sdk/models/operations";
@@ -112,6 +113,7 @@ Get All Playlists given the specified filters.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPlaylists" method="get" path="/playlists" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -185,6 +187,7 @@ Smart playlist details contain the `content` attribute. This is the content URI 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPlaylist" method="get" path="/playlists/{playlistID}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -256,6 +259,7 @@ This endpoint will delete a playlist
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deletePlaylist" method="delete" path="/playlists/{playlistID}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -327,6 +331,7 @@ From PMS version 1.9.1 clients can also edit playlist metadata using this endpoi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updatePlaylist" method="put" path="/playlists/{playlistID}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -403,6 +408,7 @@ Note that for dumb playlists, items have a `playlistItemID` attribute which is u
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPlaylistContents" method="get" path="/playlists/{playlistID}/items" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { GetPlaylistContentsQueryParamType } from "@lukehagar/plexjs/sdk/models/operations";
@@ -477,6 +483,7 @@ Clears a playlist, only works with dumb playlists. Returns the playlist.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="clearPlaylistContents" method="delete" path="/playlists/{playlistID}/items" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -549,6 +556,7 @@ With a smart playlist, passing a new `uri` parameter replaces the rules for the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="addPlaylistContents" method="put" path="/playlists/{playlistID}/items" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -622,6 +630,7 @@ Imports m3u playlists by passing a path on the server to scan for m3u-formatted 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="uploadPlaylist" method="post" path="/playlists/upload" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { QueryParamForce } from "@lukehagar/plexjs/sdk/models/operations";

@@ -30,6 +30,7 @@ This request is intended to be very fast, and called as the user types.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="performSearch" method="get" path="/hubs/search" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -106,6 +107,7 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="performVoiceSearch" method="get" path="/hubs/search/voice" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -178,6 +180,7 @@ This will search the database for the string provided.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getSearchResults" method="get" path="/search" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

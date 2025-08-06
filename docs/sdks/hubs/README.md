@@ -18,6 +18,7 @@ Get Global Hubs filtered by the parameters provided.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGlobalHubs" method="get" path="/hubs" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -90,6 +91,7 @@ This endpoint will return the recently added content.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-recently-added" method="get" path="/hubs/home/recentlyAdded" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
@@ -171,6 +173,7 @@ This endpoint will return a list of library specific hubs
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getLibraryHubs" method="get" path="/hubs/sections/{sectionId}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

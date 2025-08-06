@@ -22,6 +22,7 @@ Get Companions Data
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getCompanionsData" method="get" path="/companions" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -92,6 +93,7 @@ Get friends of provided auth token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getUserFriends" method="get" path="/friends" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -162,6 +164,7 @@ Returns the geolocation and locale data of the caller
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGeoData" method="get" path="/geoip" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -228,6 +231,7 @@ Retrieves the home data for the authenticated user, including details like home 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getHomeData" method="get" path="/home" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -297,6 +301,7 @@ Get Plex server access tokens and server connections
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-server-resources" method="get" path="/resources" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -371,6 +376,7 @@ Retrieve a Pin ID from Plex.tv to use for authentication flows
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPin" method="post" path="/pins" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -449,6 +455,7 @@ Retrieve an Access Token from Plex.tv after the Pin has been authenticated
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTokenByPinId" method="get" path="/pins/{pinID}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

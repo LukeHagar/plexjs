@@ -20,6 +20,7 @@ This endpoint provides the caller with a temporary token with the same access le
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTransientToken" method="get" path="/security/token" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { GetTransientTokenQueryParamType, Scope } from "@lukehagar/plexjs/sdk/models/operations";
@@ -95,6 +96,7 @@ Note: requires Plex Media Server >= 1.15.4.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getSourceConnectionInformation" method="get" path="/security/resources" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -165,6 +167,7 @@ Get the User data from the provided X-Plex-Token
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTokenDetails" method="get" path="/user" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -235,6 +238,7 @@ Sign in user with username and password and return user data with Plex authentic
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="post-users-sign-in-data" method="post" path="/users/signin" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

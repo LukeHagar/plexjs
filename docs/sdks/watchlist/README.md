@@ -16,6 +16,7 @@ Get User Watchlist
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get-watch-list" method="get" path="/library/sections/watchlist/{filter}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Filter } from "@lukehagar/plexjs/sdk/models/operations";

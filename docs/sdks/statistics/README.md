@@ -18,6 +18,7 @@ This will return the media statistics for the server
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getStatistics" method="get" path="/statistics/media" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -88,6 +89,7 @@ This will return the resources for the server
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getResourcesStatistics" method="get" path="/statistics/resources" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -158,6 +160,7 @@ This will return the bandwidth statistics for the server
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBandwidthStatistics" method="get" path="/statistics/bandwidth" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

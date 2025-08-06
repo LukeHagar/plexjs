@@ -19,6 +19,7 @@ This endpoint will write a single-line log message, including a level and source
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="logLine" method="get" path="/log" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { Level } from "@lukehagar/plexjs/sdk/models/operations";
@@ -114,6 +115,7 @@ Ensure each parameter is properly URL-encoded to avoid interpretation issues.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="logMultiLine" method="post" path="/log" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -189,6 +191,7 @@ This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="enablePaperTrail" method="get" path="/log/networked" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

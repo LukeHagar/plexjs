@@ -17,6 +17,7 @@ Get the timeline for a media item
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTimeline" method="get" path="/:/timeline" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 import { State } from "@lukehagar/plexjs/sdk/models/operations";
@@ -111,6 +112,7 @@ Begin a Universal Transcode Session
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="startUniversalTranscode" method="get" path="/video/:/transcode/universal/start.mpd" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 

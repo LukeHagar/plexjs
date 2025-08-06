@@ -19,6 +19,7 @@ This will retrieve the "Now Playing" Information of the PMS.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getSessions" method="get" path="/status/sessions" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -88,6 +89,7 @@ This will Retrieve a listing of all history views.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getSessionHistory" method="get" path="/status/sessions/history/all" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -161,6 +163,7 @@ Get Transcode Sessions
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTranscodeSessions" method="get" path="/transcode/sessions" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
@@ -230,6 +233,7 @@ Stop a Transcode Session
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="stopTranscodeSession" method="delete" path="/transcode/sessions/{sessionKey}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
