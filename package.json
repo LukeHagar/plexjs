@@ -1,6 +1,6 @@
 {
   "name": "@lukehagar/plexjs",
-  "version": "0.40.1",
+  "version": "0.40.2",
   "author": "LukeHagar",
   "main": "./index.js",
   "sideEffects": false,
@@ -22,7 +22,7 @@
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
     "zod": "^3.20.0"
