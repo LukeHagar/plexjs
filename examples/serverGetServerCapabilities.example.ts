@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the @lukehagar/plexjs SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx serverGetServerCapabilities.ts
+ * npm run build && npx tsx serverGetServerCapabilities.example.ts
  */
 
 import { PlexAPI } from "@lukehagar/plexjs";
@@ -18,7 +18,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function main() {
-  const result = await plexAPI.getServerCapabilities();
+  const result = await plexAPI.server.getServerCapabilities();
 
   console.log(result);
 }

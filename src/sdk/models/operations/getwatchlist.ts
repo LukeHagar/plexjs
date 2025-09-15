@@ -16,9 +16,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const GetWatchListServerList = [
   /**
-   * The plex metadata provider server
+   * The plex discover provider server
    */
-  "https://metadata.provider.plex.tv",
+  "https://discover.provider.plex.tv",
 ] as const;
 
 /**
