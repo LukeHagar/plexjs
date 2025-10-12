@@ -27,23 +27,25 @@ Compute the best channel map, given device and lineup
 <!-- UsageSnippet language="typescript" operationID="computeChannelMap" method="get" path="/livetv/epg/channelmap" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
   const result = await plexAPI.epg.computeChannelMap({
-    device: "Mobile",
+    deviceQueryParameter: "Mobile",
     lineup: "<value>",
   });
 
@@ -60,25 +62,27 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { epgComputeChannelMap } from "@lukehagar/plexjs/funcs/epgComputeChannelMap.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
   const res = await epgComputeChannelMap(plexAPI, {
-    device: "Mobile",
+    deviceQueryParameter: "Mobile",
     lineup: "<value>",
   });
   if (res.ok) {
@@ -120,18 +124,20 @@ Get channels for a lineup within an EPG provider
 <!-- UsageSnippet language="typescript" operationID="getChannels" method="get" path="/livetv/epg/channels" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -152,20 +158,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { epgGetChannels } from "@lukehagar/plexjs/funcs/epgGetChannels.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -339,23 +347,25 @@ Compute the best lineup, given lineup group and device
 <!-- UsageSnippet language="typescript" operationID="getLineup" method="get" path="/livetv/epg/lineup" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
   const result = await plexAPI.epg.getLineup({
-    device: "Desktop",
+    deviceQueryParameter: "Desktop",
     lineupGroup: "<value>",
   });
 
@@ -372,25 +382,27 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { epgGetLineup } from "@lukehagar/plexjs/funcs/epgGetLineup.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
   const res = await epgGetLineup(plexAPI, {
-    device: "Desktop",
+    deviceQueryParameter: "Desktop",
     lineupGroup: "<value>",
   });
   if (res.ok) {
@@ -432,18 +444,20 @@ Get the channels across multiple lineups
 <!-- UsageSnippet language="typescript" operationID="getLineupChannels" method="get" path="/livetv/epg/lineupchannels" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -467,20 +481,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { epgGetLineupChannels } from "@lukehagar/plexjs/funcs/epgGetLineupChannels.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -529,18 +545,20 @@ Returns a list of lineups for a given country, EPG provider and postal code
 <!-- UsageSnippet language="typescript" operationID="getCountriesLineups" method="get" path="/livetv/epg/countries/{country}/{epgId}/lineups" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -562,20 +580,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { epgGetCountriesLineups } from "@lukehagar/plexjs/funcs/epgGetCountriesLineups.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -622,18 +642,20 @@ Get regions for a country within an EPG provider
 <!-- UsageSnippet language="typescript" operationID="getCountryRegions" method="get" path="/livetv/epg/countries/{country}/{epgId}/regions" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -655,20 +677,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { epgGetCountryRegions } from "@lukehagar/plexjs/funcs/epgGetCountryRegions.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -715,18 +739,20 @@ Get lineups for a region within an EPG provider
 <!-- UsageSnippet language="typescript" operationID="listLineups" method="get" path="/livetv/epg/countries/{country}/{epgId}/regions/{region}/lineups" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -749,20 +775,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { epgListLineups } from "@lukehagar/plexjs/funcs/epgListLineups.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {

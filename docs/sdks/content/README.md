@@ -30,18 +30,20 @@ Get items in a collection.  Note if this collection contains more than 100 items
 <!-- UsageSnippet language="typescript" operationID="getCollectionItems" method="get" path="/library/collections/{collectionId}/items" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -62,20 +64,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetCollectionItems } from "@lukehagar/plexjs/funcs/contentGetCollectionItems.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -121,19 +125,20 @@ Get one or more metadata items.
 <!-- UsageSnippet language="typescript" operationID="getMetadataItem" method="get" path="/library/metadata/{ids}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -162,21 +167,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetMetadataItem } from "@lukehagar/plexjs/funcs/contentGetMetadataItem.js";
-import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -230,18 +236,20 @@ Get all albums in a music section
 <!-- UsageSnippet language="typescript" operationID="getAlbums" method="get" path="/library/sections/{sectionId}/albums" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -262,20 +270,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetAlbums } from "@lukehagar/plexjs/funcs/contentGetAlbums.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -321,18 +331,20 @@ Get the items in a section, potentially filtering them
 <!-- UsageSnippet language="typescript" operationID="listContent" method="get" path="/library/sections/{sectionId}/all" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -353,20 +365,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentListContent } from "@lukehagar/plexjs/funcs/contentListContent.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -412,18 +426,20 @@ Get all leaves in a section (such as episodes in a show section)
 <!-- UsageSnippet language="typescript" operationID="getAllLeaves" method="get" path="/library/sections/{sectionId}/allLeaves" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -444,20 +460,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetAllLeaves } from "@lukehagar/plexjs/funcs/contentGetAllLeaves.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -503,18 +521,20 @@ Get artwork for a library section
 <!-- UsageSnippet language="typescript" operationID="getArts" method="get" path="/library/sections/{sectionId}/arts" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -535,20 +555,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetArts } from "@lukehagar/plexjs/funcs/contentGetArts.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -594,18 +616,20 @@ Get categories in a library section
 <!-- UsageSnippet language="typescript" operationID="getCategories" method="get" path="/library/sections/{sectionId}/categories" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -626,20 +650,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetCategories } from "@lukehagar/plexjs/funcs/contentGetCategories.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -685,18 +711,20 @@ Get clusters in a library section (typically for photos)
 <!-- UsageSnippet language="typescript" operationID="getCluster" method="get" path="/library/sections/{sectionId}/cluster" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -717,20 +745,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetCluster } from "@lukehagar/plexjs/funcs/contentGetCluster.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -776,18 +806,20 @@ Get a list of audio tracks starting at one and ending at another which are simil
 <!-- UsageSnippet language="typescript" operationID="getSonicPath" method="get" path="/library/sections/{sectionId}/computePath" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -810,20 +842,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetSonicPath } from "@lukehagar/plexjs/funcs/contentGetSonicPath.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -871,18 +905,20 @@ Get all folder locations of the media in a section
 <!-- UsageSnippet language="typescript" operationID="getFolders" method="get" path="/library/sections/{sectionId}/location" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -903,20 +939,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetFolders } from "@lukehagar/plexjs/funcs/contentGetFolders.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -962,18 +1000,20 @@ Get moments in a library section (typically for photos)
 <!-- UsageSnippet language="typescript" operationID="listMoments" method="get" path="/library/sections/{sectionId}/moment" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -994,20 +1034,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentListMoments } from "@lukehagar/plexjs/funcs/contentListMoments.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -1053,18 +1095,20 @@ Get the nearest audio tracks to a particular analysis
 <!-- UsageSnippet language="typescript" operationID="getSonicallySimilar" method="get" path="/library/sections/{sectionId}/nearest" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -1086,20 +1130,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetSonicallySimilar } from "@lukehagar/plexjs/funcs/contentGetSonicallySimilar.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -1146,18 +1192,20 @@ Get an image for the collection based on the items within
 <!-- UsageSnippet language="typescript" operationID="getCollectionImage" method="get" path="/library/collections/{collectionId}/composite/{updatedAt}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -1179,20 +1227,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentGetCollectionImage } from "@lukehagar/plexjs/funcs/contentGetCollectionImage.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {

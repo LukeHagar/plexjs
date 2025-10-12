@@ -84,18 +84,20 @@ Set a set of preferences in query parameters
 <!-- UsageSnippet language="typescript" operationID="setPreferences" method="put" path="/:/prefs" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -116,20 +118,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { preferencesSetPreferences } from "@lukehagar/plexjs/funcs/preferencesSetPreferences.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -175,18 +179,20 @@ Get a single preference and value
 <!-- UsageSnippet language="typescript" operationID="getPreference" method="get" path="/:/prefs/get" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -205,20 +211,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { preferencesGetPreference } from "@lukehagar/plexjs/funcs/preferencesGetPreference.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {

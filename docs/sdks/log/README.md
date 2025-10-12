@@ -91,18 +91,20 @@ Note: This endpoint responds to all HTTP verbs **except POST** but PUT is prefer
 <!-- UsageSnippet language="typescript" operationID="writeMessage" method="put" path="/log" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -121,20 +123,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { logWriteMessage } from "@lukehagar/plexjs/funcs/logWriteMessage.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -181,18 +185,20 @@ Note: This endpoint responds to all HTTP verbs but POST is preferred
 <!-- UsageSnippet language="typescript" operationID="enablePapertrail" method="post" path="/log/networked" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {
@@ -211,20 +217,22 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { logEnablePapertrail } from "@lukehagar/plexjs/funcs/logEnablePapertrail.js";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  xPlexClientIdentifier: "abc123",
-  xPlexProduct: "Plex for Roku",
-  xPlexVersion: "2.4.1",
-  xPlexPlatform: "Roku",
-  xPlexPlatformVersion: "4.3 build 1057",
-  xPlexDevice: "Roku 3",
-  xPlexModel: "4200X",
-  xPlexDeviceVendor: "Roku",
-  xPlexDeviceName: "Living Room TV",
-  xPlexMarketplace: "googlePlay",
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
 });
 
 async function run() {

@@ -43,6 +43,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -106,6 +109,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -156,6 +162,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -200,6 +209,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/octet-stream
@@ -244,6 +256,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/octet-stream
@@ -301,6 +316,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -387,6 +405,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -469,6 +490,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
     x-speakeasy-test-group: Butler
@@ -511,6 +535,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
     x-speakeasy-test-group: Butler
@@ -566,6 +593,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -696,6 +726,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -743,6 +776,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -793,6 +829,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -992,6 +1031,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -1039,6 +1081,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -1240,6 +1285,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -1447,6 +1495,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -1491,6 +1542,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -1698,6 +1752,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -1905,6 +1962,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -2112,6 +2172,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -2319,6 +2382,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -2523,6 +2589,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -2573,6 +2642,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -2623,6 +2695,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -2827,6 +2902,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -3028,6 +3106,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -3230,6 +3311,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -3429,6 +3513,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -3624,6 +3711,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -3707,6 +3797,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -3922,6 +4015,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -3975,6 +4071,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -4022,6 +4121,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -4215,6 +4317,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -4408,6 +4513,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == audio/mpeg3
@@ -4464,6 +4572,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -4514,6 +4625,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -4707,6 +4821,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -4900,6 +5017,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -5104,6 +5224,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -5297,6 +5420,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -5633,6 +5759,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -5680,6 +5809,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -5739,6 +5871,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -5935,6 +6070,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6128,6 +6266,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6321,6 +6462,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6514,6 +6658,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6707,6 +6854,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6754,6 +6904,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6801,6 +6954,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6848,6 +7004,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6895,6 +7054,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -6942,6 +7104,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == text/plain
@@ -6992,6 +7157,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == image/jpeg
@@ -7051,6 +7219,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7101,6 +7272,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/octet-stream
@@ -7154,6 +7328,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == audio/mpeg3
@@ -7207,6 +7384,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == image/jpeg
@@ -7254,6 +7434,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7467,6 +7650,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7514,6 +7700,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7564,6 +7753,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7614,6 +7806,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7661,6 +7856,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7711,6 +7909,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7907,6 +8108,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -7957,6 +8161,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8007,6 +8214,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8054,6 +8264,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8129,6 +8342,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8179,6 +8395,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8229,6 +8448,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8282,6 +8504,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8458,6 +8683,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8651,6 +8879,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8711,6 +8942,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8771,6 +9005,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8818,6 +9055,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8868,6 +9108,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8925,6 +9168,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -8972,6 +9218,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -9019,6 +9268,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -9069,6 +9321,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -9141,6 +9396,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -9355,6 +9613,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -9715,6 +9976,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -9925,6 +10189,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -10127,6 +10394,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -10326,6 +10596,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -10540,6 +10813,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == image/jpeg
@@ -10671,6 +10947,9 @@ workflows:
           - name: X-Plex-Client-Profile-Name
             in: header
             value: generic
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -10951,6 +11230,9 @@ workflows:
           - name: X-Plex-Client-Profile-Name
             in: header
             value: generic
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == video/x-matroska
@@ -10995,6 +11277,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -11188,6 +11473,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -11257,6 +11545,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -11450,6 +11741,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -11523,6 +11817,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
     x-speakeasy-test-group: Library Playlists
@@ -11565,6 +11862,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
     x-speakeasy-test-group: Library Playlists
@@ -11607,6 +11907,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
     x-speakeasy-test-group: Library Playlists
@@ -11649,6 +11952,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -11696,6 +12002,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -11889,6 +12198,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -12085,6 +12397,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -12281,6 +12596,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -12345,6 +12663,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -12541,6 +12862,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -12735,6 +13059,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -12943,6 +13270,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -12999,6 +13329,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -13195,6 +13528,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -13388,6 +13724,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -13581,6 +13920,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -13774,6 +14116,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -13967,6 +14312,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -14163,6 +14511,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -14359,6 +14710,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -14552,6 +14906,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -14617,6 +14974,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == image/png
@@ -14837,6 +15197,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -14884,6 +15247,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -14931,6 +15297,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -14991,6 +15360,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -15208,6 +15580,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -15401,6 +15776,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -15594,6 +15972,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -15787,6 +16168,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -15980,6 +16364,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -16027,6 +16414,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -16074,6 +16464,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -16127,6 +16520,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -16320,6 +16716,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -16367,6 +16766,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -16417,6 +16819,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -16613,6 +17018,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == image/jpeg
@@ -16663,6 +17071,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -16859,6 +17270,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -17055,6 +17469,9 @@ workflows:
           - name: X-Plex-Marketplace
             in: header
             value: googlePlay
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json

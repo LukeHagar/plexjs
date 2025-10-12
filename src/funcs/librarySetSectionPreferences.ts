@@ -103,60 +103,63 @@ async function $do(
     Accept: "*/*",
     "X-Plex-Client-Identifier": encodeSimple(
       "X-Plex-Client-Identifier",
-      payload["X-Plex-Client-Identifier"]
-        ?? client._options.xPlexClientIdentifier,
+      payload["Client-Identifier"] ?? client._options.clientIdentifier,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Device": encodeSimple(
       "X-Plex-Device",
-      payload["X-Plex-Device"] ?? client._options.xPlexDevice,
+      payload.Device ?? client._options.device,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Device-Name": encodeSimple(
       "X-Plex-Device-Name",
-      payload["X-Plex-Device-Name"] ?? client._options.xPlexDeviceName,
+      payload["Device-Name"] ?? client._options.deviceName,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Device-Vendor": encodeSimple(
       "X-Plex-Device-Vendor",
-      payload["X-Plex-Device-Vendor"] ?? client._options.xPlexDeviceVendor,
+      payload["Device-Vendor"] ?? client._options.deviceVendor,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Marketplace": encodeSimple(
       "X-Plex-Marketplace",
-      payload["X-Plex-Marketplace"] ?? client._options.xPlexMarketplace,
+      payload.Marketplace ?? client._options.marketplace,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Model": encodeSimple(
       "X-Plex-Model",
-      payload["X-Plex-Model"] ?? client._options.xPlexModel,
+      payload.Model ?? client._options.model,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Platform": encodeSimple(
       "X-Plex-Platform",
-      payload["X-Plex-Platform"] ?? client._options.xPlexPlatform,
+      payload.Platform ?? client._options.platform,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Platform-Version": encodeSimple(
       "X-Plex-Platform-Version",
-      payload["X-Plex-Platform-Version"]
-        ?? client._options.xPlexPlatformVersion,
+      payload["Platform-Version"] ?? client._options.platformVersion,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Product": encodeSimple(
       "X-Plex-Product",
-      payload["X-Plex-Product"] ?? client._options.xPlexProduct,
+      payload.Product ?? client._options.product,
       { explode: false, charEncoding: "none" },
     ),
     "X-Plex-Version": encodeSimple(
       "X-Plex-Version",
-      payload["X-Plex-Version"] ?? client._options.xPlexVersion,
+      payload.Version ?? client._options.version,
+      { explode: false, charEncoding: "none" },
+    ),
+    "accepts": encodeSimple(
+      "accepts",
+      payload.accepts ?? client._options.accepts,
       { explode: false, charEncoding: "none" },
     ),
   }));
 
-  const secConfig = await extractSecurity(client._options.apiKey);
-  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const secConfig = await extractSecurity(client._options.token);
+  const securityInput = secConfig == null ? {} : { token: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
@@ -167,7 +170,7 @@ async function $do(
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.apiKey,
+    securitySource: client._options.token,
     retryConfig: options?.retries
       || client._options.retryConfig
       || { strategy: "none" },

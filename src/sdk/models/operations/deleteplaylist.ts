@@ -7,91 +7,100 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import * as shared from "../shared/index.js";
 
 export type DeletePlaylistGlobals = {
   /**
+   * Indicates the client accepts the indicated media types
+   */
+  accepts?: shared.Accepts | undefined;
+  /**
    * An opaque identifier unique to the client
    */
-  xPlexClientIdentifier?: string | undefined;
+  clientIdentifier?: string | undefined;
   /**
    * The name of the client product
    */
-  xPlexProduct?: string | undefined;
+  product?: string | undefined;
   /**
    * The version of the client application
    */
-  xPlexVersion?: string | undefined;
+  version?: string | undefined;
   /**
    * The platform of the client
    */
-  xPlexPlatform?: string | undefined;
+  platform?: string | undefined;
   /**
    * The version of the platform
    */
-  xPlexPlatformVersion?: string | undefined;
+  platformVersion?: string | undefined;
   /**
    * A relatively friendly name for the client device
    */
-  xPlexDevice?: string | undefined;
+  device?: string | undefined;
   /**
    * A potentially less friendly identifier for the device model
    */
-  xPlexModel?: string | undefined;
+  model?: string | undefined;
   /**
    * The device vendor
    */
-  xPlexDeviceVendor?: string | undefined;
+  deviceVendor?: string | undefined;
   /**
    * A friendly name for the client
    */
-  xPlexDeviceName?: string | undefined;
+  deviceName?: string | undefined;
   /**
    * The marketplace on which the client application is distributed
    */
-  xPlexMarketplace?: string | undefined;
+  marketplace?: string | undefined;
 };
 
 export type DeletePlaylistRequest = {
   /**
+   * Indicates the client accepts the indicated media types
+   */
+  accepts?: shared.Accepts | undefined;
+  /**
    * An opaque identifier unique to the client
    */
-  xPlexClientIdentifier?: string | undefined;
+  clientIdentifier?: string | undefined;
   /**
    * The name of the client product
    */
-  xPlexProduct?: string | undefined;
+  product?: string | undefined;
   /**
    * The version of the client application
    */
-  xPlexVersion?: string | undefined;
+  version?: string | undefined;
   /**
    * The platform of the client
    */
-  xPlexPlatform?: string | undefined;
+  platform?: string | undefined;
   /**
    * The version of the platform
    */
-  xPlexPlatformVersion?: string | undefined;
+  platformVersion?: string | undefined;
   /**
    * A relatively friendly name for the client device
    */
-  xPlexDevice?: string | undefined;
+  device?: string | undefined;
   /**
    * A potentially less friendly identifier for the device model
    */
-  xPlexModel?: string | undefined;
+  model?: string | undefined;
   /**
    * The device vendor
    */
-  xPlexDeviceVendor?: string | undefined;
+  deviceVendor?: string | undefined;
   /**
    * A friendly name for the client
    */
-  xPlexDeviceName?: string | undefined;
+  deviceName?: string | undefined;
   /**
    * The marketplace on which the client application is distributed
    */
-  xPlexMarketplace?: string | undefined;
+  marketplace?: string | undefined;
   /**
    * The ID of the playlist
    */
@@ -119,43 +128,45 @@ export const DeletePlaylistGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "X-Plex-Client-Identifier": z.string().optional(),
-  "X-Plex-Product": z.string().optional(),
-  "X-Plex-Version": z.string().optional(),
-  "X-Plex-Platform": z.string().optional(),
-  "X-Plex-Platform-Version": z.string().optional(),
-  "X-Plex-Device": z.string().optional(),
-  "X-Plex-Model": z.string().optional(),
-  "X-Plex-Device-Vendor": z.string().optional(),
-  "X-Plex-Device-Name": z.string().optional(),
-  "X-Plex-Marketplace": z.string().optional(),
+  accepts: shared.Accepts$inboundSchema.default(shared.Accepts.ApplicationXml),
+  "Client-Identifier": z.string().optional(),
+  Product: z.string().optional(),
+  Version: z.string().optional(),
+  Platform: z.string().optional(),
+  "Platform-Version": z.string().optional(),
+  Device: z.string().optional(),
+  Model: z.string().optional(),
+  "Device-Vendor": z.string().optional(),
+  "Device-Name": z.string().optional(),
+  Marketplace: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
-    "X-Plex-Product": "xPlexProduct",
-    "X-Plex-Version": "xPlexVersion",
-    "X-Plex-Platform": "xPlexPlatform",
-    "X-Plex-Platform-Version": "xPlexPlatformVersion",
-    "X-Plex-Device": "xPlexDevice",
-    "X-Plex-Model": "xPlexModel",
-    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
-    "X-Plex-Device-Name": "xPlexDeviceName",
-    "X-Plex-Marketplace": "xPlexMarketplace",
+    "Client-Identifier": "clientIdentifier",
+    "Product": "product",
+    "Version": "version",
+    "Platform": "platform",
+    "Platform-Version": "platformVersion",
+    "Device": "device",
+    "Model": "model",
+    "Device-Vendor": "deviceVendor",
+    "Device-Name": "deviceName",
+    "Marketplace": "marketplace",
   });
 });
 
 /** @internal */
 export type DeletePlaylistGlobals$Outbound = {
-  "X-Plex-Client-Identifier"?: string | undefined;
-  "X-Plex-Product"?: string | undefined;
-  "X-Plex-Version"?: string | undefined;
-  "X-Plex-Platform"?: string | undefined;
-  "X-Plex-Platform-Version"?: string | undefined;
-  "X-Plex-Device"?: string | undefined;
-  "X-Plex-Model"?: string | undefined;
-  "X-Plex-Device-Vendor"?: string | undefined;
-  "X-Plex-Device-Name"?: string | undefined;
-  "X-Plex-Marketplace"?: string | undefined;
+  accepts: string;
+  "Client-Identifier"?: string | undefined;
+  Product?: string | undefined;
+  Version?: string | undefined;
+  Platform?: string | undefined;
+  "Platform-Version"?: string | undefined;
+  Device?: string | undefined;
+  Model?: string | undefined;
+  "Device-Vendor"?: string | undefined;
+  "Device-Name"?: string | undefined;
+  Marketplace?: string | undefined;
 };
 
 /** @internal */
@@ -164,28 +175,29 @@ export const DeletePlaylistGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DeletePlaylistGlobals
 > = z.object({
-  xPlexClientIdentifier: z.string().optional(),
-  xPlexProduct: z.string().optional(),
-  xPlexVersion: z.string().optional(),
-  xPlexPlatform: z.string().optional(),
-  xPlexPlatformVersion: z.string().optional(),
-  xPlexDevice: z.string().optional(),
-  xPlexModel: z.string().optional(),
-  xPlexDeviceVendor: z.string().optional(),
-  xPlexDeviceName: z.string().optional(),
-  xPlexMarketplace: z.string().optional(),
+  accepts: shared.Accepts$outboundSchema.default(shared.Accepts.ApplicationXml),
+  clientIdentifier: z.string().optional(),
+  product: z.string().optional(),
+  version: z.string().optional(),
+  platform: z.string().optional(),
+  platformVersion: z.string().optional(),
+  device: z.string().optional(),
+  model: z.string().optional(),
+  deviceVendor: z.string().optional(),
+  deviceName: z.string().optional(),
+  marketplace: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
-    xPlexClientIdentifier: "X-Plex-Client-Identifier",
-    xPlexProduct: "X-Plex-Product",
-    xPlexVersion: "X-Plex-Version",
-    xPlexPlatform: "X-Plex-Platform",
-    xPlexPlatformVersion: "X-Plex-Platform-Version",
-    xPlexDevice: "X-Plex-Device",
-    xPlexModel: "X-Plex-Model",
-    xPlexDeviceVendor: "X-Plex-Device-Vendor",
-    xPlexDeviceName: "X-Plex-Device-Name",
-    xPlexMarketplace: "X-Plex-Marketplace",
+    clientIdentifier: "Client-Identifier",
+    product: "Product",
+    version: "Version",
+    platform: "Platform",
+    platformVersion: "Platform-Version",
+    device: "Device",
+    model: "Model",
+    deviceVendor: "Device-Vendor",
+    deviceName: "Device-Name",
+    marketplace: "Marketplace",
   });
 });
 
@@ -226,44 +238,46 @@ export const DeletePlaylistRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "X-Plex-Client-Identifier": z.string().optional(),
-  "X-Plex-Product": z.string().optional(),
-  "X-Plex-Version": z.string().optional(),
-  "X-Plex-Platform": z.string().optional(),
-  "X-Plex-Platform-Version": z.string().optional(),
-  "X-Plex-Device": z.string().optional(),
-  "X-Plex-Model": z.string().optional(),
-  "X-Plex-Device-Vendor": z.string().optional(),
-  "X-Plex-Device-Name": z.string().optional(),
-  "X-Plex-Marketplace": z.string().optional(),
+  accepts: shared.Accepts$inboundSchema.default(shared.Accepts.ApplicationXml),
+  "Client-Identifier": z.string().optional(),
+  Product: z.string().optional(),
+  Version: z.string().optional(),
+  Platform: z.string().optional(),
+  "Platform-Version": z.string().optional(),
+  Device: z.string().optional(),
+  Model: z.string().optional(),
+  "Device-Vendor": z.string().optional(),
+  "Device-Name": z.string().optional(),
+  Marketplace: z.string().optional(),
   playlistId: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
-    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
-    "X-Plex-Product": "xPlexProduct",
-    "X-Plex-Version": "xPlexVersion",
-    "X-Plex-Platform": "xPlexPlatform",
-    "X-Plex-Platform-Version": "xPlexPlatformVersion",
-    "X-Plex-Device": "xPlexDevice",
-    "X-Plex-Model": "xPlexModel",
-    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
-    "X-Plex-Device-Name": "xPlexDeviceName",
-    "X-Plex-Marketplace": "xPlexMarketplace",
+    "Client-Identifier": "clientIdentifier",
+    "Product": "product",
+    "Version": "version",
+    "Platform": "platform",
+    "Platform-Version": "platformVersion",
+    "Device": "device",
+    "Model": "model",
+    "Device-Vendor": "deviceVendor",
+    "Device-Name": "deviceName",
+    "Marketplace": "marketplace",
   });
 });
 
 /** @internal */
 export type DeletePlaylistRequest$Outbound = {
-  "X-Plex-Client-Identifier"?: string | undefined;
-  "X-Plex-Product"?: string | undefined;
-  "X-Plex-Version"?: string | undefined;
-  "X-Plex-Platform"?: string | undefined;
-  "X-Plex-Platform-Version"?: string | undefined;
-  "X-Plex-Device"?: string | undefined;
-  "X-Plex-Model"?: string | undefined;
-  "X-Plex-Device-Vendor"?: string | undefined;
-  "X-Plex-Device-Name"?: string | undefined;
-  "X-Plex-Marketplace"?: string | undefined;
+  accepts: string;
+  "Client-Identifier"?: string | undefined;
+  Product?: string | undefined;
+  Version?: string | undefined;
+  Platform?: string | undefined;
+  "Platform-Version"?: string | undefined;
+  Device?: string | undefined;
+  Model?: string | undefined;
+  "Device-Vendor"?: string | undefined;
+  "Device-Name"?: string | undefined;
+  Marketplace?: string | undefined;
   playlistId: number;
 };
 
@@ -273,29 +287,30 @@ export const DeletePlaylistRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DeletePlaylistRequest
 > = z.object({
-  xPlexClientIdentifier: z.string().optional(),
-  xPlexProduct: z.string().optional(),
-  xPlexVersion: z.string().optional(),
-  xPlexPlatform: z.string().optional(),
-  xPlexPlatformVersion: z.string().optional(),
-  xPlexDevice: z.string().optional(),
-  xPlexModel: z.string().optional(),
-  xPlexDeviceVendor: z.string().optional(),
-  xPlexDeviceName: z.string().optional(),
-  xPlexMarketplace: z.string().optional(),
+  accepts: shared.Accepts$outboundSchema.default(shared.Accepts.ApplicationXml),
+  clientIdentifier: z.string().optional(),
+  product: z.string().optional(),
+  version: z.string().optional(),
+  platform: z.string().optional(),
+  platformVersion: z.string().optional(),
+  device: z.string().optional(),
+  model: z.string().optional(),
+  deviceVendor: z.string().optional(),
+  deviceName: z.string().optional(),
+  marketplace: z.string().optional(),
   playlistId: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
-    xPlexClientIdentifier: "X-Plex-Client-Identifier",
-    xPlexProduct: "X-Plex-Product",
-    xPlexVersion: "X-Plex-Version",
-    xPlexPlatform: "X-Plex-Platform",
-    xPlexPlatformVersion: "X-Plex-Platform-Version",
-    xPlexDevice: "X-Plex-Device",
-    xPlexModel: "X-Plex-Model",
-    xPlexDeviceVendor: "X-Plex-Device-Vendor",
-    xPlexDeviceName: "X-Plex-Device-Name",
-    xPlexMarketplace: "X-Plex-Marketplace",
+    clientIdentifier: "Client-Identifier",
+    product: "Product",
+    version: "Version",
+    platform: "Platform",
+    platformVersion: "Platform-Version",
+    device: "Device",
+    model: "Model",
+    deviceVendor: "Device-Vendor",
+    deviceName: "Device-Name",
+    marketplace: "Marketplace",
   });
 });
 
