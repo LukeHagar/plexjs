@@ -14,7 +14,7 @@ import { Params, pathToFunc } from "./url.js";
 export const ServerList = [
   "https://{IP-description}.{identifier}.plex.direct:{port}",
   "{protocol}://{host}:{port}",
-  "https://{server_url}",
+  "https://{full_server_url}",
 ] as const;
 
 export type SDKOptions = {
@@ -156,7 +156,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "1.1.1",
-  sdkVersion: "0.42.0",
+  sdkVersion: "0.42.1",
   genVersion: "2.723.11",
-  userAgent: "speakeasy-sdk/typescript 0.42.0 2.723.11 1.1.1 @lukehagar/plexjs",
+  userAgent: "speakeasy-sdk/typescript 0.42.1 2.723.11 1.1.1 @lukehagar/plexjs",
 } as const;

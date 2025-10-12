@@ -555,7 +555,7 @@ You can override the default server globally by passing a server index to the `s
 | --- | ---------------------------------------------------------- | -------------------------------------------- | ----------- |
 | 0   | `https://{IP-description}.{identifier}.plex.direct:{port}` | `identifier`<br/>`IP-description`<br/>`port` |             |
 | 1   | `{protocol}://{host}:{port}`                               | `protocol`<br/>`host`<br/>`port`             |             |
-| 2   | `https://{server_url}`                                     | `server_url`                                 |             |
+| 2   | `https://{full_server_url}`                                | `server_url`                                 |             |
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
@@ -610,7 +610,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  serverURL: "https://http://localhost:32400",
+  serverURL: "https://{full_server_url}",
   accepts: Accepts.ApplicationXml,
   clientIdentifier: "abc123",
   product: "Plex for Roku",
