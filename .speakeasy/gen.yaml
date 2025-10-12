@@ -8,18 +8,18 @@ generation:
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: true
-    nameResolutionFeb2025: false
+    nameResolutionFeb2025: true
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
-    securityFeb2025: false
-    sharedErrorComponentsApr2025: false
+    securityFeb2025: true
+    sharedErrorComponentsApr2025: true
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
   tests:
     generateTests: true
-    generateNewTests: false
+    generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
   version: 0.40.3
