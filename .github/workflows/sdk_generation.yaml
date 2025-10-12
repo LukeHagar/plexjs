@@ -1,10 +1,12 @@
-name: Generate
+name: Generate and Publish to NPM and JSR
+
 permissions:
   checks: write
   contents: write
   pull-requests: write
   statuses: write
-"on":
+
+on:
   workflow_dispatch:
     inputs:
       force:
@@ -16,6 +18,7 @@ permissions:
         type: string
   schedule:
     - cron: 0 0 * * *
+
 jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
@@ -28,3 +31,24 @@ jobs:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: generate
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish package
+        run: npx jsr publish
