@@ -1,4 +1,4 @@
-speakeasyVersion: 1.615.2
+speakeasyVersion: 1.636.3
 sources:
     my-source:
         sourceNamespace: my-source
@@ -9,27 +9,27 @@ sources:
             - main
     plexapi:
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:5125adfea1b0daea399c6ecf755e32795de6b4131465ae6a1f32ad73b3bc7787
-        sourceBlobDigest: sha256:95cea18b6e5f7d76d35db0aba5bcb59e72cf204451a2b09a99be0e3e9ec1f4c0
+        sourceRevisionDigest: sha256:d10668c0bc8779046995836bd0e5b4e681f3a1661df05ef984d3951b16891135
+        sourceBlobDigest: sha256:0e84e36799922513fa9fde276e7ed24d7e8ceef23d40f347d4aa7a40fddc2257
         tags:
             - latest
-            - speakeasy-sdk-regen-1757895128
-            - 0.0.3
+            - speakeasy-sdk-regen-1760246702
+            - 1.1.1
 targets:
     plexjs:
         source: plexapi
         sourceNamespace: plexapi
-        sourceRevisionDigest: sha256:5125adfea1b0daea399c6ecf755e32795de6b4131465ae6a1f32ad73b3bc7787
-        sourceBlobDigest: sha256:95cea18b6e5f7d76d35db0aba5bcb59e72cf204451a2b09a99be0e3e9ec1f4c0
+        sourceRevisionDigest: sha256:d10668c0bc8779046995836bd0e5b4e681f3a1661df05ef984d3951b16891135
+        sourceBlobDigest: sha256:0e84e36799922513fa9fde276e7ed24d7e8ceef23d40f347d4aa7a40fddc2257
         codeSamplesNamespace: code-samples-typescript-plexjs
-        codeSamplesRevisionDigest: sha256:1e2d6fa14f87b947de490bc7f88a36b2e43145643385bd8f728c7cdc69b56086
+        codeSamplesRevisionDigest: sha256:49b6f9d7cbbdae2b95c455771f7a7e9544fa64695d7326650a4a93a255ba101b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         plexapi:
             inputs:
-                - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/refs/heads/main/output/plex-media-server-spec-dereferenced.yaml
+                - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/refs/heads/main/plex-api-spec.yaml
             registry:
                 location: registry.speakeasyapi.dev/plexapi/plexapi/plexapi
     targets:

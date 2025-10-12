@@ -5,89 +5,102 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import * as shared from "../shared/index.js";
 
-/**
- * type of playlist to create
- */
-export enum CreatePlaylistQueryParamType {
-  Audio = "audio",
-  Video = "video",
-  Photo = "photo",
-}
-/**
- * type of playlist to create
- */
-export type CreatePlaylistQueryParamTypeOpen = OpenEnum<
-  typeof CreatePlaylistQueryParamType
->;
-
-/**
- * whether the playlist is smart or not
- */
-export enum Smart {
-  Zero = 0,
-  One = 1,
-}
+export type CreatePlaylistGlobals = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+};
 
 export type CreatePlaylistRequest = {
   /**
-   * name of the playlist
+   * An opaque identifier unique to the client
    */
-  title: string;
+  xPlexClientIdentifier?: string | undefined;
   /**
-   * type of playlist to create
+   * The name of the client product
    */
-  type: CreatePlaylistQueryParamTypeOpen;
+  xPlexProduct?: string | undefined;
   /**
-   * whether the playlist is smart or not
+   * The version of the client application
    */
-  smart: Smart;
+  xPlexVersion?: string | undefined;
   /**
-   * the content URI for the playlist
+   * The platform of the client
    */
-  uri: string;
+  xPlexPlatform?: string | undefined;
   /**
-   * the play queue to copy to a playlist
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+  /**
+   * The content URI for what we're playing (e.g. `library://...`).
+   */
+  uri?: string | undefined;
+  /**
+   * To create a playlist from an existing play queue.
    */
   playQueueID?: number | undefined;
-};
-
-export type CreatePlaylistMetadata = {
-  ratingKey?: string | undefined;
-  key?: string | undefined;
-  guid?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
-  summary?: string | undefined;
-  smart?: boolean | undefined;
-  playlistType?: string | undefined;
-  icon?: string | undefined;
-  viewCount?: number | undefined;
-  lastViewedAt?: number | undefined;
-  leafCount?: number | undefined;
-  addedAt?: number | undefined;
-  updatedAt?: number | undefined;
-  composite?: string | undefined;
-  duration?: number | undefined;
-};
-
-export type CreatePlaylistMediaContainer = {
-  size?: number | undefined;
-  metadata?: Array<CreatePlaylistMetadata> | undefined;
-};
-
-/**
- * returns all playlists
- */
-export type CreatePlaylistResponseBody = {
-  mediaContainer?: CreatePlaylistMediaContainer | undefined;
 };
 
 export type CreatePlaylistResponse = {
@@ -104,61 +117,118 @@ export type CreatePlaylistResponse = {
    */
   rawResponse: Response;
   /**
-   * returns all playlists
+   * OK
    */
-  object?: CreatePlaylistResponseBody | undefined;
+  mediaContainerWithPlaylistMetadata?:
+    | shared.MediaContainerWithPlaylistMetadata
+    | undefined;
 };
 
 /** @internal */
-export const CreatePlaylistQueryParamType$inboundSchema: z.ZodType<
-  CreatePlaylistQueryParamTypeOpen,
+export const CreatePlaylistGlobals$inboundSchema: z.ZodType<
+  CreatePlaylistGlobals,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(CreatePlaylistQueryParamType),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
 
 /** @internal */
-export const CreatePlaylistQueryParamType$outboundSchema: z.ZodType<
-  CreatePlaylistQueryParamTypeOpen,
+export type CreatePlaylistGlobals$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+};
+
+/** @internal */
+export const CreatePlaylistGlobals$outboundSchema: z.ZodType<
+  CreatePlaylistGlobals$Outbound,
   z.ZodTypeDef,
-  CreatePlaylistQueryParamTypeOpen
-> = z.union([
-  z.nativeEnum(CreatePlaylistQueryParamType),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+  CreatePlaylistGlobals
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreatePlaylistQueryParamType$ {
-  /** @deprecated use `CreatePlaylistQueryParamType$inboundSchema` instead. */
-  export const inboundSchema = CreatePlaylistQueryParamType$inboundSchema;
-  /** @deprecated use `CreatePlaylistQueryParamType$outboundSchema` instead. */
-  export const outboundSchema = CreatePlaylistQueryParamType$outboundSchema;
+export namespace CreatePlaylistGlobals$ {
+  /** @deprecated use `CreatePlaylistGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreatePlaylistGlobals$inboundSchema;
+  /** @deprecated use `CreatePlaylistGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreatePlaylistGlobals$outboundSchema;
+  /** @deprecated use `CreatePlaylistGlobals$Outbound` instead. */
+  export type Outbound = CreatePlaylistGlobals$Outbound;
 }
 
-/** @internal */
-export const Smart$inboundSchema: z.ZodNativeEnum<typeof Smart> = z.nativeEnum(
-  Smart,
-);
+export function createPlaylistGlobalsToJSON(
+  createPlaylistGlobals: CreatePlaylistGlobals,
+): string {
+  return JSON.stringify(
+    CreatePlaylistGlobals$outboundSchema.parse(createPlaylistGlobals),
+  );
+}
 
-/** @internal */
-export const Smart$outboundSchema: z.ZodNativeEnum<typeof Smart> =
-  Smart$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Smart$ {
-  /** @deprecated use `Smart$inboundSchema` instead. */
-  export const inboundSchema = Smart$inboundSchema;
-  /** @deprecated use `Smart$outboundSchema` instead. */
-  export const outboundSchema = Smart$outboundSchema;
+export function createPlaylistGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePlaylistGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePlaylistGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePlaylistGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -167,19 +237,46 @@ export const CreatePlaylistRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  title: z.string(),
-  type: CreatePlaylistQueryParamType$inboundSchema,
-  smart: Smart$inboundSchema,
-  uri: z.string(),
-  playQueueID: z.number().optional(),
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+  uri: z.string().optional(),
+  playQueueID: z.number().int().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
 });
 
 /** @internal */
 export type CreatePlaylistRequest$Outbound = {
-  title: string;
-  type: string;
-  smart: number;
-  uri: string;
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+  uri?: string | undefined;
   playQueueID?: number | undefined;
 };
 
@@ -189,11 +286,31 @@ export const CreatePlaylistRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreatePlaylistRequest
 > = z.object({
-  title: z.string(),
-  type: CreatePlaylistQueryParamType$outboundSchema,
-  smart: Smart$outboundSchema,
-  uri: z.string(),
-  playQueueID: z.number().optional(),
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+  uri: z.string().optional(),
+  playQueueID: z.number().int().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
 });
 
 /**
@@ -228,238 +345,6 @@ export function createPlaylistRequestFromJSON(
 }
 
 /** @internal */
-export const CreatePlaylistMetadata$inboundSchema: z.ZodType<
-  CreatePlaylistMetadata,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ratingKey: z.string().optional(),
-  key: z.string().optional(),
-  guid: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
-  summary: z.string().optional(),
-  smart: z.boolean().optional(),
-  playlistType: z.string().optional(),
-  icon: z.string().optional(),
-  viewCount: z.number().int().optional(),
-  lastViewedAt: z.number().int().optional(),
-  leafCount: z.number().int().optional(),
-  addedAt: z.number().int().optional(),
-  updatedAt: z.number().int().optional(),
-  composite: z.string().optional(),
-  duration: z.number().int().optional(),
-});
-
-/** @internal */
-export type CreatePlaylistMetadata$Outbound = {
-  ratingKey?: string | undefined;
-  key?: string | undefined;
-  guid?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
-  summary?: string | undefined;
-  smart?: boolean | undefined;
-  playlistType?: string | undefined;
-  icon?: string | undefined;
-  viewCount?: number | undefined;
-  lastViewedAt?: number | undefined;
-  leafCount?: number | undefined;
-  addedAt?: number | undefined;
-  updatedAt?: number | undefined;
-  composite?: string | undefined;
-  duration?: number | undefined;
-};
-
-/** @internal */
-export const CreatePlaylistMetadata$outboundSchema: z.ZodType<
-  CreatePlaylistMetadata$Outbound,
-  z.ZodTypeDef,
-  CreatePlaylistMetadata
-> = z.object({
-  ratingKey: z.string().optional(),
-  key: z.string().optional(),
-  guid: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
-  summary: z.string().optional(),
-  smart: z.boolean().optional(),
-  playlistType: z.string().optional(),
-  icon: z.string().optional(),
-  viewCount: z.number().int().optional(),
-  lastViewedAt: z.number().int().optional(),
-  leafCount: z.number().int().optional(),
-  addedAt: z.number().int().optional(),
-  updatedAt: z.number().int().optional(),
-  composite: z.string().optional(),
-  duration: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePlaylistMetadata$ {
-  /** @deprecated use `CreatePlaylistMetadata$inboundSchema` instead. */
-  export const inboundSchema = CreatePlaylistMetadata$inboundSchema;
-  /** @deprecated use `CreatePlaylistMetadata$outboundSchema` instead. */
-  export const outboundSchema = CreatePlaylistMetadata$outboundSchema;
-  /** @deprecated use `CreatePlaylistMetadata$Outbound` instead. */
-  export type Outbound = CreatePlaylistMetadata$Outbound;
-}
-
-export function createPlaylistMetadataToJSON(
-  createPlaylistMetadata: CreatePlaylistMetadata,
-): string {
-  return JSON.stringify(
-    CreatePlaylistMetadata$outboundSchema.parse(createPlaylistMetadata),
-  );
-}
-
-export function createPlaylistMetadataFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePlaylistMetadata, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePlaylistMetadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePlaylistMetadata' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreatePlaylistMediaContainer$inboundSchema: z.ZodType<
-  CreatePlaylistMediaContainer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  size: z.number().int().optional(),
-  Metadata: z.array(z.lazy(() => CreatePlaylistMetadata$inboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "Metadata": "metadata",
-  });
-});
-
-/** @internal */
-export type CreatePlaylistMediaContainer$Outbound = {
-  size?: number | undefined;
-  Metadata?: Array<CreatePlaylistMetadata$Outbound> | undefined;
-};
-
-/** @internal */
-export const CreatePlaylistMediaContainer$outboundSchema: z.ZodType<
-  CreatePlaylistMediaContainer$Outbound,
-  z.ZodTypeDef,
-  CreatePlaylistMediaContainer
-> = z.object({
-  size: z.number().int().optional(),
-  metadata: z.array(z.lazy(() => CreatePlaylistMetadata$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    metadata: "Metadata",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePlaylistMediaContainer$ {
-  /** @deprecated use `CreatePlaylistMediaContainer$inboundSchema` instead. */
-  export const inboundSchema = CreatePlaylistMediaContainer$inboundSchema;
-  /** @deprecated use `CreatePlaylistMediaContainer$outboundSchema` instead. */
-  export const outboundSchema = CreatePlaylistMediaContainer$outboundSchema;
-  /** @deprecated use `CreatePlaylistMediaContainer$Outbound` instead. */
-  export type Outbound = CreatePlaylistMediaContainer$Outbound;
-}
-
-export function createPlaylistMediaContainerToJSON(
-  createPlaylistMediaContainer: CreatePlaylistMediaContainer,
-): string {
-  return JSON.stringify(
-    CreatePlaylistMediaContainer$outboundSchema.parse(
-      createPlaylistMediaContainer,
-    ),
-  );
-}
-
-export function createPlaylistMediaContainerFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePlaylistMediaContainer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePlaylistMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePlaylistMediaContainer' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreatePlaylistResponseBody$inboundSchema: z.ZodType<
-  CreatePlaylistResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  MediaContainer: z.lazy(() => CreatePlaylistMediaContainer$inboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "MediaContainer": "mediaContainer",
-  });
-});
-
-/** @internal */
-export type CreatePlaylistResponseBody$Outbound = {
-  MediaContainer?: CreatePlaylistMediaContainer$Outbound | undefined;
-};
-
-/** @internal */
-export const CreatePlaylistResponseBody$outboundSchema: z.ZodType<
-  CreatePlaylistResponseBody$Outbound,
-  z.ZodTypeDef,
-  CreatePlaylistResponseBody
-> = z.object({
-  mediaContainer: z.lazy(() => CreatePlaylistMediaContainer$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    mediaContainer: "MediaContainer",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreatePlaylistResponseBody$ {
-  /** @deprecated use `CreatePlaylistResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreatePlaylistResponseBody$inboundSchema;
-  /** @deprecated use `CreatePlaylistResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreatePlaylistResponseBody$outboundSchema;
-  /** @deprecated use `CreatePlaylistResponseBody$Outbound` instead. */
-  export type Outbound = CreatePlaylistResponseBody$Outbound;
-}
-
-export function createPlaylistResponseBodyToJSON(
-  createPlaylistResponseBody: CreatePlaylistResponseBody,
-): string {
-  return JSON.stringify(
-    CreatePlaylistResponseBody$outboundSchema.parse(createPlaylistResponseBody),
-  );
-}
-
-export function createPlaylistResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreatePlaylistResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreatePlaylistResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreatePlaylistResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const CreatePlaylistResponse$inboundSchema: z.ZodType<
   CreatePlaylistResponse,
   z.ZodTypeDef,
@@ -468,12 +353,14 @@ export const CreatePlaylistResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  object: z.lazy(() => CreatePlaylistResponseBody$inboundSchema).optional(),
+  MediaContainerWithPlaylistMetadata: shared
+    .MediaContainerWithPlaylistMetadata$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
+    "MediaContainerWithPlaylistMetadata": "mediaContainerWithPlaylistMetadata",
   });
 });
 
@@ -482,7 +369,9 @@ export type CreatePlaylistResponse$Outbound = {
   ContentType: string;
   StatusCode: number;
   RawResponse: never;
-  object?: CreatePlaylistResponseBody$Outbound | undefined;
+  MediaContainerWithPlaylistMetadata?:
+    | shared.MediaContainerWithPlaylistMetadata$Outbound
+    | undefined;
 };
 
 /** @internal */
@@ -496,12 +385,14 @@ export const CreatePlaylistResponse$outboundSchema: z.ZodType<
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
-  object: z.lazy(() => CreatePlaylistResponseBody$outboundSchema).optional(),
+  mediaContainerWithPlaylistMetadata: shared
+    .MediaContainerWithPlaylistMetadata$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",
     statusCode: "StatusCode",
     rawResponse: "RawResponse",
+    mediaContainerWithPlaylistMetadata: "MediaContainerWithPlaylistMetadata",
   });
 });
 

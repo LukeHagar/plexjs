@@ -7,12 +7,154 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import * as shared from "../shared/index.js";
+
+export type GetSourceConnectionInformationGlobals = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+};
 
 export type GetSourceConnectionInformationRequest = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
   /**
    * The source identifier with an included prefix.
    */
   source: string;
+  /**
+   * Force refresh
+   */
+  refresh?: shared.BoolInt | undefined;
+};
+
+export type Connection = {
+  address?: string | undefined;
+  /**
+   * Indicates if the connection is the server's LAN address
+   */
+  local?: boolean | undefined;
+  port?: number | undefined;
+  protocol?: string | undefined;
+  /**
+   * Indicates the connection is over a relayed connection
+   */
+  relay?: boolean | undefined;
+  uri?: string | undefined;
+};
+
+export type GetSourceConnectionInformationDevice = {
+  accessToken?: string | undefined;
+  clientIdentifier?: string | undefined;
+  connection?: Array<Connection> | undefined;
+  name?: string | undefined;
+};
+
+/**
+ * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
+ *
+ * @remarks
+ * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
+ * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
+ */
+export type GetSourceConnectionInformationMediaContainer = {
+  identifier?: string | undefined;
+  /**
+   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
+   *
+   * @remarks
+   */
+  offset?: number | undefined;
+  size?: number | undefined;
+  /**
+   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
+   *
+   * @remarks
+   */
+  totalSize?: number | undefined;
+  device?: GetSourceConnectionInformationDevice | undefined;
+};
+
+/**
+ * OK
+ */
+export type GetSourceConnectionInformationResponseBody = {
+  mediaContainer?: GetSourceConnectionInformationMediaContainer | undefined;
 };
 
 export type GetSourceConnectionInformationResponse = {
@@ -28,7 +170,123 @@ export type GetSourceConnectionInformationResponse = {
    * Raw HTTP response; suitable for custom response parsing
    */
   rawResponse: Response;
+  /**
+   * OK
+   */
+  object?: GetSourceConnectionInformationResponseBody | undefined;
 };
+
+/** @internal */
+export const GetSourceConnectionInformationGlobals$inboundSchema: z.ZodType<
+  GetSourceConnectionInformationGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
+
+/** @internal */
+export type GetSourceConnectionInformationGlobals$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+};
+
+/** @internal */
+export const GetSourceConnectionInformationGlobals$outboundSchema: z.ZodType<
+  GetSourceConnectionInformationGlobals$Outbound,
+  z.ZodTypeDef,
+  GetSourceConnectionInformationGlobals
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSourceConnectionInformationGlobals$ {
+  /** @deprecated use `GetSourceConnectionInformationGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSourceConnectionInformationGlobals$inboundSchema;
+  /** @deprecated use `GetSourceConnectionInformationGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSourceConnectionInformationGlobals$outboundSchema;
+  /** @deprecated use `GetSourceConnectionInformationGlobals$Outbound` instead. */
+  export type Outbound = GetSourceConnectionInformationGlobals$Outbound;
+}
+
+export function getSourceConnectionInformationGlobalsToJSON(
+  getSourceConnectionInformationGlobals: GetSourceConnectionInformationGlobals,
+): string {
+  return JSON.stringify(
+    GetSourceConnectionInformationGlobals$outboundSchema.parse(
+      getSourceConnectionInformationGlobals,
+    ),
+  );
+}
+
+export function getSourceConnectionInformationGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSourceConnectionInformationGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSourceConnectionInformationGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSourceConnectionInformationGlobals' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetSourceConnectionInformationRequest$inboundSchema: z.ZodType<
@@ -36,12 +294,47 @@ export const GetSourceConnectionInformationRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
   source: z.string(),
+  refresh: shared.BoolInt$inboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
 });
 
 /** @internal */
 export type GetSourceConnectionInformationRequest$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
   source: string;
+  refresh?: number | undefined;
 };
 
 /** @internal */
@@ -50,7 +343,31 @@ export const GetSourceConnectionInformationRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetSourceConnectionInformationRequest
 > = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
   source: z.string(),
+  refresh: shared.BoolInt$outboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
 });
 
 /**
@@ -90,6 +407,314 @@ export function getSourceConnectionInformationRequestFromJSON(
 }
 
 /** @internal */
+export const Connection$inboundSchema: z.ZodType<
+  Connection,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  address: z.string().optional(),
+  local: z.boolean().optional(),
+  port: z.number().int().optional(),
+  protocol: z.string().optional(),
+  relay: z.boolean().optional(),
+  uri: z.string().optional(),
+});
+
+/** @internal */
+export type Connection$Outbound = {
+  address?: string | undefined;
+  local?: boolean | undefined;
+  port?: number | undefined;
+  protocol?: string | undefined;
+  relay?: boolean | undefined;
+  uri?: string | undefined;
+};
+
+/** @internal */
+export const Connection$outboundSchema: z.ZodType<
+  Connection$Outbound,
+  z.ZodTypeDef,
+  Connection
+> = z.object({
+  address: z.string().optional(),
+  local: z.boolean().optional(),
+  port: z.number().int().optional(),
+  protocol: z.string().optional(),
+  relay: z.boolean().optional(),
+  uri: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Connection$ {
+  /** @deprecated use `Connection$inboundSchema` instead. */
+  export const inboundSchema = Connection$inboundSchema;
+  /** @deprecated use `Connection$outboundSchema` instead. */
+  export const outboundSchema = Connection$outboundSchema;
+  /** @deprecated use `Connection$Outbound` instead. */
+  export type Outbound = Connection$Outbound;
+}
+
+export function connectionToJSON(connection: Connection): string {
+  return JSON.stringify(Connection$outboundSchema.parse(connection));
+}
+
+export function connectionFromJSON(
+  jsonString: string,
+): SafeParseResult<Connection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Connection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Connection' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSourceConnectionInformationDevice$inboundSchema: z.ZodType<
+  GetSourceConnectionInformationDevice,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  accessToken: z.string().optional(),
+  clientIdentifier: z.string().optional(),
+  Connection: z.array(z.lazy(() => Connection$inboundSchema)).optional(),
+  name: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Connection": "connection",
+  });
+});
+
+/** @internal */
+export type GetSourceConnectionInformationDevice$Outbound = {
+  accessToken?: string | undefined;
+  clientIdentifier?: string | undefined;
+  Connection?: Array<Connection$Outbound> | undefined;
+  name?: string | undefined;
+};
+
+/** @internal */
+export const GetSourceConnectionInformationDevice$outboundSchema: z.ZodType<
+  GetSourceConnectionInformationDevice$Outbound,
+  z.ZodTypeDef,
+  GetSourceConnectionInformationDevice
+> = z.object({
+  accessToken: z.string().optional(),
+  clientIdentifier: z.string().optional(),
+  connection: z.array(z.lazy(() => Connection$outboundSchema)).optional(),
+  name: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    connection: "Connection",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSourceConnectionInformationDevice$ {
+  /** @deprecated use `GetSourceConnectionInformationDevice$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSourceConnectionInformationDevice$inboundSchema;
+  /** @deprecated use `GetSourceConnectionInformationDevice$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSourceConnectionInformationDevice$outboundSchema;
+  /** @deprecated use `GetSourceConnectionInformationDevice$Outbound` instead. */
+  export type Outbound = GetSourceConnectionInformationDevice$Outbound;
+}
+
+export function getSourceConnectionInformationDeviceToJSON(
+  getSourceConnectionInformationDevice: GetSourceConnectionInformationDevice,
+): string {
+  return JSON.stringify(
+    GetSourceConnectionInformationDevice$outboundSchema.parse(
+      getSourceConnectionInformationDevice,
+    ),
+  );
+}
+
+export function getSourceConnectionInformationDeviceFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSourceConnectionInformationDevice, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSourceConnectionInformationDevice$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSourceConnectionInformationDevice' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSourceConnectionInformationMediaContainer$inboundSchema:
+  z.ZodType<
+    GetSourceConnectionInformationMediaContainer,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    identifier: z.string().optional(),
+    offset: z.number().int().optional(),
+    size: z.number().int().optional(),
+    totalSize: z.number().int().optional(),
+    Device: z.lazy(() => GetSourceConnectionInformationDevice$inboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "Device": "device",
+    });
+  });
+
+/** @internal */
+export type GetSourceConnectionInformationMediaContainer$Outbound = {
+  identifier?: string | undefined;
+  offset?: number | undefined;
+  size?: number | undefined;
+  totalSize?: number | undefined;
+  Device?: GetSourceConnectionInformationDevice$Outbound | undefined;
+};
+
+/** @internal */
+export const GetSourceConnectionInformationMediaContainer$outboundSchema:
+  z.ZodType<
+    GetSourceConnectionInformationMediaContainer$Outbound,
+    z.ZodTypeDef,
+    GetSourceConnectionInformationMediaContainer
+  > = z.object({
+    identifier: z.string().optional(),
+    offset: z.number().int().optional(),
+    size: z.number().int().optional(),
+    totalSize: z.number().int().optional(),
+    device: z.lazy(() => GetSourceConnectionInformationDevice$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      device: "Device",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSourceConnectionInformationMediaContainer$ {
+  /** @deprecated use `GetSourceConnectionInformationMediaContainer$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSourceConnectionInformationMediaContainer$inboundSchema;
+  /** @deprecated use `GetSourceConnectionInformationMediaContainer$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSourceConnectionInformationMediaContainer$outboundSchema;
+  /** @deprecated use `GetSourceConnectionInformationMediaContainer$Outbound` instead. */
+  export type Outbound = GetSourceConnectionInformationMediaContainer$Outbound;
+}
+
+export function getSourceConnectionInformationMediaContainerToJSON(
+  getSourceConnectionInformationMediaContainer:
+    GetSourceConnectionInformationMediaContainer,
+): string {
+  return JSON.stringify(
+    GetSourceConnectionInformationMediaContainer$outboundSchema.parse(
+      getSourceConnectionInformationMediaContainer,
+    ),
+  );
+}
+
+export function getSourceConnectionInformationMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetSourceConnectionInformationMediaContainer,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSourceConnectionInformationMediaContainer$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetSourceConnectionInformationMediaContainer' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetSourceConnectionInformationResponseBody$inboundSchema:
+  z.ZodType<GetSourceConnectionInformationResponseBody, z.ZodTypeDef, unknown> =
+    z.object({
+      MediaContainer: z.lazy(() =>
+        GetSourceConnectionInformationMediaContainer$inboundSchema
+      ).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "MediaContainer": "mediaContainer",
+      });
+    });
+
+/** @internal */
+export type GetSourceConnectionInformationResponseBody$Outbound = {
+  MediaContainer?:
+    | GetSourceConnectionInformationMediaContainer$Outbound
+    | undefined;
+};
+
+/** @internal */
+export const GetSourceConnectionInformationResponseBody$outboundSchema:
+  z.ZodType<
+    GetSourceConnectionInformationResponseBody$Outbound,
+    z.ZodTypeDef,
+    GetSourceConnectionInformationResponseBody
+  > = z.object({
+    mediaContainer: z.lazy(() =>
+      GetSourceConnectionInformationMediaContainer$outboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      mediaContainer: "MediaContainer",
+    });
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetSourceConnectionInformationResponseBody$ {
+  /** @deprecated use `GetSourceConnectionInformationResponseBody$inboundSchema` instead. */
+  export const inboundSchema =
+    GetSourceConnectionInformationResponseBody$inboundSchema;
+  /** @deprecated use `GetSourceConnectionInformationResponseBody$outboundSchema` instead. */
+  export const outboundSchema =
+    GetSourceConnectionInformationResponseBody$outboundSchema;
+  /** @deprecated use `GetSourceConnectionInformationResponseBody$Outbound` instead. */
+  export type Outbound = GetSourceConnectionInformationResponseBody$Outbound;
+}
+
+export function getSourceConnectionInformationResponseBodyToJSON(
+  getSourceConnectionInformationResponseBody:
+    GetSourceConnectionInformationResponseBody,
+): string {
+  return JSON.stringify(
+    GetSourceConnectionInformationResponseBody$outboundSchema.parse(
+      getSourceConnectionInformationResponseBody,
+    ),
+  );
+}
+
+export function getSourceConnectionInformationResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetSourceConnectionInformationResponseBody,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetSourceConnectionInformationResponseBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetSourceConnectionInformationResponseBody' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetSourceConnectionInformationResponse$inboundSchema: z.ZodType<
   GetSourceConnectionInformationResponse,
   z.ZodTypeDef,
@@ -98,6 +723,8 @@ export const GetSourceConnectionInformationResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
+  object: z.lazy(() => GetSourceConnectionInformationResponseBody$inboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
@@ -111,6 +738,7 @@ export type GetSourceConnectionInformationResponse$Outbound = {
   ContentType: string;
   StatusCode: number;
   RawResponse: never;
+  object?: GetSourceConnectionInformationResponseBody$Outbound | undefined;
 };
 
 /** @internal */
@@ -124,6 +752,9 @@ export const GetSourceConnectionInformationResponse$outboundSchema: z.ZodType<
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
+  object: z.lazy(() =>
+    GetSourceConnectionInformationResponseBody$outboundSchema
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",

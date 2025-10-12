@@ -1,13 +1,13 @@
-# EnablePaperTrailResponse
+# EnablePapertrailResponse
 
 ## Example Usage
 
 ```typescript
-import { EnablePaperTrailResponse } from "@lukehagar/plexjs/sdk/models/operations";
+import { EnablePapertrailResponse } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: EnablePaperTrailResponse = {
+let value: EnablePapertrailResponse = {
   contentType: "<value>",
-  statusCode: 561624,
+  statusCode: 813966,
 };
 ```
 

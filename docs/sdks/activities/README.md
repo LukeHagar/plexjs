@@ -3,36 +3,32 @@
 
 ## Overview
 
-Activities are awesome. They provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.
+Activities provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.
+
 Activities are associated with HTTP replies via a special `X-Plex-Activity` header which contains the UUID of the activity.
-Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint. Other details:
-- They can contain a `progress` (from 0 to 100) marking the percent completion of the activity.
-- They must contain an `type` which is used by clients to distinguish the specific activity.
-- They may contain a `Context` object with attributes which associate the activity with various specific entities (items, libraries, etc.)
-- The may contain a `Response` object which attributes which represent the result of the asynchronous operation.
+
+Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint.
 
 
 ### Available Operations
 
-* [getServerActivities](#getserveractivities) - Get Server Activities
-* [cancelServerActivities](#cancelserveractivities) - Cancel Server Activities
+* [listActivities](#listactivities) - Get all activities
+* [cancelActivity](#cancelactivity) - Cancel a running activity
 
-## getServerActivities
+## listActivities
 
-Get Server Activities
+List all activities on the server.  Admins can see all activities but other users can only see their own
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="getServerActivities" method="get" path="/activities" -->
+<!-- UsageSnippet language="typescript" operationID="listActivities" method="get" path="/activities" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
+const plexAPI = new PlexAPI();
 
 async function run() {
-  const result = await plexAPI.activities.getServerActivities();
+  const result = await plexAPI.activities.listActivities();
 
   console.log(result);
 }
@@ -46,21 +42,19 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { activitiesGetServerActivities } from "@lukehagar/plexjs/funcs/activitiesGetServerActivities.js";
+import { activitiesListActivities } from "@lukehagar/plexjs/funcs/activitiesListActivities.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
+const plexAPI = new PlexAPICore();
 
 async function run() {
-  const res = await activitiesGetServerActivities(plexAPI);
+  const res = await activitiesListActivities(plexAPI);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("activitiesGetServerActivities failed:", res.error);
+    console.log("activitiesListActivities failed:", res.error);
   }
 }
 
@@ -77,32 +71,41 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetServerActivitiesResponse](../../sdk/models/operations/getserveractivitiesresponse.md)\>**
+**Promise\<[operations.ListActivitiesResponse](../../sdk/models/operations/listactivitiesresponse.md)\>**
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| errors.GetServerActivitiesBadRequest   | 400                                    | application/json                       |
-| errors.GetServerActivitiesUnauthorized | 401                                    | application/json                       |
-| errors.SDKError                        | 4XX, 5XX                               | \*/\*                                  |
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## cancelServerActivities
+## cancelActivity
 
-Cancel Server Activities
+Cancel a running activity.  Admins can cancel all activities but other users can only cancel their own
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="cancelServerActivities" method="delete" path="/activities/{activityUUID}" -->
+<!-- UsageSnippet language="typescript" operationID="cancelActivity" method="delete" path="/activities/{activityId}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.activities.cancelServerActivities("25b71ed5-0f9d-461c-baa7-d404e9e10d3e");
+  const result = await plexAPI.activities.cancelActivity({
+    activityId: "d6199ba1-fb5e-4cae-bf17-1a5369c1cf1e",
+  });
 
   console.log(result);
 }
@@ -116,21 +119,32 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { activitiesCancelServerActivities } from "@lukehagar/plexjs/funcs/activitiesCancelServerActivities.js";
+import { activitiesCancelActivity } from "@lukehagar/plexjs/funcs/activitiesCancelActivity.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const res = await activitiesCancelServerActivities(plexAPI, "25b71ed5-0f9d-461c-baa7-d404e9e10d3e");
+  const res = await activitiesCancelActivity(plexAPI, {
+    activityId: "d6199ba1-fb5e-4cae-bf17-1a5369c1cf1e",
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("activitiesCancelServerActivities failed:", res.error);
+    console.log("activitiesCancelActivity failed:", res.error);
   }
 }
 
@@ -139,21 +153,19 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `activityUUID`                                                                                                                                                                 | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The UUID of the activity to cancel.                                                                                                                                            | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.CancelActivityRequest](../../sdk/models/operations/cancelactivityrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.CancelServerActivitiesResponse](../../sdk/models/operations/cancelserveractivitiesresponse.md)\>**
+**Promise\<[operations.CancelActivityResponse](../../sdk/models/operations/cancelactivityresponse.md)\>**
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| errors.CancelServerActivitiesBadRequest   | 400                                       | application/json                          |
-| errors.CancelServerActivitiesUnauthorized | 401                                       | application/json                          |
-| errors.SDKError                           | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

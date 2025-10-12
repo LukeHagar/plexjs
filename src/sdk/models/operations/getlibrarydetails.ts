@@ -7,107 +7,129 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import * as shared from "../shared/index.js";
 
-/**
- * Whether or not to include details for a section (types, filters, and sorts).
- *
- * @remarks
- * Only exists for backwards compatibility, media providers other than the server libraries have it on always.
- */
-export enum IncludeDetails {
-  Zero = 0,
-  One = 1,
-}
+export type GetLibraryDetailsGlobals = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+};
 
 export type GetLibraryDetailsRequest = {
   /**
-   * Whether or not to include details for a section (types, filters, and sorts).
-   *
-   * @remarks
-   * Only exists for backwards compatibility, media providers other than the server libraries have it on always.
+   * An opaque identifier unique to the client
    */
-  includeDetails?: IncludeDetails | undefined;
+  xPlexClientIdentifier?: string | undefined;
   /**
-   * The unique key of the Plex library.
-   *
-   * @remarks
-   * Note: This is unique in the context of the Plex server.
+   * The name of the client product
    */
-  sectionKey: number;
-};
-
-export type GetLibraryDetailsDirectory = {
-  key?: string | undefined;
-  title?: string | undefined;
-  secondary?: boolean | undefined;
-  prompt?: string | undefined;
-  search?: boolean | undefined;
-};
-
-export type GetLibraryDetailsFilter = {
-  filter?: string | undefined;
-  filterType?: string | undefined;
-  key?: string | undefined;
-  title?: string | undefined;
-  type?: string | undefined;
-};
-
-export type GetLibraryDetailsSort = {
-  default?: string | undefined;
-  defaultDirection?: string | undefined;
-  descKey?: string | undefined;
-  firstCharacterKey?: string | undefined;
-  key?: string | undefined;
-  title?: string | undefined;
-};
-
-export type GetLibraryDetailsField = {
-  key?: string | undefined;
-  title?: string | undefined;
-  type?: string | undefined;
-  subType?: string | undefined;
-};
-
-export type GetLibraryDetailsType = {
-  key?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
-  active?: boolean | undefined;
-  filter?: Array<GetLibraryDetailsFilter> | undefined;
-  sort?: Array<GetLibraryDetailsSort> | undefined;
-  field?: Array<GetLibraryDetailsField> | undefined;
-};
-
-export type GetLibraryDetailsOperator = {
-  key?: string | undefined;
-  title?: string | undefined;
-};
-
-export type GetLibraryDetailsFieldType = {
-  type?: string | undefined;
-  operator?: Array<GetLibraryDetailsOperator> | undefined;
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+  /**
+   * The section identifier
+   */
+  sectionId: string;
+  /**
+   * Whether or not to include details for a section (types, filters, and sorts). Only exists for backwards compatibility, media providers other than the server libraries have it on always.
+   */
+  includeDetails?: shared.BoolInt | undefined;
 };
 
 export type GetLibraryDetailsMediaContainer = {
-  size?: number | undefined;
+  /**
+   * The flavors of directory found here:
+   *
+   * @remarks
+   *   - Primary: (e.g. all, On Deck) These are still used in some clients to provide "shortcuts" to subsets of media. However, with the exception of On Deck, all of them can be created by media queries, and the desire is to allow these to be customized by users.
+   *   - Secondary: These are marked with `"secondary": true` and were used by old clients to provide nested menus allowing for primative (but structured) navigation.
+   *   - Special: There is a By Folder entry which allows browsing the media by the underlying filesystem structure, and there's a completely obsolete entry marked `"search": true` which used to be used to allow clients to build search dialogs on the fly.
+   */
+  content?: string | undefined;
   allowSync?: boolean | undefined;
   art?: string | undefined;
-  content?: string | undefined;
+  directory?: Array<shared.Metadata> | undefined;
   identifier?: string | undefined;
   librarySectionID?: number | undefined;
   mediaTagPrefix?: string | undefined;
   mediaTagVersion?: number | undefined;
+  size?: number | undefined;
+  sortAsc?: boolean | undefined;
   thumb?: string | undefined;
   title1?: string | undefined;
   viewGroup?: string | undefined;
   viewMode?: number | undefined;
-  directory?: Array<GetLibraryDetailsDirectory> | undefined;
-  type?: Array<GetLibraryDetailsType> | undefined;
-  fieldType?: Array<GetLibraryDetailsFieldType> | undefined;
 };
 
 /**
- * The details of the library
+ * OK
  */
 export type GetLibraryDetailsResponseBody = {
   mediaContainer?: GetLibraryDetailsMediaContainer | undefined;
@@ -127,30 +149,116 @@ export type GetLibraryDetailsResponse = {
    */
   rawResponse: Response;
   /**
-   * The details of the library
+   * OK
    */
   object?: GetLibraryDetailsResponseBody | undefined;
 };
 
 /** @internal */
-export const IncludeDetails$inboundSchema: z.ZodNativeEnum<
-  typeof IncludeDetails
-> = z.nativeEnum(IncludeDetails);
+export const GetLibraryDetailsGlobals$inboundSchema: z.ZodType<
+  GetLibraryDetailsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
 
 /** @internal */
-export const IncludeDetails$outboundSchema: z.ZodNativeEnum<
-  typeof IncludeDetails
-> = IncludeDetails$inboundSchema;
+export type GetLibraryDetailsGlobals$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+};
+
+/** @internal */
+export const GetLibraryDetailsGlobals$outboundSchema: z.ZodType<
+  GetLibraryDetailsGlobals$Outbound,
+  z.ZodTypeDef,
+  GetLibraryDetailsGlobals
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace IncludeDetails$ {
-  /** @deprecated use `IncludeDetails$inboundSchema` instead. */
-  export const inboundSchema = IncludeDetails$inboundSchema;
-  /** @deprecated use `IncludeDetails$outboundSchema` instead. */
-  export const outboundSchema = IncludeDetails$outboundSchema;
+export namespace GetLibraryDetailsGlobals$ {
+  /** @deprecated use `GetLibraryDetailsGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetLibraryDetailsGlobals$inboundSchema;
+  /** @deprecated use `GetLibraryDetailsGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetLibraryDetailsGlobals$outboundSchema;
+  /** @deprecated use `GetLibraryDetailsGlobals$Outbound` instead. */
+  export type Outbound = GetLibraryDetailsGlobals$Outbound;
+}
+
+export function getLibraryDetailsGlobalsToJSON(
+  getLibraryDetailsGlobals: GetLibraryDetailsGlobals,
+): string {
+  return JSON.stringify(
+    GetLibraryDetailsGlobals$outboundSchema.parse(getLibraryDetailsGlobals),
+  );
+}
+
+export function getLibraryDetailsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLibraryDetailsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLibraryDetailsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLibraryDetailsGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -159,14 +267,47 @@ export const GetLibraryDetailsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  includeDetails: IncludeDetails$inboundSchema,
-  sectionKey: z.number().int(),
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+  sectionId: z.string(),
+  includeDetails: shared.BoolInt$inboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
 });
 
 /** @internal */
 export type GetLibraryDetailsRequest$Outbound = {
-  includeDetails: number;
-  sectionKey: number;
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+  sectionId: string;
+  includeDetails?: number | undefined;
 };
 
 /** @internal */
@@ -175,8 +316,31 @@ export const GetLibraryDetailsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryDetailsRequest
 > = z.object({
-  includeDetails: IncludeDetails$outboundSchema.default(IncludeDetails.Zero),
-  sectionKey: z.number().int(),
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+  sectionId: z.string(),
+  includeDetails: shared.BoolInt$outboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
 });
 
 /**
@@ -211,528 +375,47 @@ export function getLibraryDetailsRequestFromJSON(
 }
 
 /** @internal */
-export const GetLibraryDetailsDirectory$inboundSchema: z.ZodType<
-  GetLibraryDetailsDirectory,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  key: z.string().optional(),
-  title: z.string().optional(),
-  secondary: z.boolean().optional(),
-  prompt: z.string().optional(),
-  search: z.boolean().optional(),
-});
-
-/** @internal */
-export type GetLibraryDetailsDirectory$Outbound = {
-  key?: string | undefined;
-  title?: string | undefined;
-  secondary?: boolean | undefined;
-  prompt?: string | undefined;
-  search?: boolean | undefined;
-};
-
-/** @internal */
-export const GetLibraryDetailsDirectory$outboundSchema: z.ZodType<
-  GetLibraryDetailsDirectory$Outbound,
-  z.ZodTypeDef,
-  GetLibraryDetailsDirectory
-> = z.object({
-  key: z.string().optional(),
-  title: z.string().optional(),
-  secondary: z.boolean().optional(),
-  prompt: z.string().optional(),
-  search: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLibraryDetailsDirectory$ {
-  /** @deprecated use `GetLibraryDetailsDirectory$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryDetailsDirectory$inboundSchema;
-  /** @deprecated use `GetLibraryDetailsDirectory$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryDetailsDirectory$outboundSchema;
-  /** @deprecated use `GetLibraryDetailsDirectory$Outbound` instead. */
-  export type Outbound = GetLibraryDetailsDirectory$Outbound;
-}
-
-export function getLibraryDetailsDirectoryToJSON(
-  getLibraryDetailsDirectory: GetLibraryDetailsDirectory,
-): string {
-  return JSON.stringify(
-    GetLibraryDetailsDirectory$outboundSchema.parse(getLibraryDetailsDirectory),
-  );
-}
-
-export function getLibraryDetailsDirectoryFromJSON(
-  jsonString: string,
-): SafeParseResult<GetLibraryDetailsDirectory, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetLibraryDetailsDirectory$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryDetailsDirectory' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetLibraryDetailsFilter$inboundSchema: z.ZodType<
-  GetLibraryDetailsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  filter: z.string().optional(),
-  filterType: z.string().optional(),
-  key: z.string().optional(),
-  title: z.string().optional(),
-  type: z.string().optional(),
-});
-
-/** @internal */
-export type GetLibraryDetailsFilter$Outbound = {
-  filter?: string | undefined;
-  filterType?: string | undefined;
-  key?: string | undefined;
-  title?: string | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const GetLibraryDetailsFilter$outboundSchema: z.ZodType<
-  GetLibraryDetailsFilter$Outbound,
-  z.ZodTypeDef,
-  GetLibraryDetailsFilter
-> = z.object({
-  filter: z.string().optional(),
-  filterType: z.string().optional(),
-  key: z.string().optional(),
-  title: z.string().optional(),
-  type: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLibraryDetailsFilter$ {
-  /** @deprecated use `GetLibraryDetailsFilter$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryDetailsFilter$inboundSchema;
-  /** @deprecated use `GetLibraryDetailsFilter$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryDetailsFilter$outboundSchema;
-  /** @deprecated use `GetLibraryDetailsFilter$Outbound` instead. */
-  export type Outbound = GetLibraryDetailsFilter$Outbound;
-}
-
-export function getLibraryDetailsFilterToJSON(
-  getLibraryDetailsFilter: GetLibraryDetailsFilter,
-): string {
-  return JSON.stringify(
-    GetLibraryDetailsFilter$outboundSchema.parse(getLibraryDetailsFilter),
-  );
-}
-
-export function getLibraryDetailsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<GetLibraryDetailsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetLibraryDetailsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryDetailsFilter' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetLibraryDetailsSort$inboundSchema: z.ZodType<
-  GetLibraryDetailsSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  default: z.string().optional(),
-  defaultDirection: z.string().optional(),
-  descKey: z.string().optional(),
-  firstCharacterKey: z.string().optional(),
-  key: z.string().optional(),
-  title: z.string().optional(),
-});
-
-/** @internal */
-export type GetLibraryDetailsSort$Outbound = {
-  default?: string | undefined;
-  defaultDirection?: string | undefined;
-  descKey?: string | undefined;
-  firstCharacterKey?: string | undefined;
-  key?: string | undefined;
-  title?: string | undefined;
-};
-
-/** @internal */
-export const GetLibraryDetailsSort$outboundSchema: z.ZodType<
-  GetLibraryDetailsSort$Outbound,
-  z.ZodTypeDef,
-  GetLibraryDetailsSort
-> = z.object({
-  default: z.string().optional(),
-  defaultDirection: z.string().optional(),
-  descKey: z.string().optional(),
-  firstCharacterKey: z.string().optional(),
-  key: z.string().optional(),
-  title: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLibraryDetailsSort$ {
-  /** @deprecated use `GetLibraryDetailsSort$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryDetailsSort$inboundSchema;
-  /** @deprecated use `GetLibraryDetailsSort$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryDetailsSort$outboundSchema;
-  /** @deprecated use `GetLibraryDetailsSort$Outbound` instead. */
-  export type Outbound = GetLibraryDetailsSort$Outbound;
-}
-
-export function getLibraryDetailsSortToJSON(
-  getLibraryDetailsSort: GetLibraryDetailsSort,
-): string {
-  return JSON.stringify(
-    GetLibraryDetailsSort$outboundSchema.parse(getLibraryDetailsSort),
-  );
-}
-
-export function getLibraryDetailsSortFromJSON(
-  jsonString: string,
-): SafeParseResult<GetLibraryDetailsSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetLibraryDetailsSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryDetailsSort' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetLibraryDetailsField$inboundSchema: z.ZodType<
-  GetLibraryDetailsField,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  key: z.string().optional(),
-  title: z.string().optional(),
-  type: z.string().optional(),
-  subType: z.string().optional(),
-});
-
-/** @internal */
-export type GetLibraryDetailsField$Outbound = {
-  key?: string | undefined;
-  title?: string | undefined;
-  type?: string | undefined;
-  subType?: string | undefined;
-};
-
-/** @internal */
-export const GetLibraryDetailsField$outboundSchema: z.ZodType<
-  GetLibraryDetailsField$Outbound,
-  z.ZodTypeDef,
-  GetLibraryDetailsField
-> = z.object({
-  key: z.string().optional(),
-  title: z.string().optional(),
-  type: z.string().optional(),
-  subType: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLibraryDetailsField$ {
-  /** @deprecated use `GetLibraryDetailsField$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryDetailsField$inboundSchema;
-  /** @deprecated use `GetLibraryDetailsField$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryDetailsField$outboundSchema;
-  /** @deprecated use `GetLibraryDetailsField$Outbound` instead. */
-  export type Outbound = GetLibraryDetailsField$Outbound;
-}
-
-export function getLibraryDetailsFieldToJSON(
-  getLibraryDetailsField: GetLibraryDetailsField,
-): string {
-  return JSON.stringify(
-    GetLibraryDetailsField$outboundSchema.parse(getLibraryDetailsField),
-  );
-}
-
-export function getLibraryDetailsFieldFromJSON(
-  jsonString: string,
-): SafeParseResult<GetLibraryDetailsField, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetLibraryDetailsField$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryDetailsField' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetLibraryDetailsType$inboundSchema: z.ZodType<
-  GetLibraryDetailsType,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  key: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
-  active: z.boolean().optional(),
-  Filter: z.array(z.lazy(() => GetLibraryDetailsFilter$inboundSchema))
-    .optional(),
-  Sort: z.array(z.lazy(() => GetLibraryDetailsSort$inboundSchema)).optional(),
-  Field: z.array(z.lazy(() => GetLibraryDetailsField$inboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "Filter": "filter",
-    "Sort": "sort",
-    "Field": "field",
-  });
-});
-
-/** @internal */
-export type GetLibraryDetailsType$Outbound = {
-  key?: string | undefined;
-  type?: string | undefined;
-  title?: string | undefined;
-  active?: boolean | undefined;
-  Filter?: Array<GetLibraryDetailsFilter$Outbound> | undefined;
-  Sort?: Array<GetLibraryDetailsSort$Outbound> | undefined;
-  Field?: Array<GetLibraryDetailsField$Outbound> | undefined;
-};
-
-/** @internal */
-export const GetLibraryDetailsType$outboundSchema: z.ZodType<
-  GetLibraryDetailsType$Outbound,
-  z.ZodTypeDef,
-  GetLibraryDetailsType
-> = z.object({
-  key: z.string().optional(),
-  type: z.string().optional(),
-  title: z.string().optional(),
-  active: z.boolean().optional(),
-  filter: z.array(z.lazy(() => GetLibraryDetailsFilter$outboundSchema))
-    .optional(),
-  sort: z.array(z.lazy(() => GetLibraryDetailsSort$outboundSchema)).optional(),
-  field: z.array(z.lazy(() => GetLibraryDetailsField$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    filter: "Filter",
-    sort: "Sort",
-    field: "Field",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLibraryDetailsType$ {
-  /** @deprecated use `GetLibraryDetailsType$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryDetailsType$inboundSchema;
-  /** @deprecated use `GetLibraryDetailsType$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryDetailsType$outboundSchema;
-  /** @deprecated use `GetLibraryDetailsType$Outbound` instead. */
-  export type Outbound = GetLibraryDetailsType$Outbound;
-}
-
-export function getLibraryDetailsTypeToJSON(
-  getLibraryDetailsType: GetLibraryDetailsType,
-): string {
-  return JSON.stringify(
-    GetLibraryDetailsType$outboundSchema.parse(getLibraryDetailsType),
-  );
-}
-
-export function getLibraryDetailsTypeFromJSON(
-  jsonString: string,
-): SafeParseResult<GetLibraryDetailsType, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetLibraryDetailsType$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryDetailsType' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetLibraryDetailsOperator$inboundSchema: z.ZodType<
-  GetLibraryDetailsOperator,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  key: z.string().optional(),
-  title: z.string().optional(),
-});
-
-/** @internal */
-export type GetLibraryDetailsOperator$Outbound = {
-  key?: string | undefined;
-  title?: string | undefined;
-};
-
-/** @internal */
-export const GetLibraryDetailsOperator$outboundSchema: z.ZodType<
-  GetLibraryDetailsOperator$Outbound,
-  z.ZodTypeDef,
-  GetLibraryDetailsOperator
-> = z.object({
-  key: z.string().optional(),
-  title: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLibraryDetailsOperator$ {
-  /** @deprecated use `GetLibraryDetailsOperator$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryDetailsOperator$inboundSchema;
-  /** @deprecated use `GetLibraryDetailsOperator$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryDetailsOperator$outboundSchema;
-  /** @deprecated use `GetLibraryDetailsOperator$Outbound` instead. */
-  export type Outbound = GetLibraryDetailsOperator$Outbound;
-}
-
-export function getLibraryDetailsOperatorToJSON(
-  getLibraryDetailsOperator: GetLibraryDetailsOperator,
-): string {
-  return JSON.stringify(
-    GetLibraryDetailsOperator$outboundSchema.parse(getLibraryDetailsOperator),
-  );
-}
-
-export function getLibraryDetailsOperatorFromJSON(
-  jsonString: string,
-): SafeParseResult<GetLibraryDetailsOperator, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetLibraryDetailsOperator$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryDetailsOperator' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetLibraryDetailsFieldType$inboundSchema: z.ZodType<
-  GetLibraryDetailsFieldType,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: z.string().optional(),
-  Operator: z.array(z.lazy(() => GetLibraryDetailsOperator$inboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "Operator": "operator",
-  });
-});
-
-/** @internal */
-export type GetLibraryDetailsFieldType$Outbound = {
-  type?: string | undefined;
-  Operator?: Array<GetLibraryDetailsOperator$Outbound> | undefined;
-};
-
-/** @internal */
-export const GetLibraryDetailsFieldType$outboundSchema: z.ZodType<
-  GetLibraryDetailsFieldType$Outbound,
-  z.ZodTypeDef,
-  GetLibraryDetailsFieldType
-> = z.object({
-  type: z.string().optional(),
-  operator: z.array(z.lazy(() => GetLibraryDetailsOperator$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    operator: "Operator",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLibraryDetailsFieldType$ {
-  /** @deprecated use `GetLibraryDetailsFieldType$inboundSchema` instead. */
-  export const inboundSchema = GetLibraryDetailsFieldType$inboundSchema;
-  /** @deprecated use `GetLibraryDetailsFieldType$outboundSchema` instead. */
-  export const outboundSchema = GetLibraryDetailsFieldType$outboundSchema;
-  /** @deprecated use `GetLibraryDetailsFieldType$Outbound` instead. */
-  export type Outbound = GetLibraryDetailsFieldType$Outbound;
-}
-
-export function getLibraryDetailsFieldTypeToJSON(
-  getLibraryDetailsFieldType: GetLibraryDetailsFieldType,
-): string {
-  return JSON.stringify(
-    GetLibraryDetailsFieldType$outboundSchema.parse(getLibraryDetailsFieldType),
-  );
-}
-
-export function getLibraryDetailsFieldTypeFromJSON(
-  jsonString: string,
-): SafeParseResult<GetLibraryDetailsFieldType, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetLibraryDetailsFieldType$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetLibraryDetailsFieldType' from JSON`,
-  );
-}
-
-/** @internal */
 export const GetLibraryDetailsMediaContainer$inboundSchema: z.ZodType<
   GetLibraryDetailsMediaContainer,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  size: z.number().int().optional(),
+  content: z.string().optional(),
   allowSync: z.boolean().optional(),
   art: z.string().optional(),
-  content: z.string().optional(),
+  Directory: z.array(shared.Metadata$inboundSchema).optional(),
   identifier: z.string().optional(),
   librarySectionID: z.number().int().optional(),
   mediaTagPrefix: z.string().optional(),
   mediaTagVersion: z.number().int().optional(),
+  size: z.number().int().optional(),
+  sortAsc: z.boolean().optional(),
   thumb: z.string().optional(),
   title1: z.string().optional(),
   viewGroup: z.string().optional(),
   viewMode: z.number().int().optional(),
-  Directory: z.array(z.lazy(() => GetLibraryDetailsDirectory$inboundSchema))
-    .optional(),
-  Type: z.array(z.lazy(() => GetLibraryDetailsType$inboundSchema)).optional(),
-  FieldType: z.array(z.lazy(() => GetLibraryDetailsFieldType$inboundSchema))
-    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "Directory": "directory",
-    "Type": "type",
-    "FieldType": "fieldType",
   });
 });
 
 /** @internal */
 export type GetLibraryDetailsMediaContainer$Outbound = {
-  size?: number | undefined;
+  content?: string | undefined;
   allowSync?: boolean | undefined;
   art?: string | undefined;
-  content?: string | undefined;
+  Directory?: Array<shared.Metadata$Outbound> | undefined;
   identifier?: string | undefined;
   librarySectionID?: number | undefined;
   mediaTagPrefix?: string | undefined;
   mediaTagVersion?: number | undefined;
+  size?: number | undefined;
+  sortAsc?: boolean | undefined;
   thumb?: string | undefined;
   title1?: string | undefined;
   viewGroup?: string | undefined;
   viewMode?: number | undefined;
-  Directory?: Array<GetLibraryDetailsDirectory$Outbound> | undefined;
-  Type?: Array<GetLibraryDetailsType$Outbound> | undefined;
-  FieldType?: Array<GetLibraryDetailsFieldType$Outbound> | undefined;
 };
 
 /** @internal */
@@ -741,28 +424,23 @@ export const GetLibraryDetailsMediaContainer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetLibraryDetailsMediaContainer
 > = z.object({
-  size: z.number().int().optional(),
+  content: z.string().optional(),
   allowSync: z.boolean().optional(),
   art: z.string().optional(),
-  content: z.string().optional(),
+  directory: z.array(shared.Metadata$outboundSchema).optional(),
   identifier: z.string().optional(),
   librarySectionID: z.number().int().optional(),
   mediaTagPrefix: z.string().optional(),
   mediaTagVersion: z.number().int().optional(),
+  size: z.number().int().optional(),
+  sortAsc: z.boolean().optional(),
   thumb: z.string().optional(),
   title1: z.string().optional(),
   viewGroup: z.string().optional(),
   viewMode: z.number().int().optional(),
-  directory: z.array(z.lazy(() => GetLibraryDetailsDirectory$outboundSchema))
-    .optional(),
-  type: z.array(z.lazy(() => GetLibraryDetailsType$outboundSchema)).optional(),
-  fieldType: z.array(z.lazy(() => GetLibraryDetailsFieldType$outboundSchema))
-    .optional(),
 }).transform((v) => {
   return remap$(v, {
     directory: "Directory",
-    type: "Type",
-    fieldType: "FieldType",
   });
 });
 

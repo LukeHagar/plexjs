@@ -3,12 +3,13 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Security = {
-  accessToken?: string | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -17,12 +18,16 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  accessToken: z.string().optional(),
+  api_key: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "api_key": "apiKey",
+  });
 });
 
 /** @internal */
 export type Security$Outbound = {
-  accessToken?: string | undefined;
+  api_key?: string | undefined;
 };
 
 /** @internal */
@@ -31,7 +36,11 @@ export const Security$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Security
 > = z.object({
-  accessToken: z.string().optional(),
+  apiKey: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    apiKey: "api_key",
+  });
 });
 
 /**

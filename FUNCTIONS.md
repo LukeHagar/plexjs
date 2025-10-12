@@ -20,21 +20,30 @@ specific category of applications.
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { serverGetServerCapabilities } from "@lukehagar/plexjs/funcs/serverGetServerCapabilities.js";
+import { generalGetServerInfo } from "@lukehagar/plexjs/funcs/generalGetServerInfo.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const res = await serverGetServerCapabilities(plexAPI);
+  const res = await generalGetServerInfo(plexAPI, {});
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("serverGetServerCapabilities failed:", res.error);
+    console.log("generalGetServerInfo failed:", res.error);
   }
 }
 

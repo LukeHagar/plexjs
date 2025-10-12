@@ -7,32 +7,100 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import * as shared from "../shared/index.js";
 
-/**
- * Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
- */
-export enum Tonight {
-  Zero = 0,
-  One = 1,
-}
-
-/**
- * Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.
- */
-export enum Skip {
-  Zero = 0,
-  One = 1,
-}
+export type ApplyUpdatesGlobals = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+};
 
 export type ApplyUpdatesRequest = {
   /**
-   * Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install
+   * An opaque identifier unique to the client
    */
-  tonight?: Tonight | undefined;
+  xPlexClientIdentifier?: string | undefined;
   /**
-   * Indicate that the latest version should be marked as skipped. The [Release] entry for this version will have the `state` set to `skipped`.
+   * The name of the client product
    */
-  skip?: Skip | undefined;
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+  /**
+   * Indicate that you want the update to run during the next Butler execution. Omitting this or setting it to false indicates that the update should install immediately.
+   */
+  tonight?: shared.BoolInt | undefined;
+  /**
+   * Indicate that the latest version should be marked as skipped. The <Release> entry for this version will have the `state` set to `skipped`.
+   */
+  skip?: shared.BoolInt | undefined;
 };
 
 export type ApplyUpdatesResponse = {
@@ -51,42 +119,110 @@ export type ApplyUpdatesResponse = {
 };
 
 /** @internal */
-export const Tonight$inboundSchema: z.ZodNativeEnum<typeof Tonight> = z
-  .nativeEnum(Tonight);
+export const ApplyUpdatesGlobals$inboundSchema: z.ZodType<
+  ApplyUpdatesGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
 
 /** @internal */
-export const Tonight$outboundSchema: z.ZodNativeEnum<typeof Tonight> =
-  Tonight$inboundSchema;
+export type ApplyUpdatesGlobals$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+};
+
+/** @internal */
+export const ApplyUpdatesGlobals$outboundSchema: z.ZodType<
+  ApplyUpdatesGlobals$Outbound,
+  z.ZodTypeDef,
+  ApplyUpdatesGlobals
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Tonight$ {
-  /** @deprecated use `Tonight$inboundSchema` instead. */
-  export const inboundSchema = Tonight$inboundSchema;
-  /** @deprecated use `Tonight$outboundSchema` instead. */
-  export const outboundSchema = Tonight$outboundSchema;
+export namespace ApplyUpdatesGlobals$ {
+  /** @deprecated use `ApplyUpdatesGlobals$inboundSchema` instead. */
+  export const inboundSchema = ApplyUpdatesGlobals$inboundSchema;
+  /** @deprecated use `ApplyUpdatesGlobals$outboundSchema` instead. */
+  export const outboundSchema = ApplyUpdatesGlobals$outboundSchema;
+  /** @deprecated use `ApplyUpdatesGlobals$Outbound` instead. */
+  export type Outbound = ApplyUpdatesGlobals$Outbound;
 }
 
-/** @internal */
-export const Skip$inboundSchema: z.ZodNativeEnum<typeof Skip> = z.nativeEnum(
-  Skip,
-);
+export function applyUpdatesGlobalsToJSON(
+  applyUpdatesGlobals: ApplyUpdatesGlobals,
+): string {
+  return JSON.stringify(
+    ApplyUpdatesGlobals$outboundSchema.parse(applyUpdatesGlobals),
+  );
+}
 
-/** @internal */
-export const Skip$outboundSchema: z.ZodNativeEnum<typeof Skip> =
-  Skip$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Skip$ {
-  /** @deprecated use `Skip$inboundSchema` instead. */
-  export const inboundSchema = Skip$inboundSchema;
-  /** @deprecated use `Skip$outboundSchema` instead. */
-  export const outboundSchema = Skip$outboundSchema;
+export function applyUpdatesGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ApplyUpdatesGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApplyUpdatesGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApplyUpdatesGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -95,12 +231,45 @@ export const ApplyUpdatesRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  tonight: Tonight$inboundSchema.optional(),
-  skip: Skip$inboundSchema.optional(),
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+  tonight: shared.BoolInt$inboundSchema.optional(),
+  skip: shared.BoolInt$inboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
 });
 
 /** @internal */
 export type ApplyUpdatesRequest$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
   tonight?: number | undefined;
   skip?: number | undefined;
 };
@@ -111,8 +280,31 @@ export const ApplyUpdatesRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ApplyUpdatesRequest
 > = z.object({
-  tonight: Tonight$outboundSchema.optional(),
-  skip: Skip$outboundSchema.optional(),
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+  tonight: shared.BoolInt$outboundSchema.optional(),
+  skip: shared.BoolInt$outboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
 });
 
 /**

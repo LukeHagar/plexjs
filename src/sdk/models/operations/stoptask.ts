@@ -5,43 +5,125 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
-import {
-  catchUnrecognizedEnum,
-  OpenEnum,
-  Unrecognized,
-} from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type StopTaskGlobals = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+};
+
 /**
- * The name of the task to be started.
+ * The task name
  */
-export enum PathParamTaskName {
+export enum StopTaskTask {
+  AutomaticUpdates = "AutomaticUpdates",
   BackupDatabase = "BackupDatabase",
-  BuildGracenoteCollections = "BuildGracenoteCollections",
-  CheckForUpdates = "CheckForUpdates",
+  ButlerTaskGenerateAdMarkers = "ButlerTaskGenerateAdMarkers",
+  ButlerTaskGenerateCreditsMarkers = "ButlerTaskGenerateCreditsMarkers",
+  ButlerTaskGenerateIntroMarkers = "ButlerTaskGenerateIntroMarkers",
+  ButlerTaskGenerateVoiceActivity = "ButlerTaskGenerateVoiceActivity",
   CleanOldBundles = "CleanOldBundles",
   CleanOldCacheFiles = "CleanOldCacheFiles",
   DeepMediaAnalysis = "DeepMediaAnalysis",
-  GenerateAutoTags = "GenerateAutoTags",
+  GarbageCollectBlobs = "GarbageCollectBlobs",
+  GarbageCollectLibraryMedia = "GarbageCollectLibraryMedia",
+  GenerateBlurHashes = "GenerateBlurHashes",
   GenerateChapterThumbs = "GenerateChapterThumbs",
   GenerateMediaIndexFiles = "GenerateMediaIndexFiles",
+  LoudnessAnalysis = "LoudnessAnalysis",
+  MusicAnalysis = "MusicAnalysis",
   OptimizeDatabase = "OptimizeDatabase",
+  RefreshEpgGuides = "RefreshEpgGuides",
   RefreshLibraries = "RefreshLibraries",
   RefreshLocalMedia = "RefreshLocalMedia",
   RefreshPeriodicMetadata = "RefreshPeriodicMetadata",
   UpgradeMediaAnalysis = "UpgradeMediaAnalysis",
 }
-/**
- * The name of the task to be started.
- */
-export type PathParamTaskNameOpen = OpenEnum<typeof PathParamTaskName>;
 
 export type StopTaskRequest = {
   /**
-   * The name of the task to be started.
+   * An opaque identifier unique to the client
    */
-  taskName: PathParamTaskNameOpen;
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+  /**
+   * The task name
+   */
+  task: StopTaskTask;
 };
 
 export type StopTaskResponse = {
@@ -60,35 +142,127 @@ export type StopTaskResponse = {
 };
 
 /** @internal */
-export const PathParamTaskName$inboundSchema: z.ZodType<
-  PathParamTaskNameOpen,
+export const StopTaskGlobals$inboundSchema: z.ZodType<
+  StopTaskGlobals,
   z.ZodTypeDef,
   unknown
-> = z
-  .union([
-    z.nativeEnum(PathParamTaskName),
-    z.string().transform(catchUnrecognizedEnum),
-  ]);
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
 
 /** @internal */
-export const PathParamTaskName$outboundSchema: z.ZodType<
-  PathParamTaskNameOpen,
+export type StopTaskGlobals$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+};
+
+/** @internal */
+export const StopTaskGlobals$outboundSchema: z.ZodType<
+  StopTaskGlobals$Outbound,
   z.ZodTypeDef,
-  PathParamTaskNameOpen
-> = z.union([
-  z.nativeEnum(PathParamTaskName),
-  z.string().and(z.custom<Unrecognized<string>>()),
-]);
+  StopTaskGlobals
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PathParamTaskName$ {
-  /** @deprecated use `PathParamTaskName$inboundSchema` instead. */
-  export const inboundSchema = PathParamTaskName$inboundSchema;
-  /** @deprecated use `PathParamTaskName$outboundSchema` instead. */
-  export const outboundSchema = PathParamTaskName$outboundSchema;
+export namespace StopTaskGlobals$ {
+  /** @deprecated use `StopTaskGlobals$inboundSchema` instead. */
+  export const inboundSchema = StopTaskGlobals$inboundSchema;
+  /** @deprecated use `StopTaskGlobals$outboundSchema` instead. */
+  export const outboundSchema = StopTaskGlobals$outboundSchema;
+  /** @deprecated use `StopTaskGlobals$Outbound` instead. */
+  export type Outbound = StopTaskGlobals$Outbound;
+}
+
+export function stopTaskGlobalsToJSON(
+  stopTaskGlobals: StopTaskGlobals,
+): string {
+  return JSON.stringify(StopTaskGlobals$outboundSchema.parse(stopTaskGlobals));
+}
+
+export function stopTaskGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<StopTaskGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StopTaskGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StopTaskGlobals' from JSON`,
+  );
+}
+
+/** @internal */
+export const StopTaskTask$inboundSchema: z.ZodNativeEnum<typeof StopTaskTask> =
+  z.nativeEnum(StopTaskTask);
+
+/** @internal */
+export const StopTaskTask$outboundSchema: z.ZodNativeEnum<typeof StopTaskTask> =
+  StopTaskTask$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace StopTaskTask$ {
+  /** @deprecated use `StopTaskTask$inboundSchema` instead. */
+  export const inboundSchema = StopTaskTask$inboundSchema;
+  /** @deprecated use `StopTaskTask$outboundSchema` instead. */
+  export const outboundSchema = StopTaskTask$outboundSchema;
 }
 
 /** @internal */
@@ -97,12 +271,45 @@ export const StopTaskRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  taskName: PathParamTaskName$inboundSchema,
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+  task: StopTaskTask$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
 });
 
 /** @internal */
 export type StopTaskRequest$Outbound = {
-  taskName: string;
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+  task: string;
 };
 
 /** @internal */
@@ -111,7 +318,30 @@ export const StopTaskRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   StopTaskRequest
 > = z.object({
-  taskName: PathParamTaskName$outboundSchema,
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+  task: StopTaskTask$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
 });
 
 /**

@@ -3,60 +3,58 @@
  */
 
 import { updaterApplyUpdates } from "../funcs/updaterApplyUpdates.js";
-import { updaterCheckForUpdates } from "../funcs/updaterCheckForUpdates.js";
-import { updaterGetUpdateStatus } from "../funcs/updaterGetUpdateStatus.js";
+import { updaterCheckUpdates } from "../funcs/updaterCheckUpdates.js";
+import { updaterGetUpdatesStatus } from "../funcs/updaterGetUpdatesStatus.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Updater extends ClientSDK {
   /**
-   * Querying status of updates
+   * Applying updates
    *
    * @remarks
-   * Querying status of updates
-   */
-  async getUpdateStatus(
-    options?: RequestOptions,
-  ): Promise<operations.GetUpdateStatusResponse> {
-    return unwrapAsync(updaterGetUpdateStatus(
-      this,
-      options,
-    ));
-  }
-
-  /**
-   * Checking for updates
-   *
-   * @remarks
-   * Checking for updates
-   */
-  async checkForUpdates(
-    download?: operations.Download | undefined,
-    options?: RequestOptions,
-  ): Promise<operations.CheckForUpdatesResponse> {
-    return unwrapAsync(updaterCheckForUpdates(
-      this,
-      download,
-      options,
-    ));
-  }
-
-  /**
-   * Apply Updates
-   *
-   * @remarks
-   * Note that these two parameters are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed
+   * Apply any downloaded updates.  Note that the two parameters `tonight` and `skip` are effectively mutually exclusive. The `tonight` parameter takes precedence and `skip` will be ignored if `tonight` is also passed.
    */
   async applyUpdates(
-    tonight?: operations.Tonight | undefined,
-    skip?: operations.Skip | undefined,
+    request: operations.ApplyUpdatesRequest,
     options?: RequestOptions,
   ): Promise<operations.ApplyUpdatesResponse> {
     return unwrapAsync(updaterApplyUpdates(
       this,
-      tonight,
-      skip,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Checking for updates
+   *
+   * @remarks
+   * Perform an update check and potentially download
+   */
+  async checkUpdates(
+    request: operations.CheckUpdatesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CheckUpdatesResponse> {
+    return unwrapAsync(updaterCheckUpdates(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Querying status of updates
+   *
+   * @remarks
+   * Get the status of updating the server
+   */
+  async getUpdatesStatus(
+    options?: RequestOptions,
+  ): Promise<operations.GetUpdatesStatusResponse> {
+    return unwrapAsync(updaterGetUpdatesStatus(
+      this,
       options,
     ));
   }

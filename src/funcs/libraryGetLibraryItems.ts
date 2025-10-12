@@ -17,7 +17,6 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
@@ -26,30 +25,10 @@ import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
- * Get Library Items
+ * Get all items in library
  *
  * @remarks
- * Fetches details from a specific section of the library identified by a section key and a tag. The tag parameter accepts the following values:
- * - `all`: All items in the section.
- * - `unwatched`: Items that have not been played.
- * - `newest`: Items that are recently released.
- * - `recentlyAdded`: Items that are recently added to the library.
- * - `recentlyViewed`: Items that were recently viewed.
- * - `onDeck`: Items to continue watching.
- * - `collection`: Items categorized by collection.
- * - `edition`: Items categorized by edition.
- * - `genre`: Items categorized by genre.
- * - `year`: Items categorized by year of release.
- * - `decade`: Items categorized by decade.
- * - `director`: Items categorized by director.
- * - `actor`: Items categorized by starring actor.
- * - `country`: Items categorized by country of origin.
- * - `contentRating`: Items categorized by content rating.
- * - `rating`: Items categorized by rating.
- * - `resolution`: Items categorized by resolution.
- * - `firstCharacter`: Items categorized by the first letter.
- * - `folder`: Items categorized by folder.
- * - `albums`: Items categorized by album.
+ * Request all metadata items according to a query.
  */
 export function libraryGetLibraryItems(
   client: PlexAPICore,
@@ -58,8 +37,6 @@ export function libraryGetLibraryItems(
 ): APIPromise<
   Result<
     operations.GetLibraryItemsResponse,
-    | errors.GetLibraryItemsBadRequest
-    | errors.GetLibraryItemsUnauthorized
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -85,8 +62,6 @@ async function $do(
   [
     Result<
       operations.GetLibraryItemsResponse,
-      | errors.GetLibraryItemsBadRequest
-      | errors.GetLibraryItemsUnauthorized
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -110,44 +85,81 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const pathParams = {
-    sectionKey: encodeSimple("sectionKey", payload.sectionKey, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-    tag: encodeSimple("tag", payload.tag, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
-
-  const path = pathToFunc("/library/sections/{sectionKey}/{tag}")(pathParams);
+  const path = pathToFunc("/library/all")();
 
   const query = encodeFormQuery({
-    "includeGuids": payload.includeGuids,
-    "includeMeta": payload.includeMeta,
-    "type": payload.type,
-    "X-Plex-Container-Size": payload["X-Plex-Container-Size"],
-    "X-Plex-Container-Start": payload["X-Plex-Container-Start"],
+    "mediaQuery": payload.mediaQuery,
   });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "X-Plex-Client-Identifier": encodeSimple(
+      "X-Plex-Client-Identifier",
+      payload["X-Plex-Client-Identifier"]
+        ?? client._options.xPlexClientIdentifier,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device": encodeSimple(
+      "X-Plex-Device",
+      payload["X-Plex-Device"] ?? client._options.xPlexDevice,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device-Name": encodeSimple(
+      "X-Plex-Device-Name",
+      payload["X-Plex-Device-Name"] ?? client._options.xPlexDeviceName,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device-Vendor": encodeSimple(
+      "X-Plex-Device-Vendor",
+      payload["X-Plex-Device-Vendor"] ?? client._options.xPlexDeviceVendor,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Marketplace": encodeSimple(
+      "X-Plex-Marketplace",
+      payload["X-Plex-Marketplace"] ?? client._options.xPlexMarketplace,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Model": encodeSimple(
+      "X-Plex-Model",
+      payload["X-Plex-Model"] ?? client._options.xPlexModel,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Platform": encodeSimple(
+      "X-Plex-Platform",
+      payload["X-Plex-Platform"] ?? client._options.xPlexPlatform,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Platform-Version": encodeSimple(
+      "X-Plex-Platform-Version",
+      payload["X-Plex-Platform-Version"]
+        ?? client._options.xPlexPlatformVersion,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Product": encodeSimple(
+      "X-Plex-Product",
+      payload["X-Plex-Product"] ?? client._options.xPlexProduct,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Version": encodeSimple(
+      "X-Plex-Version",
+      payload["X-Plex-Version"] ?? client._options.xPlexVersion,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
-  const secConfig = await extractSecurity(client._options.accessToken);
-  const securityInput = secConfig == null ? {} : { accessToken: secConfig };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "get-library-items",
-    oAuth2Scopes: [],
+    operationID: "getLibraryItems",
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.accessToken,
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || { strategy: "none" },
@@ -172,7 +184,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "4XX", "5XX"],
+    errorCodes: ["4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -191,8 +203,6 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetLibraryItemsResponse,
-    | errors.GetLibraryItemsBadRequest
-    | errors.GetLibraryItemsUnauthorized
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -203,10 +213,9 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.GetLibraryItemsResponse$inboundSchema, {
-      key: "object",
+      hdrs: true,
+      key: "MediaContainerWithMetadata",
     }),
-    M.jsonErr(400, errors.GetLibraryItemsBadRequest$inboundSchema),
-    M.jsonErr(401, errors.GetLibraryItemsUnauthorized$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

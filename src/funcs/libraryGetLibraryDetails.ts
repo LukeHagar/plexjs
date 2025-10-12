@@ -17,7 +17,6 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
@@ -26,59 +25,18 @@ import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
- * Get Library Details
+ * Get a library section by id
  *
  * @remarks
- * ## Library Details Endpoint
- *
- * This endpoint provides comprehensive details about the library, focusing on organizational aspects rather than the content itself.
- *
- * The details include:
- *
- * ### Directories
- * Organized into three categories:
- *
- * - **Primary Directories**:
- *   - Used in some clients for quick access to media subsets (e.g., "All", "On Deck").
- *   - Most can be replicated via media queries.
- *   - Customizable by users.
- *
- * - **Secondary Directories**:
- *   - Marked with `secondary="1"`.
- *   - Used in older clients for structured navigation.
- *
- * - **Special Directories**:
- *   - Includes a "By Folder" entry for filesystem-based browsing.
- *   - Contains an obsolete `search="1"` entry for on-the-fly search dialog creation.
- *
- * ### Types
- * Each type in the library comes with a set of filters and sorts, aiding in building dynamic media controls:
- *
- * - **Type Object Attributes**:
- *   - `key`: Endpoint for the media list of this type.
- *   - `type`: Metadata type (if standard Plex type).
- *   - `title`: Title for this content type (e.g., "Movies").
- *
- * - **Filter Objects**:
- *   - Subset of the media query language.
- *   - Attributes include `filter` (name), `filterType` (data type), `key` (endpoint for value range), and `title`.
- *
- * - **Sort Objects**:
- *   - Description of sort fields.
- *   - Attributes include `defaultDirection` (asc/desc), `descKey` and `key` (sort parameters), and `title`.
- *
- * > **Note**: Filters and sorts are optional; without them, no filtering controls are rendered.
+ * Returns details for the library. This can be thought of as an interstitial endpoint because it contains information about the library, rather than content itself. It often contains a list of `Directory` metadata objects: These used to be used by clients to build a menuing system.
  */
 export function libraryGetLibraryDetails(
   client: PlexAPICore,
-  sectionKey: number,
-  includeDetails?: operations.IncludeDetails | undefined,
+  request: operations.GetLibraryDetailsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     operations.GetLibraryDetailsResponse,
-    | errors.GetLibraryDetailsBadRequest
-    | errors.GetLibraryDetailsUnauthorized
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -91,23 +49,19 @@ export function libraryGetLibraryDetails(
 > {
   return new APIPromise($do(
     client,
-    sectionKey,
-    includeDetails,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: PlexAPICore,
-  sectionKey: number,
-  includeDetails?: operations.IncludeDetails | undefined,
+  request: operations.GetLibraryDetailsRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       operations.GetLibraryDetailsResponse,
-      | errors.GetLibraryDetailsBadRequest
-      | errors.GetLibraryDetailsUnauthorized
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -120,13 +74,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.GetLibraryDetailsRequest = {
-    sectionKey: sectionKey,
-    includeDetails: includeDetails,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.GetLibraryDetailsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
@@ -137,13 +86,13 @@ async function $do(
   const body = null;
 
   const pathParams = {
-    sectionKey: encodeSimple("sectionKey", payload.sectionKey, {
+    sectionId: encodeSimple("sectionId", payload.sectionId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc("/library/sections/{sectionKey}")(pathParams);
+  const path = pathToFunc("/library/sections/{sectionId}")(pathParams);
 
   const query = encodeFormQuery({
     "includeDetails": payload.includeDetails,
@@ -151,21 +100,73 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "X-Plex-Client-Identifier": encodeSimple(
+      "X-Plex-Client-Identifier",
+      payload["X-Plex-Client-Identifier"]
+        ?? client._options.xPlexClientIdentifier,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device": encodeSimple(
+      "X-Plex-Device",
+      payload["X-Plex-Device"] ?? client._options.xPlexDevice,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device-Name": encodeSimple(
+      "X-Plex-Device-Name",
+      payload["X-Plex-Device-Name"] ?? client._options.xPlexDeviceName,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device-Vendor": encodeSimple(
+      "X-Plex-Device-Vendor",
+      payload["X-Plex-Device-Vendor"] ?? client._options.xPlexDeviceVendor,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Marketplace": encodeSimple(
+      "X-Plex-Marketplace",
+      payload["X-Plex-Marketplace"] ?? client._options.xPlexMarketplace,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Model": encodeSimple(
+      "X-Plex-Model",
+      payload["X-Plex-Model"] ?? client._options.xPlexModel,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Platform": encodeSimple(
+      "X-Plex-Platform",
+      payload["X-Plex-Platform"] ?? client._options.xPlexPlatform,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Platform-Version": encodeSimple(
+      "X-Plex-Platform-Version",
+      payload["X-Plex-Platform-Version"]
+        ?? client._options.xPlexPlatformVersion,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Product": encodeSimple(
+      "X-Plex-Product",
+      payload["X-Plex-Product"] ?? client._options.xPlexProduct,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Version": encodeSimple(
+      "X-Plex-Version",
+      payload["X-Plex-Version"] ?? client._options.xPlexVersion,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
-  const secConfig = await extractSecurity(client._options.accessToken);
-  const securityInput = secConfig == null ? {} : { accessToken: secConfig };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "get-library-details",
-    oAuth2Scopes: [],
+    operationID: "getLibraryDetails",
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.accessToken,
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || { strategy: "none" },
@@ -190,7 +191,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "4XX", "5XX"],
+    errorCodes: ["4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -209,8 +210,6 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetLibraryDetailsResponse,
-    | errors.GetLibraryDetailsBadRequest
-    | errors.GetLibraryDetailsUnauthorized
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -223,8 +222,6 @@ async function $do(
     M.json(200, operations.GetLibraryDetailsResponse$inboundSchema, {
       key: "object",
     }),
-    M.jsonErr(400, errors.GetLibraryDetailsBadRequest$inboundSchema),
-    M.jsonErr(401, errors.GetLibraryDetailsUnauthorized$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

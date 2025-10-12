@@ -1,19 +1,19 @@
 # Action
 
+The action to perform for this item on this optimizer queue
+
 ## Example Usage
 
 ```typescript
 import { Action } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: Action = {
-  id: "addToContinueWatching",
-  key: "/actions/addToContinueWatching",
-};
+let value: Action = Action.Enable;
 ```
 
-## Fields
+## Values
 
-| Field                          | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `id`                           | *string*                       | :heavy_check_mark:             | N/A                            | addToContinueWatching          |
-| `key`                          | *string*                       | :heavy_check_mark:             | N/A                            | /actions/addToContinueWatching |
+| Name        | Value       |
+| ----------- | ----------- |
+| `Reprocess` | reprocess   |
+| `Disable`   | disable     |
+| `Enable`    | enable      |

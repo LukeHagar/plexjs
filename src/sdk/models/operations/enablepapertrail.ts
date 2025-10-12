@@ -8,7 +8,97 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type EnablePaperTrailResponse = {
+export type EnablePapertrailGlobals = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+};
+
+export type EnablePapertrailRequest = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+  /**
+   * The number of minutes logging should be sent to Papertrail
+   */
+  minutes?: number | undefined;
+};
+
+export type EnablePapertrailResponse = {
   /**
    * HTTP response content type for this operation
    */
@@ -24,8 +114,225 @@ export type EnablePaperTrailResponse = {
 };
 
 /** @internal */
-export const EnablePaperTrailResponse$inboundSchema: z.ZodType<
-  EnablePaperTrailResponse,
+export const EnablePapertrailGlobals$inboundSchema: z.ZodType<
+  EnablePapertrailGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
+
+/** @internal */
+export type EnablePapertrailGlobals$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+};
+
+/** @internal */
+export const EnablePapertrailGlobals$outboundSchema: z.ZodType<
+  EnablePapertrailGlobals$Outbound,
+  z.ZodTypeDef,
+  EnablePapertrailGlobals
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EnablePapertrailGlobals$ {
+  /** @deprecated use `EnablePapertrailGlobals$inboundSchema` instead. */
+  export const inboundSchema = EnablePapertrailGlobals$inboundSchema;
+  /** @deprecated use `EnablePapertrailGlobals$outboundSchema` instead. */
+  export const outboundSchema = EnablePapertrailGlobals$outboundSchema;
+  /** @deprecated use `EnablePapertrailGlobals$Outbound` instead. */
+  export type Outbound = EnablePapertrailGlobals$Outbound;
+}
+
+export function enablePapertrailGlobalsToJSON(
+  enablePapertrailGlobals: EnablePapertrailGlobals,
+): string {
+  return JSON.stringify(
+    EnablePapertrailGlobals$outboundSchema.parse(enablePapertrailGlobals),
+  );
+}
+
+export function enablePapertrailGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<EnablePapertrailGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EnablePapertrailGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EnablePapertrailGlobals' from JSON`,
+  );
+}
+
+/** @internal */
+export const EnablePapertrailRequest$inboundSchema: z.ZodType<
+  EnablePapertrailRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+  minutes: z.number().int().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
+
+/** @internal */
+export type EnablePapertrailRequest$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+  minutes?: number | undefined;
+};
+
+/** @internal */
+export const EnablePapertrailRequest$outboundSchema: z.ZodType<
+  EnablePapertrailRequest$Outbound,
+  z.ZodTypeDef,
+  EnablePapertrailRequest
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+  minutes: z.number().int().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EnablePapertrailRequest$ {
+  /** @deprecated use `EnablePapertrailRequest$inboundSchema` instead. */
+  export const inboundSchema = EnablePapertrailRequest$inboundSchema;
+  /** @deprecated use `EnablePapertrailRequest$outboundSchema` instead. */
+  export const outboundSchema = EnablePapertrailRequest$outboundSchema;
+  /** @deprecated use `EnablePapertrailRequest$Outbound` instead. */
+  export type Outbound = EnablePapertrailRequest$Outbound;
+}
+
+export function enablePapertrailRequestToJSON(
+  enablePapertrailRequest: EnablePapertrailRequest,
+): string {
+  return JSON.stringify(
+    EnablePapertrailRequest$outboundSchema.parse(enablePapertrailRequest),
+  );
+}
+
+export function enablePapertrailRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<EnablePapertrailRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EnablePapertrailRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EnablePapertrailRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const EnablePapertrailResponse$inboundSchema: z.ZodType<
+  EnablePapertrailResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -41,17 +348,17 @@ export const EnablePaperTrailResponse$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type EnablePaperTrailResponse$Outbound = {
+export type EnablePapertrailResponse$Outbound = {
   ContentType: string;
   StatusCode: number;
   RawResponse: never;
 };
 
 /** @internal */
-export const EnablePaperTrailResponse$outboundSchema: z.ZodType<
-  EnablePaperTrailResponse$Outbound,
+export const EnablePapertrailResponse$outboundSchema: z.ZodType<
+  EnablePapertrailResponse$Outbound,
   z.ZodTypeDef,
-  EnablePaperTrailResponse
+  EnablePapertrailResponse
 > = z.object({
   contentType: z.string(),
   statusCode: z.number().int(),
@@ -70,29 +377,29 @@ export const EnablePaperTrailResponse$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace EnablePaperTrailResponse$ {
-  /** @deprecated use `EnablePaperTrailResponse$inboundSchema` instead. */
-  export const inboundSchema = EnablePaperTrailResponse$inboundSchema;
-  /** @deprecated use `EnablePaperTrailResponse$outboundSchema` instead. */
-  export const outboundSchema = EnablePaperTrailResponse$outboundSchema;
-  /** @deprecated use `EnablePaperTrailResponse$Outbound` instead. */
-  export type Outbound = EnablePaperTrailResponse$Outbound;
+export namespace EnablePapertrailResponse$ {
+  /** @deprecated use `EnablePapertrailResponse$inboundSchema` instead. */
+  export const inboundSchema = EnablePapertrailResponse$inboundSchema;
+  /** @deprecated use `EnablePapertrailResponse$outboundSchema` instead. */
+  export const outboundSchema = EnablePapertrailResponse$outboundSchema;
+  /** @deprecated use `EnablePapertrailResponse$Outbound` instead. */
+  export type Outbound = EnablePapertrailResponse$Outbound;
 }
 
-export function enablePaperTrailResponseToJSON(
-  enablePaperTrailResponse: EnablePaperTrailResponse,
+export function enablePapertrailResponseToJSON(
+  enablePapertrailResponse: EnablePapertrailResponse,
 ): string {
   return JSON.stringify(
-    EnablePaperTrailResponse$outboundSchema.parse(enablePaperTrailResponse),
+    EnablePapertrailResponse$outboundSchema.parse(enablePapertrailResponse),
   );
 }
 
-export function enablePaperTrailResponseFromJSON(
+export function enablePapertrailResponseFromJSON(
   jsonString: string,
-): SafeParseResult<EnablePaperTrailResponse, SDKValidationError> {
+): SafeParseResult<EnablePapertrailResponse, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => EnablePaperTrailResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EnablePaperTrailResponse' from JSON`,
+    (x) => EnablePapertrailResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EnablePapertrailResponse' from JSON`,
   );
 }

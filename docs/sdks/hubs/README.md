@@ -3,109 +3,52 @@
 
 ## Overview
 
-Hubs are a structured two-dimensional container for media, generally represented by multiple horizontal rows.
-
+The hubs within a media provider
 
 ### Available Operations
 
-* [getGlobalHubs](#getglobalhubs) - Get Global Hubs
-* [getRecentlyAdded](#getrecentlyadded) - Get Recently Added
-* [getLibraryHubs](#getlibraryhubs) - Get library specific hubs
+* [getAllHubs](#getallhubs) - Get global hubs
+* [getContinueWatching](#getcontinuewatching) - Get the continue watching hub
+* [getHubItems](#gethubitems) - Get a hub's items
+* [getPromotedHubs](#getpromotedhubs) - Get the hubs which are promoted
+* [getMetadataHubs](#getmetadatahubs) - Get hubs for section by metadata item
+* [getPostplayHubs](#getpostplayhubs) - Get postplay hubs
+* [getRelatedHubs](#getrelatedhubs) - Get related hubs
+* [getSectionHubs](#getsectionhubs) - Get section hubs
+* [resetSectionDefaults](#resetsectiondefaults) - Reset hubs to defaults
+* [listHubs](#listhubs) - Get hubs
+* [createCustomHub](#createcustomhub) - Create a custom hub
+* [moveHub](#movehub) - Move Hub
+* [deleteCustomHub](#deletecustomhub) - Delete a custom hub
+* [updateHubVisibility](#updatehubvisibility) - Change hub visibility
 
-## getGlobalHubs
+## getAllHubs
 
-Get Global Hubs filtered by the parameters provided.
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="getGlobalHubs" method="get" path="/hubs" -->
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-
-const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await plexAPI.hubs.getGlobalHubs();
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetGlobalHubs } from "@lukehagar/plexjs/funcs/hubsGetGlobalHubs.js";
-
-// Use `PlexAPICore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await hubsGetGlobalHubs(plexAPI);
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("hubsGetGlobalHubs failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `count`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The number of items to return with each hub.                                                                                                                                   |
-| `onlyTransient`                                                                                                                                                                | [operations.OnlyTransient](../../sdk/models/operations/onlytransient.md)                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).                          |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.GetGlobalHubsResponse](../../sdk/models/operations/getglobalhubsresponse.md)\>**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| errors.GetGlobalHubsBadRequest   | 400                              | application/json                 |
-| errors.GetGlobalHubsUnauthorized | 401                              | application/json                 |
-| errors.SDKError                  | 4XX, 5XX                         | \*/\*                            |
-
-## getRecentlyAdded
-
-This endpoint will return the recently added content.
-
+Get the global hubs in this PMS
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="get-recently-added" method="get" path="/hubs/home/recentlyAdded" -->
+<!-- UsageSnippet language="typescript" operationID="getAllHubs" method="get" path="/hubs" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.hubs.getRecentlyAdded({
-    contentDirectoryID: 39486,
-    sectionID: 2,
-    type: Type.TvShow,
-    includeMeta: IncludeMeta.Enable,
+  const result = await plexAPI.hubs.getAllHubs({
+    onlyTransient: BoolInt.One,
   });
 
   console.log(result);
@@ -120,27 +63,33 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetRecentlyAdded } from "@lukehagar/plexjs/funcs/hubsGetRecentlyAdded.js";
-import { IncludeMeta, Type } from "@lukehagar/plexjs/sdk/models/operations";
+import { hubsGetAllHubs } from "@lukehagar/plexjs/funcs/hubsGetAllHubs.js";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const res = await hubsGetRecentlyAdded(plexAPI, {
-    contentDirectoryID: 39486,
-    sectionID: 2,
-    type: Type.TvShow,
-    includeMeta: IncludeMeta.Enable,
+  const res = await hubsGetAllHubs(plexAPI, {
+    onlyTransient: BoolInt.One,
   });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("hubsGetRecentlyAdded failed:", res.error);
+    console.log("hubsGetAllHubs failed:", res.error);
   }
 }
 
@@ -151,14 +100,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetRecentlyAddedRequest](../../sdk/models/operations/getrecentlyaddedrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetAllHubsRequest](../../sdk/models/operations/getallhubsrequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetRecentlyAddedResponse](../../sdk/models/operations/getrecentlyaddedresponse.md)\>**
+**Promise\<[operations.GetAllHubsResponse](../../sdk/models/operations/getallhubsresponse.md)\>**
 
 ### Errors
 
@@ -166,23 +115,31 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## getLibraryHubs
+## getContinueWatching
 
-This endpoint will return a list of library specific hubs
-
+Get the global continue watching hub
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="getLibraryHubs" method="get" path="/hubs/sections/{sectionId}" -->
+<!-- UsageSnippet language="typescript" operationID="getContinueWatching" method="get" path="/hubs/continueWatching" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.hubs.getLibraryHubs(492.74);
+  const result = await plexAPI.hubs.getContinueWatching({});
 
   console.log(result);
 }
@@ -196,21 +153,30 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetLibraryHubs } from "@lukehagar/plexjs/funcs/hubsGetLibraryHubs.js";
+import { hubsGetContinueWatching } from "@lukehagar/plexjs/funcs/hubsGetContinueWatching.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const res = await hubsGetLibraryHubs(plexAPI, 492.74);
+  const res = await hubsGetContinueWatching(plexAPI, {});
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("hubsGetLibraryHubs failed:", res.error);
+    console.log("hubsGetContinueWatching failed:", res.error);
   }
 }
 
@@ -221,21 +187,1153 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sectionId`                                                                                                                                                                    | *number*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the Id of the library to query                                                                                                                                                 |
-| `count`                                                                                                                                                                        | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The number of items to return with each hub.                                                                                                                                   |
-| `onlyTransient`                                                                                                                                                                | [operations.QueryParamOnlyTransient](../../sdk/models/operations/queryparamonlytransient.md)                                                                                   | :heavy_minus_sign:                                                                                                                                                             | Only return hubs which are "transient", meaning those which are prone to changing after media playback or addition (e.g. On Deck, or Recently Added).                          |
+| `request`                                                                                                                                                                      | [operations.GetContinueWatchingRequest](../../sdk/models/operations/getcontinuewatchingrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetLibraryHubsResponse](../../sdk/models/operations/getlibraryhubsresponse.md)\>**
+**Promise\<[operations.GetContinueWatchingResponse](../../sdk/models/operations/getcontinuewatchingresponse.md)\>**
 
 ### Errors
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| errors.GetLibraryHubsBadRequest   | 400                               | application/json                  |
-| errors.GetLibraryHubsUnauthorized | 401                               | application/json                  |
-| errors.SDKError                   | 4XX, 5XX                          | \*/\*                             |
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getHubItems
+
+Get the items within a single hub specified by identifier
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getHubItems" method="get" path="/hubs/items" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getHubItems({
+    identifier: [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsGetHubItems } from "@lukehagar/plexjs/funcs/hubsGetHubItems.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsGetHubItems(plexAPI, {
+    identifier: [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetHubItems failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetHubItemsRequest](../../sdk/models/operations/gethubitemsrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetHubItemsResponse](../../sdk/models/operations/gethubitemsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getPromotedHubs
+
+Get the global hubs which are promoted (should be displayed on the home screen)
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getPromotedHubs" method="get" path="/hubs/promoted" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getPromotedHubs({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsGetPromotedHubs } from "@lukehagar/plexjs/funcs/hubsGetPromotedHubs.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsGetPromotedHubs(plexAPI, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetPromotedHubs failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetPromotedHubsRequest](../../sdk/models/operations/getpromotedhubsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetPromotedHubsResponse](../../sdk/models/operations/getpromotedhubsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getMetadataHubs
+
+Get the hubs for a section by metadata item.  Currently only for music sections
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getMetadataHubs" method="get" path="/hubs/metadata/{metadataId}" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getMetadataHubs({
+    metadataId: 605482,
+    onlyTransient: BoolInt.One,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsGetMetadataHubs } from "@lukehagar/plexjs/funcs/hubsGetMetadataHubs.js";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsGetMetadataHubs(plexAPI, {
+    metadataId: 605482,
+    onlyTransient: BoolInt.One,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetMetadataHubs failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetMetadataHubsRequest](../../sdk/models/operations/getmetadatahubsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetMetadataHubsResponse](../../sdk/models/operations/getmetadatahubsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getPostplayHubs
+
+Get the hubs for a metadata to be displayed in post play
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getPostplayHubs" method="get" path="/hubs/metadata/{metadataId}/postplay" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getPostplayHubs({
+    metadataId: 441419,
+    onlyTransient: BoolInt.One,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsGetPostplayHubs } from "@lukehagar/plexjs/funcs/hubsGetPostplayHubs.js";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsGetPostplayHubs(plexAPI, {
+    metadataId: 441419,
+    onlyTransient: BoolInt.One,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetPostplayHubs failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetPostplayHubsRequest](../../sdk/models/operations/getpostplayhubsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetPostplayHubsResponse](../../sdk/models/operations/getpostplayhubsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getRelatedHubs
+
+Get the hubs for a metadata related to the provided metadata item
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getRelatedHubs" method="get" path="/hubs/metadata/{metadataId}/related" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getRelatedHubs({
+    metadataId: 8858,
+    onlyTransient: BoolInt.One,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsGetRelatedHubs } from "@lukehagar/plexjs/funcs/hubsGetRelatedHubs.js";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsGetRelatedHubs(plexAPI, {
+    metadataId: 8858,
+    onlyTransient: BoolInt.One,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetRelatedHubs failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetRelatedHubsRequest](../../sdk/models/operations/getrelatedhubsrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetRelatedHubsResponse](../../sdk/models/operations/getrelatedhubsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## getSectionHubs
+
+Get the hubs for a single section
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getSectionHubs" method="get" path="/hubs/sections/{sectionId}" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.getSectionHubs({
+    sectionId: 336924,
+    onlyTransient: BoolInt.One,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsGetSectionHubs } from "@lukehagar/plexjs/funcs/hubsGetSectionHubs.js";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsGetSectionHubs(plexAPI, {
+    sectionId: 336924,
+    onlyTransient: BoolInt.One,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsGetSectionHubs failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetSectionHubsRequest](../../sdk/models/operations/getsectionhubsrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetSectionHubsResponse](../../sdk/models/operations/getsectionhubsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## resetSectionDefaults
+
+Reset hubs for this section to defaults and delete custom hubs
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="resetSectionDefaults" method="delete" path="/hubs/sections/{sectionId}/manage" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.resetSectionDefaults({
+    sectionId: 383022,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsResetSectionDefaults } from "@lukehagar/plexjs/funcs/hubsResetSectionDefaults.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsResetSectionDefaults(plexAPI, {
+    sectionId: 383022,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsResetSectionDefaults failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ResetSectionDefaultsRequest](../../sdk/models/operations/resetsectiondefaultsrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.ResetSectionDefaultsResponse](../../sdk/models/operations/resetsectiondefaultsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## listHubs
+
+Get the list of hubs including both built-in and custom
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="listHubs" method="get" path="/hubs/sections/{sectionId}/manage" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.listHubs({
+    sectionId: 442546,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsListHubs } from "@lukehagar/plexjs/funcs/hubsListHubs.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsListHubs(plexAPI, {
+    sectionId: 442546,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsListHubs failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ListHubsRequest](../../sdk/models/operations/listhubsrequest.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.ListHubsResponse](../../sdk/models/operations/listhubsresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## createCustomHub
+
+Create a custom hub based on a metadata item
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="createCustomHub" method="post" path="/hubs/sections/{sectionId}/manage" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.createCustomHub({
+    sectionId: 869922,
+    metadataItemId: 703843,
+    promotedToRecommended: BoolInt.One,
+    promotedToOwnHome: BoolInt.One,
+    promotedToSharedHome: BoolInt.One,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsCreateCustomHub } from "@lukehagar/plexjs/funcs/hubsCreateCustomHub.js";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsCreateCustomHub(plexAPI, {
+    sectionId: 869922,
+    metadataItemId: 703843,
+    promotedToRecommended: BoolInt.One,
+    promotedToOwnHome: BoolInt.One,
+    promotedToSharedHome: BoolInt.One,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsCreateCustomHub failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.CreateCustomHubRequest](../../sdk/models/operations/createcustomhubrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.CreateCustomHubResponse](../../sdk/models/operations/createcustomhubresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## moveHub
+
+Changed the ordering of a hub among others hubs
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="moveHub" method="put" path="/hubs/sections/{sectionId}/manage/move" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.moveHub({
+    sectionId: 755710,
+    identifier: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsMoveHub } from "@lukehagar/plexjs/funcs/hubsMoveHub.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsMoveHub(plexAPI, {
+    sectionId: 755710,
+    identifier: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsMoveHub failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.MoveHubRequest](../../sdk/models/operations/movehubrequest.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.MoveHubResponse](../../sdk/models/operations/movehubresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## deleteCustomHub
+
+Delete a custom hub from the server
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="deleteCustomHub" method="delete" path="/hubs/sections/{sectionId}/manage/{identifier}" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.deleteCustomHub({
+    sectionId: 625677,
+    identifier: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsDeleteCustomHub } from "@lukehagar/plexjs/funcs/hubsDeleteCustomHub.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsDeleteCustomHub(plexAPI, {
+    sectionId: 625677,
+    identifier: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsDeleteCustomHub failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.DeleteCustomHubRequest](../../sdk/models/operations/deletecustomhubrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.DeleteCustomHubResponse](../../sdk/models/operations/deletecustomhubresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## updateHubVisibility
+
+Changed the visibility of a hub for both the admin and shared users
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="updateHubVisibility" method="put" path="/hubs/sections/{sectionId}/manage/{identifier}" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.hubs.updateHubVisibility({
+    sectionId: 341650,
+    identifier: "<value>",
+    promotedToRecommended: BoolInt.One,
+    promotedToOwnHome: BoolInt.One,
+    promotedToSharedHome: BoolInt.One,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { hubsUpdateHubVisibility } from "@lukehagar/plexjs/funcs/hubsUpdateHubVisibility.js";
+import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await hubsUpdateHubVisibility(plexAPI, {
+    sectionId: 341650,
+    identifier: "<value>",
+    promotedToRecommended: BoolInt.One,
+    promotedToOwnHome: BoolInt.One,
+    promotedToSharedHome: BoolInt.One,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hubsUpdateHubVisibility failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdateHubVisibilityRequest](../../sdk/models/operations/updatehubvisibilityrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.UpdateHubVisibilityResponse](../../sdk/models/operations/updatehubvisibilityresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

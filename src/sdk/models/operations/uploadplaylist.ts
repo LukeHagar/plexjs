@@ -7,45 +7,100 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import * as shared from "../shared/index.js";
 
-/**
- * Force overwriting of duplicate playlists.
- *
- * @remarks
- * By default, a playlist file uploaded with the same path will overwrite the existing playlist.
- * The `force` argument is used to disable overwriting.
- * If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
- */
-export enum QueryParamForce {
-  Zero = 0,
-  One = 1,
-}
+export type UploadPlaylistGlobals = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+};
 
 export type UploadPlaylistRequest = {
   /**
-   * absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server.
-   *
-   * @remarks
-   * If the `path` argument is a directory, that path will be scanned for playlist files to be processed.
-   * Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it.
-   * The GUID of each playlist is based on the filename.
-   * If the `path` argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it.
-   * The GUID of each playlist is based on the filename.
+   * An opaque identifier unique to the client
    */
-  path: string;
+  xPlexClientIdentifier?: string | undefined;
   /**
-   * Force overwriting of duplicate playlists.
-   *
-   * @remarks
-   * By default, a playlist file uploaded with the same path will overwrite the existing playlist.
-   * The `force` argument is used to disable overwriting.
-   * If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+   * The name of the client product
    */
-  force: QueryParamForce;
+  xPlexProduct?: string | undefined;
   /**
-   * Possibly the section ID to upload the playlist to, we are not certain.
+   * The version of the client application
    */
-  sectionID?: number | undefined;
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+  /**
+   * Absolute path to a directory on the server where m3u files are stored, or the absolute path to a playlist file on the server. If the `path` argument is a directory, that path will be scanned for playlist files to be processed. Each file in that directory creates a separate playlist, with a name based on the filename of the file that created it. The GUID of each playlist is based on the filename. If the `path` argument is a file, that file will be used to create a new playlist, with the name based on the filename of the file that created it. The GUID of each playlist is based on the filename.
+   */
+  path?: string | undefined;
+  /**
+   * Force overwriting of duplicate playlists. By default, a playlist file uploaded with the same path will overwrite the existing playlist. The `force` argument is used to disable overwriting. If the `force` argument is set to 0, a new playlist will be created suffixed with the date and time that the duplicate was uploaded.
+   */
+  force?: shared.BoolInt | undefined;
 };
 
 export type UploadPlaylistResponse = {
@@ -64,24 +119,110 @@ export type UploadPlaylistResponse = {
 };
 
 /** @internal */
-export const QueryParamForce$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamForce
-> = z.nativeEnum(QueryParamForce);
+export const UploadPlaylistGlobals$inboundSchema: z.ZodType<
+  UploadPlaylistGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
 
 /** @internal */
-export const QueryParamForce$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamForce
-> = QueryParamForce$inboundSchema;
+export type UploadPlaylistGlobals$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+};
+
+/** @internal */
+export const UploadPlaylistGlobals$outboundSchema: z.ZodType<
+  UploadPlaylistGlobals$Outbound,
+  z.ZodTypeDef,
+  UploadPlaylistGlobals
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace QueryParamForce$ {
-  /** @deprecated use `QueryParamForce$inboundSchema` instead. */
-  export const inboundSchema = QueryParamForce$inboundSchema;
-  /** @deprecated use `QueryParamForce$outboundSchema` instead. */
-  export const outboundSchema = QueryParamForce$outboundSchema;
+export namespace UploadPlaylistGlobals$ {
+  /** @deprecated use `UploadPlaylistGlobals$inboundSchema` instead. */
+  export const inboundSchema = UploadPlaylistGlobals$inboundSchema;
+  /** @deprecated use `UploadPlaylistGlobals$outboundSchema` instead. */
+  export const outboundSchema = UploadPlaylistGlobals$outboundSchema;
+  /** @deprecated use `UploadPlaylistGlobals$Outbound` instead. */
+  export type Outbound = UploadPlaylistGlobals$Outbound;
+}
+
+export function uploadPlaylistGlobalsToJSON(
+  uploadPlaylistGlobals: UploadPlaylistGlobals,
+): string {
+  return JSON.stringify(
+    UploadPlaylistGlobals$outboundSchema.parse(uploadPlaylistGlobals),
+  );
+}
+
+export function uploadPlaylistGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UploadPlaylistGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UploadPlaylistGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UploadPlaylistGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -90,16 +231,47 @@ export const UploadPlaylistRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  path: z.string(),
-  force: QueryParamForce$inboundSchema,
-  sectionID: z.number().int().default(1),
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+  path: z.string().optional(),
+  force: shared.BoolInt$inboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
 });
 
 /** @internal */
 export type UploadPlaylistRequest$Outbound = {
-  path: string;
-  force: number;
-  sectionID: number;
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+  path?: string | undefined;
+  force?: number | undefined;
 };
 
 /** @internal */
@@ -108,9 +280,31 @@ export const UploadPlaylistRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UploadPlaylistRequest
 > = z.object({
-  path: z.string(),
-  force: QueryParamForce$outboundSchema,
-  sectionID: z.number().int().default(1),
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+  path: z.string().optional(),
+  force: shared.BoolInt$outboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
 });
 
 /**

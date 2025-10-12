@@ -4,37 +4,58 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { Activities } from "./activities.js";
-import { Authentication } from "./authentication.js";
 import { Butler } from "./butler.js";
+import { Collections } from "./collections.js";
+import { Content } from "./content.js";
+import { Devices } from "./devices.js";
+import { DownloadQueue } from "./downloadqueue.js";
+import { DVRs } from "./dvrs.js";
+import { Epg } from "./epg.js";
+import { Events } from "./events.js";
+import { General } from "./general.js";
 import { Hubs } from "./hubs.js";
 import { Library } from "./library.js";
+import { LibraryCollections } from "./librarycollections.js";
+import { LibraryPlaylists } from "./libraryplaylists.js";
+import { LiveTV } from "./livetv.js";
 import { Log } from "./log.js";
-import { Media } from "./media.js";
-import { Playlists } from "./playlists.js";
-import { Plex } from "./plex.js";
+import { Playlist } from "./playlist.js";
+import { PlayQueue } from "./playqueue.js";
+import { Preferences } from "./preferences.js";
+import { Provider } from "./provider.js";
+import { Rate } from "./rate.js";
 import { Search } from "./search.js";
-import { Server } from "./server.js";
-import { Sessions } from "./sessions.js";
-import { Statistics } from "./statistics.js";
+import { Status } from "./status.js";
+import { Subscriptions } from "./subscriptions.js";
+import { Timeline } from "./timeline.js";
+import { Transcoder } from "./transcoder.js";
+import { UltraBlur } from "./ultrablur.js";
 import { Updater } from "./updater.js";
-import { Users } from "./users.js";
-import { Video } from "./video.js";
-import { Watchlist } from "./watchlist.js";
 
 export class PlexAPI extends ClientSDK {
-  private _server?: Server;
-  get server(): Server {
-    return (this._server ??= new Server(this._options));
+  private _general?: General;
+  get general(): General {
+    return (this._general ??= new General(this._options));
   }
 
-  private _media?: Media;
-  get media(): Media {
-    return (this._media ??= new Media(this._options));
+  private _events?: Events;
+  get events(): Events {
+    return (this._events ??= new Events(this._options));
   }
 
-  private _video?: Video;
-  get video(): Video {
-    return (this._video ??= new Video(this._options));
+  private _preferences?: Preferences;
+  get preferences(): Preferences {
+    return (this._preferences ??= new Preferences(this._options));
+  }
+
+  private _rate?: Rate;
+  get rate(): Rate {
+    return (this._rate ??= new Rate(this._options));
+  }
+
+  private _timeline?: Timeline;
+  get timeline(): Timeline {
+    return (this._timeline ??= new Timeline(this._options));
   }
 
   private _activities?: Activities;
@@ -47,9 +68,9 @@ export class PlexAPI extends ClientSDK {
     return (this._butler ??= new Butler(this._options));
   }
 
-  private _plex?: Plex;
-  get plex(): Plex {
-    return (this._plex ??= new Plex(this._options));
+  private _downloadQueue?: DownloadQueue;
+  get downloadQueue(): DownloadQueue {
+    return (this._downloadQueue ??= new DownloadQueue(this._options));
   }
 
   private _hubs?: Hubs;
@@ -67,9 +88,24 @@ export class PlexAPI extends ClientSDK {
     return (this._library ??= new Library(this._options));
   }
 
-  private _watchlist?: Watchlist;
-  get watchlist(): Watchlist {
-    return (this._watchlist ??= new Watchlist(this._options));
+  private _collections?: Collections;
+  get collections(): Collections {
+    return (this._collections ??= new Collections(this._options));
+  }
+
+  private _dvRs?: DVRs;
+  get dvRs(): DVRs {
+    return (this._dvRs ??= new DVRs(this._options));
+  }
+
+  private _epg?: Epg;
+  get epg(): Epg {
+    return (this._epg ??= new Epg(this._options));
+  }
+
+  private _liveTV?: LiveTV;
+  get liveTV(): LiveTV {
+    return (this._liveTV ??= new LiveTV(this._options));
   }
 
   private _log?: Log;
@@ -77,24 +113,49 @@ export class PlexAPI extends ClientSDK {
     return (this._log ??= new Log(this._options));
   }
 
-  private _playlists?: Playlists;
-  get playlists(): Playlists {
-    return (this._playlists ??= new Playlists(this._options));
+  private _devices?: Devices;
+  get devices(): Devices {
+    return (this._devices ??= new Devices(this._options));
   }
 
-  private _authentication?: Authentication;
-  get authentication(): Authentication {
-    return (this._authentication ??= new Authentication(this._options));
+  private _provider?: Provider;
+  get provider(): Provider {
+    return (this._provider ??= new Provider(this._options));
   }
 
-  private _statistics?: Statistics;
-  get statistics(): Statistics {
-    return (this._statistics ??= new Statistics(this._options));
+  private _subscriptions?: Subscriptions;
+  get subscriptions(): Subscriptions {
+    return (this._subscriptions ??= new Subscriptions(this._options));
   }
 
-  private _sessions?: Sessions;
-  get sessions(): Sessions {
-    return (this._sessions ??= new Sessions(this._options));
+  private _transcoder?: Transcoder;
+  get transcoder(): Transcoder {
+    return (this._transcoder ??= new Transcoder(this._options));
+  }
+
+  private _playlist?: Playlist;
+  get playlist(): Playlist {
+    return (this._playlist ??= new Playlist(this._options));
+  }
+
+  private _libraryPlaylists?: LibraryPlaylists;
+  get libraryPlaylists(): LibraryPlaylists {
+    return (this._libraryPlaylists ??= new LibraryPlaylists(this._options));
+  }
+
+  private _playQueue?: PlayQueue;
+  get playQueue(): PlayQueue {
+    return (this._playQueue ??= new PlayQueue(this._options));
+  }
+
+  private _ultraBlur?: UltraBlur;
+  get ultraBlur(): UltraBlur {
+    return (this._ultraBlur ??= new UltraBlur(this._options));
+  }
+
+  private _status?: Status;
+  get status(): Status {
+    return (this._status ??= new Status(this._options));
   }
 
   private _updater?: Updater;
@@ -102,8 +163,13 @@ export class PlexAPI extends ClientSDK {
     return (this._updater ??= new Updater(this._options));
   }
 
-  private _users?: Users;
-  get users(): Users {
-    return (this._users ??= new Users(this._options));
+  private _content?: Content;
+  get content(): Content {
+    return (this._content ??= new Content(this._options));
+  }
+
+  private _libraryCollections?: LibraryCollections;
+  get libraryCollections(): LibraryCollections {
+    return (this._libraryCollections ??= new LibraryCollections(this._options));
   }
 }

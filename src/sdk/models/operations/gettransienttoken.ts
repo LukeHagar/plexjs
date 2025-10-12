@@ -8,29 +8,147 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetTransientTokenGlobals = {
+  /**
+   * An opaque identifier unique to the client
+   */
+  xPlexClientIdentifier?: string | undefined;
+  /**
+   * The name of the client product
+   */
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+};
+
 /**
- * `delegation` - This is the only supported `type` parameter.
+ * The value `delegation` is the only supported `type` parameter.
  */
-export enum GetTransientTokenQueryParamType {
+export enum GetTransientTokenType {
   Delegation = "delegation",
 }
 
 /**
- * `all` - This is the only supported `scope` parameter.
+ * The value `all` is the only supported `scope` parameter.
  */
-export enum Scope {
+export enum GetTransientTokenScope {
   All = "all",
 }
 
 export type GetTransientTokenRequest = {
   /**
-   * `delegation` - This is the only supported `type` parameter.
+   * An opaque identifier unique to the client
    */
-  type: GetTransientTokenQueryParamType;
+  xPlexClientIdentifier?: string | undefined;
   /**
-   * `all` - This is the only supported `scope` parameter.
+   * The name of the client product
    */
-  scope: Scope;
+  xPlexProduct?: string | undefined;
+  /**
+   * The version of the client application
+   */
+  xPlexVersion?: string | undefined;
+  /**
+   * The platform of the client
+   */
+  xPlexPlatform?: string | undefined;
+  /**
+   * The version of the platform
+   */
+  xPlexPlatformVersion?: string | undefined;
+  /**
+   * A relatively friendly name for the client device
+   */
+  xPlexDevice?: string | undefined;
+  /**
+   * A potentially less friendly identifier for the device model
+   */
+  xPlexModel?: string | undefined;
+  /**
+   * The device vendor
+   */
+  xPlexDeviceVendor?: string | undefined;
+  /**
+   * A friendly name for the client
+   */
+  xPlexDeviceName?: string | undefined;
+  /**
+   * The marketplace on which the client application is distributed
+   */
+  xPlexMarketplace?: string | undefined;
+  /**
+   * The value `delegation` is the only supported `type` parameter.
+   */
+  type: GetTransientTokenType;
+  /**
+   * The value `all` is the only supported `scope` parameter.
+   */
+  scope: GetTransientTokenScope;
+};
+
+/**
+ * `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
+ *
+ * @remarks
+ * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
+ * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
+ */
+export type GetTransientTokenMediaContainer = {
+  identifier?: string | undefined;
+  /**
+   * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
+   *
+   * @remarks
+   */
+  offset?: number | undefined;
+  size?: number | undefined;
+  /**
+   * The total size of objects available. Also provided in the `X-Plex-Container-Total-Size` header.
+   *
+   * @remarks
+   */
+  totalSize?: number | undefined;
+  /**
+   * The transient token
+   */
+  token?: string | undefined;
+};
+
+/**
+ * OK
+ */
+export type GetTransientTokenResponseBody = {
+  mediaContainer?: GetTransientTokenMediaContainer | undefined;
 };
 
 export type GetTransientTokenResponse = {
@@ -46,47 +164,159 @@ export type GetTransientTokenResponse = {
    * Raw HTTP response; suitable for custom response parsing
    */
   rawResponse: Response;
+  /**
+   * OK
+   */
+  object?: GetTransientTokenResponseBody | undefined;
 };
 
 /** @internal */
-export const GetTransientTokenQueryParamType$inboundSchema: z.ZodNativeEnum<
-  typeof GetTransientTokenQueryParamType
-> = z.nativeEnum(GetTransientTokenQueryParamType);
+export const GetTransientTokenGlobals$inboundSchema: z.ZodType<
+  GetTransientTokenGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
+});
 
 /** @internal */
-export const GetTransientTokenQueryParamType$outboundSchema: z.ZodNativeEnum<
-  typeof GetTransientTokenQueryParamType
-> = GetTransientTokenQueryParamType$inboundSchema;
+export type GetTransientTokenGlobals$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
+};
+
+/** @internal */
+export const GetTransientTokenGlobals$outboundSchema: z.ZodType<
+  GetTransientTokenGlobals$Outbound,
+  z.ZodTypeDef,
+  GetTransientTokenGlobals
+> = z.object({
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace GetTransientTokenQueryParamType$ {
-  /** @deprecated use `GetTransientTokenQueryParamType$inboundSchema` instead. */
-  export const inboundSchema = GetTransientTokenQueryParamType$inboundSchema;
-  /** @deprecated use `GetTransientTokenQueryParamType$outboundSchema` instead. */
-  export const outboundSchema = GetTransientTokenQueryParamType$outboundSchema;
+export namespace GetTransientTokenGlobals$ {
+  /** @deprecated use `GetTransientTokenGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetTransientTokenGlobals$inboundSchema;
+  /** @deprecated use `GetTransientTokenGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetTransientTokenGlobals$outboundSchema;
+  /** @deprecated use `GetTransientTokenGlobals$Outbound` instead. */
+  export type Outbound = GetTransientTokenGlobals$Outbound;
+}
+
+export function getTransientTokenGlobalsToJSON(
+  getTransientTokenGlobals: GetTransientTokenGlobals,
+): string {
+  return JSON.stringify(
+    GetTransientTokenGlobals$outboundSchema.parse(getTransientTokenGlobals),
+  );
+}
+
+export function getTransientTokenGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransientTokenGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransientTokenGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransientTokenGlobals' from JSON`,
+  );
 }
 
 /** @internal */
-export const Scope$inboundSchema: z.ZodNativeEnum<typeof Scope> = z.nativeEnum(
-  Scope,
-);
+export const GetTransientTokenType$inboundSchema: z.ZodNativeEnum<
+  typeof GetTransientTokenType
+> = z.nativeEnum(GetTransientTokenType);
 
 /** @internal */
-export const Scope$outboundSchema: z.ZodNativeEnum<typeof Scope> =
-  Scope$inboundSchema;
+export const GetTransientTokenType$outboundSchema: z.ZodNativeEnum<
+  typeof GetTransientTokenType
+> = GetTransientTokenType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Scope$ {
-  /** @deprecated use `Scope$inboundSchema` instead. */
-  export const inboundSchema = Scope$inboundSchema;
-  /** @deprecated use `Scope$outboundSchema` instead. */
-  export const outboundSchema = Scope$outboundSchema;
+export namespace GetTransientTokenType$ {
+  /** @deprecated use `GetTransientTokenType$inboundSchema` instead. */
+  export const inboundSchema = GetTransientTokenType$inboundSchema;
+  /** @deprecated use `GetTransientTokenType$outboundSchema` instead. */
+  export const outboundSchema = GetTransientTokenType$outboundSchema;
+}
+
+/** @internal */
+export const GetTransientTokenScope$inboundSchema: z.ZodNativeEnum<
+  typeof GetTransientTokenScope
+> = z.nativeEnum(GetTransientTokenScope);
+
+/** @internal */
+export const GetTransientTokenScope$outboundSchema: z.ZodNativeEnum<
+  typeof GetTransientTokenScope
+> = GetTransientTokenScope$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTransientTokenScope$ {
+  /** @deprecated use `GetTransientTokenScope$inboundSchema` instead. */
+  export const inboundSchema = GetTransientTokenScope$inboundSchema;
+  /** @deprecated use `GetTransientTokenScope$outboundSchema` instead. */
+  export const outboundSchema = GetTransientTokenScope$outboundSchema;
 }
 
 /** @internal */
@@ -95,12 +325,45 @@ export const GetTransientTokenRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: GetTransientTokenQueryParamType$inboundSchema,
-  scope: Scope$inboundSchema,
+  "X-Plex-Client-Identifier": z.string().optional(),
+  "X-Plex-Product": z.string().optional(),
+  "X-Plex-Version": z.string().optional(),
+  "X-Plex-Platform": z.string().optional(),
+  "X-Plex-Platform-Version": z.string().optional(),
+  "X-Plex-Device": z.string().optional(),
+  "X-Plex-Model": z.string().optional(),
+  "X-Plex-Device-Vendor": z.string().optional(),
+  "X-Plex-Device-Name": z.string().optional(),
+  "X-Plex-Marketplace": z.string().optional(),
+  type: GetTransientTokenType$inboundSchema,
+  scope: GetTransientTokenScope$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "X-Plex-Client-Identifier": "xPlexClientIdentifier",
+    "X-Plex-Product": "xPlexProduct",
+    "X-Plex-Version": "xPlexVersion",
+    "X-Plex-Platform": "xPlexPlatform",
+    "X-Plex-Platform-Version": "xPlexPlatformVersion",
+    "X-Plex-Device": "xPlexDevice",
+    "X-Plex-Model": "xPlexModel",
+    "X-Plex-Device-Vendor": "xPlexDeviceVendor",
+    "X-Plex-Device-Name": "xPlexDeviceName",
+    "X-Plex-Marketplace": "xPlexMarketplace",
+  });
 });
 
 /** @internal */
 export type GetTransientTokenRequest$Outbound = {
+  "X-Plex-Client-Identifier"?: string | undefined;
+  "X-Plex-Product"?: string | undefined;
+  "X-Plex-Version"?: string | undefined;
+  "X-Plex-Platform"?: string | undefined;
+  "X-Plex-Platform-Version"?: string | undefined;
+  "X-Plex-Device"?: string | undefined;
+  "X-Plex-Model"?: string | undefined;
+  "X-Plex-Device-Vendor"?: string | undefined;
+  "X-Plex-Device-Name"?: string | undefined;
+  "X-Plex-Marketplace"?: string | undefined;
   type: string;
   scope: string;
 };
@@ -111,8 +374,31 @@ export const GetTransientTokenRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetTransientTokenRequest
 > = z.object({
-  type: GetTransientTokenQueryParamType$outboundSchema,
-  scope: Scope$outboundSchema,
+  xPlexClientIdentifier: z.string().optional(),
+  xPlexProduct: z.string().optional(),
+  xPlexVersion: z.string().optional(),
+  xPlexPlatform: z.string().optional(),
+  xPlexPlatformVersion: z.string().optional(),
+  xPlexDevice: z.string().optional(),
+  xPlexModel: z.string().optional(),
+  xPlexDeviceVendor: z.string().optional(),
+  xPlexDeviceName: z.string().optional(),
+  xPlexMarketplace: z.string().optional(),
+  type: GetTransientTokenType$outboundSchema,
+  scope: GetTransientTokenScope$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    xPlexClientIdentifier: "X-Plex-Client-Identifier",
+    xPlexProduct: "X-Plex-Product",
+    xPlexVersion: "X-Plex-Version",
+    xPlexPlatform: "X-Plex-Platform",
+    xPlexPlatformVersion: "X-Plex-Platform-Version",
+    xPlexDevice: "X-Plex-Device",
+    xPlexModel: "X-Plex-Model",
+    xPlexDeviceVendor: "X-Plex-Device-Vendor",
+    xPlexDeviceName: "X-Plex-Device-Name",
+    xPlexMarketplace: "X-Plex-Marketplace",
+  });
 });
 
 /**
@@ -147,6 +433,140 @@ export function getTransientTokenRequestFromJSON(
 }
 
 /** @internal */
+export const GetTransientTokenMediaContainer$inboundSchema: z.ZodType<
+  GetTransientTokenMediaContainer,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  identifier: z.string().optional(),
+  offset: z.number().int().optional(),
+  size: z.number().int().optional(),
+  totalSize: z.number().int().optional(),
+  token: z.string().optional(),
+});
+
+/** @internal */
+export type GetTransientTokenMediaContainer$Outbound = {
+  identifier?: string | undefined;
+  offset?: number | undefined;
+  size?: number | undefined;
+  totalSize?: number | undefined;
+  token?: string | undefined;
+};
+
+/** @internal */
+export const GetTransientTokenMediaContainer$outboundSchema: z.ZodType<
+  GetTransientTokenMediaContainer$Outbound,
+  z.ZodTypeDef,
+  GetTransientTokenMediaContainer
+> = z.object({
+  identifier: z.string().optional(),
+  offset: z.number().int().optional(),
+  size: z.number().int().optional(),
+  totalSize: z.number().int().optional(),
+  token: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTransientTokenMediaContainer$ {
+  /** @deprecated use `GetTransientTokenMediaContainer$inboundSchema` instead. */
+  export const inboundSchema = GetTransientTokenMediaContainer$inboundSchema;
+  /** @deprecated use `GetTransientTokenMediaContainer$outboundSchema` instead. */
+  export const outboundSchema = GetTransientTokenMediaContainer$outboundSchema;
+  /** @deprecated use `GetTransientTokenMediaContainer$Outbound` instead. */
+  export type Outbound = GetTransientTokenMediaContainer$Outbound;
+}
+
+export function getTransientTokenMediaContainerToJSON(
+  getTransientTokenMediaContainer: GetTransientTokenMediaContainer,
+): string {
+  return JSON.stringify(
+    GetTransientTokenMediaContainer$outboundSchema.parse(
+      getTransientTokenMediaContainer,
+    ),
+  );
+}
+
+export function getTransientTokenMediaContainerFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransientTokenMediaContainer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransientTokenMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransientTokenMediaContainer' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetTransientTokenResponseBody$inboundSchema: z.ZodType<
+  GetTransientTokenResponseBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  MediaContainer: z.lazy(() => GetTransientTokenMediaContainer$inboundSchema)
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "MediaContainer": "mediaContainer",
+  });
+});
+
+/** @internal */
+export type GetTransientTokenResponseBody$Outbound = {
+  MediaContainer?: GetTransientTokenMediaContainer$Outbound | undefined;
+};
+
+/** @internal */
+export const GetTransientTokenResponseBody$outboundSchema: z.ZodType<
+  GetTransientTokenResponseBody$Outbound,
+  z.ZodTypeDef,
+  GetTransientTokenResponseBody
+> = z.object({
+  mediaContainer: z.lazy(() => GetTransientTokenMediaContainer$outboundSchema)
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    mediaContainer: "MediaContainer",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTransientTokenResponseBody$ {
+  /** @deprecated use `GetTransientTokenResponseBody$inboundSchema` instead. */
+  export const inboundSchema = GetTransientTokenResponseBody$inboundSchema;
+  /** @deprecated use `GetTransientTokenResponseBody$outboundSchema` instead. */
+  export const outboundSchema = GetTransientTokenResponseBody$outboundSchema;
+  /** @deprecated use `GetTransientTokenResponseBody$Outbound` instead. */
+  export type Outbound = GetTransientTokenResponseBody$Outbound;
+}
+
+export function getTransientTokenResponseBodyToJSON(
+  getTransientTokenResponseBody: GetTransientTokenResponseBody,
+): string {
+  return JSON.stringify(
+    GetTransientTokenResponseBody$outboundSchema.parse(
+      getTransientTokenResponseBody,
+    ),
+  );
+}
+
+export function getTransientTokenResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransientTokenResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransientTokenResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransientTokenResponseBody' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetTransientTokenResponse$inboundSchema: z.ZodType<
   GetTransientTokenResponse,
   z.ZodTypeDef,
@@ -155,6 +575,7 @@ export const GetTransientTokenResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
+  object: z.lazy(() => GetTransientTokenResponseBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
@@ -168,6 +589,7 @@ export type GetTransientTokenResponse$Outbound = {
   ContentType: string;
   StatusCode: number;
   RawResponse: never;
+  object?: GetTransientTokenResponseBody$Outbound | undefined;
 };
 
 /** @internal */
@@ -181,6 +603,7 @@ export const GetTransientTokenResponse$outboundSchema: z.ZodType<
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
+  object: z.lazy(() => GetTransientTokenResponseBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",

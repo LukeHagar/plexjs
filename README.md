@@ -10,41 +10,13 @@
 <!-- Start Summary [summary] -->
 ## Summary
 
-Plex-API: An Open API Spec for interacting with Plex.tv and Plex Media Server
 
-# Plex Media Server OpenAPI Specification
-
-An Open Source OpenAPI Specification for Plex Media Server
-
-Automation and SDKs provided by [Speakeasy](https://speakeasyapi.dev/)
-
-## Documentation
-
-[API Documentation](https://plexapi.dev)
-
-## SDKs
-
-The following SDKs are generated from the OpenAPI Specification. They are automatically generated and may not be fully tested. If you find any issues, please open an issue on the [main specification Repository](https://github.com/LukeHagar/plex-api-spec).
-
-| Language              | Repository                                        | Releases                                                                                         | Other                                                   |
-| --------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| Python                | [GitHub](https://github.com/LukeHagar/plexpy)     | [PyPI](https://pypi.org/project/plex-api-client/)                                                | -                                                       |
-| JavaScript/TypeScript | [GitHub](https://github.com/LukeHagar/plexjs)     | [NPM](https://www.npmjs.com/package/@lukehagar/plexjs) \ [JSR](https://jsr.io/@lukehagar/plexjs) | -                                                       |
-| Go                    | [GitHub](https://github.com/LukeHagar/plexgo)     | [Releases](https://github.com/LukeHagar/plexgo/releases)                                         | [GoDoc](https://pkg.go.dev/github.com/LukeHagar/plexgo) |
-| Ruby                  | [GitHub](https://github.com/LukeHagar/plexruby)   | [Releases](https://github.com/LukeHagar/plexruby/releases)                                       | -                                                       |
-| Swift                 | [GitHub](https://github.com/LukeHagar/plexswift)  | [Releases](https://github.com/LukeHagar/plexswift/releases)                                      | -                                                       |
-| PHP                   | [GitHub](https://github.com/LukeHagar/plexphp)    | [Releases](https://github.com/LukeHagar/plexphp/releases)                                        | -                                                       |
-| Java                  | [GitHub](https://github.com/LukeHagar/plexjava)   | [Releases](https://github.com/LukeHagar/plexjava/releases)                                       | -                                                       |
-| C#                    | [GitHub](https://github.com/LukeHagar/plexcsharp) | [Releases](https://github.com/LukeHagar/plexcsharp/releases)                                     | -
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [@lukehagar/plexjs](#lukehagarplexjs)
-* [Plex Media Server OpenAPI Specification](#plex-media-server-openapi-specification)
-  * [Documentation](#documentation)
-  * [SDKs](#sdks)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
@@ -89,10 +61,7 @@ bun add @lukehagar/plexjs
 ### Yarn
 
 ```bash
-yarn add @lukehagar/plexjs zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @lukehagar/plexjs
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -105,11 +74,20 @@ yarn add @lukehagar/plexjs zod
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.general.getServerInfo({});
 
   console.log(result);
 }
@@ -127,139 +105,324 @@ run();
 
 ### [activities](docs/sdks/activities/README.md)
 
-* [getServerActivities](docs/sdks/activities/README.md#getserveractivities) - Get Server Activities
-* [cancelServerActivities](docs/sdks/activities/README.md#cancelserveractivities) - Cancel Server Activities
-
-### [authentication](docs/sdks/authentication/README.md)
-
-* [getTransientToken](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token
-* [getSourceConnectionInformation](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
-* [getTokenDetails](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
-* [postUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
+* [listActivities](docs/sdks/activities/README.md#listactivities) - Get all activities
+* [cancelActivity](docs/sdks/activities/README.md#cancelactivity) - Cancel a running activity
 
 ### [butler](docs/sdks/butler/README.md)
 
-* [getButlerTasks](docs/sdks/butler/README.md#getbutlertasks) - Get Butler tasks
-* [startAllTasks](docs/sdks/butler/README.md#startalltasks) - Start all Butler tasks
-* [stopAllTasks](docs/sdks/butler/README.md#stopalltasks) - Stop all Butler tasks
-* [startTask](docs/sdks/butler/README.md#starttask) - Start a single Butler task
+* [stopTasks](docs/sdks/butler/README.md#stoptasks) - Stop all Butler tasks
+* [getTasks](docs/sdks/butler/README.md#gettasks) - Get all Butler tasks
+* [startTasks](docs/sdks/butler/README.md#starttasks) - Start all Butler tasks
 * [stopTask](docs/sdks/butler/README.md#stoptask) - Stop a single Butler task
+* [startTask](docs/sdks/butler/README.md#starttask) - Start a single Butler task
+
+### [collections](docs/sdks/collections/README.md)
+
+* [createCollection](docs/sdks/collections/README.md#createcollection) - Create collection
+
+### [content](docs/sdks/content/README.md)
+
+* [getCollectionItems](docs/sdks/content/README.md#getcollectionitems) - Get items in a collection
+* [getMetadataItem](docs/sdks/content/README.md#getmetadataitem) - Get a metadata item
+* [getAlbums](docs/sdks/content/README.md#getalbums) - Set section albums
+* [listContent](docs/sdks/content/README.md#listcontent) - Get items in the section
+* [getAllLeaves](docs/sdks/content/README.md#getallleaves) - Set section leaves
+* [getArts](docs/sdks/content/README.md#getarts) - Set section artwork
+* [getCategories](docs/sdks/content/README.md#getcategories) - Set section categories
+* [getCluster](docs/sdks/content/README.md#getcluster) - Set section clusters
+* [getSonicPath](docs/sdks/content/README.md#getsonicpath) - Similar tracks to transition from one to another
+* [getFolders](docs/sdks/content/README.md#getfolders) - Get all folder locations
+* [listMoments](docs/sdks/content/README.md#listmoments) - Set section moments
+* [getSonicallySimilar](docs/sdks/content/README.md#getsonicallysimilar) - The nearest audio tracks
+* [getCollectionImage](docs/sdks/content/README.md#getcollectionimage) - Get a collection's image
+
+### [devices](docs/sdks/devices/README.md)
+
+* [getAvailableGrabbers](docs/sdks/devices/README.md#getavailablegrabbers) - Get available grabbers
+* [listDevices](docs/sdks/devices/README.md#listdevices) - Get all devices
+* [addDevice](docs/sdks/devices/README.md#adddevice) - Add a device
+* [discoverDevices](docs/sdks/devices/README.md#discoverdevices) - Tell grabbers to discover devices
+* [removeDevice](docs/sdks/devices/README.md#removedevice) - Remove a device
+* [getDeviceDetails](docs/sdks/devices/README.md#getdevicedetails) - Get device details
+* [modifyDevice](docs/sdks/devices/README.md#modifydevice) - Enable or disable a device
+* [setChannelmap](docs/sdks/devices/README.md#setchannelmap) - Set a device's channel mapping
+* [getDevicesChannels](docs/sdks/devices/README.md#getdeviceschannels) - Get a device's channels
+* [setDevicePreferences](docs/sdks/devices/README.md#setdevicepreferences) - Set device preferences
+* [stopScan](docs/sdks/devices/README.md#stopscan) - Tell a device to stop scanning for channels
+* [scan](docs/sdks/devices/README.md#scan) - Tell a device to scan for channels
+* [getThumb](docs/sdks/devices/README.md#getthumb) - Get device thumb
+
+### [downloadQueue](docs/sdks/downloadqueue/README.md)
+
+* [createDownloadQueue](docs/sdks/downloadqueue/README.md#createdownloadqueue) - Create download queue
+* [getDownloadQueue](docs/sdks/downloadqueue/README.md#getdownloadqueue) - Get a download queue
+* [addDownloadQueueItems](docs/sdks/downloadqueue/README.md#adddownloadqueueitems) - Add to download queue
+* [listDownloadQueueItems](docs/sdks/downloadqueue/README.md#listdownloadqueueitems) - Get download queue items
+* [getItemDecision](docs/sdks/downloadqueue/README.md#getitemdecision) - Grab download queue item decision
+* [getDownloadQueueMedia](docs/sdks/downloadqueue/README.md#getdownloadqueuemedia) - Grab download queue media
+* [removeDownloadQueueItems](docs/sdks/downloadqueue/README.md#removedownloadqueueitems) - Delete download queue items
+* [getDownloadQueueItems](docs/sdks/downloadqueue/README.md#getdownloadqueueitems) - Get download queue items
+* [restartProcessingDownloadQueueItems](docs/sdks/downloadqueue/README.md#restartprocessingdownloadqueueitems) - Restart processing of items from the decision
+
+### [dvRs](docs/sdks/dvrs/README.md)
+
+* [listDVRs](docs/sdks/dvrs/README.md#listdvrs) - Get DVRs
+* [createDVR](docs/sdks/dvrs/README.md#createdvr) - Create a DVR
+* [deleteDVR](docs/sdks/dvrs/README.md#deletedvr) - Delete a single DVR
+* [getDVR](docs/sdks/dvrs/README.md#getdvr) - Get a single DVR
+* [deleteLineup](docs/sdks/dvrs/README.md#deletelineup) - Delete a DVR Lineup
+* [addLineup](docs/sdks/dvrs/README.md#addlineup) - Add a DVR Lineup
+* [setDVRPreferences](docs/sdks/dvrs/README.md#setdvrpreferences) - Set DVR preferences
+* [stopDVRReload](docs/sdks/dvrs/README.md#stopdvrreload) - Tell a DVR to stop reloading program guide
+* [reloadGuide](docs/sdks/dvrs/README.md#reloadguide) - Tell a DVR to reload program guide
+* [tuneChannel](docs/sdks/dvrs/README.md#tunechannel) - Tune a channel on a DVR
+* [removeDeviceFromDVR](docs/sdks/dvrs/README.md#removedevicefromdvr) - Remove a device from an existing DVR
+* [addDeviceToDVR](docs/sdks/dvrs/README.md#adddevicetodvr) - Add a device to an existing DVR
+
+### [epg](docs/sdks/epg/README.md)
+
+* [computeChannelMap](docs/sdks/epg/README.md#computechannelmap) - Compute the best channel map
+* [getChannels](docs/sdks/epg/README.md#getchannels) - Get channels for a lineup
+* [getCountries](docs/sdks/epg/README.md#getcountries) - Get all countries
+* [getAllLanguages](docs/sdks/epg/README.md#getalllanguages) - Get all languages
+* [getLineup](docs/sdks/epg/README.md#getlineup) - Compute the best lineup
+* [getLineupChannels](docs/sdks/epg/README.md#getlineupchannels) - Get the channels for mulitple lineups
+* [getCountriesLineups](docs/sdks/epg/README.md#getcountrieslineups) - Get lineups for a country via postal code
+* [getCountryRegions](docs/sdks/epg/README.md#getcountryregions) - Get regions for a country
+* [listLineups](docs/sdks/epg/README.md#listlineups) - Get lineups for a region
+
+### [events](docs/sdks/events/README.md)
+
+* [getNotifications](docs/sdks/events/README.md#getnotifications) - Connect to Eventsource
+* [connectWebSocket](docs/sdks/events/README.md#connectwebsocket) - Connect to WebSocket
+
+### [general](docs/sdks/general/README.md)
+
+* [getServerInfo](docs/sdks/general/README.md#getserverinfo) - Get PMS info
+* [getIdentity](docs/sdks/general/README.md#getidentity) - Get PMS identity
+* [getSourceConnectionInformation](docs/sdks/general/README.md#getsourceconnectioninformation) - Get Source Connection Information
+* [getTransientToken](docs/sdks/general/README.md#gettransienttoken) - Get Transient Tokens
 
 ### [hubs](docs/sdks/hubs/README.md)
 
-* [getGlobalHubs](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
-* [getRecentlyAdded](docs/sdks/hubs/README.md#getrecentlyadded) - Get Recently Added
-* [getLibraryHubs](docs/sdks/hubs/README.md#getlibraryhubs) - Get library specific hubs
+* [getAllHubs](docs/sdks/hubs/README.md#getallhubs) - Get global hubs
+* [getContinueWatching](docs/sdks/hubs/README.md#getcontinuewatching) - Get the continue watching hub
+* [getHubItems](docs/sdks/hubs/README.md#gethubitems) - Get a hub's items
+* [getPromotedHubs](docs/sdks/hubs/README.md#getpromotedhubs) - Get the hubs which are promoted
+* [getMetadataHubs](docs/sdks/hubs/README.md#getmetadatahubs) - Get hubs for section by metadata item
+* [getPostplayHubs](docs/sdks/hubs/README.md#getpostplayhubs) - Get postplay hubs
+* [getRelatedHubs](docs/sdks/hubs/README.md#getrelatedhubs) - Get related hubs
+* [getSectionHubs](docs/sdks/hubs/README.md#getsectionhubs) - Get section hubs
+* [resetSectionDefaults](docs/sdks/hubs/README.md#resetsectiondefaults) - Reset hubs to defaults
+* [listHubs](docs/sdks/hubs/README.md#listhubs) - Get hubs
+* [createCustomHub](docs/sdks/hubs/README.md#createcustomhub) - Create a custom hub
+* [moveHub](docs/sdks/hubs/README.md#movehub) - Move Hub
+* [deleteCustomHub](docs/sdks/hubs/README.md#deletecustomhub) - Delete a custom hub
+* [updateHubVisibility](docs/sdks/hubs/README.md#updatehubvisibility) - Change hub visibility
 
 ### [library](docs/sdks/library/README.md)
 
-* [getFileHash](docs/sdks/library/README.md#getfilehash) - Get Hash Value
-* [getRecentlyAddedLibrary](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added
-* [getAllLibraries](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
-* [getLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
-* [deleteLibrary](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
-* [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
-* [getLibrarySectionsAll](docs/sdks/library/README.md#getlibrarysectionsall) - Get Library section media by tag ALL
-* [getRefreshLibraryMetadata](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
-* [getSearchLibrary](docs/sdks/library/README.md#getsearchlibrary) - Search Library
-* [getGenresLibrary](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
-* [getCountriesLibrary](docs/sdks/library/README.md#getcountrieslibrary) - Get Countries of library media
-* [getActorsLibrary](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
-* [getSearchAllLibraries](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
-* [getMediaMetaData](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
-* [getMediaArts](docs/sdks/library/README.md#getmediaarts) - Get Media Background Artwork
-* [postMediaArts](docs/sdks/library/README.md#postmediaarts) - Upload Media Background Artwork
-* [getMediaPosters](docs/sdks/library/README.md#getmediaposters) - Get Media Posters
-* [postMediaPoster](docs/sdks/library/README.md#postmediaposter) - Upload Media Poster
-* [getMetadataChildren](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
-* [getTopWatchedContent](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
+* [getLibraryItems](docs/sdks/library/README.md#getlibraryitems) - Get all items in library
+* [deleteCaches](docs/sdks/library/README.md#deletecaches) - Delete library caches
+* [cleanBundles](docs/sdks/library/README.md#cleanbundles) - Clean bundles
+* [ingestTransientItem](docs/sdks/library/README.md#ingesttransientitem) - Ingest a transient item
+* [getLibraryMatches](docs/sdks/library/README.md#getlibrarymatches) - Get library matches
+* [optimizeDatabase](docs/sdks/library/README.md#optimizedatabase) - Optimize the Database
+* [getRandomArtwork](docs/sdks/library/README.md#getrandomartwork) - Get random artwork
+* [getSections](docs/sdks/library/README.md#getsections) - Get library sections (main Media Provider Only)
+* [addSection](docs/sdks/library/README.md#addsection) - Add a library section
+* [stopAllRefreshes](docs/sdks/library/README.md#stopallrefreshes) - Stop refresh
+* [getSectionsPrefs](docs/sdks/library/README.md#getsectionsprefs) - Get section prefs
+* [refreshSectionsMetadata](docs/sdks/library/README.md#refreshsectionsmetadata) - Refresh all sections
+* [getTags](docs/sdks/library/README.md#gettags) - Get all library tags of a type
+* [deleteMetadataItem](docs/sdks/library/README.md#deletemetadataitem) - Delete a metadata item
+* [editMetadataItem](docs/sdks/library/README.md#editmetadataitem) - Edit a metadata item
+* [detectAds](docs/sdks/library/README.md#detectads) - Ad-detect an item
+* [getAllItemLeaves](docs/sdks/library/README.md#getallitemleaves) - Get the leaves of an item
+* [analyzeMetadata](docs/sdks/library/README.md#analyzemetadata) - Analyze an item
+* [generateThumbs](docs/sdks/library/README.md#generatethumbs) - Generate thumbs of chapters for an item
+* [detectCredits](docs/sdks/library/README.md#detectcredits) - Credit detect a metadata item
+* [getExtras](docs/sdks/library/README.md#getextras) - Get an item's extras
+* [addExtras](docs/sdks/library/README.md#addextras) - Add to an item's extras
+* [getFile](docs/sdks/library/README.md#getfile) - Get a file from a metadata or media bundle
+* [startBifGeneration](docs/sdks/library/README.md#startbifgeneration) - Start BIF generation of an item
+* [detectIntros](docs/sdks/library/README.md#detectintros) - Intro detect an item
+* [createMarker](docs/sdks/library/README.md#createmarker) - Create a marker
+* [matchItem](docs/sdks/library/README.md#matchitem) - Match a metadata item
+* [listMatches](docs/sdks/library/README.md#listmatches) - Get metadata matches for an item
+* [mergeItems](docs/sdks/library/README.md#mergeitems) - Merge a metadata item
+* [listSonicallySimilar](docs/sdks/library/README.md#listsonicallysimilar) - Get nearest tracks to metadata item
+* [setItemPreferences](docs/sdks/library/README.md#setitempreferences) - Set metadata preferences
+* [refreshItemsMetadata](docs/sdks/library/README.md#refreshitemsmetadata) - Refresh a metadata item
+* [getRelatedItems](docs/sdks/library/README.md#getrelateditems) - Get related items
+* [listSimilar](docs/sdks/library/README.md#listsimilar) - Get similar items
+* [splitItem](docs/sdks/library/README.md#splititem) - Split a metadata item
+* [addSubtitles](docs/sdks/library/README.md#addsubtitles) - Add subtitles
+* [getItemTree](docs/sdks/library/README.md#getitemtree) - Get metadata items as a tree
+* [unmatch](docs/sdks/library/README.md#unmatch) - Unmatch a metadata item
+* [listTopUsers](docs/sdks/library/README.md#listtopusers) - Get metadata top users
+* [detectVoiceActivity](docs/sdks/library/README.md#detectvoiceactivity) - Detect voice activity
+* [getAugmentationStatus](docs/sdks/library/README.md#getaugmentationstatus) - Get augmentation status
+* [setStreamSelection](docs/sdks/library/README.md#setstreamselection) - Set stream selection
+* [getPerson](docs/sdks/library/README.md#getperson) - Get person details
+* [listPersonMedia](docs/sdks/library/README.md#listpersonmedia) - Get media for a person
+* [deleteLibrarySection](docs/sdks/library/README.md#deletelibrarysection) - Delete a library section
+* [getLibraryDetails](docs/sdks/library/README.md#getlibrarydetails) - Get a library section by id
+* [editSection](docs/sdks/library/README.md#editsection) - Edit a library section
+* [updateItems](docs/sdks/library/README.md#updateitems) - Set the fields of the filtered items
+* [startAnalysis](docs/sdks/library/README.md#startanalysis) - Analyze a section
+* [autocomplete](docs/sdks/library/README.md#autocomplete) - Get autocompletions for search
+* [getCollections](docs/sdks/library/README.md#getcollections) - Get collections in a section
+* [getCommon](docs/sdks/library/README.md#getcommon) - Get common fields for items
+* [emptyTrash](docs/sdks/library/README.md#emptytrash) - Empty section trash
+* [getSectionFilters](docs/sdks/library/README.md#getsectionfilters) - Get section filters
+* [getFirstCharacters](docs/sdks/library/README.md#getfirstcharacters) - Get list of first characters
+* [deleteIndexes](docs/sdks/library/README.md#deleteindexes) - Delete section indexes
+* [deleteIntros](docs/sdks/library/README.md#deleteintros) - Delete section intro markers
+* [getSectionPreferences](docs/sdks/library/README.md#getsectionpreferences) - Get section prefs
+* [setSectionPreferences](docs/sdks/library/README.md#setsectionpreferences) - Set section prefs
+* [cancelRefresh](docs/sdks/library/README.md#cancelrefresh) - Cancel section refresh
+* [refreshSection](docs/sdks/library/README.md#refreshsection) - Refresh section
+* [getAvailableSorts](docs/sdks/library/README.md#getavailablesorts) - Get a section sorts
+* [getStreamLevels](docs/sdks/library/README.md#getstreamlevels) - Get loudness about a stream in json
+* [getStreamLoudness](docs/sdks/library/README.md#getstreamloudness) - Get loudness about a stream
+* [getChapterImage](docs/sdks/library/README.md#getchapterimage) - Get a chapter image
+* [setItemArtwork](docs/sdks/library/README.md#setitemartwork) - Set an item's artwork, theme, etc
+* [updateItemArtwork](docs/sdks/library/README.md#updateitemartwork) - Set an item's artwork, theme, etc
+* [deleteMarker](docs/sdks/library/README.md#deletemarker) - Delete a marker
+* [editMarker](docs/sdks/library/README.md#editmarker) - Edit a marker
+* [deleteMediaItem](docs/sdks/library/README.md#deletemediaitem) - Delete a media item
+* [getPartIndex](docs/sdks/library/README.md#getpartindex) - Get BIF index for a part
+* [deleteCollection](docs/sdks/library/README.md#deletecollection) - Delete a collection
+* [getSectionImage](docs/sdks/library/README.md#getsectionimage) - Get a section composite image
+* [deleteStream](docs/sdks/library/README.md#deletestream) - Delete a stream
+* [getStream](docs/sdks/library/README.md#getstream) - Get a stream
+* [setStreamOffset](docs/sdks/library/README.md#setstreamoffset) - Set a stream offset
+* [getItemArtwork](docs/sdks/library/README.md#getitemartwork) - Get an item's artwork, theme, etc
+* [getMediaPart](docs/sdks/library/README.md#getmediapart) - Get a media part
+* [getImageFromBif](docs/sdks/library/README.md#getimagefrombif) - Get an image from part BIF
+
+### [libraryCollections](docs/sdks/librarycollections/README.md)
+
+* [addCollectionItems](docs/sdks/librarycollections/README.md#addcollectionitems) - Add items to a collection
+* [deleteCollectionItem](docs/sdks/librarycollections/README.md#deletecollectionitem) - Delete an item from a collection
+* [moveCollectionItem](docs/sdks/librarycollections/README.md#movecollectionitem) - Reorder an item in the collection
+
+### [libraryPlaylists](docs/sdks/libraryplaylists/README.md)
+
+* [createPlaylist](docs/sdks/libraryplaylists/README.md#createplaylist) - Create a Playlist
+* [uploadPlaylist](docs/sdks/libraryplaylists/README.md#uploadplaylist) - Upload
+* [deletePlaylist](docs/sdks/libraryplaylists/README.md#deleteplaylist) - Delete a Playlist
+* [updatePlaylist](docs/sdks/libraryplaylists/README.md#updateplaylist) - Editing a Playlist
+* [getPlaylistGenerators](docs/sdks/libraryplaylists/README.md#getplaylistgenerators) - Get a playlist's generators
+* [clearPlaylistItems](docs/sdks/libraryplaylists/README.md#clearplaylistitems) - Clearing a playlist
+* [addPlaylistItems](docs/sdks/libraryplaylists/README.md#addplaylistitems) - Adding to  a Playlist
+* [deletePlaylistItem](docs/sdks/libraryplaylists/README.md#deleteplaylistitem) - Delete a Generator
+* [getPlaylistGenerator](docs/sdks/libraryplaylists/README.md#getplaylistgenerator) - Get a playlist generator
+* [modifyPlaylistGenerator](docs/sdks/libraryplaylists/README.md#modifyplaylistgenerator) - Modify a Generator
+* [getPlaylistGeneratorItems](docs/sdks/libraryplaylists/README.md#getplaylistgeneratoritems) - Get a playlist generator's items
+* [movePlaylistItem](docs/sdks/libraryplaylists/README.md#moveplaylistitem) - Moving items in a playlist
+* [refreshPlaylist](docs/sdks/libraryplaylists/README.md#refreshplaylist) - Reprocess a generator
+
+### [liveTV](docs/sdks/livetv/README.md)
+
+* [getSessions](docs/sdks/livetv/README.md#getsessions) - Get all sessions
+* [getLiveTVSession](docs/sdks/livetv/README.md#getlivetvsession) - Get a single session
+* [getSessionPlaylistIndex](docs/sdks/livetv/README.md#getsessionplaylistindex) - Get a session playlist index
+* [getSessionSegment](docs/sdks/livetv/README.md#getsessionsegment) - Get a single session segment
 
 ### [log](docs/sdks/log/README.md)
 
-* [logLine](docs/sdks/log/README.md#logline) - Logging a single line message.
-* [logMultiLine](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
-* [enablePaperTrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
+* [writeLog](docs/sdks/log/README.md#writelog) - Logging a multi-line message to the Plex Media Server log
+* [writeMessage](docs/sdks/log/README.md#writemessage) - Logging a single-line message to the Plex Media Server log
+* [enablePapertrail](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
 
-### [media](docs/sdks/media/README.md)
+### [playlist](docs/sdks/playlist/README.md)
 
-* [markPlayed](docs/sdks/media/README.md#markplayed) - Mark Media Played
-* [markUnplayed](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
-* [updatePlayProgress](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
-* [getBannerImage](docs/sdks/media/README.md#getbannerimage) - Get Banner Image
-* [getThumbImage](docs/sdks/media/README.md#getthumbimage) - Get Thumb Image
+* [listPlaylists](docs/sdks/playlist/README.md#listplaylists) - List playlists
+* [getPlaylist](docs/sdks/playlist/README.md#getplaylist) - Retrieve Playlist
+* [getPlaylistItems](docs/sdks/playlist/README.md#getplaylistitems) - Retrieve Playlist Contents
 
-### [playlists](docs/sdks/playlists/README.md)
+### [playQueue](docs/sdks/playqueue/README.md)
 
-* [createPlaylist](docs/sdks/playlists/README.md#createplaylist) - Create a Playlist
-* [getPlaylists](docs/sdks/playlists/README.md#getplaylists) - Get All Playlists
-* [getPlaylist](docs/sdks/playlists/README.md#getplaylist) - Retrieve Playlist
-* [deletePlaylist](docs/sdks/playlists/README.md#deleteplaylist) - Deletes a Playlist
-* [updatePlaylist](docs/sdks/playlists/README.md#updateplaylist) - Update a Playlist
-* [getPlaylistContents](docs/sdks/playlists/README.md#getplaylistcontents) - Retrieve Playlist Contents
-* [clearPlaylistContents](docs/sdks/playlists/README.md#clearplaylistcontents) - Delete Playlist Contents
-* [addPlaylistContents](docs/sdks/playlists/README.md#addplaylistcontents) - Adding to a Playlist
-* [uploadPlaylist](docs/sdks/playlists/README.md#uploadplaylist) - Upload Playlist
+* [createPlayQueue](docs/sdks/playqueue/README.md#createplayqueue) - Create a play queue
+* [getPlayQueue](docs/sdks/playqueue/README.md#getplayqueue) - Retrieve a play queue
+* [addToPlayQueue](docs/sdks/playqueue/README.md#addtoplayqueue) - Add a generator or playlist to a play queue
+* [clearPlayQueue](docs/sdks/playqueue/README.md#clearplayqueue) - Clear a play queue
+* [resetPlayQueue](docs/sdks/playqueue/README.md#resetplayqueue) - Reset a play queue
+* [shuffle](docs/sdks/playqueue/README.md#shuffle) - Shuffle a play queue
+* [unshuffle](docs/sdks/playqueue/README.md#unshuffle) - Unshuffle a play queue
+* [deletePlayQueueItem](docs/sdks/playqueue/README.md#deleteplayqueueitem) - Delete an item from a play queue
+* [movePlayQueueItem](docs/sdks/playqueue/README.md#moveplayqueueitem) - Move an item in a play queue
 
-### [plex](docs/sdks/plex/README.md)
+### [preferences](docs/sdks/preferences/README.md)
 
-* [getCompanionsData](docs/sdks/plex/README.md#getcompanionsdata) - Get Companions Data
-* [getUserFriends](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
-* [getGeoData](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
-* [getHomeData](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
-* [getServerResources](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
-* [getPin](docs/sdks/plex/README.md#getpin) - Get a Pin
-* [getTokenByPinId](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
+* [getAllPreferences](docs/sdks/preferences/README.md#getallpreferences) - Get all preferences
+* [setPreferences](docs/sdks/preferences/README.md#setpreferences) - Set preferences
+* [getPreference](docs/sdks/preferences/README.md#getpreference) - Get a preferences
 
+### [provider](docs/sdks/provider/README.md)
+
+* [listProviders](docs/sdks/provider/README.md#listproviders) - Get the list of available media providers
+* [addProvider](docs/sdks/provider/README.md#addprovider) - Add a media provider
+* [refreshProviders](docs/sdks/provider/README.md#refreshproviders) - Refresh media providers
+* [deleteMediaProvider](docs/sdks/provider/README.md#deletemediaprovider) - Delete a media provider
+
+### [rate](docs/sdks/rate/README.md)
+
+* [setRating](docs/sdks/rate/README.md#setrating) - Rate an item
 
 ### [search](docs/sdks/search/README.md)
 
-* [performSearch](docs/sdks/search/README.md#performsearch) - Perform a search
-* [performVoiceSearch](docs/sdks/search/README.md#performvoicesearch) - Perform a voice search
-* [getSearchResults](docs/sdks/search/README.md#getsearchresults) - Get Search Results
+* [searchHubs](docs/sdks/search/README.md#searchhubs) - Search Hub
+* [voiceSearchHubs](docs/sdks/search/README.md#voicesearchhubs) - Voice Search Hub
 
-### [server](docs/sdks/server/README.md)
+### [status](docs/sdks/status/README.md)
 
-* [getServerCapabilities](docs/sdks/server/README.md#getservercapabilities) - Get Server Capabilities
-* [getServerPreferences](docs/sdks/server/README.md#getserverpreferences) - Get Server Preferences
-* [getAvailableClients](docs/sdks/server/README.md#getavailableclients) - Get Available Clients
-* [getDevices](docs/sdks/server/README.md#getdevices) - Get Devices
-* [getServerIdentity](docs/sdks/server/README.md#getserveridentity) - Get Server Identity
-* [getMyPlexAccount](docs/sdks/server/README.md#getmyplexaccount) - Get MyPlex Account
-* [getResizedPhoto](docs/sdks/server/README.md#getresizedphoto) - Get a Resized Photo
-* [getMediaProviders](docs/sdks/server/README.md#getmediaproviders) - Get Media Providers
-* [getServerList](docs/sdks/server/README.md#getserverlist) - Get Server List
+* [listSessions](docs/sdks/status/README.md#listsessions) - List Sessions
+* [getBackgroundTasks](docs/sdks/status/README.md#getbackgroundtasks) - Get background tasks
+* [listPlaybackHistory](docs/sdks/status/README.md#listplaybackhistory) - List Playback History
+* [terminateSession](docs/sdks/status/README.md#terminatesession) - Terminate a session
+* [deleteHistory](docs/sdks/status/README.md#deletehistory) - Delete Single History Item
+* [getHistoryItem](docs/sdks/status/README.md#gethistoryitem) - Get Single History Item
 
-### [sessions](docs/sdks/sessions/README.md)
+### [subscriptions](docs/sdks/subscriptions/README.md)
 
-* [getSessions](docs/sdks/sessions/README.md#getsessions) - Get Active Sessions
-* [getSessionHistory](docs/sdks/sessions/README.md#getsessionhistory) - Get Session History
-* [getTranscodeSessions](docs/sdks/sessions/README.md#gettranscodesessions) - Get Transcode Sessions
-* [stopTranscodeSession](docs/sdks/sessions/README.md#stoptranscodesession) - Stop a Transcode Session
+* [getAllSubscriptions](docs/sdks/subscriptions/README.md#getallsubscriptions) - Get all subscriptions
+* [createSubscription](docs/sdks/subscriptions/README.md#createsubscription) - Create a subscription
+* [processSubscriptions](docs/sdks/subscriptions/README.md#processsubscriptions) - Process all subscriptions
+* [getScheduledRecordings](docs/sdks/subscriptions/README.md#getscheduledrecordings) - Get all scheduled recordings
+* [getTemplate](docs/sdks/subscriptions/README.md#gettemplate) - Get the subscription template
+* [cancelGrab](docs/sdks/subscriptions/README.md#cancelgrab) - Cancel an existing grab
+* [deleteSubscription](docs/sdks/subscriptions/README.md#deletesubscription) - Delete a subscription
+* [getSubscription](docs/sdks/subscriptions/README.md#getsubscription) - Get a single subscription
+* [editSubscriptionPreferences](docs/sdks/subscriptions/README.md#editsubscriptionpreferences) - Edit a subscription
+* [reorderSubscription](docs/sdks/subscriptions/README.md#reordersubscription) - Re-order a subscription
 
-### [statistics](docs/sdks/statistics/README.md)
+### [timeline](docs/sdks/timeline/README.md)
 
-* [getStatistics](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
-* [getResourcesStatistics](docs/sdks/statistics/README.md#getresourcesstatistics) - Get Resources Statistics
-* [getBandwidthStatistics](docs/sdks/statistics/README.md#getbandwidthstatistics) - Get Bandwidth Statistics
+* [markPlayed](docs/sdks/timeline/README.md#markplayed) - Mark an item as played
+* [report](docs/sdks/timeline/README.md#report) - Report media timeline
+* [unscrobble](docs/sdks/timeline/README.md#unscrobble) - Mark an item as unplayed
+
+### [transcoder](docs/sdks/transcoder/README.md)
+
+* [transcodeImage](docs/sdks/transcoder/README.md#transcodeimage) - Transcode an image
+* [makeDecision](docs/sdks/transcoder/README.md#makedecision) - Make a decision on media playback
+* [triggerFallback](docs/sdks/transcoder/README.md#triggerfallback) - Manually trigger a transcoder fallback
+* [transcodeSubtitles](docs/sdks/transcoder/README.md#transcodesubtitles) - Transcode subtitles
+* [startTranscodeSession](docs/sdks/transcoder/README.md#starttranscodesession) - Start A Transcoding Session
+
+### [ultraBlur](docs/sdks/ultrablur/README.md)
+
+* [getColors](docs/sdks/ultrablur/README.md#getcolors) - Get UltraBlur Colors
+* [getImage](docs/sdks/ultrablur/README.md#getimage) - Get UltraBlur Image
 
 ### [updater](docs/sdks/updater/README.md)
 
-* [getUpdateStatus](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
-* [checkForUpdates](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
-* [applyUpdates](docs/sdks/updater/README.md#applyupdates) - Apply Updates
-
-### [users](docs/sdks/users/README.md)
-
-* [getUsers](docs/sdks/users/README.md#getusers) - Get list of all connected users
-
-### [video](docs/sdks/video/README.md)
-
-* [getTimeline](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
-* [startUniversalTranscode](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
-
-### [watchlist](docs/sdks/watchlist/README.md)
-
-* [getWatchList](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
+* [applyUpdates](docs/sdks/updater/README.md#applyupdates) - Applying updates
+* [checkUpdates](docs/sdks/updater/README.md#checkupdates) - Checking for updates
+* [getUpdatesStatus](docs/sdks/updater/README.md#getupdatesstatus) - Querying status of updates
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -269,14 +432,13 @@ run();
 
 [`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts) is the base class for all HTTP error responses. It has the following properties:
 
-| Property            | Type       | Description                                                                             |
-| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
-| `error.message`     | `string`   | Error message                                                                           |
-| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
-| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
-| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
-| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
-| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
+| Property            | Type       | Description                                            |
+| ------------------- | ---------- | ------------------------------------------------------ |
+| `error.message`     | `string`   | Error message                                          |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                     |
+| `error.headers`     | `Headers`  | HTTP response headers                                  |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned. |
+| `error.rawResponse` | `Response` | Raw HTTP response                                      |
 
 ### Example
 ```typescript
@@ -284,27 +446,29 @@ import { PlexAPI } from "@lukehagar/plexjs";
 import * as errors from "@lukehagar/plexjs/sdk/models/errors";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
   try {
-    const result = await plexAPI.server.getServerCapabilities();
+    const result = await plexAPI.general.getServerInfo({});
 
     console.log(result);
   } catch (error) {
-    // The base class for HTTP error responses
     if (error instanceof errors.PlexAPIError) {
       console.log(error.message);
       console.log(error.statusCode);
       console.log(error.body);
       console.log(error.headers);
-
-      // Depending on the method different errors may be thrown
-      if (error instanceof errors.GetServerCapabilitiesBadRequest) {
-        console.log(error.data$.errors); // Errors[]
-        console.log(error.data$.rawResponse); // Response
-      }
     }
   }
 }
@@ -317,7 +481,7 @@ run();
 **Primary error:**
 * [`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts): The base class for HTTP error responses.
 
-<details><summary>Less common errors (162)</summary>
+<details><summary>Less common errors (6)</summary>
 
 <br />
 
@@ -330,181 +494,34 @@ run();
 
 
 **Inherit from [`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts)**:
-* [`GetServerCapabilitiesBadRequest`](./src/sdk/models/errors/getservercapabilitiesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetServerPreferencesBadRequest`](./src/sdk/models/errors/getserverpreferencesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetAvailableClientsBadRequest`](./src/sdk/models/errors/getavailableclientsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetDevicesBadRequest`](./src/sdk/models/errors/getdevicesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetMyPlexAccountBadRequest`](./src/sdk/models/errors/getmyplexaccountbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetResizedPhotoBadRequest`](./src/sdk/models/errors/getresizedphotobadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetMediaProvidersBadRequest`](./src/sdk/models/errors/getmediaprovidersbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetServerListBadRequest`](./src/sdk/models/errors/getserverlistbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`MarkPlayedBadRequest`](./src/sdk/models/errors/markplayedbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`MarkUnplayedBadRequest`](./src/sdk/models/errors/markunplayedbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`UpdatePlayProgressBadRequest`](./src/sdk/models/errors/updateplayprogressbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetBannerImageBadRequest`](./src/sdk/models/errors/getbannerimagebadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetThumbImageBadRequest`](./src/sdk/models/errors/getthumbimagebadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetTimelineBadRequest`](./src/sdk/models/errors/gettimelinebadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`StartUniversalTranscodeBadRequest`](./src/sdk/models/errors/startuniversaltranscodebadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetServerActivitiesBadRequest`](./src/sdk/models/errors/getserveractivitiesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`CancelServerActivitiesBadRequest`](./src/sdk/models/errors/cancelserveractivitiesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetButlerTasksBadRequest`](./src/sdk/models/errors/getbutlertasksbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`StartAllTasksBadRequest`](./src/sdk/models/errors/startalltasksbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`StopAllTasksBadRequest`](./src/sdk/models/errors/stopalltasksbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`StartTaskBadRequest`](./src/sdk/models/errors/starttaskbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`StopTaskBadRequest`](./src/sdk/models/errors/stoptaskbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetCompanionsDataBadRequest`](./src/sdk/models/errors/getcompanionsdatabadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetUserFriendsBadRequest`](./src/sdk/models/errors/getuserfriendsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetGeoDataBadRequest`](./src/sdk/models/errors/getgeodatabadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetHomeDataBadRequest`](./src/sdk/models/errors/gethomedatabadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetServerResourcesBadRequest`](./src/sdk/models/errors/getserverresourcesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetPinBadRequest`](./src/sdk/models/errors/getpinbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetTokenByPinIdBadRequest`](./src/sdk/models/errors/gettokenbypinidbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetGlobalHubsBadRequest`](./src/sdk/models/errors/getglobalhubsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetLibraryHubsBadRequest`](./src/sdk/models/errors/getlibraryhubsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`PerformSearchBadRequest`](./src/sdk/models/errors/performsearchbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`PerformVoiceSearchBadRequest`](./src/sdk/models/errors/performvoicesearchbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetSearchResultsBadRequest`](./src/sdk/models/errors/getsearchresultsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetFileHashBadRequest`](./src/sdk/models/errors/getfilehashbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetRecentlyAddedLibraryBadRequest`](./src/sdk/models/errors/getrecentlyaddedlibrarybadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetAllLibrariesBadRequest`](./src/sdk/models/errors/getalllibrariesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetLibraryDetailsBadRequest`](./src/sdk/models/errors/getlibrarydetailsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`DeleteLibraryBadRequest`](./src/sdk/models/errors/deletelibrarybadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetLibraryItemsBadRequest`](./src/sdk/models/errors/getlibraryitemsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetLibrarySectionsAllBadRequest`](./src/sdk/models/errors/getlibrarysectionsallbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetRefreshLibraryMetadataBadRequest`](./src/sdk/models/errors/getrefreshlibrarymetadatabadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetSearchLibraryBadRequest`](./src/sdk/models/errors/getsearchlibrarybadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetGenresLibraryBadRequest`](./src/sdk/models/errors/getgenreslibrarybadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetCountriesLibraryBadRequest`](./src/sdk/models/errors/getcountrieslibrarybadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetActorsLibraryBadRequest`](./src/sdk/models/errors/getactorslibrarybadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetSearchAllLibrariesBadRequest`](./src/sdk/models/errors/getsearchalllibrariesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetMediaMetaDataBadRequest`](./src/sdk/models/errors/getmediametadatabadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetMetadataChildrenBadRequest`](./src/sdk/models/errors/getmetadatachildrenbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetTopWatchedContentBadRequest`](./src/sdk/models/errors/gettopwatchedcontentbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetWatchListBadRequest`](./src/sdk/models/errors/getwatchlistbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`LogLineBadRequest`](./src/sdk/models/errors/loglinebadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`LogMultiLineBadRequest`](./src/sdk/models/errors/logmultilinebadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`EnablePaperTrailBadRequest`](./src/sdk/models/errors/enablepapertrailbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`CreatePlaylistBadRequest`](./src/sdk/models/errors/createplaylistbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetPlaylistsBadRequest`](./src/sdk/models/errors/getplaylistsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetPlaylistBadRequest`](./src/sdk/models/errors/getplaylistbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`DeletePlaylistBadRequest`](./src/sdk/models/errors/deleteplaylistbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`UpdatePlaylistBadRequest`](./src/sdk/models/errors/updateplaylistbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetPlaylistContentsBadRequest`](./src/sdk/models/errors/getplaylistcontentsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`ClearPlaylistContentsBadRequest`](./src/sdk/models/errors/clearplaylistcontentsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`AddPlaylistContentsBadRequest`](./src/sdk/models/errors/addplaylistcontentsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`UploadPlaylistBadRequest`](./src/sdk/models/errors/uploadplaylistbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetTransientTokenBadRequest`](./src/sdk/models/errors/gettransienttokenbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetSourceConnectionInformationBadRequest`](./src/sdk/models/errors/getsourceconnectioninformationbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetTokenDetailsBadRequest`](./src/sdk/models/errors/gettokendetailsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`PostUsersSignInDataBadRequest`](./src/sdk/models/errors/postuserssignindatabadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetStatisticsBadRequest`](./src/sdk/models/errors/getstatisticsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetResourcesStatisticsBadRequest`](./src/sdk/models/errors/getresourcesstatisticsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetBandwidthStatisticsBadRequest`](./src/sdk/models/errors/getbandwidthstatisticsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetSessionsBadRequest`](./src/sdk/models/errors/getsessionsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetSessionHistoryBadRequest`](./src/sdk/models/errors/getsessionhistorybadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetTranscodeSessionsBadRequest`](./src/sdk/models/errors/gettranscodesessionsbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`StopTranscodeSessionBadRequest`](./src/sdk/models/errors/stoptranscodesessionbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetUpdateStatusBadRequest`](./src/sdk/models/errors/getupdatestatusbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`CheckForUpdatesBadRequest`](./src/sdk/models/errors/checkforupdatesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`ApplyUpdatesBadRequest`](./src/sdk/models/errors/applyupdatesbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetUsersBadRequest`](./src/sdk/models/errors/getusersbadrequest.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 84 methods.*
-* [`GetServerCapabilitiesUnauthorized`](./src/sdk/models/errors/getservercapabilitiesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetServerPreferencesUnauthorized`](./src/sdk/models/errors/getserverpreferencesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetAvailableClientsUnauthorized`](./src/sdk/models/errors/getavailableclientsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetDevicesUnauthorized`](./src/sdk/models/errors/getdevicesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetMyPlexAccountUnauthorized`](./src/sdk/models/errors/getmyplexaccountunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetResizedPhotoUnauthorized`](./src/sdk/models/errors/getresizedphotounauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetMediaProvidersUnauthorized`](./src/sdk/models/errors/getmediaprovidersunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetServerListUnauthorized`](./src/sdk/models/errors/getserverlistunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`MarkPlayedUnauthorized`](./src/sdk/models/errors/markplayedunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`MarkUnplayedUnauthorized`](./src/sdk/models/errors/markunplayedunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`UpdatePlayProgressUnauthorized`](./src/sdk/models/errors/updateplayprogressunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetBannerImageUnauthorized`](./src/sdk/models/errors/getbannerimageunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetThumbImageUnauthorized`](./src/sdk/models/errors/getthumbimageunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetTimelineUnauthorized`](./src/sdk/models/errors/gettimelineunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`StartUniversalTranscodeUnauthorized`](./src/sdk/models/errors/startuniversaltranscodeunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetServerActivitiesUnauthorized`](./src/sdk/models/errors/getserveractivitiesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`CancelServerActivitiesUnauthorized`](./src/sdk/models/errors/cancelserveractivitiesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetButlerTasksUnauthorized`](./src/sdk/models/errors/getbutlertasksunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`StartAllTasksUnauthorized`](./src/sdk/models/errors/startalltasksunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`StopAllTasksUnauthorized`](./src/sdk/models/errors/stopalltasksunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`StartTaskUnauthorized`](./src/sdk/models/errors/starttaskunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`StopTaskUnauthorized`](./src/sdk/models/errors/stoptaskunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetCompanionsDataUnauthorized`](./src/sdk/models/errors/getcompanionsdataunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetUserFriendsUnauthorized`](./src/sdk/models/errors/getuserfriendsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetGeoDataUnauthorized`](./src/sdk/models/errors/getgeodataunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetHomeDataUnauthorized`](./src/sdk/models/errors/gethomedataunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetServerResourcesUnauthorized`](./src/sdk/models/errors/getserverresourcesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetGlobalHubsUnauthorized`](./src/sdk/models/errors/getglobalhubsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetLibraryHubsUnauthorized`](./src/sdk/models/errors/getlibraryhubsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`PerformSearchUnauthorized`](./src/sdk/models/errors/performsearchunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`PerformVoiceSearchUnauthorized`](./src/sdk/models/errors/performvoicesearchunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetSearchResultsUnauthorized`](./src/sdk/models/errors/getsearchresultsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetFileHashUnauthorized`](./src/sdk/models/errors/getfilehashunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetRecentlyAddedLibraryUnauthorized`](./src/sdk/models/errors/getrecentlyaddedlibraryunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetAllLibrariesUnauthorized`](./src/sdk/models/errors/getalllibrariesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetLibraryDetailsUnauthorized`](./src/sdk/models/errors/getlibrarydetailsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`DeleteLibraryUnauthorized`](./src/sdk/models/errors/deletelibraryunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetLibraryItemsUnauthorized`](./src/sdk/models/errors/getlibraryitemsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetLibrarySectionsAllUnauthorized`](./src/sdk/models/errors/getlibrarysectionsallunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetRefreshLibraryMetadataUnauthorized`](./src/sdk/models/errors/getrefreshlibrarymetadataunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetSearchLibraryUnauthorized`](./src/sdk/models/errors/getsearchlibraryunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetGenresLibraryUnauthorized`](./src/sdk/models/errors/getgenreslibraryunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetCountriesLibraryUnauthorized`](./src/sdk/models/errors/getcountrieslibraryunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetActorsLibraryUnauthorized`](./src/sdk/models/errors/getactorslibraryunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetSearchAllLibrariesUnauthorized`](./src/sdk/models/errors/getsearchalllibrariesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetMediaMetaDataUnauthorized`](./src/sdk/models/errors/getmediametadataunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetMetadataChildrenUnauthorized`](./src/sdk/models/errors/getmetadatachildrenunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetTopWatchedContentUnauthorized`](./src/sdk/models/errors/gettopwatchedcontentunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetWatchListUnauthorized`](./src/sdk/models/errors/getwatchlistunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`LogLineUnauthorized`](./src/sdk/models/errors/loglineunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`LogMultiLineUnauthorized`](./src/sdk/models/errors/logmultilineunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`EnablePaperTrailUnauthorized`](./src/sdk/models/errors/enablepapertrailunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`CreatePlaylistUnauthorized`](./src/sdk/models/errors/createplaylistunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetPlaylistsUnauthorized`](./src/sdk/models/errors/getplaylistsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetPlaylistUnauthorized`](./src/sdk/models/errors/getplaylistunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`DeletePlaylistUnauthorized`](./src/sdk/models/errors/deleteplaylistunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`UpdatePlaylistUnauthorized`](./src/sdk/models/errors/updateplaylistunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetPlaylistContentsUnauthorized`](./src/sdk/models/errors/getplaylistcontentsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`ClearPlaylistContentsUnauthorized`](./src/sdk/models/errors/clearplaylistcontentsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`AddPlaylistContentsUnauthorized`](./src/sdk/models/errors/addplaylistcontentsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`UploadPlaylistUnauthorized`](./src/sdk/models/errors/uploadplaylistunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetTransientTokenUnauthorized`](./src/sdk/models/errors/gettransienttokenunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetSourceConnectionInformationUnauthorized`](./src/sdk/models/errors/getsourceconnectioninformationunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetTokenDetailsUnauthorized`](./src/sdk/models/errors/gettokendetailsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`PostUsersSignInDataUnauthorized`](./src/sdk/models/errors/postuserssignindataunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetStatisticsUnauthorized`](./src/sdk/models/errors/getstatisticsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetResourcesStatisticsUnauthorized`](./src/sdk/models/errors/getresourcesstatisticsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetBandwidthStatisticsUnauthorized`](./src/sdk/models/errors/getbandwidthstatisticsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetSessionsUnauthorized`](./src/sdk/models/errors/getsessionsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetSessionHistoryUnauthorized`](./src/sdk/models/errors/getsessionhistoryunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetTranscodeSessionsUnauthorized`](./src/sdk/models/errors/gettranscodesessionsunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`StopTranscodeSessionUnauthorized`](./src/sdk/models/errors/stoptranscodesessionunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetUpdateStatusUnauthorized`](./src/sdk/models/errors/getupdatestatusunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`CheckForUpdatesUnauthorized`](./src/sdk/models/errors/checkforupdatesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`ApplyUpdatesUnauthorized`](./src/sdk/models/errors/applyupdatesunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetUsersUnauthorized`](./src/sdk/models/errors/getusersunauthorized.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 84 methods.*
-* [`GetTokenByPinIdResponseBody`](./src/sdk/models/errors/gettokenbypinidresponsebody.ts): Not Found or Expired. Status code `404`. Applicable to 1 of 84 methods.*
-* [`GetServerIdentityRequestTimeout`](./src/sdk/models/errors/getserveridentityrequesttimeout.ts): Request Timeout. Status code `408`. Applicable to 1 of 84 methods.*
 * [`ResponseValidationError`](./src/sdk/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
-
-\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Server Variables
+### Select Server by Index
 
-The default server `{protocol}://{ip}:{port}` contains variables and is set to `https://10.10.10.47:32400` by default. To override default values, the following parameters are available when initializing the SDK client instance:
+You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| Variable   | Parameter                         | Supported Values           | Default         | Description                                    |
-| ---------- | --------------------------------- | -------------------------- | --------------- | ---------------------------------------------- |
-| `protocol` | `protocol: models.ServerProtocol` | - `"http"`<br/>- `"https"` | `"https"`       | The protocol to use for the server connection  |
-| `ip`       | `ip: string`                      | string                     | `"10.10.10.47"` | The IP address or hostname of your Plex Server |
-| `port`     | `port: string`                    | string                     | `"32400"`       | The port of your Plex Server                   |
+| #   | Server                                                     | Variables                                    | Description |
+| --- | ---------------------------------------------------------- | -------------------------------------------- | ----------- |
+| 0   | `https://{IP-description}.{identifier}.plex.direct:{port}` | `identifier`<br/>`IP-description`<br/>`port` |             |
+| 1   | `{protocol}://{host}:{port}`                               | `protocol`<br/>`host`<br/>`port`             |             |
+| 2   | `https://{server_url}`                                     | `server_url`                                 |             |
+
+If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
+
+| Variable         | Parameter               | Default                              | Description                                                                                                                                                                                                                                                                                                                                                                          |
+| ---------------- | ----------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `identifier`     | `identifier: string`    | `"0123456789abcdef0123456789abcdef"` | The unique identifier of this particular PMS                                                                                                                                                                                                                                                                                                                                         |
+| `IP-description` | `ipDescription: string` | `"1-2-3-4"`                          | A `-` separated string of the IPv4 or IPv6 address components                                                                                                                                                                                                                                                                                                                        |
+| `port`           | `port: string`          | `"32400"`                            | The Port number configured on the PMS. Typically (`32400`). <br/>If using a reverse proxy, this would be the port number configured on the proxy.<br/>                                                                                                                                                                                                                               |
+| `protocol`       | `protocol: string`      | `"http"`                             | The network protocol to use. Typically (`http` or `https`)                                                                                                                                                                                                                                                                                                                           |
+| `host`           | `host: string`          | `"localhost"`                        | The Host of the PMS.<br/>If using on a local network, this is the internal IP address of the server hosting the PMS.<br/>If using on an external network, this is the external IP address for your network, and requires port forwarding.<br/>If using a reverse proxy, this would be the external DNS domain for your network, and requires the proxy handle port forwarding. <br/> |
+| `server_url`     | `serverUrl: string`     | `"http://localhost:32400"`           | The full manual URL to access the PMS                                                                                                                                                                                                                                                                                                                                                |
 
 #### Example
 
@@ -512,14 +529,24 @@ The default server `{protocol}://{ip}:{port}` contains variables and is set to `
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  protocol: "https",
-  ip: "4982:bc2a:b4f8:efb5:2394:5bc3:ab4f:0e6d",
-  port: "44765",
-  accessToken: "<YOUR_API_KEY_HERE>",
+  serverIdx: 1,
+  protocol: "<value>",
+  host: "electric-excess.name",
+  port: "36393",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.general.getServerInfo({});
 
   console.log(result);
 }
@@ -530,39 +557,26 @@ run();
 
 ### Override Server URL Per-Client
 
-The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  serverURL: "https://10.10.10.47:32400",
-  accessToken: "<YOUR_API_KEY_HERE>",
+  serverURL: "https://http://localhost:32400",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.server.getServerCapabilities();
-
-  console.log(result);
-}
-
-run();
-
-```
-
-### Override Server URL Per-Operation
-
-The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-
-const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await plexAPI.plex.getCompanionsData({
-    serverURL: "https://plex.tv/api/v2",
-  });
+  const result = await plexAPI.general.getServerInfo({});
 
   console.log(result);
 }
@@ -617,7 +631,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new PlexAPI({ httpClient });
+const sdk = new PlexAPI({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -628,20 +642,30 @@ const sdk = new PlexAPI({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name          | Type   | Scheme  |
-| ------------- | ------ | ------- |
-| `accessToken` | apiKey | API key |
+| Name     | Type   | Scheme  |
+| -------- | ------ | ------- |
+| `apiKey` | apiKey | API key |
 
-To authenticate with the API the `accessToken` parameter must be set when initializing the SDK client instance. For example:
+To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  apiKey: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.general.getServerInfo({});
 
   console.log(result);
 }
@@ -672,90 +696,243 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`activitiesCancelServerActivities`](docs/sdks/activities/README.md#cancelserveractivities) - Cancel Server Activities
-- [`activitiesGetServerActivities`](docs/sdks/activities/README.md#getserveractivities) - Get Server Activities
-- [`authenticationGetSourceConnectionInformation`](docs/sdks/authentication/README.md#getsourceconnectioninformation) - Get Source Connection Information
-- [`authenticationGetTokenDetails`](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
-- [`authenticationGetTransientToken`](docs/sdks/authentication/README.md#gettransienttoken) - Get a Transient Token
-- [`authenticationPostUsersSignInData`](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
-- [`butlerGetButlerTasks`](docs/sdks/butler/README.md#getbutlertasks) - Get Butler tasks
-- [`butlerStartAllTasks`](docs/sdks/butler/README.md#startalltasks) - Start all Butler tasks
+- [`activitiesCancelActivity`](docs/sdks/activities/README.md#cancelactivity) - Cancel a running activity
+- [`activitiesListActivities`](docs/sdks/activities/README.md#listactivities) - Get all activities
+- [`butlerGetTasks`](docs/sdks/butler/README.md#gettasks) - Get all Butler tasks
 - [`butlerStartTask`](docs/sdks/butler/README.md#starttask) - Start a single Butler task
-- [`butlerStopAllTasks`](docs/sdks/butler/README.md#stopalltasks) - Stop all Butler tasks
+- [`butlerStartTasks`](docs/sdks/butler/README.md#starttasks) - Start all Butler tasks
 - [`butlerStopTask`](docs/sdks/butler/README.md#stoptask) - Stop a single Butler task
-- [`hubsGetGlobalHubs`](docs/sdks/hubs/README.md#getglobalhubs) - Get Global Hubs
-- [`hubsGetLibraryHubs`](docs/sdks/hubs/README.md#getlibraryhubs) - Get library specific hubs
-- [`hubsGetRecentlyAdded`](docs/sdks/hubs/README.md#getrecentlyadded) - Get Recently Added
-- [`libraryDeleteLibrary`](docs/sdks/library/README.md#deletelibrary) - Delete Library Section
-- [`libraryGetActorsLibrary`](docs/sdks/library/README.md#getactorslibrary) - Get Actors of library media
-- [`libraryGetAllLibraries`](docs/sdks/library/README.md#getalllibraries) - Get All Libraries
-- [`libraryGetCountriesLibrary`](docs/sdks/library/README.md#getcountrieslibrary) - Get Countries of library media
-- [`libraryGetFileHash`](docs/sdks/library/README.md#getfilehash) - Get Hash Value
-- [`libraryGetGenresLibrary`](docs/sdks/library/README.md#getgenreslibrary) - Get Genres of library media
-- [`libraryGetLibraryDetails`](docs/sdks/library/README.md#getlibrarydetails) - Get Library Details
-- [`libraryGetLibraryItems`](docs/sdks/library/README.md#getlibraryitems) - Get Library Items
-- [`libraryGetLibrarySectionsAll`](docs/sdks/library/README.md#getlibrarysectionsall) - Get Library section media by tag ALL
-- [`libraryGetMediaArts`](docs/sdks/library/README.md#getmediaarts) - Get Media Background Artwork
-- [`libraryGetMediaMetaData`](docs/sdks/library/README.md#getmediametadata) - Get Media Metadata
-- [`libraryGetMediaPosters`](docs/sdks/library/README.md#getmediaposters) - Get Media Posters
-- [`libraryGetMetadataChildren`](docs/sdks/library/README.md#getmetadatachildren) - Get Items Children
-- [`libraryGetRecentlyAddedLibrary`](docs/sdks/library/README.md#getrecentlyaddedlibrary) - Get Recently Added
-- [`libraryGetRefreshLibraryMetadata`](docs/sdks/library/README.md#getrefreshlibrarymetadata) - Refresh Metadata Of The Library
-- [`libraryGetSearchAllLibraries`](docs/sdks/library/README.md#getsearchalllibraries) - Search All Libraries
-- [`libraryGetSearchLibrary`](docs/sdks/library/README.md#getsearchlibrary) - Search Library
-- [`libraryGetTopWatchedContent`](docs/sdks/library/README.md#gettopwatchedcontent) - Get Top Watched Content
-- [`libraryPostMediaArts`](docs/sdks/library/README.md#postmediaarts) - Upload Media Background Artwork
-- [`libraryPostMediaPoster`](docs/sdks/library/README.md#postmediaposter) - Upload Media Poster
-- [`logEnablePaperTrail`](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
-- [`logLogLine`](docs/sdks/log/README.md#logline) - Logging a single line message.
-- [`logLogMultiLine`](docs/sdks/log/README.md#logmultiline) - Logging a multi-line message
-- [`mediaGetBannerImage`](docs/sdks/media/README.md#getbannerimage) - Get Banner Image
-- [`mediaGetThumbImage`](docs/sdks/media/README.md#getthumbimage) - Get Thumb Image
-- [`mediaMarkPlayed`](docs/sdks/media/README.md#markplayed) - Mark Media Played
-- [`mediaMarkUnplayed`](docs/sdks/media/README.md#markunplayed) - Mark Media Unplayed
-- [`mediaUpdatePlayProgress`](docs/sdks/media/README.md#updateplayprogress) - Update Media Play Progress
-- [`playlistsAddPlaylistContents`](docs/sdks/playlists/README.md#addplaylistcontents) - Adding to a Playlist
-- [`playlistsClearPlaylistContents`](docs/sdks/playlists/README.md#clearplaylistcontents) - Delete Playlist Contents
-- [`playlistsCreatePlaylist`](docs/sdks/playlists/README.md#createplaylist) - Create a Playlist
-- [`playlistsDeletePlaylist`](docs/sdks/playlists/README.md#deleteplaylist) - Deletes a Playlist
-- [`playlistsGetPlaylist`](docs/sdks/playlists/README.md#getplaylist) - Retrieve Playlist
-- [`playlistsGetPlaylistContents`](docs/sdks/playlists/README.md#getplaylistcontents) - Retrieve Playlist Contents
-- [`playlistsGetPlaylists`](docs/sdks/playlists/README.md#getplaylists) - Get All Playlists
-- [`playlistsUpdatePlaylist`](docs/sdks/playlists/README.md#updateplaylist) - Update a Playlist
-- [`playlistsUploadPlaylist`](docs/sdks/playlists/README.md#uploadplaylist) - Upload Playlist
-- [`plexGetCompanionsData`](docs/sdks/plex/README.md#getcompanionsdata) - Get Companions Data
-- [`plexGetGeoData`](docs/sdks/plex/README.md#getgeodata) - Get Geo Data
-- [`plexGetHomeData`](docs/sdks/plex/README.md#gethomedata) - Get Plex Home Data
-- [`plexGetPin`](docs/sdks/plex/README.md#getpin) - Get a Pin
-- [`plexGetServerResources`](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
-- [`plexGetTokenByPinId`](docs/sdks/plex/README.md#gettokenbypinid) - Get Access Token by PinId
-- [`plexGetUserFriends`](docs/sdks/plex/README.md#getuserfriends) - Get list of friends of the user logged in
-- [`searchGetSearchResults`](docs/sdks/search/README.md#getsearchresults) - Get Search Results
-- [`searchPerformSearch`](docs/sdks/search/README.md#performsearch) - Perform a search
-- [`searchPerformVoiceSearch`](docs/sdks/search/README.md#performvoicesearch) - Perform a voice search
-- [`serverGetAvailableClients`](docs/sdks/server/README.md#getavailableclients) - Get Available Clients
-- [`serverGetDevices`](docs/sdks/server/README.md#getdevices) - Get Devices
-- [`serverGetMediaProviders`](docs/sdks/server/README.md#getmediaproviders) - Get Media Providers
-- [`serverGetMyPlexAccount`](docs/sdks/server/README.md#getmyplexaccount) - Get MyPlex Account
-- [`serverGetResizedPhoto`](docs/sdks/server/README.md#getresizedphoto) - Get a Resized Photo
-- [`serverGetServerCapabilities`](docs/sdks/server/README.md#getservercapabilities) - Get Server Capabilities
-- [`serverGetServerIdentity`](docs/sdks/server/README.md#getserveridentity) - Get Server Identity
-- [`serverGetServerList`](docs/sdks/server/README.md#getserverlist) - Get Server List
-- [`serverGetServerPreferences`](docs/sdks/server/README.md#getserverpreferences) - Get Server Preferences
-- [`sessionsGetSessionHistory`](docs/sdks/sessions/README.md#getsessionhistory) - Get Session History
-- [`sessionsGetSessions`](docs/sdks/sessions/README.md#getsessions) - Get Active Sessions
-- [`sessionsGetTranscodeSessions`](docs/sdks/sessions/README.md#gettranscodesessions) - Get Transcode Sessions
-- [`sessionsStopTranscodeSession`](docs/sdks/sessions/README.md#stoptranscodesession) - Stop a Transcode Session
-- [`statisticsGetBandwidthStatistics`](docs/sdks/statistics/README.md#getbandwidthstatistics) - Get Bandwidth Statistics
-- [`statisticsGetResourcesStatistics`](docs/sdks/statistics/README.md#getresourcesstatistics) - Get Resources Statistics
-- [`statisticsGetStatistics`](docs/sdks/statistics/README.md#getstatistics) - Get Media Statistics
-- [`updaterApplyUpdates`](docs/sdks/updater/README.md#applyupdates) - Apply Updates
-- [`updaterCheckForUpdates`](docs/sdks/updater/README.md#checkforupdates) - Checking for updates
-- [`updaterGetUpdateStatus`](docs/sdks/updater/README.md#getupdatestatus) - Querying status of updates
-- [`usersGetUsers`](docs/sdks/users/README.md#getusers) - Get list of all connected users
-- [`videoGetTimeline`](docs/sdks/video/README.md#gettimeline) - Get the timeline for a media item
-- [`videoStartUniversalTranscode`](docs/sdks/video/README.md#startuniversaltranscode) - Start Universal Transcode
-- [`watchlistGetWatchList`](docs/sdks/watchlist/README.md#getwatchlist) - Get User Watchlist
+- [`butlerStopTasks`](docs/sdks/butler/README.md#stoptasks) - Stop all Butler tasks
+- [`collectionsCreateCollection`](docs/sdks/collections/README.md#createcollection) - Create collection
+- [`contentGetAlbums`](docs/sdks/content/README.md#getalbums) - Set section albums
+- [`contentGetAllLeaves`](docs/sdks/content/README.md#getallleaves) - Set section leaves
+- [`contentGetArts`](docs/sdks/content/README.md#getarts) - Set section artwork
+- [`contentGetCategories`](docs/sdks/content/README.md#getcategories) - Set section categories
+- [`contentGetCluster`](docs/sdks/content/README.md#getcluster) - Set section clusters
+- [`contentGetCollectionImage`](docs/sdks/content/README.md#getcollectionimage) - Get a collection's image
+- [`contentGetCollectionItems`](docs/sdks/content/README.md#getcollectionitems) - Get items in a collection
+- [`contentGetFolders`](docs/sdks/content/README.md#getfolders) - Get all folder locations
+- [`contentGetMetadataItem`](docs/sdks/content/README.md#getmetadataitem) - Get a metadata item
+- [`contentGetSonicallySimilar`](docs/sdks/content/README.md#getsonicallysimilar) - The nearest audio tracks
+- [`contentGetSonicPath`](docs/sdks/content/README.md#getsonicpath) - Similar tracks to transition from one to another
+- [`contentListContent`](docs/sdks/content/README.md#listcontent) - Get items in the section
+- [`contentListMoments`](docs/sdks/content/README.md#listmoments) - Set section moments
+- [`devicesAddDevice`](docs/sdks/devices/README.md#adddevice) - Add a device
+- [`devicesDiscoverDevices`](docs/sdks/devices/README.md#discoverdevices) - Tell grabbers to discover devices
+- [`devicesGetAvailableGrabbers`](docs/sdks/devices/README.md#getavailablegrabbers) - Get available grabbers
+- [`devicesGetDeviceDetails`](docs/sdks/devices/README.md#getdevicedetails) - Get device details
+- [`devicesGetDevicesChannels`](docs/sdks/devices/README.md#getdeviceschannels) - Get a device's channels
+- [`devicesGetThumb`](docs/sdks/devices/README.md#getthumb) - Get device thumb
+- [`devicesListDevices`](docs/sdks/devices/README.md#listdevices) - Get all devices
+- [`devicesModifyDevice`](docs/sdks/devices/README.md#modifydevice) - Enable or disable a device
+- [`devicesRemoveDevice`](docs/sdks/devices/README.md#removedevice) - Remove a device
+- [`devicesScan`](docs/sdks/devices/README.md#scan) - Tell a device to scan for channels
+- [`devicesSetChannelmap`](docs/sdks/devices/README.md#setchannelmap) - Set a device's channel mapping
+- [`devicesSetDevicePreferences`](docs/sdks/devices/README.md#setdevicepreferences) - Set device preferences
+- [`devicesStopScan`](docs/sdks/devices/README.md#stopscan) - Tell a device to stop scanning for channels
+- [`downloadQueueAddDownloadQueueItems`](docs/sdks/downloadqueue/README.md#adddownloadqueueitems) - Add to download queue
+- [`downloadQueueCreateDownloadQueue`](docs/sdks/downloadqueue/README.md#createdownloadqueue) - Create download queue
+- [`downloadQueueGetDownloadQueue`](docs/sdks/downloadqueue/README.md#getdownloadqueue) - Get a download queue
+- [`downloadQueueGetDownloadQueueItems`](docs/sdks/downloadqueue/README.md#getdownloadqueueitems) - Get download queue items
+- [`downloadQueueGetDownloadQueueMedia`](docs/sdks/downloadqueue/README.md#getdownloadqueuemedia) - Grab download queue media
+- [`downloadQueueGetItemDecision`](docs/sdks/downloadqueue/README.md#getitemdecision) - Grab download queue item decision
+- [`downloadQueueListDownloadQueueItems`](docs/sdks/downloadqueue/README.md#listdownloadqueueitems) - Get download queue items
+- [`downloadQueueRemoveDownloadQueueItems`](docs/sdks/downloadqueue/README.md#removedownloadqueueitems) - Delete download queue items
+- [`downloadQueueRestartProcessingDownloadQueueItems`](docs/sdks/downloadqueue/README.md#restartprocessingdownloadqueueitems) - Restart processing of items from the decision
+- [`dvRsAddDeviceToDVR`](docs/sdks/dvrs/README.md#adddevicetodvr) - Add a device to an existing DVR
+- [`dvRsAddLineup`](docs/sdks/dvrs/README.md#addlineup) - Add a DVR Lineup
+- [`dvRsCreateDVR`](docs/sdks/dvrs/README.md#createdvr) - Create a DVR
+- [`dvRsDeleteDVR`](docs/sdks/dvrs/README.md#deletedvr) - Delete a single DVR
+- [`dvRsDeleteLineup`](docs/sdks/dvrs/README.md#deletelineup) - Delete a DVR Lineup
+- [`dvRsGetDVR`](docs/sdks/dvrs/README.md#getdvr) - Get a single DVR
+- [`dvRsListDVRs`](docs/sdks/dvrs/README.md#listdvrs) - Get DVRs
+- [`dvRsReloadGuide`](docs/sdks/dvrs/README.md#reloadguide) - Tell a DVR to reload program guide
+- [`dvRsRemoveDeviceFromDVR`](docs/sdks/dvrs/README.md#removedevicefromdvr) - Remove a device from an existing DVR
+- [`dvRsSetDVRPreferences`](docs/sdks/dvrs/README.md#setdvrpreferences) - Set DVR preferences
+- [`dvRsStopDVRReload`](docs/sdks/dvrs/README.md#stopdvrreload) - Tell a DVR to stop reloading program guide
+- [`dvRsTuneChannel`](docs/sdks/dvrs/README.md#tunechannel) - Tune a channel on a DVR
+- [`epgComputeChannelMap`](docs/sdks/epg/README.md#computechannelmap) - Compute the best channel map
+- [`epgGetAllLanguages`](docs/sdks/epg/README.md#getalllanguages) - Get all languages
+- [`epgGetChannels`](docs/sdks/epg/README.md#getchannels) - Get channels for a lineup
+- [`epgGetCountries`](docs/sdks/epg/README.md#getcountries) - Get all countries
+- [`epgGetCountriesLineups`](docs/sdks/epg/README.md#getcountrieslineups) - Get lineups for a country via postal code
+- [`epgGetCountryRegions`](docs/sdks/epg/README.md#getcountryregions) - Get regions for a country
+- [`epgGetLineup`](docs/sdks/epg/README.md#getlineup) - Compute the best lineup
+- [`epgGetLineupChannels`](docs/sdks/epg/README.md#getlineupchannels) - Get the channels for mulitple lineups
+- [`epgListLineups`](docs/sdks/epg/README.md#listlineups) - Get lineups for a region
+- [`eventsConnectWebSocket`](docs/sdks/events/README.md#connectwebsocket) - Connect to WebSocket
+- [`eventsGetNotifications`](docs/sdks/events/README.md#getnotifications) - Connect to Eventsource
+- [`generalGetIdentity`](docs/sdks/general/README.md#getidentity) - Get PMS identity
+- [`generalGetServerInfo`](docs/sdks/general/README.md#getserverinfo) - Get PMS info
+- [`generalGetSourceConnectionInformation`](docs/sdks/general/README.md#getsourceconnectioninformation) - Get Source Connection Information
+- [`generalGetTransientToken`](docs/sdks/general/README.md#gettransienttoken) - Get Transient Tokens
+- [`hubsCreateCustomHub`](docs/sdks/hubs/README.md#createcustomhub) - Create a custom hub
+- [`hubsDeleteCustomHub`](docs/sdks/hubs/README.md#deletecustomhub) - Delete a custom hub
+- [`hubsGetAllHubs`](docs/sdks/hubs/README.md#getallhubs) - Get global hubs
+- [`hubsGetContinueWatching`](docs/sdks/hubs/README.md#getcontinuewatching) - Get the continue watching hub
+- [`hubsGetHubItems`](docs/sdks/hubs/README.md#gethubitems) - Get a hub's items
+- [`hubsGetMetadataHubs`](docs/sdks/hubs/README.md#getmetadatahubs) - Get hubs for section by metadata item
+- [`hubsGetPostplayHubs`](docs/sdks/hubs/README.md#getpostplayhubs) - Get postplay hubs
+- [`hubsGetPromotedHubs`](docs/sdks/hubs/README.md#getpromotedhubs) - Get the hubs which are promoted
+- [`hubsGetRelatedHubs`](docs/sdks/hubs/README.md#getrelatedhubs) - Get related hubs
+- [`hubsGetSectionHubs`](docs/sdks/hubs/README.md#getsectionhubs) - Get section hubs
+- [`hubsListHubs`](docs/sdks/hubs/README.md#listhubs) - Get hubs
+- [`hubsMoveHub`](docs/sdks/hubs/README.md#movehub) - Move Hub
+- [`hubsResetSectionDefaults`](docs/sdks/hubs/README.md#resetsectiondefaults) - Reset hubs to defaults
+- [`hubsUpdateHubVisibility`](docs/sdks/hubs/README.md#updatehubvisibility) - Change hub visibility
+- [`libraryAddExtras`](docs/sdks/library/README.md#addextras) - Add to an item's extras
+- [`libraryAddSection`](docs/sdks/library/README.md#addsection) - Add a library section
+- [`libraryAddSubtitles`](docs/sdks/library/README.md#addsubtitles) - Add subtitles
+- [`libraryAnalyzeMetadata`](docs/sdks/library/README.md#analyzemetadata) - Analyze an item
+- [`libraryAutocomplete`](docs/sdks/library/README.md#autocomplete) - Get autocompletions for search
+- [`libraryCancelRefresh`](docs/sdks/library/README.md#cancelrefresh) - Cancel section refresh
+- [`libraryCleanBundles`](docs/sdks/library/README.md#cleanbundles) - Clean bundles
+- [`libraryCollectionsAddCollectionItems`](docs/sdks/librarycollections/README.md#addcollectionitems) - Add items to a collection
+- [`libraryCollectionsDeleteCollectionItem`](docs/sdks/librarycollections/README.md#deletecollectionitem) - Delete an item from a collection
+- [`libraryCollectionsMoveCollectionItem`](docs/sdks/librarycollections/README.md#movecollectionitem) - Reorder an item in the collection
+- [`libraryCreateMarker`](docs/sdks/library/README.md#createmarker) - Create a marker
+- [`libraryDeleteCaches`](docs/sdks/library/README.md#deletecaches) - Delete library caches
+- [`libraryDeleteCollection`](docs/sdks/library/README.md#deletecollection) - Delete a collection
+- [`libraryDeleteIndexes`](docs/sdks/library/README.md#deleteindexes) - Delete section indexes
+- [`libraryDeleteIntros`](docs/sdks/library/README.md#deleteintros) - Delete section intro markers
+- [`libraryDeleteLibrarySection`](docs/sdks/library/README.md#deletelibrarysection) - Delete a library section
+- [`libraryDeleteMarker`](docs/sdks/library/README.md#deletemarker) - Delete a marker
+- [`libraryDeleteMediaItem`](docs/sdks/library/README.md#deletemediaitem) - Delete a media item
+- [`libraryDeleteMetadataItem`](docs/sdks/library/README.md#deletemetadataitem) - Delete a metadata item
+- [`libraryDeleteStream`](docs/sdks/library/README.md#deletestream) - Delete a stream
+- [`libraryDetectAds`](docs/sdks/library/README.md#detectads) - Ad-detect an item
+- [`libraryDetectCredits`](docs/sdks/library/README.md#detectcredits) - Credit detect a metadata item
+- [`libraryDetectIntros`](docs/sdks/library/README.md#detectintros) - Intro detect an item
+- [`libraryDetectVoiceActivity`](docs/sdks/library/README.md#detectvoiceactivity) - Detect voice activity
+- [`libraryEditMarker`](docs/sdks/library/README.md#editmarker) - Edit a marker
+- [`libraryEditMetadataItem`](docs/sdks/library/README.md#editmetadataitem) - Edit a metadata item
+- [`libraryEditSection`](docs/sdks/library/README.md#editsection) - Edit a library section
+- [`libraryEmptyTrash`](docs/sdks/library/README.md#emptytrash) - Empty section trash
+- [`libraryGenerateThumbs`](docs/sdks/library/README.md#generatethumbs) - Generate thumbs of chapters for an item
+- [`libraryGetAllItemLeaves`](docs/sdks/library/README.md#getallitemleaves) - Get the leaves of an item
+- [`libraryGetAugmentationStatus`](docs/sdks/library/README.md#getaugmentationstatus) - Get augmentation status
+- [`libraryGetAvailableSorts`](docs/sdks/library/README.md#getavailablesorts) - Get a section sorts
+- [`libraryGetChapterImage`](docs/sdks/library/README.md#getchapterimage) - Get a chapter image
+- [`libraryGetCollections`](docs/sdks/library/README.md#getcollections) - Get collections in a section
+- [`libraryGetCommon`](docs/sdks/library/README.md#getcommon) - Get common fields for items
+- [`libraryGetExtras`](docs/sdks/library/README.md#getextras) - Get an item's extras
+- [`libraryGetFile`](docs/sdks/library/README.md#getfile) - Get a file from a metadata or media bundle
+- [`libraryGetFirstCharacters`](docs/sdks/library/README.md#getfirstcharacters) - Get list of first characters
+- [`libraryGetImageFromBif`](docs/sdks/library/README.md#getimagefrombif) - Get an image from part BIF
+- [`libraryGetItemArtwork`](docs/sdks/library/README.md#getitemartwork) - Get an item's artwork, theme, etc
+- [`libraryGetItemTree`](docs/sdks/library/README.md#getitemtree) - Get metadata items as a tree
+- [`libraryGetLibraryDetails`](docs/sdks/library/README.md#getlibrarydetails) - Get a library section by id
+- [`libraryGetLibraryItems`](docs/sdks/library/README.md#getlibraryitems) - Get all items in library
+- [`libraryGetLibraryMatches`](docs/sdks/library/README.md#getlibrarymatches) - Get library matches
+- [`libraryGetMediaPart`](docs/sdks/library/README.md#getmediapart) - Get a media part
+- [`libraryGetPartIndex`](docs/sdks/library/README.md#getpartindex) - Get BIF index for a part
+- [`libraryGetPerson`](docs/sdks/library/README.md#getperson) - Get person details
+- [`libraryGetRandomArtwork`](docs/sdks/library/README.md#getrandomartwork) - Get random artwork
+- [`libraryGetRelatedItems`](docs/sdks/library/README.md#getrelateditems) - Get related items
+- [`libraryGetSectionFilters`](docs/sdks/library/README.md#getsectionfilters) - Get section filters
+- [`libraryGetSectionImage`](docs/sdks/library/README.md#getsectionimage) - Get a section composite image
+- [`libraryGetSectionPreferences`](docs/sdks/library/README.md#getsectionpreferences) - Get section prefs
+- [`libraryGetSections`](docs/sdks/library/README.md#getsections) - Get library sections (main Media Provider Only)
+- [`libraryGetSectionsPrefs`](docs/sdks/library/README.md#getsectionsprefs) - Get section prefs
+- [`libraryGetStream`](docs/sdks/library/README.md#getstream) - Get a stream
+- [`libraryGetStreamLevels`](docs/sdks/library/README.md#getstreamlevels) - Get loudness about a stream in json
+- [`libraryGetStreamLoudness`](docs/sdks/library/README.md#getstreamloudness) - Get loudness about a stream
+- [`libraryGetTags`](docs/sdks/library/README.md#gettags) - Get all library tags of a type
+- [`libraryIngestTransientItem`](docs/sdks/library/README.md#ingesttransientitem) - Ingest a transient item
+- [`libraryListMatches`](docs/sdks/library/README.md#listmatches) - Get metadata matches for an item
+- [`libraryListPersonMedia`](docs/sdks/library/README.md#listpersonmedia) - Get media for a person
+- [`libraryListSimilar`](docs/sdks/library/README.md#listsimilar) - Get similar items
+- [`libraryListSonicallySimilar`](docs/sdks/library/README.md#listsonicallysimilar) - Get nearest tracks to metadata item
+- [`libraryListTopUsers`](docs/sdks/library/README.md#listtopusers) - Get metadata top users
+- [`libraryMatchItem`](docs/sdks/library/README.md#matchitem) - Match a metadata item
+- [`libraryMergeItems`](docs/sdks/library/README.md#mergeitems) - Merge a metadata item
+- [`libraryOptimizeDatabase`](docs/sdks/library/README.md#optimizedatabase) - Optimize the Database
+- [`libraryPlaylistsAddPlaylistItems`](docs/sdks/libraryplaylists/README.md#addplaylistitems) - Adding to  a Playlist
+- [`libraryPlaylistsClearPlaylistItems`](docs/sdks/libraryplaylists/README.md#clearplaylistitems) - Clearing a playlist
+- [`libraryPlaylistsCreatePlaylist`](docs/sdks/libraryplaylists/README.md#createplaylist) - Create a Playlist
+- [`libraryPlaylistsDeletePlaylist`](docs/sdks/libraryplaylists/README.md#deleteplaylist) - Delete a Playlist
+- [`libraryPlaylistsDeletePlaylistItem`](docs/sdks/libraryplaylists/README.md#deleteplaylistitem) - Delete a Generator
+- [`libraryPlaylistsGetPlaylistGenerator`](docs/sdks/libraryplaylists/README.md#getplaylistgenerator) - Get a playlist generator
+- [`libraryPlaylistsGetPlaylistGeneratorItems`](docs/sdks/libraryplaylists/README.md#getplaylistgeneratoritems) - Get a playlist generator's items
+- [`libraryPlaylistsGetPlaylistGenerators`](docs/sdks/libraryplaylists/README.md#getplaylistgenerators) - Get a playlist's generators
+- [`libraryPlaylistsModifyPlaylistGenerator`](docs/sdks/libraryplaylists/README.md#modifyplaylistgenerator) - Modify a Generator
+- [`libraryPlaylistsMovePlaylistItem`](docs/sdks/libraryplaylists/README.md#moveplaylistitem) - Moving items in a playlist
+- [`libraryPlaylistsRefreshPlaylist`](docs/sdks/libraryplaylists/README.md#refreshplaylist) - Reprocess a generator
+- [`libraryPlaylistsUpdatePlaylist`](docs/sdks/libraryplaylists/README.md#updateplaylist) - Editing a Playlist
+- [`libraryPlaylistsUploadPlaylist`](docs/sdks/libraryplaylists/README.md#uploadplaylist) - Upload
+- [`libraryRefreshItemsMetadata`](docs/sdks/library/README.md#refreshitemsmetadata) - Refresh a metadata item
+- [`libraryRefreshSection`](docs/sdks/library/README.md#refreshsection) - Refresh section
+- [`libraryRefreshSectionsMetadata`](docs/sdks/library/README.md#refreshsectionsmetadata) - Refresh all sections
+- [`librarySetItemArtwork`](docs/sdks/library/README.md#setitemartwork) - Set an item's artwork, theme, etc
+- [`librarySetItemPreferences`](docs/sdks/library/README.md#setitempreferences) - Set metadata preferences
+- [`librarySetSectionPreferences`](docs/sdks/library/README.md#setsectionpreferences) - Set section prefs
+- [`librarySetStreamOffset`](docs/sdks/library/README.md#setstreamoffset) - Set a stream offset
+- [`librarySetStreamSelection`](docs/sdks/library/README.md#setstreamselection) - Set stream selection
+- [`librarySplitItem`](docs/sdks/library/README.md#splititem) - Split a metadata item
+- [`libraryStartAnalysis`](docs/sdks/library/README.md#startanalysis) - Analyze a section
+- [`libraryStartBifGeneration`](docs/sdks/library/README.md#startbifgeneration) - Start BIF generation of an item
+- [`libraryStopAllRefreshes`](docs/sdks/library/README.md#stopallrefreshes) - Stop refresh
+- [`libraryUnmatch`](docs/sdks/library/README.md#unmatch) - Unmatch a metadata item
+- [`libraryUpdateItemArtwork`](docs/sdks/library/README.md#updateitemartwork) - Set an item's artwork, theme, etc
+- [`libraryUpdateItems`](docs/sdks/library/README.md#updateitems) - Set the fields of the filtered items
+- [`liveTVGetLiveTVSession`](docs/sdks/livetv/README.md#getlivetvsession) - Get a single session
+- [`liveTVGetSessionPlaylistIndex`](docs/sdks/livetv/README.md#getsessionplaylistindex) - Get a session playlist index
+- [`liveTVGetSessions`](docs/sdks/livetv/README.md#getsessions) - Get all sessions
+- [`liveTVGetSessionSegment`](docs/sdks/livetv/README.md#getsessionsegment) - Get a single session segment
+- [`logEnablePapertrail`](docs/sdks/log/README.md#enablepapertrail) - Enabling Papertrail
+- [`logWriteLog`](docs/sdks/log/README.md#writelog) - Logging a multi-line message to the Plex Media Server log
+- [`logWriteMessage`](docs/sdks/log/README.md#writemessage) - Logging a single-line message to the Plex Media Server log
+- [`playlistGetPlaylist`](docs/sdks/playlist/README.md#getplaylist) - Retrieve Playlist
+- [`playlistGetPlaylistItems`](docs/sdks/playlist/README.md#getplaylistitems) - Retrieve Playlist Contents
+- [`playlistListPlaylists`](docs/sdks/playlist/README.md#listplaylists) - List playlists
+- [`playQueueAddToPlayQueue`](docs/sdks/playqueue/README.md#addtoplayqueue) - Add a generator or playlist to a play queue
+- [`playQueueClearPlayQueue`](docs/sdks/playqueue/README.md#clearplayqueue) - Clear a play queue
+- [`playQueueCreatePlayQueue`](docs/sdks/playqueue/README.md#createplayqueue) - Create a play queue
+- [`playQueueDeletePlayQueueItem`](docs/sdks/playqueue/README.md#deleteplayqueueitem) - Delete an item from a play queue
+- [`playQueueGetPlayQueue`](docs/sdks/playqueue/README.md#getplayqueue) - Retrieve a play queue
+- [`playQueueMovePlayQueueItem`](docs/sdks/playqueue/README.md#moveplayqueueitem) - Move an item in a play queue
+- [`playQueueResetPlayQueue`](docs/sdks/playqueue/README.md#resetplayqueue) - Reset a play queue
+- [`playQueueShuffle`](docs/sdks/playqueue/README.md#shuffle) - Shuffle a play queue
+- [`playQueueUnshuffle`](docs/sdks/playqueue/README.md#unshuffle) - Unshuffle a play queue
+- [`preferencesGetAllPreferences`](docs/sdks/preferences/README.md#getallpreferences) - Get all preferences
+- [`preferencesGetPreference`](docs/sdks/preferences/README.md#getpreference) - Get a preferences
+- [`preferencesSetPreferences`](docs/sdks/preferences/README.md#setpreferences) - Set preferences
+- [`providerAddProvider`](docs/sdks/provider/README.md#addprovider) - Add a media provider
+- [`providerDeleteMediaProvider`](docs/sdks/provider/README.md#deletemediaprovider) - Delete a media provider
+- [`providerListProviders`](docs/sdks/provider/README.md#listproviders) - Get the list of available media providers
+- [`providerRefreshProviders`](docs/sdks/provider/README.md#refreshproviders) - Refresh media providers
+- [`rateSetRating`](docs/sdks/rate/README.md#setrating) - Rate an item
+- [`searchSearchHubs`](docs/sdks/search/README.md#searchhubs) - Search Hub
+- [`searchVoiceSearchHubs`](docs/sdks/search/README.md#voicesearchhubs) - Voice Search Hub
+- [`statusDeleteHistory`](docs/sdks/status/README.md#deletehistory) - Delete Single History Item
+- [`statusGetBackgroundTasks`](docs/sdks/status/README.md#getbackgroundtasks) - Get background tasks
+- [`statusGetHistoryItem`](docs/sdks/status/README.md#gethistoryitem) - Get Single History Item
+- [`statusListPlaybackHistory`](docs/sdks/status/README.md#listplaybackhistory) - List Playback History
+- [`statusListSessions`](docs/sdks/status/README.md#listsessions) - List Sessions
+- [`statusTerminateSession`](docs/sdks/status/README.md#terminatesession) - Terminate a session
+- [`subscriptionsCancelGrab`](docs/sdks/subscriptions/README.md#cancelgrab) - Cancel an existing grab
+- [`subscriptionsCreateSubscription`](docs/sdks/subscriptions/README.md#createsubscription) - Create a subscription
+- [`subscriptionsDeleteSubscription`](docs/sdks/subscriptions/README.md#deletesubscription) - Delete a subscription
+- [`subscriptionsEditSubscriptionPreferences`](docs/sdks/subscriptions/README.md#editsubscriptionpreferences) - Edit a subscription
+- [`subscriptionsGetAllSubscriptions`](docs/sdks/subscriptions/README.md#getallsubscriptions) - Get all subscriptions
+- [`subscriptionsGetScheduledRecordings`](docs/sdks/subscriptions/README.md#getscheduledrecordings) - Get all scheduled recordings
+- [`subscriptionsGetSubscription`](docs/sdks/subscriptions/README.md#getsubscription) - Get a single subscription
+- [`subscriptionsGetTemplate`](docs/sdks/subscriptions/README.md#gettemplate) - Get the subscription template
+- [`subscriptionsProcessSubscriptions`](docs/sdks/subscriptions/README.md#processsubscriptions) - Process all subscriptions
+- [`subscriptionsReorderSubscription`](docs/sdks/subscriptions/README.md#reordersubscription) - Re-order a subscription
+- [`timelineMarkPlayed`](docs/sdks/timeline/README.md#markplayed) - Mark an item as played
+- [`timelineReport`](docs/sdks/timeline/README.md#report) - Report media timeline
+- [`timelineUnscrobble`](docs/sdks/timeline/README.md#unscrobble) - Mark an item as unplayed
+- [`transcoderMakeDecision`](docs/sdks/transcoder/README.md#makedecision) - Make a decision on media playback
+- [`transcoderStartTranscodeSession`](docs/sdks/transcoder/README.md#starttranscodesession) - Start A Transcoding Session
+- [`transcoderTranscodeImage`](docs/sdks/transcoder/README.md#transcodeimage) - Transcode an image
+- [`transcoderTranscodeSubtitles`](docs/sdks/transcoder/README.md#transcodesubtitles) - Transcode subtitles
+- [`transcoderTriggerFallback`](docs/sdks/transcoder/README.md#triggerfallback) - Manually trigger a transcoder fallback
+- [`ultraBlurGetColors`](docs/sdks/ultrablur/README.md#getcolors) - Get UltraBlur Colors
+- [`ultraBlurGetImage`](docs/sdks/ultrablur/README.md#getimage) - Get UltraBlur Image
+- [`updaterApplyUpdates`](docs/sdks/updater/README.md#applyupdates) - Applying updates
+- [`updaterCheckUpdates`](docs/sdks/updater/README.md#checkupdates) - Checking for updates
+- [`updaterGetUpdatesStatus`](docs/sdks/updater/README.md#getupdatesstatus) - Querying status of updates
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -776,16 +953,12 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
+import { openAsBlob } from "node:fs";
 
-const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
+const plexAPI = new PlexAPI();
 
 async function run() {
-  const result = await plexAPI.library.postMediaArts(
-    2268,
-    "https://api.mediux.pro/assets/fcfdc487-dd07-4993-a0c1-0a3015362e5b",
-  );
+  const result = await plexAPI.log.writeLog(await openAsBlob("example.file"));
 
   console.log(result);
 }
@@ -805,11 +978,20 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.server.getServerCapabilities({
+  const result = await plexAPI.general.getServerInfo({}, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -844,11 +1026,20 @@ const plexAPI = new PlexAPI({
     },
     retryConnectionErrors: false,
   },
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.server.getServerCapabilities();
+  const result = await plexAPI.general.getServerInfo({});
 
   console.log(result);
 }

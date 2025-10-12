@@ -1,0 +1,106 @@
+# Rate
+(*rate*)
+
+## Overview
+
+Operations for rating media items (thumbs up/down, star ratings, etc.)
+
+### Available Operations
+
+* [setRating](#setrating) - Rate an item
+
+## setRating
+
+Set the rating on an item.
+This API does respond to the GET verb but applications should use PUT
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="setRating" method="put" path="/:/rate" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+
+const plexAPI = new PlexAPI({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const result = await plexAPI.rate.setRating({
+    identifier: "<value>",
+    key: "<key>",
+    rating: 8722.46,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { rateSetRating } from "@lukehagar/plexjs/funcs/rateSetRating.js";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore({
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
+});
+
+async function run() {
+  const res = await rateSetRating(plexAPI, {
+    identifier: "<value>",
+    key: "<key>",
+    rating: 8722.46,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("rateSetRating failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.SetRatingRequest](../../sdk/models/operations/setratingrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.SetRatingResponse](../../sdk/models/operations/setratingresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

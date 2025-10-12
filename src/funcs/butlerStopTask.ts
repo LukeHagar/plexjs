@@ -17,7 +17,6 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
@@ -29,17 +28,15 @@ import { Result } from "../sdk/types/fp.js";
  * Stop a single Butler task
  *
  * @remarks
- * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists. See the section above for a list of task names for this endpoint.
+ * This endpoint will stop a currently running task by name, or remove it from the list of scheduled tasks if it exists
  */
 export function butlerStopTask(
   client: PlexAPICore,
-  taskName: operations.PathParamTaskNameOpen,
+  request: operations.StopTaskRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     operations.StopTaskResponse,
-    | errors.StopTaskBadRequest
-    | errors.StopTaskUnauthorized
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -52,21 +49,19 @@ export function butlerStopTask(
 > {
   return new APIPromise($do(
     client,
-    taskName,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: PlexAPICore,
-  taskName: operations.PathParamTaskNameOpen,
+  request: operations.StopTaskRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       operations.StopTaskResponse,
-      | errors.StopTaskBadRequest
-      | errors.StopTaskUnauthorized
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -79,12 +74,8 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.StopTaskRequest = {
-    taskName: taskName,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.StopTaskRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
@@ -95,31 +86,83 @@ async function $do(
   const body = null;
 
   const pathParams = {
-    taskName: encodeSimple("taskName", payload.taskName, {
+    task: encodeSimple("task", payload.task, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc("/butler/{taskName}")(pathParams);
+  const path = pathToFunc("/butler/{task}")(pathParams);
 
   const headers = new Headers(compactMap({
-    Accept: "application/json",
+    Accept: "*/*",
+    "X-Plex-Client-Identifier": encodeSimple(
+      "X-Plex-Client-Identifier",
+      payload["X-Plex-Client-Identifier"]
+        ?? client._options.xPlexClientIdentifier,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device": encodeSimple(
+      "X-Plex-Device",
+      payload["X-Plex-Device"] ?? client._options.xPlexDevice,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device-Name": encodeSimple(
+      "X-Plex-Device-Name",
+      payload["X-Plex-Device-Name"] ?? client._options.xPlexDeviceName,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Device-Vendor": encodeSimple(
+      "X-Plex-Device-Vendor",
+      payload["X-Plex-Device-Vendor"] ?? client._options.xPlexDeviceVendor,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Marketplace": encodeSimple(
+      "X-Plex-Marketplace",
+      payload["X-Plex-Marketplace"] ?? client._options.xPlexMarketplace,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Model": encodeSimple(
+      "X-Plex-Model",
+      payload["X-Plex-Model"] ?? client._options.xPlexModel,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Platform": encodeSimple(
+      "X-Plex-Platform",
+      payload["X-Plex-Platform"] ?? client._options.xPlexPlatform,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Platform-Version": encodeSimple(
+      "X-Plex-Platform-Version",
+      payload["X-Plex-Platform-Version"]
+        ?? client._options.xPlexPlatformVersion,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Product": encodeSimple(
+      "X-Plex-Product",
+      payload["X-Plex-Product"] ?? client._options.xPlexProduct,
+      { explode: false, charEncoding: "none" },
+    ),
+    "X-Plex-Version": encodeSimple(
+      "X-Plex-Version",
+      payload["X-Plex-Version"] ?? client._options.xPlexVersion,
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
-  const secConfig = await extractSecurity(client._options.accessToken);
-  const securityInput = secConfig == null ? {} : { accessToken: secConfig };
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "stopTask",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
-    securitySource: client._options.accessToken,
+    securitySource: client._options.apiKey,
     retryConfig: options?.retries
       || client._options.retryConfig
       || { strategy: "none" },
@@ -143,7 +186,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "404", "4XX", "5XX"],
+    errorCodes: ["404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -162,8 +205,6 @@ async function $do(
 
   const [result] = await M.match<
     operations.StopTaskResponse,
-    | errors.StopTaskBadRequest
-    | errors.StopTaskUnauthorized
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -174,8 +215,6 @@ async function $do(
     | SDKValidationError
   >(
     M.nil(200, operations.StopTaskResponse$inboundSchema),
-    M.jsonErr(400, errors.StopTaskBadRequest$inboundSchema),
-    M.jsonErr(401, errors.StopTaskUnauthorized$inboundSchema),
     M.fail([404, "4XX"]),
     M.fail("5XX"),
   )(response, req, { extraFields: responseFields });

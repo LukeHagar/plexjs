@@ -1,6 +1,6 @@
 # GetLibraryDetailsResponseBody
 
-The details of the library
+OK
 
 ## Example Usage
 
@@ -9,69 +9,153 @@ import { GetLibraryDetailsResponseBody } from "@lukehagar/plexjs/sdk/models/oper
 
 let value: GetLibraryDetailsResponseBody = {
   mediaContainer: {
-    size: 29,
-    allowSync: false,
-    art: "/:/resources/movie-fanart.jpg",
-    content: "secondary",
-    identifier: "com.plexapp.plugins.library",
-    librarySectionID: 1,
-    mediaTagPrefix: "/system/bundle/media/flags/",
-    mediaTagVersion: 1701731894,
-    thumb: "/:/resources/movie.png",
-    title1: "Movies",
-    viewGroup: "secondary",
-    viewMode: 65592,
     directory: [
       {
-        key: "search?type=1",
-        title: "Search...",
-        secondary: true,
-        prompt: "Search Movies",
-        search: true,
-      },
-    ],
-    type: [
-      {
-        key: "/library/sections/1/all?type=1",
-        type: "movie",
-        title: "Movies",
-        active: false,
-        filter: [
+        autotag: [
           {
-            filter: "label",
-            filterType: "string",
-            key: "/library/sections/1/label",
-            title: "Labels",
-            type: "filter",
+            filter: "actor=49",
+            role: "Secretary",
+            tag: "Shaun Lawton",
+            tagKey: "5d3ee12c4cde6a001c3e0b27",
+            thumb:
+              "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
           },
         ],
-        sort: [
+        country: [
           {
-            default: "asc",
-            defaultDirection: "desc",
-            descKey: "random:desc",
-            firstCharacterKey: "/library/sections/1/firstCharacter",
-            key: "random",
-            title: "Randomly",
+            filter: "actor=49",
+            role: "Secretary",
+            tag: "Shaun Lawton",
+            tagKey: "5d3ee12c4cde6a001c3e0b27",
+            thumb:
+              "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
           },
         ],
-        field: [
+        director: [
           {
-            key: "label",
-            title: "Label",
-            type: "tag",
-            subType: "bitrate",
+            filter: "actor=49",
+            role: "Secretary",
+            tag: "Shaun Lawton",
+            tagKey: "5d3ee12c4cde6a001c3e0b27",
+            thumb:
+              "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
           },
         ],
-      },
-    ],
-    fieldType: [
-      {
-        type: "resolution",
-        operator: [
+        genre: [
           {
-            key: "=",
-            title: "is",
+            filter: "actor=49",
+            role: "Secretary",
+            tag: "Shaun Lawton",
+            tagKey: "5d3ee12c4cde6a001c3e0b27",
+            thumb:
+              "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
+          },
+        ],
+        guid: [
+          {
+            filter: "actor=49",
+            role: "Secretary",
+            tag: "Shaun Lawton",
+            tagKey: "5d3ee12c4cde6a001c3e0b27",
+            thumb:
+              "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
+          },
+        ],
+        media: [
+          {
+            aspectRatio: 2.35,
+            audioChannels: 2,
+            audioCodec: "aac",
+            audioProfile: "lc",
+            bitrate: 5612,
+            container: "mov",
+            duration: 150192,
+            has64bitOffsets: false,
+            hasVoiceActivity: true,
+            height: 544,
+            id: 1,
+            optimizedForStreaming: false,
+            part: [
+              {
+                audioProfile: "lc",
+                container: "mov",
+                duration: 150192,
+                file: "/home/schuyler/Videos/Trailers/Cloud Atlas (2012).mov",
+                has64bitOffsets: false,
+                id: 1,
+                key: "/library/parts/1/1531779263/file.mov",
+                optimizedForStreaming: false,
+                size: 105355654,
+                stream: [
+                  {
+                    default: true,
+                    audioChannelLayout: "stereo",
+                    bitDepth: 8,
+                    bitrate: 5466,
+                    canAutoSync: true,
+                    chromaLocation: "topleft",
+                    chromaSubsampling: "4:2:0",
+                    codec: "h264",
+                    colorPrimaries: "bt709",
+                    colorRange: "tv",
+                    colorSpace: "bt709",
+                    colorTrc: "bt709",
+                    displayTitle: "English (H.264 Main)",
+                    frameRate: 23.976,
+                    hasScalingMatrix: false,
+                    height: 544,
+                    id: 1,
+                    index: 0,
+                    key: "/library/streams/1",
+                    language: "English",
+                    languageCode: "eng",
+                    level: 31,
+                    profile: "main",
+                    refFrames: 2,
+                    samplingRate: 48000,
+                    streamIdentifier: 1,
+                    streamType: 1,
+                    width: 1280,
+                  },
+                ],
+                videoProfile: "main",
+              },
+            ],
+            videoCodec: "h264",
+            videoFrameRate: "24p",
+            videoProfile: "main",
+            videoResolution: "720",
+            width: 1280,
+          },
+        ],
+        ratingArray: [
+          {
+            filter: "actor=49",
+            role: "Secretary",
+            tag: "Shaun Lawton",
+            tagKey: "5d3ee12c4cde6a001c3e0b27",
+            thumb:
+              "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
+          },
+        ],
+        role: [
+          {
+            filter: "actor=49",
+            role: "Secretary",
+            tag: "Shaun Lawton",
+            tagKey: "5d3ee12c4cde6a001c3e0b27",
+            thumb:
+              "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
+          },
+        ],
+        writer: [
+          {
+            filter: "actor=49",
+            role: "Secretary",
+            tag: "Shaun Lawton",
+            tagKey: "5d3ee12c4cde6a001c3e0b27",
+            thumb:
+              "http://image.tmdb.org/t/p/original/lcJ8qM51ClAR2UzXU1mkZGfnn3o.jpg",
           },
         ],
       },

@@ -1,0 +1,33 @@
+# GetSonicPathRequest
+
+## Example Usage
+
+```typescript
+import { GetSonicPathRequest } from "@lukehagar/plexjs/sdk/models/operations";
+
+let value: GetSonicPathRequest = {
+  sectionId: 683613,
+  startID: 872661,
+  endID: 863631,
+};
+```
+
+## Fields
+
+| Field                                                          | Type                                                           | Required                                                       | Description                                                    | Example                                                        |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `xPlexClientIdentifier`                                        | *string*                                                       | :heavy_minus_sign:                                             | An opaque identifier unique to the client                      | abc123                                                         |
+| `xPlexProduct`                                                 | *string*                                                       | :heavy_minus_sign:                                             | The name of the client product                                 | Plex for Roku                                                  |
+| `xPlexVersion`                                                 | *string*                                                       | :heavy_minus_sign:                                             | The version of the client application                          | 2.4.1                                                          |
+| `xPlexPlatform`                                                | *string*                                                       | :heavy_minus_sign:                                             | The platform of the client                                     | Roku                                                           |
+| `xPlexPlatformVersion`                                         | *string*                                                       | :heavy_minus_sign:                                             | The version of the platform                                    | 4.3 build 1057                                                 |
+| `xPlexDevice`                                                  | *string*                                                       | :heavy_minus_sign:                                             | A relatively friendly name for the client device               | Roku 3                                                         |
+| `xPlexModel`                                                   | *string*                                                       | :heavy_minus_sign:                                             | A potentially less friendly identifier for the device model    | 4200X                                                          |
+| `xPlexDeviceVendor`                                            | *string*                                                       | :heavy_minus_sign:                                             | The device vendor                                              | Roku                                                           |
+| `xPlexDeviceName`                                              | *string*                                                       | :heavy_minus_sign:                                             | A friendly name for the client                                 | Living Room TV                                                 |
+| `xPlexMarketplace`                                             | *string*                                                       | :heavy_minus_sign:                                             | The marketplace on which the client application is distributed | googlePlay                                                     |
+| `sectionId`                                                    | *number*                                                       | :heavy_check_mark:                                             | Section identifier                                             |                                                                |
+| `startID`                                                      | *number*                                                       | :heavy_check_mark:                                             | The starting metadata item id                                  |                                                                |
+| `endID`                                                        | *number*                                                       | :heavy_check_mark:                                             | The ending metadata item id                                    |                                                                |
+| `count`                                                        | *number*                                                       | :heavy_minus_sign:                                             | Limit results to count items                                   |                                                                |
+| `maxDistance`                                                  | *number*                                                       | :heavy_minus_sign:                                             | The maximum distance allowed along the path; defaults to 0.25  |                                                                |

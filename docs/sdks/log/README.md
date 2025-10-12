@@ -3,33 +3,110 @@
 
 ## Overview
 
-Submit logs to the Log Handler for Plex Media Server
-
+Logging mechanism to allow clients to log to the server
 
 ### Available Operations
 
-* [logLine](#logline) - Logging a single line message.
-* [logMultiLine](#logmultiline) - Logging a multi-line message
-* [enablePaperTrail](#enablepapertrail) - Enabling Papertrail
+* [writeLog](#writelog) - Logging a multi-line message to the Plex Media Server log
+* [writeMessage](#writemessage) - Logging a single-line message to the Plex Media Server log
+* [enablePapertrail](#enablepapertrail) - Enabling Papertrail
 
-## logLine
+## writeLog
+
+This endpoint will write multiple lines to the main Plex Media Server log in a single request. It takes a set of query strings as would normally sent to the above PUT endpoint as a linefeed-separated block of POST data. The parameters for each query string match as above.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="writeLog" method="post" path="/log" -->
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { openAsBlob } from "node:fs";
+
+const plexAPI = new PlexAPI();
+
+async function run() {
+  const result = await plexAPI.log.writeLog(await openAsBlob("example.file"));
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PlexAPICore } from "@lukehagar/plexjs/core.js";
+import { logWriteLog } from "@lukehagar/plexjs/funcs/logWriteLog.js";
+import { openAsBlob } from "node:fs";
+
+// Use `PlexAPICore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const plexAPI = new PlexAPICore();
+
+async function run() {
+  const res = await logWriteLog(plexAPI, await openAsBlob("example.file"));
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("logWriteLog failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [ReadableStream<Uint8Array>](../../models/.md)                                                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.WriteLogResponse](../../sdk/models/operations/writelogresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
+
+## writeMessage
 
 This endpoint will write a single-line log message, including a level and source to the main Plex Media Server log.
 
+Note: This endpoint responds to all HTTP verbs **except POST** but PUT is preferred
+
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="logLine" method="get" path="/log" -->
+<!-- UsageSnippet language="typescript" operationID="writeMessage" method="put" path="/log" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Level } from "@lukehagar/plexjs/sdk/models/operations";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.log.logLine(Level.Three, "Test log message", "Postman");
+  const result = await plexAPI.log.writeMessage({});
 
   console.log(result);
 }
@@ -43,120 +120,30 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { logLogLine } from "@lukehagar/plexjs/funcs/logLogLine.js";
-import { Level } from "@lukehagar/plexjs/sdk/models/operations";
+import { logWriteMessage } from "@lukehagar/plexjs/funcs/logWriteMessage.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const res = await logLogLine(plexAPI, Level.Three, "Test log message", "Postman");
+  const res = await logWriteMessage(plexAPI, {});
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("logLogLine failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `level`                                                                                                                                                                        | [operations.Level](../../sdk/models/operations/level.md)                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | An integer log level to write to the PMS log with.<br/>0: Error<br/>1: Warning<br/>2: Info<br/>3: Debug<br/>4: Verbose<br/>                                                    |                                                                                                                                                                                |
-| `message`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The text of the message to write to the log.                                                                                                                                   | [object Object]                                                                                                                                                                |
-| `source`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | a string indicating the source of the message.                                                                                                                                 | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
-
-### Response
-
-**Promise\<[operations.LogLineResponse](../../sdk/models/operations/loglineresponse.md)\>**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.LogLineBadRequest   | 400                        | application/json           |
-| errors.LogLineUnauthorized | 401                        | application/json           |
-| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
-
-## logMultiLine
-
-This endpoint allows for the batch addition of log entries to the main Plex Media Server log.
-It accepts a text/plain request body, where each line represents a distinct log entry.
-Each log entry consists of URL-encoded key-value pairs, specifying log attributes such as 'level', 'message', and 'source'.
-
-Log entries are separated by a newline character (`\n`).
-Each entry's parameters should be URL-encoded to ensure accurate parsing and handling of special characters.
-This method is efficient for logging multiple entries in a single API call, reducing the overhead of multiple individual requests.
-
-The 'level' parameter specifies the log entry's severity or importance, with the following integer values:
-- `0`: Error - Critical issues that require immediate attention.
-- `1`: Warning - Important events that are not critical but may indicate potential issues.
-- `2`: Info - General informational messages about system operation.
-- `3`: Debug - Detailed information useful for debugging purposes.
-- `4`: Verbose - Highly detailed diagnostic information for in-depth analysis.
-
-The 'message' parameter contains the log text, and 'source' identifies the log message's origin (e.g., an application name or module).
-
-Example of a single log entry format:
-`level=4&message=Sample%20log%20entry&source=applicationName`
-
-Ensure each parameter is properly URL-encoded to avoid interpretation issues.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="logMultiLine" method="post" path="/log" -->
-```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-
-const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const result = await plexAPI.log.logMultiLine("level=4&message=Test%20message%201&source=postman\n" +
-  "level=3&message=Test%20message%202&source=postman\n" +
-  "level=1&message=Test%20message%203&source=postman");
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { logLogMultiLine } from "@lukehagar/plexjs/funcs/logLogMultiLine.js";
-
-// Use `PlexAPICore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
-});
-
-async function run() {
-  const res = await logLogMultiLine(plexAPI, "level=4&message=Test%20message%201&source=postman\n" +
-  "level=3&message=Test%20message%202&source=postman\n" +
-  "level=1&message=Test%20message%203&source=postman");
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("logLogMultiLine failed:", res.error);
+    console.log("logWriteMessage failed:", res.error);
   }
 }
 
@@ -167,40 +154,49 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [string](../../models/.md)                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.WriteMessageRequest](../../sdk/models/operations/writemessagerequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.LogMultiLineResponse](../../sdk/models/operations/logmultilineresponse.md)\>**
+**Promise\<[operations.WriteMessageResponse](../../sdk/models/operations/writemessageresponse.md)\>**
 
 ### Errors
 
-| Error Type                      | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| errors.LogMultiLineBadRequest   | 400                             | application/json                |
-| errors.LogMultiLineUnauthorized | 401                             | application/json                |
-| errors.SDKError                 | 4XX, 5XX                        | \*/\*                           |
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
-## enablePaperTrail
+## enablePapertrail
 
-This endpoint will enable all Plex Media Serverlogs to be sent to the Papertrail networked logging site for a period of time.
+This endpoint will enable all Plex Media Server logs to be sent to the Papertrail networked logging site for a period of time
+
+Note: This endpoint responds to all HTTP verbs but POST is preferred
 
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="enablePaperTrail" method="get" path="/log/networked" -->
+<!-- UsageSnippet language="typescript" operationID="enablePapertrail" method="post" path="/log/networked" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
 const plexAPI = new PlexAPI({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const result = await plexAPI.log.enablePaperTrail();
+  const result = await plexAPI.log.enablePapertrail({});
 
   console.log(result);
 }
@@ -214,21 +210,30 @@ The standalone function version of this method:
 
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { logEnablePaperTrail } from "@lukehagar/plexjs/funcs/logEnablePaperTrail.js";
+import { logEnablePapertrail } from "@lukehagar/plexjs/funcs/logEnablePapertrail.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const plexAPI = new PlexAPICore({
-  accessToken: "<YOUR_API_KEY_HERE>",
+  xPlexClientIdentifier: "abc123",
+  xPlexProduct: "Plex for Roku",
+  xPlexVersion: "2.4.1",
+  xPlexPlatform: "Roku",
+  xPlexPlatformVersion: "4.3 build 1057",
+  xPlexDevice: "Roku 3",
+  xPlexModel: "4200X",
+  xPlexDeviceVendor: "Roku",
+  xPlexDeviceName: "Living Room TV",
+  xPlexMarketplace: "googlePlay",
 });
 
 async function run() {
-  const res = await logEnablePaperTrail(plexAPI);
+  const res = await logEnablePapertrail(plexAPI, {});
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("logEnablePaperTrail failed:", res.error);
+    console.log("logEnablePapertrail failed:", res.error);
   }
 }
 
@@ -239,18 +244,17 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.EnablePapertrailRequest](../../sdk/models/operations/enablepapertrailrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.EnablePaperTrailResponse](../../sdk/models/operations/enablepapertrailresponse.md)\>**
+**Promise\<[operations.EnablePapertrailResponse](../../sdk/models/operations/enablepapertrailresponse.md)\>**
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| errors.EnablePaperTrailBadRequest   | 400                                 | application/json                    |
-| errors.EnablePaperTrailUnauthorized | 401                                 | application/json                    |
-| errors.SDKError                     | 4XX, 5XX                            | \*/\*                               |
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

@@ -246,7 +246,7 @@ export function resolveGlobalSecurity(
       {
         fieldName: "X-Plex-Token",
         type: "apiKey:header",
-        value: security?.accessToken,
+        value: security?.apiKey,
       },
     ],
   );

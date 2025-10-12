@@ -5,17 +5,7 @@
 ```typescript
 import { ButlerTasks } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: ButlerTasks = {
-  butlerTask: [
-    {
-      name: "BackupDatabase",
-      interval: 3,
-      title: "Backup Database",
-      description:
-        "Create a backup copy of the server's database in the configured backup directory",
-    },
-  ],
-};
+let value: ButlerTasks = {};
 ```
 
 ## Fields
