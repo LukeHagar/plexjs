@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     plexapi:
         inputs:
-            - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/refs/heads/main/output/plex-media-server-spec-dereferenced.yaml
+            - location: https://raw.githubusercontent.com/LukeHagar/plex-api-spec/refs/heads/main/plex-api-spec.yaml
         registry:
             location: registry.speakeasyapi.dev/plexapi/plexapi/plexapi
 targets:
