@@ -555,18 +555,18 @@ You can override the default server globally by passing a server index to the `s
 | --- | ---------------------------------------------------------- | -------------------------------------------- | ----------- |
 | 0   | `https://{IP-description}.{identifier}.plex.direct:{port}` | `identifier`<br/>`IP-description`<br/>`port` |             |
 | 1   | `{protocol}://{host}:{port}`                               | `protocol`<br/>`host`<br/>`port`             |             |
-| 2   | `https://{full_server_url}`                                | `server_url`                                 |             |
+| 2   | `https://{full_server_url}`                                | `full_server_url`                            |             |
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable         | Parameter               | Default                              | Description                                                                                                                                                                                                                                                                                                                                                                          |
-| ---------------- | ----------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `identifier`     | `identifier: string`    | `"0123456789abcdef0123456789abcdef"` | The unique identifier of this particular PMS                                                                                                                                                                                                                                                                                                                                         |
-| `IP-description` | `ipDescription: string` | `"1-2-3-4"`                          | A `-` separated string of the IPv4 or IPv6 address components                                                                                                                                                                                                                                                                                                                        |
-| `port`           | `port: string`          | `"32400"`                            | The Port number configured on the PMS. Typically (`32400`). <br/>If using a reverse proxy, this would be the port number configured on the proxy.<br/>                                                                                                                                                                                                                               |
-| `protocol`       | `protocol: string`      | `"http"`                             | The network protocol to use. Typically (`http` or `https`)                                                                                                                                                                                                                                                                                                                           |
-| `host`           | `host: string`          | `"localhost"`                        | The Host of the PMS.<br/>If using on a local network, this is the internal IP address of the server hosting the PMS.<br/>If using on an external network, this is the external IP address for your network, and requires port forwarding.<br/>If using a reverse proxy, this would be the external DNS domain for your network, and requires the proxy handle port forwarding. <br/> |
-| `server_url`     | `serverUrl: string`     | `"http://localhost:32400"`           | The full manual URL to access the PMS                                                                                                                                                                                                                                                                                                                                                |
+| Variable          | Parameter               | Default                              | Description                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ----------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `identifier`      | `identifier: string`    | `"0123456789abcdef0123456789abcdef"` | The unique identifier of this particular PMS                                                                                                                                                                                                                                                                                                                                         |
+| `IP-description`  | `ipDescription: string` | `"1-2-3-4"`                          | A `-` separated string of the IPv4 or IPv6 address components                                                                                                                                                                                                                                                                                                                        |
+| `port`            | `port: string`          | `"32400"`                            | The Port number configured on the PMS. Typically (`32400`). <br/>If using a reverse proxy, this would be the port number configured on the proxy.<br/>                                                                                                                                                                                                                               |
+| `protocol`        | `protocol: string`      | `"http"`                             | The network protocol to use. Typically (`http` or `https`)                                                                                                                                                                                                                                                                                                                           |
+| `host`            | `host: string`          | `"localhost"`                        | The Host of the PMS.<br/>If using on a local network, this is the internal IP address of the server hosting the PMS.<br/>If using on an external network, this is the external IP address for your network, and requires port forwarding.<br/>If using a reverse proxy, this would be the external DNS domain for your network, and requires the proxy handle port forwarding. <br/> |
+| `full_server_url` | `fullServerUrl: string` | `"http://localhost:32400"`           | The full manual URL to access the PMS                                                                                                                                                                                                                                                                                                                                                |
 
 #### Example
 
@@ -575,10 +575,10 @@ import { PlexAPI } from "@lukehagar/plexjs";
 import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  serverIdx: 1,
-  protocol: "<value>",
-  host: "electric-excess.name",
-  port: "36393",
+  serverIdx: 0,
+  identifier: "0123456789abcdef0123456789abcdef",
+  ipDescription: "1-2-3-4",
+  port: "32400",
   accepts: Accepts.ApplicationXml,
   clientIdentifier: "abc123",
   product: "Plex for Roku",
@@ -610,7 +610,7 @@ import { PlexAPI } from "@lukehagar/plexjs";
 import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
-  serverURL: "https://{full_server_url}",
+  serverURL: "https://http://localhost:32400",
   accepts: Accepts.ApplicationXml,
   clientIdentifier: "abc123",
   product: "Plex for Roku",

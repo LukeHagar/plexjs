@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 16f22cbf-f23f-4419-8924-3a4b06381947
 management:
-  docChecksum: 46ec1ce493542eb1a574ee88fc8b0895
+  docChecksum: e95c0e17d3e268dcd18d26ac8d0bfc98
   docVersion: 1.1.1
-  speakeasyVersion: 1.636.3
-  generationVersion: 2.723.11
-  releaseVersion: 0.42.1
-  configChecksum: 1257d94ee0399a14dbd3fa3da2f70f46
+  speakeasyVersion: 1.656.1
+  generationVersion: 2.753.1
+  releaseVersion: 0.43.0
+  configChecksum: d19d0763c1fa11a918aba6737078ecff
   repoURL: https://github.com/LukeHagar/plexjs.git
   repoSubDirectory: .
   installationURL: https://github.com/LukeHagar/plexjs
@@ -15,9 +15,9 @@ features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    additionalProperties: 0.1.1
+    additionalProperties: 0.1.2
     constsAndDefaults: 0.1.12
-    core: 3.21.26
+    core: 3.26.6
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     downloadStreams: 0.1.1
@@ -27,7 +27,7 @@ features:
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.5
+    globalServerURLs: 2.83.0
     globals: 2.82.2
     nameOverrides: 2.81.2
     responseFormat: 0.2.3
@@ -980,6 +980,8 @@ generatedFiles:
   - docs/sdk/models/shared/items.md
   - docs/sdk/models/shared/librarysection.md
   - docs/sdk/models/shared/librarysectionlocation.md
+  - docs/sdk/models/shared/librarysections.md
+  - docs/sdk/models/shared/librarysectionsmediacontainer.md
   - docs/sdk/models/shared/lineup.md
   - docs/sdk/models/shared/lineuptype.md
   - docs/sdk/models/shared/locationparameter.md
@@ -1030,8 +1032,6 @@ generatedFiles:
   - docs/sdk/models/shared/postresponses200mediacontainer.md
   - docs/sdk/models/shared/protocol.md
   - docs/sdk/models/shared/recommendationsvisibility.md
-  - docs/sdk/models/shared/requesthandlerslashgetresponses200.md
-  - docs/sdk/models/shared/requesthandlerslashgetresponses200mediacontainer.md
   - docs/sdk/models/shared/security.md
   - docs/sdk/models/shared/session.md
   - docs/sdk/models/shared/sessionlocation.md
@@ -1621,6 +1621,7 @@ generatedFiles:
   - src/sdk/models/shared/index.ts
   - src/sdk/models/shared/items.ts
   - src/sdk/models/shared/librarysection.ts
+  - src/sdk/models/shared/librarysections.ts
   - src/sdk/models/shared/lineup.ts
   - src/sdk/models/shared/locationparameter.ts
   - src/sdk/models/shared/media.ts
@@ -1644,7 +1645,6 @@ generatedFiles:
   - src/sdk/models/shared/player.ts
   - src/sdk/models/shared/postresponses200.ts
   - src/sdk/models/shared/protocol.ts
-  - src/sdk/models/shared/requesthandlerslashgetresponses200.ts
   - src/sdk/models/shared/security.ts
   - src/sdk/models/shared/session.ts
   - src/sdk/models/shared/setting.ts

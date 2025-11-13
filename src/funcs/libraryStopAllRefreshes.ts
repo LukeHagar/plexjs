@@ -139,7 +139,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.StopAllRefreshesResponse$inboundSchema, {
-      key: "requestHandler_slash-get-responses-200",
+      key: "LibrarySections",
     }),
     M.fail("4XX"),
     M.fail("5XX"),

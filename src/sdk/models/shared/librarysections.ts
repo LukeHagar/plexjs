@@ -7,12 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
 
-export type Feature = {
-  directory?: Array<shared.Directory> | undefined;
+export type DirectoryResponse = {
+  count?: number | undefined;
+  /**
+   * The key where this directory is found
+   */
   key?: string | undefined;
-  type?: string | undefined;
+  title?: string | undefined;
 };
 
 /**
@@ -22,10 +24,7 @@ export type Feature = {
  * Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
  * The container often "hoists" common attributes from its children. For example, if all tracks in a container share the same album title, the `parentTitle` attribute may appear on the MediaContainer rather than being repeated on each track.
  */
-export type ListProvidersMediaContainer = {
-  /**
-   * A unique identifier for the provider, e.g. `com.plexapp.plugins.library`.
-   */
+export type LibrarySectionsMediaContainer = {
   identifier?: string | undefined;
   /**
    * The offset of where this container page starts among the total objects available. Also provided in the `X-Plex-Container-Start` header.
@@ -97,75 +96,40 @@ export type ListProvidersMediaContainer = {
   updater?: boolean | undefined;
   version?: string | undefined;
   voiceSearch?: boolean | undefined;
-  feature?: Array<Feature> | undefined;
-  /**
-   * A comma-separated list of default protocols for the provider, which can be:
-   *
-   * @remarks
-   * - `stream`: The provider allows streaming media directly from the provider (e.g. for Vimeo). - `download`: The provider allows downloading media for offline storage, sync, etc. (e.g. Podcasts). - `livetv`: The provider provides live content which is only available on a schedule basis.
-   */
-  protocols?: string | undefined;
-  /**
-   * The title of the provider.
-   */
-  title?: string | undefined;
-  /**
-   * This attribute contains a comma-separated list of the media types exposed by the provider (e.g. `video, audio`).
-   */
-  types?: string | undefined;
+  directory?: Array<DirectoryResponse> | undefined;
 };
 
 /**
  * OK
  */
-export type ListProvidersResponseBody = {
-  mediaContainer?: ListProvidersMediaContainer | undefined;
-};
-
-export type ListProvidersResponse = {
-  /**
-   * HTTP response content type for this operation
-   */
-  contentType: string;
-  /**
-   * HTTP response status code for this operation
-   */
-  statusCode: number;
-  /**
-   * Raw HTTP response; suitable for custom response parsing
-   */
-  rawResponse: Response;
-  /**
-   * OK
-   */
-  object?: ListProvidersResponseBody | undefined;
+export type LibrarySections = {
+  mediaContainer?: LibrarySectionsMediaContainer | undefined;
 };
 
 /** @internal */
-export const Feature$inboundSchema: z.ZodType<Feature, z.ZodTypeDef, unknown> =
-  z.object({
-    Directory: z.array(shared.Directory$inboundSchema).optional(),
-    key: z.string().optional(),
-    type: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "Directory": "directory",
-    });
-  });
+export const DirectoryResponse$inboundSchema: z.ZodType<
+  DirectoryResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  count: z.number().int().optional(),
+  key: z.string().optional(),
+  title: z.string().optional(),
+});
 
-export function featureFromJSON(
+export function directoryResponseFromJSON(
   jsonString: string,
-): SafeParseResult<Feature, SDKValidationError> {
+): SafeParseResult<DirectoryResponse, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Feature$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Feature' from JSON`,
+    (x) => DirectoryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DirectoryResponse' from JSON`,
   );
 }
 
 /** @internal */
-export const ListProvidersMediaContainer$inboundSchema: z.ZodType<
-  ListProvidersMediaContainer,
+export const LibrarySectionsMediaContainer$inboundSchema: z.ZodType<
+  LibrarySectionsMediaContainer,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -221,33 +185,30 @@ export const ListProvidersMediaContainer$inboundSchema: z.ZodType<
   updater: z.boolean().optional(),
   version: z.string().optional(),
   voiceSearch: z.boolean().optional(),
-  Feature: z.array(z.lazy(() => Feature$inboundSchema)).optional(),
-  protocols: z.string().optional(),
-  title: z.string().optional(),
-  types: z.string().optional(),
+  Directory: z.array(z.lazy(() => DirectoryResponse$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
-    "Feature": "feature",
+    "Directory": "directory",
   });
 });
 
-export function listProvidersMediaContainerFromJSON(
+export function librarySectionsMediaContainerFromJSON(
   jsonString: string,
-): SafeParseResult<ListProvidersMediaContainer, SDKValidationError> {
+): SafeParseResult<LibrarySectionsMediaContainer, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListProvidersMediaContainer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListProvidersMediaContainer' from JSON`,
+    (x) => LibrarySectionsMediaContainer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LibrarySectionsMediaContainer' from JSON`,
   );
 }
 
 /** @internal */
-export const ListProvidersResponseBody$inboundSchema: z.ZodType<
-  ListProvidersResponseBody,
+export const LibrarySections$inboundSchema: z.ZodType<
+  LibrarySections,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  MediaContainer: z.lazy(() => ListProvidersMediaContainer$inboundSchema)
+  MediaContainer: z.lazy(() => LibrarySectionsMediaContainer$inboundSchema)
     .optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -255,40 +216,12 @@ export const ListProvidersResponseBody$inboundSchema: z.ZodType<
   });
 });
 
-export function listProvidersResponseBodyFromJSON(
+export function librarySectionsFromJSON(
   jsonString: string,
-): SafeParseResult<ListProvidersResponseBody, SDKValidationError> {
+): SafeParseResult<LibrarySections, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ListProvidersResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListProvidersResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const ListProvidersResponse$inboundSchema: z.ZodType<
-  ListProvidersResponse,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ContentType: z.string(),
-  StatusCode: z.number().int(),
-  RawResponse: z.instanceof(Response),
-  object: z.lazy(() => ListProvidersResponseBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "ContentType": "contentType",
-    "StatusCode": "statusCode",
-    "RawResponse": "rawResponse",
-  });
-});
-
-export function listProvidersResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<ListProvidersResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ListProvidersResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ListProvidersResponse' from JSON`,
+    (x) => LibrarySections$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LibrarySections' from JSON`,
   );
 }

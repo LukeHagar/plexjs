@@ -2,7 +2,7 @@
 
 {
   "name": "@lukehagar/plexjs",
-  "version": "0.42.1",
+  "version": "0.43.0",
   "exports": {
     ".": "./src/index.ts",    
     "./sdk/models/errors": "./src/sdk/models/errors/index.ts",    

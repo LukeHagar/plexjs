@@ -1,4 +1,4 @@
-# RequestHandlerSlashGetResponses200MediaContainer
+# LibrarySectionsMediaContainer
 
 `MediaContainer` is the root element of most Plex API responses. It serves as a generic container for various types of content (Metadata, Hubs, Directories, etc.) and includes pagination information (offset, size, totalSize) when applicable.
 Common attributes: - identifier: Unique identifier for this container - size: Number of items in this response page - totalSize: Total number of items available (for pagination) - offset: Starting index of this page (for pagination)
@@ -8,9 +8,9 @@ The container often "hoists" common attributes from its children. For example, i
 ## Example Usage
 
 ```typescript
-import { RequestHandlerSlashGetResponses200MediaContainer } from "@lukehagar/plexjs/sdk/models/shared";
+import { LibrarySectionsMediaContainer } from "@lukehagar/plexjs/sdk/models/shared";
 
-let value: RequestHandlerSlashGetResponses200MediaContainer = {
+let value: LibrarySectionsMediaContainer = {
   livetv: 7,
   machineIdentifier: "0123456789abcdef0123456789abcdef012345678",
   musicAnalysis: 2,
