@@ -65,7 +65,7 @@ typescript:
   maxMethodParams: 4
   methodArguments: require-security-and-request
   modelPropertyCasing: camel
-  moduleFormat: dual
+  moduleFormat: commonjs
   multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: '@lukehagar/plexjs'
@@ -74,5 +74,5 @@ typescript:
   templateVersion: v2
   unionStrategy: populated-fields
   usageSDKInitImports: []
-  useIndexModules: false
+  useIndexModules: true
   zodVersion: v4
