@@ -10,7 +10,7 @@ let value: GetMediaPartRequest = {
   partId: 488589,
   changestamp: 145976,
   filename: "example.file",
-  download: BoolInt.One,
+  download: BoolInt.True,
 };
 ```
 

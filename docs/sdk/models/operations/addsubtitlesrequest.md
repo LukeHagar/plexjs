@@ -8,8 +8,8 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: AddSubtitlesRequest = {
   ids: "<value>",
-  forced: BoolInt.One,
-  hearingImpaired: BoolInt.One,
+  forced: BoolInt.True,
+  hearingImpaired: BoolInt.True,
 };
 ```
 

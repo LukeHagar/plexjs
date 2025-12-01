@@ -140,7 +140,7 @@ export type GetAugmentationStatusRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   augmentationId: string;
-  wait?: number | undefined;
+  wait: number;
 };
 
 /** @internal */
@@ -161,7 +161,7 @@ export const GetAugmentationStatusRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   augmentationId: z.string(),
-  wait: shared.BoolInt$outboundSchema.optional(),
+  wait: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

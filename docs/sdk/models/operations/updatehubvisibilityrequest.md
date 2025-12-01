@@ -9,9 +9,9 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 let value: UpdateHubVisibilityRequest = {
   sectionId: 174620,
   identifier: "<value>",
-  promotedToRecommended: BoolInt.One,
-  promotedToOwnHome: BoolInt.One,
-  promotedToSharedHome: BoolInt.One,
+  promotedToRecommended: BoolInt.True,
+  promotedToOwnHome: BoolInt.True,
+  promotedToSharedHome: BoolInt.True,
 };
 ```
 

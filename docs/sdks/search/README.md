@@ -47,6 +47,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -84,6 +85,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -135,7 +137,7 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 <!-- UsageSnippet language="typescript" operationID="voiceSearchHubs" method="get" path="/hubs/search/voice" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -149,11 +151,13 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.search.voiceSearchHubs({
     query: "<value>",
+    type: MediaType.TvShow,
   });
 
   console.log(result);
@@ -169,7 +173,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { searchVoiceSearchHubs } from "@lukehagar/plexjs/funcs/searchVoiceSearchHubs.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -185,11 +189,13 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await searchVoiceSearchHubs(plexAPI, {
     query: "<value>",
+    type: MediaType.TvShow,
   });
   if (res.ok) {
     const { value: result } = res;

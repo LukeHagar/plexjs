@@ -36,6 +36,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function main() {
@@ -45,13 +46,13 @@ async function main() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: StartTranscodeSessionLocation.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,

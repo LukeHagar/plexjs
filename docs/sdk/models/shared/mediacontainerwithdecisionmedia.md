@@ -23,45 +23,71 @@ let value: MediaContainerWithDecisionMedia = {
   optimizedForStreaming: false,
   part: [
     {
+      accessible: true,
       audioProfile: "lc",
       container: "mov",
       duration: 150192,
+      exists: true,
       file: "/home/schuyler/Videos/Trailers/Cloud Atlas (2012).mov",
       has64bitOffsets: false,
       id: 1,
+      indexes: "sd",
       key: "/library/parts/1/1531779263/file.mov",
       optimizedForStreaming: false,
       size: 105355654,
       stream: [
         {
           default: true,
-          audioChannelLayout: "stereo",
-          bitDepth: 8,
-          bitrate: 5466,
-          canAutoSync: true,
+          audioChannelLayout: "5.1(side)",
+          channels: 6,
+          bitDepth: 10,
+          doviblCompatID: 1,
+          doviblPresent: true,
+          dovielPresent: false,
+          doviLevel: 6,
+          doviPresent: true,
+          doviProfile: 8,
+          dovirpuPresent: true,
+          doviVersion: "1.0",
+          bitrate: 24743,
+          canAutoSync: false,
           chromaLocation: "topleft",
           chromaSubsampling: "4:2:0",
-          codec: "h264",
-          colorPrimaries: "bt709",
+          codedHeight: 1608,
+          codedWidth: 3840,
+          closedCaptions: true,
+          codec: "hevc",
+          colorPrimaries: "bt2020",
           colorRange: "tv",
-          colorSpace: "bt709",
-          colorTrc: "bt709",
-          displayTitle: "English (H.264 Main)",
+          colorSpace: "bt2020nc",
+          colorTrc: "smpte2084",
+          displayTitle: "4K DoVi/HDR10 (HEVC Main 10)",
+          extendedDisplayTitle: "4K DoVi/HDR10 (HEVC Main 10)",
           frameRate: 23.976,
           hasScalingMatrix: false,
-          height: 544,
-          id: 1,
+          height: 1602,
+          id: 1002625,
           index: 0,
-          key: "/library/streams/1",
+          key: "/library/streams/216389",
           language: "English",
           languageCode: "eng",
-          level: 31,
-          profile: "main",
-          refFrames: 2,
+          languageTag: "en",
+          format: "srt",
+          headerCompression: true,
+          level: 150,
+          original: true,
+          profile: "main 10",
+          refFrames: 1,
           samplingRate: 48000,
+          scanType: "progressive",
+          embeddedInVideo: "progressive",
+          selected: true,
+          forced: true,
+          hearingImpaired: true,
+          dub: true,
+          title: "SDH",
           streamIdentifier: 1,
-          streamType: 1,
-          width: 1280,
+          width: 3840,
         },
       ],
       videoProfile: "main",
@@ -81,21 +107,21 @@ let value: MediaContainerWithDecisionMedia = {
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `aspectRatio`                                                                                           | *number*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 2.35                                                                                                    |
 | `audioChannels`                                                                                         | *number*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 2                                                                                                       |
-| `audioCodec`                                                                                            | *any*                                                                                                   | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | aac                                                                                                     |
-| `audioProfile`                                                                                          | *any*                                                                                                   | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | lc                                                                                                      |
+| `audioCodec`                                                                                            | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | aac                                                                                                     |
+| `audioProfile`                                                                                          | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | lc                                                                                                      |
 | `bitrate`                                                                                               | *number*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 5612                                                                                                    |
-| `container`                                                                                             | *any*                                                                                                   | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | mov                                                                                                     |
+| `container`                                                                                             | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | mov                                                                                                     |
 | `duration`                                                                                              | *number*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 150192                                                                                                  |
 | `has64bitOffsets`                                                                                       | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | false                                                                                                   |
 | `hasVoiceActivity`                                                                                      | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | true                                                                                                    |
 | `height`                                                                                                | *number*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 544                                                                                                     |
-| `id`                                                                                                    | *number*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 1                                                                                                       |
+| `id`                                                                                                    | *number*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     | 1                                                                                                       |
 | `optimizedForStreaming`                                                                                 | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | false                                                                                                   |
 | `part`                                                                                                  | [shared.MediaContainerWithDecisionPart](../../../sdk/models/shared/mediacontainerwithdecisionpart.md)[] | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |                                                                                                         |
-| `videoCodec`                                                                                            | *any*                                                                                                   | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | h264                                                                                                    |
-| `videoFrameRate`                                                                                        | *any*                                                                                                   | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 24p                                                                                                     |
-| `videoProfile`                                                                                          | *any*                                                                                                   | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | main                                                                                                    |
-| `videoResolution`                                                                                       | *any*                                                                                                   | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 720                                                                                                     |
+| `videoCodec`                                                                                            | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | h264                                                                                                    |
+| `videoFrameRate`                                                                                        | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 24p                                                                                                     |
+| `videoProfile`                                                                                          | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | main                                                                                                    |
+| `videoResolution`                                                                                       | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 720                                                                                                     |
 | `width`                                                                                                 | *number*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     | 1280                                                                                                    |
 | `abr`                                                                                                   | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |                                                                                                         |
 | `resourceSession`                                                                                       | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |                                                                                                         |

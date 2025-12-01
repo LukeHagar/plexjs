@@ -178,7 +178,7 @@ export type ModifyDeviceRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   deviceId: number;
-  enabled?: number | undefined;
+  enabled: number;
 };
 
 /** @internal */
@@ -199,7 +199,7 @@ export const ModifyDeviceRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   deviceId: z.number().int(),
-  enabled: shared.BoolInt$outboundSchema.optional(),
+  enabled: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

@@ -13,7 +13,7 @@ let value: GetImageRequest = {
   bottomLeft: "1c425d",
   width: 1920,
   height: 1080,
-  noise: BoolInt.One,
+  noise: BoolInt.True,
 };
 ```
 

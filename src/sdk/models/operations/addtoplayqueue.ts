@@ -156,7 +156,7 @@ export type AddToPlayQueueRequest$Outbound = {
   playQueueId: number;
   uri?: string | undefined;
   playlistID?: string | undefined;
-  next?: number | undefined;
+  next: number;
 };
 
 /** @internal */
@@ -179,7 +179,7 @@ export const AddToPlayQueueRequest$outboundSchema: z.ZodType<
   playQueueId: z.number().int(),
   uri: z.string().optional(),
   playlistID: z.string().optional(),
-  next: shared.BoolInt$outboundSchema.optional(),
+  next: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

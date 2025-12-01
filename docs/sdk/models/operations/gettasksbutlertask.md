@@ -1,11 +1,11 @@
-# ButlerTask
+# GetTasksButlerTask
 
 ## Example Usage
 
 ```typescript
-import { ButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
+import { GetTasksButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: ButlerTask = {};
+let value: GetTasksButlerTask = {};
 ```
 
 ## Fields

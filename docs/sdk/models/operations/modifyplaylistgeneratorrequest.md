@@ -4,7 +4,6 @@
 
 ```typescript
 import { ModifyPlaylistGeneratorRequest, ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/sdk/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: ModifyPlaylistGeneratorRequest = {
   playlistId: 314072,
@@ -18,7 +17,6 @@ let value: ModifyPlaylistGeneratorRequest = {
     policy: {
       value: NaN,
       scope: ModifyPlaylistGeneratorScope.All,
-      unwatched: BoolInt.Zero,
     },
     target: "",
     targetTagID: 1,

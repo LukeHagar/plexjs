@@ -181,7 +181,7 @@ export type GetAllHubsRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   count?: number | undefined;
-  onlyTransient?: number | undefined;
+  onlyTransient: number;
   identifier?: Array<string> | undefined;
 };
 
@@ -203,7 +203,7 @@ export const GetAllHubsRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   count: z.number().int().optional(),
-  onlyTransient: shared.BoolInt$outboundSchema.optional(),
+  onlyTransient: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   identifier: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {

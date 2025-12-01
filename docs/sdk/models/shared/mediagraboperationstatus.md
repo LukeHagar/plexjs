@@ -1,11 +1,11 @@
-# Status
+# MediaGrabOperationStatus
 
 ## Example Usage
 
 ```typescript
-import { Status } from "@lukehagar/plexjs/sdk/models/shared";
+import { MediaGrabOperationStatus } from "@lukehagar/plexjs/sdk/models/shared";
 
-let value: Status = Status.Error;
+let value: MediaGrabOperationStatus = MediaGrabOperationStatus.Error;
 ```
 
 ## Values

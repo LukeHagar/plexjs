@@ -36,15 +36,16 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.transcoder.transcodeImage({
     url: "/library/metadata/265/thumb/1715112705",
     background: "#ff5522",
-    upscale: BoolInt.One,
-    minSize: BoolInt.One,
-    rotate: BoolInt.One,
+    upscale: BoolInt.True,
+    minSize: BoolInt.True,
+    rotate: BoolInt.True,
     blendColor: "#ff5522",
   });
 
@@ -77,15 +78,16 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await transcoderTranscodeImage(plexAPI, {
     url: "/library/metadata/265/thumb/1715112705",
     background: "#ff5522",
-    upscale: BoolInt.One,
-    minSize: BoolInt.One,
-    rotate: BoolInt.One,
+    upscale: BoolInt.True,
+    minSize: BoolInt.True,
+    rotate: BoolInt.True,
     blendColor: "#ff5522",
   });
   if (res.ok) {
@@ -142,6 +144,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -150,13 +153,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: MakeDecisionLocation.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,
@@ -206,6 +209,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -214,13 +218,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: MakeDecisionLocation.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,
@@ -292,6 +296,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -328,6 +333,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -388,6 +394,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -396,13 +403,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: TranscodeSubtitlesLocation.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,
@@ -452,6 +459,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -460,13 +468,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: TranscodeSubtitlesLocation.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,
@@ -539,6 +547,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -548,13 +557,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: StartTranscodeSessionLocation.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,
@@ -604,6 +613,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -613,13 +623,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: StartTranscodeSessionLocation.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,

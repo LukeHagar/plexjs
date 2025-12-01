@@ -154,8 +154,8 @@ export type IngestTransientItemRequest$Outbound = {
   Marketplace?: string | undefined;
   url?: string | undefined;
   virtualFilePath?: string | undefined;
-  computeHashes?: number | undefined;
-  ingestNonMatches?: number | undefined;
+  computeHashes: number;
+  ingestNonMatches: number;
 };
 
 /** @internal */
@@ -177,8 +177,8 @@ export const IngestTransientItemRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   url: z.string().optional(),
   virtualFilePath: z.string().optional(),
-  computeHashes: shared.BoolInt$outboundSchema.optional(),
-  ingestNonMatches: shared.BoolInt$outboundSchema.optional(),
+  computeHashes: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  ingestNonMatches: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

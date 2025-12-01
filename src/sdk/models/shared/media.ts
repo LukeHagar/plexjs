@@ -20,21 +20,21 @@ import { Part, Part$inboundSchema } from "./part.js";
 export type Media = {
   aspectRatio?: number | undefined;
   audioChannels?: number | undefined;
-  audioCodec?: any | undefined;
-  audioProfile?: any | undefined;
+  audioCodec?: string | undefined;
+  audioProfile?: string | undefined;
   bitrate?: number | undefined;
-  container?: any | undefined;
+  container?: string | undefined;
   duration?: number | undefined;
   has64bitOffsets?: boolean | undefined;
   hasVoiceActivity?: boolean | undefined;
   height?: number | undefined;
-  id?: number | undefined;
+  id: number;
   optimizedForStreaming?: boolean | undefined;
   part?: Array<Part> | undefined;
-  videoCodec?: any | undefined;
-  videoFrameRate?: any | undefined;
-  videoProfile?: any | undefined;
-  videoResolution?: any | undefined;
+  videoCodec?: string | undefined;
+  videoFrameRate?: string | undefined;
+  videoProfile?: string | undefined;
+  videoResolution?: string | undefined;
   width?: number | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
@@ -45,21 +45,21 @@ export const Media$inboundSchema: z.ZodType<Media, z.ZodTypeDef, unknown> =
     z.object({
       aspectRatio: z.number().optional(),
       audioChannels: z.number().int().optional(),
-      audioCodec: z.any().optional(),
-      audioProfile: z.any().optional(),
+      audioCodec: z.string().optional(),
+      audioProfile: z.string().optional(),
       bitrate: z.number().int().optional(),
-      container: z.any().optional(),
+      container: z.string().optional(),
       duration: z.number().int().optional(),
       has64bitOffsets: z.boolean().optional(),
       hasVoiceActivity: z.boolean().optional(),
       height: z.number().int().optional(),
-      id: z.number().int().optional(),
+      id: z.number().int(),
       optimizedForStreaming: z.boolean().optional(),
       Part: z.array(Part$inboundSchema).optional(),
-      videoCodec: z.any().optional(),
-      videoFrameRate: z.any().optional(),
-      videoProfile: z.any().optional(),
-      videoResolution: z.any().optional(),
+      videoCodec: z.string().optional(),
+      videoFrameRate: z.string().optional(),
+      videoProfile: z.string().optional(),
+      videoResolution: z.string().optional(),
       width: z.number().int().optional(),
     }).catchall(z.any()),
     "additionalProperties",

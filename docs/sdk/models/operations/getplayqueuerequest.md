@@ -8,9 +8,9 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetPlayQueueRequest = {
   playQueueId: 868034,
-  own: BoolInt.One,
-  includeBefore: BoolInt.One,
-  includeAfter: BoolInt.One,
+  own: BoolInt.True,
+  includeBefore: BoolInt.True,
+  includeAfter: BoolInt.True,
 };
 ```
 

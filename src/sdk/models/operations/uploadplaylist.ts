@@ -140,7 +140,7 @@ export type UploadPlaylistRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   path?: string | undefined;
-  force?: number | undefined;
+  force: number;
 };
 
 /** @internal */
@@ -161,7 +161,7 @@ export const UploadPlaylistRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   path: z.string().optional(),
-  force: shared.BoolInt$outboundSchema.optional(),
+  force: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

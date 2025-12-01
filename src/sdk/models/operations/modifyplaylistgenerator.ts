@@ -205,7 +205,7 @@ export const ModifyPlaylistGeneratorScope$outboundSchema: z.ZodNativeEnum<
 export type ModifyPlaylistGeneratorPolicy$Outbound = {
   value?: number | undefined;
   scope?: string | undefined;
-  unwatched?: number | undefined;
+  unwatched: number;
 };
 
 /** @internal */
@@ -216,7 +216,7 @@ export const ModifyPlaylistGeneratorPolicy$outboundSchema: z.ZodType<
 > = z.object({
   value: z.number().int().optional(),
   scope: ModifyPlaylistGeneratorScope$outboundSchema.optional(),
-  unwatched: shared.BoolInt$outboundSchema.optional(),
+  unwatched: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 });
 
 export function modifyPlaylistGeneratorPolicyToJSON(

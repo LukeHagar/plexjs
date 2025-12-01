@@ -4,6 +4,7 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { Activities } from "./activities.js";
+import { Authentication } from "./authentication.js";
 import { Butler } from "./butler.js";
 import { Collections } from "./collections.js";
 import { Content } from "./content.js";
@@ -21,6 +22,7 @@ import { LiveTV } from "./livetv.js";
 import { Log } from "./log.js";
 import { Playlist } from "./playlist.js";
 import { PlayQueue } from "./playqueue.js";
+import { Plex } from "./plex.js";
 import { Preferences } from "./preferences.js";
 import { Provider } from "./provider.js";
 import { Rate } from "./rate.js";
@@ -31,6 +33,7 @@ import { Timeline } from "./timeline.js";
 import { Transcoder } from "./transcoder.js";
 import { UltraBlur } from "./ultrablur.js";
 import { Updater } from "./updater.js";
+import { Users } from "./users.js";
 
 export class PlexAPI extends ClientSDK {
   private _general?: General;
@@ -161,6 +164,21 @@ export class PlexAPI extends ClientSDK {
   private _updater?: Updater;
   get updater(): Updater {
     return (this._updater ??= new Updater(this._options));
+  }
+
+  private _authentication?: Authentication;
+  get authentication(): Authentication {
+    return (this._authentication ??= new Authentication(this._options));
+  }
+
+  private _users?: Users;
+  get users(): Users {
+    return (this._users ??= new Users(this._options));
+  }
+
+  private _plex?: Plex;
+  get plex(): Plex {
+    return (this._plex ??= new Plex(this._options));
   }
 
   private _content?: Content;

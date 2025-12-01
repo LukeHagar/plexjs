@@ -250,9 +250,9 @@ export type TranscodeImageRequest$Outbound = {
   height?: number | undefined;
   quality?: number | undefined;
   background?: string | undefined;
-  upscale?: number | undefined;
-  minSize?: number | undefined;
-  rotate?: number | undefined;
+  upscale: number;
+  minSize: number;
+  rotate: number;
   blur?: number | undefined;
   saturation?: number | undefined;
   opacity?: number | undefined;
@@ -283,9 +283,9 @@ export const TranscodeImageRequest$outboundSchema: z.ZodType<
   height: z.number().int().optional(),
   quality: z.number().int().optional(),
   background: z.string().optional(),
-  upscale: shared.BoolInt$outboundSchema.optional(),
-  minSize: shared.BoolInt$outboundSchema.optional(),
-  rotate: shared.BoolInt$outboundSchema.optional(),
+  upscale: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  minSize: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  rotate: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   blur: z.number().int().optional(),
   saturation: z.number().int().optional(),
   opacity: z.number().int().optional(),

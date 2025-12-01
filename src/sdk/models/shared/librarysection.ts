@@ -7,6 +7,10 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  MediaTypeString,
+  MediaTypeString$inboundSchema,
+} from "./mediatypestring.js";
 
 /**
  * Represents a top-level location on disk where media in this library section is stored
@@ -20,8 +24,16 @@ export type LibrarySectionLocation = {
 };
 
 export type LibrarySection = {
+  /**
+   * The title of the library
+   */
   title?: string | undefined;
-  type?: string | undefined;
+  /**
+   * The type of media content in the Plex library. This can represent videos, music, or photos.
+   *
+   * @remarks
+   */
+  type: MediaTypeString;
   agent?: string | undefined;
   allowSync?: boolean | undefined;
   art?: string | undefined;
@@ -36,7 +48,11 @@ export type LibrarySection = {
   filters?: boolean | undefined;
   hidden?: boolean | undefined;
   key?: string | undefined;
-  language?: string | undefined;
+  language: string;
+  /**
+   * The universally unique identifier for the library.
+   */
+  uuid: string;
   location?: Array<LibrarySectionLocation> | undefined;
   /**
    * Indicates whether this library section is currently scanning
@@ -75,7 +91,7 @@ export const LibrarySection$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   title: z.string().optional(),
-  type: z.string().optional(),
+  type: MediaTypeString$inboundSchema,
   agent: z.string().optional(),
   allowSync: z.boolean().optional(),
   art: z.string().optional(),
@@ -87,7 +103,8 @@ export const LibrarySection$inboundSchema: z.ZodType<
   filters: z.boolean().optional(),
   hidden: z.boolean().optional(),
   key: z.string().optional(),
-  language: z.string().optional(),
+  language: z.string(),
+  uuid: z.string(),
   Location: z.array(z.lazy(() => LibrarySectionLocation$inboundSchema))
     .optional(),
   refreshing: z.boolean().optional(),

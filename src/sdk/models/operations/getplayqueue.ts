@@ -162,11 +162,11 @@ export type GetPlayQueueRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   playQueueId: number;
-  own?: number | undefined;
+  own: number;
   center?: string | undefined;
   window?: number | undefined;
-  includeBefore?: number | undefined;
-  includeAfter?: number | undefined;
+  includeBefore: number;
+  includeAfter: number;
 };
 
 /** @internal */
@@ -187,11 +187,11 @@ export const GetPlayQueueRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   playQueueId: z.number().int(),
-  own: shared.BoolInt$outboundSchema.optional(),
+  own: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   center: z.string().optional(),
   window: z.number().int().optional(),
-  includeBefore: shared.BoolInt$outboundSchema.optional(),
-  includeAfter: shared.BoolInt$outboundSchema.optional(),
+  includeBefore: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeAfter: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

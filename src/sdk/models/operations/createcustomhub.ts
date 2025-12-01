@@ -153,9 +153,9 @@ export type CreateCustomHubRequest$Outbound = {
   Marketplace?: string | undefined;
   sectionId: number;
   metadataItemId: number;
-  promotedToRecommended?: number | undefined;
-  promotedToOwnHome?: number | undefined;
-  promotedToSharedHome?: number | undefined;
+  promotedToRecommended: number;
+  promotedToOwnHome: number;
+  promotedToSharedHome: number;
 };
 
 /** @internal */
@@ -177,9 +177,15 @@ export const CreateCustomHubRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   sectionId: z.number().int(),
   metadataItemId: z.number().int(),
-  promotedToRecommended: shared.BoolInt$outboundSchema.optional(),
-  promotedToOwnHome: shared.BoolInt$outboundSchema.optional(),
-  promotedToSharedHome: shared.BoolInt$outboundSchema.optional(),
+  promotedToRecommended: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  promotedToOwnHome: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  promotedToSharedHome: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

@@ -16,8 +16,8 @@ let value: AddSectionRequest = {
     "O:\fatboy\\Media\\My Music",
   ],
   prefs: {},
-  relative: BoolInt.One,
-  importFromiTunes: BoolInt.One,
+  relative: BoolInt.True,
+  importFromiTunes: BoolInt.True,
 };
 ```
 

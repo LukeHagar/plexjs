@@ -261,12 +261,12 @@ export type CreatePlayQueueRequest$Outbound = {
   playlistID?: number | undefined;
   type: string;
   key?: string | undefined;
-  shuffle?: number | undefined;
-  repeat?: number | undefined;
-  continuous?: number | undefined;
+  shuffle: number;
+  repeat: number;
+  continuous: number;
   extrasPrefixCount?: number | undefined;
-  recursive?: number | undefined;
-  onDeck?: number | undefined;
+  recursive: number;
+  onDeck: number;
 };
 
 /** @internal */
@@ -290,12 +290,12 @@ export const CreatePlayQueueRequest$outboundSchema: z.ZodType<
   playlistID: z.number().int().optional(),
   type: CreatePlayQueueType$outboundSchema,
   key: z.string().optional(),
-  shuffle: shared.BoolInt$outboundSchema.optional(),
-  repeat: shared.BoolInt$outboundSchema.optional(),
-  continuous: shared.BoolInt$outboundSchema.optional(),
+  shuffle: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  repeat: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  continuous: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   extrasPrefixCount: z.number().int().optional(),
-  recursive: shared.BoolInt$outboundSchema.optional(),
-  onDeck: shared.BoolInt$outboundSchema.optional(),
+  recursive: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  onDeck: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

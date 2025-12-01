@@ -5,12 +5,12 @@
 ```typescript
 import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
-let value: BoolInt = BoolInt.One;
+let value: BoolInt = BoolInt.True;
 ```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Zero` | 0      |
-| `One`  | 1      |
+| Name    | Value   |
+| ------- | ------- |
+| `False` | 0       |
+| `True`  | 1       |

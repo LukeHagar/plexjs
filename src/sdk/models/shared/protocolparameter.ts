@@ -4,12 +4,13 @@
 
 import * as z from "zod/v3";
 
-export enum Protocol {
+export enum ProtocolParameter {
   Http = "http",
   Hls = "hls",
   Dash = "dash",
 }
 
 /** @internal */
-export const Protocol$outboundSchema: z.ZodNativeEnum<typeof Protocol> = z
-  .nativeEnum(Protocol);
+export const ProtocolParameter$outboundSchema: z.ZodNativeEnum<
+  typeof ProtocolParameter
+> = z.nativeEnum(ProtocolParameter);

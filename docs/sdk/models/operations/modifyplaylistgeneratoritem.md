@@ -9,7 +9,6 @@ Item[type]=42&Item[title]=Jack-Jack Attack&Item[target]=&Item[targetTagID]=1&Ite
 
 ```typescript
 import { ModifyPlaylistGeneratorItem, ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/sdk/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: ModifyPlaylistGeneratorItem = {
   location: {
@@ -20,7 +19,6 @@ let value: ModifyPlaylistGeneratorItem = {
   policy: {
     value: NaN,
     scope: ModifyPlaylistGeneratorScope.All,
-    unwatched: BoolInt.Zero,
   },
   target: "",
   targetTagID: 1,

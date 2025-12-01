@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetAugmentationStatusRequest = {
   augmentationId: "<id>",
-  wait: BoolInt.One,
+  wait: BoolInt.True,
 };
 ```
 

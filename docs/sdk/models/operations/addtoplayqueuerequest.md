@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: AddToPlayQueueRequest = {
   playQueueId: 354193,
-  next: BoolInt.One,
+  next: BoolInt.True,
 };
 ```
 

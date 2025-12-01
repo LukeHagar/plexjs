@@ -7,8 +7,8 @@ import { GetAllSubscriptionsRequest } from "@lukehagar/plexjs/sdk/models/operati
 import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetAllSubscriptionsRequest = {
-  includeGrabs: BoolInt.One,
-  includeStorage: BoolInt.One,
+  includeGrabs: BoolInt.True,
+  includeStorage: BoolInt.True,
 };
 ```
 

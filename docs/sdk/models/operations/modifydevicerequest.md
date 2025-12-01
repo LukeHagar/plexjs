@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: ModifyDeviceRequest = {
   deviceId: 809966,
-  enabled: BoolInt.One,
+  enabled: BoolInt.True,
 };
 ```
 

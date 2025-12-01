@@ -1,13 +1,14 @@
-# StopTaskTask
+# StopTaskButlerTask
 
 The task name
 
 ## Example Usage
 
 ```typescript
-import { StopTaskTask } from "@lukehagar/plexjs/sdk/models/operations";
+import { StopTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: StopTaskTask = StopTaskTask.RefreshLibraries;
+let value: StopTaskButlerTask =
+  StopTaskButlerTask.ButlerTaskGenerateCreditsMarkers;
 ```
 
 ## Values

@@ -23,7 +23,9 @@ This endpoint will write multiple lines to the main Plex Media Server log in a s
 import { PlexAPI } from "@lukehagar/plexjs";
 import { openAsBlob } from "node:fs";
 
-const plexAPI = new PlexAPI();
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const result = await plexAPI.log.writeLog(await openAsBlob("example.file"));
@@ -45,7 +47,9 @@ import { openAsBlob } from "node:fs";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore();
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const res = await logWriteLog(plexAPI, await openAsBlob("example.file"));
@@ -105,6 +109,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -139,6 +144,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -199,6 +205,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -233,6 +240,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {

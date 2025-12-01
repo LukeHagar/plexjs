@@ -139,8 +139,8 @@ export type ApplyUpdatesRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  tonight?: number | undefined;
-  skip?: number | undefined;
+  tonight: number;
+  skip: number;
 };
 
 /** @internal */
@@ -160,8 +160,8 @@ export const ApplyUpdatesRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  tonight: shared.BoolInt$outboundSchema.optional(),
-  skip: shared.BoolInt$outboundSchema.optional(),
+  tonight: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  skip: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

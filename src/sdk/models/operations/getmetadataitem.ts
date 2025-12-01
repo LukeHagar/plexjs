@@ -170,14 +170,14 @@ export type GetMetadataItemRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   ids: Array<string>;
-  asyncCheckFiles?: number | undefined;
-  asyncRefreshLocalMediaAgent?: number | undefined;
-  asyncRefreshAnalysis?: number | undefined;
-  checkFiles?: number | undefined;
-  skipRefresh?: number | undefined;
-  checkFileAvailability?: number | undefined;
-  asyncAugmentMetadata?: number | undefined;
-  augmentCount?: number | undefined;
+  asyncCheckFiles: number;
+  asyncRefreshLocalMediaAgent: number;
+  asyncRefreshAnalysis: number;
+  checkFiles: number;
+  skipRefresh: number;
+  checkFileAvailability: number;
+  asyncAugmentMetadata: number;
+  augmentCount: number;
 };
 
 /** @internal */
@@ -198,14 +198,22 @@ export const GetMetadataItemRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   ids: z.array(z.string()),
-  asyncCheckFiles: shared.BoolInt$outboundSchema.optional(),
-  asyncRefreshLocalMediaAgent: shared.BoolInt$outboundSchema.optional(),
-  asyncRefreshAnalysis: shared.BoolInt$outboundSchema.optional(),
-  checkFiles: shared.BoolInt$outboundSchema.optional(),
-  skipRefresh: shared.BoolInt$outboundSchema.optional(),
-  checkFileAvailability: shared.BoolInt$outboundSchema.optional(),
-  asyncAugmentMetadata: shared.BoolInt$outboundSchema.optional(),
-  augmentCount: shared.BoolInt$outboundSchema.optional(),
+  asyncCheckFiles: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  asyncRefreshLocalMediaAgent: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  asyncRefreshAnalysis: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  checkFiles: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  skipRefresh: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  checkFileAvailability: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  asyncAugmentMetadata: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  augmentCount: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

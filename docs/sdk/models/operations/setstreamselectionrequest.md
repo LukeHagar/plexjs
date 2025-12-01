@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: SetStreamSelectionRequest = {
   partId: 960612,
-  allParts: BoolInt.One,
+  allParts: BoolInt.True,
 };
 ```
 

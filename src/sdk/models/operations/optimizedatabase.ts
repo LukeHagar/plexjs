@@ -135,7 +135,7 @@ export type OptimizeDatabaseRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  async?: number | undefined;
+  async: number;
 };
 
 /** @internal */
@@ -155,7 +155,7 @@ export const OptimizeDatabaseRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  async: shared.BoolInt$outboundSchema.optional(),
+  async: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

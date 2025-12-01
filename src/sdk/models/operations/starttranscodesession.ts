@@ -341,13 +341,13 @@ export type StartTranscodeSessionRequest$Outbound = {
   advancedSubtitles?: string | undefined;
   audioBoost?: number | undefined;
   audioChannelCount?: number | undefined;
-  autoAdjustQuality?: number | undefined;
-  autoAdjustSubtitle?: number | undefined;
-  directPlay?: number | undefined;
-  directStream?: number | undefined;
-  directStreamAudio?: number | undefined;
-  disableResolutionRotation?: number | undefined;
-  hasMDE?: number | undefined;
+  autoAdjustQuality: number;
+  autoAdjustSubtitle: number;
+  directPlay: number;
+  directStream: number;
+  directStreamAudio: number;
+  disableResolutionRotation: number;
+  hasMDE: number;
   location?: string | undefined;
   mediaBufferSize?: number | undefined;
   mediaIndex?: number | undefined;
@@ -392,13 +392,21 @@ export const StartTranscodeSessionRequest$outboundSchema: z.ZodType<
   advancedSubtitles: shared.AdvancedSubtitles$outboundSchema.optional(),
   audioBoost: z.number().int().optional(),
   audioChannelCount: z.number().int().optional(),
-  autoAdjustQuality: shared.BoolInt$outboundSchema.optional(),
-  autoAdjustSubtitle: shared.BoolInt$outboundSchema.optional(),
-  directPlay: shared.BoolInt$outboundSchema.optional(),
-  directStream: shared.BoolInt$outboundSchema.optional(),
-  directStreamAudio: shared.BoolInt$outboundSchema.optional(),
-  disableResolutionRotation: shared.BoolInt$outboundSchema.optional(),
-  hasMDE: shared.BoolInt$outboundSchema.optional(),
+  autoAdjustQuality: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  autoAdjustSubtitle: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  directPlay: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  directStream: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  directStreamAudio: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  disableResolutionRotation: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  hasMDE: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   location: StartTranscodeSessionLocation$outboundSchema.optional(),
   mediaBufferSize: z.number().int().optional(),
   mediaIndex: z.number().int().optional(),

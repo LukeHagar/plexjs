@@ -169,7 +169,7 @@ export type GetImageRequest$Outbound = {
   bottomLeft?: string | undefined;
   width?: number | undefined;
   height?: number | undefined;
-  noise?: number | undefined;
+  noise: number;
 };
 
 /** @internal */
@@ -195,7 +195,7 @@ export const GetImageRequest$outboundSchema: z.ZodType<
   bottomLeft: z.string().optional(),
   width: z.number().int().optional(),
   height: z.number().int().optional(),
-  noise: shared.BoolInt$outboundSchema.optional(),
+  noise: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

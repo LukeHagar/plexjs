@@ -188,7 +188,7 @@ export type UpdateItemsRequest$Outbound = {
   type?: string | undefined;
   filters?: string | undefined;
   "field.value"?: string | undefined;
-  "field.locked"?: number | undefined;
+  "field.locked": number;
   "title.value"?: string | undefined;
   "artist.title.value"?: string | undefined;
   "artist.title.id"?: string | undefined;
@@ -221,7 +221,7 @@ export const UpdateItemsRequest$outboundSchema: z.ZodType<
   type: z.string().optional(),
   filters: z.string().optional(),
   fieldValue: z.string().optional(),
-  fieldLocked: shared.BoolInt$outboundSchema.optional(),
+  fieldLocked: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   titleValue: z.string().optional(),
   artistTitleValue: z.string().optional(),
   artistTitleId: z.string().optional(),

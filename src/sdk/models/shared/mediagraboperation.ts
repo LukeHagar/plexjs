@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Metadata, Metadata$inboundSchema } from "./metadata.js";
 
-export enum Status {
+export enum MediaGrabOperationStatus {
   Inactive = "inactive",
   Scheduled = "scheduled",
   Inprogress = "inprogress",
@@ -45,12 +45,13 @@ export type MediaGrabOperation = {
   metadata?: Metadata | undefined;
   percent?: number | undefined;
   provider?: string | undefined;
-  status?: Status | undefined;
+  status?: MediaGrabOperationStatus | undefined;
 };
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const MediaGrabOperationStatus$inboundSchema: z.ZodNativeEnum<
+  typeof MediaGrabOperationStatus
+> = z.nativeEnum(MediaGrabOperationStatus);
 
 /** @internal */
 export const MediaGrabOperation$inboundSchema: z.ZodType<
@@ -68,7 +69,7 @@ export const MediaGrabOperation$inboundSchema: z.ZodType<
   Metadata: Metadata$inboundSchema.optional(),
   percent: z.number().optional(),
   provider: z.string().optional(),
-  status: Status$inboundSchema.optional(),
+  status: MediaGrabOperationStatus$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "Metadata": "metadata",

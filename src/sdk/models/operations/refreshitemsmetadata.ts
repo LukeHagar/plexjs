@@ -136,7 +136,7 @@ export type RefreshItemsMetadataRequest$Outbound = {
   Marketplace?: string | undefined;
   ids: string;
   agent?: string | undefined;
-  markUpdated?: number | undefined;
+  markUpdated: number;
 };
 
 /** @internal */
@@ -158,7 +158,7 @@ export const RefreshItemsMetadataRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   ids: z.string(),
   agent: z.string().optional(),
-  markUpdated: shared.BoolInt$outboundSchema.optional(),
+  markUpdated: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

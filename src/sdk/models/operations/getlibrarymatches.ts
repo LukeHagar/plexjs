@@ -102,9 +102,23 @@ export type GetLibraryMatchesRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * The metadata type to filter by
+   * The type of media to retrieve or filter by.
+   *
+   * @remarks
+   *
+   * 1 = movie
+   * 2 = show
+   * 3 = season
+   * 4 = episode
+   * 5 = artist
+   * 6 = album
+   * 7 = track
+   * 8 = photo_album
+   * 9 = photo
+   *
+   * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type?: number | undefined;
+  type?: shared.MediaType | undefined;
   includeFullMetadata?: shared.BoolInt | undefined;
   includeAncestorMetadata?: shared.BoolInt | undefined;
   includeAlternateMetadataSources?: shared.BoolInt | undefined;
@@ -184,9 +198,9 @@ export type GetLibraryMatchesRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   type?: number | undefined;
-  includeFullMetadata?: number | undefined;
-  includeAncestorMetadata?: number | undefined;
-  includeAlternateMetadataSources?: number | undefined;
+  includeFullMetadata: number;
+  includeAncestorMetadata: number;
+  includeAlternateMetadataSources: number;
   guid?: string | undefined;
   title?: string | undefined;
   year?: number | undefined;
@@ -216,10 +230,16 @@ export const GetLibraryMatchesRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  type: z.number().int().optional(),
-  includeFullMetadata: shared.BoolInt$outboundSchema.optional(),
-  includeAncestorMetadata: shared.BoolInt$outboundSchema.optional(),
-  includeAlternateMetadataSources: shared.BoolInt$outboundSchema.optional(),
+  type: shared.MediaType$outboundSchema.optional(),
+  includeFullMetadata: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeAncestorMetadata: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  includeAlternateMetadataSources: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
   guid: z.string().optional(),
   title: z.string().optional(),
   year: z.number().int().optional(),

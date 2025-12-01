@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: DeleteLibrarySectionRequest = {
   sectionId: "<id>",
-  async: BoolInt.One,
+  async: BoolInt.True,
 };
 ```
 

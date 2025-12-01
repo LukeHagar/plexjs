@@ -140,7 +140,7 @@ export type DeleteLibrarySectionRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   sectionId: string;
-  async?: number | undefined;
+  async: number;
 };
 
 /** @internal */
@@ -161,7 +161,7 @@ export const DeleteLibrarySectionRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   sectionId: z.string(),
-  async: shared.BoolInt$outboundSchema.optional(),
+  async: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

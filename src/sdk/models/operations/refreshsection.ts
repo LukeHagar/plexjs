@@ -144,7 +144,7 @@ export type RefreshSectionRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   sectionId: number;
-  force?: number | undefined;
+  force: number;
   path?: string | undefined;
 };
 
@@ -166,7 +166,7 @@ export const RefreshSectionRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   sectionId: z.number().int(),
-  force: shared.BoolInt$outboundSchema.optional(),
+  force: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   path: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

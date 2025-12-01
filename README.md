@@ -96,6 +96,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -105,13 +106,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: StartTranscodeSessionLocation.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,
@@ -150,6 +151,11 @@ run();
 
 * [listActivities](docs/sdks/activities/README.md#listactivities) - Get all activities
 * [cancelActivity](docs/sdks/activities/README.md#cancelactivity) - Cancel a running activity
+
+### [authentication](docs/sdks/authentication/README.md)
+
+* [getTokenDetails](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
+* [postUsersSignInData](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
 
 ### [butler](docs/sdks/butler/README.md)
 
@@ -398,6 +404,10 @@ run();
 * [deletePlayQueueItem](docs/sdks/playqueue/README.md#deleteplayqueueitem) - Delete an item from a play queue
 * [movePlayQueueItem](docs/sdks/playqueue/README.md#moveplayqueueitem) - Move an item in a play queue
 
+### [plex](docs/sdks/plex/README.md)
+
+* [getServerResources](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
+
 ### [preferences](docs/sdks/preferences/README.md)
 
 * [getAllPreferences](docs/sdks/preferences/README.md#getallpreferences) - Get all preferences
@@ -467,6 +477,10 @@ run();
 * [checkUpdates](docs/sdks/updater/README.md#checkupdates) - Checking for updates
 * [getUpdatesStatus](docs/sdks/updater/README.md#getupdatesstatus) - Querying status of updates
 
+### [users](docs/sdks/users/README.md)
+
+* [getUsers](docs/sdks/users/README.md#getusers) - Get list of all connected users
+
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -475,13 +489,14 @@ run();
 
 [`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts) is the base class for all HTTP error responses. It has the following properties:
 
-| Property            | Type       | Description                                            |
-| ------------------- | ---------- | ------------------------------------------------------ |
-| `error.message`     | `string`   | Error message                                          |
-| `error.statusCode`  | `number`   | HTTP response status code eg `404`                     |
-| `error.headers`     | `Headers`  | HTTP response headers                                  |
-| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned. |
-| `error.rawResponse` | `Response` | Raw HTTP response                                      |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
+| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
 ### Example
 ```typescript
@@ -501,19 +516,27 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   try {
-    const result = await plexAPI.general.getServerInfo({});
+    const result = await plexAPI.authentication.getTokenDetails({});
 
     console.log(result);
   } catch (error) {
+    // The base class for HTTP error responses
     if (error instanceof errors.PlexAPIError) {
       console.log(error.message);
       console.log(error.statusCode);
       console.log(error.body);
       console.log(error.headers);
+
+      // Depending on the method different errors may be thrown
+      if (error instanceof errors.GetTokenDetailsBadRequestError) {
+        console.log(error.data$.errors); // GetTokenDetailsBadRequestError[]
+        console.log(error.data$.rawResponse); // Response
+      }
     }
   }
 }
@@ -526,7 +549,7 @@ run();
 **Primary error:**
 * [`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts): The base class for HTTP error responses.
 
-<details><summary>Less common errors (6)</summary>
+<details><summary>Less common errors (13)</summary>
 
 <br />
 
@@ -539,9 +562,18 @@ run();
 
 
 **Inherit from [`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts)**:
+* [`GetTokenDetailsBadRequestError`](./src/sdk/models/errors/gettokendetailsbadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
+* [`PostUsersSignInDataBadRequestError`](./src/sdk/models/errors/postuserssignindatabadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
+* [`GetUsersBadRequestError`](./src/sdk/models/errors/getusersbadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
+* [`GetTokenDetailsUnauthorizedError`](./src/sdk/models/errors/gettokendetailsunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
+* [`PostUsersSignInDataUnauthorizedError`](./src/sdk/models/errors/postuserssignindataunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
+* [`GetUsersUnauthorizedError`](./src/sdk/models/errors/getusersunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
+* [`GetServerResourcesUnauthorizedError`](./src/sdk/models/errors/getserverresourcesunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
 * [`ResponseValidationError`](./src/sdk/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -590,6 +622,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -622,10 +655,45 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.general.getServerInfo({});
+
+  console.log(result);
+}
+
+run();
+
+```
+
+### Override Server URL Per-Operation
+
+The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
+```typescript
+import { PlexAPI } from "@lukehagar/plexjs";
+import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+
+const plexAPI = new PlexAPI({
+  accepts: Accepts.ApplicationXml,
+  clientIdentifier: "abc123",
+  product: "Plex for Roku",
+  version: "2.4.1",
+  platform: "Roku",
+  platformVersion: "4.3 build 1057",
+  device: "Roku 3",
+  model: "4200X",
+  deviceVendor: "Roku",
+  deviceName: "Living Room TV",
+  marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await plexAPI.authentication.getTokenDetails({}, {
+    serverURL: "https://plex.tv/api/v2",
+  });
 
   console.log(result);
 }
@@ -749,6 +817,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`activitiesCancelActivity`](docs/sdks/activities/README.md#cancelactivity) - Cancel a running activity
 - [`activitiesListActivities`](docs/sdks/activities/README.md#listactivities) - Get all activities
+- [`authenticationGetTokenDetails`](docs/sdks/authentication/README.md#gettokendetails) - Get Token Details
+- [`authenticationPostUsersSignInData`](docs/sdks/authentication/README.md#postuserssignindata) - Get User Sign In Data
 - [`butlerGetTasks`](docs/sdks/butler/README.md#gettasks) - Get all Butler tasks
 - [`butlerStartTask`](docs/sdks/butler/README.md#starttask) - Start a single Butler task
 - [`butlerStartTasks`](docs/sdks/butler/README.md#starttasks) - Start all Butler tasks
@@ -945,6 +1015,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`playQueueResetPlayQueue`](docs/sdks/playqueue/README.md#resetplayqueue) - Reset a play queue
 - [`playQueueShuffle`](docs/sdks/playqueue/README.md#shuffle) - Shuffle a play queue
 - [`playQueueUnshuffle`](docs/sdks/playqueue/README.md#unshuffle) - Unshuffle a play queue
+- [`plexGetServerResources`](docs/sdks/plex/README.md#getserverresources) - Get Server Resources
 - [`preferencesGetAllPreferences`](docs/sdks/preferences/README.md#getallpreferences) - Get all preferences
 - [`preferencesGetPreference`](docs/sdks/preferences/README.md#getpreference) - Get a preferences
 - [`preferencesSetPreferences`](docs/sdks/preferences/README.md#setpreferences) - Set preferences
@@ -984,6 +1055,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`updaterApplyUpdates`](docs/sdks/updater/README.md#applyupdates) - Applying updates
 - [`updaterCheckUpdates`](docs/sdks/updater/README.md#checkupdates) - Checking for updates
 - [`updaterGetUpdatesStatus`](docs/sdks/updater/README.md#getupdatesstatus) - Querying status of updates
+- [`usersGetUsers`](docs/sdks/users/README.md#getusers) - Get list of all connected users
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -1006,7 +1078,9 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 import { PlexAPI } from "@lukehagar/plexjs";
 import { openAsBlob } from "node:fs";
 
-const plexAPI = new PlexAPI();
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const result = await plexAPI.log.writeLog(await openAsBlob("example.file"));
@@ -1041,6 +1115,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -1091,6 +1166,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {

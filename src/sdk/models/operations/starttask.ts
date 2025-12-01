@@ -59,7 +59,7 @@ export type StartTaskGlobals = {
 /**
  * The task name
  */
-export enum StartTaskTask {
+export enum StartTaskButlerTask {
   AutomaticUpdates = "AutomaticUpdates",
   BackupDatabase = "BackupDatabase",
   ButlerTaskGenerateAdMarkers = "ButlerTaskGenerateAdMarkers",
@@ -132,7 +132,7 @@ export type StartTaskRequest = {
   /**
    * The task name
    */
-  task: StartTaskTask;
+  butlerTask: StartTaskButlerTask;
 };
 
 export type StartTaskResponse = {
@@ -151,9 +151,9 @@ export type StartTaskResponse = {
 };
 
 /** @internal */
-export const StartTaskTask$outboundSchema: z.ZodNativeEnum<
-  typeof StartTaskTask
-> = z.nativeEnum(StartTaskTask);
+export const StartTaskButlerTask$outboundSchema: z.ZodNativeEnum<
+  typeof StartTaskButlerTask
+> = z.nativeEnum(StartTaskButlerTask);
 
 /** @internal */
 export type StartTaskRequest$Outbound = {
@@ -168,7 +168,7 @@ export type StartTaskRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  task: string;
+  butlerTask: string;
 };
 
 /** @internal */
@@ -188,7 +188,7 @@ export const StartTaskRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  task: StartTaskTask$outboundSchema,
+  butlerTask: StartTaskButlerTask$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

@@ -146,8 +146,8 @@ export type GetAllSubscriptionsRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  includeGrabs?: number | undefined;
-  includeStorage?: number | undefined;
+  includeGrabs: number;
+  includeStorage: number;
 };
 
 /** @internal */
@@ -167,8 +167,8 @@ export const GetAllSubscriptionsRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  includeGrabs: shared.BoolInt$outboundSchema.optional(),
-  includeStorage: shared.BoolInt$outboundSchema.optional(),
+  includeGrabs: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeStorage: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

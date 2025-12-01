@@ -59,7 +59,7 @@ export type StopTaskGlobals = {
 /**
  * The task name
  */
-export enum StopTaskTask {
+export enum StopTaskButlerTask {
   AutomaticUpdates = "AutomaticUpdates",
   BackupDatabase = "BackupDatabase",
   ButlerTaskGenerateAdMarkers = "ButlerTaskGenerateAdMarkers",
@@ -132,7 +132,7 @@ export type StopTaskRequest = {
   /**
    * The task name
    */
-  task: StopTaskTask;
+  butlerTask: StopTaskButlerTask;
 };
 
 export type StopTaskResponse = {
@@ -151,8 +151,9 @@ export type StopTaskResponse = {
 };
 
 /** @internal */
-export const StopTaskTask$outboundSchema: z.ZodNativeEnum<typeof StopTaskTask> =
-  z.nativeEnum(StopTaskTask);
+export const StopTaskButlerTask$outboundSchema: z.ZodNativeEnum<
+  typeof StopTaskButlerTask
+> = z.nativeEnum(StopTaskButlerTask);
 
 /** @internal */
 export type StopTaskRequest$Outbound = {
@@ -167,7 +168,7 @@ export type StopTaskRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  task: string;
+  butlerTask: string;
 };
 
 /** @internal */
@@ -187,7 +188,7 @@ export const StopTaskRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  task: StopTaskTask$outboundSchema,
+  butlerTask: StopTaskButlerTask$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

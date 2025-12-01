@@ -148,7 +148,7 @@ export type ListMatchesRequest$Outbound = {
   agent?: string | undefined;
   language?: string | undefined;
   year?: number | undefined;
-  manual?: number | undefined;
+  manual: number;
 };
 
 /** @internal */
@@ -174,7 +174,7 @@ export const ListMatchesRequest$outboundSchema: z.ZodType<
   agent: z.string().optional(),
   language: z.string().optional(),
   year: z.number().int().optional(),
-  manual: shared.BoolInt$outboundSchema.optional(),
+  manual: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

@@ -9,9 +9,9 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 let value: CreateCustomHubRequest = {
   sectionId: 94028,
   metadataItemId: 822624,
-  promotedToRecommended: BoolInt.One,
-  promotedToOwnHome: BoolInt.One,
-  promotedToSharedHome: BoolInt.One,
+  promotedToRecommended: BoolInt.True,
+  promotedToOwnHome: BoolInt.True,
+  promotedToSharedHome: BoolInt.True,
 };
 ```
 

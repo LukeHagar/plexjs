@@ -150,7 +150,7 @@ export type SetStreamSelectionRequest$Outbound = {
   partId: number;
   audioStreamID?: number | undefined;
   subtitleStreamID?: number | undefined;
-  allParts?: number | undefined;
+  allParts: number;
 };
 
 /** @internal */
@@ -173,7 +173,7 @@ export const SetStreamSelectionRequest$outboundSchema: z.ZodType<
   partId: z.number().int(),
   audioStreamID: z.number().int().optional(),
   subtitleStreamID: z.number().int().optional(),
-  allParts: shared.BoolInt$outboundSchema.optional(),
+  allParts: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

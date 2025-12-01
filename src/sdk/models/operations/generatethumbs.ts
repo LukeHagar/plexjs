@@ -134,7 +134,7 @@ export type GenerateThumbsRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   ids: string;
-  force?: number | undefined;
+  force: number;
 };
 
 /** @internal */
@@ -155,7 +155,7 @@ export const GenerateThumbsRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   ids: z.string(),
-  force: shared.BoolInt$outboundSchema.optional(),
+  force: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

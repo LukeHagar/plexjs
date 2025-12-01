@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetLibraryDetailsRequest = {
   sectionId: "<id>",
-  includeDetails: BoolInt.One,
+  includeDetails: BoolInt.True,
 };
 ```
 

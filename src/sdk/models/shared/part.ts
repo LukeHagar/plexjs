@@ -18,32 +18,41 @@ import { Stream, Stream$inboundSchema } from "./stream.js";
  * @remarks
  */
 export type Part = {
-  audioProfile?: any | undefined;
+  /**
+   * Indicates if the part is accessible.
+   */
+  accessible?: boolean | undefined;
+  audioProfile?: string | undefined;
   /**
    * The container of the media file, such as `mp4` or `mkv`
    */
-  container?: any | undefined;
+  container?: string | undefined;
   /**
    * The duration of the media item, in milliseconds
    */
   duration?: number | undefined;
   /**
+   * Indicates if the part exists.
+   */
+  exists?: boolean | undefined;
+  /**
    * The local file path at which the part is stored on the server
    */
-  file?: any | undefined;
+  file?: string | undefined;
   has64bitOffsets?: boolean | undefined;
-  id?: number | undefined;
+  id: number;
+  indexes?: string | undefined;
   /**
    * The key from which the media can be streamed
    */
-  key?: any | undefined;
+  key: string;
   optimizedForStreaming?: boolean | undefined;
   /**
    * The size of the media, in bytes
    */
   size?: number | undefined;
   stream?: Array<Stream> | undefined;
-  videoProfile?: any | undefined;
+  videoProfile?: string | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
 
@@ -51,17 +60,20 @@ export type Part = {
 export const Part$inboundSchema: z.ZodType<Part, z.ZodTypeDef, unknown> =
   collectExtraKeys$(
     z.object({
-      audioProfile: z.any().optional(),
-      container: z.any().optional(),
+      accessible: z.boolean().optional(),
+      audioProfile: z.string().optional(),
+      container: z.string().optional(),
       duration: z.number().int().optional(),
-      file: z.any().optional(),
+      exists: z.boolean().optional(),
+      file: z.string().optional(),
       has64bitOffsets: z.boolean().optional(),
-      id: z.number().int().optional(),
-      key: z.any().optional(),
+      id: z.number().int(),
+      indexes: z.string().optional(),
+      key: z.string(),
       optimizedForStreaming: z.boolean().optional(),
       size: z.number().int().optional(),
       Stream: z.array(Stream$inboundSchema).optional(),
-      videoProfile: z.any().optional(),
+      videoProfile: z.string().optional(),
     }).catchall(z.any()),
     "additionalProperties",
     true,

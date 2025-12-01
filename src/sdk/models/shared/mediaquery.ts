@@ -3,18 +3,73 @@
  */
 
 import * as z from "zod/v3";
+import { MediaType, MediaType$outboundSchema } from "./mediatype.js";
 
-export type MediaQuery = {};
+/**
+ * A querystring-based filtering language used to select subsets of media. When provided as an object, properties are serialized as a querystring using form style with explode.
+ *
+ * @remarks
+ *
+ * Only the defined properties below are allowed. The object serializes to a querystring format like: `type=4&sourceType=2&sort=duration:desc,index`
+ */
+export type MediaQuery = {
+  /**
+   * The type of media to retrieve or filter by.
+   *
+   * @remarks
+   *
+   * 1 = movie
+   * 2 = show
+   * 3 = season
+   * 4 = episode
+   * 5 = artist
+   * 6 = album
+   * 7 = track
+   * 8 = photo_album
+   * 9 = photo
+   *
+   * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
+   */
+  type?: MediaType | undefined;
+  /**
+   * Change the default level to which fields refer (used with type for hierarchical queries)
+   */
+  sourceType?: number | undefined;
+  /**
+   * Field(s) to sort by, with optional modifiers. Use comma to separate multiple fields, and :desc or :nullsLast for modifiers (e.g., "duration:desc,index")
+   */
+  sort?: string | undefined;
+  /**
+   * Field to group results by (similar to SQL GROUP BY)
+   */
+  group?: string | undefined;
+  /**
+   * Maximum number of results to return
+   */
+  limit?: number | undefined;
+};
 
 /** @internal */
-export type MediaQuery$Outbound = {};
+export type MediaQuery$Outbound = {
+  type?: number | undefined;
+  sourceType?: number | undefined;
+  sort?: string | undefined;
+  group?: string | undefined;
+  limit?: number | undefined;
+};
 
 /** @internal */
 export const MediaQuery$outboundSchema: z.ZodType<
   MediaQuery$Outbound,
   z.ZodTypeDef,
   MediaQuery
-> = z.object({});
+> = z.object({
+  type: MediaType$outboundSchema.optional(),
+  sourceType: z.number().int().optional(),
+  sort: z.string().optional(),
+  group: z.string().optional(),
+  limit: z.number().int().optional(),
+});
 
 export function mediaQueryToJSON(mediaQuery: MediaQuery): string {
   return JSON.stringify(MediaQuery$outboundSchema.parse(mediaQuery));

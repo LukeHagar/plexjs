@@ -30,7 +30,9 @@ Creates a download queue for this client if one doesn't exist, or returns the ex
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-const plexAPI = new PlexAPI();
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const result = await plexAPI.downloadQueue.createDownloadQueue();
@@ -51,7 +53,9 @@ import { downloadQueueCreateDownloadQueue } from "@lukehagar/plexjs/funcs/downlo
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore();
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const res = await downloadQueueCreateDownloadQueue(plexAPI);
@@ -110,6 +114,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -146,6 +151,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -194,7 +200,7 @@ Add items to the download queue
 <!-- UsageSnippet language="typescript" operationID="addDownloadQueueItems" method="post" path="/downloadQueue/{queueId}/add" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, Protocol } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -208,6 +214,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -220,13 +227,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: LocationParameter.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,
@@ -236,7 +243,7 @@ async function run() {
     path: "/library/metadata/151671",
     peakBitrate: 12000,
     photoResolution: "1080x1080",
-    protocol: Protocol.Dash,
+    protocol: ProtocolParameter.Dash,
     secondsPerSegment: 5,
     subtitleSize: 50,
     videoBitrate: 12000,
@@ -257,7 +264,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { downloadQueueAddDownloadQueueItems } from "@lukehagar/plexjs/funcs/downloadQueueAddDownloadQueueItems.js";
-import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, Protocol } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -273,6 +280,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -285,13 +293,13 @@ async function run() {
     advancedSubtitles: AdvancedSubtitles.Burn,
     audioBoost: 50,
     audioChannelCount: 5,
-    autoAdjustQuality: BoolInt.One,
-    autoAdjustSubtitle: BoolInt.One,
-    directPlay: BoolInt.One,
-    directStream: BoolInt.One,
-    directStreamAudio: BoolInt.One,
-    disableResolutionRotation: BoolInt.One,
-    hasMDE: BoolInt.One,
+    autoAdjustQuality: BoolInt.True,
+    autoAdjustSubtitle: BoolInt.True,
+    directPlay: BoolInt.True,
+    directStream: BoolInt.True,
+    directStreamAudio: BoolInt.True,
+    disableResolutionRotation: BoolInt.True,
+    hasMDE: BoolInt.True,
     location: LocationParameter.Wan,
     mediaBufferSize: 102400,
     mediaIndex: 0,
@@ -301,7 +309,7 @@ async function run() {
     path: "/library/metadata/151671",
     peakBitrate: 12000,
     photoResolution: "1080x1080",
-    protocol: Protocol.Dash,
+    protocol: ProtocolParameter.Dash,
     secondsPerSegment: 5,
     subtitleSize: 50,
     videoBitrate: 12000,
@@ -364,6 +372,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -400,6 +409,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -462,6 +472,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -499,6 +510,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -562,6 +574,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -599,6 +612,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -659,6 +673,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -700,6 +715,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -767,6 +783,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -808,6 +825,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -875,6 +893,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -916,6 +935,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {

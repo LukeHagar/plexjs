@@ -8,14 +8,14 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetMetadataItemRequest = {
   ids: [],
-  asyncCheckFiles: BoolInt.One,
-  asyncRefreshLocalMediaAgent: BoolInt.One,
-  asyncRefreshAnalysis: BoolInt.One,
-  checkFiles: BoolInt.One,
-  skipRefresh: BoolInt.One,
-  checkFileAvailability: BoolInt.One,
-  asyncAugmentMetadata: BoolInt.One,
-  augmentCount: BoolInt.One,
+  asyncCheckFiles: BoolInt.True,
+  asyncRefreshLocalMediaAgent: BoolInt.True,
+  asyncRefreshAnalysis: BoolInt.True,
+  checkFiles: BoolInt.True,
+  skipRefresh: BoolInt.True,
+  checkFileAvailability: BoolInt.True,
+  asyncAugmentMetadata: BoolInt.True,
+  augmentCount: BoolInt.True,
 };
 ```
 

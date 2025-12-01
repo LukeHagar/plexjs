@@ -139,7 +139,7 @@ export type DeleteMediaItemRequest$Outbound = {
   Marketplace?: string | undefined;
   ids: string;
   mediaItem: string;
-  proxy?: number | undefined;
+  proxy: number;
 };
 
 /** @internal */
@@ -161,7 +161,7 @@ export const DeleteMediaItemRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   ids: z.string(),
   mediaItem: z.string(),
-  proxy: shared.BoolInt$outboundSchema.optional(),
+  proxy: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

@@ -137,7 +137,7 @@ export type DeleteMetadataItemRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   ids: string;
-  proxy?: number | undefined;
+  proxy: number;
 };
 
 /** @internal */
@@ -158,7 +158,7 @@ export const DeleteMetadataItemRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   ids: z.string(),
-  proxy: shared.BoolInt$outboundSchema.optional(),
+  proxy: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

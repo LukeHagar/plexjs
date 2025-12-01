@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetSectionHubsRequest = {
   sectionId: 905423,
-  onlyTransient: BoolInt.One,
+  onlyTransient: BoolInt.True,
 };
 ```
 

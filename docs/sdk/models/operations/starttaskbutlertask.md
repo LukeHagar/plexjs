@@ -1,13 +1,14 @@
-# StartTaskTask
+# StartTaskButlerTask
 
 The task name
 
 ## Example Usage
 
 ```typescript
-import { StartTaskTask } from "@lukehagar/plexjs/sdk/models/operations";
+import { StartTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
 
-let value: StartTaskTask = StartTaskTask.GenerateBlurHashes;
+let value: StartTaskButlerTask =
+  StartTaskButlerTask.ButlerTaskGenerateVoiceActivity;
 ```
 
 ## Values

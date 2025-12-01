@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetMetadataHubsRequest = {
   metadataId: 795565,
-  onlyTransient: BoolInt.One,
+  onlyTransient: BoolInt.True,
 };
 ```
 

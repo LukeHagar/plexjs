@@ -9,9 +9,9 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 let value: TranscodeImageRequest = {
   url: "/library/metadata/265/thumb/1715112705",
   background: "#ff5522",
-  upscale: BoolInt.One,
-  minSize: BoolInt.One,
-  rotate: BoolInt.One,
+  upscale: BoolInt.True,
+  minSize: BoolInt.True,
+  rotate: BoolInt.True,
   blendColor: "#ff5522",
 };
 ```

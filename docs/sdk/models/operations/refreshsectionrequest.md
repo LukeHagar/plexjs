@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: RefreshSectionRequest = {
   sectionId: 201663,
-  force: BoolInt.One,
+  force: BoolInt.True,
 };
 ```
 

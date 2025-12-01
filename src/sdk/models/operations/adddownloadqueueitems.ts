@@ -192,7 +192,7 @@ export type AddDownloadQueueItemsRequest = {
    *
    * @remarks
    */
-  protocol?: shared.Protocol | undefined;
+  protocol?: shared.ProtocolParameter | undefined;
   /**
    * Number of seconds to include in each transcoded segment
    */
@@ -301,13 +301,13 @@ export type AddDownloadQueueItemsRequest$Outbound = {
   advancedSubtitles?: string | undefined;
   audioBoost?: number | undefined;
   audioChannelCount?: number | undefined;
-  autoAdjustQuality?: number | undefined;
-  autoAdjustSubtitle?: number | undefined;
-  directPlay?: number | undefined;
-  directStream?: number | undefined;
-  directStreamAudio?: number | undefined;
-  disableResolutionRotation?: number | undefined;
-  hasMDE?: number | undefined;
+  autoAdjustQuality: number;
+  autoAdjustSubtitle: number;
+  directPlay: number;
+  directStream: number;
+  directStreamAudio: number;
+  disableResolutionRotation: number;
+  hasMDE: number;
   location?: string | undefined;
   mediaBufferSize?: number | undefined;
   mediaIndex?: number | undefined;
@@ -348,13 +348,21 @@ export const AddDownloadQueueItemsRequest$outboundSchema: z.ZodType<
   advancedSubtitles: shared.AdvancedSubtitles$outboundSchema.optional(),
   audioBoost: z.number().int().optional(),
   audioChannelCount: z.number().int().optional(),
-  autoAdjustQuality: shared.BoolInt$outboundSchema.optional(),
-  autoAdjustSubtitle: shared.BoolInt$outboundSchema.optional(),
-  directPlay: shared.BoolInt$outboundSchema.optional(),
-  directStream: shared.BoolInt$outboundSchema.optional(),
-  directStreamAudio: shared.BoolInt$outboundSchema.optional(),
-  disableResolutionRotation: shared.BoolInt$outboundSchema.optional(),
-  hasMDE: shared.BoolInt$outboundSchema.optional(),
+  autoAdjustQuality: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  autoAdjustSubtitle: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  directPlay: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  directStream: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  directStreamAudio: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  disableResolutionRotation: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
+  hasMDE: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   location: shared.LocationParameter$outboundSchema.optional(),
   mediaBufferSize: z.number().int().optional(),
   mediaIndex: z.number().int().optional(),
@@ -364,7 +372,7 @@ export const AddDownloadQueueItemsRequest$outboundSchema: z.ZodType<
   path: z.string().optional(),
   peakBitrate: z.number().int().optional(),
   photoResolution: z.string().optional(),
-  protocol: shared.Protocol$outboundSchema.optional(),
+  protocol: shared.ProtocolParameter$outboundSchema.optional(),
   secondsPerSegment: z.number().int().optional(),
   subtitleSize: z.number().int().optional(),
   subtitles: shared.Subtitles$outboundSchema.optional(),

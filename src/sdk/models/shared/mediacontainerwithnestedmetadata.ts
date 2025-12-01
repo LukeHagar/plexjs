@@ -9,6 +9,7 @@ import {
   safeParse,
 } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Filter, Filter$inboundSchema } from "./filter.js";
 import { Image, Image$inboundSchema } from "./image.js";
@@ -16,6 +17,15 @@ import { Items, Items$inboundSchema } from "./items.js";
 import { Media, Media$inboundSchema } from "./media.js";
 import { Sort, Sort$inboundSchema } from "./sort.js";
 import { Tag, Tag$inboundSchema } from "./tag.js";
+
+export type MediaContainerWithNestedMetadataGuid = {
+  /**
+   * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+   *
+   * @remarks
+   */
+  id: string;
+};
 
 /**
  * Items in a library are referred to as "metadata items." These metadata items are distinct from "media items" which represent actual instances of media that can be consumed. Consider a TV library that has a single video file in it for a particular episode of a show. The library has a single media item, but it has three metadata items: one for the show, one for the season, and one for the episode. Consider a movie library that has two video files in it: the same movie, but two different resolutions. The library has a single metadata item for the movie, but that metadata item has two media items, one for each resolution. Additionally a "media item" will have one or more "media parts" where the the parts are intended to be watched together, such as a CD1 and CD2 parts of the same movie.
@@ -30,11 +40,11 @@ export type MetadataItem = {
   /**
    * The title of the item (e.g. “300” or “The Simpsons”)
    */
-  title?: any | undefined;
+  title: string;
   /**
    * The type of the video item, such as `movie`, `episode`, or `clip`.
    */
-  type?: any | undefined;
+  type: string;
   /**
    * When present, contains the disc number for a track on multi-disc albums.
    */
@@ -42,11 +52,11 @@ export type MetadataItem = {
   /**
    * In units of seconds since the epoch, returns the time at which the item was added to the library.
    */
-  addedAt?: number | undefined;
+  addedAt: number;
   /**
    * When present, the URL for the background artwork for the item.
    */
-  art?: any | undefined;
+  art?: string | undefined;
   /**
    * Some rating systems separate reviewer ratings from audience ratings
    */
@@ -54,24 +64,28 @@ export type MetadataItem = {
   /**
    * A URI representing the image to be shown with the audience rating (e.g. rottentomatoes://image.rating.spilled).
    */
-  audienceRatingImage?: any | undefined;
+  audienceRatingImage?: string | undefined;
   autotag?: Array<Tag> | undefined;
   /**
    * When present, the URL for a banner graphic for the item.
    */
-  banner?: any | undefined;
+  banner?: string | undefined;
   /**
    * When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
    */
-  chapterSource?: any | undefined;
+  chapterSource?: string | undefined;
+  /**
+   * The number of child items associated with this media item.
+   */
+  childCount?: number | undefined;
   /**
    * When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
    */
-  composite?: any | undefined;
+  composite?: string | undefined;
   /**
    * If known, the content rating (e.g. MPAA) for an item.
    */
-  contentRating?: any | undefined;
+  contentRating?: string | undefined;
   country?: Array<Tag> | undefined;
   director?: Array<Tag> | undefined;
   /**
@@ -87,6 +101,10 @@ export type MetadataItem = {
    * The `art` of the grandparent
    */
   grandparentArt?: string | undefined;
+  /**
+   * The GUID of the grandparent media item.
+   */
+  grandparentGuid?: string | undefined;
   /**
    * The `hero` of the grandparent
    */
@@ -111,11 +129,15 @@ export type MetadataItem = {
    * The `title` of the grandparent
    */
   grandparentTitle?: string | undefined;
-  guid?: Array<Tag> | undefined;
+  /**
+   * The globally unique identifier for the media item.
+   */
+  guid?: string | undefined;
+  guids?: Array<MediaContainerWithNestedMetadataGuid> | undefined;
   /**
    * When present, the URL for a hero image for the item.
    */
-  hero?: any | undefined;
+  hero?: string | undefined;
   image?: Array<Image> | undefined;
   /**
    * When present, this represents the episode number for episodes, season number for seasons, or track number for audio tracks.
@@ -124,10 +146,7 @@ export type MetadataItem = {
   /**
    * The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
    */
-  key?: any | undefined;
-  /**
-   * When a user has watched or listened to an item, this contains a timestamp (epoch seconds) for that last consumption time.
-   */
+  key: string;
   lastViewedAt?: number | undefined;
   /**
    * For shows and seasons, contains the number of total episodes.
@@ -137,11 +156,15 @@ export type MetadataItem = {
   /**
    * When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
    */
-  originallyAvailableAt?: any | undefined;
+  originallyAvailableAt?: RFCDate | undefined;
   /**
    * When present, used to indicate an item's original title, e.g. a movie's foreign title.
    */
-  originalTitle?: any | undefined;
+  originalTitle?: string | undefined;
+  /**
+   * The GUID of the parent media item.
+   */
+  parentGuid?: string | undefined;
   /**
    * The `hero` of the parent
    */
@@ -169,7 +192,7 @@ export type MetadataItem = {
   /**
    * Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
    */
-  primaryExtraKey?: any | undefined;
+  primaryExtraKey?: string | undefined;
   /**
    * Prompt to give the user for this directory (such as `Search Movies`)
    */
@@ -186,11 +209,11 @@ export type MetadataItem = {
   /**
    * When present, indicates an image to be shown with the rating. This is passed back as a small set of defined URI values, e.g. rottentomatoes://image.rating.rotten.
    */
-  ratingImage?: any | undefined;
+  ratingImage?: string | undefined;
   /**
    * This is the opaque string to be passed into timeline, scrobble, and rating endpoints to identify them.  While it often appears to be numeric, this is not guaranteed.
    */
-  ratingKey?: any | undefined;
+  ratingKey?: string | undefined;
   role?: Array<Tag> | undefined;
   /**
    * Indicates this is a search directory
@@ -215,31 +238,31 @@ export type MetadataItem = {
   /**
    * When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
    */
-  studio?: any | undefined;
+  studio?: string | undefined;
   /**
    * The subtype of the video item, such as `photo` when the video item is in a photo library
    */
-  subtype?: any | undefined;
+  subtype?: string | undefined;
   /**
    * When present, the extended textual information about the item (e.g. movie plot, artist biography, album review).
    */
-  summary?: any | undefined;
+  summary?: string | undefined;
   /**
    * When present, a pithy one-liner about the item (usually only seen for movies).
    */
-  tagline?: any | undefined;
+  tagline?: string | undefined;
   /**
    * When present, the URL for theme music for the item (usually only for TV shows).
    */
-  theme?: any | undefined;
+  theme?: string | undefined;
   /**
    * When present, the URL for the poster or thumbnail for the item. When available for types like movie, it will be the poster graphic, but fall-back to the extracted media thumbnail.
    */
-  thumb?: any | undefined;
+  thumb?: string | undefined;
   /**
    * Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
    */
-  titleSort?: any | undefined;
+  titleSort?: string | undefined;
   /**
    * In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
    */
@@ -299,72 +322,98 @@ export type MediaContainerWithNestedMetadata = {
 };
 
 /** @internal */
+export const MediaContainerWithNestedMetadataGuid$inboundSchema: z.ZodType<
+  MediaContainerWithNestedMetadataGuid,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+});
+
+export function mediaContainerWithNestedMetadataGuidFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaContainerWithNestedMetadataGuid, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      MediaContainerWithNestedMetadataGuid$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaContainerWithNestedMetadataGuid' from JSON`,
+  );
+}
+
+/** @internal */
 export const MetadataItem$inboundSchema: z.ZodType<
   MetadataItem,
   z.ZodTypeDef,
   unknown
 > = collectExtraKeys$(
   z.object({
-    title: z.any().optional(),
-    type: z.any().optional(),
+    title: z.string(),
+    type: z.string(),
     absoluteIndex: z.number().int().optional(),
-    addedAt: z.number().int().optional(),
-    art: z.any().optional(),
+    addedAt: z.number().int(),
+    art: z.string().optional(),
     audienceRating: z.number().optional(),
-    audienceRatingImage: z.any().optional(),
+    audienceRatingImage: z.string().optional(),
     Autotag: z.array(Tag$inboundSchema).optional(),
-    banner: z.any().optional(),
-    chapterSource: z.any().optional(),
-    composite: z.any().optional(),
-    contentRating: z.any().optional(),
+    banner: z.string().optional(),
+    chapterSource: z.string().optional(),
+    childCount: z.number().int().optional(),
+    composite: z.string().optional(),
+    contentRating: z.string().optional(),
     Country: z.array(Tag$inboundSchema).optional(),
     Director: z.array(Tag$inboundSchema).optional(),
     duration: z.number().int().optional(),
     Filter: z.array(Filter$inboundSchema).optional(),
     Genre: z.array(Tag$inboundSchema).optional(),
     grandparentArt: z.string().optional(),
+    grandparentGuid: z.string().optional(),
     grandparentHero: z.string().optional(),
     grandparentKey: z.string().optional(),
     grandparentRatingKey: z.string().optional(),
     grandparentTheme: z.string().optional(),
     grandparentThumb: z.string().optional(),
     grandparentTitle: z.string().optional(),
-    Guid: z.array(Tag$inboundSchema).optional(),
-    hero: z.any().optional(),
+    guid: z.string().optional(),
+    Guid: z.array(
+      z.lazy(() => MediaContainerWithNestedMetadataGuid$inboundSchema),
+    ).optional(),
+    hero: z.string().optional(),
     Image: z.array(Image$inboundSchema).optional(),
     index: z.number().int().optional(),
-    key: z.any().optional(),
+    key: z.string(),
     lastViewedAt: z.number().int().optional(),
     leafCount: z.number().int().optional(),
     Media: z.array(Media$inboundSchema).optional(),
-    originallyAvailableAt: z.any().optional(),
-    originalTitle: z.any().optional(),
+    originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
+    originalTitle: z.string().optional(),
+    parentGuid: z.string().optional(),
     parentHero: z.string().optional(),
     parentIndex: z.number().int().optional(),
     parentKey: z.string().optional(),
     parentRatingKey: z.string().optional(),
     parentThumb: z.string().optional(),
     parentTitle: z.string().optional(),
-    primaryExtraKey: z.any().optional(),
+    primaryExtraKey: z.string().optional(),
     prompt: z.string().optional(),
     rating: z.number().optional(),
     Rating: z.array(Tag$inboundSchema).optional(),
     ratingCount: z.number().int().optional(),
-    ratingImage: z.any().optional(),
-    ratingKey: z.any().optional(),
+    ratingImage: z.string().optional(),
+    ratingKey: z.string().optional(),
     Role: z.array(Tag$inboundSchema).optional(),
     search: z.boolean().optional(),
     secondary: z.boolean().optional(),
     skipChildren: z.boolean().optional(),
     skipParent: z.boolean().optional(),
     Sort: z.array(Sort$inboundSchema).optional(),
-    studio: z.any().optional(),
-    subtype: z.any().optional(),
-    summary: z.any().optional(),
-    tagline: z.any().optional(),
-    theme: z.any().optional(),
-    thumb: z.any().optional(),
-    titleSort: z.any().optional(),
+    studio: z.string().optional(),
+    subtype: z.string().optional(),
+    summary: z.string().optional(),
+    tagline: z.string().optional(),
+    theme: z.string().optional(),
+    thumb: z.string().optional(),
+    titleSort: z.string().optional(),
     updatedAt: z.number().int().optional(),
     userRating: z.number().optional(),
     viewCount: z.number().int().optional(),
@@ -383,7 +432,7 @@ export const MetadataItem$inboundSchema: z.ZodType<
     "Director": "director",
     "Filter": "filter",
     "Genre": "genre",
-    "Guid": "guid",
+    "Guid": "guids",
     "Image": "image",
     "Media": "media",
     "Rating": "ratingArray",

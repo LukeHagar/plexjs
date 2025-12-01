@@ -1,11 +1,11 @@
-# Protocol
+# ProtocolParameter
 
 ## Example Usage
 
 ```typescript
-import { Protocol } from "@lukehagar/plexjs/sdk/models/shared";
+import { ProtocolParameter } from "@lukehagar/plexjs/sdk/models/shared";
 
-let value: Protocol = Protocol.Dash;
+let value: ProtocolParameter = ProtocolParameter.Dash;
 ```
 
 ## Values

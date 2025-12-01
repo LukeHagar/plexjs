@@ -106,9 +106,23 @@ export type VoiceSearchHubsRequest = {
    */
   query: string;
   /**
-   * The metadata type to filter by
+   * The type of media to retrieve or filter by.
+   *
+   * @remarks
+   *
+   * 1 = movie
+   * 2 = show
+   * 3 = season
+   * 4 = episode
+   * 5 = artist
+   * 6 = album
+   * 7 = track
+   * 8 = photo_album
+   * 9 = photo
+   *
+   * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type?: number | undefined;
+  type?: shared.MediaType | undefined;
   /**
    * The number of items to return per hub.  3 if not specified
    */
@@ -203,7 +217,7 @@ export const VoiceSearchHubsRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   query: z.string(),
-  type: z.number().int().optional(),
+  type: shared.MediaType$outboundSchema.optional(),
   limit: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {

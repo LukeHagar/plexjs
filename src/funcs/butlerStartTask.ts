@@ -86,13 +86,13 @@ async function $do(
   const body = null;
 
   const pathParams = {
-    task: encodeSimple("task", payload.task, {
+    butlerTask: encodeSimple("butlerTask", payload.butlerTask, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc("/butler/{task}")(pathParams);
+  const path = pathToFunc("/butler/{butlerTask}")(pathParams);
 
   const headers = new Headers(compactMap({
     Accept: "*/*",

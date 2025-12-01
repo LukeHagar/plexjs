@@ -7,7 +7,7 @@ import { GetAllHubsRequest } from "@lukehagar/plexjs/sdk/models/operations";
 import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetAllHubsRequest = {
-  onlyTransient: BoolInt.One,
+  onlyTransient: BoolInt.True,
 };
 ```
 

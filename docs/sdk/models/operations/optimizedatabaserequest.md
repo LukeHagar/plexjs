@@ -7,7 +7,7 @@ import { OptimizeDatabaseRequest } from "@lukehagar/plexjs/sdk/models/operations
 import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: OptimizeDatabaseRequest = {
-  async: BoolInt.One,
+  async: BoolInt.True,
 };
 ```
 

@@ -8,11 +8,11 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: CreatePlayQueueRequest = {
   type: CreatePlayQueueType.Audio,
-  shuffle: BoolInt.One,
-  repeat: BoolInt.One,
-  continuous: BoolInt.One,
-  recursive: BoolInt.One,
-  onDeck: BoolInt.One,
+  shuffle: BoolInt.True,
+  repeat: BoolInt.True,
+  continuous: BoolInt.True,
+  recursive: BoolInt.True,
+  onDeck: BoolInt.True,
 };
 ```
 

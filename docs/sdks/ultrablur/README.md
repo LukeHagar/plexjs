@@ -33,6 +33,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -69,6 +70,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -128,6 +130,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -138,7 +141,7 @@ async function run() {
     bottomLeft: "1c425d",
     width: 1920,
     height: 1080,
-    noise: BoolInt.One,
+    noise: BoolInt.True,
   });
 
   console.log(result);
@@ -170,6 +173,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -180,7 +184,7 @@ async function run() {
     bottomLeft: "1c425d",
     width: 1920,
     height: 1080,
-    noise: BoolInt.One,
+    noise: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;

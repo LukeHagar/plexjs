@@ -23,7 +23,9 @@ This endpoint will stop all currently running tasks and remove any scheduled tas
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-const plexAPI = new PlexAPI();
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const result = await plexAPI.butler.stopTasks();
@@ -44,7 +46,9 @@ import { butlerStopTasks } from "@lukehagar/plexjs/funcs/butlerStopTasks.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore();
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const res = await butlerStopTasks(plexAPI);
@@ -88,7 +92,9 @@ Get the list of butler tasks and their scheduling
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-const plexAPI = new PlexAPI();
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const result = await plexAPI.butler.getTasks();
@@ -109,7 +115,9 @@ import { butlerGetTasks } from "@lukehagar/plexjs/funcs/butlerGetTasks.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore();
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const res = await butlerGetTasks(plexAPI);
@@ -158,7 +166,9 @@ This endpoint will attempt to start all Butler tasks that are enabled in the set
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-const plexAPI = new PlexAPI();
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const result = await plexAPI.butler.startTasks();
@@ -179,7 +189,9 @@ import { butlerStartTasks } from "@lukehagar/plexjs/funcs/butlerStartTasks.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore();
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const res = await butlerStartTasks(plexAPI);
@@ -219,10 +231,10 @@ This endpoint will stop a currently running task by name, or remove it from the 
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="stopTask" method="delete" path="/butler/{task}" -->
+<!-- UsageSnippet language="typescript" operationID="stopTask" method="delete" path="/butler/{butlerTask}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { StopTaskTask } from "@lukehagar/plexjs/sdk/models/operations";
+import { StopTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
 import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
@@ -237,11 +249,12 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.butler.stopTask({
-    task: StopTaskTask.CleanOldBundles,
+    butlerTask: StopTaskButlerTask.CleanOldBundles,
   });
 
   console.log(result);
@@ -257,7 +270,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { butlerStopTask } from "@lukehagar/plexjs/funcs/butlerStopTask.js";
-import { StopTaskTask } from "@lukehagar/plexjs/sdk/models/operations";
+import { StopTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
 import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
@@ -274,11 +287,12 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await butlerStopTask(plexAPI, {
-    task: StopTaskTask.CleanOldBundles,
+    butlerTask: StopTaskButlerTask.CleanOldBundles,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -317,10 +331,10 @@ This endpoint will attempt to start a specific Butler task by name.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="startTask" method="post" path="/butler/{task}" -->
+<!-- UsageSnippet language="typescript" operationID="startTask" method="post" path="/butler/{butlerTask}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { StartTaskTask } from "@lukehagar/plexjs/sdk/models/operations";
+import { StartTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
 import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
@@ -335,11 +349,12 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.butler.startTask({
-    task: StartTaskTask.RefreshLocalMedia,
+    butlerTask: StartTaskButlerTask.RefreshLocalMedia,
   });
 
   console.log(result);
@@ -355,7 +370,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { butlerStartTask } from "@lukehagar/plexjs/funcs/butlerStartTask.js";
-import { StartTaskTask } from "@lukehagar/plexjs/sdk/models/operations";
+import { StartTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
 import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
@@ -372,11 +387,12 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await butlerStartTask(plexAPI, {
-    task: StartTaskTask.RefreshLocalMedia,
+    butlerTask: StartTaskButlerTask.RefreshLocalMedia,
   });
   if (res.ok) {
     const { value: result } = res;

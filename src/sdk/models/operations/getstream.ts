@@ -155,7 +155,7 @@ export type GetStreamRequest$Outbound = {
   ext: string;
   encoding?: string | undefined;
   format?: string | undefined;
-  autoAdjustSubtitle?: number | undefined;
+  autoAdjustSubtitle: number;
 };
 
 /** @internal */
@@ -179,7 +179,9 @@ export const GetStreamRequest$outboundSchema: z.ZodType<
   ext: z.string(),
   encoding: z.string().optional(),
   format: z.string().optional(),
-  autoAdjustSubtitle: shared.BoolInt$outboundSchema.optional(),
+  autoAdjustSubtitle: shared.BoolInt$outboundSchema.default(
+    shared.BoolInt.False,
+  ),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

@@ -21,23 +21,26 @@ export type Tag = {
   /**
    * A filter parameter that can be used to query for more content that matches this tag value.
    */
-  filter?: any | undefined;
+  filter?: string | undefined;
   id?: number | undefined;
+  /**
+   * The rating key (Media ID) of this media item. Note: Although this is always an integer, it is represented as a string in the API.
+   */
   ratingKey?: string | undefined;
   /**
    * The role this actor played
    */
-  role?: any | undefined;
+  role?: string | undefined;
   /**
    * The value of the tag (the name)
    */
-  tag?: any | undefined;
+  tag: string;
   /**
    * Plex identifier for this tag which can be used to fetch additional information from plex.tv
    */
-  tagKey?: any | undefined;
+  tagKey?: string | undefined;
   tagType?: number | undefined;
-  thumb?: any | undefined;
+  thumb?: string | undefined;
 };
 
 /** @internal */
@@ -45,14 +48,14 @@ export const Tag$inboundSchema: z.ZodType<Tag, z.ZodTypeDef, unknown> = z
   .object({
     confidence: z.number().optional(),
     context: z.string().optional(),
-    filter: z.any().optional(),
+    filter: z.string().optional(),
     id: z.number().int().optional(),
     ratingKey: z.string().optional(),
-    role: z.any().optional(),
-    tag: z.any().optional(),
-    tagKey: z.any().optional(),
+    role: z.string().optional(),
+    tag: z.string(),
+    tagKey: z.string().optional(),
     tagType: z.number().int().optional(),
-    thumb: z.any().optional(),
+    thumb: z.string().optional(),
   });
 
 export function tagFromJSON(

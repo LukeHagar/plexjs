@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetPostplayHubsRequest = {
   metadataId: 202749,
-  onlyTransient: BoolInt.One,
+  onlyTransient: BoolInt.True,
 };
 ```
 

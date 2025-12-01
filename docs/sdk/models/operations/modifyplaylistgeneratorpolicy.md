@@ -7,7 +7,7 @@ import { ModifyPlaylistGeneratorPolicy } from "@lukehagar/plexjs/sdk/models/oper
 import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: ModifyPlaylistGeneratorPolicy = {
-  unwatched: BoolInt.One,
+  unwatched: BoolInt.True,
 };
 ```
 

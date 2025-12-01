@@ -9,8 +9,8 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 let value: IngestTransientItemRequest = {
   url: "file:///storage%2Femulated%2F0%2FArcher-S01E01.mkv",
   virtualFilePath: "/Avatar.mkv",
-  computeHashes: BoolInt.One,
-  ingestNonMatches: BoolInt.One,
+  computeHashes: BoolInt.True,
+  ingestNonMatches: BoolInt.True,
 };
 ```
 

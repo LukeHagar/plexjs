@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: UploadPlaylistRequest = {
   path: "/home/barkley/playlist.m3u",
-  force: BoolInt.One,
+  force: BoolInt.True,
 };
 ```
 

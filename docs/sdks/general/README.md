@@ -35,6 +35,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -69,6 +70,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -113,7 +115,9 @@ Get details about this PMS's identity
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-const plexAPI = new PlexAPI();
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const result = await plexAPI.general.getIdentity();
@@ -134,7 +138,9 @@ import { generalGetIdentity } from "@lukehagar/plexjs/funcs/generalGetIdentity.j
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore();
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const res = await generalGetIdentity(plexAPI);
@@ -190,12 +196,13 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.general.getSourceConnectionInformation({
     source: "server://client-identifier",
-    refresh: BoolInt.One,
+    refresh: BoolInt.True,
   });
 
   console.log(result);
@@ -227,12 +234,13 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await generalGetSourceConnectionInformation(plexAPI, {
     source: "server://client-identifier",
-    refresh: BoolInt.One,
+    refresh: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -289,6 +297,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -327,6 +336,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {

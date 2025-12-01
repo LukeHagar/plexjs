@@ -198,7 +198,7 @@ export type GetSourceConnectionInformationRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   source: string;
-  refresh?: number | undefined;
+  refresh: number;
 };
 
 /** @internal */
@@ -219,7 +219,7 @@ export const GetSourceConnectionInformationRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   source: z.string(),
-  refresh: shared.BoolInt$outboundSchema.optional(),
+  refresh: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

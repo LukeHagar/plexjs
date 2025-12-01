@@ -36,12 +36,13 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.updater.applyUpdates({
-    tonight: BoolInt.One,
-    skip: BoolInt.One,
+    tonight: BoolInt.True,
+    skip: BoolInt.True,
   });
 
   console.log(result);
@@ -73,12 +74,13 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await updaterApplyUpdates(plexAPI, {
-    tonight: BoolInt.One,
-    skip: BoolInt.One,
+    tonight: BoolInt.True,
+    skip: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -133,11 +135,12 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.updater.checkUpdates({
-    download: BoolInt.One,
+    download: BoolInt.True,
   });
 
   console.log(result);
@@ -169,11 +172,12 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await updaterCheckUpdates(plexAPI, {
-    download: BoolInt.One,
+    download: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -215,7 +219,9 @@ Get the status of updating the server
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
 
-const plexAPI = new PlexAPI();
+const plexAPI = new PlexAPI({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const result = await plexAPI.updater.getUpdatesStatus();
@@ -236,7 +242,9 @@ import { updaterGetUpdatesStatus } from "@lukehagar/plexjs/funcs/updaterGetUpdat
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const plexAPI = new PlexAPICore();
+const plexAPI = new PlexAPICore({
+  token: "<YOUR_API_KEY_HERE>",
+});
 
 async function run() {
   const res = await updaterGetUpdatesStatus(plexAPI);

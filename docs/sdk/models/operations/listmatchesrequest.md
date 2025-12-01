@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: ListMatchesRequest = {
   ids: "<value>",
-  manual: BoolInt.One,
+  manual: BoolInt.True,
 };
 ```
 

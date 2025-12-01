@@ -8,8 +8,8 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: DetectCreditsRequest = {
   ids: "<value>",
-  force: BoolInt.One,
-  manual: BoolInt.One,
+  force: BoolInt.True,
+  manual: BoolInt.True,
 };
 ```
 

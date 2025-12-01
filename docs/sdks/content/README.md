@@ -44,6 +44,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -80,6 +81,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -139,19 +141,20 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.content.getMetadataItem({
     ids: [],
-    asyncCheckFiles: BoolInt.One,
-    asyncRefreshLocalMediaAgent: BoolInt.One,
-    asyncRefreshAnalysis: BoolInt.One,
-    checkFiles: BoolInt.One,
-    skipRefresh: BoolInt.One,
-    checkFileAvailability: BoolInt.One,
-    asyncAugmentMetadata: BoolInt.One,
-    augmentCount: BoolInt.One,
+    asyncCheckFiles: BoolInt.True,
+    asyncRefreshLocalMediaAgent: BoolInt.True,
+    asyncRefreshAnalysis: BoolInt.True,
+    checkFiles: BoolInt.True,
+    skipRefresh: BoolInt.True,
+    checkFileAvailability: BoolInt.True,
+    asyncAugmentMetadata: BoolInt.True,
+    augmentCount: BoolInt.True,
   });
 
   console.log(result);
@@ -183,19 +186,20 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await contentGetMetadataItem(plexAPI, {
     ids: [],
-    asyncCheckFiles: BoolInt.One,
-    asyncRefreshLocalMediaAgent: BoolInt.One,
-    asyncRefreshAnalysis: BoolInt.One,
-    checkFiles: BoolInt.One,
-    skipRefresh: BoolInt.One,
-    checkFileAvailability: BoolInt.One,
-    asyncAugmentMetadata: BoolInt.One,
-    augmentCount: BoolInt.One,
+    asyncCheckFiles: BoolInt.True,
+    asyncRefreshLocalMediaAgent: BoolInt.True,
+    asyncRefreshAnalysis: BoolInt.True,
+    checkFiles: BoolInt.True,
+    skipRefresh: BoolInt.True,
+    checkFileAvailability: BoolInt.True,
+    asyncAugmentMetadata: BoolInt.True,
+    augmentCount: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -250,6 +254,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -286,6 +291,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -331,7 +337,7 @@ Get the items in a section, potentially filtering them
 <!-- UsageSnippet language="typescript" operationID="listContent" method="get" path="/library/sections/{sectionId}/all" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, BoolInt, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -345,10 +351,18 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.content.listContent({
+    mediaQuery: {
+      type: MediaType.Episode,
+      sourceType: 2,
+      sort: "duration:desc,index",
+    },
+    includeMeta: BoolInt.True,
+    includeGuids: BoolInt.True,
     sectionId: "<id>",
   });
 
@@ -365,7 +379,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { contentListContent } from "@lukehagar/plexjs/funcs/contentListContent.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, BoolInt, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -381,10 +395,18 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await contentListContent(plexAPI, {
+    mediaQuery: {
+      type: MediaType.Episode,
+      sourceType: 2,
+      sort: "duration:desc,index",
+    },
+    includeMeta: BoolInt.True,
+    includeGuids: BoolInt.True,
     sectionId: "<id>",
   });
   if (res.ok) {
@@ -440,6 +462,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -476,6 +499,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -535,6 +559,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -571,6 +596,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -630,6 +656,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -666,6 +693,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -725,6 +753,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -761,6 +790,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -820,6 +850,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -858,6 +889,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -919,6 +951,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -955,6 +988,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -1014,6 +1048,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -1050,6 +1085,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -1109,6 +1145,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -1146,6 +1183,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -1206,6 +1244,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -1243,6 +1282,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {

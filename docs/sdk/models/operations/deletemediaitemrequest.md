@@ -9,7 +9,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 let value: DeleteMediaItemRequest = {
   ids: "<value>",
   mediaItem: "<value>",
-  proxy: BoolInt.One,
+  proxy: BoolInt.True,
 };
 ```
 

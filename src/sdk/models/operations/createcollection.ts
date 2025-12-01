@@ -118,9 +118,23 @@ export type CreateCollectionRequest = {
    */
   uri?: string | undefined;
   /**
-   * The metadata type to filter by
+   * The type of media to retrieve or filter by.
+   *
+   * @remarks
+   *
+   * 1 = movie
+   * 2 = show
+   * 3 = season
+   * 4 = episode
+   * 5 = artist
+   * 6 = album
+   * 7 = track
+   * 8 = photo_album
+   * 9 = photo
+   *
+   * E.g. A movie library will not return anything with type 3 as there are no seasons for movie libraries
    */
-  type?: number | undefined;
+  type?: shared.MediaType | undefined;
 };
 
 export type CreateCollectionResponse = {
@@ -183,7 +197,7 @@ export const CreateCollectionRequest$outboundSchema: z.ZodType<
   title: z.string().optional(),
   smart: z.boolean().optional(),
   uri: z.string().optional(),
-  type: z.number().int().optional(),
+  type: shared.MediaType$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

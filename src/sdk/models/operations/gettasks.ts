@@ -8,7 +8,7 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type ButlerTask = {
+export type GetTasksButlerTask = {
   /**
    * A user-friendly description of the task
    */
@@ -36,7 +36,7 @@ export type ButlerTask = {
 };
 
 export type ButlerTasks = {
-  butlerTask?: Array<ButlerTask> | undefined;
+  butlerTask?: Array<GetTasksButlerTask> | undefined;
 };
 
 /**
@@ -66,8 +66,8 @@ export type GetTasksResponse = {
 };
 
 /** @internal */
-export const ButlerTask$inboundSchema: z.ZodType<
-  ButlerTask,
+export const GetTasksButlerTask$inboundSchema: z.ZodType<
+  GetTasksButlerTask,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -79,13 +79,13 @@ export const ButlerTask$inboundSchema: z.ZodType<
   title: z.string().optional(),
 });
 
-export function butlerTaskFromJSON(
+export function getTasksButlerTaskFromJSON(
   jsonString: string,
-): SafeParseResult<ButlerTask, SDKValidationError> {
+): SafeParseResult<GetTasksButlerTask, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ButlerTask$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ButlerTask' from JSON`,
+    (x) => GetTasksButlerTask$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTasksButlerTask' from JSON`,
   );
 }
 
@@ -95,7 +95,8 @@ export const ButlerTasks$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  ButlerTask: z.array(z.lazy(() => ButlerTask$inboundSchema)).optional(),
+  ButlerTask: z.array(z.lazy(() => GetTasksButlerTask$inboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "ButlerTask": "butlerTask",

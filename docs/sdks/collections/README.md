@@ -18,7 +18,7 @@ Create a collection in the library
 <!-- UsageSnippet language="typescript" operationID="createCollection" method="post" path="/library/collections" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -32,11 +32,13 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.collections.createCollection({
     sectionId: "<id>",
+    type: MediaType.TvShow,
   });
 
   console.log(result);
@@ -52,7 +54,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { collectionsCreateCollection } from "@lukehagar/plexjs/funcs/collectionsCreateCollection.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -68,11 +70,13 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await collectionsCreateCollection(plexAPI, {
     sectionId: "<id>",
+    type: MediaType.TvShow,
   });
   if (res.ok) {
     const { value: result } = res;

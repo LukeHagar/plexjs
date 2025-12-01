@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetSourceConnectionInformationRequest = {
   source: "<value>",
-  refresh: BoolInt.One,
+  refresh: BoolInt.True,
 };
 ```
 

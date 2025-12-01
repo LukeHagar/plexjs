@@ -151,7 +151,7 @@ export type GetMediaPartRequest$Outbound = {
   partId: number;
   changestamp: number;
   filename: string;
-  download?: number | undefined;
+  download: number;
 };
 
 /** @internal */
@@ -174,7 +174,7 @@ export const GetMediaPartRequest$outboundSchema: z.ZodType<
   partId: z.number().int(),
   changestamp: z.number().int(),
   filename: z.string(),
-  download: shared.BoolInt$outboundSchema.optional(),
+  download: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

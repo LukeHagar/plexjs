@@ -7,8 +7,8 @@ import { ApplyUpdatesRequest } from "@lukehagar/plexjs/sdk/models/operations";
 import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: ApplyUpdatesRequest = {
-  tonight: BoolInt.One,
-  skip: BoolInt.One,
+  tonight: BoolInt.True,
+  skip: BoolInt.True,
 };
 ```
 

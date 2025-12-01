@@ -148,8 +148,8 @@ export type AddSubtitlesRequest$Outbound = {
   mediaItemID?: number | undefined;
   url?: string | undefined;
   format?: string | undefined;
-  forced?: number | undefined;
-  hearingImpaired?: number | undefined;
+  forced: number;
+  hearingImpaired: number;
 };
 
 /** @internal */
@@ -175,8 +175,8 @@ export const AddSubtitlesRequest$outboundSchema: z.ZodType<
   mediaItemID: z.number().int().optional(),
   url: z.string().optional(),
   format: z.string().optional(),
-  forced: shared.BoolInt$outboundSchema.optional(),
-  hearingImpaired: shared.BoolInt$outboundSchema.optional(),
+  forced: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  hearingImpaired: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

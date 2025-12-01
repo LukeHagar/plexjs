@@ -9,11 +9,21 @@ import {
   safeParse,
 } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Filter, Filter$inboundSchema } from "./filter.js";
 import { Image, Image$inboundSchema } from "./image.js";
 import { Sort, Sort$inboundSchema } from "./sort.js";
 import { Tag, Tag$inboundSchema } from "./tag.js";
+
+export type MediaContainerWithDecisionGuid = {
+  /**
+   * The unique identifier for the Guid. Can be prefixed with imdb://, tmdb://, tvdb://
+   *
+   * @remarks
+   */
+  id: string;
+};
 
 export enum StreamDecision {
   Copy = "copy",
@@ -41,55 +51,200 @@ export enum MediaContainerWithDecisionLocation {
  * @remarks
  */
 export type MediaContainerWithDecisionStream = {
+  /**
+   * Indicates if this stream is default.
+   */
   default?: boolean | undefined;
-  audioChannelLayout?: any | undefined;
+  /**
+   * Audio channel layout.
+   */
+  audioChannelLayout?: string | undefined;
+  /**
+   * Number of audio channels (for audio streams).
+   */
+  channels?: number | undefined;
+  /**
+   * Bit depth of the video stream.
+   */
   bitDepth?: number | undefined;
+  /**
+   * Dolby Vision BL compatibility ID.
+   */
+  doviblCompatID?: number | undefined;
+  /**
+   * Indicates if Dolby Vision BL is present.
+   */
+  doviblPresent?: boolean | undefined;
+  /**
+   * Indicates if Dolby Vision EL is present.
+   */
+  dovielPresent?: boolean | undefined;
+  /**
+   * Dolby Vision level.
+   */
+  doviLevel?: number | undefined;
+  /**
+   * Indicates if Dolby Vision is present.
+   */
+  doviPresent?: boolean | undefined;
+  /**
+   * Dolby Vision profile.
+   */
+  doviProfile?: number | undefined;
+  /**
+   * Indicates if Dolby Vision RPU is present.
+   */
+  dovirpuPresent?: boolean | undefined;
+  /**
+   * Dolby Vision version.
+   */
+  doviVersion?: string | undefined;
+  /**
+   * Bitrate of the stream.
+   */
   bitrate?: number | undefined;
   /**
-   * For subtitle streams only. If `true` then the server can attempt to automatically sync the subtitle timestamps with the video.
+   * Indicates if the stream can auto-sync.
    */
   canAutoSync?: boolean | undefined;
-  chromaLocation?: any | undefined;
-  chromaSubsampling?: any | undefined;
   /**
-   * The codec of the stream, such as `h264` or `aac`
+   * Chroma sample location.
    */
-  codec?: any | undefined;
-  colorPrimaries?: any | undefined;
-  colorRange?: any | undefined;
-  colorSpace?: any | undefined;
-  colorTrc?: any | undefined;
+  chromaLocation?: string | undefined;
   /**
-   * A friendly name for the stream, often comprised of the language and codec information
+   * Chroma subsampling format.
    */
-  displayTitle?: any | undefined;
+  chromaSubsampling?: string | undefined;
+  /**
+   * Coded video height.
+   */
+  codedHeight?: number | undefined;
+  /**
+   * Coded video width.
+   */
+  codedWidth?: number | undefined;
+  closedCaptions?: boolean | undefined;
+  /**
+   * Codec used by the stream.
+   */
+  codec: string;
+  /**
+   * Color primaries used.
+   */
+  colorPrimaries?: string | undefined;
+  /**
+   * Color range (e.g., tv).
+   */
+  colorRange?: string | undefined;
+  /**
+   * Color space.
+   */
+  colorSpace?: string | undefined;
+  /**
+   * Color transfer characteristics.
+   */
+  colorTrc?: string | undefined;
+  /**
+   * Display title for the stream.
+   */
+  displayTitle: string;
+  /**
+   * Extended display title for the stream.
+   */
+  extendedDisplayTitle?: string | undefined;
+  /**
+   * Frame rate of the stream.
+   */
   frameRate?: number | undefined;
-  hasScalingMatrix?: any | undefined;
-  height?: number | undefined;
-  id?: number | undefined;
+  hasScalingMatrix?: boolean | undefined;
   /**
-   * If the stream is part of the `Part` and not an external resource, the index of the stream within that part
+   * Height of the video stream.
+   */
+  height?: number | undefined;
+  /**
+   * Unique stream identifier.
+   */
+  id: number;
+  /**
+   * Index of the stream.
    */
   index?: number | undefined;
   /**
-   * If the stream is independently streamable, the key from which it can be streamed
+   * Key to access this stream part.
    */
-  key?: any | undefined;
-  language?: any | undefined;
+  key: string;
   /**
-   * The three character language code for the stream contents
+   * Language of the stream.
    */
-  languageCode?: any | undefined;
+  language?: string | undefined;
+  /**
+   * ISO language code.
+   */
+  languageCode?: string | undefined;
+  /**
+   * Language tag (e.g., en).
+   */
+  languageTag?: string | undefined;
+  /**
+   * Format of the stream (e.g., srt).
+   */
+  format?: string | undefined;
+  /**
+   * Indicates whether header compression is enabled.
+   */
+  headerCompression?: boolean | undefined;
+  /**
+   * Video level.
+   */
   level?: number | undefined;
-  profile?: any | undefined;
+  /**
+   * Indicates if this is the original stream.
+   */
+  original?: boolean | undefined;
+  /**
+   * Video profile.
+   */
+  profile?: string | undefined;
+  /**
+   * Number of reference frames.
+   */
   refFrames?: number | undefined;
+  /**
+   * Sampling rate for the audio stream.
+   */
   samplingRate?: number | undefined;
+  scanType?: string | undefined;
+  embeddedInVideo?: string | undefined;
+  /**
+   * Indicates if this stream is selected (applicable for audio streams).
+   */
   selected?: boolean | undefined;
+  forced?: boolean | undefined;
+  /**
+   * Indicates if the stream is for the hearing impaired.
+   */
+  hearingImpaired?: boolean | undefined;
+  /**
+   * Indicates if the stream is a dub.
+   */
+  dub?: boolean | undefined;
+  /**
+   * Optional title for the stream (e.g., language variant).
+   */
+  title?: string | undefined;
   streamIdentifier?: number | undefined;
   /**
-   * A number indicating the type of the stream. `1` for video, `2` for audio, `3` for subtitles, `4` for lyrics
+   * Stream type:
+   *
+   * @remarks
+   *   - VIDEO = 1
+   *   - AUDIO = 2
+   *   - SUBTITLE = 3
    */
-  streamType?: number | undefined;
+  streamType?: 1 | undefined;
+  /**
+   * Width of the video stream.
+   */
   width?: number | undefined;
   decision?: StreamDecision | undefined;
   location?: MediaContainerWithDecisionLocation | undefined;
@@ -108,32 +263,41 @@ export enum Decision {
  * @remarks
  */
 export type MediaContainerWithDecisionPart = {
-  audioProfile?: any | undefined;
+  /**
+   * Indicates if the part is accessible.
+   */
+  accessible?: boolean | undefined;
+  audioProfile?: string | undefined;
   /**
    * The container of the media file, such as `mp4` or `mkv`
    */
-  container?: any | undefined;
+  container?: string | undefined;
   /**
    * The duration of the media item, in milliseconds
    */
   duration?: number | undefined;
   /**
+   * Indicates if the part exists.
+   */
+  exists?: boolean | undefined;
+  /**
    * The local file path at which the part is stored on the server
    */
-  file?: any | undefined;
+  file?: string | undefined;
   has64bitOffsets?: boolean | undefined;
-  id?: number | undefined;
+  id: number;
+  indexes?: string | undefined;
   /**
    * The key from which the media can be streamed
    */
-  key?: any | undefined;
+  key: string;
   optimizedForStreaming?: boolean | undefined;
   /**
    * The size of the media, in bytes
    */
   size?: number | undefined;
   stream?: Array<MediaContainerWithDecisionStream> | undefined;
-  videoProfile?: any | undefined;
+  videoProfile?: string | undefined;
   decision?: Decision | undefined;
   selected?: boolean | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
@@ -147,21 +311,21 @@ export type MediaContainerWithDecisionPart = {
 export type MediaContainerWithDecisionMedia = {
   aspectRatio?: number | undefined;
   audioChannels?: number | undefined;
-  audioCodec?: any | undefined;
-  audioProfile?: any | undefined;
+  audioCodec?: string | undefined;
+  audioProfile?: string | undefined;
   bitrate?: number | undefined;
-  container?: any | undefined;
+  container?: string | undefined;
   duration?: number | undefined;
   has64bitOffsets?: boolean | undefined;
   hasVoiceActivity?: boolean | undefined;
   height?: number | undefined;
-  id?: number | undefined;
+  id: number;
   optimizedForStreaming?: boolean | undefined;
   part?: Array<MediaContainerWithDecisionPart> | undefined;
-  videoCodec?: any | undefined;
-  videoFrameRate?: any | undefined;
-  videoProfile?: any | undefined;
-  videoResolution?: any | undefined;
+  videoCodec?: string | undefined;
+  videoFrameRate?: string | undefined;
+  videoProfile?: string | undefined;
+  videoResolution?: string | undefined;
   width?: number | undefined;
   abr?: boolean | undefined;
   resourceSession?: string | undefined;
@@ -182,11 +346,11 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * The title of the item (e.g. “300” or “The Simpsons”)
    */
-  title?: any | undefined;
+  title: string;
   /**
    * The type of the video item, such as `movie`, `episode`, or `clip`.
    */
-  type?: any | undefined;
+  type: string;
   /**
    * When present, contains the disc number for a track on multi-disc albums.
    */
@@ -194,11 +358,11 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * In units of seconds since the epoch, returns the time at which the item was added to the library.
    */
-  addedAt?: number | undefined;
+  addedAt: number;
   /**
    * When present, the URL for the background artwork for the item.
    */
-  art?: any | undefined;
+  art?: string | undefined;
   /**
    * Some rating systems separate reviewer ratings from audience ratings
    */
@@ -206,24 +370,28 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * A URI representing the image to be shown with the audience rating (e.g. rottentomatoes://image.rating.spilled).
    */
-  audienceRatingImage?: any | undefined;
+  audienceRatingImage?: string | undefined;
   autotag?: Array<Tag> | undefined;
   /**
    * When present, the URL for a banner graphic for the item.
    */
-  banner?: any | undefined;
+  banner?: string | undefined;
   /**
    * When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
    */
-  chapterSource?: any | undefined;
+  chapterSource?: string | undefined;
+  /**
+   * The number of child items associated with this media item.
+   */
+  childCount?: number | undefined;
   /**
    * When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
    */
-  composite?: any | undefined;
+  composite?: string | undefined;
   /**
    * If known, the content rating (e.g. MPAA) for an item.
    */
-  contentRating?: any | undefined;
+  contentRating?: string | undefined;
   country?: Array<Tag> | undefined;
   director?: Array<Tag> | undefined;
   /**
@@ -239,6 +407,10 @@ export type MediaContainerWithDecisionMetadatum = {
    * The `art` of the grandparent
    */
   grandparentArt?: string | undefined;
+  /**
+   * The GUID of the grandparent media item.
+   */
+  grandparentGuid?: string | undefined;
   /**
    * The `hero` of the grandparent
    */
@@ -263,11 +435,15 @@ export type MediaContainerWithDecisionMetadatum = {
    * The `title` of the grandparent
    */
   grandparentTitle?: string | undefined;
-  guid?: Array<Tag> | undefined;
+  /**
+   * The globally unique identifier for the media item.
+   */
+  guid?: string | undefined;
+  guids?: Array<MediaContainerWithDecisionGuid> | undefined;
   /**
    * When present, the URL for a hero image for the item.
    */
-  hero?: any | undefined;
+  hero?: string | undefined;
   image?: Array<Image> | undefined;
   /**
    * When present, this represents the episode number for episodes, season number for seasons, or track number for audio tracks.
@@ -276,10 +452,7 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * The key at which the item's details can be fetched.  In many cases a metadata item may be passed without all the details (such as in a hub) and this key corresponds to the endpoint to fetch additional details.
    */
-  key?: any | undefined;
-  /**
-   * When a user has watched or listened to an item, this contains a timestamp (epoch seconds) for that last consumption time.
-   */
+  key: string;
   lastViewedAt?: number | undefined;
   /**
    * For shows and seasons, contains the number of total episodes.
@@ -289,11 +462,15 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * When present, in the format YYYY-MM-DD [HH:MM:SS] (the hours/minutes/seconds part is not always present). The air date, or a higher resolution release date for an item, depending on type. For example, episodes usually have air date like 1979-08-10 (we don't use epoch seconds because media existed prior to 1970). In some cases, recorded over-the-air content has higher resolution air date which includes a time component. Albums and movies may have day-resolution release dates as well.
    */
-  originallyAvailableAt?: any | undefined;
+  originallyAvailableAt?: RFCDate | undefined;
   /**
    * When present, used to indicate an item's original title, e.g. a movie's foreign title.
    */
-  originalTitle?: any | undefined;
+  originalTitle?: string | undefined;
+  /**
+   * The GUID of the parent media item.
+   */
+  parentGuid?: string | undefined;
   /**
    * The `hero` of the parent
    */
@@ -321,7 +498,7 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * Indicates that the item has a primary extra; for a movie, this is a trailer, and for a music track it is a music video. The URL points to the metadata details endpoint for the item.
    */
-  primaryExtraKey?: any | undefined;
+  primaryExtraKey?: string | undefined;
   /**
    * Prompt to give the user for this directory (such as `Search Movies`)
    */
@@ -338,11 +515,11 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * When present, indicates an image to be shown with the rating. This is passed back as a small set of defined URI values, e.g. rottentomatoes://image.rating.rotten.
    */
-  ratingImage?: any | undefined;
+  ratingImage?: string | undefined;
   /**
    * This is the opaque string to be passed into timeline, scrobble, and rating endpoints to identify them.  While it often appears to be numeric, this is not guaranteed.
    */
-  ratingKey?: any | undefined;
+  ratingKey?: string | undefined;
   role?: Array<Tag> | undefined;
   /**
    * Indicates this is a search directory
@@ -367,31 +544,31 @@ export type MediaContainerWithDecisionMetadatum = {
   /**
    * When present, the studio or label which produced an item (e.g. movie studio for movies, record label for albums).
    */
-  studio?: any | undefined;
+  studio?: string | undefined;
   /**
    * The subtype of the video item, such as `photo` when the video item is in a photo library
    */
-  subtype?: any | undefined;
+  subtype?: string | undefined;
   /**
    * When present, the extended textual information about the item (e.g. movie plot, artist biography, album review).
    */
-  summary?: any | undefined;
+  summary?: string | undefined;
   /**
    * When present, a pithy one-liner about the item (usually only seen for movies).
    */
-  tagline?: any | undefined;
+  tagline?: string | undefined;
   /**
    * When present, the URL for theme music for the item (usually only for TV shows).
    */
-  theme?: any | undefined;
+  theme?: string | undefined;
   /**
    * When present, the URL for the poster or thumbnail for the item. When available for types like movie, it will be the poster graphic, but fall-back to the extracted media thumbnail.
    */
-  thumb?: any | undefined;
+  thumb?: string | undefined;
   /**
    * Whene present, this is the string used for sorting the item. It's usually the title with any leading articles removed (e.g. “Simpsons”).
    */
-  titleSort?: any | undefined;
+  titleSort?: string | undefined;
   /**
    * In units of seconds since the epoch, returns the time at which the item was last changed (e.g. had its metadata updated).
    */
@@ -478,6 +655,25 @@ export type MediaContainerWithDecision = {
 };
 
 /** @internal */
+export const MediaContainerWithDecisionGuid$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionGuid,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+});
+
+export function mediaContainerWithDecisionGuidFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaContainerWithDecisionGuid, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MediaContainerWithDecisionGuid$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaContainerWithDecisionGuid' from JSON`,
+  );
+}
+
+/** @internal */
 export const StreamDecision$inboundSchema: z.ZodNativeEnum<
   typeof StreamDecision
 > = z.nativeEnum(StreamDecision);
@@ -495,40 +691,74 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
 > = collectExtraKeys$(
   z.object({
     default: z.boolean().optional(),
-    audioChannelLayout: z.any().optional(),
+    audioChannelLayout: z.string().optional(),
+    channels: z.number().int().optional(),
     bitDepth: z.number().int().optional(),
+    DOVIBLCompatID: z.number().int().optional(),
+    DOVIBLPresent: z.boolean().optional(),
+    DOVIELPresent: z.boolean().optional(),
+    DOVILevel: z.number().int().optional(),
+    DOVIPresent: z.boolean().optional(),
+    DOVIProfile: z.number().int().optional(),
+    DOVIRPUPresent: z.boolean().optional(),
+    DOVIVersion: z.string().optional(),
     bitrate: z.number().int().optional(),
     canAutoSync: z.boolean().optional(),
-    chromaLocation: z.any().optional(),
-    chromaSubsampling: z.any().optional(),
-    codec: z.any().optional(),
-    colorPrimaries: z.any().optional(),
-    colorRange: z.any().optional(),
-    colorSpace: z.any().optional(),
-    colorTrc: z.any().optional(),
-    displayTitle: z.any().optional(),
+    chromaLocation: z.string().optional(),
+    chromaSubsampling: z.string().optional(),
+    codedHeight: z.number().int().optional(),
+    codedWidth: z.number().int().optional(),
+    closedCaptions: z.boolean().optional(),
+    codec: z.string(),
+    colorPrimaries: z.string().optional(),
+    colorRange: z.string().optional(),
+    colorSpace: z.string().optional(),
+    colorTrc: z.string().optional(),
+    displayTitle: z.string(),
+    extendedDisplayTitle: z.string().optional(),
     frameRate: z.number().optional(),
-    hasScalingMatrix: z.any().optional(),
+    hasScalingMatrix: z.boolean().optional(),
     height: z.number().int().optional(),
-    id: z.number().int().optional(),
+    id: z.number().int(),
     index: z.number().int().optional(),
-    key: z.any().optional(),
-    language: z.any().optional(),
-    languageCode: z.any().optional(),
+    key: z.string(),
+    language: z.string().optional(),
+    languageCode: z.string().optional(),
+    languageTag: z.string().optional(),
+    format: z.string().optional(),
+    headerCompression: z.boolean().optional(),
     level: z.number().int().optional(),
-    profile: z.any().optional(),
+    original: z.boolean().optional(),
+    profile: z.string().optional(),
     refFrames: z.number().int().optional(),
     samplingRate: z.number().int().optional(),
+    scanType: z.string().optional(),
+    embeddedInVideo: z.string().optional(),
     selected: z.boolean().optional(),
+    forced: z.boolean().optional(),
+    hearingImpaired: z.boolean().optional(),
+    dub: z.boolean().optional(),
+    title: z.string().optional(),
     streamIdentifier: z.number().int().optional(),
-    streamType: z.number().int().optional(),
+    streamType: z.literal(1).default(1).optional(),
     width: z.number().int().optional(),
     decision: StreamDecision$inboundSchema.optional(),
     location: MediaContainerWithDecisionLocation$inboundSchema.optional(),
   }).catchall(z.any()),
   "additionalProperties",
   true,
-);
+).transform((v) => {
+  return remap$(v, {
+    "DOVIBLCompatID": "doviblCompatID",
+    "DOVIBLPresent": "doviblPresent",
+    "DOVIELPresent": "dovielPresent",
+    "DOVILevel": "doviLevel",
+    "DOVIPresent": "doviPresent",
+    "DOVIProfile": "doviProfile",
+    "DOVIRPUPresent": "dovirpuPresent",
+    "DOVIVersion": "doviVersion",
+  });
+});
 
 export function mediaContainerWithDecisionStreamFromJSON(
   jsonString: string,
@@ -551,19 +781,22 @@ export const MediaContainerWithDecisionPart$inboundSchema: z.ZodType<
   unknown
 > = collectExtraKeys$(
   z.object({
-    audioProfile: z.any().optional(),
-    container: z.any().optional(),
+    accessible: z.boolean().optional(),
+    audioProfile: z.string().optional(),
+    container: z.string().optional(),
     duration: z.number().int().optional(),
-    file: z.any().optional(),
+    exists: z.boolean().optional(),
+    file: z.string().optional(),
     has64bitOffsets: z.boolean().optional(),
-    id: z.number().int().optional(),
-    key: z.any().optional(),
+    id: z.number().int(),
+    indexes: z.string().optional(),
+    key: z.string(),
     optimizedForStreaming: z.boolean().optional(),
     size: z.number().int().optional(),
     Stream: z.array(
       z.lazy(() => MediaContainerWithDecisionStream$inboundSchema),
     ).optional(),
-    videoProfile: z.any().optional(),
+    videoProfile: z.string().optional(),
     decision: Decision$inboundSchema.optional(),
     selected: z.boolean().optional(),
   }).catchall(z.any()),
@@ -594,22 +827,22 @@ export const MediaContainerWithDecisionMedia$inboundSchema: z.ZodType<
   z.object({
     aspectRatio: z.number().optional(),
     audioChannels: z.number().int().optional(),
-    audioCodec: z.any().optional(),
-    audioProfile: z.any().optional(),
+    audioCodec: z.string().optional(),
+    audioProfile: z.string().optional(),
     bitrate: z.number().int().optional(),
-    container: z.any().optional(),
+    container: z.string().optional(),
     duration: z.number().int().optional(),
     has64bitOffsets: z.boolean().optional(),
     hasVoiceActivity: z.boolean().optional(),
     height: z.number().int().optional(),
-    id: z.number().int().optional(),
+    id: z.number().int(),
     optimizedForStreaming: z.boolean().optional(),
     Part: z.array(z.lazy(() => MediaContainerWithDecisionPart$inboundSchema))
       .optional(),
-    videoCodec: z.any().optional(),
-    videoFrameRate: z.any().optional(),
-    videoProfile: z.any().optional(),
-    videoResolution: z.any().optional(),
+    videoCodec: z.string().optional(),
+    videoFrameRate: z.string().optional(),
+    videoProfile: z.string().optional(),
+    videoResolution: z.string().optional(),
     width: z.number().int().optional(),
     abr: z.boolean().optional(),
     resourceSession: z.string().optional(),
@@ -640,67 +873,72 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
   unknown
 > = collectExtraKeys$(
   z.object({
-    title: z.any().optional(),
-    type: z.any().optional(),
+    title: z.string(),
+    type: z.string(),
     absoluteIndex: z.number().int().optional(),
-    addedAt: z.number().int().optional(),
-    art: z.any().optional(),
+    addedAt: z.number().int(),
+    art: z.string().optional(),
     audienceRating: z.number().optional(),
-    audienceRatingImage: z.any().optional(),
+    audienceRatingImage: z.string().optional(),
     Autotag: z.array(Tag$inboundSchema).optional(),
-    banner: z.any().optional(),
-    chapterSource: z.any().optional(),
-    composite: z.any().optional(),
-    contentRating: z.any().optional(),
+    banner: z.string().optional(),
+    chapterSource: z.string().optional(),
+    childCount: z.number().int().optional(),
+    composite: z.string().optional(),
+    contentRating: z.string().optional(),
     Country: z.array(Tag$inboundSchema).optional(),
     Director: z.array(Tag$inboundSchema).optional(),
     duration: z.number().int().optional(),
     Filter: z.array(Filter$inboundSchema).optional(),
     Genre: z.array(Tag$inboundSchema).optional(),
     grandparentArt: z.string().optional(),
+    grandparentGuid: z.string().optional(),
     grandparentHero: z.string().optional(),
     grandparentKey: z.string().optional(),
     grandparentRatingKey: z.string().optional(),
     grandparentTheme: z.string().optional(),
     grandparentThumb: z.string().optional(),
     grandparentTitle: z.string().optional(),
-    Guid: z.array(Tag$inboundSchema).optional(),
-    hero: z.any().optional(),
+    guid: z.string().optional(),
+    Guid: z.array(z.lazy(() => MediaContainerWithDecisionGuid$inboundSchema))
+      .optional(),
+    hero: z.string().optional(),
     Image: z.array(Image$inboundSchema).optional(),
     index: z.number().int().optional(),
-    key: z.any().optional(),
+    key: z.string(),
     lastViewedAt: z.number().int().optional(),
     leafCount: z.number().int().optional(),
     Media: z.array(z.lazy(() => MediaContainerWithDecisionMedia$inboundSchema))
       .optional(),
-    originallyAvailableAt: z.any().optional(),
-    originalTitle: z.any().optional(),
+    originallyAvailableAt: z.string().transform(v => new RFCDate(v)).optional(),
+    originalTitle: z.string().optional(),
+    parentGuid: z.string().optional(),
     parentHero: z.string().optional(),
     parentIndex: z.number().int().optional(),
     parentKey: z.string().optional(),
     parentRatingKey: z.string().optional(),
     parentThumb: z.string().optional(),
     parentTitle: z.string().optional(),
-    primaryExtraKey: z.any().optional(),
+    primaryExtraKey: z.string().optional(),
     prompt: z.string().optional(),
     rating: z.number().optional(),
     Rating: z.array(Tag$inboundSchema).optional(),
     ratingCount: z.number().int().optional(),
-    ratingImage: z.any().optional(),
-    ratingKey: z.any().optional(),
+    ratingImage: z.string().optional(),
+    ratingKey: z.string().optional(),
     Role: z.array(Tag$inboundSchema).optional(),
     search: z.boolean().optional(),
     secondary: z.boolean().optional(),
     skipChildren: z.boolean().optional(),
     skipParent: z.boolean().optional(),
     Sort: z.array(Sort$inboundSchema).optional(),
-    studio: z.any().optional(),
-    subtype: z.any().optional(),
-    summary: z.any().optional(),
-    tagline: z.any().optional(),
-    theme: z.any().optional(),
-    thumb: z.any().optional(),
-    titleSort: z.any().optional(),
+    studio: z.string().optional(),
+    subtype: z.string().optional(),
+    summary: z.string().optional(),
+    tagline: z.string().optional(),
+    theme: z.string().optional(),
+    thumb: z.string().optional(),
+    titleSort: z.string().optional(),
     updatedAt: z.number().int().optional(),
     userRating: z.number().optional(),
     viewCount: z.number().int().optional(),
@@ -718,7 +956,7 @@ export const MediaContainerWithDecisionMetadatum$inboundSchema: z.ZodType<
     "Director": "director",
     "Filter": "filter",
     "Genre": "genre",
-    "Guid": "guid",
+    "Guid": "guids",
     "Image": "image",
     "Media": "media",
     "Rating": "ratingArray",

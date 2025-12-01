@@ -9,7 +9,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 let value: GetStreamRequest = {
   streamId: 471434,
   ext: "<value>",
-  autoAdjustSubtitle: BoolInt.One,
+  autoAdjustSubtitle: BoolInt.True,
 };
 ```
 

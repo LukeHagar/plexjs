@@ -7,7 +7,7 @@ import { CheckUpdatesRequest } from "@lukehagar/plexjs/sdk/models/operations";
 import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: CheckUpdatesRequest = {
-  download: BoolInt.One,
+  download: BoolInt.True,
 };
 ```
 

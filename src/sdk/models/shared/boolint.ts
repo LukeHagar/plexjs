@@ -5,8 +5,8 @@
 import * as z from "zod/v3";
 
 export enum BoolInt {
-  Zero = 0,
-  One = 1,
+  False = 0,
+  True = 1,
 }
 
 /** @internal */

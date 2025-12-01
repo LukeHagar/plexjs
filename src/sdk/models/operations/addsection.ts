@@ -204,8 +204,8 @@ export type AddSectionRequest$Outbound = {
   language: string;
   locations?: Array<string> | undefined;
   prefs?: AddSectionPrefs$Outbound | undefined;
-  relative?: number | undefined;
-  importFromiTunes?: number | undefined;
+  relative: number;
+  importFromiTunes: number;
 };
 
 /** @internal */
@@ -233,8 +233,8 @@ export const AddSectionRequest$outboundSchema: z.ZodType<
   language: z.string(),
   locations: z.array(z.string()).optional(),
   prefs: z.lazy(() => AddSectionPrefs$outboundSchema).optional(),
-  relative: shared.BoolInt$outboundSchema.optional(),
-  importFromiTunes: shared.BoolInt$outboundSchema.optional(),
+  relative: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  importFromiTunes: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

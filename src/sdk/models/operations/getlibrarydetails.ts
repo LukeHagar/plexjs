@@ -176,7 +176,7 @@ export type GetLibraryDetailsRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   sectionId: string;
-  includeDetails?: number | undefined;
+  includeDetails: number;
 };
 
 /** @internal */
@@ -197,7 +197,7 @@ export const GetLibraryDetailsRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   sectionId: z.string(),
-  includeDetails: shared.BoolInt$outboundSchema.optional(),
+  includeDetails: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

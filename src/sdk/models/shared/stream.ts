@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
   safeParse,
@@ -16,55 +17,200 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * @remarks
  */
 export type Stream = {
+  /**
+   * Indicates if this stream is default.
+   */
   default?: boolean | undefined;
-  audioChannelLayout?: any | undefined;
+  /**
+   * Audio channel layout.
+   */
+  audioChannelLayout?: string | undefined;
+  /**
+   * Number of audio channels (for audio streams).
+   */
+  channels?: number | undefined;
+  /**
+   * Bit depth of the video stream.
+   */
   bitDepth?: number | undefined;
+  /**
+   * Dolby Vision BL compatibility ID.
+   */
+  doviblCompatID?: number | undefined;
+  /**
+   * Indicates if Dolby Vision BL is present.
+   */
+  doviblPresent?: boolean | undefined;
+  /**
+   * Indicates if Dolby Vision EL is present.
+   */
+  dovielPresent?: boolean | undefined;
+  /**
+   * Dolby Vision level.
+   */
+  doviLevel?: number | undefined;
+  /**
+   * Indicates if Dolby Vision is present.
+   */
+  doviPresent?: boolean | undefined;
+  /**
+   * Dolby Vision profile.
+   */
+  doviProfile?: number | undefined;
+  /**
+   * Indicates if Dolby Vision RPU is present.
+   */
+  dovirpuPresent?: boolean | undefined;
+  /**
+   * Dolby Vision version.
+   */
+  doviVersion?: string | undefined;
+  /**
+   * Bitrate of the stream.
+   */
   bitrate?: number | undefined;
   /**
-   * For subtitle streams only. If `true` then the server can attempt to automatically sync the subtitle timestamps with the video.
+   * Indicates if the stream can auto-sync.
    */
   canAutoSync?: boolean | undefined;
-  chromaLocation?: any | undefined;
-  chromaSubsampling?: any | undefined;
   /**
-   * The codec of the stream, such as `h264` or `aac`
+   * Chroma sample location.
    */
-  codec?: any | undefined;
-  colorPrimaries?: any | undefined;
-  colorRange?: any | undefined;
-  colorSpace?: any | undefined;
-  colorTrc?: any | undefined;
+  chromaLocation?: string | undefined;
   /**
-   * A friendly name for the stream, often comprised of the language and codec information
+   * Chroma subsampling format.
    */
-  displayTitle?: any | undefined;
+  chromaSubsampling?: string | undefined;
+  /**
+   * Coded video height.
+   */
+  codedHeight?: number | undefined;
+  /**
+   * Coded video width.
+   */
+  codedWidth?: number | undefined;
+  closedCaptions?: boolean | undefined;
+  /**
+   * Codec used by the stream.
+   */
+  codec: string;
+  /**
+   * Color primaries used.
+   */
+  colorPrimaries?: string | undefined;
+  /**
+   * Color range (e.g., tv).
+   */
+  colorRange?: string | undefined;
+  /**
+   * Color space.
+   */
+  colorSpace?: string | undefined;
+  /**
+   * Color transfer characteristics.
+   */
+  colorTrc?: string | undefined;
+  /**
+   * Display title for the stream.
+   */
+  displayTitle: string;
+  /**
+   * Extended display title for the stream.
+   */
+  extendedDisplayTitle?: string | undefined;
+  /**
+   * Frame rate of the stream.
+   */
   frameRate?: number | undefined;
-  hasScalingMatrix?: any | undefined;
-  height?: number | undefined;
-  id?: number | undefined;
+  hasScalingMatrix?: boolean | undefined;
   /**
-   * If the stream is part of the `Part` and not an external resource, the index of the stream within that part
+   * Height of the video stream.
+   */
+  height?: number | undefined;
+  /**
+   * Unique stream identifier.
+   */
+  id: number;
+  /**
+   * Index of the stream.
    */
   index?: number | undefined;
   /**
-   * If the stream is independently streamable, the key from which it can be streamed
+   * Key to access this stream part.
    */
-  key?: any | undefined;
-  language?: any | undefined;
+  key: string;
   /**
-   * The three character language code for the stream contents
+   * Language of the stream.
    */
-  languageCode?: any | undefined;
+  language?: string | undefined;
+  /**
+   * ISO language code.
+   */
+  languageCode?: string | undefined;
+  /**
+   * Language tag (e.g., en).
+   */
+  languageTag?: string | undefined;
+  /**
+   * Format of the stream (e.g., srt).
+   */
+  format?: string | undefined;
+  /**
+   * Indicates whether header compression is enabled.
+   */
+  headerCompression?: boolean | undefined;
+  /**
+   * Video level.
+   */
   level?: number | undefined;
-  profile?: any | undefined;
+  /**
+   * Indicates if this is the original stream.
+   */
+  original?: boolean | undefined;
+  /**
+   * Video profile.
+   */
+  profile?: string | undefined;
+  /**
+   * Number of reference frames.
+   */
   refFrames?: number | undefined;
+  /**
+   * Sampling rate for the audio stream.
+   */
   samplingRate?: number | undefined;
+  scanType?: string | undefined;
+  embeddedInVideo?: string | undefined;
+  /**
+   * Indicates if this stream is selected (applicable for audio streams).
+   */
   selected?: boolean | undefined;
+  forced?: boolean | undefined;
+  /**
+   * Indicates if the stream is for the hearing impaired.
+   */
+  hearingImpaired?: boolean | undefined;
+  /**
+   * Indicates if the stream is a dub.
+   */
+  dub?: boolean | undefined;
+  /**
+   * Optional title for the stream (e.g., language variant).
+   */
+  title?: string | undefined;
   streamIdentifier?: number | undefined;
   /**
-   * A number indicating the type of the stream. `1` for video, `2` for audio, `3` for subtitles, `4` for lyrics
+   * Stream type:
+   *
+   * @remarks
+   *   - VIDEO = 1
+   *   - AUDIO = 2
+   *   - SUBTITLE = 3
    */
-  streamType?: number | undefined;
+  streamType?: 1 | undefined;
+  /**
+   * Width of the video stream.
+   */
   width?: number | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
@@ -74,38 +220,72 @@ export const Stream$inboundSchema: z.ZodType<Stream, z.ZodTypeDef, unknown> =
   collectExtraKeys$(
     z.object({
       default: z.boolean().optional(),
-      audioChannelLayout: z.any().optional(),
+      audioChannelLayout: z.string().optional(),
+      channels: z.number().int().optional(),
       bitDepth: z.number().int().optional(),
+      DOVIBLCompatID: z.number().int().optional(),
+      DOVIBLPresent: z.boolean().optional(),
+      DOVIELPresent: z.boolean().optional(),
+      DOVILevel: z.number().int().optional(),
+      DOVIPresent: z.boolean().optional(),
+      DOVIProfile: z.number().int().optional(),
+      DOVIRPUPresent: z.boolean().optional(),
+      DOVIVersion: z.string().optional(),
       bitrate: z.number().int().optional(),
       canAutoSync: z.boolean().optional(),
-      chromaLocation: z.any().optional(),
-      chromaSubsampling: z.any().optional(),
-      codec: z.any().optional(),
-      colorPrimaries: z.any().optional(),
-      colorRange: z.any().optional(),
-      colorSpace: z.any().optional(),
-      colorTrc: z.any().optional(),
-      displayTitle: z.any().optional(),
+      chromaLocation: z.string().optional(),
+      chromaSubsampling: z.string().optional(),
+      codedHeight: z.number().int().optional(),
+      codedWidth: z.number().int().optional(),
+      closedCaptions: z.boolean().optional(),
+      codec: z.string(),
+      colorPrimaries: z.string().optional(),
+      colorRange: z.string().optional(),
+      colorSpace: z.string().optional(),
+      colorTrc: z.string().optional(),
+      displayTitle: z.string(),
+      extendedDisplayTitle: z.string().optional(),
       frameRate: z.number().optional(),
-      hasScalingMatrix: z.any().optional(),
+      hasScalingMatrix: z.boolean().optional(),
       height: z.number().int().optional(),
-      id: z.number().int().optional(),
+      id: z.number().int(),
       index: z.number().int().optional(),
-      key: z.any().optional(),
-      language: z.any().optional(),
-      languageCode: z.any().optional(),
+      key: z.string(),
+      language: z.string().optional(),
+      languageCode: z.string().optional(),
+      languageTag: z.string().optional(),
+      format: z.string().optional(),
+      headerCompression: z.boolean().optional(),
       level: z.number().int().optional(),
-      profile: z.any().optional(),
+      original: z.boolean().optional(),
+      profile: z.string().optional(),
       refFrames: z.number().int().optional(),
       samplingRate: z.number().int().optional(),
+      scanType: z.string().optional(),
+      embeddedInVideo: z.string().optional(),
       selected: z.boolean().optional(),
+      forced: z.boolean().optional(),
+      hearingImpaired: z.boolean().optional(),
+      dub: z.boolean().optional(),
+      title: z.string().optional(),
       streamIdentifier: z.number().int().optional(),
-      streamType: z.number().int().optional(),
+      streamType: z.literal(1).default(1).optional(),
       width: z.number().int().optional(),
     }).catchall(z.any()),
     "additionalProperties",
     true,
-  );
+  ).transform((v) => {
+    return remap$(v, {
+      "DOVIBLCompatID": "doviblCompatID",
+      "DOVIBLPresent": "doviblPresent",
+      "DOVIELPresent": "dovielPresent",
+      "DOVILevel": "doviLevel",
+      "DOVIPresent": "doviPresent",
+      "DOVIProfile": "doviProfile",
+      "DOVIRPUPresent": "dovirpuPresent",
+      "DOVIVersion": "doviVersion",
+    });
+  });
 
 export function streamFromJSON(
   jsonString: string,

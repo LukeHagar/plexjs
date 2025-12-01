@@ -150,7 +150,7 @@ export type GetPostplayHubsRequest$Outbound = {
   Marketplace?: string | undefined;
   metadataId: number;
   count?: number | undefined;
-  onlyTransient?: number | undefined;
+  onlyTransient: number;
 };
 
 /** @internal */
@@ -172,7 +172,7 @@ export const GetPostplayHubsRequest$outboundSchema: z.ZodType<
   marketplace: z.string().optional(),
   metadataId: z.number().int(),
   count: z.number().int().optional(),
-  onlyTransient: shared.BoolInt$outboundSchema.optional(),
+  onlyTransient: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

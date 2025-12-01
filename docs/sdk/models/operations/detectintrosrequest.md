@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: DetectIntrosRequest = {
   ids: "<value>",
-  force: BoolInt.One,
+  force: BoolInt.True,
 };
 ```
 

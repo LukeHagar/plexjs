@@ -95,7 +95,11 @@ async function $do(
   const path = pathToFunc("/library/sections/{sectionId}/all")(pathParams);
 
   const query = encodeFormQuery({
+    "includeGuids": payload.includeGuids,
+    "includeMeta": payload.includeMeta,
     "mediaQuery": payload.mediaQuery,
+    "X-Plex-Container-Size": payload["X-Plex-Container-Size"],
+    "X-Plex-Container-Start": payload["X-Plex-Container-Start"],
   });
 
   const headers = new Headers(compactMap({

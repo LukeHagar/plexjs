@@ -47,16 +47,17 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.playQueue.createPlayQueue({
     type: CreatePlayQueueType.Audio,
-    shuffle: BoolInt.One,
-    repeat: BoolInt.One,
-    continuous: BoolInt.One,
-    recursive: BoolInt.One,
-    onDeck: BoolInt.One,
+    shuffle: BoolInt.True,
+    repeat: BoolInt.True,
+    continuous: BoolInt.True,
+    recursive: BoolInt.True,
+    onDeck: BoolInt.True,
   });
 
   console.log(result);
@@ -89,16 +90,17 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await playQueueCreatePlayQueue(plexAPI, {
     type: CreatePlayQueueType.Audio,
-    shuffle: BoolInt.One,
-    repeat: BoolInt.One,
-    continuous: BoolInt.One,
-    recursive: BoolInt.One,
-    onDeck: BoolInt.One,
+    shuffle: BoolInt.True,
+    repeat: BoolInt.True,
+    continuous: BoolInt.True,
+    recursive: BoolInt.True,
+    onDeck: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -153,14 +155,15 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.playQueue.getPlayQueue({
     playQueueId: 210646,
-    own: BoolInt.One,
-    includeBefore: BoolInt.One,
-    includeAfter: BoolInt.One,
+    own: BoolInt.True,
+    includeBefore: BoolInt.True,
+    includeAfter: BoolInt.True,
   });
 
   console.log(result);
@@ -192,14 +195,15 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await playQueueGetPlayQueue(plexAPI, {
     playQueueId: 210646,
-    own: BoolInt.One,
-    includeBefore: BoolInt.One,
-    includeAfter: BoolInt.One,
+    own: BoolInt.True,
+    includeBefore: BoolInt.True,
+    includeAfter: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -254,12 +258,13 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await plexAPI.playQueue.addToPlayQueue({
     playQueueId: 919248,
-    next: BoolInt.One,
+    next: BoolInt.True,
   });
 
   console.log(result);
@@ -291,12 +296,13 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await playQueueAddToPlayQueue(plexAPI, {
     playQueueId: 919248,
-    next: BoolInt.One,
+    next: BoolInt.True,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -351,6 +357,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -387,6 +394,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -446,6 +454,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -482,6 +491,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -541,6 +551,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -577,6 +588,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -636,6 +648,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -672,6 +685,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -731,6 +745,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -768,6 +783,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -828,6 +844,7 @@ const plexAPI = new PlexAPI({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -865,6 +882,7 @@ const plexAPI = new PlexAPICore({
   deviceVendor: "Roku",
   deviceName: "Living Room TV",
   marketplace: "googlePlay",
+  token: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {

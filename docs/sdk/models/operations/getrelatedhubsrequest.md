@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: GetRelatedHubsRequest = {
   metadataId: 344420,
-  onlyTransient: BoolInt.One,
+  onlyTransient: BoolInt.True,
 };
 ```
 

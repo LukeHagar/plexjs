@@ -102,9 +102,54 @@ export type ListContentRequest = {
    */
   marketplace?: string | undefined;
   /**
-   * This is a complex query built of several parameters.  See [API Info section](#section/API-Info/Media-Queries) for information on building media queries
+   * The index of the first item to return. If not specified, the first item will be returned.
+   *
+   * @remarks
+   * If the number of items exceeds the limit, the response will be paginated.
+   * By default this is 0
+   */
+  xPlexContainerStart?: number | undefined;
+  /**
+   * The number of items to return. If not specified, all items will be returned.
+   *
+   * @remarks
+   * If the number of items exceeds the limit, the response will be paginated.
+   * By default this is 50
+   */
+  xPlexContainerSize?: number | undefined;
+  /**
+   * A querystring-based filtering language used to select subsets of media. Can be provided as an object with typed properties for type safety, or as a string for complex queries with operators and boolean logic.
+   *
+   * @remarks
+   *
+   * The query supports:
+   * - Fields: integer, boolean, tag, string, date, language
+   * - Operators: =, !=, ==, !==, <=, >=, >>=, <<= (varies by field type)
+   * - Boolean operators: & (AND), , (OR), push/pop (parentheses), or=1 (explicit OR)
+   * - Sorting: sort parameter with :desc, :nullsLast modifiers
+   * - Grouping: group parameter
+   * - Limits: limit parameter
+   *
+   * Examples:
+   * - Object format: `{type: 4, sourceType: 2, title: "24"}` → `type=4&sourceType=2&title=24`
+   * - String format: `type=4&sourceType=2&title==24` - type = 4 AND sourceType = 2 AND title = "24"
+   * - Complex: `push=1&index=1&or=1&rating=2&pop=1&duration=10` - (index = 1 OR rating = 2) AND duration = 10
+   *
+   * See [API Info section](#section/API-Info/Media-Queries) for detailed information on building media queries.
    */
   mediaQuery?: shared.MediaQuery | undefined;
+  /**
+   * Adds the Meta object to the response
+   *
+   * @remarks
+   */
+  includeMeta?: shared.BoolInt | undefined;
+  /**
+   * Adds the Guid object to the response
+   *
+   * @remarks
+   */
+  includeGuids?: shared.BoolInt | undefined;
   /**
    * The id of the section
    */
@@ -144,7 +189,11 @@ export type ListContentRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
+  "X-Plex-Container-Start": number;
+  "X-Plex-Container-Size": number;
   mediaQuery?: shared.MediaQuery$Outbound | undefined;
+  includeMeta: number;
+  includeGuids: number;
   sectionId: string;
 };
 
@@ -165,7 +214,11 @@ export const ListContentRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
+  xPlexContainerStart: z.number().int().default(0),
+  xPlexContainerSize: z.number().int().default(50),
   mediaQuery: shared.MediaQuery$outboundSchema.optional(),
+  includeMeta: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  includeGuids: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   sectionId: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -179,6 +232,8 @@ export const ListContentRequest$outboundSchema: z.ZodType<
     deviceVendor: "Device-Vendor",
     deviceName: "Device-Name",
     marketplace: "Marketplace",
+    xPlexContainerStart: "X-Plex-Container-Start",
+    xPlexContainerSize: "X-Plex-Container-Size",
   });
 });
 

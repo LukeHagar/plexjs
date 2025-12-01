@@ -337,9 +337,9 @@ export type ReportRequest$Outbound = {
   playQueueItemID?: string | undefined;
   time?: number | undefined;
   duration?: number | undefined;
-  continuing?: number | undefined;
+  continuing: number;
   updated?: number | undefined;
-  offline?: number | undefined;
+  offline: number;
   timeToFirstFrame?: number | undefined;
   timeStalled?: number | undefined;
   bandwidth?: number | undefined;
@@ -371,9 +371,9 @@ export const ReportRequest$outboundSchema: z.ZodType<
   playQueueItemID: z.string().optional(),
   time: z.number().int().optional(),
   duration: z.number().int().optional(),
-  continuing: shared.BoolInt$outboundSchema.optional(),
+  continuing: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   updated: z.number().int().optional(),
-  offline: shared.BoolInt$outboundSchema.optional(),
+  offline: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   timeToFirstFrame: z.number().int().optional(),
   timeStalled: z.number().int().optional(),
   bandwidth: z.number().int().optional(),

@@ -135,8 +135,8 @@ export type DetectCreditsRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   ids: string;
-  force?: number | undefined;
-  manual?: number | undefined;
+  force: number;
+  manual: number;
 };
 
 /** @internal */
@@ -157,8 +157,8 @@ export const DetectCreditsRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   ids: z.string(),
-  force: shared.BoolInt$outboundSchema.optional(),
-  manual: shared.BoolInt$outboundSchema.optional(),
+  force: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
+  manual: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

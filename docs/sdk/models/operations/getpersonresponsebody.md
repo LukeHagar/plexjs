@@ -12,6 +12,7 @@ let value: GetPersonResponseBody = {
     directory: [
       {
         filter: "actor=49",
+        ratingKey: "58683",
         role: "Secretary",
         tag: "Shaun Lawton",
         tagKey: "5d3ee12c4cde6a001c3e0b27",

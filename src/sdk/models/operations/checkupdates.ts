@@ -135,7 +135,7 @@ export type CheckUpdatesRequest$Outbound = {
   "Device-Vendor"?: string | undefined;
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
-  download?: number | undefined;
+  download: number;
 };
 
 /** @internal */
@@ -155,7 +155,7 @@ export const CheckUpdatesRequest$outboundSchema: z.ZodType<
   deviceVendor: z.string().optional(),
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
-  download: shared.BoolInt$outboundSchema.optional(),
+  download: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
 }).transform((v) => {
   return remap$(v, {
     clientIdentifier: "Client-Identifier",

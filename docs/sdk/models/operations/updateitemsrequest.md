@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: UpdateItemsRequest = {
   sectionId: "<id>",
-  fieldLocked: BoolInt.One,
+  fieldLocked: BoolInt.True,
 };
 ```
 

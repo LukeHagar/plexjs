@@ -141,7 +141,7 @@ export type DetectIntrosRequest$Outbound = {
   "Device-Name"?: string | undefined;
   Marketplace?: string | undefined;
   ids: string;
-  force?: number | undefined;
+  force: number;
   threshold?: number | undefined;
 };
 
@@ -163,7 +163,7 @@ export const DetectIntrosRequest$outboundSchema: z.ZodType<
   deviceName: z.string().optional(),
   marketplace: z.string().optional(),
   ids: z.string(),
-  force: shared.BoolInt$outboundSchema.optional(),
+  force: shared.BoolInt$outboundSchema.default(shared.BoolInt.False),
   threshold: z.number().optional(),
 }).transform((v) => {
   return remap$(v, {

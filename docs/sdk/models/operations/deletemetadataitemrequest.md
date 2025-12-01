@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: DeleteMetadataItemRequest = {
   ids: "<value>",
-  proxy: BoolInt.One,
+  proxy: BoolInt.True,
 };
 ```
 

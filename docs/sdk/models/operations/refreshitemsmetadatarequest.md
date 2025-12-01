@@ -8,7 +8,7 @@ import { BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
 
 let value: RefreshItemsMetadataRequest = {
   ids: "<value>",
-  markUpdated: BoolInt.One,
+  markUpdated: BoolInt.True,
 };
 ```
 
