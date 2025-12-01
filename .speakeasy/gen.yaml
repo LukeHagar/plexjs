@@ -47,8 +47,8 @@ typescript:
   flattenGlobalSecurity: true
   flatteningOrder: body-first
   formStringArrayEncodeMode: encoded-string
-  forwardCompatibleEnumsByDefault: false
-  forwardCompatibleUnionsByDefault: "false"
+  forwardCompatibleEnumsByDefault: true
+  forwardCompatibleUnionsByDefault: "populated-fields"
   generateExamples: true
   imports:
     option: openapi
@@ -60,12 +60,12 @@ typescript:
       webhooks: sdk/models/webhooks
   inferUnionDiscriminators: true
   inputModelSuffix: input
-  jsonpath: legacy
-  laxMode: strict
+  jsonpath: rfc9535
+  laxMode: lax
   maxMethodParams: 4
   methodArguments: require-security-and-request
   modelPropertyCasing: camel
-  moduleFormat: commonjs
+  moduleFormat: dual
   multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: '@lukehagar/plexjs'
@@ -74,5 +74,5 @@ typescript:
   templateVersion: v2
   unionStrategy: left-to-right
   usageSDKInitImports: []
-  useIndexModules: true
-  zodVersion: v3
+  useIndexModules: false
+  zodVersion: v4
