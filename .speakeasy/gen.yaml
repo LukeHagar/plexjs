@@ -48,16 +48,16 @@ typescript:
   flatteningOrder: body-first
   formStringArrayEncodeMode: encoded-string
   forwardCompatibleEnumsByDefault: true
-  forwardCompatibleUnionsByDefault: "populated-fields"
+  forwardCompatibleUnionsByDefault: "tagged-only"
   generateExamples: true
   imports:
     option: openapi
     paths:
-      callbacks: sdk/models/callbacks
-      errors: sdk/models/errors
-      operations: sdk/models/operations
-      shared: sdk/models/shared
-      webhooks: sdk/models/webhooks
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/shared
+      webhooks: models/webhooks
   inferUnionDiscriminators: true
   inputModelSuffix: input
   jsonpath: rfc9535
@@ -69,10 +69,10 @@ typescript:
   multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: '@lukehagar/plexjs'
-  responseFormat: envelope
+  responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
-  unionStrategy: left-to-right
+  unionStrategy: populated-fields
   usageSDKInitImports: []
   useIndexModules: false
   zodVersion: v4
