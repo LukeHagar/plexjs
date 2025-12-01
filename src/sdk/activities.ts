@@ -5,8 +5,8 @@
 import { activitiesCancelActivity } from "../funcs/activitiesCancelActivity.js";
 import { activitiesListActivities } from "../funcs/activitiesListActivities.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Activities extends ClientSDK {
   /**
@@ -33,7 +33,7 @@ export class Activities extends ClientSDK {
   async cancelActivity(
     request: operations.CancelActivityRequest,
     options?: RequestOptions,
-  ): Promise<operations.CancelActivityResponse> {
+  ): Promise<void> {
     return unwrapAsync(activitiesCancelActivity(
       this,
       request,

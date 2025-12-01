@@ -4,8 +4,8 @@
 
 import { rateSetRating } from "../funcs/rateSetRating.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Rate extends ClientSDK {
   /**
@@ -18,7 +18,7 @@ export class Rate extends ClientSDK {
   async setRating(
     request: operations.SetRatingRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetRatingResponse> {
+  ): Promise<void> {
     return unwrapAsync(rateSetRating(
       this,
       request,

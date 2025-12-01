@@ -4,8 +4,9 @@
 
 import { collectionsCreateCollection } from "../funcs/collectionsCreateCollection.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Collections extends ClientSDK {
   /**
@@ -17,7 +18,7 @@ export class Collections extends ClientSDK {
   async createCollection(
     request: operations.CreateCollectionRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreateCollectionResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(collectionsCreateCollection(
       this,
       request,

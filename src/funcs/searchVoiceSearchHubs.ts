@@ -16,13 +16,13 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../sdk/models/errors/httpclienterrors.js";
-import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
-import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
-import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import * as operations from "../sdk/models/operations/index.js";
-import { APICall, APIPromise } from "../sdk/types/async.js";
-import { Result } from "../sdk/types/fp.js";
+} from "../models/errors/httpclienterrors.js";
+import { PlexAPIError } from "../models/errors/plexapierror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
+import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
+import { Result } from "../types/fp.js";
 
 /**
  * Voice Search Hub
@@ -203,11 +203,7 @@ async function $do(
   const response = doResult.value;
 
   const responseFields = {
-    ContentType: response.headers.get("content-type")
-      ?? "application/octet-stream",
-    StatusCode: response.status,
-    RawResponse: response,
-    Headers: {},
+    HttpMeta: { Response: response, Request: req },
   };
 
   const [result] = await M.match<
@@ -223,7 +219,7 @@ async function $do(
   >(
     M.json(200, operations.VoiceSearchHubsResponse$inboundSchema, {
       hdrs: true,
-      key: "object",
+      key: "Result",
     }),
     M.fail([400, "4XX"]),
     M.fail("5XX"),

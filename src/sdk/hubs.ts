@@ -17,8 +17,8 @@ import { hubsMoveHub } from "../funcs/hubsMoveHub.js";
 import { hubsResetSectionDefaults } from "../funcs/hubsResetSectionDefaults.js";
 import { hubsUpdateHubVisibility } from "../funcs/hubsUpdateHubVisibility.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Hubs extends ClientSDK {
   /**
@@ -166,7 +166,7 @@ export class Hubs extends ClientSDK {
   async resetSectionDefaults(
     request: operations.ResetSectionDefaultsRequest,
     options?: RequestOptions,
-  ): Promise<operations.ResetSectionDefaultsResponse> {
+  ): Promise<void> {
     return unwrapAsync(hubsResetSectionDefaults(
       this,
       request,
@@ -200,7 +200,7 @@ export class Hubs extends ClientSDK {
   async createCustomHub(
     request: operations.CreateCustomHubRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreateCustomHubResponse> {
+  ): Promise<void> {
     return unwrapAsync(hubsCreateCustomHub(
       this,
       request,
@@ -234,7 +234,7 @@ export class Hubs extends ClientSDK {
   async deleteCustomHub(
     request: operations.DeleteCustomHubRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteCustomHubResponse> {
+  ): Promise<void> {
     return unwrapAsync(hubsDeleteCustomHub(
       this,
       request,
@@ -251,7 +251,7 @@ export class Hubs extends ClientSDK {
   async updateHubVisibility(
     request: operations.UpdateHubVisibilityRequest,
     options?: RequestOptions,
-  ): Promise<operations.UpdateHubVisibilityResponse> {
+  ): Promise<void> {
     return unwrapAsync(hubsUpdateHubVisibility(
       this,
       request,

@@ -7,8 +7,9 @@ import { generalGetServerInfo } from "../funcs/generalGetServerInfo.js";
 import { generalGetSourceConnectionInformation } from "../funcs/generalGetSourceConnectionInformation.js";
 import { generalGetTransientToken } from "../funcs/generalGetTransientToken.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class General extends ClientSDK {
   /**
@@ -20,7 +21,7 @@ export class General extends ClientSDK {
   async getServerInfo(
     request: operations.GetServerInfoRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetServerInfoResponse> {
+  ): Promise<shared.MediaContainerWithDirectory> {
     return unwrapAsync(generalGetServerInfo(
       this,
       request,

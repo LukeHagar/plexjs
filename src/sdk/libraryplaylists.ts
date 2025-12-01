@@ -16,8 +16,9 @@ import { libraryPlaylistsRefreshPlaylist } from "../funcs/libraryPlaylistsRefres
 import { libraryPlaylistsUpdatePlaylist } from "../funcs/libraryPlaylistsUpdatePlaylist.js";
 import { libraryPlaylistsUploadPlaylist } from "../funcs/libraryPlaylistsUploadPlaylist.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class LibraryPlaylists extends ClientSDK {
   /**
@@ -29,7 +30,7 @@ export class LibraryPlaylists extends ClientSDK {
   async createPlaylist(
     request: operations.CreatePlaylistRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreatePlaylistResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(libraryPlaylistsCreatePlaylist(
       this,
       request,
@@ -46,7 +47,7 @@ export class LibraryPlaylists extends ClientSDK {
   async uploadPlaylist(
     request: operations.UploadPlaylistRequest,
     options?: RequestOptions,
-  ): Promise<operations.UploadPlaylistResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryPlaylistsUploadPlaylist(
       this,
       request,
@@ -63,7 +64,7 @@ export class LibraryPlaylists extends ClientSDK {
   async deletePlaylist(
     request: operations.DeletePlaylistRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeletePlaylistResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryPlaylistsDeletePlaylist(
       this,
       request,
@@ -80,7 +81,7 @@ export class LibraryPlaylists extends ClientSDK {
   async updatePlaylist(
     request: operations.UpdatePlaylistRequest,
     options?: RequestOptions,
-  ): Promise<operations.UpdatePlaylistResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryPlaylistsUpdatePlaylist(
       this,
       request,
@@ -114,7 +115,7 @@ export class LibraryPlaylists extends ClientSDK {
   async clearPlaylistItems(
     request: operations.ClearPlaylistItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.ClearPlaylistItemsResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(libraryPlaylistsClearPlaylistItems(
       this,
       request,
@@ -131,7 +132,7 @@ export class LibraryPlaylists extends ClientSDK {
   async addPlaylistItems(
     request: operations.AddPlaylistItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.AddPlaylistItemsResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(libraryPlaylistsAddPlaylistItems(
       this,
       request,
@@ -148,7 +149,7 @@ export class LibraryPlaylists extends ClientSDK {
   async deletePlaylistItem(
     request: operations.DeletePlaylistItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeletePlaylistItemResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(libraryPlaylistsDeletePlaylistItem(
       this,
       request,
@@ -182,7 +183,7 @@ export class LibraryPlaylists extends ClientSDK {
   async modifyPlaylistGenerator(
     request: operations.ModifyPlaylistGeneratorRequest,
     options?: RequestOptions,
-  ): Promise<operations.ModifyPlaylistGeneratorResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(libraryPlaylistsModifyPlaylistGenerator(
       this,
       request,
@@ -216,7 +217,7 @@ export class LibraryPlaylists extends ClientSDK {
   async movePlaylistItem(
     request: operations.MovePlaylistItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.MovePlaylistItemResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(libraryPlaylistsMovePlaylistItem(
       this,
       request,
@@ -233,7 +234,7 @@ export class LibraryPlaylists extends ClientSDK {
   async refreshPlaylist(
     request: operations.RefreshPlaylistRequest,
     options?: RequestOptions,
-  ): Promise<operations.RefreshPlaylistResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryPlaylistsRefreshPlaylist(
       this,
       request,

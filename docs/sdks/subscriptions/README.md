@@ -28,7 +28,7 @@ Get all subscriptions and potentially the grabs too
 <!-- UsageSnippet language="typescript" operationID="getAllSubscriptions" method="get" path="/media/subscriptions" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -64,7 +64,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { subscriptionsGetAllSubscriptions } from "@lukehagar/plexjs/funcs/subscriptionsGetAllSubscriptions.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -103,14 +103,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetAllSubscriptionsRequest](../../sdk/models/operations/getallsubscriptionsrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetAllSubscriptionsRequest](../../models/operations/getallsubscriptionsrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetAllSubscriptionsResponse](../../sdk/models/operations/getallsubscriptionsresponse.md)\>**
+**Promise\<[operations.GetAllSubscriptionsResponse](../../models/operations/getallsubscriptionsresponse.md)\>**
 
 ### Errors
 
@@ -127,7 +127,7 @@ Create a subscription. The query parameters should be mostly derived from the [t
 <!-- UsageSnippet language="typescript" operationID="createSubscription" method="post" path="/media/subscriptions" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -167,7 +167,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { subscriptionsCreateSubscription } from "@lukehagar/plexjs/funcs/subscriptionsCreateSubscription.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -210,14 +210,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateSubscriptionRequest](../../sdk/models/operations/createsubscriptionrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CreateSubscriptionRequest](../../models/operations/createsubscriptionrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.CreateSubscriptionResponse](../../sdk/models/operations/createsubscriptionresponse.md)\>**
+**Promise\<[operations.CreateSubscriptionResponse](../../models/operations/createsubscriptionresponse.md)\>**
 
 ### Errors
 
@@ -285,7 +285,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.ProcessSubscriptionsResponse](../../sdk/models/operations/processsubscriptionsresponse.md)\>**
+**Promise\<[operations.ProcessSubscriptionsResponse](../../models/operations/processsubscriptionsresponse.md)\>**
 
 ### Errors
 
@@ -353,7 +353,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetScheduledRecordingsResponse](../../sdk/models/operations/getscheduledrecordingsresponse.md)\>**
+**Promise\<[operations.GetScheduledRecordingsResponse](../../models/operations/getscheduledrecordingsresponse.md)\>**
 
 ### Errors
 
@@ -370,7 +370,7 @@ Get the templates for a piece of media which could include fetching one airing, 
 <!-- UsageSnippet language="typescript" operationID="getTemplate" method="get" path="/media/subscriptions/template" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -405,7 +405,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { subscriptionsGetTemplate } from "@lukehagar/plexjs/funcs/subscriptionsGetTemplate.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -443,14 +443,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetTemplateRequest](../../sdk/models/operations/gettemplaterequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetTemplateRequest](../../models/operations/gettemplaterequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetTemplateResponse](../../sdk/models/operations/gettemplateresponse.md)\>**
+**Promise\<[operations.GetTemplateResponse](../../models/operations/gettemplateresponse.md)\>**
 
 ### Errors
 
@@ -468,7 +468,7 @@ Note: This cancellation does not persist across a server restart, but neither do
 <!-- UsageSnippet language="typescript" operationID="cancelGrab" method="delete" path="/media/grabbers/operations/{operationId}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -486,11 +486,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.subscriptions.cancelGrab({
+  await plexAPI.subscriptions.cancelGrab({
     operationId: "<id>",
   });
 
-  console.log(result);
+
 }
 
 run();
@@ -503,7 +503,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { subscriptionsCancelGrab } from "@lukehagar/plexjs/funcs/subscriptionsCancelGrab.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -528,7 +528,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("subscriptionsCancelGrab failed:", res.error);
   }
@@ -541,14 +541,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CancelGrabRequest](../../sdk/models/operations/cancelgrabrequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CancelGrabRequest](../../models/operations/cancelgrabrequest.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.CancelGrabResponse](../../sdk/models/operations/cancelgrabresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -565,7 +565,7 @@ Delete a subscription, cancelling all of its grabs as well
 <!-- UsageSnippet language="typescript" operationID="deleteSubscription" method="delete" path="/media/subscriptions/{subscriptionId}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -583,11 +583,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.subscriptions.deleteSubscription({
+  await plexAPI.subscriptions.deleteSubscription({
     subscriptionId: 974618,
   });
 
-  console.log(result);
+
 }
 
 run();
@@ -600,7 +600,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { subscriptionsDeleteSubscription } from "@lukehagar/plexjs/funcs/subscriptionsDeleteSubscription.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -625,7 +625,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("subscriptionsDeleteSubscription failed:", res.error);
   }
@@ -638,14 +638,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteSubscriptionRequest](../../sdk/models/operations/deletesubscriptionrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.DeleteSubscriptionRequest](../../models/operations/deletesubscriptionrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.DeleteSubscriptionResponse](../../sdk/models/operations/deletesubscriptionresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -662,7 +662,7 @@ Get a single subscription and potentially the grabs too
 <!-- UsageSnippet language="typescript" operationID="getSubscription" method="get" path="/media/subscriptions/{subscriptionId}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -699,7 +699,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { subscriptionsGetSubscription } from "@lukehagar/plexjs/funcs/subscriptionsGetSubscription.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -739,14 +739,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetSubscriptionRequest](../../sdk/models/operations/getsubscriptionrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetSubscriptionRequest](../../models/operations/getsubscriptionrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetSubscriptionResponse](../../sdk/models/operations/getsubscriptionresponse.md)\>**
+**Promise\<[shared.MediaContainerWithSubscription](../../models/shared/mediacontainerwithsubscription.md)\>**
 
 ### Errors
 
@@ -763,7 +763,7 @@ Edit a subscription's preferences
 <!-- UsageSnippet language="typescript" operationID="editSubscriptionPreferences" method="put" path="/media/subscriptions/{subscriptionId}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -799,7 +799,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { subscriptionsEditSubscriptionPreferences } from "@lukehagar/plexjs/funcs/subscriptionsEditSubscriptionPreferences.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -838,14 +838,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.EditSubscriptionPreferencesRequest](../../sdk/models/operations/editsubscriptionpreferencesrequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.EditSubscriptionPreferencesRequest](../../models/operations/editsubscriptionpreferencesrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.EditSubscriptionPreferencesResponse](../../sdk/models/operations/editsubscriptionpreferencesresponse.md)\>**
+**Promise\<[shared.MediaContainerWithSubscription](../../models/shared/mediacontainerwithsubscription.md)\>**
 
 ### Errors
 
@@ -862,7 +862,7 @@ Re-order a subscription to change its priority
 <!-- UsageSnippet language="typescript" operationID="reorderSubscription" method="put" path="/media/subscriptions/{subscriptionId}/move" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -897,7 +897,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { subscriptionsReorderSubscription } from "@lukehagar/plexjs/funcs/subscriptionsReorderSubscription.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -935,14 +935,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ReorderSubscriptionRequest](../../sdk/models/operations/reordersubscriptionrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.ReorderSubscriptionRequest](../../models/operations/reordersubscriptionrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.ReorderSubscriptionResponse](../../sdk/models/operations/reordersubscriptionresponse.md)\>**
+**Promise\<[shared.MediaContainerWithSubscription](../../models/shared/mediacontainerwithsubscription.md)\>**
 
 ### Errors
 

@@ -6,8 +6,8 @@ import { timelineMarkPlayed } from "../funcs/timelineMarkPlayed.js";
 import { timelineReport } from "../funcs/timelineReport.js";
 import { timelineUnscrobble } from "../funcs/timelineUnscrobble.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Timeline extends ClientSDK {
   /**
@@ -20,7 +20,7 @@ export class Timeline extends ClientSDK {
   async markPlayed(
     request: operations.MarkPlayedRequest,
     options?: RequestOptions,
-  ): Promise<operations.MarkPlayedResponse> {
+  ): Promise<void> {
     return unwrapAsync(timelineMarkPlayed(
       this,
       request,
@@ -55,7 +55,7 @@ export class Timeline extends ClientSDK {
   async unscrobble(
     request: operations.UnscrobbleRequest,
     options?: RequestOptions,
-  ): Promise<operations.UnscrobbleResponse> {
+  ): Promise<void> {
     return unwrapAsync(timelineUnscrobble(
       this,
       request,

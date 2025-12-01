@@ -13,8 +13,9 @@ import { subscriptionsGetTemplate } from "../funcs/subscriptionsGetTemplate.js";
 import { subscriptionsProcessSubscriptions } from "../funcs/subscriptionsProcessSubscriptions.js";
 import { subscriptionsReorderSubscription } from "../funcs/subscriptionsReorderSubscription.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Subscriptions extends ClientSDK {
   /**
@@ -59,7 +60,7 @@ export class Subscriptions extends ClientSDK {
    */
   async processSubscriptions(
     options?: RequestOptions,
-  ): Promise<operations.ProcessSubscriptionsResponse> {
+  ): Promise<operations.ProcessSubscriptionsResponse | undefined> {
     return unwrapAsync(subscriptionsProcessSubscriptions(
       this,
       options,
@@ -108,7 +109,7 @@ export class Subscriptions extends ClientSDK {
   async cancelGrab(
     request: operations.CancelGrabRequest,
     options?: RequestOptions,
-  ): Promise<operations.CancelGrabResponse> {
+  ): Promise<void> {
     return unwrapAsync(subscriptionsCancelGrab(
       this,
       request,
@@ -125,7 +126,7 @@ export class Subscriptions extends ClientSDK {
   async deleteSubscription(
     request: operations.DeleteSubscriptionRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteSubscriptionResponse> {
+  ): Promise<void> {
     return unwrapAsync(subscriptionsDeleteSubscription(
       this,
       request,
@@ -142,7 +143,7 @@ export class Subscriptions extends ClientSDK {
   async getSubscription(
     request: operations.GetSubscriptionRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSubscriptionResponse> {
+  ): Promise<shared.MediaContainerWithSubscription> {
     return unwrapAsync(subscriptionsGetSubscription(
       this,
       request,
@@ -159,7 +160,7 @@ export class Subscriptions extends ClientSDK {
   async editSubscriptionPreferences(
     request: operations.EditSubscriptionPreferencesRequest,
     options?: RequestOptions,
-  ): Promise<operations.EditSubscriptionPreferencesResponse> {
+  ): Promise<shared.MediaContainerWithSubscription> {
     return unwrapAsync(subscriptionsEditSubscriptionPreferences(
       this,
       request,
@@ -176,7 +177,7 @@ export class Subscriptions extends ClientSDK {
   async reorderSubscription(
     request: operations.ReorderSubscriptionRequest,
     options?: RequestOptions,
-  ): Promise<operations.ReorderSubscriptionResponse> {
+  ): Promise<shared.MediaContainerWithSubscription> {
     return unwrapAsync(subscriptionsReorderSubscription(
       this,
       request,

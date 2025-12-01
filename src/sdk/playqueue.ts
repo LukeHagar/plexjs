@@ -12,8 +12,9 @@ import { playQueueResetPlayQueue } from "../funcs/playQueueResetPlayQueue.js";
 import { playQueueShuffle } from "../funcs/playQueueShuffle.js";
 import { playQueueUnshuffle } from "../funcs/playQueueUnshuffle.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class PlayQueue extends ClientSDK {
   /**
@@ -43,7 +44,7 @@ export class PlayQueue extends ClientSDK {
   async getPlayQueue(
     request: operations.GetPlayQueueRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetPlayQueueResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playQueueGetPlayQueue(
       this,
       request,
@@ -60,7 +61,7 @@ export class PlayQueue extends ClientSDK {
   async addToPlayQueue(
     request: operations.AddToPlayQueueRequest,
     options?: RequestOptions,
-  ): Promise<operations.AddToPlayQueueResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playQueueAddToPlayQueue(
       this,
       request,
@@ -77,7 +78,7 @@ export class PlayQueue extends ClientSDK {
   async clearPlayQueue(
     request: operations.ClearPlayQueueRequest,
     options?: RequestOptions,
-  ): Promise<operations.ClearPlayQueueResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playQueueClearPlayQueue(
       this,
       request,
@@ -94,7 +95,7 @@ export class PlayQueue extends ClientSDK {
   async resetPlayQueue(
     request: operations.ResetPlayQueueRequest,
     options?: RequestOptions,
-  ): Promise<operations.ResetPlayQueueResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playQueueResetPlayQueue(
       this,
       request,
@@ -111,7 +112,7 @@ export class PlayQueue extends ClientSDK {
   async shuffle(
     request: operations.ShuffleRequest,
     options?: RequestOptions,
-  ): Promise<operations.ShuffleResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playQueueShuffle(
       this,
       request,
@@ -128,7 +129,7 @@ export class PlayQueue extends ClientSDK {
   async unshuffle(
     request: operations.UnshuffleRequest,
     options?: RequestOptions,
-  ): Promise<operations.UnshuffleResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playQueueUnshuffle(
       this,
       request,
@@ -145,7 +146,7 @@ export class PlayQueue extends ClientSDK {
   async deletePlayQueueItem(
     request: operations.DeletePlayQueueItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeletePlayQueueItemResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playQueueDeletePlayQueueItem(
       this,
       request,
@@ -162,7 +163,7 @@ export class PlayQueue extends ClientSDK {
   async movePlayQueueItem(
     request: operations.MovePlayQueueItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.MovePlayQueueItemResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playQueueMovePlayQueueItem(
       this,
       request,

@@ -9,8 +9,8 @@ import { statusListPlaybackHistory } from "../funcs/statusListPlaybackHistory.js
 import { statusListSessions } from "../funcs/statusListSessions.js";
 import { statusTerminateSession } from "../funcs/statusTerminateSession.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Status extends ClientSDK {
   /**
@@ -70,7 +70,7 @@ export class Status extends ClientSDK {
   async terminateSession(
     request: operations.TerminateSessionRequest,
     options?: RequestOptions,
-  ): Promise<operations.TerminateSessionResponse> {
+  ): Promise<void> {
     return unwrapAsync(statusTerminateSession(
       this,
       request,

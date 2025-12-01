@@ -1,0 +1,23 @@
+# GetServerResourcesRequest
+
+## Example Usage
+
+```typescript
+import { GetServerResourcesRequest, IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/models/operations";
+
+let value: GetServerResourcesRequest = {
+  includeHttps: IncludeHttps.True,
+  includeRelay: IncludeRelay.True,
+  includeIPv6: IncludeIPv6.True,
+};
+```
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        | Example                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `accepts`                                                                                                          | [shared.Accepts](../../models/shared/accepts.md)                                                                   | :heavy_minus_sign:                                                                                                 | Indicates the client accepts the indicated media types                                                             |                                                                                                                    |
+| `clientIdentifier`                                                                                                 | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | An opaque identifier unique to the client                                                                          | abc123                                                                                                             |
+| `includeHttps`                                                                                                     | [operations.IncludeHttps](../../models/operations/includehttps.md)                                                 | :heavy_minus_sign:                                                                                                 | Include Https entries in the results                                                                               | 1                                                                                                                  |
+| `includeRelay`                                                                                                     | [operations.IncludeRelay](../../models/operations/includerelay.md)                                                 | :heavy_minus_sign:                                                                                                 | Include Relay addresses in the results <br/>E.g: https://10-0-0-25.bbf8e10c7fa20447cacee74cd9914cde.plex.direct:32400<br/> | 1                                                                                                                  |
+| `includeIPv6`                                                                                                      | [operations.IncludeIPv6](../../models/operations/includeipv6.md)                                                   | :heavy_minus_sign:                                                                                                 | Include IPv6 entries in the results                                                                                | 1                                                                                                                  |

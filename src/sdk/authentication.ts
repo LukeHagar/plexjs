@@ -5,8 +5,9 @@
 import { authenticationGetTokenDetails } from "../funcs/authenticationGetTokenDetails.js";
 import { authenticationPostUsersSignInData } from "../funcs/authenticationPostUsersSignInData.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Authentication extends ClientSDK {
   /**
@@ -18,7 +19,7 @@ export class Authentication extends ClientSDK {
   async getTokenDetails(
     request: operations.GetTokenDetailsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetTokenDetailsResponse> {
+  ): Promise<shared.UserPlexAccount> {
     return unwrapAsync(authenticationGetTokenDetails(
       this,
       request,
@@ -35,7 +36,7 @@ export class Authentication extends ClientSDK {
   async postUsersSignInData(
     request: operations.PostUsersSignInDataRequest,
     options?: RequestOptions,
-  ): Promise<operations.PostUsersSignInDataResponse> {
+  ): Promise<operations.UserPlexAccount> {
     return unwrapAsync(authenticationPostUsersSignInData(
       this,
       request,

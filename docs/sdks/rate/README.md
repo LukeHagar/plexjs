@@ -19,7 +19,7 @@ This API does respond to the GET verb but applications should use PUT
 <!-- UsageSnippet language="typescript" operationID="setRating" method="put" path="/:/rate" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -37,13 +37,13 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.rate.setRating({
+  await plexAPI.rate.setRating({
     identifier: "<value>",
     key: "<key>",
     rating: 8722.46,
   });
 
-  console.log(result);
+
 }
 
 run();
@@ -56,7 +56,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { rateSetRating } from "@lukehagar/plexjs/funcs/rateSetRating.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -83,7 +83,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("rateSetRating failed:", res.error);
   }
@@ -96,14 +96,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SetRatingRequest](../../sdk/models/operations/setratingrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.SetRatingRequest](../../models/operations/setratingrequest.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.SetRatingResponse](../../sdk/models/operations/setratingresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 

@@ -72,7 +72,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.ListProvidersResponse](../../sdk/models/operations/listprovidersresponse.md)\>**
+**Promise\<[operations.ListProvidersResponse](../../models/operations/listprovidersresponse.md)\>**
 
 ### Errors
 
@@ -89,7 +89,7 @@ This endpoint registers a media provider with the server. Once registered, the m
 <!-- UsageSnippet language="typescript" operationID="addProvider" method="post" path="/media/providers" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -107,11 +107,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.provider.addProvider({
+  await plexAPI.provider.addProvider({
     url: "https://steep-obedience.name/",
   });
 
-  console.log(result);
+
 }
 
 run();
@@ -124,7 +124,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { providerAddProvider } from "@lukehagar/plexjs/funcs/providerAddProvider.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -149,7 +149,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("providerAddProvider failed:", res.error);
   }
@@ -162,14 +162,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.AddProviderRequest](../../sdk/models/operations/addproviderrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.AddProviderRequest](../../models/operations/addproviderrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.AddProviderResponse](../../sdk/models/operations/addproviderresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -192,9 +192,9 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.provider.refreshProviders();
+  await plexAPI.provider.refreshProviders();
 
-  console.log(result);
+
 }
 
 run();
@@ -218,7 +218,7 @@ async function run() {
   const res = await providerRefreshProviders(plexAPI);
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("providerRefreshProviders failed:", res.error);
   }
@@ -237,7 +237,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.RefreshProvidersResponse](../../sdk/models/operations/refreshprovidersresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -254,7 +254,7 @@ Deletes a media provider with the given id
 <!-- UsageSnippet language="typescript" operationID="deleteMediaProvider" method="delete" path="/media/providers/{provider}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -272,11 +272,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.provider.deleteMediaProvider({
+  await plexAPI.provider.deleteMediaProvider({
     provider: "<value>",
   });
 
-  console.log(result);
+
 }
 
 run();
@@ -289,7 +289,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { providerDeleteMediaProvider } from "@lukehagar/plexjs/funcs/providerDeleteMediaProvider.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -314,7 +314,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("providerDeleteMediaProvider failed:", res.error);
   }
@@ -327,14 +327,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteMediaProviderRequest](../../sdk/models/operations/deletemediaproviderrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.DeleteMediaProviderRequest](../../models/operations/deletemediaproviderrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.DeleteMediaProviderResponse](../../sdk/models/operations/deletemediaproviderresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 

@@ -5,8 +5,8 @@
 import { ultraBlurGetColors } from "../funcs/ultraBlurGetColors.js";
 import { ultraBlurGetImage } from "../funcs/ultraBlurGetImage.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class UltraBlur extends ClientSDK {
   /**
@@ -35,7 +35,7 @@ export class UltraBlur extends ClientSDK {
   async getImage(
     request: operations.GetImageRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetImageResponse> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(ultraBlurGetImage(
       this,
       request,

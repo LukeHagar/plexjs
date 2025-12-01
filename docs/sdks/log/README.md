@@ -28,9 +28,9 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.log.writeLog(await openAsBlob("example.file"));
+  await plexAPI.log.writeLog(await openAsBlob("example.file"));
 
-  console.log(result);
+
 }
 
 run();
@@ -55,7 +55,7 @@ async function run() {
   const res = await logWriteLog(plexAPI, await openAsBlob("example.file"));
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("logWriteLog failed:", res.error);
   }
@@ -75,7 +75,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.WriteLogResponse](../../sdk/models/operations/writelogresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -95,7 +95,7 @@ Note: This endpoint responds to all HTTP verbs **except POST** but PUT is prefer
 <!-- UsageSnippet language="typescript" operationID="writeMessage" method="put" path="/log" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -113,9 +113,9 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.log.writeMessage({});
+  await plexAPI.log.writeMessage({});
 
-  console.log(result);
+
 }
 
 run();
@@ -128,7 +128,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { logWriteMessage } from "@lukehagar/plexjs/funcs/logWriteMessage.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -151,7 +151,7 @@ async function run() {
   const res = await logWriteMessage(plexAPI, {});
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("logWriteMessage failed:", res.error);
   }
@@ -164,14 +164,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.WriteMessageRequest](../../sdk/models/operations/writemessagerequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.WriteMessageRequest](../../models/operations/writemessagerequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.WriteMessageResponse](../../sdk/models/operations/writemessageresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -191,7 +191,7 @@ Note: This endpoint responds to all HTTP verbs but POST is preferred
 <!-- UsageSnippet language="typescript" operationID="enablePapertrail" method="post" path="/log/networked" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -209,9 +209,9 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.log.enablePapertrail({});
+  await plexAPI.log.enablePapertrail({});
 
-  console.log(result);
+
 }
 
 run();
@@ -224,7 +224,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { logEnablePapertrail } from "@lukehagar/plexjs/funcs/logEnablePapertrail.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -247,7 +247,7 @@ async function run() {
   const res = await logEnablePapertrail(plexAPI, {});
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("logEnablePapertrail failed:", res.error);
   }
@@ -260,14 +260,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.EnablePapertrailRequest](../../sdk/models/operations/enablepapertrailrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.EnablePapertrailRequest](../../models/operations/enablepapertrailrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.EnablePapertrailResponse](../../sdk/models/operations/enablepapertrailresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 

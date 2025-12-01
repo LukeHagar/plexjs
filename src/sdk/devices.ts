@@ -16,8 +16,9 @@ import { devicesSetChannelmap } from "../funcs/devicesSetChannelmap.js";
 import { devicesSetDevicePreferences } from "../funcs/devicesSetDevicePreferences.js";
 import { devicesStopScan } from "../funcs/devicesStopScan.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Devices extends ClientSDK {
   /**
@@ -61,7 +62,7 @@ export class Devices extends ClientSDK {
   async addDevice(
     request: operations.AddDeviceRequest,
     options?: RequestOptions,
-  ): Promise<operations.AddDeviceResponse> {
+  ): Promise<shared.MediaContainerWithDevice> {
     return unwrapAsync(devicesAddDevice(
       this,
       request,
@@ -77,7 +78,7 @@ export class Devices extends ClientSDK {
    */
   async discoverDevices(
     options?: RequestOptions,
-  ): Promise<operations.DiscoverDevicesResponse> {
+  ): Promise<shared.MediaContainerWithDevice> {
     return unwrapAsync(devicesDiscoverDevices(
       this,
       options,
@@ -110,7 +111,7 @@ export class Devices extends ClientSDK {
   async getDeviceDetails(
     request: operations.GetDeviceDetailsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetDeviceDetailsResponse> {
+  ): Promise<shared.MediaContainerWithDevice> {
     return unwrapAsync(devicesGetDeviceDetails(
       this,
       request,
@@ -144,7 +145,7 @@ export class Devices extends ClientSDK {
   async setChannelmap(
     request: operations.SetChannelmapRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetChannelmapResponse> {
+  ): Promise<shared.MediaContainerWithDevice> {
     return unwrapAsync(devicesSetChannelmap(
       this,
       request,
@@ -178,7 +179,7 @@ export class Devices extends ClientSDK {
   async setDevicePreferences(
     request: operations.SetDevicePreferencesRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetDevicePreferencesResponse> {
+  ): Promise<void> {
     return unwrapAsync(devicesSetDevicePreferences(
       this,
       request,
@@ -195,7 +196,7 @@ export class Devices extends ClientSDK {
   async stopScan(
     request: operations.StopScanRequest,
     options?: RequestOptions,
-  ): Promise<operations.StopScanResponse> {
+  ): Promise<shared.MediaContainerWithDevice> {
     return unwrapAsync(devicesStopScan(
       this,
       request,
@@ -229,7 +230,7 @@ export class Devices extends ClientSDK {
   async getThumb(
     request: operations.GetThumbRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetThumbResponse> {
+  ): Promise<void> {
     return unwrapAsync(devicesGetThumb(
       this,
       request,

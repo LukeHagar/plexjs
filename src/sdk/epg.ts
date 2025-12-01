@@ -12,8 +12,9 @@ import { epgGetLineup } from "../funcs/epgGetLineup.js";
 import { epgGetLineupChannels } from "../funcs/epgGetLineupChannels.js";
 import { epgListLineups } from "../funcs/epgListLineups.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Epg extends ClientSDK {
   /**
@@ -89,7 +90,7 @@ export class Epg extends ClientSDK {
   async getLineup(
     request: operations.GetLineupRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetLineupResponse> {
+  ): Promise<operations.GetLineupResponse | undefined> {
     return unwrapAsync(epgGetLineup(
       this,
       request,
@@ -123,7 +124,7 @@ export class Epg extends ClientSDK {
   async getCountriesLineups(
     request: operations.GetCountriesLineupsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetCountriesLineupsResponse> {
+  ): Promise<shared.MediaContainerWithLineup> {
     return unwrapAsync(epgGetCountriesLineups(
       this,
       request,

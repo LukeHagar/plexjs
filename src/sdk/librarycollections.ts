@@ -6,8 +6,9 @@ import { libraryCollectionsAddCollectionItems } from "../funcs/libraryCollection
 import { libraryCollectionsDeleteCollectionItem } from "../funcs/libraryCollectionsDeleteCollectionItem.js";
 import { libraryCollectionsMoveCollectionItem } from "../funcs/libraryCollectionsMoveCollectionItem.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class LibraryCollections extends ClientSDK {
   /**
@@ -19,7 +20,7 @@ export class LibraryCollections extends ClientSDK {
   async addCollectionItems(
     request: operations.AddCollectionItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.AddCollectionItemsResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(libraryCollectionsAddCollectionItems(
       this,
       request,
@@ -36,7 +37,7 @@ export class LibraryCollections extends ClientSDK {
   async deleteCollectionItem(
     request: operations.DeleteCollectionItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteCollectionItemResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(libraryCollectionsDeleteCollectionItem(
       this,
       request,
@@ -53,7 +54,7 @@ export class LibraryCollections extends ClientSDK {
   async moveCollectionItem(
     request: operations.MoveCollectionItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.MoveCollectionItemResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(libraryCollectionsMoveCollectionItem(
       this,
       request,

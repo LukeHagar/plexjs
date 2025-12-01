@@ -6,8 +6,8 @@ import { logEnablePapertrail } from "../funcs/logEnablePapertrail.js";
 import { logWriteLog } from "../funcs/logWriteLog.js";
 import { logWriteMessage } from "../funcs/logWriteMessage.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Log extends ClientSDK {
   /**
@@ -19,7 +19,7 @@ export class Log extends ClientSDK {
   async writeLog(
     request: ReadableStream<Uint8Array> | Blob | ArrayBuffer | Uint8Array,
     options?: RequestOptions,
-  ): Promise<operations.WriteLogResponse> {
+  ): Promise<void> {
     return unwrapAsync(logWriteLog(
       this,
       request,
@@ -38,7 +38,7 @@ export class Log extends ClientSDK {
   async writeMessage(
     request: operations.WriteMessageRequest,
     options?: RequestOptions,
-  ): Promise<operations.WriteMessageResponse> {
+  ): Promise<void> {
     return unwrapAsync(logWriteMessage(
       this,
       request,
@@ -57,7 +57,7 @@ export class Log extends ClientSDK {
   async enablePapertrail(
     request: operations.EnablePapertrailRequest,
     options?: RequestOptions,
-  ): Promise<operations.EnablePapertrailResponse> {
+  ): Promise<void> {
     return unwrapAsync(logEnablePapertrail(
       this,
       request,

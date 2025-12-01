@@ -12,8 +12,9 @@ import { downloadQueueListDownloadQueueItems } from "../funcs/downloadQueueListD
 import { downloadQueueRemoveDownloadQueueItems } from "../funcs/downloadQueueRemoveDownloadQueueItems.js";
 import { downloadQueueRestartProcessingDownloadQueueItems } from "../funcs/downloadQueueRestartProcessingDownloadQueueItems.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class DownloadQueue extends ClientSDK {
   /**
@@ -101,7 +102,7 @@ export class DownloadQueue extends ClientSDK {
   async getItemDecision(
     request: operations.GetItemDecisionRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetItemDecisionResponse> {
+  ): Promise<shared.MediaContainerWithDecision> {
     return unwrapAsync(downloadQueueGetItemDecision(
       this,
       request,
@@ -120,7 +121,7 @@ export class DownloadQueue extends ClientSDK {
   async getDownloadQueueMedia(
     request: operations.GetDownloadQueueMediaRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetDownloadQueueMediaResponse> {
+  ): Promise<operations.GetDownloadQueueMediaResponse | undefined> {
     return unwrapAsync(downloadQueueGetDownloadQueueMedia(
       this,
       request,
@@ -137,7 +138,7 @@ export class DownloadQueue extends ClientSDK {
   async removeDownloadQueueItems(
     request: operations.RemoveDownloadQueueItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.RemoveDownloadQueueItemsResponse> {
+  ): Promise<void> {
     return unwrapAsync(downloadQueueRemoveDownloadQueueItems(
       this,
       request,
@@ -175,7 +176,7 @@ export class DownloadQueue extends ClientSDK {
   async restartProcessingDownloadQueueItems(
     request: operations.RestartProcessingDownloadQueueItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.RestartProcessingDownloadQueueItemsResponse> {
+  ): Promise<void> {
     return unwrapAsync(downloadQueueRestartProcessingDownloadQueueItems(
       this,
       request,

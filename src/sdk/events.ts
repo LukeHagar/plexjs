@@ -5,8 +5,8 @@
 import { eventsConnectWebSocket } from "../funcs/eventsConnectWebSocket.js";
 import { eventsGetNotifications } from "../funcs/eventsGetNotifications.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Events extends ClientSDK {
   /**
@@ -18,7 +18,7 @@ export class Events extends ClientSDK {
   async getNotifications(
     request: operations.GetNotificationsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetNotificationsResponse> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(eventsGetNotifications(
       this,
       request,
@@ -35,7 +35,7 @@ export class Events extends ClientSDK {
   async connectWebSocket(
     request: operations.ConnectWebSocketRequest,
     options?: RequestOptions,
-  ): Promise<operations.ConnectWebSocketResponse> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(eventsConnectWebSocket(
       this,
       request,

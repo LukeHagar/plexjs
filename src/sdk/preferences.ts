@@ -6,8 +6,9 @@ import { preferencesGetAllPreferences } from "../funcs/preferencesGetAllPreferen
 import { preferencesGetPreference } from "../funcs/preferencesGetPreference.js";
 import { preferencesSetPreferences } from "../funcs/preferencesSetPreferences.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Preferences extends ClientSDK {
   /**
@@ -18,7 +19,7 @@ export class Preferences extends ClientSDK {
    */
   async getAllPreferences(
     options?: RequestOptions,
-  ): Promise<operations.GetAllPreferencesResponse> {
+  ): Promise<shared.MediaContainerWithSettings> {
     return unwrapAsync(preferencesGetAllPreferences(
       this,
       options,
@@ -34,7 +35,7 @@ export class Preferences extends ClientSDK {
   async setPreferences(
     request: operations.SetPreferencesRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetPreferencesResponse> {
+  ): Promise<void> {
     return unwrapAsync(preferencesSetPreferences(
       this,
       request,
@@ -51,7 +52,7 @@ export class Preferences extends ClientSDK {
   async getPreference(
     request: operations.GetPreferenceRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetPreferenceResponse> {
+  ): Promise<shared.MediaContainerWithSettings> {
     return unwrapAsync(preferencesGetPreference(
       this,
       request,

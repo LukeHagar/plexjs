@@ -28,9 +28,9 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.butler.stopTasks();
+  await plexAPI.butler.stopTasks();
 
-  console.log(result);
+
 }
 
 run();
@@ -54,7 +54,7 @@ async function run() {
   const res = await butlerStopTasks(plexAPI);
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("butlerStopTasks failed:", res.error);
   }
@@ -73,7 +73,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.StopTasksResponse](../../sdk/models/operations/stoptasksresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -142,7 +142,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetTasksResponse](../../sdk/models/operations/gettasksresponse.md)\>**
+**Promise\<[operations.GetTasksResponse](../../models/operations/gettasksresponse.md)\>**
 
 ### Errors
 
@@ -171,9 +171,9 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.butler.startTasks();
+  await plexAPI.butler.startTasks();
 
-  console.log(result);
+
 }
 
 run();
@@ -197,7 +197,7 @@ async function run() {
   const res = await butlerStartTasks(plexAPI);
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("butlerStartTasks failed:", res.error);
   }
@@ -216,7 +216,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.StartTasksResponse](../../sdk/models/operations/starttasksresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -234,8 +234,8 @@ This endpoint will stop a currently running task by name, or remove it from the 
 <!-- UsageSnippet language="typescript" operationID="stopTask" method="delete" path="/butler/{butlerTask}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { StopTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { StopTaskButlerTask } from "@lukehagar/plexjs/models/operations";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -253,11 +253,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.butler.stopTask({
+  await plexAPI.butler.stopTask({
     butlerTask: StopTaskButlerTask.CleanOldBundles,
   });
 
-  console.log(result);
+
 }
 
 run();
@@ -270,8 +270,8 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { butlerStopTask } from "@lukehagar/plexjs/funcs/butlerStopTask.js";
-import { StopTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { StopTaskButlerTask } from "@lukehagar/plexjs/models/operations";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -296,7 +296,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("butlerStopTask failed:", res.error);
   }
@@ -309,14 +309,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.StopTaskRequest](../../sdk/models/operations/stoptaskrequest.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.StopTaskRequest](../../models/operations/stoptaskrequest.md)                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.StopTaskResponse](../../sdk/models/operations/stoptaskresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 
@@ -334,8 +334,8 @@ This endpoint will attempt to start a specific Butler task by name.
 <!-- UsageSnippet language="typescript" operationID="startTask" method="post" path="/butler/{butlerTask}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { StartTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { StartTaskButlerTask } from "@lukehagar/plexjs/models/operations";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -353,11 +353,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.butler.startTask({
+  await plexAPI.butler.startTask({
     butlerTask: StartTaskButlerTask.RefreshLocalMedia,
   });
 
-  console.log(result);
+
 }
 
 run();
@@ -370,8 +370,8 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { butlerStartTask } from "@lukehagar/plexjs/funcs/butlerStartTask.js";
-import { StartTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { StartTaskButlerTask } from "@lukehagar/plexjs/models/operations";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -396,7 +396,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("butlerStartTask failed:", res.error);
   }
@@ -409,14 +409,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.StartTaskRequest](../../sdk/models/operations/starttaskrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.StartTaskRequest](../../models/operations/starttaskrequest.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.StartTaskResponse](../../sdk/models/operations/starttaskresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 

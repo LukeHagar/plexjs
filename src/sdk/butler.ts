@@ -8,8 +8,8 @@ import { butlerStartTasks } from "../funcs/butlerStartTasks.js";
 import { butlerStopTask } from "../funcs/butlerStopTask.js";
 import { butlerStopTasks } from "../funcs/butlerStopTasks.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Butler extends ClientSDK {
   /**
@@ -20,7 +20,7 @@ export class Butler extends ClientSDK {
    */
   async stopTasks(
     options?: RequestOptions,
-  ): Promise<operations.StopTasksResponse> {
+  ): Promise<void> {
     return unwrapAsync(butlerStopTasks(
       this,
       options,
@@ -55,7 +55,7 @@ export class Butler extends ClientSDK {
    */
   async startTasks(
     options?: RequestOptions,
-  ): Promise<operations.StartTasksResponse> {
+  ): Promise<void> {
     return unwrapAsync(butlerStartTasks(
       this,
       options,
@@ -71,7 +71,7 @@ export class Butler extends ClientSDK {
   async stopTask(
     request: operations.StopTaskRequest,
     options?: RequestOptions,
-  ): Promise<operations.StopTaskResponse> {
+  ): Promise<void> {
     return unwrapAsync(butlerStopTask(
       this,
       request,
@@ -88,7 +88,7 @@ export class Butler extends ClientSDK {
   async startTask(
     request: operations.StartTaskRequest,
     options?: RequestOptions,
-  ): Promise<operations.StartTaskResponse> {
+  ): Promise<void> {
     return unwrapAsync(butlerStartTask(
       this,
       request,

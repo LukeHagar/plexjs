@@ -6,8 +6,9 @@ import { playlistGetPlaylist } from "../funcs/playlistGetPlaylist.js";
 import { playlistGetPlaylistItems } from "../funcs/playlistGetPlaylistItems.js";
 import { playlistListPlaylists } from "../funcs/playlistListPlaylists.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Playlist extends ClientSDK {
   /**
@@ -37,7 +38,7 @@ export class Playlist extends ClientSDK {
   async getPlaylist(
     request: operations.GetPlaylistRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetPlaylistResponse> {
+  ): Promise<shared.MediaContainerWithPlaylistMetadata> {
     return unwrapAsync(playlistGetPlaylist(
       this,
       request,

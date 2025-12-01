@@ -7,8 +7,8 @@ import { providerDeleteMediaProvider } from "../funcs/providerDeleteMediaProvide
 import { providerListProviders } from "../funcs/providerListProviders.js";
 import { providerRefreshProviders } from "../funcs/providerRefreshProviders.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Provider extends ClientSDK {
   /**
@@ -35,7 +35,7 @@ export class Provider extends ClientSDK {
   async addProvider(
     request: operations.AddProviderRequest,
     options?: RequestOptions,
-  ): Promise<operations.AddProviderResponse> {
+  ): Promise<void> {
     return unwrapAsync(providerAddProvider(
       this,
       request,
@@ -51,7 +51,7 @@ export class Provider extends ClientSDK {
    */
   async refreshProviders(
     options?: RequestOptions,
-  ): Promise<operations.RefreshProvidersResponse> {
+  ): Promise<void> {
     return unwrapAsync(providerRefreshProviders(
       this,
       options,
@@ -67,7 +67,7 @@ export class Provider extends ClientSDK {
   async deleteMediaProvider(
     request: operations.DeleteMediaProviderRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteMediaProviderResponse> {
+  ): Promise<void> {
     return unwrapAsync(providerDeleteMediaProvider(
       this,
       request,

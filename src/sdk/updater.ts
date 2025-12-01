@@ -6,8 +6,8 @@ import { updaterApplyUpdates } from "../funcs/updaterApplyUpdates.js";
 import { updaterCheckUpdates } from "../funcs/updaterCheckUpdates.js";
 import { updaterGetUpdatesStatus } from "../funcs/updaterGetUpdatesStatus.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Updater extends ClientSDK {
   /**
@@ -19,7 +19,7 @@ export class Updater extends ClientSDK {
   async applyUpdates(
     request: operations.ApplyUpdatesRequest,
     options?: RequestOptions,
-  ): Promise<operations.ApplyUpdatesResponse> {
+  ): Promise<void> {
     return unwrapAsync(updaterApplyUpdates(
       this,
       request,
@@ -36,7 +36,7 @@ export class Updater extends ClientSDK {
   async checkUpdates(
     request: operations.CheckUpdatesRequest,
     options?: RequestOptions,
-  ): Promise<operations.CheckUpdatesResponse> {
+  ): Promise<void> {
     return unwrapAsync(updaterCheckUpdates(
       this,
       request,

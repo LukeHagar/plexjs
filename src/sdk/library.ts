@@ -85,8 +85,9 @@ import { libraryUnmatch } from "../funcs/libraryUnmatch.js";
 import { libraryUpdateItemArtwork } from "../funcs/libraryUpdateItemArtwork.js";
 import { libraryUpdateItems } from "../funcs/libraryUpdateItems.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export { GetFileAcceptEnum } from "../funcs/libraryGetFile.js";
 
@@ -118,7 +119,7 @@ export class Library extends ClientSDK {
    */
   async deleteCaches(
     options?: RequestOptions,
-  ): Promise<operations.DeleteCachesResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteCaches(
       this,
       options,
@@ -133,7 +134,7 @@ export class Library extends ClientSDK {
    */
   async cleanBundles(
     options?: RequestOptions,
-  ): Promise<operations.CleanBundlesResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryCleanBundles(
       this,
       options,
@@ -188,7 +189,7 @@ export class Library extends ClientSDK {
   async optimizeDatabase(
     request: operations.OptimizeDatabaseRequest,
     options?: RequestOptions,
-  ): Promise<operations.OptimizeDatabaseResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryOptimizeDatabase(
       this,
       request,
@@ -207,7 +208,7 @@ export class Library extends ClientSDK {
   async getRandomArtwork(
     request: operations.GetRandomArtworkRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetRandomArtworkResponse> {
+  ): Promise<shared.MediaContainerWithArtwork> {
     return unwrapAsync(libraryGetRandomArtwork(
       this,
       request,
@@ -240,7 +241,7 @@ export class Library extends ClientSDK {
   async addSection(
     request: operations.AddSectionRequest,
     options?: RequestOptions,
-  ): Promise<operations.AddSectionResponse> {
+  ): Promise<shared.SlashGetResponses200> {
     return unwrapAsync(libraryAddSection(
       this,
       request,
@@ -256,7 +257,7 @@ export class Library extends ClientSDK {
    */
   async stopAllRefreshes(
     options?: RequestOptions,
-  ): Promise<operations.StopAllRefreshesResponse> {
+  ): Promise<shared.LibrarySections> {
     return unwrapAsync(libraryStopAllRefreshes(
       this,
       options,
@@ -272,7 +273,7 @@ export class Library extends ClientSDK {
   async getSectionsPrefs(
     request: operations.GetSectionsPrefsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSectionsPrefsResponse> {
+  ): Promise<shared.LibrarySections> {
     return unwrapAsync(libraryGetSectionsPrefs(
       this,
       request,
@@ -289,7 +290,7 @@ export class Library extends ClientSDK {
   async refreshSectionsMetadata(
     request: operations.RefreshSectionsMetadataRequest,
     options?: RequestOptions,
-  ): Promise<operations.RefreshSectionsMetadataResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryRefreshSectionsMetadata(
       this,
       request,
@@ -323,7 +324,7 @@ export class Library extends ClientSDK {
   async deleteMetadataItem(
     request: operations.DeleteMetadataItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteMetadataItemResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteMetadataItem(
       this,
       request,
@@ -340,7 +341,7 @@ export class Library extends ClientSDK {
   async editMetadataItem(
     request: operations.EditMetadataItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.EditMetadataItemResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryEditMetadataItem(
       this,
       request,
@@ -357,7 +358,7 @@ export class Library extends ClientSDK {
   async detectAds(
     request: operations.DetectAdsRequest,
     options?: RequestOptions,
-  ): Promise<operations.DetectAdsResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDetectAds(
       this,
       request,
@@ -391,7 +392,7 @@ export class Library extends ClientSDK {
   async analyzeMetadata(
     request: operations.AnalyzeMetadataRequest,
     options?: RequestOptions,
-  ): Promise<operations.AnalyzeMetadataResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryAnalyzeMetadata(
       this,
       request,
@@ -408,7 +409,7 @@ export class Library extends ClientSDK {
   async generateThumbs(
     request: operations.GenerateThumbsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GenerateThumbsResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryGenerateThumbs(
       this,
       request,
@@ -425,7 +426,7 @@ export class Library extends ClientSDK {
   async detectCredits(
     request: operations.DetectCreditsRequest,
     options?: RequestOptions,
-  ): Promise<operations.DetectCreditsResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDetectCredits(
       this,
       request,
@@ -459,7 +460,7 @@ export class Library extends ClientSDK {
   async addExtras(
     request: operations.AddExtrasRequest,
     options?: RequestOptions,
-  ): Promise<operations.AddExtrasResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryAddExtras(
       this,
       request,
@@ -493,7 +494,7 @@ export class Library extends ClientSDK {
   async startBifGeneration(
     request: operations.StartBifGenerationRequest,
     options?: RequestOptions,
-  ): Promise<operations.StartBifGenerationResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryStartBifGeneration(
       this,
       request,
@@ -510,7 +511,7 @@ export class Library extends ClientSDK {
   async detectIntros(
     request: operations.DetectIntrosRequest,
     options?: RequestOptions,
-  ): Promise<operations.DetectIntrosResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDetectIntros(
       this,
       request,
@@ -544,7 +545,7 @@ export class Library extends ClientSDK {
   async matchItem(
     request: operations.MatchItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.MatchItemResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryMatchItem(
       this,
       request,
@@ -561,7 +562,7 @@ export class Library extends ClientSDK {
   async listMatches(
     request: operations.ListMatchesRequest,
     options?: RequestOptions,
-  ): Promise<operations.ListMatchesResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(libraryListMatches(
       this,
       request,
@@ -578,7 +579,7 @@ export class Library extends ClientSDK {
   async mergeItems(
     request: operations.MergeItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.MergeItemsResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryMergeItems(
       this,
       request,
@@ -595,7 +596,7 @@ export class Library extends ClientSDK {
   async listSonicallySimilar(
     request: operations.ListSonicallySimilarRequest,
     options?: RequestOptions,
-  ): Promise<operations.ListSonicallySimilarResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(libraryListSonicallySimilar(
       this,
       request,
@@ -612,7 +613,7 @@ export class Library extends ClientSDK {
   async setItemPreferences(
     request: operations.SetItemPreferencesRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetItemPreferencesResponse> {
+  ): Promise<void> {
     return unwrapAsync(librarySetItemPreferences(
       this,
       request,
@@ -629,7 +630,7 @@ export class Library extends ClientSDK {
   async refreshItemsMetadata(
     request: operations.RefreshItemsMetadataRequest,
     options?: RequestOptions,
-  ): Promise<operations.RefreshItemsMetadataResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryRefreshItemsMetadata(
       this,
       request,
@@ -663,7 +664,7 @@ export class Library extends ClientSDK {
   async listSimilar(
     request: operations.ListSimilarRequest,
     options?: RequestOptions,
-  ): Promise<operations.ListSimilarResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(libraryListSimilar(
       this,
       request,
@@ -680,7 +681,7 @@ export class Library extends ClientSDK {
   async splitItem(
     request: operations.SplitItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.SplitItemResponse> {
+  ): Promise<void> {
     return unwrapAsync(librarySplitItem(
       this,
       request,
@@ -697,7 +698,7 @@ export class Library extends ClientSDK {
   async addSubtitles(
     request: operations.AddSubtitlesRequest,
     options?: RequestOptions,
-  ): Promise<operations.AddSubtitlesResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryAddSubtitles(
       this,
       request,
@@ -714,7 +715,7 @@ export class Library extends ClientSDK {
   async getItemTree(
     request: operations.GetItemTreeRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetItemTreeResponse> {
+  ): Promise<shared.MediaContainerWithNestedMetadata> {
     return unwrapAsync(libraryGetItemTree(
       this,
       request,
@@ -731,7 +732,7 @@ export class Library extends ClientSDK {
   async unmatch(
     request: operations.UnmatchRequest,
     options?: RequestOptions,
-  ): Promise<operations.UnmatchResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryUnmatch(
       this,
       request,
@@ -765,7 +766,7 @@ export class Library extends ClientSDK {
   async detectVoiceActivity(
     request: operations.DetectVoiceActivityRequest,
     options?: RequestOptions,
-  ): Promise<operations.DetectVoiceActivityResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDetectVoiceActivity(
       this,
       request,
@@ -782,7 +783,7 @@ export class Library extends ClientSDK {
   async getAugmentationStatus(
     request: operations.GetAugmentationStatusRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetAugmentationStatusResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryGetAugmentationStatus(
       this,
       request,
@@ -799,7 +800,7 @@ export class Library extends ClientSDK {
   async setStreamSelection(
     request: operations.SetStreamSelectionRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetStreamSelectionResponse> {
+  ): Promise<void> {
     return unwrapAsync(librarySetStreamSelection(
       this,
       request,
@@ -833,7 +834,7 @@ export class Library extends ClientSDK {
   async listPersonMedia(
     request: operations.ListPersonMediaRequest,
     options?: RequestOptions,
-  ): Promise<operations.ListPersonMediaResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(libraryListPersonMedia(
       this,
       request,
@@ -850,7 +851,7 @@ export class Library extends ClientSDK {
   async deleteLibrarySection(
     request: operations.DeleteLibrarySectionRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteLibrarySectionResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteLibrarySection(
       this,
       request,
@@ -884,7 +885,7 @@ export class Library extends ClientSDK {
   async editSection(
     request: operations.EditSectionRequest,
     options?: RequestOptions,
-  ): Promise<operations.EditSectionResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryEditSection(
       this,
       request,
@@ -945,7 +946,7 @@ export class Library extends ClientSDK {
   async updateItems(
     request: operations.UpdateItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.UpdateItemsResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryUpdateItems(
       this,
       request,
@@ -962,7 +963,7 @@ export class Library extends ClientSDK {
   async startAnalysis(
     request: operations.StartAnalysisRequest,
     options?: RequestOptions,
-  ): Promise<operations.StartAnalysisResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryStartAnalysis(
       this,
       request,
@@ -1032,7 +1033,7 @@ export class Library extends ClientSDK {
   async emptyTrash(
     request: operations.EmptyTrashRequest,
     options?: RequestOptions,
-  ): Promise<operations.EmptyTrashResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryEmptyTrash(
       this,
       request,
@@ -1083,7 +1084,7 @@ export class Library extends ClientSDK {
   async deleteIndexes(
     request: operations.DeleteIndexesRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteIndexesResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteIndexes(
       this,
       request,
@@ -1100,7 +1101,7 @@ export class Library extends ClientSDK {
   async deleteIntros(
     request: operations.DeleteIntrosRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteIntrosResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteIntros(
       this,
       request,
@@ -1117,7 +1118,7 @@ export class Library extends ClientSDK {
   async getSectionPreferences(
     request: operations.GetSectionPreferencesRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSectionPreferencesResponse> {
+  ): Promise<shared.MediaContainerWithSettings> {
     return unwrapAsync(libraryGetSectionPreferences(
       this,
       request,
@@ -1134,7 +1135,7 @@ export class Library extends ClientSDK {
   async setSectionPreferences(
     request: operations.SetSectionPreferencesRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetSectionPreferencesResponse> {
+  ): Promise<void> {
     return unwrapAsync(librarySetSectionPreferences(
       this,
       request,
@@ -1151,7 +1152,7 @@ export class Library extends ClientSDK {
   async cancelRefresh(
     request: operations.CancelRefreshRequest,
     options?: RequestOptions,
-  ): Promise<operations.CancelRefreshResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryCancelRefresh(
       this,
       request,
@@ -1168,7 +1169,7 @@ export class Library extends ClientSDK {
   async refreshSection(
     request: operations.RefreshSectionRequest,
     options?: RequestOptions,
-  ): Promise<operations.RefreshSectionResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryRefreshSection(
       this,
       request,
@@ -1219,7 +1220,7 @@ export class Library extends ClientSDK {
   async getStreamLoudness(
     request: operations.GetStreamLoudnessRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetStreamLoudnessResponse> {
+  ): Promise<string> {
     return unwrapAsync(libraryGetStreamLoudness(
       this,
       request,
@@ -1236,7 +1237,7 @@ export class Library extends ClientSDK {
   async getChapterImage(
     request: operations.GetChapterImageRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetChapterImageResponse> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(libraryGetChapterImage(
       this,
       request,
@@ -1254,7 +1255,7 @@ export class Library extends ClientSDK {
   async setItemArtwork(
     request: operations.SetItemArtworkRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetItemArtworkResponse> {
+  ): Promise<void> {
     return unwrapAsync(librarySetItemArtwork(
       this,
       request,
@@ -1272,7 +1273,7 @@ export class Library extends ClientSDK {
   async updateItemArtwork(
     request: operations.UpdateItemArtworkRequest,
     options?: RequestOptions,
-  ): Promise<operations.UpdateItemArtworkResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryUpdateItemArtwork(
       this,
       request,
@@ -1289,7 +1290,7 @@ export class Library extends ClientSDK {
   async deleteMarker(
     request: operations.DeleteMarkerRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteMarkerResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteMarker(
       this,
       request,
@@ -1306,7 +1307,7 @@ export class Library extends ClientSDK {
   async editMarker(
     request: operations.EditMarkerRequest,
     options?: RequestOptions,
-  ): Promise<operations.EditMarkerResponse> {
+  ): Promise<shared.PostResponses200> {
     return unwrapAsync(libraryEditMarker(
       this,
       request,
@@ -1323,7 +1324,7 @@ export class Library extends ClientSDK {
   async deleteMediaItem(
     request: operations.DeleteMediaItemRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteMediaItemResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteMediaItem(
       this,
       request,
@@ -1340,7 +1341,7 @@ export class Library extends ClientSDK {
   async getPartIndex(
     request: operations.GetPartIndexRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetPartIndexResponse> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(libraryGetPartIndex(
       this,
       request,
@@ -1357,7 +1358,7 @@ export class Library extends ClientSDK {
   async deleteCollection(
     request: operations.DeleteCollectionRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteCollectionResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteCollection(
       this,
       request,
@@ -1374,7 +1375,7 @@ export class Library extends ClientSDK {
   async getSectionImage(
     request: operations.GetSectionImageRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSectionImageResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryGetSectionImage(
       this,
       request,
@@ -1391,7 +1392,7 @@ export class Library extends ClientSDK {
   async deleteStream(
     request: operations.DeleteStreamRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteStreamResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryDeleteStream(
       this,
       request,
@@ -1408,7 +1409,7 @@ export class Library extends ClientSDK {
   async getStream(
     request: operations.GetStreamRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetStreamResponse> {
+  ): Promise<void> {
     return unwrapAsync(libraryGetStream(
       this,
       request,
@@ -1425,7 +1426,7 @@ export class Library extends ClientSDK {
   async setStreamOffset(
     request: operations.SetStreamOffsetRequest,
     options?: RequestOptions,
-  ): Promise<operations.SetStreamOffsetResponse> {
+  ): Promise<void> {
     return unwrapAsync(librarySetStreamOffset(
       this,
       request,
@@ -1463,7 +1464,7 @@ export class Library extends ClientSDK {
   async getMediaPart(
     request: operations.GetMediaPartRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetMediaPartResponse> {
+  ): Promise<operations.GetMediaPartResponse | undefined> {
     return unwrapAsync(libraryGetMediaPart(
       this,
       request,
@@ -1480,7 +1481,7 @@ export class Library extends ClientSDK {
   async getImageFromBif(
     request: operations.GetImageFromBifRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetImageFromBifResponse> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(libraryGetImageFromBif(
       this,
       request,

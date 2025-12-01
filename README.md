@@ -76,13 +76,13 @@ import {
   Extension,
   StartTranscodeSessionLocation,
   StartTranscodeSessionProtocol,
-} from "@lukehagar/plexjs/sdk/models/operations";
+} from "@lukehagar/plexjs/models/operations";
 import {
   Accepts,
   AdvancedSubtitles,
   BoolInt,
   TranscodeType,
-} from "@lukehagar/plexjs/sdk/models/shared";
+} from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -487,7 +487,7 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-[`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts) is the base class for all HTTP error responses. It has the following properties:
+[`PlexAPIError`](./src/models/errors/plexapierror.ts) is the base class for all HTTP error responses. It has the following properties:
 
 | Property            | Type       | Description                                                                             |
 | ------------------- | ---------- | --------------------------------------------------------------------------------------- |
@@ -501,8 +501,8 @@ run();
 ### Example
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import * as errors from "@lukehagar/plexjs/sdk/models/errors";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import * as errors from "@lukehagar/plexjs/models/errors";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -535,7 +535,6 @@ async function run() {
       // Depending on the method different errors may be thrown
       if (error instanceof errors.GetTokenDetailsBadRequestError) {
         console.log(error.data$.errors); // GetTokenDetailsBadRequestError[]
-        console.log(error.data$.rawResponse); // Response
       }
     }
   }
@@ -547,29 +546,29 @@ run();
 
 ### Error Classes
 **Primary error:**
-* [`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts): The base class for HTTP error responses.
+* [`PlexAPIError`](./src/models/errors/plexapierror.ts): The base class for HTTP error responses.
 
 <details><summary>Less common errors (13)</summary>
 
 <br />
 
 **Network errors:**
-* [`ConnectionError`](./src/sdk/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
-* [`RequestTimeoutError`](./src/sdk/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
-* [`RequestAbortedError`](./src/sdk/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
-* [`InvalidRequestError`](./src/sdk/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
-* [`UnexpectedClientError`](./src/sdk/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
 
 
-**Inherit from [`PlexAPIError`](./src/sdk/models/errors/plexapierror.ts)**:
-* [`GetTokenDetailsBadRequestError`](./src/sdk/models/errors/gettokendetailsbadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
-* [`PostUsersSignInDataBadRequestError`](./src/sdk/models/errors/postuserssignindatabadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
-* [`GetUsersBadRequestError`](./src/sdk/models/errors/getusersbadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
-* [`GetTokenDetailsUnauthorizedError`](./src/sdk/models/errors/gettokendetailsunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
-* [`PostUsersSignInDataUnauthorizedError`](./src/sdk/models/errors/postuserssignindataunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
-* [`GetUsersUnauthorizedError`](./src/sdk/models/errors/getusersunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
-* [`GetServerResourcesUnauthorizedError`](./src/sdk/models/errors/getserverresourcesunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
-* [`ResponseValidationError`](./src/sdk/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+**Inherit from [`PlexAPIError`](./src/models/errors/plexapierror.ts)**:
+* [`GetTokenDetailsBadRequestError`](./src/models/errors/gettokendetailsbadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
+* [`PostUsersSignInDataBadRequestError`](./src/models/errors/postuserssignindatabadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
+* [`GetUsersBadRequestError`](./src/models/errors/getusersbadrequesterror.ts): Bad Request - A parameter was not specified, or was specified incorrectly. Status code `400`. Applicable to 1 of 241 methods.*
+* [`GetTokenDetailsUnauthorizedError`](./src/models/errors/gettokendetailsunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
+* [`PostUsersSignInDataUnauthorizedError`](./src/models/errors/postuserssignindataunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
+* [`GetUsersUnauthorizedError`](./src/models/errors/getusersunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
+* [`GetServerResourcesUnauthorizedError`](./src/models/errors/getserverresourcesunauthorizederror.ts): Unauthorized - Returned if the X-Plex-Token is missing from the header or query. Status code `401`. Applicable to 1 of 241 methods.*
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
 
@@ -604,7 +603,7 @@ If the selected server has variables, you may override its default values throug
 
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   serverIdx: 0,
@@ -640,7 +639,7 @@ run();
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   serverURL: "https://http://localhost:32400",
@@ -673,7 +672,7 @@ run();
 The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -766,7 +765,7 @@ This SDK supports the following security scheme globally:
 To authenticate with the API the `token` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -1083,9 +1082,7 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.log.writeLog(await openAsBlob("example.file"));
-
-  console.log(result);
+  await plexAPI.log.writeLog(await openAsBlob("example.file"));
 }
 
 run();
@@ -1101,7 +1098,7 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1142,7 +1139,7 @@ run();
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   retryConfig: {

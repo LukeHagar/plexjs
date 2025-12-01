@@ -16,15 +16,15 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
-import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
-import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
-import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { GetUsersServerList } from "../sdk/models/operations/getusers.js";
-import * as operations from "../sdk/models/operations/index.js";
-import { APICall, APIPromise } from "../sdk/types/async.js";
-import { Result } from "../sdk/types/fp.js";
+} from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
+import { PlexAPIError } from "../models/errors/plexapierror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
+import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import { GetUsersServerList } from "../models/operations/getusers.js";
+import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
+import { Result } from "../types/fp.js";
 
 /**
  * Get list of all connected users
@@ -201,11 +201,7 @@ async function $do(
   const response = doResult.value;
 
   const responseFields = {
-    ContentType: response.headers.get("content-type")
-      ?? "application/octet-stream",
-    StatusCode: response.status,
-    RawResponse: response,
-    Headers: {},
+    HttpMeta: { Response: response, Request: req },
   };
 
   const [result] = await M.match<
@@ -221,7 +217,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.GetUsersResponse$inboundSchema, { key: "object" }),
+    M.json(200, operations.GetUsersResponse$inboundSchema),
     M.jsonErr(400, errors.GetUsersBadRequestError$inboundSchema),
     M.jsonErr(401, errors.GetUsersUnauthorizedError$inboundSchema),
     M.fail("4XX"),

@@ -1,0 +1,21 @@
+# PlayQueueGenerator
+
+## Example Usage
+
+```typescript
+import { PlayQueueGenerator } from "@lukehagar/plexjs/models/operations";
+
+let value: PlayQueueGenerator = {};
+```
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `changedAt`                                                                                                | *number*                                                                                                   | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `createdAt`                                                                                                | *number*                                                                                                   | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `id`                                                                                                       | *number*                                                                                                   | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `playlistID`                                                                                               | *number*                                                                                                   | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `type`                                                                                                     | [operations.GetPlaylistGeneratorsType](../../models/operations/getplaylistgeneratorstype.md)               | :heavy_minus_sign:                                                                                         | The type of playlist generator.<br/><br/>  - -1: A smart playlist generator<br/>  - 42: A optimized version generator<br/> |
+| `updatedAt`                                                                                                | *number*                                                                                                   | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `uri`                                                                                                      | *string*                                                                                                   | :heavy_minus_sign:                                                                                         | The URI indicating the search for this generator                                                           |

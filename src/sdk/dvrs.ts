@@ -15,8 +15,8 @@ import { dvRsSetDVRPreferences } from "../funcs/dvRsSetDVRPreferences.js";
 import { dvRsStopDVRReload } from "../funcs/dvRsStopDVRReload.js";
 import { dvRsTuneChannel } from "../funcs/dvRsTuneChannel.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class DVRs extends ClientSDK {
   /**
@@ -60,7 +60,7 @@ export class DVRs extends ClientSDK {
   async deleteDVR(
     request: operations.DeleteDVRRequest,
     options?: RequestOptions,
-  ): Promise<operations.DeleteDVRResponse> {
+  ): Promise<void> {
     return unwrapAsync(dvRsDeleteDVR(
       this,
       request,
@@ -145,7 +145,7 @@ export class DVRs extends ClientSDK {
   async stopDVRReload(
     request: operations.StopDVRReloadRequest,
     options?: RequestOptions,
-  ): Promise<operations.StopDVRReloadResponse> {
+  ): Promise<void> {
     return unwrapAsync(dvRsStopDVRReload(
       this,
       request,
@@ -162,7 +162,7 @@ export class DVRs extends ClientSDK {
   async reloadGuide(
     request: operations.ReloadGuideRequest,
     options?: RequestOptions,
-  ): Promise<operations.ReloadGuideResponse> {
+  ): Promise<operations.ReloadGuideResponse | undefined> {
     return unwrapAsync(dvRsReloadGuide(
       this,
       request,

@@ -75,7 +75,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.ListActivitiesResponse](../../sdk/models/operations/listactivitiesresponse.md)\>**
+**Promise\<[operations.ListActivitiesResponse](../../models/operations/listactivitiesresponse.md)\>**
 
 ### Errors
 
@@ -92,7 +92,7 @@ Cancel a running activity.  Admins can cancel all activities but other users can
 <!-- UsageSnippet language="typescript" operationID="cancelActivity" method="delete" path="/activities/{activityId}" -->
 ```typescript
 import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -110,11 +110,11 @@ const plexAPI = new PlexAPI({
 });
 
 async function run() {
-  const result = await plexAPI.activities.cancelActivity({
+  await plexAPI.activities.cancelActivity({
     activityId: "d6199ba1-fb5e-4cae-bf17-1a5369c1cf1e",
   });
 
-  console.log(result);
+
 }
 
 run();
@@ -127,7 +127,7 @@ The standalone function version of this method:
 ```typescript
 import { PlexAPICore } from "@lukehagar/plexjs/core.js";
 import { activitiesCancelActivity } from "@lukehagar/plexjs/funcs/activitiesCancelActivity.js";
-import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+import { Accepts } from "@lukehagar/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -152,7 +152,7 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    
   } else {
     console.log("activitiesCancelActivity failed:", res.error);
   }
@@ -165,14 +165,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CancelActivityRequest](../../sdk/models/operations/cancelactivityrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CancelActivityRequest](../../models/operations/cancelactivityrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.CancelActivityResponse](../../sdk/models/operations/cancelactivityresponse.md)\>**
+**Promise\<void\>**
 
 ### Errors
 

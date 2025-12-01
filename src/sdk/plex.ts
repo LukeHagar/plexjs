@@ -4,8 +4,9 @@
 
 import { plexGetServerResources } from "../funcs/plexGetServerResources.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Plex extends ClientSDK {
   /**
@@ -17,7 +18,7 @@ export class Plex extends ClientSDK {
   async getServerResources(
     request: operations.GetServerResourcesRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetServerResourcesResponse> {
+  ): Promise<Array<shared.PlexDevice>> {
     return unwrapAsync(plexGetServerResources(
       this,
       request,

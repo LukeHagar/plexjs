@@ -16,13 +16,14 @@ import {
   RequestAbortedError,
   RequestTimeoutError,
   UnexpectedClientError,
-} from "../sdk/models/errors/httpclienterrors.js";
-import { PlexAPIError } from "../sdk/models/errors/plexapierror.js";
-import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
-import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import * as operations from "../sdk/models/operations/index.js";
-import { APICall, APIPromise } from "../sdk/types/async.js";
-import { Result } from "../sdk/types/fp.js";
+} from "../models/errors/httpclienterrors.js";
+import { PlexAPIError } from "../models/errors/plexapierror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
+import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { APICall, APIPromise } from "../types/async.js";
+import { Result } from "../types/fp.js";
 
 /**
  * Get random artwork
@@ -38,7 +39,7 @@ export function libraryGetRandomArtwork(
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.GetRandomArtworkResponse,
+    shared.MediaContainerWithArtwork,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -63,7 +64,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.GetRandomArtworkResponse,
+      shared.MediaContainerWithArtwork,
       | PlexAPIError
       | ResponseValidationError
       | ConnectionError
@@ -198,16 +199,8 @@ async function $do(
   }
   const response = doResult.value;
 
-  const responseFields = {
-    ContentType: response.headers.get("content-type")
-      ?? "application/octet-stream",
-    StatusCode: response.status,
-    RawResponse: response,
-    Headers: {},
-  };
-
   const [result] = await M.match<
-    operations.GetRandomArtworkResponse,
+    shared.MediaContainerWithArtwork,
     | PlexAPIError
     | ResponseValidationError
     | ConnectionError
@@ -217,12 +210,10 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.GetRandomArtworkResponse$inboundSchema, {
-      key: "MediaContainerWithArtwork",
-    }),
+    M.json(200, shared.MediaContainerWithArtwork$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, req, { extraFields: responseFields });
+  )(response, req);
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

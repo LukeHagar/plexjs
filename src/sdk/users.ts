@@ -4,8 +4,8 @@
 
 import { usersGetUsers } from "../funcs/usersGetUsers.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Users extends ClientSDK {
   /**

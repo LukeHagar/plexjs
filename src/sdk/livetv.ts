@@ -7,8 +7,8 @@ import { liveTVGetSessionPlaylistIndex } from "../funcs/liveTVGetSessionPlaylist
 import { liveTVGetSessions } from "../funcs/liveTVGetSessions.js";
 import { liveTVGetSessionSegment } from "../funcs/liveTVGetSessionSegment.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class LiveTV extends ClientSDK {
   /**
@@ -52,7 +52,7 @@ export class LiveTV extends ClientSDK {
   async getSessionPlaylistIndex(
     request: operations.GetSessionPlaylistIndexRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSessionPlaylistIndexResponse> {
+  ): Promise<void> {
     return unwrapAsync(liveTVGetSessionPlaylistIndex(
       this,
       request,
@@ -69,7 +69,7 @@ export class LiveTV extends ClientSDK {
   async getSessionSegment(
     request: operations.GetSessionSegmentRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSessionSegmentResponse> {
+  ): Promise<void> {
     return unwrapAsync(liveTVGetSessionSegment(
       this,
       request,

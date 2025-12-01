@@ -10,7 +10,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -41,7 +41,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -91,7 +91,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -109,11 +109,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.preferences.setPreferences({
+              await plexAPI.preferences.setPreferences({
                 prefs: {},
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -124,7 +124,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -155,7 +155,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -173,13 +173,13 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.rate.setRating({
+              await plexAPI.rate.setRating({
                 identifier: "<value>",
                 key: "<key>",
                 rating: 8722.46,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -190,7 +190,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -208,11 +208,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.timeline.markPlayed({
+              await plexAPI.timeline.markPlayed({
                 identifier: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -223,8 +223,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { ReportState } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { ReportState } from "@lukehagar/plexjs/models/operations";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -270,7 +270,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -288,11 +288,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.timeline.unscrobble({
+              await plexAPI.timeline.unscrobble({
                 identifier: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -303,7 +303,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -353,7 +353,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -371,11 +371,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.activities.cancelActivity({
+              await plexAPI.activities.cancelActivity({
                 activityId: "d6199ba1-fb5e-4cae-bf17-1a5369c1cf1e",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -392,9 +392,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.butler.stopTasks();
+              await plexAPI.butler.stopTasks();
 
-              console.log(result);
+
             }
 
             run();
@@ -430,9 +430,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.butler.startTasks();
+              await plexAPI.butler.startTasks();
 
-              console.log(result);
+
             }
 
             run();
@@ -443,8 +443,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { StopTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { StopTaskButlerTask } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -462,11 +462,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.butler.stopTask({
+              await plexAPI.butler.stopTask({
                 butlerTask: StopTaskButlerTask.CleanOldBundles,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -477,8 +477,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { StartTaskButlerTask } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { StartTaskButlerTask } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -496,11 +496,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.butler.startTask({
+              await plexAPI.butler.startTask({
                 butlerTask: StartTaskButlerTask.RefreshLocalMedia,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -530,7 +530,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -563,7 +563,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -625,7 +625,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -659,7 +659,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -693,7 +693,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -726,7 +726,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -744,7 +744,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.downloadQueue.removeDownloadQueueItems({
+              await plexAPI.downloadQueue.removeDownloadQueueItems({
                 queueId: 946275,
                 itemId: [
                   32,
@@ -753,7 +753,7 @@ actions:
                 ],
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -764,7 +764,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -802,7 +802,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -820,7 +820,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.downloadQueue.restartProcessingDownloadQueueItems({
+              await plexAPI.downloadQueue.restartProcessingDownloadQueueItems({
                 queueId: 713001,
                 itemId: [
                   32,
@@ -829,7 +829,7 @@ actions:
                 ],
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -840,7 +840,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -873,7 +873,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -904,7 +904,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -941,7 +941,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -975,7 +975,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1009,7 +1009,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1043,7 +1043,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1074,7 +1074,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1108,7 +1108,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1142,7 +1142,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1176,7 +1176,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1194,11 +1194,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.hubs.resetSectionDefaults({
+              await plexAPI.hubs.resetSectionDefaults({
                 sectionId: 383022,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -1209,7 +1209,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1242,7 +1242,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1260,7 +1260,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.hubs.createCustomHub({
+              await plexAPI.hubs.createCustomHub({
                 sectionId: 869922,
                 metadataItemId: 703843,
                 promotedToRecommended: BoolInt.True,
@@ -1268,7 +1268,7 @@ actions:
                 promotedToSharedHome: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -1279,7 +1279,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1313,7 +1313,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1331,12 +1331,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.hubs.deleteCustomHub({
+              await plexAPI.hubs.deleteCustomHub({
                 sectionId: 625677,
                 identifier: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -1347,7 +1347,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1365,7 +1365,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.hubs.updateHubVisibility({
+              await plexAPI.hubs.updateHubVisibility({
                 sectionId: 341650,
                 identifier: "<value>",
                 promotedToRecommended: BoolInt.True,
@@ -1373,7 +1373,7 @@ actions:
                 promotedToSharedHome: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -1403,7 +1403,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1446,9 +1446,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteCaches();
+              await plexAPI.library.deleteCaches();
 
-              console.log(result);
+
             }
 
             run();
@@ -1465,9 +1465,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.cleanBundles();
+              await plexAPI.library.cleanBundles();
 
-              console.log(result);
+
             }
 
             run();
@@ -1478,7 +1478,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1512,7 +1512,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1546,7 +1546,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1579,7 +1579,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1613,7 +1613,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1647,7 +1647,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1681,7 +1681,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1717,7 +1717,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1753,7 +1753,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1787,7 +1787,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1805,12 +1805,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getAugmentationStatus({
+              await plexAPI.library.getAugmentationStatus({
                 augmentationId: "<id>",
                 wait: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -1821,7 +1821,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1839,12 +1839,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteMetadataItem({
+              await plexAPI.library.deleteMetadataItem({
                 ids: "<value>",
                 proxy: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -1855,7 +1855,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1896,7 +1896,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1914,14 +1914,14 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.editMetadataItem({
+              await plexAPI.library.editMetadataItem({
                 ids: [
                   "<value 1>",
                   "<value 2>",
                 ],
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -1932,7 +1932,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1950,11 +1950,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.detectAds({
+              await plexAPI.library.detectAds({
                 ids: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -1965,7 +1965,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -1998,7 +1998,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2016,11 +2016,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.analyzeMetadata({
+              await plexAPI.library.analyzeMetadata({
                 ids: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2031,7 +2031,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2049,12 +2049,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.generateThumbs({
+              await plexAPI.library.generateThumbs({
                 ids: "<value>",
                 force: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2065,7 +2065,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2083,13 +2083,13 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.detectCredits({
+              await plexAPI.library.detectCredits({
                 ids: "<value>",
                 force: BoolInt.True,
                 manual: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2100,7 +2100,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2133,7 +2133,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2151,12 +2151,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.addExtras({
+              await plexAPI.library.addExtras({
                 ids: "<value>",
                 url: "https://super-mortise.biz/",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2167,7 +2167,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2200,7 +2200,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2218,12 +2218,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.startBifGeneration({
+              await plexAPI.library.startBifGeneration({
                 ids: "<value>",
                 force: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2234,7 +2234,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2252,12 +2252,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.detectIntros({
+              await plexAPI.library.detectIntros({
                 ids: "<value>",
                 force: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2268,7 +2268,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2304,7 +2304,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2322,12 +2322,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteMarker({
+              await plexAPI.library.deleteMarker({
                 ids: "<value>",
                 marker: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2338,7 +2338,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2375,7 +2375,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2393,11 +2393,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.matchItem({
+              await plexAPI.library.matchItem({
                 ids: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2408,7 +2408,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2442,7 +2442,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2460,13 +2460,13 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteMediaItem({
+              await plexAPI.library.deleteMediaItem({
                 ids: "<value>",
                 mediaItem: "<value>",
                 proxy: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2477,7 +2477,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2495,11 +2495,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.mergeItems({
+              await plexAPI.library.mergeItems({
                 idsPathParameter: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2510,7 +2510,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2543,7 +2543,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2561,11 +2561,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.setItemPreferences({
+              await plexAPI.library.setItemPreferences({
                 ids: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2576,7 +2576,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2594,12 +2594,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.refreshItemsMetadata({
+              await plexAPI.library.refreshItemsMetadata({
                 ids: "<value>",
                 markUpdated: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2610,7 +2610,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2643,7 +2643,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2676,7 +2676,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2694,11 +2694,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.splitItem({
+              await plexAPI.library.splitItem({
                 ids: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2709,7 +2709,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2727,13 +2727,13 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.addSubtitles({
+              await plexAPI.library.addSubtitles({
                 ids: "<value>",
                 forced: BoolInt.True,
                 hearingImpaired: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2744,7 +2744,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2777,7 +2777,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2795,11 +2795,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.unmatch({
+              await plexAPI.library.unmatch({
                 ids: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2810,7 +2810,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2843,7 +2843,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2861,13 +2861,13 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.detectVoiceActivity({
+              await plexAPI.library.detectVoiceActivity({
                 ids: "<value>",
                 force: BoolInt.True,
                 manual: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2878,8 +2878,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { SetItemArtworkElement } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { SetItemArtworkElement } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2897,12 +2897,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.setItemArtwork({
+              await plexAPI.library.setItemArtwork({
                 ids: "<value>",
                 element: SetItemArtworkElement.Banner,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2913,8 +2913,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { UpdateItemArtworkElement } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { UpdateItemArtworkElement } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2932,12 +2932,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.updateItemArtwork({
+              await plexAPI.library.updateItemArtwork({
                 ids: "<value>",
                 element: UpdateItemArtworkElement.ClearLogo,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -2948,8 +2948,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { GetItemArtworkElement } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { GetItemArtworkElement } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -2984,7 +2984,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3002,11 +3002,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.optimizeDatabase({
+              await plexAPI.library.optimizeDatabase({
                 async: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -3017,7 +3017,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3035,12 +3035,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.setStreamSelection({
+              await plexAPI.library.setStreamSelection({
                 partId: 360489,
                 allParts: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -3051,8 +3051,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { GetPartIndexIndex } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { GetPartIndexIndex } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3086,8 +3086,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { GetImageFromBifIndex } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { GetImageFromBifIndex } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3122,7 +3122,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3158,7 +3158,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3191,7 +3191,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3224,7 +3224,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3279,7 +3279,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3341,7 +3341,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3374,7 +3374,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3392,9 +3392,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.refreshSectionsMetadata({});
+              await plexAPI.library.refreshSectionsMetadata({});
 
-              console.log(result);
+
             }
 
             run();
@@ -3405,7 +3405,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3423,12 +3423,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteLibrarySection({
+              await plexAPI.library.deleteLibrarySection({
                 sectionId: "<id>",
                 async: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -3439,7 +3439,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3473,7 +3473,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3491,7 +3491,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.editSection({
+              await plexAPI.library.editSection({
                 sectionId: "<id>",
                 agent: "<value>",
                 locations: [
@@ -3501,7 +3501,7 @@ actions:
                 prefs: {},
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -3512,7 +3512,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3545,7 +3545,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3585,7 +3585,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3603,12 +3603,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.updateItems({
+              await plexAPI.library.updateItems({
                 sectionId: "<id>",
                 fieldLocked: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -3619,7 +3619,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3652,7 +3652,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3670,11 +3670,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.startAnalysis({
+              await plexAPI.library.startAnalysis({
                 sectionId: 158829,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -3685,7 +3685,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3718,7 +3718,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3756,7 +3756,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3789,7 +3789,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3822,7 +3822,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3840,12 +3840,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteCollection({
+              await plexAPI.library.deleteCollection({
                 sectionId: 283619,
                 collectionId: 680895,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -3856,7 +3856,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3894,7 +3894,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3932,7 +3932,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -3950,7 +3950,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getSectionImage({
+              await plexAPI.library.getSectionImage({
                 sectionId: 925611,
                 updatedAt: 117413,
                 mediaQuery: {
@@ -3960,7 +3960,7 @@ actions:
                 },
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -3971,7 +3971,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4006,7 +4006,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4024,11 +4024,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.emptyTrash({
+              await plexAPI.library.emptyTrash({
                 sectionId: 30052,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4039,7 +4039,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4072,7 +4072,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4110,7 +4110,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4128,11 +4128,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteIndexes({
+              await plexAPI.library.deleteIndexes({
                 sectionId: 588437,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4143,7 +4143,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4161,11 +4161,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteIntros({
+              await plexAPI.library.deleteIntros({
                 sectionId: 498656,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4176,7 +4176,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4209,7 +4209,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4242,7 +4242,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4276,7 +4276,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4309,7 +4309,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4327,12 +4327,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.setSectionPreferences({
+              await plexAPI.library.setSectionPreferences({
                 sectionId: 349936,
                 prefs: {},
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4343,7 +4343,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4361,11 +4361,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.cancelRefresh({
+              await plexAPI.library.cancelRefresh({
                 sectionId: 326852,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4376,7 +4376,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4394,12 +4394,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.refreshSection({
+              await plexAPI.library.refreshSection({
                 sectionId: 450300,
                 force: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4410,7 +4410,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4443,7 +4443,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4461,12 +4461,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.deleteStream({
+              await plexAPI.library.deleteStream({
                 streamId: 841510,
                 ext: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4477,7 +4477,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4495,13 +4495,13 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.getStream({
+              await plexAPI.library.getStream({
                 streamId: 314506,
                 ext: "<value>",
                 autoAdjustSubtitle: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4512,7 +4512,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4530,12 +4530,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.library.setStreamOffset({
+              await plexAPI.library.setStreamOffset({
                 streamId: 606295,
                 ext: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4546,7 +4546,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4579,7 +4579,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4612,7 +4612,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, MediaType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4664,7 +4664,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4753,7 +4753,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4771,11 +4771,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.dvRs.deleteDVR({
+              await plexAPI.dvRs.deleteDVR({
                 dvrId: 855088,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -4786,7 +4786,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4819,7 +4819,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4853,7 +4853,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4887,7 +4887,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4921,7 +4921,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4955,7 +4955,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -4989,7 +4989,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5022,7 +5022,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5040,11 +5040,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.dvRs.stopDVRReload({
+              await plexAPI.dvRs.stopDVRReload({
                 dvrId: 348053,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -5055,7 +5055,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5088,7 +5088,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5122,7 +5122,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5174,7 +5174,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5208,7 +5208,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5242,7 +5242,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5296,7 +5296,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5330,7 +5330,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5385,7 +5385,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5418,7 +5418,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5436,12 +5436,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.liveTV.getSessionPlaylistIndex({
+              await plexAPI.liveTV.getSessionPlaylistIndex({
                 sessionId: "<id>",
                 consumerId: "<id>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -5452,7 +5452,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5470,13 +5470,13 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.liveTV.getSessionSegment({
+              await plexAPI.liveTV.getSessionSegment({
                 sessionId: "<id>",
                 consumerId: "<id>",
                 segmentId: "<id>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -5494,9 +5494,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.log.writeLog(await openAsBlob("example.file"));
+              await plexAPI.log.writeLog(await openAsBlob("example.file"));
 
-              console.log(result);
+
             }
 
             run();
@@ -5507,7 +5507,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5525,9 +5525,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.log.writeMessage({});
+              await plexAPI.log.writeMessage({});
 
-              console.log(result);
+
             }
 
             run();
@@ -5538,7 +5538,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5556,9 +5556,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.log.enablePapertrail({});
+              await plexAPI.log.enablePapertrail({});
 
-              console.log(result);
+
             }
 
             run();
@@ -5569,7 +5569,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5621,7 +5621,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5673,7 +5673,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5706,7 +5706,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5739,7 +5739,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5773,7 +5773,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5824,7 +5824,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5857,7 +5857,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5875,11 +5875,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.devices.setDevicePreferences({
+              await plexAPI.devices.setDevicePreferences({
                 deviceId: 420973,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -5890,7 +5890,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5923,7 +5923,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5957,7 +5957,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -5975,12 +5975,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.devices.getThumb({
+              await plexAPI.devices.getThumb({
                 deviceId: 960617,
                 versionPathParameter: 1025,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -5991,7 +5991,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6009,11 +6009,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.subscriptions.cancelGrab({
+              await plexAPI.subscriptions.cancelGrab({
                 operationId: "<id>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -6043,7 +6043,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6061,11 +6061,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.provider.addProvider({
+              await plexAPI.provider.addProvider({
                 url: "https://steep-obedience.name/",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -6082,9 +6082,9 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.provider.refreshProviders();
+              await plexAPI.provider.refreshProviders();
 
-              console.log(result);
+
             }
 
             run();
@@ -6095,7 +6095,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6113,11 +6113,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.provider.deleteMediaProvider({
+              await plexAPI.provider.deleteMediaProvider({
                 provider: "<value>",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -6128,7 +6128,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6162,7 +6162,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6238,7 +6238,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6271,7 +6271,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6289,11 +6289,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.subscriptions.deleteSubscription({
+              await plexAPI.subscriptions.deleteSubscription({
                 subscriptionId: 974618,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -6304,7 +6304,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6339,7 +6339,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6373,7 +6373,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6406,7 +6406,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6444,8 +6444,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { CreatePlayQueueType } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { CreatePlayQueueType } from "@lukehagar/plexjs/models/operations";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6483,7 +6483,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6519,7 +6519,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6553,7 +6553,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6586,7 +6586,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6620,7 +6620,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6654,7 +6654,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6687,7 +6687,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6720,7 +6720,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6753,7 +6753,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6784,7 +6784,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6815,7 +6815,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6833,12 +6833,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.libraryPlaylists.uploadPlaylist({
+              await plexAPI.libraryPlaylists.uploadPlaylist({
                 path: "/home/barkley/playlist.m3u",
                 force: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -6849,7 +6849,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6867,11 +6867,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.libraryPlaylists.deletePlaylist({
+              await plexAPI.libraryPlaylists.deletePlaylist({
                 playlistId: 343293,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -6882,7 +6882,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6915,7 +6915,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6933,11 +6933,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.libraryPlaylists.updatePlaylist({
+              await plexAPI.libraryPlaylists.updatePlaylist({
                 playlistId: 157966,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -6948,7 +6948,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -6981,7 +6981,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7014,7 +7014,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7047,7 +7047,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7080,7 +7080,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7114,7 +7114,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7148,8 +7148,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7196,7 +7196,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7230,8 +7230,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Action } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Action } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7249,14 +7249,14 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.libraryPlaylists.refreshPlaylist({
+              await plexAPI.libraryPlaylists.refreshPlaylist({
                 playlistId: 895314,
                 generatorId: 629742,
                 metadataId: 724422,
                 action: Action.Disable,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -7267,7 +7267,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7301,8 +7301,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7328,7 +7328,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7362,8 +7362,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { GetTransientTokenScope, GetTransientTokenType } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { GetTransientTokenScope, GetTransientTokenType } from "@lukehagar/plexjs/models/operations";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7397,7 +7397,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7430,7 +7430,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7507,7 +7507,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7564,7 +7564,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7597,7 +7597,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7630,7 +7630,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7648,12 +7648,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.status.terminateSession({
+              await plexAPI.status.terminateSession({
                 sessionId: "cdefghijklmnopqrstuvwxyz",
                 reason: "Stop Playing",
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -7664,7 +7664,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7682,12 +7682,12 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.updater.applyUpdates({
+              await plexAPI.updater.applyUpdates({
                 tonight: BoolInt.True,
                 skip: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -7698,7 +7698,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, BoolInt } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7716,11 +7716,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.updater.checkUpdates({
+              await plexAPI.updater.checkUpdates({
                 download: BoolInt.True,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -7750,7 +7750,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7781,7 +7781,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7812,7 +7812,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7848,8 +7848,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { MakeDecisionLocation, MakeDecisionProtocol } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { MakeDecisionLocation, MakeDecisionProtocol } from "@lukehagar/plexjs/models/operations";
+            import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7909,7 +7909,7 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Accepts, TranscodeType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Accepts, TranscodeType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -7927,11 +7927,11 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.transcoder.triggerFallback({
+              await plexAPI.transcoder.triggerFallback({
                 transcodeType: TranscodeType.Audio,
               });
 
-              console.log(result);
+
             }
 
             run();
@@ -7942,8 +7942,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@lukehagar/plexjs/models/operations";
+            import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -8004,8 +8004,8 @@ actions:
           label: PlexJS
           source: |-
             import { PlexAPI } from "@lukehagar/plexjs";
-            import { TranscodeSubtitlesLocation, TranscodeSubtitlesProtocol } from "@lukehagar/plexjs/sdk/models/operations";
-            import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/sdk/models/shared";
+            import { TranscodeSubtitlesLocation, TranscodeSubtitlesProtocol } from "@lukehagar/plexjs/models/operations";
+            import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
 
             const plexAPI = new PlexAPI({
               accepts: Accepts.ApplicationXml,
@@ -8023,7 +8023,7 @@ actions:
             });
 
             async function run() {
-              const result = await plexAPI.transcoder.transcodeSubtitles({
+              await plexAPI.transcoder.transcodeSubtitles({
                 transcodeType: TranscodeType.Audio,
                 advancedSubtitles: AdvancedSubtitles.Burn,
                 audioBoost: 50,
@@ -8054,7 +8054,7 @@ actions:
                 xPlexClientProfileName: "generic",
               });
 
-              console.log(result);
+
             }
 
             run();

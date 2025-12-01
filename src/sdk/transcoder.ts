@@ -11,8 +11,9 @@ import {
 import { transcoderTranscodeSubtitles } from "../funcs/transcoderTranscodeSubtitles.js";
 import { transcoderTriggerFallback } from "../funcs/transcoderTriggerFallback.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export { TranscodeImageAcceptEnum } from "../funcs/transcoderTranscodeImage.js";
 
@@ -45,7 +46,7 @@ export class Transcoder extends ClientSDK {
   async makeDecision(
     request: operations.MakeDecisionRequest,
     options?: RequestOptions,
-  ): Promise<operations.MakeDecisionResponse> {
+  ): Promise<shared.MediaContainerWithDecision> {
     return unwrapAsync(transcoderMakeDecision(
       this,
       request,
@@ -62,7 +63,7 @@ export class Transcoder extends ClientSDK {
   async triggerFallback(
     request: operations.TriggerFallbackRequest,
     options?: RequestOptions,
-  ): Promise<operations.TriggerFallbackResponse> {
+  ): Promise<void> {
     return unwrapAsync(transcoderTriggerFallback(
       this,
       request,
@@ -79,7 +80,7 @@ export class Transcoder extends ClientSDK {
   async transcodeSubtitles(
     request: operations.TranscodeSubtitlesRequest,
     options?: RequestOptions,
-  ): Promise<operations.TranscodeSubtitlesResponse> {
+  ): Promise<void> {
     return unwrapAsync(transcoderTranscodeSubtitles(
       this,
       request,
@@ -96,7 +97,7 @@ export class Transcoder extends ClientSDK {
   async startTranscodeSession(
     request: operations.StartTranscodeSessionRequest,
     options?: RequestOptions,
-  ): Promise<operations.StartTranscodeSessionResponse> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(transcoderStartTranscodeSession(
       this,
       request,

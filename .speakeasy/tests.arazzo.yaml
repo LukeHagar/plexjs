@@ -7894,7 +7894,7 @@ workflows:
         parameters:
           - name: X-Plex-Client-Identifier
             in: header
-            value: 3381b62b-9ab7-4e37-827b-203e9809eb58
+            value: abc123
           - name: X-Plex-Product
             in: header
             value: Plex for Roku
@@ -7907,6 +7907,24 @@ workflows:
           - name: X-Plex-Platform
             in: header
             value: Roku
+          - name: accepts
+            in: header
+            value: application/xml
+          - name: X-Plex-Platform-Version
+            in: header
+            value: 4.3 build 1057
+          - name: X-Plex-Model
+            in: header
+            value: 4200X
+          - name: X-Plex-Device-Vendor
+            in: header
+            value: Roku
+          - name: X-Plex-Device-Name
+            in: header
+            value: Living Room TV
+          - name: X-Plex-Marketplace
+            in: header
+            value: googlePlay
         requestBody:
           contentType: application/x-www-form-urlencoded
           payload:
@@ -7919,7 +7937,7 @@ workflows:
           - condition: $response.header.Content-Type == application/json
           - context: $response.body
             condition: |
-              {"adsConsent": null, "adsConsentReminderAt": 1556281940, "adsConsentSetAt": 1556281940, "anonymous": false, "authToken": "CxoUzBTSV5hsxjTpFKaf", "backupCodesCreated": false, "confirmed": false, "country": "US", "email": "username@email.com", "emailOnlyAuth": false, "experimentalFeatures": false, "friendlyName": "friendlyUsername", "entitlements": ["[]"], "guest": false, "hasPassword": true, "home": false, "homeAdmin": false, "homeSize": 1, "id": 13692262, "joinedAt": 1556281940, "locale": "ru", "mailingListActive": false, "mailingListStatus": "active", "maxHomeSize": 15, "profile": {"autoSelectAudio": true, "defaultAudioLanguage": "ja", "defaultSubtitleLanguage": "en", "autoSelectSubtitle": 1, "defaultSubtitleAccessibility": 1, "defaultSubtitleForced": 1, "watchedIndicator": 1, "mediaReviewsVisibility": 1}, "protected": false, "rememberExpiresAt": 1556281940, "restricted": false, "scrobbleTypes": "<value>", "services": [], "subscription": {"active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive"}, "subscriptionDescription": "<value>", "subscriptions": [{"active": true, "subscribedAt": "2021-04-12T18:21:12Z", "status": "Inactive"}], "thumb": "https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101", "title": "UsernameTitle", "twoFactorEnabled": false, "username": "Username", "uuid": "dae343c1f45beb4f", "attributionPartner": null, "pastSubscriptions": [], "trials": []}
+              {"adsConsentReminderAt":1556281940,"adsConsentSetAt":1556281940,"anonymous":false,"authToken":"CxoUzBTSV5hsxjTpFKaf","backupCodesCreated":false,"confirmed":false,"country":"US","email":"username@email.com","emailOnlyAuth":false,"experimentalFeatures":false,"friendlyName":"friendlyUsername","entitlements":[],"guest":false,"hasPassword":true,"home":false,"homeAdmin":false,"homeSize":1,"id":13692262,"joinedAt":1556281940,"mailingListActive":false,"mailingListStatus":"active","maxHomeSize":15,"profile":{"autoSelectAudio":true,"defaultAudioLanguage":"ja","defaultAudioAccessibility":0,"defaultAudioLanguages":null,"defaultSubtitleLanguage":"en","defaultSubtitleLanguages":null,"autoSelectSubtitle":1,"defaultSubtitleAccessibility":1,"defaultSubtitleForced":1,"watchedIndicator":1,"mediaReviewsVisibility":1,"mediaReviewsLanguages":null},"protected":false,"rememberExpiresAt":1556281940,"restricted":false,"services":[],"subscription":{"active":true,"subscribedAt":"2021-04-12T18:21:12Z","status":"Inactive"},"subscriptions":[{"active":true,"subscribedAt":"2021-04-12T18:21:12Z","status":"Inactive"}],"thumb":"https://plex.tv/users/a4f43c1ebfde43a5/avatar?c=8372075101","title":"UsernameTitle","twoFactorEnabled":false,"username":"Username","uuid":"dae343c1f45beb4f","attributionPartner":null,"pastSubscriptions":[],"trials":[]}
             type: simple
     x-speakeasy-test-group: Authentication
     x-speakeasy-test-rebuild: true
@@ -7930,7 +7948,7 @@ workflows:
         parameters:
           - name: X-Plex-Client-Identifier
             in: header
-            value: 3381b62b-9ab7-4e37-827b-203e9809eb58
+            value: abc123
           - name: X-Plex-Product
             in: header
             value: Plex for Roku
@@ -7939,7 +7957,7 @@ workflows:
             value: Roku 3
           - name: X-Plex-Device-Name
             in: header
-            value: Chrome
+            value: Living Room TV
           - name: X-Plex-Version
             in: header
             value: 2.4.1
@@ -7952,8 +7970,22 @@ workflows:
           - name: X-Plex-Platform-Version
             in: header
             value: 4.3 build 1057
+          - name: accepts
+            in: header
+            value: application/xml
+          - name: X-Plex-Device-Vendor
+            in: header
+            value: Roku
+          - name: X-Plex-Marketplace
+            in: header
+            value: googlePlay
         successCriteria:
           - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"MediaContainer":{"friendlyName":"myPlex","identifier":"com.plexapp.plugins.myplex","machineIdentifier":"3dff4c4da3b1229a649aa574a9e2b419a684a20e","totalSize":30,"size":30,"User":[{"id":22526914,"title":"Plex User","username":"zgfuc7krcqfimrmb9lsl5j","email":"zgfuc7krcqfimrmb9lsl5j@protonmail.com","recommendationsPlaylistId":"","thumb":"https://plex.tv/users/3346028014e93acd/avatar?c=1731605021","protected":1,"home":1,"allowTuners":1,"allowSync":1,"allowCameraUpload":1,"allowChannels":1,"allowSubtitleAdmin":1,"filterAll":"","filterMovies":"","filterMusic":"","filterPhotos":"","filterTelevision":"","restricted":1,"Server":[{"id":907759180,"serverId":9999999,"machineIdentifier":"fbb8aa6be6e0c997c6268bc2b4431c8807f70a3","name":"ConnectedUserFlix","lastSeenAt":1556281940,"numLibraries":16,"allLibraries":1,"owned":1,"pending":1}]}]}}
+            type: simple
     x-speakeasy-test-group: Users
     x-speakeasy-test-rebuild: true
   - workflowId: get-server-resources
@@ -7972,13 +8004,16 @@ workflows:
             value: 1
           - name: X-Plex-Client-Identifier
             in: header
-            value: 3381b62b-9ab7-4e37-827b-203e9809eb58
+            value: abc123
+          - name: accepts
+            in: header
+            value: application/xml
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
           - context: $response.body
             condition: |
-              [{"name": "<value>", "product": "Ergonomic Plastic Hat", "productVersion": "<value>", "platform": "<value>", "platformVersion": "<value>", "device": "Mobile", "clientIdentifier": "<value>", "createdAt": "2019-06-24T11:38:02Z", "lastSeenAt": "2019-06-24T11:38:02Z", "provides": "<value>", "ownerId": null, "sourceTitle": "<value>", "publicAddress": "<value>", "accessToken": "<value>", "owned": true, "home": false, "synced": false, "relay": true, "presence": false, "httpsRequired": true, "publicAddressMatches": false, "dnsRebindingProtection": true, "natLoopbackSupported": false, "connections": [{"protocol": "http", "address": "5746 Mount Street", "port": 441996, "uri": "https://wide-kick.name/", "local": false, "relay": true, "IPv6": true}]}]
+              [{"name":"<value>","product":"Ergonomic Plastic Hat","productVersion":"<value>","platform":"<value>","platformVersion":"<value>","device":"Mobile","clientIdentifier":"<value>","createdAt":"2019-06-24T11:38:02Z","lastSeenAt":"2019-06-24T11:38:02Z","provides":"<value>","ownerId":null,"sourceTitle":"<value>","publicAddress":"<value>","accessToken":"<value>","owned":true,"home":false,"synced":false,"relay":true,"presence":false,"httpsRequired":true,"publicAddressMatches":false,"dnsRebindingProtection":true,"natLoopbackSupported":false,"connections":[{"protocol":"http","address":"5746 Mount Street","port":441996,"uri":"https://wide-kick.name/","local":false,"relay":true,"IPv6":true}]}]
             type: simple
     x-speakeasy-test-group: Plex
     x-speakeasy-test-rebuild: true

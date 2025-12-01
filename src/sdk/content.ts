@@ -16,8 +16,9 @@ import { contentGetSonicPath } from "../funcs/contentGetSonicPath.js";
 import { contentListContent } from "../funcs/contentListContent.js";
 import { contentListMoments } from "../funcs/contentListMoments.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import * as shared from "../models/shared/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Content extends ClientSDK {
   /**
@@ -29,7 +30,7 @@ export class Content extends ClientSDK {
   async getCollectionItems(
     request: operations.GetCollectionItemsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetCollectionItemsResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(contentGetCollectionItems(
       this,
       request,
@@ -63,7 +64,7 @@ export class Content extends ClientSDK {
   async getAlbums(
     request: operations.GetAlbumsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetAlbumsResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(contentGetAlbums(
       this,
       request,
@@ -97,7 +98,7 @@ export class Content extends ClientSDK {
   async getAllLeaves(
     request: operations.GetAllLeavesRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetAllLeavesResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(contentGetAllLeaves(
       this,
       request,
@@ -114,7 +115,7 @@ export class Content extends ClientSDK {
   async getArts(
     request: operations.GetArtsRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetArtsResponse> {
+  ): Promise<shared.MediaContainerWithArtwork> {
     return unwrapAsync(contentGetArts(
       this,
       request,
@@ -131,7 +132,7 @@ export class Content extends ClientSDK {
   async getCategories(
     request: operations.GetCategoriesRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetCategoriesResponse> {
+  ): Promise<shared.MediaContainerWithArtwork> {
     return unwrapAsync(contentGetCategories(
       this,
       request,
@@ -148,7 +149,7 @@ export class Content extends ClientSDK {
   async getCluster(
     request: operations.GetClusterRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetClusterResponse> {
+  ): Promise<shared.MediaContainerWithArtwork> {
     return unwrapAsync(contentGetCluster(
       this,
       request,
@@ -165,7 +166,7 @@ export class Content extends ClientSDK {
   async getSonicPath(
     request: operations.GetSonicPathRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSonicPathResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(contentGetSonicPath(
       this,
       request,
@@ -199,7 +200,7 @@ export class Content extends ClientSDK {
   async listMoments(
     request: operations.ListMomentsRequest,
     options?: RequestOptions,
-  ): Promise<operations.ListMomentsResponse> {
+  ): Promise<shared.MediaContainerWithArtwork> {
     return unwrapAsync(contentListMoments(
       this,
       request,
@@ -216,7 +217,7 @@ export class Content extends ClientSDK {
   async getSonicallySimilar(
     request: operations.GetSonicallySimilarRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetSonicallySimilarResponse> {
+  ): Promise<shared.MediaContainerWithMetadata> {
     return unwrapAsync(contentGetSonicallySimilar(
       this,
       request,
@@ -233,7 +234,7 @@ export class Content extends ClientSDK {
   async getCollectionImage(
     request: operations.GetCollectionImageRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetCollectionImageResponse> {
+  ): Promise<ReadableStream<Uint8Array>> {
     return unwrapAsync(contentGetCollectionImage(
       this,
       request,

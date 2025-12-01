@@ -5,8 +5,8 @@
 import { searchSearchHubs } from "../funcs/searchSearchHubs.js";
 import { searchVoiceSearchHubs } from "../funcs/searchVoiceSearchHubs.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as operations from "./models/operations/index.js";
-import { unwrapAsync } from "./types/fp.js";
+import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 
 export class Search extends ClientSDK {
   /**

@@ -16,13 +16,13 @@ import {
   Extension,
   StartTranscodeSessionLocation,
   StartTranscodeSessionProtocol,
-} from "@lukehagar/plexjs/sdk/models/operations";
+} from "@lukehagar/plexjs/models/operations";
 import {
   Accepts,
   AdvancedSubtitles,
   BoolInt,
   TranscodeType,
-} from "@lukehagar/plexjs/sdk/models/shared";
+} from "@lukehagar/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
