@@ -10,9 +10,6 @@ targets:
     plexjs:
         target: typescript
         source: plexapi
-        publish:
-            npm:
-                token: $npm_token
         codeSamples:
             output: codeSamples.yaml
             registry:
