@@ -1,5 +1,4 @@
 # Library
-(*library*)
 
 ## Overview
 
@@ -844,8 +843,8 @@ async function run() {
     agent: "<value>",
     language: "<value>",
     locations: [
-      "O:\fatboy\\Media\\Ripped\\Music",
-      "O:\fatboy\\Media\\My Music",
+      "O:\\fatboy\\Media\\Ripped\\Music",
+      "O:\\fatboy\\Media\\My Music",
     ],
     prefs: {},
     relative: BoolInt.True,
@@ -891,8 +890,8 @@ async function run() {
     agent: "<value>",
     language: "<value>",
     locations: [
-      "O:\fatboy\\Media\\Ripped\\Music",
-      "O:\fatboy\\Media\\My Music",
+      "O:\\fatboy\\Media\\Ripped\\Music",
+      "O:\\fatboy\\Media\\My Music",
     ],
     prefs: {},
     relative: BoolInt.True,
@@ -4561,8 +4560,8 @@ async function run() {
     sectionId: "<id>",
     agent: "<value>",
     locations: [
-      "O:\fatboy\\Media\\Ripped\\Music",
-      "O:\fatboy\\Media\\My Music",
+      "O:\\fatboy\\Media\\Ripped\\Music",
+      "O:\\fatboy\\Media\\My Music",
     ],
     prefs: {},
   });
@@ -4604,8 +4603,8 @@ async function run() {
     sectionId: "<id>",
     agent: "<value>",
     locations: [
-      "O:\fatboy\\Media\\Ripped\\Music",
-      "O:\fatboy\\Media\\My Music",
+      "O:\\fatboy\\Media\\Ripped\\Music",
+      "O:\\fatboy\\Media\\My Music",
     ],
     prefs: {},
   });

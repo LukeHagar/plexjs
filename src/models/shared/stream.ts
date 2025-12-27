@@ -208,7 +208,7 @@ export type Stream = {
    *   - AUDIO = 2
    *   - SUBTITLE = 3
    */
-  streamType?: 1 | undefined;
+  streamType: 1;
   /**
    * Width of the video stream.
    */
@@ -270,7 +270,7 @@ export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
       dub: types.optional(types.boolean()),
       title: types.optional(types.string()),
       streamIdentifier: types.optional(types.number()),
-      streamType: types.optional(types.literal(1)),
+      streamType: types.literal(1),
       width: types.optional(types.number()),
     }).catchall(z.any()),
     "additionalProperties",

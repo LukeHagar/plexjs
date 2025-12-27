@@ -1,5 +1,4 @@
 # Updater
-(*updater*)
 
 ## Overview
 

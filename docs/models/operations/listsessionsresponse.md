@@ -151,6 +151,7 @@ let value: ListSessionsResponse = {
                       dub: true,
                       title: "SDH",
                       streamIdentifier: 1,
+                      streamType: 1,
                       width: 3840,
                     },
                   ],

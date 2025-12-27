@@ -1,5 +1,4 @@
 # Rate
-(*rate*)
 
 ## Overview
 

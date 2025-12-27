@@ -15,6 +15,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export enum ImageType {
   Background = "background",
+  BackgroundSquare = "backgroundSquare",
   Banner = "banner",
   ClearLogo = "clearLogo",
   CoverPoster = "coverPoster",

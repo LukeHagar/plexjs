@@ -1,5 +1,4 @@
 # Search
-(*search*)
 
 ## Overview
 

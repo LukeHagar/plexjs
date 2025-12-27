@@ -129,7 +129,7 @@ export type UserPlexAccount = {
   /**
    * Unknown
    */
-  anonymous?: boolean | null | undefined;
+  anonymous: boolean | null;
   /**
    * The account token
    */
@@ -137,11 +137,11 @@ export type UserPlexAccount = {
   /**
    * If the two-factor authentication backup codes have been created
    */
-  backupCodesCreated?: boolean | undefined;
+  backupCodesCreated: boolean;
   /**
    * If the account has been confirmed
    */
-  confirmed?: boolean | undefined;
+  confirmed: boolean;
   /**
    * The account country
    */
@@ -153,11 +153,11 @@ export type UserPlexAccount = {
   /**
    * If login with email only is enabled
    */
-  emailOnlyAuth?: boolean | undefined;
+  emailOnlyAuth: boolean;
   /**
    * If experimental features are enabled
    */
-  experimentalFeatures?: boolean | undefined;
+  experimentalFeatures: boolean;
   /**
    * Your account full name
    */
@@ -169,19 +169,19 @@ export type UserPlexAccount = {
   /**
    * If the account is a Plex Home guest user
    */
-  guest?: boolean | undefined;
+  guest: boolean;
   /**
    * If the account has a password
    */
-  hasPassword?: boolean | undefined;
+  hasPassword: boolean;
   /**
    * If the account is a Plex Home user
    */
-  home?: boolean | undefined;
+  home: boolean;
   /**
    * If the account is the Plex Home admin
    */
-  homeAdmin?: boolean | undefined;
+  homeAdmin: boolean;
   /**
    * The number of accounts in the Plex Home
    */
@@ -201,7 +201,7 @@ export type UserPlexAccount = {
   /**
    * If you are subscribed to the Plex newsletter
    */
-  mailingListActive?: boolean | undefined;
+  mailingListActive: boolean;
   /**
    * Your current mailing list status
    */
@@ -220,7 +220,7 @@ export type UserPlexAccount = {
   /**
    * If the account has a Plex Home PIN enabled
    */
-  protected?: boolean | undefined;
+  protected: boolean;
   /**
    * Unix epoch datetime in seconds
    */
@@ -228,7 +228,7 @@ export type UserPlexAccount = {
   /**
    * If the account is a Plex Home managed user
    */
-  restricted?: boolean | undefined;
+  restricted: boolean;
   /**
    * [Might be removed] List of account roles. Plexpass membership listed here
    */
@@ -258,7 +258,7 @@ export type UserPlexAccount = {
   /**
    * If two-factor authentication is enabled
    */
-  twoFactorEnabled?: boolean | undefined;
+  twoFactorEnabled: boolean;
   /**
    * The account username
    */

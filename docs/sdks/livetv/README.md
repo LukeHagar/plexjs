@@ -1,5 +1,4 @@
 # LiveTV
-(*liveTV*)
 
 ## Overview
 

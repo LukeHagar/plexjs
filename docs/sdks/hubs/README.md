@@ -1,5 +1,4 @@
 # Hubs
-(*hubs*)
 
 ## Overview
 

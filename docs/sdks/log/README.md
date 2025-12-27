@@ -1,5 +1,4 @@
 # Log
-(*log*)
 
 ## Overview
 

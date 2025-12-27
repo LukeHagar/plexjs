@@ -12,8 +12,8 @@ let value: AddSectionRequest = {
   agent: "<value>",
   language: "<value>",
   locations: [
-    "O:\fatboy\\Media\\Ripped\\Music",
-    "O:\fatboy\\Media\\My Music",
+    "O:\\fatboy\\Media\\Ripped\\Music",
+    "O:\\fatboy\\Media\\My Music",
   ],
   prefs: {},
   relative: BoolInt.True,

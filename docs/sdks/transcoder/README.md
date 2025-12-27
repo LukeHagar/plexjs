@@ -1,5 +1,4 @@
 # Transcoder
-(*transcoder*)
 
 ## Overview
 

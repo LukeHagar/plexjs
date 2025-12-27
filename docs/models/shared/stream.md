@@ -59,6 +59,7 @@ let value: Stream = {
   dub: true,
   title: "SDH",
   streamIdentifier: 1,
+  streamType: 1,
   width: 3840,
 };
 ```
@@ -117,6 +118,6 @@ let value: Stream = {
 | `dub`                                                                | *boolean*                                                            | :heavy_minus_sign:                                                   | Indicates if the stream is a dub.                                    | true                                                                 |
 | `title`                                                              | *string*                                                             | :heavy_minus_sign:                                                   | Optional title for the stream (e.g., language variant).              | SDH                                                                  |
 | `streamIdentifier`                                                   | *number*                                                             | :heavy_minus_sign:                                                   | N/A                                                                  | 1                                                                    |
-| `streamType`                                                         | *number*                                                             | :heavy_check_mark:                                                   | Stream type:<br/>  - VIDEO = 1<br/>  - AUDIO = 2<br/>  - SUBTITLE = 3<br/> |                                                                      |
+| `streamType`                                                         | *1*                                                                  | :heavy_check_mark:                                                   | Stream type:<br/>  - VIDEO = 1<br/>  - AUDIO = 2<br/>  - SUBTITLE = 3<br/> |                                                                      |
 | `width`                                                              | *number*                                                             | :heavy_minus_sign:                                                   | Width of the video stream.                                           | 3840                                                                 |
 | `additionalProperties`                                               | Record<string, *any*>                                                | :heavy_minus_sign:                                                   | N/A                                                                  |                                                                      |

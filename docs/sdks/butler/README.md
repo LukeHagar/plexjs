@@ -1,5 +1,4 @@
 # Butler
-(*butler*)
 
 ## Overview
 

@@ -247,7 +247,7 @@ export type MediaContainerWithDecisionStream = {
    *   - AUDIO = 2
    *   - SUBTITLE = 3
    */
-  streamType?: 1 | undefined;
+  streamType: 1;
   /**
    * Width of the video stream.
    */
@@ -747,7 +747,7 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
     dub: types.optional(types.boolean()),
     title: types.optional(types.string()),
     streamIdentifier: types.optional(types.number()),
-    streamType: types.optional(types.literal(1)),
+    streamType: types.literal(1),
     width: types.optional(types.number()),
     decision: types.optional(StreamDecision$inboundSchema),
     location: types.optional(MediaContainerWithDecisionLocation$inboundSchema),

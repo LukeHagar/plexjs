@@ -3303,8 +3303,8 @@ actions:
                 agent: "<value>",
                 language: "<value>",
                 locations: [
-                  "O:\fatboy\\Media\\Ripped\\Music",
-                  "O:\fatboy\\Media\\My Music",
+                  "O:\\fatboy\\Media\\Ripped\\Music",
+                  "O:\\fatboy\\Media\\My Music",
                 ],
                 prefs: {},
                 relative: BoolInt.True,
@@ -3495,8 +3495,8 @@ actions:
                 sectionId: "<id>",
                 agent: "<value>",
                 locations: [
-                  "O:\fatboy\\Media\\Ripped\\Music",
-                  "O:\fatboy\\Media\\My Music",
+                  "O:\\fatboy\\Media\\Ripped\\Music",
+                  "O:\\fatboy\\Media\\My Music",
                 ],
                 prefs: {},
               });

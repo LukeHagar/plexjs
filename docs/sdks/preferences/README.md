@@ -1,5 +1,4 @@
 # Preferences
-(*preferences*)
 
 ## Overview
 

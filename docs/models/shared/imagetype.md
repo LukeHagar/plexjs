@@ -17,6 +17,7 @@ This is an open enum. Unrecognized values will be captured as the `Unrecognized<
 | Name                   | Value                  |
 | ---------------------- | ---------------------- |
 | `Background`           | background             |
+| `BackgroundSquare`     | backgroundSquare       |
 | `Banner`               | banner                 |
 | `ClearLogo`            | clearLogo              |
 | `CoverPoster`          | coverPoster            |

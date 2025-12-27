@@ -279,9 +279,9 @@ export type Server = {
    * Number of libraries in the server this user has access to.
    */
   numLibraries: number;
-  allLibraries?: AllLibrariesOpen | undefined;
-  owned?: OwnedOpen | undefined;
-  pending?: PendingOpen | undefined;
+  allLibraries: AllLibrariesOpen;
+  owned: OwnedOpen;
+  pending: PendingOpen;
 };
 
 export type User = {
@@ -309,13 +309,13 @@ export type User = {
    * URL to the user's avatar image.
    */
   thumb: string;
-  protected?: ProtectedOpen | undefined;
-  home?: HomeOpen | undefined;
-  allowTuners?: AllowTunersOpen | undefined;
-  allowSync?: AllowSyncOpen | undefined;
-  allowCameraUpload?: AllowCameraUploadOpen | undefined;
-  allowChannels?: AllowChannelsOpen | undefined;
-  allowSubtitleAdmin?: AllowSubtitleAdminOpen | undefined;
+  protected: ProtectedOpen;
+  home: HomeOpen;
+  allowTuners: AllowTunersOpen;
+  allowSync: AllowSyncOpen;
+  allowCameraUpload: AllowCameraUploadOpen;
+  allowChannels: AllowChannelsOpen;
+  allowSubtitleAdmin: AllowSubtitleAdminOpen;
   /**
    * Filters applied for all content.
    */
@@ -336,7 +336,7 @@ export type User = {
    * Filters applied for television.
    */
   filterTelevision?: string | undefined;
-  restricted?: RestrictedOpen | undefined;
+  restricted: RestrictedOpen;
   /**
    * List of servers owned by the user.
    */

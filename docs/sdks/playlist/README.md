@@ -1,5 +1,4 @@
 # Playlist
-(*playlist*)
 
 ## Overview
 

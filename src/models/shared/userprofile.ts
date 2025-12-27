@@ -103,12 +103,12 @@ export type UserProfile = {
   /**
    * If the account has automatically select audio and subtitle tracks enabled
    */
-  autoSelectAudio?: boolean | undefined;
+  autoSelectAudio: boolean;
   /**
    * The preferred audio language for the account
    */
   defaultAudioLanguage: string | null;
-  defaultAudioAccessibility?: DefaultAudioAccessibilityOpen | undefined;
+  defaultAudioAccessibility: DefaultAudioAccessibilityOpen;
   /**
    * The preferred audio languages for the account
    */
@@ -121,11 +121,11 @@ export type UserProfile = {
    * The preferred subtitle languages for the account
    */
   defaultSubtitleLanguages?: Array<string> | null | undefined;
-  autoSelectSubtitle?: AutoSelectSubtitleOpen | undefined;
-  defaultSubtitleAccessibility?: DefaultSubtitleAccessibilityOpen | undefined;
-  defaultSubtitleForced?: DefaultSubtitleForcedOpen | undefined;
-  watchedIndicator?: WatchedIndicatorOpen | undefined;
-  mediaReviewsVisibility?: MediaReviewsVisibilityOpen | undefined;
+  autoSelectSubtitle: AutoSelectSubtitleOpen;
+  defaultSubtitleAccessibility: DefaultSubtitleAccessibilityOpen;
+  defaultSubtitleForced: DefaultSubtitleForcedOpen;
+  watchedIndicator: WatchedIndicatorOpen;
+  mediaReviewsVisibility: MediaReviewsVisibilityOpen;
   /**
    * The languages for media reviews visibility
    */

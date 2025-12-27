@@ -1,5 +1,4 @@
 # PlayQueue
-(*playQueue*)
 
 ## Overview
 

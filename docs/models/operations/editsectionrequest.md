@@ -9,8 +9,8 @@ let value: EditSectionRequest = {
   sectionId: "<id>",
   agent: "<value>",
   locations: [
-    "O:\fatboy\\Media\\Ripped\\Music",
-    "O:\fatboy\\Media\\My Music",
+    "O:\\fatboy\\Media\\Ripped\\Music",
+    "O:\\fatboy\\Media\\My Music",
   ],
   prefs: {},
 };
