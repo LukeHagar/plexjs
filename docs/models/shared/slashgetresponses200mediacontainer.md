@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SlashGetResponses200MediaContainer } from "@lukehagar/plexjs/models/shared";
+import { SlashGetResponses200MediaContainer, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: SlashGetResponses200MediaContainer = {
   directory: [
@@ -148,7 +148,7 @@ let value: SlashGetResponses200MediaContainer = {
                   dub: true,
                   title: "SDH",
                   streamIdentifier: 1,
-                  streamType: 1,
+                  streamType: StreamType.Video,
                   width: 3840,
                 },
               ],

@@ -6,6 +6,7 @@ OK
 
 ```typescript
 import { GetScheduledRecordingsResponseBody } from "@lukehagar/plexjs/models/operations";
+import { StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: GetScheduledRecordingsResponseBody = {
   mediaContainer: {
@@ -152,7 +153,7 @@ let value: GetScheduledRecordingsResponseBody = {
                       dub: true,
                       title: "SDH",
                       streamIdentifier: 1,
-                      streamType: 1,
+                      streamType: StreamType.Video,
                       width: 3840,
                     },
                   ],

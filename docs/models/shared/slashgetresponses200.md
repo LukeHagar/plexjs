@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { SlashGetResponses200 } from "@lukehagar/plexjs/models/shared";
+import { SlashGetResponses200, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: SlashGetResponses200 = {
   mediaContainer: {
@@ -151,7 +151,7 @@ let value: SlashGetResponses200 = {
                     dub: true,
                     title: "SDH",
                     streamIdentifier: 1,
-                    streamType: 1,
+                    streamType: StreamType.Video,
                     width: 3840,
                   },
                 ],

@@ -6,7 +6,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithDecisionPart } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithDecisionPart, MediaContainerWithDecisionStreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionPart = {
   accessible: true,
@@ -73,7 +73,7 @@ let value: MediaContainerWithDecisionPart = {
       dub: true,
       title: "SDH",
       streamIdentifier: 1,
-      streamType: 1,
+      streamType: MediaContainerWithDecisionStreamType.Video,
       width: 3840,
     },
   ],

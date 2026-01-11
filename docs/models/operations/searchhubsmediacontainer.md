@@ -9,6 +9,7 @@ The container often "hoists" common attributes from its children. For example, i
 
 ```typescript
 import { SearchHubsMediaContainer } from "@lukehagar/plexjs/models/operations";
+import { StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: SearchHubsMediaContainer = {
   hub: [
@@ -159,7 +160,7 @@ let value: SearchHubsMediaContainer = {
                       dub: true,
                       title: "SDH",
                       streamIdentifier: 1,
-                      streamType: 1,
+                      streamType: StreamType.Video,
                       width: 3840,
                     },
                   ],

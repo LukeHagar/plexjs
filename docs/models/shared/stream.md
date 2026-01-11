@@ -6,7 +6,7 @@
 ## Example Usage
 
 ```typescript
-import { Stream } from "@lukehagar/plexjs/models/shared";
+import { Stream, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: Stream = {
   default: true,
@@ -59,7 +59,7 @@ let value: Stream = {
   dub: true,
   title: "SDH",
   streamIdentifier: 1,
-  streamType: 1,
+  streamType: StreamType.Video,
   width: 3840,
 };
 ```
@@ -118,6 +118,6 @@ let value: Stream = {
 | `dub`                                                                | *boolean*                                                            | :heavy_minus_sign:                                                   | Indicates if the stream is a dub.                                    | true                                                                 |
 | `title`                                                              | *string*                                                             | :heavy_minus_sign:                                                   | Optional title for the stream (e.g., language variant).              | SDH                                                                  |
 | `streamIdentifier`                                                   | *number*                                                             | :heavy_minus_sign:                                                   | N/A                                                                  | 1                                                                    |
-| `streamType`                                                         | *1*                                                                  | :heavy_check_mark:                                                   | Stream type:<br/>  - VIDEO = 1<br/>  - AUDIO = 2<br/>  - SUBTITLE = 3<br/> |                                                                      |
+| `streamType`                                                         | [shared.StreamType](../../models/shared/streamtype.md)               | :heavy_check_mark:                                                   | N/A                                                                  | 1                                                                    |
 | `width`                                                              | *number*                                                             | :heavy_minus_sign:                                                   | Width of the video stream.                                           | 3840                                                                 |
 | `additionalProperties`                                               | Record<string, *any*>                                                | :heavy_minus_sign:                                                   | N/A                                                                  |                                                                      |

@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithHubs } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithHubs, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: MediaContainerWithHubs = {
   mediaContainer: {
@@ -158,7 +158,7 @@ let value: MediaContainerWithHubs = {
                         dub: true,
                         title: "SDH",
                         streamIdentifier: 1,
-                        streamType: 1,
+                        streamType: StreamType.Video,
                         width: 3840,
                       },
                     ],

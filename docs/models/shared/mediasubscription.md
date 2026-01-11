@@ -6,7 +6,7 @@ A media subscription contains a representation of metadata desired to be recorde
 ## Example Usage
 
 ```typescript
-import { MediaSubscription } from "@lukehagar/plexjs/models/shared";
+import { MediaSubscription, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: MediaSubscription = {
   mediaGrabOperation: [
@@ -152,7 +152,7 @@ let value: MediaSubscription = {
                     dub: true,
                     title: "SDH",
                     streamIdentifier: 1,
-                    streamType: 1,
+                    streamType: StreamType.Video,
                     width: 3840,
                   },
                 ],

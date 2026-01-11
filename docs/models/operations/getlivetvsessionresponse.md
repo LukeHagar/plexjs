@@ -4,6 +4,7 @@
 
 ```typescript
 import { GetLiveTVSessionResponse } from "@lukehagar/plexjs/models/operations";
+import { StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: GetLiveTVSessionResponse = {
   headers: {
@@ -159,7 +160,7 @@ let value: GetLiveTVSessionResponse = {
                       dub: true,
                       title: "SDH",
                       streamIdentifier: 1,
-                      streamType: 1,
+                      streamType: StreamType.Video,
                       width: 3840,
                     },
                   ],

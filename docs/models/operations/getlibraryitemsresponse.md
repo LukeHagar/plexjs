@@ -4,6 +4,7 @@
 
 ```typescript
 import { GetLibraryItemsResponse } from "@lukehagar/plexjs/models/operations";
+import { StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: GetLibraryItemsResponse = {
   headers: {
@@ -158,7 +159,7 @@ let value: GetLibraryItemsResponse = {
                       dub: true,
                       title: "SDH",
                       streamIdentifier: 1,
-                      streamType: 1,
+                      streamType: StreamType.Video,
                       width: 3840,
                     },
                   ],

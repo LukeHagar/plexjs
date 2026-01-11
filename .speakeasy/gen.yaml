@@ -26,7 +26,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.44.2
+  version: 0.44.3
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -45,6 +45,7 @@ typescript:
   enableReactQuery: false
   enumFormat: enum
   exportZodModelNamespace: false
+  flatAdditionalProperties: false
   flattenGlobalSecurity: true
   flatteningOrder: body-first
   formStringArrayEncodeMode: encoded-string
@@ -71,6 +72,7 @@ typescript:
   outputModelSuffix: output
   packageName: '@lukehagar/plexjs'
   preApplyUnionDiscriminators: true
+  preserveModelFieldNames: false
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2

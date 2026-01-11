@@ -6,7 +6,7 @@
 ## Example Usage
 
 ```typescript
-import { Part } from "@lukehagar/plexjs/models/shared";
+import { Part, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: Part = {
   accessible: true,
@@ -73,7 +73,7 @@ let value: Part = {
       dub: true,
       title: "SDH",
       streamIdentifier: 1,
-      streamType: 1,
+      streamType: StreamType.Video,
       width: 3840,
     },
   ],

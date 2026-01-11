@@ -4,6 +4,7 @@
 
 ```typescript
 import { GetLibraryDetailsMediaContainer } from "@lukehagar/plexjs/models/operations";
+import { StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: GetLibraryDetailsMediaContainer = {
   directory: [
@@ -148,7 +149,7 @@ let value: GetLibraryDetailsMediaContainer = {
                   dub: true,
                   title: "SDH",
                   streamIdentifier: 1,
-                  streamType: 1,
+                  streamType: StreamType.Video,
                   width: 3840,
                 },
               ],

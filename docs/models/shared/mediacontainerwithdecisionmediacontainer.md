@@ -8,7 +8,7 @@ The container often "hoists" common attributes from its children. For example, i
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithDecisionMediaContainer } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithDecisionMediaContainer, MediaContainerWithDecisionStreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionMediaContainer = {
   metadata: [
@@ -153,7 +153,7 @@ let value: MediaContainerWithDecisionMediaContainer = {
                   dub: true,
                   title: "SDH",
                   streamIdentifier: 1,
-                  streamType: 1,
+                  streamType: MediaContainerWithDecisionStreamType.Video,
                   width: 3840,
                 },
               ],

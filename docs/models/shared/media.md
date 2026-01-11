@@ -6,7 +6,7 @@
 ## Example Usage
 
 ```typescript
-import { Media } from "@lukehagar/plexjs/models/shared";
+import { Media, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: Media = {
   aspectRatio: 2.35,
@@ -87,7 +87,7 @@ let value: Media = {
           dub: true,
           title: "SDH",
           streamIdentifier: 1,
-          streamType: 1,
+          streamType: StreamType.Video,
           width: 3840,
         },
       ],

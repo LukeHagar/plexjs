@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithMetadata } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithMetadata, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: MediaContainerWithMetadata = {
   mediaContainer: {
@@ -149,7 +149,7 @@ let value: MediaContainerWithMetadata = {
                     dub: true,
                     title: "SDH",
                     streamIdentifier: 1,
-                    streamType: 1,
+                    streamType: StreamType.Video,
                     width: 3840,
                   },
                 ],

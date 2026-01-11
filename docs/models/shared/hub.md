@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Hub } from "@lukehagar/plexjs/models/shared";
+import { Hub, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: Hub = {
   type: "track",
@@ -152,7 +152,7 @@ let value: Hub = {
                   dub: true,
                   title: "SDH",
                   streamIdentifier: 1,
-                  streamType: 1,
+                  streamType: StreamType.Video,
                   width: 3840,
                 },
               ],

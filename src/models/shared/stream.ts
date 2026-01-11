@@ -8,9 +8,34 @@ import {
   collectExtraKeys as collectExtraKeys$,
   safeParse,
 } from "../../lib/schemas.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - VIDEO = 1 (Video stream)
+ *   - AUDIO = 2 (Audio stream)
+ *   - SUBTITLE = 3 (Subtitle stream)
+ */
+export enum StreamType {
+  Video = 1,
+  Audio = 2,
+  Subtitle = 3,
+}
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - VIDEO = 1 (Video stream)
+ *   - AUDIO = 2 (Audio stream)
+ *   - SUBTITLE = 3 (Subtitle stream)
+ */
+export type StreamTypeOpen = OpenEnum<typeof StreamType>;
 
 /**
  * `Stream` represents a particular stream from a media item, such as the video stream, audio stream, or subtitle stream. The stream may either be part of the file represented by the parent `Part` or, especially for subtitles, an external file. The stream contains more detailed information about the specific stream. For example, a video may include the `aspectRatio` at the `Media` level, but detailed information about the video stream like the color space will be included on the `Stream` for the video stream.  Note that photos do not have streams (mostly as an optimization).
@@ -200,21 +225,17 @@ export type Stream = {
    */
   title?: string | undefined;
   streamIdentifier?: number | undefined;
-  /**
-   * Stream type:
-   *
-   * @remarks
-   *   - VIDEO = 1
-   *   - AUDIO = 2
-   *   - SUBTITLE = 3
-   */
-  streamType: 1;
+  streamType: StreamTypeOpen;
   /**
    * Width of the video stream.
    */
   width?: number | undefined;
   additionalProperties?: { [k: string]: any } | undefined;
 };
+
+/** @internal */
+export const StreamType$inboundSchema: z.ZodType<StreamTypeOpen, unknown> =
+  openEnums.inboundSchemaInt(StreamType);
 
 /** @internal */
 export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
@@ -270,7 +291,7 @@ export const Stream$inboundSchema: z.ZodType<Stream, unknown> =
       dub: types.optional(types.boolean()),
       title: types.optional(types.string()),
       streamIdentifier: types.optional(types.number()),
-      streamType: types.literal(1),
+      streamType: StreamType$inboundSchema,
       width: types.optional(types.number()),
     }).catchall(z.any()),
     "additionalProperties",

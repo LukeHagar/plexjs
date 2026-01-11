@@ -11,6 +11,7 @@ Metadata items can often live in a hierarchy with relationships between them.  F
 
 ```typescript
 import { ListSessionsMetadatum } from "@lukehagar/plexjs/models/operations";
+import { StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: ListSessionsMetadatum = {
   title: "<value>",
@@ -153,7 +154,7 @@ let value: ListSessionsMetadatum = {
               dub: true,
               title: "SDH",
               streamIdentifier: 1,
-              streamType: 1,
+              streamType: StreamType.Video,
               width: 3840,
             },
           ],

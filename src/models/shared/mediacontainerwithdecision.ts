@@ -27,6 +27,31 @@ export type MediaContainerWithDecisionGuid = {
   id: string;
 };
 
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - VIDEO = 1 (Video stream)
+ *   - AUDIO = 2 (Audio stream)
+ *   - SUBTITLE = 3 (Subtitle stream)
+ */
+export enum MediaContainerWithDecisionStreamType {
+  Video = 1,
+  Audio = 2,
+  Subtitle = 3,
+}
+/**
+ * Stream type:
+ *
+ * @remarks
+ *   - VIDEO = 1 (Video stream)
+ *   - AUDIO = 2 (Audio stream)
+ *   - SUBTITLE = 3 (Subtitle stream)
+ */
+export type MediaContainerWithDecisionStreamTypeOpen = OpenEnum<
+  typeof MediaContainerWithDecisionStreamType
+>;
+
 export enum StreamDecision {
   Copy = "copy",
   Transcode = "transcode",
@@ -239,15 +264,7 @@ export type MediaContainerWithDecisionStream = {
    */
   title?: string | undefined;
   streamIdentifier?: number | undefined;
-  /**
-   * Stream type:
-   *
-   * @remarks
-   *   - VIDEO = 1
-   *   - AUDIO = 2
-   *   - SUBTITLE = 3
-   */
-  streamType: 1;
+  streamType: MediaContainerWithDecisionStreamTypeOpen;
   /**
    * Width of the video stream.
    */
@@ -680,6 +697,12 @@ export function mediaContainerWithDecisionGuidFromJSON(
 }
 
 /** @internal */
+export const MediaContainerWithDecisionStreamType$inboundSchema: z.ZodType<
+  MediaContainerWithDecisionStreamTypeOpen,
+  unknown
+> = openEnums.inboundSchemaInt(MediaContainerWithDecisionStreamType);
+
+/** @internal */
 export const StreamDecision$inboundSchema: z.ZodType<
   StreamDecisionOpen,
   unknown
@@ -747,7 +770,7 @@ export const MediaContainerWithDecisionStream$inboundSchema: z.ZodType<
     dub: types.optional(types.boolean()),
     title: types.optional(types.string()),
     streamIdentifier: types.optional(types.number()),
-    streamType: types.literal(1),
+    streamType: MediaContainerWithDecisionStreamType$inboundSchema,
     width: types.optional(types.number()),
     decision: types.optional(StreamDecision$inboundSchema),
     location: types.optional(MediaContainerWithDecisionLocation$inboundSchema),

@@ -6,6 +6,7 @@ OK
 
 ```typescript
 import { GetRelatedItemsResponse } from "@lukehagar/plexjs/models/operations";
+import { StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: GetRelatedItemsResponse = {
   mediaContainer: {
@@ -158,7 +159,7 @@ let value: GetRelatedItemsResponse = {
                         dub: true,
                         title: "SDH",
                         streamIdentifier: 1,
-                        streamType: 1,
+                        streamType: StreamType.Video,
                         width: 3840,
                       },
                     ],

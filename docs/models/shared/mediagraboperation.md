@@ -6,7 +6,7 @@ A media grab opration represents a scheduled or active recording of media
 ## Example Usage
 
 ```typescript
-import { MediaGrabOperation } from "@lukehagar/plexjs/models/shared";
+import { MediaGrabOperation, StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: MediaGrabOperation = {
   metadata: {
@@ -150,7 +150,7 @@ let value: MediaGrabOperation = {
                 dub: true,
                 title: "SDH",
                 streamIdentifier: 1,
-                streamType: 1,
+                streamType: StreamType.Video,
                 width: 3840,
               },
             ],

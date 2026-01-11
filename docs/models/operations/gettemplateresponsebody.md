@@ -6,6 +6,7 @@ OK
 
 ```typescript
 import { GetTemplateResponseBody } from "@lukehagar/plexjs/models/operations";
+import { StreamType } from "@lukehagar/plexjs/models/shared";
 
 let value: GetTemplateResponseBody = {
   mediaContainer: {
@@ -159,7 +160,7 @@ let value: GetTemplateResponseBody = {
                               dub: true,
                               title: "SDH",
                               streamIdentifier: 1,
-                              streamType: 1,
+                              streamType: StreamType.Video,
                               width: 3840,
                             },
                           ],
