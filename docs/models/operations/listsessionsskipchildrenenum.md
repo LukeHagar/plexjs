@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListSessionsSkipChildrenEnum } from "@lukehagar/plexjs/models/operations";
+import { ListSessionsSkipChildrenEnum } from "@parke.dev/plexjs/models/operations";
 
 let value: ListSessionsSkipChildrenEnum = ListSessionsSkipChildrenEnum.One;
 

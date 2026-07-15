@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ItemsSkipParentEnum } from "@lukehagar/plexjs/models/shared";
+import { ItemsSkipParentEnum } from "@parke.dev/plexjs/models/shared";
 
 let value: ItemsSkipParentEnum = ItemsSkipParentEnum.One;
 

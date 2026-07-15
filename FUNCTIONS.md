@@ -19,10 +19,10 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { transcoderStartTranscodeSession } from "@lukehagar/plexjs/funcs/transcoderStartTranscodeSession.js";
-import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@lukehagar/plexjs/models/operations";
-import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { transcoderStartTranscodeSession } from "@parke.dev/plexjs/funcs/transcoderStartTranscodeSession.js";
+import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@parke.dev/plexjs/models/operations";
+import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

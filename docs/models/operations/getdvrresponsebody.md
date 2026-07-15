@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { GetDVRResponseBody } from "@lukehagar/plexjs/models/operations";
+import { GetDVRResponseBody } from "@parke.dev/plexjs/models/operations";
 
 let value: GetDVRResponseBody = {};
 ```

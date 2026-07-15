@@ -5,7 +5,7 @@ The new values for the metadata item
 ## Example Usage
 
 ```typescript
-import { EditMetadataItemArgs } from "@lukehagar/plexjs/models/operations";
+import { EditMetadataItemArgs } from "@parke.dev/plexjs/models/operations";
 
 let value: EditMetadataItemArgs = {};
 ```

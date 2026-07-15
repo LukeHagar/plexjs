@@ -5,7 +5,7 @@ The subtitles for the deaf or hard-of-hearing (SDH) searches mode (0 = Prefer no
 ## Example Usage
 
 ```typescript
-import { DefaultSubtitleAccessibility } from "@lukehagar/plexjs/models/shared";
+import { DefaultSubtitleAccessibility } from "@parke.dev/plexjs/models/shared";
 
 let value: DefaultSubtitleAccessibility =
   DefaultSubtitleAccessibility.PreferSdh;

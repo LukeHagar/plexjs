@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteLineupResponse } from "@lukehagar/plexjs/models/operations";
+import { DeleteLineupResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: DeleteLineupResponse = {
   headers: {},

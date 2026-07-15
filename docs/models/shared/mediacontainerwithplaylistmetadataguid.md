@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithPlaylistMetadataGuid } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithPlaylistMetadataGuid } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithPlaylistMetadataGuid = {
   id:

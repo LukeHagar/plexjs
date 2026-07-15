@@ -5,7 +5,7 @@ Indicates if the user is allowed to use tuners.
 ## Example Usage
 
 ```typescript
-import { AllowTuners } from "@lukehagar/plexjs/models/operations";
+import { AllowTuners } from "@parke.dev/plexjs/models/operations";
 
 let value: AllowTuners = AllowTuners.Enable;
 

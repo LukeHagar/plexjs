@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SetChannelmapRequest } from "@lukehagar/plexjs/models/operations";
+import { SetChannelmapRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: SetChannelmapRequest = {
   deviceId: 185948,

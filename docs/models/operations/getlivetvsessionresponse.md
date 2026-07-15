@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { GetLiveTVSessionResponse } from "@lukehagar/plexjs/models/operations";
-import { HasVoiceActivityEnum, StreamType } from "@lukehagar/plexjs/models/shared";
+import { GetLiveTVSessionResponse } from "@parke.dev/plexjs/models/operations";
+import { HasVoiceActivityEnum, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: GetLiveTVSessionResponse = {
   headers: {

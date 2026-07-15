@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { GetMetadataHubsResponse } from "@lukehagar/plexjs/models/operations";
-import { HasVoiceActivityEnum, StreamType } from "@lukehagar/plexjs/models/shared";
+import { GetMetadataHubsResponse } from "@parke.dev/plexjs/models/operations";
+import { HasVoiceActivityEnum, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: GetMetadataHubsResponse = {
   headers: {

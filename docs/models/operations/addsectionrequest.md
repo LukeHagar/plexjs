@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AddSectionRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { AddSectionRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: AddSectionRequest = {
   name: "<value>",

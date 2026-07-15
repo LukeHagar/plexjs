@@ -8,7 +8,7 @@ The container often "hoists" common attributes from its children. For example, i
 ## Example Usage
 
 ```typescript
-import { GetDVRMediaContainerMediaContainer } from "@lukehagar/plexjs/models/operations";
+import { GetDVRMediaContainerMediaContainer } from "@parke.dev/plexjs/models/operations";
 
 let value: GetDVRMediaContainerMediaContainer = {};
 ```

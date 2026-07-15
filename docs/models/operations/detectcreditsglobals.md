@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DetectCreditsGlobals } from "@lukehagar/plexjs/models/operations";
+import { DetectCreditsGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: DetectCreditsGlobals = {
   clientIdentifier: "abc123",

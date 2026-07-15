@@ -11,7 +11,7 @@ The state of this queue
 ## Example Usage
 
 ```typescript
-import { CreateDownloadQueueStatus } from "@lukehagar/plexjs/models/operations";
+import { CreateDownloadQueueStatus } from "@parke.dev/plexjs/models/operations";
 
 let value: CreateDownloadQueueStatus = CreateDownloadQueueStatus.Error;
 

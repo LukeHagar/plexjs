@@ -12,7 +12,7 @@ The state of the item:
 ## Example Usage
 
 ```typescript
-import { GetDownloadQueueItemsStatus } from "@lukehagar/plexjs/models/operations";
+import { GetDownloadQueueItemsStatus } from "@parke.dev/plexjs/models/operations";
 
 let value: GetDownloadQueueItemsStatus = GetDownloadQueueItemsStatus.Processing;
 

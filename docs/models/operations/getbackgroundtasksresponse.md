@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { GetBackgroundTasksResponse } from "@lukehagar/plexjs/models/operations";
+import { GetBackgroundTasksResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetBackgroundTasksResponse = {};
 ```

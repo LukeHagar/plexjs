@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ClearPlayQueueRequest } from "@lukehagar/plexjs/models/operations";
+import { ClearPlayQueueRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: ClearPlayQueueRequest = {
   playQueueId: 442842,

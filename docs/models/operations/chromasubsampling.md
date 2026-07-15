@@ -10,7 +10,7 @@ Defaults to 3 (444)
 ## Example Usage
 
 ```typescript
-import { ChromaSubsampling } from "@lukehagar/plexjs/models/operations";
+import { ChromaSubsampling } from "@parke.dev/plexjs/models/operations";
 
 let value: ChromaSubsampling = ChromaSubsampling.Two;
 ```

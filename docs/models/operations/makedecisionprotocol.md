@@ -6,7 +6,7 @@ Indicates the network streaming protocol to be used for the transcode session: *
 ## Example Usage
 
 ```typescript
-import { MakeDecisionProtocol } from "@lukehagar/plexjs/models/operations";
+import { MakeDecisionProtocol } from "@parke.dev/plexjs/models/operations";
 
 let value: MakeDecisionProtocol = MakeDecisionProtocol.Dash;
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteCollectionItemRequest } from "@lukehagar/plexjs/models/operations";
+import { DeleteCollectionItemRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: DeleteCollectionItemRequest = {
   collectionId: 866683,

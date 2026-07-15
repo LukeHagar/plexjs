@@ -14,8 +14,8 @@ Get list of all users that are friends and have library access with the provided
 
 <!-- UsageSnippet language="typescript" operationID="get-users" method="get" path="/users" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -46,9 +46,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { usersGetUsers } from "@lukehagar/plexjs/funcs/usersGetUsers.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { usersGetUsers } from "@parke.dev/plexjs/funcs/usersGetUsers.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

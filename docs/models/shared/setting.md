@@ -5,7 +5,7 @@ A configuration setting or preference
 ## Example Usage
 
 ```typescript
-import { Setting } from "@lukehagar/plexjs/models/shared";
+import { Setting } from "@parke.dev/plexjs/models/shared";
 
 let value: Setting = {};
 ```

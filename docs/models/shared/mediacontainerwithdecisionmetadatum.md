@@ -14,7 +14,7 @@ import {
   MediaContainerWithDecisionHasVoiceActivityEnum,
   MediaContainerWithDecisionMetadatum,
   MediaContainerWithDecisionStreamType,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionMetadatum = {
   title: "<value>",

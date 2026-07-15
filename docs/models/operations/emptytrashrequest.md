@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EmptyTrashRequest } from "@lukehagar/plexjs/models/operations";
+import { EmptyTrashRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: EmptyTrashRequest = {
   sectionId: 484541,

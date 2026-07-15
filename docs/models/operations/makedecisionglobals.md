@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MakeDecisionGlobals } from "@lukehagar/plexjs/models/operations";
+import { MakeDecisionGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: MakeDecisionGlobals = {
   clientIdentifier: "abc123",

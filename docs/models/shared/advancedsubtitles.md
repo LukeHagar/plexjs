@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AdvancedSubtitles } from "@lukehagar/plexjs/models/shared";
+import { AdvancedSubtitles } from "@parke.dev/plexjs/models/shared";
 
 let value: AdvancedSubtitles = AdvancedSubtitles.Burn;
 ```

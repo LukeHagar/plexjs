@@ -20,7 +20,7 @@ Get all livetv sessions and metadata
 
 <!-- UsageSnippet language="typescript" operationID="getSessions" method="get" path="/livetv/sessions" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { liveTVGetSessions } from "@lukehagar/plexjs/funcs/liveTVGetSessions.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { liveTVGetSessions } from "@parke.dev/plexjs/funcs/liveTVGetSessions.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -88,8 +88,8 @@ Get a single livetv session and metadata
 
 <!-- UsageSnippet language="typescript" operationID="getLiveTVSession" method="get" path="/livetv/sessions/{sessionId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -122,9 +122,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { liveTVGetLiveTVSession } from "@lukehagar/plexjs/funcs/liveTVGetLiveTVSession.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { liveTVGetLiveTVSession } from "@parke.dev/plexjs/funcs/liveTVGetLiveTVSession.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -185,8 +185,8 @@ Get a playlist index for playing this session
 
 <!-- UsageSnippet language="typescript" operationID="getSessionPlaylistIndex" method="get" path="/livetv/sessions/{sessionId}/{consumerId}/index.m3u8" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -220,9 +220,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { liveTVGetSessionPlaylistIndex } from "@lukehagar/plexjs/funcs/liveTVGetSessionPlaylistIndex.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { liveTVGetSessionPlaylistIndex } from "@parke.dev/plexjs/funcs/liveTVGetSessionPlaylistIndex.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -284,8 +284,8 @@ Get a single LiveTV session segment
 
 <!-- UsageSnippet language="typescript" operationID="getSessionSegment" method="get" path="/livetv/sessions/{sessionId}/{consumerId}/{segmentId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -320,9 +320,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { liveTVGetSessionSegment } from "@lukehagar/plexjs/funcs/liveTVGetSessionSegment.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { liveTVGetSessionSegment } from "@parke.dev/plexjs/funcs/liveTVGetSessionSegment.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

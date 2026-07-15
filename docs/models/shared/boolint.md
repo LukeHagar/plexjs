@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: BoolInt = BoolInt.True;
 ```

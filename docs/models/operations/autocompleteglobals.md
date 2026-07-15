@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AutocompleteGlobals } from "@lukehagar/plexjs/models/operations";
+import { AutocompleteGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: AutocompleteGlobals = {
   clientIdentifier: "abc123",

@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { CheckUpdatesRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { CheckUpdatesRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: CheckUpdatesRequest = {
   download: BoolInt.True,

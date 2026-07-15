@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ComputeChannelMapGlobals } from "@lukehagar/plexjs/models/operations";
+import { ComputeChannelMapGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: ComputeChannelMapGlobals = {
   clientIdentifier: "abc123",

@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { CreatePlayQueueResponseBody } from "@lukehagar/plexjs/models/operations";
+import { CreatePlayQueueResponseBody } from "@parke.dev/plexjs/models/operations";
 
 let value: CreatePlayQueueResponseBody = {};
 ```

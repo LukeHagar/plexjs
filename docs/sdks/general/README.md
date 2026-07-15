@@ -19,8 +19,8 @@ Information about this PMS setup and configuration
 
 <!-- UsageSnippet language="typescript" operationID="getServerInfo" method="get" path="/" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -51,9 +51,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { generalGetServerInfo } from "@lukehagar/plexjs/funcs/generalGetServerInfo.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { generalGetServerInfo } from "@parke.dev/plexjs/funcs/generalGetServerInfo.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -112,7 +112,7 @@ Get details about this PMS's identity
 
 <!-- UsageSnippet language="typescript" operationID="getIdentity" method="get" path="/identity" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI();
 
@@ -130,8 +130,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { generalGetIdentity } from "@lukehagar/plexjs/funcs/generalGetIdentity.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { generalGetIdentity } from "@parke.dev/plexjs/funcs/generalGetIdentity.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -176,8 +176,8 @@ If a caller requires connection details and a transient token for a source that 
 
 <!-- UsageSnippet language="typescript" operationID="getSourceConnectionInformation" method="get" path="/security/resources" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -211,9 +211,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { generalGetSourceConnectionInformation } from "@lukehagar/plexjs/funcs/generalGetSourceConnectionInformation.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { generalGetSourceConnectionInformation } from "@parke.dev/plexjs/funcs/generalGetSourceConnectionInformation.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -276,9 +276,9 @@ Note: This endpoint responds to all HTTP verbs but POST in preferred
 
 <!-- UsageSnippet language="typescript" operationID="getTransientToken" method="post" path="/security/token" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { GetTransientTokenScope, GetTransientTokenType } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { GetTransientTokenScope, GetTransientTokenType } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -312,10 +312,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { generalGetTransientToken } from "@lukehagar/plexjs/funcs/generalGetTransientToken.js";
-import { GetTransientTokenScope, GetTransientTokenType } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { generalGetTransientToken } from "@parke.dev/plexjs/funcs/generalGetTransientToken.js";
+import { GetTransientTokenScope, GetTransientTokenType } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

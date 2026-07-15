@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SetItemPreferencesArgs } from "@lukehagar/plexjs/models/operations";
+import { SetItemPreferencesArgs } from "@parke.dev/plexjs/models/operations";
 
 let value: SetItemPreferencesArgs = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RestartProcessingDownloadQueueItemsRequest } from "@lukehagar/plexjs/models/operations";
+import { RestartProcessingDownloadQueueItemsRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: RestartProcessingDownloadQueueItemsRequest = {
   queueId: 578962,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TriggerFallbackGlobals } from "@lukehagar/plexjs/models/operations";
+import { TriggerFallbackGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: TriggerFallbackGlobals = {
   clientIdentifier: "abc123",

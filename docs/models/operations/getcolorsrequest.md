@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetColorsRequest } from "@lukehagar/plexjs/models/operations";
+import { GetColorsRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetColorsRequest = {
   url: "/library/metadata/217745/art/1718931408",

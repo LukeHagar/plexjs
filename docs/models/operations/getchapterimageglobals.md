@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetChapterImageGlobals } from "@lukehagar/plexjs/models/operations";
+import { GetChapterImageGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: GetChapterImageGlobals = {
   clientIdentifier: "abc123",

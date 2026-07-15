@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetLineupChannelsRequest } from "@lukehagar/plexjs/models/operations";
+import { GetLineupChannelsRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetLineupChannelsRequest = {
   lineup: [],

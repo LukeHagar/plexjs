@@ -5,7 +5,7 @@ Indicates if the user owns the server.
 ## Example Usage
 
 ```typescript
-import { Owned } from "@lukehagar/plexjs/models/operations";
+import { Owned } from "@parke.dev/plexjs/models/operations";
 
 let value: Owned = Owned.Enable;
 

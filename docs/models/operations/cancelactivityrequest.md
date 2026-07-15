@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CancelActivityRequest } from "@lukehagar/plexjs/models/operations";
+import { CancelActivityRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: CancelActivityRequest = {
   activityId: "d6199ba1-fb5e-4cae-bf17-1a5369c1cf1e",

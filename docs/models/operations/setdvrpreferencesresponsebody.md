@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { SetDVRPreferencesResponseBody } from "@lukehagar/plexjs/models/operations";
+import { SetDVRPreferencesResponseBody } from "@parke.dev/plexjs/models/operations";
 
 let value: SetDVRPreferencesResponseBody = {};
 ```

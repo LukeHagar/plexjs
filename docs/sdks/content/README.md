@@ -28,8 +28,8 @@ Get items in a collection.  Note if this collection contains more than 100 items
 
 <!-- UsageSnippet language="typescript" operationID="getCollectionItems" method="get" path="/library/collections/{collectionId}/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -62,9 +62,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetCollectionItems } from "@lukehagar/plexjs/funcs/contentGetCollectionItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetCollectionItems } from "@parke.dev/plexjs/funcs/contentGetCollectionItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,8 +125,8 @@ Get one or more metadata items.
 
 <!-- UsageSnippet language="typescript" operationID="getMetadataItem" method="get" path="/library/metadata/{ids}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -167,9 +167,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetMetadataItem } from "@lukehagar/plexjs/funcs/contentGetMetadataItem.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetMetadataItem } from "@parke.dev/plexjs/funcs/contentGetMetadataItem.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -238,8 +238,8 @@ Get all albums in a music section
 
 <!-- UsageSnippet language="typescript" operationID="getAlbums" method="get" path="/library/sections/{sectionId}/albums" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -272,9 +272,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetAlbums } from "@lukehagar/plexjs/funcs/contentGetAlbums.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetAlbums } from "@parke.dev/plexjs/funcs/contentGetAlbums.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -335,8 +335,8 @@ Get the items in a section, potentially filtering them
 
 <!-- UsageSnippet language="typescript" operationID="listContent" method="get" path="/library/sections/{sectionId}/all" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt, MediaType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt, MediaType } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -376,9 +376,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentListContent } from "@lukehagar/plexjs/funcs/contentListContent.js";
-import { Accepts, BoolInt, MediaType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentListContent } from "@parke.dev/plexjs/funcs/contentListContent.js";
+import { Accepts, BoolInt, MediaType } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -446,8 +446,8 @@ Get all leaves in a section (such as episodes in a show section)
 
 <!-- UsageSnippet language="typescript" operationID="getAllLeaves" method="get" path="/library/sections/{sectionId}/allLeaves" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -480,9 +480,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetAllLeaves } from "@lukehagar/plexjs/funcs/contentGetAllLeaves.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetAllLeaves } from "@parke.dev/plexjs/funcs/contentGetAllLeaves.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -543,8 +543,8 @@ Get artwork for a library section
 
 <!-- UsageSnippet language="typescript" operationID="getArts" method="get" path="/library/sections/{sectionId}/arts" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -577,9 +577,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetArts } from "@lukehagar/plexjs/funcs/contentGetArts.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetArts } from "@parke.dev/plexjs/funcs/contentGetArts.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -640,8 +640,8 @@ Get categories in a library section
 
 <!-- UsageSnippet language="typescript" operationID="getCategories" method="get" path="/library/sections/{sectionId}/categories" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -674,9 +674,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetCategories } from "@lukehagar/plexjs/funcs/contentGetCategories.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetCategories } from "@parke.dev/plexjs/funcs/contentGetCategories.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -737,8 +737,8 @@ Get clusters in a library section (typically for photos)
 
 <!-- UsageSnippet language="typescript" operationID="getCluster" method="get" path="/library/sections/{sectionId}/cluster" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -771,9 +771,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetCluster } from "@lukehagar/plexjs/funcs/contentGetCluster.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetCluster } from "@parke.dev/plexjs/funcs/contentGetCluster.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -834,8 +834,8 @@ Get a list of audio tracks starting at one and ending at another which are simil
 
 <!-- UsageSnippet language="typescript" operationID="getSonicPath" method="get" path="/library/sections/{sectionId}/computePath" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -870,9 +870,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetSonicPath } from "@lukehagar/plexjs/funcs/contentGetSonicPath.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetSonicPath } from "@parke.dev/plexjs/funcs/contentGetSonicPath.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -935,8 +935,8 @@ Get all folder locations of the media in a section
 
 <!-- UsageSnippet language="typescript" operationID="getFolders" method="get" path="/library/sections/{sectionId}/location" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -969,9 +969,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetFolders } from "@lukehagar/plexjs/funcs/contentGetFolders.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetFolders } from "@parke.dev/plexjs/funcs/contentGetFolders.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1032,8 +1032,8 @@ Get moments in a library section (typically for photos)
 
 <!-- UsageSnippet language="typescript" operationID="listMoments" method="get" path="/library/sections/{sectionId}/moment" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1066,9 +1066,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentListMoments } from "@lukehagar/plexjs/funcs/contentListMoments.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentListMoments } from "@parke.dev/plexjs/funcs/contentListMoments.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1129,8 +1129,8 @@ Get the nearest audio tracks to a particular analysis
 
 <!-- UsageSnippet language="typescript" operationID="getSonicallySimilar" method="get" path="/library/sections/{sectionId}/nearest" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1164,9 +1164,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetSonicallySimilar } from "@lukehagar/plexjs/funcs/contentGetSonicallySimilar.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetSonicallySimilar } from "@parke.dev/plexjs/funcs/contentGetSonicallySimilar.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1228,8 +1228,8 @@ Get an image for the collection based on the items within
 
 <!-- UsageSnippet language="typescript" operationID="getCollectionImage" method="get" path="/library/collections/{collectionId}/composite/{updatedAt}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1263,9 +1263,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { contentGetCollectionImage } from "@lukehagar/plexjs/funcs/contentGetCollectionImage.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { contentGetCollectionImage } from "@parke.dev/plexjs/funcs/contentGetCollectionImage.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

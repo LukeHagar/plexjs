@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetStreamLevelsLevel } from "@lukehagar/plexjs/models/operations";
+import { GetStreamLevelsLevel } from "@parke.dev/plexjs/models/operations";
 
 let value: GetStreamLevelsLevel = {};
 ```

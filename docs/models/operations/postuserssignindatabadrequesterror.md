@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PostUsersSignInDataBadRequestError } from "@lukehagar/plexjs/models/operations";
+import { PostUsersSignInDataBadRequestError } from "@parke.dev/plexjs/models/operations";
 
 let value: PostUsersSignInDataBadRequestError = {
   code: 1000,

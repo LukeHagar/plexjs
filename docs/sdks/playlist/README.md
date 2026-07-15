@@ -18,8 +18,8 @@ Gets a list of playlists and playlist folders for a user. General filters are pe
 
 <!-- UsageSnippet language="typescript" operationID="listPlaylists" method="get" path="/playlists" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -50,9 +50,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playlistListPlaylists } from "@lukehagar/plexjs/funcs/playlistListPlaylists.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playlistListPlaylists } from "@parke.dev/plexjs/funcs/playlistListPlaylists.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -112,8 +112,8 @@ Smart playlist details contain the `content` attribute. This is the content URI 
 
 <!-- UsageSnippet language="typescript" operationID="getPlaylist" method="get" path="/playlists/{playlistId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -146,9 +146,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playlistGetPlaylist } from "@lukehagar/plexjs/funcs/playlistGetPlaylist.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playlistGetPlaylist } from "@parke.dev/plexjs/funcs/playlistGetPlaylist.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -209,8 +209,8 @@ Gets the contents of a playlist. Should be paged by clients via standard mechani
 
 <!-- UsageSnippet language="typescript" operationID="getPlaylistItems" method="get" path="/playlists/{playlistId}/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -243,9 +243,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playlistGetPlaylistItems } from "@lukehagar/plexjs/funcs/playlistGetPlaylistItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playlistGetPlaylistItems } from "@parke.dev/plexjs/funcs/playlistGetPlaylistItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

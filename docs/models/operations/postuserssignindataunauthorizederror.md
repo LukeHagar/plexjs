@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PostUsersSignInDataUnauthorizedError } from "@lukehagar/plexjs/models/operations";
+import { PostUsersSignInDataUnauthorizedError } from "@parke.dev/plexjs/models/operations";
 
 let value: PostUsersSignInDataUnauthorizedError = {
   code: 1001,

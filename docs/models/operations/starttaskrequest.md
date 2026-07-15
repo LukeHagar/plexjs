@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StartTaskButlerTask, StartTaskRequest } from "@lukehagar/plexjs/models/operations";
+import { StartTaskButlerTask, StartTaskRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: StartTaskRequest = {
   butlerTask: StartTaskButlerTask.ButlerTaskGenerateIntroMarkers,

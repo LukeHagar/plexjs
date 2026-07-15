@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ChannelMapping } from "@lukehagar/plexjs/models/shared";
+import { ChannelMapping } from "@parke.dev/plexjs/models/shared";
 
 let value: ChannelMapping = {};
 ```

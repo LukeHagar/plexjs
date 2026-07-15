@@ -1,5 +1,5 @@
 {
-  "name": "@lukehagar/plexjs-examples",
+  "name": "@parke.dev/plexjs-examples",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,6 @@
     "tsx": "^4.19.2"
   },
   "dependencies": {
-    "@lukehagar/plexjs": "file:.."
+    "@parke.dev/plexjs": "file:.."
   }
 }

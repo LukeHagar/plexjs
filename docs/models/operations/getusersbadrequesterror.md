@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetUsersBadRequestError } from "@lukehagar/plexjs/models/operations";
+import { GetUsersBadRequestError } from "@parke.dev/plexjs/models/operations";
 
 let value: GetUsersBadRequestError = {
   code: 1000,

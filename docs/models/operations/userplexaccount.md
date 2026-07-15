@@ -11,14 +11,14 @@ import {
   SubscriptionStatus1,
   SubscriptionStatus2,
   UserPlexAccount,
-} from "@lukehagar/plexjs/models/operations";
+} from "@parke.dev/plexjs/models/operations";
 import {
   AutoSelectSubtitle,
   DefaultSubtitleAccessibility,
   DefaultSubtitleForced,
   MediaReviewsVisibility,
   WatchedIndicator,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 let value: UserPlexAccount = {
   adsConsentReminderAt: 1556281940,

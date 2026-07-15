@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DetectVoiceActivityGlobals } from "@lukehagar/plexjs/models/operations";
+import { DetectVoiceActivityGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: DetectVoiceActivityGlobals = {
   clientIdentifier: "abc123",

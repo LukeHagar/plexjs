@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OptimizeDatabaseGlobals } from "@lukehagar/plexjs/models/operations";
+import { OptimizeDatabaseGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: OptimizeDatabaseGlobals = {
   clientIdentifier: "abc123",

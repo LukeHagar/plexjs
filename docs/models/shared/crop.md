@@ -5,7 +5,7 @@ Where to crop source images to fit into composite image proportions
 ## Example Usage
 
 ```typescript
-import { Crop } from "@lukehagar/plexjs/models/shared";
+import { Crop } from "@parke.dev/plexjs/models/shared";
 
 let value: Crop = Crop.Center;
 ```

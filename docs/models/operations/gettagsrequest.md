@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { GetTagsRequest } from "@lukehagar/plexjs/models/operations";
-import { MediaType } from "@lukehagar/plexjs/models/shared";
+import { GetTagsRequest } from "@parke.dev/plexjs/models/operations";
+import { MediaType } from "@parke.dev/plexjs/models/shared";
 
 let value: GetTagsRequest = {
   type: MediaType.TvShow,

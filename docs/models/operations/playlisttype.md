@@ -5,7 +5,7 @@ Limit to a type of playlist
 ## Example Usage
 
 ```typescript
-import { PlaylistType } from "@lukehagar/plexjs/models/operations";
+import { PlaylistType } from "@parke.dev/plexjs/models/operations";
 
 let value: PlaylistType = PlaylistType.Video;
 ```

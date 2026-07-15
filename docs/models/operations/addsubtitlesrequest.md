@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AddSubtitlesRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { AddSubtitlesRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: AddSubtitlesRequest = {
   ids: "<value>",

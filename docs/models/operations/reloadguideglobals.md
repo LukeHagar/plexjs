@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ReloadGuideGlobals } from "@lukehagar/plexjs/models/operations";
+import { ReloadGuideGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: ReloadGuideGlobals = {
   clientIdentifier: "abc123",

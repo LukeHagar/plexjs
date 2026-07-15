@@ -5,7 +5,7 @@ The type of play queue to create
 ## Example Usage
 
 ```typescript
-import { CreatePlayQueueType } from "@lukehagar/plexjs/models/operations";
+import { CreatePlayQueueType } from "@parke.dev/plexjs/models/operations";
 
 let value: CreatePlayQueueType = CreatePlayQueueType.Video;
 ```

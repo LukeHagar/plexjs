@@ -6,8 +6,8 @@ A media subscription contains a representation of metadata desired to be recorde
 ## Example Usage
 
 ```typescript
-import { MediaSubscription } from "@lukehagar/plexjs/models/operations";
-import { HasVoiceActivityEnum, StreamType } from "@lukehagar/plexjs/models/shared";
+import { MediaSubscription } from "@parke.dev/plexjs/models/operations";
+import { HasVoiceActivityEnum, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaSubscription = {
   title: "This Episode",

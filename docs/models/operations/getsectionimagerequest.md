@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { GetSectionImageRequest } from "@lukehagar/plexjs/models/operations";
-import { MediaType } from "@lukehagar/plexjs/models/shared";
+import { GetSectionImageRequest } from "@parke.dev/plexjs/models/operations";
+import { MediaType } from "@parke.dev/plexjs/models/shared";
 
 let value: GetSectionImageRequest = {
   sectionId: 16951,

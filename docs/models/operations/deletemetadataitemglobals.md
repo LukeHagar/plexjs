@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteMetadataItemGlobals } from "@lukehagar/plexjs/models/operations";
+import { DeleteMetadataItemGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: DeleteMetadataItemGlobals = {
   clientIdentifier: "abc123",

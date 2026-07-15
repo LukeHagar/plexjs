@@ -5,7 +5,7 @@ A list of media times and bandwidths when trascoding is using with auto adjustme
 ## Example Usage
 
 ```typescript
-import { Bandwidths } from "@lukehagar/plexjs/models/operations";
+import { Bandwidths } from "@parke.dev/plexjs/models/operations";
 
 let value: Bandwidths = {};
 ```

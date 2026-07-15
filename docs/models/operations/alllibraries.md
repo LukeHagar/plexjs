@@ -5,7 +5,7 @@ Indicates if the user has access to all libraries.
 ## Example Usage
 
 ```typescript
-import { AllLibraries } from "@lukehagar/plexjs/models/operations";
+import { AllLibraries } from "@parke.dev/plexjs/models/operations";
 
 let value: AllLibraries = AllLibraries.Enable;
 

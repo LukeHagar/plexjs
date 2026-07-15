@@ -28,8 +28,8 @@ Create a new playlist. By default the playlist is blank.
 
 <!-- UsageSnippet language="typescript" operationID="createPlaylist" method="post" path="/playlists" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -62,9 +62,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsCreatePlaylist } from "@lukehagar/plexjs/funcs/libraryPlaylistsCreatePlaylist.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsCreatePlaylist } from "@parke.dev/plexjs/funcs/libraryPlaylistsCreatePlaylist.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,8 +125,8 @@ Imports m3u playlists by passing a path on the server to scan for m3u-formatted 
 
 <!-- UsageSnippet language="typescript" operationID="uploadPlaylist" method="post" path="/playlists/upload" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -160,9 +160,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsUploadPlaylist } from "@lukehagar/plexjs/funcs/libraryPlaylistsUploadPlaylist.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsUploadPlaylist } from "@parke.dev/plexjs/funcs/libraryPlaylistsUploadPlaylist.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -224,8 +224,8 @@ Deletes a playlist by provided id
 
 <!-- UsageSnippet language="typescript" operationID="deletePlaylist" method="delete" path="/playlists/{playlistId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -258,9 +258,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsDeletePlaylist } from "@lukehagar/plexjs/funcs/libraryPlaylistsDeletePlaylist.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsDeletePlaylist } from "@parke.dev/plexjs/funcs/libraryPlaylistsDeletePlaylist.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -321,8 +321,8 @@ Edits a playlist in the same manner as [editing metadata](#tag/Provider/operatio
 
 <!-- UsageSnippet language="typescript" operationID="updatePlaylist" method="put" path="/playlists/{playlistId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -355,9 +355,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsUpdatePlaylist } from "@lukehagar/plexjs/funcs/libraryPlaylistsUpdatePlaylist.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsUpdatePlaylist } from "@parke.dev/plexjs/funcs/libraryPlaylistsUpdatePlaylist.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -418,8 +418,8 @@ Get all the generators in a playlist
 
 <!-- UsageSnippet language="typescript" operationID="getPlaylistGenerators" method="get" path="/playlists/{playlistId}/generators" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -452,9 +452,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsGetPlaylistGenerators } from "@lukehagar/plexjs/funcs/libraryPlaylistsGetPlaylistGenerators.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsGetPlaylistGenerators } from "@parke.dev/plexjs/funcs/libraryPlaylistsGetPlaylistGenerators.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -515,8 +515,8 @@ Clears a playlist, only works with dumb playlists. Returns the playlist.
 
 <!-- UsageSnippet language="typescript" operationID="clearPlaylistItems" method="delete" path="/playlists/{playlistId}/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -549,9 +549,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsClearPlaylistItems } from "@lukehagar/plexjs/funcs/libraryPlaylistsClearPlaylistItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsClearPlaylistItems } from "@parke.dev/plexjs/funcs/libraryPlaylistsClearPlaylistItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -612,8 +612,8 @@ Adds a generator to a playlist, same parameters as the POST above. With a dumb p
 
 <!-- UsageSnippet language="typescript" operationID="addPlaylistItems" method="put" path="/playlists/{playlistId}/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -646,9 +646,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsAddPlaylistItems } from "@lukehagar/plexjs/funcs/libraryPlaylistsAddPlaylistItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsAddPlaylistItems } from "@parke.dev/plexjs/funcs/libraryPlaylistsAddPlaylistItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -709,8 +709,8 @@ Deletes an item from a playlist. Only works with dumb playlists.
 
 <!-- UsageSnippet language="typescript" operationID="deletePlaylistItem" method="delete" path="/playlists/{playlistId}/items/{generatorId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -744,9 +744,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsDeletePlaylistItem } from "@lukehagar/plexjs/funcs/libraryPlaylistsDeletePlaylistItem.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsDeletePlaylistItem } from "@parke.dev/plexjs/funcs/libraryPlaylistsDeletePlaylistItem.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -808,8 +808,8 @@ Get a playlist's generator.  Only used for optimized versions
 
 <!-- UsageSnippet language="typescript" operationID="getPlaylistGenerator" method="get" path="/playlists/{playlistId}/items/{generatorId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -843,9 +843,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsGetPlaylistGenerator } from "@lukehagar/plexjs/funcs/libraryPlaylistsGetPlaylistGenerator.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsGetPlaylistGenerator } from "@parke.dev/plexjs/funcs/libraryPlaylistsGetPlaylistGenerator.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -907,9 +907,9 @@ Modify a playlist generator.  Only used for optimizer
 
 <!-- UsageSnippet language="typescript" operationID="modifyPlaylistGenerator" method="put" path="/playlists/{playlistId}/items/{generatorId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { ModifyPlaylistGeneratorScope } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -956,10 +956,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsModifyPlaylistGenerator } from "@lukehagar/plexjs/funcs/libraryPlaylistsModifyPlaylistGenerator.js";
-import { ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsModifyPlaylistGenerator } from "@parke.dev/plexjs/funcs/libraryPlaylistsModifyPlaylistGenerator.js";
+import { ModifyPlaylistGeneratorScope } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1034,8 +1034,8 @@ Get a playlist generator's items
 
 <!-- UsageSnippet language="typescript" operationID="getPlaylistGeneratorItems" method="get" path="/playlists/{playlistId}/items/{generatorId}/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1069,9 +1069,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsGetPlaylistGeneratorItems } from "@lukehagar/plexjs/funcs/libraryPlaylistsGetPlaylistGeneratorItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsGetPlaylistGeneratorItems } from "@parke.dev/plexjs/funcs/libraryPlaylistsGetPlaylistGeneratorItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1133,8 +1133,8 @@ Moves an item in a playlist. Only works with dumb playlists.
 
 <!-- UsageSnippet language="typescript" operationID="movePlaylistItem" method="put" path="/playlists/{playlistId}/items/{playlistItemId}/move" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1168,9 +1168,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsMovePlaylistItem } from "@lukehagar/plexjs/funcs/libraryPlaylistsMovePlaylistItem.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsMovePlaylistItem } from "@parke.dev/plexjs/funcs/libraryPlaylistsMovePlaylistItem.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1232,9 +1232,9 @@ Make a generator reprocess (refresh)
 
 <!-- UsageSnippet language="typescript" operationID="refreshPlaylist" method="put" path="/playlists/{playlistId}/items/{generatorId}/{metadataId}/{action}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Action } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Action } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1270,10 +1270,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryPlaylistsRefreshPlaylist } from "@lukehagar/plexjs/funcs/libraryPlaylistsRefreshPlaylist.js";
-import { Action } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryPlaylistsRefreshPlaylist } from "@parke.dev/plexjs/funcs/libraryPlaylistsRefreshPlaylist.js";
+import { Action } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

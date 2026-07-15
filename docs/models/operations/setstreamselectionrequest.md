@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { SetStreamSelectionRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { SetStreamSelectionRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: SetStreamSelectionRequest = {
   partId: 960612,

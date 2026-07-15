@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreatePlayQueueResponse } from "@lukehagar/plexjs/models/operations";
+import { CreatePlayQueueResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: CreatePlayQueueResponse = {
   headers: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListDownloadQueueItemsDecisionResult } from "@lukehagar/plexjs/models/operations";
+import { ListDownloadQueueItemsDecisionResult } from "@parke.dev/plexjs/models/operations";
 
 let value: ListDownloadQueueItemsDecisionResult = {};
 ```

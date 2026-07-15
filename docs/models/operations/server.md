@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AllLibraries, Owned, Pending, Server } from "@lukehagar/plexjs/models/operations";
+import { AllLibraries, Owned, Pending, Server } from "@parke.dev/plexjs/models/operations";
 
 let value: Server = {
   id: 907759180,

@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { GetAvailableSortsResponse } from "@lukehagar/plexjs/models/operations";
+import { GetAvailableSortsResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetAvailableSortsResponse = {};
 ```

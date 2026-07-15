@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { ReportResponse } from "@lukehagar/plexjs/models/operations";
+import { ReportResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: ReportResponse = {
   mediaContainer: {

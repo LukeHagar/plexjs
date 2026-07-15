@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSectionsPrefsRequest } from "@lukehagar/plexjs/models/operations";
+import { GetSectionsPrefsRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSectionsPrefsRequest = {
   type: 934408,

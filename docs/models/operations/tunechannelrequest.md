@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TuneChannelRequest } from "@lukehagar/plexjs/models/operations";
+import { TuneChannelRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: TuneChannelRequest = {
   dvrId: 557918,

@@ -5,7 +5,7 @@ Indicates if the user is allowed to sync media.
 ## Example Usage
 
 ```typescript
-import { GetUsersAllowSync } from "@lukehagar/plexjs/models/operations";
+import { GetUsersAllowSync } from "@parke.dev/plexjs/models/operations";
 
 let value: GetUsersAllowSync = GetUsersAllowSync.Enable;
 

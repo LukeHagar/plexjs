@@ -8,7 +8,7 @@ Only the defined properties below are allowed. The object serializes to a querys
 ## Example Usage
 
 ```typescript
-import { MediaQuery, MediaType } from "@lukehagar/plexjs/models/shared";
+import { MediaQuery, MediaType } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaQuery = {
   type: MediaType.Episode,

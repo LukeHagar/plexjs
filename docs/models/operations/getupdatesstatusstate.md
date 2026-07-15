@@ -16,7 +16,7 @@ The status of this update.
 ## Example Usage
 
 ```typescript
-import { GetUpdatesStatusState } from "@lukehagar/plexjs/models/operations";
+import { GetUpdatesStatusState } from "@parke.dev/plexjs/models/operations";
 
 let value: GetUpdatesStatusState = GetUpdatesStatusState.Done;
 

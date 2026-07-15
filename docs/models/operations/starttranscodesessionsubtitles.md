@@ -6,7 +6,7 @@ Indicates how subtitles should be included: * 'auto' - Compute the appropriate s
 ## Example Usage
 
 ```typescript
-import { StartTranscodeSessionSubtitles } from "@lukehagar/plexjs/models/operations";
+import { StartTranscodeSessionSubtitles } from "@parke.dev/plexjs/models/operations";
 
 let value: StartTranscodeSessionSubtitles =
   StartTranscodeSessionSubtitles.Segmented;

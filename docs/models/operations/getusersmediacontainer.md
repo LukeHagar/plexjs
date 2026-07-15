@@ -5,7 +5,7 @@ Container holding user and server details.
 ## Example Usage
 
 ```typescript
-import { GetUsersMediaContainer } from "@lukehagar/plexjs/models/operations";
+import { GetUsersMediaContainer } from "@parke.dev/plexjs/models/operations";
 
 let value: GetUsersMediaContainer = {
   friendlyName: "myPlex",

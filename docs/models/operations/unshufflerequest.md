@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UnshuffleRequest } from "@lukehagar/plexjs/models/operations";
+import { UnshuffleRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: UnshuffleRequest = {
   playQueueId: 419403,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetTransientTokenRequest, GetTransientTokenScope, GetTransientTokenType } from "@lukehagar/plexjs/models/operations";
+import { GetTransientTokenRequest, GetTransientTokenScope, GetTransientTokenType } from "@parke.dev/plexjs/models/operations";
 
 let value: GetTransientTokenRequest = {
   type: GetTransientTokenType.Delegation,

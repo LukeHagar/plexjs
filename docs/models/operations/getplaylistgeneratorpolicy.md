@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetPlaylistGeneratorPolicy } from "@lukehagar/plexjs/models/operations";
+import { GetPlaylistGeneratorPolicy } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPlaylistGeneratorPolicy = {};
 ```

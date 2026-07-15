@@ -5,7 +5,7 @@ The attributes to assign to this marker
 ## Example Usage
 
 ```typescript
-import { CreateMarkerAttributes } from "@lukehagar/plexjs/models/operations";
+import { CreateMarkerAttributes } from "@parke.dev/plexjs/models/operations";
 
 let value: CreateMarkerAttributes = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSectionFiltersRequest } from "@lukehagar/plexjs/models/operations";
+import { GetSectionFiltersRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSectionFiltersRequest = {
   sectionId: 949072,

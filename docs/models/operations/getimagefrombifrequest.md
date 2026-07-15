@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetImageFromBifIndex, GetImageFromBifRequest } from "@lukehagar/plexjs/models/operations";
+import { GetImageFromBifIndex, GetImageFromBifRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetImageFromBifRequest = {
   partId: 983252,

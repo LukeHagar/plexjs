@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetLineupResponse } from "@lukehagar/plexjs/models/operations";
+import { GetLineupResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetLineupResponse = {
   headers: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateDVRRequest } from "@lukehagar/plexjs/models/operations";
+import { CreateDVRRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: CreateDVRRequest = {
   lineup: "lineup://tv.plex.providers.epg.onconnect/USA-HI51418-DEFAULT",

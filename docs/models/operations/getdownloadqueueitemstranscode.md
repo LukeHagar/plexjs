@@ -5,7 +5,7 @@ The transcode session object which is not yet documented otherwise it'd be a $re
 ## Example Usage
 
 ```typescript
-import { GetDownloadQueueItemsTranscode } from "@lukehagar/plexjs/models/operations";
+import { GetDownloadQueueItemsTranscode } from "@parke.dev/plexjs/models/operations";
 
 let value: GetDownloadQueueItemsTranscode = {};
 ```

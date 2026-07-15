@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { GetFirstCharactersRequest } from "@lukehagar/plexjs/models/operations";
-import { MediaType } from "@lukehagar/plexjs/models/shared";
+import { GetFirstCharactersRequest } from "@parke.dev/plexjs/models/operations";
+import { MediaType } from "@parke.dev/plexjs/models/shared";
 
 let value: GetFirstCharactersRequest = {
   sectionId: 231024,

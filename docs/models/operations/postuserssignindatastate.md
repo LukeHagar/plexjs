@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PostUsersSignInDataState } from "@lukehagar/plexjs/models/operations";
+import { PostUsersSignInDataState } from "@parke.dev/plexjs/models/operations";
 
 let value: PostUsersSignInDataState = PostUsersSignInDataState.Ended;
 

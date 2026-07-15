@@ -5,7 +5,7 @@ Bad Request - A parameter was not specified, or was specified incorrectly.
 ## Example Usage
 
 ```typescript
-import { GetUsersBadRequestError } from "@lukehagar/plexjs/models/errors";
+import { GetUsersBadRequestError } from "@parke.dev/plexjs/models/errors";
 
 // No examples available for this model
 ```

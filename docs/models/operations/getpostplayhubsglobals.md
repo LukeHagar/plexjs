@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetPostplayHubsGlobals } from "@lukehagar/plexjs/models/operations";
+import { GetPostplayHubsGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPostplayHubsGlobals = {
   clientIdentifier: "abc123",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AddLineupRequest } from "@lukehagar/plexjs/models/operations";
+import { AddLineupRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: AddLineupRequest = {
   dvrId: 950730,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SetDVRPreferencesMediaContainer } from "@lukehagar/plexjs/models/operations";
+import { SetDVRPreferencesMediaContainer } from "@parke.dev/plexjs/models/operations";
 
 let value: SetDVRPreferencesMediaContainer = {};
 ```

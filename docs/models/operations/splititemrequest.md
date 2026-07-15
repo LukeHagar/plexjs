@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SplitItemRequest } from "@lukehagar/plexjs/models/operations";
+import { SplitItemRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: SplitItemRequest = {
   ids: "<value>",

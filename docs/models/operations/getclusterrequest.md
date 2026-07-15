@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetClusterRequest } from "@lukehagar/plexjs/models/operations";
+import { GetClusterRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetClusterRequest = {
   sectionId: 649212,

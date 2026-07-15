@@ -158,5 +158,5 @@ export const SDK_METADATA = {
   openapiDocVersion: "1.1.1",
   sdkVersion: "0.45.3",
   genVersion: "2.884.4",
-  userAgent: "speakeasy-sdk/typescript 0.45.3 2.884.4 1.1.1 @lukehagar/plexjs",
+  userAgent: "speakeasy-sdk/typescript 0.45.3 2.884.4 1.1.1 @parke.dev/plexjs",
 } as const;

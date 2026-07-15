@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AddProviderRequest } from "@lukehagar/plexjs/models/operations";
+import { AddProviderRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: AddProviderRequest = {
   url: "https://bright-unique.biz/",

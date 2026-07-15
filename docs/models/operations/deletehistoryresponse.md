@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteHistoryResponse } from "@lukehagar/plexjs/models/operations";
+import { DeleteHistoryResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: DeleteHistoryResponse = {
   headers: {

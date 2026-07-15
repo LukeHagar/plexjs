@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetItemArtworkElement } from "@lukehagar/plexjs/models/operations";
+import { GetItemArtworkElement } from "@parke.dev/plexjs/models/operations";
 
 let value: GetItemArtworkElement = GetItemArtworkElement.ClearLogo;
 ```

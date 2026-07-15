@@ -1,5 +1,5 @@
 {
-  "name": "@lukehagar/plexjs",
+  "name": "@parke.dev/plexjs",
   "version": "0.45.3",
   "author": "LukeHagar",
   "main": "./index.js",

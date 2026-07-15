@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EditMarkerRequest } from "@lukehagar/plexjs/models/operations";
+import { EditMarkerRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: EditMarkerRequest = {
   ids: "<value>",

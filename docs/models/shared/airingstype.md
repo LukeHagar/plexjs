@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AiringsType } from "@lukehagar/plexjs/models/shared";
+import { AiringsType } from "@parke.dev/plexjs/models/shared";
 
 let value: AiringsType = AiringsType.NewAndRepeatAirings;
 

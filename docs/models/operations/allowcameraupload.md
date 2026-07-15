@@ -5,7 +5,7 @@ Indicates if the user is allowed to upload from a camera.
 ## Example Usage
 
 ```typescript
-import { AllowCameraUpload } from "@lukehagar/plexjs/models/operations";
+import { AllowCameraUpload } from "@parke.dev/plexjs/models/operations";
 
 let value: AllowCameraUpload = AllowCameraUpload.Enable;
 

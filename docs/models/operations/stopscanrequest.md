@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StopScanRequest } from "@lukehagar/plexjs/models/operations";
+import { StopScanRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: StopScanRequest = {
   deviceId: 972435,

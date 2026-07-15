@@ -11,7 +11,7 @@ An integer log level to write to the PMS log with.
 ## Example Usage
 
 ```typescript
-import { WriteMessageLevel } from "@lukehagar/plexjs/models/operations";
+import { WriteMessageLevel } from "@parke.dev/plexjs/models/operations";
 
 let value: WriteMessageLevel = WriteMessageLevel.Four;
 ```

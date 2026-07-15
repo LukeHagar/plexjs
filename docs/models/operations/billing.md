@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Billing } from "@lukehagar/plexjs/models/operations";
+import { Billing } from "@parke.dev/plexjs/models/operations";
 
 let value: Billing = {
   internalPaymentMethod: {},

@@ -10,7 +10,7 @@ Metadata items can often live in a hierarchy with relationships between them.  F
 ## Example Usage
 
 ```typescript
-import { HasVoiceActivityEnum, MetadataItem, StreamType } from "@lukehagar/plexjs/models/shared";
+import { HasVoiceActivityEnum, MetadataItem, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: MetadataItem = {
   title: "<value>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TerminateSessionRequest } from "@lukehagar/plexjs/models/operations";
+import { TerminateSessionRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: TerminateSessionRequest = {
   sessionId: "cdefghijklmnopqrstuvwxyz",

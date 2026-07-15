@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AddDeviceRequest } from "@lukehagar/plexjs/models/operations";
+import { AddDeviceRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: AddDeviceRequest = {
   uri: "http://10.0.0.5",

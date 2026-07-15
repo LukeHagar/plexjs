@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SortPivot } from "@lukehagar/plexjs/models/shared";
+import { SortPivot } from "@parke.dev/plexjs/models/shared";
 
 let value: SortPivot = {};
 ```

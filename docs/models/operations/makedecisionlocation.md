@@ -5,7 +5,7 @@ Network type of the client, can be used to help determine target bitrate.
 ## Example Usage
 
 ```typescript
-import { MakeDecisionLocation } from "@lukehagar/plexjs/models/operations";
+import { MakeDecisionLocation } from "@parke.dev/plexjs/models/operations";
 
 let value: MakeDecisionLocation = MakeDecisionLocation.Wan;
 ```

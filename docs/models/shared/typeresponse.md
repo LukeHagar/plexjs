@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TypeResponse } from "@lukehagar/plexjs/models/shared";
+import { TypeResponse } from "@parke.dev/plexjs/models/shared";
 
 let value: TypeResponse = TypeResponse.Bookmark;
 

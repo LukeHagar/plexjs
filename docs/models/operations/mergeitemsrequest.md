@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MergeItemsRequest } from "@lukehagar/plexjs/models/operations";
+import { MergeItemsRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: MergeItemsRequest = {
   idsPathParameter: "<value>",

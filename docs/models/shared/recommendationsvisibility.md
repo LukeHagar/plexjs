@@ -10,7 +10,7 @@ The visibility of this hub in recommendations:
 ## Example Usage
 
 ```typescript
-import { RecommendationsVisibility } from "@lukehagar/plexjs/models/shared";
+import { RecommendationsVisibility } from "@parke.dev/plexjs/models/shared";
 
 let value: RecommendationsVisibility = RecommendationsVisibility.Admin;
 

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StartBifGenerationGlobals } from "@lukehagar/plexjs/models/operations";
+import { StartBifGenerationGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: StartBifGenerationGlobals = {
   clientIdentifier: "abc123",

@@ -5,7 +5,7 @@ Information about the player being used for playback
 ## Example Usage
 
 ```typescript
-import { Player } from "@lukehagar/plexjs/models/shared";
+import { Player } from "@parke.dev/plexjs/models/shared";
 
 let value: Player = {};
 ```

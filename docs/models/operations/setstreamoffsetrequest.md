@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SetStreamOffsetRequest } from "@lukehagar/plexjs/models/operations";
+import { SetStreamOffsetRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: SetStreamOffsetRequest = {
   streamId: 848059,

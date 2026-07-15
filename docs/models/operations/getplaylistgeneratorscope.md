@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetPlaylistGeneratorScope } from "@lukehagar/plexjs/models/operations";
+import { GetPlaylistGeneratorScope } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPlaylistGeneratorScope = GetPlaylistGeneratorScope.Count;
 

@@ -5,7 +5,7 @@ The value `all` is the only supported `scope` parameter.
 ## Example Usage
 
 ```typescript
-import { GetTransientTokenScope } from "@lukehagar/plexjs/models/operations";
+import { GetTransientTokenScope } from "@parke.dev/plexjs/models/operations";
 
 let value: GetTransientTokenScope = GetTransientTokenScope.All;
 ```

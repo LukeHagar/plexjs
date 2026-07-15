@@ -5,7 +5,7 @@ The user playing the content
 ## Example Usage
 
 ```typescript
-import { User } from "@lukehagar/plexjs/models/shared";
+import { User } from "@parke.dev/plexjs/models/shared";
 
 let value: User = {};
 ```

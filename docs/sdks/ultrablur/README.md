@@ -17,8 +17,8 @@ Retrieves the four colors extracted from an image for clients to use to generate
 
 <!-- UsageSnippet language="typescript" operationID="getColors" method="get" path="/services/ultrablur/colors" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -51,9 +51,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { ultraBlurGetColors } from "@lukehagar/plexjs/funcs/ultraBlurGetColors.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { ultraBlurGetColors } from "@parke.dev/plexjs/funcs/ultraBlurGetColors.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -114,8 +114,8 @@ Retrieves a server-side generated UltraBlur image based on the provided color in
 
 <!-- UsageSnippet language="typescript" operationID="getImage" method="get" path="/services/ultrablur/image" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -154,9 +154,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { ultraBlurGetImage } from "@lukehagar/plexjs/funcs/ultraBlurGetImage.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { ultraBlurGetImage } from "@parke.dev/plexjs/funcs/ultraBlurGetImage.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

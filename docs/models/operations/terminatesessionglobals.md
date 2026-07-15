@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TerminateSessionGlobals } from "@lukehagar/plexjs/models/operations";
+import { TerminateSessionGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: TerminateSessionGlobals = {
   clientIdentifier: "abc123",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetTransientTokenGlobals } from "@lukehagar/plexjs/models/operations";
+import { GetTransientTokenGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: GetTransientTokenGlobals = {
   clientIdentifier: "abc123",

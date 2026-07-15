@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSonicallySimilarRequest } from "@lukehagar/plexjs/models/operations";
+import { GetSonicallySimilarRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSonicallySimilarRequest = {
   sectionId: 363501,

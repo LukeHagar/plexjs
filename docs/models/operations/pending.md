@@ -5,7 +5,7 @@ Indicates if the server is pending approval.
 ## Example Usage
 
 ```typescript
-import { Pending } from "@lukehagar/plexjs/models/operations";
+import { Pending } from "@parke.dev/plexjs/models/operations";
 
 let value: Pending = Pending.Enable;
 

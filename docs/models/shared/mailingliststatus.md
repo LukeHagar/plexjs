@@ -5,7 +5,7 @@ Your current mailing list status
 ## Example Usage
 
 ```typescript
-import { MailingListStatus } from "@lukehagar/plexjs/models/shared";
+import { MailingListStatus } from "@parke.dev/plexjs/models/shared";
 
 let value: MailingListStatus = MailingListStatus.Active;
 

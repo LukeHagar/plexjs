@@ -5,7 +5,7 @@ Butler tasks
 ## Example Usage
 
 ```typescript
-import { GetTasksResponse } from "@lukehagar/plexjs/models/operations";
+import { GetTasksResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetTasksResponse = {};
 ```

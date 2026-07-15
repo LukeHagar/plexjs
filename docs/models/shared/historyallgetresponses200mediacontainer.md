@@ -8,7 +8,7 @@ The container often "hoists" common attributes from its children. For example, i
 ## Example Usage
 
 ```typescript
-import { HistoryAllGetResponses200MediaContainer } from "@lukehagar/plexjs/models/shared";
+import { HistoryAllGetResponses200MediaContainer } from "@parke.dev/plexjs/models/shared";
 
 let value: HistoryAllGetResponses200MediaContainer = {};
 ```

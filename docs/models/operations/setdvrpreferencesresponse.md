@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SetDVRPreferencesResponse } from "@lukehagar/plexjs/models/operations";
+import { SetDVRPreferencesResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: SetDVRPreferencesResponse = {
   headers: {

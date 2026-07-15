@@ -5,7 +5,7 @@ The preferences for this section
 ## Example Usage
 
 ```typescript
-import { EditSectionPrefs } from "@lukehagar/plexjs/models/operations";
+import { EditSectionPrefs } from "@parke.dev/plexjs/models/operations";
 
 let value: EditSectionPrefs = {};
 ```

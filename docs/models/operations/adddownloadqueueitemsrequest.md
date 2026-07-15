@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AddDownloadQueueItemsRequest } from "@lukehagar/plexjs/models/operations";
-import { AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter, Subtitles } from "@lukehagar/plexjs/models/shared";
+import { AddDownloadQueueItemsRequest } from "@parke.dev/plexjs/models/operations";
+import { AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter, Subtitles } from "@parke.dev/plexjs/models/shared";
 
 let value: AddDownloadQueueItemsRequest = {
   queueId: 44894,

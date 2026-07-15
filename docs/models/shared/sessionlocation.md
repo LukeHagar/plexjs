@@ -5,7 +5,7 @@ The location of the client
 ## Example Usage
 
 ```typescript
-import { SessionLocation } from "@lukehagar/plexjs/models/shared";
+import { SessionLocation } from "@parke.dev/plexjs/models/shared";
 
 let value: SessionLocation = SessionLocation.Wan;
 

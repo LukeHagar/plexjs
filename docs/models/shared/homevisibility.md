@@ -10,7 +10,7 @@ Whether this hub is visible on the home screen
 ## Example Usage
 
 ```typescript
-import { HomeVisibility } from "@lukehagar/plexjs/models/shared";
+import { HomeVisibility } from "@parke.dev/plexjs/models/shared";
 
 let value: HomeVisibility = HomeVisibility.All;
 

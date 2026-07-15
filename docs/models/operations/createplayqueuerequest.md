@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { CreatePlayQueueRequest, CreatePlayQueueType } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { CreatePlayQueueRequest, CreatePlayQueueType } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: CreatePlayQueueRequest = {
   type: CreatePlayQueueType.Audio,

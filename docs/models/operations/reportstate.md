@@ -5,7 +5,7 @@ The current state of the media.
 ## Example Usage
 
 ```typescript
-import { ReportState } from "@lukehagar/plexjs/models/operations";
+import { ReportState } from "@parke.dev/plexjs/models/operations";
 
 let value: ReportState = ReportState.Playing;
 ```

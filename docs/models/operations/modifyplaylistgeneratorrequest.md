@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ModifyPlaylistGeneratorRequest, ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/models/operations";
+import { ModifyPlaylistGeneratorRequest, ModifyPlaylistGeneratorScope } from "@parke.dev/plexjs/models/operations";
 
 let value: ModifyPlaylistGeneratorRequest = {
   playlistId: 314072,

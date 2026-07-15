@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ResetSectionDefaultsRequest } from "@lukehagar/plexjs/models/operations";
+import { ResetSectionDefaultsRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: ResetSectionDefaultsRequest = {
   sectionId: 506157,

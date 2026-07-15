@@ -9,7 +9,7 @@ Stream type:
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithDecisionStreamType } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithDecisionStreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionStreamType =
   MediaContainerWithDecisionStreamType.Video;

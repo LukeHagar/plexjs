@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EnablePapertrailGlobals } from "@lukehagar/plexjs/models/operations";
+import { EnablePapertrailGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: EnablePapertrailGlobals = {
   clientIdentifier: "abc123",

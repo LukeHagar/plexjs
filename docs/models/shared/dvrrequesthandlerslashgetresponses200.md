@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { DvrRequestHandlerSlashGetResponses200 } from "@lukehagar/plexjs/models/shared";
+import { DvrRequestHandlerSlashGetResponses200 } from "@parke.dev/plexjs/models/shared";
 
 let value: DvrRequestHandlerSlashGetResponses200 = {};
 ```

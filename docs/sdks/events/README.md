@@ -20,8 +20,8 @@ Connect to the event source to get a stream of events
 
 <!-- UsageSnippet language="typescript" operationID="getNotifications" method="get" path="/:/eventsource/notifications" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -52,9 +52,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { eventsGetNotifications } from "@lukehagar/plexjs/funcs/eventsGetNotifications.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { eventsGetNotifications } from "@parke.dev/plexjs/funcs/eventsGetNotifications.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -113,8 +113,8 @@ Connect to the web socket to get a stream of events
 
 <!-- UsageSnippet language="typescript" operationID="connectWebSocket" method="get" path="/:/websocket/notifications" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -145,9 +145,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { eventsConnectWebSocket } from "@lukehagar/plexjs/funcs/eventsConnectWebSocket.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { eventsConnectWebSocket } from "@parke.dev/plexjs/funcs/eventsConnectWebSocket.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

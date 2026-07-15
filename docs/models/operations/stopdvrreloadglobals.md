@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StopDVRReloadGlobals } from "@lukehagar/plexjs/models/operations";
+import { StopDVRReloadGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: StopDVRReloadGlobals = {
   clientIdentifier: "abc123",

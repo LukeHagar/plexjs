@@ -11,7 +11,7 @@
 ## Example Usage
 
 ```typescript
-import { LineupType } from "@lukehagar/plexjs/models/operations";
+import { LineupType } from "@parke.dev/plexjs/models/operations";
 
 let value: LineupType = LineupType.Two;
 

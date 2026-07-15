@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithDecisionGuid } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithDecisionGuid } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionGuid = {
   id:

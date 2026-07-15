@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LocationParameter } from "@lukehagar/plexjs/models/shared";
+import { LocationParameter } from "@parke.dev/plexjs/models/shared";
 
 let value: LocationParameter = LocationParameter.Wan;
 ```

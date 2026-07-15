@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { StartBifGenerationRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { StartBifGenerationRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: StartBifGenerationRequest = {
   ids: "<value>",

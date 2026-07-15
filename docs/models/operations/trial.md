@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Trial } from "@lukehagar/plexjs/models/operations";
+import { Trial } from "@parke.dev/plexjs/models/operations";
 
 let value: Trial = {};
 ```

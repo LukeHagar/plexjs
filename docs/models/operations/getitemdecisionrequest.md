@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetItemDecisionRequest } from "@lukehagar/plexjs/models/operations";
+import { GetItemDecisionRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetItemDecisionRequest = {
   queueId: 304397,

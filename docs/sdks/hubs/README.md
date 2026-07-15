@@ -29,8 +29,8 @@ Get the global hubs in this PMS
 
 <!-- UsageSnippet language="typescript" operationID="getAllHubs" method="get" path="/hubs" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -63,9 +63,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetAllHubs } from "@lukehagar/plexjs/funcs/hubsGetAllHubs.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetAllHubs } from "@parke.dev/plexjs/funcs/hubsGetAllHubs.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -126,8 +126,8 @@ Get the global continue watching hub
 
 <!-- UsageSnippet language="typescript" operationID="getContinueWatching" method="get" path="/hubs/continueWatching" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -158,9 +158,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetContinueWatching } from "@lukehagar/plexjs/funcs/hubsGetContinueWatching.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetContinueWatching } from "@parke.dev/plexjs/funcs/hubsGetContinueWatching.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -219,8 +219,8 @@ Get the items within a single hub specified by identifier
 
 <!-- UsageSnippet language="typescript" operationID="getHubItems" method="get" path="/hubs/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -257,9 +257,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetHubItems } from "@lukehagar/plexjs/funcs/hubsGetHubItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetHubItems } from "@parke.dev/plexjs/funcs/hubsGetHubItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -324,8 +324,8 @@ Get the global hubs which are promoted (should be displayed on the home screen)
 
 <!-- UsageSnippet language="typescript" operationID="getPromotedHubs" method="get" path="/hubs/promoted" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -356,9 +356,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetPromotedHubs } from "@lukehagar/plexjs/funcs/hubsGetPromotedHubs.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetPromotedHubs } from "@parke.dev/plexjs/funcs/hubsGetPromotedHubs.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -417,8 +417,8 @@ Get the hubs for a section by metadata item.  Currently only for music sections
 
 <!-- UsageSnippet language="typescript" operationID="getMetadataHubs" method="get" path="/hubs/metadata/{metadataId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -452,9 +452,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetMetadataHubs } from "@lukehagar/plexjs/funcs/hubsGetMetadataHubs.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetMetadataHubs } from "@parke.dev/plexjs/funcs/hubsGetMetadataHubs.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -516,8 +516,8 @@ Get the hubs for a metadata to be displayed in post play
 
 <!-- UsageSnippet language="typescript" operationID="getPostplayHubs" method="get" path="/hubs/metadata/{metadataId}/postplay" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -551,9 +551,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetPostplayHubs } from "@lukehagar/plexjs/funcs/hubsGetPostplayHubs.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetPostplayHubs } from "@parke.dev/plexjs/funcs/hubsGetPostplayHubs.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -615,8 +615,8 @@ Get the hubs for a metadata related to the provided metadata item
 
 <!-- UsageSnippet language="typescript" operationID="getRelatedHubs" method="get" path="/hubs/metadata/{metadataId}/related" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -650,9 +650,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetRelatedHubs } from "@lukehagar/plexjs/funcs/hubsGetRelatedHubs.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetRelatedHubs } from "@parke.dev/plexjs/funcs/hubsGetRelatedHubs.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -714,8 +714,8 @@ Get the hubs for a single section
 
 <!-- UsageSnippet language="typescript" operationID="getSectionHubs" method="get" path="/hubs/sections/{sectionId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -749,9 +749,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsGetSectionHubs } from "@lukehagar/plexjs/funcs/hubsGetSectionHubs.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsGetSectionHubs } from "@parke.dev/plexjs/funcs/hubsGetSectionHubs.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -813,8 +813,8 @@ Reset hubs for this section to defaults and delete custom hubs
 
 <!-- UsageSnippet language="typescript" operationID="resetSectionDefaults" method="delete" path="/hubs/sections/{sectionId}/manage" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -847,9 +847,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsResetSectionDefaults } from "@lukehagar/plexjs/funcs/hubsResetSectionDefaults.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsResetSectionDefaults } from "@parke.dev/plexjs/funcs/hubsResetSectionDefaults.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -910,8 +910,8 @@ Get the list of hubs including both built-in and custom
 
 <!-- UsageSnippet language="typescript" operationID="listHubs" method="get" path="/hubs/sections/{sectionId}/manage" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -944,9 +944,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsListHubs } from "@lukehagar/plexjs/funcs/hubsListHubs.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsListHubs } from "@parke.dev/plexjs/funcs/hubsListHubs.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1007,8 +1007,8 @@ Create a custom hub based on a metadata item
 
 <!-- UsageSnippet language="typescript" operationID="createCustomHub" method="post" path="/hubs/sections/{sectionId}/manage" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1045,9 +1045,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsCreateCustomHub } from "@lukehagar/plexjs/funcs/hubsCreateCustomHub.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsCreateCustomHub } from "@parke.dev/plexjs/funcs/hubsCreateCustomHub.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1112,8 +1112,8 @@ Changed the ordering of a hub among others hubs
 
 <!-- UsageSnippet language="typescript" operationID="moveHub" method="put" path="/hubs/sections/{sectionId}/manage/move" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1147,9 +1147,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsMoveHub } from "@lukehagar/plexjs/funcs/hubsMoveHub.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsMoveHub } from "@parke.dev/plexjs/funcs/hubsMoveHub.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1211,8 +1211,8 @@ Delete a custom hub from the server
 
 <!-- UsageSnippet language="typescript" operationID="deleteCustomHub" method="delete" path="/hubs/sections/{sectionId}/manage/{identifier}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1246,9 +1246,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsDeleteCustomHub } from "@lukehagar/plexjs/funcs/hubsDeleteCustomHub.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsDeleteCustomHub } from "@parke.dev/plexjs/funcs/hubsDeleteCustomHub.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1310,8 +1310,8 @@ Changed the visibility of a hub for both the admin and shared users
 
 <!-- UsageSnippet language="typescript" operationID="updateHubVisibility" method="put" path="/hubs/sections/{sectionId}/manage/{identifier}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1348,9 +1348,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { hubsUpdateHubVisibility } from "@lukehagar/plexjs/funcs/hubsUpdateHubVisibility.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { hubsUpdateHubVisibility } from "@parke.dev/plexjs/funcs/hubsUpdateHubVisibility.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

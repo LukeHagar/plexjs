@@ -5,7 +5,7 @@ The error which could have occurred (or `good`)
 ## Example Usage
 
 ```typescript
-import { ProcessingStateContext } from "@lukehagar/plexjs/models/operations";
+import { ProcessingStateContext } from "@parke.dev/plexjs/models/operations";
 
 let value: ProcessingStateContext = ProcessingStateContext.Good;
 

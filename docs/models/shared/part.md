@@ -6,7 +6,7 @@
 ## Example Usage
 
 ```typescript
-import { Part, StreamType } from "@lukehagar/plexjs/models/shared";
+import { Part, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: Part = {
   accessible: true,

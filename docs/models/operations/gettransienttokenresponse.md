@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { GetTransientTokenResponse } from "@lukehagar/plexjs/models/operations";
+import { GetTransientTokenResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetTransientTokenResponse = {};
 ```

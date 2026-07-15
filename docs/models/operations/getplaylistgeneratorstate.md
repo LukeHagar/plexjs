@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetPlaylistGeneratorState } from "@lukehagar/plexjs/models/operations";
+import { GetPlaylistGeneratorState } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPlaylistGeneratorState = GetPlaylistGeneratorState.Failed;
 

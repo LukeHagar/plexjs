@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetAvailableGrabbersRequest } from "@lukehagar/plexjs/models/operations";
+import { GetAvailableGrabbersRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetAvailableGrabbersRequest = {
   protocol: "livetv",

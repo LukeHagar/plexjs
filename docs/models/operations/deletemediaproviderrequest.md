@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteMediaProviderRequest } from "@lukehagar/plexjs/models/operations";
+import { DeleteMediaProviderRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: DeleteMediaProviderRequest = {
   provider: "<value>",

@@ -6,7 +6,7 @@ Extension
 ## Example Usage
 
 ```typescript
-import { Extension } from "@lukehagar/plexjs/models/operations";
+import { Extension } from "@parke.dev/plexjs/models/operations";
 
 let value: Extension = Extension.Mpd;
 ```

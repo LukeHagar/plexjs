@@ -5,7 +5,7 @@ Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
 ## Example Usage
 
 ```typescript
-import { GetUsersUnauthorizedError } from "@lukehagar/plexjs/models/errors";
+import { GetUsersUnauthorizedError } from "@parke.dev/plexjs/models/errors";
 
 // No examples available for this model
 ```

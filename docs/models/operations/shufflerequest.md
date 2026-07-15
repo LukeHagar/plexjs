@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ShuffleRequest } from "@lukehagar/plexjs/models/operations";
+import { ShuffleRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: ShuffleRequest = {
   playQueueId: 307817,

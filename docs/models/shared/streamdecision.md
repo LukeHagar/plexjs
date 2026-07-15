@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StreamDecision } from "@lukehagar/plexjs/models/shared";
+import { StreamDecision } from "@parke.dev/plexjs/models/shared";
 
 let value: StreamDecision = StreamDecision.Unavailable;
 

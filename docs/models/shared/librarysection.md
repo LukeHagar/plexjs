@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LibrarySection, MediaTypeString } from "@lukehagar/plexjs/models/shared";
+import { LibrarySection, MediaTypeString } from "@parke.dev/plexjs/models/shared";
 
 let value: LibrarySection = {
   title: "Movies",

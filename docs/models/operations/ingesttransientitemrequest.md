@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { IngestTransientItemRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { IngestTransientItemRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: IngestTransientItemRequest = {
   url: "file:///storage%2Femulated%2F0%2FArcher-S01E01.mkv",

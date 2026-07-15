@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Bandwidth } from "@lukehagar/plexjs/models/operations";
+import { Bandwidth } from "@parke.dev/plexjs/models/operations";
 
 let value: Bandwidth = {};
 ```

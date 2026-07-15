@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { VoiceSearchHubsRequest } from "@lukehagar/plexjs/models/operations";
-import { MediaType } from "@lukehagar/plexjs/models/shared";
+import { VoiceSearchHubsRequest } from "@parke.dev/plexjs/models/operations";
+import { MediaType } from "@parke.dev/plexjs/models/shared";
 
 let value: VoiceSearchHubsRequest = {
   query: "<value>",

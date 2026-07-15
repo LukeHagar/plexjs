@@ -6,7 +6,7 @@ Indicates the network streaming protocol to be used for the transcode session: *
 ## Example Usage
 
 ```typescript
-import { StartTranscodeSessionProtocol } from "@lukehagar/plexjs/models/operations";
+import { StartTranscodeSessionProtocol } from "@parke.dev/plexjs/models/operations";
 
 let value: StartTranscodeSessionProtocol = StartTranscodeSessionProtocol.Dash;
 ```

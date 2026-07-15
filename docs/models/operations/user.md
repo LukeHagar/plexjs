@@ -16,7 +16,7 @@ import {
   Protected,
   Restricted,
   User,
-} from "@lukehagar/plexjs/models/operations";
+} from "@parke.dev/plexjs/models/operations";
 
 let value: User = {
   id: 22526914,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FilterPivot } from "@lukehagar/plexjs/models/shared";
+import { FilterPivot } from "@parke.dev/plexjs/models/shared";
 
 let value: FilterPivot = {};
 ```

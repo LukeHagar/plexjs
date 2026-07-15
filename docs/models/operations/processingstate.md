@@ -5,7 +5,7 @@ The state of processing if this generator is part of an optimizer playlist
 ## Example Usage
 
 ```typescript
-import { ProcessingState } from "@lukehagar/plexjs/models/operations";
+import { ProcessingState } from "@parke.dev/plexjs/models/operations";
 
 let value: ProcessingState = ProcessingState.Disabled;
 

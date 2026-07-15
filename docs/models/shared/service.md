@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Service, ServiceStatus } from "@lukehagar/plexjs/models/shared";
+import { Service, ServiceStatus } from "@parke.dev/plexjs/models/shared";
 
 let value: Service = {
   identifier: "metadata-dev",

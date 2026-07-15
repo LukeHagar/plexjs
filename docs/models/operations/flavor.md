@@ -8,7 +8,7 @@
 ## Example Usage
 
 ```typescript
-import { Flavor } from "@lukehagar/plexjs/models/operations";
+import { Flavor } from "@parke.dev/plexjs/models/operations";
 
 let value: Flavor = Flavor.Two;
 

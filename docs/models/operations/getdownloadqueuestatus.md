@@ -11,7 +11,7 @@ The state of this queue
 ## Example Usage
 
 ```typescript
-import { GetDownloadQueueStatus } from "@lukehagar/plexjs/models/operations";
+import { GetDownloadQueueStatus } from "@parke.dev/plexjs/models/operations";
 
 let value: GetDownloadQueueStatus = GetDownloadQueueStatus.Done;
 

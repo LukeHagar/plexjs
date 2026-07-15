@@ -9,7 +9,7 @@ Stream type:
 ## Example Usage
 
 ```typescript
-import { StreamType } from "@lukehagar/plexjs/models/shared";
+import { StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: StreamType = StreamType.Video;
 

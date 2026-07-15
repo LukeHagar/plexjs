@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSessionPlaylistIndexRequest } from "@lukehagar/plexjs/models/operations";
+import { GetSessionPlaylistIndexRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSessionPlaylistIndexRequest = {
   sessionId: "<id>",

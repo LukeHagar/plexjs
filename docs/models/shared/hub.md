@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HasVoiceActivityEnum, Hub, StreamType } from "@lukehagar/plexjs/models/shared";
+import { HasVoiceActivityEnum, Hub, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: Hub = {
   type: "track",

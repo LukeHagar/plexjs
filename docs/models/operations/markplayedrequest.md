@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MarkPlayedRequest } from "@lukehagar/plexjs/models/operations";
+import { MarkPlayedRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: MarkPlayedRequest = {
   identifier: "<value>",

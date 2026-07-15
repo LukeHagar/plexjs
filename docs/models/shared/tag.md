@@ -6,7 +6,7 @@ A variety of extra information about a metadata item is included as tags. These 
 ## Example Usage
 
 ```typescript
-import { Tag } from "@lukehagar/plexjs/models/shared";
+import { Tag } from "@parke.dev/plexjs/models/shared";
 
 let value: Tag = {
   filter: "actor=49",

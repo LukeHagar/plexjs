@@ -5,7 +5,7 @@ The output format for the image; defaults to jpg
 ## Example Usage
 
 ```typescript
-import { Format } from "@lukehagar/plexjs/models/operations";
+import { Format } from "@parke.dev/plexjs/models/operations";
 
 let value: Format = Format.Jpg;
 ```

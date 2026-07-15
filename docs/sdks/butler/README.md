@@ -20,7 +20,7 @@ This endpoint will stop all currently running tasks and remove any scheduled tas
 
 <!-- UsageSnippet language="typescript" operationID="stopTasks" method="delete" path="/butler" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { butlerStopTasks } from "@lukehagar/plexjs/funcs/butlerStopTasks.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { butlerStopTasks } from "@parke.dev/plexjs/funcs/butlerStopTasks.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -89,7 +89,7 @@ Get the list of butler tasks and their scheduling
 
 <!-- UsageSnippet language="typescript" operationID="getTasks" method="get" path="/butler" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -109,8 +109,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { butlerGetTasks } from "@lukehagar/plexjs/funcs/butlerGetTasks.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { butlerGetTasks } from "@parke.dev/plexjs/funcs/butlerGetTasks.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -163,7 +163,7 @@ This endpoint will attempt to start all Butler tasks that are enabled in the set
 
 <!-- UsageSnippet language="typescript" operationID="startTasks" method="post" path="/butler" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -183,8 +183,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { butlerStartTasks } from "@lukehagar/plexjs/funcs/butlerStartTasks.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { butlerStartTasks } from "@parke.dev/plexjs/funcs/butlerStartTasks.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -232,9 +232,9 @@ This endpoint will stop a currently running task by name, or remove it from the 
 
 <!-- UsageSnippet language="typescript" operationID="stopTask" method="delete" path="/butler/{butlerTask}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { StopTaskButlerTask } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { StopTaskButlerTask } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -267,10 +267,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { butlerStopTask } from "@lukehagar/plexjs/funcs/butlerStopTask.js";
-import { StopTaskButlerTask } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { butlerStopTask } from "@parke.dev/plexjs/funcs/butlerStopTask.js";
+import { StopTaskButlerTask } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -332,9 +332,9 @@ This endpoint will attempt to start a specific Butler task by name.
 
 <!-- UsageSnippet language="typescript" operationID="startTask" method="post" path="/butler/{butlerTask}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { StartTaskButlerTask } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { StartTaskButlerTask } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -367,10 +367,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { butlerStartTask } from "@lukehagar/plexjs/funcs/butlerStartTask.js";
-import { StartTaskButlerTask } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { butlerStartTask } from "@parke.dev/plexjs/funcs/butlerStartTask.js";
+import { StartTaskButlerTask } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

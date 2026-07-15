@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateSubscriptionRequest } from "@lukehagar/plexjs/models/operations";
+import { CreateSubscriptionRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: CreateSubscriptionRequest = {
   targetLibrarySectionID: 1,

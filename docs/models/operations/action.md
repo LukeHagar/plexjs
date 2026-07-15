@@ -5,7 +5,7 @@ The action to perform for this item on this optimizer queue
 ## Example Usage
 
 ```typescript
-import { Action } from "@lukehagar/plexjs/models/operations";
+import { Action } from "@parke.dev/plexjs/models/operations";
 
 let value: Action = Action.Enable;
 ```

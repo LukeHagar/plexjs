@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteStreamGlobals } from "@lukehagar/plexjs/models/operations";
+import { DeleteStreamGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: DeleteStreamGlobals = {
   clientIdentifier: "abc123",

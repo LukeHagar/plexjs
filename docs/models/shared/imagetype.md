@@ -5,7 +5,7 @@ Describes both the purpose and intended presentation of the image.
 ## Example Usage
 
 ```typescript
-import { ImageType } from "@lukehagar/plexjs/models/shared";
+import { ImageType } from "@parke.dev/plexjs/models/shared";
 
 let value: ImageType = ImageType.ClearLogo;
 

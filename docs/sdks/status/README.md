@@ -21,7 +21,7 @@ List all current playbacks on this server
 
 <!-- UsageSnippet language="typescript" operationID="listSessions" method="get" path="/status/sessions" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -41,8 +41,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { statusListSessions } from "@lukehagar/plexjs/funcs/statusListSessions.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { statusListSessions } from "@parke.dev/plexjs/funcs/statusListSessions.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -89,7 +89,7 @@ Get the list of all background tasks
 
 <!-- UsageSnippet language="typescript" operationID="getBackgroundTasks" method="get" path="/status/sessions/background" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -109,8 +109,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { statusGetBackgroundTasks } from "@lukehagar/plexjs/funcs/statusGetBackgroundTasks.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { statusGetBackgroundTasks } from "@parke.dev/plexjs/funcs/statusGetBackgroundTasks.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -158,8 +158,8 @@ Pagination should be used on this endpoint.  Additionally this endpoint supports
 
 <!-- UsageSnippet language="typescript" operationID="listPlaybackHistory" method="get" path="/status/sessions/history/all" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -216,9 +216,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { statusListPlaybackHistory } from "@lukehagar/plexjs/funcs/statusListPlaybackHistory.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { statusListPlaybackHistory } from "@parke.dev/plexjs/funcs/statusListPlaybackHistory.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -303,8 +303,8 @@ Terminate a playback session kicking off the user
 
 <!-- UsageSnippet language="typescript" operationID="terminateSession" method="post" path="/status/sessions/terminate" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -338,9 +338,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { statusTerminateSession } from "@lukehagar/plexjs/funcs/statusTerminateSession.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { statusTerminateSession } from "@parke.dev/plexjs/funcs/statusTerminateSession.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -402,8 +402,8 @@ Delete a single history item by id
 
 <!-- UsageSnippet language="typescript" operationID="deleteHistory" method="delete" path="/status/sessions/history/{historyId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -436,9 +436,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { statusDeleteHistory } from "@lukehagar/plexjs/funcs/statusDeleteHistory.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { statusDeleteHistory } from "@parke.dev/plexjs/funcs/statusDeleteHistory.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -499,8 +499,8 @@ Get a single history item by id
 
 <!-- UsageSnippet language="typescript" operationID="getHistoryItem" method="get" path="/status/sessions/history/{historyId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -533,9 +533,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { statusGetHistoryItem } from "@lukehagar/plexjs/funcs/statusGetHistoryItem.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { statusGetHistoryItem } from "@parke.dev/plexjs/funcs/statusGetHistoryItem.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

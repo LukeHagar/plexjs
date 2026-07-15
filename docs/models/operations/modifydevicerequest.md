@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { ModifyDeviceRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { ModifyDeviceRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: ModifyDeviceRequest = {
   deviceId: 809966,

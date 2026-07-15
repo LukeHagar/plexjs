@@ -31,8 +31,8 @@ This request is intended to be very fast, and called as the user types.
 
 <!-- UsageSnippet language="typescript" operationID="searchHubs" method="get" path="/hubs/search" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -66,9 +66,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { searchSearchHubs } from "@lukehagar/plexjs/funcs/searchSearchHubs.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { searchSearchHubs } from "@parke.dev/plexjs/funcs/searchSearchHubs.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -135,8 +135,8 @@ Results, as well as their containing per-type hubs, contain a `distance` attribu
 
 <!-- UsageSnippet language="typescript" operationID="voiceSearchHubs" method="get" path="/hubs/search/voice" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, MediaType } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -170,9 +170,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { searchVoiceSearchHubs } from "@lukehagar/plexjs/funcs/searchVoiceSearchHubs.js";
-import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { searchVoiceSearchHubs } from "@parke.dev/plexjs/funcs/searchVoiceSearchHubs.js";
+import { Accepts, MediaType } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetThumbRequest } from "@lukehagar/plexjs/models/operations";
+import { GetThumbRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetThumbRequest = {
   deviceId: 689308,

@@ -6,7 +6,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithDecisionStream, MediaContainerWithDecisionStreamType } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithDecisionStream, MediaContainerWithDecisionStreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionStream = {
   default: true,

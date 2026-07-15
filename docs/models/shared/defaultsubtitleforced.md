@@ -5,7 +5,7 @@ The forced subtitles searches mode (0 = Prefer non-forced subtitles, 1 = Prefer 
 ## Example Usage
 
 ```typescript
-import { DefaultSubtitleForced } from "@lukehagar/plexjs/models/shared";
+import { DefaultSubtitleForced } from "@parke.dev/plexjs/models/shared";
 
 let value: DefaultSubtitleForced = DefaultSubtitleForced.PreferForced;
 

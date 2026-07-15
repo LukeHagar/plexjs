@@ -5,7 +5,7 @@ The transcode session if item is currently being transcoded
 ## Example Usage
 
 ```typescript
-import { TranscodeSession } from "@lukehagar/plexjs/models/shared";
+import { TranscodeSession } from "@parke.dev/plexjs/models/shared";
 
 let value: TranscodeSession = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UnmatchRequest } from "@lukehagar/plexjs/models/operations";
+import { UnmatchRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: UnmatchRequest = {
   ids: "<value>",

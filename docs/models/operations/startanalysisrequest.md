@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StartAnalysisRequest } from "@lukehagar/plexjs/models/operations";
+import { StartAnalysisRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: StartAnalysisRequest = {
   sectionId: 986000,

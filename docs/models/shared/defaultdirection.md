@@ -5,7 +5,7 @@ This default diction of this sort
 ## Example Usage
 
 ```typescript
-import { DefaultDirection } from "@lukehagar/plexjs/models/shared";
+import { DefaultDirection } from "@parke.dev/plexjs/models/shared";
 
 let value: DefaultDirection = DefaultDirection.Desc;
 

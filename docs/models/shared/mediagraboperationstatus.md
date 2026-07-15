@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaGrabOperationStatus } from "@lukehagar/plexjs/models/shared";
+import { MediaGrabOperationStatus } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaGrabOperationStatus = MediaGrabOperationStatus.Error;
 

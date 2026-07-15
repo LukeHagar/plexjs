@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { DetectIntrosRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { DetectIntrosRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: DetectIntrosRequest = {
   ids: "<value>",

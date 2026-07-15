@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 let value: TranscodeType = TranscodeType.Video;
 ```

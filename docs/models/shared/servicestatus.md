@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ServiceStatus } from "@lukehagar/plexjs/models/shared";
+import { ServiceStatus } from "@parke.dev/plexjs/models/shared";
 
 let value: ServiceStatus = ServiceStatus.Online;
 

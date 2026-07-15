@@ -14,7 +14,7 @@ import {
   SubscriptionStatus2,
   UserPlexAccount,
   WatchedIndicator,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 let value: UserPlexAccount = {
   adsConsentReminderAt: 1556281940,

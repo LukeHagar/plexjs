@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PlexDevice, PlexDeviceProtocol } from "@lukehagar/plexjs/models/shared";
+import { PlexDevice, PlexDeviceProtocol } from "@parke.dev/plexjs/models/shared";
 
 let value: PlexDevice = {
   name: "<value>",

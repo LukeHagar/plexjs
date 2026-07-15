@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { GetAllLanguagesResponseBody } from "@lukehagar/plexjs/models/operations";
+import { GetAllLanguagesResponseBody } from "@parke.dev/plexjs/models/operations";
 
 let value: GetAllLanguagesResponseBody = {};
 ```

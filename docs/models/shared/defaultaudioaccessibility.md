@@ -5,7 +5,7 @@ The audio accessibility mode (0 = Prefer non-accessibility audio, 1 = Prefer acc
 ## Example Usage
 
 ```typescript
-import { DefaultAudioAccessibility } from "@lukehagar/plexjs/models/shared";
+import { DefaultAudioAccessibility } from "@parke.dev/plexjs/models/shared";
 
 let value: DefaultAudioAccessibility =
   DefaultAudioAccessibility.PreferNonAccessibility;

@@ -5,7 +5,7 @@ Login credentials
 ## Example Usage
 
 ```typescript
-import { PostUsersSignInDataRequestBody } from "@lukehagar/plexjs/models/operations";
+import { PostUsersSignInDataRequestBody } from "@parke.dev/plexjs/models/operations";
 
 let value: PostUsersSignInDataRequestBody = {
   login: "username@email.com",

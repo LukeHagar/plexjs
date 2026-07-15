@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Decision } from "@lukehagar/plexjs/models/shared";
+import { Decision } from "@parke.dev/plexjs/models/shared";
 
 let value: Decision = Decision.Directplay;
 

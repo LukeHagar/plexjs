@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { GetSourceConnectionInformationResponse } from "@lukehagar/plexjs/models/operations";
+import { GetSourceConnectionInformationResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSourceConnectionInformationResponse = {};
 ```

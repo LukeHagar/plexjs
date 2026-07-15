@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SplitItemGlobals } from "@lukehagar/plexjs/models/operations";
+import { SplitItemGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: SplitItemGlobals = {
   clientIdentifier: "abc123",

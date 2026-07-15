@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Subscription2, SubscriptionStatus2 } from "@lukehagar/plexjs/models/operations";
+import { Subscription2, SubscriptionStatus2 } from "@parke.dev/plexjs/models/operations";
 
 let value: Subscription2 = {
   active: true,

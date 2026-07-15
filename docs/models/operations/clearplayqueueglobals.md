@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ClearPlayQueueGlobals } from "@lukehagar/plexjs/models/operations";
+import { ClearPlayQueueGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: ClearPlayQueueGlobals = {
   clientIdentifier: "abc123",

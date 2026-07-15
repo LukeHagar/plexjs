@@ -5,7 +5,7 @@ The task name
 ## Example Usage
 
 ```typescript
-import { StopTaskButlerTask } from "@lukehagar/plexjs/models/operations";
+import { StopTaskButlerTask } from "@parke.dev/plexjs/models/operations";
 
 let value: StopTaskButlerTask =
   StopTaskButlerTask.ButlerTaskGenerateCreditsMarkers;

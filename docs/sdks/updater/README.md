@@ -20,8 +20,8 @@ Apply any downloaded updates.  Note that the two parameters `tonight` and `skip`
 
 <!-- UsageSnippet language="typescript" operationID="applyUpdates" method="put" path="/updater/apply" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -55,9 +55,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { updaterApplyUpdates } from "@lukehagar/plexjs/funcs/updaterApplyUpdates.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { updaterApplyUpdates } from "@parke.dev/plexjs/funcs/updaterApplyUpdates.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -119,8 +119,8 @@ Perform an update check and potentially download
 
 <!-- UsageSnippet language="typescript" operationID="checkUpdates" method="put" path="/updater/check" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -153,9 +153,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { updaterCheckUpdates } from "@lukehagar/plexjs/funcs/updaterCheckUpdates.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { updaterCheckUpdates } from "@parke.dev/plexjs/funcs/updaterCheckUpdates.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -216,7 +216,7 @@ Get the status of updating the server
 
 <!-- UsageSnippet language="typescript" operationID="getUpdatesStatus" method="get" path="/updater/status" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -236,8 +236,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { updaterGetUpdatesStatus } from "@lukehagar/plexjs/funcs/updaterGetUpdatesStatus.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { updaterGetUpdatesStatus } from "@parke.dev/plexjs/funcs/updaterGetUpdatesStatus.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

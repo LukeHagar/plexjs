@@ -20,8 +20,8 @@ Transcode an image, possibly changing format or size
 
 <!-- UsageSnippet language="typescript" operationID="transcodeImage" method="get" path="/photo/:/transcode" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -59,9 +59,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { transcoderTranscodeImage } from "@lukehagar/plexjs/funcs/transcoderTranscodeImage.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { transcoderTranscodeImage } from "@parke.dev/plexjs/funcs/transcoderTranscodeImage.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -127,9 +127,9 @@ Make a decision on media playback based on client profile, and requested setting
 
 <!-- UsageSnippet language="typescript" operationID="makeDecision" method="get" path="/{transcodeType}/:/transcode/universal/decision" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { MakeDecisionLocation, MakeDecisionProtocol } from "@lukehagar/plexjs/models/operations";
-import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { MakeDecisionLocation, MakeDecisionProtocol } from "@parke.dev/plexjs/models/operations";
+import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -189,10 +189,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { transcoderMakeDecision } from "@lukehagar/plexjs/funcs/transcoderMakeDecision.js";
-import { MakeDecisionLocation, MakeDecisionProtocol } from "@lukehagar/plexjs/models/operations";
-import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { transcoderMakeDecision } from "@parke.dev/plexjs/funcs/transcoderMakeDecision.js";
+import { MakeDecisionLocation, MakeDecisionProtocol } from "@parke.dev/plexjs/models/operations";
+import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -280,8 +280,8 @@ Manually trigger a transcoder fallback ex: HEVC to h.264 or hw to sw
 
 <!-- UsageSnippet language="typescript" operationID="triggerFallback" method="post" path="/{transcodeType}/:/transcode/universal/fallback" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -314,9 +314,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { transcoderTriggerFallback } from "@lukehagar/plexjs/funcs/transcoderTriggerFallback.js";
-import { Accepts, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { transcoderTriggerFallback } from "@parke.dev/plexjs/funcs/transcoderTriggerFallback.js";
+import { Accepts, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -377,9 +377,9 @@ Only transcode subtitle streams.
 
 <!-- UsageSnippet language="typescript" operationID="transcodeSubtitles" method="get" path="/{transcodeType}/:/transcode/universal/subtitles" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { TranscodeSubtitlesLocation, TranscodeSubtitlesProtocol } from "@lukehagar/plexjs/models/operations";
-import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { TranscodeSubtitlesLocation, TranscodeSubtitlesProtocol } from "@parke.dev/plexjs/models/operations";
+import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -439,10 +439,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { transcoderTranscodeSubtitles } from "@lukehagar/plexjs/funcs/transcoderTranscodeSubtitles.js";
-import { TranscodeSubtitlesLocation, TranscodeSubtitlesProtocol } from "@lukehagar/plexjs/models/operations";
-import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { transcoderTranscodeSubtitles } from "@parke.dev/plexjs/funcs/transcoderTranscodeSubtitles.js";
+import { TranscodeSubtitlesLocation, TranscodeSubtitlesProtocol } from "@parke.dev/plexjs/models/operations";
+import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -530,9 +530,9 @@ Starts the transcoder and returns the corresponding streaming resource document.
 
 <!-- UsageSnippet language="typescript" operationID="startTranscodeSession" method="get" path="/{transcodeType}/:/transcode/universal/start.{extension}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@lukehagar/plexjs/models/operations";
-import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@parke.dev/plexjs/models/operations";
+import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -593,10 +593,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { transcoderStartTranscodeSession } from "@lukehagar/plexjs/funcs/transcoderStartTranscodeSession.js";
-import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@lukehagar/plexjs/models/operations";
-import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { transcoderStartTranscodeSession } from "@parke.dev/plexjs/funcs/transcoderStartTranscodeSession.js";
+import { Extension, StartTranscodeSessionLocation, StartTranscodeSessionProtocol } from "@parke.dev/plexjs/models/operations";
+import { Accepts, AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

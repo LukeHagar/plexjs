@@ -8,7 +8,7 @@ Item[type]=42&Item[title]=Jack-Jack Attack&Item[target]=&Item[targetTagID]=1&Ite
 ## Example Usage
 
 ```typescript
-import { ModifyPlaylistGeneratorItem, ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/models/operations";
+import { ModifyPlaylistGeneratorItem, ModifyPlaylistGeneratorScope } from "@parke.dev/plexjs/models/operations";
 
 let value: ModifyPlaylistGeneratorItem = {
   location: {

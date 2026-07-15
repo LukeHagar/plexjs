@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CancelRefreshRequest } from "@lukehagar/plexjs/models/operations";
+import { CancelRefreshRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: CancelRefreshRequest = {
   sectionId: 569134,

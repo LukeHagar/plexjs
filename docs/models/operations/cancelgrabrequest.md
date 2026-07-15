@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CancelGrabRequest } from "@lukehagar/plexjs/models/operations";
+import { CancelGrabRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: CancelGrabRequest = {
   operationId: "<id>",

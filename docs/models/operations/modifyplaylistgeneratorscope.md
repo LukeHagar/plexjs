@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ModifyPlaylistGeneratorScope } from "@lukehagar/plexjs/models/operations";
+import { ModifyPlaylistGeneratorScope } from "@parke.dev/plexjs/models/operations";
 
 let value: ModifyPlaylistGeneratorScope = ModifyPlaylistGeneratorScope.All;
 ```

@@ -9,7 +9,7 @@ The type of playlist generator.
 ## Example Usage
 
 ```typescript
-import { GetPlaylistGeneratorsType } from "@lukehagar/plexjs/models/operations";
+import { GetPlaylistGeneratorsType } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPlaylistGeneratorsType = GetPlaylistGeneratorsType.FortyTwo;
 

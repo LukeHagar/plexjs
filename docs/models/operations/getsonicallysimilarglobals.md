@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSonicallySimilarGlobals } from "@lukehagar/plexjs/models/operations";
+import { GetSonicallySimilarGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSonicallySimilarGlobals = {
   clientIdentifier: "abc123",

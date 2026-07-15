@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StopTaskButlerTask, StopTaskRequest } from "@lukehagar/plexjs/models/operations";
+import { StopTaskButlerTask, StopTaskRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: StopTaskRequest = {
   butlerTask: StopTaskButlerTask.RefreshPeriodicMetadata,

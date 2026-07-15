@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { TranscodeImageRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { TranscodeImageRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: TranscodeImageRequest = {
   url: "/library/metadata/265/thumb/1715112705",

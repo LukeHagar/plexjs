@@ -5,8 +5,8 @@ OK
 ## Example Usage
 
 ```typescript
-import { GetSectionsResponseBody } from "@lukehagar/plexjs/models/operations";
-import { MediaTypeString } from "@lukehagar/plexjs/models/shared";
+import { GetSectionsResponseBody } from "@parke.dev/plexjs/models/operations";
+import { MediaTypeString } from "@parke.dev/plexjs/models/shared";
 
 let value: GetSectionsResponseBody = {
   mediaContainer: {

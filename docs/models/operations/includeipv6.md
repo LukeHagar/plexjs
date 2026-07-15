@@ -5,7 +5,7 @@ Include IPv6 entries in the results
 ## Example Usage
 
 ```typescript
-import { IncludeIPv6 } from "@lukehagar/plexjs/models/operations";
+import { IncludeIPv6 } from "@parke.dev/plexjs/models/operations";
 
 let value: IncludeIPv6 = IncludeIPv6.True;
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithDeviceDevice } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithDeviceDevice } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDeviceDevice = {};
 ```

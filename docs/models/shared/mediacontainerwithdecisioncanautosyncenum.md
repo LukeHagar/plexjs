@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithDecisionCanAutoSyncEnum } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithDecisionCanAutoSyncEnum } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionCanAutoSyncEnum =
   MediaContainerWithDecisionCanAutoSyncEnum.One;

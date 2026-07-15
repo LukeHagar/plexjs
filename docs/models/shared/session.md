@@ -5,7 +5,7 @@ Information about the playback session
 ## Example Usage
 
 ```typescript
-import { Session } from "@lukehagar/plexjs/models/shared";
+import { Session } from "@parke.dev/plexjs/models/shared";
 
 let value: Session = {};
 ```

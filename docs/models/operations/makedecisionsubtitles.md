@@ -6,7 +6,7 @@ Indicates how subtitles should be included: * 'auto' - Compute the appropriate s
 ## Example Usage
 
 ```typescript
-import { MakeDecisionSubtitles } from "@lukehagar/plexjs/models/operations";
+import { MakeDecisionSubtitles } from "@parke.dev/plexjs/models/operations";
 
 let value: MakeDecisionSubtitles = MakeDecisionSubtitles.Auto;
 ```

@@ -16,8 +16,8 @@ Create a collection in the library
 
 <!-- UsageSnippet language="typescript" operationID="createCollection" method="post" path="/library/collections" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, MediaType } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -51,9 +51,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { collectionsCreateCollection } from "@lukehagar/plexjs/funcs/collectionsCreateCollection.js";
-import { Accepts, MediaType } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { collectionsCreateCollection } from "@parke.dev/plexjs/funcs/collectionsCreateCollection.js";
+import { Accepts, MediaType } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

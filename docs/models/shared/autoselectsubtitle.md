@@ -5,7 +5,7 @@ The auto-select subtitle mode (0 = Manually selected, 1 = Shown with foreign aud
 ## Example Usage
 
 ```typescript
-import { AutoSelectSubtitle } from "@lukehagar/plexjs/models/shared";
+import { AutoSelectSubtitle } from "@parke.dev/plexjs/models/shared";
 
 let value: AutoSelectSubtitle = AutoSelectSubtitle.ShownWithForeignAudio;
 

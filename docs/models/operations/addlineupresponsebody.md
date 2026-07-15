@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { AddLineupResponseBody } from "@lukehagar/plexjs/models/operations";
+import { AddLineupResponseBody } from "@parke.dev/plexjs/models/operations";
 
 let value: AddLineupResponseBody = {};
 ```

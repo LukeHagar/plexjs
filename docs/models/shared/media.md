@@ -6,7 +6,7 @@
 ## Example Usage
 
 ```typescript
-import { HasVoiceActivityEnum, Media, StreamType } from "@lukehagar/plexjs/models/shared";
+import { HasVoiceActivityEnum, Media, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: Media = {
   aspectRatio: 2.35,

@@ -5,24 +5,24 @@
 import dotenv from "dotenv";
 dotenv.config();
 /**
- * Example usage of the @lukehagar/plexjs SDK
+ * Example usage of the @parke.dev/plexjs SDK
  *
  * To run this example from the examples directory:
  * npm run build && npx tsx transcoderStartTranscodeSession.example.ts
  */
 
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 import {
   Extension,
   StartTranscodeSessionLocation,
   StartTranscodeSessionProtocol,
-} from "@lukehagar/plexjs/models/operations";
+} from "@parke.dev/plexjs/models/operations";
 import {
   Accepts,
   AdvancedSubtitles,
   BoolInt,
   TranscodeType,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,

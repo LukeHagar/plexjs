@@ -19,7 +19,7 @@ This endpoint will write multiple lines to the main Plex Media Server log in a s
 
 <!-- UsageSnippet language="typescript" operationID="writeLog" method="post" path="/log" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 import { openAsBlob } from "node:fs";
 
 const plexAPI = new PlexAPI({
@@ -40,8 +40,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { logWriteLog } from "@lukehagar/plexjs/funcs/logWriteLog.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { logWriteLog } from "@parke.dev/plexjs/funcs/logWriteLog.js";
 import { openAsBlob } from "node:fs";
 
 // Use `PlexAPICore` for best tree-shaking performance.
@@ -93,8 +93,8 @@ Note: This endpoint responds to all HTTP verbs **except POST** but PUT is prefer
 
 <!-- UsageSnippet language="typescript" operationID="writeMessage" method="put" path="/log" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -125,9 +125,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { logWriteMessage } from "@lukehagar/plexjs/funcs/logWriteMessage.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { logWriteMessage } from "@parke.dev/plexjs/funcs/logWriteMessage.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -189,8 +189,8 @@ Note: This endpoint responds to all HTTP verbs but POST is preferred
 
 <!-- UsageSnippet language="typescript" operationID="enablePapertrail" method="post" path="/log/networked" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -221,9 +221,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { logEnablePapertrail } from "@lukehagar/plexjs/funcs/logEnablePapertrail.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { logEnablePapertrail } from "@parke.dev/plexjs/funcs/logEnablePapertrail.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

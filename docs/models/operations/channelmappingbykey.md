@@ -5,7 +5,7 @@ The mapping of changes, passed as a map of device channel to lineup key.
 ## Example Usage
 
 ```typescript
-import { ChannelMappingByKey } from "@lukehagar/plexjs/models/operations";
+import { ChannelMappingByKey } from "@parke.dev/plexjs/models/operations";
 
 let value: ChannelMappingByKey = {};
 ```

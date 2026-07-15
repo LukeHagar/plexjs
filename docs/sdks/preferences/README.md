@@ -18,7 +18,7 @@ Get the list of all preferences
 
 <!-- UsageSnippet language="typescript" operationID="getAllPreferences" method="get" path="/:/prefs" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -38,8 +38,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { preferencesGetAllPreferences } from "@lukehagar/plexjs/funcs/preferencesGetAllPreferences.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { preferencesGetAllPreferences } from "@parke.dev/plexjs/funcs/preferencesGetAllPreferences.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -86,8 +86,8 @@ Set a set of preferences in query parameters
 
 <!-- UsageSnippet language="typescript" operationID="setPreferences" method="put" path="/:/prefs" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -120,9 +120,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { preferencesSetPreferences } from "@lukehagar/plexjs/funcs/preferencesSetPreferences.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { preferencesSetPreferences } from "@parke.dev/plexjs/funcs/preferencesSetPreferences.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -183,8 +183,8 @@ Get a single preference and value
 
 <!-- UsageSnippet language="typescript" operationID="getPreference" method="get" path="/:/prefs/get" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -215,9 +215,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { preferencesGetPreference } from "@lukehagar/plexjs/funcs/preferencesGetPreference.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { preferencesGetPreference } from "@parke.dev/plexjs/funcs/preferencesGetPreference.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

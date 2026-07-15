@@ -5,7 +5,7 @@ The default image type to use as the sources
 ## Example Usage
 
 ```typescript
-import { MediaEnum } from "@lukehagar/plexjs/models/shared";
+import { MediaEnum } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaEnum = MediaEnum.Banner;
 ```

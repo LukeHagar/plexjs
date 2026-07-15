@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteIndexesRequest } from "@lukehagar/plexjs/models/operations";
+import { DeleteIndexesRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: DeleteIndexesRequest = {
   sectionId: 895219,

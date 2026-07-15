@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetPlaylistGeneratorSubtitles } from "@lukehagar/plexjs/models/operations";
+import { GetPlaylistGeneratorSubtitles } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPlaylistGeneratorSubtitles = GetPlaylistGeneratorSubtitles.Auto;
 

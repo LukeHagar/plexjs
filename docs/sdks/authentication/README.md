@@ -15,8 +15,8 @@ Get the User data from the provided X-Plex-Token
 
 <!-- UsageSnippet language="typescript" operationID="getTokenDetails" method="get" path="/user" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -47,9 +47,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { authenticationGetTokenDetails } from "@lukehagar/plexjs/funcs/authenticationGetTokenDetails.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { authenticationGetTokenDetails } from "@parke.dev/plexjs/funcs/authenticationGetTokenDetails.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,8 +111,8 @@ Sign in user with username and password and return user data with Plex authentic
 
 <!-- UsageSnippet language="typescript" operationID="post-users-sign-in-data" method="post" path="/users/signin" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -148,9 +148,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { authenticationPostUsersSignInData } from "@lukehagar/plexjs/funcs/authenticationPostUsersSignInData.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { authenticationPostUsersSignInData } from "@parke.dev/plexjs/funcs/authenticationPostUsersSignInData.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

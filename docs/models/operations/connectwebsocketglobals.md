@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectWebSocketGlobals } from "@lukehagar/plexjs/models/operations";
+import { ConnectWebSocketGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: ConnectWebSocketGlobals = {
   clientIdentifier: "abc123",

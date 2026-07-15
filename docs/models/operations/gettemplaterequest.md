@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetTemplateRequest } from "@lukehagar/plexjs/models/operations";
+import { GetTemplateRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetTemplateRequest = {
   guid: "plex://episode/5fc70265c40548002d539d23",

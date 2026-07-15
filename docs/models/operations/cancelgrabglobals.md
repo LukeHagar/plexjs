@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CancelGrabGlobals } from "@lukehagar/plexjs/models/operations";
+import { CancelGrabGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: CancelGrabGlobals = {
   clientIdentifier: "abc123",

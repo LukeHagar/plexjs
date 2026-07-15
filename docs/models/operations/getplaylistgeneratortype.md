@@ -5,7 +5,7 @@ The type of this generator
 ## Example Usage
 
 ```typescript
-import { GetPlaylistGeneratorType } from "@lukehagar/plexjs/models/operations";
+import { GetPlaylistGeneratorType } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPlaylistGeneratorType = GetPlaylistGeneratorType.Minus1;
 

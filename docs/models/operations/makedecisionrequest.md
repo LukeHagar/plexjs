@@ -8,8 +8,8 @@ import {
   MakeDecisionProtocol,
   MakeDecisionRequest,
   MakeDecisionSubtitles,
-} from "@lukehagar/plexjs/models/operations";
-import { AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/operations";
+import { AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 let value: MakeDecisionRequest = {
   transcodeType: TranscodeType.Audio,

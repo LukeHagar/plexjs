@@ -8,7 +8,7 @@ The container often "hoists" common attributes from its children. For example, i
 ## Example Usage
 
 ```typescript
-import { HasVoiceActivityEnum, MediaContainerWithMetadataMediaContainer, StreamType } from "@lukehagar/plexjs/models/shared";
+import { HasVoiceActivityEnum, MediaContainerWithMetadataMediaContainer, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithMetadataMediaContainer = {
   metadata: [

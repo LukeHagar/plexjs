@@ -5,7 +5,7 @@ The type of the value of this setting
 ## Example Usage
 
 ```typescript
-import { SettingType } from "@lukehagar/plexjs/models/shared";
+import { SettingType } from "@parke.dev/plexjs/models/shared";
 
 let value: SettingType = SettingType.Double;
 

@@ -6,7 +6,7 @@ Images such as movie posters and background artwork are represented by Image ele
 ## Example Usage
 
 ```typescript
-import { Image } from "@lukehagar/plexjs/models/shared";
+import { Image } from "@parke.dev/plexjs/models/shared";
 
 let value: Image = {};
 ```

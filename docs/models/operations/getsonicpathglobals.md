@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSonicPathGlobals } from "@lukehagar/plexjs/models/operations";
+import { GetSonicPathGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSonicPathGlobals = {
   clientIdentifier: "abc123",

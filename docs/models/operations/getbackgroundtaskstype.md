@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetBackgroundTasksType } from "@lukehagar/plexjs/models/operations";
+import { GetBackgroundTasksType } from "@parke.dev/plexjs/models/operations";
 
 let value: GetBackgroundTasksType = GetBackgroundTasksType.Transcode;
 ```

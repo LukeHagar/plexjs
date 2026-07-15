@@ -14,9 +14,9 @@ Get Plex server access tokens and server connections
 
 <!-- UsageSnippet language="typescript" operationID="get-server-resources" method="get" path="/resources" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -42,10 +42,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { plexGetServerResources } from "@lukehagar/plexjs/funcs/plexGetServerResources.js";
-import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/models/operations";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { plexGetServerResources } from "@parke.dev/plexjs/funcs/plexGetServerResources.js";
+import { IncludeHttps, IncludeIPv6, IncludeRelay } from "@parke.dev/plexjs/models/operations";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

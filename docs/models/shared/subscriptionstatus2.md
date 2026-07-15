@@ -5,7 +5,7 @@ String representation of subscriptionActive
 ## Example Usage
 
 ```typescript
-import { SubscriptionStatus2 } from "@lukehagar/plexjs/models/shared";
+import { SubscriptionStatus2 } from "@parke.dev/plexjs/models/shared";
 
 let value: SubscriptionStatus2 = SubscriptionStatus2.Inactive;
 

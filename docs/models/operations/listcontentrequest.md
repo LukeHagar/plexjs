@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { ListContentRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt, MediaType } from "@lukehagar/plexjs/models/shared";
+import { ListContentRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt, MediaType } from "@parke.dev/plexjs/models/shared";
 
 let value: ListContentRequest = {
   mediaQuery: {

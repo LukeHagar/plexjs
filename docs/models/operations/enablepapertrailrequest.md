@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EnablePapertrailRequest } from "@lukehagar/plexjs/models/operations";
+import { EnablePapertrailRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: EnablePapertrailRequest = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetPartIndexIndex, GetPartIndexRequest } from "@lukehagar/plexjs/models/operations";
+import { GetPartIndexIndex, GetPartIndexRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPartIndexRequest = {
   partId: 703932,

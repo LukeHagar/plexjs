@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithDecisionOptimizedForStreaming } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithDecisionOptimizedForStreaming } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionOptimizedForStreaming =
   MediaContainerWithDecisionOptimizedForStreaming.One;

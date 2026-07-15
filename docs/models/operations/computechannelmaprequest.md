@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ComputeChannelMapRequest } from "@lukehagar/plexjs/models/operations";
+import { ComputeChannelMapRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: ComputeChannelMapRequest = {
   deviceQueryParameter: "<value>",

@@ -25,8 +25,8 @@ Compute the best channel map, given device and lineup
 
 <!-- UsageSnippet language="typescript" operationID="computeChannelMap" method="get" path="/livetv/epg/channelmap" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -60,9 +60,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgComputeChannelMap } from "@lukehagar/plexjs/funcs/epgComputeChannelMap.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgComputeChannelMap } from "@parke.dev/plexjs/funcs/epgComputeChannelMap.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -124,8 +124,8 @@ Get channels for a lineup within an EPG provider
 
 <!-- UsageSnippet language="typescript" operationID="getChannels" method="get" path="/livetv/epg/channels" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -158,9 +158,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgGetChannels } from "@lukehagar/plexjs/funcs/epgGetChannels.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgGetChannels } from "@parke.dev/plexjs/funcs/epgGetChannels.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -221,7 +221,7 @@ This endpoint returns a list of countries which EPG data is available for. There
 
 <!-- UsageSnippet language="typescript" operationID="getCountries" method="get" path="/livetv/epg/countries" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -241,8 +241,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgGetCountries } from "@lukehagar/plexjs/funcs/epgGetCountries.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgGetCountries } from "@parke.dev/plexjs/funcs/epgGetCountries.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -289,7 +289,7 @@ Returns a list of all possible languages for EPG data.
 
 <!-- UsageSnippet language="typescript" operationID="getAllLanguages" method="get" path="/livetv/epg/languages" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -309,8 +309,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgGetAllLanguages } from "@lukehagar/plexjs/funcs/epgGetAllLanguages.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgGetAllLanguages } from "@parke.dev/plexjs/funcs/epgGetAllLanguages.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -357,8 +357,8 @@ Compute the best lineup, given lineup group and device
 
 <!-- UsageSnippet language="typescript" operationID="getLineup" method="get" path="/livetv/epg/lineup" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -392,9 +392,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgGetLineup } from "@lukehagar/plexjs/funcs/epgGetLineup.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgGetLineup } from "@parke.dev/plexjs/funcs/epgGetLineup.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -456,8 +456,8 @@ Get the channels across multiple lineups
 
 <!-- UsageSnippet language="typescript" operationID="getLineupChannels" method="get" path="/livetv/epg/lineupchannels" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -493,9 +493,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgGetLineupChannels } from "@lukehagar/plexjs/funcs/epgGetLineupChannels.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgGetLineupChannels } from "@parke.dev/plexjs/funcs/epgGetLineupChannels.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -559,8 +559,8 @@ Returns a list of lineups for a given country, EPG provider and postal code
 
 <!-- UsageSnippet language="typescript" operationID="getCountriesLineups" method="get" path="/livetv/epg/countries/{country}/{epgId}/lineups" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -594,9 +594,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgGetCountriesLineups } from "@lukehagar/plexjs/funcs/epgGetCountriesLineups.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgGetCountriesLineups } from "@parke.dev/plexjs/funcs/epgGetCountriesLineups.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -658,8 +658,8 @@ Get regions for a country within an EPG provider
 
 <!-- UsageSnippet language="typescript" operationID="getCountryRegions" method="get" path="/livetv/epg/countries/{country}/{epgId}/regions" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -693,9 +693,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgGetCountryRegions } from "@lukehagar/plexjs/funcs/epgGetCountryRegions.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgGetCountryRegions } from "@parke.dev/plexjs/funcs/epgGetCountryRegions.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -757,8 +757,8 @@ Get lineups for a region within an EPG provider
 
 <!-- UsageSnippet language="typescript" operationID="listLineups" method="get" path="/livetv/epg/countries/{country}/{epgId}/regions/{region}/lineups" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -793,9 +793,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { epgListLineups } from "@lukehagar/plexjs/funcs/epgListLineups.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { epgListLineups } from "@parke.dev/plexjs/funcs/epgListLineups.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -5,7 +5,7 @@ The image type
 ## Example Usage
 
 ```typescript
-import { Format } from "@lukehagar/plexjs/models/shared";
+import { Format } from "@parke.dev/plexjs/models/shared";
 
 let value: Format = Format.Jpg;
 ```

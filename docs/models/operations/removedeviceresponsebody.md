@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { RemoveDeviceResponseBody } from "@lukehagar/plexjs/models/operations";
+import { RemoveDeviceResponseBody } from "@parke.dev/plexjs/models/operations";
 
 let value: RemoveDeviceResponseBody = {};
 ```

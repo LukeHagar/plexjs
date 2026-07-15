@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetPlaylistGeneratorStatus } from "@lukehagar/plexjs/models/operations";
+import { GetPlaylistGeneratorStatus } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPlaylistGeneratorStatus = {};
 ```

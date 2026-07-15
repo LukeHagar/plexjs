@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetTokenDetailsUnauthorizedError } from "@lukehagar/plexjs/models/operations";
+import { GetTokenDetailsUnauthorizedError } from "@parke.dev/plexjs/models/operations";
 
 let value: GetTokenDetailsUnauthorizedError = {
   code: 1001,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListSimilarGlobals } from "@lukehagar/plexjs/models/operations";
+import { ListSimilarGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: ListSimilarGlobals = {
   clientIdentifier: "abc123",

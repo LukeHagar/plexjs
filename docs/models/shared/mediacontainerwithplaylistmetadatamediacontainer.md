@@ -12,7 +12,7 @@ import {
   HasVoiceActivityEnum,
   MediaContainerWithPlaylistMetadataMediaContainer,
   StreamType,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithPlaylistMetadataMediaContainer = {
   metadata: [

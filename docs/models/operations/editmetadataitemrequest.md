@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EditMetadataItemRequest } from "@lukehagar/plexjs/models/operations";
+import { EditMetadataItemRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: EditMetadataItemRequest = {
   ids: [

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Subtitles } from "@lukehagar/plexjs/models/shared";
+import { Subtitles } from "@parke.dev/plexjs/models/shared";
 
 let value: Subtitles = Subtitles.Embedded;
 ```

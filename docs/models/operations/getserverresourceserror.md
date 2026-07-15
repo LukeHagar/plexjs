@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetServerResourcesError } from "@lukehagar/plexjs/models/operations";
+import { GetServerResourcesError } from "@parke.dev/plexjs/models/operations";
 
 let value: GetServerResourcesError = {
   code: 1001,

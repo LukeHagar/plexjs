@@ -5,7 +5,7 @@ Represents a top-level location on disk where media in this library section is s
 ## Example Usage
 
 ```typescript
-import { LibrarySectionLocation } from "@lukehagar/plexjs/models/shared";
+import { LibrarySectionLocation } from "@parke.dev/plexjs/models/shared";
 
 let value: LibrarySectionLocation = {};
 ```

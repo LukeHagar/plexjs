@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StartTranscodeSessionGlobals } from "@lukehagar/plexjs/models/operations";
+import { StartTranscodeSessionGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: StartTranscodeSessionGlobals = {
   clientIdentifier: "abc123",

@@ -5,8 +5,8 @@ OK
 ## Example Usage
 
 ```typescript
-import { VoiceSearchHubsResponseBody } from "@lukehagar/plexjs/models/operations";
-import { HasVoiceActivityEnum, StreamType } from "@lukehagar/plexjs/models/shared";
+import { VoiceSearchHubsResponseBody } from "@parke.dev/plexjs/models/operations";
+import { HasVoiceActivityEnum, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: VoiceSearchHubsResponseBody = {
   mediaContainer: {

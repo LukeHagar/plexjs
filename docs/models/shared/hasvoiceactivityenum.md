@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HasVoiceActivityEnum } from "@lukehagar/plexjs/models/shared";
+import { HasVoiceActivityEnum } from "@parke.dev/plexjs/models/shared";
 
 let value: HasVoiceActivityEnum = HasVoiceActivityEnum.Zero;
 

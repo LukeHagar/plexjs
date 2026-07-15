@@ -28,7 +28,7 @@ Based on:
 ### Generated
 - [typescript v0.3.0] .
 ### Releases
-- [NPM v0.3.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.3.0 - .
+- [NPM v0.3.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.3.0 - .
 
 ## 2024-01-05 00:27:32
 ### Changes
@@ -38,7 +38,7 @@ Based on:
 ### Generated
 - [typescript v0.3.0] .
 ### Releases
-- [NPM v0.3.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.3.0 - .
+- [NPM v0.3.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.3.0 - .
 
 ## 2024-01-05 19:51:02
 ### Changes
@@ -48,7 +48,7 @@ Based on:
 ### Generated
 - [typescript v0.3.1] .
 ### Releases
-- [NPM v0.3.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.3.1 - .
+- [NPM v0.3.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.3.1 - .
 
 ## 2024-01-09 00:28:08
 ### Changes
@@ -58,7 +58,7 @@ Based on:
 ### Generated
 - [typescript v0.3.2] .
 ### Releases
-- [NPM v0.3.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.3.2 - .
+- [NPM v0.3.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.3.2 - .
 
 ## 2024-01-10 00:27:58
 ### Changes
@@ -68,7 +68,7 @@ Based on:
 ### Generated
 - [typescript v0.3.3] .
 ### Releases
-- [NPM v0.3.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.3.3 - .
+- [NPM v0.3.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.3.3 - .
 
 ## 2024-01-16 00:27:43
 ### Changes
@@ -78,7 +78,7 @@ Based on:
 ### Generated
 - [typescript v0.4.0] .
 ### Releases
-- [NPM v0.4.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.4.0 - .
+- [NPM v0.4.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.4.0 - .
 
 ## 2024-01-17 00:27:57
 ### Changes
@@ -88,7 +88,7 @@ Based on:
 ### Generated
 - [typescript v0.4.0] .
 ### Releases
-- [NPM v0.4.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.4.0 - .
+- [NPM v0.4.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.4.0 - .
 
 ## 2024-01-18 23:37:12
 ### Changes
@@ -98,7 +98,7 @@ Based on:
 ### Generated
 - [typescript v0.4.1] .
 ### Releases
-- [NPM v0.4.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.4.1 - .
+- [NPM v0.4.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.4.1 - .
 
 ## 2024-01-19 17:27:25
 ### Changes
@@ -108,7 +108,7 @@ Based on:
 ### Generated
 - [typescript v0.4.2] .
 ### Releases
-- [NPM v0.4.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.4.2 - .
+- [NPM v0.4.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.4.2 - .
 
 ## 2024-01-20 03:10:24
 ### Changes
@@ -118,7 +118,7 @@ Based on:
 ### Generated
 - [typescript v0.5.0] .
 ### Releases
-- [NPM v0.5.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.5.0 - .
+- [NPM v0.5.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.5.0 - .
 
 ## 2024-01-22 17:16:30
 ### Changes
@@ -128,7 +128,7 @@ Based on:
 ### Generated
 - [typescript v0.5.1] .
 ### Releases
-- [NPM v0.5.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.5.1 - .
+- [NPM v0.5.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.5.1 - .
 
 ## 2024-01-23 20:47:26
 ### Changes
@@ -138,7 +138,7 @@ Based on:
 ### Generated
 - [typescript v0.5.2] .
 ### Releases
-- [NPM v0.5.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.5.2 - .
+- [NPM v0.5.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.5.2 - .
 
 ## 2024-01-23 21:55:23
 ### Changes
@@ -148,7 +148,7 @@ Based on:
 ### Generated
 - [typescript v0.5.3] .
 ### Releases
-- [NPM v0.5.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.5.3 - .
+- [NPM v0.5.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.5.3 - .
 
 ## 2024-01-31 15:05:58
 ### Changes
@@ -158,7 +158,7 @@ Based on:
 ### Generated
 - [typescript v0.6.0] .
 ### Releases
-- [NPM v0.6.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.6.0 - .
+- [NPM v0.6.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.6.0 - .
 
 ## 2024-02-01 00:27:20
 ### Changes
@@ -168,7 +168,7 @@ Based on:
 ### Generated
 - [typescript v0.6.1] .
 ### Releases
-- [NPM v0.6.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.6.1 - .
+- [NPM v0.6.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.6.1 - .
 
 ## 2024-02-05 14:23:50
 ### Changes
@@ -178,7 +178,7 @@ Based on:
 ### Generated
 - [typescript v0.7.0] .
 ### Releases
-- [NPM v0.7.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.7.0 - .
+- [NPM v0.7.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.7.0 - .
 
 ## 2024-02-23 14:46:22
 ### Changes
@@ -188,7 +188,7 @@ Based on:
 ### Generated
 - [typescript v0.8.0] .
 ### Releases
-- [NPM v0.8.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.8.0 - .
+- [NPM v0.8.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.8.0 - .
 
 ## 2024-02-24 00:24:27
 ### Changes
@@ -198,7 +198,7 @@ Based on:
 ### Generated
 - [typescript v0.9.0] .
 ### Releases
-- [NPM v0.9.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.9.0 - .
+- [NPM v0.9.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.9.0 - .
 
 ## 2024-03-01 00:29:35
 ### Changes
@@ -208,7 +208,7 @@ Based on:
 ### Generated
 - [typescript v0.9.1] .
 ### Releases
-- [NPM v0.9.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.9.1 - .
+- [NPM v0.9.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.9.1 - .
 
 ## 2024-03-02 00:24:38
 ### Changes
@@ -218,7 +218,7 @@ Based on:
 ### Generated
 - [typescript v0.9.2] .
 ### Releases
-- [NPM v0.9.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.9.2 - .
+- [NPM v0.9.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.9.2 - .
 
 ## 2024-03-08 00:26:13
 ### Changes
@@ -228,7 +228,7 @@ Based on:
 ### Generated
 - [typescript v0.10.0] .
 ### Releases
-- [NPM v0.10.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.10.0 - .
+- [NPM v0.10.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.10.0 - .
 
 ## 2024-03-13 00:25:35
 ### Changes
@@ -238,7 +238,7 @@ Based on:
 ### Generated
 - [typescript v0.10.1] .
 ### Releases
-- [NPM v0.10.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.10.1 - .
+- [NPM v0.10.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.10.1 - .
 
 ## 2024-03-14 00:25:24
 ### Changes
@@ -248,7 +248,7 @@ Based on:
 ### Generated
 - [typescript v0.10.2] .
 ### Releases
-- [NPM v0.10.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.10.2 - .
+- [NPM v0.10.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.10.2 - .
 
 ## 2024-03-15 15:02:11
 ### Changes
@@ -258,7 +258,7 @@ Based on:
 ### Generated
 - [typescript v0.10.3] .
 ### Releases
-- [NPM v0.10.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.10.3 - .
+- [NPM v0.10.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.10.3 - .
 
 ## 2024-03-20 00:25:49
 ### Changes
@@ -268,7 +268,7 @@ Based on:
 ### Generated
 - [typescript v0.10.4] .
 ### Releases
-- [NPM v0.10.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.10.4 - .
+- [NPM v0.10.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.10.4 - .
 
 ## 2024-03-27 00:25:29
 ### Changes
@@ -278,7 +278,7 @@ Based on:
 ### Generated
 - [typescript v0.11.0] .
 ### Releases
-- [NPM v0.11.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.11.0 - .
+- [NPM v0.11.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.11.0 - .
 
 ## 2024-03-29 16:36:42
 ### Changes
@@ -288,7 +288,7 @@ Based on:
 ### Generated
 - [typescript v0.12.0] .
 ### Releases
-- [NPM v0.12.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.12.0 - .
+- [NPM v0.12.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.12.0 - .
 
 ## 2024-04-02 00:26:20
 ### Changes
@@ -298,7 +298,7 @@ Based on:
 ### Generated
 - [typescript v0.12.1] .
 ### Releases
-- [NPM v0.12.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.12.1 - .
+- [NPM v0.12.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.12.1 - .
 
 ## 2024-04-13 00:23:00
 ### Changes
@@ -308,7 +308,7 @@ Based on:
 ### Generated
 - [typescript v0.12.2] .
 ### Releases
-- [NPM v0.12.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.12.2 - .
+- [NPM v0.12.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.12.2 - .
 
 ## 2024-04-18 00:26:16
 ### Changes
@@ -318,7 +318,7 @@ Based on:
 ### Generated
 - [typescript v0.12.3] .
 ### Releases
-- [NPM v0.12.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.12.3 - .
+- [NPM v0.12.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.12.3 - .
 
 ## 2024-04-19 00:26:47
 ### Changes
@@ -328,7 +328,7 @@ Based on:
 ### Generated
 - [typescript v0.13.0] .
 ### Releases
-- [NPM v0.13.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.13.0 - .
+- [NPM v0.13.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.13.0 - .
 
 ## 2024-04-20 00:26:02
 ### Changes
@@ -338,7 +338,7 @@ Based on:
 ### Generated
 - [typescript v0.13.0] .
 ### Releases
-- [NPM v0.13.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.13.0 - .
+- [NPM v0.13.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.13.0 - .
 
 ## 2024-04-22 16:14:48
 ### Changes
@@ -348,7 +348,7 @@ Based on:
 ### Generated
 - [typescript v0.13.1] .
 ### Releases
-- [NPM v0.13.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.13.1 - .
+- [NPM v0.13.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.13.1 - .
 
 ## 2024-04-22 16:25:57
 ### Changes
@@ -358,7 +358,7 @@ Based on:
 ### Generated
 - [typescript v0.13.2] .
 ### Releases
-- [NPM v0.13.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.13.2 - .
+- [NPM v0.13.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.13.2 - .
 
 ## 2024-04-23 00:26:56
 ### Changes
@@ -368,7 +368,7 @@ Based on:
 ### Generated
 - [typescript v0.13.2] .
 ### Releases
-- [NPM v0.13.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.13.2 - .
+- [NPM v0.13.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.13.2 - .
 
 ## 2024-04-25 00:28:39
 ### Changes
@@ -378,7 +378,7 @@ Based on:
 ### Generated
 - [typescript v0.14.0] .
 ### Releases
-- [NPM v0.14.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.0 - .
+- [NPM v0.14.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.0 - .
 
 ## 2024-04-26 00:27:03
 ### Changes
@@ -388,7 +388,7 @@ Based on:
 ### Generated
 - [typescript v0.14.0] .
 ### Releases
-- [NPM v0.14.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.0 - .
+- [NPM v0.14.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.0 - .
 
 ## 2024-04-27 00:26:14
 ### Changes
@@ -398,7 +398,7 @@ Based on:
 ### Generated
 - [typescript v0.14.0] .
 ### Releases
-- [NPM v0.14.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.0 - .
+- [NPM v0.14.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.0 - .
 
 ## 2024-04-28 00:29:48
 ### Changes
@@ -408,7 +408,7 @@ Based on:
 ### Generated
 - [typescript v0.14.0] .
 ### Releases
-- [NPM v0.14.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.0 - .
+- [NPM v0.14.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.0 - .
 
 ## 2024-04-29 00:27:42
 ### Changes
@@ -418,7 +418,7 @@ Based on:
 ### Generated
 - [typescript v0.14.0] .
 ### Releases
-- [NPM v0.14.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.0 - .
+- [NPM v0.14.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.0 - .
 
 ## 2024-04-30 00:26:07
 ### Changes
@@ -428,7 +428,7 @@ Based on:
 ### Generated
 - [typescript v0.14.1] .
 ### Releases
-- [NPM v0.14.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.1 - .
+- [NPM v0.14.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.1 - .
 
 ## 2024-05-01 00:29:15
 ### Changes
@@ -438,7 +438,7 @@ Based on:
 ### Generated
 - [typescript v0.14.1] .
 ### Releases
-- [NPM v0.14.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.1 - .
+- [NPM v0.14.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.1 - .
 
 ## 2024-05-02 00:26:42
 ### Changes
@@ -448,7 +448,7 @@ Based on:
 ### Generated
 - [typescript v0.14.1] .
 ### Releases
-- [NPM v0.14.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.1 - .
+- [NPM v0.14.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.1 - .
 
 ## 2024-05-03 00:27:14
 ### Changes
@@ -458,7 +458,7 @@ Based on:
 ### Generated
 - [typescript v0.14.2] .
 ### Releases
-- [NPM v0.14.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.2 - .
+- [NPM v0.14.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.2 - .
 
 ## 2024-05-04 00:26:20
 ### Changes
@@ -468,7 +468,7 @@ Based on:
 ### Generated
 - [typescript v0.14.2] .
 ### Releases
-- [NPM v0.14.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.2 - .
+- [NPM v0.14.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.2 - .
 
 ## 2024-05-05 00:29:26
 ### Changes
@@ -478,7 +478,7 @@ Based on:
 ### Generated
 - [typescript v0.14.2] .
 ### Releases
-- [NPM v0.14.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.2 - .
+- [NPM v0.14.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.2 - .
 
 ## 2024-05-06 00:28:07
 ### Changes
@@ -488,7 +488,7 @@ Based on:
 ### Generated
 - [typescript v0.14.2] .
 ### Releases
-- [NPM v0.14.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.2 - .
+- [NPM v0.14.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.2 - .
 
 ## 2024-05-07 00:27:12
 ### Changes
@@ -498,7 +498,7 @@ Based on:
 ### Generated
 - [typescript v0.14.2] .
 ### Releases
-- [NPM v0.14.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.2 - .
+- [NPM v0.14.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.2 - .
 
 ## 2024-05-08 00:22:14
 ### Changes
@@ -508,7 +508,7 @@ Based on:
 ### Generated
 - [typescript v0.14.2] .
 ### Releases
-- [NPM v0.14.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.14.2 - .
+- [NPM v0.14.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.14.2 - .
 
 ## 2024-05-08 18:14:57
 ### Changes
@@ -518,7 +518,7 @@ Based on:
 ### Generated
 - [typescript v0.15.0] .
 ### Releases
-- [NPM v0.15.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.15.0 - .
+- [NPM v0.15.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.15.0 - .
 
 ## 2024-05-09 00:26:57
 ### Changes
@@ -528,7 +528,7 @@ Based on:
 ### Generated
 - [typescript v0.15.0] .
 ### Releases
-- [NPM v0.15.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.15.0 - .
+- [NPM v0.15.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.15.0 - .
 
 ## 2024-05-09 03:30:33
 ### Changes
@@ -538,7 +538,7 @@ Based on:
 ### Generated
 - [typescript v0.15.1] .
 ### Releases
-- [NPM v0.15.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.15.1 - .
+- [NPM v0.15.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.15.1 - .
 
 ## 2024-05-09 03:45:22
 ### Changes
@@ -548,7 +548,7 @@ Based on:
 ### Generated
 - [typescript v0.15.2] .
 ### Releases
-- [NPM v0.15.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.15.2 - .
+- [NPM v0.15.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.15.2 - .
 
 ## 2024-05-09 04:14:12
 ### Changes
@@ -558,7 +558,7 @@ Based on:
 ### Generated
 - [typescript v0.15.3] .
 ### Releases
-- [NPM v0.15.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.15.3 - .
+- [NPM v0.15.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.15.3 - .
 
 ## 2024-05-09 04:22:48
 ### Changes
@@ -568,7 +568,7 @@ Based on:
 ### Generated
 - [typescript v0.15.4] .
 ### Releases
-- [NPM v0.15.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.15.4 - .
+- [NPM v0.15.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.15.4 - .
 
 ## 2024-05-23 15:56:57
 ### Changes
@@ -578,7 +578,7 @@ Based on:
 ### Generated
 - [typescript v0.16.0] .
 ### Releases
-- [NPM v0.16.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.0 - .
+- [NPM v0.16.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.0 - .
 
 ## 2024-05-24 00:28:19
 ### Changes
@@ -588,7 +588,7 @@ Based on:
 ### Generated
 - [typescript v0.16.0] .
 ### Releases
-- [NPM v0.16.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.0 - .
+- [NPM v0.16.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.0 - .
 
 ## 2024-05-25 00:26:58
 ### Changes
@@ -598,7 +598,7 @@ Based on:
 ### Generated
 - [typescript v0.16.1] .
 ### Releases
-- [NPM v0.16.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.1 - .
+- [NPM v0.16.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.1 - .
 
 ## 2024-05-26 00:31:02
 ### Changes
@@ -608,7 +608,7 @@ Based on:
 ### Generated
 - [typescript v0.16.1] .
 ### Releases
-- [NPM v0.16.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.1 - .
+- [NPM v0.16.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.1 - .
 
 ## 2024-05-27 00:28:56
 ### Changes
@@ -618,7 +618,7 @@ Based on:
 ### Generated
 - [typescript v0.16.1] .
 ### Releases
-- [NPM v0.16.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.1 - .
+- [NPM v0.16.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.1 - .
 
 ## 2024-05-28 00:28:13
 ### Changes
@@ -628,7 +628,7 @@ Based on:
 ### Generated
 - [typescript v0.16.1] .
 ### Releases
-- [NPM v0.16.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.1 - .
+- [NPM v0.16.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.1 - .
 
 ## 2024-05-29 00:29:15
 ### Changes
@@ -638,7 +638,7 @@ Based on:
 ### Generated
 - [typescript v0.16.1] .
 ### Releases
-- [NPM v0.16.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.1 - .
+- [NPM v0.16.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.1 - .
 
 ## 2024-05-30 00:28:36
 ### Changes
@@ -648,7 +648,7 @@ Based on:
 ### Generated
 - [typescript v0.16.2] .
 ### Releases
-- [NPM v0.16.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.2 - .
+- [NPM v0.16.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.2 - .
 
 ## 2024-05-31 00:27:50
 ### Changes
@@ -658,7 +658,7 @@ Based on:
 ### Generated
 - [typescript v0.16.2] .
 ### Releases
-- [NPM v0.16.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.2 - .
+- [NPM v0.16.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.2 - .
 
 ## 2024-06-01 00:30:42
 ### Changes
@@ -668,7 +668,7 @@ Based on:
 ### Generated
 - [typescript v0.16.2] .
 ### Releases
-- [NPM v0.16.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.2 - .
+- [NPM v0.16.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.2 - .
 
 ## 2024-06-02 00:31:00
 ### Changes
@@ -678,7 +678,7 @@ Based on:
 ### Generated
 - [typescript v0.16.2] .
 ### Releases
-- [NPM v0.16.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.2 - .
+- [NPM v0.16.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.2 - .
 
 ## 2024-06-03 00:29:24
 ### Changes
@@ -688,7 +688,7 @@ Based on:
 ### Generated
 - [typescript v0.16.2] .
 ### Releases
-- [NPM v0.16.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.2 - .
+- [NPM v0.16.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.2 - .
 
 ## 2024-06-04 00:28:27
 ### Changes
@@ -698,7 +698,7 @@ Based on:
 ### Generated
 - [typescript v0.16.3] .
 ### Releases
-- [NPM v0.16.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.3 - .
+- [NPM v0.16.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.3 - .
 
 ## 2024-06-05 00:28:12
 ### Changes
@@ -708,7 +708,7 @@ Based on:
 ### Generated
 - [typescript v0.16.3] .
 ### Releases
-- [NPM v0.16.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.3 - .
+- [NPM v0.16.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.3 - .
 
 ## 2024-06-06 00:28:24
 ### Changes
@@ -718,7 +718,7 @@ Based on:
 ### Generated
 - [typescript v0.16.4] .
 ### Releases
-- [NPM v0.16.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.4 - .
+- [NPM v0.16.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.4 - .
 
 ## 2024-06-07 00:29:43
 ### Changes
@@ -728,7 +728,7 @@ Based on:
 ### Generated
 - [typescript v0.16.4] .
 ### Releases
-- [NPM v0.16.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.4 - .
+- [NPM v0.16.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.4 - .
 
 ## 2024-06-08 00:29:06
 ### Changes
@@ -738,7 +738,7 @@ Based on:
 ### Generated
 - [typescript v0.16.4] .
 ### Releases
-- [NPM v0.16.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.4 - .
+- [NPM v0.16.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.4 - .
 
 ## 2024-06-09 00:32:36
 ### Changes
@@ -748,7 +748,7 @@ Based on:
 ### Generated
 - [typescript v0.16.4] .
 ### Releases
-- [NPM v0.16.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.4 - .
+- [NPM v0.16.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.4 - .
 
 ## 2024-06-10 00:30:14
 ### Changes
@@ -758,7 +758,7 @@ Based on:
 ### Generated
 - [typescript v0.16.4] .
 ### Releases
-- [NPM v0.16.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.4 - .
+- [NPM v0.16.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.4 - .
 
 ## 2024-06-12 00:28:55
 ### Changes
@@ -768,7 +768,7 @@ Based on:
 ### Generated
 - [typescript v0.16.5] .
 ### Releases
-- [NPM v0.16.5] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.5 - .
+- [NPM v0.16.5] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.5 - .
 
 ## 2024-06-13 00:01:20
 ### Changes
@@ -778,7 +778,7 @@ Based on:
 ### Generated
 - [typescript v0.16.5] .
 ### Releases
-- [NPM v0.16.5] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.5 - .
+- [NPM v0.16.5] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.5 - .
 
 ## 2024-06-14 00:01:12
 ### Changes
@@ -788,7 +788,7 @@ Based on:
 ### Generated
 - [typescript v0.16.6] .
 ### Releases
-- [NPM v0.16.6] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.16.6 - .
+- [NPM v0.16.6] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.16.6 - .
 
 ## 2024-06-14 16:22:55
 ### Changes
@@ -798,7 +798,7 @@ Based on:
 ### Generated
 - [typescript v0.17.0] .
 ### Releases
-- [NPM v0.17.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.17.0 - .
+- [NPM v0.17.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.17.0 - .
 
 ## 2024-06-15 00:01:01
 ### Changes
@@ -808,7 +808,7 @@ Based on:
 ### Generated
 - [typescript v0.17.0] .
 ### Releases
-- [NPM v0.17.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.17.0 - .
+- [NPM v0.17.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.17.0 - .
 
 ## 2024-06-22 00:01:06
 ### Changes
@@ -818,7 +818,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-06-23 00:01:17
 ### Changes
@@ -828,7 +828,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-06-24 00:01:13
 ### Changes
@@ -838,7 +838,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-06-25 00:01:07
 ### Changes
@@ -848,7 +848,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-06-26 00:03:38
 ### Changes
@@ -858,7 +858,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-06-27 00:01:14
 ### Changes
@@ -868,7 +868,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-06-28 00:01:08
 ### Changes
@@ -878,7 +878,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-06-29 00:01:06
 ### Changes
@@ -888,7 +888,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-06-30 00:01:08
 ### Changes
@@ -898,7 +898,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-07-01 00:01:17
 ### Changes
@@ -908,7 +908,7 @@ Based on:
 ### Generated
 - [typescript v0.18.0] .
 ### Releases
-- [NPM v0.18.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.0 - .
+- [NPM v0.18.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.0 - .
 
 ## 2024-07-01 15:43:13
 ### Changes
@@ -918,7 +918,7 @@ Based on:
 ### Generated
 - [typescript v0.18.1] .
 ### Releases
-- [NPM v0.18.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.1 - .
+- [NPM v0.18.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.1 - .
 
 ## 2024-07-01 16:23:41
 ### Changes
@@ -928,7 +928,7 @@ Based on:
 ### Generated
 - [typescript v0.18.2] .
 ### Releases
-- [NPM v0.18.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.18.2 - .
+- [NPM v0.18.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.18.2 - .
 
 ## 2024-08-22 05:15:43
 ### Changes
@@ -938,7 +938,7 @@ Based on:
 ### Generated
 - [typescript v0.19.0] .
 ### Releases
-- [NPM v0.19.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.19.0 - .
+- [NPM v0.19.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.19.0 - .
 
 ## 2024-09-06 00:01:07
 ### Changes
@@ -948,7 +948,7 @@ Based on:
 ### Generated
 - [typescript v0.20.0] .
 ### Releases
-- [NPM v0.20.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.20.0 - .
+- [NPM v0.20.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.20.0 - .
 
 ## 2024-09-08 03:21:12
 ### Changes
@@ -958,7 +958,7 @@ Based on:
 ### Generated
 - [typescript v0.20.2] .
 ### Releases
-- [NPM v0.20.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.20.2 - .
+- [NPM v0.20.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.20.2 - .
 
 ## 2024-09-08 17:37:50
 ### Changes
@@ -968,7 +968,7 @@ Based on:
 ### Generated
 - [typescript v0.21.0] .
 ### Releases
-- [NPM v0.21.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.21.0 - .
+- [NPM v0.21.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.21.0 - .
 
 ## 2024-09-09 00:09:42
 ### Changes
@@ -978,7 +978,7 @@ Based on:
 ### Generated
 - [typescript v0.21.1] .
 ### Releases
-- [NPM v0.21.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.21.1 - .
+- [NPM v0.21.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.21.1 - .
 
 ## 2024-09-10 00:09:01
 ### Changes
@@ -988,7 +988,7 @@ Based on:
 ### Generated
 - [typescript v0.22.0] .
 ### Releases
-- [NPM v0.22.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.22.0 - .
+- [NPM v0.22.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.22.0 - .
 
 ## 2024-09-11 00:09:01
 ### Changes
@@ -998,7 +998,7 @@ Based on:
 ### Generated
 - [typescript v0.22.1] .
 ### Releases
-- [NPM v0.22.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.22.1 - .
+- [NPM v0.22.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.22.1 - .
 
 ## 2024-09-12 00:09:10
 ### Changes
@@ -1008,7 +1008,7 @@ Based on:
 ### Generated
 - [typescript v0.22.2] .
 ### Releases
-- [NPM v0.22.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.22.2 - .
+- [NPM v0.22.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.22.2 - .
 
 ## 2024-09-13 00:09:09
 ### Changes
@@ -1018,7 +1018,7 @@ Based on:
 ### Generated
 - [typescript v0.23.0] .
 ### Releases
-- [NPM v0.23.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.23.0 - .
+- [NPM v0.23.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.23.0 - .
 
 ## 2024-09-14 00:08:56
 ### Changes
@@ -1028,7 +1028,7 @@ Based on:
 ### Generated
 - [typescript v0.23.1] .
 ### Releases
-- [NPM v0.23.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.23.1 - .
+- [NPM v0.23.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.23.1 - .
 
 ## 2024-09-15 00:10:25
 ### Changes
@@ -1038,7 +1038,7 @@ Based on:
 ### Generated
 - [typescript v0.23.2] .
 ### Releases
-- [NPM v0.23.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.23.2 - .
+- [NPM v0.23.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.23.2 - .
 
 ## 2024-09-16 00:09:42
 ### Changes
@@ -1048,7 +1048,7 @@ Based on:
 ### Generated
 - [typescript v0.23.3] .
 ### Releases
-- [NPM v0.23.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.23.3 - .
+- [NPM v0.23.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.23.3 - .
 
 ## 2024-09-16 17:59:12
 ### Changes
@@ -1058,7 +1058,7 @@ Based on:
 ### Generated
 - [typescript v0.23.4] .
 ### Releases
-- [NPM v0.23.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.23.4 - .
+- [NPM v0.23.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.23.4 - .
 
 ## 2024-09-17 00:08:25
 ### Changes
@@ -1068,7 +1068,7 @@ Based on:
 ### Generated
 - [typescript v0.23.5] .
 ### Releases
-- [NPM v0.23.5] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.23.5 - .
+- [NPM v0.23.5] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.23.5 - .
 
 ## 2024-10-01 00:10:47
 ### Changes
@@ -1078,7 +1078,7 @@ Based on:
 ### Generated
 - [typescript v0.24.0] .
 ### Releases
-- [NPM v0.24.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.24.0 - .
+- [NPM v0.24.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.24.0 - .
 
 ## 2024-10-01 15:35:33
 ### Changes
@@ -1088,7 +1088,7 @@ Based on:
 ### Generated
 - [typescript v0.24.1] .
 ### Releases
-- [NPM v0.24.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.24.1 - .
+- [NPM v0.24.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.24.1 - .
 
 ## 2024-10-02 02:28:25
 ### Changes
@@ -1098,7 +1098,7 @@ Based on:
 ### Generated
 - [typescript v0.24.2] .
 ### Releases
-- [NPM v0.24.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.24.2 - .
+- [NPM v0.24.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.24.2 - .
 
 ## 2024-10-03 00:09:30
 ### Changes
@@ -1108,7 +1108,7 @@ Based on:
 ### Generated
 - [typescript v0.25.1] .
 ### Releases
-- [NPM v0.25.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.25.1 - .
+- [NPM v0.25.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.25.1 - .
 
 ## 2024-10-03 12:26:50
 ### Changes
@@ -1118,7 +1118,7 @@ Based on:
 ### Generated
 - [typescript v0.26.1] .
 ### Releases
-- [NPM v0.26.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.26.1 - .
+- [NPM v0.26.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.26.1 - .
 
 ## 2024-11-11 20:28:21
 ### Changes
@@ -1128,7 +1128,7 @@ Based on:
 ### Generated
 - [typescript v0.28.0] .
 ### Releases
-- [NPM v0.28.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.28.0 - .
+- [NPM v0.28.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.28.0 - .
 
 ## 2024-11-14 00:09:39
 ### Changes
@@ -1138,7 +1138,7 @@ Based on:
 ### Generated
 - [typescript v0.30.0] .
 ### Releases
-- [NPM v0.30.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.30.0 - .
+- [NPM v0.30.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.30.0 - .
 
 ## 2024-12-16 22:17:52
 ### Changes
@@ -1148,7 +1148,7 @@ Based on:
 ### Generated
 - [typescript v0.31.1] .
 ### Releases
-- [NPM v0.31.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.31.1 - .
+- [NPM v0.31.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.31.1 - .
 
 ## 2024-12-20 16:01:16
 ### Changes
@@ -1158,7 +1158,7 @@ Based on:
 ### Generated
 - [typescript v0.32.0] .
 ### Releases
-- [NPM v0.32.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.32.0 - .
+- [NPM v0.32.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.32.0 - .
 
 ## 2024-12-22 00:10:48
 ### Changes
@@ -1168,7 +1168,7 @@ Based on:
 ### Generated
 - [typescript v0.32.1] .
 ### Releases
-- [NPM v0.32.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.32.1 - .
+- [NPM v0.32.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.32.1 - .
 
 ## 2025-01-24 00:09:35
 ### Changes
@@ -1178,7 +1178,7 @@ Based on:
 ### Generated
 - [typescript v0.32.2] .
 ### Releases
-- [NPM v0.32.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.32.2 - .
+- [NPM v0.32.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.32.2 - .
 
 ## 2025-01-27 00:09:48
 ### Changes
@@ -1188,7 +1188,7 @@ Based on:
 ### Generated
 - [typescript v0.32.3] .
 ### Releases
-- [NPM v0.32.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.32.3 - .
+- [NPM v0.32.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.32.3 - .
 
 ## 2025-02-05 00:09:58
 ### Changes
@@ -1198,7 +1198,7 @@ Based on:
 ### Generated
 - [typescript v0.32.4] .
 ### Releases
-- [NPM v0.32.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.32.4 - .
+- [NPM v0.32.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.32.4 - .
 
 ## 2025-02-06 00:09:46
 ### Changes
@@ -1208,7 +1208,7 @@ Based on:
 ### Generated
 - [typescript v0.32.5] .
 ### Releases
-- [NPM v0.32.5] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.32.5 - .
+- [NPM v0.32.5] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.32.5 - .
 
 ## 2025-02-07 00:09:41
 ### Changes
@@ -1218,7 +1218,7 @@ Based on:
 ### Generated
 - [typescript v0.33.0] .
 ### Releases
-- [NPM v0.33.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.33.0 - .
+- [NPM v0.33.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.33.0 - .
 
 ## 2025-02-10 00:10:04
 ### Changes
@@ -1228,7 +1228,7 @@ Based on:
 ### Generated
 - [typescript v0.34.0] .
 ### Releases
-- [NPM v0.34.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.34.0 - .
+- [NPM v0.34.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.34.0 - .
 
 ## 2025-03-07 00:09:55
 ### Changes
@@ -1238,7 +1238,7 @@ Based on:
 ### Generated
 - [typescript v0.35.0] .
 ### Releases
-- [NPM v0.35.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.35.0 - .
+- [NPM v0.35.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.35.0 - .
 
 ## 2025-03-09 00:09:12
 ### Changes
@@ -1248,7 +1248,7 @@ Based on:
 ### Generated
 - [typescript v0.35.1] .
 ### Releases
-- [NPM v0.35.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.35.1 - .
+- [NPM v0.35.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.35.1 - .
 
 ## 2025-03-31 16:31:46
 ### Changes
@@ -1258,7 +1258,7 @@ Based on:
 ### Generated
 - [typescript v0.35.2] .
 ### Releases
-- [NPM v0.35.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.35.2 - .
+- [NPM v0.35.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.35.2 - .
 
 ## 2025-03-31 19:33:46
 ### Changes
@@ -1268,7 +1268,7 @@ Based on:
 ### Generated
 - [typescript v0.35.3] .
 ### Releases
-- [NPM v0.35.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.35.3 - .
+- [NPM v0.35.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.35.3 - .
 
 ## 2025-03-31 19:42:25
 ### Changes
@@ -1278,7 +1278,7 @@ Based on:
 ### Generated
 - [typescript v0.35.4] .
 ### Releases
-- [NPM v0.35.4] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.35.4 - .
+- [NPM v0.35.4] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.35.4 - .
 
 ## 2025-04-03 00:10:29
 ### Changes
@@ -1288,7 +1288,7 @@ Based on:
 ### Generated
 - [typescript v0.36.0] .
 ### Releases
-- [NPM v0.36.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.36.0 - .
+- [NPM v0.36.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.36.0 - .
 
 ## 2025-04-06 00:11:19
 ### Changes
@@ -1298,7 +1298,7 @@ Based on:
 ### Generated
 - [typescript v0.36.1] .
 ### Releases
-- [NPM v0.36.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.36.1 - .
+- [NPM v0.36.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.36.1 - .
 
 ## 2025-04-14 00:11:23
 ### Changes
@@ -1308,7 +1308,7 @@ Based on:
 ### Generated
 - [typescript v0.36.2] .
 ### Releases
-- [NPM v0.36.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.36.2 - .
+- [NPM v0.36.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.36.2 - .
 
 ## 2025-04-19 00:10:19
 ### Changes
@@ -1318,7 +1318,7 @@ Based on:
 ### Generated
 - [typescript v0.37.0] .
 ### Releases
-- [NPM v0.37.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.37.0 - .
+- [NPM v0.37.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.37.0 - .
 
 ## 2025-05-01 00:12:16
 ### Changes
@@ -1328,7 +1328,7 @@ Based on:
 ### Generated
 - [typescript v0.37.1] .
 ### Releases
-- [NPM v0.37.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.37.1 - .
+- [NPM v0.37.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.37.1 - .
 
 ## 2025-05-05 00:11:37
 ### Changes
@@ -1338,7 +1338,7 @@ Based on:
 ### Generated
 - [typescript v0.37.2] .
 ### Releases
-- [NPM v0.37.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.37.2 - .
+- [NPM v0.37.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.37.2 - .
 
 ## 2025-06-04 00:11:21
 ### Changes
@@ -1348,7 +1348,7 @@ Based on:
 ### Generated
 - [typescript v0.38.0] .
 ### Releases
-- [NPM v0.38.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.38.0 - .
+- [NPM v0.38.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.38.0 - .
 
 ## 2025-06-09 00:12:06
 ### Changes
@@ -1358,7 +1358,7 @@ Based on:
 ### Generated
 - [typescript v0.39.0] .
 ### Releases
-- [NPM v0.39.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.39.0 - .
+- [NPM v0.39.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.39.0 - .
 
 ## 2025-07-10 00:11:39
 ### Changes
@@ -1368,7 +1368,7 @@ Based on:
 ### Generated
 - [typescript v0.40.0] .
 ### Releases
-- [NPM v0.40.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.40.0 - .
+- [NPM v0.40.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.40.0 - .
 
 ## 2025-08-06 00:12:14
 ### Changes
@@ -1378,7 +1378,7 @@ Based on:
 ### Generated
 - [typescript v0.40.1] .
 ### Releases
-- [NPM v0.40.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.40.1 - .
+- [NPM v0.40.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.40.1 - .
 
 ## 2025-08-07 00:12:28
 ### Changes
@@ -1388,7 +1388,7 @@ Based on:
 ### Generated
 - [typescript v0.40.2] .
 ### Releases
-- [NPM v0.40.2] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.40.2 - .
+- [NPM v0.40.2] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.40.2 - .
 
 ## 2025-09-15 00:11:38
 ### Changes
@@ -1398,7 +1398,7 @@ Based on:
 ### Generated
 - [typescript v0.40.3] .
 ### Releases
-- [NPM v0.40.3] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.40.3 - .
+- [NPM v0.40.3] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.40.3 - .
 
 ## 2025-10-12 05:24:41
 ### Changes
@@ -1408,7 +1408,7 @@ Based on:
 ### Generated
 - [typescript v0.41.0] .
 ### Releases
-- [NPM v0.41.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.41.0 - .
+- [NPM v0.41.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.41.0 - .
 
 ## 2025-10-12 05:51:28
 ### Changes
@@ -1418,7 +1418,7 @@ Based on:
 ### Generated
 - [typescript v0.42.0] .
 ### Releases
-- [NPM v0.42.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.42.0 - .
+- [NPM v0.42.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.42.0 - .
 
 ## 2025-10-12 07:25:38
 ### Changes
@@ -1428,7 +1428,7 @@ Based on:
 ### Generated
 - [typescript v0.42.1] .
 ### Releases
-- [NPM v0.42.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.42.1 - .
+- [NPM v0.42.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.42.1 - .
 
 ## 2025-11-13 00:11:23
 ### Changes
@@ -1438,7 +1438,7 @@ Based on:
 ### Generated
 - [typescript v0.43.0] .
 ### Releases
-- [NPM v0.43.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.43.0 - .
+- [NPM v0.43.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.43.0 - .
 
 ## 2025-12-01 00:13:55
 ### Changes
@@ -1448,7 +1448,7 @@ Based on:
 ### Generated
 - [typescript v0.44.0] .
 ### Releases
-- [NPM v0.44.0] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.44.0 - .
+- [NPM v0.44.0] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.44.0 - .
 
 ## 2025-12-01 01:48:15
 ### Changes
@@ -1458,7 +1458,7 @@ Based on:
 ### Generated
 - [typescript v0.44.1] .
 ### Releases
-- [NPM v0.44.1] https://www.npmjs.com/package/@lukehagar/plexjs/v/0.44.1 - .
+- [NPM v0.44.1] https://www.npmjs.com/package/@parke.dev/plexjs/v/0.44.1 - .
 
 ## 2025-12-27 00:12:33
 ### Changes

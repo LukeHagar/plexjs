@@ -30,9 +30,9 @@ Note: Either `uri` or `playlistID` must be specified
 
 <!-- UsageSnippet language="typescript" operationID="createPlayQueue" method="post" path="/playQueues" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { CreatePlayQueueType } from "@lukehagar/plexjs/models/operations";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { CreatePlayQueueType } from "@parke.dev/plexjs/models/operations";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -70,10 +70,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueCreatePlayQueue } from "@lukehagar/plexjs/funcs/playQueueCreatePlayQueue.js";
-import { CreatePlayQueueType } from "@lukehagar/plexjs/models/operations";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueCreatePlayQueue } from "@parke.dev/plexjs/funcs/playQueueCreatePlayQueue.js";
+import { CreatePlayQueueType } from "@parke.dev/plexjs/models/operations";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -139,8 +139,8 @@ Retrieves the play queue, centered at current item. This can be treated as a reg
 
 <!-- UsageSnippet language="typescript" operationID="getPlayQueue" method="get" path="/playQueues/{playQueueId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -176,9 +176,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueGetPlayQueue } from "@lukehagar/plexjs/funcs/playQueueGetPlayQueue.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueGetPlayQueue } from "@parke.dev/plexjs/funcs/playQueueGetPlayQueue.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -242,8 +242,8 @@ Adds an item to a play queue (e.g. party mode). Increments the version of the pl
 
 <!-- UsageSnippet language="typescript" operationID="addToPlayQueue" method="put" path="/playQueues/{playQueueId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -277,9 +277,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueAddToPlayQueue } from "@lukehagar/plexjs/funcs/playQueueAddToPlayQueue.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueAddToPlayQueue } from "@parke.dev/plexjs/funcs/playQueueAddToPlayQueue.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -341,8 +341,8 @@ Deletes all items in the play queue, and increases the version of the play queue
 
 <!-- UsageSnippet language="typescript" operationID="clearPlayQueue" method="delete" path="/playQueues/{playQueueId}/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -375,9 +375,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueClearPlayQueue } from "@lukehagar/plexjs/funcs/playQueueClearPlayQueue.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueClearPlayQueue } from "@parke.dev/plexjs/funcs/playQueueClearPlayQueue.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -438,8 +438,8 @@ Reset a play queue to the first item being the current item
 
 <!-- UsageSnippet language="typescript" operationID="resetPlayQueue" method="put" path="/playQueues/{playQueueId}/reset" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -472,9 +472,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueResetPlayQueue } from "@lukehagar/plexjs/funcs/playQueueResetPlayQueue.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueResetPlayQueue } from "@parke.dev/plexjs/funcs/playQueueResetPlayQueue.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -535,8 +535,8 @@ Shuffle a play queue (or reshuffles if already shuffled). The currently selected
 
 <!-- UsageSnippet language="typescript" operationID="shuffle" method="put" path="/playQueues/{playQueueId}/shuffle" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -569,9 +569,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueShuffle } from "@lukehagar/plexjs/funcs/playQueueShuffle.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueShuffle } from "@parke.dev/plexjs/funcs/playQueueShuffle.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -632,8 +632,8 @@ Unshuffles a play queue and restores "natural order". Note that this is currentl
 
 <!-- UsageSnippet language="typescript" operationID="unshuffle" method="put" path="/playQueues/{playQueueId}/unshuffle" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -666,9 +666,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueUnshuffle } from "@lukehagar/plexjs/funcs/playQueueUnshuffle.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueUnshuffle } from "@parke.dev/plexjs/funcs/playQueueUnshuffle.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -729,8 +729,8 @@ Deletes an item in a play queue. Increments the version of the play queue. Retur
 
 <!-- UsageSnippet language="typescript" operationID="deletePlayQueueItem" method="delete" path="/playQueues/{playQueueId}/items/{playQueueItemId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -764,9 +764,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueDeletePlayQueueItem } from "@lukehagar/plexjs/funcs/playQueueDeletePlayQueueItem.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueDeletePlayQueueItem } from "@parke.dev/plexjs/funcs/playQueueDeletePlayQueueItem.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -828,8 +828,8 @@ Moves an item in a play queue, and increases the version of the play queue. Retu
 
 <!-- UsageSnippet language="typescript" operationID="movePlayQueueItem" method="put" path="/playQueues/{playQueueId}/items/{playQueueItemId}/move" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -863,9 +863,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { playQueueMovePlayQueueItem } from "@lukehagar/plexjs/funcs/playQueueMovePlayQueueItem.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { playQueueMovePlayQueueItem } from "@parke.dev/plexjs/funcs/playQueueMovePlayQueueItem.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

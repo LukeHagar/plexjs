@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetLineupRequest } from "@lukehagar/plexjs/models/operations";
+import { GetLineupRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetLineupRequest = {
   deviceQueryParameter: "<value>",

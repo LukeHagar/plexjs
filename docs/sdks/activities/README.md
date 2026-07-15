@@ -22,7 +22,7 @@ List all activities on the server.  Admins can see all activities but other user
 
 <!-- UsageSnippet language="typescript" operationID="listActivities" method="get" path="/activities" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -42,8 +42,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { activitiesListActivities } from "@lukehagar/plexjs/funcs/activitiesListActivities.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { activitiesListActivities } from "@parke.dev/plexjs/funcs/activitiesListActivities.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -90,8 +90,8 @@ Cancel a running activity.  Admins can cancel all activities but other users can
 
 <!-- UsageSnippet language="typescript" operationID="cancelActivity" method="delete" path="/activities/{activityId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -124,9 +124,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { activitiesCancelActivity } from "@lukehagar/plexjs/funcs/activitiesCancelActivity.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { activitiesCancelActivity } from "@parke.dev/plexjs/funcs/activitiesCancelActivity.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

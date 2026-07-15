@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { DeleteMetadataItemRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { DeleteMetadataItemRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: DeleteMetadataItemRequest = {
   ids: "<value>",

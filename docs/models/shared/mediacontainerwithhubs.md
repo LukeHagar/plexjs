@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { HasVoiceActivityEnum, MediaContainerWithHubs, StreamType } from "@lukehagar/plexjs/models/shared";
+import { HasVoiceActivityEnum, MediaContainerWithHubs, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithHubs = {
   mediaContainer: {

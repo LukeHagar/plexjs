@@ -10,7 +10,7 @@ import {
   MediaContainerWithDecisionHasVoiceActivityEnum,
   MediaContainerWithDecisionMedia,
   MediaContainerWithDecisionStreamType,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionMedia = {
   aspectRatio: 2.35,

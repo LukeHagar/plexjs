@@ -5,7 +5,7 @@ The filters on the section
 ## Example Usage
 
 ```typescript
-import { GetSectionFiltersResponse } from "@lukehagar/plexjs/models/operations";
+import { GetSectionFiltersResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSectionFiltersResponse = {};
 ```

@@ -27,7 +27,7 @@ Creates a download queue for this client if one doesn't exist, or returns the ex
 
 <!-- UsageSnippet language="typescript" operationID="createDownloadQueue" method="post" path="/downloadQueue" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueCreateDownloadQueue } from "@lukehagar/plexjs/funcs/downloadQueueCreateDownloadQueue.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueCreateDownloadQueue } from "@parke.dev/plexjs/funcs/downloadQueueCreateDownloadQueue.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -98,8 +98,8 @@ Get a download queue by its id
 
 <!-- UsageSnippet language="typescript" operationID="getDownloadQueue" method="get" path="/downloadQueue/{queueId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -132,9 +132,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueGetDownloadQueue } from "@lukehagar/plexjs/funcs/downloadQueueGetDownloadQueue.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueGetDownloadQueue } from "@parke.dev/plexjs/funcs/downloadQueueGetDownloadQueue.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -198,8 +198,8 @@ Add items to the download queue
 
 <!-- UsageSnippet language="typescript" operationID="addDownloadQueueItems" method="post" path="/downloadQueue/{queueId}/add" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -261,9 +261,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueAddDownloadQueueItems } from "@lukehagar/plexjs/funcs/downloadQueueAddDownloadQueueItems.js";
-import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueAddDownloadQueueItems } from "@parke.dev/plexjs/funcs/downloadQueueAddDownloadQueueItems.js";
+import { Accepts, AdvancedSubtitles, BoolInt, LocationParameter, ProtocolParameter } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -356,8 +356,8 @@ Get items from a download queue
 
 <!-- UsageSnippet language="typescript" operationID="listDownloadQueueItems" method="get" path="/downloadQueue/{queueId}/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -390,9 +390,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueListDownloadQueueItems } from "@lukehagar/plexjs/funcs/downloadQueueListDownloadQueueItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueListDownloadQueueItems } from "@parke.dev/plexjs/funcs/downloadQueueListDownloadQueueItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -456,8 +456,8 @@ Grab the decision for a download queue item
 
 <!-- UsageSnippet language="typescript" operationID="getItemDecision" method="get" path="/downloadQueue/{queueId}/item/{itemId}/decision" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -491,9 +491,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueGetItemDecision } from "@lukehagar/plexjs/funcs/downloadQueueGetItemDecision.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueGetItemDecision } from "@parke.dev/plexjs/funcs/downloadQueueGetItemDecision.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -558,8 +558,8 @@ Grab the media for a download queue item
 
 <!-- UsageSnippet language="typescript" operationID="getDownloadQueueMedia" method="get" path="/downloadQueue/{queueId}/item/{itemId}/media" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -593,9 +593,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueGetDownloadQueueMedia } from "@lukehagar/plexjs/funcs/downloadQueueGetDownloadQueueMedia.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueGetDownloadQueueMedia } from "@parke.dev/plexjs/funcs/downloadQueueGetDownloadQueueMedia.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -657,8 +657,8 @@ delete items from a download queue
 
 <!-- UsageSnippet language="typescript" operationID="removeDownloadQueueItems" method="delete" path="/downloadQueue/{queueId}/items/{itemId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -696,9 +696,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueRemoveDownloadQueueItems } from "@lukehagar/plexjs/funcs/downloadQueueRemoveDownloadQueueItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueRemoveDownloadQueueItems } from "@parke.dev/plexjs/funcs/downloadQueueRemoveDownloadQueueItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -767,8 +767,8 @@ Get items from a download queue
 
 <!-- UsageSnippet language="typescript" operationID="getDownloadQueueItems" method="get" path="/downloadQueue/{queueId}/items/{itemId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -806,9 +806,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueGetDownloadQueueItems } from "@lukehagar/plexjs/funcs/downloadQueueGetDownloadQueueItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueGetDownloadQueueItems } from "@parke.dev/plexjs/funcs/downloadQueueGetDownloadQueueItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -877,8 +877,8 @@ Reprocess download queue items with previous decision parameters
 
 <!-- UsageSnippet language="typescript" operationID="restartProcessingDownloadQueueItems" method="post" path="/downloadQueue/{queueId}/items/{itemId}/restart" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -916,9 +916,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { downloadQueueRestartProcessingDownloadQueueItems } from "@lukehagar/plexjs/funcs/downloadQueueRestartProcessingDownloadQueueItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { downloadQueueRestartProcessingDownloadQueueItems } from "@parke.dev/plexjs/funcs/downloadQueueRestartProcessingDownloadQueueItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

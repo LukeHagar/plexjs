@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { GetAllHubsRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { GetAllHubsRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: GetAllHubsRequest = {
   onlyTransient: BoolInt.True,

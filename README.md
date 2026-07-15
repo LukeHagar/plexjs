@@ -1,4 +1,4 @@
-# @lukehagar/plexjs
+# @parke.dev/plexjs
 
 <div align="left">
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
@@ -16,7 +16,7 @@
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [@lukehagar/plexjs](#lukehagarplexjs)
+* [@parke.dev/plexjs](#parkedevplexjs)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
@@ -43,25 +43,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add @lukehagar/plexjs
+npm add @parke.dev/plexjs
 ```
 
 ### PNPM
 
 ```bash
-pnpm add @lukehagar/plexjs
+pnpm add @parke.dev/plexjs
 ```
 
 ### Bun
 
 ```bash
-bun add @lukehagar/plexjs
+bun add @parke.dev/plexjs
 ```
 
 ### Yarn
 
 ```bash
-yarn add @lukehagar/plexjs
+yarn add @parke.dev/plexjs
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -71,18 +71,18 @@ yarn add @lukehagar/plexjs
 ### Example
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 import {
   Extension,
   StartTranscodeSessionLocation,
   StartTranscodeSessionProtocol,
-} from "@lukehagar/plexjs/models/operations";
+} from "@parke.dev/plexjs/models/operations";
 import {
   Accepts,
   AdvancedSubtitles,
   BoolInt,
   TranscodeType,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -500,9 +500,9 @@ run();
 
 ### Example
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import * as errors from "@lukehagar/plexjs/models/errors";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import * as errors from "@parke.dev/plexjs/models/errors";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -602,8 +602,8 @@ If the selected server has variables, you may override its default values throug
 #### Example
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   serverIdx: 0,
@@ -638,8 +638,8 @@ run();
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   serverURL: "https://http://localhost:32400",
@@ -671,8 +671,8 @@ run();
 
 The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -721,9 +721,9 @@ The following example shows how to:
 - use the `"requestError"` hook to log errors
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 import { ProxyAgent } from "undici";
-import { HTTPClient } from "@lukehagar/plexjs/lib/http";
+import { HTTPClient } from "@parke.dev/plexjs/lib/http";
 
 const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
 
@@ -768,8 +768,8 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `token` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -1078,7 +1078,7 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 > - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 import { openAsBlob } from "node:fs";
 
 const plexAPI = new PlexAPI({
@@ -1101,8 +1101,8 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -1142,8 +1142,8 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   retryConfig: {
@@ -1192,7 +1192,7 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const sdk = new PlexAPI({ debugLogger: console });
 ```

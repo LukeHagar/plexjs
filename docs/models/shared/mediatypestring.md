@@ -6,7 +6,7 @@ The type of media content in the Plex library. This can represent videos, music,
 ## Example Usage
 
 ```typescript
-import { MediaTypeString } from "@lukehagar/plexjs/models/shared";
+import { MediaTypeString } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaTypeString = MediaTypeString.Movie;
 

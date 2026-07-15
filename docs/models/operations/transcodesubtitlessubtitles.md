@@ -6,7 +6,7 @@ Indicates how subtitles should be included: * 'auto' - Compute the appropriate s
 ## Example Usage
 
 ```typescript
-import { TranscodeSubtitlesSubtitles } from "@lukehagar/plexjs/models/operations";
+import { TranscodeSubtitlesSubtitles } from "@parke.dev/plexjs/models/operations";
 
 let value: TranscodeSubtitlesSubtitles = TranscodeSubtitlesSubtitles.Burn;
 ```

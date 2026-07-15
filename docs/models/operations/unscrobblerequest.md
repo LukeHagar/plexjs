@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UnscrobbleRequest } from "@lukehagar/plexjs/models/operations";
+import { UnscrobbleRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: UnscrobbleRequest = {
   identifier: "<value>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSonicPathRequest } from "@lukehagar/plexjs/models/operations";
+import { GetSonicPathRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSonicPathRequest = {
   sectionId: 683613,

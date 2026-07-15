@@ -18,8 +18,8 @@ Add items to a collection by uri
 
 <!-- UsageSnippet language="typescript" operationID="addCollectionItems" method="put" path="/library/collections/{collectionId}/items" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -53,9 +53,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryCollectionsAddCollectionItems } from "@lukehagar/plexjs/funcs/libraryCollectionsAddCollectionItems.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryCollectionsAddCollectionItems } from "@parke.dev/plexjs/funcs/libraryCollectionsAddCollectionItems.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -117,8 +117,8 @@ Delete an item from a collection
 
 <!-- UsageSnippet language="typescript" operationID="deleteCollectionItem" method="put" path="/library/collections/{collectionId}/items/{itemId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -152,9 +152,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryCollectionsDeleteCollectionItem } from "@lukehagar/plexjs/funcs/libraryCollectionsDeleteCollectionItem.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryCollectionsDeleteCollectionItem } from "@parke.dev/plexjs/funcs/libraryCollectionsDeleteCollectionItem.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -216,8 +216,8 @@ Reorder items in a collection with one item after another
 
 <!-- UsageSnippet language="typescript" operationID="moveCollectionItem" method="put" path="/library/collections/{collectionId}/items/{itemId}/move" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -251,9 +251,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { libraryCollectionsMoveCollectionItem } from "@lukehagar/plexjs/funcs/libraryCollectionsMoveCollectionItem.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { libraryCollectionsMoveCollectionItem } from "@parke.dev/plexjs/funcs/libraryCollectionsMoveCollectionItem.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

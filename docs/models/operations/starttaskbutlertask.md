@@ -5,7 +5,7 @@ The task name
 ## Example Usage
 
 ```typescript
-import { StartTaskButlerTask } from "@lukehagar/plexjs/models/operations";
+import { StartTaskButlerTask } from "@parke.dev/plexjs/models/operations";
 
 let value: StartTaskButlerTask =
   StartTaskButlerTask.ButlerTaskGenerateVoiceActivity;

@@ -12,7 +12,7 @@ import {
   MediaContainerWithDecisionHasVoiceActivityEnum,
   MediaContainerWithDecisionMediaContainer,
   MediaContainerWithDecisionStreamType,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithDecisionMediaContainer = {
   metadata: [

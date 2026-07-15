@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SetItemArtworkGlobals } from "@lukehagar/plexjs/models/operations";
+import { SetItemArtworkGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: SetItemArtworkGlobals = {
   clientIdentifier: "abc123",

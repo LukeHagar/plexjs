@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { TriggerFallbackRequest } from "@lukehagar/plexjs/models/operations";
-import { TranscodeType } from "@lukehagar/plexjs/models/shared";
+import { TriggerFallbackRequest } from "@parke.dev/plexjs/models/operations";
+import { TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 let value: TriggerFallbackRequest = {
   transcodeType: TranscodeType.Video,

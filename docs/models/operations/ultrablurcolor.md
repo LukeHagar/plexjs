@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UltraBlurColor } from "@lukehagar/plexjs/models/operations";
+import { UltraBlurColor } from "@parke.dev/plexjs/models/operations";
 
 let value: UltraBlurColor = {};
 ```

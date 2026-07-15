@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AllowSyncEnum } from "@lukehagar/plexjs/models/shared";
+import { AllowSyncEnum } from "@parke.dev/plexjs/models/shared";
 
 let value: AllowSyncEnum = AllowSyncEnum.Zero;
 

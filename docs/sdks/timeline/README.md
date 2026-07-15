@@ -19,8 +19,8 @@ This API does respond to the GET verb but applications should use PUT
 
 <!-- UsageSnippet language="typescript" operationID="markPlayed" method="put" path="/:/scrobble" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -54,9 +54,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { timelineMarkPlayed } from "@lukehagar/plexjs/funcs/timelineMarkPlayed.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { timelineMarkPlayed } from "@parke.dev/plexjs/funcs/timelineMarkPlayed.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -119,9 +119,9 @@ This endpoint is hit during media playback for an item. It must be hit whenever 
 
 <!-- UsageSnippet language="typescript" operationID="report" method="post" path="/:/timeline" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { ReportState } from "@lukehagar/plexjs/models/operations";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { ReportState } from "@parke.dev/plexjs/models/operations";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -167,10 +167,10 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { timelineReport } from "@lukehagar/plexjs/funcs/timelineReport.js";
-import { ReportState } from "@lukehagar/plexjs/models/operations";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { timelineReport } from "@parke.dev/plexjs/funcs/timelineReport.js";
+import { ReportState } from "@parke.dev/plexjs/models/operations";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -245,8 +245,8 @@ This API does respond to the GET verb but applications should use PUT
 
 <!-- UsageSnippet language="typescript" operationID="unscrobble" method="put" path="/:/unscrobble" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -279,9 +279,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { timelineUnscrobble } from "@lukehagar/plexjs/funcs/timelineUnscrobble.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { timelineUnscrobble } from "@parke.dev/plexjs/funcs/timelineUnscrobble.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

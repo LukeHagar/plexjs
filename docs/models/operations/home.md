@@ -5,7 +5,7 @@ Indicates if the user is part of a home group.
 ## Example Usage
 
 ```typescript
-import { Home } from "@lukehagar/plexjs/models/operations";
+import { Home } from "@parke.dev/plexjs/models/operations";
 
 let value: Home = Home.Enable;
 

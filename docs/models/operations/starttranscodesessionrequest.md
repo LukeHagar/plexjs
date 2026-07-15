@@ -9,8 +9,8 @@ import {
   StartTranscodeSessionProtocol,
   StartTranscodeSessionRequest,
   StartTranscodeSessionSubtitles,
-} from "@lukehagar/plexjs/models/operations";
-import { AdvancedSubtitles, BoolInt, TranscodeType } from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/operations";
+import { AdvancedSubtitles, BoolInt, TranscodeType } from "@parke.dev/plexjs/models/shared";
 
 let value: StartTranscodeSessionRequest = {
   transcodeType: TranscodeType.Video,

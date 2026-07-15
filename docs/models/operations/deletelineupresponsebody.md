@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { DeleteLineupResponseBody } from "@lukehagar/plexjs/models/operations";
+import { DeleteLineupResponseBody } from "@parke.dev/plexjs/models/operations";
 
 let value: DeleteLineupResponseBody = {};
 ```

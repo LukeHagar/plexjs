@@ -5,7 +5,7 @@ Indicates if the user has restricted access.
 ## Example Usage
 
 ```typescript
-import { Restricted } from "@lukehagar/plexjs/models/operations";
+import { Restricted } from "@parke.dev/plexjs/models/operations";
 
 let value: Restricted = Restricted.Enable;
 

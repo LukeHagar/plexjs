@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { LibrarySections } from "@lukehagar/plexjs/models/shared";
+import { LibrarySections } from "@parke.dev/plexjs/models/shared";
 
 let value: LibrarySections = {
   mediaContainer: {

@@ -5,7 +5,7 @@ Hints describing what we're looking for.  Note: The hint `ratingKey` is required
 ## Example Usage
 
 ```typescript
-import { Hints } from "@lukehagar/plexjs/models/operations";
+import { Hints } from "@parke.dev/plexjs/models/operations";
 
 let value: Hints = {};
 ```

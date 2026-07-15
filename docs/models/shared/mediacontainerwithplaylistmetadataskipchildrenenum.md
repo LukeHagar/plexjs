@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithPlaylistMetadataSkipChildrenEnum } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithPlaylistMetadataSkipChildrenEnum } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithPlaylistMetadataSkipChildrenEnum =
   MediaContainerWithPlaylistMetadataSkipChildrenEnum.One;

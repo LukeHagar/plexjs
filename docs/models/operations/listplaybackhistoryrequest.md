@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListPlaybackHistoryRequest } from "@lukehagar/plexjs/models/operations";
+import { ListPlaybackHistoryRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: ListPlaybackHistoryRequest = {
   sort: [

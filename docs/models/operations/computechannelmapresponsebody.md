@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { ComputeChannelMapResponseBody } from "@lukehagar/plexjs/models/operations";
+import { ComputeChannelMapResponseBody } from "@parke.dev/plexjs/models/operations";
 
 let value: ComputeChannelMapResponseBody = {};
 ```

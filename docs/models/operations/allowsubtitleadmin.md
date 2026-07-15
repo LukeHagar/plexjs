@@ -5,7 +5,7 @@ Indicates if the user can manage subtitles.
 ## Example Usage
 
 ```typescript
-import { AllowSubtitleAdmin } from "@lukehagar/plexjs/models/operations";
+import { AllowSubtitleAdmin } from "@parke.dev/plexjs/models/operations";
 
 let value: AllowSubtitleAdmin = AllowSubtitleAdmin.Enable;
 

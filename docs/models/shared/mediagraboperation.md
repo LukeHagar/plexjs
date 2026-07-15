@@ -6,7 +6,7 @@ A media grab opration represents a scheduled or active recording of media
 ## Example Usage
 
 ```typescript
-import { HasVoiceActivityEnum, MediaGrabOperation, StreamType } from "@lukehagar/plexjs/models/shared";
+import { HasVoiceActivityEnum, MediaGrabOperation, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaGrabOperation = {
   metadata: {

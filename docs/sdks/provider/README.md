@@ -19,7 +19,7 @@ Get the list of all available media providers for this PMS.  This will generally
 
 <!-- UsageSnippet language="typescript" operationID="listProviders" method="get" path="/media/providers" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -39,8 +39,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { providerListProviders } from "@lukehagar/plexjs/funcs/providerListProviders.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { providerListProviders } from "@parke.dev/plexjs/funcs/providerListProviders.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -87,8 +87,8 @@ This endpoint registers a media provider with the server. Once registered, the m
 
 <!-- UsageSnippet language="typescript" operationID="addProvider" method="post" path="/media/providers" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -121,9 +121,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { providerAddProvider } from "@lukehagar/plexjs/funcs/providerAddProvider.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { providerAddProvider } from "@parke.dev/plexjs/funcs/providerAddProvider.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -184,7 +184,7 @@ Refresh all known media providers. This is useful in case a provider has updated
 
 <!-- UsageSnippet language="typescript" operationID="refreshProviders" method="post" path="/media/providers/refresh" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -204,8 +204,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { providerRefreshProviders } from "@lukehagar/plexjs/funcs/providerRefreshProviders.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { providerRefreshProviders } from "@parke.dev/plexjs/funcs/providerRefreshProviders.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -252,8 +252,8 @@ Deletes a media provider with the given id
 
 <!-- UsageSnippet language="typescript" operationID="deleteMediaProvider" method="delete" path="/media/providers/{provider}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -286,9 +286,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { providerDeleteMediaProvider } from "@lukehagar/plexjs/funcs/providerDeleteMediaProvider.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { providerDeleteMediaProvider } from "@parke.dev/plexjs/funcs/providerDeleteMediaProvider.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

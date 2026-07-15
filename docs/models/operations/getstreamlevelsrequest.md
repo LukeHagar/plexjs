@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetStreamLevelsRequest } from "@lukehagar/plexjs/models/operations";
+import { GetStreamLevelsRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetStreamLevelsRequest = {
   streamId: 474264,

@@ -8,7 +8,7 @@ Subscription parameters.
 ## Example Usage
 
 ```typescript
-import { Params } from "@lukehagar/plexjs/models/operations";
+import { Params } from "@parke.dev/plexjs/models/operations";
 
 let value: Params = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OptimizedForStreaming } from "@lukehagar/plexjs/models/shared";
+import { OptimizedForStreaming } from "@parke.dev/plexjs/models/shared";
 
 let value: OptimizedForStreaming = OptimizedForStreaming.One;
 

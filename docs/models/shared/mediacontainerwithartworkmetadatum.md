@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MediaContainerWithArtworkMetadatum } from "@lukehagar/plexjs/models/shared";
+import { MediaContainerWithArtworkMetadatum } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithArtworkMetadatum = {};
 ```

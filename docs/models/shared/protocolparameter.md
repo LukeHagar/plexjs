@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ProtocolParameter } from "@lukehagar/plexjs/models/shared";
+import { ProtocolParameter } from "@parke.dev/plexjs/models/shared";
 
 let value: ProtocolParameter = ProtocolParameter.Dash;
 ```

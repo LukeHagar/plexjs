@@ -75,7 +75,7 @@ typescript:
   moduleFormat: commonjs
   multipartArrayFormat: legacy
   outputModelSuffix: output
-  packageName: '@lukehagar/plexjs'
+  packageName: '@parke.dev/plexjs'
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
   responseFormat: flat

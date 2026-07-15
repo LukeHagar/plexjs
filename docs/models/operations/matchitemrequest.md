@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MatchItemRequest } from "@lukehagar/plexjs/models/operations";
+import { MatchItemRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: MatchItemRequest = {
   ids: "<value>",

@@ -6,7 +6,7 @@ Each `Filter` object contains a description of the filter. Note that it is not a
 ## Example Usage
 
 ```typescript
-import { Filter } from "@lukehagar/plexjs/models/shared";
+import { Filter } from "@parke.dev/plexjs/models/shared";
 
 let value: Filter = {};
 ```

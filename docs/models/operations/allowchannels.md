@@ -5,7 +5,7 @@ Indicates if the user has access to channels.
 ## Example Usage
 
 ```typescript
-import { AllowChannels } from "@lukehagar/plexjs/models/operations";
+import { AllowChannels } from "@parke.dev/plexjs/models/operations";
 
 let value: AllowChannels = AllowChannels.Enable;
 

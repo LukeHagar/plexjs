@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { GetPostplayHubsRequest } from "@lukehagar/plexjs/models/operations";
-import { BoolInt } from "@lukehagar/plexjs/models/shared";
+import { GetPostplayHubsRequest } from "@parke.dev/plexjs/models/operations";
+import { BoolInt } from "@parke.dev/plexjs/models/shared";
 
 let value: GetPostplayHubsRequest = {
   metadataId: 202749,

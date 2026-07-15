@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TranscodeImageGlobals } from "@lukehagar/plexjs/models/operations";
+import { TranscodeImageGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: TranscodeImageGlobals = {
   clientIdentifier: "abc123",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SetStreamOffsetGlobals } from "@lukehagar/plexjs/models/operations";
+import { SetStreamOffsetGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: SetStreamOffsetGlobals = {
   clientIdentifier: "abc123",

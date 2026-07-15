@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PastSubscription, PostUsersSignInDataState } from "@lukehagar/plexjs/models/operations";
+import { PastSubscription, PostUsersSignInDataState } from "@parke.dev/plexjs/models/operations";
 
 let value: PastSubscription = {
   id: "<id>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetPlaylistGeneratorItemsSkipParentEnum } from "@lukehagar/plexjs/models/operations";
+import { GetPlaylistGeneratorItemsSkipParentEnum } from "@parke.dev/plexjs/models/operations";
 
 let value: GetPlaylistGeneratorItemsSkipParentEnum =
   GetPlaylistGeneratorItemsSkipParentEnum.One;

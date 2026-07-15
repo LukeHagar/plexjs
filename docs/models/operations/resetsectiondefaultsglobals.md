@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ResetSectionDefaultsGlobals } from "@lukehagar/plexjs/models/operations";
+import { ResetSectionDefaultsGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: ResetSectionDefaultsGlobals = {
   clientIdentifier: "abc123",

@@ -10,7 +10,7 @@ import {
   MediaReviewsVisibility,
   UserProfile,
   WatchedIndicator,
-} from "@lukehagar/plexjs/models/shared";
+} from "@parke.dev/plexjs/models/shared";
 
 let value: UserProfile = {
   defaultAudioLanguage: "ja",

@@ -5,7 +5,7 @@ Whether or not the account has media reviews visibility enabled
 ## Example Usage
 
 ```typescript
-import { MediaReviewsVisibility } from "@lukehagar/plexjs/models/shared";
+import { MediaReviewsVisibility } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaReviewsVisibility = MediaReviewsVisibility.CriticsOnly;
 

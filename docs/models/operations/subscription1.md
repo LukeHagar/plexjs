@@ -5,7 +5,7 @@ If the account's Plex Pass subscription is active
 ## Example Usage
 
 ```typescript
-import { Subscription1, SubscriptionStatus1 } from "@lukehagar/plexjs/models/operations";
+import { Subscription1, SubscriptionStatus1 } from "@parke.dev/plexjs/models/operations";
 
 let value: Subscription1 = {
   active: true,

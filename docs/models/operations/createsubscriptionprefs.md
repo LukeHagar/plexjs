@@ -5,7 +5,7 @@ Subscription preferences.
 ## Example Usage
 
 ```typescript
-import { CreateSubscriptionPrefs } from "@lukehagar/plexjs/models/operations";
+import { CreateSubscriptionPrefs } from "@parke.dev/plexjs/models/operations";
 
 let value: CreateSubscriptionPrefs = {};
 ```

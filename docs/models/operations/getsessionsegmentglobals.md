@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetSessionSegmentGlobals } from "@lukehagar/plexjs/models/operations";
+import { GetSessionSegmentGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: GetSessionSegmentGlobals = {
   clientIdentifier: "abc123",

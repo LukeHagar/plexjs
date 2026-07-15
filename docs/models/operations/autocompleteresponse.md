@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AutocompleteResponse } from "@lukehagar/plexjs/models/operations";
-import { HasVoiceActivityEnum, StreamType } from "@lukehagar/plexjs/models/shared";
+import { AutocompleteResponse } from "@parke.dev/plexjs/models/operations";
+import { HasVoiceActivityEnum, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: AutocompleteResponse = {
   headers: {

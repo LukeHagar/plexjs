@@ -5,7 +5,7 @@ Successful response with media container data in JSON
 ## Example Usage
 
 ```typescript
-import { GetUsersResponse } from "@lukehagar/plexjs/models/operations";
+import { GetUsersResponse } from "@parke.dev/plexjs/models/operations";
 
 let value: GetUsersResponse = {
   mediaContainer: {

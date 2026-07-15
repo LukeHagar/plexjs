@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HasVoiceActivityEnum, MediaContainerWithMetadata, StreamType } from "@lukehagar/plexjs/models/shared";
+import { HasVoiceActivityEnum, MediaContainerWithMetadata, StreamType } from "@parke.dev/plexjs/models/shared";
 
 let value: MediaContainerWithMetadata = {
   mediaContainer: {

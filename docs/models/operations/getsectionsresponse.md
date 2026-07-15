@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { GetSectionsResponse } from "@lukehagar/plexjs/models/operations";
-import { MediaTypeString } from "@lukehagar/plexjs/models/shared";
+import { GetSectionsResponse } from "@parke.dev/plexjs/models/operations";
+import { MediaTypeString } from "@parke.dev/plexjs/models/shared";
 
 let value: GetSectionsResponse = {
   headers: {},

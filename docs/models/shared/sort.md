@@ -6,7 +6,7 @@ Each `Sort` object contains a description of the sort field.
 ## Example Usage
 
 ```typescript
-import { Sort } from "@lukehagar/plexjs/models/shared";
+import { Sort } from "@parke.dev/plexjs/models/shared";
 
 let value: Sort = {};
 ```

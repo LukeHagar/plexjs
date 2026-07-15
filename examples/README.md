@@ -1,6 +1,6 @@
-# @lukehagar/plexjs Examples
+# @parke.dev/plexjs Examples
 
-This directory contains example scripts demonstrating how to use the @lukehagar/plexjs SDK.
+This directory contains example scripts demonstrating how to use the @parke.dev/plexjs SDK.
 
 ## Prerequisites
 

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetServerResourcesRequest, IncludeHttps, IncludeIPv6, IncludeRelay } from "@lukehagar/plexjs/models/operations";
+import { GetServerResourcesRequest, IncludeHttps, IncludeIPv6, IncludeRelay } from "@parke.dev/plexjs/models/operations";
 
 let value: GetServerResourcesRequest = {
   includeHttps: IncludeHttps.True,

@@ -26,8 +26,8 @@ Get all subscriptions and potentially the grabs too
 
 <!-- UsageSnippet language="typescript" operationID="getAllSubscriptions" method="get" path="/media/subscriptions" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -61,9 +61,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsGetAllSubscriptions } from "@lukehagar/plexjs/funcs/subscriptionsGetAllSubscriptions.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsGetAllSubscriptions } from "@parke.dev/plexjs/funcs/subscriptionsGetAllSubscriptions.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,8 +125,8 @@ Create a subscription. The query parameters should be mostly derived from the [t
 
 <!-- UsageSnippet language="typescript" operationID="createSubscription" method="post" path="/media/subscriptions" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -164,9 +164,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsCreateSubscription } from "@lukehagar/plexjs/funcs/subscriptionsCreateSubscription.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsCreateSubscription } from "@parke.dev/plexjs/funcs/subscriptionsCreateSubscription.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -232,7 +232,7 @@ Process all subscriptions asynchronously
 
 <!-- UsageSnippet language="typescript" operationID="processSubscriptions" method="post" path="/media/subscriptions/process" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -252,8 +252,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsProcessSubscriptions } from "@lukehagar/plexjs/funcs/subscriptionsProcessSubscriptions.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsProcessSubscriptions } from "@parke.dev/plexjs/funcs/subscriptionsProcessSubscriptions.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -300,7 +300,7 @@ Get all scheduled recordings across all subscriptions
 
 <!-- UsageSnippet language="typescript" operationID="getScheduledRecordings" method="get" path="/media/subscriptions/scheduled" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
+import { PlexAPI } from "@parke.dev/plexjs";
 
 const plexAPI = new PlexAPI({
   token: "<YOUR_API_KEY_HERE>",
@@ -320,8 +320,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsGetScheduledRecordings } from "@lukehagar/plexjs/funcs/subscriptionsGetScheduledRecordings.js";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsGetScheduledRecordings } from "@parke.dev/plexjs/funcs/subscriptionsGetScheduledRecordings.js";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -368,8 +368,8 @@ Get the templates for a piece of media which could include fetching one airing, 
 
 <!-- UsageSnippet language="typescript" operationID="getTemplate" method="get" path="/media/subscriptions/template" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -402,9 +402,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsGetTemplate } from "@lukehagar/plexjs/funcs/subscriptionsGetTemplate.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsGetTemplate } from "@parke.dev/plexjs/funcs/subscriptionsGetTemplate.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -466,8 +466,8 @@ Note: This cancellation does not persist across a server restart, but neither do
 
 <!-- UsageSnippet language="typescript" operationID="cancelGrab" method="delete" path="/media/grabbers/operations/{operationId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -500,9 +500,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsCancelGrab } from "@lukehagar/plexjs/funcs/subscriptionsCancelGrab.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsCancelGrab } from "@parke.dev/plexjs/funcs/subscriptionsCancelGrab.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -563,8 +563,8 @@ Delete a subscription, cancelling all of its grabs as well
 
 <!-- UsageSnippet language="typescript" operationID="deleteSubscription" method="delete" path="/media/subscriptions/{subscriptionId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -597,9 +597,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsDeleteSubscription } from "@lukehagar/plexjs/funcs/subscriptionsDeleteSubscription.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsDeleteSubscription } from "@parke.dev/plexjs/funcs/subscriptionsDeleteSubscription.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -660,8 +660,8 @@ Get a single subscription and potentially the grabs too
 
 <!-- UsageSnippet language="typescript" operationID="getSubscription" method="get" path="/media/subscriptions/{subscriptionId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -696,9 +696,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsGetSubscription } from "@lukehagar/plexjs/funcs/subscriptionsGetSubscription.js";
-import { Accepts, BoolInt } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsGetSubscription } from "@parke.dev/plexjs/funcs/subscriptionsGetSubscription.js";
+import { Accepts, BoolInt } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -761,8 +761,8 @@ Edit a subscription's preferences
 
 <!-- UsageSnippet language="typescript" operationID="editSubscriptionPreferences" method="put" path="/media/subscriptions/{subscriptionId}" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -796,9 +796,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsEditSubscriptionPreferences } from "@lukehagar/plexjs/funcs/subscriptionsEditSubscriptionPreferences.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsEditSubscriptionPreferences } from "@parke.dev/plexjs/funcs/subscriptionsEditSubscriptionPreferences.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -860,8 +860,8 @@ Re-order a subscription to change its priority
 
 <!-- UsageSnippet language="typescript" operationID="reorderSubscription" method="put" path="/media/subscriptions/{subscriptionId}/move" -->
 ```typescript
-import { PlexAPI } from "@lukehagar/plexjs";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPI } from "@parke.dev/plexjs";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 const plexAPI = new PlexAPI({
   accepts: Accepts.ApplicationXml,
@@ -894,9 +894,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { PlexAPICore } from "@lukehagar/plexjs/core.js";
-import { subscriptionsReorderSubscription } from "@lukehagar/plexjs/funcs/subscriptionsReorderSubscription.js";
-import { Accepts } from "@lukehagar/plexjs/models/shared";
+import { PlexAPICore } from "@parke.dev/plexjs/core.js";
+import { subscriptionsReorderSubscription } from "@parke.dev/plexjs/funcs/subscriptionsReorderSubscription.js";
+import { Accepts } from "@parke.dev/plexjs/models/shared";
 
 // Use `PlexAPICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

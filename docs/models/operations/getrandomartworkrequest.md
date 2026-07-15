@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetRandomArtworkRequest } from "@lukehagar/plexjs/models/operations";
+import { GetRandomArtworkRequest } from "@parke.dev/plexjs/models/operations";
 
 let value: GetRandomArtworkRequest = {
   sections: [

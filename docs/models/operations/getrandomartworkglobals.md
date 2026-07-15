@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetRandomArtworkGlobals } from "@lukehagar/plexjs/models/operations";
+import { GetRandomArtworkGlobals } from "@parke.dev/plexjs/models/operations";
 
 let value: GetRandomArtworkGlobals = {
   clientIdentifier: "abc123",
